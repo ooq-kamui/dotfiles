@@ -42,13 +42,27 @@ set tabstop=2
 set shiftwidth=2
 set nowrap
 set whichwrap=b,s,h,l,<,>,[,]
-set virtualedit=onemore
+set virtualedit=onemore "改行にカーソルをおける
+set virtualedit+=block  "矩形選択で行末以降にカーソル移動可
 set scrolloff=5
-
 set wildmode=list:longest
 
 set clipboard+=unnamed
 syntax on
+
+
+set statusline=%F  " file name 表示
+set statusline+=%m " 変更あり表示
+set statusline+=%= " 以降を右寄せで表示
+"set statusline+=[ENC=%{&fileencoding}] " file encoding
+set statusline+=[LOW=%l/%L] " 現在行数/全行数
+
+" 0: 表示しない
+" 1: 2つ以上ウィンドウがあるときだけ表示
+" 2: 常に表示
+set laststatus=2
+
+
 
 "
 " mode command
