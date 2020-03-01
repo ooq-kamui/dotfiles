@@ -53,15 +53,10 @@ syntax on
 
 set statusline=%F  " file name 表示
 set statusline+=%m " 変更あり表示
-set statusline+=%= " 以降を右寄せで表示
-"set statusline+=[ENC=%{&fileencoding}] " file encoding
-set statusline+=[LOW=%l/%L] " 現在行数/全行数
-
-" 0: 表示しない
-" 1: 2つ以上ウィンドウがあるときだけ表示
-" 2: 常に表示
-set laststatus=2
-
+set statusline+=%= " 以降を右寄せ
+set statusline+=[ENC=%{&fileencoding}] " file encoding
+set statusline+=[LOW=%l/%L]            " 現在行数/全行数
+set laststatus=2   " 0: off  1: on 2 win  2: on
 
 
 "
@@ -69,7 +64,8 @@ set laststatus=2
 "
 
 " save
-nnoremap <C-c> <C-c>:w<Cr>
+"nnoremap <C-c> <C-c>:w<Cr>
+nnoremap <C-s> :w<Cr>
 
 " tag jump
 "nnoremap t <C-w>gf
@@ -107,20 +103,9 @@ nnoremap viw Viw
 nnoremap <C-@> ggvG
 
 " cursor mv line
-"nnoremap <C-k> 10<C-y>
-"nnoremap <C-k> 10k
-"nnoremap <C-u> 10k
-"nnoremap <C-j> 10k
 nnoremap <C-p> 10k
-
-"nnoremap <C-j> 10<C-e>
 nnoremap <C-j> 10j
-"nnoremap <C-n> 10j
-
-"nnoremap <C-n> zt8<C-y>
-"nnoremap <C-j> zt3<C-y>
 nnoremap <C-u> zt3<C-y>
-
 nnoremap <C-g> G
 
 " cursor mv word
@@ -129,8 +114,8 @@ nnoremap <C-a> 0
 nnoremap <C-e> $
 "nnoremap <C-h> b
 nnoremap <C-l> w
-nnoremap <C-f> b
-nnoremap f w
+nnoremap <C-f> w
+nnoremap f b
 "nnoremap <C-e> %
 
 " select word
@@ -146,6 +131,7 @@ nnoremap <C-q> gT
 nnoremap + <C-a>
 nnoremap - <C-x>
 
+" grep
 nnoremap :g :grep!  **.lua **.script<Home>
 
 
@@ -178,8 +164,10 @@ vnoremap w y
 " 
 " mode insert
 " 
-inoremap <C-c> <C-c>:w<Cr>l
-inoremap <C-f> <C-c>:w<Cr>l
+"inoremap <C-c> <C-c>:w<Cr>l
+inoremap <C-c> <C-c>l
+"inoremap <C-f> <C-c>:w<Cr>l
+inoremap <C-f> <C-c>l
 "inoremap <C-j> <C-c>:w<Cr>l
 inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
