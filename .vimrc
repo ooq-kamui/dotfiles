@@ -167,11 +167,7 @@ vnoremap + <C-a>
 " 
 " mode insert
 " 
-"inoremap <C-c> <C-c>:w<Cr>l
-inoremap <C-c> <C-c>l
-"inoremap <C-f> <C-c>:w<Cr>l
-inoremap <C-f> <C-c>l
-"inoremap <C-j> <C-c>:w<Cr>l
+inoremap <C-f> <C-c>
 inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
 
