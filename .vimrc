@@ -103,7 +103,8 @@ nnoremap viw Viw
 nnoremap <C-@> ggvG
 
 " cursor mv line
-nnoremap <C-p> 10k
+"nnoremap <C-p> 10k
+nnoremap <C-i> 10k
 nnoremap <C-j> 10j
 nnoremap <C-u> zt3<C-y>
 nnoremap <C-g> G
@@ -160,6 +161,8 @@ vnoremap s x
 " yank copy
 vnoremap <C-c> y
 vnoremap w y
+
+vnoremap + <C-a>
 
 " 
 " mode insert
