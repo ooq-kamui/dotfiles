@@ -78,18 +78,21 @@ nnoremap <Space> i<Space><Esc>l
 "nnoremap <C-j> i<Cr><Esc>
 "nnoremap <Cr> i<Cr><Esc>
 
+" yank
+nnoremap yy "ayy
+
 " paste
-nnoremap p P
+nnoremap p "aP
 "nnoremap P $p
 
 " del
-nnoremap s x
+nnoremap s "ax
 nnoremap <C-d> x
 nnoremap <BS> x
 nnoremap <C-h> hx
-"nnoremap x "_x
 nnoremap cc cc<Esc>
 nnoremap <C-k> D
+nnoremap dd "add
 
 " char replace
 nnoremap <C-r> r
@@ -149,18 +152,19 @@ vnoremap <C-a> 0
 vnoremap <C-e> $
 vnoremap <C-h> b
 vnoremap <C-l> e
-vnoremap w <C-c>
 vnoremap <C-f> <C-c>
 vnoremap f e
 vnoremap <C-g> G
-vnoremap p "0p
+vnoremap p "ap
 
 " del
-vnoremap s x
+vnoremap s "ax
+vnoremap x "ax
+vnoremap d "ad
 
 " yank copy
-vnoremap <C-c> y
-vnoremap w y
+"vnoremap <C-c> y
+vnoremap w "ay
 
 vnoremap + <C-a>
 
