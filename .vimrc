@@ -20,9 +20,10 @@ packadd Cfilter
 autocmd ColorScheme * highlight LineNr ctermfg=141
 autocmd ColorScheme * highlight Visual cterm=none ctermbg=magenta
 autocmd ColorScheme * highlight Search cterm=bold ctermfg=Yellow ctermbg=Cyan
-
-autocmd ColorScheme * highlight NonText    ctermbg=None ctermfg=59
-autocmd ColorScheme * highlight SpecialKey ctermbg=None ctermfg=59
+"autocmd ColorScheme * highlight NonText    ctermbg=None ctermfg=99
+"autocmd ColorScheme * highlight SpecialKey ctermbg=None ctermfg=99
+autocmd ColorScheme * highlight NonText    ctermbg=None ctermfg=25
+autocmd ColorScheme * highlight SpecialKey ctermbg=None ctermfg=25
 
 colorscheme koehler
 "colorscheme evening
@@ -34,6 +35,7 @@ set hlsearch
 set number
 set list
 set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
+"hi NonText    ctermbg=None ctermfg=59 guibg=NONE guifg=None
 set cursorline
 
 set autoindent
@@ -64,7 +66,6 @@ set laststatus=2   " 0: off  1: on 2 win  2: on
 "
 
 " save
-"nnoremap <C-c> <C-c>:w<Cr>
 nnoremap <C-s> :w<Cr>
 
 " tag jump
@@ -72,6 +73,7 @@ nnoremap <C-s> :w<Cr>
 nnoremap t <C-w>gF
 
 " insert
+"nnoremap k i
 nnoremap a A
 nnoremap o O<Esc>
 nnoremap <Space> i<Space><Esc>l
@@ -111,6 +113,7 @@ nnoremap <C-i> 10k
 nnoremap <C-j> 10j
 nnoremap <C-u> zt3<C-y>
 nnoremap <C-g> G
+"nnoremap i k
 
 " cursor mv word
 nnoremap <C-a> 0
@@ -162,15 +165,16 @@ vnoremap s "ax
 vnoremap x "ax
 vnoremap d "ad
 
-" yank copy
-"vnoremap <C-c> y
+" yank
 vnoremap w "ay
 
+" increment
 vnoremap + <C-a>
 
-" 
+
+"
 " mode insert
-" 
+"
 inoremap <C-f> <C-c>
 inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
