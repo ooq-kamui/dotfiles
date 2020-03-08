@@ -165,8 +165,9 @@ vnoremap <C-g> G
 vnoremap p "adhp
 
 " del
-vnoremap s "ax
-vnoremap x "ax
+"vnoremap s "ax
+vnoremap s x
+"vnoremap x "ax
 "vnoremap d "ad
 
 " yank
