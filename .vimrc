@@ -48,10 +48,10 @@ set virtualedit=onemore "改行にカーソルをおける
 set virtualedit+=block  "矩形選択で行末以降にカーソル移動可
 set scrolloff=5
 set wildmode=list:longest
+set tabpagemax=30
 
 set clipboard+=unnamed
 syntax on
-
 
 set statusline=%F  " file name 表示
 set statusline+=%m " 変更あり表示
@@ -81,20 +81,23 @@ nnoremap <Space> i<Space><Esc>l
 "nnoremap <Cr> i<Cr><Esc>
 
 " yank
-nnoremap yy "ayy
+"nnoremap yy "ayy
 
 " paste
-nnoremap p "aP
+"nnoremap p "aP
+nnoremap p P
 "nnoremap P $p
 
 " del
-nnoremap s "ax
+"nnoremap s "ax
+nnoremap s x
 nnoremap <C-d> x
 nnoremap <BS> x
 nnoremap <C-h> hx
 nnoremap cc cc<Esc>
 nnoremap <C-k> D
-nnoremap dd "add
+"nnoremap dd "add
+"nnoremap dd dd
 
 " char replace
 nnoremap <C-r> r
@@ -158,15 +161,17 @@ vnoremap <C-l> e
 vnoremap <C-f> <C-c>
 vnoremap f e
 vnoremap <C-g> G
-vnoremap p "ap
+"vnoremap p "ap
+vnoremap p "adhp
 
 " del
 vnoremap s "ax
 vnoremap x "ax
-vnoremap d "ad
+"vnoremap d "ad
 
 " yank
-vnoremap w "ay
+"vnoremap w "ay
+vnoremap w y
 
 " increment
 vnoremap + <C-a>
