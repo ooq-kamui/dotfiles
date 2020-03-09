@@ -89,8 +89,8 @@ nnoremap p P
 "nnoremap P $p
 
 " del
-"nnoremap s "ax
-nnoremap s x
+nnoremap s "ax
+"nnoremap s x
 nnoremap <C-d> x
 nnoremap <BS> x
 nnoremap <C-h> hx
