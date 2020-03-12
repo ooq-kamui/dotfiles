@@ -146,6 +146,14 @@ nnoremap :g :grep!  **.lua **.script<Home>
 
 
 "
+" mode insert
+"
+inoremap <C-f> <C-c>
+inoremap <C-a> <C-o>^
+inoremap <C-e> <C-o>$
+
+
+"
 " mode visual
 "
 vnoremap i I
@@ -173,17 +181,11 @@ vnoremap s x
 " yank
 "vnoremap w "ay
 vnoremap w y
+vnoremap <C-c> y
 
 " increment
 vnoremap + <C-a>
 
-
-"
-" mode insert
-"
-inoremap <C-f> <C-c>
-inoremap <C-a> <C-o>^
-inoremap <C-e> <C-o>$
 
 " 
 " mode ex  -  command line ?
