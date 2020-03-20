@@ -113,7 +113,7 @@ nnoremap <C-@> ggvG
 " cursor mv line
 nnoremap <C-p> 10k
 "nnoremap <C-i> 10k
-nnoremap <C-j> 10j
+nnoremap <C-m> 10j
 nnoremap <C-u> zt3<C-y>
 nnoremap <C-g> G
 "nnoremap i k
