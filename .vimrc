@@ -134,8 +134,10 @@ nnoremap w Viw
 "nnoremap f wViw
 
 " tab
-nnoremap q gt
-nnoremap <C-q> gT
+"nnoremap q gt
+"nnoremap <C-q> gT
+nnoremap <Tab> gt
+nnoremap <S-Tab> gT
 
 " increment
 nnoremap + <C-a>
