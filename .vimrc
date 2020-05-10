@@ -113,14 +113,15 @@ nnoremap <C-@> ggvG
 " cursor mv line
 nnoremap <C-p> 10k
 "nnoremap <C-i> 10k
-nnoremap <C-m> 10j
+nnoremap <C-j> 10j
+"nnoremap <C-m> 10j
 nnoremap <C-u> zt3<C-y>
 nnoremap <C-g> G
 "nnoremap i k
 
 " cursor mv word
 nnoremap <C-a> 0
-"nnoremap -h> 0
+"nnoremap <C-h> 0
 nnoremap <C-e> $
 "nnoremap <C-h> b
 nnoremap <C-l> w
@@ -153,6 +154,9 @@ nnoremap :g :grep!  **.lua **.script<Home>
 inoremap <C-f> <C-c>
 inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
+inoremap <C-k> <C-o>D
+inoremap <C-d> <C-o>x
+inoremap <C-b> <C-o>h
 
 
 "
@@ -195,11 +199,12 @@ vnoremap + <C-a>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-b> <Left>
-cnoremap <C-d> <Del>
+cnoremap <C-f> <Right>
 cnoremap <C-l> <S-Right>
-"cnoremap <C-f> <Right>
+cnoremap <C-d> <Del>
 "cnoremap <C-p> <Up>
 "cnoremap <C-n> <Down>
+cnoremap <C-f> <Right>
 
 
 augroup vimrcEx
