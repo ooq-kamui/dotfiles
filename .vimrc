@@ -204,7 +204,6 @@ cnoremap <C-l> <S-Right>
 cnoremap <C-d> <Del>
 "cnoremap <C-p> <Up>
 "cnoremap <C-n> <Down>
-cnoremap <C-f> <Right>
 
 
 augroup vimrcEx
