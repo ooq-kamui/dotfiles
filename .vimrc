@@ -151,7 +151,9 @@ nnoremap :g :grep!  **.lua **.script<Home>
 "
 " mode insert
 "
-inoremap <C-f> <C-c>
+inoremap <C-i> <C-c>
+"inoremap <C-j> <C-c>
+inoremap <C-f> <C-o>l
 inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
 inoremap <C-k> <C-o>D
