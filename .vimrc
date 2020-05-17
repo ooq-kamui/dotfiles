@@ -6,6 +6,7 @@ set modelines=0		" CVE-2007-2438
 " remove change the following statements
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 set backspace=2		" more powerful backspacing
+set incsearch
 
 " Don't write backup file if vim is being called by "crontab -e"
 au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
@@ -81,7 +82,7 @@ nnoremap <Space> i<Space><Esc>l
 "nnoremap <Cr> i<Cr><Esc>
 
 " yank
-"nnoremap yy "ayy
+nnoremap c yy
 
 " paste
 "nnoremap p "aP
@@ -90,12 +91,11 @@ nnoremap p P
 
 " del
 nnoremap s "ax
-"nnoremap s x
 nnoremap <C-d> x
 nnoremap <BS> x
 nnoremap <C-h> hx
 nnoremap cc cc<Esc>
-nnoremap <C-k> D
+"nnoremap <C-k> D
 "nnoremap dd "add
 "nnoremap dd dd
 
@@ -111,28 +111,27 @@ nnoremap viw Viw
 nnoremap <C-@> ggvG
 
 " cursor mv line
-nnoremap <C-p> 10k
-"nnoremap <C-i> 10k
+nnoremap <C-k> 10k
 nnoremap <C-j> 10j
-"nnoremap <C-m> 10j
-nnoremap <C-u> zt3<C-y>
 nnoremap <C-g> G
-"nnoremap i k
+nnoremap <C-u> zt3<C-y>
 
 " cursor mv word
 nnoremap <C-a> 0
-"nnoremap <C-h> 0
-nnoremap <C-e> $
-"nnoremap <C-h> b
+nnoremap <C-e> $l
 nnoremap <C-l> w
-nnoremap f w
-nnoremap <C-f> b
+nnoremap <C-f> l
+nnoremap <C-b> h
+"nnoremap <C-f> b
 "nnoremap <C-e> %
 
 " select word
 nnoremap w Viw
 "nnoremap <C-f> Viw
 "nnoremap f wViw
+
+" search
+nnoremap <C-n> N
 
 " tab
 "nnoremap q gt
@@ -145,21 +144,27 @@ nnoremap + <C-a>
 nnoremap - <C-x>
 
 " grep
-nnoremap :g :grep!  **.lua **.script<Home>
+nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 
 
 "
 " mode insert
 "
-inoremap <C-i> <C-c>
-"inoremap <C-j> <C-c>
-inoremap <C-f> <C-o>l
 inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
 inoremap <C-k> <C-o>D
 inoremap <C-d> <C-o>x
+inoremap <C-f> <C-o>l
 inoremap <C-b> <C-o>h
+inoremap <C-l> <C-o>w
 
+inoremap <C-p> <C-o>k
+inoremap <C-n> <C-o>j
+
+inoremap <C-s> <C-o>:w<Cr>
+
+inoremap <C-i> <C-n>
+inoremap <C-o> <C-p>
 
 "
 " mode visual
@@ -167,15 +172,11 @@ inoremap <C-b> <C-o>h
 vnoremap i I
 vnoremap a A
 
-"vnoremap <C-k> <C-u>
-"vnoremap <C-j> <C-d>
-
 vnoremap <C-a> 0
 vnoremap <C-e> $
 vnoremap <C-h> b
 vnoremap <C-l> e
-vnoremap <C-f> <C-c>
-vnoremap f e
+"vnoremap f e
 vnoremap <C-g> G
 "vnoremap p "ap
 vnoremap p "adhp
@@ -189,7 +190,6 @@ vnoremap s x
 " yank
 "vnoremap w "ay
 vnoremap w y
-vnoremap <C-c> y
 
 " increment
 vnoremap + <C-a>
