@@ -131,11 +131,11 @@ nnoremap w Viw
 "nnoremap f wViw
 
 " search
-nnoremap <C-n> N
+"nnoremap <C-n> N
+"nnoremap * Viw"by/<C-r>"
 
 " tab
 "nnoremap q gt
-"nnoremap <C-q> gT
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 
@@ -165,6 +165,8 @@ inoremap <C-s> <C-o>:w<Cr>
 
 inoremap <C-i> <C-n>
 inoremap <C-o> <C-p>
+inoremap <C-v> <C-v><Tab>
+
 
 "
 " mode visual
