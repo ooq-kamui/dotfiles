@@ -94,13 +94,13 @@ nnoremap s "ax
 nnoremap <C-d> x
 nnoremap <BS> x
 nnoremap <C-h> hx
+nnoremap d dd
 nnoremap cc cc<Esc>
 "nnoremap <C-k> D
 "nnoremap dd "add
-"nnoremap dd dd
 
 " char replace
-nnoremap <C-r> r
+"nnoremap <C-r> r
 
 " redo
 nnoremap r <C-r>
@@ -121,7 +121,8 @@ nnoremap <C-a> 0
 nnoremap <C-e> $l
 nnoremap <C-l> w
 nnoremap <C-f> l
-nnoremap <C-b> h
+"nnoremap <C-b> h
+nnoremap <C-o> h
 "nnoremap <C-f> b
 "nnoremap <C-e> %
 
@@ -155,7 +156,8 @@ inoremap <C-e> <C-o>$
 inoremap <C-k> <C-o>D
 inoremap <C-d> <C-o>x
 inoremap <C-f> <C-o>l
-inoremap <C-b> <C-o>h
+"inoremap <C-b> <C-o>h
+inoremap <C-o> <C-o>h
 inoremap <C-l> <C-o>w
 
 inoremap <C-p> <C-o>k
@@ -164,7 +166,7 @@ inoremap <C-n> <C-o>j
 inoremap <C-s> <C-o>:w<Cr>
 
 inoremap <C-i> <C-n>
-inoremap <C-o> <C-p>
+"inoremap <C-o> <C-p>
 inoremap <C-v> <C-v><Tab>
 
 
@@ -202,7 +204,8 @@ vnoremap + <C-a>
 " 
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
-cnoremap <C-b> <Left>
+"cnoremap <C-b> <Left>
+cnoremap <C-o> <Left>
 cnoremap <C-f> <Right>
 cnoremap <C-l> <S-Right>
 cnoremap <C-d> <Del>
