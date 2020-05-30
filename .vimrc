@@ -67,7 +67,7 @@ set laststatus=2   " 0: off  1: on 2 win  2: on
 "
 
 " save
-nnoremap <C-s> :w<Cr>
+"nnoremap <C-s> :w<Cr>
 
 " tag jump
 "nnoremap t <C-w>gf
@@ -113,8 +113,8 @@ nnoremap <C-@> ggvG
 " cursor mv line
 nnoremap <C-k> 10k
 nnoremap <C-j> 10j
-nnoremap <C-g> G
 nnoremap <C-u> zt3<C-y>
+"nnoremap <C-g> G
 
 " cursor mv word
 nnoremap <C-a> 0
@@ -163,7 +163,7 @@ inoremap <C-l> <C-o>w
 inoremap <C-p> <C-o>k
 inoremap <C-n> <C-o>j
 
-inoremap <C-s> <C-o>:w<Cr>
+"inoremap <C-s> <C-o>:w<Cr>
 
 inoremap <C-i> <C-n>
 "inoremap <C-o> <C-p>
@@ -181,7 +181,7 @@ vnoremap <C-e> $
 vnoremap <C-h> b
 vnoremap <C-l> e
 "vnoremap f e
-vnoremap <C-g> G
+"vnoremap <C-g> G
 "vnoremap p "ap
 vnoremap p "adhp
 
@@ -194,6 +194,7 @@ vnoremap s x
 " yank
 "vnoremap w "ay
 vnoremap w y
+vnoremap c y
 
 " increment
 vnoremap + <C-a>
