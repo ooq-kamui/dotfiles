@@ -85,8 +85,8 @@ nnoremap <Space> i<Space><Esc>l
 nnoremap c yy
 
 " paste
-"nnoremap p "aP
 nnoremap p P
+"nnoremap p "aP
 "nnoremap P $p
 
 " del
@@ -106,20 +106,21 @@ nnoremap cc cc<Esc>
 nnoremap r <C-r>
 
 " select
-nnoremap vv V
-nnoremap viw Viw
+"nnoremap vv V
+"nnoremap viw Viw
 nnoremap <C-@> ggvG
 
 " cursor mv line
 nnoremap <C-k> 10k
 nnoremap <C-j> 10j
-nnoremap <C-u> zt3<C-y>
+"nnoremap <C-u> zt3<C-y>
+nnoremap <C-l> zt3<C-y>
 "nnoremap <C-g> G
 
 " cursor mv word
 nnoremap <C-a> 0
 nnoremap <C-e> $l
-nnoremap <C-l> w
+"nnoremap <C-l> w
 nnoremap <C-f> l
 "nnoremap <C-b> h
 nnoremap <C-o> h
@@ -145,7 +146,8 @@ nnoremap + <C-a>
 nnoremap - <C-x>
 
 " grep
-nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
+"nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
+nnoremap f :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 
 
 "
@@ -168,6 +170,8 @@ inoremap <C-n> <C-o>j
 inoremap <C-i> <C-n>
 "inoremap <C-o> <C-p>
 inoremap <C-v> <C-v><Tab>
+
+inoremap <C-q> <C-c>
 
 
 "
@@ -193,11 +197,13 @@ vnoremap s x
 
 " yank
 "vnoremap w "ay
-vnoremap w y
 vnoremap c y
 
 " increment
 vnoremap + <C-a>
+
+"vnoremap q <C-c>
+"vnoremap <C-q> <C-c>
 
 
 " 
