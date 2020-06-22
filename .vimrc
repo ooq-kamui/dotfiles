@@ -86,6 +86,8 @@ nnoremap c yy
 
 " paste
 nnoremap p P
+nnoremap m P
+"nnoremap v P
 "nnoremap p "aP
 "nnoremap P $p
 
