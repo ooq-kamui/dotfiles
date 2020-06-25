@@ -173,7 +173,8 @@ inoremap <C-i> <C-n>
 "inoremap <C-o> <C-p>
 inoremap <C-v> <C-v><Tab>
 
-inoremap <C-q> <C-c>
+inoremap <C-q> <Esc>
+inoremap <C-c> <Esc>
 
 
 "
@@ -190,6 +191,9 @@ vnoremap <C-l> e
 "vnoremap <C-g> G
 "vnoremap p "ap
 vnoremap p "adhp
+
+vnoremap <C-j> 10j
+vnoremap <C-k> 10k
 
 " del
 "vnoremap s "ax
