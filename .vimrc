@@ -68,6 +68,7 @@ set laststatus=2   " 0: off  1: on 2 win  2: on
 
 " save
 "nnoremap <C-s> :w<Cr>
+nnoremap <C-q> :w<Cr>
 
 " tag jump
 "nnoremap t <C-w>gf
@@ -224,6 +225,7 @@ cnoremap <C-l> <S-Right>
 cnoremap <C-d> <Del>
 "cnoremap <C-p> <Up>
 "cnoremap <C-n> <Down>
+cnoremap <C-q> <C-c>
 
 
 augroup vimrcEx
