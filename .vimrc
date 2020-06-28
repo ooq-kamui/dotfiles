@@ -196,6 +196,9 @@ vnoremap p "adhp
 vnoremap <C-j> 10j
 vnoremap <C-k> 10k
 
+vnoremap v V
+
+
 " del
 "vnoremap s "ax
 vnoremap s x
