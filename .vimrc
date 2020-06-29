@@ -63,7 +63,7 @@ set laststatus=2   " 0: off  1: on 2 win  2: on
 
 
 "
-" mode command
+" mode normal ( command )
 "
 
 " save
@@ -76,6 +76,7 @@ nnoremap t <C-w>gF
 
 " insert
 "nnoremap k i
+nnoremap e i
 nnoremap a A
 nnoremap o O<Esc>
 nnoremap <Space> i<Space><Esc>l
@@ -113,8 +114,12 @@ nnoremap r <C-r>
 "nnoremap viw Viw
 nnoremap <C-@> ggvG
 
+" cursor mv
+nnoremap i k
+
 " cursor mv line
 nnoremap <C-k> 10k
+"nnoremap <C-i> 10k
 nnoremap <C-j> 10j
 "nnoremap <C-u> zt3<C-y>
 nnoremap <C-l> zt3<C-y>
@@ -140,7 +145,6 @@ nnoremap w Viw
 "nnoremap * Viw"by/<C-r>"
 
 " tab
-"nnoremap q gt
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 
@@ -171,7 +175,7 @@ inoremap <C-n> <C-o>j
 "inoremap <C-s> <C-o>:w<Cr>
 
 inoremap <C-i> <C-n>
-"inoremap <C-o> <C-p>
+inoremap <C-b> <C-p>
 inoremap <C-v> <C-v><Tab>
 
 inoremap <C-q> <Esc>
@@ -235,5 +239,17 @@ augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
   \ exe "normal g`\"" | endif
 augroup END
+
+augroup InsertHook
+  autocmd!
+  autocmd InsertEnter * hi LineNr ctermfg=green
+  autocmd InsertLeave * hi LineNr ctermfg=141
+augroup END 
+
+
+
+
+
+
 
 
