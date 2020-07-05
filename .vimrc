@@ -66,9 +66,11 @@ set laststatus=2   " 0: off  1: on 2 win  2: on
 " mode normal ( command )
 "
 
+" quit
+nnoremap <C-q> :q<Cr>
+
 " save
-"nnoremap <C-s> :w<Cr>
-nnoremap <C-q> :w<Cr>
+"nnoremap <C-w> :w<Cr>
 
 " tag jump
 "nnoremap t <C-w>gf
@@ -89,7 +91,7 @@ nnoremap c yy
 " paste
 nnoremap p P
 nnoremap m P
-"nnoremap v P
+nnoremap v P
 "nnoremap p "aP
 "nnoremap P $p
 
@@ -109,13 +111,17 @@ nnoremap cc cc<Esc>
 " redo
 nnoremap r <C-r>
 
-" select
-"nnoremap vv V
-"nnoremap viw Viw
+" select ( visual )
 nnoremap <C-@> ggvG
 
+" select word
+nnoremap w Viw
+nnoremap <C-w> v
+nnoremap W V
+
+
 " cursor mv
-nnoremap i k
+"nnoremap i k
 
 " cursor mv line
 nnoremap <C-k> 10k
@@ -135,10 +141,6 @@ nnoremap <C-o> h
 "nnoremap <C-f> b
 "nnoremap <C-e> %
 
-" select word
-nnoremap w Viw
-"nnoremap <C-f> Viw
-"nnoremap f wViw
 
 " search
 "nnoremap <C-n> N
@@ -185,6 +187,8 @@ inoremap <C-c> <Esc>
 "
 " mode visual
 "
+vnoremap <C-q> <C-c>
+
 vnoremap i I
 vnoremap a A
 
@@ -200,7 +204,9 @@ vnoremap p "adhp
 vnoremap <C-j> 10j
 vnoremap <C-k> 10k
 
-vnoremap v V
+"vnoremap v V
+vnoremap w V
+vnoremap <C-w> <C-v>
 
 
 " del
