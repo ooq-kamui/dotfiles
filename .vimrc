@@ -106,7 +106,7 @@ nnoremap cc cc<Esc>
 "nnoremap dd "add
 
 " char replace
-"nnoremap <C-r> r
+nnoremap <C-r> r
 
 " redo
 nnoremap r <C-r>
