@@ -70,7 +70,7 @@ set laststatus=2   " 0: off  1: on 2 win  2: on
 nnoremap <C-q> :q<Cr>
 
 " save
-"nnoremap <C-w> :w<Cr>
+nnoremap <C-w> :w<Cr>
 
 " tag jump
 "nnoremap t <C-w>gf
@@ -116,7 +116,7 @@ nnoremap <C-@> ggvG
 
 " select word
 nnoremap w Viw
-nnoremap <C-w> v
+"nnoremap <C-w> v
 nnoremap W V
 
 
