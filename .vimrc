@@ -50,6 +50,7 @@ set virtualedit+=block  "矩形選択で行末以降にカーソル移動可
 set scrolloff=5
 set wildmode=list:longest
 set tabpagemax=30
+set nf=""
 
 set clipboard+=unnamed
 syntax on
@@ -78,7 +79,7 @@ nnoremap t <C-w>gF
 
 " insert
 "nnoremap k i
-nnoremap e i
+"nnoremap e i
 nnoremap a A
 nnoremap o O<Esc>
 nnoremap <Space> i<Space><Esc>l
@@ -129,7 +130,7 @@ nnoremap <C-k> 10k
 nnoremap <C-j> 10j
 "nnoremap <C-u> zt3<C-y>
 nnoremap <C-l> zt3<C-y>
-"nnoremap <C-g> G
+nnoremap <C-g> G
 
 " cursor mv word
 nnoremap <C-a> 0
@@ -196,15 +197,13 @@ vnoremap <C-a> 0
 vnoremap <C-e> $
 vnoremap <C-h> b
 vnoremap <C-l> e
-"vnoremap f e
-"vnoremap <C-g> G
-"vnoremap p "ap
+vnoremap <C-g> G
 vnoremap p "adhp
+vnoremap v "adhp
 
 vnoremap <C-j> 10j
 vnoremap <C-k> 10k
 
-"vnoremap v V
 vnoremap w V
 vnoremap <C-w> <C-v>
 
