@@ -155,8 +155,8 @@ nnoremap + <C-a>
 nnoremap - <C-x>
 
 " grep
-"nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
-nnoremap f :grep! "" **.lua **.script<Home><S-Right><Right><Right>
+nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
+"nnoremap f :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 
 
 "
@@ -208,7 +208,6 @@ vnoremap <C-k> 10k
 vnoremap w V
 vnoremap <C-w> <C-v>
 
-
 " del
 "vnoremap s "ax
 vnoremap s x
@@ -220,7 +219,8 @@ vnoremap s x
 vnoremap c y
 
 " increment
-vnoremap + <C-a>
+"vnoremap + <C-a>
+vnoremap + g<C-a>
 
 "vnoremap q <C-c>
 "vnoremap <C-q> <C-c>
