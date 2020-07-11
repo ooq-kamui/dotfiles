@@ -25,18 +25,19 @@ autocmd ColorScheme * highlight Search cterm=bold ctermfg=Yellow ctermbg=Cyan
 "autocmd ColorScheme * highlight SpecialKey ctermbg=None ctermfg=99
 autocmd ColorScheme * highlight NonText    ctermbg=None ctermfg=25
 autocmd ColorScheme * highlight SpecialKey ctermbg=None ctermfg=25
+autocmd ColorScheme * highlight MatchParen ctermbg=lightmagenta ctermfg=lightgreen
 
 colorscheme koehler
 "colorscheme evening
 
 set hlsearch
-"hi Search ctermbg=lightyellow
-"hi MatchParen ctermfg=red ctermbg=6
+"hi search ctermbg=lightyellow
+"hi matchparen ctermfg=red ctermbg=6
 
 set number
 set list
 set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
-"hi NonText    ctermbg=None ctermfg=59 guibg=NONE guifg=None
+"hi nontext    ctermbg=none ctermfg=59 guibg=none guifg=none
 set cursorline
 
 set autoindent
@@ -102,7 +103,8 @@ nnoremap <BS> x
 nnoremap <C-h> hx
 nnoremap d dd
 nnoremap cc cc<Esc>
-nnoremap e D
+"nnoremap e D
+nnoremap <C-m> D
 "nnoremap dd "add
 
 " char replace
@@ -132,7 +134,8 @@ nnoremap <C-j> 10j
 "nnoremap <C-u> zt3<C-y>
 nnoremap <C-l> zt3<C-y>
 nnoremap <C-g> G
-nnoremap <C-p> %
+"nnoremap <C-p> %
+nnoremap e %
 
 " cursor mv word
 nnoremap <C-a> 0
@@ -217,11 +220,8 @@ vnoremap <C-w> <C-v>
 " del
 "vnoremap s "ax
 vnoremap s x
-"vnoremap x "ax
-"vnoremap d "ad
 
 " yank
-"vnoremap w "ay
 vnoremap c y
 
 " increment
