@@ -103,7 +103,7 @@ nnoremap <BS> x
 nnoremap <C-h> hx
 nnoremap d dd
 nnoremap cc cc<Esc>
-"nnoremap <C-k> D
+nnoremap e D
 "nnoremap dd "add
 
 " char replace
@@ -112,7 +112,7 @@ nnoremap <C-r> r
 " redo
 nnoremap r <C-r>
 
-" select ( visual )
+" select all
 nnoremap <C-@> ggvG
 
 " select word
@@ -120,6 +120,8 @@ nnoremap w Viw
 "nnoremap <C-w> v
 nnoremap W V
 
+" select box
+nnoremap x <C-v>
 
 " cursor mv
 "nnoremap i k
@@ -131,16 +133,18 @@ nnoremap <C-j> 10j
 "nnoremap <C-u> zt3<C-y>
 nnoremap <C-l> zt3<C-y>
 nnoremap <C-g> G
+nnoremap <C-p> %
 
 " cursor mv word
 nnoremap <C-a> 0
 nnoremap <C-e> $l
-"nnoremap <C-l> w
 nnoremap <C-f> l
-"nnoremap <C-b> h
 nnoremap <C-o> h
-"nnoremap <C-f> b
-"nnoremap <C-e> %
+
+nnoremap q b
+"nnoremap q ge
+nnoremap <C-l> w
+"nnoremap <C-l> e
 
 
 " search
@@ -154,6 +158,10 @@ nnoremap <S-Tab> gT
 " increment
 nnoremap + <C-a>
 nnoremap - <C-x>
+
+" indent
+nnoremap > >>
+nnoremap < <<
 
 " grep
 nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
@@ -221,8 +229,9 @@ vnoremap c y
 "vnoremap + <C-a>
 vnoremap + g<C-a>
 
-"vnoremap q <C-c>
-"vnoremap <C-q> <C-c>
+" indent
+vnoremap > >gv
+vnoremap < <gv
 
 
 " 
