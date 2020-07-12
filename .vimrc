@@ -102,7 +102,7 @@ nnoremap <C-h> hx
 nnoremap d dd
 nnoremap cc cc<Esc>
 "nnoremap e D
-nnoremap <C-m> D
+nnoremap <C-m> i<Cr><Esc>
 "nnoremap dd "add
 
 " char replace
@@ -240,11 +240,11 @@ vnoremap > >gv
 vnoremap < <gv
 
 " add
-vnoremap i" di""<C-c>hp
-vnoremap i' di''<C-c>hp
-vnoremap i( di()<C-c>hp
-vnoremap i{ di{}<C-c>hp
-vnoremap i< di<><C-c>hp
+vnoremap i" di""<Esc>hp
+vnoremap i' di''<Esc>hp
+vnoremap i( di()<Esc>hp
+vnoremap i{ di{}<Esc>hp
+vnoremap i< di<><Esc>hp
 
 
 " 
@@ -272,11 +272,5 @@ augroup InsertHook
   autocmd InsertEnter * hi LineNr ctermfg=green
   autocmd InsertLeave * hi LineNr ctermfg=141
 augroup END 
-
-
-
-
-
-
 
 
