@@ -240,11 +240,11 @@ vnoremap > >gv
 vnoremap < <gv
 
 " add
-vnoremap i" di""<Esc>hp
-vnoremap i' di''<Esc>hp
-vnoremap i( di()<Esc>hp
-vnoremap i{ di{}<Esc>hp
-vnoremap i< di<><Esc>hp
+vnoremap i" di""<C-c>hp
+vnoremap i' di''<C-c>hp
+vnoremap i( di()<C-c>hp
+vnoremap i{ di{}<C-c>hp
+vnoremap i< di<><C-c>hp
 
 
 " 
