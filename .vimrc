@@ -91,10 +91,8 @@ nnoremap <Space> i<Space><Esc>l
 nnoremap c yy
 
 " paste
-nnoremap p P
+"nnoremap p P
 nnoremap v P
-"nnoremap p "aP
-"nnoremap P $p
 
 " del
 nnoremap s "ax
@@ -113,11 +111,13 @@ nnoremap <C-r> r
 " redo
 nnoremap r <C-r>
 
+nnoremap p .
+
 " select all
 nnoremap <C-@> ggvG
 
 " select word
-nnoremap w Viw
+nnoremap w viw
 "nnoremap <C-w> v
 nnoremap W V
 
@@ -189,7 +189,8 @@ inoremap <C-n> <C-o>j
 
 inoremap <C-i> <C-n>
 inoremap <C-b> <C-p>
-inoremap <C-v> <C-v><Tab>
+"inoremap <C-v> <C-v><Tab>
+inoremap <Tab> <C-v><Tab>
 
 inoremap <C-q> <Esc>
 inoremap <C-c> <Esc>
@@ -199,6 +200,7 @@ inoremap <C-c> <Esc>
 " mode visual
 "
 vnoremap <C-q> <C-c>
+vnoremap q <C-c>
 
 vnoremap i I
 vnoremap a A
@@ -208,8 +210,6 @@ vnoremap <C-e> $
 vnoremap <C-h> b
 vnoremap <C-l> e
 vnoremap <C-g> G
-vnoremap p "adhp
-vnoremap v "adhp
 
 vnoremap <C-j> 10j
 vnoremap <C-k> 10k
@@ -224,6 +224,10 @@ vnoremap s x
 " yank
 vnoremap c y
 
+" paste
+vnoremap p "adhp
+vnoremap v "adhp
+
 " increment
 "vnoremap + <C-a>
 vnoremap + g<C-a>
@@ -231,6 +235,13 @@ vnoremap + g<C-a>
 " indent
 vnoremap > >gv
 vnoremap < <gv
+
+" add
+vnoremap i" di""<C-c>hp
+vnoremap i' di''<C-c>hp
+vnoremap i( di()<C-c>hp
+vnoremap i{ di{}<C-c>hp
+vnoremap i< di<><C-c>hp
 
 
 " 
