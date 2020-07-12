@@ -91,7 +91,7 @@ nnoremap <Space> i<Space><Esc>l
 nnoremap c yy
 
 " paste
-"nnoremap p P
+nnoremap p P
 nnoremap v P
 
 " del
@@ -111,7 +111,8 @@ nnoremap <C-r> r
 " redo
 nnoremap r <C-r>
 
-nnoremap p .
+" repeat
+nnoremap l .
 
 " select all
 nnoremap <C-@> ggvG
@@ -131,21 +132,22 @@ nnoremap x <C-v>
 nnoremap <C-k> 10k
 "nnoremap <C-i> 10k
 nnoremap <C-j> 10j
-"nnoremap <C-u> zt3<C-y>
-nnoremap <C-l> zt3<C-y>
 nnoremap <C-g> G
 "nnoremap <C-p> %
 nnoremap e %
 
+"nnoremap <C-u> zt3<C-y>
+"nnoremap <C-l> zt3<C-y>
+
 " cursor mv word
 nnoremap <C-a> 0
 nnoremap <C-e> $l
-nnoremap <C-f> l
+"nnoremap <C-f> l
 nnoremap <C-o> h
 
 nnoremap q b
 "nnoremap q ge
-nnoremap <C-l> w
+nnoremap <C-f> w
 "nnoremap <C-l> e
 
 
@@ -177,23 +179,24 @@ inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
 inoremap <C-k> <C-o>D
 inoremap <C-d> <C-o>x
-inoremap <C-f> <C-o>l
+inoremap <C-l> <C-o>l
 "inoremap <C-b> <C-o>h
 inoremap <C-o> <C-o>h
-inoremap <C-l> <C-o>w
+inoremap <C-f> <C-o>w
 
 inoremap <C-p> <C-o>k
 inoremap <C-n> <C-o>j
 
 "inoremap <C-s> <C-o>:w<Cr>
 
-inoremap <C-i> <C-n>
-inoremap <C-b> <C-p>
 "inoremap <C-v> <C-v><Tab>
 inoremap <Tab> <C-v><Tab>
 
 inoremap <C-q> <Esc>
 inoremap <C-c> <Esc>
+
+"inoremap <C-i> <C-n>
+"inoremap <C-b> <C-p>
 
 
 "
