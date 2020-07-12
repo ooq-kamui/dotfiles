@@ -112,7 +112,7 @@ nnoremap <C-r> r
 nnoremap r <C-r>
 
 " repeat
-nnoremap <C-l> .
+nnoremap m .
 
 " select all
 nnoremap <C-@> ggvG
