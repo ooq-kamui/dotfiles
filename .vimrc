@@ -72,7 +72,7 @@ set laststatus=2   " 0: off  1: on 2 win  2: on
 nnoremap <C-q> :q<Cr>
 
 " save
-nnoremap <C-w> :w<Cr>
+nnoremap <C-s> :w<Cr>
 
 " tag jump
 "nnoremap t <C-w>gf
@@ -104,6 +104,7 @@ nnoremap cc cc<Esc>
 "nnoremap e D
 nnoremap <C-m> i<Cr><Esc>
 "nnoremap dd "add
+nnoremap <C-w> hvbd
 
 " char replace
 nnoremap <C-r> r
@@ -114,6 +115,9 @@ nnoremap r <C-r>
 " repeat
 nnoremap m .
 
+" select
+"nnoremap <C-q> v
+
 " select all
 nnoremap <C-@> ggvG
 
@@ -123,7 +127,7 @@ nnoremap w viw
 nnoremap W V
 
 " select box
-nnoremap x <C-v>
+"nnoremap x <C-v>
 
 " cursor mv
 "nnoremap i k
@@ -144,10 +148,12 @@ nnoremap <C-a> 0
 nnoremap <C-e> $l
 "nnoremap <C-f> l
 nnoremap <C-o> h
+nnoremap f l
 
 nnoremap q b
 "nnoremap q ge
 nnoremap <C-f> w
+"nnoremap f w
 "nnoremap <C-l> e
 
 
@@ -238,6 +244,7 @@ vnoremap + g<C-a>
 " indent
 vnoremap > >gv
 vnoremap < <gv
+vnoremap :t :'<,'>!expand -2
 
 " add
 vnoremap i" di""<C-c>hp
