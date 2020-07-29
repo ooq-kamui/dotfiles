@@ -82,6 +82,7 @@ nnoremap t <C-w>gF
 "nnoremap k i
 "nnoremap e i
 nnoremap a A
+nnoremap e A
 nnoremap o O<Esc>
 nnoremap <Space> i<Space><Esc>l
 "nnoremap <C-j> i<Cr><Esc>
@@ -101,7 +102,6 @@ nnoremap <BS> x
 nnoremap <C-h> hx
 nnoremap d dd
 nnoremap cc cc<Esc>
-"nnoremap e D
 nnoremap <C-m> i<Cr><Esc>
 "nnoremap dd "add
 nnoremap <C-w> hvbd
@@ -137,8 +137,7 @@ nnoremap <C-k> 10k
 "nnoremap <C-i> 10k
 nnoremap <C-j> 10j
 nnoremap <C-g> G
-"nnoremap <C-p> %
-nnoremap e %
+nnoremap <C-l> %
 
 "nnoremap <C-u> zt3<C-y>
 "nnoremap <C-l> zt3<C-y>
