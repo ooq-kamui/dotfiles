@@ -149,7 +149,7 @@ nnoremap <C-e> $l
 nnoremap <C-o> h
 nnoremap f l
 
-nnoremap q b
+nnoremap <C-b> b
 "nnoremap q ge
 nnoremap <C-f> w
 "nnoremap f w
@@ -185,20 +185,19 @@ inoremap <C-e> <C-o>$
 inoremap <C-k> <C-o>D
 inoremap <C-d> <C-o>x
 inoremap <C-l> <C-o>l
-"inoremap <C-b> <C-o>h
+inoremap <C-b> <C-o>b
 inoremap <C-o> <C-o>h
 inoremap <C-f> <C-o>w
 
 inoremap <C-p> <C-o>k
 inoremap <C-n> <C-o>j
 
-"inoremap <C-s> <C-o>:w<Cr>
-
 "inoremap <C-v> <C-v><Tab>
 inoremap <Tab> <C-v><Tab>
 
 inoremap <C-q> <Esc>
 inoremap <C-c> <Esc>
+inoremap <C-s> <Esc>
 
 "inoremap <C-i> <C-n>
 "inoremap <C-b> <C-p>
@@ -228,6 +227,7 @@ vnoremap <C-w> <C-v>
 " del
 "vnoremap s "ax
 vnoremap s x
+vnoremap x "ax
 
 " yank
 vnoremap c y
@@ -267,6 +267,7 @@ cnoremap <C-d> <Del>
 "cnoremap <C-n> <Down>
 cnoremap <C-q> <C-c>
 
+ab t tabnew
 
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -278,5 +279,6 @@ augroup InsertHook
   autocmd InsertEnter * hi LineNr ctermfg=green
   autocmd InsertLeave * hi LineNr ctermfg=141
 augroup END 
+
 
 
