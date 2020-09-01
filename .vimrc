@@ -27,6 +27,10 @@ autocmd ColorScheme * highlight NonText    ctermbg=None ctermfg=25
 autocmd ColorScheme * highlight SpecialKey ctermbg=None ctermfg=25
 autocmd ColorScheme * highlight MatchParen ctermbg=lightmagenta ctermfg=lightgreen
 
+autocmd ColorScheme * highlight TabLineFill                   ctermbg=cyan
+autocmd ColorScheme * highlight TabLine     ctermfg=LightBlue ctermbg=cyan
+autocmd ColorScheme * highlight TabLineSel  ctermfg=LightBlue ctermbg=Blue
+
 colorscheme koehler
 "colorscheme evening
 
@@ -41,7 +45,7 @@ set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
 set cursorline
 
 set autoindent
-"set expandtab
+set expandtab " space にしたい場合は有効にする
 set tabstop=2
 set shiftwidth=2
 set nowrap
@@ -76,7 +80,7 @@ nnoremap <C-s> :w<Cr>
 
 " tag jump
 "nnoremap t <C-w>gf
-nnoremap t <C-w>gF
+nnoremap t <C-w>gF:tabm<Cr>
 
 " insert
 "nnoremap k i
@@ -150,9 +154,7 @@ nnoremap <C-o> h
 nnoremap f l
 
 nnoremap <C-b> b
-"nnoremap q ge
 nnoremap <C-f> w
-"nnoremap f w
 "nnoremap <C-l> e
 
 
@@ -163,6 +165,8 @@ nnoremap <C-f> w
 " tab
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
+nnoremap q :tabm +1<Cr>
+nnoremap Q :tabm -1<Cr>
 
 " increment
 nnoremap + <C-a>
