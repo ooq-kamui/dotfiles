@@ -165,8 +165,8 @@ nnoremap <C-f> w
 " tab
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
-nnoremap q :tabm +1<Cr>
-nnoremap Q :tabm -1<Cr>
+nnoremap <S-Right> :tabm+1<Cr>
+nnoremap <S-Left>  :tabm-1<Cr>
 
 " increment
 nnoremap + <C-a>
@@ -283,6 +283,17 @@ augroup InsertHook
   autocmd InsertEnter * hi LineNr ctermfg=green
   autocmd InsertLeave * hi LineNr ctermfg=141
 augroup END 
+
+
+if &term =~ '^screen'
+  " tmux will send xterm-style keys when its xterm-keys option is on
+  execute "set <xUp>=\e[1;*A"
+  execute "set <xDown>=\e[1;*B"
+  execute "set <xRight>=\e[1;*C"
+  execute "set <xLeft>=\e[1;*D"
+endif
+
+
 
 
 
