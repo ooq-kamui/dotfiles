@@ -21,15 +21,15 @@ packadd Cfilter
 autocmd ColorScheme * highlight LineNr ctermfg=141
 autocmd ColorScheme * highlight Visual cterm=none ctermbg=magenta
 autocmd ColorScheme * highlight Search cterm=bold ctermfg=Yellow ctermbg=Cyan
-"autocmd ColorScheme * highlight NonText    ctermbg=None ctermfg=99
-"autocmd ColorScheme * highlight SpecialKey ctermbg=None ctermfg=99
 autocmd ColorScheme * highlight NonText    ctermbg=None ctermfg=25
 autocmd ColorScheme * highlight SpecialKey ctermbg=None ctermfg=25
 autocmd ColorScheme * highlight MatchParen ctermbg=lightmagenta ctermfg=lightgreen
 
-autocmd ColorScheme * highlight TabLineFill                   ctermbg=cyan
-autocmd ColorScheme * highlight TabLine     ctermfg=LightBlue ctermbg=cyan
-autocmd ColorScheme * highlight TabLineSel  ctermfg=LightBlue ctermbg=Blue
+autocmd ColorScheme * highlight TabLineFill                   ctermbg=27
+autocmd ColorScheme * highlight TabLine     ctermfg=LightBlue ctermbg=27
+autocmd ColorScheme * highlight TabLineSel  ctermfg=Lightmagenta ctermbg=blue
+
+autocmd ColorScheme * highlight StatusLine ctermfg=lightblue ctermbg=33
 
 colorscheme koehler
 "colorscheme evening
