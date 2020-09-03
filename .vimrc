@@ -27,7 +27,7 @@ autocmd ColorScheme * highlight MatchParen ctermbg=lightmagenta ctermfg=lightgre
 
 autocmd ColorScheme * highlight TabLineFill                   ctermbg=27
 autocmd ColorScheme * highlight TabLine     ctermfg=LightBlue ctermbg=27
-autocmd ColorScheme * highlight TabLineSel  ctermfg=Lightmagenta ctermbg=blue
+autocmd ColorScheme * highlight TabLineSel  ctermfg=182 ctermbg=blue
 
 autocmd ColorScheme * highlight StatusLine ctermfg=lightblue ctermbg=33
 
@@ -80,7 +80,7 @@ nnoremap <C-s> :w<Cr>
 
 " tag jump
 "nnoremap t <C-w>gf
-nnoremap t <C-w>gF:tabm<Cr>
+nnoremap t <C-w>gF:tabm<Cr>gt
 
 " insert
 "nnoremap k i
