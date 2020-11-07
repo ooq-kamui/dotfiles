@@ -73,7 +73,8 @@ set laststatus=2   " 0: off  1: on 2 win  2: on
 "
 
 " quit
-nnoremap <C-q> :q<Cr>
+nnoremap q :q<Cr>
+"nnoremap <C-q> :q<Cr>
 
 " save
 nnoremap <C-s> :w<Cr>
@@ -106,7 +107,7 @@ nnoremap <BS> x
 nnoremap <C-h> hx
 nnoremap d dd
 nnoremap cc cc<Esc>
-nnoremap <C-m> i<Cr><Esc>
+"nnoremap <C-m> i<Cr><Esc>
 "nnoremap dd "add
 nnoremap <C-w> hvbd
 
@@ -141,7 +142,7 @@ nnoremap <C-k> 10k
 "nnoremap <C-i> 10k
 nnoremap <C-j> 10j
 nnoremap <C-g> G
-nnoremap <C-l> %
+"nnoremap <C-l> %
 
 "nnoremap <C-u> zt3<C-y>
 "nnoremap <C-l> zt3<C-y>
@@ -149,13 +150,16 @@ nnoremap <C-l> %
 " cursor mv word
 nnoremap <C-a> 0
 nnoremap <C-e> $l
-"nnoremap <C-f> l
-nnoremap <C-o> h
-nnoremap f l
 
-nnoremap <C-b> b
+nnoremap <C-l> l
+nnoremap f w
 nnoremap <C-f> w
-"nnoremap <C-l> e
+nnoremap <C-o> h
+nnoremap <C-q> b
+nnoremap <C-b> b
+
+" esc
+nnoremap h <Esc>
 
 
 " search
@@ -184,12 +188,21 @@ nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 "
 " mode insert
 "
+
+" quit
+inoremap <C-q> <Esc>
+inoremap <C-j> <Esc>
+inoremap <C-c> <Esc>
+
+" cursor mv
 inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
 inoremap <C-k> <C-o>D
 inoremap <C-d> <C-o>x
 inoremap <C-l> <C-o>l
+"inoremap <C-q> <C-o>b
 inoremap <C-b> <C-o>b
+"inoremap <C-m> <C-o>b
 inoremap <C-o> <C-o>h
 inoremap <C-f> <C-o>w
 
@@ -199,9 +212,6 @@ inoremap <C-n> <C-o>j
 "inoremap <C-v> <C-v><Tab>
 inoremap <Tab> <C-v><Tab>
 
-inoremap <C-q> <Esc>
-inoremap <C-c> <Esc>
-inoremap <C-s> <Esc>
 
 "inoremap <C-i> <C-n>
 "inoremap <C-b> <C-p>
@@ -250,11 +260,11 @@ vnoremap < <gv
 vnoremap :t :'<,'>!expand -2
 
 " add
-vnoremap i" di""<C-c>hp
-vnoremap i' di''<C-c>hp
-vnoremap i( di()<C-c>hp
-vnoremap i{ di{}<C-c>hp
-vnoremap i< di<><C-c>hp
+" vnoremap i" di""<C-c>hp
+" vnoremap i' di''<C-c>hp
+" vnoremap i( di()<C-c>hp
+" vnoremap i{ di{}<C-c>hp
+" vnoremap i< di<><C-c>hp
 
 
 " 
@@ -271,7 +281,7 @@ cnoremap <C-d> <Del>
 "cnoremap <C-n> <Down>
 cnoremap <C-q> <C-c>
 
-ab t tabnew
+" ab t tabnew
 
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
