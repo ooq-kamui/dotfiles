@@ -73,7 +73,8 @@ set laststatus=2   " 0: off  1: on 2 win  2: on
 "
 
 " quit
-nnoremap q :q<Cr>
+nnoremap <C-b> :q<Cr>
+"nnoremap q :q<Cr>
 "nnoremap <C-q> :q<Cr>
 
 " save
@@ -156,10 +157,11 @@ nnoremap f w
 nnoremap <C-f> w
 nnoremap <C-o> h
 nnoremap <C-q> b
-nnoremap <C-b> b
+"nnoremap <C-b> b
 
 " esc
 nnoremap h <Esc>
+nnoremap q <Esc>
 
 
 " search
