@@ -4,8 +4,8 @@ set modelines=0		" CVE-2007-2438
 
 " Normally we use vim-extensions. If you want true vi-compatibility
 " remove change the following statements
-set nocompatible	" Use Vim defaults instead of 100% vi compatibility
-set backspace=2		" more powerful backspacing
+set nocompatible  " Use Vim defaults instead of 100% vi compatibility
+set backspace=2   " more powerful backspacing
 set incsearch
 
 " Don't write backup file if vim is being called by "crontab -e"
@@ -133,35 +133,31 @@ nnoremap w viw
 nnoremap W V
 
 " select box
+nnoremap b <C-v>
 "nnoremap x <C-v>
 
 " cursor mv
-"nnoremap i k
+nnoremap <Right> l
+nnoremap <Left> h
+nnoremap <Up> k
+nnoremap <Down> j
 
 " cursor mv line
 nnoremap <C-k> 10k
-"nnoremap <C-i> 10k
 nnoremap <C-j> 10j
 nnoremap <C-g> G
-"nnoremap <C-l> %
-
-"nnoremap <C-u> zt3<C-y>
-"nnoremap <C-l> zt3<C-y>
+nnoremap q %
 
 " cursor mv word
 nnoremap <C-a> 0
 nnoremap <C-e> $l
 
+nnoremap <C-f> l
 nnoremap <C-l> l
 nnoremap f w
-nnoremap <C-f> w
 nnoremap <C-o> h
 nnoremap <C-q> b
 "nnoremap <C-b> b
-
-" esc
-nnoremap h <Esc>
-nnoremap q <Esc>
 
 
 " search
@@ -185,6 +181,17 @@ nnoremap < <<
 " grep
 nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 "nnoremap f :grep! "" **.lua **.script<Home><S-Right><Right><Right>
+
+"
+" esc
+"
+nnoremap h <Esc>
+nnoremap q <Esc>
+nnoremap <C-m> <Esc>
+nnoremap <C-v> <Esc>
+nnoremap <C-z> <Esc>
+" nnoremap <C-[> <Esc>
+nnoremap <C-]> <Esc>
 
 
 "
@@ -304,8 +311,6 @@ if &term =~ '^screen'
   execute "set <xRight>=\e[1;*C"
   execute "set <xLeft>=\e[1;*D"
 endif
-
-
 
 
 
