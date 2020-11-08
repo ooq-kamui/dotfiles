@@ -190,7 +190,7 @@ nnoremap q <Esc>
 nnoremap <C-m> <Esc>
 nnoremap <C-v> <Esc>
 nnoremap <C-z> <Esc>
-" nnoremap <C-[> <Esc>
+"nnoremap <C-[> <Esc>
 nnoremap <C-]> <Esc>
 
 
