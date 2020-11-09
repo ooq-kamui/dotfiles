@@ -88,7 +88,7 @@ nnoremap t <C-w>gF:tabm<Cr>gt
 "nnoremap k i
 "nnoremap e i
 nnoremap a A
-nnoremap e A
+"nnoremap e A
 nnoremap o O<Esc>
 nnoremap <Space> i<Space><Esc>l
 "nnoremap <C-j> i<Cr><Esc>
@@ -113,7 +113,7 @@ nnoremap cc cc<Esc>
 nnoremap <C-w> hvbd
 
 " char replace
-nnoremap <C-r> r
+"nnoremap <C-r> r
 
 " redo
 nnoremap r <C-r>
@@ -185,10 +185,15 @@ nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 "
 " esc
 "
+nnoremap e <Esc>
 nnoremap h <Esc>
 nnoremap q <Esc>
+nnoremap z <Esc>
 nnoremap <C-m> <Esc>
+nnoremap <C-r> <Esc>
 nnoremap <C-v> <Esc>
+nnoremap <C-x> <Esc>
+nnoremap <C-y> <Esc>
 nnoremap <C-z> <Esc>
 "nnoremap <C-[> <Esc>
 nnoremap <C-]> <Esc>
