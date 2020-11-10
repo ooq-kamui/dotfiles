@@ -82,12 +82,12 @@ nnoremap <C-m> :q<Cr>
 nnoremap <C-s> :w<Cr>
 
 " tag jump
-"nnoremap t <C-w>gf
-nnoremap t <C-w>gF:tabm<Cr>gt
+nnoremap t <C-w>gF
+"nnoremap t <C-w>gF:tabm<Cr>
 
 " insert
 nnoremap <C-l> A
-"nnoremap a A
+nnoremap a A
 nnoremap o O<Esc>
 nnoremap <Space> i<Space><Esc>l
 "nnoremap <C-j> i<Cr><Esc>
@@ -179,12 +179,12 @@ nnoremap < <<
 
 " grep
 nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
-"nnoremap f :grep! "" **.lua **.script<Home><S-Right><Right><Right>
+
 
 "
 " esc
 "
-nnoremap a <Esc>
+"nnoremap a <Esc>
 nnoremap e <Esc>
 nnoremap h <Esc>
 nnoremap q <Esc>
