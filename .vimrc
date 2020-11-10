@@ -205,7 +205,7 @@ nnoremap <C-]> <Esc>
 "
 
 " quit
-inoremap <C-q> <Esc>
+"inoremap <C-q> <Esc>
 inoremap <C-j> <Esc>
 inoremap <C-c> <Esc>
 
@@ -215,10 +215,10 @@ inoremap <C-e> <C-o>$
 inoremap <C-k> <C-o>D
 inoremap <C-d> <C-o>x
 inoremap <C-l> <C-o>l
-"inoremap <C-q> <C-o>b
 inoremap <C-b> <C-o>b
 inoremap <C-o> <C-o>h
 inoremap <C-f> <C-o>w
+inoremap <C-q> <C-o>b
 
 inoremap <C-p> <C-o>k
 inoremap <C-n> <C-o>j
