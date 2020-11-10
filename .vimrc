@@ -73,7 +73,8 @@ set laststatus=2   " 0: off  1: on 2 win  2: on
 "
 
 " quit
-nnoremap <C-b> :q<Cr>
+"nnoremap <C-b> :q<Cr>
+nnoremap <C-m> :q<Cr>
 "nnoremap q :q<Cr>
 "nnoremap <C-q> :q<Cr>
 
@@ -189,7 +190,7 @@ nnoremap e <Esc>
 nnoremap h <Esc>
 nnoremap q <Esc>
 nnoremap z <Esc>
-nnoremap <C-m> <Esc>
+"nnoremap <C-m> <Esc>
 nnoremap <C-r> <Esc>
 nnoremap <C-v> <Esc>
 nnoremap <C-x> <Esc>
@@ -216,16 +217,15 @@ inoremap <C-d> <C-o>x
 inoremap <C-l> <C-o>l
 "inoremap <C-q> <C-o>b
 inoremap <C-b> <C-o>b
-"inoremap <C-m> <C-o>b
 inoremap <C-o> <C-o>h
 inoremap <C-f> <C-o>w
 
 inoremap <C-p> <C-o>k
 inoremap <C-n> <C-o>j
 
+"inoremap <C-j> <Cr>
 "inoremap <C-v> <C-v><Tab>
 inoremap <Tab> <C-v><Tab>
-
 
 "inoremap <C-i> <C-n>
 "inoremap <C-b> <C-p>
