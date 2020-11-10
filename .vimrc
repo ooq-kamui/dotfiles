@@ -86,10 +86,8 @@ nnoremap <C-s> :w<Cr>
 nnoremap t <C-w>gF:tabm<Cr>gt
 
 " insert
-"nnoremap k i
-"nnoremap e i
-nnoremap a A
-"nnoremap e A
+nnoremap <C-l> A
+"nnoremap a A
 nnoremap o O<Esc>
 nnoremap <Space> i<Space><Esc>l
 "nnoremap <C-j> i<Cr><Esc>
@@ -154,7 +152,7 @@ nnoremap <C-a> 0
 nnoremap <C-e> $l
 
 nnoremap <C-f> l
-nnoremap <C-l> l
+"nnoremap <C-l> l
 nnoremap f w
 nnoremap <C-o> h
 nnoremap <C-q> b
@@ -186,11 +184,12 @@ nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 "
 " esc
 "
+nnoremap a <Esc>
 nnoremap e <Esc>
 nnoremap h <Esc>
 nnoremap q <Esc>
 nnoremap z <Esc>
-"nnoremap <C-m> <Esc>
+nnoremap <C-b> <Esc>
 nnoremap <C-r> <Esc>
 nnoremap <C-v> <Esc>
 nnoremap <C-x> <Esc>
@@ -234,11 +233,13 @@ inoremap <Tab> <C-v><Tab>
 "
 " mode visual
 "
-vnoremap <C-q> <C-c>
+vnoremap <C-j> <C-c>
+"vnoremap <C-q> <C-c>
 vnoremap q <C-c>
 
 vnoremap i I
-vnoremap a A
+vnoremap l A
+"vnoremap a A
 
 vnoremap <C-a> 0
 vnoremap <C-e> $
