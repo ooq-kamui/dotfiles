@@ -118,7 +118,7 @@ nnoremap <C-w> hvbd
 nnoremap r <C-r>
 
 " repeat
-nnoremap m .
+"nnoremap m .
 
 " select
 "nnoremap <C-q> v
@@ -144,8 +144,12 @@ nnoremap <Down> j
 " cursor mv line
 nnoremap <C-k> 10k
 nnoremap <C-j> 10j
-nnoremap <C-g> G
-nnoremap q %
+"nnoremap <C-g> G
+"nnoremap q %
+nnoremap h <C-o>
+nnoremap H <Tab>
+"nnoremap m <C-o>
+"nnoremap M <Tab>
 
 " cursor mv word
 nnoremap <C-a> 0
@@ -164,7 +168,7 @@ nnoremap <C-q> b
 "nnoremap * Viw"by/<C-r>"
 
 " tab
-nnoremap <Tab> gt
+nnoremap <Tab>   gt
 nnoremap <S-Tab> gT
 nnoremap <S-Right> :tabm+1<Cr>
 nnoremap <S-Left>  :tabm-1<Cr>
@@ -186,11 +190,13 @@ nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 "
 "nnoremap a <Esc>
 nnoremap e <Esc>
-nnoremap h <Esc>
+"nnoremap h <Esc>
+nnoremap m <Esc>
 nnoremap q <Esc>
 nnoremap z <Esc>
 nnoremap <C-b> <Esc>
 nnoremap <C-r> <Esc>
+nnoremap <C-u> <Esc>
 nnoremap <C-v> <Esc>
 nnoremap <C-x> <Esc>
 nnoremap <C-y> <Esc>
