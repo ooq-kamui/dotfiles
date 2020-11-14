@@ -124,7 +124,7 @@ nnoremap r <C-r>
 "nnoremap <C-q> v
 
 " select all
-nnoremap <C-@> ggvG
+nnoremap @ ggvG$
 
 " select word
 nnoremap w viw
@@ -144,7 +144,7 @@ nnoremap <Down> j
 " cursor mv line
 nnoremap <C-k> 10k
 nnoremap <C-j> 10j
-"nnoremap <C-g> G
+nnoremap <C-g> G$
 "nnoremap q %
 nnoremap h <C-o>
 nnoremap H <Tab>
@@ -188,6 +188,7 @@ nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 "
 " esc
 "
+"nnoremap @ <Esc>
 "nnoremap a <Esc>
 nnoremap e <Esc>
 "nnoremap h <Esc>
@@ -196,11 +197,13 @@ nnoremap q <Esc>
 nnoremap z <Esc>
 nnoremap <C-b> <Esc>
 nnoremap <C-r> <Esc>
+nnoremap <C-t> <Esc>
 nnoremap <C-u> <Esc>
 nnoremap <C-v> <Esc>
 nnoremap <C-x> <Esc>
 nnoremap <C-y> <Esc>
 nnoremap <C-z> <Esc>
+nnoremap <C-@> <Esc>
 "nnoremap <C-[> <Esc>
 nnoremap <C-]> <Esc>
 
@@ -213,6 +216,7 @@ nnoremap <C-]> <Esc>
 "inoremap <C-q> <Esc>
 inoremap <C-j> <Esc>
 inoremap <C-c> <Esc>
+inoremap <C-s> <Esc>
 
 " cursor mv
 inoremap <C-a> <C-o>^
@@ -239,19 +243,18 @@ inoremap <Tab> <C-v><Tab>
 "
 " mode visual
 "
-vnoremap <C-j> <C-c>
-"vnoremap <C-q> <C-c>
-vnoremap q <C-c>
+vnoremap <C-q> <C-c>
+"vnoremap <C-j> <C-c>
+"vnoremap q <C-c>
 
 vnoremap i I
-vnoremap l A
-"vnoremap a A
+vnoremap a A
 
 vnoremap <C-a> 0
 vnoremap <C-e> $
 vnoremap <C-h> b
-vnoremap <C-l> e
-vnoremap <C-g> G
+vnoremap <C-l> $
+vnoremap <C-g> G$
 
 vnoremap <C-j> 10j
 vnoremap <C-k> 10k
