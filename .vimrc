@@ -214,9 +214,11 @@ nnoremap <C-]> <Esc>
 
 " quit
 "inoremap <C-q> <Esc>
-inoremap <C-j> <Esc>
+"inoremap <C-j> <Esc>
+inoremap <C-m> <Esc>
 inoremap <C-c> <Esc>
 inoremap <C-s> <Esc>
+inoremap <C-v> <Esc>
 
 " cursor mv
 inoremap <C-a> <C-o>^
@@ -232,7 +234,9 @@ inoremap <C-q> <C-o>b
 inoremap <C-p> <C-o>k
 inoremap <C-n> <C-o>j
 
-"inoremap <C-j> <Cr>
+" new line
+inoremap <C-j> <Cr>
+
 "inoremap <C-v> <C-v><Tab>
 inoremap <Tab> <C-v><Tab>
 
