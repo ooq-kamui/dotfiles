@@ -247,7 +247,9 @@ inoremap <Tab> <C-v><Tab>
 "
 " mode visual
 "
+vnoremap <C-c> <C-c>
 vnoremap <C-q> <C-c>
+vnoremap <C-m> <C-c>
 "vnoremap <C-j> <C-c>
 "vnoremap q <C-c>
 
