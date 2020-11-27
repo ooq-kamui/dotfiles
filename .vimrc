@@ -74,6 +74,7 @@ set laststatus=2   " 0: off  1: on 2 win  2: on
 
 " quit
 nnoremap <C-x> :q<Cr>
+nnoremap <C-v> :q<Cr>
 "nnoremap <C-q> :q<Cr>
 
 " save
@@ -198,7 +199,7 @@ nnoremap <C-b> <Esc>
 nnoremap <C-r> <Esc>
 nnoremap <C-t> <Esc>
 "nnoremap <C-u> <Esc>
-nnoremap <C-v> <Esc>
+"nnoremap <C-v> <Esc>
 "nnoremap <C-x> <Esc>
 nnoremap <C-y> <Esc>
 nnoremap <C-z> <Esc>
