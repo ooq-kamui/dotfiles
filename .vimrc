@@ -73,15 +73,12 @@ set laststatus=2   " 0: off  1: on 2 win  2: on
 "
 
 " quit
-"nnoremap <C-b> :q<Cr>
-"nnoremap <C-m> :q<Cr>
 nnoremap <C-x> :q<Cr>
-"nnoremap q :q<Cr>
 "nnoremap <C-q> :q<Cr>
 
 " save
-"nnoremap <C-s> :w<Cr>
-nnoremap <C-c> :w<Cr>
+nnoremap <C-s> :w<Cr>
+"nnoremap <C-c> :w<Cr>
 
 " tag jump
 nnoremap t <C-w>gF
@@ -109,16 +106,15 @@ nnoremap <BS> x
 nnoremap <C-h> hx
 nnoremap d dd
 nnoremap cc cc<Esc>
-nnoremap <C-s> D
-"nnoremap <C-m> i<Cr><Esc>
+"nnoremap <C-s> D
+nnoremap <C-c> D
+nnoremap <C-m> i<Cr><Esc>
 "nnoremap dd "add
 nnoremap <C-w> hvbd
 
-" char replace
-"nnoremap <C-r> r
-
-" redo
-nnoremap r <C-r>
+" undo redo
+nnoremap <C-u> <C-r>
+"nnoremap r <C-r>
 
 " repeat
 "nnoremap m .
@@ -149,7 +145,7 @@ nnoremap <C-k> 10k
 nnoremap <C-j> 10j
 nnoremap <C-g> G$
 "nnoremap q %
-nnoremap h <C-o>
+"nnoremap h <C-o>
 nnoremap H <Tab>
 "nnoremap m <C-o>
 "nnoremap M <Tab>
@@ -196,12 +192,13 @@ nnoremap e <Esc>
 "nnoremap h <Esc>
 nnoremap m <Esc>
 nnoremap q <Esc>
+nnoremap r <Esc>
 nnoremap z <Esc>
 nnoremap <C-b> <Esc>
 "nnoremap <C-c> <Esc>
 nnoremap <C-r> <Esc>
 nnoremap <C-t> <Esc>
-nnoremap <C-u> <Esc>
+"nnoremap <C-u> <Esc>
 nnoremap <C-v> <Esc>
 "nnoremap <C-x> <Esc>
 nnoremap <C-y> <Esc>
@@ -216,12 +213,10 @@ nnoremap <C-]> <Esc>
 "
 
 " quit
-"inoremap <C-q> <Esc>
-"inoremap <C-j> <Esc>
-"inoremap <C-m> <Esc>
 inoremap <C-c> <Esc>
-"inoremap <C-s> <Esc>
 inoremap <C-v> <Esc>
+"inoremap <C-q> <Esc>
+"inoremap <C-m> <Esc>
 
 " cursor mv
 inoremap <C-a> <C-o>^
@@ -244,7 +239,7 @@ inoremap <C-j> <Cr>
 "inoremap <C-v> <C-v><Tab>
 inoremap <Tab> <C-v><Tab>
 
-" hokan
+" auto complete
 inoremap <C-m> <C-n>
 "inoremap <C-b> <C-p>
 
@@ -253,10 +248,7 @@ inoremap <C-m> <C-n>
 " mode visual
 "
 vnoremap <C-c> <C-c>
-vnoremap <C-q> <C-c>
-vnoremap <C-m> <C-c>
-"vnoremap <C-j> <C-c>
-"vnoremap q <C-c>
+vnoremap <C-v> <C-c>
 
 vnoremap i I
 vnoremap a A
