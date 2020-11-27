@@ -117,7 +117,7 @@ nnoremap <C-u> <C-r>
 "nnoremap r <C-r>
 
 " repeat
-"nnoremap m .
+nnoremap r .
 
 " select
 "nnoremap <C-q> v
@@ -192,7 +192,6 @@ nnoremap e <Esc>
 "nnoremap h <Esc>
 nnoremap m <Esc>
 nnoremap q <Esc>
-nnoremap r <Esc>
 nnoremap z <Esc>
 nnoremap <C-b> <Esc>
 "nnoremap <C-c> <Esc>
@@ -241,7 +240,6 @@ inoremap <Tab> <C-v><Tab>
 
 " auto complete
 inoremap <C-m> <C-n>
-"inoremap <C-b> <C-p>
 
 
 "
