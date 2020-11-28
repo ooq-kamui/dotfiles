@@ -154,6 +154,7 @@ nnoremap H <Tab>
 " cursor mv word
 nnoremap <C-a> 0
 nnoremap <C-e> $l
+nnoremap e $l
 
 nnoremap <C-f> w
 nnoremap f w
@@ -189,7 +190,7 @@ nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 "
 "nnoremap @ <Esc>
 "nnoremap a <Esc>
-nnoremap e <Esc>
+"nnoremap e <Esc>
 "nnoremap h <Esc>
 nnoremap m <Esc>
 nnoremap q <Esc>
@@ -213,16 +214,16 @@ nnoremap <C-]> <Esc>
 "
 
 " quit
-inoremap <C-c> <Esc>
+"inoremap <C-c> <Esc>
 inoremap <C-v> <Esc>
-"inoremap <C-q> <Esc>
-"inoremap <C-m> <Esc>
+inoremap <C-s> <Esc>
 
 " cursor mv
 inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
 inoremap <C-k> <C-o>D
-inoremap <C-s> <C-o>D
+inoremap <C-c> <C-o>D
+"inoremap <C-s> <C-o>D
 inoremap <C-d> <C-o>x
 inoremap <C-l> <C-o>l
 inoremap <C-b> <C-o>b
@@ -298,14 +299,18 @@ vnoremap :t :'<,'>!expand -2
 " 
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
-"cnoremap <C-b> <Left>
+
 cnoremap <C-o> <Left>
-cnoremap <C-f> <Right>
-cnoremap <C-l> <S-Right>
+cnoremap <C-l> <Right>
+
+cnoremap <C-q> <S-Left>
+cnoremap <C-f> <S-Right>
+
 cnoremap <C-d> <Del>
 "cnoremap <C-p> <Up>
 "cnoremap <C-n> <Down>
-cnoremap <C-q> <C-c>
+
+cnoremap <C-v> <C-c>
 
 " ab t tabnew
 
