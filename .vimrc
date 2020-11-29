@@ -98,7 +98,7 @@ nnoremap c yy
 
 " paste
 nnoremap p P
-nnoremap v P
+"nnoremap v P
 
 " del
 nnoremap s "ax
@@ -109,7 +109,7 @@ nnoremap d dd
 nnoremap cc cc<Esc>
 "nnoremap <C-s> D
 nnoremap <C-c> D
-nnoremap <C-m> i<Cr><Esc>
+"nnoremap <C-m> i<Cr><Esc>
 "nnoremap dd "add
 nnoremap <C-w> hvbd
 
@@ -132,7 +132,8 @@ nnoremap w viw
 nnoremap W V
 
 " select box
-nnoremap b <C-v>
+"nnoremap b <C-v>
+nnoremap v <C-v>
 "nnoremap x <C-v>
 
 " cursor mv
@@ -197,6 +198,7 @@ nnoremap q <Esc>
 nnoremap z <Esc>
 nnoremap <C-b> <Esc>
 "nnoremap <C-c> <Esc>
+nnoremap <C-m> <Esc>
 nnoremap <C-r> <Esc>
 nnoremap <C-t> <Esc>
 "nnoremap <C-u> <Esc>
@@ -214,25 +216,28 @@ nnoremap <C-]> <Esc>
 "
 
 " quit
-"inoremap <C-c> <Esc>
 inoremap <C-v> <Esc>
 inoremap <C-s> <Esc>
 
 " cursor mv
 inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
-inoremap <C-k> <C-o>D
-inoremap <C-c> <C-o>D
-"inoremap <C-s> <C-o>D
-inoremap <C-d> <C-o>x
+
+" cursor mv char
 inoremap <C-l> <C-o>l
-inoremap <C-b> <C-o>b
 inoremap <C-o> <C-o>h
+
+" cursor mv word
 inoremap <C-f> <C-o>w
 inoremap <C-q> <C-o>b
 
-inoremap <C-p> <C-o>k
-inoremap <C-n> <C-o>j
+" edit del
+inoremap <C-k> <C-o>D
+inoremap <C-c> <C-o>D
+inoremap <C-d> <C-o>x
+
+"inoremap <C-p> <C-o>k
+"inoremap <C-n> <C-o>j
 
 " new line
 inoremap <C-j> <Cr>
@@ -240,8 +245,10 @@ inoremap <C-j> <Cr>
 "inoremap <C-v> <C-v><Tab>
 inoremap <Tab> <C-v><Tab>
 
-" auto complete
+" input complete
 inoremap <C-m> <C-n>
+inoremap <C-n> <C-n>
+inoremap <C-p> <C-p>
 
 
 "
@@ -253,17 +260,31 @@ vnoremap <C-v> <C-c>
 vnoremap i I
 vnoremap a A
 
+" cursor mv
 vnoremap <C-a> 0
-vnoremap <C-e> $
-vnoremap <C-h> b
-vnoremap <C-l> $
-vnoremap <C-g> G$
+vnoremap e     $h
+vnoremap <C-e> $h
 
+" cursor mv char
+vnoremap <C-l> l
+vnoremap <C-o> h
+
+" cursor mv word
+vnoremap f     E
+vnoremap <C-f> E
+vnoremap <C-q> gE
+
+" cursor mv line
 vnoremap <C-j> 10j
 vnoremap <C-k> 10k
+vnoremap <C-g> G$
 
+" mode ch line
 vnoremap w V
-vnoremap <C-w> <C-v>
+" mode ch box
+vnoremap v     <C-v>
+"vnoremap <C-w> <C-v>
+
 
 " del
 "vnoremap s "ax
@@ -275,7 +296,7 @@ vnoremap c y
 
 " paste
 vnoremap p "adhp
-vnoremap v "adhp
+"vnoremap v "adhp
 
 " increment
 "vnoremap + <C-a>
