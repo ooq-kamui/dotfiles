@@ -67,6 +67,8 @@ set statusline+=[ENC=%{&fileencoding}] " file encoding
 set statusline+=[LOW=%l/%L]            " 現在行数/全行数
 set laststatus=2   " 0: off  1: on 2 win  2: on
 
+set completeopt=menuone,noinsert
+
 
 "
 " mode normal ( command )
@@ -232,6 +234,9 @@ inoremap <C-o> <C-o>h
 inoremap <C-f> <C-o>w
 inoremap <C-q> <C-o>b
 
+" cursor mv line
+"inoremap <C-k> <C-o>k
+
 " edit del
 inoremap <C-k> <C-o>D
 inoremap <C-c> <C-o>D
@@ -240,7 +245,7 @@ inoremap <C-d> <C-o>x
 "inoremap <C-p> <C-o>k
 "inoremap <C-n> <C-o>j
 
-" new line
+" line new
 inoremap <C-j> <Cr>
 
 "inoremap <C-v> <C-v><Tab>
@@ -248,8 +253,8 @@ inoremap <Tab> <C-v><Tab>
 
 " input complete
 inoremap <C-m> <C-n>
-inoremap <C-n> <C-n>
-inoremap <C-p> <C-p>
+inoremap <expr><C-n> pumvisible() ? "<Down>" : "<C-o>j"
+inoremap <expr><C-p> pumvisible() ? "<Up>"   : "<C-o>k"
 
 
 "
