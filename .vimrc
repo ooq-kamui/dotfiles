@@ -124,7 +124,8 @@ nnoremap r .
 "nnoremap <C-q> v
 
 " select all
-nnoremap @ ggvG$
+nnoremap @ ggVG
+"nnoremap @ ggvG$
 
 " select word
 nnoremap w viw
