@@ -31,6 +31,9 @@ autocmd ColorScheme * highlight TabLineSel  ctermfg=182 ctermbg=blue
 
 autocmd ColorScheme * highlight StatusLine ctermfg=lightblue ctermbg=33
 
+autocmd ColorScheme * highlight Pmenu    ctermfg=lightgreen ctermbg=blue
+autocmd ColorScheme * highlight PmenuSel ctermfg=cyan  ctermbg=magenta cterm=bold
+
 colorscheme koehler
 "colorscheme evening
 
@@ -164,6 +167,7 @@ nnoremap <C-f> w
 nnoremap f w
 nnoremap <C-o> h
 nnoremap <C-q> b
+nnoremap q     b
 "nnoremap <C-b> b
 
 
@@ -197,7 +201,7 @@ nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 "nnoremap e <Esc>
 "nnoremap h <Esc>
 nnoremap m <Esc>
-nnoremap q <Esc>
+"nnoremap q <Esc>
 nnoremap z <Esc>
 nnoremap <C-b> <Esc>
 "nnoremap <C-c> <Esc>
