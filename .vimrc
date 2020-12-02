@@ -153,8 +153,7 @@ nnoremap <C-k> 10k
 nnoremap <C-j> 10j
 nnoremap <C-g> G$
 "nnoremap q %
-"nnoremap h <C-o>
-nnoremap H <Tab>
+"nnoremap H <Tab>
 "nnoremap m <C-o>
 "nnoremap M <Tab>
 
@@ -245,6 +244,7 @@ inoremap <C-q> <C-o>b
 inoremap <C-k> <C-o>D
 inoremap <C-c> <C-o>D
 inoremap <C-d> <C-o>x
+inoremap <C-s> <C-h>
 
 "inoremap <C-p> <C-o>k
 "inoremap <C-n> <C-o>j
