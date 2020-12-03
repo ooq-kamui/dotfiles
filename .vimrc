@@ -24,7 +24,7 @@ autocmd ColorScheme * highlight Visual cterm=none ctermbg=magenta
 autocmd ColorScheme * highlight Search cterm=bold ctermfg=Yellow ctermbg=Cyan
 autocmd ColorScheme * highlight NonText    ctermbg=None ctermfg=25
 autocmd ColorScheme * highlight SpecialKey ctermbg=None ctermfg=25
-autocmd ColorScheme * highlight MatchParen ctermbg=lightmagenta ctermfg=lightgreen
+autocmd ColorScheme * highlight MatchParen ctermfg=magenta ctermbg=none
 
 autocmd ColorScheme * highlight TabLineFill                   ctermbg=27
 autocmd ColorScheme * highlight TabLine     ctermfg=LightBlue ctermbg=27
@@ -93,7 +93,7 @@ nnoremap t <C-w>gF
 "nnoremap t <C-w>gF:tabm<Cr>
 
 " insert
-nnoremap <C-l> A
+"nnoremap <C-l> A
 nnoremap a A
 nnoremap o O<Esc>
 nnoremap <Space> i<Space><Esc>l
@@ -111,7 +111,7 @@ nnoremap p P
 nnoremap s     "ax
 nnoremap <C-d> x
 
-nnoremap <C-h> hx
+"nnoremap <C-h> hx
 nnoremap <C-s> hx
 nnoremap <BS>  hx
 
@@ -124,7 +124,6 @@ nnoremap <C-w> hvbd
 
 " undo redo
 nnoremap <C-u> <C-r>
-"nnoremap r <C-r>
 
 " repeat
 nnoremap r .
@@ -134,7 +133,6 @@ nnoremap r .
 
 " select all
 nnoremap @ ggVG
-"nnoremap @ ggvG$
 
 " select word
 nnoremap w viw
@@ -155,11 +153,9 @@ nnoremap <Down> j
 " cursor mv line
 nnoremap <C-k> 10k
 nnoremap <C-j> 10j
-nnoremap <C-g> G$
+nnoremap G G$
+"nnoremap <C-g> G$
 "nnoremap q %
-"nnoremap H <Tab>
-"nnoremap m <C-o>
-"nnoremap M <Tab>
 
 " cursor mv word
 nnoremap <C-a> 0
@@ -208,6 +204,9 @@ nnoremap m <Esc>
 nnoremap z <Esc>
 nnoremap <C-b> <Esc>
 "nnoremap <C-c> <Esc>
+nnoremap <C-g> <Esc>
+nnoremap <C-h> <Esc>
+nnoremap <C-l> <Esc>
 "nnoremap <C-m> <Esc>
 nnoremap <C-r> <Esc>
 nnoremap <C-t> <Esc>
@@ -270,7 +269,16 @@ inoremap <expr><C-p> pumvisible() ? "<Up>"   : "<C-o>k"
 "
 vnoremap <C-c> <C-c>
 vnoremap <C-v> <C-c>
+vnoremap @ <C-c><C-o><C-o>
 
+" mode ch line
+vnoremap w V
+
+" mode ch box
+vnoremap v     <C-v>
+"vnoremap <C-w> <C-v>
+
+" ins
 vnoremap i I
 vnoremap a A
 
@@ -291,14 +299,8 @@ vnoremap <C-q> gE
 " cursor mv line
 vnoremap <C-j> 10j
 vnoremap <C-k> 10k
-vnoremap <C-g> G$
-
-" mode ch line
-vnoremap w V
-" mode ch box
-vnoremap v     <C-v>
-"vnoremap <C-w> <C-v>
-
+vnoremap G G$
+"vnoremap <C-g> G$
 
 " del
 "vnoremap s "ax
@@ -367,7 +369,7 @@ if &term =~ '^screen'
   execute "set <xDown>=\e[1;*B"
   execute "set <xRight>=\e[1;*C"
   execute "set <xLeft>=\e[1;*D"
-endif
+end
 
 
 
