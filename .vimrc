@@ -1,5 +1,6 @@
-
+"
 " Configuration file for vim
+"
 set modelines=0		" CVE-2007-2438
 
 " Normally we use vim-extensions. If you want true vi-compatibility
@@ -83,7 +84,8 @@ nnoremap <C-v> :q<Cr>
 "nnoremap <C-q> :q<Cr>
 
 " save
-nnoremap <C-s> :w<Cr>
+nnoremap ; :w<Cr>
+"nnoremap <C-s> :w<Cr>
 "nnoremap <C-c> :w<Cr>
 
 " tag jump
@@ -106,13 +108,15 @@ nnoremap p P
 "nnoremap v P
 
 " del
-nnoremap s "ax
+nnoremap s     "ax
 nnoremap <C-d> x
-nnoremap <BS> x
+
 nnoremap <C-h> hx
+nnoremap <C-s> hx
+nnoremap <BS>  hx
+
 nnoremap d dd
 nnoremap cc cc<Esc>
-"nnoremap <C-s> D
 nnoremap <C-c> D
 "nnoremap <C-m> i<Cr><Esc>
 "nnoremap dd "add
@@ -223,7 +227,7 @@ nnoremap <C-]> <Esc>
 
 " quit
 inoremap <C-v> <Esc>
-inoremap <C-s> <Esc>
+"inoremap <C-s> <Esc>
 
 " cursor mv
 inoremap <C-a> <C-o>^
