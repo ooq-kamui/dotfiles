@@ -118,7 +118,7 @@ nnoremap <BS>  hx
 nnoremap d dd
 nnoremap cc cc<Esc>
 nnoremap <C-c> D
-"nnoremap <C-m> i<Cr><Esc>
+nnoremap <C-m> i<Cr><Esc>
 "nnoremap dd "add
 nnoremap <C-w> hvbd
 
@@ -208,7 +208,7 @@ nnoremap m <Esc>
 nnoremap z <Esc>
 nnoremap <C-b> <Esc>
 "nnoremap <C-c> <Esc>
-nnoremap <C-m> <Esc>
+"nnoremap <C-m> <Esc>
 nnoremap <C-r> <Esc>
 nnoremap <C-t> <Esc>
 "nnoremap <C-u> <Esc>
