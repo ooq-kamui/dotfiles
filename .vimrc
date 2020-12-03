@@ -79,9 +79,7 @@ set completeopt=menuone,noinsert
 "
 
 " quit
-nnoremap <C-x> :q<Cr>
 nnoremap <C-v> :q<Cr>
-"nnoremap <C-q> :q<Cr>
 
 " save
 nnoremap ; :w<Cr>
@@ -197,6 +195,7 @@ nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 "
 "nnoremap @ <Esc>
 "nnoremap a <Esc>
+nnoremap b <Esc>
 "nnoremap e <Esc>
 "nnoremap h <Esc>
 nnoremap m <Esc>
@@ -210,9 +209,7 @@ nnoremap <C-l> <Esc>
 "nnoremap <C-m> <Esc>
 nnoremap <C-r> <Esc>
 nnoremap <C-t> <Esc>
-"nnoremap <C-u> <Esc>
-"nnoremap <C-v> <Esc>
-"nnoremap <C-x> <Esc>
+nnoremap <C-x> <Esc>
 nnoremap <C-y> <Esc>
 nnoremap <C-z> <Esc>
 nnoremap <C-@> <Esc>
