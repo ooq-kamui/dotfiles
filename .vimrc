@@ -19,21 +19,23 @@ let skip_defaults_vim=1
 autocmd QuickFixCmdPost vimgrep,grep tab cwindow
 packadd Cfilter
 
-autocmd ColorScheme * highlight LineNr ctermfg=141
-autocmd ColorScheme * highlight Visual cterm=none ctermbg=magenta
-autocmd ColorScheme * highlight Search cterm=bold ctermfg=Yellow ctermbg=Cyan
-autocmd ColorScheme * highlight NonText    ctermbg=None ctermfg=25
-autocmd ColorScheme * highlight SpecialKey ctermbg=None ctermfg=25
-autocmd ColorScheme * highlight MatchParen ctermfg=magenta ctermbg=none
+autocmd ColorScheme * hi LineNr      ctermfg=141
+autocmd ColorScheme * hi Visual                         ctermbg=magenta cterm=none 
+autocmd ColorScheme * hi Search      ctermfg=yellow     ctermbg=cyan    cterm=bold 
+autocmd ColorScheme * hi IncSearch   ctermfg=magenta    ctermbg=cyan    cterm=bold 
+autocmd ColorScheme * hi MatchParen  ctermfg=magenta    ctermbg=none
 
-autocmd ColorScheme * highlight TabLineFill                   ctermbg=27
-autocmd ColorScheme * highlight TabLine     ctermfg=LightBlue ctermbg=27
-autocmd ColorScheme * highlight TabLineSel  ctermfg=182 ctermbg=blue
+autocmd ColorScheme * hi NonText     ctermfg=25         ctermbg=None 
+autocmd ColorScheme * hi SpecialKey  ctermfg=25         ctermbg=None 
 
-autocmd ColorScheme * highlight StatusLine ctermfg=lightblue ctermbg=33
+autocmd ColorScheme * hi TabLineFill                    ctermbg=27
+autocmd ColorScheme * hi TabLine     ctermfg=lightblue  ctermbg=27
+autocmd ColorScheme * hi TabLineSel  ctermfg=182        ctermbg=blue
 
-autocmd ColorScheme * highlight Pmenu    ctermfg=lightgreen ctermbg=blue
-autocmd ColorScheme * highlight PmenuSel ctermfg=cyan  ctermbg=magenta cterm=bold
+autocmd ColorScheme * hi StatusLine  ctermfg=lightblue  ctermbg=33
+
+autocmd ColorScheme * hi Pmenu       ctermfg=lightgreen ctermbg=blue
+autocmd ColorScheme * hi PmenuSel    ctermfg=cyan       ctermbg=magenta cterm=bold
 
 colorscheme koehler
 "colorscheme evening
@@ -86,10 +88,6 @@ nnoremap ; :w<Cr>
 "nnoremap <C-s> :w<Cr>
 "nnoremap <C-c> :w<Cr>
 
-" tag jump
-nnoremap t <C-w>gF
-"nnoremap t <C-w>gF:tabm<Cr>
-
 " insert
 "nnoremap <C-l> A
 nnoremap a A
@@ -109,9 +107,9 @@ nnoremap p P
 nnoremap s     "ax
 nnoremap <C-d> x
 
-"nnoremap <C-h> hx
 nnoremap <C-s> hx
 nnoremap <BS>  hx
+"nnoremap <C-h> hx
 
 nnoremap d dd
 nnoremap cc cc<Esc>
@@ -126,57 +124,53 @@ nnoremap <C-u> <C-r>
 " repeat
 nnoremap r .
 
-" select
-"nnoremap <C-q> v
-
 " select all
 nnoremap @ ggVG
 
 " select word
 nnoremap w viw
-"nnoremap <C-w> v
 nnoremap W V
 
 " select box
-"nnoremap b <C-v>
 nnoremap v <C-v>
-"nnoremap x <C-v>
 
+"
 " cursor mv
+"
+" cursor mv dir
 nnoremap <Right> l
-nnoremap <Left> h
-nnoremap <Up> k
-nnoremap <Down> j
+nnoremap <Left>  h
+nnoremap <Up>    k
+nnoremap <Down>  j
 
 " cursor mv line
 nnoremap <C-k> 10k
 nnoremap <C-j> 10j
-nnoremap G G$
-"nnoremap <C-g> G$
-"nnoremap q %
 
-" cursor mv word
+" cursor mv line 0$
 nnoremap <C-a> 0
 nnoremap <C-e> $l
-nnoremap e $l
+nnoremap e     $l
 
-nnoremap <C-f> w
-nnoremap f w
+" cursor mv char
 nnoremap <C-o> h
-nnoremap <C-q> b
+
+" cursor mv word
+nnoremap f     w
+nnoremap <C-f> w
 nnoremap q     b
-"nnoremap <C-b> b
+"nnoremap <C-q> b
+
+" cursor mv file
+"nnoremap g     gg
+nnoremap G     G$
+"nnoremap <C-g> G$
+"nnoremap q %
 
 
 " search
 "nnoremap <C-n> N
 "nnoremap * Viw"by/<C-r>"
-
-" tab
-nnoremap <Tab>   gt
-nnoremap <S-Tab> gT
-nnoremap <S-Right> :tabm+1<Cr>
-nnoremap <S-Left>  :tabm-1<Cr>
 
 " increment
 nnoremap + <C-a>
@@ -189,6 +183,17 @@ nnoremap < <<
 " grep
 nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 
+" tag jump
+nnoremap t <C-w>gF
+nnoremap <C-q> <C-w>gF
+nnoremap <C-e> <C-w>gF
+
+" tab
+nnoremap <Tab>   gt
+nnoremap <S-Tab> gT
+nnoremap <S-Right> :tabm+1<Cr>
+nnoremap <S-Left>  :tabm-1<Cr>
+
 
 "
 " esc
@@ -196,17 +201,20 @@ nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 "nnoremap @ <Esc>
 "nnoremap a <Esc>
 nnoremap b <Esc>
-"nnoremap e <Esc>
-"nnoremap h <Esc>
+nnoremap h <Esc>
 nnoremap m <Esc>
 "nnoremap q <Esc>
 nnoremap z <Esc>
 nnoremap <C-b> <Esc>
 "nnoremap <C-c> <Esc>
+"nnoremap <C-e> <Esc>
 nnoremap <C-g> <Esc>
 nnoremap <C-h> <Esc>
 nnoremap <C-l> <Esc>
 "nnoremap <C-m> <Esc>
+nnoremap <C-n> <Esc>
+nnoremap <C-p> <Esc>
+"nnoremap <C-q> <Esc>
 nnoremap <C-r> <Esc>
 nnoremap <C-t> <Esc>
 nnoremap <C-x> <Esc>
@@ -237,17 +245,15 @@ inoremap <C-o> <C-o>h
 inoremap <C-f> <C-o>w
 inoremap <C-q> <C-o>b
 
-" cursor mv line
-"inoremap <C-k> <C-o>k
+" cursor mv line -> input complete
+"inoremap <C-p> <C-o>k
+"inoremap <C-n> <C-o>j
 
-" edit del
+" del
 inoremap <C-k> <C-o>D
 inoremap <C-c> <C-o>D
 inoremap <C-d> <C-o>x
 inoremap <C-s> <C-h>
-
-"inoremap <C-p> <C-o>k
-"inoremap <C-n> <C-o>j
 
 " line new
 inoremap <C-j> <Cr>
@@ -291,7 +297,9 @@ vnoremap <C-o> h
 " cursor mv word
 vnoremap f     E
 vnoremap <C-f> E
-vnoremap <C-q> gE
+vnoremap q     b
+vnoremap <C-q> b
+"vnoremap <C-q> gE
 
 " cursor mv line
 vnoremap <C-j> 10j
@@ -331,6 +339,8 @@ vnoremap :t :'<,'>!expand -2
 " 
 " mode ex  -  command line ?
 " 
+cnoremap <C-v> <C-c>
+
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
@@ -340,11 +350,11 @@ cnoremap <C-l> <Right>
 cnoremap <C-q> <S-Left>
 cnoremap <C-f> <S-Right>
 
+cnoremap <C-s> <BS>
 cnoremap <C-d> <Del>
 "cnoremap <C-p> <Up>
 "cnoremap <C-n> <Down>
 
-cnoremap <C-v> <C-c>
 
 " ab t tabnew
 
