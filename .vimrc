@@ -52,8 +52,8 @@ set cursorline
 
 set autoindent
 set expandtab " space にしたい場合は有効にする
-set tabstop=2
-set shiftwidth=2
+set tabstop=4    " 2
+set shiftwidth=4 " 2
 set nowrap
 set whichwrap=b,s,h,l,<,>,[,]
 set virtualedit=onemore "改行にカーソルをおける
@@ -84,17 +84,28 @@ set completeopt=menuone,noinsert
 nnoremap <C-v> :q<Cr>
 
 " save
-nnoremap ; :w<Cr>
+nnoremap <C-m> :w<Cr>
+"nnoremap m :w<Cr>
+"nnoremap ; :w<Cr>
 "nnoremap <C-s> :w<Cr>
 "nnoremap <C-c> :w<Cr>
 
-" insert
+" ins
 "nnoremap <C-l> A
 nnoremap a A
-nnoremap o O<Esc>
+
+" ins space
 nnoremap <Space> i<Space><Esc>l
-"nnoremap <C-j> i<Cr><Esc>
-"nnoremap <Cr> i<Cr><Esc>
+
+" ins cr
+nnoremap m i<Cr><Esc>
+"nnoremap <C-m> i<Cr><Esc>
+
+" ins line
+nnoremap <C-o> O<Esc>
+nnoremap ;     O<Esc>
+"nnoremap o O<Esc>
+"nnoremap m O<Esc>
 
 " yank
 nnoremap c yy
@@ -114,7 +125,6 @@ nnoremap <BS>  hx
 nnoremap d dd
 nnoremap cc cc<Esc>
 nnoremap <C-c> D
-nnoremap <C-m> i<Cr><Esc>
 "nnoremap dd "add
 nnoremap <C-w> hvbd
 
@@ -153,7 +163,8 @@ nnoremap <C-e> $l
 nnoremap e     $l
 
 " cursor mv char
-nnoremap <C-o> h
+nnoremap o h
+"nnoremap <C-o> h
 
 " cursor mv word
 nnoremap f     w
@@ -169,7 +180,7 @@ nnoremap G     G$
 
 
 " search
-"nnoremap <C-n> N
+nnoremap <C-n> N
 "nnoremap * Viw"by/<C-r>"
 
 " increment
@@ -202,7 +213,7 @@ nnoremap <S-Left>  :tabm-1<Cr>
 "nnoremap a <Esc>
 nnoremap b <Esc>
 nnoremap h <Esc>
-nnoremap m <Esc>
+"nnoremap m <Esc>
 "nnoremap q <Esc>
 nnoremap z <Esc>
 nnoremap <C-b> <Esc>
@@ -212,7 +223,7 @@ nnoremap <C-g> <Esc>
 nnoremap <C-h> <Esc>
 nnoremap <C-l> <Esc>
 "nnoremap <C-m> <Esc>
-nnoremap <C-n> <Esc>
+"nnoremap <C-n> <Esc>
 nnoremap <C-p> <Esc>
 "nnoremap <C-q> <Esc>
 nnoremap <C-r> <Esc>
@@ -229,7 +240,7 @@ nnoremap <C-]> <Esc>
 " mode insert
 "
 
-" quit
+" quit  
 inoremap <C-v> <Esc>
 "inoremap <C-s> <Esc>
 
