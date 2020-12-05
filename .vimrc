@@ -84,9 +84,9 @@ set completeopt=menuone,noinsert
 nnoremap <C-v> :q<Cr>
 
 " save
-nnoremap <C-m> :w<Cr>
+nnoremap ; :w<Cr>
+"nnoremap <C-m> :w<Cr>
 "nnoremap m :w<Cr>
-"nnoremap ; :w<Cr>
 "nnoremap <C-s> :w<Cr>
 "nnoremap <C-c> :w<Cr>
 
@@ -99,13 +99,15 @@ nnoremap <Space> i<Space><Esc>l
 
 " ins cr
 nnoremap m i<Cr><Esc>
+"nnoremap ; i<Cr><Esc>
 "nnoremap <C-m> i<Cr><Esc>
 
 " ins line
-nnoremap <C-o> O<Esc>
-nnoremap ;     O<Esc>
-"nnoremap o O<Esc>
-"nnoremap m O<Esc>
+nnoremap o     O<Esc>
+"nnoremap h     O<Esc>
+"nnoremap <C-o> O<Esc>
+"nnoremap m     O<Esc>
+"nnoremap ;     O<Esc>
 
 " yank
 nnoremap c yy
@@ -163,8 +165,9 @@ nnoremap <C-e> $l
 nnoremap e     $l
 
 " cursor mv char
-nnoremap o h
-"nnoremap <C-o> h
+nnoremap <C-o> h
+nnoremap h     h
+"nnoremap o     h
 
 " cursor mv word
 nnoremap f     w
@@ -205,14 +208,13 @@ nnoremap <S-Tab> gT
 nnoremap <S-Right> :tabm+1<Cr>
 nnoremap <S-Left>  :tabm-1<Cr>
 
-
 "
 " esc
 "
 "nnoremap @ <Esc>
 "nnoremap a <Esc>
 nnoremap b <Esc>
-nnoremap h <Esc>
+"nnoremap h <Esc>
 "nnoremap m <Esc>
 "nnoremap q <Esc>
 nnoremap z <Esc>
@@ -222,7 +224,7 @@ nnoremap <C-b> <Esc>
 nnoremap <C-g> <Esc>
 nnoremap <C-h> <Esc>
 nnoremap <C-l> <Esc>
-"nnoremap <C-m> <Esc>
+nnoremap <C-m> <Esc>
 "nnoremap <C-n> <Esc>
 nnoremap <C-p> <Esc>
 "nnoremap <C-q> <Esc>
