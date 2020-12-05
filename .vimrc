@@ -161,7 +161,7 @@ nnoremap <C-j> 10j
 
 " cursor mv line 0$
 nnoremap <C-a> 0
-nnoremap <C-e> $l
+"nnoremap <C-e> $l
 nnoremap e     $l
 
 " cursor mv char
@@ -181,9 +181,14 @@ nnoremap G     G$
 "nnoremap <C-g> G$
 "nnoremap q %
 
+"
+" scroll
+"
+nnoremap <C-e> 10<C-e>
+
 
 " search
-nnoremap / /<C-r><C-w>
+"nnoremap / /<C-r><C-w>
 nnoremap <C-n> N
 "nnoremap * Viw"by/<C-r>"
 
@@ -201,7 +206,7 @@ nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 " tag jump
 nnoremap t <C-w>gF
 nnoremap <C-q> <C-w>gF
-nnoremap <C-e> <C-w>gF
+"nnoremap <C-e> <C-w>gF
 
 " tab
 nnoremap <Tab>   gt
@@ -368,6 +373,8 @@ cnoremap <C-s> <BS>
 cnoremap <C-d> <Del>
 "cnoremap <C-p> <Up>
 "cnoremap <C-n> <Down>
+
+cnoremap <C-r> <C-r><C-w>
 
 
 " ab t tabnew
