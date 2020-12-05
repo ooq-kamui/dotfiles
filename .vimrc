@@ -183,10 +183,11 @@ nnoremap G     G$
 
 
 " search
+nnoremap / /<C-r><C-w>
 nnoremap <C-n> N
 "nnoremap * Viw"by/<C-r>"
 
-" increment
+" inc , dec
 nnoremap + <C-a>
 nnoremap - <C-x>
 
