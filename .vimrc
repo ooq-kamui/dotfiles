@@ -1,7 +1,7 @@
 "
 " Configuration file for vim
 "
-set modelines=0		" CVE-2007-2438
+set modelines=0  " CVE-2007-2438
 
 " Normally we use vim-extensions. If you want true vi-compatibility
 " remove change the following statements
@@ -37,11 +37,10 @@ autocmd ColorScheme * hi StatusLine  ctermfg=lightblue  ctermbg=33
 autocmd ColorScheme * hi Pmenu       ctermfg=lightgreen ctermbg=blue
 autocmd ColorScheme * hi PmenuSel    ctermfg=cyan       ctermbg=magenta cterm=bold
 
-colorscheme koehler
-"colorscheme evening
+colorscheme koehler " evening
 
 set hlsearch
-"hi search ctermbg=lightyellow
+"hi search                 ctermbg=lightyellow
 "hi matchparen ctermfg=red ctermbg=6
 
 set number
@@ -51,13 +50,13 @@ set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
 set cursorline
 
 set autoindent
-set expandtab " space にしたい場合は有効にする
+"set expandtab " indent tab を space にする
 set tabstop=4    " 2
 set shiftwidth=4 " 2
 set nowrap
 set whichwrap=b,s,h,l,<,>,[,]
-set virtualedit=onemore "改行にカーソルをおける
-set virtualedit+=block  "矩形選択で行末以降にカーソル移動可
+set virtualedit=onemore " 改行にカーソルをおける
+set virtualedit+=block  " 矩形選択で行末以降にカーソル移動可
 set scrolloff=5
 set wildmode=list:longest
 set tabpagemax=30
@@ -86,6 +85,45 @@ nnoremap <C-q> :q<Cr>
 
 " save
 nnoremap ; :w<Cr>
+
+"
+" cursor mv
+"
+" cursor mv dir
+nnoremap <Right> l
+nnoremap <Left>  h
+nnoremap <Up>    k
+nnoremap <Down>  j
+
+" cursor mv line
+nnoremap <C-k> 10k
+nnoremap <C-j> 10j
+
+" cursor mv line in
+nnoremap <C-a> 0
+"nnoremap <C-e> $l
+nnoremap e     $l
+
+" cursor mv char
+nnoremap <C-o> h
+nnoremap h     h
+"nnoremap o     h
+
+" cursor mv word
+nnoremap f     w
+"nnoremap <C-f> w
+nnoremap q     b
+"nnoremap <C-q> b
+
+" cursor mv file
+"nnoremap g     gg
+nnoremap G     G$l
+"nnoremap <C-g> G$
+
+nnoremap <C-l> %
+
+" scroll
+nnoremap <C-e> 10<C-e>
 
 "
 " edit
@@ -161,46 +199,6 @@ nnoremap > >>
 nnoremap < <<
 
 "
-" cursor mv
-"
-" cursor mv dir
-nnoremap <Right> l
-nnoremap <Left>  h
-nnoremap <Up>    k
-nnoremap <Down>  j
-
-" cursor mv line
-nnoremap <C-k> 10k
-nnoremap <C-j> 10j
-
-" cursor mv line in
-nnoremap <C-a> 0
-"nnoremap <C-e> $l
-nnoremap e     $l
-
-" cursor mv char
-nnoremap <C-o> h
-nnoremap h     h
-"nnoremap o     h
-
-" cursor mv word
-nnoremap f     w
-"nnoremap <C-f> w
-nnoremap q     b
-"nnoremap <C-q> b
-
-" cursor mv file
-"nnoremap g     gg
-nnoremap G     G$l
-"nnoremap <C-g> G$
-"nnoremap q %
-
-"
-" scroll
-"
-nnoremap <C-e> 10<C-e>
-
-"
 " search
 "
 "nnoremap / /<C-r><C-w>
@@ -225,8 +223,11 @@ nnoremap <S-Right> :tabm+1<Cr>
 nnoremap <S-Left>  :tabm-1<Cr>
 
 " fzf
-nnoremap :f  :Files
-nnoremap :r  :Rg
+nnoremap :f    :Files
+nnoremap <C-f> :Files<cr>
+nnoremap :r    :Rg
+nnoremap <C-g> :Rg<cr>
+nnoremap <C-r> :Rg<cr>
 
 "
 " esc
@@ -242,15 +243,15 @@ nnoremap z <Esc>
 nnoremap <C-b> <Esc>
 "nnoremap <C-c> <Esc>
 "nnoremap <C-e> <Esc>
-nnoremap <C-f> <Esc>
-nnoremap <C-g> <Esc>
+"nnoremap <C-f> <Esc>
+"nnoremap <C-g> <Esc>
 "nnoremap <C-h> <Esc>
-nnoremap <C-l> <Esc>
+"nnoremap <C-l> <Esc>
 nnoremap <C-m> <Esc>
 "nnoremap <C-n> <Esc>
 nnoremap <C-p> <Esc>
 "nnoremap <C-q> <Esc>
-nnoremap <C-r> <Esc>
+"nnoremap <C-r> <Esc>
 nnoremap <C-t> <Esc>
 nnoremap <C-x> <Esc>
 nnoremap <C-y> <Esc>
@@ -266,9 +267,10 @@ nnoremap <C-]> <Esc>
 
 " quit  
 inoremap <C-v> <Esc>
+inoremap <C-f> <Esc>
 "inoremap <C-s> <Esc>
 
-" cursor mv
+" cursor mv line in
 inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
 
@@ -277,10 +279,10 @@ inoremap <C-l> <C-o>l
 inoremap <C-o> <C-o>h
 
 " cursor mv word
-inoremap <C-f> <C-o>w
+"inoremap <C-f> <C-o>w
 inoremap <C-q> <C-o>b
 
-" cursor mv line -> input complete
+" cursor mv line > input complete
 "inoremap <C-p> <C-o>k
 "inoremap <C-n> <C-o>j
 
@@ -299,7 +301,7 @@ inoremap <C-s> <C-o>dw
 " line new
 inoremap <C-j> <Cr>
 
-"inoremap <C-v> <C-v><Tab>
+" tab
 inoremap <Tab> <C-v><Tab>
 
 " input complete
