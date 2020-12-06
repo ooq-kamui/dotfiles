@@ -85,10 +85,10 @@ nnoremap <C-v> :q<Cr>
 
 " save
 nnoremap ; :w<Cr>
-"nnoremap <C-m> :w<Cr>
-"nnoremap m :w<Cr>
-"nnoremap <C-s> :w<Cr>
-"nnoremap <C-c> :w<Cr>
+
+"
+" edit
+"
 
 " ins
 "nnoremap <C-l> A
@@ -109,32 +109,24 @@ nnoremap o     O<Esc>
 "nnoremap m     O<Esc>
 "nnoremap ;     O<Esc>
 
-" yank
-nnoremap c yy
-
-" paste
-nnoremap p P
-"nnoremap v P
-
-" del
+" del char
 nnoremap s     "ax
 nnoremap <C-d> x
-
-nnoremap <C-s> hx
 nnoremap <BS>  hx
+"nnoremap <C-s> hx
 "nnoremap <C-h> hx
 
+" del line
 nnoremap d dd
+"nnoremap dd "add
 nnoremap cc cc<Esc>
 nnoremap <C-c> D
-"nnoremap dd "add
+
+" del word back
 nnoremap <C-w> hvbd
 
-" undo redo
-nnoremap <C-u> <C-r>
-
-" repeat
-nnoremap r .
+" del word forward
+nnoremap <C-s> dw
 
 " select all
 nnoremap @ ggVG
@@ -145,6 +137,27 @@ nnoremap W V
 
 " select box
 nnoremap v <C-v>
+
+" yank
+nnoremap c yy
+
+" paste
+nnoremap p P
+"nnoremap v P
+
+" undo redo
+nnoremap <C-u> <C-r>
+
+" repeat
+nnoremap r .
+
+" inc , dec
+nnoremap + <C-a>
+nnoremap - <C-x>
+
+" indent
+nnoremap > >>
+nnoremap < <<
 
 "
 " cursor mv
@@ -159,7 +172,7 @@ nnoremap <Down>  j
 nnoremap <C-k> 10k
 nnoremap <C-j> 10j
 
-" cursor mv line 0$
+" cursor mv line in
 nnoremap <C-a> 0
 "nnoremap <C-e> $l
 nnoremap e     $l
@@ -171,13 +184,13 @@ nnoremap h     h
 
 " cursor mv word
 nnoremap f     w
-nnoremap <C-f> w
+"nnoremap <C-f> w
 nnoremap q     b
 "nnoremap <C-q> b
 
 " cursor mv file
 "nnoremap g     gg
-nnoremap G     G$
+nnoremap G     G$l
 "nnoremap <C-g> G$
 "nnoremap q %
 
@@ -186,23 +199,19 @@ nnoremap G     G$
 "
 nnoremap <C-e> 10<C-e>
 
-
+"
 " search
+"
 "nnoremap / /<C-r><C-w>
 nnoremap <C-n> N
 "nnoremap * Viw"by/<C-r>"
 
-" inc , dec
-nnoremap + <C-a>
-nnoremap - <C-x>
-
-" indent
-nnoremap > >>
-nnoremap < <<
-
 " grep
 nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 
+"
+" tab
+"
 " tag jump
 nnoremap t <C-w>gF
 nnoremap <C-q> <C-w>gF
@@ -213,6 +222,10 @@ nnoremap <Tab>   gt
 nnoremap <S-Tab> gT
 nnoremap <S-Right> :tabm+1<Cr>
 nnoremap <S-Left>  :tabm-1<Cr>
+
+" fzf
+nnoremap :f  :Files
+nnoremap :r  :Rg
 
 "
 " esc
@@ -227,6 +240,7 @@ nnoremap z <Esc>
 nnoremap <C-b> <Esc>
 "nnoremap <C-c> <Esc>
 "nnoremap <C-e> <Esc>
+nnoremap <C-f> <Esc>
 nnoremap <C-g> <Esc>
 nnoremap <C-h> <Esc>
 nnoremap <C-l> <Esc>
@@ -268,11 +282,17 @@ inoremap <C-q> <C-o>b
 "inoremap <C-p> <C-o>k
 "inoremap <C-n> <C-o>j
 
-" del
+" del line
 inoremap <C-k> <C-o>D
 inoremap <C-c> <C-o>D
+
+" del char forward
 inoremap <C-d> <C-o>x
-inoremap <C-s> <C-h>
+" del char back
+inoremap <C-h> <C-h>
+
+" del word forword
+inoremap <C-s> <C-o>dw
 
 " line new
 inoremap <C-j> <Cr>
@@ -282,8 +302,8 @@ inoremap <Tab> <C-v><Tab>
 
 " input complete
 inoremap <C-m> <C-n>
-inoremap <expr><C-n> pumvisible() ? "<Down>" : "<C-o>j"
-inoremap <expr><C-p> pumvisible() ? "<Up>"   : "<C-o>k"
+inoremap <expr> <C-n> pumvisible() ? "<Down>" : "<C-o>j"
+inoremap <expr> <C-p> pumvisible() ? "<Up>"   : "<C-o>k"
 
 
 "
@@ -301,7 +321,8 @@ vnoremap v     <C-v>
 "vnoremap <C-w> <C-v>
 
 " ins
-vnoremap i I
+"vnoremap i I
+vnoremap <expr> i mode() == "<C-v>" ? "I" : "c"
 vnoremap a A
 
 " cursor mv
@@ -376,7 +397,6 @@ cnoremap <C-d> <Del>
 
 cnoremap <C-r> <C-r><C-w>
 
-
 " ab t tabnew
 
 augroup vimrcEx
@@ -400,4 +420,11 @@ if &term =~ '^screen'
 end
 
 
+"
+" plugin
+"
+call plug#begin()
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+call plug#end()
 
