@@ -112,9 +112,9 @@ nnoremap o     O<Esc>
 " del char
 nnoremap s     "ax
 nnoremap <C-d> x
+nnoremap <C-h> hx
 nnoremap <BS>  hx
 "nnoremap <C-s> hx
-"nnoremap <C-h> hx
 
 " del line
 nnoremap d dd
@@ -213,8 +213,8 @@ nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 " tab
 "
 " tag jump
-nnoremap t <C-w>gF
-nnoremap <C-q> <C-w>gF
+"nnoremap t <C-w>gF
+"nnoremap <C-q> <C-w>gF
 "nnoremap <C-e> <C-w>gF
 
 " tab
@@ -236,18 +236,19 @@ nnoremap b <Esc>
 "nnoremap h <Esc>
 "nnoremap m <Esc>
 "nnoremap q <Esc>
+nnoremap t <Esc>
 nnoremap z <Esc>
 nnoremap <C-b> <Esc>
 "nnoremap <C-c> <Esc>
 "nnoremap <C-e> <Esc>
 nnoremap <C-f> <Esc>
 nnoremap <C-g> <Esc>
-nnoremap <C-h> <Esc>
+"nnoremap <C-h> <Esc>
 nnoremap <C-l> <Esc>
 nnoremap <C-m> <Esc>
 "nnoremap <C-n> <Esc>
 nnoremap <C-p> <Esc>
-"nnoremap <C-q> <Esc>
+nnoremap <C-q> <Esc>
 nnoremap <C-r> <Esc>
 nnoremap <C-t> <Esc>
 nnoremap <C-x> <Esc>
