@@ -82,6 +82,7 @@ set completeopt=menuone,noinsert
 
 " quit
 nnoremap <C-v> :q<Cr>
+nnoremap <C-q> :q<Cr>
 
 " save
 nnoremap ; :w<Cr>
@@ -248,7 +249,7 @@ nnoremap <C-l> <Esc>
 nnoremap <C-m> <Esc>
 "nnoremap <C-n> <Esc>
 nnoremap <C-p> <Esc>
-nnoremap <C-q> <Esc>
+"nnoremap <C-q> <Esc>
 nnoremap <C-r> <Esc>
 nnoremap <C-t> <Esc>
 nnoremap <C-x> <Esc>
