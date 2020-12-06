@@ -379,25 +379,31 @@ vnoremap :t :'<,'>!expand -2
 
 
 " 
-" mode ex  -  command line ?
+" mode ex
 " 
 cnoremap <C-v> <C-c>
 
+" cursor mv line in
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
+" cursor mv char
 cnoremap <C-o> <Left>
 cnoremap <C-l> <Right>
 
+" cursor mv word
 cnoremap <C-q> <S-Left>
 cnoremap <C-f> <S-Right>
 
+" del char
 cnoremap <C-s> <BS>
 cnoremap <C-d> <Del>
+
+" del word
+cnoremap <C-s> <S-Right><C-w>
+
 "cnoremap <C-p> <Up>
 "cnoremap <C-n> <Down>
-
-cnoremap <C-r> <C-r><C-w>
 
 " ab t tabnew
 
