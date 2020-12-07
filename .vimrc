@@ -82,13 +82,15 @@ let mapleader = "\<Space>"
 "
 
  " quit
-nnoremap <C-q> :q <Cr>
+nnoremap <C-q>     :q<Cr>
 nnoremap <leader>q :q<Cr>
+nnoremap <leader>: :q<Cr>
 "nnoremap <C-v> :q<Cr>
 
 " save
-"nnoremap ; :w<Cr>
 nnoremap <leader>s :w<Cr>
+nnoremap <leader>; :w<Cr>
+"nnoremap ;         :w<Cr>
 
 "
 " cursor mv
@@ -104,9 +106,10 @@ nnoremap <C-k> 10k
 nnoremap <C-j> 10j
 
 " cursor mv line in
-nnoremap <C-a> 0
-"nnoremap <C-e> $l
+nnoremap a     0
+"nnoremap <C-a> 0
 nnoremap e     $l
+"nnoremap <C-e> $l
 
 " cursor mv char
 nnoremap <C-o> h
@@ -115,19 +118,18 @@ nnoremap h     h
 
 " cursor mv word
 nnoremap f       w
-nnoremap <space> w
+"nnoremap <space> w
 "nnoremap <C-f> w
 nnoremap o     b
-nnoremap <C-o> b
-"nnoremap q     b
-"nnoremap <C-q> b
+"nnoremap <C-o> b
 
 " cursor mv file
 "nnoremap g     gg
 nnoremap G     G$l
 "nnoremap <C-g> G$
 
-"nnoremap <C-l> %
+" cursor mv 
+nnoremap <leader>k %
 
 " scroll
 nnoremap <C-e> 10<C-e>
@@ -137,8 +139,11 @@ nnoremap <C-e> 10<C-e>
 "
 
 " ins
+nnoremap <leader>a A
+nnoremap ;         A
+"nnoremap <leader>i A
 "nnoremap <C-l> A
-nnoremap a A
+"nnoremap a A
 
 " ins space
 "nnoremap <space> i<Space><Esc>l
@@ -150,7 +155,8 @@ nnoremap <c-m> i<cr><Esc>
 
 " ins line
 nnoremap m     O<Esc>
-nnoremap ;     O<Esc>
+nnoremap <c-o> O<Esc>
+"nnoremap ;     O<Esc>
 "nnoremap o         O<Esc>
 "nnoremap <leader>o O<Esc>
 "nnoremap h     O<Esc>
@@ -177,7 +183,7 @@ nnoremap <C-s> dw
 
 " select all
 nnoremap @ ggVG
-nnoremap <leader>a ggVG
+"nnoremap <leader>a ggVG
 
 
 " select word
@@ -248,14 +254,17 @@ nnoremap <leader>l :Lines<cr>
 "
 " esc
 "
+nnoremap <space> <Esc>
 "nnoremap @ <Esc>
+"nnoremap ; <Esc>
 "nnoremap a <Esc>
 nnoremap b <Esc>
 "nnoremap h <Esc>
 "nnoremap m <Esc>
-"nnoremap q <Esc>
+nnoremap q <Esc>
 nnoremap t <Esc>
 nnoremap z <Esc>
+nnoremap <c-a> <Esc>
 nnoremap <c-b> <Esc>
 "nnoremap <c-c> <Esc>
 "nnoremap <c-e> <Esc>
@@ -331,12 +340,6 @@ inoremap <expr> <C-p> pumvisible() ? "<Up>"   : "<C-o>k"
 "
 " mode visual
 "
-" esc
-vnoremap <C-q> <C-c>
-vnoremap <C-f> <C-c>
-vnoremap <C-c> <C-c>
-vnoremap <C-v> <C-c>
-vnoremap @ <C-c><C-o><C-o>
 
 " mode ch line
 vnoremap w V
@@ -351,7 +354,8 @@ vnoremap <expr> i mode() == "<C-v>" ? "I" : "c"
 vnoremap a A
 
 " cursor mv
-vnoremap <C-a> 0
+vnoremap a     0
+"vnoremap <C-a> 0
 vnoremap e     $h
 "vnoremap <C-e> $h
 
@@ -364,7 +368,7 @@ vnoremap l l
 vnoremap f     E
 "vnoremap <C-f> E
 vnoremap o     b
-vnoremap <c-o> b
+"vnoremap <c-o> b
 "vnoremap q     b
 "vnoremap <C-q> b
 "vnoremap <C-q> gE
@@ -395,6 +399,19 @@ vnoremap + g<C-a>
 vnoremap > >gv
 vnoremap < <gv
 vnoremap :t :'<,'>!expand -2
+
+"
+" esc
+"
+vnoremap <C-c> <C-c>
+vnoremap <C-f> <C-c>
+vnoremap <C-o> <C-c>
+vnoremap <C-q> <C-c>
+vnoremap <C-v> <C-c>
+vnoremap @ <C-c><C-o><C-o>
+
+
+
 
 " add
 " vnoremap i" di""<C-c>hp
