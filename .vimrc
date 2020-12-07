@@ -106,7 +106,8 @@ nnoremap <C-k> 10k
 nnoremap <C-j> 10j
 
 " cursor mv line in
-nnoremap a     0
+nnoremap ;     0
+"nnoremap a     0
 "nnoremap <C-a> 0
 nnoremap e     $l
 "nnoremap <C-e> $l
@@ -140,7 +141,8 @@ nnoremap <C-e> 10<C-e>
 
 " ins
 nnoremap <leader>a A
-nnoremap ;         A
+nnoremap a         A
+"nnoremap ;         A
 "nnoremap <leader>i A
 "nnoremap <C-l> A
 "nnoremap a A
@@ -154,11 +156,11 @@ nnoremap <c-m> i<cr><Esc>
 "nnoremap ; i<cr><Esc>
 
 " ins line
-nnoremap m     O<Esc>
-nnoremap <c-o> O<Esc>
+nnoremap <c-o>     O<Esc>
+nnoremap <leader>o O<Esc>
+nnoremap m         O<Esc>
 "nnoremap ;     O<Esc>
 "nnoremap o         O<Esc>
-"nnoremap <leader>o O<Esc>
 "nnoremap h     O<Esc>
 "nnoremap <C-o> O<Esc>
 
@@ -201,8 +203,9 @@ nnoremap p P
 "nnoremap v P
 
 " undo redo
-nnoremap <C-u> u
-nnoremap u     <C-r>
+nnoremap u         u
+nnoremap <c-u>     <C-r>
+"nnoremap <leader>u <C-r>
 
 " repeat
 nnoremap r .
