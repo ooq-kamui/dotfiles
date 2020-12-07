@@ -74,17 +74,21 @@ set laststatus=2   " 0: off  1: on 2 win  2: on
 
 set completeopt=menuone,noinsert
 
+" leader key
+let mapleader = "\<Space>"
 
 "
 " mode normal ( command )
 "
 
-" quit
-nnoremap <C-v> :q<Cr>
-nnoremap <C-q> :q<Cr>
+ " quit
+nnoremap <C-q> :q <Cr>
+nnoremap <leader>q :q<Cr>
+"nnoremap <C-v> :q<Cr>
 
 " save
-nnoremap ; :w<Cr>
+"nnoremap ; :w<Cr>
+nnoremap <leader>s :w<Cr>
 
 "
 " cursor mv
@@ -110,9 +114,12 @@ nnoremap h     h
 "nnoremap o     h
 
 " cursor mv word
-nnoremap f     w
+nnoremap f       w
+nnoremap <space> w
 "nnoremap <C-f> w
-nnoremap q     b
+nnoremap o     b
+nnoremap <C-o> b
+"nnoremap q     b
 "nnoremap <C-q> b
 
 " cursor mv file
@@ -120,7 +127,7 @@ nnoremap q     b
 nnoremap G     G$l
 "nnoremap <C-g> G$
 
-nnoremap <C-l> %
+"nnoremap <C-l> %
 
 " scroll
 nnoremap <C-e> 10<C-e>
@@ -134,19 +141,20 @@ nnoremap <C-e> 10<C-e>
 nnoremap a A
 
 " ins space
-nnoremap <Space> i<Space><Esc>l
+"nnoremap <space> i<Space><Esc>l
 
 " ins cr
-nnoremap m i<Cr><Esc>
-"nnoremap ; i<Cr><Esc>
-"nnoremap <C-m> i<Cr><Esc>
+nnoremap <c-m> i<cr><Esc>
+"nnoremap m i<cr><Esc>
+"nnoremap ; i<cr><Esc>
 
 " ins line
-nnoremap o     O<Esc>
+nnoremap m     O<Esc>
+nnoremap ;     O<Esc>
+"nnoremap o         O<Esc>
+"nnoremap <leader>o O<Esc>
 "nnoremap h     O<Esc>
 "nnoremap <C-o> O<Esc>
-"nnoremap m     O<Esc>
-"nnoremap ;     O<Esc>
 
 " del char
 nnoremap s     "ax
@@ -169,6 +177,8 @@ nnoremap <C-s> dw
 
 " select all
 nnoremap @ ggVG
+nnoremap <leader>a ggVG
+
 
 " select word
 nnoremap w viw
@@ -185,7 +195,8 @@ nnoremap p P
 "nnoremap v P
 
 " undo redo
-nnoremap <C-u> <C-r>
+nnoremap <C-u> u
+nnoremap u     <C-r>
 
 " repeat
 nnoremap r .
@@ -222,12 +233,17 @@ nnoremap <S-Tab> gT
 nnoremap <S-Right> :tabm+1<Cr>
 nnoremap <S-Left>  :tabm-1<Cr>
 
+"
+" plugin
+"
+
 " fzf
-nnoremap :f    :Files
-nnoremap <C-f> :Files<cr>
-nnoremap :r    :Rg
-nnoremap <C-g> :Rg<cr>
-nnoremap <C-r> :Rg<cr>
+nnoremap :f        :Files
+nnoremap <leader>f :Files<cr>
+nnoremap :r        :Rg
+nnoremap <leader>r :Rg<cr>
+nnoremap :l        :Lines
+nnoremap <leader>l :Lines<cr>
 
 "
 " esc
@@ -240,23 +256,24 @@ nnoremap b <Esc>
 "nnoremap q <Esc>
 nnoremap t <Esc>
 nnoremap z <Esc>
-nnoremap <C-b> <Esc>
-"nnoremap <C-c> <Esc>
-"nnoremap <C-e> <Esc>
-"nnoremap <C-f> <Esc>
-"nnoremap <C-g> <Esc>
-"nnoremap <C-h> <Esc>
-"nnoremap <C-l> <Esc>
-nnoremap <C-m> <Esc>
-"nnoremap <C-n> <Esc>
+nnoremap <c-b> <Esc>
+"nnoremap <c-c> <Esc>
+"nnoremap <c-e> <Esc>
+nnoremap <c-f> <Esc>
+nnoremap <c-g> <Esc>
+"nnoremap <c-h> <Esc>
+"nnoremap <c-l> <Esc>
+"nnoremap <c-m> <Esc>
+"nnoremap <c-n> <Esc>
 nnoremap <C-p> <Esc>
 "nnoremap <C-q> <Esc>
-"nnoremap <C-r> <Esc>
-nnoremap <C-t> <Esc>
-nnoremap <C-x> <Esc>
-nnoremap <C-y> <Esc>
-nnoremap <C-z> <Esc>
-nnoremap <C-@> <Esc>
+nnoremap <c-r> <Esc>
+nnoremap <c-t> <Esc>
+nnoremap <c-v> <Esc>
+nnoremap <c-x> <Esc>
+nnoremap <c-y> <Esc>
+nnoremap <c-z> <Esc>
+nnoremap <c-@> <Esc>
 "nnoremap <C-[> <Esc>
 nnoremap <C-]> <Esc>
 
@@ -266,8 +283,8 @@ nnoremap <C-]> <Esc>
 "
 
 " quit  
-inoremap <C-v> <Esc>
 inoremap <C-f> <Esc>
+"inoremap <C-v> <Esc>
 "inoremap <C-s> <Esc>
 
 " cursor mv line in
@@ -306,6 +323,7 @@ inoremap <Tab> <C-v><Tab>
 
 " input complete
 inoremap <C-m> <C-n>
+inoremap <C-v> <C-n>
 inoremap <expr> <C-n> pumvisible() ? "<Down>" : "<C-o>j"
 inoremap <expr> <C-p> pumvisible() ? "<Up>"   : "<C-o>k"
 
@@ -313,6 +331,9 @@ inoremap <expr> <C-p> pumvisible() ? "<Up>"   : "<C-o>k"
 "
 " mode visual
 "
+" esc
+vnoremap <C-q> <C-c>
+vnoremap <C-f> <C-c>
 vnoremap <C-c> <C-c>
 vnoremap <C-v> <C-c>
 vnoremap @ <C-c><C-o><C-o>
@@ -332,17 +353,20 @@ vnoremap a A
 " cursor mv
 vnoremap <C-a> 0
 vnoremap e     $h
-vnoremap <C-e> $h
+"vnoremap <C-e> $h
 
 " cursor mv char
-vnoremap <C-l> l
-vnoremap <C-o> h
+vnoremap h h
+vnoremap l l
+"vnoremap <C-l> l
 
 " cursor mv word
 vnoremap f     E
-vnoremap <C-f> E
-vnoremap q     b
-vnoremap <C-q> b
+"vnoremap <C-f> E
+vnoremap o     b
+vnoremap <c-o> b
+"vnoremap q     b
+"vnoremap <C-q> b
 "vnoremap <C-q> gE
 
 " cursor mv line
@@ -383,26 +407,32 @@ vnoremap :t :'<,'>!expand -2
 " 
 " mode ex
 " 
-cnoremap <C-v> <C-c>
+" quit
+cnoremap <C-q> <C-c>
+"cnoremap <C-v> <C-c>
 
 " cursor mv line in
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
 " cursor mv char
-cnoremap <C-o> <Left>
+"cnoremap <C-o> <Left>
+cnoremap <C-b> <Left>
 cnoremap <C-l> <Right>
 
 " cursor mv word
-cnoremap <C-q> <S-Left>
+cnoremap <C-o> <S-Left>
 cnoremap <C-f> <S-Right>
 
 " del char
-cnoremap <C-s> <BS>
-cnoremap <C-d> <Del>
+cnoremap <C-h> <bs>
+cnoremap <C-d> <del>
 
 " del word
 cnoremap <C-s> <S-Right><C-w>
+
+" del line in
+cnoremap <C-c> <C-u>
 
 "cnoremap <C-p> <Up>
 "cnoremap <C-n> <Down>
