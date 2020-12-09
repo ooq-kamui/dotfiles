@@ -115,14 +115,11 @@ nnoremap e     $l
 " cursor mv char
 nnoremap <C-o> h
 nnoremap h     h
-"nnoremap o     h
 
 " cursor mv word
-nnoremap f       w
-"nnoremap <space> w
-"nnoremap <C-f> w
-nnoremap o     b
-"nnoremap <C-o> b
+nnoremap f w
+nnoremap q b
+"nnoremap o b
 
 " cursor mv file
 "nnoremap g     gg
@@ -157,14 +154,11 @@ nnoremap m i<cr><Esc>
 "nnoremap ; i<cr><Esc>
 
 " ins line
-nnoremap <c-o>     O<Esc>
+nnoremap o         O<Esc>
 nnoremap <leader>o O<Esc>
 nnoremap O         O<Esc>
+"nnoremap <c-o>     O<Esc>
 "nnoremap m         O<Esc>
-"nnoremap ;     O<Esc>
-"nnoremap o         O<Esc>
-"nnoremap h     O<Esc>
-"nnoremap <C-o> O<Esc>
 
 " del char
 nnoremap s     "ax
@@ -266,7 +260,7 @@ nnoremap <space> <Esc>
 nnoremap b <Esc>
 "nnoremap h <Esc>
 "nnoremap m <Esc>
-nnoremap q <Esc>
+"nnoremap q <Esc>
 nnoremap t <Esc>
 nnoremap z <Esc>
 "nnoremap <c-a> <Esc>
@@ -372,11 +366,8 @@ vnoremap l l
 " cursor mv word
 vnoremap f     E
 "vnoremap <C-f> E
-vnoremap o     b
-"vnoremap <c-o> b
-"vnoremap q     b
-"vnoremap <C-q> b
-"vnoremap <C-q> gE
+vnoremap q     b
+"vnoremap o     b
 
 " cursor mv line
 vnoremap <C-j> 10j
