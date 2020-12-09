@@ -153,14 +153,14 @@ nnoremap a         A
 " ins cr
 nnoremap <c-m>     i<cr><Esc>
 nnoremap <leader>m i<cr><Esc>
-"nnoremap m i<cr><Esc>
+nnoremap m i<cr><Esc>
 "nnoremap ; i<cr><Esc>
 
 " ins line
 nnoremap <c-o>     O<Esc>
-nnoremap O         O<Esc>
 nnoremap <leader>o O<Esc>
-nnoremap m         O<Esc>
+nnoremap O         O<Esc>
+"nnoremap m         O<Esc>
 "nnoremap ;     O<Esc>
 "nnoremap o         O<Esc>
 "nnoremap h     O<Esc>
