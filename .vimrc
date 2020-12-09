@@ -88,9 +88,8 @@ nnoremap <leader>: :q<Cr>
 "nnoremap <C-v> :q<Cr>
 
 " save
-nnoremap <leader>s :w<Cr>
-nnoremap <leader>; :w<Cr>
-"nnoremap ;         :w<Cr>
+nnoremap ; :w<Cr>
+nnoremap <leader><space> :w<Cr>
 
 "
 " cursor mv
@@ -106,9 +105,10 @@ nnoremap <C-k> 10k
 nnoremap <C-j> 10j
 
 " cursor mv line in
-nnoremap ;     0
+"nnoremap ;     0
 "nnoremap a     0
-"nnoremap <C-a> 0
+nnoremap <C-a> 0
+nnoremap <leader>a 0
 nnoremap e     $l
 "nnoremap <C-e> $l
 
@@ -140,7 +140,7 @@ nnoremap <C-e> 10<C-e>
 "
 
 " ins
-nnoremap <leader>a A
+"nnoremap <leader>a A
 nnoremap a         A
 "nnoremap ;         A
 "nnoremap <leader>i A
@@ -269,7 +269,7 @@ nnoremap b <Esc>
 nnoremap q <Esc>
 nnoremap t <Esc>
 nnoremap z <Esc>
-nnoremap <c-a> <Esc>
+"nnoremap <c-a> <Esc>
 nnoremap <c-b> <Esc>
 "nnoremap <c-c> <Esc>
 "nnoremap <c-e> <Esc>
