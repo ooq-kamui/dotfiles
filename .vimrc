@@ -118,8 +118,8 @@ nnoremap h     h
 
 " cursor mv word
 nnoremap f w
-nnoremap q b
-"nnoremap o b
+nnoremap o b
+"nnoremap q b
 
 " cursor mv file
 "nnoremap g     gg
@@ -154,7 +154,8 @@ nnoremap m i<cr><Esc>
 "nnoremap ; i<cr><Esc>
 
 " ins line
-nnoremap o         O<Esc>
+nnoremap q         O<Esc>
+"nnoremap o         O<Esc>
 nnoremap <leader>o O<Esc>
 nnoremap O         O<Esc>
 "nnoremap <c-o>     O<Esc>
@@ -168,10 +169,11 @@ nnoremap <BS>  hx
 "nnoremap <C-s> hx
 
 " del line
-nnoremap d dd
+"nnoremap d dd
 "nnoremap dd "add
-nnoremap cc cc<Esc>
-nnoremap <C-c> D
+nnoremap cc D
+"nnoremap <C-c> D
+"nnoremap cc cc<Esc>
 
 " del word back
 nnoremap <C-w> hvbd
@@ -220,6 +222,7 @@ nnoremap < <<
 "nnoremap / /<C-r><C-w>
 nnoremap <C-n> N
 "nnoremap * Viw"by/<C-r>"
+nnoremap ] *
 
 " grep
 nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
@@ -258,6 +261,7 @@ nnoremap <space> <Esc>
 "nnoremap ; <Esc>
 "nnoremap a <Esc>
 nnoremap b <Esc>
+nnoremap d <Esc>
 "nnoremap h <Esc>
 "nnoremap m <Esc>
 "nnoremap q <Esc>
@@ -366,8 +370,8 @@ vnoremap l l
 " cursor mv word
 vnoremap f     E
 "vnoremap <C-f> E
-vnoremap q     b
-"vnoremap o     b
+vnoremap o     b
+"vnoremap q     b
 
 " cursor mv line
 vnoremap <C-j> 10j
