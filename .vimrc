@@ -155,7 +155,10 @@ nnoremap m i<cr><Esc>
 "nnoremap ; i<cr><Esc>
 
 " ins line
+nnoremap r         O<Esc>
 nnoremap q         O<Esc>
+"nnoremap d         O<Esc>
+"nnoremap u         O<Esc>
 "nnoremap o         O<Esc>
 nnoremap <leader>o O<Esc>
 nnoremap O         O<Esc>
@@ -167,14 +170,11 @@ nnoremap s     "ax
 nnoremap <c-d> x
 nnoremap <c-h> hx
 nnoremap <BS>  hx
-"nnoremap <c-s> hx
 
 " del line
-"nnoremap d dd
-"nnoremap dd "add
+nnoremap d dd
 nnoremap cc D
 "nnoremap <c-c> D
-"nnoremap cc cc<Esc>
 
 " del word back
 nnoremap <c-w> hvbd
@@ -201,13 +201,14 @@ nnoremap c yy
 nnoremap p P
 "nnoremap v P
 
-" undo redo
+" undo
 nnoremap u         u
+" redo
 nnoremap <c-u>     <c-r>
 "nnoremap <leader>u <c-r>
 
 " repeat
-nnoremap r .
+"nnoremap r .
 
 " inc , dec
 nnoremap + <c-a>
@@ -262,12 +263,14 @@ nnoremap <space> <Esc>
 "nnoremap ; <Esc>
 "nnoremap a <Esc>
 nnoremap b <Esc>
-nnoremap d <Esc>
+"nnoremap d <Esc>
 "nnoremap h <Esc>
 "nnoremap l <Esc>
 "nnoremap m <Esc>
 "nnoremap q <Esc>
+"nnoremap r <Esc>
 nnoremap t <Esc>
+"nnoremap u <Esc>
 nnoremap z <Esc>
 "nnoremap <c-a> <Esc>
 nnoremap <c-b> <Esc>
