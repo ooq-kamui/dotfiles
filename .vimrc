@@ -82,10 +82,10 @@ let mapleader = "\<Space>"
 "
 
  " quit
-nnoremap <C-q>     :q<Cr>
+nnoremap <c-q>     :q<Cr>
 nnoremap <leader>q :q<Cr>
 nnoremap <leader>: :q<Cr>
-"nnoremap <C-v> :q<Cr>
+"nnoremap <c-v> :q<Cr>
 
 " save
 nnoremap ; :w<Cr>
@@ -101,36 +101,37 @@ nnoremap <Up>    k
 nnoremap <Down>  j
 
 " cursor mv line
-nnoremap <C-k> 10k
-nnoremap <C-j> 10j
+nnoremap <c-k> 10k
+nnoremap <c-j> 10j
 
 " cursor mv line in
 "nnoremap ;     0
 "nnoremap a     0
-nnoremap <C-a> 0
+nnoremap <c-a> 0
 nnoremap <leader>a 0
 nnoremap e     $l
-"nnoremap <C-e> $l
+"nnoremap <c-e> $l
 
 " cursor mv char
-nnoremap <C-o> h
+nnoremap <c-o> h
 nnoremap h     h
 
 " cursor mv word
-nnoremap f w
-nnoremap o b
+nnoremap f     w
+nnoremap <c-l> w
+nnoremap o     b
 "nnoremap q b
 
 " cursor mv file
 "nnoremap g     gg
 nnoremap G     G$l
-"nnoremap <C-g> G$
+"nnoremap <c-g> G$
 
 " cursor mv 
 nnoremap <leader>k %
 
 " scroll
-nnoremap <C-e> 10<C-e>
+nnoremap <c-e> 10<c-e>
 
 "
 " edit
@@ -141,7 +142,7 @@ nnoremap <C-e> 10<C-e>
 nnoremap a         A
 "nnoremap ;         A
 "nnoremap <leader>i A
-"nnoremap <C-l> A
+"nnoremap <c-l> A
 "nnoremap a A
 
 " ins space
@@ -163,23 +164,23 @@ nnoremap O         O<Esc>
 
 " del char
 nnoremap s     "ax
-nnoremap <C-d> x
-nnoremap <C-h> hx
+nnoremap <c-d> x
+nnoremap <c-h> hx
 nnoremap <BS>  hx
-"nnoremap <C-s> hx
+"nnoremap <c-s> hx
 
 " del line
 "nnoremap d dd
 "nnoremap dd "add
 nnoremap cc D
-"nnoremap <C-c> D
+"nnoremap <c-c> D
 "nnoremap cc cc<Esc>
 
 " del word back
-nnoremap <C-w> hvbd
+nnoremap <c-w> hvbd
 
 " del word forward
-nnoremap <C-s> dw
+nnoremap <c-s> dw
 
 " select all
 nnoremap @ ggVG
@@ -191,7 +192,7 @@ nnoremap w viw
 nnoremap W V
 
 " select box
-nnoremap v <C-v>
+nnoremap v <c-v>
 
 " yank
 nnoremap c yy
@@ -202,15 +203,15 @@ nnoremap p P
 
 " undo redo
 nnoremap u         u
-nnoremap <c-u>     <C-r>
-"nnoremap <leader>u <C-r>
+nnoremap <c-u>     <c-r>
+"nnoremap <leader>u <c-r>
 
 " repeat
 nnoremap r .
 
 " inc , dec
-nnoremap + <C-a>
-nnoremap - <C-x>
+nnoremap + <c-a>
+nnoremap - <c-x>
 
 " indent
 nnoremap > >>
@@ -219,9 +220,9 @@ nnoremap < <<
 "
 " search
 "
-"nnoremap / /<C-r><C-w>
-nnoremap <C-n> N
-"nnoremap * Viw"by/<C-r>"
+"nnoremap / /<c-r><c-w>
+nnoremap <c-n> N
+"nnoremap * Viw"by/<c-r>"
 nnoremap ] *
 
 " grep
@@ -231,9 +232,9 @@ nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 " tab
 "
 " tag jump
-"nnoremap t <C-w>gF
-"nnoremap <C-q> <C-w>gF
-"nnoremap <C-e> <C-w>gF
+"nnoremap t <c-w>gF
+"nnoremap <c-q> <c-w>gF
+"nnoremap <c-e> <c-w>gF
 
 " tab
 nnoremap <Tab>   gt
@@ -263,6 +264,7 @@ nnoremap <space> <Esc>
 nnoremap b <Esc>
 nnoremap d <Esc>
 "nnoremap h <Esc>
+"nnoremap l <Esc>
 "nnoremap m <Esc>
 "nnoremap q <Esc>
 nnoremap t <Esc>
@@ -277,8 +279,8 @@ nnoremap <c-g> <Esc>
 "nnoremap <c-l> <Esc>
 "nnoremap <c-m> <Esc>
 "nnoremap <c-n> <Esc>
-nnoremap <C-p> <Esc>
-"nnoremap <C-q> <Esc>
+nnoremap <c-p> <Esc>
+"nnoremap <c-q> <Esc>
 nnoremap <c-r> <Esc>
 nnoremap <c-t> <Esc>
 nnoremap <c-v> <Esc>
@@ -286,8 +288,8 @@ nnoremap <c-x> <Esc>
 nnoremap <c-y> <Esc>
 nnoremap <c-z> <Esc>
 nnoremap <c-@> <Esc>
-"nnoremap <C-[> <Esc>
-nnoremap <C-]> <Esc>
+"nnoremap <c-[> <Esc>
+nnoremap <c-]> <Esc>
 
 
 "
@@ -295,49 +297,49 @@ nnoremap <C-]> <Esc>
 "
 
 " quit  
-inoremap <C-f> <Esc>
-"inoremap <C-v> <Esc>
-"inoremap <C-s> <Esc>
+inoremap <c-f> <Esc>
+"inoremap <c-v> <Esc>
+"inoremap <c-s> <Esc>
 
 " cursor mv line in
-inoremap <C-a> <C-o>^
-inoremap <C-e> <C-o>$
+inoremap <c-a> <c-o>^
+inoremap <c-e> <c-o>$
 
 " cursor mv char
-inoremap <C-l> <C-o>l
-inoremap <C-o> <C-o>h
+inoremap <c-l> <c-o>l
+inoremap <c-o> <c-o>h
 
 " cursor mv word
-"inoremap <C-f> <C-o>w
-inoremap <C-q> <C-o>b
+"inoremap <c-f> <c-o>w
+inoremap <c-q> <c-o>b
 
 " cursor mv line > input complete
-"inoremap <C-p> <C-o>k
-"inoremap <C-n> <C-o>j
+"inoremap <c-p> <c-o>k
+"inoremap <c-n> <c-o>j
 
 " del line
-inoremap <C-k> <C-o>D
-inoremap <C-c> <C-o>D
+inoremap <c-k> <c-o>D
+inoremap <c-c> <c-o>D
 
 " del char forward
-inoremap <C-d> <C-o>x
+inoremap <c-d> <c-o>x
 " del char back
-inoremap <C-h> <C-h>
+inoremap <c-h> <c-h>
 
 " del word forword
-inoremap <C-s> <C-o>dw
+inoremap <c-s> <c-o>dw
 
 " line new
-inoremap <C-j> <Cr>
+inoremap <c-j> <Cr>
 
 " tab
-inoremap <Tab> <C-v><Tab>
+inoremap <Tab> <c-v><Tab>
 
 " input complete
-inoremap <C-m> <C-n>
-inoremap <C-v> <C-n>
-inoremap <expr> <C-n> pumvisible() ? "<Down>" : "<C-o>j"
-inoremap <expr> <C-p> pumvisible() ? "<Up>"   : "<C-o>k"
+inoremap <c-m> <c-n>
+inoremap <c-v> <c-n>
+inoremap <expr> <c-n> pumvisible() ? "<Down>" : "<c-o>j"
+inoremap <expr> <c-p> pumvisible() ? "<Up>"   : "<c-o>k"
 
 
 "
@@ -348,36 +350,37 @@ inoremap <expr> <C-p> pumvisible() ? "<Up>"   : "<C-o>k"
 vnoremap w V
 
 " mode ch box
-vnoremap v     <C-v>
-"vnoremap <C-w> <C-v>
+vnoremap v     <c-v>
+"vnoremap <c-w> <c-v>
 
 " ins
 "vnoremap i I
-vnoremap <expr> i mode() == "<C-v>" ? "I" : "c"
+vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
 vnoremap a A
 
 " cursor mv
 vnoremap a     0
-"vnoremap <C-a> 0
+"vnoremap <c-a> 0
 vnoremap e     $h
-"vnoremap <C-e> $h
+"vnoremap <c-e> $h
 
 " cursor mv char
 vnoremap h h
 vnoremap l l
-"vnoremap <C-l> l
+"vnoremap <c-l> l
 
 " cursor mv word
 vnoremap f     E
-"vnoremap <C-f> E
+vnoremap <c-l> E
+"vnoremap <c-f> E
 vnoremap o     b
 "vnoremap q     b
 
 " cursor mv line
-vnoremap <C-j> 10j
-vnoremap <C-k> 10k
+vnoremap <c-j> 10j
+vnoremap <c-k> 10k
 vnoremap G G$
-"vnoremap <C-g> G$
+"vnoremap <c-g> G$
 
 " del
 "vnoremap s "ax
@@ -392,8 +395,8 @@ vnoremap p "adhp
 "vnoremap v "adhp
 
 " increment
-"vnoremap + <C-a>
-vnoremap + g<C-a>
+"vnoremap + <c-a>
+vnoremap + g<c-a>
 
 " indent
 vnoremap > >gv
@@ -403,56 +406,57 @@ vnoremap :t :'<,'>!expand -2
 "
 " esc
 "
-vnoremap <C-c> <C-c>
-vnoremap <C-f> <C-c>
-vnoremap <C-o> <C-c>
-vnoremap <C-q> <C-c>
-vnoremap <C-v> <C-c>
-vnoremap @ <C-c><C-o><C-o>
+vnoremap <c-c> <c-c>
+vnoremap <c-f> <c-c>
+vnoremap <c-o> <c-c>
+vnoremap <c-q> <c-c>
+vnoremap <c-v> <c-c>
+vnoremap @ <c-c><c-o><c-o>
 
 
 
 
 " add
-" vnoremap i" di""<C-c>hp
-" vnoremap i' di''<C-c>hp
-" vnoremap i( di()<C-c>hp
-" vnoremap i{ di{}<C-c>hp
-" vnoremap i< di<><C-c>hp
+" vnoremap i" di""<c-c>hp
+" vnoremap i' di''<c-c>hp
+" vnoremap i( di()<c-c>hp
+" vnoremap i{ di{}<c-c>hp
+" vnoremap i< di<><c-c>hp
 
 
 " 
 " mode ex
 " 
 " quit
-cnoremap <C-q> <C-c>
-"cnoremap <C-v> <C-c>
+cnoremap <c-q> <c-c>
+"cnoremap <c-v> <c-c>
 
 " cursor mv line in
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
+cnoremap <c-a> <Home>
+cnoremap <c-e> <End>
 
 " cursor mv char
-"cnoremap <C-o> <Left>
-cnoremap <C-b> <Left>
-cnoremap <C-l> <Right>
+cnoremap <c-o> <Left>
+cnoremap <c-b> <Left>
+cnoremap <c-l> <Right>
 
 " cursor mv word
-cnoremap <C-o> <S-Left>
-cnoremap <C-f> <S-Right>
+"cnoremap <c-o> <S-Left>
+cnoremap <c-f> <S-Right>
 
 " del char
-cnoremap <C-h> <bs>
-cnoremap <C-d> <del>
+cnoremap <c-h> <bs>
+cnoremap <c-d> <del>
 
 " del word
-cnoremap <C-s> <S-Right><C-w>
+"cnoremap <c-w> <c-w>
+cnoremap <c-s> <S-Right><c-w>
 
 " del line in
-cnoremap <C-c> <C-u>
+cnoremap <c-c> <c-u>
 
-"cnoremap <C-p> <Up>
-"cnoremap <C-n> <Down>
+"cnoremap <c-p> <Up>
+"cnoremap <c-n> <Down>
 
 " ab t tabnew
 
