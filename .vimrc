@@ -193,9 +193,12 @@ nnoremap cc D
 nnoremap <c-w> hvbd
 
 " del word forward
-nnoremap q     cw<esc>l
-"nnoremap <c-s> cw<esc>l
-"nnoremap <c-s> dw
+nnoremap q dw
+"nnoremap <expr> q col(".") == col("$") ? "<esc>" : "dw"
+"nnoremap <expr> q col(".") == col("$") ? "<esc>" : "viwx"
+"nnoremap <expr> q col(".") == col("$") ? "<esc>" : "vex"
+"nnoremap q     vex
+"nnoremap q     viwx
 
 " select all
 nnoremap @ ggVG
@@ -317,7 +320,7 @@ nnoremap <c-@> <Esc>
 "nnoremap <c-[> <Esc>
 "nnoremap <c-]> <Esc>
 nnoremap , <Esc>
-nnoremap . <Esc>
+"nnoremap . <Esc>
 
 
 "
@@ -401,8 +404,8 @@ vnoremap l l
 "vnoremap <c-l> l
 
 " cursor mv word
-vnoremap f     E
-vnoremap <c-l> E
+vnoremap f     e
+"vnoremap <c-l> E
 "vnoremap <c-f> E
 vnoremap o     b
 "vnoremap q     b
