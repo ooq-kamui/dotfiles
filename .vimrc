@@ -19,7 +19,7 @@ let skip_defaults_vim=1
 autocmd QuickFixCmdPost vimgrep,grep tab cwindow
 packadd Cfilter
 
-autocmd ColorScheme * hi LineNr       ctermfg=141
+autocmd ColorScheme * hi LineNr       ctermfg=141                        cterm=none
 autocmd ColorScheme * hi CursorLineNr ctermfg=green
 
 autocmd ColorScheme * hi Visual                          ctermbg=magenta cterm=none
@@ -70,6 +70,7 @@ set statusline+=%m " 変更あり表示
 set statusline+=%= " 以降を右寄せ
 set statusline+=[ENC=%{&fileencoding}] " file encoding
 set statusline+=[LOW=%l/%L]            " 現在行数/全行数
+set statusline^=%{coc#status()}        " coc.vim
 set laststatus=2   " 0: off  1: on 2 win  2: on
 
 set completeopt=menuone,noinsert
@@ -173,7 +174,7 @@ nnoremap r         O<Esc>
 "nnoremap d         O<Esc>
 "nnoremap u         O<Esc>
 "nnoremap o         O<Esc>
-nnoremap <leader>o O<Esc>
+"nnoremap <leader>o O<Esc>
 nnoremap O         O<Esc>
 "nnoremap <c-o>     O<Esc>
 "nnoremap m         O<Esc>
@@ -193,12 +194,12 @@ nnoremap cc D
 nnoremap <c-w> hvbd
 
 " del word forward
-nnoremap q dw
-"nnoremap <expr> q col(".") == col("$") ? "<esc>" : "dw"
+nnoremap <expr> q col(".") == col("$") ? "<esc>" : "dw"
 "nnoremap <expr> q col(".") == col("$") ? "<esc>" : "viwx"
 "nnoremap <expr> q col(".") == col("$") ? "<esc>" : "vex"
-"nnoremap q     vex
-"nnoremap q     viwx
+"nnoremap q dw
+"nnoremap q vex
+"nnoremap q viwx
 
 " select all
 nnoremap @ ggVG
@@ -264,9 +265,11 @@ nnoremap <S-Left>  :tabm-1<Cr>
 "
 " ctags
 "
-nnoremap <leader>o g<c-]>
-nnoremap <leader>e g<c-]>
-nnoremap <leader>k g<c-]>
+nnoremap <leader>j g<c-]>
+"nnoremap <leader>o g<c-]>
+"nnoremap <leader>e g<c-]>
+"nnoremap <leader>k g<c-]>
+nnoremap <c-]> g<c-]>
 
 
 "
@@ -285,6 +288,7 @@ nnoremap <leader>l :Lines<cr>
 " esc
 "
 nnoremap <space> <Esc>
+nnoremap <bs> <Esc>
 "nnoremap @ <Esc>
 "nnoremap ; <Esc>
 "nnoremap a <Esc>
@@ -419,6 +423,7 @@ vnoremap G G$
 " del
 "vnoremap s "ax
 vnoremap s x
+vnoremap q x
 vnoremap x "ax
 
 " yank
@@ -519,5 +524,27 @@ end
 call plug#begin()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
+
+"
+" coc.nvim
+"
+nnoremap <silent> gd <Plug>(coc-definition)
+"nmap <silent> gy <Plug>(coc-type-definition)
+"nmap <silent> gi <Plug>(coc-implementation)
+"nmap <silent> gr <Plug>(coc-references)
+"nnoremap <silent> K :call <SID>show_documentation()<CR>
+"
+"function! s:show_documentation()
+"  if (index(['vim','help'], &filetype) >= 0)
+"    execute 'h '.expand('<cword>')
+"  else
+"    call CocAction('doHover')
+"  endif
+"endfunction
+
+
+
+
 

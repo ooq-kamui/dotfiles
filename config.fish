@@ -1,5 +1,9 @@
 
-export LSCOLORS=gxfxcxdxbxegedabagacad
+#export LSCOLORS=gxfxcxdxbxegedabagacad
+export LSCOLORS=cxfxcxdxbxegedabagacad
+
+set -x PATH $HOME/.nodebrew/current/bin $PATH
+set -x RIPGREP_CONFIG_PATH ~/.ripgreprc
 
 alias ll="la"
 #alias ls="ls -1"
@@ -28,9 +32,6 @@ export GREP_COLOR="1;33"
 set fish_color_autosuggestion cyan
 set fish_color_search_match   --background=brmagenta
 #set fish_color_selection      --background=blue
-
-
-set -x RIPGREP_CONFIG_PATH ~/.ripgreprc
 
 
 
