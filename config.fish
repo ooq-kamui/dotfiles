@@ -1,14 +1,18 @@
 
 #export LSCOLORS=gxfxcxdxbxegedabagacad
-export LSCOLORS=cxfxcxdxbxegedabagacad
+export LSCOLORS=fxfxcxdxexegedabagacad
+#               ^dir    ^exe
 
+set -x PATH /opt/local/bin $PATH
+set -x PATH $HOME/.cargo/bin $PATH
 set -x PATH $HOME/.nodebrew/current/bin $PATH
 set -x RIPGREP_CONFIG_PATH ~/.ripgreprc
+set -x FZF_CTRL_T_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
 
 alias ll="la"
 #alias ls="ls -1"
-alias vim="nvim"
-alias vi="nvim"
+#alias vim="nvim"
+#alias vi="nvim"
 
 #alias f="mdfind -onlyin . -name"
 
@@ -21,8 +25,8 @@ bind \cO backward-word
 #bind \cQ backward-word
 bind \cF forward-word
 
-bind \cQ kill-word
 bind \cK kill-word
+#bind \cQ kill-word
 #bind \cS backward-delete-char
 
 
