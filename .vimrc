@@ -226,6 +226,7 @@ nnoremap <c-u>     <c-r>
 "nnoremap <leader>u <c-r>
 
 " repeat
+nnoremap <c-m> .
 "nnoremap r .
 
 " inc , dec
@@ -241,7 +242,7 @@ nnoremap < <<
 "
 "nnoremap / /<c-r><c-w>
 nnoremap <c-n> N
-nnoremap <c-m> *
+"nnoremap <c-m> *
 nnoremap <c-l> *
 
 " grep
@@ -300,6 +301,7 @@ nnoremap <bs> <Esc>
 "nnoremap r <Esc>
 "nnoremap t <Esc>
 "nnoremap u <Esc>
+nnoremap y <Esc>
 nnoremap z <Esc>
 "nnoremap <c-a> <Esc>
 "nnoremap <c-b> <Esc>
@@ -471,12 +473,12 @@ cnoremap <c-a> <Home>
 cnoremap <c-e> <End>
 
 " cursor mv char
-cnoremap <c-o> <Left>
 cnoremap <c-b> <Left>
 cnoremap <c-l> <Right>
+"cnoremap <c-o> <Left>
 
 " cursor mv word
-"cnoremap <c-o> <S-Left>
+cnoremap <c-o> <S-Left>
 cnoremap <c-f> <S-Right>
 
 " del char
