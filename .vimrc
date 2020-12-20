@@ -70,7 +70,7 @@ set statusline+=%m " 変更あり表示
 set statusline+=%= " 以降を右寄せ
 set statusline+=[ENC=%{&fileencoding}] " file encoding
 set statusline+=[LOW=%l/%L]            " 現在行数/全行数
-set statusline^=%{coc#status()}        " coc.vim
+"set statusline^=%{coc#status()}        " coc.vim
 set laststatus=2   " 0: off  1: on 2 win  2: on
 
 set completeopt=menuone,noinsert
@@ -91,13 +91,15 @@ colorscheme koehler " evening
 
  " quit
 nnoremap <c-q>     :q<Cr>
-nnoremap <leader>q :q<Cr>
-nnoremap <leader>: :q<Cr>
+"nnoremap <leader>q :q<Cr>
+"nnoremap <leader>: :q<Cr>
 "nnoremap <c-v> :q<Cr>
+nnoremap :q  :q!
 
 " save
-nnoremap ; :w<Cr>
-nnoremap <leader><space> :w<Cr>
+nnoremap ;     :w<Cr>
+nnoremap <c-s> :w<Cr>
+"nnoremap <leader><space> :w<Cr>
 
 "
 " cursor mv
@@ -116,7 +118,7 @@ nnoremap <c-j> 10j
 "nnoremap ;     0
 "nnoremap a     0
 nnoremap <c-a> 0
-nnoremap <leader>a 0
+"nnoremap <leader>a 0
 nnoremap <expr> e col(".") == col("$") ? "l" : "$l"
 "nnoremap e     $l
 "nnoremap <c-e> $l
@@ -133,8 +135,8 @@ nnoremap o     b
 
 " cursor mv file
 "nnoremap g     gg
-nnoremap G     G$l
-"nnoremap <c-g> G$
+nnoremap <c-g> G$l
+"nnoremap G     G$l
 
 " cursor mv brackets
 nnoremap <leader>k %
@@ -156,28 +158,21 @@ nnoremap <c-e> 10<c-e>
 nnoremap a         A
 "nnoremap ;         A
 "nnoremap <leader>i A
-"nnoremap <c-l> A
 "nnoremap a A
 
 " ins space
 "nnoremap <space> i<Space><Esc>l
 
 " ins cr
-nnoremap <c-m>     i<cr><Esc>
-nnoremap <leader>m i<cr><Esc>
 nnoremap m i<cr><Esc>
+"nnoremap <c-m>     i<cr><Esc>
+"nnoremap <leader>m i<cr><Esc>
 "nnoremap ; i<cr><Esc>
 
 " ins line
-nnoremap r     O<Esc>
 nnoremap <c-o> O<Esc>
 nnoremap O     O<Esc>
-"nnoremap q         O<Esc>
-"nnoremap d         O<Esc>
-"nnoremap u         O<Esc>
-"nnoremap o         O<Esc>
-"nnoremap <leader>o O<Esc>
-"nnoremap m         O<Esc>
+"nnoremap r     O<Esc>
 
 " del char
 nnoremap s     "ax
@@ -241,8 +236,8 @@ nnoremap < <<
 "
 "nnoremap / /<c-r><c-w>
 nnoremap <c-n> N
-"nnoremap * Viw"by/<c-r>"
-nnoremap ] *
+nnoremap <c-m> *
+nnoremap <c-l> *
 
 " grep
 nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
@@ -250,7 +245,8 @@ nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 "
 " tag jump
 "
-"nnoremap t <c-w>gF
+nnoremap r <c-w>gF
+nnoremap t <c-w>gF
 "nnoremap <c-q> <c-w>gF
 "nnoremap <c-e> <c-w>gF
 
@@ -266,10 +262,10 @@ nnoremap <S-Left>  :tabm-1<Cr>
 " ctags
 "
 nnoremap <leader>j g<c-]>
+nnoremap <c-]> g<c-]>
 "nnoremap <leader>o g<c-]>
 "nnoremap <leader>e g<c-]>
 "nnoremap <leader>k g<c-]>
-nnoremap <c-]> g<c-]>
 
 
 "
@@ -277,12 +273,10 @@ nnoremap <c-]> g<c-]>
 "
 
 " fzf
-nnoremap :f        :Files
 nnoremap <leader>f :Files<cr>
-nnoremap :r        :Rg
 nnoremap <leader>r :Rg<cr>
-nnoremap :l        :Lines
 nnoremap <leader>l :Lines<cr>
+
 
 "
 " esc
@@ -298,8 +292,8 @@ nnoremap <bs> <Esc>
 "nnoremap l <Esc>
 "nnoremap m <Esc>
 "nnoremap q <Esc>
-"nnoremap r <Esc>
-nnoremap t <Esc>
+nnoremap r <Esc>
+"nnoremap t <Esc>
 "nnoremap u <Esc>
 nnoremap z <Esc>
 "nnoremap <c-a> <Esc>
@@ -307,14 +301,15 @@ nnoremap z <Esc>
 nnoremap <c-c> <Esc>
 "nnoremap <c-e> <Esc>
 nnoremap <c-f> <Esc>
-nnoremap <c-g> <Esc>
+"nnoremap <c-g> <Esc>
 "nnoremap <c-h> <Esc>
-nnoremap <c-l> <Esc>
+"nnoremap <c-l> <Esc>
 "nnoremap <c-m> <Esc>
 "nnoremap <c-n> <Esc>
 "nnoremap <c-p> <Esc>
 "nnoremap <c-q> <Esc>
 nnoremap <c-r> <Esc>
+"nnoremap <c-s> <Esc>
 nnoremap <c-t> <Esc>
 nnoremap <c-v> <Esc>
 nnoremap <c-x> <Esc>
@@ -405,20 +400,19 @@ vnoremap e     $h
 vnoremap h     h
 vnoremap <c-o> h
 vnoremap l l
-"vnoremap <c-l> l
 
 " cursor mv word
 vnoremap f     e
-"vnoremap <c-l> E
 "vnoremap <c-f> E
 vnoremap o     b
-"vnoremap q     b
 
 " cursor mv line
 vnoremap <c-j> 10j
 vnoremap <c-k> 10k
+
+" cursor mv file
 vnoremap G G$
-"vnoremap <c-g> G$
+vnoremap <c-g> G$
 
 " del
 "vnoremap s "ax
@@ -518,19 +512,42 @@ if &term =~ '^screen'
 end
 
 
-"
+" 
 " plugin
-"
+" 
 call plug#begin()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
+
+" fzf
+" preview window
+let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
+
+" fzf#vim#grep(
+"   command,
+"   [has_column bool],
+"   [spec dict],
+"   [fullscreen bool]
+" )
+
+command! -bang -nargs=* Rg
+\ call fzf#vim#grep(
+\   'rg --line-number --no-multiline --no-heading --smart-case --color=always -- '.shellescape(<q-args>),
+\   0,
+\   fzf#vim#with_preview(
+\     {'options': '--exact --delimiter : --nth 3..'},
+\     'up:70%:hidden', '/'
+\   ),
+\   <bang>1
+\ )
+
 
 "
 " coc.nvim
 "
-nnoremap <silent> gd <Plug>(coc-definition)
+"nnoremap <silent> gd <Plug>(coc-definition)
 "nmap <silent> gy <Plug>(coc-type-definition)
 "nmap <silent> gi <Plug>(coc-implementation)
 "nmap <silent> gr <Plug>(coc-references)
@@ -543,8 +560,6 @@ nnoremap <silent> gd <Plug>(coc-definition)
 "    call CocAction('doHover')
 "  endif
 "endfunction
-
-
 
 
 
