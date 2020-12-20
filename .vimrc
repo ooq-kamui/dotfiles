@@ -75,6 +75,11 @@ set laststatus=2   " 0: off  1: on 2 win  2: on
 
 set completeopt=menuone,noinsert
 
+" auto comment off
+" set formatoptions-=ro
+autocmd FileType * setlocal formatoptions-=r
+autocmd FileType * setlocal formatoptions-=o
+
 " leader key
 let mapleader = "\<Space>"
 
@@ -532,13 +537,16 @@ let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
 "   [fullscreen bool]
 " )
 
+"
+"\   'rg --line-number --smart-case  --no-multiline --no-heading --color=always -- '.shellescape(<q-args>),
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
-\   'rg --line-number --no-multiline --no-heading --smart-case --color=always -- '.shellescape(<q-args>),
+\   'rg --line-number --smart-case  --no-multiline --no-heading --color=always -- '.shellescape(<q-args>),
 \   0,
 \   fzf#vim#with_preview(
 \     {'options': '--exact --delimiter : --nth 3..'},
-\     'up:70%:hidden', '/'
+\     'up:70%:hidden',
+\     '/'
 \   ),
 \   <bang>1
 \ )
