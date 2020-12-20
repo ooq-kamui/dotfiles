@@ -292,7 +292,7 @@ nnoremap <bs> <Esc>
 "nnoremap l <Esc>
 "nnoremap m <Esc>
 "nnoremap q <Esc>
-nnoremap r <Esc>
+"nnoremap r <Esc>
 "nnoremap t <Esc>
 "nnoremap u <Esc>
 nnoremap z <Esc>
