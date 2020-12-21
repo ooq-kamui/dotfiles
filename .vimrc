@@ -41,6 +41,10 @@ set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
 autocmd ColorScheme * hi NonText      ctermfg=25         ctermbg=None
 autocmd ColorScheme * hi SpecialKey   ctermfg=25         ctermbg=None
 
+autocmd ColorScheme * hi WarningMsg   ctermfg=magenta    ctermbg=None
+autocmd ColorScheme * hi ErrorMsg     ctermfg=magenta    ctermbg=None
+
+
 set hlsearch
 "hi search                 ctermbg=lightyellow
 "hi matchparen ctermfg=red ctermbg=6
@@ -95,7 +99,8 @@ colorscheme koehler " evening
 "
 
  " quit
-nnoremap <c-q>     :q<Cr>
+nnoremap q     :q<Cr>
+"nnoremap <c-q>     :q<Cr>
 "nnoremap <leader>q :q<Cr>
 "nnoremap <leader>: :q<Cr>
 "nnoremap <c-v> :q<Cr>
@@ -175,15 +180,14 @@ nnoremap m i<cr><Esc>
 "nnoremap ; i<cr><Esc>
 
 " ins line
-nnoremap <c-o> O<Esc>
-nnoremap O     O<Esc>
-"nnoremap r     O<Esc>
+nnoremap <c-o>     O<Esc>
+nnoremap <leader>o O<Esc>
 
 " del char
 nnoremap s     "ax
-nnoremap <c-d> x
 nnoremap <c-h> hx
 nnoremap <BS>  hx
+"nnoremap <c-d> x
 
 " del line
 nnoremap d dd
@@ -194,7 +198,9 @@ nnoremap cc D
 nnoremap <c-w> hvbd
 
 " del word forward
-nnoremap <expr> q col(".") == col("$") ? "<esc>" : "dw"
+nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : "dw"
+nnoremap <expr> <c-q> col(".") == col("$") ? "<esc>" : "dw"
+"nnoremap <expr> q col(".") == col("$") ? "<esc>" : "dw"
 "nnoremap <expr> q col(".") == col("$") ? "<esc>" : "viwx"
 "nnoremap <expr> q col(".") == col("$") ? "<esc>" : "vex"
 "nnoremap q dw
@@ -267,12 +273,13 @@ nnoremap <S-Left>  :tabm-1<Cr>
 "
 " ctags
 "
-nnoremap <leader>j g<c-]>
-nnoremap <c-]> g<c-]>
+"nnoremap <c-]> g<c-]>
+nnoremap <c-]> <C-w>g<C-]><C-w>T
+"nnoremap <c-]> <C-w><C-]><C-w>T
+"nnoremap <leader>j g<c-]>
 "nnoremap <leader>o g<c-]>
 "nnoremap <leader>e g<c-]>
 "nnoremap <leader>k g<c-]>
-
 
 "
 " plugin
@@ -398,10 +405,10 @@ vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
 vnoremap a A
 
 " cursor mv
-vnoremap a     0
-"vnoremap <c-a> 0
 vnoremap e     $h
 "vnoremap <c-e> $h
+"vnoremap a     0
+"vnoremap <c-a> 0
 
 " cursor mv char
 vnoremap h     h
