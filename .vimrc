@@ -545,15 +545,20 @@ call plug#end()
 " preview window
 let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
 
+" default
+" command! -bang -nargs=? -complete=dir Files
+" \ call fzf#vim#files(<q-args>, <bang>0)"
+
+command! -bang -nargs=? -complete=dir Files
+\ call fzf#vim#files(<q-args>, <bang>1)"
+
+
 " fzf#vim#grep(
 "   command,
 "   [has_column bool],
 "   [spec dict],
 "   [fullscreen bool]
 " )
-
-"
-"\   'rg --line-number --smart-case  --no-multiline --no-heading --color=always -- '.shellescape(<q-args>),
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
 \   'rg --line-number --smart-case  --no-multiline --no-heading --color=always -- '.shellescape(<q-args>),
