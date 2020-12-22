@@ -199,7 +199,7 @@ nnoremap <c-w> hvbd
 
 " del word forward
 nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : "dw"
-nnoremap <expr> <c-q> col(".") == col("$") ? "<esc>" : "dw"
+"nnoremap <expr> <c-q> col(".") == col("$") ? "<esc>" : "dw"
 "nnoremap <expr> q col(".") == col("$") ? "<esc>" : "dw"
 "nnoremap <expr> q col(".") == col("$") ? "<esc>" : "viwx"
 "nnoremap <expr> q col(".") == col("$") ? "<esc>" : "vex"
