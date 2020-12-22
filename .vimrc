@@ -134,8 +134,9 @@ nnoremap <expr> e col(".") == col("$") ? "l$l" : "$l"
 "nnoremap <c-e> $l
 
 " cursor mv char
+nnoremap l l
 "nnoremap <c-o> h
-nnoremap h     h
+"nnoremap h     h
 
 " cursor mv word
 nnoremap f     w
@@ -174,7 +175,8 @@ nnoremap a         A
 "nnoremap <space> i<Space><Esc>l
 
 " ins cr
-nnoremap m i<cr><Esc>
+nnoremap h i<cr><Esc>
+"nnoremap m i<cr><Esc>
 "nnoremap <c-m>     i<cr><Esc>
 "nnoremap <leader>m i<cr><Esc>
 "nnoremap ; i<cr><Esc>
@@ -185,8 +187,8 @@ nnoremap <leader>o O<Esc>
 
 " del char
 nnoremap s     "ax
-nnoremap <c-h> hx
 nnoremap <BS>  hx
+"nnoremap <c-h> hx
 "nnoremap <c-d> x
 
 " del line
@@ -232,7 +234,8 @@ nnoremap <c-u>     <c-r>
 "nnoremap <leader>u <c-r>
 
 " repeat
-nnoremap <c-m> .
+nnoremap 0 .
+"nnoremap <c-m> .
 "nnoremap r .
 
 " inc , dec
@@ -248,8 +251,9 @@ nnoremap < <<
 "
 "nnoremap / /<c-r><c-w>
 nnoremap <c-n> N
+nnoremap m *
+"nnoremap <c-l> *
 "nnoremap <c-m> *
-nnoremap <c-l> *
 
 " grep
 nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
@@ -298,6 +302,7 @@ nnoremap <space> <Esc>
 nnoremap <bs> <Esc>
 "nnoremap @ <Esc>
 "nnoremap ; <Esc>
+"nnoremap 0 <Esc>
 "nnoremap a <Esc>
 "nnoremap b <Esc>
 "nnoremap d <Esc>
@@ -316,12 +321,12 @@ nnoremap <c-c> <Esc>
 "nnoremap <c-e> <Esc>
 nnoremap <c-f> <Esc>
 "nnoremap <c-g> <Esc>
-"nnoremap <c-h> <Esc>
-"nnoremap <c-l> <Esc>
-"nnoremap <c-m> <Esc>
+nnoremap <c-h> <Esc>
+nnoremap <c-l> <Esc>
+nnoremap <c-m> <Esc>
 "nnoremap <c-n> <Esc>
 "nnoremap <c-p> <Esc>
-"nnoremap <c-q> <Esc>
+nnoremap <c-q> <Esc>
 nnoremap <c-r> <Esc>
 "nnoremap <c-s> <Esc>
 nnoremap <c-t> <Esc>
@@ -411,8 +416,8 @@ vnoremap e     $h
 "vnoremap <c-a> 0
 
 " cursor mv char
-vnoremap h     h
 vnoremap <c-o> h
+"vnoremap h     h
 vnoremap l l
 
 " cursor mv word
