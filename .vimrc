@@ -129,7 +129,7 @@ nnoremap <c-j> 10j
 "nnoremap a     0
 nnoremap <c-a> 0
 "nnoremap <leader>a 0
-nnoremap <expr> e col(".") == col("$") ? "l" : "$l"
+nnoremap <expr> e col(".") == col("$") ? "l$l" : "$l"
 "nnoremap e     $l
 "nnoremap <c-e> $l
 
