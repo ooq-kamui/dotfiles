@@ -197,7 +197,7 @@ nnoremap cc D
 "nnoremap <c-c> D
 
 " del word back
-nnoremap <c-w> hvbd
+"nnoremap <c-w> hvbd
 
 " del word forward
 nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : "dw"
@@ -331,6 +331,7 @@ nnoremap <c-r> <Esc>
 "nnoremap <c-s> <Esc>
 nnoremap <c-t> <Esc>
 nnoremap <c-v> <Esc>
+nnoremap <c-w> <Esc>
 nnoremap <c-x> <Esc>
 nnoremap <c-y> <Esc>
 nnoremap <c-z> <Esc>
