@@ -126,8 +126,7 @@ nnoremap <c-j> 10j
 
 " cursor mv line in
 "nnoremap ;     0
-"nnoremap a     0
-nnoremap <c-a> 0
+"nnoremap <c-a> 0
 "nnoremap <leader>a 0
 nnoremap <expr> e col(".") == col("$") ? "l$l" : "$l"
 "nnoremap e     $l
@@ -165,10 +164,6 @@ nnoremap <c-e> 10<c-e>
 "
 
 " ins
-"nnoremap <leader>a A
-nnoremap a         A
-"nnoremap ;         A
-"nnoremap <leader>i A
 "nnoremap a A
 
 " ins space
@@ -178,8 +173,6 @@ nnoremap a         A
 nnoremap h i<cr><Esc>
 "nnoremap m i<cr><Esc>
 "nnoremap <c-m>     i<cr><Esc>
-"nnoremap <leader>m i<cr><Esc>
-"nnoremap ; i<cr><Esc>
 
 " ins line
 nnoremap <c-o>     O<Esc>
@@ -261,10 +254,9 @@ nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 "
 " tag jump
 "
-nnoremap r <c-w>gF
-nnoremap t <c-w>gF
-"nnoremap <c-q> <c-w>gF
-"nnoremap <c-e> <c-w>gF
+nnoremap <c-f> <c-w>gF
+"nnoremap r <c-w>gF
+"nnoremap t <c-w>gF
 
 "
 " tab
@@ -286,6 +278,11 @@ nnoremap <c-]> <C-w>g<C-]><C-w>T
 "nnoremap <leader>k g<c-]>
 
 "
+" buffers
+"
+nnoremap :b :buffers
+
+"
 " plugin
 "
 
@@ -299,11 +296,19 @@ nnoremap <leader>l :Lines<cr>
 " esc
 "
 nnoremap <space> <Esc>
-nnoremap <bs> <Esc>
+nnoremap <bs>    <Esc>
+
+nnoremap , <Esc>
+"nnoremap . <Esc>
+nnoremap _ <Esc>
 "nnoremap @ <Esc>
 "nnoremap ; <Esc>
+nnoremap <c-@> <Esc>
+"nnoremap <c-[> <Esc>
+"nnoremap <c-]> <Esc>
+
 "nnoremap 0 <Esc>
-"nnoremap a <Esc>
+nnoremap a <Esc>
 "nnoremap b <Esc>
 "nnoremap d <Esc>
 "nnoremap h <Esc>
@@ -315,11 +320,12 @@ nnoremap <bs> <Esc>
 "nnoremap u <Esc>
 nnoremap y <Esc>
 nnoremap z <Esc>
-"nnoremap <c-a> <Esc>
+
+nnoremap <c-a> <Esc>
 "nnoremap <c-b> <Esc>
 nnoremap <c-c> <Esc>
 "nnoremap <c-e> <Esc>
-nnoremap <c-f> <Esc>
+"nnoremap <c-f> <Esc>
 "nnoremap <c-g> <Esc>
 nnoremap <c-h> <Esc>
 nnoremap <c-l> <Esc>
@@ -335,12 +341,6 @@ nnoremap <c-w> <Esc>
 nnoremap <c-x> <Esc>
 nnoremap <c-y> <Esc>
 nnoremap <c-z> <Esc>
-nnoremap <c-@> <Esc>
-"nnoremap <c-[> <Esc>
-"nnoremap <c-]> <Esc>
-nnoremap , <Esc>
-"nnoremap . <Esc>
-
 
 "
 " mode insert
