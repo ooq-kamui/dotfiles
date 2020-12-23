@@ -268,7 +268,7 @@ nnoremap <S-Left>  :tabm-1<Cr>
 " ctags
 "
 "nnoremap <c-]> g<c-]>
-nnoremap <c-]> <C-w>g<C-]><C-w>T
+"nnoremap <c-]> <C-w>g<C-]><C-w>T
 "nnoremap <c-]> <C-w><C-]><C-w>T
 "nnoremap <leader>j g<c-]>
 "nnoremap <leader>o g<c-]>
@@ -287,11 +287,10 @@ nnoremap :b :buffers
 " fzf
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>r :Rg<cr>
-"nnoremap <leader>r :Rg <cword><cr>
 "nnoremap <leader>r :Rg expand('<cword>')
-nnoremap <leader>l :Lines<cr>
+"nnoremap <leader>r :Rg <cword><cr>
 nnoremap <leader>c :Tags<cr>
-
+nnoremap <leader>l :Lines<cr>
 
 "
 " esc
@@ -545,7 +544,11 @@ call plug#end()
 " fzf
 " preview window
 let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
-let g:fzf_action = { 'ctrl-f': 'tab split' }
+let g:fzf_action = { 'ctrl-o': 'tab split' }
+
+"
+" files
+"
 
 " default
 " command! -bang -nargs=? -complete=dir Files
@@ -554,6 +557,15 @@ let g:fzf_action = { 'ctrl-f': 'tab split' }
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)"
 
+"
+" ctags
+"
+command! -bang -nargs=? Tags
+\ call fzf#vim#tags(expand('<cword>'), <bang>1)
+
+"
+" rg
+"
 
 " fzf#vim#grep(
 "   command,
@@ -563,7 +575,7 @@ command! -bang -nargs=? -complete=dir Files
 " )
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
-\   'rg --line-number --smart-case --no-multiline --no-heading --color=always -- '.shellescape(<q-args>),
+\   'rg --line-number --smart-case --no-multiline --no-heading --color=always -- '.expand('<cword>'),
 \   0,
 \   fzf#vim#with_preview(
 \     {'options': '--exact --delimiter : --nth 3..'},
@@ -572,6 +584,17 @@ command! -bang -nargs=* Rg
 \   ),
 \   <bang>1
 \ )
+"command! -bang -nargs=* Rg
+"\ call fzf#vim#grep(
+"\   'rg --line-number --smart-case --no-multiline --no-heading --color=always -- '.shellescape(<q-args>),
+"\   0,
+"\   fzf#vim#with_preview(
+"\     {'options': '--exact --delimiter : --nth 3..'},
+"\     'up:70%:hidden',
+"\     '/'
+"\   ),
+"\   <bang>1
+"\ )
 "command! -bang -nargs=* Rg
 "\ call fzf#vim#grep(
 "\   'rg --line-number --smart-case --no-multiline -- '.shellescape(<q-args>),
