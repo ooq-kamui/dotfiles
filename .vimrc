@@ -138,6 +138,7 @@ nnoremap l l
 
 " cursor mv word
 nnoremap f     w
+nnoremap <c-f> el
 "nnoremap <c-l> w
 nnoremap o     b
 "nnoremap q b
@@ -253,7 +254,7 @@ nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 "
 " tag jump
 "
-nnoremap <c-f> <c-w>gF
+"nnoremap <c-f> <c-w>gF
 "nnoremap t <c-w>gF
 
 "
