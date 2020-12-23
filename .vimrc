@@ -138,8 +138,7 @@ nnoremap l l
 
 " cursor mv word
 nnoremap f     w
-nnoremap <c-f> el
-"nnoremap <c-l> w
+nnoremap <c-l> el
 nnoremap o     b
 "nnoremap q b
 
@@ -326,10 +325,10 @@ nnoremap <c-a> <Esc>
 "nnoremap <c-b> <Esc>
 nnoremap <c-c> <Esc>
 "nnoremap <c-e> <Esc>
-"nnoremap <c-f> <Esc>
+nnoremap <c-f> <Esc>
 "nnoremap <c-g> <Esc>
 nnoremap <c-h> <Esc>
-nnoremap <c-l> <Esc>
+"nnoremap <c-l> <Esc>
 nnoremap <c-m> <Esc>
 "nnoremap <c-n> <Esc>
 "nnoremap <c-p> <Esc>
