@@ -125,12 +125,11 @@ nnoremap <c-k> 10k
 nnoremap <c-j> 10j
 
 " cursor mv line in
-"nnoremap ;     0
+nnoremap <expr> e col(".") == col("$") ? "0" : "$l"
+"nnoremap <expr> e col(".") == col("$") ? "l$l" : "$l"
+"nnoremap e     $l
 "nnoremap <c-a> 0
 "nnoremap <leader>a 0
-nnoremap <expr> e col(".") == col("$") ? "l$l" : "$l"
-"nnoremap e     $l
-"nnoremap <c-e> $l
 
 " cursor mv char
 nnoremap l l
@@ -170,8 +169,8 @@ nnoremap <c-e> 10<c-e>
 "nnoremap <space> i<Space><Esc>l
 
 " ins cr
-nnoremap h i<cr><Esc>
-"nnoremap m i<cr><Esc>
+nnoremap m i<cr><Esc>
+"nnoremap h i<cr><Esc>
 "nnoremap <c-m>     i<cr><Esc>
 
 " ins line
@@ -228,7 +227,6 @@ nnoremap <c-u>     <c-r>
 
 " repeat
 nnoremap 0 .
-"nnoremap <c-m> .
 "nnoremap r .
 
 " inc , dec
@@ -244,7 +242,8 @@ nnoremap < <<
 "
 "nnoremap / /<c-r><c-w>
 nnoremap <c-n> N
-nnoremap m *
+nnoremap h *
+"nnoremap m *
 "nnoremap <c-l> *
 "nnoremap <c-m> *
 
@@ -255,7 +254,6 @@ nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 " tag jump
 "
 nnoremap <c-f> <c-w>gF
-"nnoremap r <c-w>gF
 "nnoremap t <c-w>gF
 
 "
@@ -289,7 +287,10 @@ nnoremap :b :buffers
 " fzf
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>r :Rg<cr>
+"nnoremap <leader>r :Rg <cword><cr>
+"nnoremap <leader>r :Rg expand('<cword>')
 nnoremap <leader>l :Lines<cr>
+nnoremap <leader>c :Tags<cr>
 
 
 "
@@ -315,7 +316,7 @@ nnoremap a <Esc>
 "nnoremap l <Esc>
 "nnoremap m <Esc>
 "nnoremap q <Esc>
-"nnoremap r <Esc>
+nnoremap r <Esc>
 "nnoremap t <Esc>
 "nnoremap u <Esc>
 nnoremap y <Esc>
@@ -544,6 +545,7 @@ call plug#end()
 " fzf
 " preview window
 let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
+let g:fzf_action = { 'ctrl-f': 'tab split' }
 
 " default
 " command! -bang -nargs=? -complete=dir Files
@@ -561,7 +563,7 @@ command! -bang -nargs=? -complete=dir Files
 " )
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
-\   'rg --line-number --smart-case  --no-multiline --no-heading --color=always -- '.shellescape(<q-args>),
+\   'rg --line-number --smart-case --no-multiline --no-heading --color=always -- '.shellescape(<q-args>),
 \   0,
 \   fzf#vim#with_preview(
 \     {'options': '--exact --delimiter : --nth 3..'},
@@ -570,6 +572,19 @@ command! -bang -nargs=* Rg
 \   ),
 \   <bang>1
 \ )
+"command! -bang -nargs=* Rg
+"\ call fzf#vim#grep(
+"\   'rg --line-number --smart-case --no-multiline -- '.shellescape(<q-args>),
+"\   0,
+"\   fzf#vim#with_preview(
+"\     {'options': '--exact --delimiter : --nth 3..'},
+"\     'up:70%:hidden',
+"\     '/'
+"\   ),
+"\   <bang>1
+"\ )
+
+" fzf#vim#complete#buffer_line([spec])
 
 
 "
