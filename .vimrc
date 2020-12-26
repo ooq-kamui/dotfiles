@@ -559,7 +559,8 @@ command! -bang -nargs=? -complete=dir Files
 nnoremap <leader>l :Lines<cr>
 vnoremap <leader>l y:Lines <c-r>0<cr>
 command! -bang -nargs=? Lines
-\ call fzf#vim#lines(<q-args>, <bang>1)
+\ call fzf#vim#lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
+"\ call fzf#vim#lines(<q-args>, <bang>1)
 
 " rg
 "
