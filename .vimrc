@@ -136,8 +136,8 @@ nnoremap l l
 
 " cursor mv word
 nnoremap f     w
-nnoremap <c-f> el
 nnoremap <c-l> el
+"nnoremap <c-f> el
 nnoremap o     b
 "nnoremap q b
 
@@ -148,7 +148,8 @@ nnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
 "nnoremap G     G$l
 
 " cursor mv brackets
-nnoremap <leader>k %
+nnoremap <c-f> %
+""nnoremap <leader>k %
 "nnoremap [ [[
 
 " cursor mv jump list
@@ -252,9 +253,10 @@ nnoremap h *
 " grep
 nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 
-"
+" open file session last
+nnoremap <c-p> `0
+
 " tag jump
-"
 "nnoremap <c-f> <c-w>gF
 "nnoremap t <c-w>gF
 
@@ -266,23 +268,14 @@ nnoremap <S-Tab> gT
 nnoremap <S-Right> :tabm+1<Cr>
 nnoremap <S-Left>  :tabm-1<Cr>
 
-"
 " ctags
-"
 nnoremap <c-]> g<c-]>
 "nnoremap <c-]> <C-w>g<C-]><C-w>T
 "nnoremap <c-]> <C-w><C-]><C-w>T
-"nnoremap <leader>j g<c-]>
-"nnoremap <leader>o g<c-]>
-"nnoremap <leader>e g<c-]>
-"nnoremap <leader>k g<c-]>
 
-"
 " buffers
-"
 nnoremap :b :buffers
 
-"
 "
 " esc
 "
@@ -358,9 +351,10 @@ inoremap <c-o> <c-o>h
 "inoremap <c-q> <c-o>b
 "inoremap <expr> <c-q> pumvisible() ? "<esc>i" : "<c-o>b"
 
-" cursor mv line > input complete
-"inoremap <c-p> <c-o>k
-"inoremap <c-n> <c-o>j
+inoremap ( ()<c-o>h
+inoremap < <><c-o>h
+inoremap " ""<c-o>h
+inoremap ' ''<c-o>h
 
 " del line
 "inoremap <c-k> <c-o>D
@@ -531,25 +525,6 @@ if &term =~ '^screen'
   execute "set <xLeft>=\e[1;*D"
 end
 
-"
-" plugin
-"
-
-" fzf
-nnoremap <leader>p :Files<cr>
-nnoremap <leader>o :Files<cr>
-nnoremap <leader>f :Rg <c-r><c-w>
-"nnoremap <leader>r :Rg<cr>
-"nnoremap <leader>r :Rg expand('<cword>')
-"nnoremap <leader>r :Rg <cword><cr>
-nnoremap <leader>c :Tags<cr>
-nnoremap <leader>l :Lines<cr>
-
-vnoremap <leader>p y:Files<cr>
-vnoremap <leader>o y:Files<cr>
-vnoremap <leader>f y:Rg <c-r>0
-vnoremap <leader>c y:Tags <c-r>0
-vnoremap <leader>l y:Lines <c-r>0
 
 " 
 " plugin
@@ -569,32 +544,36 @@ call plug#end()
 let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
 let g:fzf_action = { 'ctrl-o': 'tab split' }
 "let g:fzf_buffers_jump = 1
+"fzf#vim#complete#buffer_line([spec])
+
 
 " files
+nnoremap <leader>o :Files<cr>
+nnoremap <leader>p :Files<cr>
+vnoremap <leader>o y:Files<cr>
+vnoremap <leader>p y:Files<cr>
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)
-"\ call fzf#vim#files(expand('<cword>'), <bang>1)
-
-" ctags
-command! -bang -nargs=? Tags
-\ call fzf#vim#tags(expand('<cword>'), <bang>1)
 
 " lines
+nnoremap <leader>l :Lines<cr>
+vnoremap <leader>l y:Lines <c-r>0<cr>
 command! -bang -nargs=? Lines
-\ call fzf#vim#lines(expand('<cword>'), <bang>1)
-"\ call fzf#vim#lines({'options': '--reverse', expand('<cword>')}, <bang>1)
+\ call fzf#vim#lines(<q-args>, <bang>1)
 
 " rg
-
+"
 " fzf#vim#grep(
 "   command,
 "   [has_column bool],
 "   [spec dict],
 "   [fullscreen bool]
 " )
+nnoremap <leader>f :Rg<cr>
+vnoremap <leader>f y:Rg <c-r>0<cr>
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
-\   'rg --line-number --smart-case --no-multiline --no-heading --color=always -- '.shellescape(<q-args>),
+\   'rg --line-number --smart-case --no-multiline --no-heading --color=always '.shellescape(<q-args>),
 \   0,
 \   fzf#vim#with_preview(
 \     {'options': '--exact --delimiter : --nth 3..'},
@@ -604,8 +583,14 @@ command! -bang -nargs=* Rg
 \   <bang>1
 \ )
 
-" fzf#vim#complete#buffer_line([spec])
-
+" ctags
+"nnoremap <leader>c :Tags function<cr>
+"vnoremap <leader>c y:Tags function <c-r>0
+nnoremap <leader>c :Tags<cr>
+vnoremap <leader>c y:Tags <c-r>0<cr>
+command! -bang -nargs=? Tags
+\ call fzf#vim#tags(<q-args>, <bang>1)
+"\ call fzf#vim#tags(expand('<cword>'), <bang>1)
 
 "
 " coc.nvim
