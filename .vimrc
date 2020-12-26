@@ -148,7 +148,8 @@ nnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
 "nnoremap G     G$l
 
 " cursor mv brackets
-nnoremap <c-f> %
+nnoremap <c-c> %
+"nnoremap <c-f> %
 ""nnoremap <leader>k %
 "nnoremap [ [[
 
@@ -310,7 +311,7 @@ nnoremap z <Esc>
 
 nnoremap <c-a> <Esc>
 nnoremap <c-b> <Esc>
-nnoremap <c-c> <Esc>
+"nnoremap <c-c> <Esc>
 "nnoremap <c-e> <Esc>
 "nnoremap <c-f> <Esc>
 "nnoremap <c-g> <Esc>
@@ -336,6 +337,7 @@ nnoremap <c-z> <Esc>
 " quit
 inoremap <c-f> <Esc>
 inoremap <c-q> <Esc>
+inoremap <c-c> <Esc>
 "inoremap <c-v> <Esc>
 
 " cursor mv line in
@@ -358,7 +360,7 @@ inoremap ' ''<c-o>h
 
 " del line
 "inoremap <c-k> <c-o>D
-inoremap <c-c> <c-o>D
+"inoremap <c-c> <c-o>D
 
 " del char forward
 inoremap <c-d> <c-o>x
@@ -585,7 +587,6 @@ command! -bang -nargs=* Rg
 \   ),
 \   <bang>1
 \ )
-"\   'rg --line-number --smart-case --no-multiline --no-heading --color=always -g "*.lua" -g "*.script" -g "*.gui_script" '.shellescape(<q-args>),
 
 " ctags
 "nnoremap <leader>c :Tags function<cr>
@@ -596,7 +597,29 @@ command! -bang -nargs=? Tags
 \ call fzf#vim#tags(<q-args>, <bang>1)
 "\ call fzf#vim#tags(expand('<cword>'), <bang>1)
 
-"
+let g:fzf_colors = {
+\   'hl':      ['fg', 'Statement'],
+\   'hl+':     ['fg', 'Statement'],
+\ }
+"\   'bg+':     ['bg', 'Normal'],
+
+"let g:fzf_colors = {
+"\   'fg':      ['fg', 'Normal'],
+"\   'bg':      ['bg', 'Normal'],
+"\   'hl':      ['fg', 'Comment'],
+"\   'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+"\   'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+"\   'hl+':     ['fg', 'Statement'],
+"\   'info':    ['fg', 'PreProc'],
+"\   'border':  ['fg', 'Ignore'],
+"\   'prompt':  ['fg', 'Conditional'],
+"\   'pointer': ['fg', 'Exception'],
+"\   'marker':  ['fg', 'Keyword'],
+"\   'spinner': ['fg', 'Label'],
+"\   'header':  ['fg', 'Comment'],
+"\ }
+
+
 " coc.nvim
 "
 "nnoremap <silent> gd <Plug>(coc-definition)
