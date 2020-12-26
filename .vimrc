@@ -538,13 +538,10 @@ nnoremap <leader>f :Rg <c-r><c-w>
 nnoremap <leader>c :Tags<cr>
 nnoremap <leader>l :Lines<cr>
 
-vnoremap <leader>p :Files<cr>
-vnoremap <leader>f :Rg <c-r><c-w>
-"vnoremap <leader>r :Rg<cr>
-"vnoremap <leader>r :Rg expand('<cword>')
-"vnoremap <leader>r :Rg <cword><cr>
-vnoremap <leader>c :Tags
-vnoremap <leader>l :Lines
+vnoremap <leader>p y:Files<cr>
+vnoremap <leader>f y:Rg <c-r>0
+vnoremap <leader>c y:Tags <c-r>0
+vnoremap <leader>l y:Lines <c-r>0
 
 " 
 " plugin
