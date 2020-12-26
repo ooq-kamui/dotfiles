@@ -27,7 +27,8 @@ hi luaConstant     ctermfg=13
 hi luaComment      ctermfg=121
 
 " string 201 133
-hi luaString       ctermfg=177
+hi luaString       ctermfg=yellow
+"hi luaString       ctermfg=177
 
 syn match luaFunctionName "\(\<function\>\)\@<=\s\+\S\+\s*(\@="
 hi luaFunctionName ctermfg=green

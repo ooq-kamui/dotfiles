@@ -538,7 +538,7 @@ nnoremap <leader>f :Rg <c-r><c-w>
 nnoremap <leader>c :Tags<cr>
 nnoremap <leader>l :Lines<cr>
 
-vnoremap <leader>p :Files
+vnoremap <leader>p :Files<cr>
 vnoremap <leader>f :Rg <c-r><c-w>
 "vnoremap <leader>r :Rg<cr>
 "vnoremap <leader>r :Rg expand('<cword>')
@@ -561,24 +561,26 @@ call plug#end()
 "
 
 " preview window
-let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
+let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
 let g:fzf_action = { 'ctrl-o': 'tab split' }
+"let g:fzf_buffers_jump = 1
 
 " files
-"
-" default
-" command! -bang -nargs=? -complete=dir Files
-" \ call fzf#vim#files(<q-args>, <bang>0)"
-
 command! -bang -nargs=? -complete=dir Files
-\ call fzf#vim#files(<q-args>, <bang>1)"
+\ call fzf#vim#files(<q-args>, <bang>1)
+"\ call fzf#vim#files(expand('<cword>'), <bang>1)
 
 " ctags
 command! -bang -nargs=? Tags
 \ call fzf#vim#tags(expand('<cword>'), <bang>1)
 
+" lines
+command! -bang -nargs=? Lines
+\ call fzf#vim#lines(expand('<cword>'), <bang>1)
+"\ call fzf#vim#lines({'options': '--reverse', expand('<cword>')}, <bang>1)
+
 " rg
-"
+
 " fzf#vim#grep(
 "   command,
 "   [has_column bool],
