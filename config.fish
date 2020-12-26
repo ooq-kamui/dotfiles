@@ -4,9 +4,11 @@ export LSCOLORS=fxfxcxdxexegedabagacad
 #               ^dir    ^exe
 
 set -x PATH /opt/local/bin $PATH
+set -x PATH /opt/homebrew/bin $PATH 
 set -x PATH $HOME/.cargo/bin $PATH
 set -x PATH $HOME/.nodebrew/current/bin $PATH
 set -x RIPGREP_CONFIG_PATH ~/.ripgreprc
+set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --glob "!.git"'
 set -x FZF_CTRL_T_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
 
 alias ll="la"

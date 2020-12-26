@@ -125,11 +125,9 @@ nnoremap <c-k> 10k
 nnoremap <c-j> 10j
 
 " cursor mv line in
-nnoremap <expr> e col(".") == col("$") ? "0" : "$l"
-"nnoremap <expr> e col(".") == col("$") ? "l$l" : "$l"
+nnoremap <expr> a col(".") == col("$") ? "0" : "$l"
+"nnoremap <expr> e col(".") == col("$") ? "0" : "$l"
 "nnoremap e     $l
-"nnoremap <c-a> 0
-"nnoremap <leader>a 0
 
 " cursor mv char
 nnoremap l l
@@ -144,8 +142,9 @@ nnoremap o     b
 "nnoremap q b
 
 " cursor mv file
+nnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
 "nnoremap g     gg
-nnoremap <c-g> G$l
+"nnoremap <c-g> G$l
 "nnoremap G     G$l
 
 " cursor mv brackets
@@ -153,10 +152,12 @@ nnoremap <leader>k %
 "nnoremap [ [[
 
 " cursor mv jump list
-nnoremap b     <c-o>
-nnoremap <c-b> <c-i>
+nnoremap r     <c-o>
+nnoremap b     <c-i>
+"nnoremap <c-b> <c-i>
 
 " scroll
+nnoremap e     10<c-e>
 nnoremap <c-e> 10<c-e>
 
 "
@@ -268,7 +269,7 @@ nnoremap <S-Left>  :tabm-1<Cr>
 "
 " ctags
 "
-"nnoremap <c-]> g<c-]>
+nnoremap <c-]> g<c-]>
 "nnoremap <c-]> <C-w>g<C-]><C-w>T
 "nnoremap <c-]> <C-w><C-]><C-w>T
 "nnoremap <leader>j g<c-]>
@@ -282,17 +283,6 @@ nnoremap <S-Left>  :tabm-1<Cr>
 nnoremap :b :buffers
 
 "
-" plugin
-"
-
-" fzf
-nnoremap <leader>f :Files<cr>
-nnoremap <leader>r :Rg<cr>
-"nnoremap <leader>r :Rg expand('<cword>')
-"nnoremap <leader>r :Rg <cword><cr>
-nnoremap <leader>c :Tags<cr>
-nnoremap <leader>l :Lines<cr>
-
 "
 " esc
 "
@@ -309,21 +299,23 @@ nnoremap <c-@> <Esc>
 "nnoremap <c-]> <Esc>
 
 "nnoremap 0 <Esc>
-nnoremap a <Esc>
+"nnoremap a <Esc>
 "nnoremap b <Esc>
 "nnoremap d <Esc>
+"nnoremap e <Esc>
+"nnoremap g <Esc>
 "nnoremap h <Esc>
 "nnoremap l <Esc>
 "nnoremap m <Esc>
 "nnoremap q <Esc>
-nnoremap r <Esc>
+"nnoremap r <Esc>
 "nnoremap t <Esc>
 "nnoremap u <Esc>
 nnoremap y <Esc>
 nnoremap z <Esc>
 
 nnoremap <c-a> <Esc>
-"nnoremap <c-b> <Esc>
+nnoremap <c-b> <Esc>
 nnoremap <c-c> <Esc>
 "nnoremap <c-e> <Esc>
 "nnoremap <c-f> <Esc>
@@ -412,7 +404,8 @@ vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
 vnoremap a A
 
 " cursor mv
-vnoremap e     $h
+vnoremap a     $h
+"vnoremap e     $h
 "vnoremap <c-e> $h
 "vnoremap a     0
 "vnoremap <c-a> 0
@@ -432,13 +425,14 @@ vnoremap <c-j> 10j
 vnoremap <c-k> 10k
 
 " cursor mv file
-vnoremap G G$
-vnoremap <c-g> G$
+vnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
+"vnoremap G G$
+"vnoremap <c-g> G$
 
 " del
 "vnoremap s "ax
 vnoremap s x
-vnoremap q x
+"vnoremap q x
 vnoremap x "ax
 
 " yank
@@ -532,6 +526,26 @@ if &term =~ '^screen'
   execute "set <xLeft>=\e[1;*D"
 end
 
+"
+" plugin
+"
+
+" fzf
+nnoremap <leader>f :Files<cr>
+nnoremap <leader>r :Rg <c-r><c-w>
+"nnoremap <leader>r :Rg<cr>
+"nnoremap <leader>r :Rg expand('<cword>')
+"nnoremap <leader>r :Rg <cword><cr>
+nnoremap <leader>c :Tags<cr>
+nnoremap <leader>l :Lines<cr>
+
+vnoremap <leader>f :Files
+vnoremap <leader>r :Rg <c-r><c-w>
+"vnoremap <leader>r :Rg<cr>
+"vnoremap <leader>r :Rg expand('<cword>')
+"vnoremap <leader>r :Rg <cword><cr>
+vnoremap <leader>c :Tags
+vnoremap <leader>l :Lines
 
 " 
 " plugin
@@ -542,15 +556,17 @@ Plug 'junegunn/fzf.vim'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
+
+"
 " fzf
+"
+
 " preview window
 let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
 let g:fzf_action = { 'ctrl-o': 'tab split' }
 
-"
 " files
 "
-
 " default
 " command! -bang -nargs=? -complete=dir Files
 " \ call fzf#vim#files(<q-args>, <bang>0)"
@@ -558,16 +574,12 @@ let g:fzf_action = { 'ctrl-o': 'tab split' }
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)"
 
-"
 " ctags
-"
 command! -bang -nargs=? Tags
 \ call fzf#vim#tags(expand('<cword>'), <bang>1)
 
-"
 " rg
 "
-
 " fzf#vim#grep(
 "   command,
 "   [has_column bool],
@@ -576,7 +588,7 @@ command! -bang -nargs=? Tags
 " )
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
-\   'rg --line-number --smart-case --no-multiline --no-heading --color=always -- '.expand('<cword>'),
+\   'rg --line-number --smart-case --no-multiline --no-heading --color=always -- '.shellescape(<q-args>),
 \   0,
 \   fzf#vim#with_preview(
 \     {'options': '--exact --delimiter : --nth 3..'},
@@ -585,28 +597,6 @@ command! -bang -nargs=* Rg
 \   ),
 \   <bang>1
 \ )
-"command! -bang -nargs=* Rg
-"\ call fzf#vim#grep(
-"\   'rg --line-number --smart-case --no-multiline --no-heading --color=always -- '.shellescape(<q-args>),
-"\   0,
-"\   fzf#vim#with_preview(
-"\     {'options': '--exact --delimiter : --nth 3..'},
-"\     'up:70%:hidden',
-"\     '/'
-"\   ),
-"\   <bang>1
-"\ )
-"command! -bang -nargs=* Rg
-"\ call fzf#vim#grep(
-"\   'rg --line-number --smart-case --no-multiline -- '.shellescape(<q-args>),
-"\   0,
-"\   fzf#vim#with_preview(
-"\     {'options': '--exact --delimiter : --nth 3..'},
-"\     'up:70%:hidden',
-"\     '/'
-"\   ),
-"\   <bang>1
-"\ )
 
 " fzf#vim#complete#buffer_line([spec])
 
