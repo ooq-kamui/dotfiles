@@ -8,6 +8,12 @@ hi luaCond         ctermfg=130
 " else
 hi luaElse         ctermfg=130
 
+" for
+hi luaRepeat       ctermfg=130
+
+" in
+hi luaIn           ctermfg=130
+
 " and or
 hi luaOperator     ctermfg=130
 

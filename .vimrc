@@ -289,6 +289,7 @@ nnoremap :b :buffers
 nnoremap <space> <Esc>
 nnoremap <bs>    <Esc>
 
+nnoremap * <Esc>
 nnoremap , <Esc>
 "nnoremap . <Esc>
 nnoremap _ <Esc>
@@ -529,16 +530,16 @@ end
 "
 
 " fzf
-nnoremap <leader>f :Files<cr>
-nnoremap <leader>r :Rg <c-r><c-w>
+nnoremap <leader>p :Files<cr>
+nnoremap <leader>f :Rg <c-r><c-w>
 "nnoremap <leader>r :Rg<cr>
 "nnoremap <leader>r :Rg expand('<cword>')
 "nnoremap <leader>r :Rg <cword><cr>
 nnoremap <leader>c :Tags<cr>
 nnoremap <leader>l :Lines<cr>
 
-vnoremap <leader>f :Files
-vnoremap <leader>r :Rg <c-r><c-w>
+vnoremap <leader>p :Files
+vnoremap <leader>f :Rg <c-r><c-w>
 "vnoremap <leader>r :Rg<cr>
 "vnoremap <leader>r :Rg expand('<cword>')
 "vnoremap <leader>r :Rg <cword><cr>
