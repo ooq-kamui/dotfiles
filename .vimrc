@@ -391,6 +391,14 @@ inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-o>k"
 " mode visual
 "
 
+"
+" esc
+"
+vnoremap q     <c-c>
+vnoremap <c-f> <c-c>
+vnoremap <c-q> <c-c>
+vnoremap @ <c-c><c-o><c-o>
+
 " mode ch line
 vnoremap w V
 
@@ -450,16 +458,6 @@ vnoremap + g<c-a>
 vnoremap > >gv
 vnoremap < <gv
 vnoremap :t :'<,'>!expand -2
-
-"
-" esc
-"
-vnoremap <c-c> <c-c>
-vnoremap <c-f> <c-c>
-"vnoremap <c-o> <c-c>
-vnoremap <c-q> <c-c>
-vnoremap <c-v> <c-c>
-vnoremap @ <c-c><c-o><c-o>
 
 " add
 " vnoremap i" di""<c-c>hp
