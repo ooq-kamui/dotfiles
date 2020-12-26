@@ -573,7 +573,9 @@ nnoremap <leader>f :Rg<cr>
 vnoremap <leader>f y:Rg <c-r>0<cr>
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
-\   'rg --line-number --smart-case --no-multiline --no-heading --color=always '.shellescape(<q-args>),
+\   'rg --line-number --smart-case --no-multiline --no-heading --color=always
+\       -g "*.lua" -g "*.script" -g "*.gui_script" '
+\       .shellescape(<q-args>),
 \   0,
 \   fzf#vim#with_preview(
 \     {'options': '--exact --delimiter : --nth 3..'},
@@ -582,6 +584,7 @@ command! -bang -nargs=* Rg
 \   ),
 \   <bang>1
 \ )
+"\   'rg --line-number --smart-case --no-multiline --no-heading --color=always -g "*.lua" -g "*.script" -g "*.gui_script" '.shellescape(<q-args>),
 
 " ctags
 "nnoremap <leader>c :Tags function<cr>
