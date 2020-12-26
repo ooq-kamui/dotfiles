@@ -177,7 +177,7 @@ nnoremap m i<cr><Esc>
 
 " ins line
 nnoremap <c-o>     O<Esc>
-nnoremap <leader>o O<Esc>
+"nnoremap <leader>o O<Esc>
 
 " del char
 nnoremap s     "ax
@@ -407,11 +407,6 @@ vnoremap w V
 vnoremap v     <c-v>
 "vnoremap <c-w> <c-v>
 
-" ins
-"vnoremap i I
-vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
-vnoremap a A
-
 " cursor mv
 vnoremap a     $h
 "vnoremap e     $h
@@ -438,6 +433,11 @@ vnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
 "vnoremap G G$
 "vnoremap <c-g> G$
 
+" ins
+"vnoremap i I
+vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
+vnoremap a A
+
 " del
 "vnoremap s "ax
 vnoremap s x
@@ -450,6 +450,12 @@ vnoremap c y
 " paste
 vnoremap p "adhp
 "vnoremap v "adhp
+
+"
+" search
+"
+vnoremap h y/<c-r>0<cr>
+vnoremap / y/<c-r>0
 
 " increment
 "vnoremap + <c-a>
@@ -531,6 +537,7 @@ end
 
 " fzf
 nnoremap <leader>p :Files<cr>
+nnoremap <leader>o :Files<cr>
 nnoremap <leader>f :Rg <c-r><c-w>
 "nnoremap <leader>r :Rg<cr>
 "nnoremap <leader>r :Rg expand('<cword>')
@@ -539,6 +546,7 @@ nnoremap <leader>c :Tags<cr>
 nnoremap <leader>l :Lines<cr>
 
 vnoremap <leader>p y:Files<cr>
+vnoremap <leader>o y:Files<cr>
 vnoremap <leader>f y:Rg <c-r>0
 vnoremap <leader>c y:Tags <c-r>0
 vnoremap <leader>l y:Lines <c-r>0
