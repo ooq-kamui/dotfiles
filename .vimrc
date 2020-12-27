@@ -124,6 +124,10 @@ nnoremap <Down>  j
 nnoremap <c-k> 10k
 nnoremap <c-j> 10j
 
+" cursor mv line corsor fix
+nnoremap <up>   <c-y>
+nnoremap <down> <c-e>
+
 " cursor mv line in
 nnoremap <expr> a col(".") == col("$") ? "0" : "$l"
 "nnoremap <expr> e col(".") == col("$") ? "0" : "$l"
@@ -143,6 +147,7 @@ nnoremap o     b
 
 " cursor mv file
 nnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
+"nnoremap <expr><nowait> g line(".") == 1 ? "G$l" : "gg"
 "nnoremap g     gg
 "nnoremap <c-g> G$l
 "nnoremap G     G$l
@@ -154,8 +159,9 @@ nnoremap <c-c> %
 "nnoremap [ [[
 
 " cursor mv jump list
-nnoremap r     <c-o>
-nnoremap b     <c-i>
+nnoremap b     <c-o>
+nnoremap <c-b> <c-i>
+"nnoremap r     <c-o>
 "nnoremap <c-b> <c-i>
 
 " scroll
@@ -182,8 +188,9 @@ nnoremap <c-o>     O<Esc>
 "nnoremap <leader>o O<Esc>
 
 " del char
-nnoremap s     "ax
-nnoremap <BS>  hx
+nnoremap s    "ax
+nnoremap x    x
+nnoremap <BS> h"ax
 "nnoremap <c-h> hx
 "nnoremap <c-d> x
 
@@ -197,13 +204,6 @@ nnoremap cc D
 
 " del word forward
 nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : "dw"
-"nnoremap <expr> <c-q> col(".") == col("$") ? "<esc>" : "dw"
-"nnoremap <expr> q col(".") == col("$") ? "<esc>" : "dw"
-"nnoremap <expr> q col(".") == col("$") ? "<esc>" : "viwx"
-"nnoremap <expr> q col(".") == col("$") ? "<esc>" : "vex"
-"nnoremap q dw
-"nnoremap q vex
-"nnoremap q viwx
 
 " select all
 nnoremap @ ggVG
@@ -244,12 +244,9 @@ nnoremap < <<
 "
 " search
 "
-"nnoremap / /<c-r><c-w>
+nnoremap n     n
 nnoremap <c-n> N
-nnoremap h *
-"nnoremap m *
-"nnoremap <c-l> *
-"nnoremap <c-m> *
+nnoremap /     /
 
 " grep
 nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
@@ -280,10 +277,10 @@ nnoremap :b :buffers
 "
 " esc
 "
-nnoremap <space> <Esc>
-nnoremap <bs>    <Esc>
+nnoremap <space> <nop>
+nnoremap <bs>    <esc>
 
-nnoremap * <Esc>
+nnoremap * <esc>
 nnoremap , <Esc>
 "nnoremap . <Esc>
 nnoremap _ <Esc>
@@ -299,18 +296,20 @@ nnoremap <c-@> <Esc>
 "nnoremap d <Esc>
 "nnoremap e <Esc>
 "nnoremap g <Esc>
-"nnoremap h <Esc>
+nnoremap h <Esc>
 "nnoremap l <Esc>
 "nnoremap m <Esc>
+"nnoremap n <Esc>
 "nnoremap q <Esc>
-"nnoremap r <Esc>
+nnoremap r <Esc>
 "nnoremap t <Esc>
 "nnoremap u <Esc>
+"nnoremap x <Esc>
 nnoremap y <Esc>
 nnoremap z <Esc>
 
 nnoremap <c-a> <Esc>
-nnoremap <c-b> <Esc>
+"nnoremap <c-b> <Esc>
 "nnoremap <c-c> <Esc>
 "nnoremap <c-e> <Esc>
 "nnoremap <c-f> <Esc>
@@ -435,10 +434,9 @@ vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
 vnoremap a A
 
 " del
-"vnoremap s "ax
 vnoremap s x
-"vnoremap q x
-vnoremap x "ax
+vnoremap x x
+"vnoremap s "ax
 
 " yank
 vnoremap c y
@@ -450,8 +448,9 @@ vnoremap p "adhp
 "
 " search
 "
-vnoremap h y/<c-r>0<cr>
-vnoremap / y/<c-r>0
+vnoremap n "ay/<c-r>a<cr>
+"vnoremap h y/<c-r>0<cr>
+vnoremap / "ay/<c-r>a
 
 " increment
 "vnoremap + <c-a>
@@ -602,22 +601,6 @@ let g:fzf_colors = {
 \   'hl+':     ['fg', 'Statement'],
 \ }
 "\   'bg+':     ['bg', 'Normal'],
-
-"let g:fzf_colors = {
-"\   'fg':      ['fg', 'Normal'],
-"\   'bg':      ['bg', 'Normal'],
-"\   'hl':      ['fg', 'Comment'],
-"\   'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-"\   'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-"\   'hl+':     ['fg', 'Statement'],
-"\   'info':    ['fg', 'PreProc'],
-"\   'border':  ['fg', 'Ignore'],
-"\   'prompt':  ['fg', 'Conditional'],
-"\   'pointer': ['fg', 'Exception'],
-"\   'marker':  ['fg', 'Keyword'],
-"\   'spinner': ['fg', 'Label'],
-"\   'header':  ['fg', 'Comment'],
-"\ }
 
 
 " coc.nvim
