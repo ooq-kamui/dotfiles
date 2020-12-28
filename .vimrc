@@ -124,10 +124,6 @@ nnoremap <Down>  j
 nnoremap <c-k> 10k
 nnoremap <c-j> 10j
 
-" cursor mv line corsor fix
-nnoremap <up>   <c-y>
-nnoremap <down> <c-e>
-
 " cursor mv line in
 nnoremap <expr> a col(".") == col("$") ? "0" : "$l"
 "nnoremap <expr> e col(".") == col("$") ? "0" : "$l"
@@ -148,7 +144,7 @@ nnoremap o     b
 " cursor mv file
 nnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
 "nnoremap <expr><nowait> g line(".") == 1 ? "G$l" : "gg"
-"nnoremap g     gg
+"nnoremap <nowait> g     gg
 "nnoremap <c-g> G$l
 "nnoremap G     G$l
 
@@ -165,8 +161,12 @@ nnoremap <c-b> <c-i>
 "nnoremap <c-b> <c-i>
 
 " scroll
-nnoremap e     10<c-e>
-nnoremap <c-e> 10<c-e>
+nnoremap <up>   <c-y>
+nnoremap <down> <c-e>
+nnoremap <c-e>  10<c-y>
+nnoremap e      10<c-e>
+nnoremap K      10<c-y>
+nnoremap J      10<c-e>
 
 "
 " edit
@@ -178,14 +178,14 @@ nnoremap <c-e> 10<c-e>
 " ins space
 "nnoremap <space> i<Space><Esc>l
 
+" ins line
+nnoremap <c-o> O<Esc>
+nnoremap O     O<Esc>
+
 " ins cr
 nnoremap m i<cr><Esc>
 "nnoremap h i<cr><Esc>
 "nnoremap <c-m>     i<cr><Esc>
-
-" ins line
-nnoremap <c-o>     O<Esc>
-"nnoremap <leader>o O<Esc>
 
 " del char
 nnoremap s    "ax
@@ -198,6 +198,9 @@ nnoremap <BS> h"ax
 nnoremap d dd
 nnoremap cc D
 "nnoremap <c-c> D
+
+" del cr
+nnoremap <c-m> J
 
 " del word back
 "nnoremap <c-w> hvbd
@@ -281,63 +284,64 @@ nnoremap <space> <nop>
 nnoremap <bs>    <esc>
 
 nnoremap * <esc>
-nnoremap , <Esc>
-"nnoremap . <Esc>
-nnoremap _ <Esc>
-"nnoremap @ <Esc>
-"nnoremap ; <Esc>
-nnoremap <c-@> <Esc>
-"nnoremap <c-[> <Esc>
-"nnoremap <c-]> <Esc>
+nnoremap , <esc>
+"nnoremap . <esc>
+nnoremap _ <esc>
+"nnoremap @ <esc>
+"nnoremap ; <esc>
+nnoremap <c-@> <esc>
+"nnoremap <c-[> <esc>
+"nnoremap <c-]> <esc>
 
-"nnoremap 0 <Esc>
-"nnoremap a <Esc>
-"nnoremap b <Esc>
-"nnoremap d <Esc>
-"nnoremap e <Esc>
-"nnoremap g <Esc>
-nnoremap h <Esc>
-"nnoremap l <Esc>
-"nnoremap m <Esc>
-"nnoremap n <Esc>
-"nnoremap q <Esc>
-nnoremap r <Esc>
-"nnoremap t <Esc>
-"nnoremap u <Esc>
-"nnoremap x <Esc>
-nnoremap y <Esc>
-nnoremap z <Esc>
+"nnoremap 0 <esc>
+"nnoremap a <esc>
+"nnoremap b <esc>
+"nnoremap d <esc>
+"nnoremap e <esc>
+"nnoremap g <esc>
+nnoremap h <esc>
+"nnoremap l <esc>
+"nnoremap m <esc>
+"nnoremap n <esc>
+"nnoremap q <esc>
+nnoremap r <esc>
+"nnoremap s <esc>
+"nnoremap t <esc>
+"nnoremap u <esc>
+"nnoremap x <esc>
+nnoremap y <esc>
+nnoremap z <esc>
 
-nnoremap <c-a> <Esc>
-"nnoremap <c-b> <Esc>
-"nnoremap <c-c> <Esc>
-"nnoremap <c-e> <Esc>
-"nnoremap <c-f> <Esc>
-"nnoremap <c-g> <Esc>
-nnoremap <c-h> <Esc>
-"nnoremap <c-l> <Esc>
-nnoremap <c-m> <Esc>
-"nnoremap <c-n> <Esc>
-"nnoremap <c-p> <Esc>
-nnoremap <c-q> <Esc>
-nnoremap <c-r> <Esc>
-"nnoremap <c-s> <Esc>
-nnoremap <c-t> <Esc>
-nnoremap <c-v> <Esc>
-nnoremap <c-w> <Esc>
-nnoremap <c-x> <Esc>
-nnoremap <c-y> <Esc>
-nnoremap <c-z> <Esc>
+nnoremap <c-a> <esc>
+"nnoremap <c-b> <esc>
+"nnoremap <c-c> <esc>
+"nnoremap <c-e> <esc>
+"nnoremap <c-f> <esc>
+"nnoremap <c-g> <esc>
+nnoremap <c-h> <esc>
+"nnoremap <c-l> <esc>
+"nnoremap <c-m> <esc>
+"nnoremap <c-n> <esc>
+"nnoremap <c-p> <esc>
+nnoremap <c-q> <esc>
+nnoremap <c-r> <esc>
+"nnoremap <c-s> <esc>
+nnoremap <c-t> <esc>
+nnoremap <c-v> <esc>
+nnoremap <c-w> <esc>
+nnoremap <c-x> <esc>
+nnoremap <c-y> <esc>
+nnoremap <c-z> <esc>
 
 "
 " mode insert
 "
 
 " quit
-inoremap <c-f> <Esc>
-inoremap <c-q> <Esc>
-inoremap <c-c> <Esc>
-"inoremap <c-v> <Esc>
+inoremap <c-f> <esc>
+inoremap <c-q> <esc>
+inoremap <c-c> <esc>
+"inoremap <c-v> <esc>
 
 " cursor mv line in
 inoremap <c-a> <c-o>^
@@ -434,9 +438,11 @@ vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
 vnoremap a A
 
 " del
-vnoremap s x
-vnoremap x x
+vnoremap <expr> s mode() == "<c-v>" ? "c" : "x"
+vnoremap <expr> x mode() == "<c-v>" ? "c" : "x"
+"vnoremap s "ac
 "vnoremap s "ax
+"vnoremap x c
 
 " yank
 vnoremap c y
