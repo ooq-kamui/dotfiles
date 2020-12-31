@@ -358,6 +358,7 @@ inoremap <c-o> <c-o>h
 
 inoremap ( ()<c-o>h
 inoremap < <><c-o>h
+inoremap [ []<c-o>h
 inoremap " ""<c-o>h
 inoremap ' ''<c-o>h
 
@@ -438,8 +439,9 @@ vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
 vnoremap a A
 
 " del
-vnoremap <expr> s mode() == "<c-v>" ? "c" : "x"
-vnoremap <expr> x mode() == "<c-v>" ? "c" : "x"
+vnoremap <expr> s mode() == "<c-v>" ? "x" : "x"
+vnoremap <expr> x mode() == "<c-v>" ? "x" : "x"
+vnoremap <expr> d mode() == "<c-v>" ? "c" : "x"
 "vnoremap s "ac
 "vnoremap s "ax
 "vnoremap x c
@@ -579,10 +581,15 @@ command! -bang -nargs=? Lines
 " )
 nnoremap <leader>f :Rg<cr>
 vnoremap <leader>f y:Rg <c-r>0<cr>
+nnoremap <leader>j :Rg<cr>
+vnoremap <leader>j y:Rg <c-r>0<cr>
+nnoremap <leader>r :Rg<cr>
+vnoremap <leader>r y:Rg <c-r>0<cr>
+
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
 \   'rg --line-number --smart-case --no-multiline --no-heading --color=always
-\       -g "*.lua" -g "*.script" -g "*.gui_script" '
+\       -g "*.lua" -g "*.script" -g "*.gui_script" -- '
 \       .shellescape(<q-args>),
 \   0,
 \   fzf#vim#with_preview(
@@ -592,6 +599,21 @@ command! -bang -nargs=* Rg
 \   ),
 \   <bang>1
 \ )
+"command! -bang -nargs=* Rg
+"  \ call fzf#vim#grep(
+"  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+"  \   fzf#vim#with_preview(), <bang>0)
+
+"function! RipgrepFzf(query, fullscreen)
+"  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+"  let initial_command = printf(command_fmt, shellescape(a:query))
+"  let reload_command = printf(command_fmt, '{q}')
+"  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+"  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+"endfunction
+"command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+
 
 " ctags
 "nnoremap <leader>c :Tags function<cr>
