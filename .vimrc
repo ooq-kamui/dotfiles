@@ -562,16 +562,16 @@ let g:fzf_action = { 'ctrl-o': 'tab split' }
 " files
 nnoremap <leader>l :Files<cr>
 vnoremap <leader>l y:Files<cr>
-nnoremap <leader>o :Files<cr>
-vnoremap <leader>o y:Files<cr>
+"nnoremap <leader>o :Files<cr>
+"vnoremap <leader>o y:Files<cr>
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)
 
 " lines
 nnoremap <leader>k :BLines<cr>
 vnoremap <leader>k y:BLines <c-r>0<cr>
-nnoremap <leader>j :BLines<cr>
-vnoremap <leader>j y:BLines <c-r>0<cr>
+"nnoremap <leader>j :BLines<cr>
+"vnoremap <leader>j y:BLines <c-r>0<cr>
 command! -bang -nargs=? BLines
 \ call fzf#vim#buffer_lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
 
@@ -585,8 +585,8 @@ command! -bang -nargs=? BLines
 " )
 nnoremap <leader>f :Rg<cr>
 vnoremap <leader>f y:Rg <c-r>0
-nnoremap <leader>r :Rg<cr>
-vnoremap <leader>r y:Rg <c-r>0
+nnoremap <leader>j :Rg<cr>
+vnoremap <leader>j y:Rg <c-r>0
 
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
@@ -602,20 +602,6 @@ command! -bang -nargs=* Rg
 \   ),
 \   <bang>1
 \ )
-"command! -bang -nargs=* Rg
-"  \ call fzf#vim#grep(
-"  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
-"  \   fzf#vim#with_preview(), <bang>0)
-
-"function! RipgrepFzf(query, fullscreen)
-"  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
-"  let initial_command = printf(command_fmt, shellescape(a:query))
-"  let reload_command = printf(command_fmt, '{q}')
-"  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-"  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-"endfunction
-"command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-
 
 
 " ctags
@@ -649,6 +635,5 @@ let g:fzf_colors = {
 "    call CocAction('doHover')
 "  endif
 "endfunction
-
 
 
