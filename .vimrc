@@ -44,6 +44,8 @@ autocmd ColorScheme * hi SpecialKey   ctermfg=25         ctermbg=None
 autocmd ColorScheme * hi WarningMsg   ctermfg=magenta    ctermbg=None
 autocmd ColorScheme * hi ErrorMsg     ctermfg=magenta    ctermbg=None
 
+autocmd BufNewFile,BufRead *.script set filetype=lua
+
 
 set hlsearch
 "hi search                 ctermbg=lightyellow
@@ -149,7 +151,8 @@ nnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
 "nnoremap G     G$l
 
 " cursor mv brackets
-nnoremap <c-c> %
+nnoremap 0 %
+"nnoremap <c-c> %
 "nnoremap <c-f> %
 ""nnoremap <leader>k %
 "nnoremap [ [[
@@ -227,13 +230,12 @@ nnoremap p P
 "nnoremap v P
 
 " undo
-nnoremap u         u
+nnoremap u     u
 " redo
-nnoremap <c-u>     <c-r>
-"nnoremap <leader>u <c-r>
+nnoremap <c-u> <c-r>
 
 " repeat
-nnoremap 0 .
+"nnoremap 0 .
 "nnoremap r .
 
 " inc , dec
@@ -255,7 +257,7 @@ nnoremap /     /
 nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 
 " open file session last
-nnoremap <c-p> `0
+"nnoremap <c-p> `0
 
 " tag jump
 "nnoremap <c-f> <c-w>gF
@@ -306,7 +308,7 @@ nnoremap h <esc>
 "nnoremap q <esc>
 nnoremap r <esc>
 "nnoremap s <esc>
-"nnoremap t <esc>
+nnoremap t <esc>
 "nnoremap u <esc>
 "nnoremap x <esc>
 nnoremap y <esc>
@@ -316,13 +318,13 @@ nnoremap <c-a> <esc>
 "nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-e> <esc>
-"nnoremap <c-f> <esc>
+nnoremap <c-f> <esc>
 "nnoremap <c-g> <esc>
 nnoremap <c-h> <esc>
 "nnoremap <c-l> <esc>
 "nnoremap <c-m> <esc>
 "nnoremap <c-n> <esc>
-"nnoremap <c-p> <esc>
+nnoremap <c-p> <esc>
 nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
@@ -359,7 +361,8 @@ inoremap <c-o> <c-o>h
 inoremap ( ()<c-o>h
 inoremap < <><c-o>h
 inoremap [ []<c-o>h
-inoremap " ""<c-o>h
+inoremap { {}<c-o>h
+inoremap <expr> " col(".") == 1 ? "\"" : "\"\"<c-o>h"
 inoremap ' ''<c-o>h
 
 " del line
@@ -439,9 +442,9 @@ vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
 vnoremap a A
 
 " del
-vnoremap <expr> s mode() == "<c-v>" ? "x" : "x"
+vnoremap <expr> s mode() == "<c-v>" ? "c" : "x"
+vnoremap <expr> d mode() == "<c-v>" ? "x" : "x"
 vnoremap <expr> x mode() == "<c-v>" ? "x" : "x"
-vnoremap <expr> d mode() == "<c-v>" ? "c" : "x"
 "vnoremap s "ac
 "vnoremap s "ax
 "vnoremap x c
@@ -557,19 +560,20 @@ let g:fzf_action = { 'ctrl-o': 'tab split' }
 
 
 " files
+nnoremap <leader>l :Files<cr>
+vnoremap <leader>l y:Files<cr>
 nnoremap <leader>o :Files<cr>
-nnoremap <leader>p :Files<cr>
 vnoremap <leader>o y:Files<cr>
-vnoremap <leader>p y:Files<cr>
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)
 
 " lines
-nnoremap <leader>l :Lines<cr>
-vnoremap <leader>l y:Lines <c-r>0<cr>
-command! -bang -nargs=? Lines
-\ call fzf#vim#lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
-"\ call fzf#vim#lines(<q-args>, <bang>1)
+nnoremap <leader>k :BLines<cr>
+vnoremap <leader>k y:BLines <c-r>0<cr>
+nnoremap <leader>j :BLines<cr>
+vnoremap <leader>j y:BLines <c-r>0<cr>
+command! -bang -nargs=? BLines
+\ call fzf#vim#buffer_lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
 
 " rg
 "
@@ -580,17 +584,16 @@ command! -bang -nargs=? Lines
 "   [fullscreen bool]
 " )
 nnoremap <leader>f :Rg<cr>
-vnoremap <leader>f y:Rg <c-r>0<cr>
-nnoremap <leader>j :Rg<cr>
-vnoremap <leader>j y:Rg <c-r>0<cr>
+vnoremap <leader>f y:Rg <c-r>0
 nnoremap <leader>r :Rg<cr>
-vnoremap <leader>r y:Rg <c-r>0<cr>
+vnoremap <leader>r y:Rg <c-r>0
 
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
-\   'rg --line-number --smart-case --no-multiline --no-heading --color=always
-\       -g "*.lua" -g "*.script" -g "*.gui_script" -- '
-\       .shellescape(<q-args>),
+\   'rg 
+\     --line-number --smart-case --no-multiline --no-heading --color=always 
+\     -g "*.lua" -g "*.script" -g "*.gui_script" 
+\     -- '.shellescape(<q-args>),
 \   0,
 \   fzf#vim#with_preview(
 \     {'options': '--exact --delimiter : --nth 3..'},

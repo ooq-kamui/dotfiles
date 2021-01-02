@@ -29,8 +29,14 @@ hi luaComment      ctermfg=121
 " string 201 133
 hi luaString       ctermfg=yellow
 
+" num
+hi luaNumber       ctermfg=magenta
+
 " pairs
 hi luaFunc         ctermfg=130
+
+" table
+hi luaTable        ctermfg=121
 
 " err
 hi luaError        ctermfg=yellow ctermbg=magenta
@@ -44,12 +50,18 @@ hi luaFunctionCall ctermfg=cyan
 syn match luaMethodCall "\v\:\zs\w+\ze\("
 hi luaMethodCall   ctermfg=cyan
 
-syn match luaEq /=/
-hi luaEq           ctermfg=130
+syn match luaOpe "<"
+syn match luaOpe ">"
+syn match luaOpe "<="
+syn match luaOpe ">="
+syn match luaOpe "=="
+syn match luaOpe "\v\~\="
+syn match luaOpe "="
+hi luaOpe          ctermfg=121
+"hi luaOpe          ctermfg=130
 
 syn keyword luaSelf _s
 hi luaSelf         ctermfg=33
-
 
 
 
