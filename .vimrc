@@ -110,7 +110,7 @@ nnoremap :q  :q!
 
 " save
 nnoremap ;     :w<Cr>
-nnoremap <c-s> :w<Cr>
+"nnoremap <c-s> :w<Cr>
 "nnoremap <leader><space> :w<Cr>
 
 "
@@ -194,13 +194,10 @@ nnoremap m i<cr><Esc>
 nnoremap s    "ax
 nnoremap x    x
 nnoremap <BS> h"ax
-"nnoremap <c-h> hx
-"nnoremap <c-d> x
 
 " del line
 nnoremap d dd
 nnoremap cc D
-"nnoremap <c-c> D
 
 " del cr
 nnoremap <c-m> J
@@ -209,11 +206,12 @@ nnoremap <c-m> J
 "nnoremap <c-w> hvbd
 
 " del word forward
-nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : "dw"
+nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : "de"
+nnoremap <expr> <c-a> col(".") == col("$") ? "<esc>" : "dw"
+"nnoremap <c-a> de
 
 " select all
 nnoremap @ ggVG
-"nnoremap <leader>a ggVG
 
 " select word
 nnoremap w viw
@@ -314,7 +312,7 @@ nnoremap t <esc>
 nnoremap y <esc>
 nnoremap z <esc>
 
-nnoremap <c-a> <esc>
+"nnoremap <c-a> <esc>
 "nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-e> <esc>
@@ -376,7 +374,6 @@ inoremap <c-h> <c-h>
 
 " del word forword
 inoremap <c-k> <c-o>dw
-"inoremap <c-s> <c-o>dw
 
 " line new
 inoremap <c-j> <cr>
@@ -395,12 +392,6 @@ inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-o>k"
 " mode visual
 "
 
-"
-" esc
-"
-vnoremap q     <c-c>
-vnoremap <c-f> <c-c>
-vnoremap <c-q> <c-c>
 vnoremap @ <c-c><c-o><c-o>
 
 " mode ch line
@@ -441,8 +432,11 @@ vnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
 vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
 vnoremap a A
 
+" cut & ins
+vnoremap <expr> s     mode() == "<c-v>" ? "c" : "x"
+vnoremap <expr> <c-i> mode() == "<c-v>" ? "c" : "x"
+
 " del
-vnoremap <expr> s mode() == "<c-v>" ? "c" : "x"
 vnoremap <expr> d mode() == "<c-v>" ? "x" : "x"
 vnoremap <expr> x mode() == "<c-v>" ? "x" : "x"
 "vnoremap s "ac
@@ -459,9 +453,9 @@ vnoremap p "adhp
 "
 " search
 "
-vnoremap n "ay/<c-r>a<cr>
-"vnoremap h y/<c-r>0<cr>
+vnoremap n     "ay/<c-r>a<cr>
 vnoremap / "ay/<c-r>a
+"vnoremap <c-n> "ay?<c-r>a<cr>
 
 " increment
 "vnoremap + <c-a>
@@ -478,6 +472,15 @@ vnoremap :t :'<,'>!expand -2
 " vnoremap i( di()<c-c>hp
 " vnoremap i{ di{}<c-c>hp
 " vnoremap i< di<><c-c>hp
+
+"
+" esc
+"
+vnoremap q     <c-c>
+vnoremap <c-f> <c-c>
+vnoremap <c-n> <c-c>
+vnoremap <c-p> <c-c>
+vnoremap <c-q> <c-c>
 
 
 " 
