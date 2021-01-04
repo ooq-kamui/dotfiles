@@ -109,9 +109,7 @@ nnoremap q     :q<Cr>
 nnoremap :q  :q!
 
 " save
-nnoremap ;     :w<Cr>
-"nnoremap <c-s> :w<Cr>
-"nnoremap <leader><space> :w<Cr>
+nnoremap ; :w<Cr>
 
 "
 " cursor mv
@@ -128,40 +126,24 @@ nnoremap <c-j> 10j
 
 " cursor mv line in
 nnoremap <expr> a col(".") == col("$") ? "0" : "$l"
-"nnoremap <expr> e col(".") == col("$") ? "0" : "$l"
-"nnoremap e     $l
 
 " cursor mv char
 nnoremap l l
-"nnoremap <c-o> h
-"nnoremap h     h
 
 " cursor mv word
 nnoremap f     w
 nnoremap <c-l> el
-"nnoremap <c-f> el
 nnoremap o     b
-"nnoremap q b
 
 " cursor mv file
 nnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
-"nnoremap <expr><nowait> g line(".") == 1 ? "G$l" : "gg"
-"nnoremap <nowait> g     gg
-"nnoremap <c-g> G$l
-"nnoremap G     G$l
 
 " cursor mv brackets
 nnoremap 0 %
-"nnoremap <c-c> %
-"nnoremap <c-f> %
-""nnoremap <leader>k %
-"nnoremap [ [[
 
 " cursor mv jump list
 nnoremap b     <c-o>
 nnoremap <c-b> <c-i>
-"nnoremap r     <c-o>
-"nnoremap <c-b> <c-i>
 
 " scroll
 nnoremap <up>   <c-y>
@@ -175,20 +157,12 @@ nnoremap J      10<c-e>
 " edit
 "
 
-" ins
-"nnoremap a A
-
-" ins space
-"nnoremap <space> i<Space><Esc>l
-
 " ins line
 nnoremap <c-o> O<Esc>
 nnoremap O     O<Esc>
 
 " ins cr
 nnoremap m i<cr><Esc>
-"nnoremap h i<cr><Esc>
-"nnoremap <c-m>     i<cr><Esc>
 
 " del char
 nnoremap s    "ax
@@ -196,7 +170,7 @@ nnoremap x    x
 nnoremap <BS> h"ax
 
 " del line
-nnoremap d dd
+nnoremap d  dd
 nnoremap cc D
 
 " del cr
@@ -208,14 +182,12 @@ nnoremap <c-m> J
 " del word forward
 nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : "de"
 nnoremap <expr> <c-a> col(".") == col("$") ? "<esc>" : "dw"
-"nnoremap <c-a> de
 
 " select all
 nnoremap @ ggVG
 
 " select word
 nnoremap w viw
-"nnoremap W V
 
 " select box
 nnoremap v <c-v>
@@ -225,12 +197,10 @@ nnoremap c yy
 
 " paste
 nnoremap p P
-"nnoremap v P
 
-" undo
-nnoremap u     u
-" redo
-nnoremap <c-u> <c-r>
+" undo , redo
+nnoremap h     u
+nnoremap <c-h> <c-r>
 
 " repeat
 "nnoremap 0 .
@@ -280,7 +250,7 @@ nnoremap :b :buffers
 "
 " esc
 "
-nnoremap <space> <nop>
+nnoremap <space> <esc>
 nnoremap <bs>    <esc>
 
 nnoremap * <esc>
@@ -299,7 +269,7 @@ nnoremap <c-@> <esc>
 "nnoremap d <esc>
 "nnoremap e <esc>
 "nnoremap g <esc>
-nnoremap h <esc>
+"nnoremap h <esc>
 "nnoremap l <esc>
 "nnoremap m <esc>
 "nnoremap n <esc>
@@ -318,7 +288,7 @@ nnoremap z <esc>
 "nnoremap <c-e> <esc>
 nnoremap <c-f> <esc>
 "nnoremap <c-g> <esc>
-nnoremap <c-h> <esc>
+"nnoremap <c-h> <esc>
 "nnoremap <c-l> <esc>
 "nnoremap <c-m> <esc>
 "nnoremap <c-n> <esc>
@@ -392,7 +362,7 @@ inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-o>k"
 " mode visual
 "
 
-vnoremap @ <c-c><c-o><c-o>
+"vnoremap @ <c-c><c-o><c-o>
 
 " mode ch line
 vnoremap w V
@@ -409,14 +379,13 @@ vnoremap a     $h
 "vnoremap <c-a> 0
 
 " cursor mv char
-vnoremap <c-o> h
-"vnoremap h     h
 vnoremap l l
+"vnoremap h     h
+"vnoremap <c-o> h
 
 " cursor mv word
-vnoremap f     e
-"vnoremap <c-f> E
-vnoremap o     b
+vnoremap f e
+vnoremap o b
 
 " cursor mv line
 vnoremap <c-j> 10j
@@ -458,8 +427,8 @@ vnoremap / "ay/<c-r>a
 "vnoremap <c-n> "ay?<c-r>a<cr>
 
 " increment
-"vnoremap + <c-a>
-vnoremap + g<c-a>
+vnoremap + <c-a>
+"vnoremap + g<c-a>
 
 " indent
 vnoremap > >gv
@@ -476,9 +445,13 @@ vnoremap :t :'<,'>!expand -2
 "
 " esc
 "
+vnoremap <space> <nop>
+vnoremap @     <c-c>
 vnoremap q     <c-c>
+vnoremap <c-a> <c-c>
 vnoremap <c-f> <c-c>
 vnoremap <c-n> <c-c>
+vnoremap <c-o> <c-c>
 vnoremap <c-p> <c-c>
 vnoremap <c-q> <c-c>
 
@@ -587,9 +560,9 @@ command! -bang -nargs=? BLines
 "   [fullscreen bool]
 " )
 nnoremap <leader>f :Rg<cr>
-vnoremap <leader>f y:Rg <c-r>0
-nnoremap <leader>j :Rg<cr>
-vnoremap <leader>j y:Rg <c-r>0
+vnoremap <leader>f "ay:Rg <c-r>a
+nnoremap <leader>o :Rg<cr>
+vnoremap <leader>o "ay:Rg <c-r>a
 
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
