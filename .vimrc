@@ -158,8 +158,8 @@ nnoremap J      10<c-e>
 "
 
 " ins line
-nnoremap <c-o> O<Esc>
-nnoremap O     O<Esc>
+nnoremap u     O<Esc>
+"nnoremap <c-o> O<Esc>
 
 " ins cr
 nnoremap m i<cr><Esc>
@@ -181,7 +181,7 @@ nnoremap <c-m> J
 
 " del word forward
 nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : "de"
-nnoremap <expr> <c-a> col(".") == col("$") ? "<esc>" : "dw"
+nnoremap <expr> <c-s> col(".") == col("$") ? "<esc>" : "dw"
 
 " select all
 nnoremap @ ggVG
@@ -282,7 +282,7 @@ nnoremap t <esc>
 nnoremap y <esc>
 nnoremap z <esc>
 
-"nnoremap <c-a> <esc>
+nnoremap <c-a> <esc>
 "nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-e> <esc>
@@ -292,11 +292,13 @@ nnoremap <c-f> <esc>
 "nnoremap <c-l> <esc>
 "nnoremap <c-m> <esc>
 "nnoremap <c-n> <esc>
+nnoremap <c-o> <esc>
 nnoremap <c-p> <esc>
 nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
+nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
 nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
@@ -368,20 +370,13 @@ inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-o>k"
 vnoremap w V
 
 " mode ch box
-vnoremap v     <c-v>
-"vnoremap <c-w> <c-v>
+vnoremap v <c-v>
 
 " cursor mv
-vnoremap a     $h
-"vnoremap e     $h
-"vnoremap <c-e> $h
-"vnoremap a     0
-"vnoremap <c-a> 0
+vnoremap a $h
 
 " cursor mv char
 vnoremap l l
-"vnoremap h     h
-"vnoremap <c-o> h
 
 " cursor mv word
 vnoremap f e
@@ -393,8 +388,6 @@ vnoremap <c-k> 10k
 
 " cursor mv file
 vnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
-"vnoremap G G$
-"vnoremap <c-g> G$
 
 " ins
 "vnoremap i I
@@ -408,26 +401,22 @@ vnoremap <expr> <c-i> mode() == "<c-v>" ? "c" : "x"
 " del
 vnoremap <expr> d mode() == "<c-v>" ? "x" : "x"
 vnoremap <expr> x mode() == "<c-v>" ? "x" : "x"
-"vnoremap s "ac
-"vnoremap s "ax
-"vnoremap x c
 
 " yank
 vnoremap c y
 
 " paste
 vnoremap p "adhp
-"vnoremap v "adhp
 
 "
 " search
 "
-vnoremap n     "ay/<c-r>a<cr>
+vnoremap n "ay/<c-r>a<cr>
 vnoremap / "ay/<c-r>a
-"vnoremap <c-n> "ay?<c-r>a<cr>
 
-" increment
+" inc , dec
 vnoremap + <c-a>
+vnoremap - <c-x>
 "vnoremap + g<c-a>
 
 " indent
@@ -435,18 +424,12 @@ vnoremap > >gv
 vnoremap < <gv
 vnoremap :t :'<,'>!expand -2
 
-" add
-" vnoremap i" di""<c-c>hp
-" vnoremap i' di''<c-c>hp
-" vnoremap i( di()<c-c>hp
-" vnoremap i{ di{}<c-c>hp
-" vnoremap i< di<><c-c>hp
-
 "
 " esc
 "
 vnoremap <space> <nop>
 vnoremap @     <c-c>
+vnoremap h     <c-c>
 vnoremap q     <c-c>
 vnoremap <c-a> <c-c>
 vnoremap <c-f> <c-c>
@@ -454,6 +437,7 @@ vnoremap <c-n> <c-c>
 vnoremap <c-o> <c-c>
 vnoremap <c-p> <c-c>
 vnoremap <c-q> <c-c>
+vnoremap <c-x> <c-c>
 
 
 " 
@@ -461,7 +445,6 @@ vnoremap <c-q> <c-c>
 " 
 " quit
 cnoremap <c-q> <c-c>
-"cnoremap <c-v> <c-c>
 
 " cursor mv line in
 cnoremap <c-a> <Home>
@@ -470,7 +453,6 @@ cnoremap <c-e> <End>
 " cursor mv char
 cnoremap <c-b> <Left>
 cnoremap <c-l> <Right>
-"cnoremap <c-o> <Left>
 
 " cursor mv word
 cnoremap <c-o> <S-Left>
@@ -482,8 +464,6 @@ cnoremap <c-d> <del>
 
 " del word
 cnoremap <c-k> <S-Right><c-w>
-"cnoremap <c-s> <S-Right><c-w>
-"cnoremap <c-w> <c-w>
 
 " del line in
 cnoremap <c-c> <c-u>
@@ -491,7 +471,6 @@ cnoremap <c-c> <c-u>
 "cnoremap <c-p> <Up>
 "cnoremap <c-n> <Down>
 
-" ab t tabnew
 
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -533,7 +512,6 @@ let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
 let g:fzf_action = { 'ctrl-o': 'tab split' }
 "let g:fzf_buffers_jump = 1
 "fzf#vim#complete#buffer_line([spec])
-
 
 " files
 nnoremap <leader>l :Files<cr>
@@ -578,7 +556,6 @@ command! -bang -nargs=* Rg
 \   ),
 \   <bang>1
 \ )
-
 
 " ctags
 "nnoremap <leader>c :Tags function<cr>
