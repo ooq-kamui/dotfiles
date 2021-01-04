@@ -538,9 +538,8 @@ command! -bang -nargs=? BLines
 "   [fullscreen bool]
 " )
 nnoremap <leader>f :Rg<cr>
-vnoremap <leader>f "ay:Rg <c-r>a
-nnoremap <leader>o :Rg<cr>
-vnoremap <leader>o "ay:Rg <c-r>a
+nnoremap <leader>o :Rg <c-r><c-w><cr>
+vnoremap <leader>o "ay:Rg <c-r>a<cr>
 
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
