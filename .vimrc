@@ -20,7 +20,7 @@ autocmd QuickFixCmdPost vimgrep,grep tab cwindow
 packadd Cfilter
 
 autocmd ColorScheme * hi LineNr       ctermfg=141                        cterm=none
-autocmd ColorScheme * hi CursorLineNr ctermfg=green
+autocmd ColorScheme * hi CursorLineNr ctermfg=121
 
 autocmd ColorScheme * hi Visual                          ctermbg=magenta cterm=none
 autocmd ColorScheme * hi Search       ctermfg=yellow     ctermbg=cyan    cterm=bold
