@@ -23,6 +23,7 @@ autocmd ColorScheme * hi LineNr       ctermfg=141                        cterm=n
 autocmd ColorScheme * hi CursorLineNr ctermfg=121
 
 autocmd ColorScheme * hi Visual                          ctermbg=magenta cterm=none
+autocmd ColorScheme * hi VisualNOS                       ctermbg=magenta cterm=none
 autocmd ColorScheme * hi Search       ctermfg=yellow     ctermbg=cyan    cterm=bold
 autocmd ColorScheme * hi IncSearch    ctermfg=magenta    ctermbg=cyan    cterm=bold
 autocmd ColorScheme * hi MatchParen   ctermfg=magenta    ctermbg=none
@@ -41,12 +42,17 @@ autocmd ColorScheme * hi ErrorMsg     ctermfg=magenta    ctermbg=none    cterm=n
 autocmd ColorScheme * hi WarningMsg   ctermfg=magenta    ctermbg=none    cterm=none
 
 set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
-"hi nontext    ctermbg=none ctermfg=59 guibg=none guifg=none
-autocmd ColorScheme * hi NonText      ctermfg=25         ctermbg=none
-autocmd ColorScheme * hi SpecialKey   ctermfg=25         ctermbg=none
+autocmd ColorScheme * hi NonText      ctermfg=25         ctermbg=none    cterm=none
+autocmd ColorScheme * hi SpecialKey   ctermfg=25         ctermbg=none    cterm=none
 
 autocmd BufNewFile,BufRead *.script     set filetype=lua
 autocmd BufNewFile,BufRead *.gui_script set filetype=lua
+
+augroup InsertHook
+  autocmd!
+  autocmd InsertEnter * hi LineNr ctermfg=lightgreen
+  autocmd InsertLeave * hi LineNr ctermfg=141
+augroup END 
 
 
 set hlsearch
@@ -108,7 +114,9 @@ nnoremap q     :q<Cr>
 nnoremap :q  :q!
 
 " save
-nnoremap ; :w<Cr>
+nnoremap w :w<Cr>
+"nnoremap a :w<Cr>
+"nnoremap ; :w<Cr>
 
 "
 " cursor mv
@@ -124,7 +132,8 @@ nnoremap <c-k> 10k
 nnoremap <c-j> 10j
 
 " cursor mv line in
-nnoremap <expr> w col(".") == col("$") ? "0" : "$l"
+nnoremap <expr> ; col(".") == col("$") ? "0" : "$l"
+"nnoremap <expr> w col(".") == col("$") ? "0" : "$l"
 "nnoremap <expr> a col(".") == col("$") ? "0" : "$l"
 
 " cursor mv char
@@ -148,8 +157,10 @@ nnoremap <c-b> <c-i>
 " scroll
 nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
-nnoremap <c-e>  10<c-y>
-nnoremap e      10<c-e>
+nnoremap <c-r>  10<c-y>
+nnoremap r      10<c-e>
+"nnoremap <c-e>  10<c-y>
+"nnoremap e      10<c-e>
 nnoremap K      10<c-y>
 nnoremap J      10<c-e>
 
@@ -158,7 +169,8 @@ nnoremap J      10<c-e>
 "
 
 " ins
-nnoremap r i
+nnoremap e i
+"nnoremap r i
 
 " ins line
 nnoremap u     O<Esc>
@@ -169,6 +181,7 @@ nnoremap m i<cr><Esc>
 
 " del char
 nnoremap s    "ax
+nnoremap h    "ax
 nnoremap x    x
 nnoremap <BS> h"ax
 
@@ -280,7 +293,7 @@ nnoremap a <esc>
 "nnoremap d <esc>
 "nnoremap e <esc>
 "nnoremap g <esc>
-nnoremap h <esc>
+"nnoremap h <esc>
 "nnoremap i <esc>
 "nnoremap l <esc>
 "nnoremap m <esc>
@@ -302,13 +315,14 @@ nnoremap <c-a> <esc>
 nnoremap <c-f> <esc>
 "nnoremap <c-g> <esc>
 nnoremap <c-h> <esc>
+"nnoremap <c-i> <esc> " tab
 "nnoremap <c-l> <esc>
 "nnoremap <c-m> <esc>
 "nnoremap <c-n> <esc>
 nnoremap <c-o> <esc>
 nnoremap <c-p> <esc>
 nnoremap <c-q> <esc>
-nnoremap <c-r> <esc>
+"nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
 nnoremap <c-u> <esc>
@@ -332,7 +346,8 @@ vnoremap i V
 vnoremap v <c-v>
 
 " cursor mv
-vnoremap <expr> w col(".") == col("$") ? "0" : "$"
+vnoremap <expr> ; col(".") == col("$") ? "0" : "$"
+"vnoremap <expr> w col(".") == col("$") ? "0" : "$"
 "vnoremap w $
 "vnoremap a $h
 
@@ -351,7 +366,8 @@ vnoremap <c-k> 10k
 vnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
 
 " ins
-vnoremap <expr> r mode() == "<c-v>" ? col(".") == col("$") ? "A" : "I" : "c"
+vnoremap <expr> e mode() == "<c-v>" ? col(".") == col("$") ? "A" : "I" : "c"
+"vnoremap <expr> r mode() == "<c-v>" ? col(".") == col("$") ? "A" : "I" : "c"
 "vnoremap <expr> r mode() == "<c-v>" ? "I" : "c"
 "vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
 
@@ -395,10 +411,12 @@ vnoremap <space> <nop>
 vnoremap @     <c-c>
 vnoremap a     <c-c>
 vnoremap b     <c-c>
+"vnoremap e     <c-c>
 vnoremap h     <c-c>
 "vnoremap i     <c-c>
 vnoremap q     <c-c>
-"vnoremap w     <c-c>
+vnoremap r     <c-c>
+vnoremap w     <c-c>
 vnoremap <c-a> <c-c>
 vnoremap <c-f> <c-c>
 vnoremap <c-n> <c-c>
@@ -500,12 +518,6 @@ augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
   \ exe "normal g`\"" | endif
 augroup END
-
-augroup InsertHook
-  autocmd!
-  autocmd InsertEnter * hi LineNr ctermfg=green
-  autocmd InsertLeave * hi LineNr ctermfg=141
-augroup END 
 
 
 if &term =~ '^screen'
