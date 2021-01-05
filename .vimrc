@@ -45,13 +45,11 @@ set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
 autocmd ColorScheme * hi NonText      ctermfg=25         ctermbg=none
 autocmd ColorScheme * hi SpecialKey   ctermfg=25         ctermbg=none
 
-autocmd BufNewFile,BufRead *.script set filetype=lua
+autocmd BufNewFile,BufRead *.script     set filetype=lua
+autocmd BufNewFile,BufRead *.gui_script set filetype=lua
 
 
 set hlsearch
-"hi search                 ctermbg=lightyellow
-"hi matchparen ctermfg=red ctermbg=6
-
 set number
 set list
 set cursorline
@@ -126,7 +124,8 @@ nnoremap <c-k> 10k
 nnoremap <c-j> 10j
 
 " cursor mv line in
-nnoremap <expr> a col(".") == col("$") ? "0" : "$l"
+nnoremap <expr> w col(".") == col("$") ? "0" : "$l"
+"nnoremap <expr> a col(".") == col("$") ? "0" : "$l"
 
 " cursor mv char
 nnoremap l l
@@ -158,6 +157,9 @@ nnoremap J      10<c-e>
 " edit
 "
 
+" ins
+nnoremap r i
+
 " ins line
 nnoremap u     O<Esc>
 "nnoremap <c-o> O<Esc>
@@ -187,10 +189,12 @@ nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : "de"
 nnoremap <expr> <c-s> col(".") == col("$") ? "<esc>" : "dw"
 
 " select all
-nnoremap @ ggVG
+nnoremap A ggVG
 
 " select word
-nnoremap w viw
+nnoremap i viw
+"nnoremap w viw
+"nnoremap @ viw
 
 " select box
 nnoremap v <c-v>
@@ -202,11 +206,14 @@ nnoremap c yy
 nnoremap p P
 
 " undo , redo
-nnoremap h     u
-nnoremap <c-h> <c-r>
+nnoremap , u
+nnoremap . <c-r>
+"nnoremap h     u
+"nnoremap <c-h> <c-r>
+"nnoremap <c-,> <c-r>
 
 " repeat
-nnoremap . .
+"nnoremap . .
 
 " inc , dec
 nnoremap + <c-a>
@@ -222,7 +229,7 @@ nnoremap < <<
 nnoremap n     n
 nnoremap <c-n> N
 nnoremap /     /
-nnoremap <c-o> *N
+nnoremap <c-w> *N
 
 " grep
 "nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
@@ -231,7 +238,7 @@ nnoremap <c-o> *N
 "nnoremap <c-p> `0
 
 " tag jump
-nnoremap r <c-w>gF
+"nnoremap r <c-w>gF
 
 "
 " tab
@@ -255,24 +262,26 @@ nnoremap :b :buffers
 nnoremap <space> <esc>
 nnoremap <bs>    <esc>
 
-nnoremap , <esc>
+"nnoremap , <esc>
 "nnoremap . <esc>
 nnoremap * <esc>
 nnoremap _ <esc>
-"nnoremap @ <esc>
+nnoremap @ <esc>
 "nnoremap ; <esc>
 nnoremap <c-@> <esc>
 "nnoremap <c-;> <esc>
+"nnoremap <c-,> <esc>
 "nnoremap <c-[> <esc>
 "nnoremap <c-]> <esc>
 
 "nnoremap 0 <esc>
-"nnoremap a <esc>
+nnoremap a <esc>
 "nnoremap b <esc>
 "nnoremap d <esc>
 "nnoremap e <esc>
 "nnoremap g <esc>
-"nnoremap h <esc>
+nnoremap h <esc>
+"nnoremap i <esc>
 "nnoremap l <esc>
 "nnoremap m <esc>
 "nnoremap n <esc>
@@ -281,6 +290,7 @@ nnoremap <c-@> <esc>
 "nnoremap s <esc>
 nnoremap t <esc>
 "nnoremap u <esc>
+"nnoremap w <esc>
 "nnoremap x <esc>
 nnoremap y <esc>
 nnoremap z <esc>
@@ -291,7 +301,7 @@ nnoremap <c-a> <esc>
 "nnoremap <c-e> <esc>
 nnoremap <c-f> <esc>
 "nnoremap <c-g> <esc>
-"nnoremap <c-h> <esc>
+nnoremap <c-h> <esc>
 "nnoremap <c-l> <esc>
 "nnoremap <c-m> <esc>
 "nnoremap <c-n> <esc>
@@ -303,7 +313,7 @@ nnoremap <c-r> <esc>
 nnoremap <c-t> <esc>
 nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
-nnoremap <c-w> <esc>
+"nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
 nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
@@ -313,16 +323,18 @@ nnoremap <c-z> <esc>
 " mode visual
 "
 
-"vnoremap @ <c-c><c-o><c-o>
-
 " mode ch line
-vnoremap w V
+vnoremap i V
+"vnoremap w V
+"vnoremap @ V
 
 " mode ch box
 vnoremap v <c-v>
 
 " cursor mv
-vnoremap a $h
+vnoremap <expr> w col(".") == col("$") ? "0" : "$"
+"vnoremap w $
+"vnoremap a $h
 
 " cursor mv char
 vnoremap l l
@@ -339,9 +351,12 @@ vnoremap <c-k> 10k
 vnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
 
 " ins
-"vnoremap i I
-vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
-vnoremap a A
+vnoremap <expr> r mode() == "<c-v>" ? col(".") == col("$") ? "A" : "I" : "c"
+"vnoremap <expr> r mode() == "<c-v>" ? "I" : "c"
+"vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
+
+" ins $
+vnoremap <expr> $ mode() == "<c-v>" ? "$A" : "$"
 
 " cut & ins
 vnoremap <expr> s     mode() == "<c-v>" ? "c" : "x"
@@ -378,9 +393,12 @@ vnoremap :t :'<,'>!expand -2
 "
 vnoremap <space> <nop>
 vnoremap @     <c-c>
+vnoremap a     <c-c>
 vnoremap b     <c-c>
 vnoremap h     <c-c>
+"vnoremap i     <c-c>
 vnoremap q     <c-c>
+"vnoremap w     <c-c>
 vnoremap <c-a> <c-c>
 vnoremap <c-f> <c-c>
 vnoremap <c-n> <c-c>
@@ -393,12 +411,6 @@ vnoremap <c-x> <c-c>
 "
 " mode insert
 "
-
-" quit
-inoremap <esc> <esc>
-inoremap <c-f> <esc>
-inoremap <c-q> <esc>
-inoremap <c-c> <esc>
 
 " cursor mv line in
 inoremap <c-a> <c-o>^
@@ -426,6 +438,7 @@ inoremap ' ''<c-o>h
 
 " del char forward
 inoremap <c-d> <c-o>x
+inoremap <c-s> <c-o>x
 " del char back
 inoremap <c-h> <c-h>
 
@@ -443,6 +456,12 @@ inoremap <c-m> <c-n>
 inoremap <c-v> <c-n>
 inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-o>j"
 inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-o>k"
+
+" quit
+inoremap <esc> <esc>
+inoremap <c-c> <esc>
+inoremap <c-f> <esc>
+inoremap <c-q> <esc>
 
 
 " 
@@ -520,16 +539,14 @@ let g:fzf_action = { 'ctrl-o': 'tab drop' }
 "fzf#vim#complete#buffer_line([spec])
 
 " files
-nnoremap <leader>l :Files<cr>
-vnoremap <leader>l y:Files<cr>
-"nnoremap <leader>o :Files<cr>
-"vnoremap <leader>o y:Files<cr>
+nnoremap <leader>l :Files <cr>
+vnoremap <leader>l :Files <cr>
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)
 
 " lines
 nnoremap <leader>k :BLines<cr>
-vnoremap <leader>k y:BLines <c-r>0<cr>
+vnoremap <leader>k "ay:BLines <c-r>a<cr>
 "nnoremap <leader>j :BLines<cr>
 "vnoremap <leader>j y:BLines <c-r>0<cr>
 command! -bang -nargs=? BLines
@@ -543,9 +560,9 @@ command! -bang -nargs=? BLines
 "   [spec dict],
 "   [fullscreen bool]
 " )
-nnoremap <leader>f :Rg<cr>
-nnoremap <leader>o :Rg <c-r><c-w><cr>
+nnoremap <leader>o :Rg <cr>
 vnoremap <leader>o "ay:Rg <c-r>a<cr>
+"nnoremap <leader>p :Rg <c-r><c-w><cr>
 
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
@@ -565,34 +582,16 @@ command! -bang -nargs=* Rg
 " ctags
 nnoremap <leader>i :Tags <c-r><c-w><cr>
 vnoremap <leader>i "ay:Tags <c-r>a<cr>
-nnoremap <leader>c :Tags<cr>
-vnoremap <leader>c "ay:Tags <c-r>a<cr>
+"nnoremap <leader>c :Tags<cr>
+"vnoremap <leader>c "ay:Tags <c-r>a<cr>
 
 command! -bang -nargs=? Tags
 \ call fzf#vim#tags(<q-args>, <bang>1)
-"\ call fzf#vim#tags(expand('<cword>'), <bang>1)
 
 let g:fzf_colors = {
 \   'hl':      ['fg', 'Statement'],
 \   'hl+':     ['fg', 'Statement'],
 \ }
 "\   'bg+':     ['bg', 'Normal'],
-
-
-" coc.nvim
-"
-"nnoremap <silent> gd <Plug>(coc-definition)
-"nmap <silent> gy <Plug>(coc-type-definition)
-"nmap <silent> gi <Plug>(coc-implementation)
-"nmap <silent> gr <Plug>(coc-references)
-"nnoremap <silent> K :call <SID>show_documentation()<CR>
-"
-"function! s:show_documentation()
-"  if (index(['vim','help'], &filetype) >= 0)
-"    execute 'h '.expand('<cword>')
-"  else
-"    call CocAction('doHover')
-"  endif
-"endfunction
 
 
