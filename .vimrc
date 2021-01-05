@@ -31,18 +31,19 @@ autocmd ColorScheme * hi TabLineFill                     ctermbg=27
 autocmd ColorScheme * hi TabLine      ctermfg=lightblue  ctermbg=27
 autocmd ColorScheme * hi TabLineSel   ctermfg=182        ctermbg=blue
 
-autocmd ColorScheme * hi StatusLine   ctermfg=lightblue  ctermbg=33
+autocmd ColorScheme * hi StatusLine   ctermfg=lightblue  ctermbg=33      cterm=none
+autocmd ColorScheme * hi EndOfBuffer  ctermfg=cyan                       cterm=none
 
 autocmd ColorScheme * hi Pmenu        ctermfg=lightgreen ctermbg=blue
 autocmd ColorScheme * hi PmenuSel     ctermfg=cyan       ctermbg=magenta cterm=bold
 
+autocmd ColorScheme * hi ErrorMsg     ctermfg=magenta    ctermbg=none    cterm=none
+autocmd ColorScheme * hi WarningMsg   ctermfg=magenta    ctermbg=none    cterm=none
+
 set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
 "hi nontext    ctermbg=none ctermfg=59 guibg=none guifg=none
-autocmd ColorScheme * hi NonText      ctermfg=25         ctermbg=None
-autocmd ColorScheme * hi SpecialKey   ctermfg=25         ctermbg=None
-
-autocmd ColorScheme * hi WarningMsg   ctermfg=magenta    ctermbg=None
-autocmd ColorScheme * hi ErrorMsg     ctermfg=magenta    ctermbg=None
+autocmd ColorScheme * hi NonText      ctermfg=25         ctermbg=none
+autocmd ColorScheme * hi SpecialKey   ctermfg=25         ctermbg=none
 
 autocmd BufNewFile,BufRead *.script set filetype=lua
 
@@ -171,7 +172,9 @@ nnoremap <BS> h"ax
 
 " del line
 nnoremap d  dd
-nnoremap cc D
+
+" del line forward
+"nnoremap cc D
 
 " del cr
 nnoremap <c-m> J
@@ -203,8 +206,7 @@ nnoremap h     u
 nnoremap <c-h> <c-r>
 
 " repeat
-"nnoremap 0 .
-"nnoremap r .
+nnoremap . .
 
 " inc , dec
 nnoremap + <c-a>
@@ -220,16 +222,16 @@ nnoremap < <<
 nnoremap n     n
 nnoremap <c-n> N
 nnoremap /     /
+nnoremap <c-o> *N
 
 " grep
-nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
+"nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
 
 " open file session last
 "nnoremap <c-p> `0
 
 " tag jump
-"nnoremap <c-f> <c-w>gF
-"nnoremap t <c-w>gF
+nnoremap r <c-w>gF
 
 "
 " tab
@@ -253,13 +255,14 @@ nnoremap :b :buffers
 nnoremap <space> <esc>
 nnoremap <bs>    <esc>
 
-nnoremap * <esc>
 nnoremap , <esc>
 "nnoremap . <esc>
+nnoremap * <esc>
 nnoremap _ <esc>
 "nnoremap @ <esc>
 "nnoremap ; <esc>
 nnoremap <c-@> <esc>
+"nnoremap <c-;> <esc>
 "nnoremap <c-[> <esc>
 "nnoremap <c-]> <esc>
 
@@ -274,7 +277,7 @@ nnoremap <c-@> <esc>
 "nnoremap m <esc>
 "nnoremap n <esc>
 "nnoremap q <esc>
-nnoremap r <esc>
+"nnoremap r <esc>
 "nnoremap s <esc>
 nnoremap t <esc>
 "nnoremap u <esc>
@@ -304,60 +307,6 @@ nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
 nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
-
-"
-" mode insert
-"
-
-" quit
-inoremap <c-f> <esc>
-inoremap <c-q> <esc>
-inoremap <c-c> <esc>
-"inoremap <c-v> <esc>
-
-" cursor mv line in
-inoremap <c-a> <c-o>^
-inoremap <c-e> <c-o>$
-
-" cursor mv char
-inoremap <c-l> <c-o>l
-inoremap <c-o> <c-o>h
-
-" cursor mv word
-"inoremap <c-f> <c-o>w
-"inoremap <c-q> <c-o>b
-"inoremap <expr> <c-q> pumvisible() ? "<esc>i" : "<c-o>b"
-
-inoremap ( ()<c-o>h
-inoremap < <><c-o>h
-inoremap [ []<c-o>h
-inoremap { {}<c-o>h
-inoremap <expr> " col(".") == 1 ? "\"" : "\"\"<c-o>h"
-inoremap ' ''<c-o>h
-
-" del line
-"inoremap <c-k> <c-o>D
-"inoremap <c-c> <c-o>D
-
-" del char forward
-inoremap <c-d> <c-o>x
-" del char back
-inoremap <c-h> <c-h>
-
-" del word forword
-inoremap <c-k> <c-o>dw
-
-" line new
-inoremap <c-j> <cr>
-
-" tab
-inoremap <tab> <c-v><Tab>
-
-" input complete
-inoremap <c-m> <c-n>
-inoremap <c-v> <c-n>
-inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-o>j"
-inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-o>k"
 
 
 "
@@ -429,6 +378,7 @@ vnoremap :t :'<,'>!expand -2
 "
 vnoremap <space> <nop>
 vnoremap @     <c-c>
+vnoremap b     <c-c>
 vnoremap h     <c-c>
 vnoremap q     <c-c>
 vnoremap <c-a> <c-c>
@@ -438,6 +388,61 @@ vnoremap <c-o> <c-c>
 vnoremap <c-p> <c-c>
 vnoremap <c-q> <c-c>
 vnoremap <c-x> <c-c>
+
+
+"
+" mode insert
+"
+
+" quit
+inoremap <esc> <esc>
+inoremap <c-f> <esc>
+inoremap <c-q> <esc>
+inoremap <c-c> <esc>
+
+" cursor mv line in
+inoremap <c-a> <c-o>^
+inoremap <c-e> <c-o>$
+
+" cursor mv char
+inoremap <c-l> <c-o>l
+inoremap <c-o> <c-o>h
+
+" cursor mv word
+"inoremap <c-f> <c-o>w
+"inoremap <c-q> <c-o>b
+"inoremap <expr> <c-q> pumvisible() ? "<esc>i" : "<c-o>b"
+
+inoremap ( ()<c-o>h
+inoremap < <><c-o>h
+inoremap [ []<c-o>h
+inoremap { {}<c-o>h
+inoremap <expr> " col(".") == 1 ? "\"" : "\"\"<c-o>h"
+inoremap ' ''<c-o>h
+
+" del line
+"inoremap <c-k> <c-o>D
+"inoremap <c-c> <c-o>D
+
+" del char forward
+inoremap <c-d> <c-o>x
+" del char back
+inoremap <c-h> <c-h>
+
+" del word forword
+inoremap <c-k> <c-o>dw
+
+" line new
+inoremap <c-j> <cr>
+
+" tab
+inoremap <tab> <c-v><Tab>
+
+" input complete
+inoremap <c-m> <c-n>
+inoremap <c-v> <c-n>
+inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-o>j"
+inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-o>k"
 
 
 " 
@@ -509,7 +514,8 @@ call plug#end()
 
 " preview window
 let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
-let g:fzf_action = { 'ctrl-o': 'tab split' }
+let g:fzf_action = { 'ctrl-o': 'tab drop' }
+
 "let g:fzf_buffers_jump = 1
 "fzf#vim#complete#buffer_line([spec])
 
@@ -557,10 +563,11 @@ command! -bang -nargs=* Rg
 \ )
 
 " ctags
-"nnoremap <leader>c :Tags function<cr>
-"vnoremap <leader>c y:Tags function <c-r>0
+nnoremap <leader>i :Tags <c-r><c-w><cr>
+vnoremap <leader>i "ay:Tags <c-r>a<cr>
 nnoremap <leader>c :Tags<cr>
-vnoremap <leader>c y:Tags <c-r>0<cr>
+vnoremap <leader>c "ay:Tags <c-r>a<cr>
+
 command! -bang -nargs=? Tags
 \ call fzf#vim#tags(<q-args>, <bang>1)
 "\ call fzf#vim#tags(expand('<cword>'), <bang>1)
