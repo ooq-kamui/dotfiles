@@ -115,6 +115,7 @@ nnoremap :q  :q!
 
 " save
 nnoremap w :w<Cr>
+nnoremap <leader>w :w<Cr>
 "nnoremap a :w<Cr>
 "nnoremap ; :w<Cr>
 
@@ -376,6 +377,7 @@ vnoremap <expr> $ mode() == "<c-v>" ? "$A" : "$"
 
 " cut & ins
 vnoremap <expr> s     mode() == "<c-v>" ? "c" : "x"
+vnoremap <expr> h     mode() == "<c-v>" ? "c" : "x"
 vnoremap <expr> <c-i> mode() == "<c-v>" ? "c" : "x"
 
 " del
@@ -412,7 +414,7 @@ vnoremap @     <c-c>
 vnoremap a     <c-c>
 vnoremap b     <c-c>
 "vnoremap e     <c-c>
-vnoremap h     <c-c>
+"vnoremap h     <c-c>
 "vnoremap i     <c-c>
 vnoremap q     <c-c>
 vnoremap r     <c-c>
