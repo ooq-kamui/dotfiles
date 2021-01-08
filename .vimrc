@@ -114,9 +114,8 @@ nnoremap q     :q<Cr>
 nnoremap :q  :q!
 
 " save
-nnoremap w :w<Cr>
+nnoremap <c-w>     :w<Cr>
 nnoremap <leader>w :w<Cr>
-"nnoremap a :w<Cr>
 "nnoremap ; :w<Cr>
 
 "
@@ -134,8 +133,6 @@ nnoremap <c-j> 10j
 
 " cursor mv line in
 nnoremap <expr> ; col(".") == col("$") ? "0" : "$l"
-"nnoremap <expr> w col(".") == col("$") ? "0" : "$l"
-"nnoremap <expr> a col(".") == col("$") ? "0" : "$l"
 
 " cursor mv char
 nnoremap l l
@@ -160,8 +157,6 @@ nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 nnoremap <c-r>  10<c-y>
 nnoremap r      10<c-e>
-"nnoremap <c-e>  10<c-y>
-"nnoremap e      10<c-e>
 nnoremap K      10<c-y>
 nnoremap J      10<c-e>
 
@@ -170,11 +165,10 @@ nnoremap J      10<c-e>
 "
 
 " ins
-nnoremap e i
-"nnoremap r i
+nnoremap a i
 
 " ins line
-nnoremap u     O<Esc>
+nnoremap u O<Esc>
 "nnoremap <c-o> O<Esc>
 
 " ins cr
@@ -182,7 +176,7 @@ nnoremap m i<cr><Esc>
 
 " del char
 nnoremap s    "ax
-nnoremap h    "ax
+"nnoremap h    "ax
 nnoremap x    x
 nnoremap <BS> h"ax
 
@@ -220,11 +214,10 @@ nnoremap c yy
 nnoremap p P
 
 " undo , redo
-nnoremap , u
-nnoremap . <c-r>
-"nnoremap h     u
-"nnoremap <c-h> <c-r>
-"nnoremap <c-,> <c-r>
+"nnoremap , u
+"nnoremap . <c-r>
+nnoremap h     u
+nnoremap <c-h> <c-r>
 
 " repeat
 "nnoremap . .
@@ -243,7 +236,8 @@ nnoremap < <<
 nnoremap n     n
 nnoremap <c-n> N
 nnoremap /     /
-nnoremap <c-w> *N
+nnoremap w     *N
+"nnoremap <c-w> *N
 
 " grep
 "nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
@@ -289,10 +283,10 @@ nnoremap <c-@> <esc>
 "nnoremap <c-]> <esc>
 
 "nnoremap 0 <esc>
-nnoremap a <esc>
+"nnoremap a <esc>
 "nnoremap b <esc>
 "nnoremap d <esc>
-"nnoremap e <esc>
+nnoremap e <esc>
 "nnoremap g <esc>
 "nnoremap h <esc>
 "nnoremap i <esc>
@@ -349,15 +343,16 @@ vnoremap v <c-v>
 " cursor mv
 vnoremap <expr> ; col(".") == col("$") ? "0" : "$"
 "vnoremap <expr> w col(".") == col("$") ? "0" : "$"
-"vnoremap w $
-"vnoremap a $h
 
 " cursor mv char
 vnoremap l l
 
 " cursor mv word
 vnoremap f e
-vnoremap o b
+"vnoremap o b
+
+" cursor mv in word
+vnoremap o o
 
 " cursor mv line
 vnoremap <c-j> 10j
@@ -367,18 +362,20 @@ vnoremap <c-k> 10k
 vnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
 
 " ins
-vnoremap <expr> e mode() == "<c-v>" ? col(".") == col("$") ? "A" : "I" : "c"
-"vnoremap <expr> r mode() == "<c-v>" ? col(".") == col("$") ? "A" : "I" : "c"
-"vnoremap <expr> r mode() == "<c-v>" ? "I" : "c"
-"vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
+vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "A" : "I" : "c"
 
-" ins $
-vnoremap <expr> $ mode() == "<c-v>" ? "$A" : "$"
+" ins
+vnoremap u <esc>i
 
 " cut & ins
 vnoremap <expr> s     mode() == "<c-v>" ? "c" : "x"
 vnoremap <expr> h     mode() == "<c-v>" ? "c" : "x"
-vnoremap <expr> <c-i> mode() == "<c-v>" ? "c" : "x"
+
+" ins $
+vnoremap <expr> $ mode() == "<c-v>" ? "$A" : "$"
+
+" ins line
+"vnoremap u <esc>O<esc>
 
 " del
 vnoremap <expr> d mode() == "<c-v>" ? "x" : "x"
@@ -411,14 +408,17 @@ vnoremap :t :'<,'>!expand -2
 "
 vnoremap <space> <nop>
 vnoremap @     <c-c>
-vnoremap a     <c-c>
+"vnoremap a     <c-c>
 vnoremap b     <c-c>
-"vnoremap e     <c-c>
+vnoremap e     <c-c>
 "vnoremap h     <c-c>
 "vnoremap i     <c-c>
+"vnoremap o     <c-c>
 vnoremap q     <c-c>
 vnoremap r     <c-c>
+"vnoremap u     <c-c>
 vnoremap w     <c-c>
+vnoremap y     <c-c>
 vnoremap <c-a> <c-c>
 vnoremap <c-f> <c-c>
 vnoremap <c-n> <c-c>
