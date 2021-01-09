@@ -155,8 +155,10 @@ nnoremap <c-b> <c-i>
 " scroll
 nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
-nnoremap <c-r>  10<c-y>
-nnoremap r      10<c-e>
+nnoremap <c-e>  10<c-y>
+nnoremap e      10<c-e>
+"nnoremap <c-r>  10<c-y>
+"nnoremap r      10<c-e>
 nnoremap K      10<c-y>
 nnoremap J      10<c-e>
 
@@ -213,16 +215,16 @@ nnoremap c yy
 " paste
 nnoremap p P
 
-" undo , redo
-"nnoremap , u
-"nnoremap . <c-r>
+" undo, redo
 nnoremap h     u
 nnoremap <c-h> <c-r>
+"nnoremap , u
+"nnoremap . <c-r>
 
 " repeat
 "nnoremap . .
 
-" inc , dec
+" inc, dec
 nnoremap + <c-a>
 nnoremap - <c-x>
 
@@ -270,8 +272,8 @@ nnoremap :b :buffers
 nnoremap <space> <esc>
 nnoremap <bs>    <esc>
 
-"nnoremap , <esc>
-"nnoremap . <esc>
+nnoremap , <esc>
+nnoremap . <esc>
 nnoremap * <esc>
 nnoremap _ <esc>
 nnoremap @ <esc>
@@ -286,7 +288,7 @@ nnoremap <c-@> <esc>
 "nnoremap a <esc>
 "nnoremap b <esc>
 "nnoremap d <esc>
-nnoremap e <esc>
+"nnoremap e <esc>
 "nnoremap g <esc>
 "nnoremap h <esc>
 "nnoremap i <esc>
@@ -294,7 +296,7 @@ nnoremap e <esc>
 "nnoremap m <esc>
 "nnoremap n <esc>
 "nnoremap q <esc>
-"nnoremap r <esc>
+nnoremap r <esc>
 "nnoremap s <esc>
 nnoremap t <esc>
 "nnoremap u <esc>
@@ -309,7 +311,7 @@ nnoremap <c-a> <esc>
 "nnoremap <c-e> <esc>
 nnoremap <c-f> <esc>
 "nnoremap <c-g> <esc>
-nnoremap <c-h> <esc>
+"nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
 "nnoremap <c-l> <esc>
 "nnoremap <c-m> <esc>
@@ -317,7 +319,7 @@ nnoremap <c-h> <esc>
 nnoremap <c-o> <esc>
 nnoremap <c-p> <esc>
 nnoremap <c-q> <esc>
-"nnoremap <c-r> <esc>
+nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
 nnoremap <c-u> <esc>
@@ -335,14 +337,12 @@ nnoremap <c-z> <esc>
 " mode ch line
 vnoremap i V
 "vnoremap w V
-"vnoremap @ V
 
 " mode ch box
 vnoremap v <c-v>
 
 " cursor mv
 vnoremap <expr> ; col(".") == col("$") ? "0" : "$"
-"vnoremap <expr> w col(".") == col("$") ? "0" : "$"
 
 " cursor mv char
 vnoremap l l
@@ -392,8 +392,9 @@ vnoremap p "adhp
 "
 vnoremap n "ay/<c-r>a<cr>
 vnoremap / "ay/<c-r>a
+vnoremap w *N<c-c>
 
-" inc , dec
+" inc, dec
 vnoremap + <c-a>
 vnoremap - <c-x>
 "vnoremap + g<c-a>
@@ -408,6 +409,7 @@ vnoremap :t :'<,'>!expand -2
 "
 vnoremap <space> <nop>
 vnoremap @     <c-c>
+"vnoremap *     <c-c>
 "vnoremap a     <c-c>
 vnoremap b     <c-c>
 vnoremap e     <c-c>
@@ -417,7 +419,7 @@ vnoremap e     <c-c>
 vnoremap q     <c-c>
 vnoremap r     <c-c>
 "vnoremap u     <c-c>
-vnoremap w     <c-c>
+"vnoremap w     <c-c>
 vnoremap y     <c-c>
 vnoremap <c-a> <c-c>
 vnoremap <c-f> <c-c>
