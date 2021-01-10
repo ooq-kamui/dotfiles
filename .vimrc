@@ -72,6 +72,7 @@ set scrolloff=5
 set wildmode=list:longest
 set tabpagemax=30
 set nf=""
+set showtabline=2
 
 set clipboard+=unnamed
 syntax on
@@ -144,6 +145,7 @@ nnoremap o     b
 
 " cursor mv file
 nnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
+nnoremap <c-g> G$l
 
 " cursor mv brackets
 nnoremap 0 %
@@ -186,7 +188,7 @@ nnoremap <BS> h"ax
 nnoremap d  dd
 
 " del line forward
-"nnoremap cc D
+nnoremap cc D
 
 " del cr
 nnoremap <c-m> J
@@ -368,8 +370,8 @@ vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "A" : "I" : "c"
 vnoremap u <esc>i
 
 " cut & ins
-vnoremap <expr> s     mode() == "<c-v>" ? "c" : "x"
-vnoremap <expr> h     mode() == "<c-v>" ? "c" : "x"
+vnoremap <expr> s mode() == "<c-v>" ? "c" : "s"
+vnoremap <expr> h mode() == "<c-v>" ? "c" : "x"
 
 " ins $
 vnoremap <expr> $ mode() == "<c-v>" ? "$A" : "$"
@@ -392,7 +394,8 @@ vnoremap p "adhp
 "
 vnoremap n "ay/<c-r>a<cr>
 vnoremap / "ay/<c-r>a
-vnoremap w *N<c-c>
+vnoremap w "ay/<c-r>a<cr>N
+"vnoremap w *N<c-c>
 
 " inc, dec
 vnoremap + <c-a>
@@ -561,8 +564,8 @@ command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)
 
 " lines
-nnoremap <leader>k :BLines<cr>
-vnoremap <leader>k "ay:BLines <c-r>a<cr>
+nnoremap <leader>i :BLines<cr>
+vnoremap <leader>i "ay:BLines <c-r>a<cr>
 "nnoremap <leader>j :BLines<cr>
 "vnoremap <leader>j y:BLines <c-r>0<cr>
 command! -bang -nargs=? BLines
@@ -596,8 +599,8 @@ command! -bang -nargs=* Rg
 \ )
 
 " ctags
-nnoremap <leader>i :Tags <c-r><c-w><cr>
-vnoremap <leader>i "ay:Tags <c-r>a<cr>
+nnoremap <leader>j :Tags <c-r><c-w><cr>
+vnoremap <leader>j "ay:Tags <c-r>a<cr>
 "nnoremap <leader>c :Tags<cr>
 "vnoremap <leader>c "ay:Tags <c-r>a<cr>
 
