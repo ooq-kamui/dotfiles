@@ -204,9 +204,8 @@ nnoremap <expr> <c-s> col(".") == col("$") ? "<esc>" : "dw"
 nnoremap A ggVG
 
 " select word
-nnoremap i viw
-"nnoremap w viw
-"nnoremap @ viw
+nnoremap i viwo
+"nnoremap i viw
 
 " select box
 nnoremap v <c-v>
@@ -278,6 +277,7 @@ nnoremap , <esc>
 nnoremap . <esc>
 nnoremap * <esc>
 nnoremap _ <esc>
+nnoremap ~ <esc>
 nnoremap @ <esc>
 "nnoremap ; <esc>
 nnoremap <c-@> <esc>
@@ -364,13 +364,14 @@ vnoremap <c-k> 10k
 vnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
 
 " ins
-vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "A" : "I" : "c"
+vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "A" : "I" : "<c-c>i"
+"vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "A" : "I" : "c"
 
 " ins
-vnoremap u <esc>i
+"vnoremap u <esc>i
 
 " cut & ins
-vnoremap <expr> s mode() == "<c-v>" ? "c" : "s"
+vnoremap <expr> s mode() == "<c-v>" ? "c" : mode() == "V" ? "x" : "x"
 vnoremap <expr> h mode() == "<c-v>" ? "c" : "x"
 
 " ins $
@@ -389,14 +390,6 @@ vnoremap c y
 " paste
 vnoremap p "adhp
 
-"
-" search
-"
-vnoremap n "ay/<c-r>a<cr>
-vnoremap / "ay/<c-r>a
-vnoremap w "ay/<c-r>a<cr>N
-"vnoremap w *N<c-c>
-
 " inc, dec
 vnoremap + <c-a>
 vnoremap - <c-x>
@@ -406,6 +399,17 @@ vnoremap - <c-x>
 vnoremap > >gv
 vnoremap < <gv
 vnoremap :t :'<,'>!expand -2
+
+" upper / lower
+vnoremap u ~viwo
+
+"
+" search
+"
+vnoremap n "ay/<c-r>a<cr>
+vnoremap / "ay/<c-r>a
+vnoremap w "ay/<c-r>a<cr>N
+"vnoremap w *N<c-c>
 
 "
 " esc
@@ -421,6 +425,7 @@ vnoremap e     <c-c>
 "vnoremap o     <c-c>
 vnoremap q     <c-c>
 vnoremap r     <c-c>
+"vnoremap s     <c-c>
 "vnoremap u     <c-c>
 "vnoremap w     <c-c>
 vnoremap y     <c-c>
