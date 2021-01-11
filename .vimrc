@@ -117,7 +117,7 @@ nnoremap :q  :q!
 " save
 nnoremap <c-w>     :w<Cr>
 nnoremap <leader>w :w<Cr>
-"nnoremap ; :w<Cr>
+nnoremap r         :w<Cr>
 
 "
 " cursor mv
@@ -159,8 +159,6 @@ nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 nnoremap <c-e>  10<c-y>
 nnoremap e      10<c-e>
-"nnoremap <c-r>  10<c-y>
-"nnoremap r      10<c-e>
 nnoremap K      10<c-y>
 nnoremap J      10<c-e>
 
@@ -298,7 +296,7 @@ nnoremap <c-@> <esc>
 "nnoremap m <esc>
 "nnoremap n <esc>
 "nnoremap q <esc>
-nnoremap r <esc>
+"nnoremap r <esc>
 "nnoremap s <esc>
 nnoremap t <esc>
 "nnoremap u <esc>
@@ -455,7 +453,7 @@ inoremap <c-o> <c-o>h
 "inoremap <c-q> <c-o>b
 "inoremap <expr> <c-q> pumvisible() ? "<esc>i" : "<c-o>b"
 
-inoremap ( ()<c-o>h
+"inoremap ( ()<c-o>h
 inoremap < <><c-o>h
 inoremap [ []<c-o>h
 inoremap { {}<c-o>h
