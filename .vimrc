@@ -108,14 +108,12 @@ colorscheme koehler " evening
 
  " quit
 nnoremap q  :q<Cr>
+nnoremap w  :q<Cr>
 nnoremap :q :q!
-nnoremap <leader>r :q<Cr>
 
 " save
-nnoremap <c-w>     :w<Cr>
-nnoremap <leader>w :w<Cr>
-nnoremap w         :w<Cr>
-"nnoremap r         :w<Cr>
+nnoremap r         :w<Cr>
+nnoremap <leader>r :w<Cr>
 
 "
 " cursor mv
@@ -153,12 +151,13 @@ nnoremap b     <c-o>
 nnoremap <c-b> <c-i>
 
 " scroll
+"nnoremap <c-w>     10<c-y>
+"nnoremap w         10<c-e>
+"nnoremap <leader>w 10<c-y>
+nnoremap K 10<c-y>
+nnoremap J 10<c-e>
 nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
-nnoremap <c-e>  10<c-y>
-nnoremap e      10<c-e>
-nnoremap K      10<c-y>
-nnoremap J      10<c-e>
 
 "
 " edit
@@ -235,7 +234,7 @@ nnoremap < <<
 nnoremap n     n
 nnoremap <c-n> N
 nnoremap /     /
-nnoremap r     *N
+nnoremap e     *N
 "nnoremap w     *N
 "nnoremap <c-w> *N
 
@@ -405,7 +404,7 @@ vnoremap u ~viwo
 "
 vnoremap n "ay/<c-r>a<cr>
 vnoremap / "ay/<c-r>a
-vnoremap r "ay/<c-r>a<cr>N
+vnoremap e "ay/<c-r>a<cr>N
 "vnoremap w "ay/<c-r>a<cr>N
 "vnoremap w *N<c-c>
 
@@ -417,7 +416,7 @@ vnoremap @     <c-c>
 "vnoremap *     <c-c>
 "vnoremap a     <c-c>
 vnoremap b     <c-c>
-vnoremap e     <c-c>
+"vnoremap e     <c-c>
 "vnoremap h     <c-c>
 "vnoremap i     <c-c>
 "vnoremap o     <c-c>
@@ -433,6 +432,7 @@ vnoremap <c-n> <c-c>
 vnoremap <c-o> <c-c>
 vnoremap <c-p> <c-c>
 vnoremap <c-q> <c-c>
+vnoremap <c-w> <c-c>
 vnoremap <c-x> <c-c>
 
 
