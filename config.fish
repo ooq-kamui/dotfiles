@@ -1,5 +1,5 @@
 
-cd ~/dev/ooq/g.prototype/001/assets/
+#cd ~/dev/ooq/g.prototype/001/assets/
 
 export LSCOLORS=fxfxcxdxexegedabagacad
 #               ^dir    ^exe
