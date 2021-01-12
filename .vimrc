@@ -112,8 +112,8 @@ nnoremap w  :q<Cr>
 nnoremap :q :q!
 
 " save
-nnoremap r         :w<Cr>
-nnoremap <leader>r :w<Cr>
+nnoremap e         :w<Cr>
+nnoremap <leader>e :w<Cr>
 
 "
 " cursor mv
@@ -234,7 +234,7 @@ nnoremap < <<
 nnoremap n     n
 nnoremap <c-n> N
 nnoremap /     /
-nnoremap e     *N
+nnoremap r     *N
 "nnoremap w     *N
 "nnoremap <c-w> *N
 
@@ -404,7 +404,7 @@ vnoremap u ~viwo
 "
 vnoremap n "ay/<c-r>a<cr>
 vnoremap / "ay/<c-r>a
-vnoremap e "ay/<c-r>a<cr>N
+vnoremap r "ay/<c-r>a<cr>N
 "vnoremap w "ay/<c-r>a<cr>N
 "vnoremap w *N<c-c>
 
@@ -590,7 +590,6 @@ command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
 \   'rg 
 \     --line-number --smart-case --no-multiline --no-heading --color=always 
-\     -g "*.lua" -g "*.script" -g "*.gui_script" 
 \     -- '.shellescape(<q-args>),
 \   0,
 \   fzf#vim#with_preview(
@@ -600,6 +599,7 @@ command! -bang -nargs=* Rg
 \   ),
 \   <bang>1
 \ )
+"\     -g "*.lua" -g "*.script" -g "*.gui_script" 
 
 " ctags
 nnoremap <leader>j :Tags <c-r><c-w><cr>
