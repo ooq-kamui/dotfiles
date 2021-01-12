@@ -1,6 +1,4 @@
 
-#cd ~/dev/ooq/g.prototype/001/assets/
-
 export LSCOLORS=fxfxcxdxexegedabagacad
 #               ^dir    ^exe
 
@@ -38,5 +36,9 @@ export GREP_COLOR="1;33"
 set fish_color_autosuggestion cyan
 set fish_color_search_match   --background=brmagenta
 #set fish_color_selection      --background=blue
+
+
+#cd ~/dev/ooq/g.prototype/001/assets/
+
 
 
