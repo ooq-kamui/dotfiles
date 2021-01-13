@@ -561,6 +561,8 @@ let g:fzf_action = { 'ctrl-o': 'tab drop' }
 "fzf#vim#complete#buffer_line([spec])
 
 " files
+nnoremap <leader>u :Files <cr>
+vnoremap <leader>u :Files <cr>
 nnoremap <leader>l :Files <cr>
 vnoremap <leader>l :Files <cr>
 command! -bang -nargs=? -complete=dir Files
