@@ -471,21 +471,25 @@ inoremap <c-s> <c-o>x
 inoremap <c-h> <c-h>
 
 " del word forword
-inoremap <c-k> <c-o>dw
+inoremap <expr> <c-k> pumvisible() ? "<up>" : "<c-o>dw"
+"inoremap <c-k> <c-o>dw
 
 " line new
-inoremap <c-j> <cr>
+inoremap <c-m> <cr>
+"inoremap <c-j> <cr>
 
 " tab
 inoremap <tab> <c-v><Tab>
 
 " input complete
-inoremap <c-m> <c-n>
+inoremap <c-j> <c-n>
+"inoremap <c-m> <c-n>
 inoremap <c-v> <c-n>
 inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-o>j"
 inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-o>k"
 
-" quit
+" quit, esc
+"inoremap <c-;> <esc> " cannot set
 inoremap <esc> <esc>
 inoremap <c-c> <esc>
 inoremap <c-f> <esc>
