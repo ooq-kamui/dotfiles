@@ -103,7 +103,7 @@ colorscheme koehler " evening
 
 
 "
-" mode normal ( command )
+" mode normal
 "
 
  " quit
@@ -151,9 +151,7 @@ nnoremap b     <c-o>
 nnoremap <c-b> <c-i>
 
 " scroll
-"nnoremap <c-w>     10<c-y>
-"nnoremap w         10<c-e>
-"nnoremap <leader>w 10<c-y>
+nnoremap <c-e> 10<c-e>
 nnoremap K 10<c-y>
 nnoremap J 10<c-e>
 nnoremap <up>   <c-y>
@@ -322,11 +320,10 @@ nnoremap <c-r> <esc>
 nnoremap <c-t> <esc>
 nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
-"nnoremap <c-w> <esc>
+nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
 nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
-
 
 "
 " mode visual
@@ -360,8 +357,8 @@ vnoremap <c-k> 10k
 vnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
 
 " ins
-vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "A" : "I" : "<c-c>i"
-"vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "A" : "I" : "c"
+vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "I" : "I" : "<c-c>i"
+"vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "A" : "I" : "<c-c>i"
 
 " ins
 "vnoremap u <esc>i
@@ -446,19 +443,12 @@ inoremap <c-e> <c-o>$
 
 " cursor mv char
 inoremap <c-l> <c-o>l
-inoremap <c-o> <c-o>h
+inoremap <expr> <c-o> pumvisible() ? "<c-y>" : "<c-o>h"
+"inoremap <c-o> <c-o>h
 
 " cursor mv word
 "inoremap <c-f> <c-o>w
 "inoremap <c-q> <c-o>b
-"inoremap <expr> <c-q> pumvisible() ? "<esc>i" : "<c-o>b"
-
-"inoremap ( ()<c-o>h
-inoremap < <><c-o>h
-inoremap [ []<c-o>h
-inoremap { {}<c-o>h
-inoremap <expr> " col(".") == 1 ? "\"" : "\"\"<c-o>h"
-inoremap ' ''<c-o>h
 
 " del line
 "inoremap <c-k> <c-o>D
@@ -471,22 +461,29 @@ inoremap <c-s> <c-o>x
 inoremap <c-h> <c-h>
 
 " del word forword
-inoremap <expr> <c-k> pumvisible() ? "<up>" : "<c-o>dw"
-"inoremap <c-k> <c-o>dw
+inoremap <expr> <c-k> pumvisible() ? "<c-p>" : "<c-o>dw"
+"inoremap <expr> <c-k> pumvisible() ? "<up>"   : "<c-o>dw"
 
 " line new
-inoremap <c-m> <cr>
-"inoremap <c-j> <cr>
+inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<cr>"
+"inoremap <expr> <c-j> pumvisible() ? "<down>" : "<cr>"
 
 " tab
 inoremap <tab> <c-v><Tab>
 
 " input complete
-inoremap <c-j> <c-n>
-"inoremap <c-m> <c-n>
-inoremap <c-v> <c-n>
+inoremap <c-m> <c-n>
+"inoremap <c-j> <c-n>
+"inoremap <c-v> <c-n>
 inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-o>j"
 inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-o>k"
+
+"inoremap ( ()<c-o>h
+"inoremap < <><c-o>h
+"inoremap [ []<c-o>h
+inoremap { {}<c-o>h
+inoremap <expr> " col(".") == 1 ? "\"" : "\"\"<c-o>h"
+inoremap ' ''<c-o>h
 
 " quit, esc
 "inoremap <c-;> <esc> " cannot set
@@ -565,16 +562,14 @@ let g:fzf_action = { 'ctrl-o': 'tab drop' }
 "fzf#vim#complete#buffer_line([spec])
 
 " files
-nnoremap <leader>u :Files <cr>
-vnoremap <leader>u :Files <cr>
-nnoremap <leader>l :Files <cr>
-vnoremap <leader>l :Files <cr>
+nnoremap <leader>i :Files <cr>
+vnoremap <leader>i :Files <cr>
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)
 
 " lines
-nnoremap <leader>i :BLines<cr>
-vnoremap <leader>i "ay:BLines <c-r>a<cr>
+nnoremap <leader>u :BLines<cr>
+vnoremap <leader>u "ay:BLines <c-r>a<cr>
 "nnoremap <leader>j :BLines<cr>
 "vnoremap <leader>j y:BLines <c-r>0<cr>
 command! -bang -nargs=? BLines
