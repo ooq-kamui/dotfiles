@@ -12,8 +12,8 @@ set -x RIPGREP_CONFIG_PATH ~/.ripgreprc
 
 alias ll="la"
 #alias ls="ls -1"
-#alias vim="nvim"
-#alias vi="nvim"
+alias vim="nvim"
+alias vi="nvim"
 
 #alias f="mdfind -onlyin . -name"
 
