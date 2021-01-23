@@ -113,7 +113,7 @@ nnoremap :q :q!
 
 " save
 nnoremap e         :w<Cr>
-nnoremap <leader>e :w<Cr>
+"nnoremap <leader>e :w<Cr>
 
 "
 " cursor mv
@@ -140,7 +140,8 @@ nnoremap <c-l> el
 nnoremap o     b
 
 " cursor mv file
-nnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
+nnoremap <expr> <c-p> line(".") == 1 ? "G$l" : "gg"
+nnoremap <expr> gg    line(".") == 1 ? "G$l" : "gg"
 nnoremap <c-g> G$l
 
 " cursor mv brackets
@@ -151,7 +152,8 @@ nnoremap b     <c-o>
 nnoremap <c-b> <c-i>
 
 " scroll
-nnoremap <c-e> 10<c-e>
+nnoremap <c-o> 10<c-e>
+"nnoremap <c-e> 10<c-e>
 nnoremap K 10<c-y>
 nnoremap J 10<c-e>
 nnoremap <up>   <c-y>
@@ -275,7 +277,8 @@ nnoremap ~ <esc>
 nnoremap @ <esc>
 "nnoremap ; <esc>
 nnoremap <c-@> <esc>
-"nnoremap <c-;> <esc>
+"nnoremap <c-:> <esc> " cannot set
+"nnoremap <c-;> <esc> " cannot set
 "nnoremap <c-,> <esc>
 "nnoremap <c-[> <esc>
 "nnoremap <c-]> <esc>
@@ -312,8 +315,8 @@ nnoremap <c-f> <esc>
 "nnoremap <c-l> <esc>
 "nnoremap <c-m> <esc>
 "nnoremap <c-n> <esc>
-nnoremap <c-o> <esc>
-nnoremap <c-p> <esc>
+"nnoremap <c-o> <esc>
+"nnoremap <c-p> <esc>
 nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
@@ -357,7 +360,8 @@ vnoremap <c-j> 10j
 vnoremap <c-k> 10k
 
 " cursor mv file
-vnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
+vnoremap <expr> <c-p> line(".") == 1 ? "G$l" : "gg"
+vnoremap <expr> gg    line(".") == 1 ? "G$l" : "gg"
 
 " ins
 vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "I" : "I" : "l<c-c>i"
@@ -431,7 +435,7 @@ vnoremap <c-f> <c-c>
 "vnoremap <c-l> <c-c>
 vnoremap <c-n> <c-c>
 vnoremap <c-o> <c-c>
-vnoremap <c-p> <c-c>
+"vnoremap <c-p> <c-c>
 vnoremap <c-q> <c-c>
 vnoremap <c-w> <c-c>
 vnoremap <c-x> <c-c>
@@ -490,7 +494,7 @@ inoremap <expr> " col(".") == 1 ? "\"" : "\"\"<c-o>h"
 inoremap ' ''<c-o>h
 
 " quit, esc
-"inoremap <c-;> <esc> " cannot set
+"inoremap <c-;> <esc>
 inoremap <esc> <esc>
 inoremap <c-c> <esc>
 inoremap <c-f> <esc>
