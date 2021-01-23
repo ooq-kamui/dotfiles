@@ -24,7 +24,11 @@ hi luaStatement    ctermfg=130
 hi luaConstant     ctermfg=13
 
 " comment
-hi luaComment      ctermfg=121
+hi luaComment      ctermfg=28
+"hi luaComment      ctermfg=green
+"hi luaComment      ctermfg=34
+"hi luaComment      ctermfg=35
+"hi luaComment      ctermfg=121
 
 " string 201 133
 hi luaString       ctermfg=171
