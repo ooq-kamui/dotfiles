@@ -337,7 +337,7 @@ vnoremap i V
 vnoremap v <c-v>
 
 " cursor mv
-vnoremap <expr> ; col(".") == col("$") ? "0" : "$"
+"vnoremap <expr> ; col(".") == col("$") ? "0" : "$"
 
 " cursor mv char
 vnoremap l l
@@ -345,9 +345,11 @@ vnoremap l l
 " cursor mv word
 vnoremap f e
 vnoremap o b
+vnoremap <c-l> el
 
-" cursor mv in word
-vnoremap e o
+" cursor mv in selected
+vnoremap ; o
+"vnoremap e o
 "vnoremap <c-o> o
 
 " cursor mv line
@@ -410,22 +412,23 @@ vnoremap r "ay/<c-r>a<cr>N
 " esc
 "
 vnoremap <space> <nop>
-vnoremap @     <c-c>
-"vnoremap *     <c-c>
-"vnoremap a     <c-c>
-vnoremap b     <c-c>
-"vnoremap e     <c-c>
-"vnoremap h     <c-c>
-"vnoremap i     <c-c>
-"vnoremap o     <c-c>
-vnoremap q     <c-c>
-"vnoremap r     <c-c>
-"vnoremap s     <c-c>
-"vnoremap u     <c-c>
-vnoremap w     <c-c>
-vnoremap y     <c-c>
+vnoremap @ <c-c>
+"vnoremap * <c-c>
+"vnoremap a <c-c>
+vnoremap b <c-c>
+vnoremap e <c-c>
+"vnoremap h <c-c>
+"vnoremap i <c-c>
+"vnoremap o <c-c>
+vnoremap q <c-c>
+"vnoremap r <c-c>
+"vnoremap s <c-c>
+"vnoremap u <c-c>
+vnoremap w <c-c>
+vnoremap y <c-c>
 vnoremap <c-a> <c-c>
 vnoremap <c-f> <c-c>
+"vnoremap <c-l> <c-c>
 vnoremap <c-n> <c-c>
 vnoremap <c-o> <c-c>
 vnoremap <c-p> <c-c>
