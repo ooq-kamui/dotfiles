@@ -215,11 +215,9 @@ nnoremap p P
 " undo, redo
 nnoremap h     u
 nnoremap <c-h> <c-r>
-"nnoremap , u
-"nnoremap . <c-r>
 
 " repeat
-"nnoremap . .
+nnoremap . .
 
 " inc, dec
 nnoremap + <c-a>
@@ -271,7 +269,7 @@ nnoremap <space> <esc>
 nnoremap <bs>    <esc>
 
 nnoremap , <esc>
-nnoremap . <esc>
+"nnoremap . <esc>
 nnoremap * <esc>
 nnoremap _ <esc>
 nnoremap ~ <esc>
