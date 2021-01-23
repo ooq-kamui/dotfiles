@@ -363,26 +363,23 @@ vnoremap <expr> <c-p> line(".") == 1 ? "G$l" : "gg"
 vnoremap <expr> gg    line(".") == 1 ? "G$l" : "gg"
 
 " ins
-vnoremap <expr> e mode() == "<c-v>" ? col(".") == col("$") ? "I" : "I" : "l<c-c>i"
+vnoremap a I
+"vnoremap <expr> e mode() == "<c-v>" ? "c" : "l<c-c>i"
 "vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "I" : "I" : "l<c-c>i"
 "vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "A" : "I" : "<c-c>i"
 
-" ins
-"vnoremap u <esc>i
-
 " cut & ins
-vnoremap <expr> s mode() == "<c-v>" ? "c" : mode() == "V" ? "x" : "x"
+vnoremap e c
+"vnoremap <expr> s mode() == "<c-v>" ? "c" : mode() == "V" ? "x" : "x"
 "vnoremap <expr> h mode() == "<c-v>" ? "c" : "x"
 
 " ins $
 vnoremap <expr> $ mode() == "<c-v>" ? "$A" : "$"
 
-" ins line
-"vnoremap u <esc>O<esc>
-
 " del
-vnoremap <expr> d mode() == "<c-v>" ? "x" : "x"
-vnoremap <expr> x mode() == "<c-v>" ? "x" : "x"
+vnoremap s x
+vnoremap x x
+vnoremap d d
 
 " yank
 vnoremap c y
@@ -418,8 +415,9 @@ vnoremap r "ay/<c-r>a<cr>N
 vnoremap <space> <nop>
 vnoremap @ <c-c>
 "vnoremap * <c-c>
-vnoremap a <c-c>
+"vnoremap a <c-c>
 vnoremap b <c-c>
+"vnoremap d <c-c>
 "vnoremap e <c-c>
 "vnoremap h <c-c>
 "vnoremap i <c-c>
@@ -429,6 +427,7 @@ vnoremap q <c-c>
 "vnoremap s <c-c>
 "vnoremap u <c-c>
 vnoremap w <c-c>
+"vnoremap x <c-c>
 vnoremap y <c-c>
 vnoremap <c-a> <c-c>
 vnoremap <c-f> <c-c>
