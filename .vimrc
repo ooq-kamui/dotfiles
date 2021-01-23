@@ -197,8 +197,8 @@ nnoremap <expr> <c-s> col(".") == col("$") ? "<esc>" : "dw"
 nnoremap A ggVG
 
 " select word
-nnoremap i viwo
-"nnoremap i viw
+nnoremap i viw
+"nnoremap i viwo
 
 " select box
 nnoremap v <c-v>
@@ -344,10 +344,11 @@ vnoremap l l
 
 " cursor mv word
 vnoremap f e
-"vnoremap o b
+vnoremap o b
 
 " cursor mv in word
-vnoremap o o
+vnoremap e o
+"vnoremap <c-o> o
 
 " cursor mv line
 vnoremap <c-j> 10j
@@ -357,7 +358,7 @@ vnoremap <c-k> 10k
 vnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
 
 " ins
-vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "I" : "I" : "<c-c>i"
+vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "I" : "I" : "l<c-c>i"
 "vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "A" : "I" : "<c-c>i"
 
 " ins
@@ -365,7 +366,7 @@ vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "I" : "I" : "<c-c>i
 
 " cut & ins
 vnoremap <expr> s mode() == "<c-v>" ? "c" : mode() == "V" ? "x" : "x"
-vnoremap <expr> h mode() == "<c-v>" ? "c" : "x"
+"vnoremap <expr> h mode() == "<c-v>" ? "c" : "x"
 
 " ins $
 vnoremap <expr> $ mode() == "<c-v>" ? "$A" : "$"
@@ -562,16 +563,14 @@ let g:fzf_action = { 'ctrl-o': 'tab drop' }
 "fzf#vim#complete#buffer_line([spec])
 
 " files
-nnoremap <leader>i :Files <cr>
-vnoremap <leader>i :Files <cr>
+nnoremap <leader>f :Files <cr>
+vnoremap <leader>f :Files <cr>
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)
 
 " lines
-nnoremap <leader>u :BLines<cr>
-vnoremap <leader>u "ay:BLines <c-r>a<cr>
-"nnoremap <leader>j :BLines<cr>
-"vnoremap <leader>j y:BLines <c-r>0<cr>
+nnoremap <leader>i :BLines<cr>
+vnoremap <leader>i "ay:BLines <c-r>a<cr>
 command! -bang -nargs=? BLines
 \ call fzf#vim#buffer_lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
 
