@@ -112,8 +112,8 @@ nnoremap w  :q<Cr>
 nnoremap :q :q!
 
 " save
-nnoremap e         :w<Cr>
-"nnoremap <leader>e :w<Cr>
+nnoremap a :w<Cr>
+"nnoremap e :w<Cr>
 
 "
 " cursor mv
@@ -164,7 +164,8 @@ nnoremap <down> <c-e>
 "
 
 " ins
-nnoremap a i
+nnoremap e i
+"nnoremap a i
 
 " ins line
 nnoremap u O<Esc>
@@ -364,7 +365,8 @@ vnoremap <expr> <c-p> line(".") == 1 ? "G$l" : "gg"
 vnoremap <expr> gg    line(".") == 1 ? "G$l" : "gg"
 
 " ins
-vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "I" : "I" : "l<c-c>i"
+vnoremap <expr> e mode() == "<c-v>" ? col(".") == col("$") ? "I" : "I" : "l<c-c>i"
+"vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "I" : "I" : "l<c-c>i"
 "vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "A" : "I" : "<c-c>i"
 
 " ins
@@ -418,9 +420,9 @@ vnoremap r "ay/<c-r>a<cr>N
 vnoremap <space> <nop>
 vnoremap @ <c-c>
 "vnoremap * <c-c>
-"vnoremap a <c-c>
+vnoremap a <c-c>
 vnoremap b <c-c>
-vnoremap e <c-c>
+"vnoremap e <c-c>
 "vnoremap h <c-c>
 "vnoremap i <c-c>
 "vnoremap o <c-c>
