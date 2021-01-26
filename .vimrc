@@ -112,7 +112,8 @@ nnoremap w  :q<Cr>
 nnoremap :q :q!
 
 " save
-nnoremap a :w<Cr>
+nnoremap a  :w<Cr>
+"nnoremap ww :w<Cr>
 "nnoremap e :w<Cr>
 
 "
@@ -132,7 +133,8 @@ nnoremap <c-j> 10j
 nnoremap <expr> ; col(".") == col("$") ? "0" : "$l"
 
 " cursor mv char
-nnoremap l l
+nnoremap l     l
+nnoremap <c-o> h
 
 " cursor mv word
 nnoremap f     w
@@ -140,8 +142,8 @@ nnoremap <c-l> el
 nnoremap o     b
 
 " cursor mv file
-nnoremap <expr> <c-p> line(".") == 1 ? "G$l" : "gg"
-nnoremap <expr> gg    line(".") == 1 ? "G$l" : "gg"
+nnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
+nnoremap gn    G$l
 nnoremap <c-g> G$l
 
 " cursor mv brackets
@@ -152,12 +154,12 @@ nnoremap b     <c-o>
 nnoremap <c-b> <c-i>
 
 " scroll
-nnoremap <c-o> 10<c-e>
-"nnoremap <c-e> 10<c-e>
-nnoremap K 10<c-y>
-nnoremap J 10<c-e>
+nnoremap go    10<c-e>
+nnoremap <c-e> 10<c-e>
 nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
+nnoremap K      10<c-y>
+nnoremap J      10<c-e>
 
 "
 " edit
@@ -194,7 +196,9 @@ nnoremap <c-m> J
 
 " del word forward
 nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : "de"
-nnoremap <expr> <c-s> col(".") == col("$") ? "<esc>" : "dw"
+"nnoremap <expr> <c-w> col(".") == col("$") ? "<esc>" : "de"
+"nnoremap <expr> <c-e> col(".") == col("$") ? "<esc>" : "de"
+"nnoremap <c-s> dw
 
 " select all
 nnoremap A ggVG
@@ -287,7 +291,7 @@ nnoremap <c-@> <esc>
 "nnoremap b <esc>
 "nnoremap d <esc>
 "nnoremap e <esc>
-"nnoremap g <esc>
+nnoremap g <esc>
 "nnoremap h <esc>
 "nnoremap i <esc>
 "nnoremap l <esc>
@@ -306,6 +310,7 @@ nnoremap z <esc>
 nnoremap <c-a> <esc>
 "nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
+"nnoremap <c-d> <esc>
 "nnoremap <c-e> <esc>
 nnoremap <c-f> <esc>
 "nnoremap <c-g> <esc>
@@ -318,7 +323,7 @@ nnoremap <c-f> <esc>
 "nnoremap <c-p> <esc>
 nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
-"nnoremap <c-s> <esc>
+nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
 nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
