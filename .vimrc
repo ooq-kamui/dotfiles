@@ -248,7 +248,7 @@ nnoremap r     *N
 "nnoremap <c-p> `0
 
 " tag jump
-"nnoremap r <c-w>gF
+nnoremap t <c-w>gF
 
 "
 " tab
@@ -300,7 +300,7 @@ nnoremap g <esc>
 "nnoremap q <esc>
 "nnoremap r <esc>
 "nnoremap s <esc>
-nnoremap t <esc>
+"nnoremap t <esc>
 "nnoremap u <esc>
 "nnoremap w <esc>
 "nnoremap x <esc>
@@ -626,5 +626,28 @@ let g:fzf_colors = {
 \   'hl+':     ['fg', 'Statement'],
 \ }
 "\   'bg+':     ['bg', 'Normal'],
+
+
+"
+" netrw
+"
+
+" file open
+nnoremap :e :Tex .<cr>
+
+" view file tree
+let g:netrw_liststyle = 3
+
+function! NetrwMapping_o (islocal) abort
+  return "normal t"
+  "return "normal! r"
+  "return "normal! l"
+endfunction
+
+let g:Netrw_UserMaps = [
+\ ['o', 'NetrwMapping_o'],
+\]
+
+
 
 
