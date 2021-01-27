@@ -196,8 +196,7 @@ nnoremap <c-m> J
 
 " del word forward
 nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : "de"
-"nnoremap <expr> <c-w> col(".") == col("$") ? "<esc>" : "de"
-"nnoremap <expr> <c-e> col(".") == col("$") ? "<esc>" : "de"
+nnoremap <expr> <c-s> col(".") == col("$") ? "<esc>" : "dw"
 "nnoremap <c-s> dw
 
 " select all
@@ -323,7 +322,7 @@ nnoremap <c-f> <esc>
 "nnoremap <c-p> <esc>
 nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
-nnoremap <c-s> <esc>
+"nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
 nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
@@ -632,16 +631,14 @@ let g:fzf_colors = {
 " netrw
 "
 
-" file open
+" launch
 nnoremap :e :Tex .<cr>
 
-" view file tree
-let g:netrw_liststyle = 3
+let g:netrw_liststyle    = 3 " view file tree
+let g:netrw_browse_split = 3 " file open tab
 
 function! NetrwMapping_o (islocal) abort
-  return "normal t"
-  "return "normal! r"
-  "return "normal! l"
+  return "normal \<cr>"
 endfunction
 
 let g:Netrw_UserMaps = [
