@@ -45,6 +45,10 @@ set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
 autocmd ColorScheme * hi NonText      ctermfg=25         ctermbg=none    cterm=none
 autocmd ColorScheme * hi SpecialKey   ctermfg=25         ctermbg=none    cterm=none
 
+autocmd ColorScheme * hi netrwDir      ctermfg=lightgreen
+autocmd ColorScheme * hi netrwTreeBar  ctermfg=lightgreen
+autocmd ColorScheme * hi netrwClassify ctermfg=lightgreen
+
 autocmd BufNewFile,BufRead *.script     set filetype=lua
 autocmd BufNewFile,BufRead *.gui_script set filetype=lua
 
@@ -195,8 +199,8 @@ nnoremap <c-m> J
 "nnoremap <c-w> hvbd
 
 " del word forward
-nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : "de"
-nnoremap <expr> <c-s> col(".") == col("$") ? "<esc>" : "dw"
+nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : "dw"
+nnoremap <expr> <c-s> col(".") == col("$") ? "<esc>" : "de"
 "nnoremap <c-s> dw
 
 " select all
@@ -573,8 +577,8 @@ let g:fzf_action = { 'ctrl-o': 'tab drop' }
 "fzf#vim#complete#buffer_line([spec])
 
 " files
-nnoremap <leader>f :Files <cr>
-vnoremap <leader>f :Files <cr>
+nnoremap <leader>r :Files <cr>
+vnoremap <leader>r :Files <cr>
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)
 
@@ -632,7 +636,8 @@ let g:fzf_colors = {
 "
 
 " launch
-nnoremap :e :Tex .<cr>
+nnoremap :e        :Tex .<cr>
+nnoremap <leader>f :Tex .<cr>
 
 let g:netrw_liststyle    = 3 " view file tree
 let g:netrw_browse_split = 3 " file open tab
@@ -644,7 +649,6 @@ endfunction
 let g:Netrw_UserMaps = [
 \ ['o', 'NetrwMapping_o'],
 \]
-
 
 
 
