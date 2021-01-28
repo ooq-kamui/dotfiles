@@ -323,7 +323,7 @@ nnoremap <c-f> <esc>
 "nnoremap <c-m> <esc>
 "nnoremap <c-n> <esc>
 "nnoremap <c-o> <esc>
-"nnoremap <c-p> <esc>
+nnoremap <c-p> <esc>
 nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
@@ -369,6 +369,7 @@ vnoremap <c-k> 10k
 " cursor mv file
 vnoremap <expr> <c-p> line(".") == 1 ? "G$l" : "gg"
 vnoremap <expr> gg    line(".") == 1 ? "G$l" : "gg"
+vnoremap gn G$l
 
 " ins
 vnoremap a I
