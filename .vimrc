@@ -642,12 +642,13 @@ nnoremap <leader>f :Tex .<cr>
 let g:netrw_liststyle    = 3 " view file tree
 let g:netrw_browse_split = 3 " file open tab
 
-function! NetrwMapping_o (islocal) abort
+function! NetrwMapping_cr (islocal) abort
   return "normal \<cr>"
 endfunction
 
 let g:Netrw_UserMaps = [
-\ ['o', 'NetrwMapping_o'],
+\ ['<c-o>',     'NetrwMapping_cr'],
+\ ['<leader>o', 'NetrwMapping_cr'],
 \]
 
 
