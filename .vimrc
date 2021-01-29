@@ -172,7 +172,6 @@ nnoremap J      10<c-e>
 
 " ins
 nnoremap e i
-"nnoremap a i
 
 " ins line
 nnoremap u O<Esc>
@@ -377,8 +376,6 @@ vnoremap gn G$l
 " ins
 "vnoremap a I
 "vnoremap <expr> e mode() == "<c-v>" ? "c" : "l<c-c>i"
-"vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "I" : "I" : "l<c-c>i"
-"vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "A" : "I" : "<c-c>i"
 
 " cut & ins
 vnoremap e c
@@ -427,7 +424,7 @@ vnoremap r "ay/<c-r>a<cr>N
 vnoremap <space> <nop>
 vnoremap @ <c-c>
 "vnoremap * <c-c>
-"vnoremap a <c-c>
+vnoremap a <c-c>
 vnoremap b <c-c>
 "vnoremap d <c-c>
 "vnoremap e <c-c>
