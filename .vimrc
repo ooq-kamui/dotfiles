@@ -146,9 +146,10 @@ nnoremap <c-l> el
 nnoremap o     b
 
 " cursor mv file
-nnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
+nnoremap gg    gg
 nnoremap gn    G$l
-nnoremap <c-g> G$l
+"nnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
+"nnoremap <c-g> G$l
 
 " cursor mv brackets
 nnoremap 0 %
@@ -339,8 +340,9 @@ nnoremap <c-z> <esc>
 " mode visual
 "
 
-" mode ch line
-vnoremap i V
+" mode ch line , ins
+vnoremap <expr> i mode() == "<c-v>" ? "I" : "V"
+"vnoremap i V
 "vnoremap w V
 
 " mode ch box
@@ -367,12 +369,13 @@ vnoremap <c-j> 10j
 vnoremap <c-k> 10k
 
 " cursor mv file
-vnoremap <expr> <c-p> line(".") == 1 ? "G$l" : "gg"
-vnoremap <expr> gg    line(".") == 1 ? "G$l" : "gg"
+vnoremap gg gg
 vnoremap gn G$l
+"vnoremap <expr> gg    line(".") == 1 ? "G$l" : "gg"
+"vnoremap <expr> <c-p> line(".") == 1 ? "G$l" : "gg"
 
 " ins
-vnoremap a I
+"vnoremap a I
 "vnoremap <expr> e mode() == "<c-v>" ? "c" : "l<c-c>i"
 "vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "I" : "I" : "l<c-c>i"
 "vnoremap <expr> a mode() == "<c-v>" ? col(".") == col("$") ? "A" : "I" : "<c-c>i"
@@ -556,6 +559,32 @@ if &term =~ '^screen'
 end
 
 
+"
+" netrw
+"
+
+" launch
+nnoremap :e        :Tex .<cr>
+nnoremap <leader>f :Tex .<cr>
+nnoremap <leader>l :Tex .<cr>
+
+let g:netrw_liststyle    = 3 " view file tree
+let g:netrw_browse_split = 3 " file open tab
+
+func! NetrwKeyBind_opn (islocal) abort
+  return "normal  \<cr>"
+endfunc
+func! NetrwKeyBind_mv_word_back (islocal) abort
+  return "normal! b"
+endfunc
+
+let g:Netrw_UserMaps = [
+\ ['<c-o>'    , 'NetrwKeyBind_opn'],
+\ ['<leader>o', 'NetrwKeyBind_opn'],
+\ ['o'        , 'NetrwKeyBind_mv_word_back'],
+\]
+"\ ['o',         'NetrwMapping_cr'],
+
 " 
 " plugin
 " 
@@ -580,6 +609,8 @@ let g:fzf_action = { 'ctrl-o': 'tab drop' }
 " files
 nnoremap <leader>r :Files <cr>
 vnoremap <leader>r :Files <cr>
+nnoremap <leader>u :Files <cr>
+vnoremap <leader>u :Files <cr>
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)
 
@@ -630,27 +661,5 @@ let g:fzf_colors = {
 \   'hl+':     ['fg', 'Statement'],
 \ }
 "\   'bg+':     ['bg', 'Normal'],
-
-
-"
-" netrw
-"
-
-" launch
-nnoremap :e        :Tex .<cr>
-nnoremap <leader>f :Tex .<cr>
-
-let g:netrw_liststyle    = 3 " view file tree
-let g:netrw_browse_split = 3 " file open tab
-
-function! NetrwMapping_cr (islocal) abort
-  return "normal \<cr>"
-endfunction
-
-let g:Netrw_UserMaps = [
-\ ['<c-o>',     'NetrwMapping_cr'],
-\ ['<leader>o', 'NetrwMapping_cr'],
-\]
-
 
 
