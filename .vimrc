@@ -581,6 +581,7 @@ endfunc
 let g:Netrw_UserMaps = [
 \ ['<c-o>'    , 'NetrwKeyBind_opn'],
 \ ['<leader>o', 'NetrwKeyBind_opn'],
+\ ['<c-l>'    , 'NetrwKeyBind_opn'],
 \ ['o'        , 'NetrwKeyBind_mv_word_back'],
 \]
 "\ ['o',         'NetrwMapping_cr'],
