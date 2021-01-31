@@ -28,9 +28,9 @@ autocmd ColorScheme * hi Search       ctermfg=yellow     ctermbg=cyan    cterm=n
 autocmd ColorScheme * hi IncSearch    ctermfg=yellow     ctermbg=cyan    cterm=none
 autocmd ColorScheme * hi MatchParen   ctermfg=magenta    ctermbg=none
 
-autocmd ColorScheme * hi TabLineFill                     ctermbg=27
-autocmd ColorScheme * hi TabLine      ctermfg=lightblue  ctermbg=27
-autocmd ColorScheme * hi TabLineSel   ctermfg=182        ctermbg=blue
+autocmd ColorScheme * hi TabLineSel   ctermfg=182        ctermbg=blue    cterm=none
+autocmd ColorScheme * hi TabLine      ctermfg=lightblue  ctermbg=27      cterm=none
+autocmd ColorScheme * hi TabLineFill                     ctermbg=27      cterm=none
 
 autocmd ColorScheme * hi StatusLine   ctermfg=lightblue  ctermbg=33      cterm=none
 autocmd ColorScheme * hi EndOfBuffer  ctermfg=cyan                       cterm=none
