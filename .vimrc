@@ -81,12 +81,12 @@ set showtabline=2
 set clipboard+=unnamed
 syntax on
 
-set statusline=%F  " file name 表示
-set statusline+=%m " 変更あり表示
-set statusline+=%= " 以降を右寄せ
-set statusline+=[ENC=%{&fileencoding}] " file encoding
-set statusline+=[LOW=%l/%L]            " 現在行数/全行数
-"set statusline^=%{coc#status()}        " coc.vim
+set statusline=%F                  " file name 表示
+set statusline+=%=                 " 以降を右寄せ
+set statusline+=%m\                " 変更あり表示
+set statusline+=%{&fileencoding}\  " file encoding
+set statusline+=%l/%L              " 現在行数/全行数
+"set statusline^=%{coc#status()}   " coc.vim
 set laststatus=2   " 0: off  1: on 2 win  2: on
 
 set completeopt=menuone,noinsert
@@ -116,7 +116,8 @@ nnoremap w  :q<Cr>
 nnoremap :q :q!
 
 " save
-nnoremap a  :w<Cr>
+nnoremap a     :w<Cr>
+nnoremap <c-w> :w<Cr>
 "nnoremap ww :w<Cr>
 "nnoremap e :w<Cr>
 
@@ -146,8 +147,9 @@ nnoremap <c-l> el
 nnoremap o     b
 
 " cursor mv file
-nnoremap gg    gg
-nnoremap gn    G$l
+nnoremap gj gg0
+nnoremap gg gg
+nnoremap gn G$l
 "nnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
 "nnoremap <c-g> G$l
 
@@ -159,12 +161,13 @@ nnoremap b     <c-o>
 nnoremap <c-b> <c-i>
 
 " scroll
-nnoremap go    10<c-e>
 nnoremap <c-e> 10<c-e>
 nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 nnoremap K      10<c-y>
 nnoremap J      10<c-e>
+"nnoremap a     10<c-e>
+"nnoremap go    10<c-e>
 
 "
 " edit
@@ -330,7 +333,7 @@ nnoremap <c-r> <esc>
 nnoremap <c-t> <esc>
 nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
-nnoremap <c-w> <esc>
+"nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
 nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
@@ -368,6 +371,7 @@ vnoremap <c-j> 10j
 vnoremap <c-k> 10k
 
 " cursor mv file
+vnoremap gj gg0
 vnoremap gg gg
 vnoremap gn G$l
 "vnoremap <expr> gg    line(".") == 1 ? "G$l" : "gg"
@@ -561,9 +565,9 @@ end
 "
 
 " launch
-nnoremap :e        :Tex .<cr>
-nnoremap <leader>f :Tex .<cr>
+nnoremap <leader>r :Tex .<cr>
 nnoremap <leader>l :Tex .<cr>
+"nnoremap :e        :Tex .<cr>
 
 let g:netrw_liststyle    = 3 " view file tree
 let g:netrw_browse_split = 3 " file open tab
@@ -577,10 +581,10 @@ endfunc
 
 let g:Netrw_UserMaps = [
 \ ['<c-o>'    , 'NetrwKeyBind_opn'],
-\ ['<leader>o', 'NetrwKeyBind_opn'],
 \ ['<c-l>'    , 'NetrwKeyBind_opn'],
 \ ['o'        , 'NetrwKeyBind_mv_word_back'],
 \]
+"\ ['<leader>o', 'NetrwKeyBind_opn'],
 "\ ['o',         'NetrwMapping_cr'],
 
 " 
@@ -605,10 +609,10 @@ let g:fzf_action = { 'ctrl-o': 'tab drop' }
 "fzf#vim#complete#buffer_line([spec])
 
 " files
-nnoremap <leader>r :Files <cr>
-vnoremap <leader>r :Files <cr>
 nnoremap <leader>u :Files <cr>
 vnoremap <leader>u :Files <cr>
+nnoremap <leader>f :Files <cr>
+vnoremap <leader>f :Files <cr>
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)
 
