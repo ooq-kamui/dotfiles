@@ -24,8 +24,8 @@ autocmd ColorScheme * hi CursorLineNr ctermfg=121
 
 autocmd ColorScheme * hi Visual                          ctermbg=magenta cterm=none
 autocmd ColorScheme * hi VisualNOS                       ctermbg=magenta cterm=none
-autocmd ColorScheme * hi Search       ctermfg=yellow     ctermbg=cyan    cterm=bold
-autocmd ColorScheme * hi IncSearch    ctermfg=magenta    ctermbg=cyan    cterm=bold
+autocmd ColorScheme * hi Search       ctermfg=yellow     ctermbg=cyan    cterm=none
+autocmd ColorScheme * hi IncSearch    ctermfg=yellow     ctermbg=cyan    cterm=none
 autocmd ColorScheme * hi MatchParen   ctermfg=magenta    ctermbg=none
 
 autocmd ColorScheme * hi TabLineFill                     ctermbg=27
@@ -116,8 +116,8 @@ nnoremap w  :q<Cr>
 nnoremap :q :q!
 
 " save
-nnoremap a     :w<Cr>
-nnoremap <c-w> :w<Cr>
+nnoremap a :w<Cr>
+"nnoremap <c-w> :w<Cr>
 "nnoremap ww :w<Cr>
 "nnoremap e :w<Cr>
 
@@ -227,7 +227,8 @@ nnoremap h     u
 nnoremap <c-h> <c-r>
 
 " repeat
-nnoremap . .
+nnoremap <c-w> .
+nnoremap .     .
 
 " inc, dec
 nnoremap + <c-a>
@@ -408,7 +409,7 @@ vnoremap - <c-x>
 " indent
 vnoremap > >gv
 vnoremap < <gv
-vnoremap :t :'<,'>!expand -2
+vnoremap :t :'<,'>!expand -4
 
 " upper / lower
 vnoremap u ~viwo
