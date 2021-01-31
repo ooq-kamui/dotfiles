@@ -81,9 +81,9 @@ set showtabline=2
 set clipboard+=unnamed
 syntax on
 
-set statusline=%F                  " file name 表示
+set statusline=%m\                 " 変更あり表示
+set statusline+=%F                 " file name 表示
 set statusline+=%=                 " 以降を右寄せ
-set statusline+=%m\                " 変更あり表示
 set statusline+=%{&fileencoding}\  " file encoding
 set statusline+=%l/%L              " 現在行数/全行数
 "set statusline^=%{coc#status()}   " coc.vim
