@@ -147,14 +147,15 @@ nnoremap <c-l> el
 nnoremap o     b
 
 " cursor mv file
-nnoremap gj gg0
+nnoremap <expr> gj line(".") == 1 ? "G" : "gg0"
+"nnoremap gj gg0
+nnoremap <expr> gn line(".") == line("$") ? "gg" : "G$l"
+"nnoremap gn G$l
 nnoremap gg gg
-nnoremap gn G$l
-"nnoremap <expr> gg line(".") == 1 ? "G$l" : "gg"
-"nnoremap <c-g> G$l
 
 " cursor mv brackets
-nnoremap 0 %
+nnoremap <c-v> %
+nnoremap 0     %
 
 " cursor mv jump list
 nnoremap b     <c-o>
@@ -227,8 +228,9 @@ nnoremap h     u
 nnoremap <c-h> <c-r>
 
 " repeat
-nnoremap <c-w> .
+nnoremap <c-p> .
 nnoremap .     .
+nnoremap <c-w> .
 
 " inc, dec
 nnoremap + <c-a>
@@ -316,7 +318,7 @@ nnoremap z <esc>
 
 nnoremap <c-a> <esc>
 "nnoremap <c-b> <esc>
-"nnoremap <c-c> <esc>
+nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
 "nnoremap <c-e> <esc>
 nnoremap <c-f> <esc>
@@ -327,13 +329,13 @@ nnoremap <c-f> <esc>
 "nnoremap <c-m> <esc>
 "nnoremap <c-n> <esc>
 "nnoremap <c-o> <esc>
-nnoremap <c-p> <esc>
+"nnoremap <c-p> <esc>
 nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
 nnoremap <c-u> <esc>
-nnoremap <c-v> <esc>
+"nnoremap <c-v> <esc>
 "nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
 nnoremap <c-y> <esc>
