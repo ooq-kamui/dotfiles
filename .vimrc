@@ -88,13 +88,7 @@ set statusline+=%{&fileencoding}\  " file encoding
 set statusline+=%l/%L              " 現在行数/全行数
 "set statusline^=%{coc#status()}   " coc.vim
 set laststatus=2   " 0: off  1: on 2 win  2: on
-
 set completeopt=menuone,noinsert
-
-" auto comment off
-" set formatoptions-=ro
-autocmd FileType * setlocal formatoptions-=r
-autocmd FileType * setlocal formatoptions-=o
 
 " leader key
 let mapleader = "\<Space>"
@@ -547,7 +541,6 @@ cnoremap <c-c> <c-u>
 "cnoremap <c-p> <Up>
 "cnoremap <c-n> <Down>
 
-
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
   \ exe "normal g`\"" | endif
@@ -590,6 +583,7 @@ let g:Netrw_UserMaps = [
 "\ ['<leader>o', 'NetrwKeyBind_opn'],
 "\ ['o',         'NetrwMapping_cr'],
 
+
 " 
 " plugin
 " 
@@ -598,7 +592,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
-
 
 "
 " fzf
@@ -666,5 +659,13 @@ let g:fzf_colors = {
 \   'hl+':     ['fg', 'Statement'],
 \ }
 "\   'bg+':     ['bg', 'Normal'],
+
+
+"
+" set last
+"
+
+" comment auto off
+au FileType * set fo-=c fo-=r fo-=o
 
 
