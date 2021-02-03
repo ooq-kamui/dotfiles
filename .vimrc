@@ -90,6 +90,10 @@ set statusline+=%l/%L              " 現在行数/全行数
 set laststatus=2   " 0: off  1: on 2 win  2: on
 set completeopt=menuone,noinsert
 
+set foldmethod=manual
+
+
+
 " leader key
 let mapleader = "\<Space>"
 
@@ -111,13 +115,11 @@ nnoremap :q :q!
 
 " save
 nnoremap a :w<Cr>
-"nnoremap <c-w> :w<Cr>
-"nnoremap ww :w<Cr>
-"nnoremap e :w<Cr>
 
 "
 " cursor mv
 "
+
 " cursor mv dir
 nnoremap <Right> l
 nnoremap <Left>  h
@@ -156,13 +158,11 @@ nnoremap b     <c-o>
 nnoremap <c-b> <c-i>
 
 " scroll
-nnoremap <c-e> 10<c-e>
+nnoremap <c-e>  10<c-e>
 nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 nnoremap K      10<c-y>
 nnoremap J      10<c-e>
-"nnoremap a     10<c-e>
-"nnoremap go    10<c-e>
 
 "
 " edit
@@ -408,7 +408,8 @@ vnoremap < <gv
 vnoremap :t :'<,'>!expand -4
 
 " upper / lower
-vnoremap u ~viwo
+vnoremap u ~viw
+"vnoremap u ~viwo
 
 "
 " search
