@@ -28,7 +28,7 @@ autocmd ColorScheme * hi Search       ctermfg=yellow     ctermbg=cyan    cterm=n
 autocmd ColorScheme * hi IncSearch    ctermfg=yellow     ctermbg=cyan    cterm=none
 autocmd ColorScheme * hi MatchParen   ctermfg=magenta    ctermbg=none
 
-autocmd ColorScheme * hi TabLineSel   ctermfg=182        ctermbg=blue    cterm=none
+autocmd ColorScheme * hi TabLineSel   ctermfg=lightgreen ctermbg=blue    cterm=none
 autocmd ColorScheme * hi TabLine      ctermfg=lightblue  ctermbg=27      cterm=none
 autocmd ColorScheme * hi TabLineFill                     ctermbg=27      cterm=none
 
@@ -45,9 +45,16 @@ set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
 autocmd ColorScheme * hi NonText      ctermfg=25         ctermbg=none    cterm=none
 autocmd ColorScheme * hi SpecialKey   ctermfg=25         ctermbg=none    cterm=none
 
+autocmd ColorScheme * hi Comment      ctermfg=14     ctermbg=none   cterm=none
+
 autocmd ColorScheme * hi netrwDir      ctermfg=lightgreen
 autocmd ColorScheme * hi netrwTreeBar  ctermfg=lightgreen
 autocmd ColorScheme * hi netrwClassify ctermfg=lightgreen
+autocmd ColorScheme * hi netrwComment  ctermfg=14     ctermbg=none   cterm=none
+autocmd ColorScheme * hi netrwList     ctermfg=yellow ctermbg=none   cterm=none
+autocmd ColorScheme * hi netrwVersion  ctermfg=130    ctermbg=none   cterm=none
+autocmd ColorScheme * hi netrwHelpCmd  ctermfg=130    ctermbg=none   cterm=none
+
 
 autocmd BufNewFile,BufRead *.script     set filetype=lua
 autocmd BufNewFile,BufRead *.gui_script set filetype=lua
