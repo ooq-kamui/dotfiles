@@ -7,7 +7,6 @@ set modelines=0  " CVE-2007-2438
 " remove change the following statements
 set nocompatible  " Use Vim defaults instead of 100% vi compatibility
 set backspace=2   " more powerful backspacing
-set incsearch
 
 " Don't write backup file if vim is being called by "crontab -e"
 au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
@@ -65,8 +64,10 @@ augroup InsertHook
   autocmd InsertLeave * hi LineNr ctermfg=141
 augroup END 
 
-
+set incsearch
 set hlsearch
+set ignorecase smartcase
+
 set number
 set list
 set cursorline
@@ -98,8 +99,6 @@ set laststatus=2   " 0: off  1: on 2 win  2: on
 set completeopt=menuone,noinsert
 
 set foldmethod=manual
-
-
 
 " leader key
 let mapleader = "\<Space>"
