@@ -246,9 +246,8 @@ nnoremap < <<
 nnoremap n     n
 nnoremap <c-n> N
 nnoremap /     /
-nnoremap r     *N
-"nnoremap w     *N
-"nnoremap <c-w> *N
+nnoremap r     g*N
+"nnoremap r     *N
 
 " grep
 "nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
