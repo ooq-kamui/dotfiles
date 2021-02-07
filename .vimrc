@@ -15,7 +15,6 @@ au BufWrite /private/etc/pw.* set nowritebackup nobackup
 
 let skip_defaults_vim=1
 
-autocmd QuickFixCmdPost vimgrep,grep tab cwindow
 packadd Cfilter
 
 autocmd ColorScheme * hi LineNr       ctermfg=141                        cterm=none
@@ -115,9 +114,9 @@ colorscheme koehler " evening
 "
 
  " quit
-nnoremap q  :q<Cr>
 nnoremap w  :q<Cr>
 nnoremap :q :q!
+"nnoremap q  :q<Cr>
 
 " save
 nnoremap a :w<Cr>
@@ -203,8 +202,8 @@ nnoremap <c-m> J
 "nnoremap <c-w> hvbd
 
 " del word forward
-nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : "dw"
-nnoremap <expr> <c-s> col(".") == col("$") ? "<esc>" : "de"
+nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : '"adw'
+nnoremap <expr> <c-s> col(".") == col("$") ? "<esc>" : '"ade'
 "nnoremap <c-s> dw
 
 " select all
@@ -212,7 +211,8 @@ nnoremap A ggVG
 
 " select word
 nnoremap i viw
-"nnoremap i viwo
+nnoremap I     v
+nnoremap <c-u> v
 
 " select box
 nnoremap v <c-v>
@@ -305,7 +305,7 @@ nnoremap g <esc>
 "nnoremap l <esc>
 "nnoremap m <esc>
 "nnoremap n <esc>
-"nnoremap q <esc>
+nnoremap q <esc>
 "nnoremap r <esc>
 "nnoremap s <esc>
 "nnoremap t <esc>
@@ -333,7 +333,7 @@ nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
-nnoremap <c-u> <esc>
+"nnoremap <c-u> <esc>
 "nnoremap <c-v> <esc>
 "nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
@@ -413,7 +413,8 @@ vnoremap < <gv
 vnoremap :t :'<,'>!expand -4
 
 " upper / lower
-vnoremap u ~viw
+vnoremap u     ~viw
+vnoremap <c-u> uviw
 "vnoremap u ~viwo
 
 "
@@ -422,6 +423,7 @@ vnoremap u ~viw
 vnoremap n "ay/<c-r>a<cr>
 vnoremap / "ay/<c-r>a
 vnoremap r "ay/<c-r>a<cr>N
+vnoremap * *<c-c>N
 "vnoremap w "ay/<c-r>a<cr>N
 "vnoremap w *N<c-c>
 
@@ -452,6 +454,7 @@ vnoremap <c-n> <c-c>
 vnoremap <c-o> <c-c>
 "vnoremap <c-p> <c-c>
 vnoremap <c-q> <c-c>
+"vnoremap <c-u> <c-c>
 vnoremap <c-w> <c-c>
 vnoremap <c-x> <c-c>
 
@@ -560,6 +563,13 @@ if &term =~ '^screen'
   execute "set <xRight>=\e[1;*C"
   execute "set <xLeft>=\e[1;*D"
 end
+
+
+"
+" quickfix
+"
+autocmd QuickFixCmdPost vimgrep,grep tab cwindow
+"autocmd QuickFixCmdPost *grep* cwindow
 
 
 "
