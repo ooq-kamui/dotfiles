@@ -92,6 +92,7 @@ set statusline=%m\                 " 変更あり表示
 set statusline+=%F                 " file name 表示
 set statusline+=%=                 " 以降を右寄せ
 set statusline+=%{&fileencoding}\  " file encoding
+set statusline+=%p%%\              " 行数の%
 set statusline+=%l/%L              " 現在行数/全行数
 "set statusline^=%{coc#status()}   " coc.vim
 set laststatus=2   " 0: off  1: on 2 win  2: on
@@ -266,6 +267,9 @@ nnoremap <S-Tab> gT
 nnoremap <S-Right> :tabm+1<Cr>
 nnoremap <S-Left>  :tabm-1<Cr>
 
+" window split
+nnoremap @ <c-w>w
+
 " ctags
 nnoremap <c-]> g<c-]>
 "nnoremap <c-]> <C-w>g<C-]><C-w>T
@@ -285,7 +289,7 @@ nnoremap , <esc>
 nnoremap * <esc>
 nnoremap _ <esc>
 nnoremap ~ <esc>
-nnoremap @ <esc>
+"nnoremap @ <esc>
 "nnoremap ; <esc>
 nnoremap <c-@> <esc>
 "nnoremap <c-:> <esc> " cannot set
@@ -321,7 +325,7 @@ nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
 "nnoremap <c-e> <esc>
 nnoremap <c-f> <esc>
-"nnoremap <c-g> <esc>
+nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
 "nnoremap <c-l> <esc>
@@ -569,6 +573,7 @@ end
 " quickfix
 "
 autocmd QuickFixCmdPost vimgrep,grep tab cwindow
+"autocmd QuickFixCmdPost vimgrep,grep cwindow
 "autocmd QuickFixCmdPost *grep* cwindow
 
 
