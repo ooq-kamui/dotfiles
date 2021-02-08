@@ -250,9 +250,6 @@ nnoremap /     /
 nnoremap r     g*N
 "nnoremap r     *N
 
-" grep
-"nnoremap :g :grep! "" **.lua **.script<Home><S-Right><Right><Right>
-
 " open file session last
 "nnoremap <c-p> `0
 
@@ -568,13 +565,17 @@ if &term =~ '^screen'
   execute "set <xLeft>=\e[1;*D"
 end
 
+" vimgrep
+"set errorformat=%f\|%l\|\ %m
+command! -nargs=1 G :vimgrep /<args>/j **/*.lua
+nnoremap :g :G 
 
 "
 " quickfix
 "
-autocmd QuickFixCmdPost vimgrep,grep tab cwindow
-"autocmd QuickFixCmdPost vimgrep,grep cwindow
-"autocmd QuickFixCmdPost *grep* cwindow
+autocmd QuickFixCmdPost vimgrep,grep tab cw
+"autocmd QuickFixCmdPost vimgrep,grep tab copen
+"autocmd QuickFixCmdPost vimgrep,grep tab cgetb
 
 
 "
