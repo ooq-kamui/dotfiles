@@ -122,6 +122,9 @@ nnoremap :q :q!
 " save
 nnoremap a :w<Cr>
 
+" reload
+nnoremap :e :e!
+
 "
 " cursor mv
 "
