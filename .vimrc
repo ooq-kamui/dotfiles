@@ -214,9 +214,9 @@ nnoremap <expr> <c-s> col(".") == col("$") ? "<esc>" : '"ade'
 nnoremap A ggVG
 
 " select word
-nnoremap i viw
-nnoremap I     v
+nnoremap i     viw
 nnoremap <c-u> v
+"nnoremap I     v
 
 " select box
 nnoremap v <c-v>
