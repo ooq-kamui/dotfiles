@@ -126,7 +126,7 @@ nnoremap a :w<cr>
 nnoremap :e :e!
 
 " open latest
-nnoremap :l :Latest
+nnoremap :l :Latest<cr>
 command! -nargs=0 Latest
 \ call setqflist([], ' ', {'lines' : v:oldfiles, 'efm' : '%f',
 \                          'quickfixtextfunc' : 'QfOldFiles'}) | tab cw
@@ -454,16 +454,13 @@ vnoremap <c-u> uviw
 "
 vnoremap n "ay/<c-r>a<cr>
 vnoremap / "ay/<c-r>a
-"vnoremap r "ay/<c-r>a<cr>N
+vnoremap r "ay/<c-r>a<cr>N
 vnoremap * *<c-c>N
 "vnoremap w "ay/<c-r>a<cr>N
 "vnoremap w *N<c-c>
 
 " replace
-vnoremap r "adhpnviw
-" vnoremap p "adhp
-" nnoremap n n
-" nnoremap i viw
+nnoremap :r :%s/<c-r>//<c-r>0/gc
 
 "
 " esc
