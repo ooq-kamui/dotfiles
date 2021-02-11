@@ -114,16 +114,36 @@ colorscheme koehler " evening
 " mode normal
 "
 
- " quit
-nnoremap w  :q<Cr>
+" quit
+nnoremap w  :q<cr>
 nnoremap :q :q!
-"nnoremap q  :q<Cr>
+"nnoremap q  :q<cr>
 
 " save
-nnoremap a :w<Cr>
+nnoremap a :w<cr>
 
 " reload
 nnoremap :e :e!
+
+" open latest
+nnoremap :l :Latest
+command! -nargs=0 Latest
+\ call setqflist([], ' ', {'lines' : v:oldfiles, 'efm' : '%f',
+\                          'quickfixtextfunc' : 'QfOldFiles'}) | tab cw
+func QfOldFiles(info)
+  " info frm quickfix
+  let items = getqflist({'id' : a:info.id, 'items' : 1}).items
+  let l = []
+  for idx in range(a:info.start_idx - 1, a:info.end_idx - 1)
+    " mod file-name simple
+    call add(l, fnamemodify(bufname(items[idx].bufnr), ':p:.'))
+  endfor
+  return l
+endfunc
+
+"nnoremap :b :brows oldfiles<cr>
+"nnoremap :b :b #
+
 
 "
 " cursor mv
@@ -255,7 +275,6 @@ nnoremap n     n
 nnoremap <c-n> N
 nnoremap /     /
 nnoremap r     g*N
-"nnoremap r     *N
 
 " open file session last
 "nnoremap <c-p> `0
@@ -280,7 +299,7 @@ nnoremap <c-]> g<c-]>
 "nnoremap <c-]> <C-w><C-]><C-w>T
 
 " buffers
-nnoremap :b :buffers
+"nnoremap :b :buffers
 
 "
 " esc
@@ -435,10 +454,16 @@ vnoremap <c-u> uviw
 "
 vnoremap n "ay/<c-r>a<cr>
 vnoremap / "ay/<c-r>a
-vnoremap r "ay/<c-r>a<cr>N
+"vnoremap r "ay/<c-r>a<cr>N
 vnoremap * *<c-c>N
 "vnoremap w "ay/<c-r>a<cr>N
 "vnoremap w *N<c-c>
+
+" replace
+vnoremap r "adhpnviw
+" vnoremap p "adhp
+" nnoremap n n
+" nnoremap i viw
 
 "
 " esc
@@ -579,7 +604,6 @@ if &term =~ '^screen'
 end
 
 " vimgrep
-"set errorformat=%f\|%l\|\ %m
 command! -nargs=1 G :vimgrep /<args>/j **/*.lua
 nnoremap :g :G 
 
@@ -587,6 +611,8 @@ nnoremap :g :G
 " quickfix
 "
 autocmd QuickFixCmdPost vimgrep,grep tab cw
+"autocmd QuickFixCmdPost vimgrep,grep,Latest tab cw
+"autocmd QuickFixCmdPost vimgrep,grep,setqflist tab cw
 "autocmd QuickFixCmdPost vimgrep,grep tab copen
 "autocmd QuickFixCmdPost vimgrep,grep tab cgetb
 
