@@ -372,8 +372,8 @@ nnoremap <c-z> <esc>
 "
 
 " mode ch line , ins
-vnoremap <expr> i mode() == "<c-v>" ? "I" : "V"
-"vnoremap i V
+vnoremap i V
+"vnoremap <expr> i mode() == "<c-v>" ? "I" : "V"
 "vnoremap w V
 
 " mode ch box
@@ -394,8 +394,6 @@ vnoremap o b
 
 " cursor mv in selected
 vnoremap ; o
-"vnoremap e o
-"vnoremap <c-o> o
 
 " cursor mv line
 vnoremap <c-j> 10j
@@ -405,27 +403,24 @@ vnoremap <c-k> 10k
 vnoremap gj gg0
 vnoremap gg gg
 vnoremap gn G$l
-"vnoremap <expr> gg    line(".") == 1 ? "G$l" : "gg"
-"vnoremap <expr> <c-p> line(".") == 1 ? "G$l" : "gg"
 
 " cursor mv bracket
 vnoremap <c-l> %
 
-" ins
-"vnoremap a I
-"vnoremap <expr> e mode() == "<c-v>" ? "c" : "l<c-c>i"
-
-" cut & ins
-vnoremap e c
-"vnoremap <expr> s mode() == "<c-v>" ? "c" : mode() == "V" ? "x" : "x"
-"vnoremap <expr> h mode() == "<c-v>" ? "c" : "x"
+" ins | cut & ins
+vnoremap <expr> e mode() == "<c-v>" ? "I" : "c"
+vnoremap <c-s> c
+"vnoremap e c
+"vnoremap i c
 
 " ins $
 vnoremap <expr> $ mode() == "<c-v>" ? "$A" : "$"
 
-" del
+" del char
 vnoremap s x
 vnoremap x x
+
+" del line
 vnoremap d d
 
 " yank
@@ -460,7 +455,8 @@ vnoremap * *<c-c>N
 "vnoremap w *N<c-c>
 
 " replace
-nnoremap :r :%s/<c-r>//<c-r>0/gc
+nnoremap :r :%s/<c-r>//<c-r>0/gc<cr>
+"nnoremap :r :%s/<c-r>//<c-r>0/gc
 
 "
 " esc
@@ -489,6 +485,7 @@ vnoremap <c-n> <c-c>
 vnoremap <c-o> <c-c>
 "vnoremap <c-p> <c-c>
 vnoremap <c-q> <c-c>
+vnoremap <c-s> <c-c>
 "vnoremap <c-u> <c-c>
 vnoremap <c-v> <c-c>
 vnoremap <c-w> <c-c>
@@ -665,8 +662,8 @@ let g:fzf_action = { 'ctrl-o': 'tab drop' }
 " files
 nnoremap <leader>u :Files <cr>
 vnoremap <leader>u :Files <cr>
-nnoremap <leader>f :Files <cr>
-vnoremap <leader>f :Files <cr>
+"nnoremap <leader>f :Files <cr>
+"vnoremap <leader>f :Files <cr>
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)
 
@@ -687,7 +684,6 @@ command! -bang -nargs=? BLines
 nnoremap <leader>o :Rg <cr>
 vnoremap <leader>o "ay:Rg <c-r>a<cr>
 "nnoremap <leader>p :Rg <c-r><c-w><cr>
-
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
 \   'rg 
@@ -708,7 +704,6 @@ nnoremap <leader>j :Tags <c-r><c-w><cr>
 vnoremap <leader>j "ay:Tags <c-r>a<cr>
 "nnoremap <leader>c :Tags<cr>
 "vnoremap <leader>c "ay:Tags <c-r>a<cr>
-
 command! -bang -nargs=? Tags
 \ call fzf#vim#tags(<q-args>, <bang>1)
 
