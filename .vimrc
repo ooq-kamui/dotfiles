@@ -122,7 +122,8 @@ nnoremap a :w<cr>
 nnoremap :e :e!
 
 " open latest
-nnoremap 0 `0
+nnoremap <c-u> `0
+nnoremap 0     `0
 
 " open latest
 nnoremap :l :Latest<cr>
@@ -207,14 +208,13 @@ nnoremap e i
 
 " ins line
 nnoremap u O<Esc>
-"nnoremap <c-o> O<Esc>
+"nnoremap h O<Esc>
 
 " ins cr
 nnoremap m i<cr><Esc>
 
 " del char
 nnoremap s    "ax
-"nnoremap h    "ax
 nnoremap x    x
 nnoremap <BS> h"ax
 
@@ -228,7 +228,7 @@ nnoremap cc D
 nnoremap <c-m> J
 
 " del word back
-"nnoremap <c-w> hvbd
+nnoremap <c-w> hvbd
 
 " del word forward
 nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : '"adw'
@@ -253,8 +253,8 @@ nnoremap c yy
 nnoremap p P
 
 " undo, redo
-nnoremap h     u
-nnoremap <c-h> <c-r>
+nnoremap <c-h> u
+nnoremap h     <c-r>
 
 " repeat
 nnoremap .     .
@@ -353,9 +353,9 @@ nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
-nnoremap <c-u> <esc>
+"nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
-nnoremap <c-w> <esc>
+"noremap <c-w> <esc>
 nnoremap <c-x> <esc>
 nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
@@ -650,6 +650,12 @@ let g:fzf_action = { 'ctrl-o': 'tab drop' }
 "let g:fzf_buffers_jump = 1
 "fzf#vim#complete#buffer_line([spec])
 
+" lines
+nnoremap <leader>i :BLines<cr>
+vnoremap <leader>i "ay:BLines <c-r>a<cr>
+command! -bang -nargs=? BLines
+\ call fzf#vim#buffer_lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
+
 " files
 nnoremap <leader>u :Files <cr>
 vnoremap <leader>u :Files <cr>
@@ -657,12 +663,6 @@ vnoremap <leader>u :Files <cr>
 "vnoremap <leader>f :Files <cr>
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)
-
-" lines
-nnoremap <leader>i :BLines<cr>
-vnoremap <leader>i "ay:BLines <c-r>a<cr>
-command! -bang -nargs=? BLines
-\ call fzf#vim#buffer_lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
 
 " rg
 "
