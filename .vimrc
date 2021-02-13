@@ -97,15 +97,11 @@ set statusline+=%l/%L              " 現在行数/全行数
 "set statusline^=%{coc#status()}   " coc.vim
 set laststatus=2   " 0: off  1: on 2 win  2: on
 set completeopt=menuone,noinsert
-
 set foldmethod=manual
+set shortmess+=I
 
 " leader key
 let mapleader = "\<Space>"
-
-" ctags
-filetype on
-set tags=./.tags;
 
 colorscheme koehler " evening
 
@@ -124,6 +120,9 @@ nnoremap a :w<cr>
 
 " reload
 nnoremap :e :e!
+
+" open latest
+nnoremap 0 `0
 
 " open latest
 nnoremap :l :Latest<cr>
@@ -176,19 +175,21 @@ nnoremap o     b
 
 " cursor mv file
 nnoremap <expr> gj line(".") == 1 ? "G" : "gg0"
-"nnoremap gj gg0
 nnoremap <expr> gn line(".") == line("$") ? "gg" : "G$l"
-"nnoremap gn G$l
 nnoremap gg gg
+nnoremap <c-g> G
 
 " cursor mv bracket
 nnoremap <c-l> %
-nnoremap <c-v> %
+"nnoremap <c-v> %
 "nnoremap 0     %
 
 " cursor mv jump list
 nnoremap b     <c-o>
 nnoremap <c-b> <c-i>
+
+" cursor mv window split
+nnoremap @ <c-w>w
 
 " scroll
 nnoremap <c-e>  10<c-e>
@@ -238,9 +239,9 @@ nnoremap <expr> <c-s> col(".") == col("$") ? "<esc>" : '"ade'
 nnoremap A ggVG
 
 " select word
-nnoremap i     viw
-nnoremap <c-u> v
-"nnoremap I     v
+nnoremap i viw
+nnoremap I v
+"nnoremap <c-u> v
 
 " select box
 nnoremap v <c-v>
@@ -256,8 +257,8 @@ nnoremap h     u
 nnoremap <c-h> <c-r>
 
 " repeat
-nnoremap <c-p> .
 nnoremap .     .
+"nnoremap <c-p> .
 "nnoremap <c-w> .
 
 " inc, dec
@@ -290,14 +291,6 @@ nnoremap <S-Tab> gT
 nnoremap <S-Right> :tabm+1<Cr>
 nnoremap <S-Left>  :tabm-1<Cr>
 
-" window split mv
-nnoremap @ <c-w>w
-
-" ctags
-nnoremap <c-]> g<c-]>
-"nnoremap <c-]> <C-w>g<C-]><C-w>T
-"nnoremap <c-]> <C-w><C-]><C-w>T
-
 " buffers
 "nnoremap :b :buffers
 
@@ -319,9 +312,9 @@ nnoremap <c-@> <esc>
 "nnoremap <c-;> <esc> " cannot set
 "nnoremap <c-,> <esc>
 "nnoremap <c-[> <esc>
-"nnoremap <c-]> <esc>
+nnoremap <c-]> <esc>
 
-nnoremap 0 <esc>
+"nnoremap 0 <esc>
 "nnoremap a <esc>
 "nnoremap b <esc>
 "nnoremap d <esc>
@@ -348,20 +341,20 @@ nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
 "nnoremap <c-e> <esc>
 "nnoremap <c-f> <esc>
-nnoremap <c-g> <esc>
+"nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
 "nnoremap <c-l> <esc>
 "nnoremap <c-m> <esc>
 "nnoremap <c-n> <esc>
 "nnoremap <c-o> <esc>
-"nnoremap <c-p> <esc>
+nnoremap <c-p> <esc>
 nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
-"nnoremap <c-u> <esc>
-"nnoremap <c-v> <esc>
+nnoremap <c-u> <esc>
+nnoremap <c-v> <esc>
 nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
 nnoremap <c-y> <esc>
@@ -485,7 +478,7 @@ vnoremap <c-n> <c-c>
 vnoremap <c-o> <c-c>
 "vnoremap <c-p> <c-c>
 vnoremap <c-q> <c-c>
-vnoremap <c-s> <c-c>
+"vnoremap <c-s> <c-c>
 "vnoremap <c-u> <c-c>
 vnoremap <c-v> <c-c>
 vnoremap <c-w> <c-c>
@@ -616,9 +609,7 @@ autocmd QuickFixCmdPost vimgrep,grep tab cw
 "
 
 " launch
-nnoremap <leader>r :Tex .<cr>
-nnoremap <leader>l :Tex .<cr>
-"nnoremap :e        :Tex .<cr>
+nnoremap :f :Tex .<cr>
 
 let g:netrw_liststyle    = 3 " view file tree
 let g:netrw_browse_split = 3 " file open tab
@@ -699,7 +690,14 @@ command! -bang -nargs=* Rg
 \ )
 "\     -g "*.lua" -g "*.script" -g "*.gui_script" 
 
+" 
 " ctags
+" 
+filetype on
+set tags=./.tags;
+"nnoremap <c-]> g<c-]>
+nnoremap :c :!sh sh/ctags.sh
+
 nnoremap <leader>j :Tags <c-r><c-w><cr>
 vnoremap <leader>j "ay:Tags <c-r>a<cr>
 "nnoremap <leader>c :Tags<cr>
