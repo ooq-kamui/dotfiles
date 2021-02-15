@@ -253,8 +253,10 @@ nnoremap c yy
 nnoremap p P
 
 " undo, redo
-nnoremap <c-h> u
-nnoremap h     <c-r>
+nnoremap h     u
+nnoremap <c-h> <c-r>
+"nnoremap <c-h> u
+"nnoremap h     <c-r>
 
 " repeat
 nnoremap .     .
@@ -443,20 +445,18 @@ vnoremap <c-u> uviw
 vnoremap n "ay/<c-r>a<cr>
 vnoremap / "ay/<c-r>a
 vnoremap r "ay/<c-r>a<cr>N
-vnoremap * *<c-c>N
-"vnoremap w "ay/<c-r>a<cr>N
-"vnoremap w *N<c-c>
+"vnoremap * *<c-c>N
 
 " replace
-nnoremap :r :%s/<c-r>//<c-r>0/gc<cr>
-"nnoremap :r :%s/<c-r>//<c-r>0/gc
+nnoremap :s :%s//<c-r>0/gc<cr>
+"nnoremap :s :%s/<c-r>//<c-r>0/gc<cr>
 
 "
 " esc
 "
 vnoremap <space> <nop>
 vnoremap @ <c-c>
-"vnoremap * <c-c>
+vnoremap * <c-c>
 vnoremap a <c-c>
 vnoremap b <c-c>
 "vnoremap d <c-c>
@@ -696,7 +696,7 @@ command! -bang -nargs=* Rg
 filetype on
 set tags=./.tags;
 "nnoremap <c-]> g<c-]>
-nnoremap :c :!sh sh/ctags.sh
+"nnoremap :c :!sh sh/ctags.sh
 
 nnoremap <leader>j :Tags <c-r><c-w><cr>
 vnoremap <leader>j "ay:Tags <c-r>a<cr>
