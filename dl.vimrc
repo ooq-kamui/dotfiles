@@ -103,7 +103,7 @@ set shortmess+=I
 " leader key
 let mapleader = "\<Space>"
 
-colorscheme koehler " evening
+colorscheme koehler
 
 
 "
@@ -143,7 +143,6 @@ endfunc
 
 "nnoremap :b :brows oldfiles<cr>
 "nnoremap :b :b #
-
 
 "
 " cursor mv
@@ -362,6 +361,7 @@ nnoremap <c-x> <esc>
 nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
 
+
 "
 " mode visual
 "
@@ -378,7 +378,8 @@ vnoremap v <c-v>
 "vnoremap <expr> ; col(".") == col("$") ? "0" : "$"
 
 " cursor mv char
-vnoremap l l
+vnoremap l     l
+vnoremap <c-o> h
 
 " cursor mv word - forward
 vnoremap f     e
@@ -420,6 +421,7 @@ vnoremap d d
 
 " yank
 vnoremap c y
+vnoremap w y
 
 " paste
 vnoremap p "adhp
@@ -475,7 +477,7 @@ vnoremap <c-a> <c-c>
 "vnoremap <c-f> <c-c>
 "vnoremap <c-l> <c-c>
 vnoremap <c-n> <c-c>
-vnoremap <c-o> <c-c>
+"vnoremap <c-o> <c-c>
 "vnoremap <c-p> <c-c>
 vnoremap <c-q> <c-c>
 "vnoremap <c-s> <c-c>
@@ -647,6 +649,12 @@ call plug#end()
 let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
 let g:fzf_action = { 'ctrl-o': 'tab drop' }
 
+let g:fzf_colors = {
+\   'hl':      ['fg', 'Statement'],
+\   'hl+':     ['fg', 'Statement'],
+\ }
+"\   'bg+':     ['bg', 'Normal'],
+
 "let g:fzf_buffers_jump = 1
 "fzf#vim#complete#buffer_line([spec])
 
@@ -674,7 +682,6 @@ command! -bang -nargs=? -complete=dir Files
 " )
 nnoremap <leader>o :Rg <cr>
 vnoremap <leader>o "ay:Rg <c-r>a<cr>
-"nnoremap <leader>p :Rg <c-r><c-w><cr>
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
 \   'rg 
@@ -704,12 +711,6 @@ vnoremap <leader>j "ay:Tags <c-r>a<cr>
 "vnoremap <leader>c "ay:Tags <c-r>a<cr>
 command! -bang -nargs=? Tags
 \ call fzf#vim#tags(<q-args>, <bang>1)
-
-let g:fzf_colors = {
-\   'hl':      ['fg', 'Statement'],
-\   'hl+':     ['fg', 'Statement'],
-\ }
-"\   'bg+':     ['bg', 'Normal'],
 
 
 "
