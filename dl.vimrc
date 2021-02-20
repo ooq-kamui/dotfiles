@@ -251,8 +251,8 @@ nnoremap c yy
 nnoremap p P
 
 " undo, redo
-nnoremap u u
-nnoremap h <c-r>
+nnoremap h u
+nnoremap u <c-r>
 
 " repeat
 "nnoremap . .
@@ -444,9 +444,13 @@ vnoremap / "ay/<c-r>a
 vnoremap r "ay/<c-r>a<cr>N
 "vnoremap * *<c-c>N
 
+" tag jump
+"vnoremap t <c-w>gF
+
 " replace
 nnoremap :s :%s//<c-r>0/gc<cr>
-"nnoremap :s :%s/<c-r>//<c-r>0/gc<cr>
+nnoremap :w :%s//<c-r>0/g<cr>
+"nnoremap :w :%s//<c-r>0/g<cr>:w<cr>
 
 "
 " esc
@@ -587,18 +591,19 @@ if &term =~ '^screen'
   execute "set <xLeft>=\e[1;*D"
 end
 
+
+" 
 " vimgrep
+" 
 command! -nargs=1 G :vimgrep /<args>/j **/*.lua
-nnoremap :g :G 
+nnoremap :g :G <c-r>/
+nnoremap <leader>g :G <c-r>/
+
 
 "
 " quickfix
 "
 autocmd QuickFixCmdPost vimgrep,grep tab cw
-"autocmd QuickFixCmdPost vimgrep,grep,Latest tab cw
-"autocmd QuickFixCmdPost vimgrep,grep,setqflist tab cw
-"autocmd QuickFixCmdPost vimgrep,grep tab copen
-"autocmd QuickFixCmdPost vimgrep,grep tab cgetb
 
 
 "
@@ -623,15 +628,13 @@ let g:Netrw_UserMaps = [
 \ ['<c-l>'    , 'NetrwKeyBind_opn'],
 \ ['o'        , 'NetrwKeyBind_mv_word_back'],
 \]
-"\ ['<leader>o', 'NetrwKeyBind_opn'],
-"\ ['o',         'NetrwMapping_cr'],
 
 
 " 
 
 
 "
-" set last
+" final
 "
 
 " comment auto off
