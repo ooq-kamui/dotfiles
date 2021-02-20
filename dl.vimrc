@@ -122,8 +122,9 @@ nnoremap a :w<cr>
 nnoremap :e :e!
 
 " open latest
-nnoremap <c-u> `0
-nnoremap 0     `0
+nnoremap <c-h> `0
+"nnoremap <c-u> `0
+"nnoremap 0     `0
 
 " open latest
 nnoremap :l :Latest<cr>
@@ -158,8 +159,8 @@ nnoremap <Down>  j
 nnoremap <c-k> 10k
 nnoremap <c-j> 10j
 
-" cursor mv line in
-nnoremap <expr> ; col(".") == col("$") ? "0" : "$l"
+" cursor mv line in | ins line
+nnoremap <expr> ; col(".") == 1 ? "O<esc>" : col(".") == col("$") ? "0" : "$l"
 
 " cursor mv char
 nnoremap l     l
@@ -174,7 +175,7 @@ nnoremap <c-f> el
 nnoremap o     b
 
 " cursor mv file
-nnoremap <expr> gj line(".") == 1 ? "G" : "gg0"
+nnoremap <expr> gj line(".") == 1         ? "G"  : "gg0"
 nnoremap <expr> gn line(".") == line("$") ? "gg" : "G$l"
 nnoremap gg gg
 nnoremap <c-g> G
@@ -206,8 +207,7 @@ nnoremap J      10<c-e>
 nnoremap e i
 
 " ins line
-nnoremap u O<Esc>
-"nnoremap h O<Esc>
+"nnoremap u O<Esc>
 
 " ins cr
 nnoremap m i<cr><Esc>
@@ -240,7 +240,6 @@ nnoremap A ggVG
 " select word
 nnoremap i viw
 nnoremap I v
-"nnoremap <c-u> v
 
 " select box
 nnoremap v <c-v>
@@ -252,15 +251,11 @@ nnoremap c yy
 nnoremap p P
 
 " undo, redo
-nnoremap h     u
-nnoremap <c-h> <c-r>
-"nnoremap <c-h> u
-"nnoremap h     <c-r>
+nnoremap u u
+nnoremap h <c-r>
 
 " repeat
-nnoremap .     .
-"nnoremap <c-p> .
-"nnoremap <c-w> .
+"nnoremap . .
 
 " inc, dec
 nnoremap + <c-a>
@@ -354,7 +349,7 @@ nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
-"nnoremap <c-u> <esc>
+nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
 "noremap <c-w> <esc>
 nnoremap <c-x> <esc>
@@ -505,12 +500,12 @@ inoremap <expr> <c-o> pumvisible() ? "<c-y>" : "<c-o>h"
 "inoremap <c-q> <c-o>b
 
 " del line
-"inoremap <c-k> <c-o>D
-"inoremap <c-c> <c-o>D
+
 
 " del char forward
 inoremap <c-d> <c-o>x
 inoremap <c-s> <c-o>x
+
 " del char back
 inoremap <c-h> <c-h>
 
@@ -633,84 +628,6 @@ let g:Netrw_UserMaps = [
 
 
 " 
-" plugin
-" 
-call plug#begin()
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-call plug#end()
-
-"
-" fzf
-"
-
-" preview window
-let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
-let g:fzf_action = { 'ctrl-o': 'tab drop' }
-
-let g:fzf_colors = {
-\   'hl':      ['fg', 'Statement'],
-\   'hl+':     ['fg', 'Statement'],
-\ }
-"\   'bg+':     ['bg', 'Normal'],
-
-"let g:fzf_buffers_jump = 1
-"fzf#vim#complete#buffer_line([spec])
-
-" lines
-nnoremap <leader>i :BLines<cr>
-vnoremap <leader>i "ay:BLines <c-r>a<cr>
-command! -bang -nargs=? BLines
-\ call fzf#vim#buffer_lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
-
-" files
-nnoremap <leader>u :Files <cr>
-vnoremap <leader>u :Files <cr>
-"nnoremap <leader>f :Files <cr>
-"vnoremap <leader>f :Files <cr>
-command! -bang -nargs=? -complete=dir Files
-\ call fzf#vim#files(<q-args>, <bang>1)
-
-" rg
-"
-" fzf#vim#grep(
-"   command,
-"   [has_column bool],
-"   [spec dict],
-"   [fullscreen bool]
-" )
-nnoremap <leader>o :Rg <cr>
-vnoremap <leader>o "ay:Rg <c-r>a<cr>
-command! -bang -nargs=* Rg
-\ call fzf#vim#grep(
-\   'rg 
-\     --line-number --smart-case --no-multiline --no-heading --color=always 
-\     -- '.shellescape(<q-args>),
-\   0,
-\   fzf#vim#with_preview(
-\     {'options': '--exact --delimiter : --nth 3..'},
-\     'up:70%:hidden',
-\     '/'
-\   ),
-\   <bang>1
-\ )
-"\     -g "*.lua" -g "*.script" -g "*.gui_script" 
-
-" 
-" ctags
-" 
-filetype on
-set tags=./.tags;
-"nnoremap <c-]> g<c-]>
-"nnoremap :c :!sh sh/ctags.sh
-
-nnoremap <leader>j :Tags <c-r><c-w><cr>
-vnoremap <leader>j "ay:Tags <c-r>a<cr>
-"nnoremap <leader>c :Tags<cr>
-"vnoremap <leader>c "ay:Tags <c-r>a<cr>
-command! -bang -nargs=? Tags
-\ call fzf#vim#tags(<q-args>, <bang>1)
 
 
 "
