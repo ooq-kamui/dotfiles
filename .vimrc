@@ -123,10 +123,8 @@ nnoremap :e :e!
 
 " open latest
 nnoremap <c-h> `0
-"nnoremap <c-u> `0
-"nnoremap 0     `0
 
-" open latest
+" open latest list
 nnoremap :l :Latest<cr>
 command! -nargs=0 Latest
 \ call setqflist([], ' ', {'lines' : v:oldfiles, 'efm' : '%f',
@@ -273,8 +271,10 @@ nnoremap <c-n> N
 nnoremap /     /
 nnoremap r     g*N
 
-" open file session last
-"nnoremap <c-p> `0
+" replace
+nnoremap :s :%s//<c-r>0/gc<cr>
+nnoremap :w :%s//<c-r>0/g <cr>
+"nnoremap :w :%s//<c-r>0/g<cr>:w<cr>
 
 " tag jump
 nnoremap t <c-w>gF
@@ -400,6 +400,7 @@ vnoremap <c-l> %
 
 " ins | cut & ins
 vnoremap <expr> e mode() == "<c-v>" ? "I" : "c"
+vnoremap E c
 vnoremap <c-s> c
 "vnoremap e c
 "vnoremap i c
@@ -416,7 +417,7 @@ vnoremap d d
 
 " yank
 vnoremap c y
-vnoremap w y
+"vnoremap w y
 
 " paste
 vnoremap p "adhp
@@ -448,9 +449,8 @@ vnoremap r "ay/<c-r>a<cr>N
 "vnoremap t <c-w>gF
 
 " replace
-nnoremap :s :%s//<c-r>0/gc<cr>
-nnoremap :w :%s//<c-r>0/g<cr>
-"nnoremap :w :%s//<c-r>0/g<cr>:w<cr>
+vnoremap :s :s//<c-r>0/gc<cr>
+vnoremap :w :s//<c-r>0/g <cr>
 
 "
 " esc
@@ -595,9 +595,12 @@ end
 " 
 " vimgrep
 " 
-command! -nargs=1 G :vimgrep /<args>/j **/*.lua
+command! -nargs=1 G vimgrep /<args>/j **/*.lua **/*.script
 nnoremap :g :G <c-r>/
 nnoremap <leader>g :G <c-r>/
+
+command! -nargs=1 GC vimgrep /\C<args>/j **/*.lua **/*.script
+nnoremap :G :GC <c-r>/
 
 
 "
@@ -648,11 +651,24 @@ let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
 let g:fzf_action = { 'ctrl-o': 'tab drop' }
 
 let g:fzf_colors = {
-\   'hl' : ['fg' , 'Statement' ],
-\   'hl+': ['fg' , 'Statement' ],
+\   'hl'     : ['fg', 'Statement'  ],
+\   'hl+'    : ['fg', 'Statement'  ],
 \ }
-"\   'bg+': ['bg', 'CursorLine'],
-"\   'bg+': ['bg', 'Normal'   ],
+
+"\   'bg+'    : ['bg', 'CursorLine' ],
+"\   'bg+'    : ['bg', 'Normal'     ],
+
+"\   'info'   : ['fg', 'Comment'    ],
+"\   'border' : ['fg', 'Ignore'     ],
+"\   'prompt' : ['fg', 'Function'   ],
+"\   'pointer': ['fg', 'Statement'  ],
+"\   'marker' : ['fg', 'Conditional'],
+
+"\   'info'   : ['Comment'],
+"\   'border' : ['Comment'],
+"\   'prompt' : ['Comment'],
+"\   'pointer': ['Comment'],
+"\   'marker' : ['Comment'],
 
 "let g:fzf_buffers_jump = 1
 "fzf#vim#complete#buffer_line([spec])
