@@ -85,7 +85,12 @@ set tabpagemax=30
 set nf=""
 set showtabline=2
 
-set clipboard+=unnamed
+" visual box paste can not ???
+"set clipboard&
+"set clipboard^=unnamedplus
+" or
+"set clipboard+=unnamed
+
 syntax on
 
 set statusline=%m\                 " 変更あり表示
@@ -270,6 +275,7 @@ nnoremap n     n
 nnoremap <c-n> N
 nnoremap /     /
 nnoremap r     g*N
+nnoremap R     *N
 
 " replace
 nnoremap :s :%s//<c-r>0/gc<cr>
@@ -420,7 +426,8 @@ vnoremap c y
 "vnoremap w y
 
 " paste
-vnoremap p "adhp
+vnoremap p "adh"0p
+"vnoremap p "adhp
 
 " inc, dec
 vnoremap + <c-a>
@@ -443,6 +450,7 @@ vnoremap <c-u> uviw
 vnoremap n "ay/<c-r>a<cr>
 vnoremap / "ay/<c-r>a
 vnoremap r "ay/<c-r>a<cr>N
+vnoremap R *<c-c>N
 "vnoremap * *<c-c>N
 
 " tag jump
@@ -503,8 +511,16 @@ inoremap <expr> <c-o> pumvisible() ? "<c-y>" : "<c-o>h"
 "inoremap <c-f> <c-o>w
 "inoremap <c-q> <c-o>b
 
-" del line
+" ins bracket
+"inoremap < <><c-o>h
+"inoremap [ []<c-o>h
+inoremap ( ()<c-o>h
+inoremap { {}<c-o>h
+inoremap <expr> " col(".") == 1 ? "\"" : "\"\"<c-o>h"
+inoremap ' ''<c-o>h
 
+" del line
+" non
 
 " del char forward
 inoremap <c-d> <c-o>x
@@ -515,34 +531,26 @@ inoremap <c-h> <c-h>
 
 " del word forword
 inoremap <expr> <c-k> pumvisible() ? "<c-p>" : "<c-o>dw"
-"inoremap <expr> <c-k> pumvisible() ? "<up>"   : "<c-o>dw"
 
 " line new
-inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<cr>"
-"inoremap <expr> <c-j> pumvisible() ? "<down>" : "<cr>"
+inoremap <c-m> <cr>
+"inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<cr>"
 
 " tab
 inoremap <tab> <c-v><Tab>
 
 " input complete
-inoremap <c-m> <c-n>
-"inoremap <c-j> <c-n>
-"inoremap <c-v> <c-n>
+inoremap <expr> <c-j> pumvisible() ? "<c-n>"  : "<c-n>"
+"inoremap <c-m> <c-n>
 inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-o>j"
 inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-o>k"
 
-"inoremap ( ()<c-o>h
-"inoremap < <><c-o>h
-"inoremap [ []<c-o>h
-inoremap { {}<c-o>h
-inoremap <expr> " col(".") == 1 ? "\"" : "\"\"<c-o>h"
-inoremap ' ''<c-o>h
-
 " quit, esc
-"inoremap <c-;> <esc>
+"inoremap <c-;> <esc> " non
 inoremap <esc> <esc>
 inoremap <c-c> <esc>
 inoremap <c-f> <esc>
+"inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<esc>"
 inoremap <c-q> <esc>
 
 
