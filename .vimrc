@@ -18,7 +18,12 @@ let skip_defaults_vim=1
 packadd Cfilter
 
 autocmd ColorScheme * hi LineNr       ctermfg=141                        cterm=none
-autocmd ColorScheme * hi CursorLineNr ctermfg=121
+autocmd ColorScheme * hi CursorLineNr ctermfg=cyan
+augroup InsertHook
+  autocmd!
+  autocmd InsertLeave * hi LineNr ctermfg=141
+  autocmd InsertEnter * hi LineNr ctermfg=lightgreen
+augroup END 
 
 autocmd ColorScheme * hi Visual                          ctermbg=magenta cterm=none
 autocmd ColorScheme * hi VisualNOS                       ctermbg=magenta cterm=none
@@ -39,7 +44,6 @@ autocmd ColorScheme * hi PmenuSel     ctermfg=cyan       ctermbg=magenta cterm=b
 autocmd ColorScheme * hi ErrorMsg     ctermfg=magenta    ctermbg=none    cterm=none
 autocmd ColorScheme * hi WarningMsg   ctermfg=magenta    ctermbg=none    cterm=none
 
-set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
 autocmd ColorScheme * hi NonText      ctermfg=25         ctermbg=none    cterm=none
 autocmd ColorScheme * hi SpecialKey   ctermfg=25         ctermbg=none    cterm=none
 
@@ -53,15 +57,10 @@ autocmd ColorScheme * hi netrwList     ctermfg=yellow ctermbg=none   cterm=none
 autocmd ColorScheme * hi netrwVersion  ctermfg=130    ctermbg=none   cterm=none
 autocmd ColorScheme * hi netrwHelpCmd  ctermfg=130    ctermbg=none   cterm=none
 
-
 autocmd BufNewFile,BufRead *.script     set filetype=lua
 autocmd BufNewFile,BufRead *.gui_script set filetype=lua
 
-augroup InsertHook
-  autocmd!
-  autocmd InsertEnter * hi LineNr ctermfg=lightgreen
-  autocmd InsertLeave * hi LineNr ctermfg=141
-augroup END 
+set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
 
 set incsearch
 set hlsearch
@@ -783,7 +782,6 @@ au FileType * set fo-=c fo-=r fo-=o
 "  endfor
 "  return
 "endfunc
-
 
 
 
