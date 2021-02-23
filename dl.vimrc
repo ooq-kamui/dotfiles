@@ -205,7 +205,7 @@ nnoremap @ <c-w>w
 
 " scroll
 nnoremap <c-e>  10<c-e>
-"nnoremap <c-f>  10<c-e>
+nnoremap <c-f>  10<c-e>
 nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 "nnoremap K 10<c-y>
@@ -358,7 +358,7 @@ nnoremap <c-a> <esc>
 nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
 "nnoremap <c-e> <esc>
-nnoremap <c-f> <esc>
+"nnoremap <c-f> <esc>
 "nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
@@ -443,7 +443,7 @@ vnoremap c "0y
 "vnoremap w y
 
 " paste
-vnoremap p "adh"0p
+vnoremap p "ad"0P
 
 " inc, dec
 vnoremap + <c-a>
@@ -500,7 +500,7 @@ vnoremap y <c-c>
 
 vnoremap <c-a> <c-c>
 vnoremap <c-e> <c-c>
-"vnoremap <c-f> <c-c>
+vnoremap <c-f> <c-c>
 "vnoremap <c-l> <c-c>
 vnoremap <c-n> <c-c>
 "vnoremap <c-o> <c-c>
@@ -560,9 +560,10 @@ inoremap <tab> <c-v><Tab>
 
 " input complete
 inoremap <expr> <c-j> pumvisible() ? "<c-n>"  : "<c-n>"
-"inoremap <c-m> <c-n>
 inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-o>j"
 inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-o>k"
+inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
+"inoremap <c-m> <c-n>
 
 " quit, esc
 "inoremap <c-;> <esc> " non
@@ -679,5 +680,21 @@ let g:Netrw_UserMaps = [
 
 " comment auto off
 au FileType * set fo-=c fo-=r fo-=o
+
+
+"
+" vim script
+"
+
+"func LineSelectedTagJump()
+"  let l = []
+"  for idx in range(a:info.start_idx - 1, a:info.end_idx - 1)
+"    call add(l, fnamemodify(bufname(items[idx].bufnr), ':p:.'))
+"  endfor
+"  return
+"endfunc
+
+
+
 
 
