@@ -84,6 +84,8 @@ set wildmode=list:longest
 set tabpagemax=30
 set nf=""
 set showtabline=2
+set showmatch
+"set visualbell
 
 " visual box paste can not ???
 "set clipboard&
@@ -127,7 +129,7 @@ nnoremap a :w<cr>
 nnoremap :e :e!
 
 " open latest
-nnoremap <c-h> `0
+nnoremap <c-u> `0
 
 " open latest list
 nnoremap :l :Latest<cr>
@@ -165,21 +167,27 @@ nnoremap <c-j> 10j
 " cursor mv line in | ins line
 nnoremap <expr> ; col(".") == 1 ? "O<esc>" : col(".") == col("$") ? "0" : "$l"
 
-" cursor mv char
+" cursor mv char - forward
 nnoremap l     l
+
+" cursor mv char - back
 nnoremap <c-o> h
 
 " cursor mv word - forward
-nnoremap f     w
-nnoremap <c-f> el
-"nnoremap <c-l> el
+nnoremap e w
+nnoremap E el
+"nnoremap r w
+"nnoremap R hel
 
 " cursor mv word - back
-nnoremap o     b
+nnoremap <expr> o col(".") == 1 ? getline(line(".")-1) == "" ? "k$" : "k$l" : "b"
+"nnoremap <expr> o col(".") == 1 ? "k$" : "b"
 
 " cursor mv file
-nnoremap <expr> gj line(".") == 1         ? "G"  : "gg0"
-nnoremap <expr> gn line(".") == line("$") ? "gg" : "G$l"
+nnoremap gk gg0
+nnoremap gj G$l
+"nnoremap <expr> gj line(".") == 1         ? "G"  : "gg0"
+"nnoremap <expr> gn line(".") == line("$") ? "gg" : "G$l"
 nnoremap gg gg
 nnoremap <c-g> G
 
@@ -197,37 +205,35 @@ nnoremap @ <c-w>w
 
 " scroll
 nnoremap <c-e>  10<c-e>
+"nnoremap <c-f>  10<c-e>
 nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
-nnoremap K      10<c-y>
-nnoremap J      10<c-e>
+"nnoremap K 10<c-y>
+"nnoremap J 10<c-e>
 
 "
 " edit
 "
 
 " ins
-nnoremap e i
+nnoremap f i
 
 " ins line
-"nnoremap u O<Esc>
+" ref ;
 
 " ins cr
 nnoremap m i<cr><Esc>
 
 " del char
-nnoremap s    "ax
-nnoremap x    x
+nnoremap s "ax
+nnoremap x x
 nnoremap <BS> h"ax
 
 " del line
-nnoremap d  dd
+nnoremap d  "0dd
 
 " del line forward
 nnoremap cc D
-
-" del cr
-nnoremap <c-m> J
 
 " del word back
 nnoremap <c-w> hvbd
@@ -236,6 +242,9 @@ nnoremap <c-w> hvbd
 nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : '"adw'
 nnoremap <expr> <c-s> col(".") == col("$") ? "<esc>" : '"ade'
 "nnoremap <c-s> dw
+
+" line join ( del cr )
+nnoremap <c-m> J
 
 " select all
 nnoremap A ggVG
@@ -248,14 +257,14 @@ nnoremap I v
 nnoremap v <c-v>
 
 " yank
-nnoremap c yy
+nnoremap c "0yy
 
 " paste
-nnoremap p P
+nnoremap p "0P
 
 " undo, redo
 nnoremap h u
-nnoremap u <c-r>
+nnoremap <c-h> <c-r>
 
 " repeat
 "nnoremap . .
@@ -276,6 +285,8 @@ nnoremap <c-n> N
 nnoremap /     /
 nnoremap r     g*N
 nnoremap R     *N
+"nnoremap e     g*N
+"nnoremap E     *N
 
 " replace
 nnoremap :s :%s//<c-r>0/gc<cr>
@@ -283,7 +294,8 @@ nnoremap :w :%s//<c-r>0/g <cr>
 "nnoremap :w :%s//<c-r>0/g<cr>:w<cr>
 
 " tag jump
-nnoremap t <c-w>gF
+nnoremap t <c-w>gFgT
+"nnoremap t <c-w>gF
 
 "
 " tab
@@ -309,6 +321,7 @@ nnoremap _ <esc>
 nnoremap ~ <esc>
 "nnoremap @ <esc>
 "nnoremap ; <esc>
+
 nnoremap <c-@> <esc>
 "nnoremap <c-:> <esc> " cannot set
 "nnoremap <c-;> <esc> " cannot set
@@ -327,22 +340,25 @@ nnoremap g <esc>
 "nnoremap l <esc>
 "nnoremap m <esc>
 "nnoremap n <esc>
+"nnoremap o <esc>
 nnoremap q <esc>
 "nnoremap r <esc>
 "nnoremap s <esc>
 "nnoremap t <esc>
-"nnoremap u <esc>
+nnoremap u <esc>
 "nnoremap w <esc>
 "nnoremap x <esc>
 nnoremap y <esc>
 nnoremap z <esc>
+
+nnoremap O <esc>
 
 nnoremap <c-a> <esc>
 "nnoremap <c-b> <esc>
 nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
 "nnoremap <c-e> <esc>
-"nnoremap <c-f> <esc>
+nnoremap <c-f> <esc>
 "nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
@@ -355,7 +371,7 @@ nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
-nnoremap <c-u> <esc>
+"nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
 "noremap <c-w> <esc>
 nnoremap <c-x> <esc>
@@ -383,9 +399,11 @@ vnoremap l     l
 vnoremap <c-o> h
 
 " cursor mv word - forward
-vnoremap f     e
-vnoremap <c-f> el
-"vnoremap <c-l> el
+vnoremap e e
+vnoremap E el
+"vnoremap r e
+"vnoremap R el
+
 " cursor mv word - back
 vnoremap o b
 
@@ -397,37 +415,35 @@ vnoremap <c-j> 10j
 vnoremap <c-k> 10k
 
 " cursor mv file
-vnoremap gj gg0
+vnoremap gk gg0
+vnoremap gj G$l
+"vnoremap gj gg0
+"vnoremap gn G$l
 vnoremap gg gg
-vnoremap gn G$l
 
 " cursor mv bracket
 vnoremap <c-l> %
 
 " ins | cut & ins
-vnoremap <expr> e mode() == "<c-v>" ? "I" : "c"
-vnoremap E c
-vnoremap <c-s> c
-"vnoremap e c
-"vnoremap i c
+vnoremap <expr> f mode() == "<c-v>" ? "I" : "c"
+vnoremap F c
 
 " ins $
 vnoremap <expr> $ mode() == "<c-v>" ? "$A" : "$"
 
-" del char
-vnoremap s x
-vnoremap x x
+" del str
+vnoremap s "0x
+vnoremap x "0x
 
 " del line
-vnoremap d d
+vnoremap d "0d
 
 " yank
-vnoremap c y
+vnoremap c "0y
 "vnoremap w y
 
 " paste
 vnoremap p "adh"0p
-"vnoremap p "adhp
 
 " inc, dec
 vnoremap + <c-a>
@@ -442,7 +458,6 @@ vnoremap :t :'<,'>!expand -4
 " upper / lower
 vnoremap u     ~viw
 vnoremap <c-u> uviw
-"vnoremap u ~viwo
 
 "
 " search
@@ -451,7 +466,8 @@ vnoremap n "ay/<c-r>a<cr>
 vnoremap / "ay/<c-r>a
 vnoremap r "ay/<c-r>a<cr>N
 vnoremap R *<c-c>N
-"vnoremap * *<c-c>N
+"vnoremap e "ay/<c-r>a<cr>N
+"vnoremap E *<c-c>N
 
 " tag jump
 "vnoremap t <c-w>gF
@@ -466,6 +482,7 @@ vnoremap :w :s//<c-r>0/g <cr>
 vnoremap <space> <nop>
 vnoremap @ <c-c>
 vnoremap * <c-c>
+
 vnoremap a <c-c>
 vnoremap b <c-c>
 "vnoremap d <c-c>
@@ -480,14 +497,16 @@ vnoremap q <c-c>
 vnoremap w <c-c>
 "vnoremap x <c-c>
 vnoremap y <c-c>
+
 vnoremap <c-a> <c-c>
+vnoremap <c-e> <c-c>
 "vnoremap <c-f> <c-c>
 "vnoremap <c-l> <c-c>
 vnoremap <c-n> <c-c>
 "vnoremap <c-o> <c-c>
 "vnoremap <c-p> <c-c>
 vnoremap <c-q> <c-c>
-"vnoremap <c-s> <c-c>
+vnoremap <c-s> <c-c>
 "vnoremap <c-u> <c-c>
 vnoremap <c-v> <c-c>
 vnoremap <c-w> <c-c>
@@ -601,14 +620,24 @@ end
 
 
 " 
+" rg ( cmd )
+" 
+if executable('rg')
+  let &grepprg = 'rg  --vimgrep'
+  set grepformat=%f:%l:%c:%m
+endif
+command! -nargs=1 Ripgrep grep! <args> **/*.lua **/*.script
+nnoremap :r :Ripgrep <c-r>/
+
+
+" 
 " vimgrep
 " 
-command! -nargs=1 G vimgrep /<args>/j **/*.lua **/*.script
-nnoremap :g :G <c-r>/
-nnoremap <leader>g :G <c-r>/
+command! -nargs=1 V  vimgrep   /<args>/j **/*.lua **/*.script
+nnoremap :v :V <c-r>/
 
-command! -nargs=1 GC vimgrep /\C<args>/j **/*.lua **/*.script
-nnoremap :G :GC <c-r>/
+command! -nargs=1 VC vimgrep /\C<args>/j **/*.lua **/*.script
+nnoremap :V :VC <c-r>/
 
 
 "
@@ -695,7 +724,7 @@ vnoremap <leader>u :Files <cr>
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)
 
-" rg
+" rg ( fzf )
 "
 " fzf#vim#grep(
 "   command,
@@ -721,7 +750,7 @@ command! -bang -nargs=* Rg
 "\     -g "*.lua" -g "*.script" -g "*.gui_script" 
 
 " 
-" ctags
+" ctags ( fzf )
 " 
 filetype on
 set tags=./.tags;
