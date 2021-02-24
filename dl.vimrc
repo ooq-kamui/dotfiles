@@ -121,6 +121,9 @@ nnoremap w  :q<cr>
 nnoremap :q :q!
 "nnoremap q  :q<cr>
 
+" quit other
+nnoremap W :tabo<cr>
+
 " save
 nnoremap a :w<cr>
 
@@ -128,7 +131,7 @@ nnoremap a :w<cr>
 nnoremap :e :e!
 
 " open latest
-nnoremap <c-u> `0
+"nnoremap <c-u> `0
 
 " open latest list
 nnoremap :l :Latest<cr>
@@ -146,8 +149,6 @@ func QfOldFiles(info)
   return l
 endfunc
 
-"nnoremap :b :brows oldfiles<cr>
-"nnoremap :b :b #
 
 "
 " cursor mv
@@ -173,10 +174,11 @@ nnoremap l     l
 nnoremap <c-o> h
 
 " cursor mv word - forward
-nnoremap e w
-nnoremap E el
-"nnoremap r w
-"nnoremap R hel
+nnoremap f w
+nnoremap F     el
+nnoremap <c-f> el
+"nnoremap e w
+"nnoremap E el
 
 " cursor mv word - back
 nnoremap <expr> o col(".") == 1 ? getline(line(".")-1) == "" ? "k$" : "k$l" : "b"
@@ -198,11 +200,12 @@ nnoremap b     <c-o>
 nnoremap <c-b> <c-i>
 
 " cursor mv window split
-nnoremap @ <c-w>w
+nnoremap @     <c-w>w
+nnoremap <c-w> <c-w>w
 
 " scroll
 nnoremap <c-e>  10<c-e>
-nnoremap <c-f>  10<c-e>
+"nnoremap <c-f>  10<c-e>
 nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 "nnoremap K 10<c-y>
@@ -213,7 +216,8 @@ nnoremap <down> <c-e>
 "
 
 " ins
-nnoremap f i
+nnoremap e i
+"nnoremap f i
 
 " ins line
 " ref ;
@@ -233,7 +237,7 @@ nnoremap d  "0dd
 nnoremap cc D
 
 " del word back
-nnoremap <c-w> hvbd
+"nnoremap <c-w> hvbd
 
 " del word forward
 nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : '"adw'
@@ -254,7 +258,7 @@ nnoremap I v
 nnoremap v <c-v>
 
 " yank
-nnoremap c "0yy
+"nnoremap c "0yy
 
 " paste
 nnoremap p "0P
@@ -282,8 +286,6 @@ nnoremap <c-n> N
 nnoremap /     /
 nnoremap r     g*N
 nnoremap R     *N
-"nnoremap e     g*N
-"nnoremap E     *N
 
 " replace
 nnoremap :s :%s//<c-r>0/gc<cr>
@@ -329,6 +331,7 @@ nnoremap <c-]> <esc>
 "nnoremap 0 <esc>
 "nnoremap a <esc>
 "nnoremap b <esc>
+nnoremap c <esc>
 "nnoremap d <esc>
 "nnoremap e <esc>
 nnoremap g <esc>
@@ -368,7 +371,7 @@ nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
-"nnoremap <c-u> <esc>
+nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
 "noremap <c-w> <esc>
 nnoremap <c-x> <esc>
@@ -396,13 +399,13 @@ vnoremap l     l
 vnoremap <c-o> h
 
 " cursor mv word - forward
-vnoremap e e
-vnoremap E el
-"vnoremap r e
-"vnoremap R el
+vnoremap f e
+vnoremap F el
+"vnoremap e e
+"vnoremap E el
 
 " cursor mv word - back
-vnoremap o b
+"vnoremap o b
 
 " cursor mv in selected
 vnoremap ; o
@@ -422,8 +425,10 @@ vnoremap gg gg
 vnoremap <c-l> %
 
 " ins | cut & ins
-vnoremap <expr> f mode() == "<c-v>" ? "I" : "c"
-vnoremap F c
+vnoremap <expr> e mode() == "<c-v>" ? "I" : "c"
+vnoremap E c
+"vnoremap <expr> f mode() == "<c-v>" ? "I" : "c"
+"vnoremap F c
 
 " ins $
 vnoremap <expr> $ mode() == "<c-v>" ? "$A" : "$"
@@ -436,8 +441,8 @@ vnoremap x "0x
 vnoremap d "0d
 
 " yank
-vnoremap c "0y
-"vnoremap w y
+vnoremap o "0y
+"vnoremap c "0y
 
 " paste
 vnoremap p "ad"0P
@@ -450,7 +455,9 @@ vnoremap - <c-x>
 " indent
 vnoremap > >gv
 vnoremap < <gv
-"vnoremap :t :'<,'>!expand -4
+
+" indent tab > space
+vnoremap :i :!expand -t 4
 
 " upper / lower
 vnoremap u     ~viw
@@ -463,8 +470,6 @@ vnoremap n "ay/<c-r>a<cr>
 vnoremap / "ay/<c-r>a
 vnoremap r "ay/<c-r>a<cr>N
 vnoremap R *<c-c>N
-"vnoremap e "ay/<c-r>a<cr>N
-"vnoremap E *<c-c>N
 
 " tag jump
 "vnoremap t <c-w>gF
@@ -482,6 +487,7 @@ vnoremap * <c-c>
 
 vnoremap a <c-c>
 vnoremap b <c-c>
+vnoremap c <c-c>
 "vnoremap d <c-c>
 "vnoremap e <c-c>
 "vnoremap h <c-c>
@@ -529,11 +535,11 @@ inoremap <expr> <c-o> pumvisible() ? "<c-y>" : "<c-o>h"
 
 " ins bracket
 "inoremap < <><c-o>h
-"inoremap [ []<c-o>h
+inoremap [ []<c-o>h
 inoremap ( ()<c-o>h
 inoremap { {}<c-o>h
-inoremap <expr> " col(".") == 1 ? "\"" : "\"\"<c-o>h"
 inoremap ' ''<c-o>h
+inoremap <expr> " col(".") == 1 ? "\"" : "\"\"<c-o>h"
 
 " del line
 " non
@@ -649,7 +655,7 @@ autocmd QuickFixCmdPost vimgrep,grep tab cw
 "
 
 " launch
-nnoremap :f :Tex .<cr>
+nnoremap :n :Tex .<cr>
 
 let g:netrw_liststyle    = 3 " view file tree
 let g:netrw_browse_split = 3 " file open tab
@@ -683,15 +689,28 @@ au FileType * set fo-=c fo-=r fo-=o
 " vim script
 "
 
-func! s:Tj() range abort
+func! s:FileJmp() range abort
 
-  let linenum1 = a:firstline
-  let linenum2 = a:lastline
+  let line_num_bgn = a:firstline
+  let line_num_end = a:lastline
+  let l:files = []
 
-  echo linenum1 . " " . linenum2
+  for line_num in range(line_num_bgn, line_num_end)
+    let l:line = getline(line_num)
+    let l:pos  = stridx(l:line, "|")
+    let l:file = strpart(l:line, 0, l:pos)
+    call add(l:files, l:file)
+
+  endfor
+
+  for file in files
+    execute "tabedit " . file
+  endfor
+
 endfunc
-command! -range=% -nargs=0 Tj :<line1>,<line2>call s:Tj()
-vnoremap :t :Tj
+command! -range=% -nargs=0 FileJmp :<line1>,<line2>call s:FileJmp()
+vnoremap :f :FileJmp<cr>
+
 
 
 
