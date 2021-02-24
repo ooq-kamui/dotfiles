@@ -185,8 +185,6 @@ nnoremap <expr> o col(".") == 1 ? getline(line(".")-1) == "" ? "k$" : "k$l" : "b
 " cursor mv file
 nnoremap gk gg0
 nnoremap gj G$l
-"nnoremap <expr> gj line(".") == 1         ? "G"  : "gg0"
-"nnoremap <expr> gn line(".") == line("$") ? "gg" : "G$l"
 nnoremap gg gg
 nnoremap <c-g> G
 
@@ -452,7 +450,7 @@ vnoremap - <c-x>
 " indent
 vnoremap > >gv
 vnoremap < <gv
-vnoremap :t :'<,'>!expand -4
+"vnoremap :t :'<,'>!expand -4
 
 " upper / lower
 vnoremap u     ~viw
@@ -775,13 +773,17 @@ au FileType * set fo-=c fo-=r fo-=o
 " vim script
 "
 
-"func LineSelectedTagJump()
-"  let l = []
-"  for idx in range(a:info.start_idx - 1, a:info.end_idx - 1)
-"    call add(l, fnamemodify(bufname(items[idx].bufnr), ':p:.'))
-"  endfor
-"  return
-"endfunc
+func! s:Tj() range abort
+
+  let linenum1 = a:firstline
+  let linenum2 = a:lastline
+
+  echo linenum1 . " " . linenum2
+endfunc
+command! -range=% -nargs=0 Tj :<line1>,<line2>call s:Tj()
+vnoremap :t :Tj
+
+
 
 
 
