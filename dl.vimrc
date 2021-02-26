@@ -83,7 +83,7 @@ set wildmode=list:longest
 set tabpagemax=30
 set nf=""
 set showtabline=2
-set showmatch
+"set showmatch
 "set visualbell
 
 " visual box paste can not ???
@@ -228,7 +228,7 @@ nnoremap m i<cr><Esc>
 " del char
 nnoremap s "ax
 nnoremap x x
-nnoremap <BS> h"ax
+"nnoremap <bs> h"ax
 
 " del line
 nnoremap d  "0dd
@@ -314,7 +314,7 @@ nnoremap <space> <esc>
 nnoremap <bs>    <esc>
 
 nnoremap , <esc>
-"nnoremap . <esc>
+nnoremap . <esc>
 nnoremap * <esc>
 nnoremap _ <esc>
 nnoremap ~ <esc>
@@ -655,7 +655,8 @@ autocmd QuickFixCmdPost vimgrep,grep tab cw
 "
 
 " launch
-nnoremap :n :Tex .<cr>
+nnoremap <leader>n :Tex .<cr>
+"nnoremap :n :Tex .<cr>
 
 let g:netrw_liststyle    = 3 " view file tree
 let g:netrw_browse_split = 3 " file open tab
@@ -691,20 +692,29 @@ au FileType * set fo-=c fo-=r fo-=o
 
 func! s:FileJmp() range abort
 
-  let line_num_bgn = a:firstline
-  let line_num_end = a:lastline
   let l:files = []
 
-  for line_num in range(line_num_bgn, line_num_end)
-    let l:line = getline(line_num)
-    let l:pos  = stridx(l:line, "|")
-    let l:file = strpart(l:line, 0, l:pos)
-    call add(l:files, l:file)
+  for line_idx in range(a:firstline, a:lastline)
+    let l:line = getline(line_idx)
+    let l:file_num  = strpart(l:line, 0, stridx(l:line, " "))
+
+    call add(l:files, l:file_num)
 
   endfor
 
-  for file in files
-    execute "tabedit " . file
+  "call uniq(sort(l:files))
+
+  for file_num in l:files
+
+    let l:idx1 = stridx(l:file_num, "|")
+
+    let l:file = strpart(l:file_num,          0, l:idx1)
+    let l:num  = strpart(l:file_num, l:idx1 + 1)
+
+    "echo l:file . " " . l:num
+    execute "tabedit " . l:file
+    execute "normal " . l:num . "G"
+    
   endfor
 
 endfunc
