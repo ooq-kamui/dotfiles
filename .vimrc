@@ -802,7 +802,7 @@ func! s:FileJmp() range abort
     let l:num  = strpart(l:file_num, l:idx1 + 1)
 
     "echo l:file . " " . l:num
-    execute "tabedit " . l:file
+    execute "tab drop " . l:file
     execute "normal " . l:num . "G"
     
   endfor
