@@ -131,10 +131,11 @@ nnoremap a :w<cr>
 nnoremap :e :e!
 
 " open latest
-"nnoremap <c-u> `0
+"nnoremap ??? `0
 
 " open latest list
-nnoremap :l :Latest<cr>
+nnoremap <leader>l :Latest<cr>
+"nnoremap :l :Latest<cr>
 command! -nargs=0 Latest
 \ call setqflist([], ' ', {'lines' : v:oldfiles, 'efm' : '%f',
 \                          'quickfixtextfunc' : 'QfOldFiles'}) | tab cw
@@ -174,11 +175,10 @@ nnoremap l     l
 nnoremap <c-o> h
 
 " cursor mv word - forward
-nnoremap f w
-nnoremap F     el
-nnoremap <c-f> el
-"nnoremap e w
-"nnoremap E el
+nnoremap f el
+"nnoremap f w
+nnoremap <c-f> w
+"nnoremap <c-f> el
 
 " cursor mv word - back
 nnoremap <expr> o col(".") == 1 ? getline(line(".")-1) == "" ? "k$" : "k$l" : "b"
@@ -190,10 +190,12 @@ nnoremap gj G$l
 nnoremap gg gg
 nnoremap <c-g> G
 
-" cursor mv bracket
+" cursor mv bracket paire
 nnoremap <c-l> %
-"nnoremap <c-v> %
-"nnoremap 0     %
+
+" cursor mv bracket back
+nnoremap u [{
+"nnoremap u "a?\({\\|(\)<cr>
 
 " cursor mv jump list
 nnoremap b     <c-o>
@@ -258,7 +260,7 @@ nnoremap I v
 nnoremap v <c-v>
 
 " yank
-"nnoremap c "0yy
+nnoremap c "0yy
 
 " paste
 nnoremap p "0P
@@ -320,7 +322,6 @@ nnoremap _ <esc>
 nnoremap ~ <esc>
 "nnoremap @ <esc>
 "nnoremap ; <esc>
-
 nnoremap <c-@> <esc>
 "nnoremap <c-:> <esc> " cannot set
 "nnoremap <c-;> <esc> " cannot set
@@ -328,10 +329,10 @@ nnoremap <c-@> <esc>
 "nnoremap <c-[> <esc>
 nnoremap <c-]> <esc>
 
-"nnoremap 0 <esc>
+nnoremap 0 <esc>
 "nnoremap a <esc>
 "nnoremap b <esc>
-nnoremap c <esc>
+"nnoremap c <esc>
 "nnoremap d <esc>
 "nnoremap e <esc>
 nnoremap g <esc>
@@ -345,7 +346,7 @@ nnoremap q <esc>
 "nnoremap r <esc>
 "nnoremap s <esc>
 "nnoremap t <esc>
-nnoremap u <esc>
+"nnoremap u <esc>
 "nnoremap w <esc>
 "nnoremap x <esc>
 nnoremap y <esc>
@@ -442,7 +443,7 @@ vnoremap d "0d
 
 " yank
 vnoremap o "0y
-"vnoremap c "0y
+vnoremap c "0y
 
 " paste
 vnoremap p "ad"0P
@@ -457,7 +458,8 @@ vnoremap > >gv
 vnoremap < <gv
 
 " indent tab > space
-vnoremap :i :!expand -t 4
+vnoremap :t :!expand -t 4
+"vnoremap :i :!expand -t 4
 
 " upper / lower
 vnoremap u     ~viw
@@ -487,7 +489,7 @@ vnoremap * <c-c>
 
 vnoremap a <c-c>
 vnoremap b <c-c>
-vnoremap c <c-c>
+"vnoremap c <c-c>
 "vnoremap d <c-c>
 "vnoremap e <c-c>
 "vnoremap h <c-c>
@@ -576,7 +578,6 @@ inoremap <c-f> <esc>
 "inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<esc>"
 inoremap <c-q> <esc>
 
-
 " 
 " mode ex
 " 
@@ -655,11 +656,19 @@ autocmd QuickFixCmdPost vimgrep,grep tab cw
 "
 
 " launch
-nnoremap <leader>n :Tex .<cr>
+nnoremap <leader>j :Tex .<cr>
+nnoremap <leader>f :Tex .<cr>
 "nnoremap :n :Tex .<cr>
 
 let g:netrw_liststyle    = 3 " view file tree
 let g:netrw_browse_split = 3 " file open tab
+let g:Netrw_UserMaps = [
+\ ['<c-o>'    , 'NetrwKeyBind_opn'],
+\ ['<c-l>'    , 'NetrwKeyBind_opn'],
+\ ['o'        , 'NetrwKeyBind_mv_word_back'],
+\ ['e'        , 'NetrwKeyBind__top'],
+\ ['p'        , 'NetrwKeyBind__parent'],
+\]
 
 func! NetrwKeyBind_opn (islocal) abort
   return "normal  \<cr>"
@@ -667,12 +676,12 @@ endfunc
 func! NetrwKeyBind_mv_word_back (islocal) abort
   return "normal! b"
 endfunc
-
-let g:Netrw_UserMaps = [
-\ ['<c-o>'    , 'NetrwKeyBind_opn'],
-\ ['<c-l>'    , 'NetrwKeyBind_opn'],
-\ ['o'        , 'NetrwKeyBind_mv_word_back'],
-\]
+func! NetrwKeyBind__top (islocal) abort
+  return "Ntree"
+endfunc
+func! NetrwKeyBind__parent (islocal) abort
+  return "normal  -"
+endfunc
 
 
 " 
@@ -716,14 +725,14 @@ let g:fzf_colors = {
 "fzf#vim#complete#buffer_line([spec])
 
 " lines
-nnoremap <leader>i :BLines<cr>
-vnoremap <leader>i "ay:BLines <c-r>a<cr>
+nnoremap <leader>u :BLines<cr>
+vnoremap <leader>u "ay:BLines <c-r>a<cr>
 command! -bang -nargs=? BLines
 \ call fzf#vim#buffer_lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
 
 " files
-nnoremap <leader>u :Files <cr>
-vnoremap <leader>u :Files <cr>
+nnoremap <leader>i :Files <cr>
+vnoremap <leader>i :Files <cr>
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)
 
@@ -760,8 +769,8 @@ set tags=./.tags;
 "nnoremap <c-]> g<c-]>
 "nnoremap :c :!sh sh/ctags.sh
 
-nnoremap <leader>j :Tags <c-r><c-w><cr>
-vnoremap <leader>j "ay:Tags <c-r>a<cr>
+"nnoremap <leader>??? :Tags <c-r><c-w><cr>
+"vnoremap <leader>??? "ay:Tags <c-r>a<cr>
 command! -bang -nargs=? Tags
 \ call fzf#vim#tags(<q-args>, <bang>1)
 
@@ -810,7 +819,6 @@ func! s:FileJmp() range abort
 endfunc
 command! -range=% -nargs=0 FileJmp :<line1>,<line2>call s:FileJmp()
 vnoremap :f :FileJmp<cr>
-
 
 
 
