@@ -203,8 +203,8 @@ nnoremap u [{
 "nnoremap u "a?\({\\|(\)<cr>
 
 " cursor mv jump list
-nnoremap b     <c-o>
-nnoremap <c-b> <c-i>
+"nnoremap ?? <c-o>
+"nnoremap ?? <c-i>
 
 " cursor mv window split
 nnoremap @     <c-w>w
@@ -212,11 +212,8 @@ nnoremap <c-w> <c-w>w
 
 " scroll
 nnoremap <c-e>  10<c-e>
-"nnoremap <c-f>  10<c-e>
 nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
-"nnoremap K 10<c-y>
-"nnoremap J 10<c-e>
 
 "
 " edit
@@ -224,7 +221,6 @@ nnoremap <down> <c-e>
 
 " ins
 nnoremap e i
-"nnoremap f i
 
 " ins line
 " ref ;
@@ -249,7 +245,6 @@ nnoremap cc D
 " del word forward
 nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : '"adw'
 nnoremap <expr> <c-s> col(".") == col("$") ? "<esc>" : '"ade'
-"nnoremap <c-s> dw
 
 " line join ( del cr )
 nnoremap <c-m> J
@@ -266,9 +261,6 @@ nnoremap v <c-v>
 
 " yank
 nnoremap c "0yy
-
-" yank to pc clipboard
-"nnoremap :c :pbcpy! 
 
 " paste
 nnoremap p "0P
@@ -339,7 +331,7 @@ nnoremap <c-]> <esc>
 
 nnoremap 0 <esc>
 "nnoremap a <esc>
-"nnoremap b <esc>
+nnoremap b <esc>
 "nnoremap c <esc>
 "nnoremap d <esc>
 "nnoremap e <esc>
@@ -448,6 +440,10 @@ vnoremap d "0d
 " yank
 vnoremap o "0y
 vnoremap c "0y
+
+" yank to pc clipboard
+vnoremap :c :!pbcopy<cr>u
+"vnoremap :c :!pbcopy;pbpaste 
 
 " paste
 vnoremap p "ad"0P
@@ -632,7 +628,7 @@ end
 " ripgrep ( cmd )
 " 
 if executable('rg')
-  let &grepprg = 'rg --vimgrep -s -g "*.lua" -g "*.script"'
+  let &grepprg = 'rg --vimgrep -s -g "*.lua" -g "*.script" -g "*.gui_script"'
   set grepformat=%f:%l:%c:%m
 endif
 nnoremap :g :grep! "<c-r>/"
@@ -645,10 +641,10 @@ nnoremap :r :grep! "<c-r>/"
 " 
 " vimgrep
 " 
-command! -nargs=1 V  vimgrep   /<args>/j **/*.lua **/*.script
+command! -nargs=1 V  vimgrep   /<args>/j **/*.lua **/*.script **/*.gui_script
 nnoremap :v :V <c-r>/
 
-command! -nargs=1 VC vimgrep /\C<args>/j **/*.lua **/*.script
+command! -nargs=1 VC vimgrep /\C<args>/j **/*.lua **/*.script **/*.gui_script
 nnoremap :V :VC <c-r>/
 
 
@@ -773,7 +769,7 @@ command! -bang -nargs=* Rg
 "
 set tags=./.tags;
 "nnoremap <c-]> g<c-]>
-"nnoremap :c :!sh sh/ctags.sh
+"nnoremap ?? :!sh sh/ctags.sh
 
 "nnoremap <leader>?? :Tags <c-r><c-w><cr>
 "vnoremap <leader>?? "ay:Tags <c-r>a<cr>
@@ -827,6 +823,7 @@ command! -range=% -nargs=0 FileJmp :<line1>,<line2>call s:FileJmp()
 vnoremap :f :FileJmp<cr>
 
 nnoremap :f :Cfilter 
+nnoremap :c :Cfilter 
 
 
 
