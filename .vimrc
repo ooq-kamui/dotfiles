@@ -18,7 +18,8 @@ let skip_defaults_vim=1
 filetype on
 
 autocmd ColorScheme * hi LineNr       ctermfg=141                        cterm=none
-autocmd ColorScheme * hi CursorLineNr ctermfg=cyan
+autocmd ColorScheme * hi CursorLineNr ctermfg=magenta
+"autocmd ColorScheme * hi CursorLineNr ctermfg=cyan
 augroup InsertHook
   autocmd!
   autocmd InsertLeave * hi LineNr ctermfg=141
@@ -265,6 +266,9 @@ nnoremap v <c-v>
 
 " yank
 nnoremap c "0yy
+
+" yank to pc clipboard
+"nnoremap :c :pbcpy! 
 
 " paste
 nnoremap p "0P
@@ -601,9 +605,9 @@ cnoremap <c-h> <bs>
 cnoremap <c-d> <del>
 
 " del word
-cnoremap <c-k> <S-Right><c-w>
+"cnoremap <c-k> <S-Right><c-w>
 
-" del line in
+" del line in back
 cnoremap <c-c> <c-u>
 
 "cnoremap <c-p> <Up>
@@ -633,8 +637,9 @@ if executable('rg')
 endif
 nnoremap :g :grep! "<c-r>/"
 
-command! -nargs=1 Ripgrep grep! "<args>"
-nnoremap :r :Ripgrep <c-r>/
+nnoremap :r :grep! "<c-r>/"
+"command! -nargs=1 Ripgrep grep! "<args>"
+"nnoremap :r :Ripgrep <c-r>/
 
 
 " 
