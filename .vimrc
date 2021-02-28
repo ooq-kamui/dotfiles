@@ -15,7 +15,7 @@ au BufWrite /private/etc/pw.* set nowritebackup nobackup
 
 let skip_defaults_vim=1
 
-packadd Cfilter
+filetype on
 
 autocmd ColorScheme * hi LineNr       ctermfg=141                        cterm=none
 autocmd ColorScheme * hi CursorLineNr ctermfg=cyan
@@ -60,6 +60,9 @@ autocmd ColorScheme * hi netrwHelpCmd  ctermfg=130    ctermbg=none   cterm=none
 autocmd BufNewFile,BufRead *.script     set filetype=lua
 autocmd BufNewFile,BufRead *.gui_script set filetype=lua
 
+syntax on
+colorscheme koehler
+
 set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
 
 set incsearch
@@ -86,18 +89,18 @@ set showtabline=2
 "set showmatch
 "set visualbell
 
-" visual box paste can not ???
+" visual box paste can not ?
 "set clipboard&
 "set clipboard^=unnamedplus
 " or
 "set clipboard+=unnamed
 
-syntax on
 
 set statusline=%m\                 " 変更あり表示
 set statusline+=%F                 " file name 表示
 set statusline+=%=                 " 以降を右寄せ
 set statusline+=%{&fileencoding}\  " file encoding
+set statusline+=%y\                " file type
 set statusline+=%p%%\              " 行数の%
 set statusline+=%l/%L              " 現在行数/全行数
 "set statusline^=%{coc#status()}   " coc.vim
@@ -106,11 +109,11 @@ set completeopt=menuone,noinsert
 set foldmethod=manual
 set shortmess+=I
 
+packadd Cfilter
+
+
 " leader key
 let mapleader = "\<Space>"
-
-colorscheme koehler
-
 
 "
 " mode normal
@@ -131,7 +134,7 @@ nnoremap a :w<cr>
 nnoremap :e :e!
 
 " open latest
-"nnoremap ??? `0
+"nnoremap ?? `0
 
 " open latest list
 nnoremap <leader>l :Latest<cr>
@@ -181,7 +184,8 @@ nnoremap <c-f> w
 "nnoremap <c-f> el
 
 " cursor mv word - back
-nnoremap <expr> o col(".") == 1 ? getline(line(".")-1) == "" ? "k$" : "k$l" : "b"
+nnoremap o b
+"nnoremap <expr> o col(".") == 1 ? getline(line(".")-1) == "" ? "k$" : "k$l" : "b"
 "nnoremap <expr> o col(".") == 1 ? "k$" : "b"
 
 " cursor mv file
@@ -386,14 +390,13 @@ nnoremap <c-z> <esc>
 
 " mode ch line , ins
 vnoremap i V
-"vnoremap <expr> i mode() == "<c-v>" ? "I" : "V"
-"vnoremap w V
 
 " mode ch box
 vnoremap v <c-v>
 
+"
 " cursor mv
-"vnoremap <expr> ; col(".") == col("$") ? "0" : "$"
+"
 
 " cursor mv char
 vnoremap l     l
@@ -402,14 +405,15 @@ vnoremap <c-o> h
 " cursor mv word - forward
 vnoremap f e
 vnoremap F el
-"vnoremap e e
-"vnoremap E el
 
 " cursor mv word - back
 "vnoremap o b
 
 " cursor mv in selected
 vnoremap ; o
+
+" cursor mv in line
+"vnoremap <expr> ; col(".") == col("$") ? "0" : "$"
 
 " cursor mv line
 vnoremap <c-j> 10j
@@ -418,8 +422,6 @@ vnoremap <c-k> 10k
 " cursor mv file
 vnoremap gk gg0
 vnoremap gj G$l
-"vnoremap gj gg0
-"vnoremap gn G$l
 vnoremap gg gg
 
 " cursor mv bracket
@@ -428,8 +430,6 @@ vnoremap <c-l> %
 " ins | cut & ins
 vnoremap <expr> e mode() == "<c-v>" ? "I" : "c"
 vnoremap E c
-"vnoremap <expr> f mode() == "<c-v>" ? "I" : "c"
-"vnoremap F c
 
 " ins $
 vnoremap <expr> $ mode() == "<c-v>" ? "$A" : "$"
@@ -459,7 +459,6 @@ vnoremap < <gv
 
 " indent tab > space
 vnoremap :t :!expand -t 4
-"vnoremap :i :!expand -t 4
 
 " upper / lower
 vnoremap u     ~viw
@@ -468,7 +467,8 @@ vnoremap <c-u> uviw
 "
 " search
 "
-vnoremap n "ay/<c-r>a<cr>
+vnoremap n "ay/<c-r>a<cr>N
+"vnoremap n "ay/<c-r>a<cr>
 vnoremap / "ay/<c-r>a
 vnoremap r "ay/<c-r>a<cr>N
 vnoremap R *<c-c>N
@@ -625,13 +625,15 @@ end
 
 
 " 
-" rg ( cmd )
+" ripgrep ( cmd )
 " 
 if executable('rg')
-  let &grepprg = 'rg  --vimgrep'
+  let &grepprg = 'rg --vimgrep -s -g "*.lua" -g "*.script"'
   set grepformat=%f:%l:%c:%m
 endif
-command! -nargs=1 Ripgrep grep! <args> **/*.lua **/*.script
+nnoremap :g :grep! "<c-r>/"
+
+command! -nargs=1 Ripgrep grep! "<args>"
 nnoremap :r :Ripgrep <c-r>/
 
 
@@ -761,16 +763,15 @@ command! -bang -nargs=* Rg
 \ )
 "\     -g "*.lua" -g "*.script" -g "*.gui_script" 
 
-" 
+"
 " ctags ( fzf )
-" 
-filetype on
+"
 set tags=./.tags;
 "nnoremap <c-]> g<c-]>
 "nnoremap :c :!sh sh/ctags.sh
 
-"nnoremap <leader>??? :Tags <c-r><c-w><cr>
-"vnoremap <leader>??? "ay:Tags <c-r>a<cr>
+"nnoremap <leader>?? :Tags <c-r><c-w><cr>
+"vnoremap <leader>?? "ay:Tags <c-r>a<cr>
 command! -bang -nargs=? Tags
 \ call fzf#vim#tags(<q-args>, <bang>1)
 
@@ -820,6 +821,7 @@ endfunc
 command! -range=% -nargs=0 FileJmp :<line1>,<line2>call s:FileJmp()
 vnoremap :f :FileJmp<cr>
 
+nnoremap :f :Cfilter 
 
 
 
