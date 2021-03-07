@@ -191,9 +191,10 @@ nnoremap o b
 
 " cursor mv file
 nnoremap gk gg0
+nnoremap gl gg0
 nnoremap gj G$l
-nnoremap gg gg
-nnoremap <c-g> G
+"nnoremap gg gg
+"nnoremap <c-g> G
 
 " cursor mv bracket paire
 nnoremap <c-l> %
@@ -417,8 +418,9 @@ vnoremap <c-k> 10k
 
 " cursor mv file
 vnoremap gk gg0
+vnoremap gl gg0
 vnoremap gj G$l
-vnoremap gg gg
+"vnoremap gg gg
 
 " cursor mv bracket
 vnoremap <c-l> %
