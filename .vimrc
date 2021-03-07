@@ -600,8 +600,8 @@ cnoremap <c-f> <S-Right>
 cnoremap <c-h> <bs>
 cnoremap <c-d> <del>
 
-" del word
-"cnoremap <c-k> <S-Right><c-w>
+" del word forward
+cnoremap <c-k> <S-Right><c-w>
 
 " del line in back
 cnoremap <c-c> <c-u>
