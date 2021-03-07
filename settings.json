@@ -1,0 +1,75 @@
+{
+    "vim.whichwrap": "h,l,<,>,[,]",
+    // mode normal
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // save
+        { "before": [ "a", ], "commands": [ ":w" ] },
+        // mode ins
+        { "before": [ "e" ], "after": [ "i" ] },
+        // cursor mv word
+        { "before": [ "o" ], "after": [ "b" ] },
+        { "before": [ "f" ], "after": [ "e", "l" ] },
+        // cursor mv in line
+        { "before": [ ";" ], "after": [ "$" ] },
+        { "before": [ ";" ], "after": [ "0" ] },
+        // cursor mv line
+        { "before": [ "<c-k>" ], "after": [ "1", "0", "k" ] },
+        { "before": [ "<c-j>" ], "after": [ "1", "0", "j" ] },
+        // cursor mv file
+        { "before": [ "g", "k" ], "after": [ "g", "g" ] },
+        { "before": [ "g", "j" ], "after": [ "G", ] },
+        // cursor mv bracket
+        { "before": [ "<c-l>" ], "after": [ "%" ] },
+        // scroll
+        { "before": [ "<c-e>" ], "after": [ "1", "0", "<c-e>" ] },
+        // del char
+        { "before": [ "s" ], "after": [ "x" ] },
+        // del line
+        { "before": [ "d" ], "after": [ "d", "d" ] },
+        // ins line
+        { "before": [ ";" ], "after": [ "O", "<esc>" ] },
+        // yank
+        { "before": [ "c" ], "after": [ "y", "y" ] },
+        // paste
+        { "before": [ "p" ], "after": [ "P" ] },
+        // select
+        { "before": [ "i" ], "after": [ "v", "i", "w" ] },
+        // select box
+        { "before": [ "v" ], "after": [ "<c-v>", ] },
+        // search
+        { "before": [ "r" ], "after": [ "g", "*", "N" ] },
+        { "before": [ "R" ], "after": [ "*", "N" ] },
+        // undo, redo
+        { "before": [ "h" ], "after": [ "u" ] },
+        { "before": [ "<c-h>" ], "after": [ "<c-r>" ] },
+    ],
+    // mode visual
+    "vim.visualModeKeyBindingsNonRecursive": [
+        // mode ins
+        { "before": [ "e" ], "after": [ "I" ] },
+        // { "before": [ "e" ], "after": [ "c" ] },
+        { "before": [ "E" ], "after": [ "c" ] },
+        // cursor mv word
+        { "before": [ "f" ], "after": [ "e" ] },
+        { "before": [ "F" ], "after": [ "el" ] },
+        // select box
+        { "before": [ "i" ], "after": [ "V" ] },
+        // del
+        { "before": [ "s" ], "after": [ "x" ] },
+        { "before": [ "d" ], "after": [ "d" ] },
+        // yank
+        { "before": [ "c" ], "after": [ "y" ] },
+    ],
+    "vim.insertModeKeyBindings": [
+        // esc
+        { "before": ["<c-f>" ], "after": ["<c-c>"] },
+        // cursor mv char
+        { "before": ["<c-o>" ], "after": ["<left>" ] },
+        { "before": ["<c-l>" ], "after": ["<right>" ] },
+        // del in line
+        { "before": ["<c-k>" ], "commands": ["deleteAllRight", ] },
+    ],
+    "editor.minimap.enabled": false,
+    "editor.fontSize": 14,
+    "editor.renderWhitespace": "all",
+}
