@@ -1,4 +1,8 @@
 {
+    "vim.handleKeys": {
+        "<c-f>": true,
+        // "<c-r>": true,
+    },
     "vim.whichwrap": "h,l,<,>,[,]",
     // mode normal
     "vim.normalModeKeyBindingsNonRecursive": [
@@ -6,6 +10,8 @@
         { "before": [ "a", ], "commands": [ ":w" ] },
         // mode ins
         { "before": [ "e" ], "after": [ "i" ] },
+        // cursor mv char
+        { "before": [ "<c-o>" ], "after": [ "h" ] },
         // cursor mv word
         { "before": [ "o" ], "after": [ "b" ] },
         { "before": [ "f" ], "after": [ "e", "l" ] },
@@ -59,6 +65,7 @@
         { "before": [ "d" ], "after": [ "d" ] },
         // yank
         { "before": [ "c" ], "after": [ "y" ] },
+        { "before": [ "o" ], "after": [ "y" ] },
     ],
     "vim.insertModeKeyBindings": [
         // esc
@@ -66,6 +73,9 @@
         // cursor mv char
         { "before": ["<c-o>" ], "after": ["<left>" ] },
         { "before": ["<c-l>" ], "after": ["<right>" ] },
+        // cursor mv in line
+        { "before": ["<c-a>" ], "commands": ["cursorHome" ] },
+        { "before": ["<c-e>" ], "commands": ["cursorEnd" ] },
         // del in line
         { "before": ["<c-k>" ], "commands": ["deleteAllRight", ] },
     ],
