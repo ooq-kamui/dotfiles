@@ -173,35 +173,27 @@ nnoremap <c-j> 10j
 nnoremap <expr> ; col(".") == 1 ? "O<esc>" : col(".") == col("$") ? "0" : "$l"
 
 " cursor mv char - forward
-nnoremap l     l
+nnoremap l l
 
 " cursor mv char - back
 nnoremap <c-o> h
 
 " cursor mv word - forward
 nnoremap f el
-"nnoremap f w
-nnoremap <c-f> w
-"nnoremap <c-f> el
 
 " cursor mv word - back
 nnoremap o b
-"nnoremap <expr> o col(".") == 1 ? getline(line(".")-1) == "" ? "k$" : "k$l" : "b"
-"nnoremap <expr> o col(".") == 1 ? "k$" : "b"
 
 " cursor mv file
 nnoremap gk gg0
 nnoremap gl gg0
 nnoremap gj G$l
-"nnoremap gg gg
-"nnoremap <c-g> G
 
 " cursor mv bracket paire
 nnoremap <c-l> %
 
 " cursor mv bracket back
 nnoremap u [{
-"nnoremap u "a?\({\\|(\)<cr>
 
 " cursor mv jump list
 "nnoremap ?? <c-o>
@@ -235,10 +227,11 @@ nnoremap x x
 "nnoremap <bs> h"ax
 
 " del line
-nnoremap d  "0dd
+nnoremap d "0dd
 
-" del line forward
-nnoremap cc D
+" del in line forward
+nnoremap <c-f> D
+"nnoremap cc D
 
 " del word back
 "nnoremap <c-w> hvbd
@@ -316,17 +309,18 @@ nnoremap <S-Left>  :tabm-1<Cr>
 nnoremap <space> <esc>
 nnoremap <bs>    <esc>
 
+"nnoremap @ <esc>
+"nnoremap ; <esc>
 nnoremap , <esc>
 nnoremap . <esc>
 nnoremap * <esc>
 nnoremap _ <esc>
 nnoremap ~ <esc>
-"nnoremap @ <esc>
-"nnoremap ; <esc>
 nnoremap <c-@> <esc>
-"nnoremap <c-:> <esc> " cannot set
-"nnoremap <c-;> <esc> " cannot set
-"nnoremap <c-,> <esc>
+"nnoremap <c-:> <esc> " non
+"nnoremap <c-;> <esc> " non
+"nnoremap <c-,> <esc> " non ?
+"nnoremap <c-.> <esc> " non ?
 "nnoremap <c-[> <esc>
 nnoremap <c-]> <esc>
 
@@ -356,12 +350,12 @@ nnoremap z <esc>
 nnoremap O <esc>
 
 nnoremap <c-a> <esc>
-"nnoremap <c-b> <esc>
+nnoremap <c-b> <esc>
 nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
 "nnoremap <c-e> <esc>
 "nnoremap <c-f> <esc>
-"nnoremap <c-g> <esc>
+nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
 "nnoremap <c-l> <esc>
@@ -575,8 +569,8 @@ inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
 " quit, esc
 "inoremap <c-;> <esc> " non
 inoremap <esc> <esc>
-inoremap <c-c> <esc>
 inoremap <c-f> <esc>
+inoremap <c-c> <esc>
 "inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<esc>"
 inoremap <c-q> <esc>
 

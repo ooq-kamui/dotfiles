@@ -8,8 +8,9 @@
 	"vim.normalModeKeyBindingsNonRecursive": [
 		// save
 		{ "before": [ "a", ], "commands": [ ":w" ] },
-		// mode ins
-		{ "before": [ "e" ], "after": [ "i" ] },
+		//
+		// cursor
+		//
 		// cursor mv char
 		{ "before": [ "<c-o>" ], "after": [ "h" ] },
 		// cursor mv word
@@ -26,18 +27,30 @@
 		{ "before": [ "g", "j" ], "after": [ "G", ] },
 		// cursor mv bracket
 		{ "before": [ "<c-l>" ], "after": [ "%" ] },
+		// cursor mv bracket back
+		{ "before": [ "u" ], "after": [ "[", "{" ] },
 		// scroll
 		{ "before": [ "<c-e>" ], "after": [ "1", "0", "<c-e>" ] },
+		//
+		// edit
+		//
+		// ins
+		{ "before": [ "e" ], "after": [ "i" ] },
+		// ins line
+		{ "before": [ ";" ], "after": [ "O", "<esc>" ] },
 		// del char
 		{ "before": [ "s" ], "after": [ "x" ] },
 		// del line
 		{ "before": [ "d" ], "after": [ "d", "d" ] },
-		// ins line
-		{ "before": [ ";" ], "after": [ "O", "<esc>" ] },
+		// del in line
+		{ "before": [ "<c-f>" ], "after": [ "D" ] },
 		// yank
 		{ "before": [ "c" ], "after": [ "y", "y" ] },
 		// paste
 		{ "before": [ "p" ], "after": [ "P" ] },
+		// undo, redo
+		{ "before": [ "h" ], "after": [ "u" ] },
+		{ "before": [ "<c-h>" ], "after": [ "<c-r>" ] },
 		// select word
 		{ "before": [ "i" ], "after": [ "v", "i", "w" ] },
 		// { "before": [ "i" ], "commands": [ "cursorWordRightSelect"] },
@@ -46,9 +59,6 @@
 		// search
 		{ "before": [ "r" ], "after": [ "g", "*", "N" ] },
 		{ "before": [ "R" ], "after": [ "*", "N" ] },
-		// undo, redo
-		{ "before": [ "h" ], "after": [ "u" ] },
-		{ "before": [ "<c-h>" ], "after": [ "<c-r>" ] },
 	],
 	// mode visual
 	"vim.visualModeKeyBindingsNonRecursive": [
