@@ -6,6 +6,8 @@
 	"vim.whichwrap": "h,l,<,>,[,]",
 	// mode normal
 	"vim.normalModeKeyBindingsNonRecursive": [
+		// quit
+		{ "before": [ "w", ], "commands": [ ":q" ] },
 		// save
 		{ "before": [ "a", ], "commands": [ ":w" ] },
 		//

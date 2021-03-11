@@ -283,10 +283,12 @@ nnoremap /     /
 nnoremap r     g*N
 nnoremap R     *N
 
-" replace
+" replace search > yank all
 nnoremap :s :%s//<c-r>0/gc<cr>
 nnoremap :w :%s//<c-r>0/g <cr>
-"nnoremap :w :%s//<c-r>0/g<cr>:w<cr>
+
+" replace search > yank one
+"nnoremap <c-p> :s//<c-r>0/g<cr>n
 
 " tag jump
 nnoremap t <c-w>gFgT
@@ -362,7 +364,7 @@ nnoremap <c-g> <esc>
 "nnoremap <c-m> <esc>
 "nnoremap <c-n> <esc>
 "nnoremap <c-o> <esc>
-nnoremap <c-p> <esc>
+"nnoremap <c-p> <esc>
 nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
