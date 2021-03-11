@@ -364,7 +364,7 @@ nnoremap <c-g> <esc>
 "nnoremap <c-m> <esc>
 "nnoremap <c-n> <esc>
 "nnoremap <c-o> <esc>
-"nnoremap <c-p> <esc>
+nnoremap <c-p> <esc>
 nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
