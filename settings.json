@@ -40,12 +40,16 @@
 		{ "before": [ "e" ], "after": [ "i" ] },
 		// ins line
 		{ "before": [ ";" ], "after": [ "O", "<esc>" ] },
+		// ins cr
+		{ "before": [ "m" ], "after": [ "i", "<cr>", "<esc>" ] },
 		// del char
 		{ "before": [ "s" ], "after": [ "x" ] },
 		// del line
 		{ "before": [ "d" ], "after": [ "d", "d" ] },
 		// del in line
 		{ "before": [ "<c-f>" ], "after": [ "D" ] },
+		// del cr
+		{ "before": [ "<c-m>" ], "after": [ "J", ] },
 		// yank
 		{ "before": [ "c" ], "after": [ "y", "y" ] },
 		// paste
