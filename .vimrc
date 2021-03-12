@@ -87,6 +87,7 @@ set wildmode=list:longest
 set tabpagemax=30
 set nf=""
 set showtabline=2
+set wildmenu " ?
 "set showmatch
 "set visualbell
 
@@ -95,7 +96,6 @@ set showtabline=2
 "set clipboard^=unnamedplus
 " or
 "set clipboard+=unnamed
-
 
 set statusline=%m\                 " 変更あり表示
 set statusline+=%F                 " file name 表示
@@ -219,7 +219,7 @@ nnoremap e i
 " ref ;
 
 " ins cr
-nnoremap m i<cr><Esc>
+nnoremap m i<cr><esc>
 
 " del char
 nnoremap s "ax
@@ -283,12 +283,13 @@ nnoremap /     /
 nnoremap r     g*N
 nnoremap R     *N
 
-" replace search > yank all
+" search replace > yank all ( file )
 nnoremap :s :%s//<c-r>0/gc<cr>
-nnoremap :w :%s//<c-r>0/g <cr>
+"nnoremap :w :%s//<c-r>0/g <cr>
 
-" replace search > yank one
-"nnoremap <c-p> :s//<c-r>0/g<cr>n
+" search replace > yank one , next
+"nnoremap <c-p> nviw
+nnoremap <c-p> :call SrchSlct()<cr>
 
 " tag jump
 nnoremap t <c-w>gFgT
@@ -364,7 +365,7 @@ nnoremap <c-g> <esc>
 "nnoremap <c-m> <esc>
 "nnoremap <c-n> <esc>
 "nnoremap <c-o> <esc>
-nnoremap <c-p> <esc>
+"nnoremap <c-p> <esc>
 nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
@@ -471,12 +472,16 @@ vnoremap / "ay/<c-r>a
 vnoremap r "ay/<c-r>a<cr>N
 vnoremap R *<c-c>N
 
+" search replace > yank all ( selected )
+vnoremap :s :s//<c-r>0/gc<cr>
+"vnoremap :w :s//<c-r>0/g <cr>
+
+" search replace > yank one , next
+"vnoremap <c-p> "ad"0Pnviw
+vnoremap <c-p> "ad"0P:call SrchSlct()<cr>
+
 " tag jump
 "vnoremap t <c-w>gF
-
-" replace
-vnoremap :s :s//<c-r>0/gc<cr>
-vnoremap :w :s//<c-r>0/g <cr>
 
 "
 " esc
@@ -570,10 +575,10 @@ inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
 
 " quit, esc
 "inoremap <c-;> <esc> " non
+inoremap <nowait> <esc> <esc>
 inoremap <esc> <esc>
 inoremap <c-f> <esc>
 inoremap <c-c> <esc>
-"inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<esc>"
 inoremap <c-q> <esc>
 
 " 
@@ -784,7 +789,6 @@ command! -bang -nargs=? Tags
 " comment auto off
 au FileType * set fo-=c fo-=r fo-=o
 
-
 "
 " vim script
 "
@@ -812,18 +816,22 @@ func! s:FileJmp() range abort
 
     "echo l:file . " " . l:num
     execute "tab drop " . l:file
-    execute "normal " . l:num . "G"
+    execute "normal! " . l:num . "G"
     
   endfor
 
 endfunc
 command! -range=% -nargs=0 FileJmp :<line1>,<line2>call s:FileJmp()
 vnoremap :f :FileJmp<cr>
-
-nnoremap :f :Cfilter 
-nnoremap :c :Cfilter 
-
+nnoremap :f :Cfilter
+"nnoremap :c :Cfilter
 
 
+func! SrchSlct() abort
+  
+  let l:len_mv = strchars( @/ ) - 1
+  execute "normal! nv" . l:len_mv . "l"
+
+endfunc
 
 
