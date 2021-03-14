@@ -31,8 +31,10 @@
 		{ "before": [ "<c-l>" ], "after": [ "%" ] },
 		// cursor mv bracket back
 		{ "before": [ "u" ], "after": [ "[", "{" ] },
-		// scroll
-		{ "before": [ "<c-e>" ], "after": [ "1", "0", "<c-e>" ] },
+		// scroll cursor line read easily
+		{ "before": [ "<c-e>" ], "after": [ "z", "z" ] },
+		// { "before": [ "<c-e>" ], "after": [ "z", "z", "1", "0", "<c-e>" ] },
+		// { "before": [ "<c-e>" ], "after": [ "1", "0", "<c-e>" ] },
 		//
 		// edit
 		//

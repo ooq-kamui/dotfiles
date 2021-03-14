@@ -96,8 +96,8 @@ set wildmenu " ?
 "set visualbell
 
 " visual box paste can not ?
-"set clipboard&
-"set clipboard^=unnamedplus
+set clipboard&
+set clipboard^=unnamedplus
 " or
 "set clipboard+=unnamedplus
 " or
@@ -206,13 +206,16 @@ nnoremap u [{
 "nnoremap ?? <c-i>
 
 " cursor mv window split
-nnoremap @     <c-w>w
 nnoremap <c-w> <c-w>w
+"nnoremap @     <c-w>w
 
 " scroll
-nnoremap <c-e>  10<c-e>
 nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
+
+" scroll cursor line read easily
+nnoremap <c-e>  zz10<c-e>
+"nnoremap <c-e>  10<c-e>
 
 "
 " edit
@@ -306,6 +309,10 @@ nnoremap <c-p> :call SrchSlct()<cr>
 nnoremap t <c-w>gFgT
 "nnoremap t <c-w>gF
 
+" mark
+nnoremap b m
+"nnoremap @ m
+
 "
 " tab
 "
@@ -341,7 +348,7 @@ nnoremap <c-]> <esc>
 
 nnoremap 0 <esc>
 "nnoremap a <esc>
-nnoremap b <esc>
+"nnoremap b <esc>
 "nnoremap c <esc>
 "nnoremap d <esc>
 "nnoremap e <esc>
