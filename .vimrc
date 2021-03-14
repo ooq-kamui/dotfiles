@@ -78,6 +78,10 @@ set autoindent
 "set expandtab " indent tab を space にする
 set tabstop=4    " 2
 set shiftwidth=4 " 2
+
+filetype indent on
+autocmd FileType txt setlocal sw=2 sts=2 ts=2 et
+
 set nowrap
 set whichwrap=b,s,h,l,<,>,[,]
 set virtualedit=onemore " 改行にカーソルをおける
@@ -94,6 +98,8 @@ set wildmenu " ?
 " visual box paste can not ?
 "set clipboard&
 "set clipboard^=unnamedplus
+" or
+"set clipboard+=unnamedplus
 " or
 "set clipboard+=unnamed
 
@@ -277,6 +283,11 @@ nnoremap < <<
 "
 " search
 "
+
+" search
+nnoremap <esc> t
+
+" search
 nnoremap n     n
 nnoremap <c-n> N
 nnoremap /     /
@@ -309,6 +320,7 @@ nnoremap <S-Left>  :tabm-1<Cr>
 "
 " esc
 "
+"nnoremap <esc>   <esc>
 nnoremap <space> <esc>
 nnoremap <bs>    <esc>
 
@@ -351,6 +363,7 @@ nnoremap y <esc>
 nnoremap z <esc>
 
 nnoremap O <esc>
+nnoremap T <esc>
 
 nnoremap <c-a> <esc>
 nnoremap <c-b> <esc>
@@ -393,14 +406,16 @@ vnoremap v <c-v>
 "
 
 " cursor mv char
-vnoremap l     l
-vnoremap <c-o> h
+vnoremap l l
+vnoremap h h
+"vnoremap <c-o> h
 
 " cursor mv word - forward
 vnoremap f e
 vnoremap F el
 
 " cursor mv word - back
+vnoremap <c-o> b
 "vnoremap o b
 
 " cursor mv in selected
@@ -435,6 +450,9 @@ vnoremap x "0x
 
 " del line
 vnoremap d "0d
+
+" del cr
+vnoremap <c-m> J
 
 " yank
 vnoremap o "0y
@@ -501,6 +519,7 @@ vnoremap b <c-c>
 vnoremap q <c-c>
 "vnoremap r <c-c>
 "vnoremap s <c-c>
+"vnoremap t <c-c>
 "vnoremap u <c-c>
 vnoremap w <c-c>
 "vnoremap x <c-c>
@@ -510,6 +529,7 @@ vnoremap <c-a> <c-c>
 vnoremap <c-e> <c-c>
 vnoremap <c-f> <c-c>
 "vnoremap <c-l> <c-c>
+"vnoremap <c-m> <c-c>
 vnoremap <c-n> <c-c>
 "vnoremap <c-o> <c-c>
 "vnoremap <c-p> <c-c>
@@ -662,8 +682,9 @@ autocmd QuickFixCmdPost vimgrep,grep tab cw
 "
 
 " launch
-nnoremap <leader>j :Tex .<cr>
-nnoremap <leader>f :Tex .<cr>
+nnoremap <leader>k :Tex .<cr>
+"nnoremap <leader>f :Tex .<cr>
+"nnoremap <leader>j :Tex .<cr>
 "nnoremap :n :Tex .<cr>
 
 let g:netrw_liststyle    = 3 " view file tree
@@ -733,6 +754,8 @@ let g:fzf_colors = {
 " lines
 nnoremap <leader>u :BLines<cr>
 vnoremap <leader>u "ay:BLines <c-r>a<cr>
+nnoremap <leader>j :BLines<cr>
+vnoremap <leader>j "ay:BLines <c-r>a<cr>
 command! -bang -nargs=? BLines
 \ call fzf#vim#buffer_lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
 
@@ -798,8 +821,14 @@ func! s:FileJmp() range abort
   let l:files = []
 
   for line_idx in range(a:firstline, a:lastline)
+
     let l:line = getline(line_idx)
-    let l:file_num  = strpart(l:line, 0, stridx(l:line, " "))
+	let l:idx1 = stridx(l:line, " ")
+    if l:idx1 > 0
+      let l:file_num  = strpart(l:line, 0, l:idx1)
+    else
+      let l:file_num  = l:line
+    endif
 
     call add(l:files, l:file_num)
 
@@ -811,10 +840,14 @@ func! s:FileJmp() range abort
 
     let l:idx1 = stridx(l:file_num, "|")
 
-    let l:file = strpart(l:file_num,          0, l:idx1)
-    let l:num  = strpart(l:file_num, l:idx1 + 1)
+    if l:idx1 > 0
+      let l:file = strpart(l:file_num,          0, l:idx1)
+      let l:num  = strpart(l:file_num, l:idx1 + 1)
+    else
+      let l:file = l:file_num
+      let l:num  = "1"
+    endif
 
-    "echo l:file . " " . l:num
     execute "tab drop " . l:file
     execute "normal! " . l:num . "G"
     

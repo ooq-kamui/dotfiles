@@ -77,9 +77,12 @@
 		{ "before": [ "F" ], "after": [ "el" ] },
 		// select box
 		{ "before": [ "i" ], "after": [ "V" ] },
-		// del
+		// del char
 		{ "before": [ "s" ], "after": [ "x" ] },
+		// del line
 		{ "before": [ "d" ], "after": [ "d" ] },
+		// del cr
+		{ "before": [ "<c-m>" ], "after": [ "J" ] },
 		// yank
 		{ "before": [ "c" ], "after": [ "y" ] },
 		{ "before": [ "o" ], "after": [ "y" ] },
