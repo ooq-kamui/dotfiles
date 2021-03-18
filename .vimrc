@@ -120,7 +120,8 @@ packadd Cfilter
 
 
 " leader key
-let mapleader = "\<Space>"
+let mapleader = "\<esc>"
+"let mapleader = "\<space>"
 
 "
 " mode normal
@@ -201,9 +202,9 @@ nnoremap <c-l> %
 " cursor mv bracket back
 nnoremap u [{
 
-" cursor mv jump list
-"nnoremap ?? <c-o>
-"nnoremap ?? <c-i>
+" cursor mv edited ( jump list )
+nnoremap _     <c-o>
+nnoremap <c-_> <c-i>
 
 " cursor mv window split
 nnoremap <c-w> <c-w>w
@@ -222,7 +223,8 @@ nnoremap <c-e>  zz10<c-e>
 "
 
 " ins
-nnoremap e i
+nnoremap i i
+"nnoremap e i
 
 " ins line
 " ref ;
@@ -246,18 +248,22 @@ nnoremap <c-f> D
 "nnoremap <c-w> hvbd
 
 " del word forward
-nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : '"adw'
-nnoremap <expr> <c-s> col(".") == col("$") ? "<esc>" : '"ade'
+"nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : '"adw'
+"nnoremap <expr> <c-s> col(".") == col("$") ? "<esc>" : '"ade'
 
-" line join ( del cr )
+" del cr ( line join )
 nnoremap <c-m> J
 
 " select all
 nnoremap A ggVG
 
 " select word
-nnoremap i viw
-nnoremap I v
+nnoremap e viw
+nnoremap E v
+nnoremap <space>   viw
+nnoremap <c-space> v
+"nnoremap i viw
+"nnoremap I v
 
 " select box
 nnoremap v <c-v>
@@ -288,7 +294,7 @@ nnoremap < <<
 "
 
 " search
-nnoremap <esc> t
+"nnoremap <esc> t
 
 " search
 nnoremap n     n
@@ -310,7 +316,7 @@ nnoremap t <c-w>gFgT
 "nnoremap t <c-w>gF
 
 " mark
-nnoremap b m
+"nnoremap b m
 "nnoremap @ m
 
 "
@@ -328,7 +334,7 @@ nnoremap <S-Left>  :tabm-1<Cr>
 " esc
 "
 "nnoremap <esc>   <esc>
-nnoremap <space> <esc>
+"nnoremap <space> <esc>
 nnoremap <bs>    <esc>
 
 "nnoremap @ <esc>
@@ -336,19 +342,23 @@ nnoremap <bs>    <esc>
 nnoremap , <esc>
 nnoremap . <esc>
 nnoremap * <esc>
-nnoremap _ <esc>
+"nnoremap _ <esc>
 nnoremap ~ <esc>
+
+"nnoremap <c-space> <esc>
 nnoremap <c-@> <esc>
+
 "nnoremap <c-:> <esc> " non
 "nnoremap <c-;> <esc> " non
 "nnoremap <c-,> <esc> " non ?
 "nnoremap <c-.> <esc> " non ?
+"nnoremap <c-_> <esc>
 "nnoremap <c-[> <esc>
 nnoremap <c-]> <esc>
 
 nnoremap 0 <esc>
 "nnoremap a <esc>
-"nnoremap b <esc>
+nnoremap b <esc>
 "nnoremap c <esc>
 "nnoremap d <esc>
 "nnoremap e <esc>
@@ -375,7 +385,7 @@ nnoremap T <esc>
 nnoremap <c-a> <esc>
 nnoremap <c-b> <esc>
 nnoremap <c-c> <esc>
-"nnoremap <c-d> <esc>
+nnoremap <c-d> <esc>
 "nnoremap <c-e> <esc>
 "nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
@@ -388,7 +398,7 @@ nnoremap <c-g> <esc>
 "nnoremap <c-p> <esc>
 nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
-"nnoremap <c-s> <esc>
+nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
 nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
@@ -403,7 +413,9 @@ nnoremap <c-z> <esc>
 "
 
 " mode ch line , ins
-vnoremap i V
+vnoremap e V
+vnoremap <space> V
+"vnoremap i V
 
 " mode ch box
 vnoremap v <c-v>
@@ -445,8 +457,10 @@ vnoremap gj G$l
 vnoremap <c-l> %
 
 " ins | cut & ins
-vnoremap <expr> e mode() == "<c-v>" ? "I" : "c"
-vnoremap E c
+vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
+vnoremap I c
+"vnoremap <expr> e mode() == "<c-v>" ? "I" : "c"
+"vnoremap E c
 
 " ins $
 vnoremap <expr> $ mode() == "<c-v>" ? "$A" : "$"
@@ -511,7 +525,7 @@ vnoremap <c-p> "ad"0P:call SrchSlct()<cr>
 "
 " esc
 "
-vnoremap <space> <nop>
+"vnoremap <space> <nop>
 vnoremap @ <c-c>
 vnoremap * <c-c>
 
@@ -562,7 +576,7 @@ inoremap <expr> <c-o> pumvisible() ? "<c-y>" : "<c-o>h"
 "inoremap <c-o> <c-o>h
 
 " cursor mv word
-"inoremap <c-f> <c-o>w
+inoremap <c-f> <c-o>e<c-o>l
 "inoremap <c-q> <c-o>b
 
 " ins bracket
@@ -602,10 +616,9 @@ inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
 
 " quit, esc
 "inoremap <c-;> <esc> " non
-inoremap <nowait> <esc> <esc>
 inoremap <esc> <esc>
-inoremap <c-f> <esc>
 inoremap <c-c> <esc>
+"inoremap <c-f> <esc>
 inoremap <c-q> <esc>
 
 " 
@@ -663,7 +676,6 @@ if executable('rg')
 endif
 nnoremap :g :grep! "<c-r>/"
 
-nnoremap :r :grep! "<c-r>/"
 "command! -nargs=1 Ripgrep grep! "<args>"
 "nnoremap :r :Ripgrep <c-r>/
 
@@ -690,8 +702,6 @@ autocmd QuickFixCmdPost vimgrep,grep tab cw
 
 " launch
 nnoremap <leader>k :Tex .<cr>
-"nnoremap <leader>f :Tex .<cr>
-"nnoremap <leader>j :Tex .<cr>
 "nnoremap :n :Tex .<cr>
 
 let g:netrw_liststyle    = 3 " view file tree
@@ -759,10 +769,10 @@ let g:fzf_colors = {
 "fzf#vim#complete#buffer_line([spec])
 
 " lines
-nnoremap <leader>u :BLines<cr>
-vnoremap <leader>u "ay:BLines <c-r>a<cr>
 nnoremap <leader>j :BLines<cr>
 vnoremap <leader>j "ay:BLines <c-r>a<cr>
+"nnoremap <leader>u :BLines<cr>
+"vnoremap <leader>u "ay:BLines <c-r>a<cr>
 command! -bang -nargs=? BLines
 \ call fzf#vim#buffer_lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
 
