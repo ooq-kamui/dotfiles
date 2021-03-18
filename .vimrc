@@ -80,7 +80,7 @@ set tabstop=4    " 2
 set shiftwidth=4 " 2
 
 filetype indent on
-autocmd FileType txt setlocal sw=2 sts=2 ts=2 et
+autocmd FileType text setlocal sw=2 sts=2 ts=2 et
 
 set nowrap
 set whichwrap=b,s,h,l,<,>,[,]
@@ -95,13 +95,7 @@ set wildmenu " ?
 "set showmatch
 "set visualbell
 
-" visual box paste can not ?
-set clipboard&
-set clipboard^=unnamedplus
-" or
-"set clipboard+=unnamedplus
-" or
-"set clipboard+=unnamed
+"set clipboard+=unnamedplus " neovim ?
 
 set statusline=%m\                 " 変更あり表示
 set statusline+=%F                 " file name 表示
@@ -130,7 +124,6 @@ let mapleader = "\<esc>"
 " quit
 nnoremap w  :q<cr>
 nnoremap :q :q!
-"nnoremap q  :q<cr>
 
 " quit other
 nnoremap W :tabo<cr>
@@ -258,10 +251,10 @@ nnoremap <c-m> J
 nnoremap A ggVG
 
 " select word
-nnoremap e viw
-nnoremap E v
 nnoremap <space>   viw
 nnoremap <c-space> v
+"nnoremap e viw
+"nnoremap E v
 "nnoremap i viw
 "nnoremap I v
 
@@ -293,15 +286,18 @@ nnoremap < <<
 " search
 "
 
-" search
+" search char
+"nnoremap e t
 "nnoremap <esc> t
 
 " search
 nnoremap n     n
 nnoremap <c-n> N
 nnoremap /     /
-nnoremap r     g*N
-nnoremap R     *N
+nnoremap e     g*N
+nnoremap E     *N
+"nnoremap r     g*N
+"nnoremap R     *N
 
 " search replace > yank all ( file )
 nnoremap :s :%s//<c-r>0/gc<cr>
@@ -370,7 +366,7 @@ nnoremap g <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
 nnoremap q <esc>
-"nnoremap r <esc>
+nnoremap r <esc>
 "nnoremap s <esc>
 "nnoremap t <esc>
 "nnoremap u <esc>
@@ -413,8 +409,8 @@ nnoremap <c-z> <esc>
 "
 
 " mode ch line , ins
-vnoremap e V
 vnoremap <space> V
+"vnoremap e V
 "vnoremap i V
 
 " mode ch box
@@ -508,8 +504,10 @@ vnoremap <c-u> uviw
 vnoremap n "ay/<c-r>a<cr>N
 "vnoremap n "ay/<c-r>a<cr>
 vnoremap / "ay/<c-r>a
-vnoremap r "ay/<c-r>a<cr>N
-vnoremap R *<c-c>N
+vnoremap e "ay/<c-r>a<cr>N
+vnoremap E *<c-c>N
+"vnoremap r "ay/<c-r>a<cr>N
+"vnoremap R *<c-c>N
 
 " search replace > yank all ( selected )
 vnoremap :s :s//<c-r>0/gc<cr>
@@ -533,12 +531,12 @@ vnoremap a <c-c>
 vnoremap b <c-c>
 "vnoremap c <c-c>
 "vnoremap d <c-c>
-"vnoremap e <c-c>
+vnoremap e <c-c>
 "vnoremap h <c-c>
 "vnoremap i <c-c>
 "vnoremap o <c-c>
 vnoremap q <c-c>
-"vnoremap r <c-c>
+vnoremap r <c-c>
 "vnoremap s <c-c>
 "vnoremap t <c-c>
 "vnoremap u <c-c>
@@ -702,7 +700,6 @@ autocmd QuickFixCmdPost vimgrep,grep tab cw
 
 " launch
 nnoremap <leader>k :Tex .<cr>
-"nnoremap :n :Tex .<cr>
 
 let g:netrw_liststyle    = 3 " view file tree
 let g:netrw_browse_split = 3 " file open tab
@@ -712,10 +709,14 @@ let g:Netrw_UserMaps = [
 \ ['o'        , 'NetrwKeyBind_mv_word_back'],
 \ ['e'        , 'NetrwKeyBind__top'],
 \ ['p'        , 'NetrwKeyBind__parent'],
+\ ['<c-q>'    , 'NetrwKeyBind_clz'],
 \]
 
 func! NetrwKeyBind_opn (islocal) abort
   return "normal  \<cr>"
+endfunc
+func! NetrwKeyBind_clz (islocal) abort
+  return "normal  :q\<cr>"
 endfunc
 func! NetrwKeyBind_mv_word_back (islocal) abort
   return "normal! b"
