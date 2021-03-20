@@ -218,7 +218,6 @@ nnoremap <down> <c-e>
 
 " scroll cursor line read easily
 nnoremap <leader><space> zz10<c-e>
-"nnoremap r zz10<c-e>
 
 "
 " edit
@@ -318,8 +317,7 @@ nnoremap <c-p> gn
 
 " tag jump
 nnoremap r <c-w>gFgT
-"nnoremap t <c-w>gFgT
-"nnoremap t <c-w>gF
+"nnoremap r <c-w>gF
 
 " mark
 "nnoremap b m
@@ -386,6 +384,7 @@ nnoremap y <esc>
 nnoremap z <esc>
 
 nnoremap O <esc>
+nnoremap R <esc>
 nnoremap T <esc>
 
 nnoremap <c-a> <esc>
@@ -571,6 +570,7 @@ vnoremap <c-n> <c-c>
 "vnoremap <c-o> <c-c>
 "vnoremap <c-p> <c-c>
 vnoremap <c-q> <c-c>
+vnoremap <c-r> <c-c>
 vnoremap <c-s> <c-c>
 "vnoremap <c-u> <c-c>
 vnoremap <c-v> <c-c>
