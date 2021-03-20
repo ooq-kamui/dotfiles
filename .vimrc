@@ -17,8 +17,8 @@ let skip_defaults_vim=1
 
 filetype on
 
-autocmd ColorScheme * hi LineNr       ctermfg=141                        cterm=none
-autocmd ColorScheme * hi CursorLineNr ctermfg=magenta
+au ColorScheme * hi LineNr       ctermfg=141                        cterm=none
+au ColorScheme * hi CursorLineNr ctermfg=magenta
 "autocmd ColorScheme * hi CursorLineNr ctermfg=cyan
 augroup InsertHook
   autocmd!
@@ -26,40 +26,40 @@ augroup InsertHook
   autocmd InsertEnter * hi LineNr ctermfg=lightgreen
 augroup END 
 
-autocmd ColorScheme * hi Visual                          ctermbg=magenta cterm=none
-autocmd ColorScheme * hi VisualNOS                       ctermbg=magenta cterm=none
-autocmd ColorScheme * hi Search       ctermfg=yellow     ctermbg=cyan    cterm=none
-autocmd ColorScheme * hi IncSearch    ctermfg=yellow     ctermbg=cyan    cterm=none
-autocmd ColorScheme * hi MatchParen   ctermfg=magenta    ctermbg=none
+au ColorScheme * hi Visual                           ctermbg=magenta cterm=none
+au ColorScheme * hi VisualNOS                        ctermbg=magenta cterm=none
+au ColorScheme * hi Search        ctermfg=yellow     ctermbg=cyan    cterm=none
+au ColorScheme * hi IncSearch     ctermfg=yellow     ctermbg=cyan    cterm=none
+au ColorScheme * hi MatchParen    ctermfg=magenta    ctermbg=none
 
-autocmd ColorScheme * hi TabLineSel   ctermfg=lightgreen ctermbg=blue    cterm=none
-autocmd ColorScheme * hi TabLine      ctermfg=lightblue  ctermbg=27      cterm=none
-autocmd ColorScheme * hi TabLineFill                     ctermbg=27      cterm=none
+au ColorScheme * hi TabLineSel    ctermfg=cyan       ctermbg=none    cterm=none
+au ColorScheme * hi TabLine       ctermfg=lightblue  ctermbg=33      cterm=none
+au ColorScheme * hi TabLineFill                      ctermbg=33      cterm=none
 
-autocmd ColorScheme * hi StatusLine   ctermfg=lightblue  ctermbg=33      cterm=none
-autocmd ColorScheme * hi EndOfBuffer  ctermfg=cyan                       cterm=none
+au ColorScheme * hi StatusLine    ctermfg=lightblue  ctermbg=33      cterm=none
+au ColorScheme * hi EndOfBuffer   ctermfg=cyan                       cterm=none
 
-autocmd ColorScheme * hi Pmenu        ctermfg=lightgreen ctermbg=blue
-autocmd ColorScheme * hi PmenuSel     ctermfg=cyan       ctermbg=magenta cterm=bold
+au ColorScheme * hi Pmenu         ctermfg=lightgreen ctermbg=blue
+au ColorScheme * hi PmenuSel      ctermfg=cyan       ctermbg=magenta cterm=bold
 
-autocmd ColorScheme * hi ErrorMsg     ctermfg=magenta    ctermbg=none    cterm=none
-autocmd ColorScheme * hi WarningMsg   ctermfg=magenta    ctermbg=none    cterm=none
+au ColorScheme * hi ErrorMsg      ctermfg=magenta    ctermbg=none    cterm=none
+au ColorScheme * hi WarningMsg    ctermfg=magenta    ctermbg=none    cterm=none
 
-autocmd ColorScheme * hi NonText      ctermfg=25         ctermbg=none    cterm=none
-autocmd ColorScheme * hi SpecialKey   ctermfg=25         ctermbg=none    cterm=none
+au ColorScheme * hi NonText       ctermfg=25         ctermbg=none    cterm=none
+au ColorScheme * hi SpecialKey    ctermfg=25         ctermbg=none    cterm=none
 
-autocmd ColorScheme * hi Comment      ctermfg=14     ctermbg=none   cterm=none
+au ColorScheme * hi Comment       ctermfg=14         ctermbg=none    cterm=none
 
-autocmd ColorScheme * hi netrwDir      ctermfg=lightgreen
-autocmd ColorScheme * hi netrwTreeBar  ctermfg=lightgreen
-autocmd ColorScheme * hi netrwClassify ctermfg=lightgreen
-autocmd ColorScheme * hi netrwComment  ctermfg=14     ctermbg=none   cterm=none
-autocmd ColorScheme * hi netrwList     ctermfg=yellow ctermbg=none   cterm=none
-autocmd ColorScheme * hi netrwVersion  ctermfg=130    ctermbg=none   cterm=none
-autocmd ColorScheme * hi netrwHelpCmd  ctermfg=130    ctermbg=none   cterm=none
+au ColorScheme * hi netrwDir      ctermfg=lightgreen
+au ColorScheme * hi netrwTreeBar  ctermfg=lightgreen
+au ColorScheme * hi netrwClassify ctermfg=lightgreen
+au ColorScheme * hi netrwComment  ctermfg=14         ctermbg=none    cterm=none
+au ColorScheme * hi netrwList     ctermfg=yellow     ctermbg=none    cterm=none
+au ColorScheme * hi netrwVersion  ctermfg=130        ctermbg=none    cterm=none
+au ColorScheme * hi netrwHelpCmd  ctermfg=130        ctermbg=none    cterm=none
 
-autocmd BufNewFile,BufRead *.script     set filetype=lua
-autocmd BufNewFile,BufRead *.gui_script set filetype=lua
+au BufNewFile,BufRead *.script     set filetype=lua
+au BufNewFile,BufRead *.gui_script set filetype=lua
 
 syntax on
 colorscheme koehler
@@ -78,9 +78,14 @@ set autoindent
 "set expandtab " indent tab を space にする
 set tabstop=4    " 2
 set shiftwidth=4 " 2
-
 filetype indent on
 autocmd FileType text setlocal sw=2 sts=2 ts=2 et
+
+augroup vimrcEx
+  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  \ exe "normal! g`\"" | endif
+augroup END
+
 
 set nowrap
 set whichwrap=b,s,h,l,<,>,[,]
@@ -104,8 +109,7 @@ set statusline+=%{&fileencoding}\  " file encoding
 set statusline+=%y\                " file type
 set statusline+=%p%%\              " 行数の%
 set statusline+=%l/%L              " 現在行数/全行数
-"set statusline^=%{coc#status()}   " coc.vim
-set laststatus=2   " 0: off  1: on 2 win  2: on
+set laststatus=2                   " 0: off  1: on 2 win  2: on
 set completeopt=menuone,noinsert
 set foldmethod=manual
 set shortmess+=I
@@ -113,9 +117,9 @@ set shortmess+=I
 packadd Cfilter
 
 
-" leader key
-let mapleader = "\<esc>"
-"let mapleader = "\<space>"
+" leader
+let mapleader = "\<space>"
+"let mapleader = "\<esc>"
 
 "
 " mode normal
@@ -184,10 +188,13 @@ nnoremap f el
 " cursor mv word - back
 nnoremap o b
 
-" cursor mv file
-nnoremap gk gg0
+" cursor mv file back    ( file begin )
 nnoremap gl gg0
+"nnoremap gk gg0
+
+" cursor mv file forward ( file end   )
 nnoremap gj G$l
+nnoremap gk G$l
 
 " cursor mv bracket paire
 nnoremap <c-l> %
@@ -196,6 +203,8 @@ nnoremap <c-l> %
 nnoremap u [{
 
 " cursor mv edited ( jump list )
+nnoremap b     <c-o>
+nnoremap <c-b> <c-i>
 nnoremap _     <c-o>
 nnoremap <c-_> <c-i>
 
@@ -208,15 +217,16 @@ nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 
 " scroll cursor line read easily
-nnoremap <c-e>  zz10<c-e>
-"nnoremap <c-e>  10<c-e>
+nnoremap <leader><space> zz10<c-e>
+"nnoremap r zz10<c-e>
 
 "
 " edit
 "
 
 " ins
-nnoremap i i
+nnoremap <esc> i
+"nnoremap i i
 "nnoremap e i
 
 " ins line
@@ -234,8 +244,7 @@ nnoremap x x
 nnoremap d "0dd
 
 " del in line forward
-nnoremap <c-f> D
-"nnoremap cc D
+"nnoremap <c-f> D
 
 " del word back
 "nnoremap <c-w> hvbd
@@ -251,12 +260,14 @@ nnoremap <c-m> J
 nnoremap A ggVG
 
 " select word
-nnoremap <space>   viw
-nnoremap <c-space> v
+nnoremap i viw
+nnoremap I v
+"nnoremap <esc>   viw
+"nnoremap <c-esc> v " non
+"nnoremap <space>   viw
+"nnoremap <c-space> v
 "nnoremap e viw
 "nnoremap E v
-"nnoremap i viw
-"nnoremap I v
 
 " select box
 nnoremap v <c-v>
@@ -287,28 +298,27 @@ nnoremap < <<
 "
 
 " search char
-"nnoremap e t
-"nnoremap <esc> t
+nnoremap <leader><esc> t
 
 " search
 nnoremap n     n
 nnoremap <c-n> N
-nnoremap /     /
+"nnoremap n     gn
+"nnoremap <c-n> gN
 nnoremap e     g*N
 nnoremap E     *N
-"nnoremap r     g*N
-"nnoremap R     *N
+nnoremap /     /
 
-" search replace > yank all ( file )
+" search replace > yank ( file )
 nnoremap :s :%s//<c-r>0/gc<cr>
 "nnoremap :w :%s//<c-r>0/g <cr>
 
-" search replace > yank one , next
-"nnoremap <c-p> nviw
-nnoremap <c-p> :call SrchSlct()<cr>
+" search replace > yank next ( only search )
+nnoremap <c-p> gn
 
 " tag jump
-nnoremap t <c-w>gFgT
+nnoremap r <c-w>gFgT
+"nnoremap t <c-w>gFgT
 "nnoremap t <c-w>gF
 
 " mark
@@ -330,7 +340,7 @@ nnoremap <S-Left>  :tabm-1<Cr>
 " esc
 "
 "nnoremap <esc>   <esc>
-"nnoremap <space> <esc>
+nnoremap <space> <esc>
 nnoremap <bs>    <esc>
 
 "nnoremap @ <esc>
@@ -341,7 +351,7 @@ nnoremap * <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
 
-"nnoremap <c-space> <esc>
+nnoremap <c-space> <esc>
 nnoremap <c-@> <esc>
 
 "nnoremap <c-:> <esc> " non
@@ -354,7 +364,7 @@ nnoremap <c-]> <esc>
 
 nnoremap 0 <esc>
 "nnoremap a <esc>
-nnoremap b <esc>
+"nnoremap b <esc>
 "nnoremap c <esc>
 "nnoremap d <esc>
 "nnoremap e <esc>
@@ -366,9 +376,9 @@ nnoremap g <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
 nnoremap q <esc>
-nnoremap r <esc>
+"nnoremap r <esc>
 "nnoremap s <esc>
-"nnoremap t <esc>
+nnoremap t <esc>
 "nnoremap u <esc>
 "nnoremap w <esc>
 "nnoremap x <esc>
@@ -379,11 +389,11 @@ nnoremap O <esc>
 nnoremap T <esc>
 
 nnoremap <c-a> <esc>
-nnoremap <c-b> <esc>
+"nnoremap <c-b> <esc>
 nnoremap <c-c> <esc>
 nnoremap <c-d> <esc>
-"nnoremap <c-e> <esc>
-"nnoremap <c-f> <esc>
+nnoremap <c-e> <esc>
+nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
@@ -409,9 +419,7 @@ nnoremap <c-z> <esc>
 "
 
 " mode ch line , ins
-vnoremap <space> V
-"vnoremap e V
-"vnoremap i V
+vnoremap i V
 
 " mode ch box
 vnoremap v <c-v>
@@ -443,18 +451,23 @@ vnoremap ; o
 vnoremap <c-j> 10j
 vnoremap <c-k> 10k
 
-" cursor mv file
-vnoremap gk gg0
+" cursor mv file back    ( file begin )
 vnoremap gl gg0
+"vnoremap gk gg0
+
+" cursor mv file forward ( file end   )
 vnoremap gj G$l
-"vnoremap gg gg
+vnoremap gk G$l
 
 " cursor mv bracket
 vnoremap <c-l> %
 
 " ins | cut & ins
-vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
-vnoremap I c
+vnoremap <expr> <esc>   mode() == "<c-v>" ? "I" : "c"
+vnoremap I     c
+vnoremap <c-i> c
+"vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
+"vnoremap I c
 "vnoremap <expr> e mode() == "<c-v>" ? "I" : "c"
 "vnoremap E c
 
@@ -475,9 +488,8 @@ vnoremap <c-m> J
 vnoremap o "0y
 vnoremap c "0y
 
-" yank to pc clipboard
+" yank pc clipboard
 vnoremap :c :!pbcopy<cr>u
-"vnoremap :c :!pbcopy;pbpaste 
 
 " paste
 vnoremap p "ad"0P
@@ -502,28 +514,32 @@ vnoremap <c-u> uviw
 " search
 "
 vnoremap n "ay/<c-r>a<cr>N
-"vnoremap n "ay/<c-r>a<cr>
-vnoremap / "ay/<c-r>a
+vnoremap <leader><space> "ay/<c-r>a<cr>N
 vnoremap e "ay/<c-r>a<cr>N
 vnoremap E *<c-c>N
-"vnoremap r "ay/<c-r>a<cr>N
-"vnoremap R *<c-c>N
+vnoremap / "ay/<c-r>a
+"vnoremap n     <esc>lgn
+"vnoremap <c-n> <esc>hgN
 
 " search replace > yank all ( selected )
 vnoremap :s :s//<c-r>0/gc<cr>
 "vnoremap :w :s//<c-r>0/g <cr>
 
 " search replace > yank one , next
-"vnoremap <c-p> "ad"0Pnviw
-vnoremap <c-p> "ad"0P:call SrchSlct()<cr>
+vnoremap <c-p> "ad"0Pgn
 
 " tag jump
+vnoremap r :FileJmp<cr>
 "vnoremap t <c-w>gF
+
+"
+" nop
+"
+vnoremap <space> <nop>
 
 "
 " esc
 "
-"vnoremap <space> <nop>
 vnoremap @ <c-c>
 vnoremap * <c-c>
 
@@ -531,14 +547,15 @@ vnoremap a <c-c>
 vnoremap b <c-c>
 "vnoremap c <c-c>
 "vnoremap d <c-c>
-vnoremap e <c-c>
+"vnoremap e <c-c>
 "vnoremap h <c-c>
 "vnoremap i <c-c>
+"vnoremap n <c-c>
 "vnoremap o <c-c>
 vnoremap q <c-c>
-vnoremap r <c-c>
+"vnoremap r <c-c>
 "vnoremap s <c-c>
-"vnoremap t <c-c>
+vnoremap t <c-c>
 "vnoremap u <c-c>
 vnoremap w <c-c>
 "vnoremap x <c-c>
@@ -547,6 +564,7 @@ vnoremap y <c-c>
 vnoremap <c-a> <c-c>
 vnoremap <c-e> <c-c>
 vnoremap <c-f> <c-c>
+"vnoremap <c-i> <c-c>
 "vnoremap <c-l> <c-c>
 "vnoremap <c-m> <c-c>
 vnoremap <c-n> <c-c>
@@ -573,8 +591,10 @@ inoremap <c-l> <c-o>l
 inoremap <expr> <c-o> pumvisible() ? "<c-y>" : "<c-o>h"
 "inoremap <c-o> <c-o>h
 
-" cursor mv word
+" cursor mv word forward
 inoremap <c-f> <c-o>e<c-o>l
+
+" cursor mv word back
 "inoremap <c-q> <c-o>b
 
 " ins bracket
@@ -600,7 +620,6 @@ inoremap <expr> <c-k> pumvisible() ? "<c-p>" : "<c-o>dw"
 
 " line new
 inoremap <c-m> <cr>
-"inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<cr>"
 
 " tab
 inoremap <tab> <c-v><Tab>
@@ -614,7 +633,7 @@ inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
 
 " quit, esc
 "inoremap <c-;> <esc> " non
-inoremap <esc> <esc>
+inoremap <esc> <esc>l
 inoremap <c-c> <esc>
 "inoremap <c-f> <esc>
 inoremap <c-q> <esc>
@@ -649,11 +668,6 @@ cnoremap <c-c> <c-u>
 
 "cnoremap <c-p> <Up>
 "cnoremap <c-n> <Down>
-
-augroup vimrcEx
-  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
-  \ exe "normal g`\"" | endif
-augroup END
 
 
 if &term =~ '^screen'
@@ -735,7 +749,6 @@ endfunc
 call plug#begin()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 "
@@ -878,11 +891,12 @@ nnoremap :f :Cfilter
 "nnoremap :c :Cfilter
 
 
-func! SrchSlct() abort
+func! SrchChr() abort
   
-  let l:len_mv = strchars( @/ ) - 1
-  execute "normal! nv" . l:len_mv . "l"
+  normal! t
+  normal! l
 
 endfunc
+"nnoremap r :call SrchChr()<cr>
 
 
