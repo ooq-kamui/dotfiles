@@ -142,7 +142,8 @@ nnoremap :e :e!
 "nnoremap ?? `0
 
 " open latest list
-nnoremap <leader>l :Latest<cr>
+nnoremap <leader>; :Latest<cr>
+"nnoremap <leader>l :Latest<cr>
 "nnoremap :l :Latest<cr>
 command! -nargs=0 Latest
 \ call setqflist([], ' ', {'lines' : v:oldfiles, 'efm' : '%f',
@@ -200,7 +201,7 @@ nnoremap gk G$l
 nnoremap <c-l> %
 
 " cursor mv bracket back
-nnoremap u [{
+"nnoremap ? [{
 
 " cursor mv edited ( jump list )
 nnoremap b     <c-o>
@@ -297,16 +298,19 @@ nnoremap < <<
 "
 
 " search char
-nnoremap <leader><esc> t
+nnoremap <leader><esc> f
 
 " search
 nnoremap n     n
 nnoremap <c-n> N
 "nnoremap n     gn
 "nnoremap <c-n> gN
-nnoremap e     g*N
-nnoremap E     *N
-nnoremap /     /
+nnoremap e g*N
+nnoremap E  *N
+
+" search cmd
+nnoremap <leader>l /
+nnoremap <leader>u /
 
 " search replace > yank ( file )
 nnoremap :s :%s//<c-r>0/gc<cr>
@@ -316,8 +320,8 @@ nnoremap :s :%s//<c-r>0/gc<cr>
 nnoremap <c-p> gn
 
 " tag jump
-nnoremap r <c-w>gFgT
-"nnoremap r <c-w>gF
+nnoremap t <c-w>gFgT
+"nnoremap r <c-w>gFgT
 
 " mark
 "nnoremap b m
@@ -348,6 +352,7 @@ nnoremap . <esc>
 nnoremap * <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
+nnoremap / <esc>
 
 nnoremap <c-space> <esc>
 nnoremap <c-@> <esc>
@@ -374,10 +379,10 @@ nnoremap g <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
 nnoremap q <esc>
-"nnoremap r <esc>
+nnoremap r <esc>
 "nnoremap s <esc>
-nnoremap t <esc>
-"nnoremap u <esc>
+"nnoremap t <esc>
+nnoremap u <esc>
 "nnoremap w <esc>
 "nnoremap x <esc>
 nnoremap y <esc>
@@ -513,10 +518,13 @@ vnoremap <c-u> uviw
 " search
 "
 vnoremap n "ay/<c-r>a<cr>N
-vnoremap <leader><space> "ay/<c-r>a<cr>N
 vnoremap e "ay/<c-r>a<cr>N
 vnoremap E *<c-c>N
-vnoremap / "ay/<c-r>a
+
+" search cmd
+vnoremap <leader>l "ay/<c-r>a
+vnoremap <leader>u "ay/<c-r>a
+"vnoremap / "ay/<c-r>a
 "vnoremap n     <esc>lgn
 "vnoremap <c-n> <esc>hgN
 
@@ -528,8 +536,8 @@ vnoremap :s :s//<c-r>0/gc<cr>
 vnoremap <c-p> "ad"0Pgn
 
 " tag jump
-vnoremap r :FileJmp<cr>
-"vnoremap t <c-w>gF
+vnoremap t :FileJmp<cr>
+"vnoremap r :FileJmp<cr>
 
 "
 " nop
@@ -541,6 +549,7 @@ vnoremap <space> <nop>
 "
 vnoremap @ <c-c>
 vnoremap * <c-c>
+vnoremap / <c-c>
 
 vnoremap a <c-c>
 vnoremap b <c-c>
@@ -552,9 +561,9 @@ vnoremap b <c-c>
 "vnoremap n <c-c>
 "vnoremap o <c-c>
 vnoremap q <c-c>
-"vnoremap r <c-c>
+vnoremap r <c-c>
 "vnoremap s <c-c>
-vnoremap t <c-c>
+"vnoremap t <c-c>
 "vnoremap u <c-c>
 vnoremap w <c-c>
 "vnoremap x <c-c>
@@ -890,13 +899,15 @@ vnoremap :f :FileJmp<cr>
 nnoremap :f :Cfilter
 "nnoremap :c :Cfilter
 
-
-func! SrchChr() abort
+func! Tabnewexe() abort
   
-  normal! t
-  normal! l
+  execute "tabnew"
+  execute "read !ll"
+  execute "normal! o"
+  execute "1delete"
 
 endfunc
-"nnoremap r :call SrchChr()<cr>
+"nnoremap t :call Tabnewexe()<cr>
+
 
 
