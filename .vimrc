@@ -58,6 +58,9 @@ au ColorScheme * hi netrwList     ctermfg=yellow     ctermbg=none    cterm=none
 au ColorScheme * hi netrwVersion  ctermfg=130        ctermbg=none    cterm=none
 au ColorScheme * hi netrwHelpCmd  ctermfg=130        ctermbg=none    cterm=none
 
+au Colorscheme * hi FullWidthSpace ctermbg=white
+au VimEnter * match FullWidthSpace /　/
+
 au BufNewFile,BufRead *.script     set filetype=lua
 au BufNewFile,BufRead *.gui_script set filetype=lua
 
@@ -320,8 +323,8 @@ nnoremap :s :%s//<c-r>0/gc<cr>
 nnoremap <c-p> gn
 
 " tag jump
-nnoremap t <c-w>gFgT
-"nnoremap r <c-w>gFgT
+nnoremap t <c-w>gFgTj
+nnoremap r <c-w>gFgTj
 
 " mark
 "nnoremap b m
@@ -342,10 +345,11 @@ nnoremap <S-Left>  :tabm-1<Cr>
 " esc
 "
 "nnoremap <esc>   <esc>
+"nnoremap <cr>    <esc> " eq <c-m>
 nnoremap <space> <esc>
 nnoremap <bs>    <esc>
 
-"nnoremap @ <esc>
+nnoremap @ <esc>
 "nnoremap ; <esc>
 nnoremap , <esc>
 nnoremap . <esc>
@@ -379,7 +383,7 @@ nnoremap g <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
 nnoremap q <esc>
-nnoremap r <esc>
+"nnoremap r <esc>
 "nnoremap s <esc>
 "nnoremap t <esc>
 nnoremap u <esc>
@@ -537,7 +541,7 @@ vnoremap <c-p> "ad"0Pgn
 
 " tag jump
 vnoremap t :FileJmp<cr>
-"vnoremap r :FileJmp<cr>
+vnoremap r :FileJmp<cr>
 
 "
 " nop
@@ -561,7 +565,7 @@ vnoremap b <c-c>
 "vnoremap n <c-c>
 "vnoremap o <c-c>
 vnoremap q <c-c>
-vnoremap r <c-c>
+"vnoremap r <c-c>
 "vnoremap s <c-c>
 "vnoremap t <c-c>
 "vnoremap u <c-c>
@@ -606,14 +610,6 @@ inoremap <c-f> <c-o>e<c-o>l
 " cursor mv word back
 "inoremap <c-q> <c-o>b
 
-" ins bracket
-"inoremap < <><c-o>h
-inoremap [ []<c-o>h
-inoremap ( ()<c-o>h
-inoremap { {}<c-o>h
-inoremap ' ''<c-o>h
-inoremap <expr> " col(".") == 1 ? "\"" : "\"\"<c-o>h"
-
 " del line
 " non
 
@@ -646,6 +642,36 @@ inoremap <esc> <esc>l
 inoremap <c-c> <esc>
 "inoremap <c-f> <esc>
 inoremap <c-q> <esc>
+
+" ins
+"inoremap 1 !
+"inoremap ! 1
+"inoremap 2 "
+"inoremap " 2
+"inoremap 3 #
+"inoremap # 3
+"inoremap 4 $
+"inoremap $ 4
+"inoremap 5 %
+"inoremap % 5
+"inoremap 6 &
+"inoremap & 6
+"inoremap 7 '
+"inoremap ' 7
+"inoremap 8 (
+"inoremap ( 8
+"inoremap 9 )
+"inoremap ) 9
+"inoremap 0 _
+"inoremap _ 0
+
+" ins bracket
+""inoremap < <><c-o>h
+"inoremap { {}<c-o>h
+"inoremap [ []<c-o>h
+"inoremap ( ()<c-o>h
+"inoremap ' ''<c-o>h
+"inoremap <expr> " col(".") == 1 ? "\"" : "\"\"<c-o>h"
 
 " 
 " mode ex
