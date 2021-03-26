@@ -1,10 +1,24 @@
 
 --colors=match:fg:yellow
-#--colors=line:style:bold
 
 --smart-case
---line-number
+--no-heading
+#--line-number
 
+#--type-add 'ooq:*.gui_script'
+#--type-add 'ooq:*.script'
+#--type-add 'ooq:*.tilemap'
+#--type-add 'ooq:*.tilesource'
+#--type-add 'ooq:*.atlas'
+#--type-add 'ooq:*.sprite'
+#--type-add 'ooq:*.collectionfactory'
+#--type-add 'ooq:*.collection'
+#--type-add 'ooq:*.factory'
+#--type-add 'ooq:*.go'
+#--type-add 'ooq:*.gui'
+#--type-add 'ooq:*.label'
+#--type-add 'ooq:*.sound'
+#--type-add 'ooq:*.camera'
 
 
 
