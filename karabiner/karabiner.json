@@ -16,7 +16,138 @@
                 },
                 "rules": [
                     {
-                        "description": "num lock",
+                        "description": "num key put symbol",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "1"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "1",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "2"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "2",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "3"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "3",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "4"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "4",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "5"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "5",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "6"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "6",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "7"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "7",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "8"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "8",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "9"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "9",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "fn num",
                         "manipulators": [
                             {
                                 "from": {
@@ -211,63 +342,20 @@
                         ]
                     },
                     {
-                        "description": "num to symbol",
+                        "description": "fn shift symbol",
                         "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "2",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "shift"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "grave_accent_and_tilde"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "3",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "shift"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "international3"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
                             {
                                 "from": {
                                     "key_code": "international1",
                                     "modifiers": {
                                         "mandatory": [
-                                            "shift"
+                                            "fn"
                                         ]
                                     }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "slash"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "1"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "1",
+                                        "key_code": "hyphen",
                                         "modifiers": [
                                             "shift"
                                         ]
@@ -277,11 +365,16 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "2"
+                                    "key_code": "hyphen",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "2",
+                                        "key_code": "hyphen",
                                         "modifiers": [
                                             "shift"
                                         ]
@@ -291,11 +384,16 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "3"
+                                    "key_code": "equal_sign",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "3",
+                                        "key_code": "equal_sign",
                                         "modifiers": [
                                             "shift"
                                         ]
@@ -305,11 +403,16 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "4"
+                                    "key_code": "international3",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "4",
+                                        "key_code": "international3",
                                         "modifiers": [
                                             "shift"
                                         ]
@@ -319,11 +422,16 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "5"
+                                    "key_code": "open_bracket",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "5",
+                                        "key_code": "open_bracket",
                                         "modifiers": [
                                             "shift"
                                         ]
@@ -333,11 +441,16 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "6"
+                                    "key_code": "close_bracket",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "6",
+                                        "key_code": "close_bracket",
                                         "modifiers": [
                                             "shift"
                                         ]
@@ -347,11 +460,16 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "7"
+                                    "key_code": "quote",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "7",
+                                        "key_code": "quote",
                                         "modifiers": [
                                             "shift"
                                         ]
@@ -361,11 +479,16 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "8"
+                                    "key_code": "backslash",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "8",
+                                        "key_code": "backslash",
                                         "modifiers": [
                                             "shift"
                                         ]
@@ -375,11 +498,54 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "9"
+                                    "key_code": "comma",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "9",
+                                        "key_code": "comma",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "period",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "slash",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "slash",
                                         "modifiers": [
                                             "shift"
                                         ]
@@ -532,6 +698,16 @@
                 },
                 {
                     "from": {
+                        "key_code": "0"
+                    },
+                    "to": [
+                        {
+                            "key_code": "international1"
+                        }
+                    ]
+                },
+                {
+                    "from": {
                         "key_code": "caps_lock"
                     },
                     "to": [
@@ -547,6 +723,26 @@
                     "to": [
                         {
                             "apple_vendor_keyboard_key_code": "spotlight"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f14"
+                    },
+                    "to": [
+                        {
+                            "key_code": "japanese_eisuu"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "international1"
+                    },
+                    "to": [
+                        {
+                            "key_code": "0"
                         }
                     ]
                 },
@@ -576,7 +772,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "left_shift"
+                            "apple_vendor_top_case_key_code": "keyboard_fn"
                         }
                     ]
                 },
@@ -596,27 +792,7 @@
                     },
                     "to": [
                         {
-                            "apple_vendor_top_case_key_code": "keyboard_fn"
-                        }
-                    ]
-                },
-                {
-                    "from": {
-                        "key_code": "0"
-                    },
-                    "to": [
-                        {
-                            "key_code": "international1"
-                        }
-                    ]
-                },
-                {
-                    "from": {
-                        "key_code": "international1"
-                    },
-                    "to": [
-                        {
-                            "key_code": "0"
+                            "key_code": "left_shift"
                         }
                     ]
                 }

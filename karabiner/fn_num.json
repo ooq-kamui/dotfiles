@@ -2,7 +2,7 @@
   "title": "personal rules ( @kamui )",
   "rules": [
     {
-      "description": "num lock",
+      "description": "fn num",
       "manipulators": [
         {
           "from": {
