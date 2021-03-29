@@ -1,0 +1,20 @@
+{
+  "title": "shift 0 > 1 [ @kamui ]",
+  "rules": [
+    {
+      "description": "shift 0 > 1",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "0"
+          },
+          "to": [
+            { "key_code": "1" }
+          ]
+        }
+      ]
+    }
+  ]
+}

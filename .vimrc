@@ -193,12 +193,14 @@ nnoremap f el
 nnoremap o b
 
 " cursor mv file back    ( file begin )
-nnoremap gl gg0
+nnoremap go gg0
+"nnoremap gl gg0
 "nnoremap gk gg0
 
 " cursor mv file forward ( file end   )
-nnoremap gj G$l
-nnoremap gk G$l
+nnoremap gl G$l
+"nnoremap gj G$l
+"nnoremap gk G$l
 
 " cursor mv bracket paire
 nnoremap <c-l> %
@@ -296,6 +298,9 @@ nnoremap - <c-x>
 nnoremap > >>
 nnoremap < <<
 
+" upper / lower
+nnoremap u v~
+
 "
 " search
 "
@@ -386,7 +391,7 @@ nnoremap q <esc>
 "nnoremap r <esc>
 "nnoremap s <esc>
 "nnoremap t <esc>
-nnoremap u <esc>
+"nnoremap u <esc>
 "nnoremap w <esc>
 "nnoremap x <esc>
 nnoremap y <esc>
@@ -471,7 +476,7 @@ vnoremap gk G$l
 vnoremap <c-l> %
 
 " ins | cut & ins
-vnoremap <expr> <esc>   mode() == "<c-v>" ? "I" : "c"
+vnoremap <expr> <esc> mode() == "<c-v>" ? "I" : "c"
 vnoremap I     c
 vnoremap <c-i> c
 "vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
@@ -537,7 +542,8 @@ vnoremap :s :s//<c-r>0/gc<cr>
 "vnoremap :w :s//<c-r>0/g <cr>
 
 " search replace > yank one , next
-vnoremap <c-p> "ad"0Pgn
+vnoremap <c-p> "ad"0Plgn
+"vnoremap <c-p> "ad"0Pgn
 
 " tag jump
 vnoremap t :FileJmp<cr>
@@ -638,40 +644,18 @@ inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
 
 " quit, esc
 "inoremap <c-;> <esc> " non
-inoremap <esc> <esc>l
-inoremap <c-c> <esc>
-"inoremap <c-f> <esc>
-inoremap <c-q> <esc>
-
-" ins
-"inoremap 1 !
-"inoremap ! 1
-"inoremap 2 "
-"inoremap " 2
-"inoremap 3 #
-"inoremap # 3
-"inoremap 4 $
-"inoremap $ 4
-"inoremap 5 %
-"inoremap % 5
-"inoremap 6 &
-"inoremap & 6
-"inoremap 7 '
-"inoremap ' 7
-"inoremap 8 (
-"inoremap ( 8
-"inoremap 9 )
-"inoremap ) 9
-"inoremap 0 _
-"inoremap _ 0
+inoremap <expr> <esc> col(".") == 1 ? "<esc>" : "<esc>l"
+inoremap <expr> <c-c> col(".") == 1 ? "<esc>" : "<esc>l"
+"inoremap <expr> <c-f> col(".") == 1 ? "<esc>" : "<esc>l"
+inoremap <expr> <c-q> col(".") == 1 ? "<esc>" : "<esc>l"
 
 " ins bracket
 ""inoremap < <><c-o>h
 "inoremap { {}<c-o>h
 "inoremap [ []<c-o>h
-"inoremap ( ()<c-o>h
+inoremap ( ()<c-o>h
 "inoremap ' ''<c-o>h
-"inoremap <expr> " col(".") == 1 ? "\"" : "\"\"<c-o>h"
+inoremap <expr> " col(".") == 1 ? "\"" : "\"\"<c-o>h"
 
 " 
 " mode ex

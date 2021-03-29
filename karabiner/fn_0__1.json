@@ -1,0 +1,22 @@
+{
+  "title": "fn 0 > 1 [ @kamui ]",
+  "rules": [
+    {
+      "description": "fn 0 > 1",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": { "mandatory": [ "fn" ] },
+            "key_code": "0"
+          },
+          "to": [
+            {
+              "key_code": "1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
