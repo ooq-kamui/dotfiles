@@ -1,0 +1,51 @@
+{
+  "title": "0 <> _ [ @kamui ]",
+  "rules": [
+    {
+      "description": "0 <> _",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "0"
+          },
+          "to": [
+            { "key_code": "international1" }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "0"
+          },
+          "to": [
+            {
+              "modifiers": ["shift"],
+              "key_code": "semicolon" 
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "international1"
+          },
+          "to": [
+            { "key_code": "0" }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "international1"
+          },
+          "to": [
+            { "key_code": "1" }
+          ]
+        }
+      ]
+    }
+  ]
+}
