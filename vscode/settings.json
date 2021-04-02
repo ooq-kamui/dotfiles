@@ -39,7 +39,8 @@
 		// edit
 		//
 		// ins
-		{ "before": [ "e" ], "after": [ "i" ] },
+		// { "before": [ "e" ], "after": [ "i" ] },
+		{ "before": [ "<esc>" ], "after": [ "i" ] },
 		// ins line
 		{ "before": [ ";" ], "after": [ "O", "<esc>" ] },
 		// ins cr
@@ -91,6 +92,7 @@
 	],
 	"vim.insertModeKeyBindings": [
 		// esc
+		{ "before": ["<esc>" ], "after": ["<c-c>", "l"] },
 		{ "before": ["<c-f>" ], "after": ["<c-c>"] },
 		// cursor mv char
 		{ "before": ["<c-o>" ], "after": ["<left>" ] },

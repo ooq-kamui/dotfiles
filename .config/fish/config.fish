@@ -15,6 +15,8 @@ alias ll="la"
 alias vim="nvim"
 alias vi="nvim"
 
+#alias rpl="string replace"
+
 #alias f="mdfind -onlyin . -name"
 
 # corsor mv char
@@ -28,6 +30,8 @@ bind \cF forward-word
 bind \cK kill-word
 #bind \cQ kill-word
 #bind \cS backward-delete-char
+
+bind \cQ 'clear; commandline -f repaint'
 
 
 # color

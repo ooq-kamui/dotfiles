@@ -34,16 +34,6 @@
           "to": [
             { "key_code": "0" }
           ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "modifiers": { "mandatory": [ "shift" ] },
-            "key_code": "international1"
-          },
-          "to": [
-            { "key_code": "1" }
-          ]
         }
       ]
     }
