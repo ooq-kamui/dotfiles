@@ -122,7 +122,6 @@ packadd Cfilter
 
 " leader
 let mapleader = "\<space>"
-"let mapleader = "\<esc>"
 
 "
 " mode normal
@@ -130,6 +129,7 @@ let mapleader = "\<space>"
 
 " quit
 nnoremap w  :q<cr>
+"nnoremap <leader><esc> :q<cr>
 nnoremap :q :q!
 
 " quit other
@@ -146,8 +146,6 @@ nnoremap :e :e!
 
 " open latest list
 nnoremap <leader>; :Latest<cr>
-"nnoremap <leader>l :Latest<cr>
-"nnoremap :l :Latest<cr>
 command! -nargs=0 Latest
 \ call setqflist([], ' ', {'lines' : v:oldfiles, 'efm' : '%f',
 \                          'quickfixtextfunc' : 'QfOldFiles'}) | tab cw
@@ -211,8 +209,6 @@ nnoremap <c-l> %
 " cursor mv edited ( jump list )
 nnoremap b     <c-o>
 nnoremap <c-b> <c-i>
-nnoremap _     <c-o>
-nnoremap <c-_> <c-i>
 
 " cursor mv window split
 nnoremap <c-w> <c-w>w
@@ -239,6 +235,13 @@ nnoremap <esc> i
 
 " ins cr
 nnoremap m i<cr><esc>
+
+" ins space
+nnoremap <c-f> i <esc>l
+nnoremap _ i <esc>l
+nnoremap " i <esc>l
+nnoremap # i <esc>l
+"nnoremap <c-f> i <esc>
 
 " del char
 nnoremap s "ax
@@ -267,12 +270,6 @@ nnoremap A ggVG
 " select word
 nnoremap i viw
 nnoremap I v
-"nnoremap <esc>   viw
-"nnoremap <c-esc> v " non
-"nnoremap <space>   viw
-"nnoremap <c-space> v
-"nnoremap e viw
-"nnoremap E v
 
 " select box
 nnoremap v <c-v>
@@ -301,12 +298,15 @@ nnoremap < <<
 " upper / lower
 nnoremap u v~
 
+" comment ins lua
+nnoremap @ i-- <esc>
+
 "
 " search
 "
 
 " search char
-nnoremap <leader><esc> f
+"nnoremap <leader><esc> f
 
 " search
 nnoremap n     n
@@ -317,19 +317,20 @@ nnoremap e g*N
 nnoremap E  *N
 
 " search cmd
+nnoremap <leader>n /
 nnoremap <leader>l /
-nnoremap <leader>u /
+"nnoremap <leader>j /
 
-" search replace > yank ( file )
+" search replace all > yank ( file )
 nnoremap :s :%s//<c-r>0/gc<cr>
 "nnoremap :w :%s//<c-r>0/g <cr>
 
-" search replace > yank next ( only search )
+" search replace one > yank next ( only search )
 nnoremap <c-p> gn
 
 " tag jump
-nnoremap t <c-w>gFgTj
 nnoremap r <c-w>gFgTj
+nnoremap t <c-w>gFgTj
 
 " mark
 "nnoremap b m
@@ -354,7 +355,7 @@ nnoremap <S-Left>  :tabm-1<Cr>
 nnoremap <space> <esc>
 nnoremap <bs>    <esc>
 
-nnoremap @ <esc>
+"nnoremap @ <esc>
 "nnoremap ; <esc>
 nnoremap , <esc>
 nnoremap . <esc>
@@ -362,6 +363,8 @@ nnoremap * <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
 nnoremap / <esc>
+"nnoremap " <esc>
+"nnoremap # <esc>
 
 nnoremap <c-space> <esc>
 nnoremap <c-@> <esc>
@@ -406,7 +409,7 @@ nnoremap <c-a> <esc>
 nnoremap <c-c> <esc>
 nnoremap <c-d> <esc>
 nnoremap <c-e> <esc>
-nnoremap <c-f> <esc>
+"nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
@@ -531,19 +534,25 @@ vnoremap e "ay/<c-r>a<cr>N
 vnoremap E *<c-c>N
 
 " search cmd
+vnoremap <leader>n "ay/<c-r>a
 vnoremap <leader>l "ay/<c-r>a
-vnoremap <leader>u "ay/<c-r>a
+"vnoremap <leader>j "ay/<c-r>a
+"vnoremap <leader>u "ay/<c-r>a
 "vnoremap / "ay/<c-r>a
 "vnoremap n     <esc>lgn
 "vnoremap <c-n> <esc>hgN
 
-" search replace > yank all ( selected )
+" search replace all > yank ( selected )
 vnoremap :s :s//<c-r>0/gc<cr>
 "vnoremap :w :s//<c-r>0/g <cr>
 
-" search replace > yank one , next
+" search replace one > yank , next
 vnoremap <c-p> "ad"0Plgn
 "vnoremap <c-p> "ad"0Pgn
+
+" search replace one , skip
+vnoremap @ <c-c>lgn
+
 
 " tag jump
 vnoremap t :FileJmp<cr>
@@ -557,7 +566,7 @@ vnoremap <space> <nop>
 "
 " esc
 "
-vnoremap @ <c-c>
+"vnoremap @ <c-c>
 vnoremap * <c-c>
 vnoremap / <c-c>
 
@@ -804,8 +813,8 @@ let g:fzf_colors = {
 " lines
 nnoremap <leader>j :BLines<cr>
 vnoremap <leader>j "ay:BLines <c-r>a<cr>
-"nnoremap <leader>u :BLines<cr>
-"vnoremap <leader>u "ay:BLines <c-r>a<cr>
+"nnoremap <leader>l :BLines<cr>
+"vnoremap <leader>l "ay:BLines <c-r>a<cr>
 command! -bang -nargs=? BLines
 \ call fzf#vim#buffer_lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
 
