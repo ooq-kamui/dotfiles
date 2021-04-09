@@ -31,7 +31,8 @@ bind \cK kill-word
 #bind \cQ kill-word
 #bind \cS backward-delete-char
 
-bind \cQ 'clear; commandline -f repaint'
+bind \cM 'clear; commandline -f repaint'
+#bind \cQ 'clear; commandline -f repaint'
 
 
 # color

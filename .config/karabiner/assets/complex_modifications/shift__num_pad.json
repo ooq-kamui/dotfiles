@@ -5,126 +5,127 @@
       "description": "shift num pad",
       "manipulators": [
         {
+          "type": "basic",
           "from": {
-            "key_code": "n",
-            "modifiers": {
-              "mandatory": [ "shift" ]
-            }
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "n"
           },
           "to": [
-            { "key_code": "0" }
-          ],
-          "type": "basic"
+            {
+              "key_code": "keypad_0"
+            }
+          ]
         },
         {
+          "type": "basic",
           "from": {
-            "key_code": "m",
-            "modifiers": {
-              "mandatory": [ "shift" ]
-            }
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "m"
           },
           "to": [
-            { "key_code": "1" }
-          ],
-          "type": "basic"
+            {
+              "key_code": "keypad_1"
+            }
+          ]
         },
         {
+          "type": "basic",
           "from": {
-            "key_code": "j",
-            "modifiers": {
-              "mandatory": [ "shift" ]
-            }
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "j"
           },
           "to": [
-            { "key_code": "2" }
-          ],
-          "type": "basic"
+            {
+              "key_code": "keypad_2"
+            }
+          ]
         },
         {
+          "type": "basic",
           "from": {
-            "key_code": "k",
-            "modifiers": {
-              "mandatory": [ "shift" ]
-            }
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "k"
           },
           "to": [
-            { "key_code": "3" }
-          ],
-          "type": "basic"
+            {
+              "key_code": "keypad_3"
+            }
+          ]
         },
         {
+          "type": "basic",
           "from": {
-            "key_code": "l",
-            "modifiers": {
-              "mandatory": [ "shift" ]
-            }
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "l"
           },
           "to": [
-            { "key_code": "4" }
-          ],
-          "type": "basic"
+            {
+              "key_code": "keypad_4"
+            }
+          ]
         },
         {
+          "type": "basic",
           "from": {
-            "key_code": "semicolon",
-            "modifiers": {
-              "mandatory": [ "shift" ]
-            }
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "semicolon"
           },
           "to": [
-            { "key_code": "5" }
-          ],
-          "type": "basic"
+            {
+              "key_code": "keypad_5"
+            }
+          ]
         },
         {
+          "type": "basic",
           "from": {
-            "key_code": "u",
-            "modifiers": {
-              "mandatory": [ "shift" ]
-            }
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "u"
           },
           "to": [
-            { "key_code": "6" }
-          ],
-          "type": "basic"
+            {
+              "key_code": "keypad_6"
+            }
+          ]
         },
         {
+          "type": "basic",
           "from": {
-            "key_code": "i",
-            "modifiers": {
-              "mandatory": [ "shift" ]
-            }
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "i"
           },
           "to": [
-            { "key_code": "7" }
-          ],
-          "type": "basic"
+            {
+              "key_code": "keypad_7"
+            }
+          ]
         },
         {
+          "type": "basic",
           "from": {
-            "key_code": "o",
-            "modifiers": {
-              "mandatory": [ "shift" ]
-            }
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "o"
           },
           "to": [
-            { "key_code": "8" }
-          ],
-          "type": "basic"
+            {
+              "key_code": "keypad_8"
+            }
+          ]
         },
         {
+          "type": "basic",
           "from": {
-            "key_code": "p",
-            "modifiers": {
-              "mandatory": [ "shift" ]
-            }
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "p"
           },
           "to": [
-            { "key_code": "9" }
-          ],
-          "type": "basic"
+            {
+              "key_code": "keypad_9"
+            }
+          ]
         }
       ]
     }
   ]
 }
+

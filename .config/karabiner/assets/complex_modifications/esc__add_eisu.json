@@ -1,8 +1,8 @@
 {
-  "title": "esc += alph [ @kamui ]",
+  "title": "esc += eisu [ @kamui ]",
   "rules": [
     {
-      "description": "esc += alph",
+      "description": "esc += eisu",
       "manipulators": [
         {
           "type": "basic",
