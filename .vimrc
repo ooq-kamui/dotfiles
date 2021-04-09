@@ -238,6 +238,7 @@ nnoremap m i<cr><esc>
 
 " ins space
 nnoremap <c-f> i <esc>l
+"nnoremap <c-space> i <esc>l
 nnoremap _ i <esc>l
 nnoremap " i <esc>l
 nnoremap # i <esc>l
@@ -317,9 +318,9 @@ nnoremap e g*N
 nnoremap E  *N
 
 " search cmd
+nnoremap <leader>j /
 nnoremap <leader>n /
-nnoremap <leader>l /
-"nnoremap <leader>j /
+"nnoremap <leader>l /
 
 " search replace all > yank ( file )
 nnoremap :s :%s//<c-r>0/gc<cr>
@@ -515,6 +516,9 @@ vnoremap + <c-a>
 vnoremap - <c-x>
 "vnoremap + g<c-a>
 
+" num seq
+vnoremap a g<c-a>
+
 " indent
 vnoremap > >gv
 vnoremap < <gv
@@ -534,9 +538,9 @@ vnoremap e "ay/<c-r>a<cr>N
 vnoremap E *<c-c>N
 
 " search cmd
+vnoremap <leader>j "ay/<c-r>a
 vnoremap <leader>n "ay/<c-r>a
-vnoremap <leader>l "ay/<c-r>a
-"vnoremap <leader>j "ay/<c-r>a
+"vnoremap <leader>l "ay/<c-r>a
 "vnoremap <leader>u "ay/<c-r>a
 "vnoremap / "ay/<c-r>a
 "vnoremap n     <esc>lgn
@@ -551,7 +555,8 @@ vnoremap <c-p> "ad"0Plgn
 "vnoremap <c-p> "ad"0Pgn
 
 " search replace one , skip
-vnoremap @ <c-c>lgn
+vnoremap <c-n> <c-c>lgn
+"vnoremap @ <c-c>lgn
 
 
 " tag jump
@@ -570,7 +575,7 @@ vnoremap <space> <nop>
 vnoremap * <c-c>
 vnoremap / <c-c>
 
-vnoremap a <c-c>
+"vnoremap a <c-c>
 vnoremap b <c-c>
 "vnoremap c <c-c>
 "vnoremap d <c-c>
@@ -594,7 +599,7 @@ vnoremap <c-f> <c-c>
 "vnoremap <c-i> <c-c>
 "vnoremap <c-l> <c-c>
 "vnoremap <c-m> <c-c>
-vnoremap <c-n> <c-c>
+"vnoremap <c-n> <c-c>
 "vnoremap <c-o> <c-c>
 "vnoremap <c-p> <c-c>
 vnoremap <c-q> <c-c>
@@ -665,6 +670,10 @@ inoremap <expr> <c-q> col(".") == 1 ? "<esc>" : "<esc>l"
 inoremap ( ()<c-o>h
 "inoremap ' ''<c-o>h
 inoremap <expr> " col(".") == 1 ? "\"" : "\"\"<c-o>h"
+
+" num pad key
+"inoremap <kUp> a
+
 
 " 
 " mode ex
@@ -741,7 +750,8 @@ autocmd QuickFixCmdPost vimgrep,grep tab cw
 "
 
 " launch
-nnoremap <leader>k :Tex .<cr>
+nnoremap <leader>l :Tex .<cr>
+"nnoremap <leader>k :Tex .<cr>
 
 let g:netrw_liststyle    = 3 " view file tree
 let g:netrw_browse_split = 3 " file open tab
@@ -752,6 +762,7 @@ let g:Netrw_UserMaps = [
 \ ['e'        , 'NetrwKeyBind__top'],
 \ ['p'        , 'NetrwKeyBind__parent'],
 \ ['<c-q>'    , 'NetrwKeyBind_clz'],
+\ ['<esc>'    , 'NetrwKeyBind_clz'],
 \]
 
 func! NetrwKeyBind_opn (islocal) abort
@@ -811,10 +822,10 @@ let g:fzf_colors = {
 "fzf#vim#complete#buffer_line([spec])
 
 " lines
-nnoremap <leader>j :BLines<cr>
-vnoremap <leader>j "ay:BLines <c-r>a<cr>
-"nnoremap <leader>l :BLines<cr>
-"vnoremap <leader>l "ay:BLines <c-r>a<cr>
+nnoremap <leader>k :BLines<cr>
+vnoremap <leader>k "ay:BLines <c-r>a<cr>
+"nnoremap <leader>j :BLines<cr>
+"vnoremap <leader>j "ay:BLines <c-r>a<cr>
 command! -bang -nargs=? BLines
 \ call fzf#vim#buffer_lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
 

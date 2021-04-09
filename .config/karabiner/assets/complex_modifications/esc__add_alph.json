@@ -1,0 +1,23 @@
+{
+  "title": "esc += alph [ @kamui ]",
+  "rules": [
+    {
+      "description": "esc += alph",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": { "key_code": "escape" },
+          "to": [
+            {
+              "key_code": "japanese_eisuu"
+            },
+            {
+              "key_code": "escape"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
