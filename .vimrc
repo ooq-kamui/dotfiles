@@ -78,7 +78,7 @@ set list
 set cursorline
 
 set autoindent
-"set expandtab " indent tab を space にする
+"set expandtab " indent tab > space
 set tabstop=4    " 2
 set shiftwidth=4 " 2
 filetype indent on
@@ -129,11 +129,11 @@ let mapleader = "\<space>"
 
 " quit
 nnoremap w  :q<cr>
-"nnoremap <leader><esc> :q<cr>
 nnoremap :q :q!
 
 " quit other
 nnoremap W :tabo<cr>
+nnoremap <leader>w :tabo<cr>
 
 " save
 nnoremap a :w<cr>
@@ -160,6 +160,9 @@ func QfOldFiles(info)
   return l
 endfunc
 
+" opn tab new
+nnoremap <leader>n :tabnew<cr>
+nnoremap <leader>N :tabnew<cr>:tabo<cr>
 
 "
 " cursor mv
@@ -219,7 +222,9 @@ nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 
 " scroll cursor line read easily
-nnoremap <leader><space> zz10<c-e>
+nnoremap <leader>r zz10<c-e>
+nnoremap <leader>e zz10<c-e>
+"nnoremap <leader><space> zz10<c-e>
 
 "
 " edit
@@ -238,11 +243,12 @@ nnoremap m i<cr><esc>
 
 " ins space
 nnoremap <c-f> i <esc>l
-"nnoremap <c-space> i <esc>l
 nnoremap _ i <esc>l
 nnoremap " i <esc>l
 nnoremap # i <esc>l
-"nnoremap <c-f> i <esc>
+
+" ins comment lua
+nnoremap <leader>c O--[[<cr>--]]<esc>
 
 " del char
 nnoremap s "ax
@@ -307,7 +313,12 @@ nnoremap @ i-- <esc>
 "
 
 " search char
+nnoremap <leader><space> f
+"nnoremap r f
 "nnoremap <leader><esc> f
+
+" search char repeat
+nnoremap <leader>f ;
 
 " search
 nnoremap n     n
@@ -319,7 +330,7 @@ nnoremap E  *N
 
 " search cmd
 nnoremap <leader>j /
-nnoremap <leader>n /
+"nnoremap <leader>n /
 "nnoremap <leader>l /
 
 " search replace all > yank ( file )
@@ -332,6 +343,7 @@ nnoremap <c-p> gn
 " tag jump
 nnoremap r <c-w>gFgTj
 nnoremap t <c-w>gFgTj
+"nnoremap q <c-w>gFgTj
 
 " mark
 "nnoremap b m
@@ -391,7 +403,7 @@ nnoremap g <esc>
 "nnoremap m <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
-nnoremap q <esc>
+"nnoremap q <esc>
 "nnoremap r <esc>
 "nnoremap s <esc>
 "nnoremap t <esc>
@@ -401,6 +413,7 @@ nnoremap q <esc>
 nnoremap y <esc>
 nnoremap z <esc>
 
+nnoremap N <esc>
 nnoremap O <esc>
 nnoremap R <esc>
 nnoremap T <esc>
@@ -664,10 +677,10 @@ inoremap <expr> <c-c> col(".") == 1 ? "<esc>" : "<esc>l"
 inoremap <expr> <c-q> col(".") == 1 ? "<esc>" : "<esc>l"
 
 " ins bracket
-""inoremap < <><c-o>h
-"inoremap { {}<c-o>h
-"inoremap [ []<c-o>h
 inoremap ( ()<c-o>h
+inoremap < <><c-o>h
+inoremap { {}<c-o>h
+inoremap [ []<c-o>h
 "inoremap ' ''<c-o>h
 inoremap <expr> " col(".") == 1 ? "\"" : "\"\"<c-o>h"
 
