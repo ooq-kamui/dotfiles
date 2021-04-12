@@ -1,0 +1,47 @@
+{
+  "title": "shift bracket [ @kamui ]",
+  "rules": [
+    {
+      "description": "shift bracket",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "f"
+          },
+          "to": [
+            {
+              "key_code": "comma"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "r"
+          },
+          "to": [
+            {
+              "key_code": "close_bracket"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "e"
+          },
+          "to": [
+            {
+              "key_code": "8"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
