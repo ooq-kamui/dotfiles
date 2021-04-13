@@ -197,13 +197,11 @@ nnoremap o b
 
 " cursor mv file back    ( file begin )
 nnoremap go gg0
-"nnoremap gl gg0
-"nnoremap gk gg0
+nnoremap K  gg0
 
 " cursor mv file forward ( file end   )
 nnoremap gl G$l
-"nnoremap gj G$l
-"nnoremap gk G$l
+nnoremap J  G$l
 
 " cursor mv bracket paire
 nnoremap <c-l> %
@@ -216,8 +214,7 @@ nnoremap b     <c-o>
 nnoremap <c-b> <c-i>
 
 " cursor mv window split
-nnoremap <c-w> <c-w>w
-"nnoremap @     <c-w>w
+"nnoremap <c-w> <c-w>w
 
 " scroll
 nnoremap <up>   <c-y>
@@ -251,8 +248,13 @@ nnoremap * i <esc>l
 "nnoremap <c-f> i <esc>l
 "nnoremap <c-space> i <esc>l " non
 
-" ins comment lua
-nnoremap <leader>c O--[[<cr>--]]<esc>
+" ins comment lua 1
+nnoremap ! i-- <esc>
+nnoremap <leader>c i-- <esc>
+
+" ins comment lua mlt
+nnoremap $ O--[[<cr>--]]<esc>
+nnoremap <leader>C O--[[<cr>--]]<esc>
 
 " del char
 nnoremap s "ax
@@ -276,11 +278,12 @@ nnoremap d "0dd
 nnoremap <c-m> J
 
 " select all
-nnoremap A ggVG
+nnoremap <leader>a ggVG
+"nnoremap A ggVG
 
 " select word
 nnoremap i viw
-nnoremap I v
+"nnoremap I v
 
 " select box
 nnoremap v <c-v>
@@ -313,9 +316,6 @@ nnoremap " <<
 
 " upper / lower
 nnoremap u v~
-
-" comment ins lua
-nnoremap @ i-- <esc>
 
 "
 " search
@@ -351,19 +351,23 @@ nnoremap <c-p> gn
 
 " tag jump
 nnoremap r <c-w>gFgTj
-nnoremap t <c-w>gFgTj
+"nnoremap t <c-w>gFgTj
 
 " mark
-"nnoremap b m
-"nnoremap @ m
+"nnoremap <leader>m m
 
 "
 " tab
 "
-nnoremap <Tab>   gt
-nnoremap <S-Tab> gT
-nnoremap <S-Right> :tabm+1<Cr>
-nnoremap <S-Left>  :tabm-1<Cr>
+" tab mv
+nnoremap <tab>   gt
+nnoremap <s-tab> gT
+
+" tab order
+nnoremap <s-right> :tabm+1<cr>
+nnoremap <s-left>  :tabm-1<cr>
+nnoremap L :tabm+1<cr>
+nnoremap H :tabm-1<cr>
 
 " buffers
 "nnoremap :b :buffers
@@ -376,7 +380,7 @@ nnoremap <S-Left>  :tabm-1<Cr>
 nnoremap <space> <esc>
 nnoremap <bs>    <esc>
 
-"nnoremap @ <esc>
+nnoremap @ <esc>
 "nnoremap ; <esc>
 nnoremap , <esc>
 nnoremap . <esc>
@@ -386,6 +390,8 @@ nnoremap ~ <esc>
 nnoremap / <esc>
 "nnoremap " <esc>
 "nnoremap # <esc>
+"nnoremap ! <esc>
+"nnoremap $ <esc>
 
 nnoremap <c-space> <esc>
 nnoremap <c-@> <esc>
@@ -414,13 +420,14 @@ nnoremap g <esc>
 nnoremap q <esc>
 "nnoremap r <esc>
 "nnoremap s <esc>
-"nnoremap t <esc>
+nnoremap t <esc>
 "nnoremap u <esc>
 "nnoremap w <esc>
 "nnoremap x <esc>
 nnoremap y <esc>
 nnoremap z <esc>
 
+nnoremap I <esc>
 nnoremap N <esc>
 nnoremap O <esc>
 nnoremap R <esc>
@@ -446,7 +453,7 @@ nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
 nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
-"noremap <c-w> <esc>
+noremap <c-w> <esc>
 nnoremap <c-x> <esc>
 nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
@@ -505,7 +512,6 @@ vnoremap <expr> <esc> mode() == "<c-v>" ? "I" : "c"
 vnoremap I     c
 vnoremap <c-i> c
 "vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
-"vnoremap I c
 "vnoremap <expr> e mode() == "<c-v>" ? "I" : "c"
 "vnoremap E c
 
@@ -527,7 +533,8 @@ vnoremap o "0y
 vnoremap c "0y
 
 " yank pc clipboard
-vnoremap cc "+y
+vnoremap C "+y
+"vnoremap cc "+y
 "vnoremap :c :!pbcopy<cr>u
 
 " paste
@@ -578,7 +585,6 @@ vnoremap <c-p> "ad"0Plgn
 
 " search replace one , skip
 vnoremap <c-n> <c-c>lgn
-"vnoremap @ <c-c>lgn
 
 
 " tag jump
@@ -593,7 +599,7 @@ vnoremap <space> <nop>
 "
 " esc
 "
-"vnoremap @ <c-c>
+vnoremap @ <c-c>
 vnoremap * <c-c>
 vnoremap / <c-c>
 
