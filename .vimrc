@@ -103,7 +103,7 @@ set wildmenu " ?
 "set showmatch
 "set visualbell
 
-"set clipboard+=unnamedplus " neovim ?
+"set clipboard+=unnamedplus " ???
 
 set statusline=%m\                 " 変更あり表示
 set statusline+=%F                 " file name 表示
@@ -129,11 +129,13 @@ let mapleader = "\<space>"
 
 " quit
 nnoremap w  :q<cr>
+
+" quit force
 nnoremap :q :q!
 
 " quit other
-nnoremap W :tabo<cr>
 nnoremap <leader>w :tabo<cr>
+"nnoremap W :tabo<cr>
 
 " save
 nnoremap a :w<cr>
@@ -242,10 +244,12 @@ nnoremap <esc> i
 nnoremap m i<cr><esc>
 
 " ins space
-nnoremap <c-f> i <esc>l
-nnoremap _ i <esc>l
-nnoremap " i <esc>l
-nnoremap # i <esc>l
+nnoremap * i <esc>l
+"nnoremap _ i <esc>l
+"nnoremap " i <esc>l
+"nnoremap # i <esc>l
+"nnoremap <c-f> i <esc>l
+"nnoremap <c-space> i <esc>l " non
 
 " ins comment lua
 nnoremap <leader>c O--[[<cr>--]]<esc>
@@ -284,6 +288,9 @@ nnoremap v <c-v>
 " yank
 nnoremap c "0yy
 
+" yank pc clipboard
+nnoremap cc "+yy
+
 " paste
 nnoremap p "0P
 
@@ -299,8 +306,10 @@ nnoremap + <c-a>
 nnoremap - <c-x>
 
 " indent
-nnoremap > >>
-nnoremap < <<
+nnoremap # >>
+nnoremap " <<
+"nnoremap > >>
+"nnoremap < <<
 
 " upper / lower
 nnoremap u v~
@@ -343,7 +352,6 @@ nnoremap <c-p> gn
 " tag jump
 nnoremap r <c-w>gFgTj
 nnoremap t <c-w>gFgTj
-"nnoremap q <c-w>gFgTj
 
 " mark
 "nnoremap b m
@@ -372,7 +380,7 @@ nnoremap <bs>    <esc>
 "nnoremap ; <esc>
 nnoremap , <esc>
 nnoremap . <esc>
-nnoremap * <esc>
+"nnoremap * <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
 nnoremap / <esc>
@@ -403,7 +411,7 @@ nnoremap g <esc>
 "nnoremap m <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
-"nnoremap q <esc>
+nnoremap q <esc>
 "nnoremap r <esc>
 "nnoremap s <esc>
 "nnoremap t <esc>
@@ -519,7 +527,8 @@ vnoremap o "0y
 vnoremap c "0y
 
 " yank pc clipboard
-vnoremap :c :!pbcopy<cr>u
+vnoremap cc "+y
+"vnoremap :c :!pbcopy<cr>u
 
 " paste
 vnoremap p "ad"0P
@@ -656,11 +665,14 @@ inoremap <c-h> <c-h>
 " del word forword
 inoremap <expr> <c-k> pumvisible() ? "<c-p>" : "<c-o>dw"
 
-" line new
+" ins cr
 inoremap <c-m> <cr>
 
-" tab
+" ins tab
 inoremap <tab> <c-v><Tab>
+
+" paste
+inoremap <c-v> <c-r>"
 
 " input complete
 inoremap <expr> <c-j> pumvisible() ? "<c-n>"  : "<c-n>"
@@ -683,9 +695,6 @@ inoremap { {}<c-o>h
 inoremap [ []<c-o>h
 "inoremap ' ''<c-o>h
 inoremap <expr> " col(".") == 1 ? "\"" : "\"\"<c-o>h"
-
-" num pad key
-"inoremap <kUp> a
 
 
 " 
