@@ -1,0 +1,36 @@
+{
+  "title": "0 > + , shift 0 > ) [ @kamui ]",
+  "rules": [
+    {
+      "description": "0 > + , shift 0 > )",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "0"
+          },
+          "to": [
+            {
+              "modifiers": ["shift"],
+              "key_code": "semicolon"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "0"
+          },
+          "to": [
+            {
+              "modifiers": ["shift"],
+              "key_code": "9"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,22 @@
+{
+  "title": "9 > _ [ @kamui ]",
+  "rules": [
+    {
+      "description": "9 > _",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "9"
+          },
+          "to": [
+            {
+              "key_code": "international1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

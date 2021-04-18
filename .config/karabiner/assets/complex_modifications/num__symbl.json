@@ -89,8 +89,7 @@
           "from": { "key_code": "9" },
           "to": [
             {
-              "modifiers": ["shift"],
-              "key_code": "9"
+              "key_code": "hyphen"
             }
           ]
         }

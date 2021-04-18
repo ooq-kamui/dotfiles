@@ -256,6 +256,9 @@ nnoremap <leader>c i-- <esc>
 nnoremap $ O--[[<cr>--]]<esc>
 nnoremap <leader>C O--[[<cr>--]]<esc>
 
+" ins sys cmd ( read )
+nnoremap :r :read ! 
+
 " del char
 nnoremap s "ax
 nnoremap x x
@@ -351,7 +354,8 @@ nnoremap <c-p> gn
 
 " tag jump
 nnoremap r <c-w>gFgTj
-"nnoremap t <c-w>gFgTj
+nnoremap <c-e> <c-w>gFgTj
+"nnoremap <c-f> <c-w>gFgTj
 
 " mark
 "nnoremap <leader>m m
@@ -427,6 +431,7 @@ nnoremap t <esc>
 nnoremap y <esc>
 nnoremap z <esc>
 
+nnoremap A <esc>
 nnoremap I <esc>
 nnoremap N <esc>
 nnoremap O <esc>
@@ -437,8 +442,8 @@ nnoremap <c-a> <esc>
 "nnoremap <c-b> <esc>
 nnoremap <c-c> <esc>
 nnoremap <c-d> <esc>
-nnoremap <c-e> <esc>
-"nnoremap <c-f> <esc>
+"nnoremap <c-e> <esc>
+nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
@@ -549,8 +554,10 @@ vnoremap - <c-x>
 vnoremap a g<c-a>
 
 " indent
-vnoremap > >gv
-vnoremap < <gv
+vnoremap # >gv
+vnoremap " <gv
+"vnoremap > >gv
+"vnoremap < <gv
 
 " indent tab > space
 vnoremap :t :!expand -t 4
@@ -586,10 +593,9 @@ vnoremap <c-p> "ad"0Plgn
 " search replace one , skip
 vnoremap <c-n> <c-c>lgn
 
-
 " tag jump
-vnoremap t :FileJmp<cr>
 vnoremap r :FileJmp<cr>
+vnoremap <c-e> :FileJmp<cr>
 
 "
 " nop
@@ -622,7 +628,7 @@ vnoremap w <c-c>
 vnoremap y <c-c>
 
 vnoremap <c-a> <c-c>
-vnoremap <c-e> <c-c>
+"vnoremap <c-e> <c-c>
 vnoremap <c-f> <c-c>
 "vnoremap <c-i> <c-c>
 "vnoremap <c-l> <c-c>
