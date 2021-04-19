@@ -83,6 +83,8 @@ set tabstop=4    " 2
 set shiftwidth=4 " 2
 filetype indent on
 autocmd FileType text setlocal sw=2 sts=2 ts=2 et
+autocmd FileType json setlocal sw=2 sts=2 ts=2 et
+autocmd FileType vim  setlocal sw=2 sts=2 ts=2 et
 
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -318,19 +320,66 @@ nnoremap " <<
 "nnoremap < <<
 
 " upper / lower
-nnoremap u v~
+"nnoremap u v~
+
+" char toggle
+func! Chartoggle() abort
+  
+  let l:c = getline('.')[col('.')-1]
+  "echo l:c
+
+  if     l:c == "<"
+    let l:rpl = ">"
+  elseif l:c == ">"
+    let l:rpl = "<"
+
+  elseif l:c == "{"
+    let l:rpl = "}"
+  elseif l:c == "}"
+    let l:rpl = "{"
+
+  elseif l:c == "["
+    let l:rpl = "]"
+  elseif l:c == "]"
+    let l:rpl = "["
+
+  elseif l:c == "("
+    let l:rpl = ")"
+  elseif l:c == ")"
+    let l:rpl = "("
+
+  elseif l:c == "/"
+    let l:rpl = "\\"
+  elseif l:c == "\\"
+    let l:rpl = "/"
+
+  elseif l:c == "\""
+    let l:rpl = "'"
+  elseif l:c == "'"
+    let l:rpl = "\""
+
+  else
+    normal! v~
+    return
+  endif
+
+  execute "normal! x"
+  execute "normal! i".l:rpl
+
+endfunc
+nnoremap u :call Chartoggle()<cr>
 
 "
 " search
 "
 
 " search char
-nnoremap <leader><space> f
-"nnoremap r f
-"nnoremap <leader><esc> f
+nnoremap <leader>f f
+"nnoremap <leader><space> f
 
 " search char repeat
-nnoremap <leader>f ;
+nnoremap <leader><space> ;
+"nnoremap <leader>f ;
 
 " search
 nnoremap n     n
@@ -375,6 +424,10 @@ nnoremap H :tabm-1<cr>
 
 " buffers
 "nnoremap :b :buffers
+
+" inf char
+nnoremap ga ga
+
 
 "
 " esc
@@ -458,7 +511,7 @@ nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
 nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
-noremap <c-w> <esc>
+nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
 nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
@@ -684,21 +737,20 @@ inoremap <c-m> <cr>
 inoremap <tab> <c-v><Tab>
 
 " paste
+"inoremap <c-p> <c-r>"
 inoremap <c-v> <c-r>"
 
 " input complete
 inoremap <expr> <c-j> pumvisible() ? "<c-n>"  : "<c-n>"
 inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-o>j"
-inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-o>k"
+inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-r>\""
 inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
-"inoremap <c-m> <c-n>
 
 " quit, esc
-"inoremap <c-;> <esc> " non
 inoremap <expr> <esc> col(".") == 1 ? "<esc>" : "<esc>l"
 inoremap <expr> <c-c> col(".") == 1 ? "<esc>" : "<esc>l"
-"inoremap <expr> <c-f> col(".") == 1 ? "<esc>" : "<esc>l"
-inoremap <expr> <c-q> col(".") == 1 ? "<esc>" : "<esc>l"
+"inoremap <c-;> <esc> " non
+"inoremap <expr> <c-q> col(".") == 1 ? "<esc>" : "<esc>l"
 
 " ins bracket
 inoremap ( ()<c-o>h
@@ -707,6 +759,25 @@ inoremap { {}<c-o>h
 inoremap [ []<c-o>h
 "inoremap ' ''<c-o>h
 inoremap <expr> " col(".") == 1 ? "\"" : "\"\"<c-o>h"
+
+" numpad shift
+inoremap <kInsert>   0
+inoremap <kEnd>      1
+inoremap <kDown>     2
+inoremap <kPageDown> 3
+inoremap <kLeft>     4
+inoremap <kOrigin>   5
+inoremap <kRight>    6
+inoremap <kHome>     7
+inoremap <kUp>       8
+inoremap <kPageUp>   9
+
+" ins symbol
+func! Inssymbol() abort
+  call complete(col('.'), ['!', '#', '$', '%', '&', '^', '~', '|', '?'])
+  return ''
+endfunc
+inoremap <c-u> <c-r>=Inssymbol()<cr>
 
 
 " 
@@ -739,6 +810,18 @@ cnoremap <c-c> <c-u>
 
 "cnoremap <c-p> <Up>
 "cnoremap <c-n> <Down>
+
+" numpad shift
+cnoremap <kInsert>   0
+cnoremap <kEnd>      1
+cnoremap <kDown>     2
+cnoremap <kPageDown> 3
+cnoremap <kLeft>     4
+cnoremap <kOrigin>   5
+cnoremap <kRight>    6
+cnoremap <kHome>     7
+cnoremap <kUp>       8
+cnoremap <kPageUp>   9
 
 
 if &term =~ '^screen'
@@ -966,12 +1049,13 @@ nnoremap :f :Cfilter
 func! Tabnewexe() abort
   
   execute "tabnew"
-  execute "read !ll"
+  execute "read ! ll"
   execute "normal! o"
   execute "1delete"
 
 endfunc
 "nnoremap t :call Tabnewexe()<cr>
+
 
 
 
