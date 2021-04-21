@@ -251,12 +251,12 @@ nnoremap * i <esc>l
 "nnoremap <c-space> i <esc>l " non
 
 " ins comment lua 1
-nnoremap ! i-- <esc>
-nnoremap <leader>c i-- <esc>
+nnoremap ! ^i-- <esc>
+"nnoremap <leader>c i-- <esc>
 
 " ins comment lua mlt
 nnoremap $ O--[[<cr>--]]<esc>
-nnoremap <leader>C O--[[<cr>--]]<esc>
+"nnoremap <leader>C O--[[<cr>--]]<esc>
 
 " ins sys cmd ( read )
 nnoremap :r :read ! 
@@ -297,7 +297,8 @@ nnoremap v <c-v>
 nnoremap c "0yy
 
 " yank pc clipboard
-nnoremap cc "+yy
+nnoremap C "+yy
+"nnoremap cc "+yy
 
 " paste
 nnoremap p "0P
@@ -323,50 +324,6 @@ nnoremap " <<
 "nnoremap u v~
 
 " char toggle
-func! Chartoggle() abort
-  
-  let l:c = getline('.')[col('.')-1]
-  "echo l:c
-
-  if     l:c == "<"
-    let l:rpl = ">"
-  elseif l:c == ">"
-    let l:rpl = "<"
-
-  elseif l:c == "{"
-    let l:rpl = "}"
-  elseif l:c == "}"
-    let l:rpl = "{"
-
-  elseif l:c == "["
-    let l:rpl = "]"
-  elseif l:c == "]"
-    let l:rpl = "["
-
-  elseif l:c == "("
-    let l:rpl = ")"
-  elseif l:c == ")"
-    let l:rpl = "("
-
-  elseif l:c == "/"
-    let l:rpl = "\\"
-  elseif l:c == "\\"
-    let l:rpl = "/"
-
-  elseif l:c == "\""
-    let l:rpl = "'"
-  elseif l:c == "'"
-    let l:rpl = "\""
-
-  else
-    normal! v~
-    return
-  endif
-
-  execute "normal! x"
-  execute "normal! i".l:rpl
-
-endfunc
 nnoremap u :call Chartoggle()<cr>
 
 "
@@ -428,6 +385,17 @@ nnoremap H :tabm-1<cr>
 " inf char
 nnoremap ga ga
 
+" numpad shift
+nnoremap <kInsert>   0
+nnoremap <kEnd>      1
+nnoremap <kDown>     2
+nnoremap <kPageDown> 3
+nnoremap <kLeft>     4
+nnoremap <kOrigin>   5
+nnoremap <kRight>    6
+nnoremap <kHome>     7
+nnoremap <kUp>       8
+nnoremap <kPageUp>   9
 
 "
 " esc
@@ -778,6 +746,7 @@ func! Inssymbol() abort
   return ''
 endfunc
 inoremap <c-u> <c-r>=Inssymbol()<cr>
+inoremap <c-n> <c-r>=Inssymbol()<cr>
 
 
 " 
@@ -1046,6 +1015,51 @@ vnoremap :f :FileJmp<cr>
 nnoremap :f :Cfilter
 "nnoremap :c :Cfilter
 
+func! Chartoggle() abort
+  
+  let l:c = getline('.')[col('.')-1]
+  "echo l:c
+
+  if     l:c == "<"
+    let l:rpl = ">"
+  elseif l:c == ">"
+    let l:rpl = "<"
+
+  elseif l:c == "{"
+    let l:rpl = "}"
+  elseif l:c == "}"
+    let l:rpl = "{"
+
+  elseif l:c == "["
+    let l:rpl = "]"
+  elseif l:c == "]"
+    let l:rpl = "["
+
+  elseif l:c == "("
+    let l:rpl = ")"
+  elseif l:c == ")"
+    let l:rpl = "("
+
+  elseif l:c == "/"
+    let l:rpl = "\\"
+  elseif l:c == "\\"
+    let l:rpl = "/"
+
+  elseif l:c == "\""
+    let l:rpl = "'"
+  elseif l:c == "'"
+    let l:rpl = "\""
+
+  else
+    normal! v~
+    return
+  endif
+
+  execute "normal! x"
+  execute "normal! i".l:rpl
+
+endfunc
+
 func! Tabnewexe() abort
   
   execute "tabnew"
@@ -1055,7 +1069,6 @@ func! Tabnewexe() abort
 
 endfunc
 "nnoremap t :call Tabnewexe()<cr>
-
 
 
 
