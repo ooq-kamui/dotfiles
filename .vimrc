@@ -91,6 +91,9 @@ augroup vimrcEx
   \ exe "normal! g`\"" | endif
 augroup END
 
+autocmd BufRead * normal! zz
+"autocmd BufRead * normal! zz10<c-e>
+
 
 set nowrap
 set whichwrap=b,s,h,l,<,>,[,]
@@ -129,8 +132,12 @@ let mapleader = "\<space>"
 " mode normal
 "
 
-" quit
+" quit buffer
 nnoremap w  :q<cr>
+"nnoremap w  :bd<cr>
+
+" quit
+"nnoremap W  :q<cr>
 
 " quit force
 nnoremap :q :q!
@@ -223,8 +230,8 @@ nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 
 " scroll cursor line read easily
-nnoremap <leader>r zz10<c-e>
-nnoremap <leader>e zz10<c-e>
+"nnoremap <leader>r zz10<c-e>
+"nnoremap <leader>e zz10<c-e>
 "nnoremap <leader><space> zz10<c-e>
 
 "
@@ -284,24 +291,27 @@ nnoremap <c-m> J
 
 " select all
 nnoremap <leader>a ggVG
-"nnoremap A ggVG
 
 " select word
 nnoremap i viw
-"nnoremap I v
 
 " select box
 nnoremap v <c-v>
 
-" yank
+" yank line
 nnoremap c "0yy
 
-" yank pc clipboard
-nnoremap C "+yy
-"nnoremap cc "+yy
+" yank line pc clipboard
+nnoremap <c-c> "+yy
+
+" yank char
+nnoremap C "0yl
 
 " paste
 nnoremap p "0P
+
+" paste pc clipboard
+nnoremap P "+P
 
 " undo, redo
 nnoremap h u
@@ -323,7 +333,7 @@ nnoremap " <<
 " upper / lower
 "nnoremap u v~
 
-" char toggle
+" char toggle ( upper / lower )
 nnoremap u :call Chartoggle()<cr>
 
 "
@@ -343,11 +353,15 @@ nnoremap n     n
 nnoremap <c-n> N
 "nnoremap n     gn
 "nnoremap <c-n> gN
-nnoremap e g*N
-nnoremap E  *N
+
+nnoremap e g*Nzz
+"nnoremap e g*N
+nnoremap E *Nzz
+"nnoremap E *N
 
 " search cmd
-nnoremap <leader>j /
+nnoremap <leader>u /
+"nnoremap <leader>j /
 "nnoremap <leader>n /
 "nnoremap <leader>l /
 
@@ -360,7 +374,7 @@ nnoremap <c-p> gn
 
 " tag jump
 nnoremap r <c-w>gFgTj
-nnoremap <c-e> <c-w>gFgTj
+"nnoremap <c-e> <c-w>gFgTj
 "nnoremap <c-f> <c-w>gFgTj
 
 " mark
@@ -379,7 +393,7 @@ nnoremap <s-left>  :tabm-1<cr>
 nnoremap L :tabm+1<cr>
 nnoremap H :tabm-1<cr>
 
-" buffers
+" buffer list
 "nnoremap :b :buffers
 
 " inf char
@@ -461,9 +475,9 @@ nnoremap T <esc>
 
 nnoremap <c-a> <esc>
 "nnoremap <c-b> <esc>
-nnoremap <c-c> <esc>
+"nnoremap <c-c> <esc>
 nnoremap <c-d> <esc>
-"nnoremap <c-e> <esc>
+nnoremap <c-e> <esc>
 nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
@@ -535,8 +549,8 @@ vnoremap <c-l> %
 
 " ins | cut & ins
 vnoremap <expr> <esc> mode() == "<c-v>" ? "I" : "c"
-vnoremap I     c
-vnoremap <c-i> c
+vnoremap <c-i> "ac
+"vnoremap I     c
 "vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
 "vnoremap <expr> e mode() == "<c-v>" ? "I" : "c"
 "vnoremap E c
@@ -554,11 +568,11 @@ vnoremap d "0d
 " del cr
 vnoremap <c-m> J
 
-" yank
+" yank selected
 vnoremap o "0y
 vnoremap c "0y
 
-" yank pc clipboard
+" yank selected pc clipboard
 vnoremap C "+y
 "vnoremap cc "+y
 "vnoremap :c :!pbcopy<cr>u
@@ -591,14 +605,17 @@ vnoremap <c-u> uviw
 " search
 "
 vnoremap n "ay/<c-r>a<cr>N
-vnoremap e "ay/<c-r>a<cr>N
-vnoremap E *<c-c>N
+
+vnoremap e "ay/<c-r>a<cr>Nzz
+"vnoremap e "ay/<c-r>a<cr>N
+vnoremap E *<c-c>Nzz
+"vnoremap E *<c-c>N
 
 " search cmd
-vnoremap <leader>j "ay/<c-r>a
-vnoremap <leader>n "ay/<c-r>a
+vnoremap <leader>u "ay/<c-r>a
+"vnoremap <leader>j "ay/<c-r>a
+"vnoremap <leader>n "ay/<c-r>a
 "vnoremap <leader>l "ay/<c-r>a
-"vnoremap <leader>u "ay/<c-r>a
 "vnoremap / "ay/<c-r>a
 "vnoremap n     <esc>lgn
 "vnoremap <c-n> <esc>hgN
@@ -616,7 +633,7 @@ vnoremap <c-n> <c-c>lgn
 
 " tag jump
 vnoremap r :FileJmp<cr>
-vnoremap <c-e> :FileJmp<cr>
+"vnoremap <c-e> :FileJmp<cr>
 
 "
 " nop
@@ -648,8 +665,10 @@ vnoremap w <c-c>
 "vnoremap x <c-c>
 vnoremap y <c-c>
 
+"vnoremap I <c-c>
+
 vnoremap <c-a> <c-c>
-"vnoremap <c-e> <c-c>
+vnoremap <c-e> <c-c>
 vnoremap <c-f> <c-c>
 "vnoremap <c-i> <c-c>
 "vnoremap <c-l> <c-c>
@@ -705,13 +724,14 @@ inoremap <c-m> <cr>
 inoremap <tab> <c-v><Tab>
 
 " paste
+inoremap <c-v> <c-r>0
 "inoremap <c-p> <c-r>"
-inoremap <c-v> <c-r>"
 
 " input complete
 inoremap <expr> <c-j> pumvisible() ? "<c-n>"  : "<c-n>"
 inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-o>j"
-inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-r>\""
+inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-r>0"
+"inoremap <expr> <c-p> pumvisible() ? "<up>"   : '<c-r>"'
 inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
 
 " quit, esc
@@ -745,8 +765,19 @@ func! Inssymbol() abort
   call complete(col('.'), ['!', '#', '$', '%', '&', '^', '~', '|', '?'])
   return ''
 endfunc
-inoremap <c-u> <c-r>=Inssymbol()<cr>
 inoremap <c-n> <c-r>=Inssymbol()<cr>
+"inoremap <c-u> <c-r>=Inssymbol()<cr>
+
+" ins lua reserved word
+func! Insluareserved() abort
+  call complete(col('.'), [
+  \   'return',
+  \   'if elseif else end',
+  \   'for in pairs end'
+  \ ])
+  return ''
+endfunc
+inoremap <c-r> <c-r>=Insluareserved()<cr>
 
 
 " 
@@ -835,9 +866,8 @@ autocmd QuickFixCmdPost vimgrep,grep tab cw
 " netrw
 "
 
-" launch
+" netrw launch
 nnoremap <leader>l :Tex .<cr>
-"nnoremap <leader>k :Tex .<cr>
 
 let g:netrw_liststyle    = 3 " view file tree
 let g:netrw_browse_split = 3 " file open tab
@@ -910,8 +940,8 @@ let g:fzf_colors = {
 " lines
 nnoremap <leader>k :BLines<cr>
 vnoremap <leader>k "ay:BLines <c-r>a<cr>
-"nnoremap <leader>j :BLines<cr>
-"vnoremap <leader>j "ay:BLines <c-r>a<cr>
+nnoremap <leader>j :BLines<cr>
+vnoremap <leader>j "ay:BLines <c-r>a<cr>
 command! -bang -nargs=? BLines
 \ call fzf#vim#buffer_lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
 
