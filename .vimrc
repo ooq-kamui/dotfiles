@@ -91,7 +91,7 @@ augroup vimrcEx
   \ exe "normal! g`\"" | endif
 augroup END
 
-autocmd BufRead * normal! zz
+"autocmd BufRead * normal! zz
 "autocmd BufRead * normal! zz10<c-e>
 
 
@@ -250,15 +250,13 @@ nnoremap m i<cr><esc>
 
 " ins space
 nnoremap * i <esc>l
-"nnoremap _ i <esc>l
-"nnoremap " i <esc>l
-"nnoremap # i <esc>l
-"nnoremap <c-f> i <esc>l
-"nnoremap <c-space> i <esc>l " non
 
 " ins comment lua 1
-nnoremap ! ^i-- <esc>
+"nnoremap ! ^i-- <esc>
 "nnoremap <leader>c i-- <esc>
+autocmd FileType lua nnoremap ! ^i-- <esc>
+autocmd FileType vim nnoremap ! ^i"<esc>
+autocmd FileType txt nnoremap ! ^i# <esc>
 
 " ins comment lua mlt
 nnoremap $ O--[[<cr>--]]<esc>
@@ -355,9 +353,11 @@ nnoremap <c-n> N
 "nnoremap n     gn
 "nnoremap <c-n> gN
 
-nnoremap e g*Nzz10<c-e>
+nnoremap e g*Nzz
+"nnoremap e g*Nzz10<c-e>
 "nnoremap e g*N
-nnoremap E *Nzz10<c-e>
+nnoremap E *Nzz
+"nnoremap E *Nzz10<c-e>
 "nnoremap E *N
 
 " search cmd
@@ -431,7 +431,7 @@ nnoremap ~ <esc>
 nnoremap / <esc>
 "nnoremap " <esc>
 "nnoremap # <esc>
-"nnoremap ! <esc>
+nnoremap ! <esc>
 "nnoremap $ <esc>
 
 nnoremap <c-space> <esc>
@@ -532,6 +532,8 @@ vnoremap <c-o> b
 vnoremap ; o
 
 " cursor mv in line
+vnoremap ! ^
+vnoremap $ $
 "vnoremap <expr> ; col(".") == col("$") ? "0" : "$"
 
 " cursor mv line
@@ -575,9 +577,8 @@ vnoremap o "0y
 vnoremap c "0y
 
 " yank selected pc clipboard
-vnoremap C "+y
-"vnoremap cc "+y
-"vnoremap :c :!pbcopy<cr>u
+vnoremap <c-c> "+y
+"vnoremap C "+y
 
 " paste
 vnoremap p "ad"0P
@@ -608,9 +609,11 @@ vnoremap <c-u> uviw
 "
 vnoremap n "ay/<c-r>a<cr>N
 
-vnoremap e "ay/<c-r>a<cr>Nzz10<c-e>
+vnoremap e "ay/<c-r>a<cr>Nzz
+"vnoremap e "ay/<c-r>a<cr>Nzz10<c-e>
 "vnoremap e "ay/<c-r>a<cr>N
-vnoremap E *<c-c>Nzz10<c-e>
+vnoremap E *<c-c>Nzz
+"vnoremap E *<c-c>Nzz10<c-e>
 "vnoremap E *<c-c>N
 
 " search cmd
@@ -671,6 +674,7 @@ vnoremap y <c-c>
 "vnoremap I <c-c>
 
 vnoremap <c-a> <c-c>
+"vnoremap <c-c> <c-c>
 vnoremap <c-e> <c-c>
 vnoremap <c-f> <c-c>
 "vnoremap <c-i> <c-c>
@@ -748,8 +752,8 @@ inoremap ( ()<c-o>h
 inoremap < <><c-o>h
 inoremap { {}<c-o>h
 inoremap [ []<c-o>h
+inoremap " ""<c-o>h
 "inoremap ' ''<c-o>h
-inoremap <expr> " col(".") == 1 ? "\"" : "\"\"<c-o>h"
 
 " numpad shift
 inoremap <kInsert>   0
@@ -1102,6 +1106,5 @@ func! Tabnewexe() abort
 
 endfunc
 "nnoremap t :call Tabnewexe()<cr>
-
 
 
