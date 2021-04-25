@@ -133,11 +133,10 @@ let mapleader = "\<space>"
 "
 
 " quit buffer
-nnoremap w  :q<cr>
-"nnoremap w  :bd<cr>
+nnoremap w  :bd<cr>
 
 " quit
-"nnoremap W  :q<cr>
+nnoremap <c-w> :q<cr>
 
 " quit force
 nnoremap :q :q!
@@ -290,6 +289,7 @@ nnoremap d "0dd
 nnoremap <c-m> J
 
 " select all
+nnoremap <c-a> ggVG
 nnoremap <leader>a ggVG
 
 " select word
@@ -346,6 +346,7 @@ nnoremap <leader>f f
 
 " search char repeat
 nnoremap <leader><space> ;
+nnoremap <c-f> ;
 "nnoremap <leader>f ;
 
 " search
@@ -354,12 +355,13 @@ nnoremap <c-n> N
 "nnoremap n     gn
 "nnoremap <c-n> gN
 
-nnoremap e g*Nzz
+nnoremap e g*Nzz10<c-e>
 "nnoremap e g*N
-nnoremap E *Nzz
+nnoremap E *Nzz10<c-e>
 "nnoremap E *N
 
 " search cmd
+nnoremap <leader>r /
 nnoremap <leader>u /
 "nnoremap <leader>j /
 "nnoremap <leader>n /
@@ -473,12 +475,12 @@ nnoremap O <esc>
 nnoremap R <esc>
 nnoremap T <esc>
 
-nnoremap <c-a> <esc>
+"nnoremap <c-a> <esc>
 "nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 nnoremap <c-d> <esc>
 nnoremap <c-e> <esc>
-nnoremap <c-f> <esc>
+"nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
@@ -493,7 +495,7 @@ nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
 nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
-nnoremap <c-w> <esc>
+"nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
 nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
@@ -606,12 +608,13 @@ vnoremap <c-u> uviw
 "
 vnoremap n "ay/<c-r>a<cr>N
 
-vnoremap e "ay/<c-r>a<cr>Nzz
+vnoremap e "ay/<c-r>a<cr>Nzz10<c-e>
 "vnoremap e "ay/<c-r>a<cr>N
-vnoremap E *<c-c>Nzz
+vnoremap E *<c-c>Nzz10<c-e>
 "vnoremap E *<c-c>N
 
 " search cmd
+vnoremap <leader>r "ay/<c-r>a
 vnoremap <leader>u "ay/<c-r>a
 "vnoremap <leader>j "ay/<c-r>a
 "vnoremap <leader>n "ay/<c-r>a
