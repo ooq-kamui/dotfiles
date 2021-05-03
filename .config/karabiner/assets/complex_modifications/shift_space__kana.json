@@ -1,0 +1,35 @@
+{
+  "title": "shift space > kana [ @kamui ]",
+  "rules": [
+    {
+      "description": "shift space > kana",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": { 
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "spacebar"
+          },
+          "to": [
+            {
+              "key_code": "japanese_kana"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": { 
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "escape"
+          },
+          "to": [
+            {
+              "key_code": "japanese_eisuu"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

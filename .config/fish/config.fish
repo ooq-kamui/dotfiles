@@ -1,3 +1,6 @@
+#
+# source ~/.config/fish/config.fish
+#
 
 export LSCOLORS=fxfxcxdxexegedabagacad
 #               ^dir    ^exe
@@ -9,11 +12,13 @@ set -x PATH $HOME/.nodebrew/current/bin $PATH
 set -x RIPGREP_CONFIG_PATH ~/.ripgreprc
 #set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --glob "!.git"'
 #set -x FZF_CTRL_T_COMMAND  'rg --files --hidden --follow --glob "!.git/*"'
+set -x FZF_DEFAULT_OPTS '--bind=ctrl-o:accept'
 
 alias ll="la"
 #alias ls="ls -1"
 alias vim="nvim"
 alias vi="nvim"
+#alias fzf="fzf --bind=ctrl-o:accept "
 
 #alias rpl="string replace"
 
@@ -31,8 +36,11 @@ bind \cK kill-word
 #bind \cQ kill-word
 #bind \cS backward-delete-char
 
-bind \cM 'clear; commandline -f repaint'
+bind \cC 'clear; commandline -f repaint'
+#bind \cM 'clear; commandline -f repaint'
 #bind \cQ 'clear; commandline -f repaint'
+
+#bind \cV '__fzf_find_file'
 
 
 # color

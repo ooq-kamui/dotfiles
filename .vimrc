@@ -126,7 +126,8 @@ packadd Cfilter
 
 
 " leader
-let mapleader = "\<space>"
+let mapleader = "\<esc>"
+"let mapleader = "\<space>"
 
 "
 " mode normal
@@ -155,7 +156,9 @@ nnoremap :e :e!
 "nnoremap ?? `0
 
 " open latest list
-nnoremap <leader>; :Latest<cr>
+nnoremap <leader>l :Latest<cr>
+"nnoremap <leader>; :Latest<cr>
+
 command! -nargs=0 Latest
 \ call setqflist([], ' ', {'lines' : v:oldfiles, 'efm' : '%f',
 \                          'quickfixtextfunc' : 'QfOldFiles'}) | tab cw
@@ -237,10 +240,9 @@ nnoremap <down> <c-e>
 " edit
 "
 
-" ins
-nnoremap <esc> i
-"nnoremap i i
-"nnoremap e i
+" ins mode
+nnoremap <leader><esc> i
+nnoremap <space> i
 
 " ins line
 " ref ;
@@ -264,6 +266,9 @@ nnoremap $ O--[[<cr>--]]<esc>
 
 " ins sys cmd ( read )
 nnoremap :r :read ! 
+
+" ins log ooq
+nnoremap z Olog._("", )<esc>
 
 " del char
 nnoremap s "ax
@@ -340,11 +345,10 @@ nnoremap u :call Chartoggle()<cr>
 
 " search char
 nnoremap <leader>f f
-"nnoremap <leader><space> f
 
 " search char repeat
-nnoremap <leader><space> ;
 nnoremap <c-f> ;
+"nnoremap <leader><space> ;
 "nnoremap <leader>f ;
 
 " search
@@ -353,19 +357,15 @@ nnoremap <c-n> N
 "nnoremap n     gn
 "nnoremap <c-n> gN
 
+" search word
 nnoremap e g*Nzz
-"nnoremap e g*Nzz10<c-e>
-"nnoremap e g*N
+
+" search word
 nnoremap E *Nzz
-"nnoremap E *Nzz10<c-e>
-"nnoremap E *N
 
 " search cmd
 nnoremap <leader>r /
-nnoremap <leader>u /
-"nnoremap <leader>j /
-"nnoremap <leader>n /
-"nnoremap <leader>l /
+"nnoremap <leader>u /
 
 " search replace all > yank ( file )
 nnoremap :s :%s//<c-r>0/gc<cr>
@@ -418,7 +418,7 @@ nnoremap <kPageUp>   9
 "
 "nnoremap <esc>   <esc>
 "nnoremap <cr>    <esc> " eq <c-m>
-nnoremap <space> <esc>
+"nnoremap <space> <esc>
 nnoremap <bs>    <esc>
 
 nnoremap @ <esc>
@@ -466,7 +466,7 @@ nnoremap t <esc>
 "nnoremap w <esc>
 "nnoremap x <esc>
 nnoremap y <esc>
-nnoremap z <esc>
+"nnoremap z <esc>
 
 nnoremap A <esc>
 nnoremap I <esc>
@@ -552,12 +552,9 @@ vnoremap gk G$l
 vnoremap <c-l> %
 
 " ins | cut & ins
-vnoremap <expr> <esc> mode() == "<c-v>" ? "I" : "c"
+vnoremap <expr> <leader><esc> mode() == "<c-v>" ? "I" : "c"
+vnoremap <expr> <space>       mode() == "<c-v>" ? "I" : "c"
 vnoremap <c-i> "ac
-"vnoremap I     c
-"vnoremap <expr> i mode() == "<c-v>" ? "I" : "c"
-"vnoremap <expr> e mode() == "<c-v>" ? "I" : "c"
-"vnoremap E c
 
 " ins $
 vnoremap <expr> $ mode() == "<c-v>" ? "$A" : "$"
@@ -618,13 +615,7 @@ vnoremap E *<c-c>Nzz
 
 " search cmd
 vnoremap <leader>r "ay/<c-r>a
-vnoremap <leader>u "ay/<c-r>a
-"vnoremap <leader>j "ay/<c-r>a
-"vnoremap <leader>n "ay/<c-r>a
-"vnoremap <leader>l "ay/<c-r>a
-"vnoremap / "ay/<c-r>a
-"vnoremap n     <esc>lgn
-"vnoremap <c-n> <esc>hgN
+"vnoremap <leader>u "ay/<c-r>a
 
 " search replace all > yank ( selected )
 vnoremap :s :s//<c-r>0/gc<cr>
@@ -644,7 +635,7 @@ vnoremap r :FileJmp<cr>
 "
 " nop
 "
-vnoremap <space> <nop>
+"vnoremap <space> <nop>
 
 "
 " esc
@@ -732,7 +723,9 @@ inoremap <tab> <c-v><Tab>
 
 " paste
 inoremap <c-v> <c-r>0
-"inoremap <c-p> <c-r>"
+
+" paste pc clipboard
+"inoremap <c-p> <c-r>+
 
 " input complete
 inoremap <expr> <c-j> pumvisible() ? "<c-n>"  : "<c-n>"
@@ -742,10 +735,8 @@ inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-r>0"
 inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
 
 " quit, esc
-inoremap <expr> <esc> col(".") == 1 ? "<esc>" : "<esc>l"
-inoremap <expr> <c-c> col(".") == 1 ? "<esc>" : "<esc>l"
-"inoremap <c-;> <esc> " non
-"inoremap <expr> <c-q> col(".") == 1 ? "<esc>" : "<esc>l"
+inoremap <expr> <esc>     col(".") == 1 ? "<esc>" : "<esc>l"
+inoremap <expr> <c-c>     col(".") == 1 ? "<esc>" : "<esc>l"
 
 " ins bracket
 inoremap ( ()<c-o>h
@@ -874,7 +865,8 @@ autocmd QuickFixCmdPost vimgrep,grep tab cw
 "
 
 " netrw launch
-nnoremap <leader>l :Tex .<cr>
+nnoremap <leader>; :Tex .<cr>
+"nnoremap <leader>l :Tex .<cr>
 
 let g:netrw_liststyle    = 3 " view file tree
 let g:netrw_browse_split = 3 " file open tab
@@ -970,9 +962,8 @@ nnoremap <leader>o :Rg <cr>
 vnoremap <leader>o "ay:Rg <c-r>a<cr>
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
-\   'rg 
-\     --line-number --smart-case --no-multiline --no-heading --color=always 
-\     -- '.shellescape(<q-args>),
+\   "rg --color=always --line-number --smart-case --no-multiline --no-heading "
+\     ."-- ".shellescape(escape(<q-args>, '(')),
 \   0,
 \   fzf#vim#with_preview(
 \     {'options': '--exact --delimiter : --nth 3..'},
@@ -1086,6 +1077,16 @@ func! Chartoggle() abort
     let l:rpl = "'"
   elseif l:c == "'"
     let l:rpl = "\""
+
+  elseif l:c ==# "T"
+    let l:rpl = "f"
+  elseif l:c ==# "F"
+    let l:rpl = "t"
+
+  elseif l:c == "-"
+    let l:rpl = "+"
+  elseif l:c == "+"
+    let l:rpl = "-"
 
   else
     normal! v~
