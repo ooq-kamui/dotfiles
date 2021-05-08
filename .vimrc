@@ -192,7 +192,8 @@ nnoremap <c-k> 10k
 nnoremap <c-j> 10j
 
 " cursor mv line in | ins line
-nnoremap <expr> ; col(".") == 1 ? "O<esc>" : col(".") == col("$") ? "0" : "$l"
+nnoremap <expr> ; col(".") == 1 ? "O<esc>" : "0"
+"nnoremap <expr> ; col(".") == 1 ? "O<esc>" : col(".") == col("$") ? "0" : "$l"
 
 " cursor mv char - forward
 nnoremap l l
@@ -208,11 +209,9 @@ nnoremap o b
 
 " cursor mv file back    ( file begin )
 nnoremap go gg0
-nnoremap K  gg0
 
 " cursor mv file forward ( file end   )
 nnoremap gl G$l
-nnoremap J  G$l
 
 " cursor mv bracket paire
 nnoremap <c-l> %
@@ -230,6 +229,8 @@ nnoremap <c-b> <c-i>
 " scroll
 nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
+nnoremap J 10<c-y>
+nnoremap K 10<c-e>
 
 " scroll cursor line read easily
 "nnoremap <leader>r zz10<c-e>
@@ -241,8 +242,8 @@ nnoremap <down> <c-e>
 "
 
 " ins mode
-nnoremap <leader><esc> i
 nnoremap <space> i
+"nnoremap <leader><esc> i
 
 " ins line
 " ref ;
@@ -252,6 +253,9 @@ nnoremap m i<cr><esc>
 
 " ins space
 nnoremap * i <esc>l
+
+" ins comma
+nnoremap , i, <esc>l
 
 " ins comment lua 1
 "nnoremap ! ^i-- <esc>
@@ -268,7 +272,9 @@ nnoremap $ O--[[<cr>--]]<esc>
 nnoremap :r :read ! 
 
 " ins log ooq
-nnoremap z Olog._("", )<esc>
+nnoremap @ Olog._("", )<esc>
+nnoremap . Olog._("", )<esc>
+"nnoremap z Olog._("", )<esc>
 
 " del char
 nnoremap s "ax
@@ -292,8 +298,9 @@ nnoremap d "0dd
 nnoremap <c-m> J
 
 " select all
-nnoremap <c-a> ggVG
+nnoremap A ggVG
 nnoremap <leader>a ggVG
+"nnoremap <c-a> ggVG
 
 " select word
 nnoremap i viw
@@ -338,6 +345,7 @@ nnoremap " <<
 
 " char toggle ( upper / lower )
 nnoremap u :call Chartoggle()<cr>
+nnoremap U :call Chartoggle2()<cr>
 
 "
 " search
@@ -416,15 +424,15 @@ nnoremap <kPageUp>   9
 "
 " esc
 "
-"nnoremap <esc>   <esc>
+nnoremap <esc>   <esc>
 "nnoremap <cr>    <esc> " eq <c-m>
 "nnoremap <space> <esc>
 nnoremap <bs>    <esc>
 
-nnoremap @ <esc>
+"nnoremap @ <esc>
 "nnoremap ; <esc>
-nnoremap , <esc>
-nnoremap . <esc>
+"nnoremap , <esc>
+"nnoremap . <esc>
 "nnoremap * <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
@@ -468,14 +476,17 @@ nnoremap t <esc>
 nnoremap y <esc>
 "nnoremap z <esc>
 
-nnoremap A <esc>
+"nnoremap A <esc>
 nnoremap I <esc>
+"nnoremap J  <esc>
+"nnoremap K  <esc>
 nnoremap N <esc>
 nnoremap O <esc>
 nnoremap R <esc>
 nnoremap T <esc>
+"nnoremap U <esc>
 
-"nnoremap <c-a> <esc>
+nnoremap <c-a> <esc>
 "nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 nnoremap <c-d> <esc>
@@ -559,12 +570,12 @@ vnoremap <c-i> "ac
 " ins $
 vnoremap <expr> $ mode() == "<c-v>" ? "$A" : "$"
 
-" del str
-vnoremap s "0x
-vnoremap x "0x
-
-" del line
+" del str > yank
 vnoremap d "0d
+
+" del str > yank non
+vnoremap s "ax
+vnoremap x "ax
 
 " del cr
 vnoremap <c-m> J
@@ -662,6 +673,7 @@ vnoremap w <c-c>
 "vnoremap x <c-c>
 vnoremap y <c-c>
 
+vnoremap C <c-c>
 "vnoremap I <c-c>
 
 vnoremap <c-a> <c-c>
@@ -764,14 +776,22 @@ func! Inssymbol() abort
   return ''
 endfunc
 inoremap <c-n> <c-r>=Inssymbol()<cr>
-"inoremap <c-u> <c-r>=Inssymbol()<cr>
+
+" ins num
+func! Insnum() abort
+  call complete(col('.'), ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])
+  return ''
+endfunc
+inoremap <c-u> <c-r>=Insnum()<cr>
 
 " ins lua reserved word
 func! Insluareserved() abort
   call complete(col('.'), [
+  \   'end',
   \   'return',
   \   'if elseif else end',
-  \   'for in pairs end'
+  \   'for in pairs end',
+  \   'function'
   \ ])
   return ''
 endfunc
@@ -1090,6 +1110,30 @@ func! Chartoggle() abort
 
   else
     normal! v~
+    return
+  endif
+
+  execute "normal! x"
+  execute "normal! i".l:rpl
+
+endfunc
+
+func! Chartoggle2() abort
+  
+  let l:c = getline('.')[col('.')-1]
+  "echo l:c
+
+  if     l:c == "("
+    let l:rpl = "["
+  elseif l:c == "["
+    let l:rpl = "{"
+  elseif l:c == "{"
+    let l:rpl = "<"
+  elseif l:c == "<"
+    let l:rpl = "("
+
+  else
+    "normal! v~
     return
   endif
 

@@ -12,7 +12,8 @@ set -x PATH $HOME/.nodebrew/current/bin $PATH
 set -x RIPGREP_CONFIG_PATH ~/.ripgreprc
 #set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --glob "!.git"'
 #set -x FZF_CTRL_T_COMMAND  'rg --files --hidden --follow --glob "!.git/*"'
-set -x FZF_DEFAULT_OPTS '--bind=ctrl-o:accept'
+set -x FZF_DEFAULT_OPTS '--bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
+
 
 alias ll="la"
 #alias ls="ls -1"
