@@ -321,7 +321,8 @@ nnoremap C "0yl
 nnoremap p "0P
 
 " paste pc clipboard
-nnoremap P "+P
+nnoremap <c-v> "+P
+"nnoremap P "+P
 
 " undo, redo
 nnoremap h u
@@ -366,7 +367,7 @@ nnoremap <c-n> N
 "nnoremap <c-n> gN
 
 " search word
-nnoremap e g*Nzz
+nnoremap e g*Nzz5<c-e>
 
 " search word
 nnoremap E *Nzz
@@ -505,7 +506,7 @@ nnoremap <c-r> <esc>
 nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
 nnoremap <c-u> <esc>
-nnoremap <c-v> <esc>
+"nnoremap <c-v> <esc>
 "nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
 nnoremap <c-y> <esc>
