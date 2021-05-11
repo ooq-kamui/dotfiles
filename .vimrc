@@ -233,9 +233,7 @@ nnoremap J 5<c-y>
 nnoremap K 5<c-e>
 
 " scroll cursor line read easily
-"nnoremap <leader>r zz10<c-e>
-"nnoremap <leader>e zz10<c-e>
-"nnoremap <leader><space> zz10<c-e>
+nnoremap <leader><space> zt
 
 "
 " edit
@@ -357,8 +355,6 @@ nnoremap <leader>f f
 
 " search char repeat
 nnoremap <c-f> ;
-"nnoremap <leader><space> ;
-"nnoremap <leader>f ;
 
 " search
 nnoremap n     n
@@ -367,10 +363,10 @@ nnoremap <c-n> N
 "nnoremap <c-n> gN
 
 " search word
-nnoremap e g*Nzz5<c-e>
+nnoremap e g*Nzt
 
 " search word
-nnoremap E *Nzz
+nnoremap E *Nzt
 
 " search cmd
 nnoremap <leader>r /
@@ -618,12 +614,8 @@ vnoremap <c-u> uviw
 "
 vnoremap n "ay/<c-r>a<cr>N
 
-vnoremap e "ay/<c-r>a<cr>Nzz
-"vnoremap e "ay/<c-r>a<cr>Nzz10<c-e>
-"vnoremap e "ay/<c-r>a<cr>N
-vnoremap E *<c-c>Nzz
-"vnoremap E *<c-c>Nzz10<c-e>
-"vnoremap E *<c-c>N
+vnoremap e "ay/<c-r>a<cr>Nzt
+vnoremap E *<c-c>Nzt
 
 " search cmd
 vnoremap <leader>r "ay/<c-r>a
