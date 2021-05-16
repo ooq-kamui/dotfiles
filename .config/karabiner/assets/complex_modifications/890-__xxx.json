@@ -1,9 +1,20 @@
 {
-  "title": "9 0 - > - + _ [ @kamui ]",
+  "title": "8 9 0 - > _ - + ( shift ~ = | ) [ @kamui ]",
   "rules": [
     {
-      "description": "9 0 - > - + _",
+      "description": "8 9 0 - > _ - + ( shift ~ = | )",
       "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "8"
+          },
+          "to": [
+            {
+              "key_code": "international1"
+            }
+          ]
+        },
         {
           "type": "basic",
           "from": {
@@ -34,17 +45,15 @@
           },
           "to": [
             {
-              "key_code": "international1"
+              "key_code": "slash"
             }
           ]
         },
         {
           "type": "basic",
           "from": {
-            "key_code": "9",
-            "modifiers": {
-              "mandatory": [ "shift" ]
-            }
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "8"
           },
           "to": [
             {
@@ -56,25 +65,8 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "0",
-            "modifiers": {
-              "mandatory": [ "shift" ]
-            }
-          },
-          "to": [
-            {
-              "modifiers": ["shift"],
-              "key_code": "international3"
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "hyphen",
-            "modifiers": {
-              "mandatory": [ "shift" ]
-            }
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "9"
           },
           "to": [
             {
@@ -86,15 +78,25 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "8",
-            "modifiers": {
-              "mandatory": [ "shift" ]
-            }
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "0"
           },
           "to": [
             {
               "modifiers": ["shift"],
-              "key_code": "9"
+              "key_code": "international3"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "hyphen"
+          },
+          "to": [
+            {
+              "key_code": "international3"
             }
           ]
         }
