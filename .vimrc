@@ -85,6 +85,7 @@ filetype indent on
 autocmd FileType text setlocal sw=2 sts=2 ts=2 et
 autocmd FileType json setlocal sw=2 sts=2 ts=2 et
 autocmd FileType vim  setlocal sw=2 sts=2 ts=2 et
+autocmd FileType sh   setlocal sw=2 sts=2 ts=2 et
 
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -255,14 +256,15 @@ nnoremap * i <esc>l
 " ins comma
 nnoremap , i, <esc>l
 
-" ins comment lua 1
+" ins comment 1
 "nnoremap ! ^i-- <esc>
 "nnoremap <leader>c i-- <esc>
 autocmd FileType lua nnoremap ! ^i-- <esc>
 autocmd FileType vim nnoremap ! ^i"<esc>
 autocmd FileType txt nnoremap ! ^i# <esc>
+autocmd FileType sh  nnoremap ! ^i# <esc>
 
-" ins comment lua mlt
+" ins comment mlt lua
 nnoremap $ O--[[<cr>--]]<esc>
 "nnoremap <leader>C O--[[<cr>--]]<esc>
 
@@ -296,12 +298,15 @@ nnoremap d "0dd
 nnoremap <c-m> J
 
 " select all
-nnoremap A ggVG
 nnoremap <leader>a ggVG
+"nnoremap A ggVG
 "nnoremap <c-a> ggVG
 
 " select word
 nnoremap i viw
+
+" select char current - word end
+nnoremap I ve
 
 " select box
 nnoremap v <c-v>
@@ -369,8 +374,7 @@ nnoremap e g*Nzt
 nnoremap E *Nzt
 
 " search cmd
-nnoremap <leader>r /
-"nnoremap <leader>u /
+nnoremap <leader>j /
 
 " search replace all > yank ( file )
 nnoremap :s :%s//<c-r>0/gc<cr>
@@ -473,8 +477,8 @@ nnoremap t <esc>
 nnoremap y <esc>
 "nnoremap z <esc>
 
-"nnoremap A <esc>
-nnoremap I <esc>
+nnoremap A <esc>
+"nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
 nnoremap N <esc>
@@ -618,8 +622,7 @@ vnoremap e "ay/<c-r>a<cr>Nzt
 vnoremap E *<c-c>Nzt
 
 " search cmd
-vnoremap <leader>r "ay/<c-r>a
-"vnoremap <leader>u "ay/<c-r>a
+vnoremap <leader>j "ay/<c-r>a
 
 " search replace all > yank ( selected )
 vnoremap :s :s//<c-r>0/gc<cr>
@@ -952,8 +955,6 @@ let g:fzf_colors = {
 " lines
 nnoremap <leader>k :BLines<cr>
 vnoremap <leader>k "ay:BLines <c-r>a<cr>
-nnoremap <leader>j :BLines<cr>
-vnoremap <leader>j "ay:BLines <c-r>a<cr>
 command! -bang -nargs=? BLines
 \ call fzf#vim#buffer_lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
 
