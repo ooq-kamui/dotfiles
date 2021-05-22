@@ -99,6 +99,19 @@
               "key_code": "international3"
             }
           ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "equal_sign"
+          },
+          "to": [
+            {
+              "modifiers": ["shift"],
+              "key_code": "9"
+            }
+          ]
         }
       ]
     }

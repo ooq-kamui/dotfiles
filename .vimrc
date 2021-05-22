@@ -230,11 +230,15 @@ nnoremap <c-b> <c-i>
 " scroll
 nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
-nnoremap J 5<c-y>
-nnoremap K 5<c-e>
+nnoremap J <c-y>
+nnoremap K <c-e>
+"nnoremap J 5<c-y>
+"nnoremap K 5<c-e>
 
 " scroll cursor line read easily
 nnoremap <leader><space> zt
+nnoremap F zt
+nnoremap R zt
 
 "
 " edit
@@ -271,10 +275,11 @@ nnoremap $ O--[[<cr>--]]<esc>
 " ins sys cmd ( read )
 nnoremap :r :read ! 
 
-" ins log ooq
+" ins ooq slf
+nnoremap <leader>s O_s:<esc>
+
+" ins ooq log
 nnoremap @ Olog._("", )<esc>
-nnoremap . Olog._("", )<esc>
-"nnoremap z Olog._("", )<esc>
 
 " del char
 nnoremap s "ax
@@ -316,16 +321,17 @@ nnoremap c "0yy
 
 " yank line pc clipboard
 nnoremap <c-c> "+yy
+nnoremap C "+yy
 
 " yank char
-nnoremap C "0yl
+"nnoremap C "0yl
 
 " paste
 nnoremap p "0P
 
 " paste pc clipboard
 nnoremap <c-v> "+P
-"nnoremap P "+P
+nnoremap P "+P
 
 " undo, redo
 nnoremap h u
@@ -478,12 +484,17 @@ nnoremap y <esc>
 "nnoremap z <esc>
 
 nnoremap A <esc>
+"nnoremap C <esc>
+"nnoremap E <esc>
+"nnoremap F <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
 nnoremap N <esc>
 nnoremap O <esc>
-nnoremap R <esc>
+"nnoremap P <esc>
+"nnoremap R <esc>
+nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
 
@@ -587,7 +598,7 @@ vnoremap c "0y
 
 " yank selected pc clipboard
 vnoremap <c-c> "+y
-"vnoremap C "+y
+vnoremap C "+y
 
 " paste
 vnoremap p "ad"0P
@@ -669,7 +680,7 @@ vnoremap w <c-c>
 "vnoremap x <c-c>
 vnoremap y <c-c>
 
-vnoremap C <c-c>
+"vnoremap C <c-c>
 "vnoremap I <c-c>
 
 vnoremap <c-a> <c-c>
