@@ -109,6 +109,19 @@
           "to": [
             {
               "modifiers": ["shift"],
+              "key_code": "8"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "semicolon"
+          },
+          "to": [
+            {
+              "modifiers": ["shift"],
               "key_code": "9"
             }
           ]

@@ -194,6 +194,7 @@ nnoremap <c-j> 10j
 
 " cursor mv line in | ins line
 nnoremap <expr> ; col(".") == 1 ? "O<esc>" : "0"
+nnoremap <expr> y col(".") == 1 ? "O<esc>" : "0"
 "nnoremap <expr> ; col(".") == 1 ? "O<esc>" : col(".") == col("$") ? "0" : "$l"
 
 " cursor mv char - forward
@@ -236,9 +237,9 @@ nnoremap K <c-e>
 "nnoremap K 5<c-e>
 
 " scroll cursor line read easily
-nnoremap <leader><space> zt
-nnoremap F zt
 nnoremap R zt
+"nnoremap F zt
+"nnoremap <leader><space> zt
 
 "
 " edit
@@ -263,10 +264,10 @@ nnoremap , i, <esc>l
 " ins comment 1
 "nnoremap ! ^i-- <esc>
 "nnoremap <leader>c i-- <esc>
-autocmd FileType lua nnoremap ! ^i-- <esc>
-autocmd FileType vim nnoremap ! ^i"<esc>
-autocmd FileType txt nnoremap ! ^i# <esc>
-autocmd FileType sh  nnoremap ! ^i# <esc>
+autocmd FileType lua nnoremap # ^i-- <esc>
+autocmd FileType vim nnoremap # ^i"<esc>
+autocmd FileType txt nnoremap # ^i# <esc>
+autocmd FileType sh  nnoremap # ^i# <esc>
 
 " ins comment mlt lua
 nnoremap $ O--[[<cr>--]]<esc>
@@ -276,7 +277,7 @@ nnoremap $ O--[[<cr>--]]<esc>
 nnoremap :r :read ! 
 
 " ins ooq slf
-nnoremap <leader>s O_s:<esc>
+nnoremap <leader>s i_s:<esc>
 
 " ins ooq log
 nnoremap @ Olog._("", )<esc>
@@ -345,8 +346,10 @@ nnoremap + <c-a>
 nnoremap - <c-x>
 
 " indent
-nnoremap # >>
-nnoremap " <<
+nnoremap " >>
+nnoremap ! <<
+"nnoremap # >>
+"nnoremap " <<
 "nnoremap > >>
 "nnoremap < <<
 
@@ -362,7 +365,8 @@ nnoremap U :call Chartoggle2()<cr>
 "
 
 " search char
-nnoremap <leader>f f
+nnoremap F f
+"nnoremap <leader>f f
 
 " search char repeat
 nnoremap <c-f> ;
@@ -380,6 +384,7 @@ nnoremap e g*Nzt
 nnoremap E *Nzt
 
 " search cmd
+nnoremap <leader>f /
 nnoremap <leader>j /
 
 " search replace all > yank ( file )
@@ -396,6 +401,8 @@ nnoremap r <c-w>gFgTj
 
 " mark
 "nnoremap <leader>m m
+
+
 
 "
 " tab
@@ -480,8 +487,9 @@ nnoremap t <esc>
 "nnoremap u <esc>
 "nnoremap w <esc>
 "nnoremap x <esc>
-nnoremap y <esc>
+"nnoremap y <esc>
 "nnoremap z <esc>
+
 
 nnoremap A <esc>
 "nnoremap C <esc>
@@ -553,6 +561,7 @@ vnoremap <c-o> b
 
 " cursor mv in selected
 vnoremap ; o
+vnoremap y o
 
 " cursor mv in line
 vnoremap ! ^
@@ -678,7 +687,7 @@ vnoremap q <c-c>
 "vnoremap u <c-c>
 vnoremap w <c-c>
 "vnoremap x <c-c>
-vnoremap y <c-c>
+"vnoremap y <c-c>
 
 "vnoremap C <c-c>
 "vnoremap I <c-c>
