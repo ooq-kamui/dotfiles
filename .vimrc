@@ -277,7 +277,7 @@ nnoremap $ O--[[<cr>--]]<esc>
 nnoremap :r :read ! 
 
 " ins ooq slf
-nnoremap <leader>s i_s:<esc>
+nnoremap <leader>s i_s._<esc>
 
 " ins ooq log
 nnoremap @ Olog._("", )<esc>
@@ -304,8 +304,8 @@ nnoremap d "0dd
 nnoremap <c-m> J
 
 " select all
-nnoremap <leader>a ggVG
-"nnoremap A ggVG
+nnoremap A ggVG
+"nnoremap <leader>a ggVG
 "nnoremap <c-a> ggVG
 
 " select word
@@ -453,7 +453,7 @@ nnoremap ~ <esc>
 nnoremap / <esc>
 "nnoremap " <esc>
 "nnoremap # <esc>
-nnoremap ! <esc>
+"nnoremap ! <esc>
 "nnoremap $ <esc>
 
 nnoremap <c-space> <esc>
@@ -491,7 +491,7 @@ nnoremap t <esc>
 "nnoremap z <esc>
 
 
-nnoremap A <esc>
+"nnoremap A <esc>
 "nnoremap C <esc>
 "nnoremap E <esc>
 "nnoremap F <esc>
@@ -564,7 +564,7 @@ vnoremap ; o
 vnoremap y o
 
 " cursor mv in line
-vnoremap ! ^
+vnoremap # ^
 vnoremap $ $
 "vnoremap <expr> ; col(".") == col("$") ? "0" : "$"
 
@@ -621,8 +621,10 @@ vnoremap - <c-x>
 vnoremap a g<c-a>
 
 " indent
-vnoremap # >gv
-vnoremap " <gv
+vnoremap " >gv
+vnoremap ! <gv
+"vnoremap # >gv
+"vnoremap " <gv
 "vnoremap > >gv
 "vnoremap < <gv
 
@@ -735,7 +737,7 @@ inoremap <c-f> <c-o>e<c-o>l
 
 " del char forward
 inoremap <c-d> <c-o>x
-inoremap <c-s> <c-o>x
+"inoremap <c-s> <c-o>x
 
 " del char back
 inoremap <c-h> <c-h>
@@ -791,19 +793,27 @@ func! Inssymbol() abort
   call complete(col('.'), ['!', '#', '$', '%', '&', '^', '~', '|', '?'])
   return ''
 endfunc
-inoremap <c-n> <c-r>=Inssymbol()<cr>
+inoremap <c-s> <c-r>=Inssymbol()<cr>
+
+" ins bracket
+func! Insbracket() abort
+  call complete(col('.'), ['()', '{}', '[]', '<>'])
+  return ''
+endfunc
+inoremap <c-b> <c-r>=Insbracket()<cr>
 
 " ins num
 func! Insnum() abort
   call complete(col('.'), ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])
   return ''
 endfunc
-inoremap <c-u> <c-r>=Insnum()<cr>
+inoremap <c-n> <c-r>=Insnum()<cr>
 
 " ins lua reserved word
 func! Insluareserved() abort
   call complete(col('.'), [
   \   'end',
+  \   'local',
   \   'return',
   \   'if elseif else end',
   \   'for in pairs end',
@@ -907,13 +917,13 @@ nnoremap <leader>; :Tex .<cr>
 let g:netrw_liststyle    = 3 " view file tree
 let g:netrw_browse_split = 3 " file open tab
 let g:Netrw_UserMaps = [
-\ ['<c-o>'    , 'NetrwKeyBind_opn'],
-\ ['<c-l>'    , 'NetrwKeyBind_opn'],
-\ ['o'        , 'NetrwKeyBind_mv_word_back'],
-\ ['e'        , 'NetrwKeyBind__top'],
-\ ['p'        , 'NetrwKeyBind__parent'],
-\ ['<c-q>'    , 'NetrwKeyBind_clz'],
-\ ['<esc>'    , 'NetrwKeyBind_clz'],
+\ ['<c-o>', 'NetrwKeyBind_opn'],
+\ ['<c-l>', 'NetrwKeyBind_opn'],
+\ ['o'    , 'NetrwKeyBind_mv_word_back'],
+\ ['e'    , 'NetrwKeyBind__top'],
+\ ['p'    , 'NetrwKeyBind__parent'],
+\ ['<c-q>', 'NetrwKeyBind_clz'],
+\ ['<esc>', 'NetrwKeyBind_clz'],
 \]
 
 func! NetrwKeyBind_opn (islocal) abort
@@ -947,7 +957,7 @@ call plug#end()
 
 " preview window
 let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
-let g:fzf_action = { 'ctrl-o': 'tab drop' }
+let g:fzf_action = {'ctrl-o': 'tab drop'}
 
 let g:fzf_colors = {
 \   'hl'     : ['fg', 'Statement'  ],
@@ -1165,5 +1175,4 @@ func! Tabnewexe() abort
 
 endfunc
 "nnoremap t :call Tabnewexe()<cr>
-
 
