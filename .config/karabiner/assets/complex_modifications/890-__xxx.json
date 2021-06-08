@@ -24,7 +24,7 @@
           "to": [
             {
               "modifiers": ["shift"],
-              "key_code": "international3"
+              "key_code": "equal_sign"
             }
           ]
         },
@@ -72,7 +72,7 @@
           "to": [
             {
               "modifiers": ["shift"],
-              "key_code": "equal_sign"
+              "key_code": "international3"
             }
           ]
         },

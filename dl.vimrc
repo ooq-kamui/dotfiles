@@ -98,8 +98,8 @@ augroup END
 
 set nowrap
 set whichwrap=b,s,h,l,<,>,[,]
-set virtualedit=onemore " 改行にカーソルをおける
-set virtualedit+=block  " 矩形選択で行末以降にカーソル移動可
+set virtualedit=onemore " cursor, mv new line
+set virtualedit+=block  " visual box, mv new line forward
 set scrolloff=5
 set wildmode=list:longest
 set tabpagemax=30
@@ -116,8 +116,8 @@ set statusline+=%F                 " file name 表示
 set statusline+=%=                 " 以降を右寄せ
 set statusline+=%{&fileencoding}\  " file encoding
 set statusline+=%y\                " file type
-set statusline+=%p%%\              " 行数の%
-set statusline+=%l/%L              " 現在行数/全行数
+set statusline+=%p%%\              " line num %
+set statusline+=%l/%L              " line num / line num all
 set laststatus=2                   " 0: off  1: on 2 win  2: on
 set completeopt=menuone,noinsert
 set foldmethod=manual
@@ -128,14 +128,13 @@ packadd Cfilter
 
 " leader
 let mapleader = "\<esc>"
-"let mapleader = "\<space>"
 
 "
 " mode normal
 "
 
 " quit buffer
-nnoremap w  :bd<cr>
+nnoremap w :bd<cr>
 
 " quit
 nnoremap <c-w> :q<cr>
@@ -189,8 +188,12 @@ nnoremap <Up>    k
 nnoremap <Down>  j
 
 " cursor mv line
-nnoremap <c-k> 10k
-nnoremap <c-j> 10j
+nnoremap <c-k> 10<c-y>
+nnoremap <c-j> 10<c-e>
+"nnoremap K <c-y>
+"nnoremap J <c-e>
+"nnoremap <c-k> 10k
+"nnoremap <c-j> 10j
 
 " cursor mv line in | ins line
 nnoremap <expr> ; col(".") == 1 ? "O<esc>" : "0"
@@ -231,14 +234,14 @@ nnoremap <c-b> <c-i>
 " scroll
 nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
-nnoremap J <c-y>
-nnoremap K <c-e>
+nnoremap K <c-y>
+nnoremap J <c-e>
 "nnoremap J 5<c-y>
 "nnoremap K 5<c-e>
 
 " scroll cursor line read easily
+nnoremap F zt
 nnoremap R zt
-"nnoremap F zt
 "nnoremap <leader><space> zt
 
 "
@@ -262,25 +265,23 @@ nnoremap * i <esc>l
 nnoremap , i, <esc>l
 
 " ins comment 1
-"nnoremap ! ^i-- <esc>
-"nnoremap <leader>c i-- <esc>
-autocmd FileType lua nnoremap # ^i-- <esc>
-autocmd FileType vim nnoremap # ^i"<esc>
-autocmd FileType txt nnoremap # ^i# <esc>
-autocmd FileType sh  nnoremap # ^i# <esc>
+autocmd FileType lua nnoremap ! ^i-- <esc>
+autocmd FileType vim nnoremap ! ^i"<esc>
+autocmd FileType txt nnoremap ! ^i# <esc>
+autocmd FileType sh  nnoremap ! ^i# <esc>
 
 " ins comment mlt lua
 nnoremap $ O--[[<cr>--]]<esc>
-"nnoremap <leader>C O--[[<cr>--]]<esc>
 
 " ins sys cmd ( read )
 nnoremap :r :read ! 
 
 " ins ooq slf
-nnoremap <leader>s i_s._<esc>
+nnoremap <leader>s i_s:._<esc>
 
 " ins ooq log
 nnoremap @ Olog._("", )<esc>
+nnoremap L Olog._("", )<esc>
 
 " del char
 nnoremap s "ax
@@ -346,12 +347,8 @@ nnoremap + <c-a>
 nnoremap - <c-x>
 
 " indent
-nnoremap " >>
-nnoremap ! <<
-"nnoremap # >>
-"nnoremap " <<
-"nnoremap > >>
-"nnoremap < <<
+nnoremap " <<
+nnoremap # >>
 
 " upper / lower
 "nnoremap u v~
@@ -365,11 +362,10 @@ nnoremap U :call Chartoggle2()<cr>
 "
 
 " search char
-nnoremap F f
-"nnoremap <leader>f f
+"nnoremap use not
 
 " search char repeat
-nnoremap <c-f> ;
+"nnoremap use not
 
 " search
 nnoremap n     n
@@ -382,6 +378,9 @@ nnoremap e g*Nzt
 
 " search word
 nnoremap E *Nzt
+
+" search word _
+nnoremap <c-f> f_l
 
 " search cmd
 nnoremap <leader>f /
@@ -396,12 +395,9 @@ nnoremap <c-p> gn
 
 " tag jump
 nnoremap r <c-w>gFgTj
-"nnoremap <c-e> <c-w>gFgTj
-"nnoremap <c-f> <c-w>gFgTj
 
 " mark
 "nnoremap <leader>m m
-
 
 
 "
@@ -414,8 +410,8 @@ nnoremap <s-tab> gT
 " tab order
 nnoremap <s-right> :tabm+1<cr>
 nnoremap <s-left>  :tabm-1<cr>
-nnoremap L :tabm+1<cr>
-nnoremap H :tabm-1<cr>
+"nnoremap L :tabm+1<cr>
+"nnoremap H :tabm-1<cr>
 
 " buffer list
 "nnoremap :b :buffers
@@ -451,10 +447,12 @@ nnoremap <bs>    <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
 nnoremap / <esc>
+
+"nnoremap ! <esc>
 "nnoremap " <esc>
 "nnoremap # <esc>
-"nnoremap ! <esc>
 "nnoremap $ <esc>
+nnoremap ( <esc>
 
 nnoremap <c-space> <esc>
 nnoremap <c-@> <esc>
@@ -548,23 +546,23 @@ vnoremap v <c-v>
 
 " cursor mv char
 vnoremap l l
-vnoremap h h
-"vnoremap <c-o> h
+vnoremap <c-o> h
+"vnoremap h h
 
 " cursor mv word - forward
 vnoremap f e
 vnoremap F el
 
 " cursor mv word - back
-vnoremap <c-o> b
+"vnoremap <c-o> b
 "vnoremap o b
 
 " cursor mv in selected
-vnoremap ; o
 vnoremap y o
+vnoremap ; o
 
 " cursor mv in line
-vnoremap # ^
+"vnoremap # ^
 vnoremap $ $
 "vnoremap <expr> ; col(".") == col("$") ? "0" : "$"
 
@@ -607,7 +605,7 @@ vnoremap c "0y
 
 " yank selected pc clipboard
 vnoremap <c-c> "+y
-vnoremap C "+y
+"vnoremap C "+y
 
 " paste
 vnoremap p "ad"0P
@@ -621,12 +619,8 @@ vnoremap - <c-x>
 vnoremap a g<c-a>
 
 " indent
-vnoremap " >gv
-vnoremap ! <gv
-"vnoremap # >gv
-"vnoremap " <gv
-"vnoremap > >gv
-"vnoremap < <gv
+vnoremap " <gv
+vnoremap # >gv
 
 " indent tab > space
 vnoremap :t :!expand -t 4
@@ -644,22 +638,20 @@ vnoremap e "ay/<c-r>a<cr>Nzt
 vnoremap E *<c-c>Nzt
 
 " search cmd
+vnoremap <leader>f "ay/<c-r>a
 vnoremap <leader>j "ay/<c-r>a
 
 " search replace all > yank ( selected )
 vnoremap :s :s//<c-r>0/gc<cr>
-"vnoremap :w :s//<c-r>0/g <cr>
 
 " search replace one > yank , next
 vnoremap <c-p> "ad"0Plgn
-"vnoremap <c-p> "ad"0Pgn
 
 " search replace one , skip
 vnoremap <c-n> <c-c>lgn
 
 " tag jump
 vnoremap r :FileJmp<cr>
-"vnoremap <c-e> :FileJmp<cr>
 
 "
 " nop
@@ -672,13 +664,16 @@ vnoremap r :FileJmp<cr>
 vnoremap @ <c-c>
 vnoremap * <c-c>
 vnoremap / <c-c>
+"vnoremap ! <c-c>
+"vnoremap " <c-c>
+"vnoremap # <c-c>
 
 "vnoremap a <c-c>
 vnoremap b <c-c>
 "vnoremap c <c-c>
 "vnoremap d <c-c>
 "vnoremap e <c-c>
-"vnoremap h <c-c>
+vnoremap h <c-c>
 "vnoremap i <c-c>
 "vnoremap n <c-c>
 "vnoremap o <c-c>
@@ -692,6 +687,7 @@ vnoremap w <c-c>
 "vnoremap y <c-c>
 
 "vnoremap C <c-c>
+"vnoremap F <c-c>
 "vnoremap I <c-c>
 
 vnoremap <c-a> <c-c>
@@ -1004,6 +1000,7 @@ command! -bang -nargs=? -complete=dir Files
 " )
 nnoremap <leader>o :Rg <cr>
 vnoremap <leader>o "ay:Rg <c-r>a<cr>
+vnoremap <leader>d "ay:Rg <c-r>a<cr>func
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
 \   "rg --color=always --line-number --smart-case --no-multiline --no-heading "
