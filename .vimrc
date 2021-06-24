@@ -190,15 +190,12 @@ nnoremap <Down>  j
 " cursor mv line
 nnoremap <c-k> 10<c-y>
 nnoremap <c-j> 10<c-e>
-"nnoremap K <c-y>
-"nnoremap J <c-e>
-"nnoremap <c-k> 10k
-"nnoremap <c-j> 10j
 
 " cursor mv line in | ins line
-nnoremap <expr> ; col(".") == 1 ? "O<esc>" : "0"
 nnoremap <expr> y col(".") == 1 ? "O<esc>" : "0"
+nnoremap <expr> ; col(".") == 1 ? "O<esc>" : "0"
 "nnoremap <expr> ; col(".") == 1 ? "O<esc>" : col(".") == col("$") ? "0" : "$l"
+nnoremap Y $l
 
 " cursor mv char - forward
 nnoremap l l
@@ -236,8 +233,6 @@ nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 nnoremap K <c-y>
 nnoremap J <c-e>
-"nnoremap J 5<c-y>
-"nnoremap K 5<c-e>
 
 " scroll cursor line read easily
 nnoremap F zt
@@ -444,7 +439,7 @@ nnoremap <bs>    <esc>
 "nnoremap , <esc>
 "nnoremap . <esc>
 "nnoremap * <esc>
-"nnoremap _ <esc>
+nnoremap _ <esc>
 nnoremap ~ <esc>
 nnoremap / <esc>
 
@@ -503,6 +498,7 @@ nnoremap O <esc>
 nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
+"nnoremap Y <esc>
 
 nnoremap <c-a> <esc>
 "nnoremap <c-b> <esc>

@@ -16,43 +16,6 @@
                 },
                 "rules": [
                     {
-                        "description": "shift space > kana",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "spacebar",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "shift"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "japanese_kana"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "escape",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "shift"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "japanese_eisuu"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "fn num pad",
                         "manipulators": [
                             {
@@ -377,6 +340,43 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "xxx > kana",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "japanese_kana"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "escape",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "japanese_eisuu"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
@@ -521,6 +521,16 @@
                 },
                 {
                     "from": {
+                        "key_code": "0"
+                    },
+                    "to": [
+                        {
+                            "key_code": "semicolon"
+                        }
+                    ]
+                },
+                {
+                    "from": {
                         "key_code": "backslash"
                     },
                     "to": [
@@ -545,7 +555,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "open_bracket"
+                            "key_code": "international1"
                         }
                     ]
                 },
@@ -815,7 +825,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "international1"
+                            "key_code": "left_shift"
                         }
                     ]
                 },
@@ -835,17 +845,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "escape"
-                        }
-                    ]
-                },
-                {
-                    "from": {
-                        "key_code": "0"
-                    },
-                    "to": [
-                        {
-                            "key_code": "semicolon"
+                            "key_code": "open_bracket"
                         }
                     ]
                 }
