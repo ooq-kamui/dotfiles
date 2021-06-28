@@ -377,6 +377,30 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "xx > pls",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "international1",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "semicolon",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
@@ -525,7 +549,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "semicolon"
+                            "key_code": "international1"
                         }
                     ]
                 },
@@ -575,7 +599,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "international1"
+                            "key_code": "open_bracket"
                         }
                     ]
                 },
@@ -865,7 +889,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "open_bracket"
+                            "key_code": "semicolon"
                         }
                     ]
                 }

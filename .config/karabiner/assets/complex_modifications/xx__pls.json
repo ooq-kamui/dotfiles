@@ -1,0 +1,24 @@
+{
+  "title": "xx > pls [ @kamui ]",
+  "rules": [
+    {
+      "description": "xx > pls",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "international1"
+          },
+          "to": [
+            {
+              "modifiers": ["shift"],
+              "key_code": "semicolon"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
