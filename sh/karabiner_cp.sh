@@ -16,16 +16,18 @@ dir_to_cmplxmod=$dir_to_karabiner/$dir_cmplxmod
 
 cp $dir_fr_karabiner/karabiner.json $dir_to_karabiner/
 
-file="
-num__symbl.json
-shift__num_pad.json
-esc__add_eisu.json
-shift__bracket.json
-90-__-+_.json
-"
+cp $dir_fr_cmplxmod/*.json $dir_to_cmplxmod/
 
-for f in $file
-do
-  cp $dir_fr_cmplxmod/$f $dir_to_cmplxmod/
-done
+#file="
+#num__symbl.json
+#shift__num_pad.json
+#esc__add_eisu.json
+#shift__bracket.json
+#90-__-+_.json
+#"
+#
+#for f in $file
+#do
+#  cp $dir_fr_cmplxmod/$f $dir_to_cmplxmod/
+#done
 

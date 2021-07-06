@@ -599,7 +599,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "open_bracket"
+                            "key_code": "q"
                         }
                     ]
                 },
@@ -619,7 +619,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "international1"
+                            "key_code": "open_bracket"
                         }
                     ]
                 },
@@ -805,6 +805,16 @@
                 },
                 {
                     "from": {
+                        "key_code": "q"
+                    },
+                    "to": [
+                        {
+                            "key_code": "tab"
+                        }
+                    ]
+                },
+                {
+                    "from": {
                         "key_code": "quote"
                     },
                     "to": [
@@ -870,6 +880,16 @@
                     "to": [
                         {
                             "key_code": "japanese_eisuu"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "tab"
+                    },
+                    "to": [
+                        {
+                            "apple_vendor_top_case_key_code": "keyboard_fn"
                         }
                     ]
                 },
