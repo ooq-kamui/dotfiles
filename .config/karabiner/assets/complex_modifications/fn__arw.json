@@ -1,0 +1,83 @@
+{
+  "title": "fn arw [ @kamui ]",
+  "rules": [
+    {
+      "description": "fn arw",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": {
+              "mandatory": [ "fn" ]
+            },
+            "key_code": "w"
+          },
+          "to": [
+            {
+              "modifiers": ["control"],
+              "key_code": "left_arrow"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": {
+              "mandatory": [ "fn" ]
+            },
+            "key_code": "e"
+          },
+          "to": [
+            {
+              "modifiers": ["control"],
+              "key_code": "right_arrow"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": {
+              "mandatory": [ "fn" ]
+            },
+            "key_code": "f"
+          },
+          "to": [
+            {
+              "modifiers": ["control"],
+              "key_code": "up_arrow"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": {
+              "mandatory": [ "fn" ]
+            },
+            "key_code": "comma"
+          },
+          "to": [
+            {
+              "key_code": "left_arrow"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": {
+              "mandatory": [ "fn" ]
+            },
+            "key_code": "period"
+          },
+          "to": [
+            {
+              "key_code": "right_arrow"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -193,9 +193,10 @@ nnoremap <c-j> 10<c-e>
 
 " cursor mv line in | ins line
 nnoremap <expr> y col(".") == 1 ? "O<esc>" : "0"
-nnoremap <expr> ; col(".") == 1 ? "O<esc>" : "0"
-"nnoremap <expr> ; col(".") == 1 ? "O<esc>" : col(".") == col("$") ? "0" : "$l"
-nnoremap Y $l
+
+" cursor mv line in end
+nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
+"nnoremap <expr> r col("$") == 1 ? "$" : "$l"
 
 " cursor mv char - forward
 nnoremap l l
@@ -216,7 +217,9 @@ nnoremap go gg0
 nnoremap gl G$l
 
 " cursor mv bracket paire
-nnoremap <c-l> %
+nnoremap _ %
+nnoremap ( %
+"nnoremap <c-l> %
 
 " cursor mv bracket back
 "nnoremap ? [{
@@ -236,7 +239,7 @@ nnoremap J <c-e>
 
 " scroll cursor line read easily
 nnoremap F zt
-nnoremap R zt
+"nnoremap R zt
 "nnoremap <leader><space> zt
 
 "
@@ -272,11 +275,13 @@ nnoremap $ O--[[<cr>--]]<esc>
 nnoremap :r :read ! 
 
 " ins ooq slf
+nnoremap Rs i_s:._<esc>
 nnoremap <leader>s i_s:._<esc>
+"nnoremap S         i_s:._<esc>
 
 " ins ooq log
-nnoremap @ Olog._("", )<esc>
-nnoremap L Olog._("", )<esc>
+nnoremap Rl Olog._("", )<esc>
+"nnoremap q Olog._("", )<esc>
 
 " del char
 nnoremap s "ax
@@ -331,7 +336,7 @@ nnoremap <c-v> "+P
 nnoremap P "+P
 
 " undo, redo
-nnoremap h u
+nnoremap h     u
 nnoremap <c-h> <c-r>
 
 " repeat
@@ -378,8 +383,9 @@ nnoremap E *Nzt
 nnoremap <c-f> f_l
 
 " search cmd
+nnoremap / /
 nnoremap <leader>f /
-nnoremap <leader>j /
+"nnoremap <leader>j /
 
 " search replace all > yank ( file )
 nnoremap :s :%s//<c-r>0/gc<cr>
@@ -390,6 +396,7 @@ nnoremap <c-p> gn
 
 " tag jump
 nnoremap r <c-w>gFgTj
+"nnoremap t <c-w>gFgTj
 
 " mark
 "nnoremap <leader>m m
@@ -434,20 +441,21 @@ nnoremap <esc>   <esc>
 "nnoremap <space> <esc>
 nnoremap <bs>    <esc>
 
-"nnoremap @ <esc>
-"nnoremap ; <esc>
+nnoremap @ <esc>
+nnoremap ; <esc>
 "nnoremap , <esc>
 "nnoremap . <esc>
 "nnoremap * <esc>
-nnoremap _ <esc>
+"nnoremap _ <esc>
 nnoremap ~ <esc>
-nnoremap / <esc>
+"nnoremap / <esc>
+nnoremap ? <esc>
 
 "nnoremap ! <esc>
 "nnoremap " <esc>
 "nnoremap # <esc>
 "nnoremap $ <esc>
-nnoremap ( <esc>
+"nnoremap ( <esc>
 
 nnoremap <c-space> <esc>
 nnoremap <c-@> <esc>
@@ -481,7 +489,7 @@ nnoremap t <esc>
 "nnoremap w <esc>
 "nnoremap x <esc>
 "nnoremap y <esc>
-"nnoremap z <esc>
+nnoremap z <esc>
 
 
 "nnoremap A <esc>
@@ -491,11 +499,13 @@ nnoremap t <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
+nnoremap L <esc>
 nnoremap N <esc>
 nnoremap O <esc>
+nnoremap Q <esc>
 "nnoremap P <esc>
-"nnoremap R <esc>
-nnoremap S <esc>
+nnoremap R <esc>
+"nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap Y <esc>
@@ -509,7 +519,7 @@ nnoremap <c-e> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
-"nnoremap <c-l> <esc>
+nnoremap <c-l> <esc>
 "nnoremap <c-m> <esc>
 "nnoremap <c-n> <esc>
 "nnoremap <c-o> <esc>
@@ -522,7 +532,7 @@ nnoremap <c-u> <esc>
 "nnoremap <c-v> <esc>
 "nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
-nnoremap <c-y> <esc>
+"nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
 
 
@@ -542,8 +552,8 @@ vnoremap v <c-v>
 
 " cursor mv char
 vnoremap l l
+vnoremap h h
 vnoremap <c-o> h
-"vnoremap h h
 
 " cursor mv word - forward
 vnoremap f e
@@ -555,12 +565,10 @@ vnoremap F el
 
 " cursor mv in selected
 vnoremap y o
-vnoremap ; o
 
 " cursor mv in line
-"vnoremap # ^
-vnoremap $ $
-"vnoremap <expr> ; col(".") == col("$") ? "0" : "$"
+"vnoremap r $
+"vnoremap $ $
 
 " cursor mv line
 vnoremap <c-j> 10j
@@ -575,7 +583,9 @@ vnoremap gj G$l
 vnoremap gk G$l
 
 " cursor mv bracket
-vnoremap <c-l> %
+vnoremap _ %
+vnoremap ( %
+"vnoremap <c-l> %
 
 " ins | cut & ins
 vnoremap <expr> <leader><esc> mode() == "<c-v>" ? "I" : "c"
@@ -583,7 +593,9 @@ vnoremap <expr> <space>       mode() == "<c-v>" ? "I" : "c"
 vnoremap <c-i> "ac
 
 " ins $
-vnoremap <expr> $ mode() == "<c-v>" ? "$A" : "$"
+vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "$"
+"vnoremap <expr> r mode() == "<c-v>" ? "$A" : "$"
+"vnoremap <expr> $ mode() == "<c-v>" ? "$A" : "$"
 
 " del str > yank
 vnoremap d "0d
@@ -634,8 +646,9 @@ vnoremap e "ay/<c-r>a<cr>Nzt
 vnoremap E *<c-c>Nzt
 
 " search cmd
+vnoremap / "ay/<c-r>a
 vnoremap <leader>f "ay/<c-r>a
-vnoremap <leader>j "ay/<c-r>a
+"vnoremap <leader>j "ay/<c-r>a
 
 " search replace all > yank ( selected )
 vnoremap :s :s//<c-r>0/gc<cr>
@@ -648,6 +661,7 @@ vnoremap <c-n> <c-c>lgn
 
 " tag jump
 vnoremap r :FileJmp<cr>
+"vnoremap t :FileJmp<cr>
 
 "
 " nop
@@ -659,24 +673,29 @@ vnoremap r :FileJmp<cr>
 "
 vnoremap @ <c-c>
 vnoremap * <c-c>
-vnoremap / <c-c>
+"vnoremap / <c-c>
 "vnoremap ! <c-c>
 "vnoremap " <c-c>
 "vnoremap # <c-c>
+"vnoremap $ <c-c>
+"vnoremap _ <c-c>
+vnoremap ? <c-c>
+"vnoremap ( <c-c>
+vnoremap ; <c-c>
 
 "vnoremap a <c-c>
 vnoremap b <c-c>
 "vnoremap c <c-c>
 "vnoremap d <c-c>
 "vnoremap e <c-c>
-vnoremap h <c-c>
+"vnoremap h <c-c>
 "vnoremap i <c-c>
 "vnoremap n <c-c>
 "vnoremap o <c-c>
 vnoremap q <c-c>
 "vnoremap r <c-c>
 "vnoremap s <c-c>
-"vnoremap t <c-c>
+vnoremap t <c-c>
 "vnoremap u <c-c>
 vnoremap w <c-c>
 "vnoremap x <c-c>
@@ -691,7 +710,7 @@ vnoremap <c-a> <c-c>
 vnoremap <c-e> <c-c>
 vnoremap <c-f> <c-c>
 "vnoremap <c-i> <c-c>
-"vnoremap <c-l> <c-c>
+vnoremap <c-l> <c-c>
 "vnoremap <c-m> <c-c>
 "vnoremap <c-n> <c-c>
 "vnoremap <c-o> <c-c>
