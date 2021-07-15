@@ -40,12 +40,27 @@
             "modifiers": {
               "mandatory": [ "fn" ]
             },
-            "key_code": "f"
+            "key_code": "s"
           },
           "to": [
             {
               "modifiers": ["control"],
-              "key_code": "up_arrow"
+              "key_code": "left_arrow"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": {
+              "mandatory": [ "fn" ]
+            },
+            "key_code": "d"
+          },
+          "to": [
+            {
+              "modifiers": ["control"],
+              "key_code": "right_arrow"
             }
           ]
         },
@@ -76,6 +91,21 @@
             {
               "modifiers": ["control"],
               "key_code": "right_arrow"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": {
+              "mandatory": [ "fn" ]
+            },
+            "key_code": "f"
+          },
+          "to": [
+            {
+              "modifiers": ["control"],
+              "key_code": "up_arrow"
             }
           ]
         }

@@ -654,7 +654,7 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "f",
+                                    "key_code": "s",
                                     "modifiers": {
                                         "mandatory": [
                                             "fn"
@@ -663,7 +663,26 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "up_arrow",
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
                                         "modifiers": [
                                             "control"
                                         ]
@@ -702,6 +721,25 @@
                                 "to": [
                                     {
                                         "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
                                         "modifiers": [
                                             "control"
                                         ]
