@@ -195,6 +195,7 @@ nnoremap <c-j> 10<c-e>
 nnoremap <expr> y col(".") == 1 ? "O<esc>" : "0"
 
 " cursor mv line in end
+nnoremap <expr> L col("$") == 1 ? "$" : "$l"
 nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
 "nnoremap <expr> r col("$") == 1 ? "$" : "$l"
 
@@ -217,9 +218,9 @@ nnoremap go gg0
 nnoremap gl G$l
 
 " cursor mv bracket paire
-nnoremap _ %
+nnoremap <c-l> %
 nnoremap ( %
-"nnoremap <c-l> %
+"nnoremap _ %
 
 " cursor mv bracket back
 "nnoremap ? [{
@@ -275,13 +276,11 @@ nnoremap $ O--[[<cr>--]]<esc>
 nnoremap :r :read ! 
 
 " ins ooq slf
-nnoremap Rs i_s:._<esc>
-nnoremap <leader>s i_s:._<esc>
-"nnoremap S         i_s:._<esc>
+nnoremap R: i_s:()<esc>h
+nnoremap R. i_s._<esc>l
 
 " ins ooq log
 nnoremap Rl Olog._("", )<esc>
-"nnoremap q Olog._("", )<esc>
 
 " del char
 nnoremap s "ax
@@ -446,7 +445,7 @@ nnoremap ; <esc>
 "nnoremap , <esc>
 "nnoremap . <esc>
 "nnoremap * <esc>
-"nnoremap _ <esc>
+nnoremap _ <esc>
 nnoremap ~ <esc>
 "nnoremap / <esc>
 nnoremap ? <esc>
@@ -499,13 +498,13 @@ nnoremap z <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
-nnoremap L <esc>
+"nnoremap L <esc>
 nnoremap N <esc>
 nnoremap O <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
 nnoremap R <esc>
-"nnoremap S <esc>
+nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap Y <esc>
@@ -519,7 +518,7 @@ nnoremap <c-e> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
-nnoremap <c-l> <esc>
+"nnoremap <c-l> <esc>
 "nnoremap <c-m> <esc>
 "nnoremap <c-n> <esc>
 "nnoremap <c-o> <esc>
@@ -583,9 +582,9 @@ vnoremap gj G$l
 vnoremap gk G$l
 
 " cursor mv bracket
-vnoremap _ %
+vnoremap <c-l> %
 vnoremap ( %
-"vnoremap <c-l> %
+"vnoremap _ %
 
 " ins | cut & ins
 vnoremap <expr> <leader><esc> mode() == "<c-v>" ? "I" : "c"
@@ -678,7 +677,7 @@ vnoremap * <c-c>
 "vnoremap " <c-c>
 "vnoremap # <c-c>
 "vnoremap $ <c-c>
-"vnoremap _ <c-c>
+vnoremap _ <c-c>
 vnoremap ? <c-c>
 "vnoremap ( <c-c>
 vnoremap ; <c-c>
@@ -710,7 +709,7 @@ vnoremap <c-a> <c-c>
 vnoremap <c-e> <c-c>
 vnoremap <c-f> <c-c>
 "vnoremap <c-i> <c-c>
-vnoremap <c-l> <c-c>
+"vnoremap <c-l> <c-c>
 "vnoremap <c-m> <c-c>
 "vnoremap <c-n> <c-c>
 "vnoremap <c-o> <c-c>

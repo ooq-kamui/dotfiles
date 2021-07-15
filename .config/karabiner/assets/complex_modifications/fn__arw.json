@@ -59,6 +59,7 @@
           },
           "to": [
             {
+              "modifiers": ["control"],
               "key_code": "left_arrow"
             }
           ]
@@ -73,6 +74,7 @@
           },
           "to": [
             {
+              "modifiers": ["control"],
               "key_code": "right_arrow"
             }
           ]

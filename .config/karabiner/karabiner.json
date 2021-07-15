@@ -682,7 +682,10 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "left_arrow"
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -698,7 +701,10 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "right_arrow"
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -962,7 +968,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "right_option"
+                            "key_code": "return_or_enter"
                         }
                     ]
                 },
@@ -1132,7 +1138,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "delete_or_backspace"
+                            "key_code": "right_control"
                         }
                     ]
                 },
@@ -1152,7 +1158,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "return_or_enter"
+                            "key_code": "right_option"
                         }
                     ]
                 },
