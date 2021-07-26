@@ -143,8 +143,8 @@ nnoremap <c-w> :q<cr>
 nnoremap :q :q!
 
 " quit other
-nnoremap <leader>w :tabo<cr>
-"nnoremap W :tabo<cr>
+nnoremap W :tabo<cr>
+"nnoremap <leader>w :tabo<cr>
 
 " save
 nnoremap a :w<cr>
@@ -195,12 +195,14 @@ nnoremap <c-j> 10<c-e>
 nnoremap <expr> y col(".") == 1 ? "O<esc>" : "0"
 
 " cursor mv line in end
-nnoremap <expr> L col("$") == 1 ? "$" : "$l"
 nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
-"nnoremap <expr> r col("$") == 1 ? "$" : "$l"
+"nnoremap <expr> F     col("$") == 1 ? "$" : "$l"
+"nnoremap <expr> L     col("$") == 1 ? "$" : "$l"
+"nnoremap <expr> Y     col("$") == 1 ? "$" : "$l"
 
 " cursor mv char - forward
 nnoremap l l
+nnoremap <c-f> l
 
 " cursor mv char - back
 nnoremap <c-o> h
@@ -219,7 +221,7 @@ nnoremap gl G$l
 
 " cursor mv bracket paire
 nnoremap <c-l> %
-nnoremap ( %
+"nnoremap ( %
 "nnoremap _ %
 
 " cursor mv bracket back
@@ -239,9 +241,7 @@ nnoremap K <c-y>
 nnoremap J <c-e>
 
 " scroll cursor line read easily
-nnoremap F zt
-"nnoremap R zt
-"nnoremap <leader><space> zt
+"nnoremap F zt
 
 "
 " edit
@@ -276,11 +276,11 @@ nnoremap $ O--[[<cr>--]]<esc>
 nnoremap :r :read ! 
 
 " ins ooq slf
-nnoremap R: i_s:()<esc>h
-nnoremap R. i_s._<esc>l
+"nnoremap xx i_s:()<esc>h
+"nnoremap xx i_s._<esc>l
 
 " ins ooq log
-nnoremap Rl Olog._("", )<esc>
+"nnoremap xx Olog._("", )<esc>
 
 " del char
 nnoremap s "ax
@@ -379,11 +379,11 @@ nnoremap e g*Nzt
 nnoremap E *Nzt
 
 " search word _
-nnoremap <c-f> f_l
+"nnoremap <c-f> f_l
 
 " search cmd
 nnoremap / /
-nnoremap <leader>f /
+"nnoremap <leader>f /
 "nnoremap <leader>j /
 
 " search replace all > yank ( file )
@@ -411,8 +411,6 @@ nnoremap <s-tab> gT
 " tab order
 nnoremap <s-right> :tabm+1<cr>
 nnoremap <s-left>  :tabm-1<cr>
-"nnoremap L :tabm+1<cr>
-"nnoremap H :tabm-1<cr>
 
 " buffer list
 "nnoremap :b :buffers
@@ -447,6 +445,7 @@ nnoremap ; <esc>
 "nnoremap * <esc>
 nnoremap _ <esc>
 nnoremap ~ <esc>
+"nnoremap ^ <esc>
 "nnoremap / <esc>
 nnoremap ? <esc>
 
@@ -454,7 +453,7 @@ nnoremap ? <esc>
 "nnoremap " <esc>
 "nnoremap # <esc>
 "nnoremap $ <esc>
-"nnoremap ( <esc>
+nnoremap ( <esc>
 
 nnoremap <c-space> <esc>
 nnoremap <c-@> <esc>
@@ -480,7 +479,7 @@ nnoremap g <esc>
 "nnoremap m <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
-nnoremap q <esc>
+"nnoremap q <esc>
 "nnoremap r <esc>
 "nnoremap s <esc>
 nnoremap t <esc>
@@ -494,11 +493,11 @@ nnoremap z <esc>
 "nnoremap A <esc>
 "nnoremap C <esc>
 "nnoremap E <esc>
-"nnoremap F <esc>
+nnoremap F <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
-"nnoremap L <esc>
+nnoremap L <esc>
 nnoremap N <esc>
 nnoremap O <esc>
 nnoremap Q <esc>
@@ -507,7 +506,8 @@ nnoremap R <esc>
 nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
-"nnoremap Y <esc>
+"nnoremap W <esc>
+nnoremap Y <esc>
 
 nnoremap <c-a> <esc>
 "nnoremap <c-b> <esc>
@@ -556,6 +556,7 @@ vnoremap <c-o> h
 
 " cursor mv word - forward
 vnoremap f e
+vnoremap <c-f> el
 vnoremap F el
 
 " cursor mv word - back
@@ -574,16 +575,14 @@ vnoremap <c-j> 10j
 vnoremap <c-k> 10k
 
 " cursor mv file back    ( file begin )
-vnoremap gl gg0
-"vnoremap gk gg0
+vnoremap go gg0
 
 " cursor mv file forward ( file end   )
-vnoremap gj G$l
-vnoremap gk G$l
+vnoremap gl G$l
 
 " cursor mv bracket
 vnoremap <c-l> %
-vnoremap ( %
+"vnoremap ( %
 "vnoremap _ %
 
 " ins | cut & ins
@@ -593,6 +592,7 @@ vnoremap <c-i> "ac
 
 " ins $
 vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "$"
+"vnoremap <expr> Y     mode() == "<c-v>" ? "$A" : "$"
 "vnoremap <expr> r mode() == "<c-v>" ? "$A" : "$"
 "vnoremap <expr> $ mode() == "<c-v>" ? "$A" : "$"
 
@@ -605,6 +605,10 @@ vnoremap x "ax
 
 " del cr
 vnoremap <c-m> J
+
+" select all
+vnoremap A <esc>ggVG
+"vnoremap ga <esc>ggVG
 
 " yank selected
 vnoremap o "0y
@@ -646,7 +650,7 @@ vnoremap E *<c-c>Nzt
 
 " search cmd
 vnoremap / "ay/<c-r>a
-vnoremap <leader>f "ay/<c-r>a
+"vnoremap <leader>f "ay/<c-r>a
 "vnoremap <leader>j "ay/<c-r>a
 
 " search replace all > yank ( selected )
@@ -679,7 +683,7 @@ vnoremap * <c-c>
 "vnoremap $ <c-c>
 vnoremap _ <c-c>
 vnoremap ? <c-c>
-"vnoremap ( <c-c>
+vnoremap ( <c-c>
 vnoremap ; <c-c>
 
 "vnoremap a <c-c>
@@ -687,6 +691,7 @@ vnoremap b <c-c>
 "vnoremap c <c-c>
 "vnoremap d <c-c>
 "vnoremap e <c-c>
+"vnoremap f <c-c>
 "vnoremap h <c-c>
 "vnoremap i <c-c>
 "vnoremap n <c-c>
@@ -700,14 +705,17 @@ vnoremap w <c-c>
 "vnoremap x <c-c>
 "vnoremap y <c-c>
 
+"vnoremap A <c-c>
 "vnoremap C <c-c>
 "vnoremap F <c-c>
 "vnoremap I <c-c>
+vnoremap L <c-c>
+vnoremap Y <c-c>
 
 vnoremap <c-a> <c-c>
 "vnoremap <c-c> <c-c>
 vnoremap <c-e> <c-c>
-vnoremap <c-f> <c-c>
+"vnoremap <c-f> <c-c>
 "vnoremap <c-i> <c-c>
 "vnoremap <c-l> <c-c>
 "vnoremap <c-m> <c-c>
@@ -721,6 +729,7 @@ vnoremap <c-s> <c-c>
 vnoremap <c-v> <c-c>
 vnoremap <c-w> <c-c>
 vnoremap <c-x> <c-c>
+"vnoremap <c-y> <c-c>
 
 
 "
@@ -733,11 +742,11 @@ inoremap <c-e> <c-o>$
 
 " cursor mv char
 inoremap <c-l> <c-o>l
+inoremap <c-f> <c-o>l
 inoremap <expr> <c-o> pumvisible() ? "<c-y>" : "<c-o>h"
-"inoremap <c-o> <c-o>h
 
 " cursor mv word forward
-inoremap <c-f> <c-o>e<c-o>l
+"inoremap <c-f> <c-o>e<c-o>l
 
 " cursor mv word back
 "inoremap <c-q> <c-o>b
@@ -762,10 +771,10 @@ inoremap <c-m> <cr>
 inoremap <tab> <c-v><Tab>
 
 " paste
-inoremap <c-v> <c-r>0
+"inoremap <c-p> <c-r>0
 
 " paste pc clipboard
-"inoremap <c-p> <c-r>+
+inoremap <c-v> <c-r>+
 
 " input complete
 inoremap <expr> <c-j> pumvisible() ? "<c-n>"  : "<c-n>"
@@ -775,8 +784,8 @@ inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-r>0"
 inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
 
 " quit, esc
-inoremap <expr> <esc>     col(".") == 1 ? "<esc>" : "<esc>l"
-inoremap <expr> <c-c>     col(".") == 1 ? "<esc>" : "<esc>l"
+inoremap <expr> <esc> col(".") == 1 ? "<esc>" : "<esc>l"
+inoremap <expr> <c-c> col(".") == 1 ? "<esc>" : "<esc>l"
 
 " ins bracket
 inoremap ( ()<c-o>h
@@ -832,6 +841,31 @@ func! Insluareserved() abort
   return ''
 endfunc
 inoremap <c-r> <c-r>=Insluareserved()<cr>
+
+" ins ooq
+func! Insusual() abort
+  call complete(col('.'), [
+  \   '_s:()',
+  \   '_s._',
+  \   'log._("", )',
+  \   'log.pp("", )',
+  \   'end',
+  \   'local',
+  \   'return',
+  \   'if elseif else end',
+  \   'for in pairs end',
+  \   'function'
+  \ ])
+  return ''
+endfunc
+inoremap <c-y> <c-r>=Insusual()<cr>
+"inoremap <c-u> <c-r>=Insusual()<cr>
+
+"
+" nop
+"
+inoremap <c-u> <nop>
+"inoremap <c-y> <nop>
 
 
 " 
