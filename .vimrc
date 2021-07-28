@@ -332,7 +332,7 @@ nnoremap p "0P
 
 " paste pc clipboard
 nnoremap <c-v> "+P
-nnoremap P "+P
+"nnoremap P "+P
 
 " undo, redo
 nnoremap h     u
@@ -409,8 +409,10 @@ nnoremap <tab>   gt
 nnoremap <s-tab> gT
 
 " tab order
-nnoremap <s-right> :tabm+1<cr>
 nnoremap <s-left>  :tabm-1<cr>
+nnoremap <s-right> :tabm+1<cr>
+nnoremap < :tabm-1<cr>
+nnoremap > :tabm+1<cr>
 
 " buffer list
 "nnoremap :b :buffers
@@ -454,6 +456,8 @@ nnoremap ? <esc>
 "nnoremap # <esc>
 "nnoremap $ <esc>
 nnoremap ( <esc>
+"nnoremap < <esc>
+"nnoremap > <esc>
 
 nnoremap <c-space> <esc>
 nnoremap <c-@> <esc>
@@ -479,7 +483,7 @@ nnoremap g <esc>
 "nnoremap m <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
-"nnoremap q <esc>
+nnoremap q <esc>
 "nnoremap r <esc>
 "nnoremap s <esc>
 nnoremap t <esc>
@@ -488,7 +492,6 @@ nnoremap t <esc>
 "nnoremap x <esc>
 "nnoremap y <esc>
 nnoremap z <esc>
-
 
 "nnoremap A <esc>
 "nnoremap C <esc>
@@ -501,7 +504,7 @@ nnoremap L <esc>
 nnoremap N <esc>
 nnoremap O <esc>
 nnoremap Q <esc>
-"nnoremap P <esc>
+nnoremap P <esc>
 nnoremap R <esc>
 nnoremap S <esc>
 nnoremap T <esc>
@@ -685,6 +688,8 @@ vnoremap _ <c-c>
 vnoremap ? <c-c>
 vnoremap ( <c-c>
 vnoremap ; <c-c>
+vnoremap < <c-c>
+vnoremap > <c-c>
 
 "vnoremap a <c-c>
 vnoremap b <c-c>
@@ -710,6 +715,7 @@ vnoremap w <c-c>
 "vnoremap F <c-c>
 "vnoremap I <c-c>
 vnoremap L <c-c>
+vnoremap P <c-c>
 vnoremap Y <c-c>
 
 vnoremap <c-a> <c-c>
