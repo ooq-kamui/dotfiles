@@ -153,11 +153,10 @@ nnoremap a :w<cr>
 nnoremap :e :e!
 
 " open latest
-"nnoremap ?? `0
+"nnoremap xx `0
 
 " open latest list
 nnoremap <leader>l :Latest<cr>
-"nnoremap <leader>; :Latest<cr>
 
 command! -nargs=0 Latest
 \ call setqflist([], ' ', {'lines' : v:oldfiles, 'efm' : '%f',
@@ -202,7 +201,6 @@ nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
 
 " cursor mv char - forward
 nnoremap l l
-nnoremap <c-f> l
 
 " cursor mv char - back
 nnoremap <c-o> h
@@ -221,8 +219,6 @@ nnoremap gl G$l
 
 " cursor mv bracket paire
 nnoremap <c-l> %
-"nnoremap ( %
-"nnoremap _ %
 
 " cursor mv bracket back
 "nnoremap ? [{
@@ -258,7 +254,7 @@ nnoremap <space> i
 nnoremap m i<cr><esc>
 
 " ins space
-nnoremap * i <esc>l
+"nnoremap * i <esc>l
 
 " ins comma
 nnoremap , i, <esc>l
@@ -275,13 +271,6 @@ nnoremap $ O--[[<cr>--]]<esc>
 " ins sys cmd ( read )
 nnoremap :r :read ! 
 
-" ins ooq slf
-"nnoremap xx i_s:()<esc>h
-"nnoremap xx i_s._<esc>l
-
-" ins ooq log
-"nnoremap xx Olog._("", )<esc>
-
 " del char
 nnoremap s "ax
 nnoremap x x
@@ -291,7 +280,7 @@ nnoremap x x
 nnoremap d "0dd
 
 " del in line forward
-"nnoremap <c-f> D
+"nnoremap xx D
 
 " del word back
 "nnoremap <c-w> hvbd
@@ -373,18 +362,18 @@ nnoremap <c-n> N
 "nnoremap <c-n> gN
 
 " search word
-nnoremap e g*Nzt
+nnoremap e g*N
+"nnoremap e g*Nzt
 
-" search word
-nnoremap E *Nzt
+" search word ( 1 word )
+nnoremap E *N
+"nnoremap E *Nzt
 
-" search word _
-"nnoremap <c-f> f_l
+" search _
+nnoremap _ f_
 
 " search cmd
 nnoremap / /
-"nnoremap <leader>f /
-"nnoremap <leader>j /
 
 " search replace all > yank ( file )
 nnoremap :s :%s//<c-r>0/gc<cr>
@@ -444,8 +433,8 @@ nnoremap @ <esc>
 nnoremap ; <esc>
 "nnoremap , <esc>
 "nnoremap . <esc>
-"nnoremap * <esc>
-nnoremap _ <esc>
+nnoremap * <esc>
+"nnoremap _ <esc>
 nnoremap ~ <esc>
 "nnoremap ^ <esc>
 "nnoremap / <esc>
@@ -517,7 +506,7 @@ nnoremap <c-a> <esc>
 "nnoremap <c-c> <esc>
 nnoremap <c-d> <esc>
 nnoremap <c-e> <esc>
-"nnoremap <c-f> <esc>
+nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
@@ -554,8 +543,8 @@ vnoremap v <c-v>
 
 " cursor mv char
 vnoremap l l
-vnoremap h h
 vnoremap <c-o> h
+"vnoremap h h
 
 " cursor mv word - forward
 vnoremap f e
@@ -585,8 +574,6 @@ vnoremap gl G$l
 
 " cursor mv bracket
 vnoremap <c-l> %
-"vnoremap ( %
-"vnoremap _ %
 
 " ins | cut & ins
 vnoremap <expr> <leader><esc> mode() == "<c-v>" ? "I" : "c"
@@ -647,14 +634,15 @@ vnoremap <c-u> uviw
 " search
 "
 vnoremap n "ay/<c-r>a<cr>N
+vnoremap e "ay/<c-r>a<cr>N
+vnoremap E *<c-c>N
 
-vnoremap e "ay/<c-r>a<cr>Nzt
-vnoremap E *<c-c>Nzt
+"vnoremap e "ay/<c-r>a<cr>Nzt
+"vnoremap E *<c-c>Nzt
+"vnoremap n "ay/<c-r>a<cr>N
 
 " search cmd
 vnoremap / "ay/<c-r>a
-"vnoremap <leader>f "ay/<c-r>a
-"vnoremap <leader>j "ay/<c-r>a
 
 " search replace all > yank ( selected )
 vnoremap :s :s//<c-r>0/gc<cr>
@@ -667,7 +655,7 @@ vnoremap <c-n> <c-c>lgn
 
 " tag jump
 vnoremap r :FileJmp<cr>
-"vnoremap t :FileJmp<cr>
+"vnoremap :f :FileJmp<cr>
 
 "
 " nop
@@ -697,7 +685,7 @@ vnoremap b <c-c>
 "vnoremap d <c-c>
 "vnoremap e <c-c>
 "vnoremap f <c-c>
-"vnoremap h <c-c>
+vnoremap h <c-c>
 "vnoremap i <c-c>
 "vnoremap n <c-c>
 "vnoremap o <c-c>
@@ -934,10 +922,17 @@ if executable('rg')
   let &grepprg = 'rg --vimgrep -s -g "*.lua" -g "*.script" -g "*.gui_script"'
   set grepformat=%f:%l:%c:%m
 endif
-nnoremap :g :grep! "<c-r>/"
+"nnoremap :g :grep! "<c-r>/"
 
-"command! -nargs=1 Ripgrep grep! "<args>"
-"nnoremap :r :Ripgrep <c-r>/
+func! Grep() abort
+  
+  let l:str = @/
+  let l:str = substitute(l:str, "(", '\\(', "")
+
+  execute "grep! ".'"'.l:str.'"'
+
+endfunc
+nnoremap :g :call Grep()<cr>
 
 
 " 
@@ -961,8 +956,7 @@ autocmd QuickFixCmdPost vimgrep,grep tab cw
 "
 
 " netrw launch
-nnoremap <leader>; :Tex .<cr>
-"nnoremap <leader>l :Tex .<cr>
+nnoremap <leader>j :Tex .<cr>
 
 let g:netrw_liststyle    = 3 " view file tree
 let g:netrw_browse_split = 3 " file open tab
@@ -1074,10 +1068,10 @@ command! -bang -nargs=* Rg
 "
 set tags=./.tags;
 "nnoremap <c-]> g<c-]>
-"nnoremap ?? :!sh sh/ctags.sh
+"nnoremap xx :!sh sh/ctags.sh
 
-"nnoremap <leader>?? :Tags <c-r><c-w><cr>
-"vnoremap <leader>?? "ay:Tags <c-r>a<cr>
+"nnoremap <leader>xx :Tags <c-r><c-w><cr>
+"vnoremap <leader>xx "ay:Tags <c-r>a<cr>
 command! -bang -nargs=? Tags
 \ call fzf#vim#tags(<q-args>, <bang>1)
 
@@ -1134,9 +1128,7 @@ func! s:FileJmp() range abort
 
 endfunc
 command! -range=% -nargs=0 FileJmp :<line1>,<line2>call s:FileJmp()
-vnoremap :f :FileJmp<cr>
-nnoremap :f :Cfilter
-"nnoremap :c :Cfilter
+"nnoremap :f :Cfilter
 
 func! Chartoggle() abort
   
