@@ -836,19 +836,22 @@ func! Insluareserved() abort
 endfunc
 inoremap <c-r> <c-r>=Insluareserved()<cr>
 
-" ins ooq
+" ins ooq ( lua )
 func! Insusual() abort
   call complete(col('.'), [
   \   '_s:()',
   \   '_s._',
   \   'log._("", )',
   \   'log.pp("", )',
-  \   'end',
+  \   'function',
   \   'local',
   \   'return',
-  \   'if elseif else end',
-  \   'for in pairs end',
-  \   'function'
+  \   'if',
+  \   'elseif',
+  \   'else',
+  \   'for key, val in pairs() do',
+  \   'not',
+  \   'end'
   \ ])
   return ''
 endfunc
@@ -926,8 +929,8 @@ endif
 
 func! Grep() abort
   
-  let l:str = @/
-  let l:str = substitute(l:str, "(", '\\(', "")
+  "let l:str = @/
+  let l:str = substitute(@/, "(", '\\(', "")
 
   execute "grep! ".'"'.l:str.'"'
 
