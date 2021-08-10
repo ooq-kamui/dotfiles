@@ -432,7 +432,7 @@ nnoremap <bs>    <esc>
 nnoremap @ <esc>
 nnoremap ; <esc>
 "nnoremap , <esc>
-"nnoremap . <esc>
+nnoremap . <esc>
 nnoremap * <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
@@ -839,19 +839,23 @@ inoremap <c-r> <c-r>=Insluareserved()<cr>
 " ins ooq ( lua )
 func! Insusual() abort
   call complete(col('.'), [
-  \   '_s:()',
+  \   '_s:',
   \   '_s._',
   \   'log._("", )',
   \   'log.pp("", )',
   \   'function',
   \   'local',
   \   'return',
-  \   'if',
-  \   'elseif',
+  \   'if  then',
+  \   'elseif  then',
   \   'else',
+  \   'then',
   \   'for key, val in pairs() do',
   \   'not',
-  \   'end'
+  \   'or',
+  \   'and',
+  \   'end',
+  \   '()'
   \ ])
   return ''
 endfunc
