@@ -194,10 +194,8 @@ nnoremap <c-j> 10<c-e>
 nnoremap <expr> y col(".") == 1 ? "O<esc>" : "0"
 
 " cursor mv line in end
-nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
-"nnoremap <expr> F     col("$") == 1 ? "$" : "$l"
-"nnoremap <expr> L     col("$") == 1 ? "$" : "$l"
-"nnoremap <expr> Y     col("$") == 1 ? "$" : "$l"
+nnoremap <expr> <c-l> col("$") == 1 ? "$" : "$l"
+"nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
 
 " cursor mv char - forward
 nnoremap l l
@@ -207,6 +205,7 @@ nnoremap <c-o> h
 
 " cursor mv word - forward
 nnoremap f el
+nnoremap <c-f> w
 
 " cursor mv word - back
 nnoremap o b
@@ -218,10 +217,11 @@ nnoremap go gg0
 nnoremap gl G$l
 
 " cursor mv bracket paire
-nnoremap <c-l> %
+"nnoremap <c-l> %
+nnoremap L %
 
 " cursor mv bracket back
-"nnoremap ? [{
+"nnoremap xx [{
 
 " cursor mv edited ( jump list )
 nnoremap b     <c-o>
@@ -237,7 +237,7 @@ nnoremap K <c-y>
 nnoremap J <c-e>
 
 " scroll cursor line read easily
-"nnoremap F zt
+"nnoremap xx zt
 
 "
 " edit
@@ -260,10 +260,10 @@ nnoremap m i<cr><esc>
 nnoremap , i, <esc>l
 
 " ins comment 1
-autocmd FileType lua nnoremap ! ^i-- <esc>
-autocmd FileType vim nnoremap ! ^i"<esc>
-autocmd FileType txt nnoremap ! ^i# <esc>
-autocmd FileType sh  nnoremap ! ^i# <esc>
+autocmd FileType lua  nnoremap ! ^i-- <esc>
+autocmd FileType vim  nnoremap ! ^i"<esc>
+autocmd FileType text nnoremap ! ^i# <esc>
+autocmd FileType sh   nnoremap ! ^i# <esc>
 
 " ins comment mlt lua
 nnoremap $ O--[[<cr>--]]<esc>
@@ -286,8 +286,8 @@ nnoremap d "0dd
 "nnoremap <c-w> hvbd
 
 " del word forward
-"nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : '"adw'
-"nnoremap <expr> <c-s> col(".") == col("$") ? "<esc>" : '"ade'
+"nnoremap <expr> xx col(".") == col("$") ? "<esc>" : '"adw'
+"nnoremap <expr> xx col(".") == col("$") ? "<esc>" : '"ade'
 
 " del cr ( line join )
 nnoremap <c-m> J
@@ -311,17 +311,18 @@ nnoremap c "0yy
 
 " yank line pc clipboard
 nnoremap <c-c> "+yy
-nnoremap C "+yy
 
 " yank char
-"nnoremap C "0yl
+"nnoremap xx "0yl
 
 " paste
 nnoremap p "0P
 
 " paste pc clipboard
 nnoremap <c-v> "+P
-"nnoremap P "+P
+
+" dpl line
+nnoremap <c-d> "0yy"0P
 
 " undo, redo
 nnoremap h     u
@@ -429,6 +430,7 @@ nnoremap <esc>   <esc>
 "nnoremap <space> <esc>
 nnoremap <bs>    <esc>
 
+nnoremap = <esc>
 nnoremap @ <esc>
 nnoremap ; <esc>
 "nnoremap , <esc>
@@ -436,7 +438,7 @@ nnoremap . <esc>
 nnoremap * <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
-"nnoremap ^ <esc>
+nnoremap ^ <esc>
 "nnoremap / <esc>
 nnoremap ? <esc>
 
@@ -483,13 +485,13 @@ nnoremap t <esc>
 nnoremap z <esc>
 
 "nnoremap A <esc>
-"nnoremap C <esc>
+nnoremap C <esc>
 "nnoremap E <esc>
 nnoremap F <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
-nnoremap L <esc>
+"nnoremap L <esc>
 nnoremap N <esc>
 nnoremap O <esc>
 nnoremap Q <esc>
@@ -504,9 +506,9 @@ nnoremap Y <esc>
 nnoremap <c-a> <esc>
 "nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
-nnoremap <c-d> <esc>
+"nnoremap <c-d> <esc>
 nnoremap <c-e> <esc>
-nnoremap <c-f> <esc>
+"nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
@@ -523,7 +525,7 @@ nnoremap <c-u> <esc>
 "nnoremap <c-v> <esc>
 "nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
-"nnoremap <c-y> <esc>
+nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
 
 
@@ -549,7 +551,7 @@ vnoremap <c-o> h
 " cursor mv word - forward
 vnoremap f e
 vnoremap <c-f> el
-vnoremap F el
+"vnoremap F el
 
 " cursor mv word - back
 "vnoremap <c-o> b
@@ -559,7 +561,6 @@ vnoremap F el
 vnoremap y o
 
 " cursor mv in line
-"vnoremap r $
 "vnoremap $ $
 
 " cursor mv line
@@ -573,7 +574,8 @@ vnoremap go gg0
 vnoremap gl G$l
 
 " cursor mv bracket
-vnoremap <c-l> %
+vnoremap L %
+"vnoremap <c-l> %
 
 " ins | cut & ins
 vnoremap <expr> <leader><esc> mode() == "<c-v>" ? "I" : "c"
@@ -581,10 +583,8 @@ vnoremap <expr> <space>       mode() == "<c-v>" ? "I" : "c"
 vnoremap <c-i> "ac
 
 " ins $
-vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "$"
-"vnoremap <expr> Y     mode() == "<c-v>" ? "$A" : "$"
-"vnoremap <expr> r mode() == "<c-v>" ? "$A" : "$"
-"vnoremap <expr> $ mode() == "<c-v>" ? "$A" : "$"
+vnoremap <expr> <c-l> mode() == "<c-v>" ? "$A" : "$"
+"vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "$"
 
 " del str > yank
 vnoremap d "0d
@@ -606,7 +606,6 @@ vnoremap c "0y
 
 " yank selected pc clipboard
 vnoremap <c-c> "+y
-"vnoremap C "+y
 
 " paste
 vnoremap p "ad"0P
@@ -671,13 +670,14 @@ vnoremap * <c-c>
 "vnoremap ! <c-c>
 "vnoremap " <c-c>
 "vnoremap # <c-c>
-"vnoremap $ <c-c>
+vnoremap $ <c-c>
 vnoremap _ <c-c>
 vnoremap ? <c-c>
 vnoremap ( <c-c>
 vnoremap ; <c-c>
 vnoremap < <c-c>
 vnoremap > <c-c>
+vnoremap = <c-c>
 
 "vnoremap a <c-c>
 vnoremap b <c-c>
@@ -699,15 +699,16 @@ vnoremap w <c-c>
 "vnoremap y <c-c>
 
 "vnoremap A <c-c>
-"vnoremap C <c-c>
-"vnoremap F <c-c>
+vnoremap C <c-c>
+vnoremap F <c-c>
 "vnoremap I <c-c>
-vnoremap L <c-c>
+"vnoremap L <c-c>
 vnoremap P <c-c>
 vnoremap Y <c-c>
 
 vnoremap <c-a> <c-c>
 "vnoremap <c-c> <c-c>
+vnoremap <c-d> <c-c>
 vnoremap <c-e> <c-c>
 "vnoremap <c-f> <c-c>
 "vnoremap <c-i> <c-c>
@@ -723,7 +724,7 @@ vnoremap <c-s> <c-c>
 vnoremap <c-v> <c-c>
 vnoremap <c-w> <c-c>
 vnoremap <c-x> <c-c>
-"vnoremap <c-y> <c-c>
+vnoremap <c-y> <c-c>
 
 
 "
@@ -841,6 +842,7 @@ func! Insusual() abort
   call complete(col('.'), [
   \   '_s:',
   \   '_s._',
+  \   '()',
   \   'log._("", )',
   \   'log.pp("", )',
   \   'function',
@@ -855,7 +857,9 @@ func! Insusual() abort
   \   'or',
   \   'and',
   \   'end',
-  \   '()'
+  \   'nil',
+  \   '_.t',
+  \   '_.f'
   \ ])
   return ''
 endfunc

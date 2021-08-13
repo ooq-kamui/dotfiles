@@ -976,7 +976,7 @@
                     },
                     "to": [
                         {
-                            "apple_vendor_keyboard_key_code": "mission_control"
+                            "key_code": "f13"
                         }
                     ]
                 },
@@ -1176,7 +1176,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "right_control"
+                            "key_code": "delete_or_backspace"
                         }
                     ]
                 },
