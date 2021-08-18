@@ -194,8 +194,7 @@ nnoremap <c-j> 10<c-e>
 nnoremap <expr> y col(".") == 1 ? "O<esc>" : "0"
 
 " cursor mv line in end
-nnoremap <expr> <c-l> col("$") == 1 ? "$" : "$l"
-"nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
+nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
 
 " cursor mv char - forward
 nnoremap l l
@@ -205,7 +204,7 @@ nnoremap <c-o> h
 
 " cursor mv word - forward
 nnoremap f el
-nnoremap <c-f> w
+nnoremap <c-l> w
 
 " cursor mv word - back
 nnoremap o b
@@ -217,7 +216,6 @@ nnoremap go gg0
 nnoremap gl G$l
 
 " cursor mv bracket paire
-"nnoremap <c-l> %
 nnoremap L %
 
 " cursor mv bracket back
@@ -356,7 +354,7 @@ nnoremap U :call Chartoggle2()<cr>
 " search char repeat
 "nnoremap use not
 
-" search
+" search nxt
 nnoremap n     n
 nnoremap <c-n> N
 "nnoremap n     gn
@@ -364,14 +362,12 @@ nnoremap <c-n> N
 
 " search word
 nnoremap e g*N
-"nnoremap e g*Nzt
 
 " search word ( 1 word )
 nnoremap E *N
-"nnoremap E *Nzt
 
 " search _
-nnoremap _ f_
+nnoremap <c-f> f_
 
 " search cmd
 nnoremap / /
@@ -436,7 +432,7 @@ nnoremap ; <esc>
 "nnoremap , <esc>
 nnoremap . <esc>
 nnoremap * <esc>
-"nnoremap _ <esc>
+nnoremap _ <esc>
 nnoremap ~ <esc>
 nnoremap ^ <esc>
 "nnoremap / <esc>
@@ -525,7 +521,7 @@ nnoremap <c-u> <esc>
 "nnoremap <c-v> <esc>
 "nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
-nnoremap <c-y> <esc>
+"nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
 
 
@@ -550,8 +546,7 @@ vnoremap <c-o> h
 
 " cursor mv word - forward
 vnoremap f e
-vnoremap <c-f> el
-"vnoremap F el
+vnoremap <c-l> w
 
 " cursor mv word - back
 "vnoremap <c-o> b
@@ -575,7 +570,6 @@ vnoremap gl G$l
 
 " cursor mv bracket
 vnoremap L %
-"vnoremap <c-l> %
 
 " ins | cut & ins
 vnoremap <expr> <leader><esc> mode() == "<c-v>" ? "I" : "c"
@@ -583,8 +577,7 @@ vnoremap <expr> <space>       mode() == "<c-v>" ? "I" : "c"
 vnoremap <c-i> "ac
 
 " ins $
-vnoremap <expr> <c-l> mode() == "<c-v>" ? "$A" : "$"
-"vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "$"
+vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "g_"
 
 " del str > yank
 vnoremap d "0d
@@ -633,12 +626,8 @@ vnoremap <c-u> uviw
 " search
 "
 vnoremap n "ay/<c-r>a<cr>N
-vnoremap e "ay/<c-r>a<cr>N
-vnoremap E *<c-c>N
-
-"vnoremap e "ay/<c-r>a<cr>Nzt
-"vnoremap E *<c-c>Nzt
-"vnoremap n "ay/<c-r>a<cr>N
+vnoremap e "ay/\<<c-r>a\><cr>N
+vnoremap E "ay/\<<c-r>a\><cr>N
 
 " search cmd
 vnoremap / "ay/<c-r>a
@@ -703,6 +692,7 @@ vnoremap C <c-c>
 vnoremap F <c-c>
 "vnoremap I <c-c>
 "vnoremap L <c-c>
+"vnoremap N <c-c>
 vnoremap P <c-c>
 vnoremap Y <c-c>
 
@@ -710,7 +700,7 @@ vnoremap <c-a> <c-c>
 "vnoremap <c-c> <c-c>
 vnoremap <c-d> <c-c>
 vnoremap <c-e> <c-c>
-"vnoremap <c-f> <c-c>
+vnoremap <c-f> <c-c>
 "vnoremap <c-i> <c-c>
 "vnoremap <c-l> <c-c>
 "vnoremap <c-m> <c-c>
@@ -724,7 +714,7 @@ vnoremap <c-s> <c-c>
 vnoremap <c-v> <c-c>
 vnoremap <c-w> <c-c>
 vnoremap <c-x> <c-c>
-vnoremap <c-y> <c-c>
+"vnoremap <c-y> <c-c>
 
 
 "
@@ -858,6 +848,7 @@ func! Insusual() abort
   \   'and',
   \   'end',
   \   'nil',
+  \   '--',
   \   '_.t',
   \   '_.f'
   \ ])
@@ -1180,6 +1171,16 @@ func! Chartoggle() abort
     let l:rpl = "f"
   elseif l:c ==# "F"
     let l:rpl = "t"
+
+  elseif l:c ==# "L"
+    let l:rpl = "r"
+  elseif l:c ==# "R"
+    let l:rpl = "l"
+
+  elseif l:c ==# "X"
+    let l:rpl = "y"
+  elseif l:c ==# "Y"
+    let l:rpl = "x"
 
   elseif l:c == "-"
     let l:rpl = "+"
