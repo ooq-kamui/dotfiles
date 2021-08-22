@@ -194,7 +194,8 @@ nnoremap <c-j> 10<c-e>
 nnoremap <expr> y col(".") == 1 ? "O<esc>" : "0"
 
 " cursor mv line in end
-nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
+nnoremap <expr> <c-l> col("$") == 1 ? "$" : "$l"
+"nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
 
 " cursor mv char - forward
 nnoremap l l
@@ -204,7 +205,7 @@ nnoremap <c-o> h
 
 " cursor mv word - forward
 nnoremap f el
-nnoremap <c-l> w
+"nnoremap <c-l> w
 
 " cursor mv word - back
 nnoremap o b
@@ -216,7 +217,9 @@ nnoremap go gg0
 nnoremap gl G$l
 
 " cursor mv bracket paire
-nnoremap L %
+nnoremap M %
+nnoremap Y %
+"nnoremap L %
 
 " cursor mv bracket back
 "nnoremap xx [{
@@ -304,6 +307,9 @@ nnoremap I ve
 " select box
 nnoremap v <c-v>
 
+" select
+nnoremap V v
+
 " yank line
 nnoremap c "0yy
 
@@ -367,7 +373,8 @@ nnoremap e g*N
 nnoremap E *N
 
 " search _
-nnoremap <c-f> f_
+nnoremap L f_
+nnoremap O F_
 
 " search cmd
 nnoremap / /
@@ -484,12 +491,14 @@ nnoremap z <esc>
 nnoremap C <esc>
 "nnoremap E <esc>
 nnoremap F <esc>
+nnoremap H <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
 "nnoremap L <esc>
+"nnoremap M <esc>
 nnoremap N <esc>
-nnoremap O <esc>
+"nnoremap O <esc>
 nnoremap Q <esc>
 nnoremap P <esc>
 nnoremap R <esc>
@@ -497,14 +506,15 @@ nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap W <esc>
-nnoremap Y <esc>
+"nnoremap V <esc>
+"nnoremap Y <esc>
 
 nnoremap <c-a> <esc>
 "nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
 nnoremap <c-e> <esc>
-"nnoremap <c-f> <esc>
+nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
@@ -521,7 +531,7 @@ nnoremap <c-u> <esc>
 "nnoremap <c-v> <esc>
 "nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
-"nnoremap <c-y> <esc>
+nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
 
 
@@ -546,7 +556,7 @@ vnoremap <c-o> h
 
 " cursor mv word - forward
 vnoremap f e
-vnoremap <c-l> w
+"vnoremap <c-l> w
 
 " cursor mv word - back
 "vnoremap <c-o> b
@@ -569,7 +579,9 @@ vnoremap go gg0
 vnoremap gl G$l
 
 " cursor mv bracket
-vnoremap L %
+vnoremap M %
+vnoremap Y %
+"vnoremap L %
 
 " ins | cut & ins
 vnoremap <expr> <leader><esc> mode() == "<c-v>" ? "I" : "c"
@@ -577,7 +589,8 @@ vnoremap <expr> <space>       mode() == "<c-v>" ? "I" : "c"
 vnoremap <c-i> "ac
 
 " ins $
-vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "g_"
+vnoremap <expr> <c-l> mode() == "<c-v>" ? "$A" : "g_"
+"vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "g_"
 
 " del str > yank
 vnoremap d "0d
@@ -691,10 +704,11 @@ vnoremap w <c-c>
 vnoremap C <c-c>
 vnoremap F <c-c>
 "vnoremap I <c-c>
-"vnoremap L <c-c>
+vnoremap L <c-c>
+"vnoremap M <c-c>
 "vnoremap N <c-c>
 vnoremap P <c-c>
-vnoremap Y <c-c>
+"vnoremap Y <c-c>
 
 vnoremap <c-a> <c-c>
 "vnoremap <c-c> <c-c>
@@ -714,7 +728,7 @@ vnoremap <c-s> <c-c>
 vnoremap <c-v> <c-c>
 vnoremap <c-w> <c-c>
 vnoremap <c-x> <c-c>
-"vnoremap <c-y> <c-c>
+vnoremap <c-y> <c-c>
 
 
 "
@@ -832,25 +846,29 @@ func! Insusual() abort
   call complete(col('.'), [
   \   '_s:',
   \   '_s._',
-  \   '()',
   \   'log._("", )',
   \   'log.pp("", )',
   \   'function',
   \   'local',
   \   'return',
+  \   'if _.t then return end',
   \   'if  then',
   \   'elseif  then',
   \   'else',
   \   'then',
+  \   'then return end',
   \   'for key, val in pairs() do',
   \   'not',
   \   'or',
   \   'and',
   \   'end',
   \   'nil',
+  \   'alias',
+  \   '-- dbg',
   \   '--',
+  \   '_.f',
   \   '_.t',
-  \   '_.f'
+  \   '()'
   \ ])
   return ''
 endfunc
@@ -1186,6 +1204,13 @@ func! Chartoggle() abort
     let l:rpl = "+"
   elseif l:c == "+"
     let l:rpl = "-"
+
+  elseif l:c == "_"
+    let l:rpl = "."
+  elseif l:c == "."
+    let l:rpl = ":"
+  elseif l:c == ":"
+    let l:rpl = "_"
 
   else
     normal! v~
