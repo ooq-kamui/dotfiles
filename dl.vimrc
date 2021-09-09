@@ -143,8 +143,8 @@ nnoremap <c-w> :q<cr>
 nnoremap :q :q!
 
 " quit other
-nnoremap <leader>w :tabo<cr>
-"nnoremap W :tabo<cr>
+nnoremap W :tabo<cr>
+"nnoremap <leader>w :tabo<cr>
 
 " save
 nnoremap a :w<cr>
@@ -153,11 +153,10 @@ nnoremap a :w<cr>
 nnoremap :e :e!
 
 " open latest
-"nnoremap ?? `0
+"nnoremap xx `0
 
 " open latest list
 nnoremap <leader>l :Latest<cr>
-"nnoremap <leader>; :Latest<cr>
 
 command! -nargs=0 Latest
 \ call setqflist([], ' ', {'lines' : v:oldfiles, 'efm' : '%f',
@@ -190,15 +189,13 @@ nnoremap <Down>  j
 " cursor mv line
 nnoremap <c-k> 10<c-y>
 nnoremap <c-j> 10<c-e>
-"nnoremap K <c-y>
-"nnoremap J <c-e>
-"nnoremap <c-k> 10k
-"nnoremap <c-j> 10j
 
 " cursor mv line in | ins line
-nnoremap <expr> ; col(".") == 1 ? "O<esc>" : "0"
 nnoremap <expr> y col(".") == 1 ? "O<esc>" : "0"
-"nnoremap <expr> ; col(".") == 1 ? "O<esc>" : col(".") == col("$") ? "0" : "$l"
+
+" cursor mv line in end
+nnoremap <expr> <c-l> col("$") == 1 ? "$" : "$l"
+"nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
 
 " cursor mv char - forward
 nnoremap l l
@@ -208,6 +205,7 @@ nnoremap <c-o> h
 
 " cursor mv word - forward
 nnoremap f el
+"nnoremap <c-l> w
 
 " cursor mv word - back
 nnoremap o b
@@ -219,10 +217,12 @@ nnoremap go gg0
 nnoremap gl G$l
 
 " cursor mv bracket paire
-nnoremap <c-l> %
+nnoremap M %
+nnoremap Y %
+"nnoremap L %
 
 " cursor mv bracket back
-"nnoremap ? [{
+"nnoremap xx [{
 
 " cursor mv edited ( jump list )
 nnoremap b     <c-o>
@@ -236,13 +236,9 @@ nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 nnoremap K <c-y>
 nnoremap J <c-e>
-"nnoremap J 5<c-y>
-"nnoremap K 5<c-e>
 
 " scroll cursor line read easily
-nnoremap F zt
-nnoremap R zt
-"nnoremap <leader><space> zt
+"nnoremap xx zt
 
 "
 " edit
@@ -259,29 +255,22 @@ nnoremap <space> i
 nnoremap m i<cr><esc>
 
 " ins space
-nnoremap * i <esc>l
+"nnoremap * i <esc>l
 
 " ins comma
 nnoremap , i, <esc>l
 
 " ins comment 1
-autocmd FileType lua nnoremap ! ^i-- <esc>
-autocmd FileType vim nnoremap ! ^i"<esc>
-autocmd FileType txt nnoremap ! ^i# <esc>
-autocmd FileType sh  nnoremap ! ^i# <esc>
+autocmd FileType lua  nnoremap ! ^i-- <esc>
+autocmd FileType vim  nnoremap ! ^i"<esc>
+autocmd FileType text nnoremap ! ^i# <esc>
+autocmd FileType sh   nnoremap ! ^i# <esc>
 
 " ins comment mlt lua
 nnoremap $ O--[[<cr>--]]<esc>
 
 " ins sys cmd ( read )
 nnoremap :r :read ! 
-
-" ins ooq slf
-nnoremap <leader>s i_s:._<esc>
-
-" ins ooq log
-nnoremap @ Olog._("", )<esc>
-nnoremap L Olog._("", )<esc>
 
 " del char
 nnoremap s "ax
@@ -292,14 +281,14 @@ nnoremap x x
 nnoremap d "0dd
 
 " del in line forward
-"nnoremap <c-f> D
+"nnoremap xx D
 
 " del word back
 "nnoremap <c-w> hvbd
 
 " del word forward
-"nnoremap <expr> <c-d> col(".") == col("$") ? "<esc>" : '"adw'
-"nnoremap <expr> <c-s> col(".") == col("$") ? "<esc>" : '"ade'
+"nnoremap <expr> xx col(".") == col("$") ? "<esc>" : '"adw'
+"nnoremap <expr> xx col(".") == col("$") ? "<esc>" : '"ade'
 
 " del cr ( line join )
 nnoremap <c-m> J
@@ -318,25 +307,29 @@ nnoremap I ve
 " select box
 nnoremap v <c-v>
 
+" select
+nnoremap V v
+
 " yank line
 nnoremap c "0yy
 
 " yank line pc clipboard
 nnoremap <c-c> "+yy
-nnoremap C "+yy
 
 " yank char
-"nnoremap C "0yl
+"nnoremap xx "0yl
 
 " paste
 nnoremap p "0P
 
 " paste pc clipboard
 nnoremap <c-v> "+P
-nnoremap P "+P
+
+" dpl line
+nnoremap <c-d> "0yy"0P
 
 " undo, redo
-nnoremap h u
+nnoremap h     u
 nnoremap <c-h> <c-r>
 
 " repeat
@@ -367,24 +360,24 @@ nnoremap U :call Chartoggle2()<cr>
 " search char repeat
 "nnoremap use not
 
-" search
+" search nxt
 nnoremap n     n
 nnoremap <c-n> N
 "nnoremap n     gn
 "nnoremap <c-n> gN
 
 " search word
-nnoremap e g*Nzt
+nnoremap e g*N
 
-" search word
-nnoremap E *Nzt
+" search word ( 1 word )
+nnoremap E *N
 
-" search word _
-nnoremap <c-f> f_l
+" search _
+nnoremap L f_
+nnoremap O F_
 
 " search cmd
-nnoremap <leader>f /
-nnoremap <leader>j /
+nnoremap / /
 
 " search replace all > yank ( file )
 nnoremap :s :%s//<c-r>0/gc<cr>
@@ -395,6 +388,7 @@ nnoremap <c-p> gn
 
 " tag jump
 nnoremap r <c-w>gFgTj
+"nnoremap t <c-w>gFgTj
 
 " mark
 "nnoremap <leader>m m
@@ -408,10 +402,10 @@ nnoremap <tab>   gt
 nnoremap <s-tab> gT
 
 " tab order
-nnoremap <s-right> :tabm+1<cr>
 nnoremap <s-left>  :tabm-1<cr>
-"nnoremap L :tabm+1<cr>
-"nnoremap H :tabm-1<cr>
+nnoremap <s-right> :tabm+1<cr>
+nnoremap < :tabm-1<cr>
+nnoremap > :tabm+1<cr>
 
 " buffer list
 "nnoremap :b :buffers
@@ -439,20 +433,25 @@ nnoremap <esc>   <esc>
 "nnoremap <space> <esc>
 nnoremap <bs>    <esc>
 
-"nnoremap @ <esc>
-"nnoremap ; <esc>
+nnoremap = <esc>
+nnoremap @ <esc>
+nnoremap ; <esc>
 "nnoremap , <esc>
-"nnoremap . <esc>
-"nnoremap * <esc>
-"nnoremap _ <esc>
+nnoremap . <esc>
+nnoremap * <esc>
+nnoremap _ <esc>
 nnoremap ~ <esc>
-nnoremap / <esc>
+nnoremap ^ <esc>
+"nnoremap / <esc>
+nnoremap ? <esc>
 
 "nnoremap ! <esc>
 "nnoremap " <esc>
 "nnoremap # <esc>
 "nnoremap $ <esc>
 nnoremap ( <esc>
+"nnoremap < <esc>
+"nnoremap > <esc>
 
 nnoremap <c-space> <esc>
 nnoremap <c-@> <esc>
@@ -486,30 +485,36 @@ nnoremap t <esc>
 "nnoremap w <esc>
 "nnoremap x <esc>
 "nnoremap y <esc>
-"nnoremap z <esc>
-
+nnoremap z <esc>
 
 "nnoremap A <esc>
-"nnoremap C <esc>
+nnoremap C <esc>
 "nnoremap E <esc>
-"nnoremap F <esc>
+nnoremap F <esc>
+nnoremap H <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
+"nnoremap L <esc>
+"nnoremap M <esc>
 nnoremap N <esc>
-nnoremap O <esc>
-"nnoremap P <esc>
-"nnoremap R <esc>
+"nnoremap O <esc>
+nnoremap Q <esc>
+nnoremap P <esc>
+nnoremap R <esc>
 nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
+"nnoremap W <esc>
+"nnoremap V <esc>
+"nnoremap Y <esc>
 
 nnoremap <c-a> <esc>
 "nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
-nnoremap <c-d> <esc>
+"nnoremap <c-d> <esc>
 nnoremap <c-e> <esc>
-"nnoremap <c-f> <esc>
+nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
@@ -551,7 +556,7 @@ vnoremap <c-o> h
 
 " cursor mv word - forward
 vnoremap f e
-vnoremap F el
+"vnoremap <c-l> w
 
 " cursor mv word - back
 "vnoremap <c-o> b
@@ -559,27 +564,24 @@ vnoremap F el
 
 " cursor mv in selected
 vnoremap y o
-vnoremap ; o
 
 " cursor mv in line
-"vnoremap # ^
-vnoremap $ $
-"vnoremap <expr> ; col(".") == col("$") ? "0" : "$"
+"vnoremap $ $
 
 " cursor mv line
 vnoremap <c-j> 10j
 vnoremap <c-k> 10k
 
 " cursor mv file back    ( file begin )
-vnoremap gl gg0
-"vnoremap gk gg0
+vnoremap go gg0
 
 " cursor mv file forward ( file end   )
-vnoremap gj G$l
-vnoremap gk G$l
+vnoremap gl G$l
 
 " cursor mv bracket
-vnoremap <c-l> %
+vnoremap M %
+vnoremap Y %
+"vnoremap L %
 
 " ins | cut & ins
 vnoremap <expr> <leader><esc> mode() == "<c-v>" ? "I" : "c"
@@ -587,7 +589,8 @@ vnoremap <expr> <space>       mode() == "<c-v>" ? "I" : "c"
 vnoremap <c-i> "ac
 
 " ins $
-vnoremap <expr> $ mode() == "<c-v>" ? "$A" : "$"
+vnoremap <expr> <c-l> mode() == "<c-v>" ? "$A" : "g_"
+"vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "g_"
 
 " del str > yank
 vnoremap d "0d
@@ -599,13 +602,16 @@ vnoremap x "ax
 " del cr
 vnoremap <c-m> J
 
+" select all
+vnoremap A <esc>ggVG
+"vnoremap ga <esc>ggVG
+
 " yank selected
 vnoremap o "0y
 vnoremap c "0y
 
 " yank selected pc clipboard
 vnoremap <c-c> "+y
-"vnoremap C "+y
 
 " paste
 vnoremap p "ad"0P
@@ -633,13 +639,11 @@ vnoremap <c-u> uviw
 " search
 "
 vnoremap n "ay/<c-r>a<cr>N
-
-vnoremap e "ay/<c-r>a<cr>Nzt
-vnoremap E *<c-c>Nzt
+vnoremap e "ay/\<<c-r>a\><cr>N
+vnoremap E "ay/\<<c-r>a\><cr>N
 
 " search cmd
-vnoremap <leader>f "ay/<c-r>a
-vnoremap <leader>j "ay/<c-r>a
+vnoremap / "ay/<c-r>a
 
 " search replace all > yank ( selected )
 vnoremap :s :s//<c-r>0/gc<cr>
@@ -652,6 +656,7 @@ vnoremap <c-n> <c-c>lgn
 
 " tag jump
 vnoremap r :FileJmp<cr>
+"vnoremap :f :FileJmp<cr>
 
 "
 " nop
@@ -663,16 +668,25 @@ vnoremap r :FileJmp<cr>
 "
 vnoremap @ <c-c>
 vnoremap * <c-c>
-vnoremap / <c-c>
+"vnoremap / <c-c>
 "vnoremap ! <c-c>
 "vnoremap " <c-c>
 "vnoremap # <c-c>
+vnoremap $ <c-c>
+vnoremap _ <c-c>
+vnoremap ? <c-c>
+vnoremap ( <c-c>
+vnoremap ; <c-c>
+vnoremap < <c-c>
+vnoremap > <c-c>
+vnoremap = <c-c>
 
 "vnoremap a <c-c>
 vnoremap b <c-c>
 "vnoremap c <c-c>
 "vnoremap d <c-c>
 "vnoremap e <c-c>
+"vnoremap f <c-c>
 vnoremap h <c-c>
 "vnoremap i <c-c>
 "vnoremap n <c-c>
@@ -680,18 +694,25 @@ vnoremap h <c-c>
 vnoremap q <c-c>
 "vnoremap r <c-c>
 "vnoremap s <c-c>
-"vnoremap t <c-c>
+vnoremap t <c-c>
 "vnoremap u <c-c>
 vnoremap w <c-c>
 "vnoremap x <c-c>
 "vnoremap y <c-c>
 
-"vnoremap C <c-c>
-"vnoremap F <c-c>
+"vnoremap A <c-c>
+vnoremap C <c-c>
+vnoremap F <c-c>
 "vnoremap I <c-c>
+vnoremap L <c-c>
+"vnoremap M <c-c>
+"vnoremap N <c-c>
+vnoremap P <c-c>
+"vnoremap Y <c-c>
 
 vnoremap <c-a> <c-c>
 "vnoremap <c-c> <c-c>
+vnoremap <c-d> <c-c>
 vnoremap <c-e> <c-c>
 vnoremap <c-f> <c-c>
 "vnoremap <c-i> <c-c>
@@ -707,6 +728,7 @@ vnoremap <c-s> <c-c>
 vnoremap <c-v> <c-c>
 vnoremap <c-w> <c-c>
 vnoremap <c-x> <c-c>
+vnoremap <c-y> <c-c>
 
 
 "
@@ -719,11 +741,11 @@ inoremap <c-e> <c-o>$
 
 " cursor mv char
 inoremap <c-l> <c-o>l
+inoremap <c-f> <c-o>l
 inoremap <expr> <c-o> pumvisible() ? "<c-y>" : "<c-o>h"
-"inoremap <c-o> <c-o>h
 
 " cursor mv word forward
-inoremap <c-f> <c-o>e<c-o>l
+"inoremap <c-f> <c-o>e<c-o>l
 
 " cursor mv word back
 "inoremap <c-q> <c-o>b
@@ -748,10 +770,10 @@ inoremap <c-m> <cr>
 inoremap <tab> <c-v><Tab>
 
 " paste
-inoremap <c-v> <c-r>0
+"inoremap <c-p> <c-r>0
 
 " paste pc clipboard
-"inoremap <c-p> <c-r>+
+inoremap <c-v> <c-r>+
 
 " input complete
 inoremap <expr> <c-j> pumvisible() ? "<c-n>"  : "<c-n>"
@@ -761,8 +783,8 @@ inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-r>0"
 inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
 
 " quit, esc
-inoremap <expr> <esc>     col(".") == 1 ? "<esc>" : "<esc>l"
-inoremap <expr> <c-c>     col(".") == 1 ? "<esc>" : "<esc>l"
+inoremap <expr> <esc> col(".") == 1 ? "<esc>" : "<esc>l"
+inoremap <expr> <c-c> col(".") == 1 ? "<esc>" : "<esc>l"
 
 " ins bracket
 inoremap ( ()<c-o>h
@@ -818,6 +840,46 @@ func! Insluareserved() abort
   return ''
 endfunc
 inoremap <c-r> <c-r>=Insluareserved()<cr>
+
+" ins ooq ( lua )
+func! Insusual() abort
+  call complete(col('.'), [
+  \   '_s:',
+  \   '_s._',
+  \   'log._("", )',
+  \   'log.pp("", )',
+  \   'function',
+  \   'local',
+  \   'return',
+  \   'if _.t then return end',
+  \   'if  then',
+  \   'elseif  then',
+  \   'else',
+  \   'then',
+  \   'then return end',
+  \   'for key, val in pairs() do',
+  \   'not',
+  \   'or',
+  \   'and',
+  \   'end',
+  \   'nil',
+  \   'alias',
+  \   '-- dbg',
+  \   '--',
+  \   '_.f',
+  \   '_.t',
+  \   '()'
+  \ ])
+  return ''
+endfunc
+inoremap <c-y> <c-r>=Insusual()<cr>
+"inoremap <c-u> <c-r>=Insusual()<cr>
+
+"
+" nop
+"
+inoremap <c-u> <nop>
+"inoremap <c-y> <nop>
 
 
 " 
@@ -880,10 +942,17 @@ if executable('rg')
   let &grepprg = 'rg --vimgrep -s -g "*.lua" -g "*.script" -g "*.gui_script"'
   set grepformat=%f:%l:%c:%m
 endif
-nnoremap :g :grep! "<c-r>/"
+"nnoremap :g :grep! "<c-r>/"
 
-"command! -nargs=1 Ripgrep grep! "<args>"
-"nnoremap :r :Ripgrep <c-r>/
+func! Grep() abort
+  
+  "let l:str = @/
+  let l:str = substitute(@/, "(", '\\(', "")
+
+  execute "grep! ".'"'.l:str.'"'
+
+endfunc
+nnoremap :g :call Grep()<cr>
 
 
 " 
@@ -907,8 +976,7 @@ autocmd QuickFixCmdPost vimgrep,grep tab cw
 "
 
 " netrw launch
-nnoremap <leader>; :Tex .<cr>
-"nnoremap <leader>l :Tex .<cr>
+nnoremap <leader>j :Tex .<cr>
 
 let g:netrw_liststyle    = 3 " view file tree
 let g:netrw_browse_split = 3 " file open tab
@@ -1020,10 +1088,10 @@ command! -bang -nargs=* Rg
 "
 set tags=./.tags;
 "nnoremap <c-]> g<c-]>
-"nnoremap ?? :!sh sh/ctags.sh
+"nnoremap xx :!sh sh/ctags.sh
 
-"nnoremap <leader>?? :Tags <c-r><c-w><cr>
-"vnoremap <leader>?? "ay:Tags <c-r>a<cr>
+"nnoremap <leader>xx :Tags <c-r><c-w><cr>
+"vnoremap <leader>xx "ay:Tags <c-r>a<cr>
 command! -bang -nargs=? Tags
 \ call fzf#vim#tags(<q-args>, <bang>1)
 
@@ -1080,9 +1148,7 @@ func! s:FileJmp() range abort
 
 endfunc
 command! -range=% -nargs=0 FileJmp :<line1>,<line2>call s:FileJmp()
-vnoremap :f :FileJmp<cr>
-nnoremap :f :Cfilter
-"nnoremap :c :Cfilter
+"nnoremap :f :Cfilter
 
 func! Chartoggle() abort
   
@@ -1124,10 +1190,27 @@ func! Chartoggle() abort
   elseif l:c ==# "F"
     let l:rpl = "t"
 
+  elseif l:c ==# "L"
+    let l:rpl = "r"
+  elseif l:c ==# "R"
+    let l:rpl = "l"
+
+  elseif l:c ==# "X"
+    let l:rpl = "y"
+  elseif l:c ==# "Y"
+    let l:rpl = "x"
+
   elseif l:c == "-"
     let l:rpl = "+"
   elseif l:c == "+"
     let l:rpl = "-"
+
+  elseif l:c == "_"
+    let l:rpl = "."
+  elseif l:c == "."
+    let l:rpl = ":"
+  elseif l:c == ":"
+    let l:rpl = "_"
 
   else
     normal! v~
