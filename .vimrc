@@ -217,9 +217,8 @@ nnoremap go gg0
 nnoremap gl G$l
 
 " cursor mv bracket paire
-nnoremap M %
-nnoremap Y %
-"nnoremap L %
+nnoremap L %
+"nnoremap <c-y> %
 
 " cursor mv bracket back
 "nnoremap xx [{
@@ -295,8 +294,7 @@ nnoremap <c-m> J
 
 " select all
 nnoremap A ggVG
-"nnoremap <leader>a ggVG
-"nnoremap <c-a> ggVG
+nnoremap <leader>a ggVG
 
 " select word
 nnoremap i viw
@@ -334,6 +332,11 @@ nnoremap <c-h> <c-r>
 
 " repeat
 "nnoremap . .
+
+" repeat memory
+nnoremap Y     qy
+nnoremap <c-y> @y
+"nnoremap <c-/> @y
 
 " inc, dec
 nnoremap + <c-a>
@@ -373,7 +376,7 @@ nnoremap e g*N
 nnoremap E *N
 
 " search _
-nnoremap L f_
+nnoremap F f_
 nnoremap O F_
 
 " search cmd
@@ -460,6 +463,7 @@ nnoremap <c-@> <esc>
 "nnoremap <c-;> <esc> " non
 "nnoremap <c-,> <esc> " non ?
 "nnoremap <c-.> <esc> " non ?
+"nnoremap <c-/> <esc> " non ?
 "nnoremap <c-_> <esc>
 "nnoremap <c-[> <esc>
 nnoremap <c-]> <esc>
@@ -490,13 +494,13 @@ nnoremap z <esc>
 "nnoremap A <esc>
 nnoremap C <esc>
 "nnoremap E <esc>
-nnoremap F <esc>
+"nnoremap F <esc>
 nnoremap H <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
 "nnoremap L <esc>
-"nnoremap M <esc>
+nnoremap M <esc>
 nnoremap N <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
@@ -531,7 +535,7 @@ nnoremap <c-u> <esc>
 "nnoremap <c-v> <esc>
 "nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
-nnoremap <c-y> <esc>
+"nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
 
 
@@ -579,18 +583,19 @@ vnoremap go gg0
 vnoremap gl G$l
 
 " cursor mv bracket
-vnoremap M %
-vnoremap Y %
-"vnoremap L %
+vnoremap L %
+"vnoremap <c-y> %
+"vnoremap Y %
+"vnoremap M %
 
 " ins | cut & ins
-vnoremap <expr> <leader><esc> mode() == "<c-v>" ? "I" : "c"
 vnoremap <expr> <space>       mode() == "<c-v>" ? "I" : "c"
+vnoremap <expr> <leader><esc> mode() == "<c-v>" ? "I" : "c"
 vnoremap <c-i> "ac
 
 " ins $
 vnoremap <expr> <c-l> mode() == "<c-v>" ? "$A" : "g_"
-"vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "g_"
+vnoremap <expr> I     mode() == "<c-v>" ? "$A" : "g_"
 
 " del str > yank
 vnoremap d "0d
@@ -604,6 +609,7 @@ vnoremap <c-m> J
 
 " select all
 vnoremap A <esc>ggVG
+vnoremap <leader>a <esc>ggVG
 "vnoremap ga <esc>ggVG
 
 " yank selected
@@ -704,11 +710,11 @@ vnoremap w <c-c>
 vnoremap C <c-c>
 vnoremap F <c-c>
 "vnoremap I <c-c>
-vnoremap L <c-c>
-"vnoremap M <c-c>
+"vnoremap L <c-c>
+vnoremap M <c-c>
 "vnoremap N <c-c>
 vnoremap P <c-c>
-"vnoremap Y <c-c>
+vnoremap Y <c-c>
 
 vnoremap <c-a> <c-c>
 "vnoremap <c-c> <c-c>
@@ -736,7 +742,8 @@ vnoremap <c-y> <c-c>
 "
 
 " cursor mv line in
-inoremap <c-a> <c-o>^
+"inoremap <c-a> <c-o>^
+inoremap <c-a> <c-o>0
 inoremap <c-e> <c-o>$
 
 " cursor mv char
@@ -1200,6 +1207,11 @@ func! Chartoggle() abort
   elseif l:c ==# "Y"
     let l:rpl = "x"
 
+  elseif l:c ==# "I"
+    let l:rpl = "o"
+  elseif l:c ==# "O"
+    let l:rpl = "i"
+
   elseif l:c == "-"
     let l:rpl = "+"
   elseif l:c == "+"
@@ -1236,6 +1248,14 @@ func! Chartoggle2() abort
   elseif l:c == "<"
     let l:rpl = "("
 
+  elseif l:c == ")"
+    let l:rpl = "]"
+  elseif l:c == "]"
+    let l:rpl = "}"
+  elseif l:c == "}"
+    let l:rpl = ">"
+  elseif l:c == ">"
+    let l:rpl = ")"
   else
     "normal! v~
     return
