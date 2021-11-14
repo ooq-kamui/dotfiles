@@ -192,6 +192,7 @@ nnoremap <c-j> 10<c-e>
 
 " cursor mv line in | ins line
 nnoremap <expr> y col(".") == 1 ? "O<esc>" : "0"
+"nnoremap <expr> ; col(".") == 1 ? "O<esc>" : "0"
 
 " cursor mv line in end
 nnoremap <expr> <c-l> col("$") == 1 ? "$" : "$l"
@@ -209,6 +210,10 @@ nnoremap f el
 
 " cursor mv word - back
 nnoremap o b
+
+" cursor mv word split _
+nnoremap F f_l
+nnoremap O hT_
 
 " cursor mv file back    ( file begin )
 nnoremap go gg0
@@ -300,13 +305,17 @@ nnoremap <leader>a ggVG
 nnoremap i viw
 
 " select char current - word end
-nnoremap I ve
+"nnoremap I ve
+
+" select char current - split _
+"nnoremap _ vt_
 
 " select box
 nnoremap v <c-v>
 
 " select
-nnoremap V v
+nnoremap I v
+"nnoremap V v
 
 " yank line
 nnoremap c "0yy
@@ -375,10 +384,6 @@ nnoremap e g*N
 " search word ( 1 word )
 nnoremap E *N
 
-" search _
-nnoremap F f_
-nnoremap O F_
-
 " search cmd
 nnoremap / /
 
@@ -391,10 +396,14 @@ nnoremap <c-p> gn
 
 " tag jump
 nnoremap r <c-w>gFgTj
-"nnoremap t <c-w>gFgTj
+nnoremap R gf
 
 " mark
 "nnoremap <leader>m m
+
+" wrap
+nnoremap :w :set wrap!
+nnoremap ] :set wrap!<cr>
 
 
 "
@@ -505,12 +514,12 @@ nnoremap N <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
 nnoremap P <esc>
-nnoremap R <esc>
+"nnoremap R <esc>
 nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap W <esc>
-"nnoremap V <esc>
+nnoremap V <esc>
 "nnoremap Y <esc>
 
 nnoremap <c-a> <esc>
@@ -566,8 +575,13 @@ vnoremap f e
 "vnoremap <c-o> b
 "vnoremap o b
 
+" cursor mv word split _
+vnoremap F lt_
+vnoremap O F_h
+
 " cursor mv in selected
 vnoremap y o
+"vnoremap ; o
 
 " cursor mv in line
 "vnoremap $ $
@@ -609,7 +623,7 @@ vnoremap <c-m> J
 
 " select all
 vnoremap A <esc>ggVG
-vnoremap <leader>a <esc>ggVG
+"vnoremap <leader>a <esc>ggVG
 "vnoremap ga <esc>ggVG
 
 " yank selected
@@ -702,18 +716,21 @@ vnoremap q <c-c>
 "vnoremap s <c-c>
 vnoremap t <c-c>
 "vnoremap u <c-c>
+"vnoremap v <c-c>
 vnoremap w <c-c>
 "vnoremap x <c-c>
 "vnoremap y <c-c>
 
 "vnoremap A <c-c>
 vnoremap C <c-c>
-vnoremap F <c-c>
+"vnoremap F <c-c>
 "vnoremap I <c-c>
 "vnoremap L <c-c>
 vnoremap M <c-c>
 "vnoremap N <c-c>
+"vnoremap O <c-c>
 vnoremap P <c-c>
+vnoremap V <c-c>
 vnoremap Y <c-c>
 
 vnoremap <c-a> <c-c>
