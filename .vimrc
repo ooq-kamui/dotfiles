@@ -65,6 +65,8 @@ au BufNewFile,BufRead *.script     set filetype=lua
 au BufNewFile,BufRead *.gui_script set filetype=lua
 
 syntax on
+
+
 colorscheme koehler
 
 set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
@@ -192,7 +194,7 @@ nnoremap <c-j> 10<c-e>
 
 " cursor mv line in | ins line
 nnoremap <expr> y col(".") == 1 ? "O<esc>" : "0"
-"nnoremap <expr> ; col(".") == 1 ? "O<esc>" : "0"
+nnoremap <expr> ; col(".") == 1 ? "O<esc>" : "0"
 
 " cursor mv line in end
 nnoremap <expr> <c-l> col("$") == 1 ? "$" : "$l"
@@ -403,7 +405,7 @@ nnoremap R gf
 
 " wrap
 nnoremap :w :set wrap!
-nnoremap ] :set wrap!<cr>
+"nnoremap ] :set wrap!<cr>
 
 
 "
@@ -447,7 +449,7 @@ nnoremap <bs>    <esc>
 
 nnoremap = <esc>
 nnoremap @ <esc>
-nnoremap ; <esc>
+"nnoremap ; <esc>
 "nnoremap , <esc>
 nnoremap . <esc>
 nnoremap * <esc>
@@ -502,6 +504,7 @@ nnoremap z <esc>
 
 "nnoremap A <esc>
 nnoremap C <esc>
+nnoremap D <esc>
 "nnoremap E <esc>
 "nnoremap F <esc>
 nnoremap H <esc>
@@ -509,11 +512,11 @@ nnoremap H <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
 "nnoremap L <esc>
-nnoremap M <esc>
-nnoremap N <esc>
+"nnoremap M <esc>
+"nnoremap N <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
-nnoremap P <esc>
+"nnoremap P <esc>
 "nnoremap R <esc>
 nnoremap S <esc>
 nnoremap T <esc>
@@ -527,7 +530,7 @@ nnoremap <c-a> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
 nnoremap <c-e> <esc>
-nnoremap <c-f> <esc>
+"nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
@@ -581,7 +584,7 @@ vnoremap O F_h
 
 " cursor mv in selected
 vnoremap y o
-"vnoremap ; o
+vnoremap ; o
 
 " cursor mv in line
 "vnoremap $ $
@@ -696,7 +699,7 @@ vnoremap $ <c-c>
 vnoremap _ <c-c>
 vnoremap ? <c-c>
 vnoremap ( <c-c>
-vnoremap ; <c-c>
+"vnoremap ; <c-c>
 vnoremap < <c-c>
 vnoremap > <c-c>
 vnoremap = <c-c>
@@ -758,10 +761,14 @@ vnoremap <c-y> <c-c>
 " mode insert
 "
 
+" quit, esc
+inoremap <expr> <esc> col(".") == 1 ? "<esc>" : "<esc>l"
+inoremap <expr> <c-c> col(".") == 1 ? "<esc>" : "<esc>l"
+
 " cursor mv line in
-"inoremap <c-a> <c-o>^
 inoremap <c-a> <c-o>0
 inoremap <c-e> <c-o>$
+"inoremap <c-a> <c-o>^
 
 " cursor mv char
 inoremap <c-l> <c-o>l
@@ -805,10 +812,6 @@ inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-o>j"
 inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-r>0"
 "inoremap <expr> <c-p> pumvisible() ? "<up>"   : '<c-r>"'
 inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
-
-" quit, esc
-inoremap <expr> <esc> col(".") == 1 ? "<esc>" : "<esc>l"
-inoremap <expr> <c-c> col(".") == 1 ? "<esc>" : "<esc>l"
 
 " ins bracket
 inoremap ( ()<c-o>h
@@ -1037,6 +1040,7 @@ endfunc
 call plug#begin()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'mattesgroeger/vim-bookmarks'
 call plug#end()
 
 "
@@ -1118,6 +1122,44 @@ set tags=./.tags;
 "vnoremap <leader>xx "ay:Tags <c-r>a<cr>
 command! -bang -nargs=? Tags
 \ call fzf#vim#tags(<q-args>, <bang>1)
+
+
+"
+" vim-bookmarks
+"
+"highlight BookmarkSign           ctermbg=magenta ctermfg=magenta
+highlight BookmarkLine           ctermbg=magenta ctermfg=magenta
+"highlight BookmarkAnnotationSign ctermbg=magenta ctermfg=magenta
+"highlight BookmarkAnnotationLine ctermbg=magenta ctermfg=magenta
+
+" mark
+nmap M <Plug>BookmarkToggle
+"nmap <c-f> <Plug>BookmarkToggle
+"nmap Mm <Plug>BookmarkToggle
+
+" annotate
+nmap :ma :BookmarkAnnotate
+"nmap Mi <Plug>BookmarkAnnotate
+
+" list
+"nmap Ma <Plug>BookmarkShowAll
+
+" prev, next
+nmap P <Plug>BookmarkPrev
+nmap N <Plug>BookmarkNext
+"nmap Mp <Plug>BookmarkPrev
+"nmap Mn <Plug>BookmarkNext
+
+" del in buffer
+nmap :mc :BookmarkClear
+"nmap Mc <Plug>BookmarkClear
+
+let g:bookmark_no_default_key_mappings = 1
+
+"nmap <c-j> <Plug>BookmarkMoveToLine
+"nmap <Leader>x <Plug>BookmarkClearAll
+"nmap <Leader>kk <Plug>BookmarkMoveUp
+"nmap <Leader>jj <Plug>BookmarkMoveDown
 
 " plugin  #end#
 
