@@ -19,7 +19,6 @@ filetype on
 
 au ColorScheme * hi LineNr       ctermfg=141                        cterm=none
 au ColorScheme * hi CursorLineNr ctermfg=magenta
-"autocmd ColorScheme * hi CursorLineNr ctermfg=cyan
 augroup InsertHook
   autocmd!
   autocmd InsertLeave * hi LineNr ctermfg=141
@@ -1128,20 +1127,19 @@ command! -bang -nargs=? Tags
 " vim-bookmarks
 "
 "highlight BookmarkSign           ctermbg=magenta ctermfg=magenta
-highlight BookmarkLine           ctermbg=magenta ctermfg=magenta
+"highlight BookmarkLine           ctermbg=magenta ctermfg=magenta
 "highlight BookmarkAnnotationSign ctermbg=magenta ctermfg=magenta
 "highlight BookmarkAnnotationLine ctermbg=magenta ctermfg=magenta
 
 " mark
 nmap M <Plug>BookmarkToggle
-"nmap <c-f> <Plug>BookmarkToggle
 "nmap Mm <Plug>BookmarkToggle
 
 " annotate
-nmap :ma :BookmarkAnnotate
 "nmap Mi <Plug>BookmarkAnnotate
 
 " list
+nmap :ml BookmarkShowAll
 "nmap Ma <Plug>BookmarkShowAll
 
 " prev, next
@@ -1156,8 +1154,8 @@ nmap :mc :BookmarkClear
 
 let g:bookmark_no_default_key_mappings = 1
 
-"nmap <c-j> <Plug>BookmarkMoveToLine
-"nmap <Leader>x <Plug>BookmarkClearAll
+"nmap <c-j>      <Plug>BookmarkMoveToLine
+"nmap <Leader>x  <Plug>BookmarkClearAll
 "nmap <Leader>kk <Plug>BookmarkMoveUp
 "nmap <Leader>jj <Plug>BookmarkMoveDown
 
