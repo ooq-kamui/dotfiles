@@ -147,43 +147,6 @@
                         ]
                     },
                     {
-                        "description": "xxx > kana",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "spacebar",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "shift"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "japanese_kana"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "escape",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "shift"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "japanese_eisuu"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "xx > pls",
                         "manipulators": [
                             {
@@ -748,6 +711,59 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "xxx > kana",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "japanese_kana"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "japanese_eisuu",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "japanese_kana"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "escape",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "japanese_eisuu"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
@@ -946,7 +962,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "q"
+                            "key_code": "close_bracket"
                         }
                     ]
                 },
@@ -1086,7 +1102,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "delete_or_backspace"
+                            "key_code": "spacebar"
                         }
                     ]
                 },
@@ -1246,7 +1262,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "close_bracket"
+                            "key_code": "q"
                         }
                     ]
                 },
