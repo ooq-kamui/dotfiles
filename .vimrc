@@ -300,7 +300,6 @@ nnoremap <c-m> J
 
 " select all
 nnoremap A ggVG
-"nnoremap <leader>a ggVG
 
 " select word
 nnoremap i viw
@@ -400,7 +399,7 @@ nnoremap r <c-w>gFgTj
 nnoremap R gf
 
 " mark
-"nnoremap <leader>m m
+"nnoremap xx m
 
 " wrap
 nnoremap :w :set wrap!
@@ -625,8 +624,6 @@ vnoremap <c-m> J
 
 " select all
 vnoremap A <esc>ggVG
-"vnoremap <leader>a <esc>ggVG
-"vnoremap ga <esc>ggVG
 
 " yank selected
 vnoremap o "0y
@@ -1139,9 +1136,8 @@ nmap M <Plug>BookmarkToggle
 "nmap Mi <Plug>BookmarkAnnotate
 
 " list
-nmap <leader>a <Plug>BookmarkShowAll
+nmap <leader>m <Plug>BookmarkShowAll
 "nmap Ma       <Plug>BookmarkShowAll
-"nmap :ml      BookmarkShowAll
 
 " prev, next
 nmap P <Plug>BookmarkPrev
