@@ -528,7 +528,7 @@ nnoremap <c-a> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
 nnoremap <c-e> <esc>
-"nnoremap <c-f> <esc>
+nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
