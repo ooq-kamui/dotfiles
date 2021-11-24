@@ -263,7 +263,7 @@ nnoremap m i<cr><esc>
 "nnoremap * i <esc>l
 
 " ins comma
-nnoremap , i, <esc>l
+"nnoremap , i, <esc>l
 
 " ins comment 1
 autocmd FileType lua  nnoremap ! ^i-- <esc>
@@ -299,7 +299,7 @@ nnoremap d "0dd
 nnoremap <c-m> J
 
 " select all
-nnoremap A ggVG
+"nnoremap A ggVG
 
 " select word
 nnoremap i viw
@@ -448,7 +448,7 @@ nnoremap <bs>    <esc>
 nnoremap = <esc>
 nnoremap @ <esc>
 "nnoremap ; <esc>
-"nnoremap , <esc>
+nnoremap , <esc>
 nnoremap . <esc>
 nnoremap * <esc>
 nnoremap _ <esc>
@@ -500,7 +500,7 @@ nnoremap t <esc>
 "nnoremap y <esc>
 nnoremap z <esc>
 
-"nnoremap A <esc>
+nnoremap A <esc>
 nnoremap C <esc>
 nnoremap D <esc>
 "nnoremap E <esc>
@@ -553,7 +553,7 @@ nnoremap <c-z> <esc>
 " mode visual
 "
 
-" mode ch line , ins
+" mode ch line
 vnoremap i V
 
 " mode ch box
@@ -623,7 +623,8 @@ vnoremap x "ax
 vnoremap <c-m> J
 
 " select all
-vnoremap A <esc>ggVG
+vnoremap a <esc>ggVG
+"vnoremap A <esc>ggVG
 
 " yank selected
 vnoremap o "0y
@@ -641,7 +642,8 @@ vnoremap - <c-x>
 "vnoremap + g<c-a>
 
 " num seq
-vnoremap a g<c-a>
+vnoremap A g<c-a>
+"vnoremap a g<c-a>
 
 " indent
 vnoremap " <gv
@@ -831,7 +833,11 @@ inoremap <kPageUp>   9
 
 " ins symbol
 func! Inssymbol() abort
-  call complete(col('.'), ['!', '#', '$', '%', '&', '^', '~', '|', '?'])
+
+  let l:lst = [',','.',  '!', '#', '$', '%', '&', '^', '~', '|', '?']
+  "let l:lst = ['!', '#', '$', '%', '&', '^', '~', '|', '?']
+
+  call complete(col('.'), l:lst)
   return ''
 endfunc
 inoremap <c-s> <c-r>=Inssymbol()<cr>
