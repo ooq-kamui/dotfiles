@@ -807,8 +807,8 @@ inoremap <c-v> <c-r>+
 " input complete
 inoremap <expr> <c-j> pumvisible() ? "<c-n>"  : "<c-n>"
 inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-o>j"
-inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-r>0"
-"inoremap <expr> <c-p> pumvisible() ? "<up>"   : '<c-r>"'
+inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<up>"
+"inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-r>0"
 inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
 
 " ins bracket
@@ -907,6 +907,7 @@ inoremap <c-y> <c-r>=Insusual()<cr>
 "
 " nop
 "
+"inoremap <c-p> <nop>
 inoremap <c-u> <nop>
 "inoremap <c-y> <nop>
 
