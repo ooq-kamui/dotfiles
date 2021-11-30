@@ -603,6 +603,7 @@ vnoremap L %
 
 " ins | cut & ins
 vnoremap <expr> <space> mode() == "<c-v>" ? "I" : "c"
+vnoremap <leader><space> "ac
 "vnoremap <c-i> "ac
 
 " ins $
