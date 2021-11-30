@@ -251,7 +251,6 @@ nnoremap J <c-e>
 
 " ins mode
 nnoremap <space> i
-"nnoremap <leader><esc> i
 
 " ins line
 " ref ;
@@ -603,13 +602,13 @@ vnoremap L %
 "vnoremap M %
 
 " ins | cut & ins
-vnoremap <expr> <space>       mode() == "<c-v>" ? "I" : "c"
-vnoremap <expr> <leader><esc> mode() == "<c-v>" ? "I" : "c"
-vnoremap <c-i> "ac
+vnoremap <expr> <space> mode() == "<c-v>" ? "I" : "c"
+"vnoremap <c-i> "ac
 
 " ins $
 vnoremap <expr> <c-l> mode() == "<c-v>" ? "$A" : "g_"
-vnoremap <expr> I     mode() == "<c-v>" ? "$A" : "g_"
+vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "g_"
+"vnoremap <expr> I     mode() == "<c-v>" ? "$A" : "g_"
 
 " del str > yank
 vnoremap d "0d
@@ -724,7 +723,7 @@ vnoremap w <c-c>
 "vnoremap A <c-c>
 vnoremap C <c-c>
 "vnoremap F <c-c>
-"vnoremap I <c-c>
+vnoremap I <c-c>
 "vnoremap L <c-c>
 vnoremap M <c-c>
 "vnoremap N <c-c>
@@ -738,7 +737,7 @@ vnoremap <c-a> <c-c>
 vnoremap <c-d> <c-c>
 vnoremap <c-e> <c-c>
 vnoremap <c-f> <c-c>
-"vnoremap <c-i> <c-c>
+vnoremap <c-i> <c-c>
 "vnoremap <c-l> <c-c>
 "vnoremap <c-m> <c-c>
 "vnoremap <c-n> <c-c>
@@ -751,7 +750,7 @@ vnoremap <c-s> <c-c>
 vnoremap <c-v> <c-c>
 vnoremap <c-w> <c-c>
 vnoremap <c-x> <c-c>
-vnoremap <c-y> <c-c>
+"vnoremap <c-y> <c-c>
 
 
 "
