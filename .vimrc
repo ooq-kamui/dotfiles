@@ -197,7 +197,7 @@ nnoremap <expr> ; col(".") == 1 ? "O<esc>" : "0"
 
 " cursor mv line in end
 nnoremap <expr> <c-l> col("$") == 1 ? "$" : "$l"
-"nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
+nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
 
 " cursor mv char - forward
 nnoremap l l
@@ -343,9 +343,8 @@ nnoremap <c-h> <c-r>
 "nnoremap . .
 
 " repeat memory
-nnoremap Y     qy
-nnoremap <c-y> @y
-"nnoremap <c-/> @y
+nnoremap q qy
+nnoremap Q @y
 
 " inc, dec
 nnoremap + <c-a>
@@ -490,7 +489,7 @@ nnoremap g <esc>
 "nnoremap m <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
-nnoremap q <esc>
+"nnoremap q <esc>
 "nnoremap r <esc>
 "nnoremap s <esc>
 nnoremap t <esc>
@@ -513,7 +512,7 @@ nnoremap H <esc>
 "nnoremap M <esc>
 "nnoremap N <esc>
 "nnoremap O <esc>
-nnoremap Q <esc>
+"nnoremap Q <esc>
 "nnoremap P <esc>
 "nnoremap R <esc>
 nnoremap S <esc>
@@ -521,7 +520,7 @@ nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap W <esc>
 nnoremap V <esc>
-"nnoremap Y <esc>
+nnoremap Y <esc>
 
 nnoremap <c-a> <esc>
 "nnoremap <c-b> <esc>
@@ -806,9 +805,10 @@ inoremap <c-v> <c-r>+
 
 " input complete
 inoremap <expr> <c-j> pumvisible() ? "<c-n>"  : "<c-n>"
-inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-o>j"
-inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<up>"
-"inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-r>0"
+inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-r>=Insnum()<cr>"
+"inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-o>j"
+inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-r>0"
+"inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<up>"
 inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
 
 " ins bracket
@@ -854,7 +854,7 @@ func! Insnum() abort
   call complete(col('.'), ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])
   return ''
 endfunc
-inoremap <c-n> <c-r>=Insnum()<cr>
+"inoremap <c-n> <c-r>=Insnum()<cr>
 
 " ins lua reserved word
 func! Insluareserved() abort
@@ -907,8 +907,9 @@ inoremap <c-y> <c-r>=Insusual()<cr>
 "
 " nop
 "
+"inoremap <c-b> <nop>
 "inoremap <c-p> <nop>
-inoremap <c-u> <nop>
+"inoremap <c-u> <nop>
 "inoremap <c-y> <nop>
 
 
