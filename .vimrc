@@ -1019,7 +1019,9 @@ let g:Netrw_UserMaps = [
 \ ['p'    , 'NetrwKeyBind__parent'],
 \ ['<c-q>', 'NetrwKeyBind_clz'],
 \ ['<esc>', 'NetrwKeyBind_clz'],
+\ ['m'    , 'NetrwKeyBind_mark'],
 \]
+"\ ['r'    , 'NetrwKeyBind_tagjump'],
 
 func! NetrwKeyBind_opn (islocal) abort
   return "normal  \<cr>"
@@ -1036,6 +1038,13 @@ endfunc
 func! NetrwKeyBind__parent (islocal) abort
   return "normal  -"
 endfunc
+
+func! NetrwKeyBind_mark (islocal) abort
+  return "normal  mf"
+endfunc
+"func! NetrwKeyBind_tagjump (islocal) abort
+"  return "normal  <c-w>gFgTj"
+"endfunc
 
 
 " 
