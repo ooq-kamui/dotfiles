@@ -197,13 +197,15 @@ nnoremap <expr> ; col(".") == 1 ? "O<esc>" : "0"
 
 " cursor mv line in end
 nnoremap <expr> <c-l> col("$") == 1 ? "$" : "$l"
-nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
+"nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
 
 " cursor mv char - forward
 nnoremap l l
 
 " cursor mv char - back
 nnoremap <c-o> h
+nnoremap <c-s> h
+nnoremap <c-a> h
 
 " cursor mv word - forward
 nnoremap f el
@@ -224,7 +226,7 @@ nnoremap gl G$l
 
 " cursor mv bracket paire
 nnoremap L %
-"nnoremap <c-y> %
+nnoremap <c-y> %
 
 " cursor mv bracket back
 "nnoremap xx [{
@@ -521,7 +523,7 @@ nnoremap T <esc>
 nnoremap V <esc>
 nnoremap Y <esc>
 
-nnoremap <c-a> <esc>
+"nnoremap <c-a> <esc>
 "nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
@@ -537,7 +539,7 @@ nnoremap <c-g> <esc>
 "nnoremap <c-p> <esc>
 nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
-nnoremap <c-s> <esc>
+"nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
 nnoremap <c-u> <esc>
 "nnoremap <c-v> <esc>

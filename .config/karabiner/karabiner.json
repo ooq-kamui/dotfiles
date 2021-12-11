@@ -912,7 +912,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "international1"
+                            "key_code": "semicolon"
                         }
                     ]
                 },
@@ -962,7 +962,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "close_bracket"
+                            "key_code": "international1"
                         }
                     ]
                 },
@@ -1002,7 +1002,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "backslash"
+                            "key_code": "close_bracket"
                         }
                     ]
                 },
@@ -1272,7 +1272,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "semicolon"
+                            "key_code": "backslash"
                         }
                     ]
                 }
