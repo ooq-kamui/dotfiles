@@ -580,6 +580,9 @@ vnoremap f e
 vnoremap F lt_
 vnoremap O F_h
 
+" cursor mv space - forward ( word pre )
+vnoremap I wh
+
 " cursor mv in selected
 vnoremap y o
 vnoremap ; o
@@ -726,7 +729,7 @@ vnoremap w <c-c>
 "vnoremap A <c-c>
 vnoremap C <c-c>
 "vnoremap F <c-c>
-vnoremap I <c-c>
+"vnoremap I <c-c>
 "vnoremap L <c-c>
 vnoremap M <c-c>
 "vnoremap N <c-c>
