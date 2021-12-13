@@ -196,8 +196,8 @@ nnoremap <expr> y col(".") == 1 ? "O<esc>" : "0"
 nnoremap <expr> ; col(".") == 1 ? "O<esc>" : "0"
 
 " cursor mv line in end
-nnoremap <expr> <c-l> col("$") == 1 ? "$" : "$l"
-"nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
+nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
+"nnoremap <expr> <c-l> col("$") == 1 ? "$" : "$l"
 
 " cursor mv char - forward
 nnoremap l l
@@ -215,8 +215,8 @@ nnoremap f el
 nnoremap o b
 
 " cursor mv word split _
-nnoremap F f_l
-nnoremap O hT_
+nnoremap _     f_l
+nnoremap <c-_> hT_
 
 " cursor mv file back    ( file begin )
 nnoremap go gg0
@@ -225,8 +225,9 @@ nnoremap go gg0
 nnoremap gl G$l
 
 " cursor mv bracket paire
-nnoremap L %
-nnoremap <c-y> %
+nnoremap <c-l> %
+"nnoremap L %
+"nnoremap <c-y> %
 
 " cursor mv bracket back
 "nnoremap xx [{
@@ -307,9 +308,6 @@ nnoremap i viw
 
 " select char current - word end
 "nnoremap I ve
-
-" select char current - split _
-"nnoremap _ vt_
 
 " select box
 nnoremap v <c-v>
@@ -451,7 +449,7 @@ nnoremap @ <esc>
 nnoremap , <esc>
 nnoremap . <esc>
 nnoremap * <esc>
-nnoremap _ <esc>
+"nnoremap _ <esc>
 nnoremap ~ <esc>
 nnoremap ^ <esc>
 "nnoremap / <esc>
@@ -509,10 +507,10 @@ nnoremap H <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
-"nnoremap L <esc>
+nnoremap L <esc>
 "nnoremap M <esc>
 "nnoremap N <esc>
-"nnoremap O <esc>
+nnoremap O <esc>
 "nnoremap Q <esc>
 "nnoremap P <esc>
 "nnoremap R <esc>
@@ -570,15 +568,14 @@ vnoremap <c-o> h
 
 " cursor mv word - forward
 vnoremap f e
-"vnoremap <c-l> w
 
 " cursor mv word - back
 "vnoremap <c-o> b
 "vnoremap o b
 
 " cursor mv word split _
-vnoremap F lt_
-vnoremap O F_h
+vnoremap _     lt_
+vnoremap <c-_> F_h
 
 " cursor mv space - forward ( word pre )
 vnoremap I wh
@@ -601,10 +598,9 @@ vnoremap go gg0
 vnoremap gl G$l
 
 " cursor mv bracket
-vnoremap L %
+vnoremap <c-l> %
+"vnoremap L %
 "vnoremap <c-y> %
-"vnoremap Y %
-"vnoremap M %
 
 " ins | cut & ins
 vnoremap <expr> <space> mode() == "<c-v>" ? "I" : "c"
@@ -612,8 +608,8 @@ vnoremap <leader><space> "ac
 "vnoremap <c-i> "ac
 
 " ins $
-vnoremap <expr> <c-l> mode() == "<c-v>" ? "$A" : "g_"
 vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "g_"
+"vnoremap <expr> <c-l> mode() == "<c-v>" ? "$A" : "g_"
 "vnoremap <expr> I     mode() == "<c-v>" ? "$A" : "g_"
 
 " del str > yank
@@ -698,7 +694,7 @@ vnoremap * <c-c>
 "vnoremap " <c-c>
 "vnoremap # <c-c>
 vnoremap $ <c-c>
-vnoremap _ <c-c>
+"vnoremap _ <c-c>
 vnoremap ? <c-c>
 vnoremap ( <c-c>
 "vnoremap ; <c-c>
@@ -728,12 +724,12 @@ vnoremap w <c-c>
 
 "vnoremap A <c-c>
 vnoremap C <c-c>
-"vnoremap F <c-c>
+vnoremap F <c-c>
 "vnoremap I <c-c>
 "vnoremap L <c-c>
 vnoremap M <c-c>
 "vnoremap N <c-c>
-"vnoremap O <c-c>
+vnoremap O <c-c>
 vnoremap P <c-c>
 vnoremap V <c-c>
 vnoremap Y <c-c>
