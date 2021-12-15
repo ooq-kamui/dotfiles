@@ -329,7 +329,7 @@ nnoremap <c-c> "+yy
 nnoremap p "0P
 
 " paste pc clipboard
-nnoremap <c-v> "+P
+"nnoremap <c-v> "+P
 
 " dpl line
 nnoremap <c-d> "0yy"0P
@@ -401,7 +401,6 @@ nnoremap R gf
 
 " wrap
 nnoremap :w :set wrap!
-"nnoremap ] :set wrap!<cr>
 
 
 "
@@ -422,6 +421,7 @@ nnoremap > :tabm+1<cr>
 
 " inf char
 nnoremap ga ga
+
 
 " numpad shift
 nnoremap <kInsert>   0
@@ -540,7 +540,7 @@ nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
 nnoremap <c-u> <esc>
-"nnoremap <c-v> <esc>
+nnoremap <c-v> <esc>
 "nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
 "nnoremap <c-y> <esc>
@@ -799,17 +799,20 @@ inoremap <c-m> <cr>
 inoremap <tab> <c-v><Tab>
 
 " paste
+inoremap <c-v> <c-r>0
 "inoremap <c-p> <c-r>0
 
 " paste pc clipboard
-inoremap <c-v> <c-r>+
+"inoremap <c-v> <c-r>+
 
 " input complete
 inoremap <expr> <c-j> pumvisible() ? "<c-n>"  : "<c-n>"
-inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-r>=Insnum()<cr>"
+inoremap <expr> <c-n> pumvisible() ? "<down>" : "<down>"
+"inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-r>=Insnum()<cr>"
 "inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-o>j"
-inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-r>0"
-"inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<up>"
+inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<up>"
+"inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-r>0"
+"inoremap <expr> <c-v> pumvisible() ? "<up>"   : "<c-r>0"
 inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
 
 " ins bracket
@@ -1055,6 +1058,7 @@ call plug#begin()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mattesgroeger/vim-bookmarks'
+Plug 'qpkorr/vim-renamer'
 call plug#end()
 
 "
@@ -1173,6 +1177,15 @@ let g:bookmark_no_default_key_mappings = 1
 "nmap <Leader>x  <Plug>BookmarkClearAll
 "nmap <Leader>kk <Plug>BookmarkMoveUp
 "nmap <Leader>jj <Plug>BookmarkMoveDown
+
+
+"
+" renamer
+"
+
+" renamer
+"nnoremap <c-r> :Renamer
+
 
 " plugin  #end#
 
