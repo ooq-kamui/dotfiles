@@ -197,6 +197,7 @@ nnoremap <expr> ; col(".") == 1 ? "O<esc>" : "0"
 
 " cursor mv line in end
 nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
+nnoremap <expr> <c-e> col("$") == 1 ? "$" : "$l"
 "nnoremap <expr> <c-l> col("$") == 1 ? "$" : "$l"
 
 " cursor mv char - forward
@@ -525,7 +526,7 @@ nnoremap Y <esc>
 "nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
-nnoremap <c-e> <esc>
+"nnoremap <c-e> <esc>
 nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
@@ -945,6 +946,10 @@ cnoremap <c-k> <S-Right><c-w>
 " del line in back
 cnoremap <c-c> <c-u>
 
+" paste
+cnoremap <c-v> <c-r>0
+
+" history
 "cnoremap <c-p> <Up>
 "cnoremap <c-n> <Down>
 
@@ -1184,7 +1189,7 @@ let g:bookmark_no_default_key_mappings = 1
 "
 
 " renamer
-"nnoremap <c-r> :Renamer
+nnoremap <leader>r :Renamer<cr>
 
 
 " plugin  #end#
