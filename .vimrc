@@ -393,9 +393,11 @@ nnoremap :s :%s//<c-r>0/gc<cr>
 " search replace one > yank next ( only search )
 nnoremap <c-p> gn
 
-" tag jump
+" tag jump tab new
 nnoremap r <c-w>gFgTj
-nnoremap R gf
+
+" tag jump tab crnt
+"nnoremap R gf
 
 " mark
 "nnoremap xx m
@@ -1064,6 +1066,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mattesgroeger/vim-bookmarks'
 Plug 'qpkorr/vim-renamer'
+"Plug 'mattn/vim-molder'
+"Plug 'mattn/vim-molder-operations'
 call plug#end()
 
 "
@@ -1188,9 +1192,10 @@ let g:bookmark_no_default_key_mappings = 1
 " renamer
 "
 
-" renamer
-nnoremap <leader>r :Renamer<cr>
-
+" file lst
+nnoremap <leader>r :tabnew<cr>:Renamer<cr>
+" save
+nnoremap R :Ren
 
 " plugin  #end#
 
