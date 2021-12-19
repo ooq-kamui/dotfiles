@@ -38,8 +38,6 @@ bind \cK kill-word
 #bind \cS backward-delete-char
 
 bind \cC 'clear; commandline -f repaint'
-#bind \cM 'clear; commandline -f repaint'
-#bind \cQ 'clear; commandline -f repaint'
 
 #bind \cV '__fzf_find_file'
 
