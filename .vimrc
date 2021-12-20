@@ -1068,12 +1068,12 @@ call plug#begin()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mattesgroeger/vim-bookmarks'
-Plug 'qpkorr/vim-renamer'
+Plug 'mattn/vim-molder'
+Plug 'mattn/vim-molder-operations'
+"Plug 'qpkorr/vim-renamer'
 "Plug 'ryym/vim-viler'
 "Plug 'cocopon/vaffle.vim'
 "Plug 'justinmk/vim-dirvish'
-Plug 'mattn/vim-molder'
-Plug 'mattn/vim-molder-operations'
 call plug#end()
 
 "
@@ -1199,9 +1199,9 @@ let g:bookmark_no_default_key_mappings = 1
 "
 
 " file lst
-nnoremap <leader>r :tabnew<cr>:Renamer<cr>
+"nnoremap <leader>r :tabnew<cr>:Renamer<cr>
 " save
-nnoremap R :Ren
+"nnoremap R :Ren
 
 
 "
