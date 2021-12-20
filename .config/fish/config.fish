@@ -39,7 +39,7 @@ bind \cK kill-word
 
 bind \cC 'clear; commandline -f repaint'
 
-#bind \cV '__fzf_find_file'
+bind \cy fzf-file-widget
 
 
 # color
