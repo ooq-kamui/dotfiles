@@ -151,7 +151,7 @@ nnoremap W :tabo<cr>
 nnoremap a :w<cr>
 
 " reload
-nnoremap :e :e!
+"nnoremap :e :e!
 
 " open latest
 "nnoremap xx `0
@@ -191,11 +191,14 @@ nnoremap <Down>  j
 nnoremap <c-k> 10<c-y>
 nnoremap <c-j> 10<c-e>
 
-" cursor mv line in | ins line
+" cursor mv in line start | ins line
 nnoremap <expr> y col(".") == 1 ? "O<esc>" : "0"
 nnoremap <expr> ; col(".") == 1 ? "O<esc>" : "0"
 
-" cursor mv line in end
+" cursor mv line in start
+nnoremap <c-a> 0
+
+" cursor mv in line end
 nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
 nnoremap <expr> <c-e> col("$") == 1 ? "$" : "$l"
 "nnoremap <expr> <c-l> col("$") == 1 ? "$" : "$l"
@@ -206,7 +209,7 @@ nnoremap l l
 " cursor mv char - back
 nnoremap <c-o> h
 nnoremap <c-s> h
-nnoremap <c-a> h
+"nnoremap <c-a> h
 
 " cursor mv word - forward
 nnoremap f el
@@ -945,7 +948,7 @@ cnoremap <c-d> <del>
 " del word forward
 cnoremap <c-k> <S-Right><c-w>
 
-" del line in back
+" del in line back
 cnoremap <c-c> <c-u>
 
 " paste
@@ -1018,7 +1021,7 @@ autocmd QuickFixCmdPost vimgrep,grep tab cw
 "
 
 " netrw launch
-nnoremap <leader>j :Tex .<cr>
+"nnoremap <leader>j :Tex .<cr>
 
 let g:netrw_liststyle    = 3 " view file tree
 let g:netrw_browse_split = 3 " file open tab
@@ -1066,8 +1069,11 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mattesgroeger/vim-bookmarks'
 Plug 'qpkorr/vim-renamer'
-"Plug 'mattn/vim-molder'
-"Plug 'mattn/vim-molder-operations'
+"Plug 'ryym/vim-viler'
+"Plug 'cocopon/vaffle.vim'
+"Plug 'justinmk/vim-dirvish'
+Plug 'mattn/vim-molder'
+Plug 'mattn/vim-molder-operations'
 call plug#end()
 
 "
@@ -1196,6 +1202,16 @@ let g:bookmark_no_default_key_mappings = 1
 nnoremap <leader>r :tabnew<cr>:Renamer<cr>
 " save
 nnoremap R :Ren
+
+
+"
+" molder
+"
+
+" launch
+nnoremap <leader>f :tabnew<cr>:e .<cr>
+"autocmd FileType molder nnoremap u -
+"autocmd FileType molder nnoremap <c-o> <c-m>
 
 " plugin  #end#
 
