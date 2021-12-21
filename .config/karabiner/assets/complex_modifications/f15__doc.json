@@ -1,0 +1,22 @@
+{
+  "title": "f15 __ doc [ @kamui ]",
+  "rules": [
+    {
+      "description": "f15 __ doc",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "f15"
+          },
+          "to": [
+            {
+              "modifiers": ["fn"],
+              "key_code": "a"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

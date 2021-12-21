@@ -16,7 +16,7 @@ set -x FZF_DEFAULT_OPTS '--bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward
 
 
 alias ll="la"
-#alias ls="ls -1"
+alias l="ls -1"
 alias vim="nvim"
 alias vi="nvim"
 #alias fzf="fzf --bind=ctrl-o:accept "
