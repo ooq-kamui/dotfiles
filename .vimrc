@@ -93,8 +93,8 @@ augroup vimrcEx
   \ exe "normal! g`\"" | endif
 augroup END
 
-"autocmd BufRead * normal! zz
-"autocmd BufRead * normal! zz10<c-e>
+autocmd BufWinEnter * normal! zt
+"autocmd BufWinEnter * normal! zz
 
 
 set nowrap
