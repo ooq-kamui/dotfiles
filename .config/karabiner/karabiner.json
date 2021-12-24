@@ -764,6 +764,25 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "f15 __ doc",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "f15"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "a",
+                                        "modifiers": [
+                                            "fn"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
@@ -1102,7 +1121,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "spacebar"
+                            "key_code": "f15"
                         }
                     ]
                 },
