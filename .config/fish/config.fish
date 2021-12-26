@@ -27,7 +27,7 @@ alias vi="nvim"
 
 # corsor mv char
 bind \cL forward-char
-#bind \cO backward-char
+bind \cS backward-char
 
 # corsor mv word
 bind \cO backward-word
