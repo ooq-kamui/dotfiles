@@ -199,21 +199,23 @@ nnoremap <expr> ; col(".") == 1 ? "O<esc>" : "0"
 nnoremap <c-a> 0
 
 " cursor mv in line end
-nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
 nnoremap <expr> <c-e> col("$") == 1 ? "$" : "$l"
+nnoremap <expr> <c-l> col("$") == 1 ? "$" : "$l"
+"nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
 "nnoremap <expr> <c-l> col("$") == 1 ? "$" : "$l"
 
 " cursor mv char - forward
 nnoremap l l
 
 " cursor mv char - back
-nnoremap <c-o> h
+nnoremap O     h
 nnoremap <c-s> h
 "nnoremap <c-a> h
 
 " cursor mv word - forward
 nnoremap f el
-"nnoremap <c-l> w
+nnoremap F e
+"nnoremap F w
 
 " cursor mv word - back
 nnoremap o b
@@ -229,9 +231,8 @@ nnoremap go gg0
 nnoremap gl G$l
 
 " cursor mv bracket paire
-nnoremap <c-l> %
-"nnoremap L %
-"nnoremap <c-y> %
+nnoremap <c-o> %
+"nnoremap <c-l> %
 
 " cursor mv bracket back
 "nnoremap xx [{
@@ -272,10 +273,10 @@ nnoremap m i<cr><esc>
 "nnoremap , i, <esc>l
 
 " ins comment 1
-autocmd FileType lua  nnoremap ! ^i-- <esc>
-autocmd FileType vim  nnoremap ! ^i"<esc>
-autocmd FileType text nnoremap ! ^i# <esc>
-autocmd FileType sh   nnoremap ! ^i# <esc>
+autocmd FileType lua  nnoremap ! ^i-- <esc>0
+autocmd FileType vim  nnoremap ! ^i"<esc>0
+autocmd FileType text nnoremap ! ^i# <esc>0
+autocmd FileType sh   nnoremap ! ^i# <esc>0
 
 " ins comment mlt lua
 nnoremap $ O--[[<cr>--]]<esc>
@@ -292,6 +293,7 @@ nnoremap x x
 nnoremap d "0dd
 
 " del in line forward
+nnoremap <c-y> D
 "nnoremap xx D
 
 " del word back
@@ -471,7 +473,8 @@ nnoremap ( <esc>
 
 nnoremap <c-space> <esc>
 nnoremap <c-@> <esc>
-
+nnoremap <c-^> <esc>
+"nnoremap <c--> <esc> " non ?
 "nnoremap <c-:> <esc> " non
 "nnoremap <c-;> <esc> " non
 "nnoremap <c-,> <esc> " non ?
@@ -509,6 +512,7 @@ nnoremap C <esc>
 nnoremap D <esc>
 "nnoremap E <esc>
 "nnoremap F <esc>
+nnoremap G <esc>
 nnoremap H <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
@@ -516,7 +520,7 @@ nnoremap H <esc>
 nnoremap L <esc>
 "nnoremap M <esc>
 "nnoremap N <esc>
-nnoremap O <esc>
+"nnoremap O <esc>
 "nnoremap Q <esc>
 "nnoremap P <esc>
 "nnoremap R <esc>
@@ -569,7 +573,8 @@ vnoremap v <c-v>
 
 " cursor mv char
 vnoremap l l
-vnoremap <c-o> h
+vnoremap O h
+"vnoremap <c-o> h
 "vnoremap h h
 
 " cursor mv word - forward
@@ -604,9 +609,8 @@ vnoremap go gg0
 vnoremap gl G$l
 
 " cursor mv bracket
-vnoremap <c-l> %
-"vnoremap L %
-"vnoremap <c-y> %
+vnoremap <c-o> %
+"vnoremap <c-l> %
 
 " ins | cut & ins
 vnoremap <expr> <space> mode() == "<c-v>" ? "I" : "c"
@@ -614,8 +618,8 @@ vnoremap <leader><space> "ac
 "vnoremap <c-i> "ac
 
 " ins $
-vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "g_"
-"vnoremap <expr> <c-l> mode() == "<c-v>" ? "$A" : "g_"
+vnoremap <expr> <c-l> mode() == "<c-v>" ? "$A" : "g_"
+"vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "g_"
 "vnoremap <expr> I     mode() == "<c-v>" ? "$A" : "g_"
 
 " del str > yank
@@ -735,7 +739,7 @@ vnoremap F <c-c>
 "vnoremap L <c-c>
 vnoremap M <c-c>
 "vnoremap N <c-c>
-vnoremap O <c-c>
+"vnoremap O <c-c>
 vnoremap P <c-c>
 vnoremap V <c-c>
 vnoremap Y <c-c>
@@ -758,7 +762,7 @@ vnoremap <c-s> <c-c>
 vnoremap <c-v> <c-c>
 vnoremap <c-w> <c-c>
 vnoremap <c-x> <c-c>
-"vnoremap <c-y> <c-c>
+vnoremap <c-y> <c-c>
 
 
 "
@@ -805,11 +809,10 @@ inoremap <c-m> <cr>
 inoremap <tab> <c-v><Tab>
 
 " paste
-inoremap <c-v> <c-r>0
-"inoremap <c-p> <c-r>0
+"inoremap <c-v> <c-r>0
 
 " paste pc clipboard
-"inoremap <c-v> <c-r>+
+inoremap <c-v> <c-r>+
 
 " input complete
 inoremap <expr> <c-j> pumvisible() ? "<c-n>"  : "<c-n>"
@@ -854,10 +857,11 @@ inoremap <c-s> <c-r>=Inssymbol()<cr>
 
 " ins bracket
 func! Insbracket() abort
-  call complete(col('.'), ['()', '{}', '[]', '<>'])
+  call complete(col('.'), ['{}', '[]', '()', '<>'])
   return ''
 endfunc
-inoremap <c-b> <c-r>=Insbracket()<cr>
+inoremap <c-u> <c-r>=Insbracket()<cr>
+"inoremap <c-b> <c-r>=Insbracket()<cr>
 
 " ins num
 func! Insnum() abort
