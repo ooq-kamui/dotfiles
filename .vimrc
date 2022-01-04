@@ -193,7 +193,7 @@ nnoremap <c-j> 10<c-e>
 
 " cursor mv in line start | ins line
 nnoremap <expr> y col(".") == 1 ? "O<esc>" : "0"
-nnoremap <expr> ; col(".") == 1 ? "O<esc>" : "0"
+"nnoremap <expr> ; col(".") == 1 ? "O<esc>" : "0"
 
 " cursor mv line in start
 nnoremap <c-a> 0
@@ -208,9 +208,9 @@ nnoremap <expr> <c-l> col("$") == 1 ? "$" : "$l"
 nnoremap l l
 
 " cursor mv char - back
-nnoremap O     h
+nnoremap <c-o> h
 nnoremap <c-s> h
-"nnoremap <c-a> h
+"nnoremap O     h
 
 " cursor mv word - forward
 nnoremap f el
@@ -231,8 +231,9 @@ nnoremap go gg0
 nnoremap gl G$l
 
 " cursor mv bracket paire
-nnoremap <c-o> %
+nnoremap <c-y> %
 "nnoremap <c-l> %
+"nnoremap <c-o> %
 
 " cursor mv bracket back
 "nnoremap xx [{
@@ -293,8 +294,8 @@ nnoremap x x
 nnoremap d "0dd
 
 " del in line forward
-nnoremap <c-y> D
-"nnoremap xx D
+nnoremap <c-d> D
+"nnoremap <c-y> D
 
 " del word back
 "nnoremap <c-w> hvbd
@@ -338,7 +339,7 @@ nnoremap p "0P
 "nnoremap <c-v> "+P
 
 " dpl line
-nnoremap <c-d> "0yy"0P
+"nnoremap <c-d> "0yy"0P
 
 " undo, redo
 nnoremap h     u
@@ -363,7 +364,7 @@ nnoremap # >>
 "nnoremap u v~
 
 " char toggle ( upper / lower )
-nnoremap u :call Chartoggle()<cr>
+nnoremap u :call Chartoggle1()<cr>
 nnoremap U :call Chartoggle2()<cr>
 
 "
@@ -453,7 +454,7 @@ nnoremap <bs>    <esc>
 
 nnoremap = <esc>
 nnoremap @ <esc>
-"nnoremap ; <esc>
+nnoremap ; <esc>
 nnoremap , <esc>
 nnoremap . <esc>
 nnoremap * <esc>
@@ -520,7 +521,7 @@ nnoremap H <esc>
 nnoremap L <esc>
 "nnoremap M <esc>
 "nnoremap N <esc>
-"nnoremap O <esc>
+nnoremap O <esc>
 "nnoremap Q <esc>
 "nnoremap P <esc>
 "nnoremap R <esc>
@@ -573,15 +574,13 @@ vnoremap v <c-v>
 
 " cursor mv char
 vnoremap l l
-vnoremap O h
-"vnoremap <c-o> h
-"vnoremap h h
+vnoremap <c-o> h
+"vnoremap O h
 
 " cursor mv word - forward
 vnoremap f e
 
 " cursor mv word - back
-"vnoremap <c-o> b
 "vnoremap o b
 
 " cursor mv word split _
@@ -593,7 +592,7 @@ vnoremap I wh
 
 " cursor mv in selected
 vnoremap y o
-vnoremap ; o
+"vnoremap ; o
 
 " cursor mv in line
 "vnoremap $ $
@@ -609,8 +608,9 @@ vnoremap go gg0
 vnoremap gl G$l
 
 " cursor mv bracket
-vnoremap <c-o> %
+vnoremap <c-y> %
 "vnoremap <c-l> %
+"vnoremap <c-o> %
 
 " ins | cut & ins
 vnoremap <expr> <space> mode() == "<c-v>" ? "I" : "c"
@@ -620,7 +620,6 @@ vnoremap <leader><space> "ac
 " ins $
 vnoremap <expr> <c-l> mode() == "<c-v>" ? "$A" : "g_"
 "vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "g_"
-"vnoremap <expr> I     mode() == "<c-v>" ? "$A" : "g_"
 
 " del str > yank
 vnoremap d "0d
@@ -631,6 +630,14 @@ vnoremap x "ax
 
 " del cr
 vnoremap <c-m> J
+
+" mv str back
+vnoremap <c-i> "axh"aPviw
+vnoremap <c-w> "axh"aPviw
+
+" mv str forward
+vnoremap <c-f> "axl"aPviw
+vnoremap <c-e> "axl"aPviw
 
 " select all
 vnoremap a <esc>ggVG
@@ -707,7 +714,7 @@ vnoremap $ <c-c>
 "vnoremap _ <c-c>
 vnoremap ? <c-c>
 vnoremap ( <c-c>
-"vnoremap ; <c-c>
+vnoremap ; <c-c>
 vnoremap < <c-c>
 vnoremap > <c-c>
 vnoremap = <c-c>
@@ -739,7 +746,7 @@ vnoremap F <c-c>
 "vnoremap L <c-c>
 vnoremap M <c-c>
 "vnoremap N <c-c>
-"vnoremap O <c-c>
+vnoremap O <c-c>
 vnoremap P <c-c>
 vnoremap V <c-c>
 vnoremap Y <c-c>
@@ -747,9 +754,9 @@ vnoremap Y <c-c>
 vnoremap <c-a> <c-c>
 "vnoremap <c-c> <c-c>
 vnoremap <c-d> <c-c>
-vnoremap <c-e> <c-c>
-vnoremap <c-f> <c-c>
-vnoremap <c-i> <c-c>
+"vnoremap <c-e> <c-c>
+"vnoremap <c-f> <c-c>
+"vnoremap <c-i> <c-c>
 "vnoremap <c-l> <c-c>
 "vnoremap <c-m> <c-c>
 "vnoremap <c-n> <c-c>
@@ -760,9 +767,9 @@ vnoremap <c-r> <c-c>
 vnoremap <c-s> <c-c>
 "vnoremap <c-u> <c-c>
 vnoremap <c-v> <c-c>
-vnoremap <c-w> <c-c>
+"vnoremap <c-w> <c-c>
 vnoremap <c-x> <c-c>
-vnoremap <c-y> <c-c>
+"vnoremap <c-y> <c-c>
 
 
 "
@@ -782,6 +789,7 @@ inoremap <c-e> <c-o>$
 inoremap <c-l> <c-o>l
 inoremap <c-f> <c-o>l
 inoremap <expr> <c-o> pumvisible() ? "<c-y>" : "<c-o>h"
+inoremap <c-s> <c-o>h
 
 " cursor mv word forward
 "inoremap <c-f> <c-o>e<c-o>l
@@ -794,7 +802,6 @@ inoremap <expr> <c-o> pumvisible() ? "<c-y>" : "<c-o>h"
 
 " del char forward
 inoremap <c-d> <c-o>x
-"inoremap <c-s> <c-o>x
 
 " del char back
 inoremap <c-h> <c-h>
@@ -853,7 +860,8 @@ func! Inssymbol() abort
   call complete(col('.'), l:lst)
   return ''
 endfunc
-inoremap <c-s> <c-r>=Inssymbol()<cr>
+inoremap <c-t> <c-r>=Inssymbol()<cr>
+"inoremap <c-s> <c-r>=Inssymbol()<cr>
 
 " ins bracket
 func! Insbracket() abort
@@ -923,6 +931,8 @@ inoremap <c-y> <c-r>=Insusual()<cr>
 "
 "inoremap <c-b> <nop>
 "inoremap <c-p> <nop>
+"inoremap <c-s> <nop>
+"inoremap <c-t> <nop>
 "inoremap <c-u> <nop>
 "inoremap <c-y> <nop>
 
@@ -1272,7 +1282,7 @@ endfunc
 command! -range=% -nargs=0 FileJmp :<line1>,<line2>call s:FileJmp()
 "nnoremap :f :Cfilter
 
-func! Chartoggle() abort
+func! Chartoggle1() abort
   
   let l:c = getline('.')[col('.')-1]
   "echo l:c
