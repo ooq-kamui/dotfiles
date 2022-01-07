@@ -200,8 +200,8 @@ nnoremap <c-a> 0
 
 " cursor mv in line end
 nnoremap <expr> <c-e> col("$") == 1 ? "$" : "$l"
-nnoremap <expr> <c-l> col("$") == 1 ? "$" : "$l"
-"nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
+nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
+"nnoremap <expr> <c-l> col("$") == 1 ? "$" : "$l"
 "nnoremap <expr> <c-l> col("$") == 1 ? "$" : "$l"
 
 " cursor mv char - forward
@@ -231,8 +231,8 @@ nnoremap go gg0
 nnoremap gl G$l
 
 " cursor mv bracket paire
-nnoremap <c-y> %
-"nnoremap <c-l> %
+nnoremap <c-l> %
+"nnoremap <c-y> %
 "nnoremap <c-o> %
 
 " cursor mv bracket back
@@ -608,8 +608,8 @@ vnoremap go gg0
 vnoremap gl G$l
 
 " cursor mv bracket
-vnoremap <c-y> %
-"vnoremap <c-l> %
+vnoremap <c-l> %
+"vnoremap <c-y> %
 "vnoremap <c-o> %
 
 " ins | cut & ins
@@ -618,8 +618,8 @@ vnoremap <leader><space> "ac
 "vnoremap <c-i> "ac
 
 " ins $
-vnoremap <expr> <c-l> mode() == "<c-v>" ? "$A" : "g_"
-"vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "g_"
+vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "g_"
+"vnoremap <expr> <c-l> mode() == "<c-v>" ? "$A" : "g_"
 
 " del str > yank
 vnoremap d "0d
@@ -929,7 +929,7 @@ inoremap <c-y> <c-r>=Insusual()<cr>
 "
 " nop
 "
-"inoremap <c-b> <nop>
+inoremap <c-b> <nop>
 "inoremap <c-p> <nop>
 "inoremap <c-s> <nop>
 "inoremap <c-t> <nop>

@@ -39,7 +39,10 @@ bind \cK kill-word
 
 bind \cC 'clear; commandline -f repaint'
 
-bind \cy fzf-file-widget
+bind \cu fzf-file-widget
+bind \cy fzf-history-widget
+#bind \cy fzf-file-widget
+#bind \cu fzf-history-widget
 
 
 # color
@@ -52,5 +55,10 @@ set fish_color_search_match   --background=brmagenta
 
 #cd ~/dev/ooq/g.prototype/001/assets/
 
+# 
+# lua
+# 
+export LUA_PATH='/opt/homebrew/Cellar/luarocks/3.8.0/share/lua/5.4/?.lua;/opt/homebrew/share/lua/5.4/?.lua;/opt/homebrew/share/lua/5.4/?/init.lua;/opt/homebrew/lib/lua/5.4/?.lua;/opt/homebrew/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua;/Users/kamui/.luarocks/share/lua/5.4/?.lua;/Users/kamui/.luarocks/share/lua/5.4/?/init.lua'
+export LUA_CPATH='/opt/homebrew/lib/lua/5.4/?.so;/opt/homebrew/lib/lua/5.4/loadall.so;./?.so;/Users/kamui/.luarocks/lib/lua/5.4/?.so'
 
 
