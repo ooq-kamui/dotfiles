@@ -79,9 +79,15 @@ set list
 set cursorline
 
 set autoindent
-"set expandtab " indent tab > space
-set tabstop=4    " 2
-set shiftwidth=4 " 2
+
+""set expandtab " indent tab > space
+"set tabstop=4    " 2
+"set shiftwidth=4 " 2
+
+set expandtab " indent tab > space
+set tabstop=2
+set shiftwidth=2
+
 filetype indent on
 autocmd FileType text setlocal sw=2 sts=2 ts=2 et
 autocmd FileType json setlocal sw=2 sts=2 ts=2 et
@@ -391,6 +397,9 @@ nnoremap E *N
 
 " search cmd
 nnoremap / /
+
+" search cmd prv
+nnoremap N /<c-p><c-p><cr>
 
 " search replace all > yank ( file )
 nnoremap :s :%s//<c-r>0/gc<cr>
@@ -860,16 +869,15 @@ func! Inssymbol() abort
   call complete(col('.'), l:lst)
   return ''
 endfunc
-inoremap <c-t> <c-r>=Inssymbol()<cr>
-"inoremap <c-s> <c-r>=Inssymbol()<cr>
+inoremap <c-u> <c-r>=Inssymbol()<cr>
+"inoremap <c-t> <c-r>=Inssymbol()<cr>
 
 " ins bracket
 func! Insbracket() abort
-  call complete(col('.'), ['{}', '[]', '()', '<>'])
+  call complete(col('.'), ['()', '{}', '[]', '<>'])
   return ''
 endfunc
-inoremap <c-u> <c-r>=Insbracket()<cr>
-"inoremap <c-b> <c-r>=Insbracket()<cr>
+inoremap <c-y> <c-r>=Insbracket()<cr>
 
 " ins num
 func! Insnum() abort
@@ -923,8 +931,8 @@ func! Insusual() abort
   \ ])
   return ''
 endfunc
-inoremap <c-y> <c-r>=Insusual()<cr>
-"inoremap <c-u> <c-r>=Insusual()<cr>
+inoremap <c-_> <c-r>=Insusual()<cr>
+"inoremap <c-y> <c-r>=Insusual()<cr>
 
 "
 " nop
@@ -1191,10 +1199,10 @@ nmap <leader>m <Plug>BookmarkShowAll
 "nmap Ma       <Plug>BookmarkShowAll
 
 " prev, next
-nmap P <Plug>BookmarkPrev
-nmap N <Plug>BookmarkNext
-"nmap Mp <Plug>BookmarkPrev
-"nmap Mn <Plug>BookmarkNext
+nmap Mp <Plug>BookmarkPrev
+nmap Mn <Plug>BookmarkNext
+"nmap P <Plug>BookmarkPrev
+"nmap N <Plug>BookmarkNext
 
 " del in buffer
 nmap :mc :BookmarkClear
