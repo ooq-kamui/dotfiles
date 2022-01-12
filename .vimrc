@@ -277,7 +277,7 @@ nnoremap m i<cr><esc>
 "nnoremap * i <esc>l
 
 " ins comma
-"nnoremap , i, <esc>l
+nnoremap , i, <esc>l
 
 " ins comment 1
 autocmd FileType lua  nnoremap ! ^i-- <esc>0
@@ -355,8 +355,12 @@ nnoremap <c-h> <c-r>
 "nnoremap . .
 
 " repeat memory
-nnoremap q qy
-nnoremap Q @y
+nnoremap <c-^> qy
+nnoremap ^     @y
+"nnoremap <c-q> qy
+"nnoremap q     @y
+"nnoremap q qy
+"nnoremap Q @y
 
 " inc, dec
 nnoremap + <c-a>
@@ -464,12 +468,12 @@ nnoremap <bs>    <esc>
 nnoremap = <esc>
 nnoremap @ <esc>
 nnoremap ; <esc>
-nnoremap , <esc>
+"nnoremap , <esc>
 nnoremap . <esc>
 nnoremap * <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
-nnoremap ^ <esc>
+"nnoremap ^ <esc>
 "nnoremap / <esc>
 nnoremap ? <esc>
 
@@ -483,7 +487,7 @@ nnoremap ( <esc>
 
 nnoremap <c-space> <esc>
 nnoremap <c-@> <esc>
-nnoremap <c-^> <esc>
+"nnoremap <c-^> <esc>
 "nnoremap <c--> <esc> " non ?
 "nnoremap <c-:> <esc> " non
 "nnoremap <c-;> <esc> " non
@@ -507,7 +511,7 @@ nnoremap g <esc>
 "nnoremap m <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
-"nnoremap q <esc>
+nnoremap q <esc>
 "nnoremap r <esc>
 "nnoremap s <esc>
 nnoremap t <esc>
@@ -531,7 +535,7 @@ nnoremap L <esc>
 "nnoremap M <esc>
 "nnoremap N <esc>
 nnoremap O <esc>
-"nnoremap Q <esc>
+nnoremap Q <esc>
 "nnoremap P <esc>
 "nnoremap R <esc>
 nnoremap S <esc>
@@ -584,7 +588,7 @@ vnoremap v <c-v>
 " cursor mv char
 vnoremap l l
 vnoremap <c-o> h
-"vnoremap O h
+vnoremap <c-s> h
 
 " cursor mv word - forward
 vnoremap f e
@@ -773,7 +777,7 @@ vnoremap <c-d> <c-c>
 "vnoremap <c-p> <c-c>
 vnoremap <c-q> <c-c>
 vnoremap <c-r> <c-c>
-vnoremap <c-s> <c-c>
+"vnoremap <c-s> <c-c>
 "vnoremap <c-u> <c-c>
 vnoremap <c-v> <c-c>
 "vnoremap <c-w> <c-c>
@@ -831,13 +835,15 @@ inoremap <tab> <c-v><Tab>
 inoremap <c-v> <c-r>+
 
 " input complete
+"   mv d
 inoremap <expr> <c-j> pumvisible() ? "<c-n>"  : "<c-n>"
 inoremap <expr> <c-n> pumvisible() ? "<down>" : "<down>"
 "inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-r>=Insnum()<cr>"
 "inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-o>j"
-inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<up>"
-"inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-r>0"
-"inoremap <expr> <c-v> pumvisible() ? "<up>"   : "<c-r>0"
+"   mv u
+inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-r>0"
+"inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<up>"
+"   clear
 inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
 
 " ins bracket
