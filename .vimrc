@@ -349,6 +349,9 @@ nnoremap p "0P
 " paste pc clipboard
 "nnoremap <c-v> "+P
 
+" mv line up
+nnoremap O "0ddk"0P
+
 " dpl line
 "nnoremap <c-d> "0yy"0P
 
@@ -539,7 +542,7 @@ nnoremap H <esc>
 "nnoremap L <esc>
 "nnoremap M <esc>
 "nnoremap N <esc>
-nnoremap O <esc>
+"nnoremap O <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
 "nnoremap R <esc>
