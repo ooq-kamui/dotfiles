@@ -242,7 +242,7 @@ nnoremap <c-l> %
 "nnoremap <c-o> %
 
 " cursor mv bracket back
-"nnoremap xx [{
+nnoremap L [{
 
 " cursor mv edited ( jump list )
 nnoremap b     <c-o>
@@ -531,7 +531,7 @@ nnoremap H <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
-nnoremap L <esc>
+"nnoremap L <esc>
 "nnoremap M <esc>
 "nnoremap N <esc>
 nnoremap O <esc>
@@ -740,6 +740,7 @@ vnoremap b <c-c>
 "vnoremap f <c-c>
 vnoremap h <c-c>
 "vnoremap i <c-c>
+vnoremap m <c-c>
 "vnoremap n <c-c>
 "vnoremap o <c-c>
 vnoremap q <c-c>
@@ -755,7 +756,9 @@ vnoremap w <c-c>
 "vnoremap A <c-c>
 vnoremap C <c-c>
 vnoremap F <c-c>
+vnoremap H <c-c>
 "vnoremap I <c-c>
+vnoremap J <c-c>
 "vnoremap L <c-c>
 vnoremap M <c-c>
 "vnoremap N <c-c>
