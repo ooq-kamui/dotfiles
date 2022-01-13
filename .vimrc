@@ -220,6 +220,7 @@ nnoremap <c-s> h
 
 " cursor mv word - forward
 nnoremap f el
+nnoremap <c-f> e
 nnoremap F e
 "nnoremap F w
 
@@ -550,7 +551,7 @@ nnoremap Y <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
 "nnoremap <c-e> <esc>
-nnoremap <c-f> <esc>
+"nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
@@ -649,8 +650,8 @@ vnoremap <c-i> "axh"aPviw
 vnoremap <c-w> "axh"aPviw
 
 " mv str forward
-vnoremap <c-f> "axl"aPviw
 vnoremap <c-e> "axl"aPviw
+"vnoremap <c-f> "axl"aPviw
 
 " select all
 vnoremap a <esc>ggVG
@@ -771,7 +772,7 @@ vnoremap <c-a> <c-c>
 "vnoremap <c-c> <c-c>
 vnoremap <c-d> <c-c>
 "vnoremap <c-e> <c-c>
-"vnoremap <c-f> <c-c>
+vnoremap <c-f> <c-c>
 "vnoremap <c-i> <c-c>
 "vnoremap <c-l> <c-c>
 "vnoremap <c-m> <c-c>
