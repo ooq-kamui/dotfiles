@@ -237,13 +237,17 @@ nnoremap go gg0
 " cursor mv file forward ( file end   )
 nnoremap gl G$l
 
-" cursor mv bracket paire
+" cursor mv bracket pair
 nnoremap <c-l> %
 "nnoremap <c-y> %
 "nnoremap <c-o> %
 
 " cursor mv bracket back
 nnoremap L [{
+
+" cursor mv lua function back
+nnoremap P [m
+"nnoremap P ?function<cr>f(b
 
 " cursor mv edited ( jump list )
 nnoremap b     <c-o>
@@ -621,7 +625,7 @@ vnoremap go gg0
 " cursor mv file forward ( file end   )
 vnoremap gl G$l
 
-" cursor mv bracket
+" cursor mv bracket pair
 vnoremap <c-l> %
 "vnoremap <c-y> %
 "vnoremap <c-o> %
