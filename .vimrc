@@ -246,7 +246,8 @@ nnoremap <c-l> %
 nnoremap L [{
 
 " cursor mv lua function back
-nnoremap P [m
+nnoremap O [m
+"nnoremap P [m
 "nnoremap P ?function<cr>f(b
 
 " cursor mv edited ( jump list )
@@ -350,7 +351,8 @@ nnoremap p "0P
 "nnoremap <c-v> "+P
 
 " mv line up
-nnoremap O "0ddk"0P
+nnoremap P "0ddk"0P
+"nnoremap O "0ddk"0P
 
 " dpl line
 "nnoremap <c-d> "0yy"0P
@@ -910,7 +912,7 @@ func! Insluareserved() abort
   \   'local',
   \   'return',
   \   'if elseif else end',
-  \   'for in pairs end',
+  \   'for key, val in pairs() do end',
   \   'function'
   \ ])
   return ''
