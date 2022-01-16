@@ -243,10 +243,10 @@ nnoremap <c-l> %
 "nnoremap <c-o> %
 
 " cursor mv bracket back
-nnoremap L [{
+nnoremap O [m
 
 " cursor mv lua function back
-nnoremap O [m
+nnoremap L [{
 "nnoremap P [m
 "nnoremap P ?function<cr>f(b
 
@@ -284,6 +284,7 @@ nnoremap m i<cr><esc>
 
 " ins comma
 nnoremap , i, <esc>l
+nnoremap < A,<esc>j
 
 " ins comment 1
 autocmd FileType lua  nnoremap ! ^i-- <esc>0
@@ -445,8 +446,8 @@ nnoremap <s-tab> gT
 " tab order
 nnoremap <s-left>  :tabm-1<cr>
 nnoremap <s-right> :tabm+1<cr>
-nnoremap < :tabm-1<cr>
-nnoremap > :tabm+1<cr>
+"nnoremap < :tabm-1<cr>
+"nnoremap > :tabm+1<cr>
 
 " buffer list
 "nnoremap :b :buffers
@@ -493,7 +494,7 @@ nnoremap ? <esc>
 "nnoremap $ <esc>
 nnoremap ( <esc>
 "nnoremap < <esc>
-"nnoremap > <esc>
+nnoremap > <esc>
 
 nnoremap <c-space> <esc>
 nnoremap <c-@> <esc>
@@ -662,6 +663,9 @@ vnoremap <c-w> "axh"aPviw
 vnoremap <c-e> "axl"aPviw
 "vnoremap <c-f> "axl"aPviw
 
+" mv line up
+"vnoremap P "0ddk"0P
+
 " select all
 vnoremap a <esc>ggVG
 "vnoremap A <esc>ggVG
@@ -773,7 +777,7 @@ vnoremap J <c-c>
 vnoremap M <c-c>
 "vnoremap N <c-c>
 vnoremap O <c-c>
-vnoremap P <c-c>
+"vnoremap P <c-c>
 vnoremap V <c-c>
 vnoremap Y <c-c>
 
@@ -888,12 +892,13 @@ func! Inssymbol() abort
   call complete(col('.'), l:lst)
   return ''
 endfunc
-inoremap <c-u> <c-r>=Inssymbol()<cr>
+inoremap <c-_> <c-r>=Inssymbol()<cr>
+"inoremap <c-u> <c-r>=Inssymbol()<cr>
 "inoremap <c-t> <c-r>=Inssymbol()<cr>
 
 " ins bracket
 func! Insbracket() abort
-  call complete(col('.'), ['()', '{}', '[]', '<>'])
+  call complete(col('.'), ['()', '{}', '[]', '<>', '""', "''", '``'])
   return ''
 endfunc
 inoremap <c-y> <c-r>=Insbracket()<cr>
@@ -935,7 +940,7 @@ func! Insusual() abort
   \   'else',
   \   'then',
   \   'then return end',
-  \   'for key, val in pairs() do',
+  \   'for key, val in pairs() do end',
   \   'not',
   \   'or',
   \   'and',
@@ -950,7 +955,8 @@ func! Insusual() abort
   \ ])
   return ''
 endfunc
-inoremap <c-_> <c-r>=Insusual()<cr>
+inoremap <c-u> <c-r>=Insusual()<cr>
+"inoremap <c-_> <c-r>=Insusual()<cr>
 "inoremap <c-y> <c-r>=Insusual()<cr>
 
 "
