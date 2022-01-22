@@ -15,8 +15,8 @@ set -x RIPGREP_CONFIG_PATH ~/.ripgreprc
 set -x FZF_DEFAULT_OPTS '--bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
 
 
-alias l="ls -1A"
-alias ll="la | cut -c28-"
+alias l="ls -1hAG"
+alias ll="ls -lgohAGD '%Y-%m-%d %H:%M'"
 alias vim="nvim"
 alias vi="nvim"
 #alias fzf="fzf --bind=ctrl-o:accept "
