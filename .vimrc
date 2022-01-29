@@ -163,7 +163,7 @@ nnoremap a :w<cr>
 "nnoremap xx `0
 
 " open latest list
-nnoremap <leader>l :Latest<cr>
+nnoremap <leader>y :Latest<cr>
 
 command! -nargs=0 Latest
 \ call setqflist([], ' ', {'lines' : v:oldfiles, 'efm' : '%f',
@@ -220,8 +220,9 @@ nnoremap <c-s> h
 
 " cursor mv word - forward
 nnoremap f el
-nnoremap <c-f> e
+nnoremap <c-f> w
 nnoremap F e
+"nnoremap <c-f> e
 "nnoremap F w
 
 " cursor mv word - back
@@ -243,11 +244,11 @@ nnoremap <c-l> %
 "nnoremap <c-o> %
 
 " cursor mv bracket back
-nnoremap O [m
+nnoremap L [m
 
-" cursor mv lua function back
-nnoremap L [{
-"nnoremap P [m
+" cursor mv function back
+nnoremap P [{
+"nnoremap O [{
 "nnoremap P ?function<cr>f(b
 
 " cursor mv edited ( jump list )
@@ -352,8 +353,8 @@ nnoremap p "0P
 "nnoremap <c-v> "+P
 
 " mv line up
-nnoremap P "0ddk"0P
-"nnoremap O "0ddk"0P
+nnoremap O "0ddk"0P
+"nnoremap P "0ddk"0P
 
 " dpl line
 "nnoremap <c-d> "0yy"0P
@@ -411,9 +412,10 @@ nnoremap e g*N
 nnoremap E *N
 
 " search cmd
+nnoremap <leader>k /
 nnoremap / /
 
-" search cmd prv
+" search prv ( tgl )
 nnoremap N /<c-p><c-p><cr>
 
 " search replace all > yank ( file )
@@ -886,7 +888,7 @@ inoremap <kPageUp>   9
 " ins symbol
 func! Inssymbol() abort
 
-  let l:lst = [',','.',  '!', '#', '$', '%', '&', '^', '~', '|', '?']
+  let l:lst = ['%', '&', '@']
   "let l:lst = ['!', '#', '$', '%', '&', '^', '~', '|', '?']
 
   call complete(col('.'), l:lst)
@@ -894,7 +896,6 @@ func! Inssymbol() abort
 endfunc
 inoremap <c-_> <c-r>=Inssymbol()<cr>
 "inoremap <c-u> <c-r>=Inssymbol()<cr>
-"inoremap <c-t> <c-r>=Inssymbol()<cr>
 
 " ins bracket
 func! Insbracket() abort
@@ -910,6 +911,13 @@ func! Insnum() abort
 endfunc
 "inoremap <c-n> <c-r>=Insnum()<cr>
 
+" ins register
+func! Insreg() abort
+  call complete(col('.'), [@0, @1, @2, @3])
+  return ''
+endfunc
+inoremap <c-r> <c-r>=Insreg()<cr>
+
 " ins lua reserved word
 func! Insluareserved() abort
   call complete(col('.'), [
@@ -922,7 +930,7 @@ func! Insluareserved() abort
   \ ])
   return ''
 endfunc
-inoremap <c-r> <c-r>=Insluareserved()<cr>
+"inoremap <c-r> <c-r>=Insluareserved()<cr>
 
 " ins ooq ( lua )
 func! Insusual() abort
@@ -956,8 +964,6 @@ func! Insusual() abort
   return ''
 endfunc
 inoremap <c-u> <c-r>=Insusual()<cr>
-"inoremap <c-_> <c-r>=Insusual()<cr>
-"inoremap <c-y> <c-r>=Insusual()<cr>
 
 "
 " nop
@@ -1155,8 +1161,8 @@ let g:fzf_colors = {
 "fzf#vim#complete#buffer_line([spec])
 
 " lines
-nnoremap <leader>k :BLines<cr>
-vnoremap <leader>k "ay:BLines <c-r>a<cr>
+nnoremap <leader>l :BLines<cr>
+vnoremap <leader>l "ay:BLines <c-r>a<cr>
 command! -bang -nargs=? BLines
 \ call fzf#vim#buffer_lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
 
@@ -1350,37 +1356,40 @@ func! Chartoggle1() abort
   elseif l:c == "'"
     let l:rpl = "\""
 
-  elseif l:c ==# "T"
-    let l:rpl = "f"
-  elseif l:c ==# "F"
-    let l:rpl = "t"
-
-  elseif l:c ==# "L"
-    let l:rpl = "r"
-  elseif l:c ==# "R"
-    let l:rpl = "l"
-
-  elseif l:c ==# "X"
-    let l:rpl = "y"
-  elseif l:c ==# "Y"
-    let l:rpl = "x"
-
-  elseif l:c ==# "I"
-    let l:rpl = "o"
-  elseif l:c ==# "O"
-    let l:rpl = "i"
-
   elseif l:c == "-"
     let l:rpl = "+"
   elseif l:c == "+"
     let l:rpl = "-"
 
-  elseif l:c == "_"
+  elseif l:c == ","
     let l:rpl = "."
   elseif l:c == "."
+    let l:rpl = ","
+
+  elseif l:c == ";"
     let l:rpl = ":"
   elseif l:c == ":"
-    let l:rpl = "_"
+    let l:rpl = ";"
+
+  "elseif l:c ==# "T"
+  "  let l:rpl = "f"
+  "elseif l:c ==# "F"
+  "  let l:rpl = "t"
+
+  "elseif l:c ==# "L"
+  "  let l:rpl = "r"
+  "elseif l:c ==# "R"
+  "  let l:rpl = "l"
+
+  "elseif l:c ==# "X"
+  "  let l:rpl = "y"
+  "elseif l:c ==# "Y"
+  "  let l:rpl = "x"
+
+  "elseif l:c ==# "I"
+  "  let l:rpl = "o"
+  "elseif l:c ==# "O"
+  "  let l:rpl = "i"
 
   else
     normal! v~
