@@ -62,6 +62,7 @@ au VimEnter * match FullWidthSpace /　/
 
 au BufNewFile,BufRead *.script     set filetype=lua
 au BufNewFile,BufRead *.gui_script set filetype=lua
+au BufNewFile,BufRead *.fish       set filetype=fish
 
 syntax on
 
@@ -658,12 +659,22 @@ vnoremap x "ax
 vnoremap <c-m> J
 
 " mv str back
-vnoremap <c-i> "axh"aPviw
-vnoremap <c-w> "axh"aPviw
+vnoremap <c-i> :call Mvstr("h")<cr>
+vnoremap <c-w> :call Mvstr("h")<cr>
+"vnoremap <c-i> "axh"aPviw
 
 " mv str forward
-vnoremap <c-e> "axl"aPviw
-"vnoremap <c-f> "axl"aPviw
+vnoremap <c-e> :call Mvstr("l")<cr>
+"vnoremap <c-e> "axl"aPviw
+
+" mv str fnc
+func! Mvstr(lr) abort
+
+  execute 'normal! gv"ax' . a:lr . '"aP'
+  let l:num = strchars(@a) - 1
+  execute "normal! v" . l:num . "h"
+  return
+endfunc
 
 " mv line up
 "vnoremap P "0ddk"0P
