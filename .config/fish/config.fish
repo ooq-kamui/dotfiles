@@ -2,8 +2,10 @@
 # source ~/.config/fish/config.fish
 #
 
-export LSCOLORS=fxfxcxdxexegedabagacad
+export LSCOLORS=fxgxcxdxexegedabagacad
 #               ^dir    ^exe
+# a:black, b:red, c:green, d:brown, e:blue,
+# f:magenta, g:cyan, h:grey
 
 set -x PATH /opt/local/bin $PATH
 set -x PATH /opt/homebrew/bin $PATH 
@@ -17,8 +19,8 @@ set -x FZF_DEFAULT_OPTS '--bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward
 
 alias l="ls -1hAG"
 alias ll="ls -lgohAGD '%Y-%m-%d %H:%M'"
-alias vim="nvim"
-alias vi="nvim"
+alias vim="nvim -p"
+alias vi="nvim -p"
 #alias fzf="fzf --bind=ctrl-o:accept "
 
 #alias rpl="string replace"
@@ -45,6 +47,7 @@ bind \cy fzf-history-widget
 #bind \cu fzf-history-widget
 
 bind \cq commandline_cp
+bind \cr commandline_bracket
 
 
 # color
