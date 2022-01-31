@@ -601,8 +601,8 @@ vnoremap v <c-v>
 
 " cursor mv char
 vnoremap l l
-vnoremap <c-o> h
 vnoremap <c-s> h
+"vnoremap <c-o> h
 
 " cursor mv word - forward
 vnoremap f e
@@ -636,8 +636,6 @@ vnoremap gl G$l
 
 " cursor mv bracket pair
 vnoremap <c-l> %
-"vnoremap <c-y> %
-"vnoremap <c-o> %
 
 " ins | cut & ins
 vnoremap <expr> <space> mode() == "<c-v>" ? "I" : "c"
@@ -660,21 +658,10 @@ vnoremap <c-m> J
 
 " mv str back
 vnoremap <c-i> :call Mvstr("h")<cr>
-vnoremap <c-w> :call Mvstr("h")<cr>
-"vnoremap <c-i> "axh"aPviw
 
 " mv str forward
-vnoremap <c-e> :call Mvstr("l")<cr>
-"vnoremap <c-e> "axl"aPviw
-
-" mv str fnc
-func! Mvstr(lr) abort
-
-  execute 'normal! gv"ax' . a:lr . '"aP'
-  let l:num = strchars(@a) - 1
-  execute "normal! v" . l:num . "h"
-  return
-endfunc
+vnoremap <c-o> :call Mvstr("l")<cr>
+"vnoremap <c-e> :call Mvstr("l")<cr>
 
 " mv line up
 "vnoremap P "0ddk"0P
@@ -797,7 +784,7 @@ vnoremap Y <c-c>
 vnoremap <c-a> <c-c>
 "vnoremap <c-c> <c-c>
 vnoremap <c-d> <c-c>
-"vnoremap <c-e> <c-c>
+vnoremap <c-e> <c-c>
 vnoremap <c-f> <c-c>
 "vnoremap <c-i> <c-c>
 "vnoremap <c-l> <c-c>
@@ -810,7 +797,7 @@ vnoremap <c-r> <c-c>
 "vnoremap <c-s> <c-c>
 "vnoremap <c-u> <c-c>
 vnoremap <c-v> <c-c>
-"vnoremap <c-w> <c-c>
+vnoremap <c-w> <c-c>
 vnoremap <c-x> <c-c>
 "vnoremap <c-y> <c-c>
 
@@ -906,7 +893,6 @@ func! Inssymbol() abort
   return ''
 endfunc
 inoremap <c-_> <c-r>=Inssymbol()<cr>
-"inoremap <c-u> <c-r>=Inssymbol()<cr>
 
 " ins bracket
 func! Insbracket() abort
@@ -1442,6 +1428,15 @@ func! Chartoggle2() abort
   execute "normal! x"
   execute "normal! i".l:rpl
 
+endfunc
+
+" mv str
+func! Mvstr(lr) abort
+
+  execute 'normal! gv"ax' . a:lr . '"aP'
+  let l:num = strchars(@a) - 1
+  execute "normal! v" . l:num . "h"
+  return
 endfunc
 
 func! Tabnewexe() abort
