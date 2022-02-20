@@ -158,7 +158,7 @@ nnoremap W :tabo<cr>
 nnoremap a :w<cr>
 
 " reload
-"nnoremap :e :e!
+nnoremap :e :e!
 
 " open latest
 "nnoremap xx `0
@@ -248,8 +248,8 @@ nnoremap <c-l> %
 nnoremap L [m
 
 " cursor mv function back
-nnoremap P [{
-"nnoremap O [{
+nnoremap O [{
+"nnoremap P [{
 "nnoremap P ?function<cr>f(b
 
 " cursor mv edited ( jump list )
@@ -354,8 +354,7 @@ nnoremap p "0P
 "nnoremap <c-v> "+P
 
 " mv line up
-nnoremap O "0ddk"0P
-"nnoremap P "0ddk"0P
+"nnoremap O "0ddk"0P
 
 " dpl line
 "nnoremap <c-d> "0yy"0P
@@ -601,8 +600,8 @@ vnoremap v <c-v>
 
 " cursor mv char
 vnoremap l l
+vnoremap <c-o> h
 vnoremap <c-s> h
-"vnoremap <c-o> h
 
 " cursor mv word - forward
 vnoremap f e
@@ -660,8 +659,8 @@ vnoremap <c-m> J
 vnoremap <c-i> :call Mvstr("h")<cr>
 
 " mv str forward
-vnoremap <c-o> :call Mvstr("l")<cr>
-"vnoremap <c-e> :call Mvstr("l")<cr>
+vnoremap <c-e> :call Mvstr("l")<cr>
+"vnoremap <c-o> :call Mvstr("l")<cr>
 
 " mv line up
 "vnoremap P "0ddk"0P
@@ -707,7 +706,11 @@ vnoremap n "ay/<c-r>a<cr>N
 vnoremap e "ay/\<<c-r>a\><cr>N
 vnoremap E "ay/\<<c-r>a\><cr>N
 
+" search keep visual
+vnoremap N n
+
 " search cmd
+vnoremap <leader>k "ay/<c-r>a
 vnoremap / "ay/<c-r>a
 
 " search replace all > yank ( selected )
@@ -777,14 +780,14 @@ vnoremap J <c-c>
 vnoremap M <c-c>
 "vnoremap N <c-c>
 vnoremap O <c-c>
-"vnoremap P <c-c>
+vnoremap P <c-c>
 vnoremap V <c-c>
 vnoremap Y <c-c>
 
 vnoremap <c-a> <c-c>
 "vnoremap <c-c> <c-c>
 vnoremap <c-d> <c-c>
-vnoremap <c-e> <c-c>
+"vnoremap <c-e> <c-c>
 vnoremap <c-f> <c-c>
 "vnoremap <c-i> <c-c>
 "vnoremap <c-l> <c-c>
@@ -1217,31 +1220,24 @@ command! -bang -nargs=? Tags
 
 " mark
 nmap M <Plug>BookmarkToggle
-"nmap Mm <Plug>BookmarkToggle
 
 " annotate
 "nmap Mi <Plug>BookmarkAnnotate
 
 " list
 nmap <leader>m <Plug>BookmarkShowAll
-"nmap Ma       <Plug>BookmarkShowAll
 
 " prev, next
 nmap Mp <Plug>BookmarkPrev
 nmap Mn <Plug>BookmarkNext
-"nmap P <Plug>BookmarkPrev
-"nmap N <Plug>BookmarkNext
 
 " del in buffer
 nmap :mc :BookmarkClear
-"nmap Mc <Plug>BookmarkClear
 
 let g:bookmark_no_default_key_mappings = 1
 
-"nmap <c-j>      <Plug>BookmarkMoveToLine
-"nmap <Leader>x  <Plug>BookmarkClearAll
-"nmap <Leader>kk <Plug>BookmarkMoveUp
-"nmap <Leader>jj <Plug>BookmarkMoveDown
+"nmap <c-j>     <Plug>BookmarkMoveToLine
+"nmap <Leader>x <Plug>BookmarkClearAll
 
 
 "
