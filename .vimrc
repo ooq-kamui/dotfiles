@@ -703,11 +703,13 @@ vnoremap <c-u> uviw
 " search
 "
 vnoremap n "ay/<c-r>a<cr>N
+
+" search word set
 vnoremap e "ay/\<<c-r>a\><cr>N
 vnoremap E "ay/\<<c-r>a\><cr>N
 
 " search keep visual
-vnoremap N n
+"vnoremap n :call Searchvisual()<cr>
 
 " search cmd
 vnoremap <leader>k "ay/<c-r>a
@@ -778,7 +780,7 @@ vnoremap H <c-c>
 vnoremap J <c-c>
 "vnoremap L <c-c>
 vnoremap M <c-c>
-"vnoremap N <c-c>
+vnoremap N <c-c>
 vnoremap O <c-c>
 vnoremap P <c-c>
 vnoremap V <c-c>
@@ -1430,8 +1432,17 @@ endfunc
 func! Mvstr(lr) abort
 
   execute 'normal! gv"ax' . a:lr . '"aP'
-  let l:num = strchars(@a) - 1
-  execute "normal! v" . l:num . "h"
+  let l:mvlen = strchars(@a) - 1
+  execute "normal! v" . l:mvlen . "h"
+  return
+endfunc
+
+func! Searchvisual() abort
+
+  execute 'normal! n'
+  let l:mvlen = strchars(@/) - 1
+  echo l:mvlen
+  execute "normal! v" . l:mvlen . "l"
   return
 endfunc
 

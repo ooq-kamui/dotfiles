@@ -147,30 +147,6 @@
                         ]
                     },
                     {
-                        "description": "xx > pls",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "international1",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "shift"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "semicolon",
-                                        "modifiers": [
-                                            "shift"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "fn num pad",
                         "manipulators": [
                             {
@@ -766,7 +742,7 @@
                         ]
                     },
                     {
-                        "description": "f15 __ doc",
+                        "description": "fxx __ xx / doc",
                         "manipulators": [
                             {
                                 "from": {
@@ -774,7 +750,21 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "a",
+                                        "key_code": "c",
+                                        "modifiers": [
+                                            "fn"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "f16"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "m",
                                         "modifiers": [
                                             "fn"
                                         ]
@@ -971,7 +961,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "f14"
+                            "key_code": "f15"
                         }
                     ]
                 },
@@ -1111,7 +1101,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "left_option"
+                            "key_code": "f16"
                         }
                     ]
                 },
@@ -1121,7 +1111,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "f15"
+                            "key_code": "f14"
                         }
                     ]
                 },
