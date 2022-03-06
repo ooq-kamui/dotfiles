@@ -293,9 +293,11 @@ autocmd FileType lua  nnoremap ! ^i-- <esc>0
 autocmd FileType vim  nnoremap ! ^i"<esc>0
 autocmd FileType text nnoremap ! ^i# <esc>0
 autocmd FileType sh   nnoremap ! ^i# <esc>0
+autocmd FileType javascript nnoremap ! ^i// <esc>0
 
 " ins comment mlt lua
-nnoremap $ O--[[<cr>--]]<esc>
+autocmd FileType lua nnoremap $ O--[[<cr>--]]<esc>
+autocmd FileType css nnoremap $ O/*<cr>*/<esc>
 
 " ins sys cmd ( read )
 nnoremap :r :read ! 
@@ -405,11 +407,24 @@ nnoremap <c-n> N
 "nnoremap n     gn
 "nnoremap <c-n> gN
 
-" search word
-nnoremap e g*N
+" search word set
+nnoremap e :call Search_word_set()<cr>
 
-" search word ( 1 word )
-nnoremap E *N
+func! Search_word_set() abort
+
+  let @/ = expand("<cword>>")
+  return
+endfunc
+
+" search word set ( 1 word )
+nnoremap E :call Search_word_set_1()<cr>
+
+func! Search_word_set_1() abort
+
+  let @/ = '\<' . expand("<cword>>") . '\>'
+  return
+endfunc
+
 
 " search cmd
 nnoremap <leader>k /
@@ -656,11 +671,11 @@ vnoremap x "ax
 vnoremap <c-m> J
 
 " mv str back
-vnoremap <c-i> :call Mvstr("h")<cr>
+vnoremap <c-w> :call Mvstr("h")<cr>
+"vnoremap <c-i> :call Mvstr("h")<cr>
 
 " mv str forward
 vnoremap <c-e> :call Mvstr("l")<cr>
-"vnoremap <c-o> :call Mvstr("l")<cr>
 
 " mv line up
 "vnoremap P "0ddk"0P
@@ -705,8 +720,24 @@ vnoremap <c-u> uviw
 vnoremap n "ay/<c-r>a<cr>N
 
 " search word set
-vnoremap e "ay/\<<c-r>a\><cr>N
-vnoremap E "ay/\<<c-r>a\><cr>N
+vnoremap e call Search_word_set_by_v()<cr>
+
+func! Search_word_set_by_v() abort
+
+  execute 'normal! gv"ay'
+  let @/ = @a
+  return
+endfunc
+
+" search word set ( 1 word )
+vnoremap E call Search_word_set_1_by_v()<cr>
+
+func! Search_word_set_1_by_v() abort
+
+  execute 'normal! gv"ay'
+  let @/ = '\<' . @a . '\>'
+  return
+endfunc
 
 " search keep visual
 "vnoremap n :call Searchvisual()<cr>
@@ -791,7 +822,7 @@ vnoremap <c-a> <c-c>
 vnoremap <c-d> <c-c>
 "vnoremap <c-e> <c-c>
 vnoremap <c-f> <c-c>
-"vnoremap <c-i> <c-c>
+vnoremap <c-i> <c-c>
 "vnoremap <c-l> <c-c>
 "vnoremap <c-m> <c-c>
 "vnoremap <c-n> <c-c>
@@ -802,7 +833,7 @@ vnoremap <c-r> <c-c>
 "vnoremap <c-s> <c-c>
 "vnoremap <c-u> <c-c>
 vnoremap <c-v> <c-c>
-vnoremap <c-w> <c-c>
+"vnoremap <c-w> <c-c>
 vnoremap <c-x> <c-c>
 "vnoremap <c-y> <c-c>
 
