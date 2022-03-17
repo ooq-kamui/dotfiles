@@ -293,11 +293,14 @@ autocmd FileType lua  nnoremap ! ^i-- <esc>0
 autocmd FileType vim  nnoremap ! ^i"<esc>0
 autocmd FileType text nnoremap ! ^i# <esc>0
 autocmd FileType sh   nnoremap ! ^i# <esc>0
+autocmd FileType css  nnoremap ! ^i/* <esc>$li */<esc>0
 autocmd FileType javascript nnoremap ! ^i// <esc>0
 
 " ins comment mlt lua
-autocmd FileType lua nnoremap $ O--[[<cr>--]]<esc>
-autocmd FileType css nnoremap $ O/*<cr>*/<esc>
+autocmd FileType lua  nnoremap $ O--[[<cr>--]]<esc>
+autocmd FileType css  nnoremap $ O/*<cr> */<esc>
+autocmd FileType html nnoremap $ O<!--<cr>--><esc>
+autocmd FileType javascript nnoremap $ O/*<cr> */<esc>
 
 " ins sys cmd ( read )
 nnoremap :r :read ! 
@@ -338,7 +341,6 @@ nnoremap v <c-v>
 
 " select
 nnoremap I v
-"nnoremap V v
 
 " yank line
 nnoremap c "0yy
@@ -630,6 +632,7 @@ vnoremap <c-_> F_h
 
 " cursor mv space - forward ( word pre )
 vnoremap I wh
+vnoremap F wh
 
 " cursor mv in selected
 vnoremap y o
@@ -720,7 +723,7 @@ vnoremap <c-u> uviw
 vnoremap n "ay/<c-r>a<cr>N
 
 " search word set
-vnoremap e call Search_word_set_by_v()<cr>
+vnoremap e :call Search_word_set_by_v()<cr>
 
 func! Search_word_set_by_v() abort
 
@@ -730,7 +733,7 @@ func! Search_word_set_by_v() abort
 endfunc
 
 " search word set ( 1 word )
-vnoremap E call Search_word_set_1_by_v()<cr>
+vnoremap E :call Search_word_set_1_by_v()<cr>
 
 func! Search_word_set_1_by_v() abort
 
@@ -805,7 +808,7 @@ vnoremap w <c-c>
 
 "vnoremap A <c-c>
 vnoremap C <c-c>
-vnoremap F <c-c>
+"vnoremap F <c-c>
 vnoremap H <c-c>
 "vnoremap I <c-c>
 vnoremap J <c-c>
