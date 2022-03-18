@@ -846,8 +846,10 @@ vnoremap <c-x> <c-c>
 "
 
 " quit, esc
-inoremap <expr> <esc> col(".") == 1 ? "<esc>" : "<esc>l"
-inoremap <expr> <c-c> col(".") == 1 ? "<esc>" : "<esc>l"
+inoremap <expr> <esc>
+\ pumvisible()  ? "<c-e>" :
+\ col(".") == 1 ? "<esc>" :
+\                 "<esc>l"
 
 " cursor mv line in
 inoremap <c-a> <c-o>0
@@ -866,6 +868,14 @@ inoremap <c-s> <c-o>h
 " cursor mv word back
 "inoremap <c-q> <c-o>b
 
+" cursor mv d
+inoremap <c-n> <down>
+"inoremap <expr> <c-n> pumvisible() ? "<down>" : "<down>"
+
+" cursor mv u
+inoremap <c-p> <up>
+"inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<up>"
+
 " del line
 " non
 
@@ -876,7 +886,13 @@ inoremap <c-d> <c-o>x
 inoremap <c-h> <c-h>
 
 " del word forword
-inoremap <expr> <c-k> pumvisible() ? "<c-p>" : "<c-o>dw"
+inoremap <expr> <c-k>
+\ pumvisible()         ? "<c-p>"   :
+\ col(".") != col("$") ? "<c-o>dw" :
+\                        ""
+
+" del word back
+inoremap <c-w> <c-w>
 
 " ins cr
 inoremap <c-m> <cr>
@@ -891,16 +907,10 @@ inoremap <tab> <c-v><Tab>
 inoremap <c-v> <c-r>+
 
 " input complete
-"   mv d
-inoremap <expr> <c-j> pumvisible() ? "<c-n>"  : "<c-n>"
-inoremap <expr> <c-n> pumvisible() ? "<down>" : "<down>"
-"inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-r>=Insnum()<cr>"
-"inoremap <expr> <c-n> pumvisible() ? "<down>" : "<c-o>j"
-"   mv u
-inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<c-r>0"
-"inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<up>"
+inoremap <c-y> <c-n>
 "   clear
-inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
+"inoremap <expr> <esc> pumvisible() ? "<c-e>"  : ""
+"inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
 
 " ins bracket
 inoremap ( ()<c-o>h
@@ -934,11 +944,11 @@ endfunc
 inoremap <c-_> <c-r>=Inssymbol()<cr>
 
 " ins bracket
-func! Insbracket() abort
+func! Ins_bracket() abort
   call complete(col('.'), ['()', '{}', '[]', '<>', '""', "''", '``'])
   return ''
 endfunc
-inoremap <c-y> <c-r>=Insbracket()<cr>
+inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=Ins_bracket()<cr>"
 
 " ins num
 func! Insnum() abort
@@ -1197,6 +1207,8 @@ let g:fzf_colors = {
 "fzf#vim#complete#buffer_line([spec])
 
 " lines
+nnoremap <leader>u :BLines<cr>
+vnoremap <leader>u "ay:BLines <c-r>a<cr>
 nnoremap <leader>l :BLines<cr>
 vnoremap <leader>l "ay:BLines <c-r>a<cr>
 command! -bang -nargs=? BLines
