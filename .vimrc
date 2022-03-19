@@ -334,7 +334,7 @@ nnoremap <c-m> J
 nnoremap i viw
 
 " select char current - word end
-"nnoremap I ve
+"nnoremap xx ve
 
 " select box
 nnoremap v <c-v>
@@ -355,10 +355,10 @@ nnoremap <c-c> "+yy
 nnoremap p "0P
 
 " paste pc clipboard
-"nnoremap <c-v> "+P
+"nnoremap xx "+P
 
 " mv line up
-"nnoremap O "0ddk"0P
+"nnoremap xx "0ddk"0P
 
 " dpl line
 "nnoremap <c-d> "0yy"0P
@@ -373,10 +373,6 @@ nnoremap <c-h> <c-r>
 " repeat memory
 nnoremap <c-^> qy
 nnoremap ^     @y
-"nnoremap <c-q> qy
-"nnoremap q     @y
-"nnoremap q qy
-"nnoremap Q @y
 
 " inc, dec
 nnoremap + <c-a>
@@ -386,16 +382,16 @@ nnoremap - <c-x>
 nnoremap " <<
 nnoremap # >>
 
-" upper / lower
-"nnoremap u v~
-
 " char toggle ( upper / lower )
 nnoremap u :call Char_tgl1()<cr>
 nnoremap U :call Char_tgl2()<cr>
 
-"
+" upper / lower
+"nnoremap xx v~
+
+" 
 " search
-"
+" 
 
 " search char
 "nnoremap use not
@@ -403,36 +399,20 @@ nnoremap U :call Char_tgl2()<cr>
 " search char repeat
 "nnoremap use not
 
-" search nxt
-nnoremap n     n
-nnoremap <c-n> N
-"nnoremap n     gn
-"nnoremap <c-n> gN
+" search
+nnoremap n     :call N_srch("f")<cr>
+nnoremap <c-n> :call N_srch("b")<cr>
 
 " search word set
-nnoremap e :call N_srch_str__()<cr>
-
-func! N_srch_str__() abort
-
-  let @/ = expand("<cword>>")
-  return
-endfunc
+nnoremap e :call N_srch_str__(v:false)<cr>
 
 " search word set ( word 1 )
-nnoremap E :call N_srch_str__word1()<cr>
-
-func! N_srch_str__word1() abort
-
-  let @/ = '\<' . expand("<cword>>") . '\>'
-  return
-endfunc
-
+nnoremap E :call N_srch_str__(v:true)<cr>
 
 " search cmd
 nnoremap <leader>k /
-"nnoremap / /
 
-" search prv ( tgl )
+" search word set prv ( tgl )
 nnoremap N /<c-p><c-p><cr>
 
 " search replace all > yank ( file )
@@ -674,11 +654,10 @@ vnoremap x "ax
 vnoremap <c-m> J
 
 " mv str back
-vnoremap <c-w> :call Mvstr("h")<cr>
-"vnoremap <c-i> :call Mvstr("h")<cr>
+vnoremap <c-w> :call Mv_str("h")<cr>
 
 " mv str forward
-vnoremap <c-e> :call Mvstr("l")<cr>
+vnoremap <c-e> :call Mv_str("l")<cr>
 
 " mv line up
 "vnoremap P "0ddk"0P
@@ -721,19 +700,17 @@ vnoremap <c-u> uviw
 " search
 "
 
-" search visual keep forward
-vnoremap n     :call V_srch("f")<cr>
-"vnoremap n     <c-c>lgn
+" search forward
+vnoremap n     :call V_srch_str__slctd_str(v:false)<cr>
 
-" search visual keep back
-vnoremap <c-n> :call V_srch("b")<cr>
-"vnoremap <c-n> <c-c>hgN
+" search back
+vnoremap <c-n> :call V_srch_str__slctd_str(v:false)<cr>
 
 " search word set
-vnoremap e :call V_srch_str__()<cr>
+vnoremap e :call V_srch_str__slctd_str(v:false)<cr>
 
 " search word set ( word 1 )
-vnoremap E :call V_srch_str__word1()<cr>
+vnoremap E :call V_srch_str__slctd_str(v:true)<cr>
 
 " search cmd
 vnoremap <leader>k "ay/<c-r>a
@@ -1263,7 +1240,7 @@ nmap M <Plug>BookmarkToggle
 " list
 nmap <leader>m <Plug>BookmarkShowAll
 
-" prev, next
+" prv, nxt
 nmap Mp <Plug>BookmarkPrev
 nmap Mn <Plug>BookmarkNext
 
@@ -1462,7 +1439,7 @@ func! Char_tgl2() abort
 endfunc
 
 " mv str
-func! Mvstr(lr) abort
+func! Mv_str(lr) abort
 
   execute 'normal! gv"ax' . a:lr . '"aP'
   let l:mvlen = strchars(@a) - 1
@@ -1470,18 +1447,7 @@ func! Mvstr(lr) abort
   return
 endfunc
 
-" use not
-func! Search_visual() abort
-
-  execute 'normal! n'
-  let l:mvlen = strchars(@/) - 1
-  echo l:mvlen
-  execute "normal! v" . l:mvlen . "l"
-  return
-endfunc
-
-" use not
-func! Tab_new_exe() abort
+func! Tab_new_exe() abort " use not
   
   execute "tabnew"
   execute "read ! ll"
@@ -1489,53 +1455,77 @@ func! Tab_new_exe() abort
   execute "1delete"
 endfunc
 
-func! V_str_slctd() abort
+func! Cursor_word() abort
+
+  let l:word = expand("<cword>>")
+  return l:word
+endfunc
+
+" fr normal
+
+func! N_srch(dir) abort
+
+  if     a:dir == "f"
+    normal! n
+
+  elseif a:dir == "b"
+    normal! N
+  endif
+endfunc
+
+func! N_srch_slct(dir) abort " use not
+
+  if     a:dir == "f"
+    normal! gn
+
+  elseif a:dir == "b"
+    normal! gN
+  endif
+endfunc
+
+func! N_srch_str__(word1) abort
+
+  let @/ = Cursor_word()
+
+  if a:word1
+    let @/ = '\<' . @/ . '\>'
+  endif
+endfunc
+
+" fr visual
+
+func! V_slctd_str() abort
 
   execute 'normal! gv"ay'
   return @a
 endfunc
 
-func! V_srch_str__() abort
+func! V_srch_str__slctd_str(word1) abort
 
-  let @/ = V_str_slctd()
-  execute 'normal! gv'
-endfunc
+  let @/ = V_slctd_str()
 
-func! V_srch_str__word1() abort
-
-  let @/ = '\<' . V_str_slctd() . '\>'
-  "execute 'normal! gv'
+  if a:word1
+    let @/ = '\<' . @/ . '\>'
+  endif
 endfunc
 
 func! V_is_slctd_eq_srch_str() abort
 
-  if V_str_slctd() == @/
+  if V_slctd_str() == @/
     return v:true
   else
     return v:false
   endif
 endfunc
 
-func! V_srch(dir) abort
+func! V_srch(dir) abort " use not
 
   if !V_is_slctd_eq_srch_str()
-    call V_srch_str__()
-  else
-    call V_srch_slct(a:dir)
+    call V_srch_str__slctd_str(v:false)
   endif
 endfunc
 
-" use not
-func! V_srch_word1(dir) abort
-
-  if !V_is_slctd_eq_srch_str()
-    call V_srch_str__word1()
-  else
-    call V_srch_slct(a:dir)
-  endif
-endfunc
-
-func! V_srch_slct(dir) abort
+func! V_srch_slct(dir) abort " use not
 
   if     a:dir == "f"
     execute 'normal! `>lgn'
