@@ -390,8 +390,8 @@ nnoremap # >>
 "nnoremap u v~
 
 " char toggle ( upper / lower )
-nnoremap u :call Chartoggle1()<cr>
-nnoremap U :call Chartoggle2()<cr>
+nnoremap u :call Char_tgl1()<cr>
+nnoremap U :call Char_tgl2()<cr>
 
 "
 " search
@@ -410,18 +410,18 @@ nnoremap <c-n> N
 "nnoremap <c-n> gN
 
 " search word set
-nnoremap e :call Search_word_set()<cr>
+nnoremap e :call N_srch_str__()<cr>
 
-func! Search_word_set() abort
+func! N_srch_str__() abort
 
   let @/ = expand("<cword>>")
   return
 endfunc
 
-" search word set ( 1 word )
-nnoremap E :call Search_word_set_1()<cr>
+" search word set ( word 1 )
+nnoremap E :call N_srch_str__word1()<cr>
 
-func! Search_word_set_1() abort
+func! N_srch_str__word1() abort
 
   let @/ = '\<' . expand("<cword>>") . '\>'
   return
@@ -430,7 +430,7 @@ endfunc
 
 " search cmd
 nnoremap <leader>k /
-nnoremap / /
+"nnoremap / /
 
 " search prv ( tgl )
 nnoremap N /<c-p><c-p><cr>
@@ -504,7 +504,7 @@ nnoremap * <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
 "nnoremap ^ <esc>
-"nnoremap / <esc>
+nnoremap / <esc>
 nnoremap ? <esc>
 
 "nnoremap ! <esc>
@@ -720,47 +720,35 @@ vnoremap <c-u> uviw
 "
 " search
 "
-vnoremap n "ay/<c-r>a<cr>N
+
+" search visual keep forward
+vnoremap n     :call V_srch("f")<cr>
+"vnoremap n     <c-c>lgn
+
+" search visual keep back
+vnoremap <c-n> :call V_srch("b")<cr>
+"vnoremap <c-n> <c-c>hgN
 
 " search word set
-vnoremap e :call Search_word_set_by_v()<cr>
+vnoremap e :call V_srch_str__()<cr>
 
-func! Search_word_set_by_v() abort
-
-  execute 'normal! gv"ay'
-  let @/ = @a
-  return
-endfunc
-
-" search word set ( 1 word )
-vnoremap E :call Search_word_set_1_by_v()<cr>
-
-func! Search_word_set_1_by_v() abort
-
-  execute 'normal! gv"ay'
-  let @/ = '\<' . @a . '\>'
-  return
-endfunc
-
-" search keep visual
-"vnoremap n :call Searchvisual()<cr>
+" search word set ( word 1 )
+vnoremap E :call V_srch_str__word1()<cr>
 
 " search cmd
 vnoremap <leader>k "ay/<c-r>a
-vnoremap / "ay/<c-r>a
+"vnoremap / "ay/<c-r>a
 
 " search replace all > yank ( selected )
 vnoremap :s :s//<c-r>0/gc<cr>
 
-" search replace one > yank , next
+" search replace one > yank, next
 vnoremap <c-p> "ad"0Plgn
 
-" search replace one , skip
-vnoremap <c-n> <c-c>lgn
-
 " tag jump
-vnoremap r :FileJmp<cr>
-"vnoremap :f :FileJmp<cr>
+vnoremap r :<line1>,<line2>call s:Tag_jmp()
+"vnoremap r :TagJmp<cr>
+"vnoremap r :FileJmp<cr>
 
 "
 " nop
@@ -772,7 +760,7 @@ vnoremap r :FileJmp<cr>
 "
 vnoremap @ <c-c>
 vnoremap * <c-c>
-"vnoremap / <c-c>
+vnoremap / <c-c>
 "vnoremap ! <c-c>
 "vnoremap " <c-c>
 "vnoremap # <c-c>
@@ -965,7 +953,7 @@ endfunc
 inoremap <c-r> <c-r>=Insreg()<cr>
 
 " ins lua reserved word
-func! Insluareserved() abort
+func! Ins_lua_reserved() abort
   call complete(col('.'), [
   \   'end',
   \   'local',
@@ -976,10 +964,10 @@ func! Insluareserved() abort
   \ ])
   return ''
 endfunc
-"inoremap <c-r> <c-r>=Insluareserved()<cr>
+"inoremap <c-r> <c-r>=Ins_lua_reserved()<cr>
 
 " ins ooq ( lua )
-func! Insusual() abort
+func! Ins_usual() abort
   call complete(col('.'), [
   \   '_s:',
   \   '_s._',
@@ -1009,7 +997,7 @@ func! Insusual() abort
   \ ])
   return ''
 endfunc
-inoremap <c-u> <c-r>=Insusual()<cr>
+"inoremap <c-u> <c-r>=Ins_usual()<cr>
 
 "
 " nop
@@ -1317,18 +1305,20 @@ nnoremap <leader>f :tabnew<cr>:e .<cr>
 " comment auto off
 au FileType * set fo-=c fo-=r fo-=o
 
+
 "
 " vim script
 "
 
-func! s:FileJmp() range abort
+func! s:Tag_jmp() range abort
+"func! s:FileJmp() range abort
 
   let l:files = []
 
   for line_idx in range(a:firstline, a:lastline)
 
     let l:line = getline(line_idx)
-	let l:idx1 = stridx(l:line, " ")
+    let l:idx1 = stridx(l:line, " ")
     if l:idx1 > 0
       let l:file_num  = strpart(l:line, 0, l:idx1)
     else
@@ -1336,7 +1326,6 @@ func! s:FileJmp() range abort
     endif
 
     call add(l:files, l:file_num)
-
   endfor
 
   "call uniq(sort(l:files))
@@ -1355,14 +1344,12 @@ func! s:FileJmp() range abort
 
     execute "tab drop " . l:file
     execute "normal! " . l:num . "G"
-    
   endfor
-
 endfunc
-command! -range=% -nargs=0 FileJmp :<line1>,<line2>call s:FileJmp()
-"nnoremap :f :Cfilter
+"command! -range=% -nargs=0 TagJmp :<line1>,<line2>call s:Tag_jmp()
+"command! -range=% -nargs=0 FileJmp :<line1>,<line2>call s:FileJmp()
 
-func! Chartoggle1() abort
+func! Char_tgl1() abort
   
   let l:c = getline('.')[col('.')-1]
   "echo l:c
@@ -1442,7 +1429,7 @@ func! Chartoggle1() abort
 
 endfunc
 
-func! Chartoggle2() abort
+func! Char_tgl2() abort
   
   let l:c = getline('.')[col('.')-1]
   "echo l:c
@@ -1483,7 +1470,8 @@ func! Mvstr(lr) abort
   return
 endfunc
 
-func! Searchvisual() abort
+" use not
+func! Search_visual() abort
 
   execute 'normal! n'
   let l:mvlen = strchars(@/) - 1
@@ -1492,13 +1480,68 @@ func! Searchvisual() abort
   return
 endfunc
 
-func! Tabnewexe() abort
+" use not
+func! Tab_new_exe() abort
   
   execute "tabnew"
   execute "read ! ll"
   execute "normal! o"
   execute "1delete"
-
 endfunc
-"nnoremap t :call Tabnewexe()<cr>
+
+func! V_str_slctd() abort
+
+  execute 'normal! gv"ay'
+  return @a
+endfunc
+
+func! V_srch_str__() abort
+
+  let @/ = V_str_slctd()
+  execute 'normal! gv'
+endfunc
+
+func! V_srch_str__word1() abort
+
+  let @/ = '\<' . V_str_slctd() . '\>'
+  "execute 'normal! gv'
+endfunc
+
+func! V_is_slctd_eq_srch_str() abort
+
+  if V_str_slctd() == @/
+    return v:true
+  else
+    return v:false
+  endif
+endfunc
+
+func! V_srch(dir) abort
+
+  if !V_is_slctd_eq_srch_str()
+    call V_srch_str__()
+  else
+    call V_srch_slct(a:dir)
+  endif
+endfunc
+
+" use not
+func! V_srch_word1(dir) abort
+
+  if !V_is_slctd_eq_srch_str()
+    call V_srch_str__word1()
+  else
+    call V_srch_slct(a:dir)
+  endif
+endfunc
+
+func! V_srch_slct(dir) abort
+
+  if     a:dir == "f"
+    execute 'normal! `>lgn'
+
+  elseif a:dir == "b"
+    execute 'normal! `<hgN'
+  endif
+endfunc
 
