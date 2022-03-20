@@ -749,6 +749,8 @@ vnoremap ; <c-c>
 vnoremap < <c-c>
 vnoremap > <c-c>
 vnoremap = <c-c>
+vnoremap , <c-c>
+vnoremap . <c-c>
 
 "vnoremap a <c-c>
 vnoremap b <c-c>
