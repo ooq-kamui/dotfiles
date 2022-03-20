@@ -345,7 +345,7 @@ nnoremap I v
 " yank line
 nnoremap c "0yy
 
-" yank line pc clipboard
+" pc clipboard line
 nnoremap <c-c> "+yy
 
 " yank char
@@ -414,6 +414,10 @@ nnoremap <leader>k /
 
 " search word set prv ( tgl )
 nnoremap N /<c-p><c-p><cr>
+
+" search init ( hl )
+nnoremap S /<cr>
+"nnoremap N /<cr>
 
 " search replace all > yank ( file )
 nnoremap :s :%s//<c-r>0/gc<cr>
@@ -514,7 +518,7 @@ nnoremap 0 <esc>
 "nnoremap c <esc>
 "nnoremap d <esc>
 "nnoremap e <esc>
-nnoremap g <esc>
+"nnoremap g <esc>
 "nnoremap h <esc>
 "nnoremap i <esc>
 "nnoremap l <esc>
@@ -548,7 +552,7 @@ nnoremap H <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
 "nnoremap R <esc>
-nnoremap S <esc>
+"nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap W <esc>
@@ -637,11 +641,9 @@ vnoremap <c-l> %
 " ins | cut & ins
 vnoremap <expr> <space> mode() == "<c-v>" ? "I" : "c"
 vnoremap <leader><space> "ac
-"vnoremap <c-i> "ac
 
 " ins $
 vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "g_"
-"vnoremap <expr> <c-l> mode() == "<c-v>" ? "$A" : "g_"
 
 " del str > yank
 vnoremap d "0d
@@ -654,23 +656,23 @@ vnoremap x "ax
 vnoremap <c-m> J
 
 " mv str back
-vnoremap <c-w> :call Mv_str("h")<cr>
+vnoremap <c-w> :call V_mv_str("h")<cr>
 
 " mv str forward
-vnoremap <c-e> :call Mv_str("l")<cr>
+vnoremap <c-e> :call V_mv_str("l")<cr>
 
-" mv line up
-"vnoremap P "0ddk"0P
+" mv line
+vnoremap J :call V_mv_line("j")<cr>
+vnoremap K :call V_mv_line("k")<cr>
 
 " select all
 vnoremap a <esc>ggVG
-"vnoremap A <esc>ggVG
 
 " yank selected
 vnoremap o "0y
 vnoremap c "0y
 
-" yank selected pc clipboard
+" pc clipboard selected
 vnoremap <c-c> "+y
 
 " paste
@@ -683,7 +685,6 @@ vnoremap - <c-x>
 
 " num seq
 vnoremap A g<c-a>
-"vnoremap a g<c-a>
 
 " indent
 vnoremap " <gv
@@ -778,7 +779,8 @@ vnoremap C <c-c>
 "vnoremap F <c-c>
 vnoremap H <c-c>
 "vnoremap I <c-c>
-vnoremap J <c-c>
+"vnoremap J <c-c>
+"vnoremap K <c-c>
 "vnoremap L <c-c>
 vnoremap M <c-c>
 vnoremap N <c-c>
@@ -885,7 +887,7 @@ inoremap < <><c-o>h
 inoremap { {}<c-o>h
 inoremap [ []<c-o>h
 inoremap " ""<c-o>h
-"inoremap ' ''<c-o>h
+inoremap ' ''<c-o>h
 
 " numpad shift
 inoremap <kInsert>   0
@@ -1411,7 +1413,6 @@ endfunc
 func! Char_tgl2() abort
   
   let l:c = getline('.')[col('.')-1]
-  "echo l:c
 
   if     l:c == "("
     let l:rpl = "["
@@ -1440,15 +1441,6 @@ func! Char_tgl2() abort
 
 endfunc
 
-" mv str
-func! Mv_str(lr) abort
-
-  execute 'normal! gv"ax' . a:lr . '"aP'
-  let l:mvlen = strchars(@a) - 1
-  execute "normal! v" . l:mvlen . "h"
-  return
-endfunc
-
 func! Tab_new_exe() abort " use not
   
   execute "tabnew"
@@ -1463,7 +1455,9 @@ func! Cursor_word() abort
   return l:word
 endfunc
 
+" 
 " fr normal
+" 
 
 func! N_srch(dir) abort
 
@@ -1494,7 +1488,32 @@ func! N_srch_str__(word1) abort
   endif
 endfunc
 
+" 
 " fr visual
+" 
+
+func! V_mv_str(lr) abort
+
+  execute 'normal! gv"ax' . a:lr . '"aP'
+  let l:mvlen = strchars(@a) - 1
+  execute "normal! v" . l:mvlen . "h"
+endfunc
+
+func! V_mv_line(ud) range abort
+
+  let l:line_num = a:lastline - a:firstline + 1
+
+  execute 'normal! ' . a:firstline . 'G'
+  execute 'normal! ' . l:line_num . '"add'
+  execute 'normal! ' . a:ud
+  execute 'normal! "aP'
+  execute 'normal! V'
+
+  let l:mv_num = l:line_num - 1
+  if l:mv_num >= 1
+    execute 'normal! ' . l:mv_num . 'j'
+  endif
+endfunc
 
 func! V_slctd_str() abort
 
