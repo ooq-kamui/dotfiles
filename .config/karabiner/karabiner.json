@@ -742,7 +742,7 @@
                         ]
                     },
                     {
-                        "description": "fxx __ xx / doc",
+                        "description": "fxx __ xx ",
                         "manipulators": [
                             {
                                 "from": {
@@ -768,6 +768,9 @@
                                         "modifiers": [
                                             "fn"
                                         ]
+                                    },
+                                    {
+                                        "key_code": "down_arrow"
                                     }
                                 ],
                                 "type": "basic"
