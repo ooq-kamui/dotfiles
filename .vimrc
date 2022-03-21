@@ -103,7 +103,6 @@ augroup END
 autocmd BufWinEnter * normal! zt
 "autocmd BufWinEnter * normal! zz
 
-
 set nowrap
 set whichwrap=b,s,h,l,<,>,[,]
 set virtualedit=onemore " cursor, mv new line
@@ -394,10 +393,10 @@ nnoremap U :call Char_tgl2()<cr>
 " 
 
 " search char
-"nnoremap use not
+"nnoremap " use not
 
 " search char repeat
-"nnoremap use not
+"nnoremap " use not
 
 " search
 nnoremap n     :call N_srch("f")<cr>
@@ -411,6 +410,9 @@ nnoremap E :call N_srch_str__(v:true)<cr>
 
 " search cmd
 nnoremap <leader>k /
+
+" search history
+nnoremap / q/
 
 " search word set prv ( tgl )
 nnoremap N /<c-p><c-p><cr>
@@ -488,7 +490,7 @@ nnoremap * <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
 "nnoremap ^ <esc>
-nnoremap / <esc>
+"nnoremap / <esc>
 nnoremap ? <esc>
 
 "nnoremap ! <esc>
@@ -902,7 +904,7 @@ inoremap <kUp>       8
 inoremap <kPageUp>   9
 
 " ins symbol
-func! Inssymbol() abort
+func! Ins_symbol() abort
 
   let l:lst = ['%', '&', '@']
   "let l:lst = ['!', '#', '$', '%', '&', '^', '~', '|', '?']
@@ -910,7 +912,7 @@ func! Inssymbol() abort
   call complete(col('.'), l:lst)
   return ''
 endfunc
-inoremap <c-_> <c-r>=Inssymbol()<cr>
+inoremap <c-_> <c-r>=Ins_symbol()<cr>
 
 " ins bracket
 func! Ins_bracket() abort
@@ -920,18 +922,18 @@ endfunc
 inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=Ins_bracket()<cr>"
 
 " ins num
-func! Insnum() abort
+func! Ins_num() abort
   call complete(col('.'), ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])
   return ''
 endfunc
-"inoremap <c-n> <c-r>=Insnum()<cr>
+"inoremap <c-n> <c-r>=Ins_num()<cr>
 
 " ins register
-func! Insreg() abort
+func! Ins_reg() abort
   call complete(col('.'), [@0, @1, @2, @3])
   return ''
 endfunc
-inoremap <c-r> <c-r>=Insreg()<cr>
+inoremap <c-r> <c-r>=Ins_reg()<cr>
 
 " ins lua reserved word
 func! Ins_lua_reserved() abort
@@ -954,29 +956,28 @@ func! Ins_usual() abort
   \   '_s._',
   \   'log._("", )',
   \   'log.pp("", )',
-  \   'function',
-  \   'local',
-  \   'return',
-  \   'if _.t then return end',
-  \   'if  then',
-  \   'elseif  then',
-  \   'else',
-  \   'then',
-  \   'then return end',
-  \   'for key, val in pairs() do end',
-  \   'not',
-  \   'or',
-  \   'and',
-  \   'end',
-  \   'nil',
-  \   'alias',
   \   '-- dbg',
   \   '--',
   \   '_.f',
-  \   '_.t',
-  \   '()'
+  \   '_.t'
   \ ])
   return ''
+"  \   'function',
+"  \   'local',
+"  \   'return',
+"  \   'if _.t then return end',
+"  \   'if  then',
+"  \   'elseif  then',
+"  \   'else',
+"  \   'then',
+"  \   'then return end',
+"  \   'for key, val in pairs() do end',
+"  \   'not',
+"  \   'or',
+"  \   'and',
+"  \   'end',
+"  \   'nil',
+"  \   'alias',
 endfunc
 "inoremap <c-u> <c-r>=Ins_usual()<cr>
 
@@ -1084,49 +1085,49 @@ nnoremap :V :VC <c-r>/
 autocmd QuickFixCmdPost vimgrep,grep tab cw
 
 
+""
+"" netrw
+""
 "
-" netrw
+"" netrw launch
+""nnoremap <leader>j :Tex .<cr>
 "
-
-" netrw launch
-"nnoremap <leader>j :Tex .<cr>
-
-let g:netrw_liststyle    = 3 " view file tree
-let g:netrw_browse_split = 3 " file open tab
-let g:Netrw_UserMaps = [
-\ ['<c-o>', 'NetrwKeyBind_opn'],
-\ ['<c-l>', 'NetrwKeyBind_opn'],
-\ ['o'    , 'NetrwKeyBind_mv_word_back'],
-\ ['e'    , 'NetrwKeyBind__top'],
-\ ['p'    , 'NetrwKeyBind__parent'],
-\ ['<c-q>', 'NetrwKeyBind_clz'],
-\ ['<esc>', 'NetrwKeyBind_clz'],
-\ ['m'    , 'NetrwKeyBind_mark'],
-\]
-"\ ['r'    , 'NetrwKeyBind_tagjump'],
-
-func! NetrwKeyBind_opn (islocal) abort
-  return "normal  \<cr>"
-endfunc
-func! NetrwKeyBind_clz (islocal) abort
-  return "normal  :q\<cr>"
-endfunc
-func! NetrwKeyBind_mv_word_back (islocal) abort
-  return "normal! b"
-endfunc
-func! NetrwKeyBind__top (islocal) abort
-  return "Ntree"
-endfunc
-func! NetrwKeyBind__parent (islocal) abort
-  return "normal  -"
-endfunc
-
-func! NetrwKeyBind_mark (islocal) abort
-  return "normal  mf"
-endfunc
-"func! NetrwKeyBind_tagjump (islocal) abort
-"  return "normal  <c-w>gFgTj"
+"let g:netrw_liststyle    = 3 " view file tree
+"let g:netrw_browse_split = 3 " file open tab
+"let g:Netrw_UserMaps = [
+"\ ['<c-o>', 'NetrwKeyBind_opn'],
+"\ ['<c-l>', 'NetrwKeyBind_opn'],
+"\ ['o'    , 'NetrwKeyBind_mv_word_back'],
+"\ ['e'    , 'NetrwKeyBind__top'],
+"\ ['p'    , 'NetrwKeyBind__parent'],
+"\ ['<c-q>', 'NetrwKeyBind_clz'],
+"\ ['<esc>', 'NetrwKeyBind_clz'],
+"\ ['m'    , 'NetrwKeyBind_mark'],
+"\]
+""\ ['r'    , 'NetrwKeyBind_tagjump'],
+"
+"func! NetrwKeyBind_opn (islocal) abort
+"  return "normal  \<cr>"
 "endfunc
+"func! NetrwKeyBind_clz (islocal) abort
+"  return "normal  :q\<cr>"
+"endfunc
+"func! NetrwKeyBind_mv_word_back (islocal) abort
+"  return "normal! b"
+"endfunc
+"func! NetrwKeyBind__top (islocal) abort
+"  return "Ntree"
+"endfunc
+"func! NetrwKeyBind__parent (islocal) abort
+"  return "normal  -"
+"endfunc
+"
+"func! NetrwKeyBind_mark (islocal) abort
+"  return "normal  mf"
+"endfunc
+""func! NetrwKeyBind_tagjump (islocal) abort
+""  return "normal  <c-w>gFgTj"
+""endfunc
 
 
 " 
@@ -1469,6 +1470,15 @@ func! N_srch(dir) abort
   endif
 endfunc
 
+func! N_srch_str__(word1) abort
+
+  let @/ = Cursor_word()
+
+  if a:word1
+    let @/ = '\<' . @/ . '\>'
+  endif
+endfunc
+
 func! N_srch_slct(dir) abort " use not
 
   if     a:dir == "f"
@@ -1476,15 +1486,6 @@ func! N_srch_slct(dir) abort " use not
 
   elseif a:dir == "b"
     normal! gN
-  endif
-endfunc
-
-func! N_srch_str__(word1) abort
-
-  let @/ = Cursor_word()
-
-  if a:word1
-    let @/ = '\<' . @/ . '\>'
   endif
 endfunc
 
