@@ -1502,7 +1502,8 @@ endfunc
 
 func! V_mv_line(ud) range abort
 
-  let l:line_num = a:lastline - a:firstline + 1
+  let l:mv_num   = a:lastline - a:firstline
+  let l:line_num = l:mv_num + 1
 
   execute 'normal! ' . a:firstline . 'G'
   execute 'normal! ' . l:line_num . '"add'
@@ -1510,7 +1511,6 @@ func! V_mv_line(ud) range abort
   execute 'normal! "aP'
   execute 'normal! V'
 
-  let l:mv_num = l:line_num - 1
   if l:mv_num >= 1
     execute 'normal! ' . l:mv_num . 'j'
   endif
