@@ -1,0 +1,25 @@
+{
+  "title": "alt __ fn + alpha [ @kamui ]",
+  "rules": [
+    {
+      "description": "alt __ fn + alpha",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": {
+              "mandatory": [ "option" ]
+            },
+            "key_code": "c"
+          },
+          "to": [
+            {
+              "modifiers": ["fn"],
+              "key_code": "c"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

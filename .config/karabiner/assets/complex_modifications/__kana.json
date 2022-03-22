@@ -1,5 +1,5 @@
 {
-  "title": "xxx > kana [ @kamui ]",
+  "title": "xx > kana [ @kamui ]",
   "rules": [
     {
       "description": "xxx > kana",
@@ -9,6 +9,16 @@
           "from": {
             "modifiers": { "mandatory": [ "shift" ] },
             "key_code": "spacebar"
+          },
+          "to": [
+            { "key_code": "japanese_kana" }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": { "mandatory": [ "shift" ] },
+            "key_code": "japanese_eisuu"
           },
           "to": [
             { "key_code": "japanese_kana" }
