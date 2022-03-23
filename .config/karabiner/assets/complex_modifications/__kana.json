@@ -2,7 +2,7 @@
   "title": "xx > kana [ @kamui ]",
   "rules": [
     {
-      "description": "xxx > kana",
+      "description": "xx > kana",
       "manipulators": [
         {
           "type": "basic",

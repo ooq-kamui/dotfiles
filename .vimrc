@@ -392,11 +392,11 @@ nnoremap U :call Char_tgl2()<cr>
 " search
 " 
 
-" search char
-"nnoremap " use not
+" search char in line - forward
+nnoremap <leader>f f
 
-" search char repeat
-"nnoremap " use not
+" search char in line repeat
+nnoremap ; ;
 
 " search
 nnoremap n     :call N_srch("f")<cr>
@@ -418,6 +418,7 @@ nnoremap / q/
 nnoremap N /<c-p><c-p><cr>
 
 " search init ( hl )
+nnoremap <leader>s /<cr>
 nnoremap S /<cr>
 "nnoremap N /<cr>
 
@@ -483,7 +484,7 @@ nnoremap <bs>    <esc>
 
 nnoremap = <esc>
 nnoremap @ <esc>
-nnoremap ; <esc>
+"nnoremap ; <esc>
 "nnoremap , <esc>
 nnoremap . <esc>
 nnoremap * <esc>
@@ -1200,7 +1201,8 @@ command! -bang -nargs=? -complete=dir Files
 " )
 nnoremap <leader>o :Rg <cr>
 vnoremap <leader>o "ay:Rg <c-r>a<cr>
-vnoremap <leader>d "ay:Rg <c-r>a<cr>func
+" func define
+"vnoremap <leader>d "ay:Rg <c-r>a<cr>func
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
 \   "rg --color=always --line-number --smart-case --no-multiline --no-heading "
@@ -1273,7 +1275,7 @@ let g:bookmark_no_default_key_mappings = 1
 "
 
 " launch
-nnoremap <leader>f :tabnew<cr>:e .<cr>
+nnoremap <leader>d :tabnew<cr>:e .<cr>
 "autocmd FileType molder nnoremap u -
 "autocmd FileType molder nnoremap <c-o> <c-m>
 

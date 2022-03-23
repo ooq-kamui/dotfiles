@@ -36,7 +36,6 @@ bind \cO backward-word
 bind \cF forward-word
 
 bind \cK kill-word
-#bind \cQ kill-word
 #bind \cS backward-delete-char
 
 bind \cC 'clear; commandline -f repaint'
@@ -46,7 +45,7 @@ bind \cy fzf-history-widget
 #bind \cy fzf-file-widget
 #bind \cu fzf-history-widget
 
-bind \cq commandline_cp
+bind \cq commandline_pbcopy
 bind \cr commandline_bracket
 
 
