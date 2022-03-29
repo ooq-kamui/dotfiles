@@ -133,8 +133,15 @@ set shortmess+=I
 packadd Cfilter
 
 
+" 
 " leader
+" 
 let mapleader = "\<esc>"
+
+" leader esc
+nnoremap <leader>u <esc>
+vnoremap <leader>u <esc>
+
 
 "
 " mode normal
@@ -604,14 +611,16 @@ vnoremap v <c-v>
 
 " cursor mv char
 vnoremap l l
-vnoremap <c-o> h
 vnoremap <c-s> h
+vnoremap <c-o> h
 
 " cursor mv word - forward
 vnoremap f e
 
 " cursor mv word - back
 "vnoremap o b
+"vnoremap <c-o> bh
+"vnoremap <c-o> Bh
 
 " cursor mv word split _
 vnoremap _     lt_
@@ -679,7 +688,10 @@ vnoremap c "0y
 vnoremap <c-c> "+y
 
 " paste
-vnoremap p "ad"0P
+vnoremap <expr> p mode() == "<c-v>" ? "I<c-r>0<esc>" : '"ad"0P'
+
+" paste visual box
+"vnoremap P I<c-r>0<esc>
 
 " inc, dec
 vnoremap + <c-a>
@@ -767,6 +779,7 @@ vnoremap h <c-c>
 vnoremap m <c-c>
 "vnoremap n <c-c>
 "vnoremap o <c-c>
+"vnoremap p <c-c>
 vnoremap q <c-c>
 "vnoremap r <c-c>
 "vnoremap s <c-c>
@@ -788,7 +801,7 @@ vnoremap H <c-c>
 vnoremap M <c-c>
 vnoremap N <c-c>
 vnoremap O <c-c>
-vnoremap P <c-c>
+"vnoremap P <c-c>
 vnoremap V <c-c>
 vnoremap Y <c-c>
 
@@ -1178,16 +1191,14 @@ let g:fzf_colors = {
 "fzf#vim#complete#buffer_line([spec])
 
 " lines
-nnoremap <leader>u :BLines<cr>
-vnoremap <leader>u "ay:BLines <c-r>a<cr>
-nnoremap <leader>l :BLines<cr>
-vnoremap <leader>l "ay:BLines <c-r>a<cr>
+nnoremap <leader>i :BLines<cr>
+vnoremap <leader>i "ay:BLines <c-r>a<cr>
 command! -bang -nargs=? BLines
 \ call fzf#vim#buffer_lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
 
 " files
-nnoremap <leader>i :Files <cr>
-vnoremap <leader>i :Files <cr>
+nnoremap <leader>l :Files <cr>
+vnoremap <leader>l :Files <cr>
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)
 
