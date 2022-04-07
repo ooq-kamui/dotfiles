@@ -333,8 +333,8 @@ nnoremap <c-d> D
 " del cr ( line join )
 nnoremap <c-m> J
 
-" select all
-"nnoremap A ggVG
+" select
+nnoremap I v
 
 " select word
 nnoremap i viw
@@ -344,10 +344,10 @@ nnoremap i viw
 
 " select box
 nnoremap v <c-v>
-nnoremap I <c-v>
+"nnoremap I <c-v>
 
-" select
-"nnoremap I v
+" select all
+"nnoremap A ggVG
 
 " yank line
 nnoremap c "0yy
@@ -1511,8 +1511,13 @@ endfunc
 func! V_mv_str(lr) abort
 
   execute 'normal! gv"ax' . a:lr . '"aP'
+
+  execute "normal! v"
   let l:mvlen = strchars(@a) - 1
-  execute "normal! v" . l:mvlen . "h"
+  if l:mvlen <= 0
+    return
+  endif
+  execute "normal! " . l:mvlen . "h"
 endfunc
 
 func! V_mv_line(ud) range abort
