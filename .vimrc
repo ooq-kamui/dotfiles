@@ -344,9 +344,10 @@ nnoremap i viw
 
 " select box
 nnoremap v <c-v>
+nnoremap I <c-v>
 
 " select
-nnoremap I v
+"nnoremap I v
 
 " yank line
 nnoremap c "0yy
@@ -652,6 +653,7 @@ vnoremap <c-l> %
 
 " ins | cut & ins
 vnoremap <expr> <space> mode() == "<c-v>" ? "I" : "c"
+vnoremap <leader><space> "ac
 vnoremap <leader><space> "ac
 
 " ins $
@@ -1198,7 +1200,7 @@ command! -bang -nargs=? BLines
 
 " files
 nnoremap <leader>l :Files <cr>
-vnoremap <leader>l :Files <cr>
+"vnoremap <leader>l :Files <cr>
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)
 
