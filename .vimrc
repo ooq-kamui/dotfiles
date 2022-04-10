@@ -187,8 +187,8 @@ func QfOldFiles(info)
 endfunc
 
 " opn tab new
-nnoremap <leader>n :tabnew<cr>
-nnoremap <leader>N :tabnew<cr>:tabo<cr>
+command! -nargs=* New tabnew <args>
+nnoremap :n :New filename
 
 "
 " cursor mv
@@ -1088,11 +1088,11 @@ nnoremap :g :call Grep()<cr>
 " 
 " vimgrep
 " 
-command! -nargs=1 V  vimgrep   /<args>/j **/*.lua **/*.script **/*.gui_script
-nnoremap :v :V <c-r>/
+"command! -nargs=1 V  vimgrep   /<args>/j **/*.lua **/*.script **/*.gui_script
+"nnoremap :v :V <c-r>/
 
-command! -nargs=1 VC vimgrep /\C<args>/j **/*.lua **/*.script **/*.gui_script
-nnoremap :V :VC <c-r>/
+"command! -nargs=1 VC vimgrep /\C<args>/j **/*.lua **/*.script **/*.gui_script
+"nnoremap :V :VC <c-r>/
 
 
 "
@@ -1455,14 +1455,6 @@ func! Char_tgl2() abort
   execute "normal! x"
   execute "normal! i".l:rpl
 
-endfunc
-
-func! Tab_new_exe() abort " use not
-  
-  execute "tabnew"
-  execute "read ! ll"
-  execute "normal! o"
-  execute "1delete"
 endfunc
 
 func! Cursor_word() abort
