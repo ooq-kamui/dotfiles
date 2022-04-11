@@ -1082,7 +1082,7 @@ func! Grep() abort
   execute "grep! ".'"'.l:str.'"'
 
 endfunc
-nnoremap :g :call Grep()<cr>
+"nnoremap :g :call Grep()
 
 
 " 
@@ -1098,53 +1098,8 @@ nnoremap :g :call Grep()<cr>
 "
 " quickfix
 "
-autocmd QuickFixCmdPost vimgrep,grep tab cw
-
-
-""
-"" netrw
-""
-"
-"" netrw launch
-""nnoremap <leader>j :Tex .<cr>
-"
-"let g:netrw_liststyle    = 3 " view file tree
-"let g:netrw_browse_split = 3 " file open tab
-"let g:Netrw_UserMaps = [
-"\ ['<c-o>', 'NetrwKeyBind_opn'],
-"\ ['<c-l>', 'NetrwKeyBind_opn'],
-"\ ['o'    , 'NetrwKeyBind_mv_word_back'],
-"\ ['e'    , 'NetrwKeyBind__top'],
-"\ ['p'    , 'NetrwKeyBind__parent'],
-"\ ['<c-q>', 'NetrwKeyBind_clz'],
-"\ ['<esc>', 'NetrwKeyBind_clz'],
-"\ ['m'    , 'NetrwKeyBind_mark'],
-"\]
-""\ ['r'    , 'NetrwKeyBind_tagjump'],
-"
-"func! NetrwKeyBind_opn (islocal) abort
-"  return "normal  \<cr>"
-"endfunc
-"func! NetrwKeyBind_clz (islocal) abort
-"  return "normal  :q\<cr>"
-"endfunc
-"func! NetrwKeyBind_mv_word_back (islocal) abort
-"  return "normal! b"
-"endfunc
-"func! NetrwKeyBind__top (islocal) abort
-"  return "Ntree"
-"endfunc
-"func! NetrwKeyBind__parent (islocal) abort
-"  return "normal  -"
-"endfunc
-"
-"func! NetrwKeyBind_mark (islocal) abort
-"  return "normal  mf"
-"endfunc
-""func! NetrwKeyBind_tagjump (islocal) abort
-""  return "normal  <c-w>gFgTj"
-""endfunc
-
+"autocmd QuickFixCmdPost vimgrep,grep cw
+"autocmd QuickFixCmdPost vimgrep,grep tab cw
 
 " 
 " plugin  #bgn#
