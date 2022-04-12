@@ -436,7 +436,6 @@ nnoremap <c-p> gn
 
 " tag jump tab new
 nnoremap r :call N_tag_jmp()<cr>
-"nnoremap r <c-w>gFgTj
 
 " tag jump tab crnt
 "nnoremap R gf
@@ -1283,17 +1282,22 @@ func! Qf_parse(line) abort
   return [l:filename, l:linenum]
 endfunc
 
+func! Tag_jmp(qf_line) abort
+
+  let l:qf_line_ar = Qf_parse(a:qf_line)
+  let l:filename = l:qf_line_ar[0]
+  let l:linenum  = l:qf_line_ar[1]
+
+  execute "tab drop " . l:filename
+  execute "normal! " . l:linenum . "G"
+endfunc
+
 func! N_tag_jmp() abort
 
   let l:qf_bufnr = bufnr("%")
 
   let l:line = getline('.')
-  let l:qf_line = Qf_parse(l:line)
-  let l:filename = l:qf_line[0]
-  let l:linenum  = l:qf_line[1]
-
-  execute "tab drop " . l:filename
-  execute "normal! " . l:linenum . "G"
+  call Tag_jmp(l:line)
 
   execute "sbuffer " . l:qf_bufnr
   execute "normal! " . "j"
@@ -1303,18 +1307,10 @@ func! V_tag_jmp() range abort
 
   let l:qf_bufnr = bufnr("%")
 
-  for line_idx in range(a:firstline, a:lastline)
+  for line_num in range(a:firstline, a:lastline)
 
-    let l:line = getline(line_idx)
-    echo l:line
-
-    let l:qf_line = Qf_parse(l:line)
-    let l:filename = l:qf_line[0]
-    let l:linenum  = l:qf_line[1]
-    "echo l:filename
-
-    execute "tab drop " . l:filename
-    execute "normal! " . l:linenum . "G"
+    let l:line = getline(line_num)
+    call Tag_jmp(l:line)
 
     execute "sbuffer " . l:qf_bufnr
   endfor
