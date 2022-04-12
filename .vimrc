@@ -335,7 +335,7 @@ nnoremap <c-m> J
 nnoremap I v
 
 " select word
-nnoremap i viw
+nnoremap i :call Slct_word()<cr>
 
 " select char current - word end
 "nnoremap xx ve
@@ -592,6 +592,7 @@ nnoremap <c-x> <esc>
 "nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
 
+nnoremap go <esc>
 
 "
 " mode visual
@@ -824,6 +825,7 @@ vnoremap <c-v> <c-c>
 vnoremap <c-x> <c-c>
 "vnoremap <c-y> <c-c>
 
+vnoremap go <c-c>
 
 "
 " mode insert
@@ -1101,10 +1103,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'mattesgroeger/vim-bookmarks'
 Plug 'mattn/vim-molder'
 Plug 'mattn/vim-molder-operations'
-"Plug 'qpkorr/vim-renamer'
-"Plug 'ryym/vim-viler'
-"Plug 'cocopon/vaffle.vim'
-"Plug 'justinmk/vim-dirvish'
 call plug#end()
 
 "
@@ -1260,6 +1258,16 @@ au FileType * set fo-=c fo-=r fo-=o
 " vim script
 "
 
+func! Slct_word() abort
+
+  let l:c = Char()
+  if l:c =~ '\w'
+    execute "normal! viw"
+  else
+    execute "normal! v"
+  endif
+endfunc
+
 func! Qf_parse(line) abort
 
   let l:idx1 = stridx(a:line, " ")
@@ -1316,10 +1324,15 @@ func! V_tag_jmp() range abort
   endfor
 endfunc
 
+func! Char() abort
+
+  let l:c = getline('.')[col('.')-1]
+  return l:c
+endfunc
+
 func! Char_tgl1() abort
   
-  let l:c = getline('.')[col('.')-1]
-  "echo l:c
+  let l:c = Char()
 
   if     l:c == "<"
     let l:rpl = ">"
@@ -1398,7 +1411,7 @@ endfunc
 
 func! Char_tgl2() abort
   
-  let l:c = getline('.')[col('.')-1]
+  let l:c = Char()
 
   if     l:c == "("
     let l:rpl = "["
