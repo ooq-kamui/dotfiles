@@ -65,21 +65,18 @@ au BufNewFile,BufRead *.gui_script set filetype=lua
 au BufNewFile,BufRead *.fish       set filetype=fish
 
 syntax on
-
-
 colorscheme koehler
 
 set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
-
 set incsearch
 set hlsearch
 set ignorecase smartcase
-
 set number
 set list
 set cursorline
-
 set autoindent
+set splitbelow
+set switchbuf=usetab,newtab
 
 ""set expandtab " indent tab > space
 "set tabstop=4    " 2
@@ -214,8 +211,6 @@ nnoremap <c-a> 0
 " cursor mv in line end
 nnoremap <expr> <c-e> col("$") == 1 ? "$" : "$l"
 nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
-"nnoremap <expr> <c-l> col("$") == 1 ? "$" : "$l"
-"nnoremap <expr> <c-l> col("$") == 1 ? "$" : "$l"
 
 " cursor mv char - forward
 nnoremap l l
@@ -239,12 +234,6 @@ nnoremap o b
 nnoremap _     f_l
 nnoremap <c-_> hT_
 
-" cursor mv file back    ( file begin )
-nnoremap go gg0
-
-" cursor mv file forward ( file end   )
-nnoremap gl G$l
-
 " cursor mv bracket pair
 nnoremap <c-l> %
 "nnoremap <c-y> %
@@ -262,8 +251,13 @@ nnoremap O [{
 nnoremap b     <c-o>
 nnoremap <c-b> <c-i>
 
-" cursor mv window split
-"nnoremap <c-w> <c-w>w
+" cursor mv file back    ( file begin )
+nnoremap gk gg0
+"nnoremap go gg0
+
+" cursor mv file forward ( file end   )
+nnoremap gj G$l
+"nnoremap gl G$l
 
 " scroll
 nnoremap <up>   <c-y>
@@ -273,6 +267,9 @@ nnoremap J <c-e>
 
 " scroll cursor line read easily
 "nnoremap xx zt
+
+" cursor mv window nxt
+nnoremap gl <c-w>w
 
 "
 " edit
@@ -309,7 +306,8 @@ autocmd FileType html nnoremap $ O<!--<cr>--><esc>
 autocmd FileType javascript nnoremap $ O/*<cr> */<esc>
 
 " ins sys cmd ( read )
-nnoremap :r :read ! 
+nnoremap :r :r! 
+"nnoremap :r :read ! 
 
 " del char
 nnoremap s "ax
@@ -432,13 +430,13 @@ nnoremap S /<cr>
 
 " search replace all > yank ( file )
 nnoremap :s :%s//<c-r>0/gc<cr>
-"nnoremap :w :%s//<c-r>0/g <cr>
 
 " search replace one > yank next ( only search )
 nnoremap <c-p> gn
 
 " tag jump tab new
-nnoremap r <c-w>gFgTj
+nnoremap r :call N_tag_jmp()<cr>
+"nnoremap r <c-w>gFgTj
 
 " tag jump tab crnt
 "nnoremap R gf
@@ -446,7 +444,7 @@ nnoremap r <c-w>gFgTj
 " mark
 "nnoremap xx m
 
-" wrap
+" wrap tgl
 nnoremap :w :set wrap!
 
 
@@ -642,14 +640,16 @@ vnoremap y o
 vnoremap <c-j> 10j
 vnoremap <c-k> 10k
 
-" cursor mv file back    ( file begin )
-vnoremap go gg0
-
-" cursor mv file forward ( file end   )
-vnoremap gl G$l
-
 " cursor mv bracket pair
 vnoremap <c-l> %
+
+" cursor mv file back    ( file begin )
+vnoremap gk gg0
+"vnoremap go gg0
+
+" cursor mv file forward ( file end   )
+vnoremap gj G$l
+"vnoremap gl G$l
 
 " ins | cut & ins
 vnoremap <expr> <space> mode() == "<c-v>" ? "I" : "c"
@@ -741,9 +741,7 @@ vnoremap :s :s//<c-r>0/gc<cr>
 vnoremap <c-p> "ad"0Plgn
 
 " tag jump
-vnoremap r :<line1>,<line2>call s:Tag_jmp()
-"vnoremap r :TagJmp<cr>
-"vnoremap r :FileJmp<cr>
+vnoremap r :call V_tag_jmp()<cr>
 
 "
 " nop
@@ -1069,37 +1067,31 @@ end
 " ripgrep ( cmd )
 " 
 if executable('rg')
-  let &grepprg = 'rg --vimgrep -s -g "*.lua" -g "*.script" -g "*.gui_script"'
-  set grepformat=%f:%l:%c:%m
+
+  let &grepprg = 'rg -n -s'
+  \            . ' -g "*.lua" -g "*.script" -g "*.gui_script"'
+  \            . ' -g "*.txt" -g "*.json"'
+  set grepformat=%f:%l:%m
 endif
-"nnoremap :g :grep! "<c-r>/"
 
 func! Grep() abort
   
-  "let l:str = @/
-  let l:str = substitute(@/, "(", '\\(', "")
+  let l:str = @/
+  let l:str = substitute(l:str, "(", '\\(', "")
 
   execute "grep! ".'"'.l:str.'"'
+  "execute "grep! ".'"'.l:str.'" | tab cw'
 
 endfunc
-"nnoremap :g :call Grep()
-
-
-" 
-" vimgrep
-" 
-"command! -nargs=1 V  vimgrep   /<args>/j **/*.lua **/*.script **/*.gui_script
-"nnoremap :v :V <c-r>/
-
-"command! -nargs=1 VC vimgrep /\C<args>/j **/*.lua **/*.script **/*.gui_script
-"nnoremap :V :VC <c-r>/
+nnoremap :g :call Grep()
 
 
 "
 " quickfix
 "
+autocmd QuickFixCmdPost grep tab cw
 "autocmd QuickFixCmdPost vimgrep,grep cw
-"autocmd QuickFixCmdPost vimgrep,grep tab cw
+
 
 " 
 " plugin  #bgn#
@@ -1149,7 +1141,14 @@ let g:fzf_colors = {
 
 " lines
 nnoremap <leader>i :BLines<cr>
-vnoremap <leader>i "ay:BLines <c-r>a<cr>
+vnoremap <leader>i :call Fzf_blines()<cr>
+
+func! Fzf_blines() abort
+
+  call V_srch_str__slctd_str(v:false)
+  execute "BLines " . @a
+endfunc
+
 command! -bang -nargs=? BLines
 \ call fzf#vim#buffer_lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
 
@@ -1262,44 +1261,64 @@ au FileType * set fo-=c fo-=r fo-=o
 " vim script
 "
 
-func! s:Tag_jmp() range abort
-"func! s:FileJmp() range abort
+func! Qf_parse(line) abort
 
-  let l:files = []
+  let l:idx1 = stridx(a:line, " ")
+  if l:idx1 > 0
+    let l:filename_linenum = strpart(a:line, 0, l:idx1 - 1)
+  else
+    let l:filename_linenum = a:line
+  endif
+
+  let l:idx1 = stridx(l:filename_linenum, "|")
+  if l:idx1 > 0
+    let l:filename = strpart(l:filename_linenum,          0, l:idx1)
+    let l:linenum  = strpart(l:filename_linenum, l:idx1 + 1)
+  else
+    let l:filename = l:filename_linenum
+    let l:linenum  = "1"
+  endif
+  "echo l:filename . " " . l:linenum
+
+  return [l:filename, l:linenum]
+endfunc
+
+func! N_tag_jmp() abort
+
+  let l:qf_bufnr = bufnr("%")
+
+  let l:line = getline('.')
+  let l:qf_line = Qf_parse(l:line)
+  let l:filename = l:qf_line[0]
+  let l:linenum  = l:qf_line[1]
+
+  execute "tab drop " . l:filename
+  execute "normal! " . l:linenum . "G"
+
+  execute "sbuffer " . l:qf_bufnr
+  execute "normal! " . "j"
+endfunc
+
+func! V_tag_jmp() range abort
+
+  let l:qf_bufnr = bufnr("%")
 
   for line_idx in range(a:firstline, a:lastline)
 
     let l:line = getline(line_idx)
-    let l:idx1 = stridx(l:line, " ")
-    if l:idx1 > 0
-      let l:file_num  = strpart(l:line, 0, l:idx1)
-    else
-      let l:file_num  = l:line
-    endif
+    echo l:line
 
-    call add(l:files, l:file_num)
-  endfor
+    let l:qf_line = Qf_parse(l:line)
+    let l:filename = l:qf_line[0]
+    let l:linenum  = l:qf_line[1]
+    "echo l:filename
 
-  "call uniq(sort(l:files))
+    execute "tab drop " . l:filename
+    execute "normal! " . l:linenum . "G"
 
-  for file_num in l:files
-
-    let l:idx1 = stridx(l:file_num, "|")
-
-    if l:idx1 > 0
-      let l:file = strpart(l:file_num,          0, l:idx1)
-      let l:num  = strpart(l:file_num, l:idx1 + 1)
-    else
-      let l:file = l:file_num
-      let l:num  = "1"
-    endif
-
-    execute "tab drop " . l:file
-    execute "normal! " . l:num . "G"
+    execute "sbuffer " . l:qf_bufnr
   endfor
 endfunc
-"command! -range=% -nargs=0 TagJmp :<line1>,<line2>call s:Tag_jmp()
-"command! -range=% -nargs=0 FileJmp :<line1>,<line2>call s:FileJmp()
 
 func! Char_tgl1() abort
   
