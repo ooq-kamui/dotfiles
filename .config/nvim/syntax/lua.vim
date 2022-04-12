@@ -37,10 +37,12 @@ hi luaNumber       ctermfg=magenta
 hi luaFunc         ctermfg=130
 
 " table
-hi luaTable        ctermfg=121
+hi luaTable        ctermfg=39
+"hi luaTable        ctermfg=121
 
 " err
 hi luaError        ctermfg=yellow ctermbg=magenta
+hi luaParenError   ctermfg=none   ctermbg=magenta
 
 syn match luaFunctionName "\(\<function\>\)\@<=\s\+\S\+\s*(\@="
 hi luaFunctionName ctermfg=41
@@ -64,6 +66,5 @@ hi luaOpe          ctermfg=121
 
 syn keyword luaSelf _s
 hi luaSelf         ctermfg=33
-
 
 
