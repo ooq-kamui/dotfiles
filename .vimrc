@@ -163,19 +163,26 @@ nnoremap a :w<cr>
 " reload
 nnoremap :e :e!
 
-" open latest
+" opn latest
 "nnoremap xx `0
 
-" open latest list
-nnoremap <leader>y :Latest<cr>
+" opn file rcnt
+nnoremap <leader>y :History<cr>
+"nnoremap <leader>y :FileRcntQf<cr>
 
 " opn tab new
 command! -nargs=* New tabnew <args>
 nnoremap :n :New filename
 
-"
+" opn tab file
+nnoremap :d :tab drop filename
+
+" cmd history
+nnoremap <leader>: :CmdHstry<cr>
+
+" 
 " cursor mv
-"
+" 
 
 " cursor mv dir
 nnoremap <Right> l
@@ -271,10 +278,12 @@ nnoremap <space> i
 nnoremap m i<cr><esc>
 
 " ins space
-"nnoremap * i <esc>l
+"nnoremap xx i <esc>l
 
 " ins comma
 nnoremap , i, <esc>l
+
+" ins comma $, nxt
 nnoremap < A,<esc>j
 
 " ins comment 1
@@ -286,7 +295,7 @@ autocmd FileType fish nnoremap ! ^i# <esc>0
 autocmd FileType css  nnoremap ! ^i/* <esc>$li */<esc>0
 autocmd FileType javascript nnoremap ! ^i// <esc>0
 
-" ins comment mlt lua
+" ins comment mlt
 autocmd FileType lua  nnoremap $ O--[[<cr>--]]<esc>
 autocmd FileType css  nnoremap $ O/*<cr> */<esc>
 autocmd FileType html nnoremap $ O<!--<cr>--><esc>
@@ -294,7 +303,6 @@ autocmd FileType javascript nnoremap $ O/*<cr> */<esc>
 
 " ins sys cmd ( read )
 nnoremap :r :r! 
-"nnoremap :r :read ! 
 
 " del char
 nnoremap s "ax
@@ -382,43 +390,42 @@ nnoremap U :call Char_tgl2()<cr>
 "nnoremap xx v~
 
 " 
-" search
+" srch
 " 
 
-" search char in line - forward
+" srch char in line - forward
 nnoremap <leader>f f
 
-" search char in line repeat
+" srch char in line repeat
 nnoremap ; ;
 
-" search
+" srch
 nnoremap n     :call N_srch("f")<cr>
 nnoremap <c-n> :call N_srch("b")<cr>
 
-" search word set
+" srch word set
 nnoremap e :call N_srch_str__(v:false)<cr>
 
-" search word set ( word 1 )
+" srch word set ( word 1 )
 nnoremap E :call N_srch_str__(v:true)<cr>
 
-" search cmd
+" srch cmdline
 nnoremap <leader>k /
 
-" search history
-nnoremap / q/
+" srch history
+nnoremap <leader>j :SrchHstry<cr>
 
-" search word set prv ( tgl )
+" srch word set prv ( tgl )
 nnoremap N /<c-p><c-p><cr>
 
-" search init ( hl )
-nnoremap <leader>s /<cr>
-nnoremap S /<cr>
-"nnoremap N /<cr>
+" srch init ( hl )
+nnoremap S /<cr>N
+"nnoremap S /<cr>
 
-" search replace all > yank ( file )
+" srch replace all > yank ( file )
 nnoremap :s :%s//<c-r>0/gc<cr>
 
-" search replace one > yank next ( only search )
+" srch replace one > yank next ( only srch )
 nnoremap <c-p> gn
 
 " tag jump tab new
@@ -433,6 +440,14 @@ nnoremap r :call N_tag_jmp()<cr>
 " wrap tgl
 nnoremap :w :set wrap!
 
+" grep ( rg fzf )
+nnoremap <leader>o :Rg <cr>
+
+" grep ( rg qf )
+nnoremap :g :call Grep()
+
+" grep bfr ( blines )
+nnoremap <leader>i :BLines<cr>
 
 "
 " tab
@@ -483,7 +498,7 @@ nnoremap * <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
 "nnoremap ^ <esc>
-"nnoremap / <esc>
+nnoremap / <esc>
 nnoremap ? <esc>
 
 "nnoremap ! <esc>
@@ -520,7 +535,7 @@ nnoremap 0 <esc>
 "nnoremap m <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
-"nnoremap q <esc>
+nnoremap q <esc>
 "nnoremap r <esc>
 "nnoremap s <esc>
 nnoremap t <esc>
@@ -702,33 +717,41 @@ vnoremap u     ~viw
 vnoremap <c-u> uviw
 
 "
-" search
+" srch
 "
 
-" search forward
+" srch forward
 vnoremap n     :call V_srch_str__slctd_str(v:false)<cr>
 
-" search back
+" srch back
 vnoremap <c-n> :call V_srch_str__slctd_str(v:false)<cr>
 
-" search word set
+" srch word set
 vnoremap e :call V_srch_str__slctd_str(v:false)<cr>
 
-" search word set ( word 1 )
+" srch word set ( word 1 )
 vnoremap E :call V_srch_str__slctd_str(v:true)<cr>
 
-" search cmd
+" srch cmdline
 vnoremap <leader>k "ay/<c-r>a
-"vnoremap / "ay/<c-r>a
 
-" search replace all > yank ( selected )
+" srch replace all > yank
 vnoremap :s :s//<c-r>0/gc<cr>
 
-" search replace one > yank, next
+" srch replace one > yank, nxt
 vnoremap <c-p> "ad"0Plgn
 
-" tag jump
+" tag jmp
 vnoremap r :call V_tag_jmp()<cr>
+
+" grep bfr ( blines )
+vnoremap <leader>i :call V_blines()<cr>
+
+" grep ( rg )
+vnoremap <leader>o "ay:Rg <c-r>a<cr>
+
+" grep func define
+"vnoremap <leader>d "ay:Rg <c-r>a<cr>func
 
 "
 " nop
@@ -767,7 +790,7 @@ vnoremap m <c-c>
 "vnoremap n <c-c>
 "vnoremap o <c-c>
 "vnoremap p <c-c>
-"vnoremap q <c-c>
+vnoremap q <c-c>
 "vnoremap r <c-c>
 "vnoremap s <c-c>
 vnoremap t <c-c>
@@ -789,6 +812,7 @@ vnoremap M <c-c>
 vnoremap N <c-c>
 vnoremap O <c-c>
 "vnoremap P <c-c>
+vnoremap S <c-c>
 vnoremap V <c-c>
 vnoremap Y <c-c>
 
@@ -995,8 +1019,9 @@ inoremap <c-b> <nop>
 
 
 " 
-" mode ex
+" mode cmd
 " 
+
 " quit
 cnoremap <c-q> <c-c>
 
@@ -1050,9 +1075,8 @@ if &term =~ '^screen'
   execute "set <xLeft>=\e[1;*D"
 end
 
-
 " 
-" ripgrep ( cmd )
+" grep ( rg )
 " 
 if executable('rg')
 
@@ -1068,17 +1092,12 @@ func! Grep() abort
   let l:str = substitute(l:str, "(", '\\(', "")
 
   execute "grep! ".'"'.l:str.'"'
-  "execute "grep! ".'"'.l:str.'" | tab cw'
-
 endfunc
-nnoremap :g :call Grep()
-
 
 "
 " quickfix
 "
-autocmd QuickFixCmdPost grep tab cw
-"autocmd QuickFixCmdPost vimgrep,grep cw
+autocmd QuickFixCmdPost grep,vimgrep tab cw
 
 
 " 
@@ -1123,11 +1142,9 @@ let g:fzf_colors = {
 "let g:fzf_buffers_jump = 1
 "fzf#vim#complete#buffer_line([spec])
 
-" lines
-nnoremap <leader>i :BLines<cr>
-vnoremap <leader>i :call Fzf_blines()<cr>
+" grep bfr ( blines )
 
-func! Fzf_blines() abort
+func! V_blines() abort
 
   call V_srch_str__slctd_str(v:false)
   execute "BLines " . @a
@@ -1142,18 +1159,15 @@ nnoremap <leader>l :Files <cr>
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)
 
-" rg ( fzf )
-"
+" grep ( rg )
+
 " fzf#vim#grep(
 "   command,
 "   [has_column bool],
 "   [spec dict],
 "   [fullscreen bool]
 " )
-nnoremap <leader>o :Rg <cr>
-vnoremap <leader>o "ay:Rg <c-r>a<cr>
-" func define
-"vnoremap <leader>d "ay:Rg <c-r>a<cr>func
+
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
 \   "rg --color=always --line-number --smart-case --no-multiline --no-heading "
@@ -1168,9 +1182,16 @@ command! -bang -nargs=* Rg
 \ )
 "\     -g "*.lua" -g "*.script" -g "*.gui_script" 
 
-"
+" cmd history
+command! -bang -nargs=* CmdHstry
+\ call fzf#vim#command_history(fzf#vim#with_preview(), <bang>1)
+
+" srch history
+command! -bang -nargs=* SrchHstry
+\ call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)
+
 " ctags ( fzf )
-"
+
 set tags=./.tags;
 "nnoremap <c-]> g<c-]>
 "nnoremap xx :!sh sh/ctags.sh
@@ -1209,17 +1230,6 @@ let g:bookmark_no_default_key_mappings = 1
 
 "nmap <c-j>     <Plug>BookmarkMoveToLine
 "nmap <Leader>x <Plug>BookmarkClearAll
-
-
-"
-" renamer
-"
-
-" file lst
-"nnoremap <leader>r :tabnew<cr>:Renamer<cr>
-" save
-"nnoremap R :Ren
-
 
 "
 " molder
@@ -1529,8 +1539,9 @@ func! V_srch_slct(dir) abort " use not
   endif
 endfunc
 
-" latest
-command! -nargs=0 Latest
+" file rcnt qf
+
+command! -nargs=0 FileRcntQf
 \ call setqflist([], ' ', {'lines' : v:oldfiles, 'efm' : '%f',
 \                          'quickfixtextfunc' : 'QfOldFiles'}) | tab cw
 
