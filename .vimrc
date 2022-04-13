@@ -169,20 +169,6 @@ nnoremap :e :e!
 " open latest list
 nnoremap <leader>y :Latest<cr>
 
-command! -nargs=0 Latest
-\ call setqflist([], ' ', {'lines' : v:oldfiles, 'efm' : '%f',
-\                          'quickfixtextfunc' : 'QfOldFiles'}) | tab cw
-func QfOldFiles(info)
-  " info frm quickfix
-  let items = getqflist({'id' : a:info.id, 'items' : 1}).items
-  let l = []
-  for idx in range(a:info.start_idx - 1, a:info.end_idx - 1)
-    " mod file-name simple
-    call add(l, fnamemodify(bufname(items[idx].bufnr), ':p:.'))
-  endfor
-  return l
-endfunc
-
 " opn tab new
 command! -nargs=* New tabnew <args>
 nnoremap :n :New filename
@@ -296,6 +282,7 @@ autocmd FileType lua  nnoremap ! ^i-- <esc>0
 autocmd FileType vim  nnoremap ! ^i"<esc>0
 autocmd FileType text nnoremap ! ^i# <esc>0
 autocmd FileType sh   nnoremap ! ^i# <esc>0
+autocmd FileType fish nnoremap ! ^i# <esc>0
 autocmd FileType css  nnoremap ! ^i/* <esc>$li */<esc>0
 autocmd FileType javascript nnoremap ! ^i// <esc>0
 
@@ -533,7 +520,7 @@ nnoremap 0 <esc>
 "nnoremap m <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
-nnoremap q <esc>
+"nnoremap q <esc>
 "nnoremap r <esc>
 "nnoremap s <esc>
 nnoremap t <esc>
@@ -780,7 +767,7 @@ vnoremap m <c-c>
 "vnoremap n <c-c>
 "vnoremap o <c-c>
 "vnoremap p <c-c>
-vnoremap q <c-c>
+"vnoremap q <c-c>
 "vnoremap r <c-c>
 "vnoremap s <c-c>
 vnoremap t <c-c>
@@ -1406,7 +1393,6 @@ func! Char_tgl1() abort
 
   execute "normal! x"
   execute "normal! i".l:rpl
-
 endfunc
 
 func! Char_tgl2() abort
@@ -1437,7 +1423,6 @@ func! Char_tgl2() abort
 
   execute "normal! x"
   execute "normal! i".l:rpl
-
 endfunc
 
 func! Cursor_word() abort
@@ -1445,43 +1430,6 @@ func! Cursor_word() abort
   let l:word = expand("<cword>>")
   return l:word
 endfunc
-
-" 
-" fr normal
-" 
-
-func! N_srch(dir) abort
-
-  if     a:dir == "f"
-    normal! n
-
-  elseif a:dir == "b"
-    normal! N
-  endif
-endfunc
-
-func! N_srch_str__(word1) abort
-
-  let @/ = Cursor_word()
-
-  if a:word1
-    let @/ = '\<' . @/ . '\>'
-  endif
-endfunc
-
-func! N_srch_slct(dir) abort " use not
-
-  if     a:dir == "f"
-    normal! gn
-
-  elseif a:dir == "b"
-    normal! gN
-  endif
-endfunc
-
-" 
-" fr visual
-" 
 
 func! V_mv_str(lr) abort
 
@@ -1517,6 +1465,15 @@ func! V_slctd_str() abort
   return @a
 endfunc
 
+func! N_srch_str__(word1) abort
+
+  let @/ = Cursor_word()
+
+  if a:word1
+    let @/ = '\<' . @/ . '\>'
+  endif
+endfunc
+
 func! V_srch_str__slctd_str(word1) abort
 
   let @/ = V_slctd_str()
@@ -1535,10 +1492,30 @@ func! V_is_slctd_eq_srch_str() abort
   endif
 endfunc
 
+func! N_srch(dir) abort
+
+  if     a:dir == "f"
+    normal! n
+
+  elseif a:dir == "b"
+    normal! N
+  endif
+endfunc
+
 func! V_srch(dir) abort " use not
 
   if !V_is_slctd_eq_srch_str()
     call V_srch_str__slctd_str(v:false)
+  endif
+endfunc
+
+func! N_srch_slct(dir) abort " use not
+
+  if     a:dir == "f"
+    normal! gn
+
+  elseif a:dir == "b"
+    normal! gN
   endif
 endfunc
 
@@ -1550,5 +1527,21 @@ func! V_srch_slct(dir) abort " use not
   elseif a:dir == "b"
     execute 'normal! `<hgN'
   endif
+endfunc
+
+" latest
+command! -nargs=0 Latest
+\ call setqflist([], ' ', {'lines' : v:oldfiles, 'efm' : '%f',
+\                          'quickfixtextfunc' : 'QfOldFiles'}) | tab cw
+
+func QfOldFiles(info)
+  " info frm quickfix
+  let items = getqflist({'id' : a:info.id, 'items' : 1}).items
+  let l = []
+  for idx in range(a:info.start_idx - 1, a:info.end_idx - 1)
+    " mod file-name simple
+    call add(l, fnamemodify(bufname(items[idx].bufnr), ':p:.'))
+  endfor
+  return l
 endfunc
 
