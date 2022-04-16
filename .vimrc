@@ -346,7 +346,8 @@ nnoremap v <c-v>
 nnoremap c "0yy
 
 " pc clipboard line
-nnoremap <c-c> "+yy
+nnoremap C     "+yy
+"nnoremap <c-c> "+yy
 
 " yank char
 "nnoremap xx "0yl
@@ -546,7 +547,7 @@ nnoremap t <esc>
 nnoremap z <esc>
 
 nnoremap A <esc>
-nnoremap C <esc>
+"nnoremap C <esc>
 nnoremap D <esc>
 "nnoremap E <esc>
 "nnoremap F <esc>
@@ -689,7 +690,8 @@ vnoremap o "0y
 vnoremap c "0y
 
 " pc clipboard selected
-vnoremap <c-c> "+y
+vnoremap C "+y
+"vnoremap <c-c> "+y
 
 " paste
 vnoremap <expr> p mode() == "<c-v>" ? "I<c-r>0<esc>" : '"ad"0P'
@@ -761,82 +763,82 @@ vnoremap <leader>o "ay:Rg <c-r>a<cr>
 "
 " esc
 "
-vnoremap @ <c-c>
-vnoremap * <c-c>
-vnoremap / <c-c>
-"vnoremap ! <c-c>
-"vnoremap " <c-c>
-"vnoremap # <c-c>
-vnoremap $ <c-c>
-"vnoremap _ <c-c>
-vnoremap ? <c-c>
-vnoremap ( <c-c>
-vnoremap ; <c-c>
-vnoremap < <c-c>
-vnoremap > <c-c>
-vnoremap = <c-c>
-vnoremap , <c-c>
-vnoremap . <c-c>
+vnoremap @ <esc>
+vnoremap * <esc>
+vnoremap / <esc>
+"vnoremap ! <esc>
+"vnoremap " <esc>
+"vnoremap # <esc>
+vnoremap $ <esc>
+"vnoremap _ <esc>
+vnoremap ? <esc>
+vnoremap ( <esc>
+vnoremap ; <esc>
+vnoremap < <esc>
+vnoremap > <esc>
+vnoremap = <esc>
+vnoremap , <esc>
+vnoremap . <esc>
 
-"vnoremap a <c-c>
-vnoremap b <c-c>
-"vnoremap c <c-c>
-"vnoremap d <c-c>
-"vnoremap e <c-c>
-"vnoremap f <c-c>
-vnoremap h <c-c>
-"vnoremap i <c-c>
-vnoremap m <c-c>
-"vnoremap n <c-c>
-"vnoremap o <c-c>
-"vnoremap p <c-c>
-vnoremap q <c-c>
-"vnoremap r <c-c>
-"vnoremap s <c-c>
-vnoremap t <c-c>
-"vnoremap u <c-c>
-"vnoremap v <c-c>
-vnoremap w <c-c>
-"vnoremap x <c-c>
-"vnoremap y <c-c>
+"vnoremap a <esc>
+vnoremap b <esc>
+"vnoremap c <esc>
+"vnoremap d <esc>
+"vnoremap e <esc>
+"vnoremap f <esc>
+vnoremap h <esc>
+"vnoremap i <esc>
+vnoremap m <esc>
+"vnoremap n <esc>
+"vnoremap o <esc>
+"vnoremap p <esc>
+vnoremap q <esc>
+"vnoremap r <esc>
+"vnoremap s <esc>
+vnoremap t <esc>
+"vnoremap u <esc>
+"vnoremap v <esc>
+vnoremap w <esc>
+"vnoremap x <esc>
+"vnoremap y <esc>
 
-"vnoremap A <c-c>
-vnoremap C <c-c>
-"vnoremap F <c-c>
-vnoremap H <c-c>
-"vnoremap I <c-c>
-"vnoremap J <c-c>
-"vnoremap K <c-c>
-"vnoremap L <c-c>
-vnoremap M <c-c>
-vnoremap N <c-c>
-vnoremap O <c-c>
-"vnoremap P <c-c>
-vnoremap S <c-c>
-vnoremap V <c-c>
-vnoremap Y <c-c>
+"vnoremap A <esc>
+"vnoremap C <esc>
+"vnoremap F <esc>
+vnoremap H <esc>
+"vnoremap I <esc>
+"vnoremap J <esc>
+"vnoremap K <esc>
+"vnoremap L <esc>
+vnoremap M <esc>
+vnoremap N <esc>
+vnoremap O <esc>
+"vnoremap P <esc>
+vnoremap S <esc>
+vnoremap V <esc>
+vnoremap Y <esc>
 
-vnoremap <c-a> <c-c>
-"vnoremap <c-c> <c-c>
-vnoremap <c-d> <c-c>
-"vnoremap <c-e> <c-c>
-vnoremap <c-f> <c-c>
-vnoremap <c-i> <c-c>
-"vnoremap <c-l> <c-c>
-"vnoremap <c-m> <c-c>
-"vnoremap <c-n> <c-c>
-"vnoremap <c-o> <c-c>
-"vnoremap <c-p> <c-c>
-vnoremap <c-q> <c-c>
-vnoremap <c-r> <c-c>
-"vnoremap <c-s> <c-c>
-"vnoremap <c-u> <c-c>
-vnoremap <c-v> <c-c>
-"vnoremap <c-w> <c-c>
-vnoremap <c-x> <c-c>
-"vnoremap <c-y> <c-c>
+vnoremap <c-a> <esc>
+"vnoremap <c-c> <esc>
+vnoremap <c-d> <esc>
+"vnoremap <c-e> <esc>
+vnoremap <c-f> <esc>
+vnoremap <c-i> <esc>
+"vnoremap <c-l> <esc>
+"vnoremap <c-m> <esc>
+"vnoremap <c-n> <esc>
+"vnoremap <c-o> <esc>
+"vnoremap <c-p> <esc>
+vnoremap <c-q> <esc>
+vnoremap <c-r> <esc>
+"vnoremap <c-s> <esc>
+"vnoremap <c-u> <esc>
+vnoremap <c-v> <esc>
+"vnoremap <c-w> <esc>
+vnoremap <c-x> <esc>
+"vnoremap <c-y> <esc>
 
-vnoremap go <c-c>
+vnoremap go <esc>
 
 "
 " mode insert
@@ -1538,6 +1540,13 @@ func! V_srch_slct(dir) abort " use not
     execute 'normal! `<hgN'
   endif
 endfunc
+
+func! Hl_grp() abort
+
+  echo synIDattr(synID(line("."), col("."), 1), "name")
+endfunc
+" and
+" :highlight [grp name]
 
 " file rcnt qf
 

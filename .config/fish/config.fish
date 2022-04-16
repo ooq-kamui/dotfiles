@@ -12,6 +12,7 @@ set -x PATH /opt/homebrew/bin $PATH
 set -x PATH $HOME/.cargo/bin $PATH
 set -x PATH $HOME/.nodebrew/current/bin $PATH
 set -x RIPGREP_CONFIG_PATH ~/.ripgreprc
+
 #set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --glob "!.git"'
 #set -x FZF_CTRL_T_COMMAND  'rg --files --hidden --follow --glob "!.git/*"'
 set -x FZF_DEFAULT_OPTS '--bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
@@ -38,15 +39,17 @@ bind \cF forward-word
 bind \cK kill-word
 #bind \cS backward-delete-char
 
-bind \cC 'clear; commandline -f repaint'
+bind \cx 'clear; commandline -f repaint'
+#bind \cq 'clear; commandline -f repaint'
 
 bind \cu fzf-file-widget
 bind \cy fzf-history-widget
 #bind \cy fzf-file-widget
 #bind \cu fzf-history-widget
 
-bind \cq commandline_pbcopy
-bind \cr commandline_bracket
+bind \cc commandline_pbcopy
+bind \cb commandline_bracket
+#bind \cr commandline_bracket
 
 
 # color
