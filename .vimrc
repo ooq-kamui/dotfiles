@@ -82,11 +82,15 @@ set switchbuf=usetab,newtab
 "set tabstop=4    " 2
 "set shiftwidth=4 " 2
 
-set expandtab " indent tab > space
+" indent
+set noexpandtab                " space
+autocmd FileType lua expandtab " tab
+
 set tabstop=2
 set shiftwidth=2
 
 filetype indent on
+autocmd FileType lua  setlocal sw=2 sts=2 ts=2 et
 autocmd FileType text setlocal sw=2 sts=2 ts=2 et
 autocmd FileType json setlocal sw=2 sts=2 ts=2 et
 autocmd FileType vim  setlocal sw=2 sts=2 ts=2 et
@@ -166,8 +170,8 @@ nnoremap :e :e!
 " opn latest
 "nnoremap xx `0
 
-" opn file rcnt
-nnoremap <leader>y :History<cr>
+" opn file rcnt ( history )
+nnoremap <leader>y :FileHstry<cr>
 "nnoremap <leader>y :FileRcntQf<cr>
 
 " opn tab new
@@ -290,8 +294,8 @@ nnoremap < A,<esc>j
 autocmd FileType lua  nnoremap ! ^i-- <esc>0
 autocmd FileType vim  nnoremap ! ^i"<esc>0
 autocmd FileType text nnoremap ! ^i# <esc>0
-autocmd FileType sh   nnoremap ! ^i# <esc>0
-autocmd FileType fish nnoremap ! ^i# <esc>0
+autocmd FileType sh   nnoremap ! ^i#<esc>0
+autocmd FileType fish nnoremap ! ^i#<esc>0
 autocmd FileType css  nnoremap ! ^i/* <esc>$li */<esc>0
 autocmd FileType javascript nnoremap ! ^i// <esc>0
 
@@ -547,6 +551,7 @@ nnoremap t <esc>
 nnoremap z <esc>
 
 nnoremap A <esc>
+nnoremap B <esc>
 "nnoremap C <esc>
 nnoremap D <esc>
 "nnoremap E <esc>
@@ -595,6 +600,7 @@ nnoremap <c-x> <esc>
 "nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
 
+nnoremap gh <esc>
 nnoremap go <esc>
 
 "
@@ -629,8 +635,8 @@ vnoremap _     lt_
 vnoremap <c-_> F_h
 
 " cursor mv space - forward ( word pre )
-vnoremap I wh
-vnoremap F wh
+"vnoremap I wh
+"vnoremap F wh
 
 " cursor mv in selected
 vnoremap y o
@@ -803,10 +809,11 @@ vnoremap w <esc>
 "vnoremap y <esc>
 
 "vnoremap A <esc>
+vnoremap B <esc>
 "vnoremap C <esc>
-"vnoremap F <esc>
+vnoremap F <esc>
 vnoremap H <esc>
-"vnoremap I <esc>
+vnoremap I <esc>
 "vnoremap J <esc>
 "vnoremap K <esc>
 "vnoremap L <esc>
@@ -912,12 +919,12 @@ inoremap <c-y> <c-n>
 "inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
 
 " ins bracket
-inoremap ( ()<c-o>h
-inoremap < <><c-o>h
-inoremap { {}<c-o>h
-inoremap [ []<c-o>h
-inoremap " ""<c-o>h
-inoremap ' ''<c-o>h
+"inoremap ( ()<c-o>h
+"inoremap < <><c-o>h
+"inoremap { {}<c-o>h
+"inoremap [ []<c-o>h
+"inoremap " ""<c-o>h
+"inoremap ' ''<c-o>h
 
 " numpad shift
 inoremap <kInsert>   0
@@ -932,7 +939,7 @@ inoremap <kUp>       8
 inoremap <kPageUp>   9
 
 " ins symbol
-func! Ins_symbol() abort
+func! I_symbol() abort
 
   let l:lst = ['%', '&', '@']
   "let l:lst = ['!', '#', '$', '%', '&', '^', '~', '|', '?']
@@ -940,31 +947,31 @@ func! Ins_symbol() abort
   call complete(col('.'), l:lst)
   return ''
 endfunc
-inoremap <c-_> <c-r>=Ins_symbol()<cr>
+inoremap <c-_> <c-r>=I_symbol()<cr>
 
 " ins bracket
-func! Ins_bracket() abort
+func! I_bracket() abort
   call complete(col('.'), ['()', '{}', '[]', '<>', '""', "''", '``'])
   return ''
 endfunc
-inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=Ins_bracket()<cr>"
+inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=I_bracket()<cr>"
 
 " ins num
-func! Ins_num() abort
+func! I_num() abort
   call complete(col('.'), ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])
   return ''
 endfunc
-"inoremap <c-n> <c-r>=Ins_num()<cr>
+"inoremap <c-n> <c-r>=I_num()<cr>
 
 " ins register
-func! Ins_reg() abort
+func! I_reg() abort
   call complete(col('.'), [@0, @1, @2, @3])
   return ''
 endfunc
-inoremap <c-r> <c-r>=Ins_reg()<cr>
+inoremap <c-r> <c-r>=I_reg()<cr>
 
 " ins lua reserved word
-func! Ins_lua_reserved() abort
+func! I_lua_reserved() abort
   call complete(col('.'), [
   \   'end',
   \   'local',
@@ -975,10 +982,10 @@ func! Ins_lua_reserved() abort
   \ ])
   return ''
 endfunc
-"inoremap <c-r> <c-r>=Ins_lua_reserved()<cr>
+"inoremap <c-r> <c-r>=I_lua_reserved()<cr>
 
 " ins ooq ( lua )
-func! Ins_usual() abort
+func! I_usual() abort
   call complete(col('.'), [
   \   '_s:',
   \   '_s._',
@@ -1007,7 +1014,7 @@ func! Ins_usual() abort
 "  \   'nil',
 "  \   'alias',
 endfunc
-"inoremap <c-u> <c-r>=Ins_usual()<cr>
+"inoremap <c-u> <c-r>=I_usual()<cr>
 
 "
 " nop
@@ -1184,6 +1191,10 @@ command! -bang -nargs=* Rg
 \ )
 "\     -g "*.lua" -g "*.script" -g "*.gui_script" 
 
+" file history
+command! -bang -nargs=* FileHstry
+\ call fzf#vim#history(fzf#vim#with_preview(), <bang>1)
+
 " cmd history
 command! -bang -nargs=* CmdHstry
 \ call fzf#vim#command_history(fzf#vim#with_preview(), <bang>1)
@@ -1260,8 +1271,13 @@ au FileType * set fo-=c fo-=r fo-=o
 func! Slct_word() abort
 
   let l:c = Char()
-  if l:c =~ '\w'
+
+  if     l:c =~ '\w'
     execute "normal! viw"
+
+  elseif l:c =~ ' '
+    execute "normal! vwh"
+
   else
     execute "normal! v"
   endif
@@ -1541,6 +1557,9 @@ func! V_srch_slct(dir) abort " use not
   endif
 endfunc
 
+func! V_bracket() abort
+endfunc
+
 func! Hl_grp() abort
 
   echo synIDattr(synID(line("."), col("."), 1), "name")
@@ -1548,7 +1567,7 @@ endfunc
 " and
 " :highlight [grp name]
 
-" file rcnt qf
+" file rcnt qf " use not
 
 command! -nargs=0 FileRcntQf
 \ call setqflist([], ' ', {'lines' : v:oldfiles, 'efm' : '%f',
