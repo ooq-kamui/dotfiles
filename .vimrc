@@ -83,8 +83,8 @@ set switchbuf=usetab,newtab
 "set shiftwidth=4 " 2
 
 " indent
-set noexpandtab                " space
-autocmd FileType lua expandtab " tab
+set noexpandtab                    " space
+autocmd FileType lua set expandtab " tab
 
 set tabstop=2
 set shiftwidth=2
@@ -1646,8 +1646,10 @@ endfunc
 
 func! V_ins_bracket() abort " range
 
-  let l:str_l = " ( "
-  let l:str_r = " ) "
+  let l:str_l = "("
+  let l:str_r = ")"
+  "let l:str_l = " ( "
+  "let l:str_r = " ) "
 
   execute 'normal! i' . l:str_l
 
