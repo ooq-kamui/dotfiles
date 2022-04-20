@@ -379,7 +379,7 @@ nnoremap <c-h> <c-r>
 nnoremap <c-^> qy
 nnoremap ^     @y
 
-" inc, dec
+" num inc, dec
 nnoremap + <c-a>
 nnoremap - <c-x>
 
@@ -388,8 +388,10 @@ nnoremap " <<
 nnoremap # >>
 
 " char toggle ( upper / lower )
-nnoremap u :call Char_tgl1()<cr>
-"nnoremap U :call Char_tgl2()<cr>
+nnoremap u :call Char_tgl()<cr>
+
+"nnoremap B :call N_bracket_tgl()<cr>
+"nnoremap B :call N_bracket_pair_tgl()<cr>
 
 " upper / lower
 "nnoremap xx v~
@@ -551,7 +553,7 @@ nnoremap t <esc>
 nnoremap z <esc>
 
 nnoremap A <esc>
-nnoremap B <esc>
+"nnoremap B <esc>
 "nnoremap C <esc>
 nnoremap D <esc>
 "nnoremap E <esc>
@@ -1350,96 +1352,15 @@ func! Char() abort
   return l:c
 endfunc
 
-func! Char_tgl1() abort
-  
-  let l:c = Char()
+func! Char_tgl() abort
 
-  if     l:c == "("
-    let l:rpl = "["
-  elseif l:c == ")"
-    let l:rpl = "]"
+  let l:c   = Char()
+  let l:rpl = Char_tgl_bracket(l:c)
+  "let l:rpl = Char_tgl_bracket(l:c)
+  "let l:rpl = Char_tgl_etc(l:c)
 
-  elseif l:c == "["
-    let l:rpl = "{"
-  elseif l:c == "]"
-    let l:rpl = "}"
-
-  elseif l:c == "{"
-    let l:rpl = "<"
-  elseif l:c == "}"
-    let l:rpl = ">"
-
-  elseif l:c == "<"
-    let l:rpl = "("
-  elseif l:c == ">"
-    let l:rpl = ")"
-
-  "if     l:c == "<"
-  "  let l:rpl = ">"
-  "elseif l:c == ">"
-  "  let l:rpl = "<"
-
-  "elseif l:c == "{"
-  "  let l:rpl = "}"
-  "elseif l:c == "}"
-  "  let l:rpl = "{"
-
-  "elseif l:c == "["
-  "  let l:rpl = "]"
-  "elseif l:c == "]"
-  "  let l:rpl = "["
-
-  "elseif l:c == "("
-  "  let l:rpl = ")"
-  "elseif l:c == ")"
-  "  let l:rpl = "("
-
-  elseif l:c == "/"
-    let l:rpl = "\\"
-  elseif l:c == "\\"
-    let l:rpl = "/"
-
-  elseif l:c == "\""
-    let l:rpl = "'"
-  elseif l:c == "'"
-    let l:rpl = "\""
-
-  elseif l:c == "-"
-    let l:rpl = "+"
-  elseif l:c == "+"
-    let l:rpl = "-"
-
-  elseif l:c == ","
-    let l:rpl = "."
-  elseif l:c == "."
-    let l:rpl = ","
-
-  elseif l:c == ";"
-    let l:rpl = ":"
-  elseif l:c == ":"
-    let l:rpl = ";"
-
-  "elseif l:c ==# "T"
-  "  let l:rpl = "f"
-  "elseif l:c ==# "F"
-  "  let l:rpl = "t"
-
-  "elseif l:c ==# "L"
-  "  let l:rpl = "r"
-  "elseif l:c ==# "R"
-  "  let l:rpl = "l"
-
-  "elseif l:c ==# "X"
-  "  let l:rpl = "y"
-  "elseif l:c ==# "Y"
-  "  let l:rpl = "x"
-
-  "elseif l:c ==# "I"
-  "  let l:rpl = "o"
-  "elseif l:c ==# "O"
-  "  let l:rpl = "i"
-
-  else
+  if l:rpl == ""
+  "else
     normal! v~
     return
   endif
@@ -1448,25 +1369,159 @@ func! Char_tgl1() abort
   execute "normal! i".l:rpl
 endfunc
 
+func! Char_tgl_bracket(c) abort
+
+  let l:rpl = Char_tgl_bracket(a:c)
+  if l:rpl != ""
+    return l:rpl
+  endif
+
+  let l:rpl = Char_tgl_etc(a:c)
+  if l:rpl != ""
+    return l:rpl
+  endif
+
+  return l:rpl
+endfunc
+
+func! Char_tgl_bracket(c) abort
+
+  let l:rpl = ""
+
+  if     a:c == "("
+    let l:rpl = "["
+  elseif a:c == ")"
+    let l:rpl = "]"
+
+  elseif a:c == "["
+    let l:rpl = "{"
+  elseif a:c == "]"
+    let l:rpl = "}"
+
+  elseif a:c == "{"
+    let l:rpl = "<"
+  elseif a:c == "}"
+    let l:rpl = ">"
+
+  elseif a:c == "<"
+    let l:rpl = "("
+  elseif a:c == ">"
+    let l:rpl = ")"
+  endif
+
+  return l:rpl
+endfunc
+
+func! Char_tgl_etc(c) abort
+
+  let l:rpl = ""
+
+  if     a:c == "/"
+    let l:rpl = "\\"
+  elseif a:c == "\\"
+    let l:rpl = "/"
+
+  elseif a:c == "\""
+    let l:rpl = "'"
+  elseif a:c == "'"
+    let l:rpl = "\""
+
+  elseif a:c == "-"
+    let l:rpl = "+"
+  elseif a:c == "+"
+    let l:rpl = "-"
+
+  elseif a:c == ","
+    let l:rpl = "."
+  elseif a:c == "."
+    let l:rpl = ","
+
+  elseif a:c == ";"
+    let l:rpl = ":"
+  elseif a:c == ":"
+    let l:rpl = ";"
+
+  "elseif a:c ==# "T"
+  "  let l:rpl = "f"
+  "elseif a:c ==# "F"
+  "  let l:rpl = "t"
+
+  "elseif a:c ==# "L"
+  "  let l:rpl = "r"
+  "elseif a:c ==# "R"
+  "  let l:rpl = "l"
+
+  "elseif a:c ==# "X"
+  "  let l:rpl = "y"
+  "elseif a:c ==# "Y"
+  "  let l:rpl = "x"
+
+  "elseif a:c ==# "I"
+  "  let l:rpl = "o"
+  "elseif a:c ==# "O"
+  "  let l:rpl = "i"
+
+  "elseif a:c == "<"
+  "  let l:rpl = ">"
+  "elseif a:c == ">"
+  "  let l:rpl = "<"
+
+  "elseif a:c == "{"
+  "  let l:rpl = "}"
+  "elseif a:c == "}"
+  "  let l:rpl = "{"
+
+  "elseif a:c == "["
+  "  let l:rpl = "]"
+  "elseif a:c == "]"
+  "  let l:rpl = "["
+
+  "elseif a:c == "("
+  "  let l:rpl = ")"
+  "elseif a:c == ")"
+  "  let l:rpl = "("
+  endif
+
+  return l:rpl
+endfunc
+
+"func! N_bracket_pair_tgl() abort
+"
+"  let l:col1 = col(".")
+"  call N_bracket_tgl()
+"
+"  execute "normal! %"
+"  let l:col2 = col(".")
+"
+"  if l:col1 == l:col2
+"    return
+"  endif
+"
+"  call N_bracket_tgl()
+"  execute "normal! %"
+"endfunc
+
 func! Char_tgl2() abort " use not
   
   let l:c = Char()
 
   if     l:c == "("
     let l:rpl = "["
-  elseif l:c == "["
-    let l:rpl = "{"
-  elseif l:c == "{"
-    let l:rpl = "<"
-  elseif l:c == "<"
-    let l:rpl = "("
-
   elseif l:c == ")"
     let l:rpl = "]"
+
+  elseif l:c == "["
+    let l:rpl = "{"
   elseif l:c == "]"
     let l:rpl = "}"
+
+  elseif l:c == "{"
+    let l:rpl = "<"
   elseif l:c == "}"
     let l:rpl = ">"
+
+  elseif l:c == "<"
+    let l:rpl = "("
   elseif l:c == ">"
     let l:rpl = ")"
   else
