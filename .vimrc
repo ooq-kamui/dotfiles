@@ -389,7 +389,7 @@ nnoremap # >>
 
 " char toggle ( upper / lower )
 nnoremap u :call Char_tgl1()<cr>
-nnoremap U :call Char_tgl2()<cr>
+"nnoremap U :call Char_tgl2()<cr>
 
 " upper / lower
 "nnoremap xx v~
@@ -570,7 +570,7 @@ nnoremap Q <esc>
 "nnoremap R <esc>
 "nnoremap S <esc>
 nnoremap T <esc>
-"nnoremap U <esc>
+nnoremap U <esc>
 "nnoremap W <esc>
 nnoremap V <esc>
 nnoremap Y <esc>
@@ -667,6 +667,9 @@ vnoremap <leader><space> "ac
 
 " ins $
 vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "g_"
+
+" ins bracket
+vnoremap B :<c-u>call V_ins_bracket()<cr>
 
 " del str > yank
 vnoremap d "0d
@@ -809,7 +812,7 @@ vnoremap w <esc>
 "vnoremap y <esc>
 
 "vnoremap A <esc>
-vnoremap B <esc>
+"vnoremap B <esc>
 "vnoremap C <esc>
 vnoremap F <esc>
 vnoremap H <esc>
@@ -919,11 +922,11 @@ inoremap <c-y> <c-n>
 "inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
 
 " ins bracket
-"inoremap ( ()<c-o>h
-"inoremap < <><c-o>h
+inoremap ( ()<c-o>h
+inoremap < <><c-o>h
+inoremap " ""<c-o>h
 "inoremap { {}<c-o>h
 "inoremap [ []<c-o>h
-"inoremap " ""<c-o>h
 "inoremap ' ''<c-o>h
 
 " numpad shift
@@ -1317,31 +1320,33 @@ endfunc
 
 func! N_tag_jmp() abort
 
-  let l:qf_bufnr = bufnr("%")
+  let l:qf_buf_nr = buf_nr("%")
 
   let l:line = getline('.')
   call Tag_jmp(l:line)
 
-  execute "sbuffer " . l:qf_bufnr
+  execute "sbuffer " . l:qf_buf_nr
   execute "normal! " . "j"
 endfunc
 
 func! V_tag_jmp() range abort
 
-  let l:qf_bufnr = bufnr("%")
+  let l:qf_buf_nr = buf_nr("%")
 
   for line_num in range(a:firstline, a:lastline)
 
     let l:line = getline(line_num)
     call Tag_jmp(l:line)
 
-    execute "sbuffer " . l:qf_bufnr
+    execute "sbuffer " . l:qf_buf_nr
   endfor
 endfunc
 
 func! Char() abort
 
   let l:c = getline('.')[col('.')-1]
+  " getcursorcharpos() ?
+
   return l:c
 endfunc
 
@@ -1349,25 +1354,45 @@ func! Char_tgl1() abort
   
   let l:c = Char()
 
-  if     l:c == "<"
-    let l:rpl = ">"
-  elseif l:c == ">"
-    let l:rpl = "<"
-
-  elseif l:c == "{"
-    let l:rpl = "}"
-  elseif l:c == "}"
-    let l:rpl = "{"
+  if     l:c == "("
+    let l:rpl = "["
+  elseif l:c == ")"
+    let l:rpl = "]"
 
   elseif l:c == "["
-    let l:rpl = "]"
+    let l:rpl = "{"
   elseif l:c == "]"
-    let l:rpl = "["
+    let l:rpl = "}"
 
-  elseif l:c == "("
-    let l:rpl = ")"
-  elseif l:c == ")"
+  elseif l:c == "{"
+    let l:rpl = "<"
+  elseif l:c == "}"
+    let l:rpl = ">"
+
+  elseif l:c == "<"
     let l:rpl = "("
+  elseif l:c == ">"
+    let l:rpl = ")"
+
+  "if     l:c == "<"
+  "  let l:rpl = ">"
+  "elseif l:c == ">"
+  "  let l:rpl = "<"
+
+  "elseif l:c == "{"
+  "  let l:rpl = "}"
+  "elseif l:c == "}"
+  "  let l:rpl = "{"
+
+  "elseif l:c == "["
+  "  let l:rpl = "]"
+  "elseif l:c == "]"
+  "  let l:rpl = "["
+
+  "elseif l:c == "("
+  "  let l:rpl = ")"
+  "elseif l:c == ")"
+  "  let l:rpl = "("
 
   elseif l:c == "/"
     let l:rpl = "\\"
@@ -1423,7 +1448,7 @@ func! Char_tgl1() abort
   execute "normal! i".l:rpl
 endfunc
 
-func! Char_tgl2() abort
+func! Char_tgl2() abort " use not
   
   let l:c = Char()
 
@@ -1464,11 +1489,11 @@ func! V_mv_str(lr) abort
   execute 'normal! gv"ax' . a:lr . '"aP'
 
   execute "normal! v"
-  let l:mvlen = strchars(@a) - 1
-  if l:mvlen <= 0
+  let l:mv_len = strchars(@a) - 1
+  if l:mv_len <= 0
     return
   endif
-  execute "normal! " . l:mvlen . "h"
+  execute "normal! " . l:mv_len . "h"
 endfunc
 
 func! V_mv_line(ud) range abort
@@ -1491,6 +1516,13 @@ func! V_slctd_str() abort
 
   execute 'normal! gv"ay'
   return @a
+endfunc
+
+func! V_slctd_str_len() abort
+
+  let l:slctd_str = V_slctd_str()
+  let l:slctd_str = strchars(l:slctd_str)
+  return l:slctd_str
 endfunc
 
 func! N_srch_str__(word1) abort
@@ -1557,7 +1589,17 @@ func! V_srch_slct(dir) abort " use not
   endif
 endfunc
 
-func! V_bracket() abort
+func! V_ins_bracket() abort " range
+
+  let l:str_l = " ( "
+  let l:str_r = " ) "
+
+  execute 'normal! i' . l:str_l
+
+  let l:mv_len = V_slctd_str_len() + strchars(l:str_l)
+  execute 'normal! ' . l:mv_len . 'l'
+
+  execute 'normal! i' . l:str_r
 endfunc
 
 func! Hl_grp() abort
