@@ -74,27 +74,24 @@ set ignorecase smartcase
 set number
 set list
 set cursorline
-set autoindent
 set splitbelow
 set switchbuf=usetab,newtab
 
-""set expandtab " indent tab > space
-"set tabstop=4    " 2
-"set shiftwidth=4 " 2
-
-" indent
-set noexpandtab                    " space
-autocmd FileType lua set expandtab " tab
+set autoindent
+set expandtab " tab > space
+set tabstop=2    " 4
+set shiftwidth=2 " 4
 
 set tabstop=2
 set shiftwidth=2
 
 filetype indent on
-autocmd FileType lua  setlocal sw=2 sts=2 ts=2 et
-autocmd FileType text setlocal sw=2 sts=2 ts=2 et
-autocmd FileType json setlocal sw=2 sts=2 ts=2 et
-autocmd FileType vim  setlocal sw=2 sts=2 ts=2 et
-autocmd FileType sh   setlocal sw=2 sts=2 ts=2 et
+autocmd FileType lua  setlocal sw=2 sts=2 ts=2 noet " tab
+autocmd FileType text setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType json setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType vim  setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType fish setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType sh   setlocal sw=2 sts=2 ts=2   et " space
 
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
