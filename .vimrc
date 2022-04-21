@@ -137,8 +137,8 @@ packadd Cfilter
 let mapleader = "\<esc>"
 
 " leader esc
-nnoremap <leader>u <esc>
-vnoremap <leader>u <esc>
+"nnoremap <leader>u <esc>
+"vnoremap <leader>u <esc>
 
 
 "
@@ -156,7 +156,6 @@ nnoremap :q :q!
 
 " quit other
 nnoremap W :tabo<cr>
-"nnoremap <leader>w :tabo<cr>
 
 " save
 nnoremap a :w<cr>
@@ -168,8 +167,8 @@ nnoremap :e :e!
 "nnoremap xx `0
 
 " opn file rcnt ( history )
-nnoremap <leader>y :FileHstry<cr>
-"nnoremap <leader>y :FileRcntQf<cr>
+nnoremap <leader>l :FileHstry<cr>
+"nnoremap <leader>l :FileRcntQf<cr>
 
 " opn tab new
 command! -nargs=* New tabnew <args>
@@ -179,7 +178,7 @@ nnoremap :n :New filename
 nnoremap :d :tab drop filename
 
 " cmd history
-nnoremap <leader>: :CmdHstry<cr>
+nnoremap <leader>y :CmdHstry<cr>
 
 " 
 " cursor mv
@@ -398,7 +397,7 @@ nnoremap u :call Char_tgl()<cr>
 " 
 
 " srch char in line - forward
-nnoremap <leader>f f
+"nnoremap <leader>f f
 
 " srch char in line repeat
 nnoremap ; ;
@@ -417,7 +416,7 @@ nnoremap E :call N_srch_str__(v:true)<cr>
 nnoremap <leader>k /
 
 " srch history
-nnoremap <leader>j :SrchHstry<cr>
+nnoremap <leader>n :SrchHstry<cr>
 
 " srch word set prv ( tgl )
 nnoremap N /<c-p><c-p><cr>
@@ -661,7 +660,7 @@ vnoremap gj G$l
 
 " ins | cut & ins
 vnoremap <expr> <space> mode() == "<c-v>" ? "I" : "c"
-vnoremap <leader><space> "ac
+" cut & ins
 vnoremap <leader><space> "ac
 
 " ins $
@@ -761,7 +760,7 @@ vnoremap <leader>i :call V_blines()<cr>
 vnoremap <leader>o "ay:Rg <c-r>a<cr>
 
 " grep func define
-"vnoremap <leader>d "ay:Rg <c-r>a<cr>func
+"vnoremap <leader>xx "ay:Rg <c-r>a<cr>func
 
 "
 " nop
@@ -1165,8 +1164,8 @@ command! -bang -nargs=? BLines
 \ call fzf#vim#buffer_lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
 
 " files
-nnoremap <leader>l :Files <cr>
-"vnoremap <leader>l :Files <cr>
+nnoremap <leader>u :Files <cr>
+"vnoremap <leader>u :Files <cr> " non
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)
 
@@ -1244,7 +1243,7 @@ nmap :mc :BookmarkClear
 let g:bookmark_no_default_key_mappings = 1
 
 "nmap <c-j>     <Plug>BookmarkMoveToLine
-"nmap <Leader>x <Plug>BookmarkClearAll
+"nmap <leader>x <Plug>BookmarkClearAll
 
 "
 " molder
