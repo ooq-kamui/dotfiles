@@ -137,9 +137,8 @@ packadd Cfilter
 let mapleader = "\<esc>"
 
 " leader esc
-"nnoremap <leader>u <esc>
-"vnoremap <leader>u <esc>
-
+nnoremap <leader>y <esc>
+vnoremap <leader>y <esc>
 
 "
 " mode normal
@@ -167,8 +166,7 @@ nnoremap :e :e!
 "nnoremap xx `0
 
 " opn file rcnt ( history )
-nnoremap <leader>l :FileHstry<cr>
-"nnoremap <leader>l :FileRcntQf<cr>
+nnoremap <leader>f :FileHstry<cr>
 
 " opn tab new
 command! -nargs=* New tabnew <args>
@@ -178,7 +176,7 @@ nnoremap :n :New filename
 nnoremap :d :tab drop filename
 
 " cmd history
-nnoremap <leader>y :CmdHstry<cr>
+nnoremap <leader>l :CmdHstry<cr>
 
 " 
 " cursor mv
@@ -423,10 +421,9 @@ nnoremap N /<c-p><c-p><cr>
 
 " srch init ( hl )
 nnoremap S /<cr>N
-"nnoremap S /<cr>
 
 " srch replace all > yank ( file )
-nnoremap :s :%s//<c-r>0/gc<cr>
+nnoremap :s :%s//<c-r>0/gc
 
 " srch replace one > yank next ( only srch )
 nnoremap <c-p> gn
@@ -447,7 +444,8 @@ nnoremap :w :set wrap!
 nnoremap <leader>o :Rg <cr>
 
 " grep ( rg qf )
-nnoremap :g :call Grep()
+nnoremap :g :call Grep(""  )
+nnoremap :G :call Grep("-w")
 
 " grep bfr ( blines )
 nnoremap <leader>i :BLines<cr>
@@ -905,7 +903,7 @@ inoremap <c-w> <c-w>
 inoremap <c-m> <cr>
 
 " ins tab
-inoremap <tab> <c-v><Tab>
+inoremap <tab> <c-v><tab>
 
 " paste
 "inoremap <c-v> <c-r>0
@@ -914,7 +912,8 @@ inoremap <tab> <c-v><Tab>
 inoremap <c-v> <c-r>+
 
 " input complete
-inoremap <c-y> <c-n>
+inoremap <expr> <c-y> pumvisible() ? "<c-e>" : "<c-n>"
+
 "   clear
 "inoremap <expr> <esc> pumvisible() ? "<c-e>"  : ""
 "inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
@@ -1036,11 +1035,14 @@ inoremap <c-b> <nop>
 cnoremap <c-q> <c-c>
 
 " cursor mv line in
-cnoremap <c-a> <Home>
-cnoremap <c-e> <End>
+cnoremap <c-a> <c-b>
+cnoremap <c-e> <c-e>
+"cnoremap <c-a> <home>
+"cnoremap <c-e> <end>
 
 " cursor mv char
-cnoremap <c-b> <Left>
+cnoremap <c-s> <Left>
+"cnoremap <c-b> <Left>
 cnoremap <c-l> <Right>
 
 " cursor mv word
@@ -1052,10 +1054,14 @@ cnoremap <c-h> <bs>
 cnoremap <c-d> <del>
 
 " del word forward
-cnoremap <c-k> <S-Right><c-w>
+"cnoremap ?? non ? idea <S-Right><c-w>
+cnoremap <c-k> <del>
+
+" del word back
+cnoremap <c-w> <c-w>
 
 " del in line back
-cnoremap <c-c> <c-u>
+cnoremap <c-u> <c-u>
 
 " paste
 cnoremap <c-v> <c-r>0
@@ -1077,6 +1083,10 @@ cnoremap <kUp>       8
 cnoremap <kPageUp>   9
 
 
+" 
+" etc
+" 
+
 if &term =~ '^screen'
   " tmux will send xterm-style keys when its xterm-keys option is on
   execute "set <xUp>=\e[1;*A"
@@ -1088,21 +1098,26 @@ end
 " 
 " grep ( rg )
 " 
-if executable('rg')
-
-  let &grepprg = 'rg -n -s'
-  \            . ' -g "*.lua" -g "*.script" -g "*.gui_script"'
-  \            . ' -g "*.txt" -g "*.json"'
-  set grepformat=%f:%l:%m
-endif
-
-func! Grep() abort
+func! Grep(opt) abort
   
   let l:str = @/
   let l:str = substitute(l:str, "(", '\\(', "")
 
-  execute "grep! ".'"'.l:str.'"'
+  execute "r! rg -n -s ".'"'.l:str.'"'
+  \           . ' -g "*.lua" -g "*.script" -g "*.gui_script"'
+  \           . ' -g "*.txt" -g "*.json"'
+  \           . ' ' . a:opt
+
+  "execute "grep! ".'"'.l:str.'"'
 endfunc
+
+" cmd grep : rg
+"if executable('rg')
+"  let &grepprg = 'rg -n -s'
+"  \            . ' -g "*.lua" -g "*.script" -g "*.gui_script"'
+"  \            . ' -g "*.txt" -g "*.json"'
+"  set grepformat=%f:%l:%m
+"endif
 
 "
 " quickfix
@@ -1284,41 +1299,31 @@ func! Slct_word() abort
   endif
 endfunc
 
-func! Qf_parse(line) abort
+func! Rg_parse(line) abort
 
-  let l:idx1 = stridx(a:line, " ")
-  if l:idx1 > 0
-    let l:filename_linenum = strpart(a:line, 0, l:idx1 - 1)
-  else
-    let l:filename_linenum = a:line
-  endif
-
-  let l:idx1 = stridx(l:filename_linenum, "|")
-  if l:idx1 > 0
-    let l:filename = strpart(l:filename_linenum,          0, l:idx1)
-    let l:linenum  = strpart(l:filename_linenum, l:idx1 + 1)
-  else
-    let l:filename = l:filename_linenum
-    let l:linenum  = "1"
-  endif
-  "echo l:filename . " " . l:linenum
-
-  return [l:filename, l:linenum]
+  let l:dlm = ':'
+  let l:ret = split(a:line, l:dlm)
+  return l:ret
 endfunc
 
-func! Tag_jmp(qf_line) abort
+func! Tag_jmp(rg_line) abort
 
-  let l:qf_line_ar = Qf_parse(a:qf_line)
-  let l:filename = l:qf_line_ar[0]
-  let l:linenum  = l:qf_line_ar[1]
+  let l:rg_line_ar = Rg_parse(a:rg_line)
+  let l:filename = l:rg_line_ar[0]
+  let l:linenum  = l:rg_line_ar[1]
 
   execute "tab drop " . l:filename
   execute "normal! " . l:linenum . "G"
 endfunc
 
+func! Buf_nr() abort
+
+  return bufnr("%")
+endfunc
+
 func! N_tag_jmp() abort
 
-  let l:qf_buf_nr = buf_nr("%")
+  let l:qf_buf_nr = Buf_nr()
 
   let l:line = getline('.')
   call Tag_jmp(l:line)
@@ -1329,7 +1334,7 @@ endfunc
 
 func! V_tag_jmp() range abort
 
-  let l:qf_buf_nr = buf_nr("%")
+  let l:qf_buf_nr = Buf_nr()
 
   for line_num in range(a:firstline, a:lastline)
 
@@ -1351,9 +1356,7 @@ endfunc
 func! Char_tgl() abort
 
   let l:c   = Char()
-  let l:rpl = Char_tgl_bracket(l:c)
-  "let l:rpl = Char_tgl_bracket(l:c)
-  "let l:rpl = Char_tgl_etc(l:c)
+  let l:rpl = Char_tgl_char(l:c)
 
   if l:rpl == ""
   "else
@@ -1365,7 +1368,7 @@ func! Char_tgl() abort
   execute "normal! i".l:rpl
 endfunc
 
-func! Char_tgl_bracket(c) abort
+func! Char_tgl_char(c) abort
 
   let l:rpl = Char_tgl_bracket(a:c)
   if l:rpl != ""
