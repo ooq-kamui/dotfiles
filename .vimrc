@@ -63,6 +63,7 @@ au VimEnter * match FullWidthSpace /　/
 au BufNewFile,BufRead *.script     set filetype=lua
 au BufNewFile,BufRead *.gui_script set filetype=lua
 au BufNewFile,BufRead *.fish       set filetype=fish
+"au BufNewFile,BufRead *.js         set filetype=js
 
 syntax on
 colorscheme koehler
@@ -151,7 +152,8 @@ nnoremap w :bd<cr>
 nnoremap <c-w> :q<cr>
 
 " quit force
-nnoremap :q :q!
+nnoremap <c-q> :q!
+"nnoremap :q :q!
 
 " quit other
 nnoremap W :tabo<cr>
@@ -227,8 +229,6 @@ nnoremap <c-_> hT_
 
 " cursor mv bracket pair
 nnoremap <c-l> %
-"nnoremap <c-y> %
-"nnoremap <c-o> %
 
 " cursor mv bracket back
 nnoremap L [m
@@ -274,6 +274,7 @@ nnoremap <space> i
 
 " ins cr
 nnoremap m i<cr><esc>
+nnoremap M i<cr><esc>>>
 
 " ins space
 "nnoremap xx i <esc>l
@@ -285,13 +286,8 @@ nnoremap , i, <esc>l
 nnoremap < A,<esc>j
 
 " ins comment 1
-autocmd FileType lua  nnoremap ! ^i-- <esc>0
-autocmd FileType vim  nnoremap ! ^i"<esc>0
-autocmd FileType text nnoremap ! ^i# <esc>0
-autocmd FileType sh   nnoremap ! ^i#<esc>0
-autocmd FileType fish nnoremap ! ^i#<esc>0
-autocmd FileType css  nnoremap ! ^i/* <esc>$li */<esc>0
-autocmd FileType javascript nnoremap ! ^i// <esc>0
+nnoremap ! :call N_cmnt_1()<cr>
+"autocmd FileType css  nnoremap ! ^i/* <esc>$li */<esc>0
 
 " ins comment mlt
 autocmd FileType lua  nnoremap $ O--[[<cr>--]]<esc>
@@ -384,9 +380,6 @@ nnoremap # >>
 " char toggle ( upper / lower )
 nnoremap u :call Char_tgl()<cr>
 
-"nnoremap B :call N_bracket_tgl()<cr>
-"nnoremap B :call N_bracket_pair_tgl()<cr>
-
 " upper / lower
 "nnoremap xx v~
 
@@ -444,7 +437,7 @@ nnoremap :w :set wrap!
 nnoremap <leader>o :Rg <cr>
 
 " grep ( rg qf )
-nnoremap :g :call Grep(""  )
+nnoremap :g :call Grep("")
 nnoremap :G :call Grep("-w")
 
 " grep bfr ( blines )
@@ -585,7 +578,7 @@ nnoremap <c-g> <esc>
 "nnoremap <c-n> <esc>
 "nnoremap <c-o> <esc>
 "nnoremap <c-p> <esc>
-nnoremap <c-q> <esc>
+"nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
@@ -663,6 +656,9 @@ vnoremap <leader><space> "ac
 
 " ins $
 vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "g_"
+
+" ins comment 1
+vnoremap ! :call V_cmnt_1()<cr>
 
 " ins bracket
 vnoremap B :<c-u>call V_ins_bracket()<cr>
@@ -825,6 +821,7 @@ vnoremap V <esc>
 vnoremap Y <esc>
 
 vnoremap <c-a> <esc>
+"vnoremap <c-b> <esc>
 "vnoremap <c-c> <esc>
 vnoremap <c-d> <esc>
 "vnoremap <c-e> <esc>
@@ -951,7 +948,7 @@ inoremap <c-_> <c-r>=I_symbol()<cr>
 
 " ins bracket
 func! I_bracket() abort
-  call complete(col('.'), ['()', '{}', '[]', '<>', '""', "''", '``'])
+  call complete(col('.'), ['()', '{}', '[]', '""', "''"]) " [, '<>', '``']
   return ''
 endfunc
 inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=I_bracket()<cr>"
@@ -1240,20 +1237,20 @@ command! -bang -nargs=? Tags
 "highlight BookmarkAnnotationLine ctermbg=magenta ctermfg=magenta
 
 " mark
-nmap M <Plug>BookmarkToggle
+"nmap M <Plug>BookmarkToggle
 
 " annotate
 "nmap Mi <Plug>BookmarkAnnotate
 
 " list
-nmap <leader>m <Plug>BookmarkShowAll
+"nmap <leader>m <Plug>BookmarkShowAll
 
 " prv, nxt
-nmap Mp <Plug>BookmarkPrev
-nmap Mn <Plug>BookmarkNext
+"nmap Mp <Plug>BookmarkPrev
+"nmap Mn <Plug>BookmarkNext
 
 " del in buffer
-nmap :mc :BookmarkClear
+"nmap :mc :BookmarkClear
 
 let g:bookmark_no_default_key_mappings = 1
 
@@ -1306,6 +1303,11 @@ func! Rg_parse(line) abort
   return l:ret
 endfunc
 
+func! Buf_nr() abort
+
+  return bufnr("%")
+endfunc
+
 func! Tag_jmp(rg_line) abort
 
   let l:rg_line_ar = Rg_parse(a:rg_line)
@@ -1316,32 +1318,27 @@ func! Tag_jmp(rg_line) abort
   execute "normal! " . l:linenum . "G"
 endfunc
 
-func! Buf_nr() abort
-
-  return bufnr("%")
-endfunc
-
 func! N_tag_jmp() abort
 
-  let l:qf_buf_nr = Buf_nr()
+  let l:base_buf_nr = Buf_nr()
 
   let l:line = getline('.')
   call Tag_jmp(l:line)
 
-  execute "sbuffer " . l:qf_buf_nr
+  execute "sbuffer " . l:base_buf_nr
   execute "normal! " . "j"
 endfunc
 
 func! V_tag_jmp() range abort
 
-  let l:qf_buf_nr = Buf_nr()
+  let l:base_buf_nr = Buf_nr()
 
   for line_num in range(a:firstline, a:lastline)
 
     let l:line = getline(line_num)
     call Tag_jmp(l:line)
 
-    execute "sbuffer " . l:qf_buf_nr
+    execute "sbuffer " . l:base_buf_nr
   endfor
 endfunc
 
@@ -1643,7 +1640,7 @@ func! V_srch_slct(dir) abort " use not
   endif
 endfunc
 
-func! V_ins_bracket() abort " range
+func! V_ins_bracket() abort
 
   let l:str_l = "("
   let l:str_r = ")"
@@ -1658,6 +1655,35 @@ func! V_ins_bracket() abort " range
   execute 'normal! i' . l:str_r
 endfunc
 
+func! Cmnt_1(head) abort
+
+  let l:str_df = {
+  \ "lua" : '-- '      ,
+  \ "text": '# '       ,
+  \ "vim" : '"'        ,
+  \ "fish": '#'        ,
+  \ "sh"  : '#'        ,
+  \ "javascript": '// '
+  \ }
+  let l:dflt = '# '
+  let l:str = get(l:str_df, &filetype, l:dflt)
+
+  execute 'normal! ' . a:head . 'i' . l:str
+  execute 'normal! 0'
+endfunc
+
+func! N_cmnt_1() abort
+  call Cmnt_1("^")
+endfunc
+
+func! V_cmnt_1() range abort
+
+  for line_num in range(a:firstline, a:lastline)
+    execute 'normal! ' . line_num . 'G'
+    call Cmnt_1("0")
+  endfor
+endfunc
+
 func! Hl_grp() abort
 
   echo synIDattr(synID(line("."), col("."), 1), "name")
@@ -1669,9 +1695,10 @@ endfunc
 
 command! -nargs=0 FileRcntQf
 \ call setqflist([], ' ', {'lines' : v:oldfiles, 'efm' : '%f',
-\                          'quickfixtextfunc' : 'QfOldFiles'}) | tab cw
+\                          'quickfixtextfunc' : 'Qf_old_files'}) | tab cw
 
-func QfOldFiles(info)
+func Qf_old_files(info)
+
   " info frm quickfix
   let items = getqflist({'id' : a:info.id, 'items' : 1}).items
   let l = []
