@@ -290,10 +290,7 @@ nnoremap ! :call N_cmnt_1()<cr>
 "autocmd FileType css  nnoremap ! ^i/* <esc>$li */<esc>0
 
 " ins comment mlt
-autocmd FileType lua  nnoremap $ O--[[<cr>--]]<esc>
-autocmd FileType css  nnoremap $ O/*<cr> */<esc>
-autocmd FileType html nnoremap $ O<!--<cr>--><esc>
-autocmd FileType javascript nnoremap $ O/*<cr> */<esc>
+nnoremap $ :call N_cmnt_mlt()<cr>
 
 " ins sys cmd ( read )
 nnoremap :r :r! 
@@ -632,7 +629,7 @@ vnoremap y o
 "vnoremap ; o
 
 " cursor mv in line
-"vnoremap $ $
+"vnoremap xx $
 
 " cursor mv line
 vnoremap <c-j> 10j
@@ -659,6 +656,9 @@ vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "g_"
 
 " ins comment 1
 vnoremap ! :call V_cmnt_1()<cr>
+
+" ins comment mlt
+vnoremap $ :call V_cmnt_mlt()<cr>
 
 " ins bracket
 vnoremap B :<c-u>call V_ins_bracket()<cr>
@@ -770,7 +770,7 @@ vnoremap / <esc>
 "vnoremap ! <esc>
 "vnoremap " <esc>
 "vnoremap # <esc>
-vnoremap $ <esc>
+"vnoremap $ <esc>
 "vnoremap _ <esc>
 vnoremap ? <esc>
 vnoremap ( <esc>
@@ -1682,6 +1682,47 @@ func! V_cmnt_1() range abort
     execute 'normal! ' . line_num . 'G'
     call Cmnt_1("0")
   endfor
+endfunc
+
+func! Cmnt_mlt(pos) abort
+
+  let l:str_df = #{
+  \  lua       : ['--[[' , '--]]'],
+  \  html      : ['<!--' ,  '-->'],
+  \  css       : ['/*'   ,  ' */'],
+  \  javascript: ['/*'   ,  ' */'],
+  \  dflt      : ['/*'   ,  ' */']
+  \ }
+
+  if has_key(l:str_df, &filetype)
+    let l:filetype = &filetype
+  else
+    let l:filetype = "dflt"
+  endif
+  let l:str = l:str_df[l:filetype]
+
+  if     a:pos == "bgn"
+    execute 'normal! O'
+    execute 'normal! i' . l:str[0]
+
+  elseif a:pos == "end"
+    execute 'normal! o'
+    execute 'normal! i' . l:str[1]
+  endif
+endfunc
+
+func! N_cmnt_mlt() abort
+  call Cmnt_mlt("bgn")
+  call Cmnt_mlt("end")
+endfunc
+
+func! V_cmnt_mlt() range abort
+
+  execute 'normal! ' . a:lastline  . 'G'
+  call Cmnt_mlt("end")
+
+  execute 'normal! ' . a:firstline . 'G'
+  call Cmnt_mlt("bgn")
 endfunc
 
 func! Hl_grp() abort
