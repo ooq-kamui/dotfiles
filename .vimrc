@@ -1,6 +1,6 @@
-"
+" 
 " Configuration file for vim
-"
+" 
 set modelines=0  " CVE-2007-2438
 
 " Normally we use vim-extensions. If you want true vi-compatibility
@@ -724,12 +724,13 @@ vnoremap <c-u> uviw
 "
 
 " srch forward
-vnoremap n     :call V_srch_str__slctd_str(v:false)<cr>
+"vnoremap xx xx
 
 " srch back
-vnoremap <c-n> :call V_srch_str__slctd_str(v:false)<cr>
+vnoremap <c-n> :call V_srch_slct("f")<cr>
 
 " srch word set
+vnoremap n :call V_srch_str__slctd_str(v:false)<cr>
 vnoremap e :call V_srch_str__slctd_str(v:false)<cr>
 
 " srch word set ( word 1 )
@@ -1102,7 +1103,7 @@ func! Grep(opt) abort
 
   execute "r! rg -n -s ".'"'.l:str.'"'
   \           . ' -g "*.lua" -g "*.script" -g "*.gui_script"'
-  \           . ' -g "*.txt" -g "*.json"'
+  \           . ' -g "*.txt" -g "*.json" -g "*.fish"'
   \           . ' ' . a:opt
 
   "execute "grep! ".'"'.l:str.'"'
@@ -1630,7 +1631,7 @@ func! N_srch_slct(dir) abort " use not
   endif
 endfunc
 
-func! V_srch_slct(dir) abort " use not
+func! V_srch_slct(dir) abort
 
   if     a:dir == "f"
     execute 'normal! `>lgn'
