@@ -64,6 +64,7 @@ au BufNewFile,BufRead *.script     set filetype=lua
 au BufNewFile,BufRead *.gui_script set filetype=lua
 au BufNewFile,BufRead *.fish       set filetype=fish
 "au BufNewFile,BufRead *.js         set filetype=js
+"au BufNewFile,BufRead *.dbglua     set filetype=lua
 
 syntax on
 colorscheme koehler
@@ -79,12 +80,9 @@ set splitbelow
 set switchbuf=usetab,newtab
 
 set autoindent
-set expandtab " tab > space
-set tabstop=2    " 4
 set shiftwidth=2 " 4
-
-set tabstop=2
-set shiftwidth=2
+set tabstop=2    " 4
+set expandtab " tab > space
 
 filetype indent on
 autocmd FileType lua  setlocal sw=2 sts=2 ts=2 noet " tab
@@ -214,11 +212,22 @@ nnoremap <c-s> h
 "nnoremap O     h
 
 " cursor mv word - forward
-nnoremap f el
+nnoremap f :call N_cursor_mv_word_f()<cr>
+"nnoremap f el
 nnoremap <c-f> w
 nnoremap F e
-"nnoremap <c-f> e
-"nnoremap F w
+
+func! N_cursor_mv_word_f() abort
+
+  let l:c_char = Char()
+  let l:l_char = Char_l()
+
+  if l:c_char =~ ' ' && l:l_char =~ ' '
+    execute "normal! w"
+  else
+    execute "normal! el"
+  end
+endfunc
 
 " cursor mv word - back
 nnoremap o b
@@ -939,12 +948,13 @@ inoremap <kPageUp>   9
 " ins symbol
 func! I_symbol() abort
 
-  let l:lst = ['%', '&', '@']
+  let l:lst = ['/', '?', '%', '&', '$', '@']
   "let l:lst = ['!', '#', '$', '%', '&', '^', '~', '|', '?']
 
   call complete(col('.'), l:lst)
   return ''
 endfunc
+inoremap <c-u> <c-r>=I_symbol()<cr>
 inoremap <c-_> <c-r>=I_symbol()<cr>
 
 " ins bracket
@@ -1017,6 +1027,8 @@ endfunc
 "
 " nop
 "
+"inoremap <c-_> <nop>
+
 inoremap <c-b> <nop>
 "inoremap <c-p> <nop>
 "inoremap <c-s> <nop>
@@ -1101,19 +1113,15 @@ func! Grep(opt) abort
   let l:str = @/
   let l:str = substitute(l:str, "(", '\\(', "")
 
-  execute "r! rg -n -s ".'"'.l:str.'"'
+  execute 'r! rg -n -s "'.l:str.'"'
   \           . ' -g "*.lua" -g "*.script" -g "*.gui_script"'
-  \           . ' -g "*.txt" -g "*.json" -g "*.fish"'
+  \           . ' -g "*.txt" -g "*.json" -g "*.fish" -g "*.vim"'
   \           . ' ' . a:opt
-
-  "execute "grep! ".'"'.l:str.'"'
 endfunc
 
-" cmd grep : rg
+" cmd grep = rg
 "if executable('rg')
-"  let &grepprg = 'rg -n -s'
-"  \            . ' -g "*.lua" -g "*.script" -g "*.gui_script"'
-"  \            . ' -g "*.txt" -g "*.json"'
+"  let &grepprg = 'rg -n -s -g "*.lua"'
 "  set grepformat=%f:%l:%m
 "endif
 
@@ -1343,11 +1351,21 @@ func! V_tag_jmp() range abort
   endfor
 endfunc
 
-func! Char() abort
+func! Char_c() abort " new
+
+endfunc
+
+func! Char() abort " old
 
   let l:c = getline('.')[col('.')-1]
   " getcursorcharpos() ?
 
+  return l:c
+endfunc
+
+func! Char_l() abort
+
+  let l:c = getline('.')[col('.')]
   return l:c
 endfunc
 
@@ -1414,19 +1432,23 @@ func! Char_tgl_etc(c) abort
   let l:rpl = ""
 
   if     a:c == "/"
+    let l:rpl = "-"
+  elseif a:c == "-"
     let l:rpl = "\\"
   elseif a:c == "\\"
+    let l:rpl = "|"
+  elseif a:c == "|"
     let l:rpl = "/"
 
-  elseif a:c == "\""
+  elseif a:c == '"'
     let l:rpl = "'"
   elseif a:c == "'"
-    let l:rpl = "\""
+    let l:rpl = '"'
 
-  elseif a:c == "-"
+  elseif a:c == "*"
     let l:rpl = "+"
   elseif a:c == "+"
-    let l:rpl = "-"
+    let l:rpl = "*"
 
   elseif a:c == ","
     let l:rpl = "."
@@ -1733,13 +1755,22 @@ endfunc
 " and
 " :highlight [grp name]
 
-" file rcnt qf " use not
+" 
+" defold err cnv
+" 
+func! Defold_err_cnv() abort
 
+  execute '%s/^ERROR:SCRIPT:/ERROR:SCRIPT:\r/g'
+  execute '%s/\/assets\///g'
+  execute '%s/^ *//g'
+endfunc
+
+" file rcnt qf " use not
 command! -nargs=0 FileRcntQf
 \ call setqflist([], ' ', {'lines' : v:oldfiles, 'efm' : '%f',
 \                          'quickfixtextfunc' : 'Qf_old_files'}) | tab cw
 
-func Qf_old_files(info)
+func! Qf_old_files(info)
 
   " info frm quickfix
   let items = getqflist({'id' : a:info.id, 'items' : 1}).items
