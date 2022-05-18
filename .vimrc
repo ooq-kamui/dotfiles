@@ -126,6 +126,7 @@ set laststatus=2                   " 0: off  1: on 2 win  2: on
 set completeopt=menuone,noinsert
 set foldmethod=manual
 set shortmess+=I
+"set nrformats+=unsigned " 2022-05-09
 
 packadd Cfilter
 
@@ -136,8 +137,9 @@ packadd Cfilter
 let mapleader = "\<esc>"
 
 " leader esc
-nnoremap <leader>y <esc>
-vnoremap <leader>y <esc>
+"nnoremap <leader>y <esc>
+"vnoremap <leader>y <esc>
+vnoremap <leader>u <esc>
 
 "
 " mode normal
@@ -166,7 +168,9 @@ nnoremap :e :e!
 "nnoremap xx `0
 
 " opn file rcnt ( history )
-nnoremap <leader>f :FileHstry<cr>
+nnoremap <leader>y :FileHstry<cr>
+"nnoremap <leader>f :FileHstry<cr>
+"nnoremap <leader>s :FileHstry<cr>
 
 " opn tab new
 command! -nargs=* New tabnew <args>
@@ -207,15 +211,13 @@ nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
 nnoremap l l
 
 " cursor mv char - back
-nnoremap <c-o> h
 nnoremap <c-s> h
-"nnoremap O     h
+nnoremap <c-o> h
 
 " cursor mv word - forward
 nnoremap f :call N_cursor_mv_word_f()<cr>
-"nnoremap f el
-nnoremap <c-f> w
-nnoremap F e
+"nnoremap <c-f> w
+"nnoremap F e
 
 func! N_cursor_mv_word_f() abort
 
@@ -232,6 +234,21 @@ endfunc
 " cursor mv word - back
 nnoremap o b
 
+" cursor mv word - back pre
+"nnoremap <c-o> :call N_cursor_mv_word_b()<cr>
+
+func! N_cursor_mv_word_b() abort
+
+  let l:c_char = Char()
+  let l:l_char = Char_l()
+
+  if l:c_char =~ ' ' && l:l_char !~ ' '
+    execute "normal! gegel"
+  else
+    execute "normal! gel"
+  end
+endfunc
+
 " cursor mv word split _
 nnoremap _     f_l
 nnoremap <c-_> hT_
@@ -243,9 +260,7 @@ nnoremap <c-l> %
 nnoremap L [m
 
 " cursor mv function back
-nnoremap O [{
-"nnoremap P [{
-"nnoremap P ?function<cr>f(b
+"nnoremap O [{
 
 " cursor mv edited ( jump list )
 nnoremap b     <c-o>
@@ -550,7 +565,7 @@ nnoremap A <esc>
 "nnoremap C <esc>
 nnoremap D <esc>
 "nnoremap E <esc>
-"nnoremap F <esc>
+nnoremap F <esc>
 nnoremap G <esc>
 nnoremap H <esc>
 "nnoremap I <esc>
@@ -559,9 +574,9 @@ nnoremap H <esc>
 "nnoremap L <esc>
 "nnoremap M <esc>
 "nnoremap N <esc>
-"nnoremap O <esc>
+nnoremap O <esc>
 nnoremap Q <esc>
-"nnoremap P <esc>
+nnoremap P <esc>
 "nnoremap R <esc>
 "nnoremap S <esc>
 nnoremap T <esc>
@@ -575,7 +590,7 @@ nnoremap Y <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
 "nnoremap <c-e> <esc>
-"nnoremap <c-f> <esc>
+nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
@@ -724,8 +739,13 @@ vnoremap # >gv
 " indent tab > space
 vnoremap :t :!expand -t 4
 
-" upper / lower
+" upper / lower tgl
 vnoremap u     ~viw
+
+" upper all
+vnoremap U     Uviw
+
+" lower all
 vnoremap <c-u> uviw
 
 "
@@ -827,6 +847,7 @@ vnoremap N <esc>
 vnoremap O <esc>
 "vnoremap P <esc>
 vnoremap S <esc>
+"vnoremap U <esc>
 vnoremap V <esc>
 vnoremap Y <esc>
 
@@ -1272,8 +1293,6 @@ let g:bookmark_no_default_key_mappings = 1
 
 " launch
 nnoremap <leader>d :tabnew<cr>:e .<cr>
-"autocmd FileType molder nnoremap u -
-"autocmd FileType molder nnoremap <c-o> <c-m>
 
 " plugin  #end#
 
