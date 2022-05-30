@@ -141,6 +141,7 @@ let mapleader = "\<esc>"
 "vnoremap <leader>y <esc>
 vnoremap <leader>u <esc>
 
+
 "
 " mode normal
 "
@@ -162,7 +163,7 @@ nnoremap W :tabo<cr>
 nnoremap a :w<cr>
 
 " reload
-nnoremap :e :e!
+"nnoremap :xx :e!
 
 " opn latest
 "nnoremap xx `0
@@ -173,14 +174,24 @@ nnoremap <leader>y :FileHstry<cr>
 "nnoremap <leader>s :FileHstry<cr>
 
 " opn tab new
-command! -nargs=* New tabnew <args>
-nnoremap :n :New filename
+"command! -nargs=* New tabnew <args>
+"nnoremap :n :New filename
 
 " opn tab file
-nnoremap :d :tab drop filename
+nnoremap :o :Opn 
+command! -nargs=* -complete=file Opn call Opn(<q-args>)
+func! Opn(filename) abort
 
-" cmd history
-nnoremap <leader>l :CmdHstry<cr>
+  execute 'tab drop ' . a:filename
+endfunc
+
+"nnoremap :d :tab drop filename
+
+" opn .vimrc
+func! Opn_vimrc() abort
+
+  execute 'tab drop ~/.vimrc'
+endfunc
 
 " 
 " cursor mv
@@ -315,9 +326,6 @@ nnoremap ! :call N_cmnt_1()<cr>
 
 " ins comment mlt
 nnoremap $ :call N_cmnt_mlt()<cr>
-
-" ins sys cmd ( read )
-nnoremap :r :r! 
 
 " del char
 nnoremap s "ax
@@ -464,9 +472,20 @@ nnoremap :G :call Grep("-w")
 " grep bfr ( blines )
 nnoremap <leader>i :BLines<cr>
 
+" 
+" cmd
+" 
+
+" cmd history
+nnoremap <leader>l :CmdHstry<cr>
+
+" ins sys cmd ( read )
+nnoremap :r :r! 
+
 "
 " tab
 "
+
 " tab mv
 nnoremap <tab>   gt
 nnoremap <s-tab> gT
