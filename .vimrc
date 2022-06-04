@@ -170,8 +170,6 @@ nnoremap a :w<cr>
 
 " opn file rcnt ( history )
 nnoremap <leader>y :FileHstry<cr>
-"nnoremap <leader>f :FileHstry<cr>
-"nnoremap <leader>s :FileHstry<cr>
 
 " opn tab new
 "command! -nargs=* New tabnew <args>
@@ -185,12 +183,25 @@ func! Opn(filename) abort
   execute 'tab drop ' . a:filename
 endfunc
 
-"nnoremap :d :tab drop filename
-
 " opn .vimrc
+nnoremap go :call Opn_vimrc()<cr>
 func! Opn_vimrc() abort
 
-  execute 'tab drop ~/.vimrc'
+  call Opn('~/.vimrc')
+endfunc
+
+" opn tmp
+nnoremap gg :call Opn_tmp()<cr>
+func! Opn_tmp() abort
+
+  call Opn('sh/g.lua')
+endfunc
+
+" opn memo
+nnoremap gm :call Opn_memo()<cr>
+func! Opn_memo() abort
+
+  call Opn('sh/m.txt')
 endfunc
 
 " 
@@ -369,11 +380,13 @@ nnoremap v <c-v>
 nnoremap c "0yy
 
 " pc clipboard line
-nnoremap C     "+yy
-"nnoremap <c-c> "+yy
+nnoremap C "+yy
 
 " yank char
 "nnoremap xx "0yl
+
+" yank clear
+nnoremap <c-c> :call Rgstr__clr()<cr>
 
 " paste
 nnoremap p "0P
@@ -466,8 +479,8 @@ nnoremap :w :set wrap!
 nnoremap <leader>o :Rg <cr>
 
 " grep ( rg qf )
-nnoremap :g :call Grep("")
-nnoremap :G :call Grep("-w")
+nnoremap :g :call Grep("")<cr>
+nnoremap :G :call Grep("-w")<cr>
 
 " grep bfr ( blines )
 nnoremap <leader>i :BLines<cr>
@@ -629,8 +642,11 @@ nnoremap <c-x> <esc>
 "nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
 
+"nnoremap gg <esc>
 nnoremap gh <esc>
-nnoremap go <esc>
+nnoremap gi <esc>
+"nnoremap go <esc>
+nnoremap gt <esc>
 
 "
 " mode visual
@@ -683,7 +699,6 @@ vnoremap <c-l> %
 
 " cursor mv file back    ( file begin )
 vnoremap gk gg0
-"vnoremap go gg0
 
 " cursor mv file forward ( file end   )
 vnoremap gj G$l
@@ -1327,6 +1342,11 @@ au FileType * set fo-=c fo-=r fo-=o
 "
 " vim script
 "
+
+func! Rgstr__clr() abort
+
+  let @0 = ''
+endfunc
 
 func! Slct_word() abort
 
