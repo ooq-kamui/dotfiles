@@ -137,9 +137,11 @@ packadd Cfilter
 let mapleader = "\<esc>"
 
 " leader esc
+"nnoremap <leader>h <esc>
 "nnoremap <leader>y <esc>
-"vnoremap <leader>y <esc>
+
 vnoremap <leader>u <esc>
+"vnoremap <leader>y <esc>
 
 
 "
@@ -169,6 +171,7 @@ nnoremap a :w<cr>
 "nnoremap xx `0
 
 " opn file rcnt ( history )
+nnoremap <leader>h :FileHstry<cr>
 nnoremap <leader>y :FileHstry<cr>
 
 " opn tab new
@@ -176,6 +179,7 @@ nnoremap <leader>y :FileHstry<cr>
 "nnoremap :n :New filename
 
 " opn tab file
+nnoremap :e :Opn 
 nnoremap :o :Opn 
 command! -nargs=* -complete=file Opn call Opn(<q-args>)
 func! Opn(filename) abort
@@ -184,13 +188,13 @@ func! Opn(filename) abort
 endfunc
 
 " opn .vimrc
-nnoremap go :call Opn_vimrc()<cr>
+nnoremap gv :call Opn_vimrc()<cr>
 func! Opn_vimrc() abort
 
   call Opn('~/.vimrc')
 endfunc
 
-" opn tmp
+" opn tmp ( grep )
 nnoremap gg :call Opn_tmp()<cr>
 func! Opn_tmp() abort
 
@@ -282,7 +286,7 @@ nnoremap <c-l> %
 nnoremap L [m
 
 " cursor mv function back
-"nnoremap O [{
+nnoremap go [{
 
 " cursor mv edited ( jump list )
 nnoremap b     <c-o>
@@ -290,11 +294,9 @@ nnoremap <c-b> <c-i>
 
 " cursor mv file back    ( file begin )
 nnoremap gk gg0
-"nnoremap go gg0
 
 " cursor mv file forward ( file end   )
 nnoremap gj G$l
-"nnoremap gl G$l
 
 " scroll
 nnoremap <up>   <c-y>
@@ -338,6 +340,10 @@ nnoremap ! :call N_cmnt_1()<cr>
 " ins comment mlt
 nnoremap $ :call N_cmnt_mlt()<cr>
 
+" ins date time
+nnoremap * i<c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr><esc>
+nnoremap D i<c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr><esc>
+
 " del char
 nnoremap s "ax
 nnoremap x x
@@ -375,6 +381,9 @@ nnoremap v <c-v>
 
 " select all
 "nnoremap A ggVG
+
+" select re
+nnoremap V gv
 
 " yank line
 nnoremap c "0yy
@@ -541,7 +550,7 @@ nnoremap @ <esc>
 "nnoremap ; <esc>
 "nnoremap , <esc>
 nnoremap . <esc>
-nnoremap * <esc>
+"nnoremap * <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
 "nnoremap ^ <esc>
@@ -595,7 +604,7 @@ nnoremap z <esc>
 nnoremap A <esc>
 "nnoremap B <esc>
 "nnoremap C <esc>
-nnoremap D <esc>
+"nnoremap D <esc>
 "nnoremap E <esc>
 nnoremap F <esc>
 nnoremap G <esc>
@@ -614,7 +623,7 @@ nnoremap P <esc>
 nnoremap T <esc>
 nnoremap U <esc>
 "nnoremap W <esc>
-nnoremap V <esc>
+"nnoremap V <esc>
 nnoremap Y <esc>
 
 "nnoremap <c-a> <esc>
@@ -645,8 +654,10 @@ nnoremap <c-z> <esc>
 "nnoremap gg <esc>
 nnoremap gh <esc>
 nnoremap gi <esc>
+"nnoremap gl <esc>
 "nnoremap go <esc>
 nnoremap gt <esc>
+"nnoremap gv <esc>
 
 "
 " mode visual
@@ -702,7 +713,6 @@ vnoremap gk gg0
 
 " cursor mv file forward ( file end   )
 vnoremap gj G$l
-"vnoremap gl G$l
 
 " ins | cut & ins
 vnoremap <expr> <space> mode() == "<c-v>" ? "I" : "c"
@@ -730,6 +740,9 @@ vnoremap x "ax
 
 " del cr
 vnoremap <c-m> J
+
+" del line end space
+vnoremap xx :s/ *$//g
 
 " mv str back
 vnoremap <c-w> :call V_mv_str("h")<cr>
@@ -1379,7 +1392,7 @@ func! Tag_jmp(rg_line) abort
 
   let l:rg_line_ar = Rg_parse(a:rg_line)
   let l:filename = l:rg_line_ar[0]
-  let l:linenum  = l:rg_line_ar[1]
+  let l:linenum  = get(l:rg_line_ar, 1, 1)
 
   execute "tab drop " . l:filename
   execute "normal! " . l:linenum . "G"
