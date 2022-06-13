@@ -386,10 +386,17 @@ nnoremap v <c-v>
 nnoremap V gv
 
 " yank line
-nnoremap c "0yy
+nnoremap c :call N_cpy()<cr>
+"nnoremap c "0yy
+
+func! N_cpy() abort
+
+  execute 'normal! "0yy'
+  execute 'normal! "+yy'
+endfunc
 
 " pc clipboard line
-nnoremap C "+yy
+"nnoremap C "+yy
 
 " yank char
 "nnoremap xx "0yl
@@ -603,7 +610,7 @@ nnoremap z <esc>
 
 nnoremap A <esc>
 "nnoremap B <esc>
-"nnoremap C <esc>
+nnoremap C <esc>
 "nnoremap D <esc>
 "nnoremap E <esc>
 nnoremap F <esc>
@@ -758,12 +765,19 @@ vnoremap K :call V_mv_line("k")<cr>
 vnoremap a <esc>ggVG
 
 " yank selected
-vnoremap o "0y
-vnoremap c "0y
+vnoremap o :call V_cpy()<cr>
+vnoremap c :call V_cpy()<cr>
+"vnoremap c "0y
+
+func! V_cpy() abort
+
+  let l:str = V_slctd_str()
+  let @0 = l:str
+  let @+ = l:str
+endfunc
 
 " pc clipboard selected
-vnoremap C "+y
-"vnoremap <c-c> "+y
+"vnoremap C "+y
 
 " paste
 vnoremap <expr> p mode() == "<c-v>" ? "I<c-r>0<esc>" : '"ad"0P'
@@ -882,7 +896,7 @@ vnoremap w <esc>
 
 "vnoremap A <esc>
 "vnoremap B <esc>
-"vnoremap C <esc>
+vnoremap C <esc>
 vnoremap F <esc>
 vnoremap H <esc>
 vnoremap I <esc>

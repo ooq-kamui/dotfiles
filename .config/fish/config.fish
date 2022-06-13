@@ -40,7 +40,7 @@ bind \cK kill-word
 #bind \cS backward-delete-char
 
 bind \cx 'clear; commandline -f repaint'
-#bind \cq 'clear; commandline -f repaint'
+bind \cq 'clear; commandline -f repaint'
 
 bind \cu fzf-file-widget
 bind \cy fzf-history-widget
