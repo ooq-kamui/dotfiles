@@ -188,24 +188,25 @@ func! Opn(filename) abort
 endfunc
 
 " opn .vimrc
-nnoremap gv :call Opn_vimrc()<cr>
+nnoremap gh :call Opn_vimrc()<cr>
+"nnoremap gg :call Opn_vimrc()<cr>
 func! Opn_vimrc() abort
 
   call Opn('~/.vimrc')
 endfunc
 
 " opn tmp ( grep )
-nnoremap gg :call Opn_tmp()<cr>
+nnoremap gu :call Opn_tmp()<cr>
 func! Opn_tmp() abort
 
-  call Opn('sh/g.lua')
+  call Opn('doc/grep.lua')
 endfunc
 
 " opn memo
-nnoremap gm :call Opn_memo()<cr>
+nnoremap gi :call Opn_memo()<cr>
 func! Opn_memo() abort
 
-  call Opn('sh/m.txt')
+  call Opn('doc/memo.txt')
 endfunc
 
 " 
@@ -471,6 +472,7 @@ nnoremap <leader>n :SrchHstry<cr>
 nnoremap N /<c-p><c-p><cr>
 
 " srch init ( hl )
+nnoremap H /<cr>N
 nnoremap S /<cr>N
 
 " srch replace all > yank ( file )
@@ -510,6 +512,9 @@ nnoremap <leader>l :CmdHstry<cr>
 
 " ins sys cmd ( read )
 nnoremap :r :r! 
+
+" ins sys ls ( read )
+nnoremap O :Ls 
 
 "
 " tab
@@ -615,17 +620,17 @@ nnoremap C <esc>
 "nnoremap E <esc>
 nnoremap F <esc>
 nnoremap G <esc>
-nnoremap H <esc>
+"nnoremap H <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
 "nnoremap L <esc>
 "nnoremap M <esc>
 "nnoremap N <esc>
-nnoremap O <esc>
+"nnoremap O <esc>
 nnoremap Q <esc>
 nnoremap P <esc>
-"nnoremap R <esc>
+nnoremap R <esc>
 "nnoremap S <esc>
 nnoremap T <esc>
 nnoremap U <esc>
@@ -658,13 +663,16 @@ nnoremap <c-x> <esc>
 "nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
 
-"nnoremap gg <esc>
-nnoremap gh <esc>
-nnoremap gi <esc>
+nnoremap gg <esc>
+"nnoremap gh <esc>
+"nnoremap gi <esc>
+"nnoremap gj <esc>
 "nnoremap gl <esc>
+nnoremap gm <esc>
 "nnoremap go <esc>
 nnoremap gt <esc>
-"nnoremap gv <esc>
+"nnoremap gu <esc>
+nnoremap gv <esc>
 
 "
 " mode visual
@@ -1831,6 +1839,14 @@ func! V_cmnt_mlt() range abort
 
   execute 'normal! ' . a:firstline . 'G'
   call Cmnt_mlt("bgn")
+endfunc
+
+command! -nargs=? -complete=dir Ls call Ls(<q-args>)
+func! Ls(dir) abort
+
+  let l:exe = 'r! ls -dFA ' . trim(a:dir) . '**.*'
+  "echo l:exe
+  execute l:exe
 endfunc
 
 func! Hl_grp() abort

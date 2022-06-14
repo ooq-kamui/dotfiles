@@ -1,6 +1,6 @@
-#
+# 
 # source ~/.config/fish/config.fish
-#
+# 
 
 export LSCOLORS=fxgxcxdxexegedabagacad
 #               ^dir    ^exe
@@ -17,15 +17,15 @@ set -x RIPGREP_CONFIG_PATH ~/.ripgreprc
 #set -x FZF_CTRL_T_COMMAND  'rg --files --hidden --follow --glob "!.git/*"'
 set -x FZF_DEFAULT_OPTS '--bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
 
+# alias
+alias l  "ls -1hAG"
+alias ll "ls -lgohAGD '%Y-%m-%d %H:%M'"
 
-alias l="ls -1hAG"
-alias ll="ls -lgohAGD '%Y-%m-%d %H:%M'"
-alias vim="nvim -p"
-alias vi="nvim -p"
+alias vi  "nvim -p"
+alias vim "nvim -p"
+
 #alias fzf="fzf --bind=ctrl-o:accept "
-
 #alias rpl="string replace"
-
 #alias f="mdfind -onlyin . -name"
 
 # corsor mv char
