@@ -243,8 +243,6 @@ nnoremap <c-o> h
 
 " cursor mv word - forward
 nnoremap f :call N_cursor_mv_word_f()<cr>
-"nnoremap <c-f> w
-"nnoremap F e
 
 func! N_cursor_mv_word_f() abort
 
@@ -514,7 +512,9 @@ nnoremap <leader>l :CmdHstry<cr>
 nnoremap :r :r! 
 
 " ins sys ls ( read )
-nnoremap O :Ls 
+nnoremap R :Lf 
+nnoremap F :Lf 
+nnoremap O :Lf 
 
 "
 " tab
@@ -618,7 +618,7 @@ nnoremap A <esc>
 nnoremap C <esc>
 "nnoremap D <esc>
 "nnoremap E <esc>
-nnoremap F <esc>
+"nnoremap F <esc>
 nnoremap G <esc>
 "nnoremap H <esc>
 "nnoremap I <esc>
@@ -630,7 +630,7 @@ nnoremap G <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
 nnoremap P <esc>
-nnoremap R <esc>
+"nnoremap R <esc>
 "nnoremap S <esc>
 nnoremap T <esc>
 nnoremap U <esc>
@@ -1841,8 +1841,8 @@ func! V_cmnt_mlt() range abort
   call Cmnt_mlt("bgn")
 endfunc
 
-command! -nargs=? -complete=dir Ls call Ls(<q-args>)
-func! Ls(dir) abort
+command! -nargs=? -complete=dir Lf call Lf(<q-args>)
+func! Lf(dir) abort
 
   let l:exe = 'r! ls -dFA ' . trim(a:dir) . '**.*'
   "echo l:exe

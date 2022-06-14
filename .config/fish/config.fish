@@ -20,6 +20,7 @@ set -x FZF_DEFAULT_OPTS '--bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward
 # alias
 alias l  "ls -1hAG"
 alias ll "ls -lgohAGD '%Y-%m-%d %H:%M'"
+alias ld "l  -d"
 
 alias vi  "nvim -p"
 alias vim "nvim -p"
