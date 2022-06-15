@@ -92,3 +92,5 @@ highlight default link fishControl Exception
 
 let b:current_syntax = 'fish'
 
+hi Statement cterm=none ctermfg=11 gui=none guifg=#ffff60
+
