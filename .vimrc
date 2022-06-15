@@ -1844,7 +1844,8 @@ endfunc
 command! -nargs=? -complete=dir Lf call Lf(<q-args>)
 func! Lf(dir) abort
 
-  let l:exe = 'r! ls -dFA ' . trim(a:dir) . '**.*'
+  let l:exe = 'r! lf ' . trim(a:dir)
+  "let l:exe = 'r! ls -dFA ' . trim(a:dir) . '**.*'
   "echo l:exe
   execute l:exe
 endfunc
