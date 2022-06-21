@@ -4,12 +4,13 @@ function lf
 
   set dir ( dir_trim $dir )
 
-  set path (                      \
-    find $dir                     \
-      -name .git -type d -prune   \
-      -o                          \
-      \( -type f -o -type l \)    \
-      -print                      \
+  set path (                     \
+    find $dir                    \
+      -name .git -type d -prune  \
+      -o                         \
+      \( -type f -o -type l \)   \
+      -print                    |\
+    sort -u
   )
 
   l1 $path

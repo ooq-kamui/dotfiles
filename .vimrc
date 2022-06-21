@@ -224,8 +224,8 @@ nnoremap <c-k> 10<c-y>
 nnoremap <c-j> 10<c-e>
 
 " cursor mv in line start | ins line
-nnoremap <expr> y col(".") == 1 ? "O<esc>" : "0"
-"nnoremap <expr> ; col(".") == 1 ? "O<esc>" : "0"
+nnoremap <expr> y col(".") == 1 ? "Ox<c-h><esc>0" : "0"
+"nnoremap <expr> ; col(".") == 1 ? "Ox<c-h><esc>" : "0"
 
 " cursor mv line in start
 nnoremap <c-a> 0
@@ -244,35 +244,11 @@ nnoremap <c-o> h
 " cursor mv word - forward
 nnoremap f :call N_cursor_mv_word_f()<cr>
 
-func! N_cursor_mv_word_f() abort
-
-  let l:c_char = Char()
-  let l:l_char = Char_l()
-
-  if l:c_char =~ ' ' && l:l_char =~ ' '
-    execute "normal! w"
-  else
-    execute "normal! el"
-  end
-endfunc
-
 " cursor mv word - back
 nnoremap o b
 
 " cursor mv word - back pre
 "nnoremap <c-o> :call N_cursor_mv_word_b()<cr>
-
-func! N_cursor_mv_word_b() abort
-
-  let l:c_char = Char()
-  let l:l_char = Char_l()
-
-  if l:c_char =~ ' ' && l:l_char !~ ' '
-    execute "normal! gegel"
-  else
-    execute "normal! gel"
-  end
-endfunc
 
 " cursor mv word split _
 nnoremap _     f_l
@@ -298,18 +274,18 @@ nnoremap gk gg0
 nnoremap gj G$l
 
 " scroll
+nnoremap K      <c-y>
+nnoremap J      <c-e>
 nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
-nnoremap K <c-y>
-nnoremap J <c-e>
 
 " scroll cursor line read easily
-"nnoremap xx zt
+nnoremap H zt
 
 " cursor mv window nxt
 nnoremap gl <c-w>w
 
-"
+" 
 " edit
 "
 
@@ -320,8 +296,7 @@ nnoremap <space> i
 " ref ;
 
 " ins cr
-nnoremap m i<cr><esc>
-nnoremap M i<cr><esc>>>
+nnoremap m i<cr>x<c-h><esc>
 
 " ins space
 "nnoremap xx i <esc>l
@@ -340,8 +315,7 @@ nnoremap ! :call N_cmnt_1()<cr>
 nnoremap $ :call N_cmnt_mlt()<cr>
 
 " ins date time
-nnoremap * i<c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr><esc>
-nnoremap D i<c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr><esc>
+nnoremap * i<c-r>=strftime("%Y-%m-%d %a %H:%M:%S")<cr><esc>
 
 " del char
 nnoremap s "ax
@@ -353,7 +327,6 @@ nnoremap d "0dd
 
 " del in line forward
 nnoremap <c-d> D
-"nnoremap <c-y> D
 
 " del word back
 "nnoremap <c-w> hvbd
@@ -376,7 +349,6 @@ nnoremap i :call Slct_word()<cr>
 
 " select box
 nnoremap v <c-v>
-"nnoremap I <c-v>
 
 " select all
 "nnoremap A ggVG
@@ -386,13 +358,6 @@ nnoremap V gv
 
 " yank line
 nnoremap c :call N_cpy()<cr>
-"nnoremap c "0yy
-
-func! N_cpy() abort
-
-  execute 'normal! "0yy'
-  execute 'normal! "+yy'
-endfunc
 
 " pc clipboard line
 "nnoremap C "+yy
@@ -470,8 +435,8 @@ nnoremap <leader>n :SrchHstry<cr>
 nnoremap N /<c-p><c-p><cr>
 
 " srch init ( hl )
-nnoremap H /<cr>N
 nnoremap S /<cr>N
+"nnoremap H /<cr>N
 
 " srch replace all > yank ( file )
 nnoremap :s :%s//<c-r>0/gc
@@ -616,7 +581,7 @@ nnoremap z <esc>
 nnoremap A <esc>
 "nnoremap B <esc>
 nnoremap C <esc>
-"nnoremap D <esc>
+nnoremap D <esc>
 "nnoremap E <esc>
 "nnoremap F <esc>
 nnoremap G <esc>
@@ -625,7 +590,7 @@ nnoremap G <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
 "nnoremap L <esc>
-"nnoremap M <esc>
+nnoremap M <esc>
 "nnoremap N <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
@@ -749,7 +714,7 @@ vnoremap B :<c-u>call V_ins_bracket()<cr>
 " del str > yank
 vnoremap d "0d
 
-" del str > yank non
+" del str > yank not
 vnoremap s "ax
 vnoremap x "ax
 
@@ -757,7 +722,12 @@ vnoremap x "ax
 vnoremap <c-m> J
 
 " del line end space
-vnoremap xx :s/ *$//g
+"vnoremap S :s/ *$//g<cr>
+vnoremap S :call V_line_end_space_del()<cr>
+
+func! V_line_end_space_del() abort
+  execute 's/[ \t]*$//g'
+endfunc
 
 " mv str back
 vnoremap <c-w> :call V_mv_str("h")<cr>
@@ -915,7 +885,7 @@ vnoremap M <esc>
 vnoremap N <esc>
 vnoremap O <esc>
 "vnoremap P <esc>
-vnoremap S <esc>
+"vnoremap S <esc>
 "vnoremap U <esc>
 vnoremap V <esc>
 vnoremap Y <esc>
@@ -1377,6 +1347,36 @@ au FileType * set fo-=c fo-=r fo-=o
 "
 " vim script
 "
+
+func! N_cpy() abort
+
+  execute 'normal! "0yy'
+  execute 'normal! "+yy'
+endfunc
+
+func! N_cursor_mv_word_f() abort
+
+  let l:c_char = Char()
+  let l:l_char = Char_l()
+
+  if l:c_char =~ ' ' && l:l_char =~ ' '
+    execute "normal! w"
+  else
+    execute "normal! el"
+  end
+endfunc
+
+func! N_cursor_mv_word_b() abort
+
+  let l:c_char = Char()
+  let l:l_char = Char_l()
+
+  if l:c_char =~ ' ' && l:l_char !~ ' '
+    execute "normal! gegel"
+  else
+    execute "normal! gel"
+  end
+endfunc
 
 func! Rgstr__clr() abort
 
