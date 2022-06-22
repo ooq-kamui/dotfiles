@@ -2,11 +2,10 @@
 # source ~/.config/fish/config.fish
 # 
 
-set -x LSCOLORS fxgxcxdxexegedabagacad
 #export LSCOLORS=fxgxcxdxexegedabagacad
+set -x LSCOLORS fxgxcxdxexegedabagacad
 #               ^dir    ^exe
-# a:black, b:red, c:green, d:brown, e:blue,
-# f:magenta, g:cyan, h:grey
+# a:black, b:red, c:green, d:brown, e:blue, f:magenta, g:cyan, h:grey
 
 set -x PATH /opt/local/bin $PATH
 set -x PATH /opt/homebrew/bin $PATH 
@@ -14,9 +13,9 @@ set -x PATH $HOME/.cargo/bin $PATH
 set -x PATH $HOME/.nodebrew/current/bin $PATH
 set -x RIPGREP_CONFIG_PATH ~/.ripgreprc
 
+set -x FZF_DEFAULT_OPTS '--bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
 #set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --glob "!.git"'
 #set -x FZF_CTRL_T_COMMAND  'rg --files --hidden --follow --glob "!.git/*"'
-set -x FZF_DEFAULT_OPTS '--bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
 
 
 # alias
@@ -36,9 +35,10 @@ alias pwd_cp "pwd | pbcopy"
 
 # alias - short cut
 alias cd_vim  "cd ~/doc/tech/github/vimrc"
-alias cd_ooq  "cd ~/dev/ooq/g.proto/assets/"
+alias cd_ooq  "cd ~/dev/ooq/g.proto/assets"
 alias cd_holo "cd ~/doc/hoby/youtube/vtuber/hololive/prj"
 alias cd_holo_data "cd ~/doc/hoby/youtube/vtuber/hololive/prj/www/song/data"
+alias cd_life "cd ~/doc/life"
 
 alias vi_fish_config "~/.config/fish/config.fish"
 

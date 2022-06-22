@@ -102,8 +102,9 @@ autocmd BufWinEnter * normal! zt
 
 set nowrap
 set whichwrap=b,s,h,l,<,>,[,]
-set virtualedit=onemore " cursor, mv new line
-set virtualedit+=block  " visual box, mv new line forward
+set virtualedit=onemore " cursor mv cr
+set virtualedit+=block  " box select
+"set virtualedit=all
 set scrolloff=5
 set wildmode=list:longest
 set tabpagemax=30
@@ -1839,6 +1840,19 @@ func! V_cmnt_mlt() range abort
 
   execute 'normal! ' . a:firstline . 'G'
   call Cmnt_mlt("bgn")
+endfunc
+
+func! V_line_padding() range abort
+  
+  let l:char = " "
+  let l:w    = 75
+
+  for line_num in range(a:firstline, a:lastline)
+    
+    execute 'normal! ' . line_num . 'G'
+    let l:len = l:w - col("$")
+    execute 'normal! ' . l:len . 'A' . l:char
+  endfor
 endfunc
 
 command! -nargs=? -complete=dir Lf call Lf(<q-args>)
