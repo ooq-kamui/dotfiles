@@ -403,6 +403,9 @@ nnoremap # >>
 " char toggle ( upper / lower )
 nnoremap u :call Char_tgl()<cr>
 
+" char toggle ( turn )
+nnoremap U :call N_char_tgl_trn()<cr>
+
 " upper / lower
 "nnoremap xx v~
 
@@ -599,7 +602,7 @@ nnoremap P <esc>
 "nnoremap R <esc>
 "nnoremap S <esc>
 nnoremap T <esc>
-nnoremap U <esc>
+"nnoremap U <esc>
 "nnoremap W <esc>
 "nnoremap V <esc>
 nnoremap Y <esc>
@@ -710,7 +713,10 @@ vnoremap ! :call V_cmnt_1()<cr>
 vnoremap $ :call V_cmnt_mlt()<cr>
 
 " ins bracket
-vnoremap B :<c-u>call V_ins_bracket()<cr>
+"vnoremap B :<c-u>call V_ins_bracket()<cr>
+
+" ins slctd edge
+vnoremap b :<c-u>InsSlctdLr 
 
 " del str > yank
 vnoremap d "0d
@@ -852,7 +858,7 @@ vnoremap , <esc>
 vnoremap . <esc>
 
 "vnoremap a <esc>
-vnoremap b <esc>
+"vnoremap b <esc>
 "vnoremap c <esc>
 "vnoremap d <esc>
 "vnoremap e <esc>
@@ -886,6 +892,7 @@ vnoremap M <esc>
 vnoremap N <esc>
 vnoremap O <esc>
 "vnoremap P <esc>
+"vnoremap R <esc>
 "vnoremap S <esc>
 "vnoremap U <esc>
 vnoremap V <esc>
@@ -897,6 +904,7 @@ vnoremap <c-a> <esc>
 vnoremap <c-d> <esc>
 "vnoremap <c-e> <esc>
 vnoremap <c-f> <esc>
+vnoremap <c-h> <esc>
 vnoremap <c-i> <esc>
 "vnoremap <c-l> <esc>
 "vnoremap <c-m> <esc>
@@ -1469,7 +1477,20 @@ func! Char_tgl() abort
   let l:rpl = Char_tgl_char(l:c)
 
   if l:rpl == ""
-  "else
+    normal! v~
+    return
+  endif
+
+  execute "normal! x"
+  execute "normal! i".l:rpl
+endfunc
+
+func! N_char_tgl_trn() abort
+
+  let l:c   = Char()
+  let l:rpl = Char_tgl_trn(l:c)
+
+  if l:rpl == ""
     normal! v~
     return
   endif
@@ -1598,6 +1619,34 @@ func! Char_tgl_etc(c) abort
   return l:rpl
 endfunc
 
+func! Char_tgl_trn(c) abort
+  
+  let l:rpl = ""
+
+  if     a:c == "<"
+    let l:rpl = ">"
+  elseif a:c == ">"
+    let l:rpl = "<"
+
+  elseif a:c == "{"
+    let l:rpl = "}"
+  elseif a:c == "}"
+    let l:rpl = "{"
+
+  elseif a:c == "["
+    let l:rpl = "]"
+  elseif a:c == "]"
+    let l:rpl = "["
+
+  elseif a:c == "("
+    let l:rpl = ")"
+  elseif a:c == ")"
+    let l:rpl = "("
+  endif
+
+  return l:rpl
+endfunc
+
 "func! N_bracket_pair_tgl() abort
 "
 "  let l:col1 = col(".")
@@ -1688,9 +1737,45 @@ endfunc
 
 func! V_slctd_str_len() abort
 
-  let l:slctd_str = V_slctd_str()
-  let l:slctd_str = strchars(l:slctd_str)
-  return l:slctd_str
+  "let l:slctd_str = V_slctd_str()
+  let l:len = strchars(V_slctd_str())
+  return l:len
+endfunc
+
+command! -nargs=? InsSlctdLr call V_ins_slctd_lr(<q-args>)
+func! V_ins_slctd_lr(c) abort
+  
+  if     a:c   == "("
+    let  l:c_l =  "("
+    let  l:c_r =  ")"
+  elseif a:c   == "["
+    let  l:c_l =  "["
+    let  l:c_r =  "]"
+  elseif a:c   == "{"
+    let  l:c_l =  "{"
+    let  l:c_r =  "}"
+  elseif a:c   == "<"
+    let  l:c_l =  "<"
+    let  l:c_r =  ">"
+  else
+    let  l:c_l = a:c
+    let  l:c_r = a:c
+  endif
+  
+  call V_ins_slctd_r(l:c_r)
+  call V_ins_slctd_l(l:c_l)
+endfunc
+
+func! V_ins_slctd_l(c) abort
+
+  execute 'normal! `<'
+  execute 'normal! i' . a:c
+endfunc
+
+func! V_ins_slctd_r(c) abort
+
+  execute 'normal! `>l'
+  execute 'normal! i' . a:c
 endfunc
 
 func! N_srch_str__(word1) abort
@@ -1850,7 +1935,11 @@ func! V_line_padding() range abort
   for line_num in range(a:firstline, a:lastline)
     
     execute 'normal! ' . line_num . 'G'
-    let l:len = l:w - col("$")
+    
+    "let l:col = charidx(getline(line_num), col('$'))
+    let l:col = col('$')
+    let l:len = l:w - l:col
+    
     execute 'normal! ' . l:len . 'A' . l:char
   endfor
 endfunc
