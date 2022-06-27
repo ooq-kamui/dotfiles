@@ -10,6 +10,7 @@ set backspace=2   " more powerful backspacing
 
 " Don't write backup file if vim is being called by "crontab -e"
 au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
+
 " Don't write backup file if vim is being called by "chpass"
 au BufWrite /private/etc/pw.* set nowritebackup nobackup
 
@@ -17,57 +18,55 @@ let skip_defaults_vim=1
 
 filetype on
 
-au ColorScheme * hi LineNr       ctermfg=141                        cterm=none
-au ColorScheme * hi CursorLineNr ctermfg=magenta
+hi LineNr        ctermfg=141                        cterm=none
 augroup InsertHook
-  autocmd!
-  autocmd InsertLeave * hi LineNr ctermfg=141
-  autocmd InsertEnter * hi LineNr ctermfg=lightgreen
+  au!
+  au InsertLeave * hi LineNr ctermfg=141
+  au InsertEnter * hi LineNr ctermfg=lightgreen
 augroup END 
 
-au ColorScheme * hi Visual                           ctermbg=magenta cterm=none
-au ColorScheme * hi VisualNOS                        ctermbg=magenta cterm=none
-au ColorScheme * hi Search        ctermfg=yellow     ctermbg=cyan    cterm=none
-au ColorScheme * hi IncSearch     ctermfg=yellow     ctermbg=cyan    cterm=none
-au ColorScheme * hi MatchParen    ctermfg=magenta    ctermbg=none
+hi CursorLineNr  ctermfg=magenta
 
-au ColorScheme * hi TabLineSel    ctermfg=cyan       ctermbg=none    cterm=none
-au ColorScheme * hi TabLine       ctermfg=lightblue  ctermbg=33      cterm=none
-au ColorScheme * hi TabLineFill                      ctermbg=33      cterm=none
+hi Visual                           ctermbg=magenta cterm=none
+hi VisualNOS                        ctermbg=magenta cterm=none
+hi Search        ctermfg=yellow     ctermbg=cyan    cterm=none
+hi IncSearch     ctermfg=yellow     ctermbg=cyan    cterm=none
+hi MatchParen    ctermfg=magenta    ctermbg=none
 
-au ColorScheme * hi StatusLine    ctermfg=lightblue  ctermbg=33      cterm=none
-au ColorScheme * hi EndOfBuffer   ctermfg=cyan                       cterm=none
+hi TabLineSel    ctermfg=cyan       ctermbg=none    cterm=none
+hi TabLine       ctermfg=lightblue  ctermbg=33      cterm=none
+hi TabLineFill                      ctermbg=33      cterm=none
 
-au ColorScheme * hi Pmenu         ctermfg=lightgreen ctermbg=blue
-au ColorScheme * hi PmenuSel      ctermfg=cyan       ctermbg=magenta cterm=bold
+hi StatusLine    ctermfg=lightblue  ctermbg=33      cterm=none
+hi EndOfBuffer   ctermfg=cyan                       cterm=none
 
-au ColorScheme * hi ErrorMsg      ctermfg=magenta    ctermbg=none    cterm=none
-au ColorScheme * hi WarningMsg    ctermfg=magenta    ctermbg=none    cterm=none
+hi Pmenu         ctermfg=lightgreen ctermbg=blue
+hi PmenuSel      ctermfg=cyan       ctermbg=magenta cterm=bold
 
-au ColorScheme * hi NonText       ctermfg=25         ctermbg=none    cterm=none
-au ColorScheme * hi SpecialKey    ctermfg=25         ctermbg=none    cterm=none
+hi ErrorMsg      ctermfg=magenta    ctermbg=none    cterm=none
+hi WarningMsg    ctermfg=magenta    ctermbg=none    cterm=none
 
-au ColorScheme * hi Comment       ctermfg=14         ctermbg=none    cterm=none
+hi NonText       ctermfg=25         ctermbg=none    cterm=none
+hi SpecialKey    ctermfg=25         ctermbg=none    cterm=none
 
-au ColorScheme * hi netrwDir      ctermfg=lightgreen
-au ColorScheme * hi netrwTreeBar  ctermfg=lightgreen
-au ColorScheme * hi netrwClassify ctermfg=lightgreen
-au ColorScheme * hi netrwComment  ctermfg=14         ctermbg=none    cterm=none
-au ColorScheme * hi netrwList     ctermfg=yellow     ctermbg=none    cterm=none
-au ColorScheme * hi netrwVersion  ctermfg=130        ctermbg=none    cterm=none
-au ColorScheme * hi netrwHelpCmd  ctermfg=130        ctermbg=none    cterm=none
+hi Comment       ctermfg=14         ctermbg=none    cterm=none
 
-au Colorscheme * hi FullWidthSpace ctermbg=white
+hi FullWidthSpace ctermbg=white
 au VimEnter * match FullWidthSpace /　/
+
+hi netrwDir      ctermfg=lightgreen
+hi netrwTreeBar  ctermfg=lightgreen
+hi netrwClassify ctermfg=lightgreen
+hi netrwComment  ctermfg=14         ctermbg=none    cterm=none
+hi netrwList     ctermfg=yellow     ctermbg=none    cterm=none
+hi netrwVersion  ctermfg=130        ctermbg=none    cterm=none
+hi netrwHelpCmd  ctermfg=130        ctermbg=none    cterm=none
 
 au BufNewFile,BufRead *.script     set filetype=lua
 au BufNewFile,BufRead *.gui_script set filetype=lua
 au BufNewFile,BufRead *.fish       set filetype=fish
-"au BufNewFile,BufRead *.js         set filetype=js
-"au BufNewFile,BufRead *.dbglua     set filetype=lua
 
 syntax on
-colorscheme koehler
 
 set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
 set incsearch
@@ -97,8 +96,8 @@ augroup vimrcEx
   \ exe "normal! g`\"" | endif
 augroup END
 
-autocmd BufWinEnter * normal! zt
-"autocmd BufWinEnter * normal! zz
+autocmd BufWinEnter * normal! zz
+"autocmd BufWinEnter * normal! zt
 
 set nowrap
 set whichwrap=b,s,h,l,<,>,[,]
@@ -678,9 +677,8 @@ vnoremap <c-_> F_h
 "vnoremap I wh
 "vnoremap F wh
 
-" cursor mv in selected
+" cursor mv selected edge
 vnoremap y o
-"vnoremap ; o
 
 " cursor mv in line
 "vnoremap xx $
@@ -715,8 +713,10 @@ vnoremap $ :call V_cmnt_mlt()<cr>
 " ins bracket
 "vnoremap B :<c-u>call V_ins_bracket()<cr>
 
-" ins slctd edge
-vnoremap b :<c-u>InsSlctdLr 
+" ins selected edge
+vnoremap ; :<c-u>InsSlctdEdge 
+vnoremap b :<c-u>InsSlctdEdge 
+"vnoremap h :<c-u>InsSlctdEdge 
 
 " del str > yank
 vnoremap d "0d
@@ -753,13 +753,6 @@ vnoremap a <esc>ggVG
 vnoremap o :call V_cpy()<cr>
 vnoremap c :call V_cpy()<cr>
 "vnoremap c "0y
-
-func! V_cpy() abort
-
-  let l:str = V_slctd_str()
-  let @0 = l:str
-  let @+ = l:str
-endfunc
 
 " pc clipboard selected
 "vnoremap C "+y
@@ -850,7 +843,7 @@ vnoremap / <esc>
 "vnoremap _ <esc>
 vnoremap ? <esc>
 vnoremap ( <esc>
-vnoremap ; <esc>
+"vnoremap ; <esc>
 vnoremap < <esc>
 vnoremap > <esc>
 vnoremap = <esc>
@@ -880,7 +873,7 @@ vnoremap w <esc>
 "vnoremap y <esc>
 
 "vnoremap A <esc>
-"vnoremap B <esc>
+vnoremap B <esc>
 vnoremap C <esc>
 vnoremap F <esc>
 vnoremap H <esc>
@@ -920,6 +913,7 @@ vnoremap <c-v> <esc>
 vnoremap <c-x> <esc>
 "vnoremap <c-y> <esc>
 
+vnoremap gg <esc>
 vnoremap go <esc>
 
 "
@@ -1363,6 +1357,13 @@ func! N_cpy() abort
   execute 'normal! "+yy'
 endfunc
 
+func! V_cpy() abort
+
+  let l:str = V_slctd_str()
+  let @0 = l:str
+  let @+ = l:str
+endfunc
+
 func! N_cursor_mv_word_f() abort
 
   let l:c_char = Char()
@@ -1742,8 +1743,8 @@ func! V_slctd_str_len() abort
   return l:len
 endfunc
 
-command! -nargs=? InsSlctdLr call V_ins_slctd_lr(<q-args>)
-func! V_ins_slctd_lr(c) abort
+command! -nargs=? InsSlctdEdge call V_ins_slctd_edge(<q-args>)
+func! V_ins_slctd_edge(c) abort
   
   if     a:c   == "("
     let  l:c_l =  "("
