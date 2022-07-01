@@ -33,12 +33,17 @@ alias pwd_cp "pwd | pbcopy"
 #alias rpl="string replace"
 #alias f="mdfind -onlyin . -name"
 
+# 
 # alias - short cut
+# 
+alias cd_2up  "cd ../../"
+alias cd_3up  "cd ../../../"
+
 alias cd_vim  "cd ~/doc/tech/github/vimrc"
+alias cd_life "cd ~/doc/life"
 alias cd_ooq  "cd ~/dev/ooq/g.proto/assets"
 alias cd_holo "cd ~/doc/hoby/youtube/vtuber/hololive/prj"
 alias cd_holo_data "cd ~/doc/hoby/youtube/vtuber/hololive/prj/www/song/data"
-alias cd_life "cd ~/doc/life"
 
 alias vi_fish_config "~/.config/fish/config.fish"
 

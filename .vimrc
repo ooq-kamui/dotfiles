@@ -136,7 +136,9 @@ packadd Cfilter
 " 
 let mapleader = "\<esc>"
 
+" 
 " leader esc
+" 
 "nnoremap <leader>h <esc>
 "nnoremap <leader>y <esc>
 
@@ -172,7 +174,7 @@ nnoremap a :w<cr>
 
 " opn file rcnt ( history )
 nnoremap <leader>h :FileHstry<cr>
-nnoremap <leader>y :FileHstry<cr>
+"nnoremap <leader>y :FileHstry<cr>
 
 " opn tab new
 "command! -nargs=* New tabnew <args>
@@ -250,9 +252,13 @@ nnoremap o b
 " cursor mv word - back pre
 "nnoremap <c-o> :call N_cursor_mv_word_b()<cr>
 
-" cursor mv word split _
-nnoremap _     f_l
-nnoremap <c-_> hT_
+" cursor mv word split _ forward
+nnoremap F f_l
+"nnoremap <c-_> f_l
+
+" cursor mv word split _ back
+nnoremap O hT_
+"nnoremap _     hT_
 
 " cursor mv bracket pair
 nnoremap <c-l> %
@@ -280,7 +286,8 @@ nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 
 " scroll cursor line read easily
-nnoremap H zt
+nnoremap R zt
+"nnoremap H zt
 
 " cursor mv window nxt
 nnoremap gl <c-w>w
@@ -299,6 +306,8 @@ nnoremap <space> i
 nnoremap m i<cr>x<c-h><esc>
 
 " ins space
+nnoremap _ i <esc>
+"nnoremap O i <esc>
 "nnoremap xx i <esc>l
 
 " ins comma
@@ -439,7 +448,6 @@ nnoremap N /<c-p><c-p><cr>
 
 " srch init ( hl )
 nnoremap S /<cr>N
-"nnoremap H /<cr>N
 
 " srch replace all > yank ( file )
 nnoremap :s :%s//<c-r>0/gc
@@ -480,9 +488,10 @@ nnoremap <leader>l :CmdHstry<cr>
 nnoremap :r :r! 
 
 " ins sys ls ( read )
-nnoremap R :Lf 
-nnoremap F :Lf 
-nnoremap O :Lf 
+nnoremap H :Lf 
+"nnoremap F :Lf 
+"nnoremap R :Lf 
+"nnoremap O :Lf 
 
 "
 " tab
@@ -554,7 +563,7 @@ nnoremap <c-@> <esc>
 "nnoremap <c-,> <esc> " non ?
 "nnoremap <c-.> <esc> " non ?
 "nnoremap <c-/> <esc> " non ?
-"nnoremap <c-_> <esc>
+nnoremap <c-_> <esc>
 "nnoremap <c-[> <esc>
 nnoremap <c-]> <esc>
 
@@ -669,9 +678,20 @@ vnoremap f e
 "vnoremap <c-o> bh
 "vnoremap <c-o> Bh
 
-" cursor mv word split _
-vnoremap _     lt_
-vnoremap <c-_> F_h
+" cursor mv word split _ reduce l
+vnoremap F f_l
+"vnoremap <c-_> f_l
+
+" cursor mv word split _ reduce r
+vnoremap O F_h
+"vnoremap _     F_h
+
+" cursor mv word split _ forward
+"vnoremap <c-_> f_l
+"vnoremap <c-_> lt_
+
+" cursor mv word split _ back
+"vnoremap _     F_h
 
 " cursor mv space - forward ( word pre )
 "vnoremap I wh
@@ -710,13 +730,9 @@ vnoremap ! :call V_cmnt_1()<cr>
 " ins comment mlt
 vnoremap $ :call V_cmnt_mlt()<cr>
 
-" ins bracket
-"vnoremap B :<c-u>call V_ins_bracket()<cr>
-
 " ins selected edge
 vnoremap ; :<c-u>InsSlctdEdge 
 vnoremap b :<c-u>InsSlctdEdge 
-"vnoremap h :<c-u>InsSlctdEdge 
 
 " del str > yank
 vnoremap d "0d
@@ -840,7 +856,7 @@ vnoremap / <esc>
 "vnoremap " <esc>
 "vnoremap # <esc>
 "vnoremap $ <esc>
-"vnoremap _ <esc>
+vnoremap _ <esc>
 vnoremap ? <esc>
 vnoremap ( <esc>
 "vnoremap ; <esc>
@@ -875,7 +891,7 @@ vnoremap w <esc>
 "vnoremap A <esc>
 vnoremap B <esc>
 vnoremap C <esc>
-vnoremap F <esc>
+"vnoremap F <esc>
 vnoremap H <esc>
 vnoremap I <esc>
 "vnoremap J <esc>
@@ -883,13 +899,15 @@ vnoremap I <esc>
 "vnoremap L <esc>
 vnoremap M <esc>
 vnoremap N <esc>
-vnoremap O <esc>
+"vnoremap O <esc>
 "vnoremap P <esc>
 "vnoremap R <esc>
 "vnoremap S <esc>
 "vnoremap U <esc>
 vnoremap V <esc>
 vnoremap Y <esc>
+
+vnoremap <c-_> <esc>
 
 vnoremap <c-a> <esc>
 "vnoremap <c-b> <esc>
@@ -1841,21 +1859,6 @@ func! V_srch_slct(dir) abort
   elseif a:dir == "b"
     execute 'normal! `<hgN'
   endif
-endfunc
-
-func! V_ins_bracket() abort
-
-  let l:str_l = "("
-  let l:str_r = ")"
-  "let l:str_l = " ( "
-  "let l:str_r = " ) "
-
-  execute 'normal! i' . l:str_l
-
-  let l:mv_len = V_slctd_str_len() + strchars(l:str_l)
-  execute 'normal! ' . l:mv_len . 'l'
-
-  execute 'normal! i' . l:str_r
 endfunc
 
 func! Cmnt_1(head) abort
