@@ -118,11 +118,12 @@ set wildmenu " ?
 set statusline=%m\                 " 変更あり表示
 set statusline+=%F                 " file name 表示
 set statusline+=%=                 " 以降を右寄せ
-set statusline+=%{&fileencoding}\  " file encoding
+"set statusline+=%{&fileencoding}\  " file encoding
+"set statusline+=%c\                " column num
 set statusline+=%y\                " file type
 set statusline+=%p%%\              " line num %
 set statusline+=%l/%L              " line num / line num all
-set laststatus=2                   " 0: off  1: on 2 win  2: on
+set laststatus=2                   " 0:off  1:on when 2 win  2:on
 set completeopt=menuone,noinsert
 set foldmethod=manual
 set shortmess+=I
@@ -135,15 +136,7 @@ packadd Cfilter
 " leader
 " 
 let mapleader = "\<esc>"
-
-" 
-" leader esc
-" 
-"nnoremap <leader>h <esc>
-"nnoremap <leader>y <esc>
-
-vnoremap <leader>u <esc>
-"vnoremap <leader>y <esc>
+"let mapleader = "\<space>"
 
 
 "
@@ -191,21 +184,22 @@ endfunc
 
 " opn .vimrc
 nnoremap gh :call Opn_vimrc()<cr>
-"nnoremap gg :call Opn_vimrc()<cr>
 func! Opn_vimrc() abort
 
   call Opn('~/.vimrc')
 endfunc
 
 " opn tmp ( grep )
-nnoremap gu :call Opn_tmp()<cr>
+nnoremap gg :call Opn_tmp()<cr>
+"nnoremap gu :call Opn_tmp()<cr>
 func! Opn_tmp() abort
 
   call Opn('doc/grep.lua')
 endfunc
 
 " opn memo
-nnoremap gi :call Opn_memo()<cr>
+nnoremap gm :call Opn_memo()<cr>
+"nnoremap gi :call Opn_memo()<cr>
 func! Opn_memo() abort
 
   call Opn('doc/memo.txt')
@@ -252,13 +246,11 @@ nnoremap o b
 " cursor mv word - back pre
 "nnoremap <c-o> :call N_cursor_mv_word_b()<cr>
 
-" cursor mv word split _ forward
+" cursor mv word dlm _ forward
 nnoremap F f_l
-"nnoremap <c-_> f_l
 
-" cursor mv word split _ back
+" cursor mv word dlm _ back
 nnoremap O hT_
-"nnoremap _     hT_
 
 " cursor mv bracket pair
 nnoremap <c-l> %
@@ -285,12 +277,15 @@ nnoremap J      <c-e>
 nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 
-" scroll cursor line read easily
-nnoremap R zt
-"nnoremap H zt
+" scroll cursor line upper
+nnoremap <leader>r zt
+"nnoremap R zt
+
+" scroll cursor line middle
+nnoremap <leader>f zz
 
 " cursor mv window nxt
-nnoremap gl <c-w>w
+"nnoremap xx <c-w>w
 
 " 
 " edit
@@ -298,6 +293,7 @@ nnoremap gl <c-w>w
 
 " ins mode
 nnoremap <space> i
+"nnoremap <esc> i
 
 " ins line
 " ref ;
@@ -422,7 +418,7 @@ nnoremap U :call N_char_tgl_trn()<cr>
 " 
 
 " srch char in line - forward
-"nnoremap <leader>f f
+"nnoremap xx f
 
 " srch char in line repeat
 nnoremap ; ;
@@ -490,7 +486,6 @@ nnoremap :r :r!
 " ins sys ls ( read )
 nnoremap H :Lf 
 "nnoremap F :Lf 
-"nnoremap R :Lf 
 "nnoremap O :Lf 
 
 "
@@ -530,8 +525,8 @@ nnoremap <kPageUp>   9
 " esc
 "
 nnoremap <esc>   <esc>
-"nnoremap <cr>    <esc> " eq <c-m>
 "nnoremap <space> <esc>
+"nnoremap <cr>    <esc>
 nnoremap <bs>    <esc>
 
 nnoremap = <esc>
@@ -607,7 +602,7 @@ nnoremap M <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
 nnoremap P <esc>
-"nnoremap R <esc>
+nnoremap R <esc>
 "nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
@@ -640,12 +635,14 @@ nnoremap <c-x> <esc>
 "nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
 
-nnoremap gg <esc>
+"nnoremap ga <esc>
+"nnoremap gg <esc>
 "nnoremap gh <esc>
-"nnoremap gi <esc>
+nnoremap gi <esc>
 "nnoremap gj <esc>
-"nnoremap gl <esc>
-nnoremap gm <esc>
+"nnoremap gk <esc>
+nnoremap gl <esc>
+"nnoremap gm <esc>
 "nnoremap go <esc>
 nnoremap gt <esc>
 "nnoremap gu <esc>
@@ -661,12 +658,14 @@ vnoremap i V
 " mode ch box
 vnoremap v <c-v>
 
-"
+" 
 " cursor mv
-"
+" 
 
-" cursor mv char
+" cursor mv char forward
 vnoremap l l
+
+" cursor mv char back
 vnoremap <c-s> h
 vnoremap <c-o> h
 
@@ -674,28 +673,18 @@ vnoremap <c-o> h
 vnoremap f e
 
 " cursor mv word - back
-"vnoremap o b
-"vnoremap <c-o> bh
-"vnoremap <c-o> Bh
+"vnoremap xx b
+"vnoremap xx bh
+"vnoremap xx Bh
 
-" cursor mv word split _ reduce l
+" cursor mv selected word reduce dlm _ l
 vnoremap F f_l
-"vnoremap <c-_> f_l
 
-" cursor mv word split _ reduce r
+" cursor mv selected word reduce dlm _ r
 vnoremap O F_h
-"vnoremap _     F_h
-
-" cursor mv word split _ forward
-"vnoremap <c-_> f_l
-"vnoremap <c-_> lt_
-
-" cursor mv word split _ back
-"vnoremap _     F_h
 
 " cursor mv space - forward ( word pre )
-"vnoremap I wh
-"vnoremap F wh
+"vnoremap xx wh
 
 " cursor mv selected edge
 vnoremap y o
@@ -932,6 +921,8 @@ vnoremap <c-x> <esc>
 "vnoremap <c-y> <esc>
 
 vnoremap gg <esc>
+vnoremap gj <esc>
+vnoremap gk <esc>
 vnoremap go <esc>
 
 "
@@ -1173,6 +1164,18 @@ cnoremap <kHome>     7
 cnoremap <kUp>       8
 cnoremap <kPageUp>   9
 
+" 
+" leader esc
+" 
+
+"nnoremap <leader>f <esc>
+"nnoremap <leader>h <esc>
+"nnoremap <leader>r <esc>
+"nnoremap <leader>y <esc>
+
+vnoremap <leader>u <esc>
+"vnoremap <leader>y <esc>
+
 
 " 
 " etc
@@ -1377,9 +1380,12 @@ endfunc
 
 func! V_cpy() abort
 
-  let l:str = V_slctd_str()
-  let @0 = l:str
-  let @+ = l:str
+  execute 'normal! gv"0y'
+  execute 'normal! gv"+y'
+  
+  "let l:str = V_slctd_str()
+  "let @0 = l:str
+  "let @+ = l:str
 endfunc
 
 func! N_cursor_mv_word_f() abort

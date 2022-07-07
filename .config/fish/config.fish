@@ -36,8 +36,9 @@ alias pwd_cp "pwd | pbcopy"
 # 
 # alias - short cut
 # 
-alias cd_2up  "cd ../../"
-alias cd_3up  "cd ../../../"
+alias cd_up1  "cd ../"
+alias cd_up2  "cd ../../"
+alias cd_up3  "cd ../../../"
 
 alias cd_vim  "cd ~/doc/tech/github/vimrc"
 alias cd_life "cd ~/doc/life"
