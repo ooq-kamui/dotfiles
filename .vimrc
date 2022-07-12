@@ -179,7 +179,7 @@ nnoremap :o :Opn
 command! -nargs=* -complete=file Opn call Opn(<q-args>)
 func! Opn(filename) abort
 
-  execute 'tab drop ' . a:filename
+  exe 'tab drop ' . a:filename
 endfunc
 
 " opn .vimrc
@@ -300,7 +300,7 @@ nnoremap <space> i
 " ref ;
 
 " ins cr
-nnoremap m i<cr>x<c-h><esc>
+nnoremap m :call N_ins_cr()<cr>
 
 " ins space
 "nnoremap xx i <esc>l
@@ -358,7 +358,7 @@ nnoremap v <c-v>
 "nnoremap A ggVG
 
 " select re
-nnoremap V gv
+"nnoremap xx gv
 
 " yank line
 nnoremap c :call N_cpy()<cr>
@@ -604,7 +604,7 @@ nnoremap R <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap W <esc>
-"nnoremap V <esc>
+nnoremap V <esc>
 nnoremap Y <esc>
 
 "nnoremap <c-a> <esc>
@@ -730,11 +730,10 @@ vnoremap x "ax
 vnoremap <c-m> J
 
 " del line end space
-"vnoremap S :s/ *$//g<cr>
 vnoremap S :call V_line_end_space_del()<cr>
 
 func! V_line_end_space_del() abort
-  execute 's/[ \t]*$//g'
+  exe 's/[ \t]*$//g'
 endfunc
 
 " mv str back
@@ -1179,10 +1178,10 @@ vnoremap <leader>u <esc>
 
 if &term =~ '^screen'
   " tmux will send xterm-style keys when its xterm-keys option is on
-  execute "set <xUp>=\e[1;*A"
-  execute "set <xDown>=\e[1;*B"
-  execute "set <xRight>=\e[1;*C"
-  execute "set <xLeft>=\e[1;*D"
+  exe "set <xUp>=\e[1;*A"
+  exe "set <xDown>=\e[1;*B"
+  exe "set <xRight>=\e[1;*C"
+  exe "set <xLeft>=\e[1;*D"
 end
 
 " 
@@ -1193,7 +1192,7 @@ func! Grep(opt) abort
   let l:str = @/
   let l:str = substitute(l:str, "(", '\\(', "")
 
-  execute 'r! rg -n -s "'.l:str.'"'
+  exe 'r! rg -n -s "'.l:str.'"'
   \           . ' -g "*.lua" -g "*.script" -g "*.gui_script"'
   \           . ' -g "*.txt" -g "*.json" -g "*.fish" -g "*.vim"'
   \           . ' ' . a:opt
@@ -1258,7 +1257,7 @@ let g:fzf_colors = {
 func! V_blines() abort
 
   call V_srch_str__slctd_str(v:false)
-  execute "BLines " . @a
+  exe "BLines " . @a
 endfunc
 
 command! -bang -nargs=? BLines
@@ -1370,14 +1369,14 @@ au FileType * set fo-=c fo-=r fo-=o
 
 func! N_cpy() abort
 
-  execute 'normal! "0yy'
-  execute 'normal! "+yy'
+  exe 'normal! "0yy'
+  exe 'normal! "+yy'
 endfunc
 
 func! V_cpy() abort
 
-  execute 'normal! gv"0y'
-  execute 'normal! gv"+y'
+  exe 'normal! gv"0y'
+  exe 'normal! gv"+y'
   
   "let l:str = V_slctd_str()
   "let @0 = l:str
@@ -1394,10 +1393,16 @@ func! Is_line_emp() abort
   return l:ret
 endfunc
 
+func! N_ins_cr() abort
+  
+  exe "normal! i\<cr>"
+  normal! ==^
+endfunc
+
 func! N_new_line() abort
 
-  execute 'normal! O '
-  execute 'normal! x'
+  exe 'normal! O '
+  exe 'normal! x'
 endfunc
 
 func! N_cursor_mv_line_start_or_new_line() abort
@@ -1422,19 +1427,19 @@ endfunc
 func! N_cursor_mv_line_start() abort
 
   if Is_line_emp()
-    "execute 'normal! ^'
+    "exe 'normal! ^'
   else
-    execute 'normal! 0'
-    "execute 'normal! ^'
+    exe 'normal! 0'
+    "exe 'normal! ^'
   end
 endfunc
 
 func! N_cursor_mv_line_end() abort
 
   if Is_line_emp()
-    "execute 'normal! $'
+    "exe 'normal! $'
   else
-    execute 'normal! $l'
+    exe 'normal! $l'
   end
 endfunc
 
@@ -1444,9 +1449,9 @@ func! N_cursor_mv_word_f() abort
   let l:l_char = Char_l()
 
   if l:c_char =~ ' ' && l:l_char =~ ' '
-    execute "normal! w"
+    exe "normal! w"
   else
-    execute "normal! el"
+    exe "normal! el"
   end
 endfunc
 
@@ -1456,9 +1461,9 @@ func! N_cursor_mv_word_b() abort
   let l:l_char = Char_l()
 
   if l:c_char =~ ' ' && l:l_char !~ ' '
-    execute "normal! gegel"
+    exe "normal! gegel"
   else
-    execute "normal! gel"
+    exe "normal! gel"
   end
 endfunc
 
@@ -1472,13 +1477,13 @@ func! Slct_word() abort
   let l:c = Char()
 
   if     l:c =~ '\w'
-    execute "normal! viw"
+    exe "normal! viw"
 
   elseif l:c =~ ' '
-    execute "normal! vwh"
+    exe "normal! vwh"
 
   else
-    execute "normal! v"
+    exe "normal! v"
   endif
 endfunc
 
@@ -1500,8 +1505,8 @@ func! Tag_jmp(rg_line) abort
   let l:filename = l:rg_line_ar[0]
   let l:linenum  = get(l:rg_line_ar, 1, 1)
 
-  execute "tab drop " . l:filename
-  execute "normal! " . l:linenum . "G"
+  exe "tab drop " . l:filename
+  exe "normal! " . l:linenum . "G"
 endfunc
 
 func! N_tag_jmp() abort
@@ -1511,8 +1516,8 @@ func! N_tag_jmp() abort
   let l:line = getline('.')
   call Tag_jmp(l:line)
 
-  execute "sbuffer " . l:base_buf_nr
-  execute "normal! " . "j"
+  exe "sbuffer " . l:base_buf_nr
+  exe "normal! " . "j"
 endfunc
 
 func! V_tag_jmp() range abort
@@ -1524,7 +1529,7 @@ func! V_tag_jmp() range abort
     let l:line = getline(line_num)
     call Tag_jmp(l:line)
 
-    execute "sbuffer " . l:base_buf_nr
+    exe "sbuffer " . l:base_buf_nr
   endfor
 endfunc
 
@@ -1556,8 +1561,8 @@ func! Char_tgl() abort
     return
   endif
 
-  execute "normal! x"
-  execute "normal! i".l:rpl
+  exe "normal! x"
+  exe "normal! i".l:rpl
 endfunc
 
 func! N_char_tgl_trn() abort
@@ -1570,8 +1575,8 @@ func! N_char_tgl_trn() abort
     return
   endif
 
-  execute "normal! x"
-  execute "normal! i".l:rpl
+  exe "normal! x"
+  exe "normal! i".l:rpl
 endfunc
 
 func! Char_tgl_char(c) abort
@@ -1727,7 +1732,7 @@ endfunc
 "  let l:col1 = col(".")
 "  call N_bracket_tgl()
 "
-"  execute "normal! %"
+"  exe "normal! %"
 "  let l:col2 = col(".")
 "
 "  if l:col1 == l:col2
@@ -1735,7 +1740,7 @@ endfunc
 "  endif
 "
 "  call N_bracket_tgl()
-"  execute "normal! %"
+"  exe "normal! %"
 "endfunc
 
 func! Char_tgl2() abort " use not
@@ -1766,8 +1771,8 @@ func! Char_tgl2() abort " use not
     return
   endif
 
-  execute "normal! x"
-  execute "normal! i".l:rpl
+  exe "normal! x"
+  exe "normal! i".l:rpl
 endfunc
 
 func! Cursor_word() abort
@@ -1778,14 +1783,14 @@ endfunc
 
 func! V_mv_str(lr) abort
 
-  execute 'normal! gv"ax' . a:lr . '"aP'
+  exe 'normal! gv"ax' . a:lr . '"aP'
 
-  execute "normal! v"
+  exe "normal! v"
   let l:mv_len = strchars(@a) - 1
   if l:mv_len <= 0
     return
   endif
-  execute "normal! " . l:mv_len . "h"
+  exe "normal! " . l:mv_len . "h"
 endfunc
 
 func! V_mv_line(ud) range abort
@@ -1793,20 +1798,20 @@ func! V_mv_line(ud) range abort
   let l:mv_num   = a:lastline - a:firstline
   let l:line_num = l:mv_num + 1
 
-  execute 'normal! ' . a:firstline . 'G'
-  execute 'normal! ' . l:line_num . '"add'
-  execute 'normal! ' . a:ud
-  execute 'normal! "aP'
-  execute 'normal! V'
+  exe 'normal! ' . a:firstline . 'G'
+  exe 'normal! ' . l:line_num . '"add'
+  exe 'normal! ' . a:ud
+  exe 'normal! "aP'
+  exe 'normal! V'
 
   if l:mv_num >= 1
-    execute 'normal! ' . l:mv_num . 'j'
+    exe 'normal! ' . l:mv_num . 'j'
   endif
 endfunc
 
 func! V_slctd_str() abort
 
-  execute 'normal! gv"ay'
+  exe 'normal! gv"ay'
   return @a
 endfunc
 
@@ -1843,14 +1848,14 @@ endfunc
 
 func! V_ins_slctd_l(c) abort
 
-  execute 'normal! `<'
-  execute 'normal! i' . a:c
+  exe 'normal! `<'
+  exe 'normal! i' . a:c
 endfunc
 
 func! V_ins_slctd_r(c) abort
 
-  execute 'normal! `>l'
-  execute 'normal! i' . a:c
+  exe 'normal! `>l'
+  exe 'normal! i' . a:c
 endfunc
 
 func! N_srch_str__(word1) abort
@@ -1910,10 +1915,10 @@ endfunc
 func! V_srch_slct(dir) abort
 
   if     a:dir == "f"
-    execute 'normal! `>lgn'
+    exe 'normal! `>lgn'
 
   elseif a:dir == "b"
-    execute 'normal! `<hgN'
+    exe 'normal! `<hgN'
   endif
 endfunc
 
@@ -1930,8 +1935,8 @@ func! Cmnt_1(head) abort
   let l:dflt = '# '
   let l:str = get(l:str_df, &filetype, l:dflt)
 
-  execute 'normal! ' . a:head . 'i' . l:str
-  execute 'normal! 0'
+  exe 'normal! ' . a:head . 'i' . l:str
+  exe 'normal! 0'
 endfunc
 
 func! N_cmnt_1() abort
@@ -1941,7 +1946,7 @@ endfunc
 func! V_cmnt_1() range abort
 
   for line_num in range(a:firstline, a:lastline)
-    execute 'normal! ' . line_num . 'G'
+    exe 'normal! ' . line_num . 'G'
     call Cmnt_1("0")
   endfor
 endfunc
@@ -1964,12 +1969,12 @@ func! Cmnt_mlt(pos) abort
   let l:str = l:str_df[l:filetype]
 
   if     a:pos == "bgn"
-    execute 'normal! O'
-    execute 'normal! i' . l:str[0]
+    exe 'normal! O'
+    exe 'normal! i' . l:str[0]
 
   elseif a:pos == "end"
-    execute 'normal! o'
-    execute 'normal! i' . l:str[1]
+    exe 'normal! o'
+    exe 'normal! i' . l:str[1]
   endif
 endfunc
 
@@ -1980,10 +1985,10 @@ endfunc
 
 func! V_cmnt_mlt() range abort
 
-  execute 'normal! ' . a:lastline  . 'G'
+  exe 'normal! ' . a:lastline  . 'G'
   call Cmnt_mlt("end")
 
-  execute 'normal! ' . a:firstline . 'G'
+  exe 'normal! ' . a:firstline . 'G'
   call Cmnt_mlt("bgn")
 endfunc
 
@@ -1994,13 +1999,13 @@ func! V_line_padding() range abort
 
   for line_num in range(a:firstline, a:lastline)
     
-    execute 'normal! ' . line_num . 'G'
+    exe 'normal! ' . line_num . 'G'
     
     "let l:col = charidx(getline(line_num), col('$'))
     let l:col = col('$')
     let l:len = l:w - l:col
     
-    execute 'normal! ' . l:len . 'A' . l:char
+    exe 'normal! ' . l:len . 'A' . l:char
   endfor
 endfunc
 
@@ -2010,7 +2015,7 @@ func! Lf(dir) abort
   let l:exe = 'r! lf ' . trim(a:dir)
   "let l:exe = 'r! ls -dFA ' . trim(a:dir) . '**.*'
   "echo l:exe
-  execute l:exe
+  exe l:exe
 endfunc
 
 func! Hl_grp() abort
@@ -2025,9 +2030,9 @@ endfunc
 " 
 func! Defold_err_cnv() abort
 
-  execute '%s/^ERROR:SCRIPT:/ERROR:SCRIPT:\r/g'
-  execute '%s/\/assets\///g'
-  execute '%s/^ *//g'
+  exe '%s/^ERROR:SCRIPT:/ERROR:SCRIPT:\r/g'
+  exe '%s/\/assets\///g'
+  exe '%s/^ *//g'
 endfunc
 
 " file rcnt qf " use not
