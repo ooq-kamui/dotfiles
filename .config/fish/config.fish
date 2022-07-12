@@ -46,7 +46,8 @@ alias cd_ooq  "cd ~/dev/ooq/g.proto/assets"
 alias cd_holo "cd ~/doc/hoby/youtube/vtuber/hololive/prj"
 alias cd_holo_data "cd ~/doc/hoby/youtube/vtuber/hololive/prj/www/song/data"
 
-alias vi_fish_config "~/.config/fish/config.fish"
+alias vi_vimrc       "vi ~/.vimrc"
+alias vi_fish_config "vi ~/.config/fish/config.fish"
 
 set -x LC_TIME en_US
 alias date_ymd   "date +'%Y-%m-%d'"

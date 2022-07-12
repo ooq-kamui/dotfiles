@@ -220,15 +220,14 @@ nnoremap <c-k> 10<c-y>
 nnoremap <c-j> 10<c-e>
 
 " cursor mv in line start | ins line
-nnoremap <expr> y col(".") == 1 ? "Ox<c-h><esc>0" : "0"
-"nnoremap <expr> ; col(".") == 1 ? "Ox<c-h><esc>" : "0"
+nnoremap y :call N_cursor_mv_line_start_or_new_line()<cr>
 
-" cursor mv line in start
+" cursor mv in line start
 nnoremap <c-a> 0
 
 " cursor mv in line end
-nnoremap <expr> <c-e> col("$") == 1 ? "$" : "$l"
-nnoremap <expr> <c-y> col("$") == 1 ? "$" : "$l"
+nnoremap <c-y> :call N_cursor_mv_line_end()<cr>
+nnoremap <c-e> :call N_cursor_mv_line_end()<cr>
 
 " cursor mv char - forward
 nnoremap l l
@@ -247,10 +246,12 @@ nnoremap o b
 "nnoremap <c-o> :call N_cursor_mv_word_b()<cr>
 
 " cursor mv word dlm _ forward
-nnoremap F f_l
+nnoremap _ f_l
+"nnoremap <c-_> f_l
 
 " cursor mv word dlm _ back
-nnoremap O hT_
+nnoremap <c-_> hT_
+"nnoremap _ hT_
 
 " cursor mv bracket pair
 nnoremap <c-l> %
@@ -302,8 +303,6 @@ nnoremap <space> i
 nnoremap m i<cr>x<c-h><esc>
 
 " ins space
-nnoremap _ i <esc>
-"nnoremap O i <esc>
 "nnoremap xx i <esc>l
 
 " ins comma
@@ -485,8 +484,6 @@ nnoremap :r :r!
 
 " ins sys ls ( read )
 nnoremap H :Lf 
-"nnoremap F :Lf 
-"nnoremap O :Lf 
 
 "
 " tab
@@ -558,7 +555,7 @@ nnoremap <c-@> <esc>
 "nnoremap <c-,> <esc> " non ?
 "nnoremap <c-.> <esc> " non ?
 "nnoremap <c-/> <esc> " non ?
-nnoremap <c-_> <esc>
+"nnoremap <c-_> <esc>
 "nnoremap <c-[> <esc>
 nnoremap <c-]> <esc>
 
@@ -586,11 +583,11 @@ nnoremap t <esc>
 nnoremap z <esc>
 
 nnoremap A <esc>
-"nnoremap B <esc>
+nnoremap B <esc>
 nnoremap C <esc>
 nnoremap D <esc>
 "nnoremap E <esc>
-"nnoremap F <esc>
+nnoremap F <esc>
 nnoremap G <esc>
 "nnoremap H <esc>
 "nnoremap I <esc>
@@ -599,7 +596,7 @@ nnoremap G <esc>
 "nnoremap L <esc>
 nnoremap M <esc>
 "nnoremap N <esc>
-"nnoremap O <esc>
+nnoremap O <esc>
 nnoremap Q <esc>
 nnoremap P <esc>
 nnoremap R <esc>
@@ -678,19 +675,18 @@ vnoremap f e
 "vnoremap xx Bh
 
 " cursor mv selected word reduce dlm _ l
-vnoremap F f_l
+vnoremap _ of_lo
+"vnoremap <c-_> of_lo
 
 " cursor mv selected word reduce dlm _ r
-vnoremap O F_h
+vnoremap <c-_> F_h
+"vnoremap _ F_h
 
 " cursor mv space - forward ( word pre )
 "vnoremap xx wh
 
 " cursor mv selected edge
 vnoremap y o
-
-" cursor mv in line
-"vnoremap xx $
 
 " cursor mv line
 vnoremap <c-j> 10j
@@ -699,10 +695,10 @@ vnoremap <c-k> 10k
 " cursor mv bracket pair
 vnoremap <c-l> %
 
-" cursor mv file back    ( file begin )
+" cursor mv file edge back    ( file begin )
 vnoremap gk gg0
 
-" cursor mv file forward ( file end   )
+" cursor mv file edge forward ( file end   )
 vnoremap gj G$l
 
 " ins | cut & ins
@@ -710,7 +706,7 @@ vnoremap <expr> <space> mode() == "<c-v>" ? "I" : "c"
 " cut & ins
 vnoremap <leader><space> "ac
 
-" ins $
+" ins $ | cursor mv in line end
 vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "g_"
 
 " ins comment 1
@@ -845,7 +841,7 @@ vnoremap / <esc>
 "vnoremap " <esc>
 "vnoremap # <esc>
 "vnoremap $ <esc>
-vnoremap _ <esc>
+"vnoremap _ <esc>
 vnoremap ? <esc>
 vnoremap ( <esc>
 "vnoremap ; <esc>
@@ -880,7 +876,7 @@ vnoremap w <esc>
 "vnoremap A <esc>
 vnoremap B <esc>
 vnoremap C <esc>
-"vnoremap F <esc>
+vnoremap F <esc>
 vnoremap H <esc>
 vnoremap I <esc>
 "vnoremap J <esc>
@@ -888,7 +884,7 @@ vnoremap I <esc>
 "vnoremap L <esc>
 vnoremap M <esc>
 vnoremap N <esc>
-"vnoremap O <esc>
+vnoremap O <esc>
 "vnoremap P <esc>
 "vnoremap R <esc>
 "vnoremap S <esc>
@@ -896,7 +892,7 @@ vnoremap N <esc>
 vnoremap V <esc>
 vnoremap Y <esc>
 
-vnoremap <c-_> <esc>
+"vnoremap <c-_> <esc>
 
 vnoremap <c-a> <esc>
 "vnoremap <c-b> <esc>
@@ -1386,6 +1382,60 @@ func! V_cpy() abort
   "let l:str = V_slctd_str()
   "let @0 = l:str
   "let @+ = l:str
+endfunc
+
+func! Is_line_emp() abort
+  
+  if col('$') == 1
+    let l:ret = v:true
+  else
+    let l:ret = v:false
+  end
+  return l:ret
+endfunc
+
+func! N_new_line() abort
+
+  execute 'normal! O '
+  execute 'normal! x'
+endfunc
+
+func! N_cursor_mv_line_start_or_new_line() abort
+
+  if Is_cursor_line_start()
+    call N_new_line()
+  else
+    call N_cursor_mv_line_start()
+  end
+endfunc
+
+func! Is_cursor_line_start() abort
+  
+  if col('.') == 1
+    let l:ret = v:true
+  else
+    let l:ret = v:false
+  end
+  return l:ret
+endfunc
+
+func! N_cursor_mv_line_start() abort
+
+  if Is_line_emp()
+    "execute 'normal! ^'
+  else
+    execute 'normal! 0'
+    "execute 'normal! ^'
+  end
+endfunc
+
+func! N_cursor_mv_line_end() abort
+
+  if Is_line_emp()
+    "execute 'normal! $'
+  else
+    execute 'normal! $l'
+  end
 endfunc
 
 func! N_cursor_mv_word_f() abort
