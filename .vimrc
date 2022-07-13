@@ -243,7 +243,7 @@ nnoremap f :call N_cursor_mv_word_f()<cr>
 nnoremap o b
 
 " cursor mv word - back pre
-"nnoremap <c-o> :call N_cursor_mv_word_b()<cr>
+"nnoremap xx :call N_cursor_mv_word_b()<cr>
 
 " cursor mv word dlm _ forward
 nnoremap _ f_l
@@ -303,7 +303,7 @@ nnoremap <space> i
 nnoremap m :call N_ins_cr()<cr>
 
 " ins space
-"nnoremap xx i <esc>l
+"nnoremap xx i <esc>
 
 " ins comma
 nnoremap , i, <esc>l
@@ -324,7 +324,6 @@ nnoremap * i<c-r>=strftime("%Y-%m-%d %a %H:%M:%S")<cr><esc>
 " del char
 nnoremap s "ax
 nnoremap x x
-"nnoremap <bs> h"ax
 
 " del line
 nnoremap d "0dd
@@ -732,10 +731,6 @@ vnoremap <c-m> J
 " del line end space
 vnoremap S :call V_line_end_space_del()<cr>
 
-func! V_line_end_space_del() abort
-  exe 's/[ \t]*$//g'
-endfunc
-
 " mv str back
 vnoremap <c-w> :call V_mv_str("h")<cr>
 
@@ -926,9 +921,9 @@ vnoremap go <esc>
 
 " quit, esc
 inoremap <expr> <esc>
-\ pumvisible()  ? "<c-e>" :
-\ col(".") == 1 ? "<esc>" :
-\                 "<esc>l"
+\ pumvisible()            ? "<c-e>"  :
+\ Is_cursor_line_start0() ? "<esc>"  :
+\                           "<esc>l"
 
 " cursor mv line in
 inoremap <c-a> <c-o>0
@@ -1095,6 +1090,7 @@ endfunc
 " nop
 "
 "inoremap <c-_> <nop>
+"inoremap <c-:> <nop>
 
 inoremap <c-b> <nop>
 "inoremap <c-p> <nop>
@@ -1386,11 +1382,10 @@ endfunc
 func! Is_line_emp() abort
   
   if col('$') == 1
-    let l:ret = v:true
+    return v:true
   else
-    let l:ret = v:false
+    return v:false
   end
-  return l:ret
 endfunc
 
 func! N_ins_cr() abort
@@ -1407,38 +1402,65 @@ endfunc
 
 func! N_cursor_mv_line_start_or_new_line() abort
 
-  if Is_cursor_line_start()
+  if Is_cursor_line_start1()
     call N_new_line()
   else
-    call N_cursor_mv_line_start()
+    call N_cursor_mv_line_start1()
   end
 endfunc
 
-func! Is_cursor_line_start() abort
+func! Is_cursor_line_start1() abort
+  
+  let l:col_c  = col('.')
+  
+  call N_cursor_mv_line_start1()
+  let l:col_s1 = col('.')
+  
+  if l:col_c == l:col_s1
+    return v:true
+  else
+    return v:false
+  end
+endfunc
+
+func! N_cursor_mv_line_start1() abort
+
+  if Is_line_space()
+    call N_cursor_mv_line_end()
+  else
+    normal! ^
+  end
+endfunc
+
+func! Is_cursor_line_start0() abort
   
   if col('.') == 1
-    let l:ret = v:true
+    return v:true
   else
-    let l:ret = v:false
+    return v:false
   end
-  return l:ret
 endfunc
 
-func! N_cursor_mv_line_start() abort
+func! N_cursor_mv_line_start0() abort
+  
+  if ! Is_line_emp()
+    normal! 0
+  end
+endfunc
 
-  if Is_line_emp()
-    "exe 'normal! ^'
+func! Is_line_space() abort
+  
+  let l:idx = match(getline('.'), '^\s*$')
+  if l:idx == 0
+    return v:true
   else
-    exe 'normal! 0'
-    "exe 'normal! ^'
+    return v:false
   end
 endfunc
 
 func! N_cursor_mv_line_end() abort
 
-  if Is_line_emp()
-    "exe 'normal! $'
-  else
+  if ! Is_line_emp()
     exe 'normal! $l'
   end
 endfunc
@@ -1990,6 +2012,10 @@ func! V_cmnt_mlt() range abort
 
   exe 'normal! ' . a:firstline . 'G'
   call Cmnt_mlt("bgn")
+endfunc
+
+func! V_line_end_space_del() abort
+  exe 's/[ \t]*$//g'
 endfunc
 
 func! V_line_padding() range abort
