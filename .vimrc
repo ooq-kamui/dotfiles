@@ -240,10 +240,10 @@ nnoremap <c-o> h
 nnoremap f :call N_cursor_mv_word_f()<cr>
 
 " cursor mv word - back
-nnoremap o b
+nnoremap o :call N_cursor_mv_word_b()<cr>
 
 " cursor mv word - back pre
-"nnoremap xx :call N_cursor_mv_word_b()<cr>
+"nnoremap xx :call N_cursor_mv_word_b_pre()<cr>
 
 " cursor mv word dlm _ forward
 nnoremap _ f_l
@@ -729,6 +729,7 @@ vnoremap x "ax
 vnoremap <c-m> J
 
 " del line end space
+vnoremap Y :call V_line_end_space_del()<cr>
 vnoremap S :call V_line_end_space_del()<cr>
 
 " mv str back
@@ -884,7 +885,7 @@ vnoremap O <esc>
 "vnoremap S <esc>
 "vnoremap U <esc>
 vnoremap V <esc>
-vnoremap Y <esc>
+"vnoremap Y <esc>
 
 "vnoremap <c-_> <esc>
 
@@ -1411,10 +1412,14 @@ endfunc
 
 func! Is_cursor_line_start1() abort
   
-  let l:col_c  = col('.')
+  let l:pos_c = getpos('.')
+  
+  let l:col_c = col('.')
   
   call N_cursor_mv_line_start1()
   let l:col_s1 = col('.')
+  
+  call setpos('.', pos_c)
   
   if l:col_c == l:col_s1
     return v:true
@@ -1471,13 +1476,29 @@ func! N_cursor_mv_word_f() abort
   let l:l_char = Char_l()
 
   if l:c_char =~ ' ' && l:l_char =~ ' '
-    exe "normal! w"
+    normal! w
   else
-    exe "normal! el"
+    normal! el
   end
 endfunc
 
 func! N_cursor_mv_word_b() abort
+  
+  if Is_cursor_line_start0()
+    normal! k
+    call N_cursor_mv_line_end()
+    
+  elseif Is_line_space()
+    call N_cursor_mv_line_start0()
+    
+  elseif Is_cursor_line_start1()
+    call N_cursor_mv_line_start0()
+  else
+    normal! b
+  end
+endfunc
+
+func! N_cursor_mv_word_b_pre() abort
 
   let l:c_char = Char()
   let l:l_char = Char_l()
