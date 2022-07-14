@@ -280,7 +280,6 @@ nnoremap <down> <c-e>
 
 " scroll cursor line upper
 nnoremap <leader>r zt
-"nnoremap R zt
 
 " scroll cursor line middle
 nnoremap <leader>f zz
@@ -450,10 +449,7 @@ nnoremap :s :%s//<c-r>0/gc
 nnoremap <c-p> gn
 
 " tag jump tab new
-nnoremap r :call N_tag_jmp()<cr>
-
-" tag jump tab crnt
-"nnoremap R gf
+nnoremap t :call N_tag_jmp()<cr>
 
 " mark
 "nnoremap xx m
@@ -482,7 +478,7 @@ nnoremap <leader>l :CmdHstry<cr>
 nnoremap :r :r! 
 
 " ins sys ls ( read )
-nnoremap H :Lf 
+nnoremap :l :Lf 
 
 "
 " tab
@@ -572,9 +568,9 @@ nnoremap 0 <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
 nnoremap q <esc>
-"nnoremap r <esc>
+nnoremap r <esc>
 "nnoremap s <esc>
-nnoremap t <esc>
+"nnoremap t <esc>
 "nnoremap u <esc>
 "nnoremap w <esc>
 "nnoremap x <esc>
@@ -588,7 +584,7 @@ nnoremap D <esc>
 "nnoremap E <esc>
 nnoremap F <esc>
 nnoremap G <esc>
-"nnoremap H <esc>
+nnoremap H <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
@@ -716,7 +712,7 @@ vnoremap $ :call V_cmnt_mlt()<cr>
 
 " ins selected edge
 vnoremap ; :<c-u>InsSlctdEdge 
-vnoremap b :<c-u>InsSlctdEdge 
+"vnoremap b :<c-u>InsSlctdEdge 
 
 " del str > yank
 vnoremap d "0d
@@ -810,7 +806,7 @@ vnoremap :s :s//<c-r>0/gc<cr>
 vnoremap <c-p> "ad"0Plgn
 
 " tag jmp
-vnoremap r :call V_tag_jmp()<cr>
+vnoremap t :call V_tag_jmp()<cr>
 
 " grep bfr ( blines )
 vnoremap <leader>i :call V_blines()<cr>
@@ -847,7 +843,7 @@ vnoremap , <esc>
 vnoremap . <esc>
 
 "vnoremap a <esc>
-"vnoremap b <esc>
+vnoremap b <esc>
 "vnoremap c <esc>
 "vnoremap d <esc>
 "vnoremap e <esc>
@@ -859,9 +855,9 @@ vnoremap m <esc>
 "vnoremap o <esc>
 "vnoremap p <esc>
 vnoremap q <esc>
-"vnoremap r <esc>
+vnoremap r <esc>
 "vnoremap s <esc>
-vnoremap t <esc>
+"vnoremap t <esc>
 "vnoremap u <esc>
 "vnoremap v <esc>
 vnoremap w <esc>
@@ -881,7 +877,7 @@ vnoremap M <esc>
 vnoremap N <esc>
 vnoremap O <esc>
 "vnoremap P <esc>
-"vnoremap R <esc>
+vnoremap R <esc>
 "vnoremap S <esc>
 "vnoremap U <esc>
 vnoremap V <esc>
@@ -1530,7 +1526,7 @@ func! Slct_word() abort
   endif
 endfunc
 
-func! Rg_parse(line) abort
+func! Rg_out_parse(line) abort
 
   let l:dlm = ':'
   let l:ret = split(a:line, l:dlm)
@@ -1542,14 +1538,22 @@ func! Buf_nr() abort
   return bufnr("%")
 endfunc
 
-func! Tag_jmp(rg_line) abort
+func! Tag_jmp(rg_out_line) abort
+  
+  if a:rg_out_line == ''
+    return
+  end
 
-  let l:rg_line_ar = Rg_parse(a:rg_line)
-  let l:filename = l:rg_line_ar[0]
-  let l:linenum  = get(l:rg_line_ar, 1, 1)
+  let l:rg_out_line_ar = Rg_out_parse(a:rg_out_line)
+  let l:filename = l:rg_out_line_ar[0]
+  let l:line_num  = get(l:rg_out_line_ar, 1, 1)
+
+  if ! filereadable(l:filename)
+    return
+  end
 
   exe "tab drop " . l:filename
-  exe "normal! " . l:linenum . "G"
+  exe "normal! " . l:line_num . "G"
 endfunc
 
 func! N_tag_jmp() abort
