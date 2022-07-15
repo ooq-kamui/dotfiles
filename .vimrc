@@ -139,9 +139,9 @@ let mapleader = "\<esc>"
 "let mapleader = "\<space>"
 
 
-"
+" 
 " mode normal
-"
+" 
 
 " quit buffer
 nnoremap w :bd<cr>
@@ -151,7 +151,6 @@ nnoremap <c-w> :q<cr>
 
 " quit force
 nnoremap <c-q> :q!
-"nnoremap :q :q!
 
 " quit other
 nnoremap W :tabo<cr>
@@ -160,50 +159,29 @@ nnoremap W :tabo<cr>
 nnoremap a :w<cr>
 
 " reload
-"nnoremap :xx :e!
+"nnoremap xx :e!
 
 " opn latest
 "nnoremap xx `0
 
 " opn file rcnt ( history )
 nnoremap <leader>h :FileHstry<cr>
-"nnoremap <leader>y :FileHstry<cr>
 
 " opn tab new
-"command! -nargs=* New tabnew <args>
-"nnoremap :n :New filename
+"nnoremap xx :tabnew filename
 
 " opn tab file
 nnoremap :e :Opn 
 nnoremap :o :Opn 
-command! -nargs=* -complete=file Opn call Opn(<q-args>)
-func! Opn(filename) abort
-
-  exe 'tab drop ' . a:filename
-endfunc
 
 " opn .vimrc
 nnoremap gh :call Opn_vimrc()<cr>
-func! Opn_vimrc() abort
-
-  call Opn('~/.vimrc')
-endfunc
-
-" opn tmp ( grep )
-nnoremap gg :call Opn_tmp()<cr>
-"nnoremap gu :call Opn_tmp()<cr>
-func! Opn_tmp() abort
-
-  call Opn('doc/grep.lua')
-endfunc
 
 " opn memo
 nnoremap gm :call Opn_memo()<cr>
-"nnoremap gi :call Opn_memo()<cr>
-func! Opn_memo() abort
 
-  call Opn('doc/memo.txt')
-endfunc
+" opn grep work
+nnoremap gg :call Opn_grep_work()<cr>
 
 " 
 " cursor mv
@@ -307,12 +285,11 @@ nnoremap m :call N_ins_cr()<cr>
 " ins comma
 nnoremap , i, <esc>l
 
-" ins comma $, nxt
+" ins comma $, nxt line
 nnoremap < A,<esc>j
 
 " ins comment 1
 nnoremap ! :call N_cmnt_1()<cr>
-"autocmd FileType css  nnoremap ! ^i/* <esc>$li */<esc>0
 
 " ins comment mlt
 nnoremap $ :call N_cmnt_mlt()<cr>
@@ -401,6 +378,9 @@ nnoremap - <c-x>
 nnoremap " <<
 nnoremap # >>
 
+" indent correct
+nnoremap ; ==^
+
 " char toggle ( upper / lower )
 nnoremap u :call Char_tgl()<cr>
 
@@ -418,7 +398,7 @@ nnoremap U :call N_char_tgl_trn()<cr>
 "nnoremap xx f
 
 " srch char in line repeat
-nnoremap ; ;
+"nnoremap xx ;
 
 " srch
 nnoremap n     :call N_srch("f")<cr>
@@ -477,7 +457,7 @@ nnoremap <leader>l :CmdHstry<cr>
 " ins sys cmd ( read )
 nnoremap :r :r! 
 
-" ins sys ls ( read )
+" ins sys ls  ( read )
 nnoremap :l :Lf 
 
 "
@@ -491,14 +471,13 @@ nnoremap <s-tab> gT
 " tab order
 nnoremap <s-left>  :tabm-1<cr>
 nnoremap <s-right> :tabm+1<cr>
-"nnoremap < :tabm-1<cr>
-"nnoremap > :tabm+1<cr>
 
 " buffer list
 "nnoremap :b :buffers
 
 " inf char
-nnoremap ga ga
+nnoremap gi ga
+"nnoremap ga ga
 
 
 " numpad shift
@@ -537,6 +516,7 @@ nnoremap ? <esc>
 "nnoremap " <esc>
 "nnoremap # <esc>
 "nnoremap $ <esc>
+"nnoremap % <esc> " ?
 nnoremap ( <esc>
 "nnoremap < <esc>
 nnoremap > <esc>
@@ -630,7 +610,7 @@ nnoremap <c-z> <esc>
 "nnoremap ga <esc>
 "nnoremap gg <esc>
 "nnoremap gh <esc>
-nnoremap gi <esc>
+"nnoremap gi <esc>
 "nnoremap gj <esc>
 "nnoremap gk <esc>
 nnoremap gl <esc>
@@ -711,8 +691,7 @@ vnoremap ! :call V_cmnt_1()<cr>
 vnoremap $ :call V_cmnt_mlt()<cr>
 
 " ins selected edge
-vnoremap ; :<c-u>InsSlctdEdge 
-"vnoremap b :<c-u>InsSlctdEdge 
+vnoremap :b :<c-u>InsSlctdEdge 
 
 " del str > yank
 vnoremap d "0d
@@ -767,8 +746,11 @@ vnoremap A g<c-a>
 vnoremap " <gv
 vnoremap # >gv
 
+" indent correct
+vnoremap ; =gv
+
 " indent tab > space
-vnoremap :t :!expand -t 4
+vnoremap :t :!expand -t 2
 
 " upper / lower tgl
 vnoremap u     ~viw
@@ -985,9 +967,9 @@ inoremap <expr> <c-y> pumvisible() ? "<c-e>" : "<c-n>"
 "inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
 
 " ins bracket
-inoremap ( ()<c-o>h
 inoremap < <><c-o>h
-inoremap " ""<c-o>h
+"inoremap ( ()<c-o>h
+"inoremap " ""<c-o>h
 "inoremap { {}<c-o>h
 "inoremap [ []<c-o>h
 "inoremap ' ''<c-o>h
@@ -1005,6 +987,9 @@ inoremap <kUp>       8
 inoremap <kPageUp>   9
 
 " ins symbol
+inoremap <c-u> <c-r>=I_symbol()<cr>
+inoremap <c-_> <c-r>=I_symbol()<cr>
+
 func! I_symbol() abort
 
   let l:lst = ['/', '?', '%', '&', '$', '@']
@@ -1013,31 +998,34 @@ func! I_symbol() abort
   call complete(col('.'), l:lst)
   return ''
 endfunc
-inoremap <c-u> <c-r>=I_symbol()<cr>
-inoremap <c-_> <c-r>=I_symbol()<cr>
 
 " ins bracket
+inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=I_bracket()<cr>"
+
 func! I_bracket() abort
   call complete(col('.'), ['()', '{}', '[]', '""', "''"]) " [, '<>', '``']
   return ''
 endfunc
-inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=I_bracket()<cr>"
 
 " ins num
+"inoremap <c-n> <c-r>=I_num()<cr>
+
 func! I_num() abort
   call complete(col('.'), ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])
   return ''
 endfunc
-"inoremap <c-n> <c-r>=I_num()<cr>
 
 " ins register
+inoremap <c-r> <c-r>=I_reg()<cr>
+
 func! I_reg() abort
   call complete(col('.'), [@0, @1, @2, @3])
   return ''
 endfunc
-inoremap <c-r> <c-r>=I_reg()<cr>
 
 " ins lua reserved word
+"inoremap <c-r> <c-r>=I_lua_reserved()<cr>
+
 func! I_lua_reserved() abort
   call complete(col('.'), [
   \   'end',
@@ -1049,9 +1037,10 @@ func! I_lua_reserved() abort
   \ ])
   return ''
 endfunc
-"inoremap <c-r> <c-r>=I_lua_reserved()<cr>
 
 " ins ooq ( lua )
+"inoremap <c-u> <c-r>=I_usual()<cr>
+
 func! I_usual() abort
   call complete(col('.'), [
   \   '_s:',
@@ -1081,11 +1070,11 @@ func! I_usual() abort
 "  \   'nil',
 "  \   'alias',
 endfunc
-"inoremap <c-u> <c-r>=I_usual()<cr>
 
 "
 " nop
 "
+
 "inoremap <c-_> <nop>
 "inoremap <c-:> <nop>
 
@@ -1387,8 +1376,8 @@ endfunc
 
 func! N_ins_cr() abort
   
-  exe "normal! i\<cr>"
-  normal! ==^
+  exe "normal! i\<cr> "
+  exe 'normal! x'
 endfunc
 
 func! N_new_line() abort
@@ -2069,6 +2058,35 @@ func! Lf(dir) abort
   exe l:exe
 endfunc
 
+" opn file
+command! -nargs=* -complete=file Opn call Opn(<q-args>)
+func! Opn(filename) abort
+
+  exe 'tab drop ' . a:filename
+endfunc
+
+func! Opn_vimrc() abort
+
+  call Opn('~/.vimrc')
+endfunc
+
+func! Opn_grep_work() abort
+
+  call Opn('doc/grep.lua')
+endfunc
+
+func! Opn_memo() abort
+
+  call Opn('doc/memo.txt')
+endfunc
+
+func! Defold_err_cnv() abort
+
+  exe '%s/^ERROR:SCRIPT:/ERROR:SCRIPT:\r/g'
+  exe '%s/\/assets\///g'
+  exe '%s/^ *//g'
+endfunc
+
 func! Hl_grp() abort
 
   echo synIDattr(synID(line("."), col("."), 1), "name")
@@ -2076,15 +2094,6 @@ endfunc
 " and
 " :highlight [grp name]
 
-" 
-" defold err cnv
-" 
-func! Defold_err_cnv() abort
-
-  exe '%s/^ERROR:SCRIPT:/ERROR:SCRIPT:\r/g'
-  exe '%s/\/assets\///g'
-  exe '%s/^ *//g'
-endfunc
 
 " file rcnt qf " use not
 command! -nargs=0 FileRcntQf
