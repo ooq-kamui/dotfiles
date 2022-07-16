@@ -417,10 +417,13 @@ nnoremap <leader>k /
 nnoremap <leader>n :SrchHstry<cr>
 
 " srch word set prv ( tgl )
-nnoremap N /<c-p><c-p><cr>
+nnoremap N :call N_srch_str__prv()<cr>
+"nnoremap N /<c-p><c-p><cr>
 
 " srch init ( hl )
 nnoremap S /<cr>N
+"normal! /
+"normal! N
 
 " srch replace all > yank ( file )
 nnoremap :s :%s//<c-r>0/gc
@@ -440,10 +443,6 @@ nnoremap :w :set wrap!
 " grep ( rg fzf )
 nnoremap <leader>o :Rg <cr>
 
-" grep ( rg qf )
-nnoremap :g :call Grep("")<cr>
-nnoremap :G :call Grep("-w")<cr>
-
 " grep bfr ( blines )
 nnoremap <leader>i :BLines<cr>
 
@@ -459,6 +458,10 @@ nnoremap :r :r!
 
 " ins sys ls  ( read )
 nnoremap :l :Lf 
+
+" grep [rg]   ( read )
+nnoremap :g :call Grep("")<cr>
+nnoremap :G :call Grep("-w")<cr>
 
 "
 " tab
@@ -704,8 +707,8 @@ vnoremap x "ax
 vnoremap <c-m> J
 
 " del line end space
-vnoremap Y :call V_line_end_space_del()<cr>
-vnoremap S :call V_line_end_space_del()<cr>
+vnoremap q :call V_line_end_space_del()<cr>
+"vnoremap Y :call V_line_end_space_del()<cr>
 
 " mv str back
 vnoremap <c-w> :call V_mv_str("h")<cr>
@@ -836,7 +839,7 @@ vnoremap m <esc>
 "vnoremap n <esc>
 "vnoremap o <esc>
 "vnoremap p <esc>
-vnoremap q <esc>
+"vnoremap q <esc>
 vnoremap r <esc>
 "vnoremap s <esc>
 "vnoremap t <esc>
@@ -1896,20 +1899,38 @@ endfunc
 
 func! N_srch_str__(word1) abort
 
-  let @/ = Cursor_word()
+  let l:str = Cursor_word()
 
   if a:word1
-    let @/ = '\<' . @/ . '\>'
+    let l:str = '\<' . l:str . '\>'
   endif
+  
+  call Srch_str__(l:str)
 endfunc
 
 func! V_srch_str__slctd_str(word1) abort
 
-  let @/ = V_slctd_str()
+  let l:str = V_slctd_str()
 
   if a:word1
-    let @/ = '\<' . @/ . '\>'
+    let l:str = '\<' . l:str . '\>'
   endif
+  
+  call Srch_str__(l:str)
+endfunc
+
+let g:srch = ''
+func! Srch_str__(str) abort
+  
+  let g:srch1 = g:srch
+  
+  let @/      = a:str
+  let g:srch  = a:str
+endfunc
+
+func! N_srch_str__prv() abort
+
+  call Srch_str__(g:srch1)
 endfunc
 
 func! V_is_slctd_eq_srch_str() abort
