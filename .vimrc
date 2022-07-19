@@ -25,42 +25,34 @@ augroup InsertHook
   au InsertEnter * hi LineNr ctermfg=lightgreen
 augroup END 
 
-hi CursorLineNr  ctermfg=magenta
+hi CursorLineNr ctermfg=magenta
 
-hi Visual                           ctermbg=magenta cterm=none
-hi VisualNOS                        ctermbg=magenta cterm=none
-hi Search        ctermfg=yellow     ctermbg=cyan    cterm=none
-hi IncSearch     ctermfg=yellow     ctermbg=cyan    cterm=none
-hi MatchParen    ctermfg=magenta    ctermbg=none
+hi Visual                         ctermbg=magenta  cterm=none
+hi VisualNOS                      ctermbg=magenta  cterm=none
+hi Search      ctermfg=yellow     ctermbg=cyan     cterm=none
+hi IncSearch   ctermfg=yellow     ctermbg=cyan     cterm=none
+hi MatchParen  ctermfg=magenta    ctermbg=none
 
-hi TabLineSel    ctermfg=cyan       ctermbg=none    cterm=none
-hi TabLine       ctermfg=lightblue  ctermbg=33      cterm=none
-hi TabLineFill                      ctermbg=33      cterm=none
+hi TabLineSel  ctermfg=cyan       ctermbg=darkblue cterm=none
+hi TabLine     ctermfg=lightblue  ctermbg=33       cterm=none
+hi TabLineFill                    ctermbg=33       cterm=none
 
-hi StatusLine    ctermfg=lightblue  ctermbg=33      cterm=none
-hi EndOfBuffer   ctermfg=cyan                       cterm=none
+hi StatusLine  ctermfg=lightblue  ctermbg=33       cterm=none
+hi EndOfBuffer ctermfg=cyan                        cterm=none
 
-hi Pmenu         ctermfg=lightgreen ctermbg=blue
-hi PmenuSel      ctermfg=cyan       ctermbg=magenta cterm=bold
+hi Pmenu       ctermfg=lightgreen ctermbg=blue
+hi PmenuSel    ctermfg=cyan       ctermbg=magenta  cterm=bold
 
-hi ErrorMsg      ctermfg=magenta    ctermbg=none    cterm=none
-hi WarningMsg    ctermfg=magenta    ctermbg=none    cterm=none
+hi ErrorMsg    ctermfg=magenta    ctermbg=none     cterm=none
+hi WarningMsg  ctermfg=magenta    ctermbg=none     cterm=none
 
-hi NonText       ctermfg=25         ctermbg=none    cterm=none
-hi SpecialKey    ctermfg=25         ctermbg=none    cterm=none
+hi NonText     ctermfg=25         ctermbg=none     cterm=none
+hi SpecialKey  ctermfg=25         ctermbg=none     cterm=none
 
-hi Comment       ctermfg=14         ctermbg=none    cterm=none
+hi Comment     ctermfg=14         ctermbg=none     cterm=none
 
 hi FullWidthSpace ctermbg=white
-au VimEnter * match FullWidthSpace /　/
-
-hi netrwDir      ctermfg=lightgreen
-hi netrwTreeBar  ctermfg=lightgreen
-hi netrwClassify ctermfg=lightgreen
-hi netrwComment  ctermfg=14         ctermbg=none    cterm=none
-hi netrwList     ctermfg=yellow     ctermbg=none    cterm=none
-hi netrwVersion  ctermfg=130        ctermbg=none    cterm=none
-hi netrwHelpCmd  ctermfg=130        ctermbg=none    cterm=none
+match FullWidthSpace /　/
 
 au BufNewFile,BufRead *.script     set filetype=lua
 au BufNewFile,BufRead *.gui_script set filetype=lua
@@ -166,6 +158,7 @@ nnoremap a :w<cr>
 
 " opn file rcnt ( history )
 nnoremap <leader>h :FileHstry<cr>
+"nnoremap <leader>y :FileHstry<cr>
 
 " opn tab new
 "nnoremap xx :tabnew filename
@@ -173,6 +166,10 @@ nnoremap <leader>h :FileHstry<cr>
 " opn tab file
 nnoremap :e :Opn 
 nnoremap :o :Opn 
+
+" file srch ( fzf )
+nnoremap <leader>j :Files <cr>
+nnoremap <leader>u :Files <cr>
 
 " opn .vimrc
 nnoremap gh :call Opn_vimrc()<cr>
@@ -241,8 +238,8 @@ nnoremap L [m
 nnoremap go [{
 
 " cursor mv edited ( jump list )
-nnoremap b     <c-o>
-nnoremap <c-b> <c-i>
+nnoremap b <c-o>
+"nnoremap <c-b> <c-i>
 
 " cursor mv file back    ( file begin )
 nnoremap gk gg0
@@ -339,7 +336,7 @@ nnoremap v <c-v>
 nnoremap c :call N_cpy()<cr>
 
 " pc clipboard line
-"nnoremap C "+yy
+"nnoremap xx "+yy
 
 " yank char
 "nnoremap xx "0yl
@@ -413,7 +410,7 @@ nnoremap E :call N_srch_str__(v:true)<cr>
 " srch cmdline
 nnoremap <leader>k /
 
-" srch history
+" srch word history ( fzf )
 nnoremap <leader>n :SrchHstry<cr>
 
 " srch word set prv ( tgl )
@@ -431,26 +428,26 @@ nnoremap :s :%s//<c-r>0/gc
 " srch replace one > yank next ( only srch )
 nnoremap <c-p> gn
 
+" grep ( fzf )
+nnoremap <leader>o :Rg <cr>
+
+" grep bfr ( fzf )
+nnoremap <leader>i :BLines<cr>
+
 " tag jump tab new
 nnoremap t :call N_tag_jmp()<cr>
 
-" mark
-"nnoremap xx m
+" mark set
+nnoremap R :call N_mark__()<cr>
 
-" wrap tgl
-nnoremap :w :set wrap!
-
-" grep ( rg fzf )
-nnoremap <leader>o :Rg <cr>
-
-" grep bfr ( blines )
-nnoremap <leader>i :BLines<cr>
+" mark jmp
+nnoremap r :call N_cursor_mv_mark()<cr>
 
 " 
 " cmd
 " 
 
-" cmd history
+" cmd history ( fzf )
 nnoremap <leader>l :CmdHstry<cr>
 
 " ins sys cmd ( read )
@@ -463,9 +460,9 @@ nnoremap :l :Lf
 nnoremap :g :call Grep("")<cr>
 nnoremap :G :call Grep("-w")<cr>
 
-"
+" 
 " tab
-"
+" 
 
 " tab mv
 nnoremap <tab>   gt
@@ -475,6 +472,10 @@ nnoremap <s-tab> gT
 nnoremap <s-left>  :tabm-1<cr>
 nnoremap <s-right> :tabm+1<cr>
 
+" 
+" etc
+" 
+
 " buffer list
 "nnoremap :b :buffers
 
@@ -482,6 +483,8 @@ nnoremap <s-right> :tabm+1<cr>
 nnoremap gi ga
 "nnoremap ga ga
 
+" wrap tgl
+nnoremap :w :set wrap!
 
 " numpad shift
 nnoremap <kInsert>   0
@@ -551,7 +554,7 @@ nnoremap 0 <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
 nnoremap q <esc>
-nnoremap r <esc>
+"nnoremap r <esc>
 "nnoremap s <esc>
 "nnoremap t <esc>
 "nnoremap u <esc>
@@ -561,7 +564,7 @@ nnoremap r <esc>
 nnoremap z <esc>
 
 nnoremap A <esc>
-nnoremap B <esc>
+"nnoremap B <esc>
 nnoremap C <esc>
 nnoremap D <esc>
 "nnoremap E <esc>
@@ -572,12 +575,12 @@ nnoremap H <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
 "nnoremap L <esc>
-nnoremap M <esc>
+"nnoremap M <esc>
 "nnoremap N <esc>
 nnoremap O <esc>
 nnoremap Q <esc>
 nnoremap P <esc>
-nnoremap R <esc>
+"nnoremap R <esc>
 "nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
@@ -632,6 +635,9 @@ vnoremap i V
 
 " mode ch box
 vnoremap v <c-v>
+
+" file srch ( fzf )
+"vnoremap xx :Files <cr> " non
 
 " 
 " cursor mv
@@ -707,8 +713,7 @@ vnoremap x "ax
 vnoremap <c-m> J
 
 " del line end space
-vnoremap q :call V_line_end_space_del()<cr>
-"vnoremap Y :call V_line_end_space_del()<cr>
+vnoremap D :call V_line_end_space_del()<cr>
 
 " mv str back
 vnoremap <c-w> :call V_mv_str("h")<cr>
@@ -717,8 +722,8 @@ vnoremap <c-w> :call V_mv_str("h")<cr>
 vnoremap <c-e> :call V_mv_str("l")<cr>
 
 " mv line
-vnoremap J :call V_mv_line("j")<cr>
-vnoremap K :call V_mv_line("k")<cr>
+"vnoremap J :call V_mv_line("j")<cr>
+"vnoremap K :call V_mv_line("k")<cr>
 
 " select all
 vnoremap a <esc>ggVG
@@ -729,7 +734,7 @@ vnoremap c :call V_cpy()<cr>
 "vnoremap c "0y
 
 " pc clipboard selected
-"vnoremap C "+y
+"vnoremap xx "+y
 
 " paste
 vnoremap <expr> p mode() == "<c-v>" ? "I<c-r>0<esc>" : '"ad"0P'
@@ -756,17 +761,17 @@ vnoremap ; =gv
 vnoremap :t :!expand -t 2
 
 " upper / lower tgl
-vnoremap u     ~viw
+vnoremap u ~viw
 
 " upper all
-vnoremap U     Uviw
+vnoremap U Uviw
 
 " lower all
 vnoremap <c-u> uviw
 
-"
+" 
 " srch
-"
+" 
 
 " srch forward
 "vnoremap xx xx
@@ -790,26 +795,26 @@ vnoremap :s :s//<c-r>0/gc<cr>
 " srch replace one > yank, nxt
 vnoremap <c-p> "ad"0Plgn
 
+" grep bfr ( fzf )
+vnoremap <leader>i :call V_blines()<cr>
+
+" grep ( fzf )
+vnoremap <leader>o "ay:Rg <c-r>a<cr>
+
+" grep func define ( fzf )
+"vnoremap <leader>xx "ay:Rg <c-r>a<cr>func
+
 " tag jmp
 vnoremap t :call V_tag_jmp()<cr>
 
-" grep bfr ( blines )
-vnoremap <leader>i :call V_blines()<cr>
-
-" grep ( rg )
-vnoremap <leader>o "ay:Rg <c-r>a<cr>
-
-" grep func define
-"vnoremap <leader>xx "ay:Rg <c-r>a<cr>func
-
-"
+" 
 " nop
-"
+" 
 "vnoremap <space> <nop>
 
-"
+" 
 " esc
-"
+" 
 vnoremap @ <esc>
 vnoremap * <esc>
 vnoremap / <esc>
@@ -839,7 +844,7 @@ vnoremap m <esc>
 "vnoremap n <esc>
 "vnoremap o <esc>
 "vnoremap p <esc>
-"vnoremap q <esc>
+vnoremap q <esc>
 vnoremap r <esc>
 "vnoremap s <esc>
 "vnoremap t <esc>
@@ -852,21 +857,23 @@ vnoremap w <esc>
 "vnoremap A <esc>
 vnoremap B <esc>
 vnoremap C <esc>
+"vnoremap D <esc>
 vnoremap F <esc>
 vnoremap H <esc>
 vnoremap I <esc>
-"vnoremap J <esc>
-"vnoremap K <esc>
+vnoremap J <esc>
+vnoremap K <esc>
 "vnoremap L <esc>
 vnoremap M <esc>
 vnoremap N <esc>
 vnoremap O <esc>
 "vnoremap P <esc>
+vnoremap Q <esc>
 vnoremap R <esc>
-"vnoremap S <esc>
+vnoremap S <esc>
 "vnoremap U <esc>
 vnoremap V <esc>
-"vnoremap Y <esc>
+vnoremap Y <esc>
 
 "vnoremap <c-_> <esc>
 
@@ -972,9 +979,9 @@ inoremap <expr> <c-y> pumvisible() ? "<c-e>" : "<c-n>"
 " ins bracket
 inoremap < <><c-o>h
 "inoremap ( ()<c-o>h
-"inoremap " ""<c-o>h
 "inoremap { {}<c-o>h
 "inoremap [ []<c-o>h
+inoremap " ""<c-o>h
 "inoremap ' ''<c-o>h
 
 " numpad shift
@@ -993,6 +1000,25 @@ inoremap <kPageUp>   9
 inoremap <c-u> <c-r>=I_symbol()<cr>
 inoremap <c-_> <c-r>=I_symbol()<cr>
 
+" ins bracket
+inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=I_bracket()<cr>"
+
+" ins num
+"inoremap <c-n> <c-r>=I_num()<cr>
+
+" ins register
+inoremap <c-r> <c-r>=I_reg()<cr>
+
+" ins lua reserved word
+"inoremap <c-r> <c-r>=I_lua_reserved()<cr>
+
+" ins ooq ( lua )
+"inoremap <c-u> <c-r>=I_usual()<cr>
+
+"
+" ins fnc
+"
+
 func! I_symbol() abort
 
   let l:lst = ['/', '?', '%', '&', '$', '@']
@@ -1002,32 +1028,21 @@ func! I_symbol() abort
   return ''
 endfunc
 
-" ins bracket
-inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=I_bracket()<cr>"
-
 func! I_bracket() abort
-  call complete(col('.'), ['()', '{}', '[]', '""', "''"]) " [, '<>', '``']
+  call complete( col('.'), [ '()', '""', '{}', "''", '[]' ])
+  " [, '<>', '``']
   return ''
 endfunc
-
-" ins num
-"inoremap <c-n> <c-r>=I_num()<cr>
 
 func! I_num() abort
   call complete(col('.'), ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])
   return ''
 endfunc
 
-" ins register
-inoremap <c-r> <c-r>=I_reg()<cr>
-
 func! I_reg() abort
   call complete(col('.'), [@0, @1, @2, @3])
   return ''
 endfunc
-
-" ins lua reserved word
-"inoremap <c-r> <c-r>=I_lua_reserved()<cr>
 
 func! I_lua_reserved() abort
   call complete(col('.'), [
@@ -1040,9 +1055,6 @@ func! I_lua_reserved() abort
   \ ])
   return ''
 endfunc
-
-" ins ooq ( lua )
-"inoremap <c-u> <c-r>=I_usual()<cr>
 
 func! I_usual() abort
   call complete(col('.'), [
@@ -1151,7 +1163,7 @@ cnoremap <kPageUp>   9
 "nnoremap <leader>f <esc>
 "nnoremap <leader>h <esc>
 "nnoremap <leader>r <esc>
-"nnoremap <leader>y <esc>
+nnoremap <leader>y <esc>
 
 vnoremap <leader>u <esc>
 "vnoremap <leader>y <esc>
@@ -1249,8 +1261,6 @@ command! -bang -nargs=? BLines
 \ call fzf#vim#buffer_lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
 
 " files
-nnoremap <leader>u :Files <cr>
-"vnoremap <leader>u :Files <cr> " non
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>, <bang>1)
 
@@ -1266,7 +1276,7 @@ command! -bang -nargs=? -complete=dir Files
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
 \   "rg --color=always --line-number --smart-case --no-multiline --no-heading "
-\     ."-- ".shellescape(escape(<q-args>, '(')),
+\     ."-- ".shellescape(escape(<q-args>, '().')),
 \   0,
 \   fzf#vim#with_preview(
 \     {'options': '--exact --delimiter : --nth 3..'},
@@ -1291,15 +1301,14 @@ command! -bang -nargs=* SrchHstry
 
 " ctags ( fzf )
 
-set tags=./.tags;
-"nnoremap <c-]> g<c-]>
-"nnoremap xx :!sh sh/ctags.sh
-
-"nnoremap <leader>xx :Tags <c-r><c-w><cr>
-"vnoremap <leader>xx "ay:Tags <c-r>a<cr>
+"nnoremap xx :Tags <c-r><c-w><cr>
+"vnoremap xx "ay:Tags <c-r>a<cr>
 command! -bang -nargs=? Tags
 \ call fzf#vim#tags(<q-args>, <bang>1)
 
+set tags=./.tags;
+"nnoremap <c-]> g<c-]>
+"nnoremap xx :!sh sh/ctags.sh
 
 "
 " vim-bookmarks
@@ -1379,8 +1388,12 @@ endfunc
 
 func! N_ins_cr() abort
   
+  let l:t_line_num = line('.')
+  
   exe "normal! i\<cr> "
   exe 'normal! x'
+  
+  call Line_end_space_del(l:t_line_num)
 endfunc
 
 func! N_new_line() abort
@@ -1407,7 +1420,7 @@ func! Is_cursor_line_start1() abort
   call N_cursor_mv_line_start1()
   let l:col_s1 = col('.')
   
-  call setpos('.', pos_c)
+  call setpos('.', l:pos_c)
   
   if l:col_c == l:col_s1
     return v:true
@@ -1572,11 +1585,12 @@ func! V_tag_jmp() range abort
   endfor
 endfunc
 
-func! Char_c() abort " new
-
+func! Char() abort " alias
+  
+  return Char_c()
 endfunc
 
-func! Char() abort " old
+func! Char_c() abort
 
   let l:c = getline('.')[col('.')-1]
   " getcursorcharpos() ?
@@ -1713,26 +1727,6 @@ func! Char_tgl_etc(c) abort
   "  let l:rpl = "o"
   "elseif a:c ==# "O"
   "  let l:rpl = "i"
-
-  "elseif a:c == "<"
-  "  let l:rpl = ">"
-  "elseif a:c == ">"
-  "  let l:rpl = "<"
-
-  "elseif a:c == "{"
-  "  let l:rpl = "}"
-  "elseif a:c == "}"
-  "  let l:rpl = "{"
-
-  "elseif a:c == "["
-  "  let l:rpl = "]"
-  "elseif a:c == "]"
-  "  let l:rpl = "["
-
-  "elseif a:c == "("
-  "  let l:rpl = ")"
-  "elseif a:c == ")"
-  "  let l:rpl = "("
   endif
 
   return l:rpl
@@ -2049,6 +2043,11 @@ func! V_cmnt_mlt() range abort
   call Cmnt_mlt("bgn")
 endfunc
 
+func! Line_end_space_del(line_num) abort
+  
+  exe a:line_num.'s/[ \t]*$//g'
+endfunc
+
 func! V_line_end_space_del() abort
   exe 's/[ \t]*$//g'
 endfunc
@@ -2108,9 +2107,20 @@ func! Defold_err_cnv() abort
   exe '%s/^ *//g'
 endfunc
 
+func! N_mark__() abort
+
+  let g:mark_pos = getpos('.')
+endfunc
+"call N_mark__()
+
+func! N_cursor_mv_mark() abort
+  
+  call setpos('.', g:mark_pos)
+endfunc
+
 func! Hl_grp() abort
 
-  echo synIDattr(synID(line("."), col("."), 1), "name")
+  echo synIDattr(synID(line('.'), col('.'), 1), 'name')
 endfunc
 " and
 " :highlight [grp name]
@@ -2132,4 +2142,16 @@ func! Qf_old_files(info)
   endfor
   return l
 endfunc
+
+" 
+" use not ( old )
+" 
+
+hi netrwDir      ctermfg=lightgreen
+hi netrwTreeBar  ctermfg=lightgreen
+hi netrwClassify ctermfg=lightgreen
+hi netrwComment  ctermfg=14         ctermbg=none    cterm=none
+hi netrwList     ctermfg=yellow     ctermbg=none    cterm=none
+hi netrwVersion  ctermfg=130        ctermbg=none    cterm=none
+hi netrwHelpCmd  ctermfg=130        ctermbg=none    cterm=none
 

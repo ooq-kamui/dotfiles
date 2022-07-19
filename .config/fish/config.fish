@@ -42,12 +42,15 @@ alias cd_up3  "cd ../../../"
 
 alias cd_vim  "cd ~/doc/tech/github/vimrc"
 alias cd_life "cd ~/doc/life"
-alias cd_ooq  "cd ~/dev/ooq/g.proto/assets"
-alias cd_holo "cd ~/doc/hoby/youtube/vtuber/hololive/prj"
+alias cd_ooq    "cd ~/dev/ooq/g.proto/assets"
+alias cd_ooq_bk "cd ~/dev/ooq/z.proto.bk"
+alias cd_holo      "cd ~/doc/hoby/youtube/vtuber/hololive/prj"
 alias cd_holo_data "cd ~/doc/hoby/youtube/vtuber/hololive/prj/www/song/data"
 
 alias vi_vimrc       "vi ~/.vimrc"
 alias vi_fish_config "vi ~/.config/fish/config.fish"
+alias vi_config      "vi ~/.config/fish/config.fish"
+alias vi_doc "vi doc/memo.txt"
 
 set -x LC_TIME en_US
 alias date_ymd   "date +'%Y-%m-%d'"
