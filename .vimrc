@@ -169,7 +169,7 @@ nnoremap :o :Opn
 
 " file srch ( fzf )
 nnoremap <leader>j :Files <cr>
-nnoremap <leader>u :Files <cr>
+"nnoremap <leader>u :Files <cr>
 
 " opn .vimrc
 nnoremap gh :call Opn_vimrc()<cr>
@@ -354,7 +354,7 @@ nnoremap p "0P
 "nnoremap xx "0ddk"0P
 
 " dpl line
-"nnoremap <c-d> "0yy"0P
+nnoremap D "ayy"aP
 
 " undo, redo
 nnoremap h     u
@@ -379,10 +379,10 @@ nnoremap # >>
 nnoremap ; ==^
 
 " char toggle ( upper / lower )
-nnoremap u :call Char_tgl()<cr>
+nnoremap u :call N_char_tgl1()<cr>
 
 " char toggle ( turn )
-nnoremap U :call N_char_tgl_trn()<cr>
+"nnoremap U :call N_char_tgl2()<cr>
 
 " upper / lower
 "nnoremap xx v~
@@ -408,7 +408,8 @@ nnoremap e :call N_srch_str__(v:false)<cr>
 nnoremap E :call N_srch_str__(v:true)<cr>
 
 " srch cmdline
-nnoremap <leader>k /
+nnoremap <leader>i /
+"nnoremap <leader>k /
 
 " srch word history ( fzf )
 nnoremap <leader>n :SrchHstry<cr>
@@ -432,7 +433,8 @@ nnoremap <c-p> gn
 nnoremap <leader>o :Rg <cr>
 
 " grep bfr ( fzf )
-nnoremap <leader>i :BLines<cr>
+nnoremap <leader>k :BLines<cr>
+"nnoremap <leader>i :BLines<cr>
 
 " tag jump tab new
 nnoremap t :call N_tag_jmp()<cr>
@@ -566,7 +568,7 @@ nnoremap z <esc>
 nnoremap A <esc>
 "nnoremap B <esc>
 nnoremap C <esc>
-nnoremap D <esc>
+"nnoremap D <esc>
 "nnoremap E <esc>
 nnoremap F <esc>
 nnoremap G <esc>
@@ -583,7 +585,7 @@ nnoremap P <esc>
 "nnoremap R <esc>
 "nnoremap S <esc>
 nnoremap T <esc>
-"nnoremap U <esc>
+nnoremap U <esc>
 "nnoremap W <esc>
 nnoremap V <esc>
 nnoremap Y <esc>
@@ -788,7 +790,8 @@ vnoremap e :call V_srch_str__slctd_str(v:false)<cr>
 vnoremap E :call V_srch_str__slctd_str(v:true)<cr>
 
 " srch cmdline
-vnoremap <leader>k "ay/<c-r>a
+vnoremap <leader>i "ay/<c-r>a
+"vnoremap <leader>k "ay/<c-r>a
 
 " srch replace all > yank
 vnoremap :s :s//<c-r>0/gc<cr>
@@ -797,7 +800,8 @@ vnoremap :s :s//<c-r>0/gc<cr>
 vnoremap <c-p> "ad"0Plgn
 
 " grep bfr ( fzf )
-vnoremap <leader>i :call V_blines()<cr>
+vnoremap <leader>k :call V_blines()<cr>
+"vnoremap <leader>i :call V_blines()<cr>
 
 " grep ( fzf )
 vnoremap <leader>o "ay:Rg <c-r>a<cr>
@@ -1164,6 +1168,7 @@ cnoremap <kPageUp>   9
 "nnoremap <leader>f <esc>
 "nnoremap <leader>h <esc>
 "nnoremap <leader>r <esc>
+nnoremap <leader>u <esc>
 nnoremap <leader>y <esc>
 
 vnoremap <leader>u <esc>
@@ -1259,7 +1264,11 @@ func! V_blines() abort
 endfunc
 
 command! -bang -nargs=? BLines
-\ call fzf#vim#buffer_lines(<q-args>,{'options': ['--no-sort']}, <bang>1)
+\ call fzf#vim#buffer_lines(
+\   <q-args>,
+\   {'options': ['--no-sort', '--exact']},
+\   <bang>1
+\ )
 
 " files
 command! -bang -nargs=? -complete=dir Files
@@ -1345,10 +1354,9 @@ let g:bookmark_no_default_key_mappings = 1
 "
 
 " launch
-nnoremap <leader>d :tabnew<cr>:e .<cr>
+"nnoremap xx :tabnew<cr>:e .<cr>
 
 " plugin  #end#
-
 
 "
 " final
@@ -1587,6 +1595,38 @@ func! V_tag_jmp() range abort
   endfor
 endfunc
 
+func! Line_l() abort
+  
+  let l:line_l = getline('.')[:col('.')-2]
+  return l:line_l
+endfunc
+
+func! Line_r() abort
+  
+  let l:line_r = getline('.')[col('.'):]
+  return l:line_r
+endfunc
+
+func! Slct_expnd() abort
+
+  let l:line_l = Line_l()
+  let l:l_idx = matchend(l:line_l, "[\"']")
+  if l:l_idx == -1
+    return
+  endif
+  
+  let l:l_col = l_idx - 1
+  let l:c = l:line_l[l:l_col]
+  
+  let l:line_r = Line_r()
+  let l:r_idx = stridx(l:line_r, l:c)
+  let l:r_col = col('.') + r_idx
+  
+  "echo l:c l:l_col l:r_col
+  
+  
+endfunc
+
 func! Char() abort " alias
   
   return Char_c()
@@ -1606,10 +1646,11 @@ func! Char_l() abort
   return l:c
 endfunc
 
-func! Char_tgl() abort
+func! N_char_tgl1() abort
 
   let l:c   = Char()
-  let l:rpl = Char_tgl_char(l:c)
+  "let l:rpl = Char_tgl_char(l:c)
+  let l:rpl = Char_tgl1(l:c)
 
   if l:rpl == ""
     normal! v~
@@ -1620,7 +1661,7 @@ func! Char_tgl() abort
   exe "normal! i".l:rpl
 endfunc
 
-func! N_char_tgl_trn() abort
+func! N_char_tgl2() abort
 
   let l:c   = Char()
   let l:rpl = Char_tgl_trn(l:c)
@@ -1634,9 +1675,11 @@ func! N_char_tgl_trn() abort
   exe "normal! i".l:rpl
 endfunc
 
-func! Char_tgl_char(c) abort
+"func! Char_tgl_char(c) abort
+func! Char_tgl1(c) abort
 
-  let l:rpl = Char_tgl_bracket(a:c)
+  "let l:rpl = Char_tgl_bracket(a:c)
+  let l:rpl = Char_tgl_trn(a:c)
   if l:rpl != ""
     return l:rpl
   endif
@@ -1848,6 +1891,8 @@ func! V_slctd_str() abort
 
   exe 'normal! gv"ay'
   return @a
+  
+  " return @* " ??
 endfunc
 
 func! V_slctd_str_len() abort
