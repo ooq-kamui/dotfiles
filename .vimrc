@@ -700,6 +700,7 @@ vnoremap ! :call V_cmnt_1()<cr>
 vnoremap $ :call V_cmnt_mlt()<cr>
 
 " ins selected edge
+vnoremap :r :<c-u>InsSlctdEdge 
 vnoremap :b :<c-u>InsSlctdEdge 
 
 " del str > yank
@@ -1394,6 +1395,7 @@ func! N_ins_cr() abort
   exe 'normal! x'
   
   call Line_end_space_del(l:t_line_num)
+  exe 'normal! j'
 endfunc
 
 func! N_new_line() abort
@@ -1818,12 +1820,12 @@ func! V_mv_str(lr) abort
 
   exe 'normal! gv"ax' . a:lr . '"aP'
 
-  exe "normal! v"
+  exe 'normal! v'
   let l:mv_len = strchars(@a) - 1
   if l:mv_len <= 0
     return
   endif
-  exe "normal! " . l:mv_len . "h"
+  exe 'normal! ' . l:mv_len . 'h'
 endfunc
 
 func! V_mv_line(ud) range abort
@@ -1913,6 +1915,7 @@ func! V_srch_str__slctd_str(word1) abort
   call Srch_str__(l:str)
 endfunc
 
+let g:srch_init_flg = v:false
 let g:srch = ''
 func! Srch_str__(str) abort
   
@@ -1920,6 +1923,11 @@ func! Srch_str__(str) abort
   
   let @/      = a:str
   let g:srch  = a:str
+  
+  "if ! g:srch_init_flg
+  "  exe "normal! /\<cr>N"
+  "  let g:srch_init_flg = v:true
+  "endif
 endfunc
 
 func! N_srch_str__prv() abort
@@ -1948,7 +1956,7 @@ endfunc
 
 func! V_srch(dir) abort " use not
 
-  if !V_is_slctd_eq_srch_str()
+  if ! V_is_slctd_eq_srch_str()
     call V_srch_str__slctd_str(v:false)
   endif
 endfunc
