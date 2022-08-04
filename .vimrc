@@ -255,9 +255,11 @@ nnoremap <down> <c-e>
 
 " scroll cursor line upper
 nnoremap <leader>r zt
+nnoremap R zt
 
 " scroll cursor line middle
 nnoremap <leader>f zz
+nnoremap F zz
 
 " cursor mv window nxt
 "nnoremap xx <c-w>w
@@ -440,7 +442,7 @@ nnoremap <leader>k :BLines<cr>
 nnoremap t :call N_tag_jmp()<cr>
 
 " mark set
-nnoremap R :call N_mark__()<cr>
+"nnoremap R :call N_mark__()<cr>
 
 " mark jmp
 nnoremap r :call N_cursor_mv_mark()<cr>
@@ -570,7 +572,7 @@ nnoremap A <esc>
 nnoremap C <esc>
 "nnoremap D <esc>
 "nnoremap E <esc>
-nnoremap F <esc>
+"nnoremap F <esc>
 nnoremap G <esc>
 nnoremap H <esc>
 "nnoremap I <esc>
@@ -761,7 +763,7 @@ vnoremap # >gv
 vnoremap ; =gv
 
 " indent tab > space
-vnoremap :t :!expand -t 2
+vnoremap :t :!expand -t 2<cr>
 
 " upper / lower tgl
 vnoremap u ~viw
@@ -798,6 +800,9 @@ vnoremap :s :s//<c-r>0/gc<cr>
 
 " srch replace one > yank, nxt
 vnoremap <c-p> "ad"0Plgn
+
+" srch skip, nxt
+"vnoremap xx
 
 " grep bfr ( fzf )
 vnoremap <leader>k :call V_blines()<cr>
@@ -905,8 +910,8 @@ vnoremap <c-x> <esc>
 "vnoremap <c-y> <esc>
 
 vnoremap gg <esc>
-vnoremap gj <esc>
-vnoremap gk <esc>
+"vnoremap gj <esc>
+"vnoremap gk <esc>
 vnoremap go <esc>
 
 "
@@ -918,6 +923,7 @@ inoremap <expr> <esc>
 \ pumvisible()            ? "<c-e>"  :
 \ Is_cursor_line_start0() ? "<esc>"  :
 \                           "<esc>l"
+inoremap <c-c> <esc>
 
 " cursor mv line in
 inoremap <c-a> <c-o>0
@@ -937,12 +943,10 @@ inoremap <c-s> <c-o>h
 "inoremap <c-q> <c-o>b
 
 " cursor mv d
-inoremap <c-n> <down>
-"inoremap <expr> <c-n> pumvisible() ? "<down>" : "<down>"
+"inoremap <c-n> <down>
 
 " cursor mv u
-inoremap <c-p> <up>
-"inoremap <expr> <c-p> pumvisible() ? "<up>"   : "<up>"
+"inoremap <c-p> <up>
 
 " del line
 " non
@@ -1003,13 +1007,15 @@ inoremap <kPageUp>   9
 
 " ins symbol
 inoremap <c-u> <c-r>=I_symbol()<cr>
-inoremap <c-_> <c-r>=I_symbol()<cr>
+inoremap <c-g> <c-r>=I_symbol()<cr>
+inoremap <c-n> <c-r>=I_symbol()<cr>
+"inoremap <c-_> <c-r>=I_symbol()<cr>
 
 " ins bracket
 inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=I_bracket()<cr>"
 
 " ins num
-"inoremap <c-n> <c-r>=I_num()<cr>
+"inoremap xx <c-r>=I_num()<cr>
 
 " ins register
 inoremap <c-r> <c-r>=I_reg()<cr>
@@ -1026,7 +1032,8 @@ inoremap <c-r> <c-r>=I_reg()<cr>
 
 func! I_symbol() abort
 
-  let l:lst = ['/', '?', '%', '&', '$', '@']
+  let l:lst = ['?', '/', '\', '%', '&', '@']
+  "let l:lst = ['/', '?', '%', '&', '$', '@']
   "let l:lst = ['!', '#', '$', '%', '&', '^', '~', '|', '?']
 
   call complete(col('.'), l:lst)
@@ -1095,11 +1102,14 @@ endfunc
 " nop
 "
 
-"inoremap <c-_> <nop>
-"inoremap <c-:> <nop>
+inoremap <c-_> <nop>
+"inoremap <c-:> <nop> " non
+"inoremap <c-;> <nop>
 
 inoremap <c-b> <nop>
-"inoremap <c-p> <nop>
+"inoremap <c-g> <nop>
+"inoremap <c-n> <nop>
+inoremap <c-p> <nop>
 "inoremap <c-s> <nop>
 "inoremap <c-t> <nop>
 "inoremap <c-u> <nop>
@@ -1623,7 +1633,7 @@ func! Slct_expnd() abort
   let l:r_col = col('.') + r_idx
   
   "echo l:c l:l_col l:r_col
-  
+  "cursor()
   
 endfunc
 

@@ -274,7 +274,20 @@
             }
           },
           "to": [
-            { "key_code": "0" }
+            { "key_code": "close_bracket" }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "h",
+            "modifiers": {
+              "mandatory": [ "fn" ],
+              "optional": [ "any" ]
+            }
+          },
+          "to": [
+            { "key_code": "slash" }
           ]
         }
       ]
