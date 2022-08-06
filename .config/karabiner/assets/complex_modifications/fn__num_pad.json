@@ -274,7 +274,7 @@
             }
           },
           "to": [
-            { "key_code": "close_bracket" }
+            { "key_code": "open_bracket" }
           ]
         },
         {
@@ -289,8 +289,35 @@
           "to": [
             { "key_code": "slash" }
           ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "comma",
+            "modifiers": {
+              "mandatory": [ "fn" ],
+              "optional": [ "any" ]
+            }
+          },
+          "to": [
+            { "key_code": "close_bracket" }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "period",
+            "modifiers": {
+              "mandatory": [ "fn" ],
+              "optional": [ "any" ]
+            }
+          },
+          "to": [
+            { "key_code": "backslash" }
+          ]
         }
       ]
     }
   ]
 }
+
