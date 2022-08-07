@@ -267,19 +267,6 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "international1",
-            "modifiers": {
-              "mandatory": [ "fn" ],
-              "optional": [ "any" ]
-            }
-          },
-          "to": [
-            { "key_code": "open_bracket" }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
             "key_code": "h",
             "modifiers": {
               "mandatory": [ "fn" ],
@@ -314,6 +301,64 @@
           },
           "to": [
             { "key_code": "backslash" }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "mandatory": [ "fn" ],
+              "optional": [ "any" ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "8",
+              "modifiers": ["shift"]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "hyphen",
+            "modifiers": {
+              "mandatory": [ "fn" ],
+              "optional": [ "any" ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "9",
+              "modifiers": ["shift"]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "quote",
+            "modifiers": {
+              "mandatory": [ "fn" ],
+              "optional": [ "any" ]
+            }
+          },
+          "to": [
+            { "key_code": "international3" }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "international1",
+            "modifiers": {
+              "mandatory": [ "fn" ],
+              "optional": [ "any" ]
+            }
+          },
+          "to": [
+            { "key_code": "open_bracket" }
           ]
         }
       ]
