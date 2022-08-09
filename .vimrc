@@ -202,7 +202,7 @@ nnoremap <c-a> 0
 
 " cursor mv in line end
 nnoremap <c-y> :call N_cursor_mv_line_end()<cr>
-nnoremap <c-e> :call N_cursor_mv_line_end()<cr>
+nnoremap Y     $
 
 " cursor mv char - forward
 nnoremap l l
@@ -231,11 +231,8 @@ nnoremap <c-_> hT_
 " cursor mv bracket pair
 nnoremap <c-l> %
 
-" cursor mv bracket back
+" cursor mv bracket back ( fnc )
 nnoremap L [m
-
-" cursor mv function back
-nnoremap go [{
 
 " cursor mv edited ( jump list )
 nnoremap b <c-o>
@@ -294,7 +291,7 @@ nnoremap ! :call N_cmnt_1()<cr>
 nnoremap $ :call N_cmnt_mlt()<cr>
 
 " ins date time
-nnoremap * i<c-r>=strftime("%Y-%m-%d %a %H:%M:%S")<cr><esc>
+nnoremap * i<c-r>=strftime("%Y-%m-%d_%H:%M")<cr><esc>
 
 " del char
 nnoremap s "ax
@@ -590,13 +587,13 @@ nnoremap T <esc>
 nnoremap U <esc>
 "nnoremap W <esc>
 nnoremap V <esc>
-nnoremap Y <esc>
+"nnoremap Y <esc>
 
 "nnoremap <c-a> <esc>
 "nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
-"nnoremap <c-e> <esc>
+nnoremap <c-e> <esc>
 nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
@@ -683,6 +680,9 @@ vnoremap <c-k> 10k
 " cursor mv bracket pair
 vnoremap <c-l> %
 
+" cursor mv bracket back ( fnc )
+vnoremap L [m
+
 " cursor mv file edge back    ( file begin )
 vnoremap gk gg0
 
@@ -706,6 +706,9 @@ vnoremap $ :call V_cmnt_mlt()<cr>
 " ins selected edge
 vnoremap :r :<c-u>InsSlctdEdge 
 vnoremap :b :<c-u>InsSlctdEdge 
+
+" ins date time
+vnoremap * c<c-r>=strftime("%Y-%m-%d_%H:%M")<cr><esc>
 
 " del str > yank
 vnoremap d "0d
@@ -826,7 +829,7 @@ vnoremap t :call V_tag_jmp()<cr>
 " esc
 " 
 vnoremap @ <esc>
-vnoremap * <esc>
+"vnoremap * <esc>
 vnoremap / <esc>
 "vnoremap ! <esc>
 "vnoremap " <esc>
@@ -873,11 +876,11 @@ vnoremap H <esc>
 vnoremap I <esc>
 vnoremap J <esc>
 vnoremap K <esc>
-"vnoremap L <esc>
+vnoremap L <esc>
 vnoremap M <esc>
 vnoremap N <esc>
 vnoremap O <esc>
-"vnoremap P <esc>
+vnoremap P <esc>
 vnoremap Q <esc>
 vnoremap R <esc>
 vnoremap S <esc>
@@ -1617,24 +1620,32 @@ func! Line_r() abort
   return l:line_r
 endfunc
 
+vnoremap I :call Slct_expnd()<cr>
 func! Slct_expnd() abort
 
-  let l:line_l = Line_l()
-  let l:l_idx = matchend(l:line_l, "[\"']")
-  if l:l_idx == -1
+  call Cursor_mv_slctd_r()
+  
+  let l:ptn = '[' . "'" . '"' . ')' . '\]' . ']'
+  let l:line_r = Line_r()
+  let l:r_idx = match(l:line_r, l:ptn)
+  
+  if l:r_idx == -1
+    echo "non"
     return
   endif
   
-  let l:l_col = l_idx - 1
-  let l:c = l:line_l[l:l_col]
+  let l:c = l:line_r[l:r_idx]
+  "echo l:c l:r_idx
   
-  let l:line_r = Line_r()
-  let l:r_idx = stridx(l:line_r, l:c)
-  let l:r_col = col('.') + r_idx
-  
-  "echo l:c l:l_col l:r_col
-  "cursor()
-  
+  if     l:c == '"'
+    normal! va"
+  elseif l:c == "'"
+    normal! va'
+  elseif l:c == ')'
+    normal! vi(
+  elseif l:c == ']'
+    normal! vi[
+  endif
 endfunc
 
 func! Char() abort " alias
@@ -1897,9 +1908,35 @@ func! V_mv_line(ud) range abort
   endif
 endfunc
 
+func! Cursor_mv_slctd_l() abort
+  
+  normal! `<
+endfunc
+
+func! Cursor_mv_slctd_r() abort
+  
+  normal! `>
+endfunc
+
+func! Slct_re() abort
+  
+  normal! gv
+endfunc
+
+func! Slctd_pos() abort
+  
+  call Slct_re()
+  let l:pos = getpos('.')
+  
+  exe "normal! \<esc>"
+  
+  return l:pos
+endfunc
+
 func! V_slctd_str() abort
 
-  exe 'normal! gv"ay'
+  "exe 'normal! gv"ay'
+  normal! gv"ay
   return @a
   
   " return @* " ??
@@ -2115,7 +2152,7 @@ func! V_line_end_space_del() abort
   exe 's/[ \t]*$//g'
 endfunc
 
-func! V_line_padding() range abort
+func! V_line_end_padding() range abort
   
   let l:char = " "
   let l:w    = 75
@@ -2163,13 +2200,6 @@ func! Opn_memo() abort
   call Opn('doc/memo.txt')
 endfunc
 
-func! Defold_err_cnv() abort
-
-  exe '%s/^ERROR:SCRIPT:/ERROR:SCRIPT:\r/g'
-  exe '%s/\/assets\///g'
-  exe '%s/^ *//g'
-endfunc
-
 func! N_mark__() abort
 
   let g:mark_pos = getpos('.')
@@ -2187,6 +2217,14 @@ func! Hl_grp() abort
 endfunc
 " and
 " :highlight [grp name]
+
+func! Defold_err_cnv() abort
+
+  exe '%s/^ERROR:SCRIPT:/ERROR:SCRIPT:\r/g'
+  exe '%s/\/assets\///g'
+  exe '%s/^ *//g'
+endfunc
+
 
 
 " file rcnt qf " use not
