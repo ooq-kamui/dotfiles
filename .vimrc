@@ -689,6 +689,9 @@ vnoremap gk gg0
 " cursor mv file edge forward ( file end   )
 vnoremap gj G$l
 
+" slct expnd
+vnoremap I :call Slct_expnd()<cr>
+
 " ins | cut & ins
 vnoremap <expr> <space> mode() == "<c-v>" ? "I" : "c"
 " cut & ins
@@ -873,7 +876,7 @@ vnoremap C <esc>
 "vnoremap D <esc>
 vnoremap F <esc>
 vnoremap H <esc>
-vnoremap I <esc>
+"vnoremap I <esc>
 vnoremap J <esc>
 vnoremap K <esc>
 vnoremap L <esc>
@@ -1554,6 +1557,33 @@ func! Slct_word() abort
   endif
 endfunc
 
+func! Cursor_mv_by_pos(pos) abort
+  
+  call setpos('.', a:pos)
+endfunc
+
+func! Slct_by_pos(s_pos, e_pos) abort
+
+  call Cursor_mv_by_pos(a:s_pos)
+  normal! v
+  call Cursor_mv_by_pos(a:e_pos)
+endfunc
+
+func! Cursor_mv_by_lc(line, col) abort
+  
+  call cursor(a:line, a:col)
+endfunc
+
+func! Slct_by_lc(s_line, s_col, e_line, e_col) abort
+  
+  let l:s_line = (a:s_line == 0) ? Line_num() : a:s_line
+  let l:e_line = (a:e_line == 0) ? Line_num() : a:e_line
+
+  call Cursor_mv_by_lc(a:s_line, a:s_col)
+  normal! v
+  call Cursor_mv_by_lc(a:e_line, a:e_col)
+endfunc
+
 func! Rg_out_parse(line) abort
 
   let l:dlm = ':'
@@ -1620,32 +1650,60 @@ func! Line_r() abort
   return l:line_r
 endfunc
 
-vnoremap I :call Slct_expnd()<cr>
 func! Slct_expnd() abort
 
   call Cursor_mv_slctd_r()
   
   let l:ptn = '[' . "'" . '"' . ')' . '\]' . ']'
+  
   let l:line_r = Line_r()
   let l:r_idx = match(l:line_r, l:ptn)
   
   if l:r_idx == -1
-    echo "non"
     return
   endif
   
   let l:c = l:line_r[l:r_idx]
   "echo l:c l:r_idx
   
-  if     l:c == '"'
-    normal! va"
-  elseif l:c == "'"
-    normal! va'
+  if l:c == '"' || l:c == "'"
+    
+    let l:line_l = Line_l()
+    let l:l_idx = strridx(l:line_l, l:c)
+    
+    if l:l_idx == -1
+      return
+    endif
+    
+    let l:word_col_l = 1 +         l:l_idx
+    let l:word_col_r = 1 + Col() + l:r_idx
+    call Slct_by_lc(0, l:word_col_l, 0, l:word_col_r)
+    
+  " elseif l:c == '"'
+  "   normal! va"
+  " elseif l:c == "'"
+  "   normal! va'
+    
   elseif l:c == ')'
     normal! vi(
   elseif l:c == ']'
     normal! vi[
   endif
+endfunc
+
+func! Col() abort " alias
+  
+  return col('.')
+endfunc
+
+func! Line_num() abort " alias
+
+  return line('.')
+endfunc
+
+func! Line_str() abort " alias
+
+  return getline('.')
 endfunc
 
 func! Char() abort " alias
