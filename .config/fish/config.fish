@@ -62,6 +62,9 @@ alias date_ymdhm "date +'%Y-%m-%d %H:%M'"
 alias date_y1 "date_y 1"
 alias date_y2 "date_y 2"
 
+alias trans_ja2en "trans {ja=en}"
+alias trans_en2ja "trans {en=ja}"
+
 #alias fzf="fzf --bind=ctrl-o:accept "
 #alias rpl="string replace"
 #alias f="mdfind -onlyin . -name"

@@ -33,7 +33,9 @@ hi Search      ctermfg=yellow     ctermbg=cyan     cterm=none
 hi IncSearch   ctermfg=yellow     ctermbg=cyan     cterm=none
 hi MatchParen  ctermfg=magenta    ctermbg=none
 
-hi TabLineSel  ctermfg=cyan       ctermbg=darkblue cterm=none
+hi TabLineSel                     ctermbg=magenta  cterm=none
+"hi TabLineSel  ctermfg=yellow     ctermbg=magenta  cterm=none
+"hi TabLineSel  ctermfg=cyan       ctermbg=darkblue cterm=none
 hi TabLine     ctermfg=lightblue  ctermbg=33       cterm=none
 hi TabLineFill                    ctermbg=33       cterm=none
 
@@ -147,6 +149,9 @@ nnoremap <c-q> :q!
 " quit other
 nnoremap W :tabo<cr>
 
+" background job
+nnoremap <c-z> <c-z>
+
 " save
 nnoremap a :w<cr>
 
@@ -173,6 +178,9 @@ nnoremap <leader>j :Files <cr>
 
 " opn .vimrc
 nnoremap gh :call Opn_vimrc()<cr>
+
+" opn vim key note
+nnoremap gv :call Opn_vim_key()<cr>
 
 " opn memo
 nnoremap gm :call Opn_memo()<cr>
@@ -291,7 +299,7 @@ nnoremap ! :call N_cmnt_1()<cr>
 nnoremap $ :call N_cmnt_mlt()<cr>
 
 " ins date time
-nnoremap * i<c-r>=strftime("%Y-%m-%d_%H:%M")<cr><esc>
+nnoremap * i<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
 
 " del char
 nnoremap s "ax
@@ -425,7 +433,7 @@ nnoremap S /<cr>N
 " srch replace all > yank ( file )
 nnoremap :s :%s//<c-r>0/gc
 
-" srch replace one > yank next ( only srch )
+" srch replace one > yank nxt ( only srch )
 nnoremap <c-p> gn
 
 " grep ( fzf )
@@ -433,7 +441,6 @@ nnoremap <leader>o :Rg <cr>
 
 " grep bfr ( fzf )
 nnoremap <leader>k :BLines<cr>
-"nnoremap <leader>i :BLines<cr>
 
 " tag jump tab new
 nnoremap t :call N_tag_jmp()<cr>
@@ -625,7 +632,7 @@ nnoremap gl <esc>
 "nnoremap go <esc>
 nnoremap gt <esc>
 "nnoremap gu <esc>
-nnoremap gv <esc>
+"nnoremap gv <esc>
 
 "
 " mode visual
@@ -690,7 +697,8 @@ vnoremap gk gg0
 vnoremap gj G$l
 
 " slct expnd
-vnoremap I :call Slct_expnd()<cr>
+vnoremap I     :call Slct_expnd()<cr>
+vnoremap <c-i> :call Slct_expnd()<cr>
 
 " ins | cut & ins
 vnoremap <expr> <space> mode() == "<c-v>" ? "I" : "c"
@@ -711,7 +719,7 @@ vnoremap :r :<c-u>InsSlctdEdge
 vnoremap :b :<c-u>InsSlctdEdge 
 
 " ins date time
-vnoremap * c<c-r>=strftime("%Y-%m-%d_%H:%M")<cr><esc>
+vnoremap * c<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
 
 " del str > yank
 vnoremap d "0d
@@ -751,7 +759,7 @@ vnoremap c :call V_cpy()<cr>
 vnoremap <expr> p mode() == "<c-v>" ? "I<c-r>0<esc>" : '"ad"0P'
 
 " paste visual box
-"vnoremap P I<c-r>0<esc>
+"vnoremap xx I<c-r>0<esc>
 
 " inc, dec
 vnoremap + <c-a>
@@ -784,11 +792,11 @@ vnoremap <c-u> uviw
 " srch
 " 
 
-" srch forward
-"vnoremap xx xx
+" srch forward ( srch rpl skip )
+vnoremap <c-n> :call V_srch_slct("f")<cr>
 
 " srch back
-vnoremap <c-n> :call V_srch_slct("f")<cr>
+"vnoremap xx    :call V_srch_slct("b")<cr>
 
 " srch word set
 vnoremap n :call V_srch_str__slctd_str(v:false)<cr>
@@ -807,12 +815,8 @@ vnoremap :s :s//<c-r>0/gc<cr>
 " srch replace one > yank, nxt
 vnoremap <c-p> "ad"0Plgn
 
-" srch skip, nxt
-"vnoremap xx
-
 " grep bfr ( fzf )
 vnoremap <leader>k :call V_blines()<cr>
-"vnoremap <leader>i :call V_blines()<cr>
 
 " grep ( fzf )
 vnoremap <leader>o "ay:Rg <c-r>a<cr>
@@ -900,7 +904,7 @@ vnoremap <c-d> <esc>
 "vnoremap <c-e> <esc>
 vnoremap <c-f> <esc>
 vnoremap <c-h> <esc>
-vnoremap <c-i> <esc>
+"vnoremap <c-i> <esc>
 "vnoremap <c-l> <esc>
 "vnoremap <c-m> <esc>
 "vnoremap <c-n> <esc>
@@ -1214,6 +1218,7 @@ func! Grep(opt) abort
   exe 'r! rg -n -s "'.l:str.'"'
   \           . ' -g "*.lua" -g "*.script" -g "*.gui_script"'
   \           . ' -g "*.txt" -g "*.json" -g "*.fish" -g "*.vim"'
+  \           . ' -g "*.html"'
   \           . ' ' . a:opt
 endfunc
 
@@ -1276,7 +1281,7 @@ let g:fzf_colors = {
 func! V_blines() abort
 
   call V_srch_str__slctd_str(v:false)
-  exe "BLines " . @a
+  exe "BLines " . escape(@a, '.*~')
 endfunc
 
 command! -bang -nargs=? BLines
@@ -1500,7 +1505,7 @@ endfunc
 func! N_cursor_mv_word_f() abort
 
   let l:c_char = Char()
-  let l:l_char = Char_l()
+  let l:l_char = Char_r()
 
   if l:c_char =~ ' ' && l:l_char =~ ' '
     normal! w
@@ -1511,6 +1516,9 @@ endfunc
 
 func! N_cursor_mv_word_b() abort
   
+  let l:c_l = Char_l()
+  echo l:c_l
+  
   if Is_cursor_line_start0()
     normal! k
     call N_cursor_mv_line_end()
@@ -1520,6 +1528,15 @@ func! N_cursor_mv_word_b() abort
     
   elseif Is_cursor_line_start1()
     call N_cursor_mv_line_start0()
+    
+  elseif l:c_l =~ '\S' && l:c_l =~ '\W' " symbol
+    normal! h
+    
+  "elseif l:c_l =~ '\s'
+    "normal! ge
+    
+  "elseif l:c_l =~ '\W'
+    "normal! h
   else
     normal! b
   end
@@ -1528,7 +1545,7 @@ endfunc
 func! N_cursor_mv_word_b_pre() abort
 
   let l:c_char = Char()
-  let l:l_char = Char_l()
+  let l:l_char = Char_r()
 
   if l:c_char =~ ' ' && l:l_char !~ ' '
     exe "normal! gegel"
@@ -1719,9 +1736,15 @@ func! Char_c() abort
   return l:c
 endfunc
 
-func! Char_l() abort
+func! Char_r() abort
 
   let l:c = getline('.')[col('.')]
+  return l:c
+endfunc
+
+func! Char_l() abort
+
+  let l:c = getline('.')[col('.')-2]
   return l:c
 endfunc
 
@@ -2067,12 +2090,15 @@ endfunc
 
 let g:srch_init_flg = v:false
 let g:srch = ''
+
 func! Srch_str__(str) abort
   
-  let g:srch1 = g:srch
+  let g:srch_prv1 = g:srch
   
-  let @/      = a:str
-  let g:srch  = a:str
+  let l:str  = escape(a:str, '.*~')
+  
+  let @/     = l:str
+  let g:srch = l:str
   
   "if ! g:srch_init_flg
   "  exe "normal! /\<cr>N"
@@ -2082,7 +2108,7 @@ endfunc
 
 func! N_srch_str__prv() abort
 
-  call Srch_str__(g:srch1)
+  call Srch_str__(g:srch_prv1)
 endfunc
 
 func! V_is_slctd_eq_srch_str() abort
@@ -2139,6 +2165,7 @@ func! Cmnt_1(head) abort
   \ "vim" : '"'        ,
   \ "fish": '#'        ,
   \ "sh"  : '#'        ,
+  \ "css" : '/* '      ,
   \ "javascript": '// '
   \ }
   let l:dflt = '# '
@@ -2246,6 +2273,11 @@ endfunc
 func! Opn_vimrc() abort
 
   call Opn('~/.vimrc')
+endfunc
+
+func! Opn_vim_key() abort
+
+  call Opn('/Users/kamui/doc/tech/vim/m.key.default.txt')
 endfunc
 
 func! Opn_grep_work() abort
