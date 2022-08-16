@@ -252,6 +252,9 @@ nnoremap gk gg0
 " cursor mv file forward ( file end   )
 nnoremap gj G$l
 
+" cursor mv edit latest
+nnoremap B `.
+
 " scroll
 nnoremap K      <c-y>
 nnoremap J      <c-e>
@@ -273,18 +276,20 @@ nnoremap F zz
 " edit
 "
 
-" ins mode
+" mode ins
 nnoremap <space> i
-"nnoremap <esc> i
 
 " ins line
-" ref ;
+" ref nnoremap y
 
 " ins cr
 nnoremap m :call N_ins_cr()<cr>
 
-" ins space
-"nnoremap xx i <esc>
+" ins comment 1
+nnoremap ! :call N_cmnt_1()<cr>
+
+" ins comment mlt
+nnoremap $ :call N_cmnt_mlt()<cr>
 
 " ins comma
 nnoremap , i, <esc>l
@@ -292,11 +297,11 @@ nnoremap , i, <esc>l
 " ins comma $, nxt line
 nnoremap < A,<esc>j
 
-" ins comment 1
-nnoremap ! :call N_cmnt_1()<cr>
+" ins period
+nnoremap . i.<esc>l
 
-" ins comment mlt
-nnoremap $ :call N_cmnt_mlt()<cr>
+" ins space
+"nnoremap xx i <esc>
 
 " ins date time
 nnoremap * i<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
@@ -368,7 +373,7 @@ nnoremap h     u
 nnoremap <c-h> <c-r>
 
 " repeat
-"nnoremap . .
+"nnoremap xx .
 
 " repeat memory
 nnoremap <c-^> qy
@@ -518,7 +523,7 @@ nnoremap = <esc>
 nnoremap @ <esc>
 "nnoremap ; <esc>
 "nnoremap , <esc>
-nnoremap . <esc>
+"nnoremap . <esc>
 "nnoremap * <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
@@ -1591,7 +1596,7 @@ func! Cursor_mv_by_lc(line, col) abort
   call cursor(a:line, a:col)
 endfunc
 
-func! Slct_by_lc(s_line, s_col, e_line, e_col) abort
+func! Slct_by_line_col(s_line, s_col, e_line, e_col) abort
   
   let l:s_line = (a:s_line == 0) ? Line_num() : a:s_line
   let l:e_line = (a:e_line == 0) ? Line_num() : a:e_line
@@ -1674,7 +1679,7 @@ func! Slct_expnd() abort
   let l:ptn = '[' . "'" . '"' . ')' . '\]' . ']'
   
   let l:line_r = Line_r()
-  let l:r_idx = match(l:line_r, l:ptn)
+  let l:r_idx  = match(l:line_r, l:ptn)
   
   if l:r_idx == -1
     return
@@ -1692,9 +1697,15 @@ func! Slct_expnd() abort
       return
     endif
     
-    let l:word_col_l = 1 +         l:l_idx
-    let l:word_col_r = 1 + Col() + l:r_idx
-    call Slct_by_lc(0, l:word_col_l, 0, l:word_col_r)
+    let l:word_col_l =         l:l_idx + 2
+    let l:word_col_r = Col() + l:r_idx
+    
+    if l:r_idx == 0
+      let l:word_col_l -= 1
+      let l:word_col_r += 1
+    endif
+    
+    call Slct_by_line_col(0, l:word_col_l, 0, l:word_col_r)
     
   " elseif l:c == '"'
   "   normal! va"
@@ -2095,7 +2106,7 @@ func! Srch_str__(str) abort
   
   let g:srch_prv1 = g:srch
   
-  let l:str  = escape(a:str, '.*~')
+  let l:str  = escape(a:str, '.*~[]')
   
   let @/     = l:str
   let g:srch = l:str
