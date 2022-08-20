@@ -85,6 +85,7 @@ autocmd FileType vim  setlocal sw=2 sts=2 ts=2   et " space
 autocmd FileType fish setlocal sw=2 sts=2 ts=2   et " space
 autocmd FileType sh   setlocal sw=2 sts=2 ts=2   et " space
 
+" file opn, cursor mv last
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
   \ exe "normal! g`\"" | endif
@@ -210,6 +211,7 @@ nnoremap <c-a> 0
 
 " cursor mv in line end
 nnoremap <c-y> :call N_cursor_mv_line_end()<cr>
+nnoremap <c-e> :call N_cursor_mv_line_end()<cr>
 nnoremap Y     $
 
 " cursor mv char - forward
@@ -450,11 +452,24 @@ nnoremap <leader>k :BLines<cr>
 " tag jump tab new
 nnoremap t :call N_tag_jmp()<cr>
 
-" mark set
-"nnoremap R :call N_mark__()<cr>
+" mark lst ( fzf )
+nnoremap <leader>m :Mark<cr>
 
-" mark jmp
-nnoremap r :call N_cursor_mv_mark()<cr>
+" mark add
+nnoremap ra :ma 
+
+" mark del all
+nnoremap rd :delmark!<cr>
+
+" mark, cursor mv mark forward
+nnoremap rj ]`
+
+" mark, cursor mv mark back
+nnoremap rk [`
+
+" mark show tgl
+nnoremap rf :call Mark_show_tgl()<cr>
+nnoremap rm :call Mark_show_tgl()<cr>
 
 " 
 " cmd
@@ -567,7 +582,7 @@ nnoremap 0 <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
 nnoremap q <esc>
-"nnoremap r <esc>
+nnoremap r <esc>
 "nnoremap s <esc>
 "nnoremap t <esc>
 "nnoremap u <esc>
@@ -605,7 +620,7 @@ nnoremap V <esc>
 "nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
-nnoremap <c-e> <esc>
+"nnoremap <c-e> <esc>
 nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
@@ -1245,10 +1260,10 @@ autocmd QuickFixCmdPost grep,vimgrep tab cw
 call plug#begin()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'mattesgroeger/vim-bookmarks'
-Plug 'mattn/vim-molder'
-Plug 'mattn/vim-molder-operations'
+Plug 'jacquesbh/vim-showmarks'
 call plug#end()
+" exe
+" :PlugInstall
 
 "
 " fzf
@@ -1335,6 +1350,10 @@ command! -bang -nargs=* CmdHstry
 command! -bang -nargs=* SrchHstry
 \ call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)
 
+" mark
+command! -bang -nargs=* Mark
+\ call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)
+
 " ctags ( fzf )
 
 "nnoremap xx :Tags <c-r><c-w><cr>
@@ -1345,42 +1364,6 @@ command! -bang -nargs=? Tags
 set tags=./.tags;
 "nnoremap <c-]> g<c-]>
 "nnoremap xx :!sh sh/ctags.sh
-
-"
-" vim-bookmarks
-"
-"highlight BookmarkSign           ctermbg=magenta ctermfg=magenta
-"highlight BookmarkLine           ctermbg=magenta ctermfg=magenta
-"highlight BookmarkAnnotationSign ctermbg=magenta ctermfg=magenta
-"highlight BookmarkAnnotationLine ctermbg=magenta ctermfg=magenta
-
-" mark
-"nmap M <Plug>BookmarkToggle
-
-" annotate
-"nmap Mi <Plug>BookmarkAnnotate
-
-" list
-"nmap <leader>m <Plug>BookmarkShowAll
-
-" prv, nxt
-"nmap Mp <Plug>BookmarkPrev
-"nmap Mn <Plug>BookmarkNext
-
-" del in buffer
-"nmap :mc :BookmarkClear
-
-let g:bookmark_no_default_key_mappings = 1
-
-"nmap <c-j>     <Plug>BookmarkMoveToLine
-"nmap <leader>x <Plug>BookmarkClearAll
-
-"
-" molder
-"
-
-" launch
-"nnoremap xx :tabnew<cr>:e .<cr>
 
 " plugin  #end#
 
@@ -2301,15 +2284,21 @@ func! Opn_memo() abort
   call Opn('doc/memo.txt')
 endfunc
 
-func! N_mark__() abort
-
-  let g:mark_pos = getpos('.')
-endfunc
-"call N_mark__()
-
-func! N_cursor_mv_mark() abort
+func! Mark_show_tgl() abort
   
-  call setpos('.', g:mark_pos)
+  if exists('g:mark_show_flg') == 0
+    
+    let g:mark_show_flg = v:false
+  endif
+  
+  if ! g:mark_show_flg
+    
+    exe 'DoShowMarks'
+    let g:mark_show_flg = v:true
+  else
+    exe 'NoShowMarks'
+    let g:mark_show_flg = v:false
+  endif
 endfunc
 
 func! Hl_grp() abort
