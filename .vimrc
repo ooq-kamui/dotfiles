@@ -454,9 +454,21 @@ nnoremap t :call N_tag_jmp()<cr>
 
 " mark lst ( fzf )
 nnoremap <leader>m :Mark<cr>
+nnoremap rl        :Mark<cr>
+
+" mark show tgl
+nnoremap rf :call Mark_show_tgl()<cr>
+"nnoremap rm :call Mark_show_tgl()<cr>
+
+" mark add / del tgl
+nnoremap ro :call Mark_tgl()<cr>
+nnoremap ra :call Mark_tgl()<cr>
 
 " mark add
-nnoremap ra :ma 
+"nnoremap ra :call Mark_add()<cr>
+
+" mark del
+"nnoremap rd :delmark <cr>
 
 " mark del all
 nnoremap rd :delmark!<cr>
@@ -466,10 +478,6 @@ nnoremap rj ]`
 
 " mark, cursor mv mark back
 nnoremap rk [`
-
-" mark show tgl
-nnoremap rf :call Mark_show_tgl()<cr>
-nnoremap rm :call Mark_show_tgl()<cr>
 
 " 
 " cmd
@@ -603,7 +611,7 @@ nnoremap H <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
 "nnoremap L <esc>
-"nnoremap M <esc>
+nnoremap M <esc>
 "nnoremap N <esc>
 nnoremap O <esc>
 nnoremap Q <esc>
@@ -2284,6 +2292,11 @@ func! Opn_memo() abort
   call Opn('doc/memo.txt')
 endfunc
 
+let g:mark_alph_def = [
+\   'a','b','c','d','e','f','g','h','i','j','k','l','m','n',
+\   'o','p','q','r','s','t','u','v','w','x','y','z'
+\ ]
+
 func! Mark_show_tgl() abort
   
   if exists('g:mark_show_flg') == 0
@@ -2299,6 +2312,81 @@ func! Mark_show_tgl() abort
     exe 'NoShowMarks'
     let g:mark_show_flg = v:false
   endif
+endfunc
+
+func! Mark_lst() abort
+  
+  let l:mark = []
+  for _mark in bufname()->getmarklist()
+    
+    let l:_alph = l:_mark['mark'][1]
+    
+    if count(g:mark_alph_def, l:_alph) == 0
+      continue
+    endif
+    
+    let l:mark = add(l:mark, l:_mark['mark'][1])
+  endfor
+  "echo l:mark
+  return l:mark
+endfunc
+
+func! Mark_alph_line() abort
+  
+  for _mark in bufname()->getmarklist()
+    
+    let l:_alph = l:_mark['mark'][1]
+    
+    if count(g:mark_alph_def, l:_alph) == 0
+      continue
+    endif
+    
+    if l:_mark['pos'][1] ==  line('.')
+      "echo l:_alph
+      return l:_alph
+    endif
+  endfor
+  return ''
+endfunc
+
+func! Mark_tgl() abort
+  
+  let l:alph = Mark_alph_line()
+  "echo 'Mark_tgl ' . l:alph
+  
+  if l:alph == ''
+    call Mark_add()
+  else
+    call Mark_del(l:alph)
+  endif
+  
+  exe 'DoShowMarks'
+endfunc
+  
+func! Mark_add() abort
+  
+  let l:alph = Mark_alph_useabl()
+  exe 'mark ' . l:alph
+endfunc
+
+func! Mark_alph_useabl() abort
+  
+  let l:mark = Mark_lst()
+  
+  for _alph in g:mark_alph_def
+    if count(l:mark, _alph) == 0
+      "echo _alph
+      return _alph
+    endif
+  endfor
+  
+  echo 'use alph all'
+  return ''
+endfunc
+
+func! Mark_del(alph) abort
+  
+  exe 'delmark ' . a:alph
 endfunc
 
 func! Hl_grp() abort
