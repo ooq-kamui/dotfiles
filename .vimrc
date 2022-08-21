@@ -275,8 +275,57 @@ nnoremap F zz
 "nnoremap xx <c-w>w
 
 " 
+" slct / yank / paste
+" 
+
+" select
+nnoremap I v
+
+" select word
+nnoremap i :call Slct_word()<cr>
+
+" select char current - word end
+"nnoremap xx ve
+
+" select box
+nnoremap v <c-v>
+
+" select all
+"nnoremap A ggVG
+
+" select re
+"nnoremap xx gv
+
+" yank line
+nnoremap c :call N_cpy()<cr>
+
+" pc clipboard line
+"nnoremap xx "+yy
+
+" yank char
+"nnoremap xx "0yl
+
+" yank clear
+nnoremap <c-c> :call Rgstr__clr()<cr>
+
+" paste
+nnoremap p "0P
+
+" paste pc clipboard
+"nnoremap xx "+P
+
+" 
+" undo, redo
+" 
+nnoremap h     u
+nnoremap <c-h> <c-r>
+
+" repeat
+"nnoremap xx .
+
+" 
 " edit
-"
+" 
 
 " mode ins
 nnoremap <space> i
@@ -328,54 +377,11 @@ nnoremap <c-d> D
 " del cr ( line join )
 nnoremap <c-m> J
 
-" select
-nnoremap I v
-
-" select word
-nnoremap i :call Slct_word()<cr>
-
-" select char current - word end
-"nnoremap xx ve
-
-" select box
-nnoremap v <c-v>
-
-" select all
-"nnoremap A ggVG
-
-" select re
-"nnoremap xx gv
-
-" yank line
-nnoremap c :call N_cpy()<cr>
-
-" pc clipboard line
-"nnoremap xx "+yy
-
-" yank char
-"nnoremap xx "0yl
-
-" yank clear
-nnoremap <c-c> :call Rgstr__clr()<cr>
-
-" paste
-nnoremap p "0P
-
-" paste pc clipboard
-"nnoremap xx "+P
-
 " mv line up
 "nnoremap xx "0ddk"0P
 
 " dpl line
 nnoremap D "ayy"aP
-
-" undo, redo
-nnoremap h     u
-nnoremap <c-h> <c-r>
-
-" repeat
-"nnoremap xx .
 
 " repeat memory
 nnoremap <c-^> qy
@@ -458,20 +464,12 @@ nnoremap rl        :Mark<cr>
 
 " mark show tgl
 nnoremap rf :call Mark_show_tgl()<cr>
-"nnoremap rm :call Mark_show_tgl()<cr>
 
 " mark add / del tgl
 nnoremap ro :call Mark_tgl()<cr>
-nnoremap ra :call Mark_tgl()<cr>
-
-" mark add
-"nnoremap ra :call Mark_add()<cr>
-
-" mark del
-"nnoremap rd :delmark <cr>
 
 " mark del all
-nnoremap rd :delmark!<cr>
+nnoremap rd :call Mark_del_all()<cr>
 
 " mark, cursor mv mark forward
 nnoremap rj ]`
@@ -724,12 +722,43 @@ vnoremap gk gg0
 " cursor mv file edge forward ( file end   )
 vnoremap gj G$l
 
+" 
+" slct / yank / paste
+" 
+
 " slct expnd
 vnoremap I     :call Slct_expnd()<cr>
 vnoremap <c-i> :call Slct_expnd()<cr>
 
+" select all
+vnoremap a <esc>ggVG
+
+" yank slctd
+vnoremap o :call V_cpy()<cr>
+vnoremap c :call V_cpy()<cr>
+"vnoremap c "0y
+
+" pc clipboard selected
+"vnoremap xx "+y
+
+" paste
+vnoremap <expr> p mode() == "<c-v>" ? "I<c-r>0<esc>" : '"ad"0P'
+
+" paste visual box
+"vnoremap xx I<c-r>0<esc>
+
+" 
+" undo
+" 
+vnoremap h <esc>u
+
+" 
+" edit
+" 
+
 " ins | cut & ins
 vnoremap <expr> <space> mode() == "<c-v>" ? "I" : "c"
+
 " cut & ins
 vnoremap <leader><space> "ac
 
@@ -772,23 +801,6 @@ vnoremap <c-e> :call V_mv_str("l")<cr>
 "vnoremap J :call V_mv_line("j")<cr>
 "vnoremap K :call V_mv_line("k")<cr>
 
-" select all
-vnoremap a <esc>ggVG
-
-" yank selected
-vnoremap o :call V_cpy()<cr>
-vnoremap c :call V_cpy()<cr>
-"vnoremap c "0y
-
-" pc clipboard selected
-"vnoremap xx "+y
-
-" paste
-vnoremap <expr> p mode() == "<c-v>" ? "I<c-r>0<esc>" : '"ad"0P'
-
-" paste visual box
-"vnoremap xx I<c-r>0<esc>
-
 " inc, dec
 vnoremap + <c-a>
 vnoremap - <c-x>
@@ -808,13 +820,13 @@ vnoremap ; =gv
 vnoremap :t :!expand -t 2<cr>
 
 " upper / lower tgl
-vnoremap u ~viw
+vnoremap u ~gv
 
 " upper all
-vnoremap U Uviw
+vnoremap U Ugv
 
 " lower all
-vnoremap <c-u> uviw
+vnoremap <c-u> ugv
 
 " 
 " srch
@@ -886,7 +898,7 @@ vnoremap b <esc>
 "vnoremap d <esc>
 "vnoremap e <esc>
 "vnoremap f <esc>
-vnoremap h <esc>
+"vnoremap h <esc>
 "vnoremap i <esc>
 vnoremap m <esc>
 "vnoremap n <esc>
@@ -1761,11 +1773,11 @@ func! N_char_tgl1() abort
     return
   endif
 
-  exe "normal! x"
-  exe "normal! i".l:rpl
+  exe 'normal! x'
+  exe 'normal! i'.l:rpl
 endfunc
 
-func! N_char_tgl2() abort
+func! N_char_tgl2() abort " use not
 
   let l:c   = Char()
   let l:rpl = Char_tgl_trn(l:c)
@@ -1775,8 +1787,8 @@ func! N_char_tgl2() abort
     return
   endif
 
-  exe "normal! x"
-  exe "normal! i".l:rpl
+  exe 'normal! x'
+  exe 'normal! i'.l:rpl
 endfunc
 
 "func! Char_tgl_char(c) abort
@@ -2333,6 +2345,8 @@ endfunc
 
 func! Mark_alph_line() abort
   
+  let l:line_c = line('.')
+  
   for _mark in bufname()->getmarklist()
     
     let l:_alph = l:_mark['mark'][1]
@@ -2341,7 +2355,7 @@ func! Mark_alph_line() abort
       continue
     endif
     
-    if l:_mark['pos'][1] ==  line('.')
+    if l:_mark['pos'][1] == l:line_c
       "echo l:_alph
       return l:_alph
     endif
@@ -2387,6 +2401,12 @@ endfunc
 func! Mark_del(alph) abort
   
   exe 'delmark ' . a:alph
+endfunc
+
+func! Mark_del_all() abort
+  
+  exe 'delmark!'
+  exe 'DoShowMarks'
 endfunc
 
 func! Hl_grp() abort
