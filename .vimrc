@@ -164,7 +164,6 @@ nnoremap a :w<cr>
 
 " opn file rcnt ( history )
 nnoremap <leader>h :FileHstry<cr>
-"nnoremap <leader>y :FileHstry<cr>
 
 " opn tab new
 "nnoremap xx :tabnew filename
@@ -264,12 +263,12 @@ nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 
 " scroll cursor line upper
-nnoremap <leader>r zt
 nnoremap R zt
+"nnoremap <leader>r zt
 
 " scroll cursor line middle
-nnoremap <leader>f zz
 nnoremap F zz
+"nnoremap <leader>f zz
 
 " cursor mv window nxt
 "nnoremap xx <c-w>w
@@ -313,6 +312,10 @@ nnoremap p "0P
 
 " paste pc clipboard
 "nnoremap xx "+P
+
+" paste rgstr history ( fzf )
+nnoremap <leader>y :call Rgstr_fzf()<cr>
+"nnoremap <leader>r :call Rgstr_fzf()<cr>
 
 " 
 " undo, redo
@@ -1225,11 +1228,11 @@ cnoremap <kPageUp>   9
 " leader esc
 " 
 
-"nnoremap <leader>f <esc>
+nnoremap <leader>f <esc>
 "nnoremap <leader>h <esc>
-"nnoremap <leader>r <esc>
+nnoremap <leader>r <esc>
 nnoremap <leader>u <esc>
-nnoremap <leader>y <esc>
+"nnoremap <leader>y <esc>
 
 vnoremap <leader>u <esc>
 "vnoremap <leader>y <esc>
@@ -1373,6 +1376,27 @@ command! -bang -nargs=* SrchHstry
 " mark
 command! -bang -nargs=* Mark
 \ call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)
+
+" rgstr history
+function! Rgstr_fzf()
+  
+  let l:rgstr_info = execute(':reg')->split("\n")
+  call remove(l:rgstr_info, 0)
+  
+  call fzf#run(
+  \   {
+  \     'source': l:rgstr_info,
+  \     'sink': funcref('Rgstr_paste_by_rgstr_info'),
+  \     'down': '60%'
+  \   }
+  \ )
+endfunction
+
+func! Rgstr_paste_by_rgstr_info(rgstr_info) abort
+  
+  let l:rgstr_name = strcharpart(a:rgstr_info, 5, 2)
+  exe 'normal! ' . l:rgstr_name . 'P'
+endfunc
 
 " ctags ( fzf )
 
