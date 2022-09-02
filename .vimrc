@@ -240,8 +240,11 @@ nnoremap <c-_> hT_
 " cursor mv bracket pair
 nnoremap <c-l> %
 
-" cursor mv bracket back ( fnc )
-nnoremap L [m
+" cursor mv bracket out back
+nnoremap L [{
+
+" cursor mv bracket fnc back
+"nnoremap xx [m
 
 " cursor mv edited ( jump list )
 nnoremap b <c-o>
@@ -254,6 +257,7 @@ nnoremap gk gg0
 nnoremap gj G$l
 
 " cursor mv edit latest
+nnoremap M `.
 nnoremap B `.
 
 " scroll
@@ -314,7 +318,8 @@ nnoremap p "0P
 "nnoremap xx "+P
 
 " paste rgstr history ( fzf )
-nnoremap <leader>y :call Rgstr_fzf()<cr>
+nnoremap <leader>y :RgstrHstry<cr>
+"nnoremap <leader>y :call Rgstr_fzf()<cr>
 "nnoremap <leader>r :call Rgstr_fzf()<cr>
 
 " 
@@ -612,7 +617,7 @@ nnoremap H <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
 "nnoremap L <esc>
-nnoremap M <esc>
+"nnoremap M <esc>
 "nnoremap N <esc>
 nnoremap O <esc>
 nnoremap Q <esc>
@@ -716,8 +721,11 @@ vnoremap <c-k> 10k
 " cursor mv bracket pair
 vnoremap <c-l> %
 
-" cursor mv bracket back ( fnc )
-vnoremap L [m
+" cursor mv bracket out back
+vnoremap L [{
+
+" cursor mv bracket fnc back
+"vnoremap xx [m
 
 " cursor mv file edge back    ( file begin )
 vnoremap gk gg0
@@ -859,7 +867,7 @@ vnoremap :s :s//<c-r>0/gc<cr>
 vnoremap <c-p> "ad"0Plgn
 
 " grep bfr ( fzf )
-vnoremap <leader>k :call V_blines()<cr>
+vnoremap <leader>k :call V_grep_bfr()<cr>
 
 " grep ( fzf )
 vnoremap <leader>o "ay:Rg <c-r>a<cr>
@@ -1151,9 +1159,9 @@ func! I_usual() abort
 "  \   'alias',
 endfunc
 
-"
+" 
 " nop
-"
+" 
 
 inoremap <c-_> <nop>
 "inoremap <c-:> <nop> " non
@@ -1256,12 +1264,13 @@ end
 func! Grep(opt) abort
   
   let l:str = @/
-  let l:str = substitute(l:str, "(", '\\(', "")
+  let l:str = escape(l:str, '\({')
+  "let l:str = substitute(l:str, "(", '\\(', "")
 
   exe 'r! rg -n -s "'.l:str.'"'
   \           . ' -g "*.lua" -g "*.script" -g "*.gui_script"'
   \           . ' -g "*.txt" -g "*.json" -g "*.fish" -g "*.vim"'
-  \           . ' -g "*.html"'
+  \           . ' -g "*.html" -g "*.js" -g "*.css"'
   \           . ' ' . a:opt
 endfunc
 
@@ -1319,25 +1328,6 @@ let g:fzf_colors = {
 "let g:fzf_buffers_jump = 1
 "fzf#vim#complete#buffer_line([spec])
 
-" grep bfr ( blines )
-
-func! V_blines() abort
-
-  call V_srch_str__slctd_str(v:false)
-  exe "BLines " . escape(@a, '.*~')
-endfunc
-
-command! -bang -nargs=? BLines
-\ call fzf#vim#buffer_lines(
-\   <q-args>,
-\   {'options': ['--no-sort', '--exact']},
-\   <bang>1
-\ )
-
-" files
-command! -bang -nargs=? -complete=dir Files
-\ call fzf#vim#files(<q-args>, <bang>1)
-
 " grep ( rg )
 
 " fzf#vim#grep(
@@ -1361,6 +1351,24 @@ command! -bang -nargs=* Rg
 \ )
 "\     -g "*.lua" -g "*.script" -g "*.gui_script" 
 
+" grep bfr
+func! V_grep_bfr() abort
+
+  call V_srch_str__slctd_str(v:false)
+  exe "BLines " . escape(@a, '.*~')
+endfunc
+
+command! -bang -nargs=? BLines
+\ call fzf#vim#buffer_lines(
+\   <q-args>,
+\   {'options': ['--no-sort', '--exact']},
+\   <bang>1
+\ )
+
+" files
+command! -bang -nargs=? -complete=dir Files
+\ call fzf#vim#files(<q-args>, <bang>1)
+
 " file history
 command! -bang -nargs=* FileHstry
 \ call fzf#vim#history(fzf#vim#with_preview(), <bang>1)
@@ -1378,6 +1386,9 @@ command! -bang -nargs=* Mark
 \ call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)
 
 " rgstr history
+command! -bang -nargs=* RgstrHstry
+\ call Rgstr_fzf()
+
 function! Rgstr_fzf()
   
   let l:rgstr_info = execute(':reg')->split("\n")
@@ -1386,13 +1397,13 @@ function! Rgstr_fzf()
   call fzf#run(
   \   {
   \     'source': l:rgstr_info,
-  \     'sink': funcref('Rgstr_paste_by_rgstr_info'),
-  \     'down': '60%'
+  \     'sink'  : funcref('Rgstr__paste_by_rgstr_info'),
+  \     'window': '-tabnew'
   \   }
   \ )
 endfunction
 
-func! Rgstr_paste_by_rgstr_info(rgstr_info) abort
+func! Rgstr__paste_by_rgstr_info(rgstr_info) abort
   
   let l:rgstr_name = strcharpart(a:rgstr_info, 5, 2)
   exe 'normal! ' . l:rgstr_name . 'P'
