@@ -145,7 +145,7 @@ nnoremap w :bd<cr>
 nnoremap <c-w> :q<cr>
 
 " quit force
-nnoremap <c-q> :q!
+nnoremap Q :q!
 
 " quit other
 nnoremap W :tabo<cr>
@@ -247,8 +247,8 @@ nnoremap L [{
 "nnoremap xx [m
 
 " cursor mv edited ( jump list )
-nnoremap b <c-o>
-"nnoremap <c-b> <c-i>
+nnoremap q     <c-o>
+nnoremap <c-q> <c-i>
 
 " cursor mv file back    ( file begin )
 nnoremap gk gg0
@@ -258,7 +258,6 @@ nnoremap gj G$l
 
 " cursor mv edit latest
 nnoremap M `.
-nnoremap B `.
 
 " scroll
 nnoremap K      <c-y>
@@ -584,7 +583,7 @@ nnoremap <c-]> <esc>
 
 nnoremap 0 <esc>
 "nnoremap a <esc>
-"nnoremap b <esc>
+nnoremap b <esc>
 "nnoremap c <esc>
 "nnoremap d <esc>
 "nnoremap e <esc>
@@ -595,7 +594,7 @@ nnoremap 0 <esc>
 "nnoremap m <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
-nnoremap q <esc>
+"nnoremap q <esc>
 nnoremap r <esc>
 "nnoremap s <esc>
 "nnoremap t <esc>
@@ -606,7 +605,7 @@ nnoremap r <esc>
 nnoremap z <esc>
 
 nnoremap A <esc>
-"nnoremap B <esc>
+nnoremap B <esc>
 nnoremap C <esc>
 "nnoremap D <esc>
 "nnoremap E <esc>
@@ -620,7 +619,7 @@ nnoremap H <esc>
 "nnoremap M <esc>
 "nnoremap N <esc>
 nnoremap O <esc>
-nnoremap Q <esc>
+"nnoremap Q <esc>
 nnoremap P <esc>
 "nnoremap R <esc>
 "nnoremap S <esc>
@@ -631,7 +630,7 @@ nnoremap V <esc>
 "nnoremap Y <esc>
 
 "nnoremap <c-a> <esc>
-"nnoremap <c-b> <esc>
+nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
 "nnoremap <c-e> <esc>
@@ -738,10 +737,13 @@ vnoremap gj G$l
 " 
 
 " slct expnd
-vnoremap I     :call Slct_expnd()<cr>
-vnoremap <c-i> :call Slct_expnd()<cr>
+vnoremap I :call Slct_expnd()<cr>
+"vnoremap <c-i> :call Slct_expnd()<cr>
 
-" select all
+" slct expnd r
+vnoremap O :call Slct_expnd_r()<cr>
+
+" slct all
 vnoremap a <esc>ggVG
 
 " yank slctd
@@ -937,7 +939,7 @@ vnoremap K <esc>
 vnoremap L <esc>
 vnoremap M <esc>
 vnoremap N <esc>
-vnoremap O <esc>
+"vnoremap O <esc>
 vnoremap P <esc>
 vnoremap Q <esc>
 vnoremap R <esc>
@@ -955,7 +957,7 @@ vnoremap <c-d> <esc>
 "vnoremap <c-e> <esc>
 vnoremap <c-f> <esc>
 vnoremap <c-h> <esc>
-"vnoremap <c-i> <esc>
+vnoremap <c-i> <esc>
 "vnoremap <c-l> <esc>
 "vnoremap <c-m> <esc>
 "vnoremap <c-n> <esc>
@@ -1293,6 +1295,8 @@ call plug#begin()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'jacquesbh/vim-showmarks'
+Plug 'mattn/vim-molder'
+"Plug 'mattn/vim-molder-operations'
 call plug#end()
 " exe
 " :PlugInstall
@@ -1710,14 +1714,45 @@ func! Line_r() abort
   return l:line_r
 endfunc
 
+func! Slct_expnd_r() abort
+  
+  call Cursor_mv_slctd_l()
+  let l:col_c = Col()
+  
+  let l:ptn = '[' . "'" . '"' . ')' . '\]' . ']'
+  
+  let l:line_r = Line_r()
+  let l:r_idx  = match(l:line_r, l:ptn)
+  
+  if l:r_idx == -1
+    return
+  endif
+  
+  let l:c = l:line_r[l:r_idx]
+  "echo l:c l:r_idx
+  
+  let l:slct_col_r = l:col_c + l:r_idx
+  
+  if l:r_idx == 0
+    let l:slct_col_r += 1
+  endif
+  
+  call Slct_by_line_col(0, l:col_c, 0, l:slct_col_r)
+  
+endfunc
+  
 func! Slct_expnd() abort
 
+  " todo
+  " refactoring use Slct_expnd()
+  
   call Cursor_mv_slctd_r()
   
   let l:ptn = '[' . "'" . '"' . ')' . '\]' . ']'
   
   let l:line_r = Line_r()
   let l:r_idx  = match(l:line_r, l:ptn)
+  "echo l:r_idx
   
   if l:r_idx == -1
     return
@@ -1745,13 +1780,9 @@ func! Slct_expnd() abort
     
     call Slct_by_line_col(0, l:word_col_l, 0, l:word_col_r)
     
-  " elseif l:c == '"'
-  "   normal! va"
-  " elseif l:c == "'"
-  "   normal! va'
-    
   elseif l:c == ')'
     normal! vi(
+    
   elseif l:c == ']'
     normal! vi[
   endif
