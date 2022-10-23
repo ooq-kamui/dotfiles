@@ -246,7 +246,7 @@ nnoremap L [{
 " cursor mv bracket fnc back
 "nnoremap xx [m
 
-" cursor mv edited ( jump list )
+" cursor mv edited ( jmp list )
 nnoremap q     <c-o>
 nnoremap <c-q> <c-i>
 
@@ -462,7 +462,7 @@ nnoremap <leader>o :Rg <cr>
 " grep bfr ( fzf )
 nnoremap <leader>k :BLines<cr>
 
-" tag jump tab new
+" tag jmp tab new
 nnoremap t :call N_tag_jmp()<cr>
 
 " mark lst ( fzf )
@@ -1534,7 +1534,8 @@ endfunc
 
 func! Is_line_space() abort
   
-  let l:idx = match(getline('.'), '^\s*$')
+  "let l:idx = match(getline('.'), '^\s*$')
+  let l:idx = match(Line_str(), '^\s*$')
   if l:idx == 0
     return v:true
   else
@@ -1662,13 +1663,17 @@ endfunc
 
 func! Tag_jmp(rg_out_line) abort
   
-  if a:rg_out_line == ''
+  let l:rg_out_line = trim(a:rg_out_line)
+
+  if l:rg_out_line == ''
     return
   end
-
-  let l:rg_out_line_ar = Rg_out_parse(a:rg_out_line)
+  
+  let l:rg_out_line = matchstr(l:rg_out_line, '\S\+')
+  
+  let l:rg_out_line_ar = Rg_out_parse(l:rg_out_line)
   let l:filename = l:rg_out_line_ar[0]
-  let l:line_num  = get(l:rg_out_line_ar, 1, 1)
+  let l:line_num = get(l:rg_out_line_ar, 1, 1)
 
   if ! filereadable(l:filename)
     return
@@ -1682,7 +1687,8 @@ func! N_tag_jmp() abort
 
   let l:base_buf_nr = Buf_nr()
 
-  let l:line = getline('.')
+  "let l:line = getline('.')
+  let l:line = Line_str()
   call Tag_jmp(l:line)
 
   exe "sbuffer " . l:base_buf_nr
