@@ -831,6 +831,7 @@ vnoremap ; =gv
 
 " indent tab > space
 vnoremap :t :!expand -t 2<cr>
+vnoremap :e :!expand -t 2<cr>
 
 " upper / lower tgl
 vnoremap u ~gv
@@ -2258,7 +2259,9 @@ func! Cmnt_1(head) abort
   let l:str = get(l:str_df, &filetype, l:dflt)
 
   exe 'normal! ' . a:head . 'i' . l:str
-  exe 'normal! 0'
+  
+  "exe 'normal! 0'
+  exe 'normal! ^'
 endfunc
 
 func! N_cmnt_1() abort

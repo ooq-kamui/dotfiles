@@ -1,0 +1,35 @@
+{
+  "title": "ctl s __ ctl b [ @kamui ]",
+  "rules": [
+    {
+      "description": "ctl s __ ctl b",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": {
+              "mandatory": [ "control" ]
+            },
+            "key_code": "s"
+          },
+          "to": [
+            {
+              "modifiers": ["control"],
+              "key_code": "b"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Safari$",
+                "^com\\.apple\\.MobileSMS$",
+                "^com\\.apple\\.finder$"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
