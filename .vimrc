@@ -1007,10 +1007,10 @@ inoremap <c-s> <c-o>h
 "inoremap <c-q> <c-o>b
 
 " cursor mv d
-"inoremap <c-n> <down>
+inoremap <c-n> <down>
 
 " cursor mv u
-"inoremap <c-p> <up>
+inoremap <c-p> <up>
 
 " del line
 " non
@@ -1071,8 +1071,8 @@ inoremap <kPageUp>   9
 
 " ins symbol
 inoremap <c-u> <c-r>=I_symbol()<cr>
-inoremap <c-g> <c-r>=I_symbol()<cr>
-inoremap <c-n> <c-r>=I_symbol()<cr>
+"inoremap <c-g> <c-r>=I_symbol()<cr>
+"inoremap <c-n> <c-r>=I_symbol()<cr>
 "inoremap <c-_> <c-r>=I_symbol()<cr>
 
 " ins bracket
@@ -1173,7 +1173,7 @@ inoremap <c-_> <nop>
 inoremap <c-b> <nop>
 "inoremap <c-g> <nop>
 "inoremap <c-n> <nop>
-inoremap <c-p> <nop>
+"inoremap <c-p> <nop>
 "inoremap <c-s> <nop>
 "inoremap <c-t> <nop>
 "inoremap <c-u> <nop>
@@ -2053,7 +2053,8 @@ func! V_mv_str(lr) abort
   exe 'normal! gv"ax' . a:lr . '"aP'
 
   exe 'normal! v'
-  let l:mv_len = strchars(@a) - 1
+  "let l:mv_len = strchars(@a) - 1
+  let l:mv_len = Str_len(@a) - 1
   if l:mv_len <= 0
     return
   endif
@@ -2158,7 +2159,7 @@ func! N_srch_str__(word1) abort
   let l:str = Cursor_word()
 
   if a:word1
-    let l:str = '\<' . l:str . '\>'
+    let l:str = Srch_str_word1(l:str)
   endif
   
   call Srch_str__(l:str)
@@ -2169,10 +2170,34 @@ func! V_srch_str__slctd_str(word1) abort
   let l:str = V_slctd_str()
 
   if a:word1
-    let l:str = '\<' . l:str . '\>'
+    let l:str = Srch_str_word1(l:str)
   endif
   
   call Srch_str__(l:str)
+endfunc
+
+func! Srch_str_word1(str)
+
+  if Str_r(a:str) == '('
+    let l:str = '\<' . a:str
+  else
+    let l:str = '\<' . a:str . '\>'
+  endif
+  
+  return l:str
+endfunc
+
+func! Str_len(str)
+
+  return strchars(a:str)
+endfunc
+
+func! Str_r(str)
+  
+  let l:r_idx = Str_len(a:str)
+  let l:str_r = a:str[l:r_idx - 1]
+  "echo l:str_r
+  return l:str_r
 endfunc
 
 let g:srch_init_flg = v:false
@@ -2182,6 +2207,7 @@ func! Srch_str__(str) abort
   
   let g:srch_prv1 = g:srch
   
+  echo a:str
   let l:str  = escape(a:str, '.*~[]')
   
   let @/     = l:str

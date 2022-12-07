@@ -55,21 +55,27 @@ alias vi_fish_config "vi ~/.config/fish/config.fish"
 alias vi_config      "vi ~/.config/fish/config.fish"
 alias vi_doc "vi doc/memo.txt"
 
+alias shutdown_start "sudo shutdown -r now"
+
 set -x LC_TIME en_US
 alias date_ymd   "date +'%Y-%m-%d'"
 alias date_ymdhm "date +'%Y-%m-%d %H:%M'"
-#alias date "date +'%Y-%m-%d %H:%M %a %Z'"
 alias date_y1 "date_y 1"
 alias date_y2 "date_y 2"
+#alias date "date +'%Y-%m-%d %H:%M %a %Z'"
 
 alias ff "fd -tf"
 
 alias trans_ja2en "trans {ja=en}"
 alias trans_en2ja "trans {en=ja}"
+alias trns_j2e "trans {ja=en}"
+alias trns_e2j "trans {en=ja}"
 
-#alias fzf="fzf --bind=ctrl-o:accept "
 #alias rpl="string replace"
+#alias fzf="fzf --bind=ctrl-o:accept "
 #alias f="mdfind -onlyin . -name"
+
+alias gi "git"
 
 # 
 # bind
