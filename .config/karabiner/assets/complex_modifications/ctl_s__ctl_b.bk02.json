@@ -17,17 +17,6 @@
               "modifiers": ["control"],
               "key_code": "b"
             }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^com\\.apple\\.Safari$",
-                "^com\\.apple\\.MobileSMS$",
-                "^com\\.apple\\.finder$",
-                "^com\\.pixelmatorteam\\.pixelmator\\.x$"
-              ]
-            }
           ]
         }
       ]

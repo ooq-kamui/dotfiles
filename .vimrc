@@ -456,6 +456,10 @@ nnoremap :s :%s//<c-r>0/gc
 " srch replace one > yank nxt ( only srch )
 nnoremap <c-p> gn
 
+" srch ?=ts
+nnoremap T /?ts=<cr>
+"nnoremap <c-*> /?=ts<cr>
+
 " grep ( fzf )
 nnoremap <leader>o :Rg <cr>
 
@@ -572,6 +576,7 @@ nnoremap <c-space> <esc>
 nnoremap <c-@> <esc>
 "nnoremap <c-^> <esc>
 "nnoremap <c--> <esc> " non ?
+"nnoremap <c-*> <esc> " non ?
 "nnoremap <c-:> <esc> " non
 "nnoremap <c-;> <esc> " non
 "nnoremap <c-,> <esc> " non ?
@@ -623,7 +628,7 @@ nnoremap O <esc>
 nnoremap P <esc>
 "nnoremap R <esc>
 "nnoremap S <esc>
-nnoremap T <esc>
+"nnoremap T <esc>
 nnoremap U <esc>
 "nnoremap W <esc>
 nnoremap V <esc>
@@ -830,8 +835,8 @@ vnoremap # >gv
 vnoremap ; =gv
 
 " indent tab > space
-vnoremap :t :!expand -t 2<cr>
 vnoremap :e :!expand -t 2<cr>
+"vnoremap :t :!expand -t 2<cr>
 
 " upper / lower tgl
 vnoremap u ~gv
@@ -2178,10 +2183,14 @@ endfunc
 
 func! Srch_str_word1(str)
 
-  if Str_r(a:str) == '('
-    let l:str = '\<' . a:str
-  else
-    let l:str = '\<' . a:str . '\>'
+  let l:str = a:str
+  
+  if Str_l(l:str) =~ '\w'
+    let l:str = '\<' . l:str
+  endif
+  
+  if Str_r(l:str) =~ '\w'
+    let l:str =        l:str . '\>'
   endif
   
   return l:str
@@ -2192,10 +2201,18 @@ func! Str_len(str)
   return strchars(a:str)
 endfunc
 
+func! Str_l(str)
+  
+  let l:l_idx = 0
+  let l:str_l = a:str[l:l_idx]
+  "echo l:str_l
+  return l:str_l
+endfunc
+
 func! Str_r(str)
   
-  let l:r_idx = Str_len(a:str)
-  let l:str_r = a:str[l:r_idx - 1]
+  let l:r_idx = Str_len(a:str) - 1
+  let l:str_r = a:str[l:r_idx]
   "echo l:str_r
   return l:str_r
 endfunc

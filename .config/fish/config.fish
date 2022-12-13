@@ -75,6 +75,9 @@ alias trns_e2j "trans {en=ja}"
 #alias fzf="fzf --bind=ctrl-o:accept "
 #alias f="mdfind -onlyin . -name"
 
+alias battery 'pmset -g ps | grep -oE "[0-9]+%"'
+alias ba      'pmset -g ps | grep -oE "[0-9]+%"'
+
 alias gi "git"
 
 # 
