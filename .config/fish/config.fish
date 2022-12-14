@@ -75,8 +75,12 @@ alias trns_e2j "trans {en=ja}"
 #alias fzf="fzf --bind=ctrl-o:accept "
 #alias f="mdfind -onlyin . -name"
 
+alias hi_del 'history delete'
+
 alias battery 'pmset -g ps | grep -oE "[0-9]+%"'
 alias ba      'pmset -g ps | grep -oE "[0-9]+%"'
+
+alias ca 'cal'
 
 alias gi "git"
 
@@ -107,6 +111,7 @@ bind \cy fzf-history-widget
 bind \cc commandline_pbcopy
 bind \cb commandline_bracket
 #bind \cr commandline_bracket
+bind \cg commandline_quote
 
 
 # color
