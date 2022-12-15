@@ -369,7 +369,8 @@ nnoremap s "ax
 nnoremap x x
 
 " del line
-nnoremap d "0dd
+"nnoremap d "0dd
+nnoremap d :call N_line_del()<cr>
 
 " del in line forward
 nnoremap <c-d> D
@@ -1540,7 +1541,6 @@ endfunc
 
 func! Is_line_space() abort
   
-  "let l:idx = match(getline('.'), '^\s*$')
   let l:idx = match(Line_str(), '^\s*$')
   if l:idx == 0
     return v:true
@@ -1559,7 +1559,8 @@ endfunc
 func! N_cursor_mv_word_f() abort
 
   let l:c_char = Char()
-  let l:l_char = Char_r()
+  "let l:l_char = Char_r()
+  let l:l_char = Cursor_r_char()
 
   if l:c_char =~ ' ' && l:l_char =~ ' '
     normal! w
@@ -1570,7 +1571,8 @@ endfunc
 
 func! N_cursor_mv_word_b() abort
   
-  let l:c_l = Char_l()
+  "let l:c_l = Char_l()
+  let l:c_l = Cursor_l_char()
   echo l:c_l
   
   if Is_cursor_line_start0()
@@ -1599,7 +1601,8 @@ endfunc
 func! N_cursor_mv_word_b_pre() abort
 
   let l:c_char = Char()
-  let l:l_char = Char_r()
+  "let l:l_char = Char_r()
+  let l:l_char = Cursor_r_char()
 
   if l:c_char =~ ' ' && l:l_char !~ ' '
     exe "normal! gegel"
@@ -1693,7 +1696,6 @@ func! N_tag_jmp() abort
 
   let l:base_buf_nr = Buf_nr()
 
-  "let l:line = getline('.')
   let l:line = Line_str()
   call Tag_jmp(l:line)
 
@@ -1828,22 +1830,33 @@ func! Char_c() abort
   return l:c
 endfunc
 
-func! Char_r() abort
+"func! Char_r() abort
+func! Cursor_r_char() abort
 
   let l:c = getline('.')[col('.')]
   return l:c
 endfunc
 
-func! Char_l() abort
+"func! Char_l() abort
+func! Cursor_l_char() abort
 
   let l:c = getline('.')[col('.')-2]
   return l:c
 endfunc
 
+func! N_line_del() abort
+  
+  "if Line_str() == ''
+  if Line_str() =~ '^\s*$'
+    exe 'normal! "add'
+  else
+    exe 'normal! "0dd'
+  endif
+endfunc
+
 func! N_char_tgl1() abort
 
   let l:c   = Char()
-  "let l:rpl = Char_tgl_char(l:c)
   let l:rpl = Char_tgl1(l:c)
 
   if l:rpl == ""
@@ -1869,7 +1882,6 @@ func! N_char_tgl2() abort " use not
   exe 'normal! i'.l:rpl
 endfunc
 
-"func! Char_tgl_char(c) abort
 func! Char_tgl1(c) abort
 
   "let l:rpl = Char_tgl_bracket(a:c)
@@ -2163,22 +2175,22 @@ func! N_srch_str__(word1) abort
 
   let l:str = Cursor_word()
 
-  if a:word1
-    let l:str = Srch_str_word1(l:str)
-  endif
+  "if a:word1
+    "let l:str = Srch_str_word1(l:str)
+  "endif
   
-  call Srch_str__(l:str)
+  call Srch_str__(l:str, a:word1)
 endfunc
 
 func! V_srch_str__slctd_str(word1) abort
 
   let l:str = V_slctd_str()
 
-  if a:word1
-    let l:str = Srch_str_word1(l:str)
-  endif
+  "if a:word1
+    "let l:str = Srch_str_word1(l:str)
+  "endif
   
-  call Srch_str__(l:str)
+  call Srch_str__(l:str, a:word1)
 endfunc
 
 func! Srch_str_word1(str)
@@ -2193,6 +2205,7 @@ func! Srch_str_word1(str)
     let l:str =        l:str . '\>'
   endif
   
+  "echo l:str
   return l:str
 endfunc
 
@@ -2220,15 +2233,18 @@ endfunc
 let g:srch_init_flg = v:false
 let g:srch = ''
 
-func! Srch_str__(str) abort
-  
-  let g:srch_prv1 = g:srch
+func! Srch_str__(str, word1) abort
   
   echo a:str
-  let l:str  = escape(a:str, '.*~[]')
+  "let l:str  = escape(a:str, '.*~[]')
+  let l:str  = escape(a:str, '.*~[]\')
   
-  let @/     = l:str
-  let g:srch = l:str
+  if a:word1
+    let l:str = Srch_str_word1(l:str)
+  endif
+  
+  let g:srch_prv1 = @/
+  let @/ = l:str
   
   "if ! g:srch_init_flg
   "  exe "normal! /\<cr>N"
@@ -2238,7 +2254,11 @@ endfunc
 
 func! N_srch_str__prv() abort
 
-  call Srch_str__(g:srch_prv1)
+  let l:tmp = @/
+  
+  let @/ = g:srch_prv1
+  
+  let g:srch_prv1 = l:tmp
 endfunc
 
 func! V_is_slctd_eq_srch_str() abort

@@ -53,7 +53,8 @@ alias vi_vimrc    "vi ~/.vimrc"
 alias vi_vim_swap "vi ~/.local/share/nvim/swap/"
 alias vi_fish_config "vi ~/.config/fish/config.fish"
 alias vi_config      "vi ~/.config/fish/config.fish"
-alias vi_doc "vi doc/memo.txt"
+alias vi_doc  "vi doc/memo.txt"
+alias vi_life "vi ~/doc/life/doc/memo.txt"
 
 alias shutdown_start "sudo shutdown -r now"
 
