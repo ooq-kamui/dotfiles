@@ -97,7 +97,7 @@ autocmd BufWinEnter * normal! zz
 set nowrap
 set whichwrap=b,s,h,l,<,>,[,]
 set virtualedit=onemore " cursor mv cr
-set virtualedit+=block  " box select
+set virtualedit+=block  " box slct
 "set virtualedit=all
 set scrolloff=5
 set wildmode=list:longest
@@ -145,7 +145,8 @@ nnoremap w :bd<cr>
 nnoremap <c-w> :q<cr>
 
 " quit force
-nnoremap Q :q!
+nnoremap :q :q!
+"nnoremap Q :q!
 
 " quit other
 nnoremap W :tabo<cr>
@@ -163,6 +164,7 @@ nnoremap a :w<cr>
 "nnoremap xx `0
 
 " opn file rcnt ( history )
+nnoremap <leader>p :FileHstry<cr>
 nnoremap <leader>h :FileHstry<cr>
 
 " opn tab new
@@ -173,7 +175,8 @@ nnoremap :e :Opn
 nnoremap :o :Opn 
 
 " file srch ( fzf )
-nnoremap <leader>j :Files <cr>
+nnoremap <leader>l :Files <cr>
+"nnoremap <leader>j :Files <cr>
 "nnoremap <leader>u :Files <cr>
 
 " opn .vimrc
@@ -266,7 +269,7 @@ nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 
 " scroll cursor line upper
-nnoremap R zt
+"nnoremap R zt
 "nnoremap <leader>r zt
 
 " scroll cursor line middle
@@ -280,28 +283,28 @@ nnoremap F zz
 " slct / yank / paste
 " 
 
-" select
+" slct
 nnoremap I v
 
-" select word
+" slct word
 nnoremap i :call Slct_word()<cr>
 
-" select char current - word end
+" slct char current - word end
 "nnoremap xx ve
 
-" select box
+" slct box
 nnoremap v <c-v>
 
-" select all
+" slct all
 "nnoremap A ggVG
 
-" select re
+" slct re
 "nnoremap xx gv
 
 " yank line
 nnoremap c :call N_cpy()<cr>
 
-" pc clipboard line
+" clipboard line
 "nnoremap xx "+yy
 
 " yank char
@@ -313,7 +316,7 @@ nnoremap <c-c> :call Rgstr__clr()<cr>
 " paste
 nnoremap p "0P
 
-" paste pc clipboard
+" paste clipboard
 "nnoremap xx "+P
 
 " paste rgstr history ( fzf )
@@ -363,6 +366,9 @@ nnoremap . i.<esc>l
 
 " ins date time
 nnoremap * i<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
+
+" ins time
+nnoremap T i<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
 
 " del char
 nnoremap s "ax
@@ -429,24 +435,35 @@ nnoremap u :call N_char_tgl1()<cr>
 nnoremap n     :call N_srch("f")<cr>
 nnoremap <c-n> :call N_srch("b")<cr>
 
-" srch word set
+" srch str set
 nnoremap e :call N_srch_str__(v:false)<cr>
 
-" srch word set ( word 1 )
+" srch str set ( word 1 )
 nnoremap E :call N_srch_str__(v:true)<cr>
 
 " srch cmdline
 nnoremap <leader>i /
 "nnoremap <leader>k /
 
-" srch word history ( fzf )
+" srch str history ( fzf )
 nnoremap <leader>n :SrchHstry<cr>
 
-" srch word set prv ( tgl )
+" srch str set prv ( tgl )
 nnoremap N :call N_srch_str__prv()<cr>
 "nnoremap N /<c-p><c-p><cr>
 
-" srch init ( hl )
+" srch str set clipboard
+nnoremap C :call Srch_str__clipboard()<cr>
+
+func! Srch_str__clipboard() abort
+
+  let @0 = @+
+endfunc
+
+" srch str init
+call Srch_str__clipboard()
+
+" srch hl init
 nnoremap S /<cr>N
 "normal! /
 "normal! N
@@ -458,8 +475,7 @@ nnoremap :s :%s//<c-r>0/gc
 nnoremap <c-p> gn
 
 " srch ?=ts
-nnoremap T /?ts=<cr>
-"nnoremap <c-*> /?=ts<cr>
+nnoremap R /?ts=<cr>
 
 " grep ( fzf )
 nnoremap <leader>o :Rg <cr>
@@ -494,7 +510,8 @@ nnoremap rk [`
 " 
 
 " cmd history ( fzf )
-nnoremap <leader>l :CmdHstry<cr>
+nnoremap <leader>j :CmdHstry<cr>
+"nnoremap <leader>l :CmdHstry<cr>
 
 " ins sys cmd ( read )
 nnoremap :r :r! 
@@ -625,7 +642,7 @@ nnoremap H <esc>
 "nnoremap M <esc>
 "nnoremap N <esc>
 nnoremap O <esc>
-"nnoremap Q <esc>
+nnoremap Q <esc>
 nnoremap P <esc>
 "nnoremap R <esc>
 "nnoremap S <esc>
@@ -744,9 +761,9 @@ vnoremap gj G$l
 
 " slct expnd
 vnoremap I :call Slct_expnd()<cr>
-"vnoremap <c-i> :call Slct_expnd()<cr>
 
 " slct expnd r
+vnoremap F :call Slct_expnd_r()<cr>
 vnoremap O :call Slct_expnd_r()<cr>
 
 " slct all
@@ -757,7 +774,7 @@ vnoremap o :call V_cpy()<cr>
 vnoremap c :call V_cpy()<cr>
 "vnoremap c "0y
 
-" pc clipboard selected
+" clipboard slctd
 "vnoremap xx "+y
 
 " paste
@@ -796,6 +813,9 @@ vnoremap :b :<c-u>InsSlctdEdge
 
 " ins date time
 vnoremap * c<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
+
+" ins time
+vnoremap T c<c-r>=strftime("%H:%M")<cr><esc>
 
 " del str > yank
 vnoremap d "0d
@@ -858,11 +878,11 @@ vnoremap <c-n> :call V_srch_slct("f")<cr>
 " srch back
 "vnoremap xx    :call V_srch_slct("b")<cr>
 
-" srch word set
+" srch str set
 vnoremap n :call V_srch_str__slctd_str(v:false)<cr>
 vnoremap e :call V_srch_str__slctd_str(v:false)<cr>
 
-" srch word set ( word 1 )
+" srch str set ( word 1 )
 vnoremap E :call V_srch_str__slctd_str(v:true)<cr>
 
 " srch cmdline
@@ -938,7 +958,7 @@ vnoremap w <esc>
 vnoremap B <esc>
 vnoremap C <esc>
 "vnoremap D <esc>
-vnoremap F <esc>
+"vnoremap F <esc>
 vnoremap H <esc>
 "vnoremap I <esc>
 vnoremap J <esc>
@@ -1045,7 +1065,7 @@ inoremap <tab> <c-v><tab>
 " paste
 "inoremap <c-v> <c-r>0
 
-" paste pc clipboard
+" paste clipboard
 inoremap <c-v> <c-r>+
 
 " input complete
@@ -1096,9 +1116,9 @@ inoremap <c-r> <c-r>=I_reg()<cr>
 " ins ooq ( lua )
 "inoremap <c-u> <c-r>=I_usual()<cr>
 
-"
+" 
 " ins fnc
-"
+" 
 
 func! I_symbol() abort
 
@@ -1247,6 +1267,7 @@ cnoremap <kPageUp>   9
 
 nnoremap <leader>f <esc>
 "nnoremap <leader>h <esc>
+"nnoremap <leader>p <esc>
 nnoremap <leader>r <esc>
 nnoremap <leader>u <esc>
 "nnoremap <leader>y <esc>
@@ -1400,7 +1421,7 @@ command! -bang -nargs=* Mark
 command! -bang -nargs=* RgstrHstry
 \ call Rgstr_fzf()
 
-function! Rgstr_fzf()
+func! Rgstr_fzf()
   
   let l:rgstr_info = execute(':reg')->split("\n")
   call remove(l:rgstr_info, 0)
@@ -1412,7 +1433,7 @@ function! Rgstr_fzf()
   \     'window': '-tabnew'
   \   }
   \ )
-endfunction
+endfunc
 
 func! Rgstr__paste_by_rgstr_info(rgstr_info) abort
   
@@ -1558,11 +1579,10 @@ endfunc
 
 func! N_cursor_mv_word_f() abort
 
-  let l:c_char = Char()
-  "let l:l_char = Char_r()
-  let l:l_char = Cursor_r_char()
+  let l:c_char = Cursor_c_char()
+  let l:r_char = Cursor_r_char()
 
-  if l:c_char =~ ' ' && l:l_char =~ ' '
+  if l:c_char =~ ' ' && l:r_char =~ ' '
     normal! w
   else
     normal! el
@@ -1600,8 +1620,7 @@ endfunc
 
 func! N_cursor_mv_word_b_pre() abort
 
-  let l:c_char = Char()
-  "let l:l_char = Char_r()
+  let l:c_char = Cursor_c_char()
   let l:l_char = Cursor_r_char()
 
   if l:c_char =~ ' ' && l:l_char !~ ' '
@@ -1618,7 +1637,7 @@ endfunc
 
 func! Slct_word() abort
 
-  let l:c = Char()
+  let l:c = Cursor_c_char()
 
   if     l:c =~ '\w'
     exe "normal! viw"
@@ -1817,12 +1836,7 @@ func! Line_str() abort " alias
   return getline('.')
 endfunc
 
-func! Char() abort " alias
-  
-  return Char_c()
-endfunc
-
-func! Char_c() abort
+func! Cursor_c_char() abort
 
   let l:c = getline('.')[col('.')-1]
   " getcursorcharpos() ?
@@ -1856,7 +1870,7 @@ endfunc
 
 func! N_char_tgl1() abort
 
-  let l:c   = Char()
+  let l:c   = Cursor_c_char()
   let l:rpl = Char_tgl1(l:c)
 
   if l:rpl == ""
@@ -1870,7 +1884,7 @@ endfunc
 
 func! N_char_tgl2() abort " use not
 
-  let l:c   = Char()
+  let l:c   = Cursor_c_char()
   let l:rpl = Char_tgl_trn(l:c)
 
   if l:rpl == ""
@@ -2029,7 +2043,7 @@ endfunc
 
 func! Char_tgl2() abort " use not
   
-  let l:c = Char()
+  let l:c = Cursor_c_char()
 
   if     l:c == "("
     let l:rpl = "["
