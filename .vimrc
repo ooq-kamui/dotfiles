@@ -165,7 +165,7 @@ nnoremap a :w<cr>
 
 " opn file rcnt ( history )
 nnoremap <leader>p :FileHstry<cr>
-nnoremap <leader>h :FileHstry<cr>
+"nnoremap <leader>h :FileHstry<cr>
 
 " opn tab new
 "nnoremap xx :tabnew filename
@@ -280,7 +280,7 @@ nnoremap F zz
 "nnoremap xx <c-w>w
 
 " 
-" slct / yank / paste
+" slct / ynk / paste
 " 
 
 " slct
@@ -301,16 +301,16 @@ nnoremap v <c-v>
 " slct re
 "nnoremap xx gv
 
-" yank line
-nnoremap c :call N_cpy()<cr>
+" ynk line
+nnoremap c :call N_ynk()<cr>
 
 " clipboard line
 "nnoremap xx "+yy
 
-" yank char
+" ynk char
 "nnoremap xx "0yl
 
-" yank clear
+" ynk clear
 nnoremap <c-c> :call Rgstr__clr()<cr>
 
 " paste
@@ -336,6 +336,9 @@ nnoremap <c-h> <c-r>
 " 
 " edit
 " 
+
+" ynk set clipboard
+nnoremap C :call Ynk__clipboard()<cr>
 
 " mode ins
 nnoremap <space> i
@@ -375,7 +378,6 @@ nnoremap s "ax
 nnoremap x x
 
 " del line
-"nnoremap d "0dd
 nnoremap d :call N_line_del()<cr>
 
 " del in line forward
@@ -452,26 +454,17 @@ nnoremap <leader>n :SrchHstry<cr>
 nnoremap N :call N_srch_str__prv()<cr>
 "nnoremap N /<c-p><c-p><cr>
 
-" srch str set clipboard
-nnoremap C :call Srch_str__clipboard()<cr>
-
-func! Srch_str__clipboard() abort
-
-  let @0 = @+
-endfunc
-
-" srch str init
-call Srch_str__clipboard()
-
 " srch hl init
 nnoremap S /<cr>N
+
+"normal! /dmydmydmy
 "normal! /
 "normal! N
 
-" srch replace all > yank ( file )
+" srch replace all > ynk ( file )
 nnoremap :s :%s//<c-r>0/gc
 
-" srch replace one > yank nxt ( only srch )
+" srch replace one > ynk nxt ( only srch )
 nnoremap <c-p> gn
 
 " srch ?=ts
@@ -756,7 +749,7 @@ vnoremap gk gg0
 vnoremap gj G$l
 
 " 
-" slct / yank / paste
+" slct / ynk / paste
 " 
 
 " slct expnd
@@ -769,9 +762,9 @@ vnoremap O :call Slct_expnd_r()<cr>
 " slct all
 vnoremap a <esc>ggVG
 
-" yank slctd
-vnoremap o :call V_cpy()<cr>
-vnoremap c :call V_cpy()<cr>
+" ynk slctd
+vnoremap o :call V_ynk()<cr>
+vnoremap c :call V_ynk()<cr>
 "vnoremap c "0y
 
 " clipboard slctd
@@ -817,10 +810,10 @@ vnoremap * c<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
 " ins time
 vnoremap T c<c-r>=strftime("%H:%M")<cr><esc>
 
-" del str > yank
+" del str > ynk
 vnoremap d "0d
 
-" del str > yank not
+" del str > ynk not
 vnoremap s "ax
 vnoremap x "ax
 
@@ -889,10 +882,10 @@ vnoremap E :call V_srch_str__slctd_str(v:true)<cr>
 vnoremap <leader>i "ay/<c-r>a
 "vnoremap <leader>k "ay/<c-r>a
 
-" srch replace all > yank
+" srch replace all > ynk
 vnoremap :s :s//<c-r>0/gc<cr>
 
-" srch replace one > yank, nxt
+" srch replace one > ynk, nxt
 vnoremap <c-p> "ad"0Plgn
 
 " grep bfr ( fzf )
@@ -1266,7 +1259,7 @@ cnoremap <kPageUp>   9
 " 
 
 nnoremap <leader>f <esc>
-"nnoremap <leader>h <esc>
+nnoremap <leader>h <esc>
 "nnoremap <leader>p <esc>
 nnoremap <leader>r <esc>
 nnoremap <leader>u <esc>
@@ -1462,17 +1455,34 @@ set tags=./.tags;
 au FileType * set fo-=c fo-=r fo-=o
 
 
-"
+" 
 " vim script
-"
+" 
 
-func! N_cpy() abort
+func! Ynk__clipboard() abort
+
+  let @0 = @+
+endfunc
+
+" ynk init
+call Ynk__clipboard()
+
+func! Clipboard__ynk() abort
+
+  let @+ = @0
+endfunc
+
+func! N_ynk() abort
 
   exe 'normal! "0yy'
   exe 'normal! "+yy'
+  
+  "l:line_str = Line_str()
+  "let @0 = l:line_str
+  "let @+ = l:line_str
 endfunc
 
-func! V_cpy() abort
+func! V_ynk() abort
 
   exe 'normal! gv"0y'
   exe 'normal! gv"+y'
@@ -1860,11 +1870,11 @@ endfunc
 
 func! N_line_del() abort
   
-  "if Line_str() == ''
   if Line_str() =~ '^\s*$'
     exe 'normal! "add'
   else
     exe 'normal! "0dd'
+    call Clipboard__ynk()
   endif
 endfunc
 
@@ -2244,8 +2254,8 @@ func! Str_r(str)
   return l:str_r
 endfunc
 
-let g:srch_init_flg = v:false
-let g:srch = ''
+"let g:srch_init_flg = v:false
+"let g:srch = ''
 
 func! Srch_str__(str, word1) abort
   
@@ -2260,6 +2270,7 @@ func! Srch_str__(str, word1) abort
   let g:srch_prv1 = @/
   let @/ = l:str
   
+  " todo del
   "if ! g:srch_init_flg
   "  exe "normal! /\<cr>N"
   "  let g:srch_init_flg = v:true
