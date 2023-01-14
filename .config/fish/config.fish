@@ -2,9 +2,10 @@
 # source ~/.config/fish/config.fish
 # 
 
-#export LSCOLORS=fxgxcxdxexegedabagacad
-set -x LSCOLORS fxgxcxdxexegedabagacad
+#set -x LSCOLORS fxgxcxdxexegedabagacad
+set -x LSCOLORS fxgxcxdxxxegedabagacad
 #               ^dir    ^exe
+#                 ^lnk?
 # a:black, b:red, c:green, d:brown, e:blue, f:magenta, g:cyan, h:grey
 
 # 

@@ -811,7 +811,8 @@ vnoremap * c<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
 vnoremap T c<c-r>=strftime("%H:%M")<cr><esc>
 
 " del str > ynk
-vnoremap d "0d
+"vnoremap d "0d
+vnoremap d "0d:let @+ = @0<cr>
 
 " del str > ynk not
 vnoremap s "ax
@@ -1464,9 +1465,6 @@ func! Ynk__clipboard() abort
   let @0 = @+
 endfunc
 
-" ynk init
-call Ynk__clipboard()
-
 func! Clipboard__ynk() abort
 
   let @+ = @0
@@ -1878,6 +1876,17 @@ func! N_line_del() abort
   endif
 endfunc
 
+func! V_line_del() abort " todo mod
+  
+  "exe 'normal! "0d'
+  "normal! gv"0d
+  
+  normal! gvj
+  "normal! "0d
+  
+  call Clipboard__ynk()
+endfunc
+
 func! N_char_tgl1() abort
 
   let l:c   = Cursor_c_char()
@@ -2128,12 +2137,12 @@ func! Cursor_mv_slctd_r() abort
   normal! `>
 endfunc
 
-func! Slct_re() abort
+func! Slct_re() abort " todo mod
   
   normal! gv
 endfunc
 
-func! Slctd_pos() abort
+func! Slctd_pos() abort " use not
   
   call Slct_re()
   let l:pos = getpos('.')
@@ -2587,6 +2596,17 @@ func! Defold_err_cnv() abort
 endfunc
 
 
+" 
+" init
+" 
+
+" ynk init
+call Ynk__clipboard()
+
+
+" 
+" use not ( old )
+" 
 
 " file rcnt qf " use not
 command! -nargs=0 FileRcntQf
@@ -2605,9 +2625,7 @@ func! Qf_old_files(info)
   return l
 endfunc
 
-" 
-" use not ( old )
-" 
+" netrw " use not
 
 hi netrwDir      ctermfg=lightgreen
 hi netrwTreeBar  ctermfg=lightgreen
