@@ -195,24 +195,7 @@ nnoremap gg :call Opn_grep_work()<cr>
 nnoremap gb <plug>(openbrowser-smart-search)
 
 " opn app
-"nnoremap go :start <cfile><cr>
 nnoremap go :call Opn_app()<cr>
-
-function Opn_app()
-  
-  let l:str = matchstr(getline('.'), '\(\~\|/\|\.\.\)\=\(/\w\+\)\+\.\a\+', 0)
-  
-  if     has('mac')
-    
-    let res = system('open ' . l:str)
-    
-  elseif has('win32')
-    
-    let res = system('start ' . l:str)
-  endif
-  
-  "echo res
-endfunction
 
 " 
 " cursor mv
@@ -645,7 +628,7 @@ nnoremap z <esc>
 
 nnoremap A <esc>
 nnoremap B <esc>
-nnoremap C <esc>
+"nnoremap C <esc>
 "nnoremap D <esc>
 "nnoremap E <esc>
 "nnoremap F <esc>
@@ -1627,7 +1610,7 @@ func! N_cursor_mv_word_b() abort
   let l:c_l = Cursor_l_char()
   echo l:c_l
   
-  if Is_cursor_line_start0()
+  if     Is_cursor_line_start0()
     normal! k
     call N_cursor_mv_line_end()
     
@@ -2499,6 +2482,25 @@ func! Opn_memo() abort
 
   call Opn('doc/memo.txt')
 endfunc
+
+function Opn_app()
+  
+  let l:path = Line_str()
+  "let l:path = matchstr(l:path, '\(\~\|/\|\.\.\)\=\(/\w\+\)\+\.\a\+', 0)
+  "echo l:path
+  
+  if     has('mac')
+    
+    let res = system('open     ' . l:path)
+    
+  elseif has('win32')
+    
+    "let res = system('start    ' . l:path)
+    let res = system('explorer ' . l:path)
+  endif
+  
+  "echo res
+endfunction
 
 let g:mark_alph_def = [
 \   'a','b','c','d','e','f','g','h','i','j','k','l','m','n',
