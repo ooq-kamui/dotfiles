@@ -702,6 +702,9 @@ vnoremap v <c-v>
 " file srch ( fzf )
 "vnoremap xx :Files <cr> " non
 
+" opn brwsr
+vnoremap gb <plug>(openbrowser-smart-search)
+
 " 
 " cursor mv
 " 
