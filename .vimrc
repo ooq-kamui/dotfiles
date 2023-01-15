@@ -2104,8 +2104,16 @@ endfunc
 
 func! Cursor_word() abort
 
-  let l:word = expand("<cword>>")
+  "let l:word = expand("<cword>>")
+  let l:word = expand("<cword>")
   return l:word
+endfunc
+
+func! Cursor_filepath() abort
+
+  "let l:str = expand("<cfile>>")
+  let l:str = expand("<cfile>")
+  return l:str
 endfunc
 
 func! V_mv_str(lr) abort
@@ -2488,8 +2496,9 @@ endfunc
 
 function Opn_app()
   
-  let l:path = Line_str()
+  "let l:path = Line_str()
   "let l:path = matchstr(l:path, '\(\~\|/\|\.\.\)\=\(/\w\+\)\+\.\a\+', 0)
+  let l:path = Cursor_filepath()
   "echo l:path
   
   if     has('mac')
