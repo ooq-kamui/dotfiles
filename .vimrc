@@ -191,6 +191,29 @@ nnoremap gm :call Opn_memo()<cr>
 " opn grep work
 nnoremap gg :call Opn_grep_work()<cr>
 
+" opn brwsr
+nnoremap gb <plug>(openbrowser-smart-search)
+
+" opn app
+"nnoremap go :start <cfile><cr>
+nnoremap go :call Opn_app()<cr>
+
+function Opn_app()
+  
+  let l:str = matchstr(getline('.'), '\(\~\|/\|\.\.\)\=\(/\w\+\)\+\.\a\+', 0)
+  
+  if     has('mac')
+    
+    let res = system('open ' . l:str)
+    
+  elseif has('win32')
+    
+    let res = system('start ' . l:str)
+  endif
+  
+  "echo res
+endfunction
+
 " 
 " cursor mv
 " 
@@ -1319,6 +1342,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'jacquesbh/vim-showmarks'
 Plug 'mattn/vim-molder'
 "Plug 'mattn/vim-molder-operations'
+Plug 'tyru/open-browser.vim'
 call plug#end()
 " exe
 " :PlugInstall

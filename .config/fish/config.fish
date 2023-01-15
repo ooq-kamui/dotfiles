@@ -44,9 +44,13 @@ alias cd_p3 "cd ../../../"
 
 alias cd_vim       "cd ~/doc/tech/github/vimrc"
 alias cd_vim_swp   "cd ~/.local/state/nvim/swap"
+
 alias cd_life      "cd ~/doc/life"
+
 alias cd_ooq       "cd ~/dev/ooq/g.proto/assets"
 alias cd_ooq_bk    "cd ~/dev/ooq/z.proto.bk"
+alias cd_ooq_web   "cd ~/doc/hoby/ooq-web/artcl"
+
 alias cd_holo      "cd ~/doc/hoby/youtube/vtuber/hololive/prj"
 alias cd_holo_data "cd ~/doc/hoby/youtube/vtuber/hololive/prj/www/song/data"
 
