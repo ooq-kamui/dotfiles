@@ -72,8 +72,6 @@ alias date_y2 "date_y 2"
 
 alias ff "fd -tf"
 
-alias trans_ja2en "trans {ja=en}"
-alias trans_en2ja "trans {en=ja}"
 alias trns_j2e "trans {ja=en}"
 alias trns_e2j "trans {en=ja}"
 
@@ -89,6 +87,15 @@ alias ba      'pmset -g ps | grep -oE "[0-9]+%"'
 alias ca 'cal'
 
 alias gi "git"
+
+alias opn "open"
+
+alias opn_github_vim  "open https://github.com/ooq-kamui/vimrc"
+alias opn_github_holo "open https://github.com/ooq-kamui/holo-song"
+
+alias opn_ooq "open https://ooq.jp/"
+
+alias src "source"
 
 # 
 # bind
