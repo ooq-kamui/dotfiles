@@ -25,6 +25,8 @@
                 "^com\\.apple\\.Safari$",
                 "^com\\.apple\\.MobileSMS$",
                 "^com\\.apple\\.finder$",
+                "^com\\.google\\.Chrome$",
+                "^jp\\.naver\\.line\\.mac$",
                 "^com\\.pixelmatorteam\\.pixelmator\\.x$"
               ]
             }

@@ -1107,11 +1107,14 @@ inoremap <c-u> <c-r>=I_symbol()<cr>
 " ins bracket
 inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=I_bracket()<cr>"
 
+" ins markdown
+inoremap <c-k> <c-r>=I_markdown()<cr>
+
 " ins num
 "inoremap xx <c-r>=I_num()<cr>
 
 " ins register
-inoremap <c-r> <c-r>=I_reg()<cr>
+"inoremap <c-r> <c-r>=I_reg()<cr>
 
 " ins lua reserved word
 "inoremap <c-r> <c-r>=I_lua_reserved()<cr>
@@ -1134,8 +1137,14 @@ func! I_symbol() abort
 endfunc
 
 func! I_bracket() abort
-  call complete( col('.'), [ '()', '""', '{}', "''", '[]' ])
+  "call complete( col('.'), [ '()', '""', '{}', "''", '[]' ])
+  call complete( col('.'), [ '()', '""', '{}', "''", '[]', '``' ])
   " [, '<>', '``']
+  return ''
+endfunc
+
+func! I_markdown() abort
+  call complete( col('.'), [ '- [ ] ', '```' ])
   return ''
 endfunc
 

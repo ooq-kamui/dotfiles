@@ -95,7 +95,8 @@ alias opn_github_holo "open https://github.com/ooq-kamui/holo-song"
 
 alias opn_ooq "open https://ooq.jp/"
 
-alias src "source"
+alias src         "source"
+alias src_fsh_cfg "source ~/.config/fish/config.fish"
 
 # 
 # bind
