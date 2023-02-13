@@ -17,6 +17,9 @@ bind '"\C-s": backward-char'
 bind '"\C-k": kill-word'
 
 alias ll='ls -la'
+alias ll_='ll -d .*'
+
+alias vi='vi -p'
 
 
 alias fzf="winpty fzf"
