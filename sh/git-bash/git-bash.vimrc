@@ -220,6 +220,7 @@ nnoremap <c-a> 0
 " cursor mv in line end
 nnoremap <c-y> :call N_cursor_mv_line_end()<cr>
 nnoremap <c-e> :call N_cursor_mv_line_end()<cr>
+
 nnoremap Y     $
 
 " cursor mv char - forward
@@ -418,7 +419,11 @@ nnoremap " <<
 nnoremap # >>
 
 " indent correct
-nnoremap ; ==^
+if has('mac')
+  nnoremap ; ==^
+else
+  nnoremap ; :call N_cursor_mv_line_start_or_new_line()<cr>
+endif
 
 " char toggle ( upper / lower )
 nnoremap u :call N_char_tgl1()<cr>
@@ -705,6 +710,9 @@ vnoremap v <c-v>
 " opn brwsr
 vnoremap gb <plug>(openbrowser-smart-search)
 
+" opn app
+vnoremap go :call V_opn_app()<cr>
+
 " 
 " cursor mv
 " 
@@ -837,8 +845,11 @@ vnoremap D :call V_line_end_space_del()<cr>
 vnoremap <c-w> :call V_mv_str("h")<cr>
 
 " mv str forward
-vnoremap <c-e> :call V_mv_str("l")<cr>
-
+if has('mac')
+  vnoremap <c-e> :call V_mv_str("l")<cr>
+else
+  vnoremap <c-e> g_
+endif
 " mv line
 "vnoremap J :call V_mv_line("j")<cr>
 "vnoremap K :call V_mv_line("k")<cr>
@@ -909,6 +920,7 @@ vnoremap <leader>o "ay:Rg <c-r>a<cr>
 
 " tag jmp
 vnoremap t :call V_tag_jmp()<cr>
+
 
 " 
 " nop
@@ -1005,7 +1017,7 @@ vnoremap <c-x> <esc>
 vnoremap gg <esc>
 "vnoremap gj <esc>
 "vnoremap gk <esc>
-vnoremap go <esc>
+"vnoremap go <esc>
 
 "
 " mode insert
@@ -1108,7 +1120,7 @@ inoremap <c-u> <c-r>=I_symbol()<cr>
 inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=I_bracket()<cr>"
 
 " ins markdown
-inoremap <c-k> <c-r>=I_markdown()<cr>
+inoremap <expr> <c-k> pumvisible() ? "<c-p>" : "<c-r>=I_markdown()<cr>"
 
 " ins num
 "inoremap xx <c-r>=I_num()<cr>
@@ -2515,12 +2527,32 @@ function Opn_app()
     
     let res = system('open     ' . l:path)
     
-  elseif has('win32')
+  "elseif has('win64')
+  else
+    "echo "win"
     
-    "let res = system('start    ' . l:path)
     let res = system('explorer ' . l:path)
   endif
   
+  "echo res
+endfunction
+
+function V_opn_app()
+  
+  "let l:path = Cursor_filepath()
+  let l:path = V_slctd_str()
+  echo l:path
+  
+  if     has('mac')
+    
+    let l:exe = 'open     ' . l:path
+    
+  else
+    let l:exe = 'explorer ' . l:path
+  endif
+  echo l:exe
+  
+  let res = system(l:exe)
   "echo res
 endfunction
 
