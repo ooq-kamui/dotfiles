@@ -1108,7 +1108,7 @@ inoremap <c-u> <c-r>=I_symbol()<cr>
 inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=I_bracket()<cr>"
 
 " ins markdown
-inoremap <c-k> <c-r>=I_markdown()<cr>
+inoremap <c-_> <c-r>=I_markdown()<cr>
 
 " ins num
 "inoremap xx <c-r>=I_num()<cr>
@@ -1138,13 +1138,13 @@ endfunc
 
 func! I_bracket() abort
   "call complete( col('.'), [ '()', '""', '{}', "''", '[]' ])
-  call complete( col('.'), [ '()', '""', '{}', "''", '[]', '``' ])
+  call complete( col('.'), [ '()', '""', '{}', "''", '[]' ])
   " [, '<>', '``']
   return ''
 endfunc
 
 func! I_markdown() abort
-  call complete( col('.'), [ '- [ ] ', '```' ])
+  call complete( col('.'), [ '- [ ] ', '```', '``' ])
   return ''
 endfunc
 
@@ -1204,12 +1204,13 @@ endfunc
 " nop
 " 
 
-inoremap <c-_> <nop>
+"inoremap <c-_> <nop>
 "inoremap <c-:> <nop> " non
 "inoremap <c-;> <nop>
 
 inoremap <c-b> <nop>
 "inoremap <c-g> <nop>
+"inoremap <c-k> <nop>
 "inoremap <c-n> <nop>
 "inoremap <c-p> <nop>
 "inoremap <c-s> <nop>
