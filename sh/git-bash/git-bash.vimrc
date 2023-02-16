@@ -2541,14 +2541,15 @@ function V_opn_app()
   
   "let l:path = Cursor_filepath()
   let l:path = V_slctd_str()
-  echo l:path
+  "echo l:path
   
   if     has('mac')
     
-    let l:exe = 'open     ' . l:path
+    let l:exe = 'open     ' .       l:path
     
   else
-    let l:exe = 'explorer ' . l:path
+    "let l:exe = 'explorer ' . l:path
+    let l:exe = 'explorer ' . "'" . l:path . "'"
   endif
   echo l:exe
   

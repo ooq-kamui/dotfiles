@@ -21,11 +21,15 @@ alias ll_='ll -d .*'
 
 alias vi='vi -p'
 
+alias opn='explorer'
 
-alias fzf="winpty fzf"
+#alias fzf="winpty fzf"
 #alias ff="winpty ff"
 
 
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+
+
+cd
 
