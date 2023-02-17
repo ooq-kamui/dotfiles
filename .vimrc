@@ -1335,6 +1335,7 @@ autocmd QuickFixCmdPost grep,vimgrep tab cw
 call plug#begin()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jacquesbh/vim-showmarks'
 Plug 'mattn/vim-molder'
 "Plug 'mattn/vim-molder-operations'

@@ -1150,13 +1150,13 @@ endfunc
 
 func! I_bracket() abort
   "call complete( col('.'), [ '()', '""', '{}', "''", '[]' ])
-  call complete( col('.'), [ '()', '""', '{}', "''", '[]', '``' ])
+  call complete( col('.'), [ '()', '""', '{}', "''", '[]' ])
   " [, '<>', '``']
   return ''
 endfunc
 
 func! I_markdown() abort
-  call complete( col('.'), [ '- [ ] ', '```' ])
+  call complete( col('.'), [ '- [ ] ', '```', '``' ])
   return ''
 endfunc
 
