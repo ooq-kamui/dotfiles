@@ -1149,7 +1149,6 @@ func! I_symbol() abort
 endfunc
 
 func! I_bracket() abort
-  "call complete( col('.'), [ '()', '""', '{}', "''", '[]' ])
   call complete( col('.'), [ '()', '""', '{}', "''", '[]' ])
   " [, '<>', '``']
   return ''
@@ -1321,11 +1320,17 @@ func! Grep(opt) abort
   let l:str = escape(l:str, '\({')
   "let l:str = substitute(l:str, "(", '\\(', "")
 
-  exe 'r! rg -n -s "'.l:str.'"'
-  \           . ' -g "*.lua" -g "*.script" -g "*.gui_script"'
-  \           . ' -g "*.txt" -g "*.json" -g "*.fish" -g "*.vim"'
-  \           . ' -g "*.html" -g "*.js" -g "*.css"'
+  "exe 'r! rg -n -s "'.l:str.'"'
+  "\           . ' -g "*.lua"  -g "*.script" -g "*.gui_script"'
+  "\           . ' -g "*.txt"  -g "*.json"   -g "*.fish" -g "*.vim"'
+  "\           . ' -g "*.html" -g "*.js"     -g "*.css"  -g "*.md" '
+  "\           . ' ' . a:opt
+  
+  exe 'r! grep -rn "'.l:str.'"'
+  \           . ' --include="*.txt" --include="*.md"'
+  \           . ' --include="*.xvp"'
   \           . ' ' . a:opt
+  
 endfunc
 
 " cmd grep = rg

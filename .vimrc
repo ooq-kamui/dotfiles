@@ -1311,9 +1311,9 @@ func! Grep(opt) abort
   "let l:str = substitute(l:str, "(", '\\(', "")
 
   exe 'r! rg -n -s "'.l:str.'"'
-  \           . ' -g "*.lua" -g "*.script" -g "*.gui_script"'
-  \           . ' -g "*.txt" -g "*.json" -g "*.fish" -g "*.vim"'
-  \           . ' -g "*.html" -g "*.js" -g "*.css"'
+  \           . ' -g "*.lua"  -g "*.script" -g "*.gui_script"'
+  \           . ' -g "*.txt"  -g "*.json"   -g "*.fish" -g "*.vim"'
+  \           . ' -g "*.html" -g "*.js"     -g "*.css"  -g "*.md" '
   \           . ' ' . a:opt
 endfunc
 
