@@ -17,7 +17,9 @@ bind '"\C-s": backward-char'
 bind '"\C-k": kill-word'
 
 alias ll='ls -la'
-alias ll_='ll -d .*'
+alias l='ls -1a'
+alias ll.='ls -ld .*'
+alias l.='ls -1d .*'
 
 alias vi='vi -p'
 
