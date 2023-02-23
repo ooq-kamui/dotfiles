@@ -21,6 +21,8 @@ alias l='ls -1a'
 alias ll.='ls -ld .*'
 alias l.='ls -1d .*'
 
+alias cp='cp -p'
+
 alias vi='vi -p'
 
 alias opn='explorer'
