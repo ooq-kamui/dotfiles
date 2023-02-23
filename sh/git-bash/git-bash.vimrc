@@ -56,6 +56,9 @@ hi Comment     ctermfg=14         ctermbg=none     cterm=none
 hi FullWidthSpace ctermbg=white
 match FullWidthSpace /　/
 
+autocmd FileType markdown hi MdCr ctermbg=darkblue
+autocmd FileType markdown match MdCr /\S  $/
+
 au BufNewFile,BufRead *.script     set filetype=lua
 au BufNewFile,BufRead *.gui_script set filetype=lua
 au BufNewFile,BufRead *.fish       set filetype=fish
@@ -1323,7 +1326,7 @@ func! Grep(opt) abort
   "exe 'r! rg -n -s "'.l:str.'"'
   "\           . ' -g "*.lua"  -g "*.script" -g "*.gui_script"'
   "\           . ' -g "*.txt"  -g "*.json"   -g "*.fish" -g "*.vim"'
-  "\           . ' -g "*.html" -g "*.js"     -g "*.css"  -g "*.md" '
+  "\           . ' -g "*.html" -g "*.js"     -g "*.css"  -g "*.md"'
   "\           . ' ' . a:opt
   
   exe 'r! grep -rn "'.l:str.'"'

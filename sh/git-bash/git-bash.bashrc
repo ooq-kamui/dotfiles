@@ -1,7 +1,7 @@
 
-
 export PS1="_ "
 
+stty stop undef
 
 #PATH=$PATH':/c/Users/yinou/.fzf/bin'
 #PATH=$PATH':/c/Users/yinou/.config/fzf'
@@ -33,5 +33,5 @@ alias opn='explorer'
 
 
 
-cd
+cd ~/Downloads
 

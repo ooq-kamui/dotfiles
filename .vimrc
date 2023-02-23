@@ -56,6 +56,9 @@ hi Comment     ctermfg=14         ctermbg=none     cterm=none
 hi FullWidthSpace ctermbg=white
 match FullWidthSpace /　/
 
+autocmd FileType markdown hi MdCr ctermbg=darkblue
+autocmd FileType markdown match MdCr /\S  $/
+
 au BufNewFile,BufRead *.script     set filetype=lua
 au BufNewFile,BufRead *.gui_script set filetype=lua
 au BufNewFile,BufRead *.fish       set filetype=fish
