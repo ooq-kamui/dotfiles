@@ -20,6 +20,9 @@ alias ll='ls -la'
 alias l='ls -1a'
 alias ll.='ls -ld .*'
 alias l.='ls -1d .*'
+alias lf='ls -1d $( find * -type f   -name "*" )'
+alias ld='ls -1d $( find * -type f,d -name "*" )'
+alias ldo='ls -1d $( find * -type d   -name "*" )'
 
 alias cp='cp -p'
 

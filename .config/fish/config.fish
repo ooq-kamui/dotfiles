@@ -68,6 +68,7 @@ alias date_ymd   "date +'%Y-%m-%d'"
 alias date_ymdhm "date +'%Y-%m-%d %H:%M'"
 alias date_y1 "date_y 1"
 alias date_y2 "date_y 2"
+alias da      "date +'%Y-%m-%d %a'"
 #alias date "date +'%Y-%m-%d %H:%M %a %Z'"
 
 alias ff "fd -tf"
