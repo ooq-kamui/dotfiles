@@ -3,6 +3,9 @@ export PS1="_ "
 
 stty stop undef
 
+
+PATH=$PATH:$HOME/sh
+
 #PATH=$PATH':/c/Users/yinou/.fzf/bin'
 #PATH=$PATH':/c/Users/yinou/.config/fzf'
 #PATH=$PATH':/c/Users/yinou/.config/ff'

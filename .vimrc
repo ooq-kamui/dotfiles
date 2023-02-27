@@ -402,6 +402,9 @@ nnoremap <c-d> D
 " del cr ( line join )
 nnoremap <c-m> J
 
+" markdown todo x
+"nnoremap X xx
+
 " mv line up
 "nnoremap xx "0ddk"0P
 
@@ -652,6 +655,7 @@ nnoremap P <esc>
 nnoremap U <esc>
 "nnoremap W <esc>
 nnoremap V <esc>
+"nnoremap X <esc>
 "nnoremap Y <esc>
 
 "nnoremap <c-a> <esc>
