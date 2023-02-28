@@ -527,8 +527,13 @@ nnoremap :r :r!
 nnoremap :l :Lf 
 
 " grep [rg]   ( read )
-nnoremap :g :call Grep("")<cr>
-nnoremap :G :call Grep("-w")<cr>
+"nnoremap :g :call Grep("")
+"nnoremap :G :call Grep("-w")
+nnoremap :g :GrepStr 
+nnoremap :G :GrepWrd 
+
+command! -nargs=? GrepStr call Grep_str(<q-args>)
+command! -nargs=? GrepWrd call Grep_wrd(<q-args>)
 
 " 
 " tab
@@ -1317,17 +1322,15 @@ end
 " 
 " grep ( rg )
 " 
-func! Grep(opt) abort
+func! Grep(opt, p_str) abort
   
-  let l:str = @/
+  if a:p_str != ""
+    let l:str = a:p_str
+  else
+    let l:str = @/
+  endif
+    
   let l:str = escape(l:str, '\({')
-  "let l:str = substitute(l:str, "(", '\\(', "")
-
-  "exe 'r! rg -n -s "'.l:str.'"'
-  "\           . ' -g "*.lua"  -g "*.script" -g "*.gui_script"'
-  "\           . ' -g "*.txt"  -g "*.json"   -g "*.fish" -g "*.vim"'
-  "\           . ' -g "*.html" -g "*.js"     -g "*.css"  -g "*.md"'
-  "\           . ' ' . a:opt
   
   exe 'r! grep -rn "'.l:str.'"'
   \           . ' --include="*.txt" --include="*.md"'
@@ -1336,15 +1339,19 @@ func! Grep(opt) abort
   
 endfunc
 
-" cmd grep = rg
-"if executable('rg')
-"  let &grepprg = 'rg -n -s -g "*.lua"'
-"  set grepformat=%f:%l:%m
-"endif
+func! Grep_str(str) abort
+  
+  call Grep(""  , a:str)
+endfunc
 
-"
+func! Grep_wrd(str) abort
+  
+  call Grep("-w", a:str)
+endfunc
+
+" 
 " quickfix
-"
+" 
 autocmd QuickFixCmdPost grep,vimgrep tab cw
 
 
@@ -2516,7 +2523,7 @@ endfunc
 
 func! Opn_grep_work() abort
 
-  call Opn('doc/grep.lua')
+  call Opn('doc/grep.txt')
 endfunc
 
 func! Opn_memo() abort
@@ -2691,28 +2698,6 @@ endfunc
 
 " ynk init
 call Ynk__clipboard()
-
-
-" 
-" use not ( old )
-" 
-
-" file rcnt qf " use not
-command! -nargs=0 FileRcntQf
-\ call setqflist([], ' ', {'lines' : v:oldfiles, 'efm' : '%f',
-\                          'quickfixtextfunc' : 'Qf_old_files'}) | tab cw
-
-func! Qf_old_files(info)
-
-  " info frm quickfix
-  let items = getqflist({'id' : a:info.id, 'items' : 1}).items
-  let l = []
-  for idx in range(a:info.start_idx - 1, a:info.end_idx - 1)
-    " mod file-name simple
-    call add(l, fnamemodify(bufname(items[idx].bufnr), ':p:.'))
-  endfor
-  return l
-endfunc
 
 " netrw " use not
 
