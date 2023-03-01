@@ -149,7 +149,6 @@ nnoremap <c-w> :q<cr>
 
 " quit force
 nnoremap :q :q!
-"nnoremap Q :q!
 
 " quit other
 nnoremap W :tabo<cr>
@@ -422,11 +421,7 @@ nnoremap " <<
 nnoremap # >>
 
 " indent correct
-if has('mac')
-  nnoremap ; ==^
-else
-  nnoremap ; :call N_cursor_mv_line_start_or_new_line()<cr>
-endif
+nnoremap ; :call N_cursor_mv_line_start_or_new_line()<cr>
 
 " char toggle ( upper / lower )
 nnoremap u :call N_char_tgl1()<cr>
@@ -459,7 +454,7 @@ nnoremap E :call N_srch_str__(v:true)<cr>
 
 " srch cmdline
 nnoremap <leader>i /
-"nnoremap <leader>k /
+nnoremap <c-f>     /
 
 " srch str history ( fzf )
 nnoremap <leader>n :SrchHstry<cr>
@@ -518,7 +513,6 @@ nnoremap rk [`
 
 " cmd history ( fzf )
 nnoremap <leader>j :CmdHstry<cr>
-"nnoremap <leader>l :CmdHstry<cr>
 
 " ins sys cmd ( read )
 nnoremap :r :r! 
@@ -527,10 +521,10 @@ nnoremap :r :r!
 nnoremap :l :Lf 
 
 " grep [rg]   ( read )
-"nnoremap :g :call Grep("")
-"nnoremap :G :call Grep("-w")
 nnoremap :g :GrepStr 
 nnoremap :G :GrepWrd 
+"nnoremap :g :call Grep("")
+"nnoremap :G :call Grep("-w")
 
 command! -nargs=? GrepStr call Grep_str(<q-args>)
 command! -nargs=? GrepWrd call Grep_wrd(<q-args>)
@@ -662,6 +656,7 @@ nnoremap P <esc>
 nnoremap U <esc>
 "nnoremap W <esc>
 nnoremap V <esc>
+"nnoremap X <esc>
 "nnoremap Y <esc>
 
 "nnoremap <c-a> <esc>
@@ -669,7 +664,7 @@ nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
 "nnoremap <c-e> <esc>
-nnoremap <c-f> <esc>
+"nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
@@ -853,11 +848,8 @@ vnoremap D :call V_line_end_space_del()<cr>
 vnoremap <c-w> :call V_mv_str("h")<cr>
 
 " mv str forward
-if has('mac')
-  vnoremap <c-e> :call V_mv_str("l")<cr>
-else
-  vnoremap <c-e> g_
-endif
+vnoremap <c-e> g_
+  
 " mv line
 "vnoremap J :call V_mv_line("j")<cr>
 "vnoremap K :call V_mv_line("k")<cr>
@@ -1053,7 +1045,7 @@ inoremap <c-s> <c-o>h
 "inoremap <c-f> <c-o>e<c-o>l
 
 " cursor mv word back
-"inoremap <c-q> <c-o>b
+"inoremap xx <c-o>b
 
 " cursor mv d
 inoremap <c-n> <down>
@@ -1120,15 +1112,13 @@ inoremap <kPageUp>   9
 
 " ins symbol
 inoremap <c-u> <c-r>=I_symbol()<cr>
-"inoremap <c-g> <c-r>=I_symbol()<cr>
-"inoremap <c-n> <c-r>=I_symbol()<cr>
-"inoremap <c-_> <c-r>=I_symbol()<cr>
 
 " ins bracket
 inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=I_bracket()<cr>"
 
 " ins markdown
-inoremap <expr> <c-k> pumvisible() ? "<c-p>" : "<c-r>=I_markdown()<cr>"
+inoremap <c-_> <c-r>=I_markdown()<cr>
+inoremap <c-q> <c-r>=I_markdown()<cr>
 
 " ins num
 "inoremap xx <c-r>=I_num()<cr>
@@ -1149,8 +1139,6 @@ inoremap <expr> <c-k> pumvisible() ? "<c-p>" : "<c-r>=I_markdown()<cr>"
 func! I_symbol() abort
 
   let l:lst = ['?', '/', '\', '%', '&', '@']
-  "let l:lst = ['/', '?', '%', '&', '$', '@']
-  "let l:lst = ['!', '#', '$', '%', '&', '^', '~', '|', '?']
 
   call complete(col('.'), l:lst)
   return ''
@@ -1158,12 +1146,11 @@ endfunc
 
 func! I_bracket() abort
   call complete( col('.'), [ '()', '""', '{}', "''", '[]' ])
-  " [, '<>', '``']
   return ''
 endfunc
 
 func! I_markdown() abort
-  call complete( col('.'), [ '- [ ] ', '```', '``' ])
+  call complete( col('.'), [ '- [ ] ', '---', '```', '``' ])
   return ''
 endfunc
 
@@ -1223,12 +1210,13 @@ endfunc
 " nop
 " 
 
-inoremap <c-_> <nop>
+"inoremap <c-_> <nop>
 "inoremap <c-:> <nop> " non
 "inoremap <c-;> <nop>
 
 inoremap <c-b> <nop>
 "inoremap <c-g> <nop>
+"inoremap <c-k> <nop>
 "inoremap <c-n> <nop>
 "inoremap <c-p> <nop>
 "inoremap <c-s> <nop>
@@ -1323,6 +1311,7 @@ end
 " grep ( rg )
 " 
 func! Grep(opt, p_str) abort
+"func! Grep(opt) abort
   
   if a:p_str != ""
     let l:str = a:p_str
@@ -2148,7 +2137,6 @@ endfunc
 
 func! Cursor_filepath() abort
 
-  "let l:str = expand("<cfile>>")
   let l:str = expand("<cfile>")
   return l:str
 endfunc
@@ -2523,18 +2511,16 @@ endfunc
 
 func! Opn_grep_work() abort
 
-  call Opn('doc/grep.txt')
+  call Opn('~/doc/grep.txt')
 endfunc
 
 func! Opn_memo() abort
 
-  call Opn('doc/memo.txt')
+  call Opn('~/doc/memo.txt')
 endfunc
 
 function Opn_app()
   
-  "let l:path = Line_str()
-  "let l:path = matchstr(l:path, '\(\~\|/\|\.\.\)\=\(/\w\+\)\+\.\a\+', 0)
   let l:path = Cursor_filepath()
   "echo l:path
   
@@ -2542,19 +2528,14 @@ function Opn_app()
     
     let res = system('open     ' . l:path)
     
-  "elseif has('win64')
   else
-    "echo "win"
-    
     let res = system('explorer ' . l:path)
   endif
   
-  "echo res
 endfunction
 
 function V_opn_app()
   
-  "let l:path = Cursor_filepath()
   let l:path = V_slctd_str()
   "echo l:path
   
@@ -2563,10 +2544,9 @@ function V_opn_app()
     let l:exe = 'open     ' .       l:path
     
   else
-    "let l:exe = 'explorer ' . l:path
     let l:exe = 'explorer ' . "'" . l:path . "'"
   endif
-  echo l:exe
+  "echo l:exe
   
   let res = system(l:exe)
   "echo res

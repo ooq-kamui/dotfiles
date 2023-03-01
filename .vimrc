@@ -149,7 +149,6 @@ nnoremap <c-w> :q<cr>
 
 " quit force
 nnoremap :q :q!
-"nnoremap Q :q!
 
 " quit other
 nnoremap W :tabo<cr>
@@ -402,9 +401,6 @@ nnoremap <c-d> D
 " del cr ( line join )
 nnoremap <c-m> J
 
-" markdown todo x
-"nnoremap X xx
-
 " mv line up
 "nnoremap xx "0ddk"0P
 
@@ -457,7 +453,7 @@ nnoremap E :call N_srch_str__(v:true)<cr>
 
 " srch cmdline
 nnoremap <leader>i /
-"nnoremap <leader>k /
+nnoremap <c-f>     /
 
 " srch str history ( fzf )
 nnoremap <leader>n :SrchHstry<cr>
@@ -516,7 +512,6 @@ nnoremap rk [`
 
 " cmd history ( fzf )
 nnoremap <leader>j :CmdHstry<cr>
-"nnoremap <leader>l :CmdHstry<cr>
 
 " ins sys cmd ( read )
 nnoremap :r :r! 
@@ -525,8 +520,13 @@ nnoremap :r :r!
 nnoremap :l :Lf 
 
 " grep [rg]   ( read )
+"nnoremap :g :GrepStr 
+"nnoremap :G :GrepWrd 
 nnoremap :g :call Grep("")<cr>
 nnoremap :G :call Grep("-w")<cr>
+
+command! -nargs=? GrepStr call Grep_str(<q-args>)
+command! -nargs=? GrepWrd call Grep_wrd(<q-args>)
 
 " 
 " tab
@@ -663,7 +663,7 @@ nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
 "nnoremap <c-e> <esc>
-nnoremap <c-f> <esc>
+"nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
@@ -711,6 +711,9 @@ vnoremap v <c-v>
 
 " opn brwsr
 vnoremap gb <plug>(openbrowser-smart-search)
+
+" opn app
+vnoremap go :call V_opn_app()<cr>
 
 " 
 " cursor mv
@@ -1012,7 +1015,7 @@ vnoremap <c-x> <esc>
 vnoremap gg <esc>
 "vnoremap gj <esc>
 "vnoremap gk <esc>
-vnoremap go <esc>
+"vnoremap go <esc>
 
 "
 " mode insert
@@ -1040,7 +1043,7 @@ inoremap <c-s> <c-o>h
 "inoremap <c-f> <c-o>e<c-o>l
 
 " cursor mv word back
-"inoremap <c-q> <c-o>b
+"inoremap xx <c-o>b
 
 " cursor mv d
 inoremap <c-n> <down>
@@ -1107,15 +1110,13 @@ inoremap <kPageUp>   9
 
 " ins symbol
 inoremap <c-u> <c-r>=I_symbol()<cr>
-"inoremap <c-g> <c-r>=I_symbol()<cr>
-"inoremap <c-n> <c-r>=I_symbol()<cr>
-"inoremap <c-_> <c-r>=I_symbol()<cr>
 
 " ins bracket
 inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=I_bracket()<cr>"
 
 " ins markdown
 inoremap <c-_> <c-r>=I_markdown()<cr>
+inoremap <c-q> <c-r>=I_markdown()<cr>
 
 " ins num
 "inoremap xx <c-r>=I_num()<cr>
@@ -1136,22 +1137,18 @@ inoremap <c-_> <c-r>=I_markdown()<cr>
 func! I_symbol() abort
 
   let l:lst = ['?', '/', '\', '%', '&', '@']
-  "let l:lst = ['/', '?', '%', '&', '$', '@']
-  "let l:lst = ['!', '#', '$', '%', '&', '^', '~', '|', '?']
 
   call complete(col('.'), l:lst)
   return ''
 endfunc
 
 func! I_bracket() abort
-  "call complete( col('.'), [ '()', '""', '{}', "''", '[]' ])
   call complete( col('.'), [ '()', '""', '{}', "''", '[]' ])
-  " [, '<>', '``']
   return ''
 endfunc
 
 func! I_markdown() abort
-  call complete( col('.'), [ '- [ ] ', '```', '``' ])
+  call complete( col('.'), [ '- [ ] ', '---', '```', '``' ])
   return ''
 endfunc
 
@@ -1311,11 +1308,16 @@ end
 " 
 " grep ( rg )
 " 
-func! Grep(opt) abort
+func! Grep(opt, p_str) abort
+"func! Grep(opt) abort
   
-  let l:str = @/
+  if a:p_str != ""
+    let l:str = a:p_str
+  else
+    let l:str = @/
+  endif
+  
   let l:str = escape(l:str, '\({')
-  "let l:str = substitute(l:str, "(", '\\(', "")
 
   exe 'r! rg -n -s "'.l:str.'"'
   \           . ' -g "*.lua"  -g "*.script" -g "*.gui_script"'
@@ -1324,15 +1326,19 @@ func! Grep(opt) abort
   \           . ' ' . a:opt
 endfunc
 
-" cmd grep = rg
-"if executable('rg')
-"  let &grepprg = 'rg -n -s -g "*.lua"'
-"  set grepformat=%f:%l:%m
-"endif
+func! Grep_str(str) abort
+  
+  call Grep(""  , a:str)
+endfunc
 
-"
+func! Grep_wrd(str) abort
+  
+  call Grep("-w", a:str)
+endfunc
+
+" 
 " quickfix
-"
+" 
 autocmd QuickFixCmdPost grep,vimgrep tab cw
 
 
@@ -2129,7 +2135,6 @@ endfunc
 
 func! Cursor_filepath() abort
 
-  "let l:str = expand("<cfile>>")
   let l:str = expand("<cfile>")
   return l:str
 endfunc
@@ -2514,8 +2519,6 @@ endfunc
 
 function Opn_app()
   
-  "let l:path = Line_str()
-  "let l:path = matchstr(l:path, '\(\~\|/\|\.\.\)\=\(/\w\+\)\+\.\a\+', 0)
   let l:path = Cursor_filepath()
   "echo l:path
   
@@ -2523,12 +2526,27 @@ function Opn_app()
     
     let res = system('open     ' . l:path)
     
-  elseif has('win32')
-    
-    "let res = system('start    ' . l:path)
+  else
     let res = system('explorer ' . l:path)
   endif
   
+endfunction
+
+function V_opn_app()
+  
+  let l:path = V_slctd_str()
+  "echo l:path
+  
+  if     has('mac')
+    
+    let l:exe = 'open     ' .       l:path
+    
+  else
+    let l:exe = 'explorer ' . "'" . l:path . "'"
+  endif
+  "echo l:exe
+  
+  let res = system(l:exe)
   "echo res
 endfunction
 
@@ -2658,28 +2676,6 @@ endfunc
 
 " ynk init
 call Ynk__clipboard()
-
-
-" 
-" use not ( old )
-" 
-
-" file rcnt qf " use not
-command! -nargs=0 FileRcntQf
-\ call setqflist([], ' ', {'lines' : v:oldfiles, 'efm' : '%f',
-\                          'quickfixtextfunc' : 'Qf_old_files'}) | tab cw
-
-func! Qf_old_files(info)
-
-  " info frm quickfix
-  let items = getqflist({'id' : a:info.id, 'items' : 1}).items
-  let l = []
-  for idx in range(a:info.start_idx - 1, a:info.end_idx - 1)
-    " mod file-name simple
-    call add(l, fnamemodify(bufname(items[idx].bufnr), ':p:.'))
-  endfor
-  return l
-endfunc
 
 " netrw " use not
 
