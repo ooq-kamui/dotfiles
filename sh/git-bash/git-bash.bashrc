@@ -19,9 +19,10 @@ bind '"\C-s": backward-char'
 
 bind '"\C-k": kill-word'
 
-alias ll='ls -la'
+#alias ll='ls -la'
+alias ll='ls -lgohAG --time-style="+%Y-%m-%d %H:%M"'
+alias ll.='ll -d .*'
 alias l='ls -1a'
-alias ll.='ls -ld .*'
 alias l.='ls -1d .*'
 alias lf='ls -1d $( find * -type f )'
 alias ld='ls -1d $( find * )'
