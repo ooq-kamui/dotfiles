@@ -2135,7 +2135,11 @@ endfunc
 
 func! Cursor_filepath() abort
 
-  let l:str = expand("<cfile>")
+  if has('mac')
+    let l:str = expand("<cfile>")
+  else
+    let l:str = Line_str()
+  endif
   return l:str
 endfunc
 
@@ -2520,16 +2524,14 @@ endfunc
 function Opn_app()
   
   let l:path = Cursor_filepath()
+  let l:path = trim(l:path)
   "echo l:path
   
-  if     has('mac')
-    
-    let res = system('open     ' . l:path)
-    
+  if has('mac')
+    let res = system('open     '       . l:path      )
   else
-    let res = system('explorer ' . l:path)
+    let res = system('explorer ' . "'" . l:path . "'")
   endif
-  
 endfunction
 
 function V_opn_app()
@@ -2537,10 +2539,8 @@ function V_opn_app()
   let l:path = V_slctd_str()
   "echo l:path
   
-  if     has('mac')
-    
+  if has('mac')
     let l:exe = 'open     ' .       l:path
-    
   else
     let l:exe = 'explorer ' . "'" . l:path . "'"
   endif
