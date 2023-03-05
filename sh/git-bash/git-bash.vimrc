@@ -157,7 +157,8 @@ nnoremap W :tabo<cr>
 nnoremap <c-z> <c-z>
 
 " save
-nnoremap a :w<cr>
+"nnoremap a :w<cr>
+nnoremap a :call Save()<cr>
 
 " reload
 "nnoremap xx :e!
@@ -197,7 +198,10 @@ nnoremap gg :call Opn_grep_work()<cr>
 nnoremap gb <plug>(openbrowser-smart-search)
 
 " opn app
-nnoremap go :call Opn_app()<cr>
+nnoremap go :call Opn_app_cursor_filepath()<cr>
+
+" opn markdown preview
+nnoremap gn :call Md_2_html()<cr>
 
 " 
 " cursor mv
@@ -523,8 +527,8 @@ nnoremap :l :Lf
 " grep [rg]   ( read )
 nnoremap :g :GrepStr 
 nnoremap :G :GrepWrd 
-"nnoremap :g :call Grep("")
-"nnoremap :G :call Grep("-w")
+"nnoremap :g :call Grep('')<cr>
+"nnoremap :G :call Grep('-w')<cr>
 
 command! -nargs=? GrepStr call Grep_str(<q-args>)
 command! -nargs=? GrepWrd call Grep_wrd(<q-args>)
@@ -692,6 +696,7 @@ nnoremap <c-z> <esc>
 "nnoremap gk <esc>
 nnoremap gl <esc>
 "nnoremap gm <esc>
+"nnoremap gn <esc>
 "nnoremap go <esc>
 nnoremap gt <esc>
 "nnoremap gu <esc>
@@ -848,8 +853,8 @@ vnoremap D :call V_line_end_space_del()<cr>
 vnoremap <c-w> :call V_mv_str("h")<cr>
 
 " mv str forward
-vnoremap <c-e> g_
-  
+vnoremap <c-e> :call V_mv_str("l")<cr>
+
 " mv line
 "vnoremap J :call V_mv_line("j")<cr>
 "vnoremap K :call V_mv_line("k")<cr>
@@ -920,7 +925,6 @@ vnoremap <leader>o "ay:Rg <c-r>a<cr>
 
 " tag jmp
 vnoremap t :call V_tag_jmp()<cr>
-
 
 " 
 " nop
@@ -1328,15 +1332,6 @@ func! Grep(opt, p_str) abort
   
 endfunc
 
-func! Grep_str(str) abort
-  
-  call Grep(""  , a:str)
-endfunc
-
-func! Grep_wrd(str) abort
-  
-  call Grep("-w", a:str)
-endfunc
 
 " 
 " quickfix
@@ -1355,6 +1350,7 @@ Plug 'jacquesbh/vim-showmarks'
 Plug 'mattn/vim-molder'
 "Plug 'mattn/vim-molder-operations'
 Plug 'tyru/open-browser.vim'
+"Plug 'iamcco/markdown-preview.vim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 call plug#end()
 " exe
 " :PlugInstall
@@ -1496,6 +1492,39 @@ au FileType * set fo-=c fo-=r fo-=o
 " vim script
 " 
 
+func! Save() abort
+  
+  exe 'w'
+endfunc
+
+func! Md_2_html() abort
+  
+  if &filetype != 'markdown'
+    
+    return
+  endif
+  
+  let l:path = expand('%')
+  
+  exe '! node ~/sh/nodejs/md_2_html.js ' . l:path
+  
+  call Opn_app(l:path . '.html')
+endfunc
+
+" grep
+
+func! Grep_str(str) abort
+  
+  call Grep(''  , a:str)
+endfunc
+
+func! Grep_wrd(str) abort
+  
+  call Grep('-w', a:str)
+endfunc
+
+" ynk
+
 func! Ynk__clipboard() abort
 
   let @0 = @+
@@ -1525,6 +1554,7 @@ func! V_ynk() abort
   "let @0 = l:str
   "let @+ = l:str
 endfunc
+
 
 func! Is_line_emp() abort
   
@@ -2142,6 +2172,9 @@ func! Cursor_filepath() abort
   else
     let l:str = Line_str()
   endif
+  
+  let l:str = trim(l:str)
+  
   return l:str
 endfunc
 
@@ -2491,8 +2524,6 @@ command! -nargs=? -complete=dir Lf call Lf(<q-args>)
 func! Lf(dir) abort
 
   let l:exe = 'r! lf ' . trim(a:dir)
-  "let l:exe = 'r! ls -dFA ' . trim(a:dir) . '**.*'
-  "echo l:exe
   exe l:exe
 endfunc
 
@@ -2523,33 +2554,35 @@ func! Opn_memo() abort
   call Opn('~/doc/memo.txt')
 endfunc
 
-function Opn_app()
+function Opn_app(path)
   
-  let l:path = Cursor_filepath()
-  let l:path = trim(l:path)
-  "echo l:path
+  let l:path = a:path
   
   if has('mac')
+    
     let res = system('open     '       . l:path      )
+    
   else
     let res = system('explorer ' . "'" . l:path . "'")
   endif
 endfunction
 
+function Opn_app_cursor_filepath()
+  
+  let l:path = Cursor_filepath()
+  
+  call Opn_app(l:path)
+  
+endfunction
+
 function V_opn_app()
   
   let l:path = V_slctd_str()
-  "echo l:path
   
-  if has('mac')
-    let l:exe = 'open     ' .       l:path
-  else
-    let l:exe = 'explorer ' . "'" . l:path . "'"
-  endif
-  "echo l:exe
+  let l:path = trim(l:path)
   
-  let res = system(l:exe)
-  "echo res
+  call Opn_app(l:path)
+  
 endfunction
 
 let g:mark_alph_def = [
