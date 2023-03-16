@@ -571,13 +571,17 @@ nnoremap <kHome>     7
 nnoremap <kUp>       8
 nnoremap <kPageUp>   9
 
-"
+" 
 " esc
-"
+" 
 nnoremap <esc>   <esc>
 "nnoremap <space> <esc>
 "nnoremap <cr>    <esc>
 nnoremap <bs>    <esc>
+"nnoremap <tab> <esc>
+nnoremap <c-tab> <nop>
+let &t_TI = ""
+let &t_TE = ""
 
 nnoremap = <esc>
 nnoremap @ <esc>
