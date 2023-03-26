@@ -1094,7 +1094,7 @@ inoremap <expr> <c-y> pumvisible() ? "<c-e>" : "<c-n>"
 "inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
 
 " ins bracket
-inoremap < <><c-o>h
+"inoremap < <><c-o>h
 "inoremap ( ()<c-o>h
 "inoremap { {}<c-o>h
 "inoremap [ []<c-o>h
@@ -1148,7 +1148,9 @@ func! I_symbol() abort
 endfunc
 
 func! I_bracket() abort
-  call complete( col('.'), [ '()', '""', '{}', "''", '[]' ])
+  "call complete( col('.'), [ '()', '""', '{}', "''", '[]' ])
+  "call complete( col('.'), [ '()', '""', '{}', "''", '[]', '<>' ])
+  call complete( col('.'), [ '()', "''", '""', '[]', '<>', '{}' ])
   return ''
 endfunc
 
