@@ -1,10 +1,10 @@
 
-Private Const book_name = "あdcsn-tbl-yn.xlsm"
+Private Const book_name = "dcsn-tbl-yn.xlsm"
 
 Private Const sheet_s_row = 3
 Private Const sheet_s_col = 1
 
-'Private Const dcsn_tbl_col_max = 16000
+Private Const dcsn_tbl_col_max = 16384
 
 ' 
 ' trigger
@@ -14,7 +14,11 @@ Private Sub Worksheet_Change(ByVal Target As Range)
   Call log("Worksheet_Change start")
   Call log("ActiveWorkbook.Name:", ActiveWorkbook.Name)
 
-  If ActiveWorkbook.Name <> book_name Then
+  'If ActiveWorkbook.Name <> book_name Then
+  '  Exit Sub
+  'End If
+  
+  If Range("Z1").Value <> "ON" Then
     Exit Sub
   End If
 
@@ -35,8 +39,6 @@ Sub main()
   Dim sheet
   Set sheet = ActiveSheet
 
-  Call tbl_clr(sheet, sheet_s_row)
-
   Dim t_lvl_num() As Integer
   
   Dim st
@@ -47,28 +49,32 @@ Sub main()
   
   Call log("t_lvl_num_idx_max", ar_idx_max(t_lvl_num))
   
-  'Dim t_dcsn_tbl_col
-  't_dcsn_tbl_col = dcsn_tbl_col(t_lvl_num)
-  'If t_dcsn_tbl_col > dcsn_tbl_col_max Then
-  '  MsgBox "col num: " + t_dcsn_tbl_col + vbCrLf + "max: " + dcsn_tbl_col_max
-  '  Exit Sub
-  'End If
+  Dim t_dcsn_tbl_col
+  t_dcsn_tbl_col = dcsn_tbl_col(t_lvl_num)
+  If t_dcsn_tbl_col > dcsn_tbl_col_max Then
+    Dim msg_str
+    msg_str = "col:" + Str(t_dcsn_tbl_col) + " > max:" + Str(dcsn_tbl_col_max)
+    MsgBox msg_str
+    Exit Sub
+  End If
+  
+  Call tbl_clr(sheet, sheet_s_row)
   
   Call fct__Y_rcrsv(sheet, sheet_s_row, sheet_s_col, t_lvl_num)
 End Sub
 
-'Function dcsn_tbl_col(p_lvl_num) As Long
-'
-'  Dim dcsn_tbl_col_tmp
-'  dcsn_tbl_col_tmp = 1
-'
-'  For idx = 0 To ar_idx_max(p_lvl_num)
-'  
-'    dcsn_tbl_col_tmp = dcsn_tbl_col_tmp * p_lvl_num(idx)
-'  Next idx
-'
-'  dcsn_tbl_col = dcsn_tbl_col_tmp
-'End Function
+Function dcsn_tbl_col(p_lvl_num) As Long
+
+  Dim dcsn_tbl_col_tmp
+  dcsn_tbl_col_tmp = 1
+
+  For idx = 0 To ar_idx_max(p_lvl_num)
+  
+    dcsn_tbl_col_tmp = dcsn_tbl_col_tmp * p_lvl_num(idx)
+  Next idx
+
+  dcsn_tbl_col = dcsn_tbl_col_tmp
+End Function
 
 Function lvl_num(sheet, p_lvl_num As variant) As Long
   Call log("lvl_num start")
@@ -243,6 +249,18 @@ Function ar_push(ar As Variant, addValue As Variant) As Long
 End Function
 
 Sub log(ParamArray arg() As Variant)
+
+  Dim flg
+  flg = False
+
+  If flg = False Then
+    Exit Sub
+  End If
+  
+  'Debug.Print(Join(arg, "  "))
+End Sub
+
+Sub log_dev(ParamArray arg() As Variant)
 
   Dim flg
   flg = False

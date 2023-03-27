@@ -285,7 +285,7 @@ nnoremap <down> <c-e>
 "nnoremap <leader>r zt
 
 " scroll cursor line middle
-nnoremap F zz
+"nnoremap F zz
 "nnoremap <leader>f zz
 
 " cursor mv window nxt
@@ -641,7 +641,7 @@ nnoremap B <esc>
 "nnoremap C <esc>
 "nnoremap D <esc>
 "nnoremap E <esc>
-"nnoremap F <esc>
+nnoremap F <esc>
 nnoremap G <esc>
 nnoremap H <esc>
 "nnoremap I <esc>
