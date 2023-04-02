@@ -56,9 +56,6 @@ hi Comment     ctermfg=14         ctermbg=none     cterm=none
 hi FullWidthSpace ctermbg=white
 match FullWidthSpace /　/
 
-"autocmd FileType markdown hi MdCr ctermbg=darkblue
-"autocmd FileType markdown match MdCr /\S  $/
-
 au BufNewFile,BufRead *.script     set filetype=lua
 au BufNewFile,BufRead *.gui_script set filetype=lua
 au BufNewFile,BufRead *.fish       set filetype=fish
@@ -201,7 +198,10 @@ nnoremap gb <plug>(openbrowser-smart-search)
 nnoremap go :call Opn_app_cursor_filepath()<cr>
 
 " opn markdown preview
-nnoremap gn :call Md_2_html()<cr>
+nnoremap X N_markdown_chk__tgl()
+
+" opn markdown preview
+"nnoremap gn :call Md_2_html()<cr>
 
 " 
 " cursor mv
@@ -524,10 +524,8 @@ nnoremap :r :r!
 nnoremap :l :Lf 
 
 " grep [rg]   ( read )
-"nnoremap :g :GrepStr 
-"nnoremap :G :GrepWrd 
-nnoremap :g :call Grep('')<cr>
-nnoremap :G :call Grep('-w')<cr>
+nnoremap :g :GrepStr 
+nnoremap :G :GrepWrd 
 
 command! -nargs=? GrepStr call Grep_str(<q-args>)
 command! -nargs=? GrepWrd call Grep_wrd(<q-args>)
@@ -1120,8 +1118,9 @@ inoremap <c-u> <c-r>=I_symbol()<cr>
 inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=I_bracket()<cr>"
 
 " ins markdown
-inoremap <c-_> <c-r>=I_markdown()<cr>
-inoremap <c-q> <c-r>=I_markdown()<cr>
+inoremap <c-k> <c-r>=I_markdown()<cr>
+"inoremap <c-_> <c-r>=I_markdown()<cr>
+"inoremap <c-q> <c-r>=I_markdown()<cr>
 
 " ins num
 "inoremap xx <c-r>=I_num()<cr>
@@ -1215,7 +1214,7 @@ endfunc
 " nop
 " 
 
-"inoremap <c-_> <nop>
+inoremap <c-_> <nop>
 "inoremap <c-:> <nop> " non
 "inoremap <c-;> <nop>
 
@@ -1224,6 +1223,7 @@ inoremap <c-b> <nop>
 "inoremap <c-k> <nop>
 "inoremap <c-n> <nop>
 "inoremap <c-p> <nop>
+inoremap <c-q> <nop>
 "inoremap <c-s> <nop>
 "inoremap <c-t> <nop>
 "inoremap <c-u> <nop>
@@ -1316,7 +1316,6 @@ end
 " grep ( rg )
 " 
 func! Grep(opt, p_str) abort
-"func! Grep(opt) abort
   
   if a:p_str != ""
     let l:str = a:p_str
@@ -1497,10 +1496,16 @@ func! Save() abort
   exe 'w'
 endfunc
 
+" markdown
+
+func! N_markdown_chk__tgl() abort
+  
+  
+endfunc
+
 func! Md_2_html() abort
   
   if &filetype != 'markdown'
-    
     return
   endif
   
