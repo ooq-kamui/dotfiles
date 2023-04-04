@@ -189,7 +189,7 @@ nnoremap gv :call Opn_vim_key()<cr>
 nnoremap gm :call Opn_memo()<cr>
 
 " opn grep work
-nnoremap gg :call Opn_grep_work()<cr>
+"nnoremap gg :call Opn_grep_work()<cr>
 
 " opn brwsr
 nnoremap gb <plug>(openbrowser-smart-search)
@@ -198,7 +198,7 @@ nnoremap gb <plug>(openbrowser-smart-search)
 nnoremap go :call Opn_app_cursor_filepath()<cr>
 
 " opn markdown preview
-nnoremap X N_markdown_chk__tgl()
+nnoremap x :call N_markdown_chk__tgl()<cr>
 
 " opn markdown preview
 "nnoremap gn :call Md_2_html()<cr>
@@ -387,7 +387,7 @@ nnoremap T i<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
 
 " del char
 nnoremap s "ax
-nnoremap x x
+"nnoremap x x
 
 " del line
 nnoremap d :call N_line_del()<cr>
@@ -482,14 +482,27 @@ nnoremap <c-p> gn
 " srch ?=ts
 nnoremap R /?ts=<cr>
 
+" 
+" grep
+" 
+
 " grep ( fzf )
 nnoremap <leader>o :Rg <cr>
 
 " grep bfr ( fzf )
-nnoremap <leader>k :BLines<cr>
+nnoremap <leader>k :call N_grep_bfr()<cr>
+"nnoremap <leader>k :BLines<cr>
+
+" grep [rg]   ( read )
+nnoremap :g :GrepStr 
+nnoremap :G :GrepWrd 
 
 " tag jmp tab new
 nnoremap t :call N_tag_jmp()<cr>
+
+" 
+" mark
+" 
 
 " mark lst ( fzf )
 nnoremap <leader>m :Mark<cr>
@@ -522,13 +535,6 @@ nnoremap :r :r!
 
 " ins sys ls  ( read )
 nnoremap :l :Lf 
-
-" grep [rg]   ( read )
-nnoremap :g :GrepStr 
-nnoremap :G :GrepWrd 
-
-command! -nargs=? GrepStr call Grep_str(<q-args>)
-command! -nargs=? GrepWrd call Grep_wrd(<q-args>)
 
 " 
 " tab
@@ -657,7 +663,7 @@ nnoremap P <esc>
 nnoremap U <esc>
 "nnoremap W <esc>
 nnoremap V <esc>
-"nnoremap X <esc>
+nnoremap X <esc>
 "nnoremap Y <esc>
 
 "nnoremap <c-a> <esc>
@@ -903,13 +909,16 @@ vnoremap E :call V_srch_str__slctd_str(v:true)<cr>
 
 " srch cmdline
 vnoremap <leader>i "ay/<c-r>a
-"vnoremap <leader>k "ay/<c-r>a
 
 " srch replace all > ynk
 vnoremap :s :s//<c-r>0/gc<cr>
 
 " srch replace one > ynk, nxt
 vnoremap <c-p> "ad"0Plgn
+
+" 
+" grep
+" 
 
 " grep bfr ( fzf )
 vnoremap <leader>k :call V_grep_bfr()<cr>
@@ -919,6 +928,10 @@ vnoremap <leader>o "ay:Rg <c-r>a<cr>
 
 " grep func define ( fzf )
 "vnoremap <leader>xx "ay:Rg <c-r>a<cr>func
+
+" grep [rg]   ( read )
+vnoremap :g "ay:GrepStr <c-r>a
+vnoremap :G "ay:GrepWrd <c-r>a
 
 " tag jmp
 vnoremap t :call V_tag_jmp()<cr>
@@ -1119,8 +1132,6 @@ inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=I_bracket()<cr>"
 
 " ins markdown
 inoremap <c-k> <c-r>=I_markdown()<cr>
-"inoremap <c-_> <c-r>=I_markdown()<cr>
-"inoremap <c-q> <c-r>=I_markdown()<cr>
 
 " ins num
 "inoremap xx <c-r>=I_num()<cr>
@@ -1147,14 +1158,12 @@ func! I_symbol() abort
 endfunc
 
 func! I_bracket() abort
-  "call complete( col('.'), [ '()', '""', '{}', "''", '[]' ])
-  "call complete( col('.'), [ '()', '""', '{}', "''", '[]', '<>' ])
   call complete( col('.'), [ '()', "''", '""', '[]', '<>', '{}' ])
   return ''
 endfunc
 
 func! I_markdown() abort
-  call complete( col('.'), [ '- [ ] ', '---', '```', '``' ])
+  call complete( col('.'), [ '- ', '- [ ] ', '---', '```', '``' ])
   return ''
 endfunc
 
@@ -1317,19 +1326,31 @@ end
 " 
 func! Grep(opt, p_str) abort
   
-  if a:p_str != ""
-    let l:str = a:p_str
+  if a:opt == v:null
+    let l:opt = ''
+  else
+    let l:opt = a:opt
+  endif
+  
+  if a:p_str != ''
+    let l:str = trim(a:p_str)
   else
     let l:str = @/
   endif
   
   let l:str = escape(l:str, '\({')
 
-  exe 'r! rg -n -s "'.l:str.'"'
+  let l:exe_str = 'r! rg -n -s "'.l:str.'"'
   \           . ' -g "*.lua"  -g "*.script" -g "*.gui_script"'
   \           . ' -g "*.txt"  -g "*.json"   -g "*.fish" -g "*.vim"'
   \           . ' -g "*.html" -g "*.js"     -g "*.css"  -g "*.md" '
-  \           . ' ' . a:opt
+  \           . ' ' . l:opt
+  
+  "echo l:exe_str
+  "let @+ = l:exe_str
+  
+  call Opn_grep_work()
+  exe l:exe_str
 endfunc
 
 " 
@@ -1409,10 +1430,15 @@ command! -bang -nargs=* Rg
 "\     -g "*.lua" -g "*.script" -g "*.gui_script" 
 
 " grep bfr
+func! N_grep_bfr() abort
+  
+  exe 'BLines '
+endfunc
+
 func! V_grep_bfr() abort
 
   call V_srch_str__slctd_str(v:false)
-  exe "BLines " . escape(@a, '.*~')
+  exe 'BLines ' . escape(@a, '.*~')
 endfunc
 
 command! -bang -nargs=? BLines
@@ -1500,7 +1526,19 @@ endfunc
 
 func! N_markdown_chk__tgl() abort
   
+  if Cursor_l_char() != '[' || Cursor_r_char() != ']'
+    return
+  endif
   
+  let l:cursor_char = Cursor_c_char()
+  
+  if l:cursor_char == ' '
+    let l:rpl_char = 'x'
+  else
+    let l:rpl_char = ' '
+  endif
+  
+  exe 'normal! r' . l:rpl_char
 endfunc
 
 func! Md_2_html() abort
@@ -1518,14 +1556,18 @@ endfunc
 
 " grep
 
+command! -nargs=? GrepStr call Grep_str(<q-args>)
+
 func! Grep_str(str) abort
   
-  call Grep(''  , a:str)
+  call Grep(v:null, a:str)
 endfunc
+
+command! -nargs=? GrepWrd call Grep_wrd(<q-args>)
 
 func! Grep_wrd(str) abort
   
-  call Grep('-w', a:str)
+  call Grep('-w'  , a:str)
 endfunc
 
 " ynk
@@ -1669,7 +1711,6 @@ endfunc
 
 func! N_cursor_mv_word_b() abort
   
-  "let l:c_l = Char_l()
   let l:c_l = Cursor_l_char()
   echo l:c_l
   
@@ -1922,14 +1963,12 @@ func! Cursor_c_char() abort
   return l:c
 endfunc
 
-"func! Char_r() abort
 func! Cursor_r_char() abort
 
   let l:c = getline('.')[col('.')]
   return l:c
 endfunc
 
-"func! Char_l() abort
 func! Cursor_l_char() abort
 
   let l:c = getline('.')[col('.')-2]
@@ -2531,31 +2570,54 @@ func! Lf(dir) abort
   exe l:exe
 endfunc
 
+" 
 " opn file
+" 
+
 command! -nargs=* -complete=file Opn call Opn(<q-args>)
 func! Opn(filename) abort
 
   exe 'tab drop ' . a:filename
 endfunc
 
+func! Opn_tmp_sys() abort
+
+  let l:tmp_path = system('mktemp ')
+  return l:tmp_path
+endfunc
+
 func! Opn_vimrc() abort
 
-  call Opn('~/.vimrc')
+  let l:path = '~/.vimrc'
+  
+  call Opn(l:path)
 endfunc
 
 func! Opn_vim_key() abort
 
-  call Opn('/Users/kamui/doc/tech/vim/m.key.default.txt')
+  let l:path = '~/doc/tech/vim/m.key.default.txt'
+  
+  call Opn(l:path)
 endfunc
 
 func! Opn_grep_work() abort
 
-  call Opn('doc/grep.lua')
+  let l:path = 'doc/grep.lua'
+    
+  if getftype(l:path) == ''
+    
+    let l:path = Opn_tmp_sys()
+  endif
+  
+  "echo l:path
+  call Opn(l:path)
 endfunc
 
 func! Opn_memo() abort
 
-  call Opn('doc/memo.txt')
+  let l:path = 'doc/memo.txt'
+  
+  call Opn(l:path)
 endfunc
 
 function Opn_app(path)
@@ -2564,10 +2626,10 @@ function Opn_app(path)
   
   if has('mac')
     
-    let res = system('open     '       . l:path      )
+    let l:res = system('open     ' . "'" . l:path . "'")
     
   else
-    let res = system('explorer ' . "'" . l:path . "'")
+    let l:res = system('explorer ' . "'" . l:path . "'")
   endif
 endfunction
 
