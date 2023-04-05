@@ -174,15 +174,13 @@ nnoremap :o :Opn
 
 " file srch ( fzf )
 nnoremap <leader>l :Files <cr>
-"nnoremap <leader>j :Files <cr>
-"nnoremap <leader>u :Files <cr>
 
 " opn .vimrc
 nnoremap gh :call Opn_vimrc()<cr>
 
 " opn slf
-nnoremap gl :call Opn_slf()<cr>
 nnoremap gn :call Opn_slf()<cr>
+nnoremap gs :call Opn_slf()<cr>
 
 " opn vim key note
 nnoremap gv :call Opn_vim_key()<cr>
@@ -559,7 +557,6 @@ nnoremap <s-right> :tabm+1<cr>
 
 " inf char
 nnoremap gi ga
-"nnoremap ga ga
 
 " wrap tgl
 nnoremap :w :set wrap!
@@ -693,17 +690,18 @@ nnoremap <c-x> <esc>
 "nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
 
-"nnoremap ga <esc>
+nnoremap ga <esc>
 nnoremap gb <esc>
 "nnoremap gg <esc>
 "nnoremap gh <esc>
 "nnoremap gi <esc>
 "nnoremap gj <esc>
 "nnoremap gk <esc>
-"nnoremap gl <esc>
+nnoremap gl <esc>
 "nnoremap gm <esc>
 "nnoremap gn <esc>
 "nnoremap go <esc>
+"nnoremap gs <esc>
 nnoremap gt <esc>
 "nnoremap gu <esc>
 "nnoremap gv <esc>
