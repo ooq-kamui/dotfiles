@@ -34,8 +34,6 @@ hi IncSearch   ctermfg=yellow     ctermbg=cyan     cterm=none
 hi MatchParen  ctermfg=magenta    ctermbg=none
 
 hi TabLineSel                     ctermbg=magenta  cterm=none
-"hi TabLineSel  ctermfg=yellow     ctermbg=magenta  cterm=none
-"hi TabLineSel  ctermfg=cyan       ctermbg=darkblue cterm=none
 hi TabLine     ctermfg=lightblue  ctermbg=33       cterm=none
 hi TabLineFill                    ctermbg=33       cterm=none
 
@@ -182,6 +180,10 @@ nnoremap <leader>l :Files <cr>
 " opn .vimrc
 nnoremap gh :call Opn_vimrc()<cr>
 
+" opn slf
+nnoremap gl :call Opn_slf()<cr>
+nnoremap gn :call Opn_slf()<cr>
+
 " opn vim key note
 nnoremap gv :call Opn_vim_key()<cr>
 
@@ -192,16 +194,16 @@ nnoremap gm :call Opn_memo()<cr>
 "nnoremap gg :call Opn_grep_work()<cr>
 
 " opn brwsr
-nnoremap gb <plug>(openbrowser-smart-search)
+"nnoremap gb <plug>(openbrowser-smart-search)
 
 " opn app
 nnoremap go :call Opn_app_cursor_filepath()<cr>
 
-" opn markdown preview
+" opn markdown chk __ tgl
 nnoremap x :call N_markdown_chk__tgl()<cr>
 
 " opn markdown preview
-"nnoremap gn :call Md_2_html()<cr>
+"nnoremap xx :call Md_2_html()<cr>
 
 " 
 " cursor mv
@@ -692,12 +694,13 @@ nnoremap <c-x> <esc>
 nnoremap <c-z> <esc>
 
 "nnoremap ga <esc>
+nnoremap gb <esc>
 "nnoremap gg <esc>
 "nnoremap gh <esc>
 "nnoremap gi <esc>
 "nnoremap gj <esc>
 "nnoremap gk <esc>
-nnoremap gl <esc>
+"nnoremap gl <esc>
 "nnoremap gm <esc>
 "nnoremap gn <esc>
 "nnoremap go <esc>
@@ -1076,14 +1079,14 @@ inoremap <c-d> <c-o>x
 " del char back
 inoremap <c-h> <c-h>
 
-" del word forword
-inoremap <expr> <c-k>
-\ pumvisible()         ? "<c-p>"   :
-\ col(".") != col("$") ? "<c-o>dw" :
-\                        ""
-
 " del word back
 inoremap <c-w> <c-w>
+
+" del word forword
+"inoremap <expr> <c-k>
+"\ pumvisible()         ? "<c-p>"   :
+"\ col(".") != col("$") ? "<c-o>dw" :
+"\                        ""
 
 " ins cr
 inoremap <c-m> <cr>
@@ -1131,7 +1134,9 @@ inoremap <c-u> <c-r>=I_symbol()<cr>
 inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=I_bracket()<cr>"
 
 " ins markdown
-inoremap <c-k> <c-r>=I_markdown()<cr>
+inoremap <expr> <c-k>
+\ pumvisible() ? "<c-p>" :
+\                "<c-r>=I_markdown()<cr>"
 
 " ins num
 "inoremap xx <c-r>=I_num()<cr>
@@ -1158,12 +1163,12 @@ func! I_symbol() abort
 endfunc
 
 func! I_bracket() abort
-  call complete( col('.'), [ '()', "''", '""', '[]', '<>', '{}' ])
+  call complete( col('.'), [ '()', "''", '[]', '""', '<>', '{}' ])
   return ''
 endfunc
 
 func! I_markdown() abort
-  call complete( col('.'), [ '- ', '- [ ] ', '---', '```', '``' ])
+  call complete( col('.'), [ '- ', '- [ ] ', '```', '``', '---' ])
   return ''
 endfunc
 
@@ -2589,14 +2594,19 @@ endfunc
 func! Opn_vimrc() abort
 
   let l:path = '~/.vimrc'
-  
   call Opn(l:path)
+endfunc
+
+func! Opn_slf() abort
+
+  let l:path = expand('%:p')
+  "echo l:path
+  call Opn_app(l:path)
 endfunc
 
 func! Opn_vim_key() abort
 
   let l:path = '~/doc/tech/vim/m.key.default.txt'
-  
   call Opn(l:path)
 endfunc
 
@@ -2616,40 +2626,34 @@ endfunc
 func! Opn_memo() abort
 
   let l:path = 'doc/memo.txt'
-  
   call Opn(l:path)
 endfunc
 
-function Opn_app(path)
+func Opn_app(path)
   
   let l:path = a:path
   
   if has('mac')
-    
     let l:res = system('open     ' . "'" . l:path . "'")
-    
   else
     let l:res = system('explorer ' . "'" . l:path . "'")
   endif
-endfunction
+endfunc
 
-function Opn_app_cursor_filepath()
+func Opn_app_cursor_filepath()
   
   let l:path = Cursor_filepath()
-  
   call Opn_app(l:path)
-  
-endfunction
+endfunc
 
-function V_opn_app()
+func V_opn_app()
   
   let l:path = V_slctd_str()
   
   let l:path = trim(l:path)
   
   call Opn_app(l:path)
-  
-endfunction
+endfunc
 
 let g:mark_alph_def = [
 \   'a','b','c','d','e','f','g','h','i','j','k','l','m','n',

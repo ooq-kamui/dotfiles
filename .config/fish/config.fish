@@ -46,6 +46,7 @@ alias cd_vim       "cd ~/doc/tech/github/vimrc"
 alias cd_vim_swp   "cd ~/.local/state/nvim/swap"
 
 alias cd_life      "cd ~/doc/life"
+alias cd_tech      "cd ~/doc/tech"
 
 alias cd_ooq       "cd ~/dev/ooq/g.proto/assets"
 alias cd_ooq_bk    "cd ~/dev/ooq/z.proto.bk"
