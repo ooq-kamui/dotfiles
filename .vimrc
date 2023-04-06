@@ -182,6 +182,9 @@ nnoremap gh :call Opn_vimrc()<cr>
 nnoremap gn :call Opn_slf()<cr>
 nnoremap gs :call Opn_slf()<cr>
 
+" opn tmp
+nnoremap gt :call Opn_tmp()<cr>
+
 " opn vim key note
 nnoremap gv :call Opn_vim_key()<cr>
 
@@ -189,7 +192,7 @@ nnoremap gv :call Opn_vim_key()<cr>
 nnoremap gm :call Opn_memo()<cr>
 
 " opn grep work
-"nnoremap gg :call Opn_grep_work()<cr>
+"nnoremap xx :call Opn_grep_work()<cr>
 
 " opn brwsr
 "nnoremap gb <plug>(openbrowser-smart-search)
@@ -384,6 +387,9 @@ nnoremap * i<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
 
 " ins time
 nnoremap T i<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
+
+" ins slf path
+nnoremap gp :call N_ins_line_slf_path()<cr>
 
 " del char
 nnoremap s "ax
@@ -692,7 +698,7 @@ nnoremap <c-z> <esc>
 
 nnoremap ga <esc>
 nnoremap gb <esc>
-"nnoremap gg <esc>
+nnoremap gg <esc>
 "nnoremap gh <esc>
 "nnoremap gi <esc>
 "nnoremap gj <esc>
@@ -701,8 +707,9 @@ nnoremap gl <esc>
 "nnoremap gm <esc>
 "nnoremap gn <esc>
 "nnoremap go <esc>
+"nnoremap gp <esc>
 "nnoremap gs <esc>
-nnoremap gt <esc>
+"nnoremap gt <esc>
 "nnoremap gu <esc>
 "nnoremap gv <esc>
 
@@ -720,7 +727,7 @@ vnoremap v <c-v>
 "vnoremap xx :Files <cr> " non
 
 " opn brwsr
-vnoremap gb <plug>(openbrowser-smart-search)
+"vnoremap gb <plug>(openbrowser-smart-search)
 
 " opn app
 vnoremap go :call V_opn_app()<cr>
@@ -1110,7 +1117,7 @@ inoremap <expr> <c-y> pumvisible() ? "<c-e>" : "<c-n>"
 "inoremap ( ()<c-o>h
 "inoremap { {}<c-o>h
 "inoremap [ []<c-o>h
-inoremap " ""<c-o>h
+"inoremap " ""<c-o>h
 "inoremap ' ''<c-o>h
 
 " numpad shift
@@ -1368,15 +1375,17 @@ autocmd QuickFixCmdPost grep,vimgrep tab cw
 call plug#begin()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-"Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jacquesbh/vim-showmarks'
 Plug 'mattn/vim-molder'
 "Plug 'mattn/vim-molder-operations'
-Plug 'tyru/open-browser.vim'
+"Plug 'tyru/open-browser.vim'
 "Plug 'iamcco/markdown-preview.vim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+"Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
-" exe
+" do
 " :PlugInstall
+" or
+" :PlugClean
 
 "
 " fzf
@@ -1614,27 +1623,11 @@ func! Is_line_emp() abort
   end
 endfunc
 
-func! N_ins_cr() abort
-  
-  let l:t_line_num = line('.')
-  
-  exe "normal! i\<cr> "
-  exe 'normal! x'
-  
-  call Line_end_space_del(l:t_line_num)
-  exe 'normal! j'
-endfunc
-
-func! N_new_line() abort
-
-  exe 'normal! O '
-  exe 'normal! x'
-endfunc
-
 func! N_cursor_mv_line_start_or_new_line() abort
 
   if Is_cursor_line_start1()
-    call N_new_line()
+    
+    call N_ins_line_emp()
   else
     call N_cursor_mv_line_start1()
   end
@@ -2573,6 +2566,63 @@ func! Lf(dir) abort
   exe l:exe
 endfunc
 
+func! Slf_path() abort
+  
+  let l:path = expand('%:p')
+  return l:path
+endfunc
+
+" ins str
+
+func! N_ins_cr() abort
+  
+  let l:t_line_num = line('.')
+  
+  exe "normal! i\<cr> "
+  exe 'normal! x'
+  
+  call Line_end_space_del(l:t_line_num)
+  exe 'normal! j'
+endfunc
+
+" ins line
+
+func! N_ins_line(str) abort
+  
+  let l:line_num = Line_num() - 1
+  call append(l:line_num, a:str)
+  exe 'normal! k'
+endfunc
+
+func! N_ins_line_emp() abort
+  
+  let l:str = ''
+  call N_ins_line(l:str)
+  
+"  exe 'normal! O '
+"  exe 'normal! x'
+endfunc
+
+func! N_ins_line_slf_path() abort
+  
+  let l:path = Slf_path()
+  call N_ins_line(l:path)
+endfunc
+
+" tmp file
+
+func! Tmp_cre() abort " alias
+
+  let l:tmp_path = Tmp_cre_sys()
+  return l:tmp_path
+endfunc
+
+func! Tmp_cre_sys() abort
+
+  let l:tmp_path = system('mktemp ')
+  return l:tmp_path
+endfunc
+
 " 
 " opn file
 " 
@@ -2583,10 +2633,11 @@ func! Opn(filename) abort
   exe 'tab drop ' . a:filename
 endfunc
 
-func! Opn_tmp_sys() abort
+func! Opn_tmp() abort
 
-  let l:tmp_path = system('mktemp ')
-  return l:tmp_path
+  let l:path = Tmp_cre()
+  echo l:path
+  call Opn(l:path)
 endfunc
 
 func! Opn_vimrc() abort
@@ -2597,8 +2648,9 @@ endfunc
 
 func! Opn_slf() abort
 
-  let l:path = expand('%:p')
+  let l:path = Slf_path()
   "echo l:path
+
   call Opn_app(l:path)
 endfunc
 
@@ -2613,12 +2665,11 @@ func! Opn_grep_work() abort
   let l:path = 'doc/grep.lua'
     
   if getftype(l:path) == ''
-    
-    let l:path = Opn_tmp_sys()
+
+    call Opn(l:path)
+  else
+    call Opn_tmp()
   endif
-  
-  "echo l:path
-  call Opn(l:path)
 endfunc
 
 func! Opn_memo() abort
