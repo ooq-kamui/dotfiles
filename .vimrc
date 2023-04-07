@@ -221,14 +221,14 @@ nnoremap <c-k> 10<c-y>
 nnoremap <c-j> 10<c-e>
 
 " cursor mv in line start | ins line
-nnoremap y :call N_cursor_mv_line_start_or_new_line()<cr>
+nnoremap y :call N_cursor__mv_line_start_or_new_line()<cr>
 
 " cursor mv in line start
 nnoremap <c-a> 0
 
 " cursor mv in line end
-nnoremap <c-y> :call N_cursor_mv_line_end()<cr>
-nnoremap <c-e> :call N_cursor_mv_line_end()<cr>
+nnoremap <c-y> :call N_cursor__mv_line_end()<cr>
+nnoremap <c-e> :call N_cursor__mv_line_end()<cr>
 nnoremap Y     $
 
 " cursor mv char - forward
@@ -239,13 +239,13 @@ nnoremap <c-s> h
 nnoremap <c-o> h
 
 " cursor mv word - forward
-nnoremap f :call N_cursor_mv_word_f()<cr>
+nnoremap f :call N_cursor__mv_word_f()<cr>
 
 " cursor mv word - back
-nnoremap o :call N_cursor_mv_word_b()<cr>
+nnoremap o :call N_cursor__mv_word_b()<cr>
 
 " cursor mv word - back pre
-"nnoremap xx :call N_cursor_mv_word_b_pre()<cr>
+"nnoremap xx :call N_cursor__mv_word_b_pre()<cr>
 
 " cursor mv word dlm _ forward
 nnoremap _ f_l
@@ -426,13 +426,12 @@ nnoremap + <c-a>
 nnoremap - <c-x>
 
 " indent shift
-nnoremap " <<
-nnoremap # >>
+nnoremap # :call Indnt__shft_r()<cr>
+nnoremap " :call Indnt__shft_l()<cr>
 
-" indent correct ( add )
+" indent correct
+nnoremap ; :call Indnt__crct()<cr>
 "nnoremap ; ==^
-nnoremap ; :call Indent__add_c()<cr>
-"nnoremap ; :call Indent__add_line_up()<cr>
 
 " char toggle ( upper / lower )
 nnoremap u :call N_char_tgl1()<cr>
@@ -880,9 +879,9 @@ vnoremap - <c-x>
 " num seq
 vnoremap A g<c-a>
 
-" indent
-vnoremap " <gv
+" indent shift
 vnoremap # >gv
+vnoremap " <gv
 
 " indent correct
 vnoremap ; =gv
@@ -1538,9 +1537,15 @@ func! Save() abort
   exe 'w'
 endfunc
 
+func! Exe(cmd) abort
+
+  exe a:cmd
+endfunc
+
 func! Normal(cmd) abort
 
-  exe 'normal! ' . a:cmd
+  "exe 'normal! ' . a:cmd
+  call Exe('normal! ' . a:cmd)
 endfunc
 
 func! Int_2_str(num) abort
@@ -1561,38 +1566,37 @@ func! Put_mlt(str, num) abort
   call Normal(l:cmd)
 endfunc
 
-func! Indent__add(col) abort
+func! Indnt_col() abort
 
-  if a:col == 0
+  let l:col = cindent(Line_num()    )
+  "let l:col = indent( Line_num() - 1)
+
+  return l:col
+endfunc
+
+func! Indnt__shft_r() abort " nnoremap # >>
+
+  let l:col = Indnt_col()
+
+  if l:col == 0
     let l:col = 2
-  else
-    let l:col = a:col
   endif
 
   call Normal('0')
   call Put_mlt(' ', (l:col))
 
-  call N_cursor_mv_line_end()
+  call N_cursor__mv_line_start1()
 endfunc
 
-func! Indent__add_c() abort
+func! Indnt__shft_l() abort
 
-  let l:indent_col = cindent(Line_num())
-  call Indent__add(l:indent_col)
+  call Normal('<<')
+  call N_cursor__mv_line_start1()
 endfunc
 
-func! Indent__add_line_up() abort
+func! Indnt__crct() abort " nnoremap ; ==^
 
-  let l:indent_col = indent( Line_num() - 1)
-  call Indent__add(l:indent_col)
-endfunc
-
-func! Indent__crct_c() abort
-
-endfunc
-
-func! Indent__crct_line_up() abort
-
+  call Normal('==^')
 endfunc
 
 " markdown
@@ -1685,13 +1689,13 @@ func! Is_line_emp() abort
   end
 endfunc
 
-func! N_cursor_mv_line_start_or_new_line() abort
+func! N_cursor__mv_line_start_or_new_line() abort
 
   if Is_cursor_line_start1()
     
     call N_ins_line_emp()
   else
-    call N_cursor_mv_line_start1()
+    call N_cursor__mv_line_start1()
   end
 endfunc
 
@@ -1701,7 +1705,7 @@ func! Is_cursor_line_start1() abort
   
   let l:col_c = col('.')
   
-  call N_cursor_mv_line_start1()
+  call N_cursor__mv_line_start1()
   let l:col_s1 = col('.')
   
   call setpos('.', l:pos_c)
@@ -1713,10 +1717,10 @@ func! Is_cursor_line_start1() abort
   end
 endfunc
 
-func! N_cursor_mv_line_start1() abort
+func! N_cursor__mv_line_start1() abort
 
   if Is_line_space()
-    call N_cursor_mv_line_end()
+    call N_cursor__mv_line_end()
   else
     call Normal('^')
   end
@@ -1731,7 +1735,7 @@ func! Is_cursor_line_start0() abort
   end
 endfunc
 
-func! N_cursor_mv_line_start0() abort
+func! N_cursor__mv_line_start0() abort
   
   if ! Is_line_emp()
     normal! 0
@@ -1748,7 +1752,7 @@ func! Is_line_space() abort
   end
 endfunc
 
-func! N_cursor_mv_line_end() abort
+func! N_cursor__mv_line_end() abort
 
   if ! Is_line_emp()
     "exe 'normal! $l'
@@ -1756,7 +1760,7 @@ func! N_cursor_mv_line_end() abort
   end
 endfunc
 
-func! N_cursor_mv_word_f() abort
+func! N_cursor__mv_word_f() abort
 
   let l:c_char = Cursor_c_char()
   let l:r_char = Cursor_r_char()
@@ -1768,20 +1772,20 @@ func! N_cursor_mv_word_f() abort
   end
 endfunc
 
-func! N_cursor_mv_word_b() abort
+func! N_cursor__mv_word_b() abort
   
   let l:c_l = Cursor_l_char()
   echo l:c_l
   
   if     Is_cursor_line_start0()
     normal! k
-    call N_cursor_mv_line_end()
+    call N_cursor__mv_line_end()
     
   elseif Is_line_space()
-    call N_cursor_mv_line_start0()
+    call N_cursor__mv_line_start0()
     
   elseif Is_cursor_line_start1()
-    call N_cursor_mv_line_start0()
+    call N_cursor__mv_line_start0()
     
   elseif l:c_l =~ '\S' && l:c_l =~ '\W' " symbol
     normal! h
@@ -1796,7 +1800,7 @@ func! N_cursor_mv_word_b() abort
   end
 endfunc
 
-func! N_cursor_mv_word_b_pre() abort
+func! N_cursor__mv_word_b_pre() abort
 
   let l:c_char = Cursor_c_char()
   let l:l_char = Cursor_r_char()
@@ -1828,19 +1832,19 @@ func! Slct_word() abort
   endif
 endfunc
 
-func! Cursor_mv_by_pos(pos) abort
+func! Cursor__mv_by_pos(pos) abort
   
   call setpos('.', a:pos)
 endfunc
 
 func! Slct_by_pos(s_pos, e_pos) abort
 
-  call Cursor_mv_by_pos(a:s_pos)
+  call Cursor__mv_by_pos(a:s_pos)
   normal! v
-  call Cursor_mv_by_pos(a:e_pos)
+  call Cursor__mv_by_pos(a:e_pos)
 endfunc
 
-func! Cursor_mv_by_lc(line, col) abort
+func! Cursor__mv_by_lc(line, col) abort
   
   call cursor(a:line, a:col)
 endfunc
@@ -1850,9 +1854,9 @@ func! Slct_by_line_col(s_line, s_col, e_line, e_col) abort
   let l:s_line = (a:s_line == 0) ? Line_num() : a:s_line
   let l:e_line = (a:e_line == 0) ? Line_num() : a:e_line
 
-  call Cursor_mv_by_lc(a:s_line, a:s_col)
+  call Cursor__mv_by_lc(a:s_line, a:s_col)
   normal! v
-  call Cursor_mv_by_lc(a:e_line, a:e_col)
+  call Cursor__mv_by_lc(a:e_line, a:e_col)
 endfunc
 
 func! Rg_out_parse(line) abort
@@ -1927,7 +1931,7 @@ endfunc
 
 func! Slct_expnd_r() abort
   
-  call Cursor_mv_slctd_l()
+  call Cursor__mv_slctd_l()
   let l:col_c = Col()
   
   let l:ptn = '[' . "'" . '"' . ')' . '\]' . ']'
@@ -1957,7 +1961,7 @@ func! Slct_expnd() abort
   " todo
   " refactoring use Slct_expnd()
   
-  call Cursor_mv_slctd_r()
+  call Cursor__mv_slctd_r()
   
   let l:ptn = '[' . "'" . '"' . ')' . '\]' . ']'
   
@@ -2309,14 +2313,14 @@ func! V_mv_line(ud) range abort
   endif
 endfunc
 
-func! Cursor_mv_slctd_l() abort
+func! Cursor__mv_slctd_l() abort
   
-  normal! `<
+  call Normal('`<')
 endfunc
 
-func! Cursor_mv_slctd_r() abort
+func! Cursor__mv_slctd_r() abort
   
-  normal! `>
+  call Normal('`>')
 endfunc
 
 func! Slct_re() abort " todo mod
@@ -2912,7 +2916,8 @@ let g:vimrc_win_path = '~/.vimrc_win'
 
 if filereadable(expand(g:vimrc_win_path))
 
-  exe 'source ' . g:vimrc_win_path
+  "exe 'source ' . g:vimrc_win_path
+  Exe('source ' . g:vimrc_win_path)
   echo 'read .vimrc_win'
 endif
 
