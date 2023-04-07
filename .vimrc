@@ -425,12 +425,14 @@ nnoremap ^     @y
 nnoremap + <c-a>
 nnoremap - <c-x>
 
-" indent
+" indent shift
 nnoremap " <<
 nnoremap # >>
 
-" indent correct
-nnoremap ; ==^
+" indent correct ( add )
+"nnoremap ; ==^
+nnoremap ; :call Indent__add_c()<cr>
+"nnoremap ; :call Indent__add_line_up()<cr>
 
 " char toggle ( upper / lower )
 nnoremap u :call N_char_tgl1()<cr>
@@ -1064,16 +1066,18 @@ inoremap <expr> <c-o> pumvisible() ? "<c-y>" : "<c-o>h"
 inoremap <c-s> <c-o>h
 
 " cursor mv word forward
-"inoremap <c-f> <c-o>e<c-o>l
+"inoremap xx <c-o>e<c-o>l
 
 " cursor mv word back
 "inoremap xx <c-o>b
 
 " cursor mv d
-inoremap <c-n> <down>
+inoremap <c-n> <c-o>j
+"inoremap <c-n> <down>
 
 " cursor mv u
-inoremap <c-p> <up>
+inoremap <c-p> <c-o>k
+"inoremap <c-p> <up>
 
 " del line
 " non
@@ -1526,12 +1530,69 @@ au FileType * set fo-=c fo-=r fo-=o
 
 
 " 
-" vim script
+" vim script fnc
 " 
 
 func! Save() abort
   
   exe 'w'
+endfunc
+
+func! Normal(cmd) abort
+
+  exe 'normal! ' . a:cmd
+endfunc
+
+func! Int_2_str(num) abort
+
+  let l:num_str = printf('%o', a:num)
+  return l:num_str
+endfunc
+
+func! Put(str) abort
+
+  let l:cmd = 'i'.a:str
+  call Normal(l:cmd)
+endfunc
+
+func! Put_mlt(str, num) abort
+
+  let l:cmd = a:num.'i'.a:str
+  call Normal(l:cmd)
+endfunc
+
+func! Indent__add(col) abort
+
+  if a:col == 0
+    let l:col = 2
+  else
+    let l:col = a:col
+  endif
+
+  call Normal('0')
+  call Put_mlt(' ', (l:col))
+
+  call N_cursor_mv_line_end()
+endfunc
+
+func! Indent__add_c() abort
+
+  let l:indent_col = cindent(Line_num())
+  call Indent__add(l:indent_col)
+endfunc
+
+func! Indent__add_line_up() abort
+
+  let l:indent_col = indent( Line_num() - 1)
+  call Indent__add(l:indent_col)
+endfunc
+
+func! Indent__crct_c() abort
+
+endfunc
+
+func! Indent__crct_line_up() abort
+
 endfunc
 
 " markdown
@@ -1550,7 +1611,8 @@ func! N_markdown_chk__tgl() abort
     let l:rpl_char = ' '
   endif
   
-  exe 'normal! r' . l:rpl_char
+  let l:cmd = 'r' . l:rpl_char
+  call Normal(l:cmd)
 endfunc
 
 func! Md_2_html() abort
@@ -1596,8 +1658,8 @@ endfunc
 
 func! N_ynk() abort
 
-  exe 'normal! "0yy'
-  exe 'normal! "+yy'
+  call Normal('"0yy')
+  call Normal('"+yy')
   
   "l:line_str = Line_str()
   "let @0 = l:line_str
@@ -1656,7 +1718,7 @@ func! N_cursor_mv_line_start1() abort
   if Is_line_space()
     call N_cursor_mv_line_end()
   else
-    normal! ^
+    call Normal('^')
   end
 endfunc
 
@@ -1689,7 +1751,8 @@ endfunc
 func! N_cursor_mv_line_end() abort
 
   if ! Is_line_emp()
-    exe 'normal! $l'
+    "exe 'normal! $l'
+    call Normal('$l')
   end
 endfunc
 
@@ -2840,4 +2903,17 @@ hi netrwComment  ctermfg=14         ctermbg=none    cterm=none
 hi netrwList     ctermfg=yellow     ctermbg=none    cterm=none
 hi netrwVersion  ctermfg=130        ctermbg=none    cterm=none
 hi netrwHelpCmd  ctermfg=130        ctermbg=none    cterm=none
+
+
+" 
+" win
+" 
+let g:vimrc_win_path = '~/.vimrc_win'
+
+if filereadable(expand(g:vimrc_win_path))
+
+  exe 'source ' . g:vimrc_win_path
+  echo 'read .vimrc_win'
+endif
+
 
