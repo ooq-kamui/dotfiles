@@ -1566,26 +1566,36 @@ func! Put_mlt(str, num) abort
   call Normal(l:cmd)
 endfunc
 
-func! Indnt_col() abort
+" indnt
+
+func! Indnt_col_by_c() abort
 
   let l:col = cindent(Line_num()    )
-  "let l:col = indent( Line_num() - 1)
-
   return l:col
+endfunc
+
+func! Indnt__add(col) abort
+
+  call Normal('0')
+  call Put_mlt(' ', (a:col))
+
+  call N_cursor__mv_line_start1()
+endfunc
+
+func! Indnt__del() abort " alias
+
+  call Exe('left')
 endfunc
 
 func! Indnt__shft_r() abort " nnoremap # >>
 
-  let l:col = Indnt_col()
-
-  if l:col == 0
+  if Is_line_emp()
+    let l:col = Indnt_col_by_c()
+  else
     let l:col = 2
   endif
 
-  call Normal('0')
-  call Put_mlt(' ', (l:col))
-
-  call N_cursor__mv_line_start1()
+  call Indnt__add(l:col)
 endfunc
 
 func! Indnt__shft_l() abort
@@ -1594,9 +1604,16 @@ func! Indnt__shft_l() abort
   call N_cursor__mv_line_start1()
 endfunc
 
-func! Indnt__crct() abort " nnoremap ; ==^
+func! Indnt__crct() abort
 
-  call Normal('==^')
+  call Indnt__del()
+  call Indnt__crct_by_c()
+endfunc
+
+func! Indnt__crct_by_c() abort
+
+  let l:col = Indnt_col_by_c()
+  call Indnt__add(l:col)
 endfunc
 
 " markdown
