@@ -184,7 +184,7 @@ nnoremap gh :call Opn_vimrc()<cr>
 nnoremap go :call Opn_app_slf()<cr>
 
 " opn app
-nnoremap gp :call Opn_app_cursor_path()<cr>
+nnoremap gp :call Opn_app_by_path()<cr>
 
 " opn tmp
 nnoremap gt :call Opn_tmp()<cr>
@@ -435,10 +435,10 @@ nnoremap ; :call Indnt__crct()<cr>
 "nnoremap ; ==^
 
 " char toggle ( upper / lower )
-nnoremap u :call N_char__tgl1()<cr>
+nnoremap u :call N_char__tgl()<cr>
 
-" char toggle ( turn )
-"nnoremap U :call N_char__tgl2()<cr>
+" char toggle ( turn ) " use not
+"nnoremap xx :call N_char__tgl2()<cr>
 
 " upper / lower
 "nnoremap xx v~
@@ -1648,9 +1648,9 @@ func! Md_2_html() abort
   
   let l:path = expand('%')
   
-  exe '! node ~/sh/nodejs/md_2_html.js ' . l:path
+  call Exe('! node ~/sh/nodejs/md_2_html.js ' . l:path)
   
-  call Opn_app(l:path . '.html')
+  "call Opn_app(l:path . '.html')
 endfunc
 
 " ynk
@@ -2083,7 +2083,7 @@ func! Char__rpl(rpl) abort
   call Normal('r' . a:rpl)
 endfunc
 
-func! N_char__tgl1() abort
+func! N_char__tgl() abort
 
   let l:c   = Cursor_c_char()
   let l:rpl = Char__tgl1(l:c)
@@ -2751,7 +2751,7 @@ func Opn_app(path)
   endif
 endfunc
 
-func Opn_app_cursor_path()
+func Opn_app_by_path()
   
   let l:path = Cursor_filepath()
   call Opn_app(l:path)
