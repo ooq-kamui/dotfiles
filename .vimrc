@@ -158,29 +158,33 @@ nnoremap a :call Save()<cr>
 " reload
 "nnoremap xx :e!
 
+" opn tab new
+"nnoremap xx :tabnew filename
+
 " opn latest
 "nnoremap xx `0
 
 " opn file rcnt ( history )
 nnoremap <leader>p :FileHstry<cr>
-"nnoremap <leader>h :FileHstry<cr>
-
-" opn tab new
-"nnoremap xx :tabnew filename
-
-" opn tab file
-nnoremap :e :Opn 
-nnoremap :o :Opn 
 
 " file srch ( fzf )
 nnoremap <leader>l :Files <cr>
 
+" 
+" opn
+" 
+
+" opn tab file
+nnoremap :e :Opn 
+
 " opn .vimrc
 nnoremap gh :call Opn_vimrc()<cr>
 
-" opn slf
-nnoremap gn :call Opn_slf()<cr>
-nnoremap gs :call Opn_slf()<cr>
+" opn app slf
+nnoremap go :call Opn_app_slf()<cr>
+
+" opn app
+nnoremap gp :call Opn_app_cursor_path()<cr>
 
 " opn tmp
 nnoremap gt :call Opn_tmp()<cr>
@@ -197,14 +201,11 @@ nnoremap gm :call Opn_memo()<cr>
 " opn brwsr
 "nnoremap gb <plug>(openbrowser-smart-search)
 
-" opn app
-nnoremap go :call Opn_app_cursor_filepath()<cr>
-
-" opn markdown chk __ tgl
-nnoremap x :call N_markdown_chk__tgl()<cr>
-
 " opn markdown preview
 "nnoremap xx :call Md_2_html()<cr>
+
+" markdown chk __ tgl
+nnoremap x :call N_markdown_chk__tgl()<cr>
 
 " 
 " cursor mv
@@ -389,14 +390,14 @@ nnoremap * i<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
 nnoremap T i<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
 
 " ins slf path
-nnoremap gp :call N_ins_line_slf_path()<cr>
+nnoremap gs :call N_ins_line_slf_path()<cr>
 
 " del char
 nnoremap s "ax
 "nnoremap x x
 
 " del line
-nnoremap d :call N_line_del()<cr>
+nnoremap d :call N_line__del()<cr>
 
 " del in line forward
 nnoremap <c-d> D
@@ -434,10 +435,10 @@ nnoremap ; :call Indnt__crct()<cr>
 "nnoremap ; ==^
 
 " char toggle ( upper / lower )
-nnoremap u :call N_char_tgl1()<cr>
+nnoremap u :call N_char__tgl1()<cr>
 
 " char toggle ( turn )
-"nnoremap U :call N_char_tgl2()<cr>
+"nnoremap U :call N_char__tgl2()<cr>
 
 " upper / lower
 "nnoremap xx v~
@@ -706,7 +707,7 @@ nnoremap gg <esc>
 "nnoremap gk <esc>
 nnoremap gl <esc>
 "nnoremap gm <esc>
-"nnoremap gn <esc>
+nnoremap gn <esc>
 "nnoremap go <esc>
 "nnoremap gp <esc>
 "nnoremap gs <esc>
@@ -904,7 +905,7 @@ vnoremap <c-u> ugv
 " 
 
 " srch forward ( srch rpl skip )
-vnoremap <c-n> :call V_srch_slct("f")<cr>
+vnoremap <c-n> :call V_srch_slct('f')<cr>
 
 " srch back
 "vnoremap xx    :call V_srch_slct("b")<cr>
@@ -1532,11 +1533,6 @@ au FileType * set fo-=c fo-=r fo-=o
 " vim script fnc
 " 
 
-func! Save() abort
-  
-  exe 'w'
-endfunc
-
 func! Exe(cmd) abort
 
   exe a:cmd
@@ -1544,8 +1540,19 @@ endfunc
 
 func! Normal(cmd) abort
 
-  "exe 'normal! ' . a:cmd
   call Exe('normal! ' . a:cmd)
+endfunc
+
+func! Ins(str) abort
+
+  let l:cmd = 'i' . a:str
+  call Normal(l:cmd)
+endfunc
+
+func! Ins_mlt(str, num) abort
+
+  let l:cmd = a:num.'i'.a:str
+  call Normal(l:cmd)
 endfunc
 
 func! Int_2_str(num) abort
@@ -1554,16 +1561,14 @@ func! Int_2_str(num) abort
   return l:num_str
 endfunc
 
-func! Put(str) abort
+func! Rgstr__clr() abort
 
-  let l:cmd = 'i'.a:str
-  call Normal(l:cmd)
+  let @0 = ''
 endfunc
 
-func! Put_mlt(str, num) abort
-
-  let l:cmd = a:num.'i'.a:str
-  call Normal(l:cmd)
+func! Save() abort
+  
+  call Exe('w')
 endfunc
 
 " indnt
@@ -1577,7 +1582,7 @@ endfunc
 func! Indnt__add(col) abort
 
   call Normal('0')
-  call Put_mlt(' ', (a:col))
+  call Ins_mlt(' ', (a:col))
 
   call N_cursor__mv_line_start1()
 endfunc
@@ -1632,8 +1637,7 @@ func! N_markdown_chk__tgl() abort
     let l:rpl_char = ' '
   endif
   
-  let l:cmd = 'r' . l:rpl_char
-  call Normal(l:cmd)
+  call Char__rpl(l:rpl_char)
 endfunc
 
 func! Md_2_html() abort
@@ -1647,22 +1651,6 @@ func! Md_2_html() abort
   exe '! node ~/sh/nodejs/md_2_html.js ' . l:path
   
   call Opn_app(l:path . '.html')
-endfunc
-
-" grep
-
-command! -nargs=? GrepStr call Grep_str(<q-args>)
-
-func! Grep_str(str) abort
-  
-  call Grep(v:null, a:str)
-endfunc
-
-command! -nargs=? GrepWrd call Grep_wrd(<q-args>)
-
-func! Grep_wrd(str) abort
-  
-  call Grep('-w'  , a:str)
 endfunc
 
 " ynk
@@ -1689,13 +1677,31 @@ endfunc
 
 func! V_ynk() abort
 
-  exe 'normal! gv"0y'
-  exe 'normal! gv"+y'
+  call Normal('gv"0y')
+  call Normal('gv"+y')
   
   "let l:str = V_slctd_str()
   "let @0 = l:str
   "let @+ = l:str
 endfunc
+
+" grep
+
+command! -nargs=? GrepStr call Grep_str(<q-args>)
+
+func! Grep_str(str) abort
+  
+  call Grep(v:null, a:str)
+endfunc
+
+command! -nargs=? GrepWrd call Grep_wrd(<q-args>)
+
+func! Grep_wrd(str) abort
+  
+  call Grep('-w'  , a:str)
+endfunc
+
+" line cnd
 
 func! Is_line_emp() abort
   
@@ -1705,6 +1711,18 @@ func! Is_line_emp() abort
     return v:false
   end
 endfunc
+
+func! Is_line_space() abort
+  
+  let l:idx = match(Line_str(), '^\s*$')
+  if l:idx == 0
+    return v:true
+  else
+    return v:false
+  end
+endfunc
+
+" cursor
 
 func! N_cursor__mv_line_start_or_new_line() abort
 
@@ -1759,20 +1777,9 @@ func! N_cursor__mv_line_start0() abort
   end
 endfunc
 
-func! Is_line_space() abort
-  
-  let l:idx = match(Line_str(), '^\s*$')
-  if l:idx == 0
-    return v:true
-  else
-    return v:false
-  end
-endfunc
-
 func! N_cursor__mv_line_end() abort
 
   if ! Is_line_emp()
-    "exe 'normal! $l'
     call Normal('$l')
   end
 endfunc
@@ -1823,15 +1830,15 @@ func! N_cursor__mv_word_b_pre() abort
   let l:l_char = Cursor_r_char()
 
   if l:c_char =~ ' ' && l:l_char !~ ' '
-    exe "normal! gegel"
+    call Normal('gegel')
   else
-    exe "normal! gel"
+    call Normal('gel')
   end
 endfunc
 
-func! Rgstr__clr() abort
-
-  let @0 = ''
+func! Cursor__mv_by_pos(pos) abort
+  
+  call setpos('.', a:pos)
 endfunc
 
 func! Slct_word() abort
@@ -1839,19 +1846,13 @@ func! Slct_word() abort
   let l:c = Cursor_c_char()
 
   if     l:c =~ '\w'
-    exe "normal! viw"
+    call Normal('viw')
 
   elseif l:c =~ ' '
-    exe "normal! vwh"
-
+    call Normal('vwh')
   else
-    exe "normal! v"
+    call Normal('v')
   endif
-endfunc
-
-func! Cursor__mv_by_pos(pos) abort
-  
-  call setpos('.', a:pos)
 endfunc
 
 func! Slct_by_pos(s_pos, e_pos) abort
@@ -1885,7 +1886,7 @@ endfunc
 
 func! Buf_nr() abort
 
-  return bufnr("%")
+  return bufnr('%')
 endfunc
 
 func! Tag_jmp(rg_out_line) abort
@@ -1907,7 +1908,7 @@ func! Tag_jmp(rg_out_line) abort
   end
 
   exe "tab drop " . l:filename
-  exe "normal! " . l:line_num . "G"
+  call Normal(l:line_num . 'G')
 endfunc
 
 func! N_tag_jmp() abort
@@ -1918,7 +1919,7 @@ func! N_tag_jmp() abort
   call Tag_jmp(l:line)
 
   exe "sbuffer " . l:base_buf_nr
-  exe "normal! " . "j"
+  call Normal('j')
 endfunc
 
 func! V_tag_jmp() range abort
@@ -1975,8 +1976,7 @@ endfunc
   
 func! Slct_expnd() abort
 
-  " todo
-  " refactoring use Slct_expnd()
+  " todo refactoring use Slct_expnd()
   
   call Cursor__mv_slctd_r()
   
@@ -2038,8 +2038,6 @@ endfunc
 func! Cursor_c_char() abort
 
   let l:c = getline('.')[col('.')-1]
-  " getcursorcharpos() ?
-
   return l:c
 endfunc
 
@@ -2055,17 +2053,17 @@ func! Cursor_l_char() abort
   return l:c
 endfunc
 
-func! N_line_del() abort
+func! N_line__del() abort
   
   if Line_str() =~ '^\s*$'
-    exe 'normal! "add'
+    call Normal('"add')
   else
-    exe 'normal! "0dd'
+    call Normal('"0dd')
     call Clipboard__ynk()
   endif
 endfunc
 
-func! V_line_del() abort " todo mod
+func! V_line_del() abort " todo mod , use not
   
   "exe 'normal! "0d'
   "normal! gv"0d
@@ -2076,81 +2074,89 @@ func! V_line_del() abort " todo mod
   call Clipboard__ynk()
 endfunc
 
-func! N_char_tgl1() abort
+" 
+" char __ 
+" 
+
+func! Char__rpl(rpl) abort
+
+  call Normal('r' . a:rpl)
+endfunc
+
+func! N_char__tgl1() abort
 
   let l:c   = Cursor_c_char()
-  let l:rpl = Char_tgl1(l:c)
+  let l:rpl = Char__tgl1(l:c)
 
-  if l:rpl == ""
-    normal! v~
+  if l:rpl == ''
+    call Normal('v~')
     return
   endif
 
-  exe 'normal! x'
-  exe 'normal! i'.l:rpl
+  call Char__rpl(l:rpl)
 endfunc
 
-func! N_char_tgl2() abort " use not
+func! N_char__tgl2() abort " use not
 
   let l:c   = Cursor_c_char()
-  let l:rpl = Char_tgl_trn(l:c)
+  let l:rpl = Char__tgl_trn(l:c)
 
-  if l:rpl == ""
-    normal! v~
+  if l:rpl == ''
+    call Normal('v~')
     return
   endif
 
-  exe 'normal! x'
-  exe 'normal! i'.l:rpl
+  call Char__rpl(l:rpl)
 endfunc
 
-func! Char_tgl1(c) abort
+func! Char__tgl1(c) abort
 
-  "let l:rpl = Char_tgl_bracket(a:c)
-  let l:rpl = Char_tgl_trn(a:c)
-  if l:rpl != ""
+  "let l:rpl = Char__tgl_bracket(a:c)
+  let l:rpl = Char__tgl_trn(a:c)
+
+  if l:rpl != ''
     return l:rpl
   endif
 
-  let l:rpl = Char_tgl_etc(a:c)
-  if l:rpl != ""
+  let l:rpl = Char__tgl_etc(a:c)
+  if l:rpl != ''
     return l:rpl
   endif
 
   return l:rpl
 endfunc
 
-func! Char_tgl_bracket(c) abort
+func! Char__tgl_bracket(c) abort " use not
 
-  let l:rpl = ""
+  let l:rpl = ''
 
-  if     a:c == "("
-    let l:rpl = "["
-  elseif a:c == ")"
-    let l:rpl = "]"
+  if     a:c == '('
+    let l:rpl = '['
+  elseif a:c == ')'
+    let l:rpl = ']'
 
-  elseif a:c == "["
-    let l:rpl = "{"
-  elseif a:c == "]"
-    let l:rpl = "}"
+  elseif a:c == '['
+    let l:rpl = '{'
+  elseif a:c == ']'
+    let l:rpl = '}'
 
-  elseif a:c == "{"
-    let l:rpl = "<"
-  elseif a:c == "}"
-    let l:rpl = ">"
+  elseif a:c == '{'
+    let l:rpl = '<'
+  elseif a:c == '}'
+    let l:rpl = '>'
 
-  elseif a:c == "<"
-    let l:rpl = "("
-  elseif a:c == ">"
-    let l:rpl = ")"
+  elseif a:c == '<'
+    let l:rpl = '('
+  elseif a:c == '>'
+    let l:rpl = ')'
   endif
 
   return l:rpl
 endfunc
 
-func! Char_tgl_etc(c) abort
+func! Char__tgl_etc(c) abort
 
-  let l:rpl = ""
+  let l:rpl = ''
 
   if     a:c == "/"
     let l:rpl = "-"
@@ -2166,20 +2172,20 @@ func! Char_tgl_etc(c) abort
   elseif a:c == "'"
     let l:rpl = '"'
 
-  elseif a:c == "*"
-    let l:rpl = "+"
-  elseif a:c == "+"
-    let l:rpl = "*"
+  elseif a:c == '*'
+    let l:rpl = '+'
+  elseif a:c == '+'
+    let l:rpl = '*'
 
-  elseif a:c == ","
-    let l:rpl = "."
-  elseif a:c == "."
-    let l:rpl = ","
+  elseif a:c == ','
+    let l:rpl = '.'
+  elseif a:c == '.'
+    let l:rpl = ','
 
-  elseif a:c == ";"
-    let l:rpl = ":"
-  elseif a:c == ":"
-    let l:rpl = ";"
+  elseif a:c == ';'
+    let l:rpl = ':'
+  elseif a:c == ':'
+    let l:rpl = ';'
 
   "elseif a:c ==# "T"
   "  let l:rpl = "f"
@@ -2205,29 +2211,29 @@ func! Char_tgl_etc(c) abort
   return l:rpl
 endfunc
 
-func! Char_tgl_trn(c) abort
+func! Char__tgl_trn(c) abort
   
-  let l:rpl = ""
+  let l:rpl = ''
 
-  if     a:c == "<"
-    let l:rpl = ">"
-  elseif a:c == ">"
-    let l:rpl = "<"
+  if     a:c == '<'
+    let l:rpl = '>'
+  elseif a:c == '>'
+    let l:rpl = '<'
 
-  elseif a:c == "{"
-    let l:rpl = "}"
-  elseif a:c == "}"
-    let l:rpl = "{"
+  elseif a:c == '{'
+    let l:rpl = '}'
+  elseif a:c == '}'
+    let l:rpl = '{'
 
-  elseif a:c == "["
-    let l:rpl = "]"
-  elseif a:c == "]"
-    let l:rpl = "["
+  elseif a:c == '['
+    let l:rpl = ']'
+  elseif a:c == ']'
+    let l:rpl = '['
 
-  elseif a:c == "("
-    let l:rpl = ")"
-  elseif a:c == ")"
-    let l:rpl = "("
+  elseif a:c == '('
+    let l:rpl = ')'
+  elseif a:c == ')'
+    let l:rpl = '('
   endif
 
   return l:rpl
@@ -2249,41 +2255,8 @@ endfunc
 "  exe "normal! %"
 "endfunc
 
-func! Char_tgl2() abort " use not
-  
-  let l:c = Cursor_c_char()
-
-  if     l:c == "("
-    let l:rpl = "["
-  elseif l:c == ")"
-    let l:rpl = "]"
-
-  elseif l:c == "["
-    let l:rpl = "{"
-  elseif l:c == "]"
-    let l:rpl = "}"
-
-  elseif l:c == "{"
-    let l:rpl = "<"
-  elseif l:c == "}"
-    let l:rpl = ">"
-
-  elseif l:c == "<"
-    let l:rpl = "("
-  elseif l:c == ">"
-    let l:rpl = ")"
-  else
-    "normal! v~
-    return
-  endif
-
-  exe "normal! x"
-  exe "normal! i".l:rpl
-endfunc
-
 func! Cursor_word() abort
 
-  "let l:word = expand("<cword>>")
   let l:word = expand("<cword>")
   return l:word
 endfunc
@@ -2303,15 +2276,16 @@ endfunc
 
 func! V_mv_str(lr) abort
 
-  exe 'normal! gv"ax' . a:lr . '"aP'
+  call Normal('gv"ax' . a:lr . '"aP')
 
-  exe 'normal! v'
-  "let l:mv_len = strchars(@a) - 1
+  call Normal('v')
+
   let l:mv_len = Str_len(@a) - 1
   if l:mv_len <= 0
     return
   endif
-  exe 'normal! ' . l:mv_len . 'h'
+
+  call Normal(l:mv_len . 'h')
 endfunc
 
 func! V_mv_line(ud) range abort
@@ -2322,11 +2296,11 @@ func! V_mv_line(ud) range abort
   exe 'normal! ' . a:firstline . 'G'
   exe 'normal! ' . l:line_num . '"add'
   exe 'normal! ' . a:ud
-  exe 'normal! "aP'
-  exe 'normal! V'
+  call Normal('"aP')
+  call Normal('V')
 
   if l:mv_num >= 1
-    exe 'normal! ' . l:mv_num . 'j'
+    call Normal(l:mv_num . 'j')
   endif
 endfunc
 
@@ -2342,7 +2316,7 @@ endfunc
 
 func! Slct_re() abort " todo mod
   
-  normal! gv
+  call Normal('gv')
 endfunc
 
 func! Slctd_pos() abort " use not
@@ -2357,8 +2331,7 @@ endfunc
 
 func! V_slctd_str() abort
 
-  "exe 'normal! gv"ay'
-  normal! gv"ay
+  call Normal('gv"ay')
   return @a
   
   " return @* " ??
@@ -2372,20 +2345,20 @@ func! V_slctd_str_len() abort
 endfunc
 
 command! -nargs=? InsSlctdEdge call V_ins_slctd_edge(<q-args>)
-func! V_ins_slctd_edge(c) abort
+func! V_ins_slctd_edge(c) abort " use not
   
-  if     a:c   == "("
-    let  l:c_l =  "("
-    let  l:c_r =  ")"
-  elseif a:c   == "["
-    let  l:c_l =  "["
-    let  l:c_r =  "]"
-  elseif a:c   == "{"
-    let  l:c_l =  "{"
-    let  l:c_r =  "}"
-  elseif a:c   == "<"
-    let  l:c_l =  "<"
-    let  l:c_r =  ">"
+  if     a:c   == '('
+    let  l:c_l =  '('
+    let  l:c_r =  ')'
+  elseif a:c   == '['
+    let  l:c_l =  '['
+    let  l:c_r =  ']'
+  elseif a:c   == '{'
+    let  l:c_l =  '{'
+    let  l:c_r =  '}'
+  elseif a:c   == '<'
+    let  l:c_l =  '<'
+    let  l:c_r =  '>'
   else
     let  l:c_l = a:c
     let  l:c_r = a:c
@@ -2397,14 +2370,14 @@ endfunc
 
 func! V_ins_slctd_l(c) abort
 
-  exe 'normal! `<'
-  exe 'normal! i' . a:c
+  call Normal('`<')
+  call Ins(a:c)
 endfunc
 
 func! V_ins_slctd_r(c) abort
 
-  exe 'normal! `>l'
-  exe 'normal! i' . a:c
+  call Normal('`>l')
+  call Ins(a:c)
 endfunc
 
 func! N_srch_str__(word1) abort
@@ -2472,7 +2445,6 @@ endfunc
 func! Srch_str__(str, word1) abort
   
   echo a:str
-  "let l:str  = escape(a:str, '.*~[]')
   let l:str  = escape(a:str, '.*~[]\')
   
   if a:word1
@@ -2526,21 +2498,21 @@ endfunc
 
 func! N_srch_slct(dir) abort " use not
 
-  if     a:dir == "f"
-    normal! gn
+  if     a:dir == 'f'
+    call Normal('gn')
 
-  elseif a:dir == "b"
-    normal! gN
+  elseif a:dir == 'b'
+    call Normal('gN')
   endif
 endfunc
 
 func! V_srch_slct(dir) abort
 
-  if     a:dir == "f"
-    exe 'normal! `>lgn'
+  if     a:dir == 'f'
+    call Normal('`>lgn')
 
-  elseif a:dir == "b"
-    exe 'normal! `<hgN'
+  elseif a:dir == 'b'
+    call Normal('`<hgN')
   endif
 endfunc
 
@@ -2558,21 +2530,23 @@ func! Cmnt_1(head) abort
   let l:dflt = '# '
   let l:str = get(l:str_df, &filetype, l:dflt)
 
-  exe 'normal! ' . a:head . 'i' . l:str
+  call Normal(a:head . 'i' . l:str)
   
-  "exe 'normal! 0'
-  exe 'normal! ^'
+  "call Normal('0')
+  call Normal('^')
 endfunc
 
 func! N_cmnt_1() abort
-  call Cmnt_1("^")
+
+  call Cmnt_1('^')
 endfunc
 
 func! V_cmnt_1() range abort
 
   for line_num in range(a:firstline, a:lastline)
-    exe 'normal! ' . line_num . 'G'
-    call Cmnt_1("0")
+
+    call Normal(line_num . 'G')
+    call Cmnt_1('0')
   endfor
 endfunc
 
@@ -2604,31 +2578,35 @@ func! Cmnt_mlt(pos) abort
 endfunc
 
 func! N_cmnt_mlt() abort
-  call Cmnt_mlt("bgn")
-  call Cmnt_mlt("end")
+
+  call Cmnt_mlt('bgn')
+  call Cmnt_mlt('end')
 endfunc
 
 func! V_cmnt_mlt() range abort
 
   exe 'normal! ' . a:lastline  . 'G'
-  call Cmnt_mlt("end")
+  call Cmnt_mlt('end')
 
   exe 'normal! ' . a:firstline . 'G'
-  call Cmnt_mlt("bgn")
+  call Cmnt_mlt('bgn')
 endfunc
 
 func! Line_end_space_del(line_num) abort
   
-  exe a:line_num.'s/[ \t]*$//g'
+  "exe a:line_num . 's/[ \t]*$//g'
+  call Exe(a:line_num . 's/[ \t]*$//g')
 endfunc
 
 func! V_line_end_space_del() abort
-  exe 's/[ \t]*$//g'
+
+  "exe 's/[ \t]*$//g'
+  call Exe('s/[ \t]*$//g')
 endfunc
 
 func! V_line_end_padding() range abort
   
-  let l:char = " "
+  let l:char = ' '
   let l:w    = 75
 
   for line_num in range(a:firstline, a:lastline)
@@ -2730,7 +2708,7 @@ func! Opn_vimrc() abort
   call Opn(l:path)
 endfunc
 
-func! Opn_slf() abort
+func! Opn_app_slf() abort
 
   let l:path = Slf_path()
   "echo l:path
@@ -2773,7 +2751,7 @@ func Opn_app(path)
   endif
 endfunc
 
-func Opn_app_cursor_filepath()
+func Opn_app_cursor_path()
   
   let l:path = Cursor_filepath()
   call Opn_app(l:path)
@@ -2787,6 +2765,8 @@ func V_opn_app()
   
   call Opn_app(l:path)
 endfunc
+
+" mark
 
 let g:mark_alph_def = [
 \   'a','b','c','d','e','f','g','h','i','j','k','l','m','n',

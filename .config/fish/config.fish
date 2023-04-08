@@ -74,10 +74,11 @@ alias da      "date +'%Y-%m-%d %a'"
 
 alias ff "fd -tf"
 
-alias trns_jp_2_en "trans {ja=en}"
-alias trns_en_2_jp "trans {en=ja}"
-alias tj "trans {ja=en}"
-alias te "trans {en=ja}"
+alias trns "trans"
+alias trns_j "trans {ja=en}"
+alias trns_e "trans {en=ja}"
+#alias tj "trans {ja=en}"
+#alias te "trans {en=ja}"
 
 #alias rpl="string replace"
 #alias fzf="fzf --bind=ctrl-o:accept "
