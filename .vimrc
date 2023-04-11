@@ -205,7 +205,7 @@ nnoremap gm :call Opn_memo()<cr>
 "nnoremap xx :call Markdown_2_html()<cr>
 
 " markdown __ ins itm
-nnoremap Y :call Ins__markdown_itm()<cr>
+nnoremap Y :call Ins_markdown_itm()<cr>
 
 " markdown __ tgl chk
 nnoremap x :call Char__tgl_markdown_chk()<cr>
@@ -231,9 +231,11 @@ nnoremap y :call N_cursor__mv_line_top_or_new_line()<cr>
 nnoremap <c-a> 0
 
 " cursor mv in line end
-nnoremap <c-y> :call N_cursor__mv_line_end()<cr>
-nnoremap <c-e> :call N_cursor__mv_line_end()<cr>
-"nnoremap Y     $
+nnoremap <expr> <c-y>
+\ Is_cursor_line_end() ? ':call Ins_markdown_cr()<cr>' :
+\                        ':call N_cursor__mv_line_end()<cr>'
+"nnoremap <c-e> :call N_cursor__mv_line_end()<cr>
+"nnoremap xx     $
 
 " cursor mv char - forward
 nnoremap l l
@@ -681,7 +683,7 @@ nnoremap X <esc>
 nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
-"nnoremap <c-e> <esc>
+nnoremap <c-e> <esc>
 "nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
@@ -1053,9 +1055,9 @@ vnoremap gg <esc>
 
 " quit, esc
 inoremap <expr> <esc>
-\ pumvisible()            ? "<c-e>"  :
-\ Is_cursor_line_top0() ? "<esc>"  :
-\                           "<esc>l"
+\ pumvisible()          ? '<c-e>'  :
+\ Is_cursor_line_top0() ? '<esc>'  :
+\                         '<esc>l'
 inoremap <c-c> <esc>
 
 " cursor mv line in
@@ -1077,11 +1079,9 @@ inoremap <c-s> <c-o>h
 
 " cursor mv d
 inoremap <c-n> <c-o>j
-"inoremap <c-n> <down>
 
 " cursor mv u
 inoremap <c-p> <c-o>k
-"inoremap <c-p> <up>
 
 " del line
 " non
@@ -1096,17 +1096,15 @@ inoremap <c-h> <c-h>
 inoremap <c-w> <c-w>
 
 " del word forword
-"inoremap <expr> <c-k>
-"\ pumvisible()         ? "<c-p>"   :
-"\ col(".") != col("$") ? "<c-o>dw" :
-"\                        ""
+inoremap <expr> <c-k>
+\ pumvisible()         ? "<c-p>"   :
+\ col(".") != col("$") ? "<c-o>dw" :
+\                        ""
 
 " ins cr
 inoremap <c-m> <cr>
 
 " ins markdown cr
-inoremap <c-q> <space><space>
-inoremap <c-r> <space><space>
 inoremap <tab> <space><space>
 
 " ins tab
@@ -1145,16 +1143,14 @@ inoremap <kHome>     7
 inoremap <kUp>       8
 inoremap <kPageUp>   9
 
-" ins symbol
-inoremap <c-u> <c-r>=I_symbol()<cr>
-
 " ins bracket
 inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=I_bracket()<cr>"
 
 " ins markdown
-inoremap <expr> <c-k>
-\ pumvisible() ? "<c-p>" :
-\                "<c-r>=I_markdown()<cr>"
+inoremap <c-u> <c-r>=I_markdown()<cr>
+
+" ins symbol
+inoremap <c-q> <c-r>=I_symbol()<cr>
 
 " ins num
 "inoremap xx <c-r>=I_num()<cr>
@@ -1166,7 +1162,7 @@ inoremap <expr> <c-k>
 "inoremap xx <c-r>=I_lua_reserved()<cr>
 
 " ins ooq ( lua )
-"inoremap <c-u> <c-r>=I_usual()<cr>
+"inoremap <c-xx> <c-r>=I_usual()<cr>
 
 " 
 " nop
@@ -1185,86 +1181,11 @@ inoremap <c-b> <nop>
 "inoremap <c-n> <nop>
 "inoremap <c-p> <nop>
 "inoremap <c-q> <nop>
-"inoremap <c-r> <nop>
+inoremap <c-r> <nop>
 "inoremap <c-s> <nop>
 "inoremap <c-t> <nop>
 "inoremap <c-u> <nop>
 "inoremap <c-y> <nop>
-
-" 
-" ins fnc
-" 
-
-func! I_symbol() abort
-
-  let l:lst = ['%', '&', '\', '@', '?', '/']
-
-  call complete(col('.'), l:lst)
-  return ''
-endfunc
-
-func! I_bracket() abort
-  call complete( col('.'), [ '()', "''", '[]', '""', '<>', '{}' ])
-  return ''
-endfunc
-
-func! I_markdown() abort
-  call complete( col('.'), [ '- ', '- [ ] ', '```', '``', '---' ])
-  return ''
-endfunc
-
-func! I_num() abort
-  call complete(col('.'), ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])
-  return ''
-endfunc
-
-func! I_reg() abort
-  call complete(col('.'), [@0, @1, @2, @3])
-  return ''
-endfunc
-
-func! I_lua_reserved() abort
-  call complete(col('.'), [
-  \   'end',
-  \   'local',
-  \   'return',
-  \   'if elseif else end',
-  \   'for key, val in pairs() do end',
-  \   'function'
-  \ ])
-  return ''
-endfunc
-
-func! I_usual() abort
-  call complete(col('.'), [
-  \   '_s:',
-  \   '_s._',
-  \   'log._("", )',
-  \   'log.pp("", )',
-  \   '-- dbg',
-  \   '--',
-  \   '_.f',
-  \   '_.t'
-  \ ])
-  return ''
-"  \   'function',
-"  \   'local',
-"  \   'return',
-"  \   'if _.t then return end',
-"  \   'if  then',
-"  \   'elseif  then',
-"  \   'else',
-"  \   'then',
-"  \   'then return end',
-"  \   'for key, val in pairs() do end',
-"  \   'not',
-"  \   'or',
-"  \   'and',
-"  \   'end',
-"  \   'nil',
-"  \   'alias',
-endfunc
-
 
 " 
 " mode cmd
@@ -1571,20 +1492,57 @@ func! Ins_mlt(str, num) abort
   call Normal(l:cmd)
 endfunc
 
+func! N_ins_cr() abort
+  
+  let l:t_line_num = line('.')
+  
+  exe "normal! i\<cr> "
+  exe 'normal! x'
+  
+  call Line_end__del_space(l:t_line_num)
+  exe 'normal! j'
+endfunc
+
 func! Int_2_str(num) abort
 
   let l:num_str = printf('%o', a:num)
   return l:num_str
 endfunc
 
-func! Rgstr__clr() abort
+func! Col() abort " alias
+  
+  return col('.')
+endfunc
 
-  let @0 = ''
+func! Str_l(str)
+  
+  let l:l_idx = 0
+  let l:str_l = a:str[l:l_idx]
+  "echo l:str_l
+  return l:str_l
+endfunc
+
+func! Str_r(str)
+  
+  let l:r_idx = Str_len(a:str) - 1
+  let l:str_r = a:str[l:r_idx]
+  "echo l:str_r
+  return l:str_r
+endfunc
+
+func! Str_len(str)
+
+  return strchars(a:str)
 endfunc
 
 func! Save() abort
   
   call Exe('w')
+endfunc
+
+func! Rgstr__clr() abort
+
+  let @0 = ''
 endfunc
 
 " cursor
@@ -1690,6 +1648,53 @@ func! N_cursor__mv_line_top_or_new_line() abort
   end
 endfunc
 
+func! Cursor_c_char() abort
+
+  let l:c = getline('.')[col('.')-1]
+  return l:c
+endfunc
+
+func! Cursor_r_char() abort
+
+  let l:c = getline('.')[col('.')]
+  return l:c
+endfunc
+
+func! Cursor_l_char() abort
+
+  let l:c = getline('.')[col('.')-2]
+  return l:c
+endfunc
+
+func! Cursor_word() abort
+
+  let l:word = expand("<cword>")
+  return l:word
+endfunc
+
+func! Cursor_filepath() abort
+
+  if has('mac')
+    let l:str = expand("<cfile>")
+  else
+    let l:str = Line_str()
+  endif
+  
+  let l:str = trim(l:str)
+  
+  return l:str
+endfunc
+
+func! Cursor__mv_slctd_l() abort
+  
+  call Normal('`<')
+endfunc
+
+func! Cursor__mv_slctd_r() abort
+  
+  call Normal('`>')
+endfunc
+
 " cursor cnd
 
 func! Is_cursor_line_end() abort
@@ -1761,6 +1766,102 @@ endfunc
 func! Line_end__del_space(line_num) abort
   
   call Exe(a:line_num . 's/[ \t]*$//g')
+endfunc
+
+func! N_line__del() abort
+  
+  if Line_str() =~ '^\s*$'
+    call Normal('"add')
+  else
+    call Normal('"0dd')
+    call Clipboard__ynk()
+  endif
+endfunc
+
+func! V_line_del() abort " todo mod , use not
+  
+  "exe 'normal! "0d'
+  "normal! gv"0d
+  
+  normal! gvj
+  "normal! "0d
+  
+  call Clipboard__ynk()
+endfunc
+
+func! V_line_end_space_del() abort
+
+  call Exe('s/[ \t]*$//g')
+endfunc
+
+func! V_line_end_padding() range abort
+  
+  let l:char = ' '
+  let l:w    = 75
+
+  for line_num in range(a:firstline, a:lastline)
+    
+    call Normal(line_num . 'G')
+    
+    let l:col = col('$')
+    let l:len = l:w - l:col
+    
+    call Normal(l:len . 'A' . l:char)
+  endfor
+endfunc
+
+" line ins
+
+func! N_ins_line(str) abort
+  
+  let l:line_num = Line_num() - 1
+  call append(l:line_num, a:str)
+  exe 'normal! k'
+endfunc
+
+func! N_ins_line_emp() abort
+  
+  let l:str = ''
+  call N_ins_line(l:str)
+  
+"  exe 'normal! O '
+"  exe 'normal! x'
+endfunc
+
+func! N_ins_line_slf_path() abort
+  
+  let l:path = Slf_path()
+  call N_ins_line(l:path)
+endfunc
+
+func! V_mv_str(lr) abort
+
+  call Normal('gv"ax' . a:lr . '"aP')
+
+  call Normal('v')
+
+  let l:mv_len = Str_len(@a) - 1
+  if l:mv_len <= 0
+    return
+  endif
+
+  call Normal(l:mv_len . 'h')
+endfunc
+
+func! V_mv_line(ud) range abort
+
+  let l:mv_num   = a:lastline - a:firstline
+  let l:line_num = l:mv_num + 1
+
+  exe 'normal! ' . a:firstline . 'G'
+  exe 'normal! ' . l:line_num . '"add'
+  exe 'normal! ' . a:ud
+  call Normal('"aP')
+  call Normal('V')
+
+  if l:mv_num >= 1
+    call Normal(l:mv_num . 'j')
+  endif
 endfunc
 
 " line cnd
@@ -1867,6 +1968,145 @@ func! Slct_by_line_col(s_line, s_col, e_line, e_col) abort
   call Cursor__mv_by_lc(a:e_line, a:e_col)
 endfunc
 
+func! Slct_expnd_r() abort
+  
+  call Cursor__mv_slctd_l()
+  let l:col_c = Col()
+  
+  let l:ptn = '[' . "'" . '"' . ')' . '\]' . ']'
+  
+  let l:line_r = Line_r()
+  let l:r_idx  = match(l:line_r, l:ptn)
+  
+  if l:r_idx == -1
+    return
+  endif
+  
+  let l:c = l:line_r[l:r_idx]
+  "echo l:c l:r_idx
+  
+  let l:slct_col_r = l:col_c + l:r_idx
+  
+  if l:r_idx == 0
+    let l:slct_col_r += 1
+  endif
+  
+  call Slct_by_line_col(0, l:col_c, 0, l:slct_col_r)
+  
+endfunc
+  
+func! Slct_expnd() abort
+
+  " todo refactoring use Slct_expnd()
+  
+  call Cursor__mv_slctd_r()
+  
+  let l:ptn = '[' . "'" . '"' . ')' . '\]' . ']'
+  
+  let l:line_r = Line_r()
+  let l:r_idx  = match(l:line_r, l:ptn)
+  "echo l:r_idx
+  
+  if l:r_idx == -1
+    return
+  endif
+  
+  let l:c = l:line_r[l:r_idx]
+  "echo l:c l:r_idx
+  
+  if l:c == '"' || l:c == "'"
+    
+    let l:line_l = Line_l()
+    let l:l_idx = strridx(l:line_l, l:c)
+    
+    if l:l_idx == -1
+      return
+    endif
+    
+    let l:word_col_l =         l:l_idx + 2
+    let l:word_col_r = Col() + l:r_idx
+    
+    if l:r_idx == 0
+      let l:word_col_l -= 1
+      let l:word_col_r += 1
+    endif
+    
+    call Slct_by_line_col(0, l:word_col_l, 0, l:word_col_r)
+    
+  elseif l:c == ')'
+    normal! vi(
+    
+  elseif l:c == ']'
+    normal! vi[
+  endif
+endfunc
+
+func! Slct_re() abort " todo mod
+  
+  call Normal('gv')
+endfunc
+
+func! Slctd_pos() abort " use not
+  
+  call Slct_re()
+  let l:pos = getpos('.')
+  
+  exe "normal! \<esc>"
+  
+  return l:pos
+endfunc
+
+func! V_slctd_str() abort
+
+  call Normal('gv"ay')
+  return @a
+  
+  " return @* " ??
+endfunc
+
+func! V_slctd_str_len() abort
+
+  "let l:slctd_str = V_slctd_str()
+  let l:len = strchars(V_slctd_str())
+  return l:len
+endfunc
+
+command! -nargs=? InsSlctdEdge call V_ins_slctd_edge(<q-args>)
+func! V_ins_slctd_edge(c) abort " use not
+  
+  if     a:c   == '('
+    let  l:c_l =  '('
+    let  l:c_r =  ')'
+  elseif a:c   == '['
+    let  l:c_l =  '['
+    let  l:c_r =  ']'
+  elseif a:c   == '{'
+    let  l:c_l =  '{'
+    let  l:c_r =  '}'
+  elseif a:c   == '<'
+    let  l:c_l =  '<'
+    let  l:c_r =  '>'
+  else
+    let  l:c_l = a:c
+    let  l:c_r = a:c
+  endif
+  
+  call V_ins_slctd_r(l:c_r)
+  call V_ins_slctd_l(l:c_l)
+endfunc
+
+func! V_ins_slctd_l(c) abort
+
+  call Normal('`<')
+  call Ins(a:c)
+endfunc
+
+func! V_ins_slctd_r(c) abort
+
+  call Normal('`>l')
+  call Ins(a:c)
+endfunc
+
 " ynk
 
 func! Ynk__clipboard() abort
@@ -1917,10 +2157,15 @@ endfunc
 
 " markdown
 
-func! Ins__markdown_itm() abort
+func! Ins_markdown_itm() abort
 
   let l:str = '- '
   call Line_top1__ins(l:str)
+endfunc
+
+func! Ins_markdown_cr() abort
+
+  call Ins('  ')
 endfunc
 
 func! Char__tgl_markdown_chk() abort
@@ -2013,126 +2258,7 @@ func! V_tag_jmp() range abort
   endfor
 endfunc
 
-func! Slct_expnd_r() abort
-  
-  call Cursor__mv_slctd_l()
-  let l:col_c = Col()
-  
-  let l:ptn = '[' . "'" . '"' . ')' . '\]' . ']'
-  
-  let l:line_r = Line_r()
-  let l:r_idx  = match(l:line_r, l:ptn)
-  
-  if l:r_idx == -1
-    return
-  endif
-  
-  let l:c = l:line_r[l:r_idx]
-  "echo l:c l:r_idx
-  
-  let l:slct_col_r = l:col_c + l:r_idx
-  
-  if l:r_idx == 0
-    let l:slct_col_r += 1
-  endif
-  
-  call Slct_by_line_col(0, l:col_c, 0, l:slct_col_r)
-  
-endfunc
-  
-func! Slct_expnd() abort
-
-  " todo refactoring use Slct_expnd()
-  
-  call Cursor__mv_slctd_r()
-  
-  let l:ptn = '[' . "'" . '"' . ')' . '\]' . ']'
-  
-  let l:line_r = Line_r()
-  let l:r_idx  = match(l:line_r, l:ptn)
-  "echo l:r_idx
-  
-  if l:r_idx == -1
-    return
-  endif
-  
-  let l:c = l:line_r[l:r_idx]
-  "echo l:c l:r_idx
-  
-  if l:c == '"' || l:c == "'"
-    
-    let l:line_l = Line_l()
-    let l:l_idx = strridx(l:line_l, l:c)
-    
-    if l:l_idx == -1
-      return
-    endif
-    
-    let l:word_col_l =         l:l_idx + 2
-    let l:word_col_r = Col() + l:r_idx
-    
-    if l:r_idx == 0
-      let l:word_col_l -= 1
-      let l:word_col_r += 1
-    endif
-    
-    call Slct_by_line_col(0, l:word_col_l, 0, l:word_col_r)
-    
-  elseif l:c == ')'
-    normal! vi(
-    
-  elseif l:c == ']'
-    normal! vi[
-  endif
-endfunc
-
-func! Col() abort " alias
-  
-  return col('.')
-endfunc
-
-func! Cursor_c_char() abort
-
-  let l:c = getline('.')[col('.')-1]
-  return l:c
-endfunc
-
-func! Cursor_r_char() abort
-
-  let l:c = getline('.')[col('.')]
-  return l:c
-endfunc
-
-func! Cursor_l_char() abort
-
-  let l:c = getline('.')[col('.')-2]
-  return l:c
-endfunc
-
-func! N_line__del() abort
-  
-  if Line_str() =~ '^\s*$'
-    call Normal('"add')
-  else
-    call Normal('"0dd')
-    call Clipboard__ynk()
-  endif
-endfunc
-
-func! V_line_del() abort " todo mod , use not
-  
-  "exe 'normal! "0d'
-  "normal! gv"0d
-  
-  normal! gvj
-  "normal! "0d
-  
-  call Clipboard__ynk()
-endfunc
-
-" 
-" char __ 
-" 
+" char
 
 func! Char__rpl(rpl) abort
 
@@ -2311,130 +2437,7 @@ endfunc
 "  exe "normal! %"
 "endfunc
 
-func! Cursor_word() abort
-
-  let l:word = expand("<cword>")
-  return l:word
-endfunc
-
-func! Cursor_filepath() abort
-
-  if has('mac')
-    let l:str = expand("<cfile>")
-  else
-    let l:str = Line_str()
-  endif
-  
-  let l:str = trim(l:str)
-  
-  return l:str
-endfunc
-
-func! V_mv_str(lr) abort
-
-  call Normal('gv"ax' . a:lr . '"aP')
-
-  call Normal('v')
-
-  let l:mv_len = Str_len(@a) - 1
-  if l:mv_len <= 0
-    return
-  endif
-
-  call Normal(l:mv_len . 'h')
-endfunc
-
-func! V_mv_line(ud) range abort
-
-  let l:mv_num   = a:lastline - a:firstline
-  let l:line_num = l:mv_num + 1
-
-  exe 'normal! ' . a:firstline . 'G'
-  exe 'normal! ' . l:line_num . '"add'
-  exe 'normal! ' . a:ud
-  call Normal('"aP')
-  call Normal('V')
-
-  if l:mv_num >= 1
-    call Normal(l:mv_num . 'j')
-  endif
-endfunc
-
-func! Cursor__mv_slctd_l() abort
-  
-  call Normal('`<')
-endfunc
-
-func! Cursor__mv_slctd_r() abort
-  
-  call Normal('`>')
-endfunc
-
-func! Slct_re() abort " todo mod
-  
-  call Normal('gv')
-endfunc
-
-func! Slctd_pos() abort " use not
-  
-  call Slct_re()
-  let l:pos = getpos('.')
-  
-  exe "normal! \<esc>"
-  
-  return l:pos
-endfunc
-
-func! V_slctd_str() abort
-
-  call Normal('gv"ay')
-  return @a
-  
-  " return @* " ??
-endfunc
-
-func! V_slctd_str_len() abort
-
-  "let l:slctd_str = V_slctd_str()
-  let l:len = strchars(V_slctd_str())
-  return l:len
-endfunc
-
-command! -nargs=? InsSlctdEdge call V_ins_slctd_edge(<q-args>)
-func! V_ins_slctd_edge(c) abort " use not
-  
-  if     a:c   == '('
-    let  l:c_l =  '('
-    let  l:c_r =  ')'
-  elseif a:c   == '['
-    let  l:c_l =  '['
-    let  l:c_r =  ']'
-  elseif a:c   == '{'
-    let  l:c_l =  '{'
-    let  l:c_r =  '}'
-  elseif a:c   == '<'
-    let  l:c_l =  '<'
-    let  l:c_r =  '>'
-  else
-    let  l:c_l = a:c
-    let  l:c_r = a:c
-  endif
-  
-  call V_ins_slctd_r(l:c_r)
-  call V_ins_slctd_l(l:c_l)
-endfunc
-
-func! V_ins_slctd_l(c) abort
-
-  call Normal('`<')
-  call Ins(a:c)
-endfunc
-
-func! V_ins_slctd_r(c) abort
-
-  call Normal('`>l')
-  call Ins(a:c)
-endfunc
+" srch
 
 func! N_srch_str__(word1) abort
 
@@ -2472,27 +2475,6 @@ func! Srch_str_word1(str)
   
   "echo l:str
   return l:str
-endfunc
-
-func! Str_len(str)
-
-  return strchars(a:str)
-endfunc
-
-func! Str_l(str)
-  
-  let l:l_idx = 0
-  let l:str_l = a:str[l:l_idx]
-  "echo l:str_l
-  return l:str_l
-endfunc
-
-func! Str_r(str)
-  
-  let l:r_idx = Str_len(a:str) - 1
-  let l:str_r = a:str[l:r_idx]
-  "echo l:str_r
-  return l:str_r
 endfunc
 
 "let g:srch_init_flg = v:false
@@ -2648,27 +2630,6 @@ func! V_cmnt_mlt() range abort
   call Cmnt_mlt('bgn')
 endfunc
 
-func! V_line_end_space_del() abort
-
-  call Exe('s/[ \t]*$//g')
-endfunc
-
-func! V_line_end_padding() range abort
-  
-  let l:char = ' '
-  let l:w    = 75
-
-  for line_num in range(a:firstline, a:lastline)
-    
-    call Normal(line_num . 'G')
-    
-    let l:col = col('$')
-    let l:len = l:w - l:col
-    
-    call Normal(l:len . 'A' . l:char)
-  endfor
-endfunc
-
 command! -nargs=? -complete=dir Lf call Lf(<q-args>)
 func! Lf(dir) abort
 
@@ -2680,43 +2641,6 @@ func! Slf_path() abort
   
   let l:path = expand('%:p')
   return l:path
-endfunc
-
-" ins str
-
-func! N_ins_cr() abort
-  
-  let l:t_line_num = line('.')
-  
-  exe "normal! i\<cr> "
-  exe 'normal! x'
-  
-  call Line_end__del_space(l:t_line_num)
-  exe 'normal! j'
-endfunc
-
-" ins line
-
-func! N_ins_line(str) abort
-  
-  let l:line_num = Line_num() - 1
-  call append(l:line_num, a:str)
-  exe 'normal! k'
-endfunc
-
-func! N_ins_line_emp() abort
-  
-  let l:str = ''
-  call N_ins_line(l:str)
-  
-"  exe 'normal! O '
-"  exe 'normal! x'
-endfunc
-
-func! N_ins_line_slf_path() abort
-  
-  let l:path = Slf_path()
-  call N_ins_line(l:path)
 endfunc
 
 " tmp file
@@ -2812,6 +2736,78 @@ func V_opn_app()
   let l:path = trim(l:path)
   
   call Opn_app(l:path)
+endfunc
+
+" ins lst
+
+func! I_symbol() abort
+
+  let l:lst = ['%', '&', '\', '@', '?', '/']
+
+  call complete(col('.'), l:lst)
+  return ''
+endfunc
+
+func! I_bracket() abort
+  call complete( col('.'), [ '()', "''", '[]', '""', '<>', '{}' ])
+  return ''
+endfunc
+
+func! I_markdown() abort
+  call complete( col('.'), [ '```', '- ', '- [ ] ', '``', '---' ])
+  return ''
+endfunc
+
+func! I_num() abort
+  call complete(col('.'), ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])
+  return ''
+endfunc
+
+func! I_reg() abort
+  call complete(col('.'), [@0, @1, @2, @3])
+  return ''
+endfunc
+
+func! I_lua_reserved() abort
+  call complete(col('.'), [
+  \   'end',
+  \   'local',
+  \   'return',
+  \   'if elseif else end',
+  \   'for key, val in pairs() do end',
+  \   'function'
+  \ ])
+  return ''
+endfunc
+
+func! I_usual() abort
+  call complete(col('.'), [
+  \   '_s:',
+  \   '_s._',
+  \   'log._("", )',
+  \   'log.pp("", )',
+  \   '-- dbg',
+  \   '--',
+  \   '_.f',
+  \   '_.t'
+  \ ])
+  return ''
+"  \   'function',
+"  \   'local',
+"  \   'return',
+"  \   'if _.t then return end',
+"  \   'if  then',
+"  \   'elseif  then',
+"  \   'else',
+"  \   'then',
+"  \   'then return end',
+"  \   'for key, val in pairs() do end',
+"  \   'not',
+"  \   'or',
+"  \   'and',
+"  \   'end',
+"  \   'nil',
+"  \   'alias',
 endfunc
 
 " mark
