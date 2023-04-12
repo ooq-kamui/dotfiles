@@ -51,8 +51,8 @@ hi SpecialKey  ctermfg=25         ctermbg=none     cterm=none
 
 hi Comment     ctermfg=14         ctermbg=none     cterm=none
 
-hi FullWidthSpace ctermbg=white
 match FullWidthSpace /　/
+hi FullWidthSpace ctermbg=white
 
 au BufNewFile,BufRead *.script     set filetype=lua
 au BufNewFile,BufRead *.gui_script set filetype=lua
@@ -205,7 +205,8 @@ nnoremap gm :call Opn_memo()<cr>
 "nnoremap xx :call Markdown_2_html()<cr>
 
 " markdown __ ins itm
-nnoremap Y :call Ins_markdown_itm()<cr>
+nnoremap <c-u> :call Ins_markdown_itm()<cr>
+"nnoremap Y :call Ins_markdown_itm()<cr>
 
 " markdown __ tgl chk
 nnoremap x :call Char__tgl_markdown_chk()<cr>
@@ -435,6 +436,9 @@ nnoremap - <c-x>
 nnoremap # :call Indnt__shft_r()<cr>
 nnoremap " :call Indnt__shft_l()<cr>
 
+" indent add
+nnoremap U :call Indnt__add(2)<cr>
+
 " indent correct
 nnoremap ; :call Indnt__crct()<cr>
 "nnoremap ; ==^
@@ -544,7 +548,8 @@ nnoremap rk [`
 nnoremap <leader>j :CmdHstry<cr>
 
 " ins sys cmd ( read )
-nnoremap :r :r! 
+"nnoremap :r :r! 
+nnoremap :r :InsSysCmd 
 
 " ins sys ls  ( read )
 nnoremap :l :Lf 
@@ -673,11 +678,11 @@ nnoremap P <esc>
 "nnoremap R <esc>
 "nnoremap S <esc>
 "nnoremap T <esc>
-nnoremap U <esc>
+"nnoremap U <esc>
 nnoremap W <esc>
 nnoremap V <esc>
 nnoremap X <esc>
-"nnoremap Y <esc>
+nnoremap Y <esc>
 
 "nnoremap <c-a> <esc>
 nnoremap <c-b> <esc>
@@ -697,7 +702,7 @@ nnoremap <c-g> <esc>
 nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
-nnoremap <c-u> <esc>
+"nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
 "nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
@@ -952,6 +957,9 @@ vnoremap :G "ay:GrepWrd <c-r>a
 " tag jmp
 vnoremap t :call V_tag_jmp()<cr>
 
+" trns
+vnoremap r :call V_trns()<cr>
+
 " 
 " nop
 " 
@@ -983,6 +991,7 @@ vnoremap b <esc>
 "vnoremap d <esc>
 "vnoremap e <esc>
 "vnoremap f <esc>
+vnoremap g <esc>
 "vnoremap h <esc>
 "vnoremap i <esc>
 vnoremap m <esc>
@@ -990,7 +999,7 @@ vnoremap m <esc>
 "vnoremap o <esc>
 "vnoremap p <esc>
 vnoremap q <esc>
-vnoremap r <esc>
+"vnoremap r <esc>
 "vnoremap s <esc>
 "vnoremap t <esc>
 "vnoremap u <esc>
@@ -1479,30 +1488,6 @@ func! Normal(cmd) abort
   call Exe('normal! ' . a:cmd)
 endfunc
 
-func! Ins(str) abort
-
-  let l:cmd = 'i' . a:str
-  call Normal(l:cmd)
-  call Normal('l')
-endfunc
-
-func! Ins_mlt(str, num) abort
-
-  let l:cmd = a:num.'i'.a:str
-  call Normal(l:cmd)
-endfunc
-
-func! N_ins_cr() abort
-  
-  let l:t_line_num = line('.')
-  
-  exe "normal! i\<cr> "
-  exe 'normal! x'
-  
-  call Line_end__del_space(l:t_line_num)
-  exe 'normal! j'
-endfunc
-
 func! Int_2_str(num) abort
 
   let l:num_str = printf('%o', a:num)
@@ -1533,6 +1518,12 @@ endfunc
 func! Str_len(str)
 
   return strchars(a:str)
+endfunc
+
+func! Sys_cmd(sys_cmd) abort
+
+  let l:cmd = '! ' . a:sys_cmd
+  call Exe(l:cmd)
 endfunc
 
 func! Save() abort
@@ -1731,6 +1722,41 @@ func! Is_cursor_line_top1() abort
   else
     return v:false
   end
+endfunc
+
+" ins
+
+func! Ins(str) abort
+
+  let l:cmd = 'i' . a:str
+  call Normal(l:cmd)
+  call Normal('l')
+endfunc
+
+func! Ins_mlt(str, num) abort
+
+  let l:cmd = a:num.'i'.a:str
+  call Normal(l:cmd)
+endfunc
+
+func! N_ins_cr() abort
+  
+  let l:t_line_num = line('.')
+  
+  exe "normal! i\<cr> "
+  call Normal('x')
+  
+  call Line_end__del_space(l:t_line_num)
+  call Normal('j')
+endfunc
+
+command! -nargs=* InsSysCmd call Ins_sys_cmd(<q-args>)
+func! Ins_sys_cmd(sys_cmd) abort " read
+
+  call Normal('k')
+
+  let l:cmd = 'read! ' . a:sys_cmd
+  call Exe(l:cmd)
 endfunc
 
 " line
@@ -2046,6 +2072,8 @@ func! Slct_re() abort " todo mod
   call Normal('gv')
 endfunc
 
+" slct slctd
+
 func! Slctd_pos() abort " use not
   
   call Slct_re()
@@ -2196,66 +2224,6 @@ func! Markdown_2_html() abort
   call Exe('! node ~/sh/nodejs/md_2_html.js ' . l:path)
   
   "call Opn_app(l:path . '.html')
-endfunc
-
-" etc
-
-func! Rg_out_parse(line) abort
-
-  let l:dlm = ':'
-  let l:ret = split(a:line, l:dlm)
-  return l:ret
-endfunc
-
-func! Buf_nr() abort
-
-  return bufnr('%')
-endfunc
-
-func! Tag_jmp(rg_out_line) abort
-  
-  let l:rg_out_line = trim(a:rg_out_line)
-
-  if l:rg_out_line == ''
-    return
-  end
-  
-  let l:rg_out_line = matchstr(l:rg_out_line, '\S\+')
-  
-  let l:rg_out_line_ar = Rg_out_parse(l:rg_out_line)
-  let l:filename = l:rg_out_line_ar[0]
-  let l:line_num = get(l:rg_out_line_ar, 1, 1)
-
-  if ! filereadable(l:filename)
-    return
-  end
-
-  exe "tab drop " . l:filename
-  call Normal(l:line_num . 'G')
-endfunc
-
-func! N_tag_jmp() abort
-
-  let l:base_buf_nr = Buf_nr()
-
-  let l:line = Line_str()
-  call Tag_jmp(l:line)
-
-  exe "sbuffer " . l:base_buf_nr
-  call Normal('j')
-endfunc
-
-func! V_tag_jmp() range abort
-
-  let l:base_buf_nr = Buf_nr()
-
-  for line_num in range(a:firstline, a:lastline)
-
-    let l:line = getline(line_num)
-    call Tag_jmp(l:line)
-
-    exe "sbuffer " . l:base_buf_nr
-  endfor
 endfunc
 
 " char
@@ -2554,6 +2522,68 @@ func! V_srch_slct(dir) abort
   endif
 endfunc
 
+" etc
+
+func! Rg_out_parse(line) abort
+
+  let l:dlm = ':'
+  let l:ret = split(a:line, l:dlm)
+  return l:ret
+endfunc
+
+func! Buf_nr() abort
+
+  return bufnr('%')
+endfunc
+
+func! Tag_jmp(rg_out_line) abort
+  
+  let l:rg_out_line = trim(a:rg_out_line)
+
+  if l:rg_out_line == ''
+    return
+  end
+  
+  let l:rg_out_line = matchstr(l:rg_out_line, '\S\+')
+  
+  let l:rg_out_line_ar = Rg_out_parse(l:rg_out_line)
+  let l:filename = l:rg_out_line_ar[0]
+  let l:line_num = get(l:rg_out_line_ar, 1, 1)
+
+  if ! filereadable(l:filename)
+    return
+  end
+
+  exe "tab drop " . l:filename
+  call Normal(l:line_num . 'G')
+endfunc
+
+func! N_tag_jmp() abort
+
+  let l:base_buf_nr = Buf_nr()
+
+  let l:line = Line_str()
+  call Tag_jmp(l:line)
+
+  exe "sbuffer " . l:base_buf_nr
+  call Normal('j')
+endfunc
+
+func! V_tag_jmp() range abort
+
+  let l:base_buf_nr = Buf_nr()
+
+  for line_num in range(a:firstline, a:lastline)
+
+    let l:line = getline(line_num)
+    call Tag_jmp(l:line)
+
+    exe "sbuffer " . l:base_buf_nr
+  endfor
+endfunc
+
+" cmnt
+
 func! Cmnt_1(head) abort
 
   let l:str_df = {
@@ -2563,7 +2593,8 @@ func! Cmnt_1(head) abort
   \ "fish": '#'        ,
   \ "sh"  : '#'        ,
   \ "css" : '/* '      ,
-  \ "javascript": '// '
+  \ "javascript": '// ',
+  \ "markdown": '#'
   \ }
   let l:dflt = '# '
   let l:str = get(l:str_df, &filetype, l:dflt)
@@ -2657,9 +2688,7 @@ func! Tmp_cre_sys() abort
   return l:tmp_path
 endfunc
 
-" 
 " opn file
-" 
 
 command! -nargs=* -complete=file Opn call Opn(<q-args>)
 func! Opn(filename) abort
@@ -2754,7 +2783,7 @@ func! I_bracket() abort
 endfunc
 
 func! I_markdown() abort
-  call complete( col('.'), [ '```', '- ', '- [ ] ', '``', '---' ])
+  call complete( col('.'), [ '- ', '```', '- [ ] ', '---', '``' ])
   return ''
 endfunc
 
@@ -2915,6 +2944,16 @@ func! Mark_del_all() abort
   
   exe 'delmark!'
   exe 'DoShowMarks'
+endfunc
+
+" trns
+
+func! V_trns() abort
+
+  let l:str = V_slctd_str()
+
+  let l:sys_cmd = 'trns -no-ansi ' . l:str
+  call Sys_cmd(l:sys_cmd)
 endfunc
 
 func! Hl_grp() abort
