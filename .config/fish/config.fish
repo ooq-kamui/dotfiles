@@ -34,6 +34,8 @@ alias cd_p1 "cd ../"
 alias cd_p2 "cd ../../"
 alias cd_p3 "cd ../../../"
 
+alias cd_dl 'cd ~/Downloads'
+
 alias cd_vim     "cd ~/doc/tech/github/vimrc"
 alias cd_vim_swp "cd ~/.local/state/nvim/swap"
 

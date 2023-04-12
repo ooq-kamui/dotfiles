@@ -1488,15 +1488,21 @@ func! Normal(cmd) abort
   call Exe('normal! ' . a:cmd)
 endfunc
 
-func! Int_2_str(num) abort
+func! Sys_cmd(sys_cmd) abort
 
-  let l:num_str = printf('%o', a:num)
-  return l:num_str
+  let l:cmd = '! ' . a:sys_cmd
+  call Exe(l:cmd)
 endfunc
 
 func! Col() abort " alias
   
   return col('.')
+endfunc
+
+func! Int_2_str(num) abort
+
+  let l:num_str = printf('%o', a:num)
+  return l:num_str
 endfunc
 
 func! Str_l(str)
@@ -1518,12 +1524,6 @@ endfunc
 func! Str_len(str)
 
   return strchars(a:str)
-endfunc
-
-func! Sys_cmd(sys_cmd) abort
-
-  let l:cmd = '! ' . a:sys_cmd
-  call Exe(l:cmd)
 endfunc
 
 func! Save() abort
@@ -2948,11 +2948,15 @@ endfunc
 
 " trns
 
-func! V_trns() abort
+func! V_trns() range abort
 
   let l:str = V_slctd_str()
 
-  let l:sys_cmd = 'trns -no-ansi ' . l:str
+  let l:str = substitute(l:str, "\n", ' ', 'g')
+  let l:str = escape(l:str, "'")
+  "let l:str = shellescape(l:str)
+
+  let l:sys_cmd = 'trns -no-ansi ' . "'" . l:str . "'"
   call Sys_cmd(l:sys_cmd)
 endfunc
 
