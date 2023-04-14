@@ -55,24 +55,24 @@ alias vim "nvim -p"
 
 alias vi_vimrc    "vi ~/.vimrc"
 alias vi_vim_swap "vi ~/.local/share/nvim/swap/"
-alias vi_fish_config "vi ~/.config/fish/config.fish"
-alias vi_config      "vi ~/.config/fish/config.fish"
-alias vi_doc  "vi doc/memo.txt"
-alias vi_life "vi ~/doc/life/doc/memo.txt"
+alias vi_fish_cnf "vi ~/.config/fish/config.fish"
+alias vi_cnf      "vi ~/.config/fish/config.fish"
+alias vi_doc      "vi doc/memo.txt"
+alias vi_life     "vi ~/doc/life/doc/memo.txt"
 
 alias shutdown_start "sudo shutdown -r now"
 
 set -x LC_TIME en_US
 alias date_ymd   "date +'%Y-%m-%d'"
 alias date_ymdhm "date +'%Y-%m-%d %H:%M'"
-alias date_y1 "date_y 1"
-alias date_y2 "date_y 2"
-alias da      "date +'%Y-%m-%d %a'"
+alias date_y1    "date_y 1"
+alias date_y2    "date_y 2"
+alias da         "date +'%Y-%m-%d %a'"
 #alias date "date +'%Y-%m-%d %H:%M %a %Z'"
 
 alias ff "fd -tf"
 
-alias trns "trans"
+alias trns   "trans"
 alias trns_j "trans {ja=en}"
 alias trns_e "trans {en=ja}"
 

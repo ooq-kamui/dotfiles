@@ -206,7 +206,6 @@ nnoremap gm :call Opn_memo()<cr>
 
 " markdown __ ins itm
 nnoremap <c-u> :call Ins_markdown_itm()<cr>
-"nnoremap Y :call Ins_markdown_itm()<cr>
 
 " markdown __ tgl chk
 nnoremap x :call Char__tgl_markdown_chk()<cr>
@@ -432,6 +431,15 @@ nnoremap ^     @y
 nnoremap + <c-a>
 nnoremap - <c-x>
 
+" char toggle ( upper / lower )
+nnoremap u :call N_char__tgl()<cr>
+
+" char toggle ( turn ) " use not
+"nnoremap xx :call N_char__tgl2()<cr>
+
+" upper / lower
+"nnoremap xx v~
+
 " indent shift
 nnoremap # :call Indnt__shft_r()<cr>
 nnoremap " :call Indnt__shft_l()<cr>
@@ -442,15 +450,6 @@ nnoremap U :call Indnt__add(2)<cr>
 " indent correct
 nnoremap ; :call Indnt__crct()<cr>
 "nnoremap ; ==^
-
-" char toggle ( upper / lower )
-nnoremap u :call N_char__tgl()<cr>
-
-" char toggle ( turn ) " use not
-"nnoremap xx :call N_char__tgl2()<cr>
-
-" upper / lower
-"nnoremap xx v~
 
 " 
 " srch
@@ -1935,7 +1934,8 @@ endfunc
 func! Indnt__shft_r() abort " nnoremap # >>
 
   if Is_line_emp()
-    let l:col = Indnt_col_by_c()
+    "let l:col = Indnt_col_by_c()
+    let l:col = 2
   else
     let l:col = 2
   endif
@@ -2953,10 +2953,15 @@ func! V_trns() range abort
   let l:str = V_slctd_str()
 
   let l:str = substitute(l:str, "\n", ' ', 'g')
-  let l:str = escape(l:str, "'")
-  "let l:str = shellescape(l:str)
 
-  let l:sys_cmd = 'trns -no-ansi ' . "'" . l:str . "'"
+  if l:str =~ '[^\x01-\x7E]' " mlt byte
+    let l:lang = '{ja=en} '
+  else
+    let l:lang = ''
+  endif
+
+  let l:str = escape(l:str, "'")
+  let l:sys_cmd = 'trns -no-ansi ' . l:lang . "'" . l:str . "'"
   call Sys_cmd(l:sys_cmd)
 endfunc
 
