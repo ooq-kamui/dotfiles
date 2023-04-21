@@ -51,8 +51,8 @@ hi SpecialKey  ctermfg=25         ctermbg=none     cterm=none
 
 hi Comment     ctermfg=14         ctermbg=none     cterm=none
 
-match FullWidthSpace /　/
 hi FullWidthSpace ctermbg=white
+match FullWidthSpace /　/
 
 au BufNewFile,BufRead *.script     set filetype=lua
 au BufNewFile,BufRead *.gui_script set filetype=lua
@@ -370,7 +370,7 @@ nnoremap <space> i
 nnoremap m :call N_ins_cr()<cr>
 
 " ins comment 1
-nnoremap ! :call N_cmnt_1()<cr>
+nnoremap ! :call Cmnt_1()<cr>
 
 " ins comment mlt
 nnoremap $ :call N_cmnt_mlt()<cr>
@@ -1933,13 +1933,13 @@ func! Line_str() abort " alias
   return getline('.')
 endfunc
 
-func! Line_l() abort
+func! Line_str_side_l() abort
   
   let l:line_l = getline('.')[:col('.')-2]
   return l:line_l
 endfunc
 
-func! Line_r() abort
+func! Line_str_side_r() abort
   
   let l:line_r = getline('.')[col('.'):]
   return l:line_r
@@ -2160,7 +2160,7 @@ func! Slctd__expnd() abort
   
   let l:ptn = '[' . "'" . '"' . ')' . '\]' . ']'
   
-  let l:line_r = Line_r()
+  let l:line_r = Line_str_side_r()
   let l:r_idx  = match(l:line_r, l:ptn)
   "echo l:r_idx
   
@@ -2173,7 +2173,7 @@ func! Slctd__expnd() abort
   
   if l:c == '"' || l:c == "'"
     
-    let l:line_l = Line_l()
+    let l:line_l = Line_str_side_l()
     let l:l_idx = strridx(l:line_l, l:c)
     
     if l:l_idx == -1
@@ -2205,7 +2205,7 @@ func! Slctd__expnd_r() abort
   
   let l:ptn = '[' . "'" . '"' . ')' . '\]' . ']'
   
-  let l:line_r = Line_r()
+  let l:line_r = Line_str_side_r()
   let l:r_idx  = match(l:line_r, l:ptn)
   
   if l:r_idx == -1
@@ -2297,7 +2297,7 @@ endfunc
 
 " slctd cnd
 
-func! V_is_slctd_eq_srch_str() abort
+func! Is_slctd_str_eq_srch_str() abort
 
   if Slctd_str() == @/
     return v:true
@@ -2498,7 +2498,7 @@ endfunc
 
 func! V_srch(dir) abort " use not
 
-  if ! V_is_slctd_eq_srch_str()
+  if ! Is_slctd_str_eq_srch_str()
     call V_srch_str__slctd_str(v:false)
   endif
 endfunc
@@ -2604,11 +2604,6 @@ func! Cmnt_1(head) abort
   
   "call Normal('0')
   call Normal('^')
-endfunc
-
-func! N_cmnt_1() abort
-
-  call Cmnt_1('^')
 endfunc
 
 func! V_cmnt_1() range abort
