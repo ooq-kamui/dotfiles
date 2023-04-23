@@ -370,7 +370,7 @@ nnoremap <space> i
 nnoremap m :call N_ins_cr()<cr>
 
 " ins comment 1
-nnoremap ! :call Cmnt_1()<cr>
+nnoremap ! :call Cmnt_1('^')<cr>
 
 " ins comment mlt
 nnoremap $ :call N_cmnt_mlt()<cr>
@@ -461,8 +461,8 @@ nnoremap ; :call Indnt__crct()<cr>
 "nnoremap xx ;
 
 " srch
-nnoremap n     :call N_srch("f")<cr>
-nnoremap <c-n> :call N_srch("b")<cr>
+nnoremap n     :call Srch('f')<cr>
+nnoremap <c-n> :call Srch('b')<cr>
 
 " srch str set
 nnoremap e :call N_srch_str__(v:false)<cr>
@@ -472,7 +472,9 @@ nnoremap E :call N_srch_str__(v:true)<cr>
 
 " srch cmdline
 nnoremap <leader>i /
-nnoremap <c-f>     /
+"nnoremap <c-f>     /
+nnoremap <c-f> :call Srch_char_bracket('f')<cr>
+
 
 " srch str history ( fzf )
 nnoremap <leader>n :SrchHstry<cr>
@@ -798,9 +800,8 @@ vnoremap gj G$l
 " slctd expnd
 vnoremap I :call Slctd__expnd()<cr>
 
-" slctd expnd r
-vnoremap F :call Slctd__expnd_r()<cr>
-vnoremap O :call Slctd__expnd_r()<cr>
+" slctd expnd bracket forward
+vnoremap <c-f> :call Slctd__expnd_bracket_f()<cr>
 
 " slct all
 vnoremap a <esc>ggVG
@@ -847,7 +848,7 @@ vnoremap $ :call V_cmnt_mlt()<cr>
 vnoremap * c<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
 
 " ins time
-vnoremap T c<c-r>=strftime("%H:%M")<cr><esc>
+"vnoremap xx c<c-r>=strftime("%H:%M")<cr><esc>
 
 " ins at selected edge
 vnoremap :r :<c-u>SlctdEdgeIns 
@@ -912,7 +913,7 @@ vnoremap <c-u> ugv
 vnoremap <c-n> :call V_srch_slct('f')<cr>
 
 " srch back
-"vnoremap xx    :call V_srch_slct("b")<cr>
+"vnoremap xx    :call V_srch_slct('b')<cr>
 
 " srch str set
 vnoremap n :call V_srch_str__slctd_str(v:false)<cr>
@@ -952,6 +953,9 @@ vnoremap t :call V_tag_jmp()<cr>
 
 " trns
 vnoremap r :call V_trns()<cr>
+
+" tst
+vnoremap T :call Tst()<cr>
 
 " 
 " nop
@@ -1005,7 +1009,7 @@ vnoremap w <esc>
 vnoremap B <esc>
 vnoremap C <esc>
 "vnoremap D <esc>
-"vnoremap F <esc>
+vnoremap F <esc>
 vnoremap H <esc>
 "vnoremap I <esc>
 vnoremap J <esc>
@@ -1013,11 +1017,12 @@ vnoremap K <esc>
 vnoremap L <esc>
 vnoremap M <esc>
 vnoremap N <esc>
-"vnoremap O <esc>
+vnoremap O <esc>
 vnoremap P <esc>
 vnoremap Q <esc>
 vnoremap R <esc>
 vnoremap S <esc>
+"vnoremap T <esc>
 "vnoremap U <esc>
 vnoremap V <esc>
 vnoremap Y <esc>
@@ -1029,7 +1034,7 @@ vnoremap <c-a> <esc>
 "vnoremap <c-c> <esc>
 vnoremap <c-d> <esc>
 "vnoremap <c-e> <esc>
-vnoremap <c-f> <esc>
+"vnoremap <c-f> <esc>
 vnoremap <c-h> <esc>
 vnoremap <c-i> <esc>
 "vnoremap <c-l> <esc>
@@ -1695,6 +1700,12 @@ func! Str_len(str)
   return strchars(a:str)
 endfunc
 
+func! Str_srch(str, ptn) " alias
+
+  let l:idx = match(a:str, a:ptn)
+  return l:idx
+endfunc
+
 " cursor
 
 func! Cursor_c_char() abort
@@ -2062,7 +2073,7 @@ endfunc
 
 func! Is_line_space() abort
   
-  let l:idx = match(Line_str(), '^\s*$')
+  let l:idx = Str_srch(Line_str(), '^\s*$')
   if l:idx == 0
     return v:true
   else
@@ -2145,86 +2156,15 @@ func! Slct_by_pos(s_pos, e_pos) abort
 endfunc
 
 func! Slct_by_line_col(s_line, s_col, e_line, e_col) abort
-  
-  let l:s_line = (a:s_line == 0) ? Line_num() : a:s_line
-  let l:e_line = (a:e_line == 0) ? Line_num() : a:e_line
 
-  call Cursor__mv_by_lc(a:s_line, a:s_col)
-  normal! v
-  call Cursor__mv_by_lc(a:e_line, a:e_col)
+  let l:s_line = (a:s_line == v:null) ? Line_num() : a:s_line
+  let l:e_line = (a:e_line == v:null) ? Line_num() : a:e_line
+
+  call Cursor__mv_by_lc(l:s_line, a:s_col)
+  call Normal('v')
+  call Cursor__mv_by_lc(l:e_line, a:e_col)
 endfunc
 
-func! Slctd__expnd() abort
-
-  call Cursor__mv_slctd_r()
-  
-  let l:ptn = '[' . "'" . '"' . ')' . '\]' . ']'
-  
-  let l:line_r = Line_str_side_r()
-  let l:r_idx  = match(l:line_r, l:ptn)
-  "echo l:r_idx
-  
-  if l:r_idx == -1
-    return
-  endif
-  
-  let l:c = l:line_r[l:r_idx]
-  "echo l:c l:r_idx
-  
-  if l:c == '"' || l:c == "'"
-    
-    let l:line_l = Line_str_side_l()
-    let l:l_idx = strridx(l:line_l, l:c)
-    
-    if l:l_idx == -1
-      return
-    endif
-    
-    let l:word_col_l =         l:l_idx + 2
-    let l:word_col_r = Col() + l:r_idx
-    
-    if l:r_idx == 0
-      let l:word_col_l -= 1
-      let l:word_col_r += 1
-    endif
-    
-    call Slct_by_line_col(0, l:word_col_l, 0, l:word_col_r)
-    
-  elseif l:c == ')'
-    normal! vi(
-    
-  elseif l:c == ']'
-    normal! vi[
-  endif
-endfunc
-
-func! Slctd__expnd_r() abort
-  
-  call Cursor__mv_slctd_l()
-  let l:col_c = Col()
-  
-  let l:ptn = '[' . "'" . '"' . ')' . '\]' . ']'
-  
-  let l:line_r = Line_str_side_r()
-  let l:r_idx  = match(l:line_r, l:ptn)
-  
-  if l:r_idx == -1
-    return
-  endif
-  
-  let l:c = l:line_r[l:r_idx]
-  "echo l:c l:r_idx
-  
-  let l:slct_col_r = l:col_c + l:r_idx
-  
-  if l:r_idx == 0
-    let l:slct_col_r += 1
-  endif
-  
-  call Slct_by_line_col(0, l:col_c, 0, l:slct_col_r)
-  
-endfunc
-  
 func! Slct_re() abort " todo mod
   
   call Normal('gv')
@@ -2255,6 +2195,66 @@ func! Slctd_str_len() abort
   let l:slctd_str = Slctd_str()
   let l:len       = Str_len(l:slctd_str)
   return l:len
+endfunc
+
+func! Slctd__expnd() abort " expnd lr
+
+  call Cursor__mv_slctd_r()
+  
+  let l:ptn = '[' . "'" . '"' . ')' . '\]' . ']'
+  
+  let l:line_r = Line_str_side_r()
+  let l:r_idx  = Str_srch(l:line_r, l:ptn)
+  
+  if l:r_idx == -1
+    return
+  endif
+  
+  let l:c = l:line_r[l:r_idx]
+  
+  if l:c == '"' || l:c == "'"
+    
+    let l:line_l = Line_str_side_l()
+    let l:l_idx = strridx(l:line_l, l:c)
+    
+    if l:l_idx == -1
+      return
+    endif
+    
+    let l:word_col_l =         l:l_idx + 2
+    let l:word_col_r = Col() + l:r_idx
+    
+    if l:r_idx == 0
+      let l:word_col_l -= 1
+      let l:word_col_r += 1
+    endif
+    
+    call Slct_by_line_col(v:null, l:word_col_l, v:null, l:word_col_r)
+    
+  elseif l:c == ')'
+    call Normal('vi(')
+    
+  elseif l:c == ']'
+    call Normal('vi[')
+  endif
+endfunc
+
+func! Slctd__expnd_bracket_f() abort
+  
+  call Cursor__mv_slctd_l()
+  let l:col_l = Col()
+  
+  let l:bracket_ptn = '[' . "'" . '")}\]' . ']'
+  
+  let l:line_r = Line_str_side_r()
+  let l:r_idx  = Str_srch(l:line_r, l:bracket_ptn)
+
+  if l:r_idx == -1
+    return
+  endif
+
+  let l:slct_col_r = l:col_l + l:r_idx
+  call Slct_by_line_col(v:null, l:col_l, v:null, l:slct_col_r)
 endfunc
 
 " slctd ins
@@ -2338,6 +2338,119 @@ func! V_ynk() abort
   "let @+ = l:str
 endfunc
 
+" srch
+
+func! Srch_str_word1(str)
+
+  let l:str = a:str
+  
+  if Str_l(l:str) =~ '\w'
+    let l:str = '\<' . l:str
+  endif
+  
+  if Str_r(l:str) =~ '\w'
+    let l:str =        l:str . '\>'
+  endif
+  
+  "echo l:str
+  return l:str
+endfunc
+
+func! Srch_str__(str, word1) abort
+  
+  echo a:str
+  let l:str  = escape(a:str, '.*~[]\')
+  
+  if a:word1
+    let l:str = Srch_str_word1(l:str)
+  endif
+  
+  let g:srch_prv1 = @/
+  let @/ = l:str
+endfunc
+
+func! N_srch_str__(word1) abort
+
+  let l:str = Cursor_word()
+
+  "if a:word1
+    "let l:str = Srch_str_word1(l:str)
+  "endif
+  
+  call Srch_str__(l:str, a:word1)
+endfunc
+
+func! V_srch_str__slctd_str(word1) abort
+
+  let l:str = Slctd_str()
+
+  "if a:word1
+    "let l:str = Srch_str_word1(l:str)
+  "endif
+  
+  call Srch_str__(l:str, a:word1)
+endfunc
+
+func! N_srch_str__prv() abort
+
+  let l:tmp = @/
+  
+  let @/ = g:srch_prv1
+  
+  let g:srch_prv1 = l:tmp
+endfunc
+
+func! Srch(dir) abort
+
+  if     a:dir == 'f'
+    call Normal('n')
+
+  elseif a:dir == 'b'
+    call Normal('N')
+  endif
+endfunc
+
+func! V_srch(dir) abort " use not
+
+  if Is_slctd_str_eq_srch_str()
+    return
+  endif
+
+  call V_srch_str__slctd_str(v:false)
+endfunc
+
+func! N_srch_slct(dir) abort " use not
+
+  if     a:dir == 'f'
+    call Normal('gn')
+
+  elseif a:dir == 'b'
+    call Normal('gN')
+  endif
+endfunc
+
+func! V_srch_slct(dir) abort " srch rpl skip
+
+  if     a:dir == 'f'
+    call Normal('`>lgn')
+
+  elseif a:dir == 'b'
+    call Normal('`<hgN')
+  endif
+endfunc
+
+func! Srch_char(dir, char) abort
+
+  let @/ = '[' . a:char . ']'
+  call Srch(a:dir)
+endfunc
+
+func! Srch_char_bracket(dir) abort
+
+  let l:char_bracket = "'" . '")}\]'
+  call Srch_char(a:dir, l:char_bracket)
+endfunc
+
 " grep
 
 command! -nargs=? GrepStr call Grep_str(<q-args>)
@@ -2414,114 +2527,6 @@ endfunc
 "  call N_bracket_tgl()
 "  exe "normal! %"
 "endfunc
-
-" srch
-
-func! N_srch_str__(word1) abort
-
-  let l:str = Cursor_word()
-
-  "if a:word1
-    "let l:str = Srch_str_word1(l:str)
-  "endif
-  
-  call Srch_str__(l:str, a:word1)
-endfunc
-
-func! V_srch_str__slctd_str(word1) abort
-
-  let l:str = Slctd_str()
-
-  "if a:word1
-    "let l:str = Srch_str_word1(l:str)
-  "endif
-  
-  call Srch_str__(l:str, a:word1)
-endfunc
-
-func! Srch_str_word1(str)
-
-  let l:str = a:str
-  
-  if Str_l(l:str) =~ '\w'
-    let l:str = '\<' . l:str
-  endif
-  
-  if Str_r(l:str) =~ '\w'
-    let l:str =        l:str . '\>'
-  endif
-  
-  "echo l:str
-  return l:str
-endfunc
-
-"let g:srch_init_flg = v:false
-"let g:srch = ''
-
-func! Srch_str__(str, word1) abort
-  
-  echo a:str
-  let l:str  = escape(a:str, '.*~[]\')
-  
-  if a:word1
-    let l:str = Srch_str_word1(l:str)
-  endif
-  
-  let g:srch_prv1 = @/
-  let @/ = l:str
-  
-  " todo del
-  "if ! g:srch_init_flg
-  "  exe "normal! /\<cr>N"
-  "  let g:srch_init_flg = v:true
-  "endif
-endfunc
-
-func! N_srch_str__prv() abort
-
-  let l:tmp = @/
-  
-  let @/ = g:srch_prv1
-  
-  let g:srch_prv1 = l:tmp
-endfunc
-
-func! N_srch(dir) abort
-
-  if     a:dir == "f"
-    call Normal('n')
-
-  elseif a:dir == "b"
-    call Normal('N')
-  endif
-endfunc
-
-func! V_srch(dir) abort " use not
-
-  if ! Is_slctd_str_eq_srch_str()
-    call V_srch_str__slctd_str(v:false)
-  endif
-endfunc
-
-func! N_srch_slct(dir) abort " use not
-
-  if     a:dir == 'f'
-    call Normal('gn')
-
-  elseif a:dir == 'b'
-    call Normal('gN')
-  endif
-endfunc
-
-func! V_srch_slct(dir) abort
-
-  if     a:dir == 'f'
-    call Normal('`>lgn')
-
-  elseif a:dir == 'b'
-    call Normal('`<hgN')
-  endif
-endfunc
 
 " etc
 
@@ -2975,6 +2980,13 @@ func! Defold_err_cnv() abort
   exe '%s/^ *//g'
 endfunc
 
+" tst
+
+func! Tst() abort
+
+  let l:line_num = Line_num()
+  echo l:line_num
+endfunc
 
 " 
 " init
