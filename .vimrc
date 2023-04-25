@@ -961,7 +961,7 @@ vnoremap t :call V_tag_jmp()<cr>
 vnoremap r :call V_trns()<cr>
 
 " tst
-vnoremap T :call Tst()<cr>
+"vnoremap T :call Tst()<cr>
 
 " 
 " nop
@@ -1063,9 +1063,9 @@ vnoremap gg <esc>
 vnoremap go <esc>
 "vnoremap gp <esc>
 
-"
+" 
 " mode insert
-"
+" 
 
 " quit, esc
 inoremap <expr> <esc>
@@ -1076,13 +1076,13 @@ inoremap <c-c> <esc>
 
 " cursor mv line in
 inoremap <c-a> <c-o>0
-inoremap <c-e> <c-o>$
 "inoremap <c-a> <c-o>^
+inoremap <c-e> <c-o>$
 
 " cursor mv char
 inoremap <c-l> <c-o>l
 inoremap <c-f> <c-o>l
-inoremap <expr> <c-o> pumvisible() ? "<c-y>" : "<c-o>h"
+inoremap <expr> <c-o> pumvisible() ? '<c-y>' : '<c-o>h'
 inoremap <c-s> <c-o>h
 
 " cursor mv word forward
@@ -1097,8 +1097,46 @@ inoremap <c-n> <c-o>j
 " cursor mv u
 inoremap <c-p> <c-o>k
 
-" del line
-" non
+" ins cr
+inoremap <c-m> <cr>
+
+" ins tab
+inoremap <tab> <c-v><tab>
+
+" ins markdown cr
+"inoremap xx <space><space>
+
+" ins complete
+inoremap <expr> <c-y> pumvisible() ? '<c-e>' : '<c-n>'
+
+" ins bracket
+inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=I_bracket()<cr>"
+
+" ins symbol
+inoremap <c-q> <c-r>=I_symbol()<cr>
+
+" ins markdown
+inoremap <c-u> <c-r>=I_markdown()<cr>
+
+" ins num
+"inoremap xx <c-r>=I_num()<cr>
+
+" ins register
+"inoremap xx <c-r>=I_reg()<cr>
+
+" ins lua reserved word
+"inoremap xx <c-r>=I_lua_reserved()<cr>
+
+" ins ooq ( lua )
+"inoremap xx <c-r>=I_ooq()<cr>
+
+" ins bracket
+"inoremap < <><c-o>h
+"inoremap ( ()<c-o>h
+"inoremap { {}<c-o>h
+"inoremap [ []<c-o>h
+"inoremap " ""<c-o>h
+"inoremap ' ''<c-o>h
 
 " del char forward
 inoremap <c-d> <c-o>x
@@ -1111,39 +1149,22 @@ inoremap <c-w> <c-w>
 
 " del word forword
 inoremap <expr> <c-k>
-\ pumvisible()         ? "<c-p>"   :
-\ col(".") != col("$") ? "<c-o>dw" :
-\                        ""
+\ pumvisible()         ? '<c-p>'   :
+\ col('.') != col('$') ? '<c-o>dw' :
+\                        ''
 
-" ins cr
-inoremap <c-m> <cr>
-
-" ins markdown cr
-"inoremap xx <space><space>
-
-" ins tab
-inoremap <tab> <c-v><tab>
+" del line
+" non
 
 " paste
-"inoremap <c-v> <c-r>0
+"inoremap xx <c-r>0
 
 " paste clipboard
-inoremap <c-v> <c-r>+
+inoremap <c-v> <c-r><c-o>+
 
-" input complete
-inoremap <expr> <c-y> pumvisible() ? "<c-e>" : "<c-n>"
-
-"   clear
-"inoremap <expr> <esc> pumvisible() ? "<c-e>"  : ""
-"inoremap <expr> <c-w> pumvisible() ? "<c-e>"  : "<c-w>"
-
-" ins bracket
-"inoremap < <><c-o>h
-"inoremap ( ()<c-o>h
-"inoremap { {}<c-o>h
-"inoremap [ []<c-o>h
-"inoremap " ""<c-o>h
-"inoremap ' ''<c-o>h
+" clr
+"inoremap <expr> <esc> pumvisible() ? '<c-e>'  : ''
+"inoremap <expr> <c-w> pumvisible() ? '<c-e>'  : '<c-w>'
 
 " numpad shift
 inoremap <kInsert>   0
@@ -1156,27 +1177,6 @@ inoremap <kRight>    6
 inoremap <kHome>     7
 inoremap <kUp>       8
 inoremap <kPageUp>   9
-
-" ins bracket
-inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=I_bracket()<cr>"
-
-" ins markdown
-inoremap <c-u> <c-r>=I_markdown()<cr>
-
-" ins symbol
-inoremap <c-q> <c-r>=I_symbol()<cr>
-
-" ins num
-"inoremap xx <c-r>=I_num()<cr>
-
-" ins register
-"inoremap xx <c-r>=I_reg()<cr>
-
-" ins lua reserved word
-"inoremap xx <c-r>=I_lua_reserved()<cr>
-
-" ins ooq ( lua )
-"inoremap <c-xx> <c-r>=I_usual()<cr>
 
 " 
 " nop
@@ -2830,7 +2830,7 @@ func! I_lua_reserved() abort
   return ''
 endfunc
 
-func! I_usual() abort
+func! I_ooq() abort
   call complete(col('.'), [
   \   '_s:',
   \   '_s._',
@@ -3003,9 +3003,7 @@ endfunc
 " tst
 
 func! Tst() abort
-
-  let l:line_num = Line_num()
-  echo l:line_num
+  return ''
 endfunc
 
 " 
