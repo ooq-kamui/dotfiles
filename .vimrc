@@ -207,7 +207,7 @@ nnoremap gm :call Opn_memo()<cr>
 nnoremap <c-u> :call Ins_markdown_itm()<cr>
 
 " markdown __ tgl chk
-nnoremap x :call Char__tgl_markdown_chk()<cr>
+nnoremap X :call Char__tgl_markdown_chk()<cr>
 
 " 
 " cursor mv
@@ -289,8 +289,7 @@ nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 
 " scroll cursor line upper
-"nnoremap R zt
-"nnoremap <leader>r zt
+"nnoremap xx zt
 
 " scroll cursor line middle
 "nnoremap F zz
@@ -342,7 +341,6 @@ nnoremap p "0P
 " paste rgstr history ( fzf )
 nnoremap <leader>y :RgstrHstry<cr>
 "nnoremap <leader>y :call Rgstr_fzf()<cr>
-"nnoremap <leader>r :call Rgstr_fzf()<cr>
 
 " 
 " undo, redo
@@ -367,7 +365,7 @@ nnoremap <space> i
 " ref nnoremap y
 
 " ins cr
-nnoremap m :call N_ins_cr()<cr>
+nnoremap m :call Ins_cr()<cr>
 
 " ins comment 1
 nnoremap ! :call Cmnt_1('^')<cr>
@@ -394,14 +392,17 @@ nnoremap * i<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
 nnoremap T i<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
 
 " ins slf path
-nnoremap gs :call N_ins_line_slf_path()<cr>
+nnoremap gs :call Ins_line_slf_path()<cr>
+
+" ins markdown
+nnoremap R O```<esc>
 
 " del char
 nnoremap s "ax
-"nnoremap x x
+nnoremap x x
 
 " del line
-nnoremap d :call N_line__del()<cr>
+nnoremap d :call Line__del()<cr>
 
 " del in line forward
 nnoremap <c-d> D
@@ -473,8 +474,9 @@ nnoremap E :call N_srch_str__(v:true)<cr>
 " srch cmdline
 nnoremap <leader>i /
 "nnoremap <c-f>     /
-nnoremap <c-f> :call Srch_char_bracket('f')<cr>
 
+" srch char bracket forward
+nnoremap <c-f> :call Srch_char_bracket('f')<cr>
 
 " srch str history ( fzf )
 nnoremap <leader>n :SrchHstry<cr>
@@ -493,7 +495,7 @@ nnoremap :s :%s//<c-r>0/gc
 nnoremap <c-p> gn
 
 " srch ?=ts
-nnoremap R /?ts=<cr>
+"nnoremap xx /?ts=<cr>
 
 " 
 " grep
@@ -512,6 +514,7 @@ nnoremap :G :GrepWrd
 
 " tag jmp tab new
 nnoremap t :call N_tag_jmp()<cr>
+nnoremap r :call N_tag_jmp()<cr>
 
 " 
 " mark
@@ -645,7 +648,7 @@ nnoremap b <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
 "nnoremap q <esc>
-nnoremap r <esc>
+"nnoremap r <esc>
 "nnoremap s <esc>
 "nnoremap t <esc>
 "nnoremap u <esc>
@@ -677,7 +680,7 @@ nnoremap P <esc>
 "nnoremap U <esc>
 nnoremap W <esc>
 nnoremap V <esc>
-nnoremap X <esc>
+"nnoremap X <esc>
 nnoremap Y <esc>
 
 "nnoremap <c-a> <esc>
@@ -864,14 +867,17 @@ vnoremap x "ax
 " del cr
 vnoremap <c-m> J
 
+" del line top space
+vnoremap D :call V_line_top__del_space()<cr>
+
 " del line end space
-vnoremap D :call V_line_end_space_del()<cr>
+vnoremap M :call V_line_end__del_space()<cr>
 
 " mv str back
-vnoremap <c-w> :call V_mv_str("h")<cr>
+vnoremap <c-w> :call Slctd_str__mv('h')<cr>
 
 " mv str forward
-vnoremap <c-e> :call V_mv_str("l")<cr>
+vnoremap <c-e> :call Slctd_str__mv('l')<cr>
 
 " mv line
 "vnoremap J :call V_mv_line("j")<cr>
@@ -883,7 +889,7 @@ vnoremap - <c-x>
 "vnoremap + g<c-a>
 
 " num seq
-vnoremap A g<c-a>
+vnoremap Q g<c-a>
 
 " indent shift
 vnoremap # >gv
@@ -1005,7 +1011,7 @@ vnoremap w <esc>
 "vnoremap x <esc>
 "vnoremap y <esc>
 
-"vnoremap A <esc>
+vnoremap A <esc>
 vnoremap B <esc>
 vnoremap C <esc>
 "vnoremap D <esc>
@@ -1015,11 +1021,11 @@ vnoremap H <esc>
 vnoremap J <esc>
 vnoremap K <esc>
 vnoremap L <esc>
-vnoremap M <esc>
+"vnoremap M <esc>
 vnoremap N <esc>
 vnoremap O <esc>
 vnoremap P <esc>
-vnoremap Q <esc>
+"vnoremap Q <esc>
 vnoremap R <esc>
 vnoremap S <esc>
 "vnoremap T <esc>
@@ -1113,10 +1119,10 @@ inoremap <expr> <c-k>
 inoremap <c-m> <cr>
 
 " ins markdown cr
-inoremap <tab> <space><space>
+"inoremap xx <space><space>
 
 " ins tab
-inoremap <s-tab> <c-v><tab>
+inoremap <tab> <c-v><tab>
 
 " paste
 "inoremap <c-v> <c-r>0
@@ -1177,7 +1183,7 @@ inoremap <c-q> <c-r>=I_symbol()<cr>
 " 
 
 "inoremap <tab> <nop>
-"inoremap <s-tab> <nop>
+inoremap <s-tab> <nop>
 
 inoremap <c-_> <nop>
 "inoremap <c-:> <nop> " non
@@ -1842,7 +1848,7 @@ func! N_cursor__mv_line_top_or_new_line() abort
 
   if Is_cursor_line_top1()
     
-    call N_ins_line_emp()
+    call Ins_line_emp()
     "call Indnt__crct()
   else
     call Cursor__mv_line_top1()
@@ -1912,11 +1918,11 @@ func! Ins_mlt(str, num) abort
   call Normal(l:cmd)
 endfunc
 
-func! N_ins_cr() abort
-  
+func! Ins_cr() abort
+
   let l:t_line_num = line('.')
   
-  exe "normal! i\<cr> "
+  call Normal("i\<cr> ")
   call Normal('x')
   
   call Line_end__del_space(l:t_line_num)
@@ -1962,35 +1968,26 @@ func! Line_top1__ins(str) abort
   call Ins(a:str)
 endfunc
 
+let s:line_top_space_ptn = '^[ \t]*'
+
+func! V_line_top__del_space() abort
+
+  let l:rpl_cmd = 's/' . s:line_top_space_ptn . '//g'
+  call Exe(l:rpl_cmd)
+endfunc
+
+let s:line_end_space_ptn = '[ \t]*$'
+
 func! Line_end__del_space(line_num) abort
   
-  call Exe(a:line_num . 's/[ \t]*$//g')
+  let l:rpl_cmd = a:line_num . 's/' . s:line_end_space_ptn . '//g'
+  call Exe(l:rpl_cmd)
 endfunc
 
-func! N_line__del() abort
-  
-  if Line_str() =~ '^\s*$'
-    call Normal('"add')
-  else
-    call Normal('"0dd')
-    call Clipboard__ynk()
-  endif
-endfunc
+func! V_line_end__del_space() abort
 
-func! V_line_del() abort " use not, todo mod
-  
-  "call Normal('"0d')
-  "call Normal('gv"0d')
-  
-  call Normal('gvj')
-  "call Normal('"0d')
-  
-  call Clipboard__ynk()
-endfunc
-
-func! V_line_end_space_del() abort
-
-  call Exe('s/[ \t]*$//g')
+  let l:rpl_cmd =              's/' . s:line_end_space_ptn . '//g'
+  call Exe(l:rpl_cmd)
 endfunc
 
 func! V_line_end_padding() range abort
@@ -2011,37 +2008,44 @@ endfunc
 
 " line ins
 
-func! N_ins_line(str) abort
+func! Ins_line(str) abort
   
   let l:line_num = Line_num() - 1
   call append(l:line_num, a:str)
   call Normal('k')
 endfunc
 
-func! N_ins_line_emp() abort
+func! Ins_line_emp() abort
   
   let l:str = ''
-  call N_ins_line(l:str)
+  call Ins_line(l:str)
 endfunc
 
-func! N_ins_line_slf_path() abort
+func! Ins_line_slf_path() abort
   
   let l:path = Slf_path()
-  call N_ins_line(l:path)
+  call Ins_line(l:path)
 endfunc
 
-func! V_mv_str(lr) abort
-
-  call Normal('gv"ax' . a:lr . '"aP')
-
-  call Normal('v')
-
-  let l:mv_len = Str_len(@a) - 1
-  if l:mv_len <= 0
-    return
+func! Line__del() abort
+  
+  if Line_str() =~ '^\s*$'
+    call Normal('"add')
+  else
+    call Normal('"0dd')
+    call Clipboard__ynk()
   endif
+endfunc
 
-  call Normal(l:mv_len . 'h')
+func! V_line_del() abort " use not, todo mod
+  
+  "call Normal('"0d')
+  "call Normal('gv"0d')
+  
+  call Normal('gvj')
+  "call Normal('"0d')
+  
+  call Clipboard__ynk()
 endfunc
 
 func! V_mv_line(ud) range abort
@@ -2073,7 +2077,8 @@ endfunc
 
 func! Is_line_space() abort
   
-  let l:idx = Str_srch(Line_str(), '^\s*$')
+  let l:ptn = '^\s*$'
+  let l:idx = Str_srch(Line_str(), l:ptn)
   if l:idx == 0
     return v:true
   else
@@ -2257,6 +2262,20 @@ func! Slctd__expnd_bracket_f() abort
   call Slct_by_line_col(v:null, l:col_l, v:null, l:slct_col_r)
 endfunc
 
+func! Slctd_str__mv(lr) abort
+
+  call Normal('gv"ax' . a:lr . '"aP')
+
+  call Normal('v')
+
+  let l:mv_len = Str_len(@a) - 1
+  if l:mv_len <= 0
+    return
+  endif
+
+  call Normal(l:mv_len . 'h')
+endfunc
+
 " slctd ins
 
 func! Slctd_l__ins(c) abort
@@ -2358,8 +2377,9 @@ endfunc
 
 func! Srch_str__(str, word1) abort
   
-  echo a:str
-  let l:str  = escape(a:str, '.*~[]\')
+  "echo a:str
+  "let l:str  = escape(a:str, '.*~[]\')
+  let l:str  = escape(a:str, '.*~[]\$')
   
   if a:word1
     let l:str = Srch_str_word1(l:str)
@@ -2720,7 +2740,7 @@ endfunc
 
 func! Opn_vim_key() abort
 
-  let l:path = '~/doc/tech/vim/m.key.default.txt'
+  let l:path = '~/doc/tech/vim/m.key.default.md'
   call Opn(l:path)
 endfunc
 
@@ -2738,7 +2758,7 @@ endfunc
 
 func! Opn_memo() abort
 
-  let l:path = 'doc/memo.txt'
+  let l:path = 'doc/memo.md'
   call Opn(l:path)
 endfunc
 
