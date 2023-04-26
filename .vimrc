@@ -446,6 +446,7 @@ nnoremap " :call Indnt__shft_l()<cr>
 
 " indent add
 nnoremap U :call Indnt__add(2)<cr>
+nnoremap Y :call Indnt__add(2)<cr>
 
 " indent correct
 nnoremap ; :call Indnt__crct()<cr>
@@ -522,22 +523,22 @@ nnoremap r :call N_tag_jmp()<cr>
 
 " mark lst ( fzf )
 nnoremap <leader>m :Mark<cr>
-nnoremap rl        :Mark<cr>
+nnoremap <leader>rl        :Mark<cr>
 
 " mark show tgl
-nnoremap rf :call Mark_show_tgl()<cr>
+nnoremap <leader>rf :call Mark_show_tgl()<cr>
 
 " mark add / del tgl
-nnoremap ro :call Mark_tgl()<cr>
+nnoremap <leader>ro :call Mark_tgl()<cr>
 
 " mark del all
-nnoremap rd :call Mark_del_all()<cr>
+nnoremap <leader>rd :call Mark_del_all()<cr>
 
 " mark, cursor mv mark forward
-nnoremap rj ]`
+nnoremap <leader>rj ]`
 
 " mark, cursor mv mark back
-nnoremap rk [`
+nnoremap <leader>rk [`
 
 " 
 " cmd
@@ -590,9 +591,9 @@ nnoremap <kHome>     7
 nnoremap <kUp>       8
 nnoremap <kPageUp>   9
 
-"
+" 
 " esc
-"
+" 
 nnoremap <esc>   <esc>
 "nnoremap <space> <esc>
 "nnoremap <cr>    <esc>
@@ -681,7 +682,7 @@ nnoremap P <esc>
 nnoremap W <esc>
 nnoremap V <esc>
 "nnoremap X <esc>
-nnoremap Y <esc>
+"nnoremap Y <esc>
 
 "nnoremap <c-a> <esc>
 nnoremap <c-b> <esc>
@@ -725,9 +726,9 @@ nnoremap gn <esc>
 "nnoremap gu <esc>
 "nnoremap gv <esc>
 
-"
+" 
 " mode visual
-"
+" 
 
 " mode ch line
 vnoremap i V
@@ -818,7 +819,7 @@ vnoremap c :call V_ynk()<cr>
 "vnoremap xx "+y
 
 " paste
-vnoremap <expr> p mode() == "<c-v>" ? "I<c-r>0<esc>" : '"ad"0P'
+vnoremap <expr> p Is_mode_vbox() ? 'I<c-r>0<esc>' : '"ad"0P'
 
 " paste visual box
 "vnoremap xx I<c-r>0<esc>
@@ -833,13 +834,13 @@ vnoremap h <esc>u
 " 
 
 " ins | cut & ins
-vnoremap <expr> <space> mode() == "<c-v>" ? "I" : "c"
+vnoremap <expr> <space> Is_mode_vbox() ? 'I' : 'c'
 
 " cut & ins
 vnoremap <leader><space> "ac
 
 " ins $ | cursor mv in line end
-vnoremap <expr> <c-y> mode() == "<c-v>" ? "$A" : "g_"
+vnoremap <expr> <c-y> Is_mode_vbox() ? '$A' : 'g_'
 
 " ins comment 1
 vnoremap ! :call V_cmnt_1()<cr>
@@ -848,10 +849,12 @@ vnoremap ! :call V_cmnt_1()<cr>
 vnoremap $ :call V_cmnt_mlt()<cr>
 
 " ins date time
-vnoremap * c<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
+"vnoremap * c<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
+vnoremap * c<c-r>=strftime('%Y-%m-%d.%H:%M')<cr><esc>
 
 " ins time
 "vnoremap xx c<c-r>=strftime("%H:%M")<cr><esc>
+"vnoremap xx c<c-r>=strftime('%H:%M')<cr><esc>
 
 " ins at selected edge
 vnoremap :r :<c-u>SlctdEdgeIns 
@@ -879,9 +882,12 @@ vnoremap <c-w> :call Slctd_str__mv('h')<cr>
 " mv str forward
 vnoremap <c-e> :call Slctd_str__mv('l')<cr>
 
+" mv str line end
+vnoremap Y :call Slctd_str__mv_line_end()<cr>
+
 " mv line
-"vnoremap J :call V_mv_line("j")<cr>
-"vnoremap K :call V_mv_line("k")<cr>
+"vnoremap J :call V_mv_line('j')<cr>
+"vnoremap K :call V_mv_line('k')<cr>
 
 " inc, dec
 vnoremap + <c-a>
@@ -1031,7 +1037,7 @@ vnoremap S <esc>
 "vnoremap T <esc>
 "vnoremap U <esc>
 vnoremap V <esc>
-vnoremap Y <esc>
+"vnoremap Y <esc>
 
 "vnoremap <c-_> <esc>
 
@@ -1110,7 +1116,7 @@ inoremap <tab> <c-v><tab>
 inoremap <expr> <c-y> pumvisible() ? '<c-e>' : '<c-n>'
 
 " ins bracket
-inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-r>=I_bracket()<cr>"
+inoremap <expr> <c-j> pumvisible() ? '<c-n>' : '<c-r>=I_bracket()<cr>'
 
 " ins symbol
 inoremap <c-q> <c-r>=I_symbol()<cr>
@@ -1263,7 +1269,7 @@ cnoremap <kPageUp>   9
 nnoremap <leader>f <esc>
 nnoremap <leader>h <esc>
 "nnoremap <leader>p <esc>
-nnoremap <leader>r <esc>
+"nnoremap <leader>r <esc>
 nnoremap <leader>u <esc>
 "nnoremap <leader>y <esc>
 
@@ -1504,12 +1510,6 @@ func! Col() abort " alias
   return col('.')
 endfunc
 
-func! Int_2_str(num) abort
-
-  let l:num_str = printf('%o', a:num)
-  return l:num_str
-endfunc
-
 func! Save() abort
   
   call Exe('w')
@@ -1518,6 +1518,21 @@ endfunc
 func! Rgstr__clr() abort
 
   let @0 = ''
+endfunc
+
+func! Is_mode_vbox() abort
+
+  if mode() == '<c-v>'
+    return v:true
+  else
+    return v:false
+  endif
+endfunc
+
+func! Int_2_str(num) abort
+
+  let l:num_str = printf('%o', a:num)
+  return l:num_str
 endfunc
 
 " char
@@ -1602,14 +1617,14 @@ func! Char__tgl_etc(c) abort
 
   let l:rpl = ''
 
-  if     a:c == "/"
-    let l:rpl = "-"
-  elseif a:c == "-"
+  if     a:c == '/'
+    let l:rpl = '-'
+  elseif a:c == '-'
     let l:rpl = "\\"
   elseif a:c == "\\"
-    let l:rpl = "|"
-  elseif a:c == "|"
-    let l:rpl = "/"
+    let l:rpl = '|'
+  elseif a:c == '|'
+    let l:rpl = '/'
 
   elseif a:c == '"'
     let l:rpl = "'"
@@ -1631,25 +1646,25 @@ func! Char__tgl_etc(c) abort
   elseif a:c == ':'
     let l:rpl = ';'
 
-  "elseif a:c ==# "T"
-  "  let l:rpl = "f"
-  "elseif a:c ==# "F"
-  "  let l:rpl = "t"
+  "elseif a:c ==# 'T'
+  "  let l:rpl = 'f'
+  "elseif a:c ==# 'F'
+  "  let l:rpl = 't'
 
-  "elseif a:c ==# "L"
-  "  let l:rpl = "r"
-  "elseif a:c ==# "R"
-  "  let l:rpl = "l"
+  "elseif a:c ==# 'L'
+  "  let l:rpl = 'r'
+  "elseif a:c ==# 'R'
+  "  let l:rpl = 'l'
 
-  "elseif a:c ==# "X"
-  "  let l:rpl = "y"
-  "elseif a:c ==# "Y"
-  "  let l:rpl = "x"
+  "elseif a:c ==# 'X'
+  "  let l:rpl = 'y'
+  "elseif a:c ==# 'Y'
+  "  let l:rpl = 'x'
 
-  "elseif a:c ==# "I"
-  "  let l:rpl = "o"
-  "elseif a:c ==# "O"
-  "  let l:rpl = "i"
+  "elseif a:c ==# 'I'
+  "  let l:rpl = 'o'
+  "elseif a:c ==# 'O'
+  "  let l:rpl = 'i'
   endif
 
   return l:rpl
@@ -1734,14 +1749,14 @@ endfunc
 
 func! Cursor_word() abort
 
-  let l:word = expand("<cword>")
+  let l:word = expand('<cword>')
   return l:word
 endfunc
 
 func! Cursor_filepath() abort
 
   if has('mac')
-    let l:str = expand("<cfile>")
+    let l:str = expand('<cfile>')
   else
     let l:str = Line_str()
   endif
@@ -2182,7 +2197,7 @@ func! Slctd_pos() abort " use not
   call Slct_re()
   let l:pos = getpos('.')
   
-  exe "normal! \<esc>"
+  call Normal("\<esc>")
   
   return l:pos
 endfunc
@@ -2274,6 +2289,11 @@ func! Slctd_str__mv(lr) abort
   endif
 
   call Normal(l:mv_len . 'h')
+endfunc
+
+func! Slctd_str__mv_line_end() abort
+
+  call Normal('gv"ax' . '$l' . '"aP')
 endfunc
 
 " slctd ins
@@ -2377,8 +2397,6 @@ endfunc
 
 func! Srch_str__(str, word1) abort
   
-  "echo a:str
-  "let l:str  = escape(a:str, '.*~[]\')
   let l:str  = escape(a:str, '.*~[]\$')
   
   if a:word1
@@ -2537,7 +2555,7 @@ endfunc
 "  let l:col1 = col(".")
 "  call N_bracket_tgl()
 "
-"  exe "normal! %"
+"  call Normal('%')
 "  let l:col2 = col(".")
 "
 "  if l:col1 == l:col2
@@ -2545,7 +2563,7 @@ endfunc
 "  endif
 "
 "  call N_bracket_tgl()
-"  exe "normal! %"
+"  call Normal('%')
 "endfunc
 
 " etc
@@ -2580,7 +2598,7 @@ func! Tag_jmp(rg_out_line) abort
     return
   end
 
-  exe "tab drop " . l:filename
+  call Exe('tab drop ' . l:filename)
   call Normal(l:line_num . 'G')
 endfunc
 
@@ -2591,7 +2609,7 @@ func! N_tag_jmp() abort
   let l:line = Line_str()
   call Tag_jmp(l:line)
 
-  exe "sbuffer " . l:base_buf_nr
+  call Exe('sbuffer ' . l:base_buf_nr)
   call Normal('j')
 endfunc
 
@@ -2603,8 +2621,7 @@ func! V_tag_jmp() range abort
 
     let l:line = getline(line_num)
     call Tag_jmp(l:line)
-
-    exe "sbuffer " . l:base_buf_nr
+    call Exe('sbuffer ' . l:base_buf_nr)
   endfor
 endfunc
 
@@ -2613,14 +2630,14 @@ endfunc
 func! Cmnt_1(head) abort
 
   let l:str_df = {
-  \ "lua" : '-- '      ,
-  \ "text": '# '       ,
-  \ "vim" : '"'        ,
-  \ "fish": '#'        ,
-  \ "sh"  : '#'        ,
-  \ "css" : '/* '      ,
-  \ "javascript": '// ',
-  \ "markdown": '#'
+  \ 'lua'       : '-- ',
+  \ 'text'      : '# ' ,
+  \ 'vim'       : '"'  ,
+  \ 'fish'      : '#'  ,
+  \ 'sh'        : '#'  ,
+  \ 'css'       : '/* ',
+  \ 'javascript': '// ',
+  \ 'markdown'  : '#'
   \ }
   let l:dflt = '# '
   let l:str = get(l:str_df, &filetype, l:dflt)
@@ -2653,15 +2670,15 @@ func! Cmnt_mlt(pos) abort
   if has_key(l:str_df, &filetype)
     let l:filetype = &filetype
   else
-    let l:filetype = "dflt"
+    let l:filetype = 'dflt'
   endif
   let l:str = l:str_df[l:filetype]
 
-  if     a:pos == "bgn"
+  if     a:pos == 'bgn'
     call Normal('O')
     call Normal('i' . l:str[0])
 
-  elseif a:pos == "end"
+  elseif a:pos == 'end'
     call Normal('o')
     call Normal('i' . l:str[1])
   endif
@@ -2714,7 +2731,7 @@ endfunc
 command! -nargs=* -complete=file Opn call Opn(<q-args>)
 func! Opn(filename) abort
 
-  exe 'tab drop ' . a:filename
+  call Exe('tab drop ' . a:filename)
 endfunc
 
 func! Opn_tmp() abort
@@ -2932,13 +2949,13 @@ func! Mark_tgl() abort
     call Mark_del(l:alph)
   endif
   
-  exe 'DoShowMarks'
+  call Exe('DoShowMarks')
 endfunc
   
 func! Mark_add() abort
   
   let l:alph = Mark_alph_useabl()
-  exe 'mark ' . l:alph
+  call Exe('mark ' . l:alph)
 endfunc
 
 func! Mark_alph_useabl() abort
@@ -2958,13 +2975,13 @@ endfunc
 
 func! Mark_del(alph) abort
   
-  exe 'delmark ' . a:alph
+  call Exe('delmark ' . a:alph)
 endfunc
 
 func! Mark_del_all() abort
   
-  exe 'delmark!'
-  exe 'DoShowMarks'
+  call Exe('delmark!')
+  call Exe('DoShowMarks')
 endfunc
 
 " trns
@@ -3031,9 +3048,9 @@ let g:vimrc_win_path = '~/.vimrc_win'
 
 if filereadable(expand(g:vimrc_win_path))
 
-  "exe 'source ' . g:vimrc_win_path
   Exe('source ' . g:vimrc_win_path)
   echo 'read .vimrc_win'
 endif
+
 
 
