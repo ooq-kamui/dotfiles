@@ -207,7 +207,7 @@ nnoremap gm :call Opn_memo()<cr>
 nnoremap <c-u> :call Ins_markdown_itm()<cr>
 
 " markdown __ tgl chk
-nnoremap X :call Char__tgl_markdown_chk()<cr>
+"nnoremap xx :call Char__tgl_markdown_chk()<cr>
 
 " 
 " cursor mv
@@ -368,10 +368,10 @@ nnoremap <space> i
 nnoremap m :call Ins_cr()<cr>
 
 " ins comment 1
-nnoremap ! :call Cmnt_1('^')<cr>
+nnoremap ! :call Ins_cmnt_1('^')<cr>
 
 " ins comment mlt
-nnoremap $ :call N_cmnt_mlt()<cr>
+nnoremap $ :call Ins_cmnt_mlt()<cr>
 
 " ins comma
 nnoremap , i, <esc>l
@@ -819,7 +819,7 @@ vnoremap c :call V_ynk()<cr>
 "vnoremap xx "+y
 
 " paste
-vnoremap <expr> p Is_mode_vbox() ? 'I<c-r>0<esc>' : '"ad"0P'
+vnoremap <expr> p mode() == '<c-v>' ? 'I<c-r>0<esc>' : '"ad"0P'
 
 " paste visual box
 "vnoremap xx I<c-r>0<esc>
@@ -834,19 +834,19 @@ vnoremap h <esc>u
 " 
 
 " ins | cut & ins
-vnoremap <expr> <space> Is_mode_vbox() ? 'I' : 'c'
+vnoremap <expr> <space> mode() == '<c-v>' ? 'I' : 'c'
 
 " cut & ins
 vnoremap <leader><space> "ac
 
 " ins $ | cursor mv in line end
-vnoremap <expr> <c-y> Is_mode_vbox() ? '$A' : 'g_'
+vnoremap <expr> <c-y> mode() == '<c-v>' ? '$A' : 'g_'
 
 " ins comment 1
-vnoremap ! :call V_cmnt_1()<cr>
+vnoremap ! :call V_ins_cmnt_1()<cr>
 
 " ins comment mlt
-vnoremap $ :call V_cmnt_mlt()<cr>
+vnoremap $ :call V_ins_cmnt_mlt()<cr>
 
 " ins date time
 "vnoremap * c<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
@@ -1520,7 +1520,9 @@ func! Rgstr__clr() abort
   let @0 = ''
 endfunc
 
-func! Is_mode_vbox() abort
+func! Is_mode_vbox() abort " todo mod
+
+  call Slct_re()
 
   if mode() == '<c-v>'
     return v:true
@@ -1770,9 +1772,11 @@ endfunc
 
 func! Cursor__mv_line_top0() abort
   
-  if ! Is_line_emp()
-    call Normal('0')
+  if Is_line_emp()
+    return
   end
+
+  call Normal('0')
 endfunc
 
 func! Cursor__mv_line_top1() abort
@@ -1975,6 +1979,12 @@ func! Line_str_side_r() abort
   
   let l:line_r = getline('.')[col('.'):]
   return l:line_r
+endfunc
+
+func! Line_top0__ins(str) abort
+
+  call Cursor__mv_line_top0()
+  call Ins(a:str)
 endfunc
 
 func! Line_top1__ins(str) abort
@@ -2185,7 +2195,7 @@ func! Slct_by_line_col(s_line, s_col, e_line, e_col) abort
   call Cursor__mv_by_lc(l:e_line, a:e_col)
 endfunc
 
-func! Slct_re() abort " todo mod
+func! Slct_re() abort
   
   call Normal('gv')
 endfunc
@@ -2505,6 +2515,84 @@ func! Grep_wrd(str) abort
   call Grep('-w'  , a:str)
 endfunc
 
+" cmnt
+
+func! Ins_cmnt_1(line_top) abort
+
+  if &filetype == 'markdown'
+    call Ins_markdown_h()
+    return
+  endif
+
+  let l:cmnt_1_def = {
+  \ 'lua'       : '-- ',
+  \ 'text'      : '# ' ,
+  \ 'vim'       : '"'  ,
+  \ 'fish'      : '#'  ,
+  \ 'sh'        : '#'  ,
+  \ 'css'       : '/* ',
+  \ 'javascript': '// ',
+  \ 'dflt'      : '# '
+  \ }
+  let l:str = get(l:cmnt_1_def, &filetype, l:cmnt_1_def['dflt'])
+
+  call Normal(a:line_top . 'i' . l:str)
+  
+  call Normal('^') " or '0'
+endfunc
+
+func! V_ins_cmnt_1() range abort
+
+  for line_num in range(a:firstline, a:lastline)
+
+    call Normal(line_num . 'G')
+    call Ins_cmnt_1('0')
+  endfor
+endfunc
+
+func! Ins_cmnt_mlt_by_pos(pos) abort
+
+  let l:cmnt_mlt_def = #{
+  \  lua       : ['--[[' , '--]]'],
+  \  html      : ['<!--' ,  '-->'],
+  \  css       : ['/*'   ,  ' */'],
+  \  javascript: ['/*'   ,  ' */'],
+  \  dflt      : ['/*'   ,  ' */']
+  \ }
+
+  let l:str = get(l:cmnt_mlt_def, &filetype, l:cmnt_mlt_def['dflt'])
+  "if has_key(l:cmnt_mlt_def, &filetype)
+  "  let l:filetype = &filetype
+  "else
+  "  let l:filetype = 'dflt'
+  "endif
+  "let l:str = l:cmnt_mlt_def[l:filetype]
+
+  if     a:pos == 'bgn'
+    call Normal('O')
+    call Normal('i' . l:str[0])
+
+  elseif a:pos == 'end'
+    call Normal('o')
+    call Normal('i' . l:str[1])
+  endif
+endfunc
+
+func! Ins_cmnt_mlt() abort
+
+  call Ins_cmnt_mlt_by_pos('bgn')
+  call Ins_cmnt_mlt_by_pos('end')
+endfunc
+
+func! V_ins_cmnt_mlt() range abort
+
+  call Normal(a:lastline  . 'G')
+  call Ins_cmnt_mlt_by_pos('end')
+
+  call Normal(a:firstline . 'G')
+  call Ins_cmnt_mlt_by_pos('bgn')
+endfunc
+
 " markdown
 
 func! Ins_markdown_itm() abort
@@ -2516,6 +2604,21 @@ endfunc
 func! Ins_markdown_cr() abort
 
   call Ins('  ')
+endfunc
+
+func! Ins_markdown_h() abort
+
+  call Cursor__mv_line_top0()
+  let l:top0_char = Cursor_c_char()
+
+  let l:str = '#'
+
+  if l:top0_char != l:str
+    let l:str .= ' '
+  endif
+
+  call Ins(l:str)
+  call Cursor__mv_line_top0()
 endfunc
 
 func! Char__tgl_markdown_chk() abort
@@ -2568,18 +2671,6 @@ endfunc
 
 " etc
 
-func! Rg_out_parse(line) abort
-
-  let l:dlm = ':'
-  let l:ret = split(a:line, l:dlm)
-  return l:ret
-endfunc
-
-func! Buf_nr() abort
-
-  return bufnr('%')
-endfunc
-
 func! Tag_jmp(rg_out_line) abort
   
   let l:rg_out_line = trim(a:rg_out_line)
@@ -2625,78 +2716,16 @@ func! V_tag_jmp() range abort
   endfor
 endfunc
 
-" cmnt
+func! Rg_out_parse(line) abort
 
-func! Cmnt_1(head) abort
-
-  let l:str_df = {
-  \ 'lua'       : '-- ',
-  \ 'text'      : '# ' ,
-  \ 'vim'       : '"'  ,
-  \ 'fish'      : '#'  ,
-  \ 'sh'        : '#'  ,
-  \ 'css'       : '/* ',
-  \ 'javascript': '// ',
-  \ 'markdown'  : '#'
-  \ }
-  let l:dflt = '# '
-  let l:str = get(l:str_df, &filetype, l:dflt)
-
-  call Normal(a:head . 'i' . l:str)
-  
-  "call Normal('0')
-  call Normal('^')
+  let l:dlm = ':'
+  let l:ret = split(a:line, l:dlm)
+  return l:ret
 endfunc
 
-func! V_cmnt_1() range abort
+func! Buf_nr() abort
 
-  for line_num in range(a:firstline, a:lastline)
-
-    call Normal(line_num . 'G')
-    call Cmnt_1('0')
-  endfor
-endfunc
-
-func! Cmnt_mlt(pos) abort
-
-  let l:str_df = #{
-  \  lua       : ['--[[' , '--]]'],
-  \  html      : ['<!--' ,  '-->'],
-  \  css       : ['/*'   ,  ' */'],
-  \  javascript: ['/*'   ,  ' */'],
-  \  dflt      : ['/*'   ,  ' */']
-  \ }
-
-  if has_key(l:str_df, &filetype)
-    let l:filetype = &filetype
-  else
-    let l:filetype = 'dflt'
-  endif
-  let l:str = l:str_df[l:filetype]
-
-  if     a:pos == 'bgn'
-    call Normal('O')
-    call Normal('i' . l:str[0])
-
-  elseif a:pos == 'end'
-    call Normal('o')
-    call Normal('i' . l:str[1])
-  endif
-endfunc
-
-func! N_cmnt_mlt() abort
-
-  call Cmnt_mlt('bgn')
-  call Cmnt_mlt('end')
-endfunc
-
-func! V_cmnt_mlt() range abort
-
-  call Normal(a:lastline  . 'G')
-  call Cmnt_mlt('end')
-
-  call Normal(a:firstline . 'G')
-  call Cmnt_mlt('bgn')
+  return bufnr('%')
 endfunc
 
 command! -nargs=? -complete=dir Lf call Lf(<q-args>)
@@ -2821,7 +2850,7 @@ func! I_bracket() abort
 endfunc
 
 func! I_markdown() abort
-  call complete( col('.'), [ '```', '``', '- [ ] ', '- ', '---' ])
+  call complete( col('.'), [ '``', '- ', '---', '```', '- [ ] ' ])
   return ''
 endfunc
 
