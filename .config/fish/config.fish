@@ -26,6 +26,8 @@ set -x FZF_DEFAULT_OPTS '--bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward
 # alias
 # 
 
+alias shutdown_start "sudo shutdown -r now"
+
 #alias l  "ls -1hAG"
 
 alias pwd_cp "pwd | pbcopy"
@@ -36,8 +38,9 @@ alias cd_p3 "cd ../../../"
 
 alias cd_dl 'cd ~/Downloads'
 
-alias cd_vim     "cd ~/doc/tech/github/vimrc"
-alias cd_vim_swp "cd ~/.local/state/nvim/swap"
+alias cd_vim      "cd ~/doc/tech/github/vimrc"
+alias cd_vim_swp  "cd ~/.local/state/nvim/swap"
+alias cd_fish_fnc "cd ~/doc/tech/github/vimrc/.config/fish/functions"
 
 alias cd_life    "cd ~/doc/life"
 alias cd_tech    "cd ~/doc/tech"
@@ -45,7 +48,7 @@ alias cd_mthr    "cd ~/doc/life/mthr"
 
 alias cd_ooq     "cd ~/dev/ooq/g.proto/assets"
 alias cd_ooq_bk  "cd ~/dev/ooq/z.proto.bk"
-alias cd_ooq_web "cd ~/doc/hoby/ooq-web/artcl"
+alias cd_ooq_doc "cd ~/dev/ooq-doc"
 
 alias cd_holo      "cd ~/doc/hoby/youtube/vtuber/hololive/prj"
 alias cd_holo_data "cd ~/doc/hoby/youtube/vtuber/hololive/prj/www/song/data"
@@ -59,8 +62,6 @@ alias vi_fish_cnf "vi ~/.config/fish/config.fish"
 alias vi_cnf      "vi ~/.config/fish/config.fish"
 alias vi_doc      "vi doc/memo.txt"
 alias vi_life     "vi ~/doc/life/doc/memo.txt"
-
-alias shutdown_start "sudo shutdown -r now"
 
 set -x LC_TIME en_US
 alias date_ymd   "date +'%Y-%m-%d'"
@@ -84,7 +85,7 @@ alias ba 'pmset -g ps | grep -oE "[0-9]+%"' # battery
 
 alias ca 'cal'
 
-alias gi "git"
+#alias gi "git"
 
 alias opn "open"
 
@@ -95,6 +96,9 @@ alias opn_ooq "open https://ooq.jp/"
 
 alias src         "source"
 alias src_fsh_cfg "source ~/.config/fish/config.fish"
+
+alias du  "du -h"
+alias du1 "du -hd1"
 
 # 
 # bind

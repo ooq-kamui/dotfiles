@@ -1,15 +1,15 @@
-function ld
+function ld1
 
   set dir ( emp_2_wildcard $argv )
 
   set dir ( dir_trim $dir )
-  #echo $dir
 
   set path (                     \
     find $dir                    \
       -name .git -type d -prune  \
       -o                         \
       \( -type d \)              \
+      -maxdepth 0                \
       -print                    |\
     sort -u
   )
