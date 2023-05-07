@@ -168,6 +168,7 @@ nnoremap <leader>p :FileHstry<cr>
 
 " file srch ( fzf )
 nnoremap <leader>l :Files <cr>
+nnoremap <leader>u :Files <cr>
 
 " 
 " opn
@@ -280,7 +281,7 @@ nnoremap gk gg0
 nnoremap gj G$l
 
 " cursor mv edit latest
-nnoremap M `.
+"nnoremap xx `.
 
 " scroll
 nnoremap K      <c-y>
@@ -395,33 +396,34 @@ nnoremap T i<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
 nnoremap gs :call Ins_line_slf_path()<cr>
 
 " ins markdown
-nnoremap R O```<esc>
+nnoremap R     O```<esc>
+nnoremap <c-r> O```<esc>
 
 " del char
 nnoremap s "ax
 nnoremap x x
 
-" del line
+" line del
 nnoremap d :call Line__del()<cr>
 
-" del in line forward
+" line forward del
 nnoremap <c-d> D
 
-" del word back
-"nnoremap <c-w> hvbd
+" word back    del
+"nnoremap xx hvbd
 
-" del word forward
-"nnoremap <expr> xx col(".") == col("$") ? "<esc>" : '"adw'
-"nnoremap <expr> xx col(".") == col("$") ? "<esc>" : '"ade'
+" word forward del
+"nnoremap <expr> xx col('.') == col('$') ? '<esc>' : '"adw'
+"nnoremap <expr> xx col('.') == col('$') ? '<esc>' : '"ade'
 
 " del cr ( line join )
 nnoremap <c-m> J
 
-" mv line up
+" line mv up
 "nnoremap xx "0ddk"0P
 
-" dpl line
-nnoremap D "ayy"aP
+" line dpl
+"nnoremap xx "ayy"aP
 
 " repeat memory
 nnoremap <c-^> qy
@@ -466,6 +468,9 @@ nnoremap ; :call Indnt__crct()<cr>
 nnoremap n     :call Srch('f')<cr>
 nnoremap <c-n> :call Srch('b')<cr>
 
+" srch, cursor mv nxt
+nnoremap M :call Srch_cursor__mv_nxt('f')<cr>
+
 " srch str set
 nnoremap e :call N_srch_str__(v:false)<cr>
 
@@ -474,7 +479,6 @@ nnoremap E :call N_srch_str__(v:true)<cr>
 
 " srch cmdline
 nnoremap <leader>i /
-"nnoremap <c-f>     /
 
 " srch char bracket forward
 nnoremap <c-f> :call Srch_char_bracket('f')<cr>
@@ -493,7 +497,7 @@ nnoremap S /<cr>N
 nnoremap :s :%s//<c-r>0/gc
 
 " srch replace one > ynk nxt ( only srch )
-nnoremap <c-p> gn
+nnoremap <c-p> :call Srch_slct('f')<cr>
 
 " srch ?=ts
 "nnoremap xx /?ts=<cr>
@@ -661,7 +665,7 @@ nnoremap z <esc>
 nnoremap A <esc>
 nnoremap B <esc>
 "nnoremap C <esc>
-"nnoremap D <esc>
+nnoremap D <esc>
 "nnoremap E <esc>
 nnoremap F <esc>
 nnoremap G <esc>
@@ -699,7 +703,7 @@ nnoremap <c-g> <esc>
 "nnoremap <c-o> <esc>
 "nnoremap <c-p> <esc>
 "nnoremap <c-q> <esc>
-nnoremap <c-r> <esc>
+"nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
 "nnoremap <c-u> <esc>
@@ -764,18 +768,18 @@ vnoremap f e
 "vnoremap xx bh
 "vnoremap xx Bh
 
-" cursor mv selected word reduce dlm _ l
+" cursor mv slctd word reduce dlm _ l
 vnoremap _ of_lo
 "vnoremap <c-_> of_lo
 
-" cursor mv selected word reduce dlm _ r
+" cursor mv slctd word reduce dlm _ r
 vnoremap <c-_> F_h
 "vnoremap _ F_h
 
 " cursor mv space - forward ( word pre )
 "vnoremap xx wh
 
-" cursor mv selected edge
+" cursor mv slctd edge
 vnoremap y o
 
 " cursor mv line
@@ -802,10 +806,12 @@ vnoremap gj G$l
 " 
 
 " slctd expnd
-vnoremap I :call Slctd__expnd()<cr>
+vnoremap <c-i> :call Slctd__expnd()<cr>
+"vnoremap I     :call Slctd__expnd()<cr>
 
 " slctd expnd bracket forward
-vnoremap <c-f> :call Slctd__expnd_bracket_f()<cr>
+vnoremap I :call Slctd__expnd_bracket_f()<cr>
+"vnoremap <c-f> :call Slctd__expnd_bracket_f()<cr>
 
 " slct all
 vnoremap a <esc>ggVG
@@ -868,13 +874,13 @@ vnoremap s "ax
 vnoremap x "ax
 
 " del cr
-vnoremap <c-m> J
+"vnoremap xx J
 
 " del line top space
-vnoremap D :call V_line_top__del_space()<cr>
+"vnoremap xx :call V_line_top__del_space()<cr>
 
 " del line end space
-vnoremap M :call V_line_end__del_space()<cr>
+vnoremap m :call V_line_end__del_space()<cr>
 
 " mv str back
 vnoremap <c-w> :call Slctd_str__mv('h')<cr>
@@ -937,11 +943,11 @@ vnoremap E :call V_srch_str__slctd_str(v:true)<cr>
 " srch cmdline
 vnoremap <leader>i "ay/<c-r>a
 
-" srch replace all > ynk
+" srch rpl all > ynk
 vnoremap :s :s//<c-r>0/gc<cr>
 
-" srch replace one > ynk, nxt
-vnoremap <c-p> "ad"0Plgn
+" srch rpl one > ynk, nxt
+vnoremap <c-p> :call Slctd_rpl_srch_nxt()<cr>
 
 " 
 " grep
@@ -1003,7 +1009,7 @@ vnoremap b <esc>
 vnoremap g <esc>
 "vnoremap h <esc>
 "vnoremap i <esc>
-vnoremap m <esc>
+"vnoremap m <esc>
 "vnoremap n <esc>
 "vnoremap o <esc>
 "vnoremap p <esc>
@@ -1020,14 +1026,14 @@ vnoremap w <esc>
 vnoremap A <esc>
 vnoremap B <esc>
 vnoremap C <esc>
-"vnoremap D <esc>
+vnoremap D <esc>
 vnoremap F <esc>
 vnoremap H <esc>
 "vnoremap I <esc>
 vnoremap J <esc>
 vnoremap K <esc>
 vnoremap L <esc>
-"vnoremap M <esc>
+vnoremap M <esc>
 vnoremap N <esc>
 vnoremap O <esc>
 vnoremap P <esc>
@@ -1046,11 +1052,11 @@ vnoremap <c-a> <esc>
 "vnoremap <c-c> <esc>
 vnoremap <c-d> <esc>
 "vnoremap <c-e> <esc>
-"vnoremap <c-f> <esc>
+vnoremap <c-f> <esc>
 vnoremap <c-h> <esc>
-vnoremap <c-i> <esc>
+"vnoremap <c-i> <esc>
 "vnoremap <c-l> <esc>
-"vnoremap <c-m> <esc>
+vnoremap <c-m> <esc>
 "vnoremap <c-n> <esc>
 "vnoremap <c-o> <esc>
 "vnoremap <c-p> <esc>
@@ -1270,7 +1276,7 @@ nnoremap <leader>f <esc>
 nnoremap <leader>h <esc>
 "nnoremap <leader>p <esc>
 "nnoremap <leader>r <esc>
-nnoremap <leader>u <esc>
+"nnoremap <leader>u <esc>
 "nnoremap <leader>y <esc>
 
 vnoremap <leader>u <esc>
@@ -1853,14 +1859,19 @@ func! Cursor__mv_word_b_pre() abort " use not
   end
 endfunc
 
-func! Cursor__mv_by_pos(pos) abort
-  
-  call setpos('.', a:pos)
+func! Cursor__mv_by_line_num(line_num) abort
+
+  call Normal(a:line_num . 'G')
 endfunc
 
 func! Cursor__mv_by_lc(line, col) abort
   
   call cursor(a:line, a:col)
+endfunc
+
+func! Cursor__mv_by_pos(pos) abort
+  
+  call setpos('.', a:pos)
 endfunc
 
 func! N_cursor__mv_line_top_or_new_line() abort
@@ -2001,6 +2012,12 @@ func! V_line_top__del_space() abort
   call Exe(l:rpl_cmd)
 endfunc
 
+func! Line_end_col() abort
+
+  let l:col = col('$')
+  return l:col
+endfunc
+
 let s:line_end_space_ptn = '[ \t]*$'
 
 func! Line_end__del_space(line_num) abort
@@ -2009,10 +2026,15 @@ func! Line_end__del_space(line_num) abort
   call Exe(l:rpl_cmd)
 endfunc
 
-func! V_line_end__del_space() abort
+func! V_line_end__del_space() range abort
 
-  let l:rpl_cmd =              's/' . s:line_end_space_ptn . '//g'
-  call Exe(l:rpl_cmd)
+  for line_num in range(a:firstline, a:lastline)
+
+    call Line_end__del_space(line_num)
+  endfor
+
+  "let l:rpl_cmd =              's/' . s:line_end_space_ptn . '//g'
+  "call Exe(l:rpl_cmd)
 endfunc
 
 func! V_line_end_padding() range abort
@@ -2022,11 +2044,13 @@ func! V_line_end_padding() range abort
 
   for line_num in range(a:firstline, a:lastline)
     
-    call Normal(line_num . 'G')
+    "call Normal(line_num . 'G')
+    call Cursor__mv_by_line_num(line_num)
     
-    let l:col = col('$')
-    let l:len = l:w - l:col
-    
+    "let l:line_end_col = col('$')
+    "let l:len = l:w - l:line_end_col
+    let l:len = l:w - Line_end_col()
+
     call Normal(l:len . 'A' . l:char)
   endfor
 endfunc
@@ -2344,6 +2368,14 @@ func! Slctd_edge__ins(c) abort " use not
   call Slctd_l__ins(l:c_l)
 endfunc
 
+" slctd rpl, srch nxt slctd
+
+func! Slctd_rpl_srch_nxt() abort " dir forward only
+  
+  call Slct_re()
+  call Normal('"ad"0Plgn')
+endfunc
+
 " slctd cnd
 
 func! Is_slctd_str_eq_srch_str() abort
@@ -2467,7 +2499,7 @@ func! V_srch(dir) abort " use not
   call V_srch_str__slctd_str(v:false)
 endfunc
 
-func! N_srch_slct(dir) abort " use not
+func! Srch_slct(dir) abort
 
   if     a:dir == 'f'
     call Normal('gn')
@@ -2485,6 +2517,13 @@ func! V_srch_slct(dir) abort " srch rpl skip
   elseif a:dir == 'b'
     call Normal('`<hgN')
   endif
+endfunc
+
+func! Srch_cursor__mv_nxt(dir) abort
+
+  call Srch_slct(a:dir)
+  call Normal("\<esc>")
+  call Normal('l')
 endfunc
 
 func! Srch_char(dir, char) abort

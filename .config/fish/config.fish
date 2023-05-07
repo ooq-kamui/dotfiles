@@ -28,7 +28,8 @@ set -x FZF_DEFAULT_OPTS '--bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward
 
 alias shutdown_start "sudo shutdown -r now"
 
-#alias l  "ls -1hAG"
+#alias l "ls -1hAG"
+alias lld "ll -d"
 
 alias pwd_cp "pwd | pbcopy"
 
@@ -40,15 +41,17 @@ alias cd_dl 'cd ~/Downloads'
 
 alias cd_vim      "cd ~/doc/tech/github/vimrc"
 alias cd_vim_swp  "cd ~/.local/state/nvim/swap"
+
 alias cd_fish_fnc "cd ~/doc/tech/github/vimrc/.config/fish/functions"
 
 alias cd_life    "cd ~/doc/life"
 alias cd_tech    "cd ~/doc/tech"
-alias cd_mthr    "cd ~/doc/life/mthr"
+alias cd_game    "cd ~/doc/hoby/game"
 
-alias cd_ooq     "cd ~/dev/ooq/g.proto/assets"
-alias cd_ooq_bk  "cd ~/dev/ooq/z.proto.bk"
-alias cd_ooq_doc "cd ~/dev/ooq-doc"
+alias cd_ooq       "cd ~/dev/ooq/g.proto/assets"
+alias cd_ooq_bk    "cd ~/dev/ooq/z.proto.bk"
+alias cd_ooq_artcl "cd ~/dev/ooq-artcl"
+alias cd_hugo      "cd ~/dev/ooq-artcl/hugo"
 
 alias cd_holo      "cd ~/doc/hoby/youtube/vtuber/hololive/prj"
 alias cd_holo_data "cd ~/doc/hoby/youtube/vtuber/hololive/prj/www/song/data"
@@ -58,34 +61,8 @@ alias vim "nvim -p"
 
 alias vi_vimrc    "vi ~/.vimrc"
 alias vi_vim_swap "vi ~/.local/share/nvim/swap/"
-alias vi_fish_cnf "vi ~/.config/fish/config.fish"
+alias vi_fsh_cnf  "vi ~/.config/fish/config.fish"
 alias vi_cnf      "vi ~/.config/fish/config.fish"
-alias vi_doc      "vi doc/memo.txt"
-alias vi_life     "vi ~/doc/life/doc/memo.txt"
-
-set -x LC_TIME en_US
-alias date_ymd   "date +'%Y-%m-%d'"
-alias date_ymdhm "date +'%Y-%m-%d %H:%M'"
-alias date_y1    "date_y 1"
-alias date_y2    "date_y 2"
-alias da         "date +'%Y-%m-%d %a'"
-#alias date "date +'%Y-%m-%d %H:%M %a %Z'"
-
-alias ff "fd -tf"
-
-alias trns   "trans"
-alias trns_j "trans {ja=en}"
-alias trns_e "trans {en=ja}"
-
-#alias rpl="string replace"
-#alias fzf="fzf --bind=ctrl-o:accept "
-#alias f="mdfind -onlyin . -name"
-
-alias ba 'pmset -g ps | grep -oE "[0-9]+%"' # battery
-
-alias ca 'cal'
-
-#alias gi "git"
 
 alias opn "open"
 
@@ -97,8 +74,26 @@ alias opn_ooq "open https://ooq.jp/"
 alias src         "source"
 alias src_fsh_cfg "source ~/.config/fish/config.fish"
 
+alias rgf "rg -l"
+
 alias du  "du -h"
 alias du1 "du -hd1"
+
+set -x LC_TIME en_US
+alias date_ymd   "date +'%Y-%m-%d'"
+alias date_ymdhm "date +'%Y-%m-%d %H:%M'"
+alias date_y1    "date_y 1"
+alias date_y2    "date_y 2"
+alias da         "date +'%Y-%m-%d %a'"
+#alias date "date +'%Y-%m-%d %H:%M %a %Z'"
+
+alias ca 'cal'
+
+alias ba 'pmset -g ps | grep -oE "[0-9]+%"' # battery
+
+alias trns   "trans"
+alias trns_j "trans {ja=en}"
+alias trns_e "trans {en=ja}"
 
 # 
 # bind
