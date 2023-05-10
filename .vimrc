@@ -1357,7 +1357,11 @@ call plug#end()
 
 " preview window
 let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
-let g:fzf_action = {'ctrl-o': 'tab drop'}
+let g:fzf_action = {
+\  'ctrl-o': 'tab drop',
+\  'ctrl-s': 'backward-char',
+\ }
+"\  'ctrl-o': 'enter',
 
 let g:fzf_colors = {
 \   'hl'     : ['fg', 'Statement'  ],
