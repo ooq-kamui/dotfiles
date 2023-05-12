@@ -1805,10 +1805,16 @@ func! N_cursor__mv_line_end() abort
   end
 endfunc
 
+func! Cursor__mv_char_f() abort
+
+  call Normal('l')
+endfunc
+
 func! Cursor__mv_word_f() abort
 
   if Is_cursor_line_end()
-    call Normal('l')
+    call Cursor__mv_char_f()
+    "call Normal('l')
     return
   endif
 
@@ -1943,7 +1949,8 @@ func! Ins(str) abort
 
   let l:cmd = 'i' . a:str
   call Normal(l:cmd)
-  call Normal('l')
+  call Cursor__mv_char_f()
+  "call Normal('l')
 endfunc
 
 func! Ins_mlt(str, num) abort
@@ -2527,7 +2534,8 @@ func! Srch_cursor__mv_nxt(dir) abort
 
   call Srch_slct(a:dir)
   call Normal("\<esc>")
-  call Normal('l')
+  call Cursor__mv_char_f()
+  "call Normal('l')
 endfunc
 
 func! Srch_char(dir, char) abort
@@ -2661,7 +2669,9 @@ func! Ins_markdown_h() abort
   endif
 
   call Ins(l:str)
-  call Cursor__mv_line_top0()
+
+  call Cursor__mv_word_f()
+  call Cursor__mv_char_f()
 endfunc
 
 func! Char__tgl_markdown_chk() abort
