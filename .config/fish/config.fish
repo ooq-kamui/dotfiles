@@ -87,7 +87,9 @@ alias date_y2    "date_y 2"
 alias da         "date +'%Y-%m-%d %a'"
 #alias date "date +'%Y-%m-%d %H:%M %a %Z'"
 
-alias ca 'cal'
+alias cal3 'cal -3'
+alias ca   'cal'
+alias ca3  'cal -3'
 
 alias ba 'pmset -g ps | grep -oE "[0-9]+%"' # battery
 

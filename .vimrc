@@ -139,13 +139,14 @@ let mapleader = "\<esc>"
 nnoremap w :bd<cr>
 
 " quit
-nnoremap <c-w> :q<cr>
+"nnoremap <c-w> :q<cr>
+nnoremap W     :q<cr>
 
 " quit force
 nnoremap :q :q!
 
 " quit other
-"nnoremap W :tabo<cr>
+"nnoremap xx :tabo<cr>
 
 " background job
 nnoremap <c-z> <c-z>
@@ -163,12 +164,13 @@ nnoremap a :call Save()<cr>
 " opn latest
 "nnoremap xx `0
 
-" opn file rcnt ( history )
-nnoremap <leader>p :FileHstry<cr>
+" opn file rcnt ( hstry )
+nnoremap <leader>l :FileHstry<cr>
+"nnoremap <leader>p :FileHstry<cr>
 
 " file srch ( fzf )
-nnoremap <leader>l :Files <cr>
 nnoremap <leader>u :Files <cr>
+"nnoremap <leader>l :Files <cr>
 
 " 
 " opn
@@ -205,7 +207,7 @@ nnoremap gm :call Opn_memo()<cr>
 "nnoremap xx :call Markdown_2_html()<cr>
 
 " markdown __ ins itm
-nnoremap <c-u> :call Ins_markdown_itm()<cr>
+nnoremap O :call Ins_markdown_itm()<cr>
 
 " markdown __ tgl chk
 "nnoremap xx :call Char__tgl_markdown_chk()<cr>
@@ -232,10 +234,8 @@ nnoremap <c-a> 0
 
 " cursor mv in line end
 nnoremap <expr> <c-y>
-\ Is_cursor_line_end() ? ':call Ins_markdown_cr()<cr>' :
-\                        ':call N_cursor__mv_line_end()<cr>'
-"nnoremap <c-e> :call N_cursor__mv_line_end()<cr>
-"nnoremap xx     $
+\ Is_cursor_line_end() ? ':call Ins_markdown_cr()<cr>'       :
+\                        ':call Cursor__mv_line_end()<cr>'
 
 " cursor mv char - forward
 nnoremap l l
@@ -293,8 +293,7 @@ nnoremap <down> <c-e>
 "nnoremap xx zt
 
 " scroll cursor line middle
-"nnoremap F zz
-"nnoremap <leader>f zz
+"nnoremap xx zz
 
 " cursor mv window nxt
 "nnoremap xx <c-w>w
@@ -443,8 +442,8 @@ nnoremap u :call N_char__tgl()<cr>
 "nnoremap xx v~
 
 " indent shift
-nnoremap # :call Indnt__shft_r()<cr>
 nnoremap " :call Indnt__shft_l()<cr>
+nnoremap # :call Indnt__shft_r()<cr>
 
 " indent add
 nnoremap U :call Indnt__add(2)<cr>
@@ -469,7 +468,7 @@ nnoremap n     :call Srch('f')<cr>
 nnoremap <c-n> :call Srch('b')<cr>
 
 " srch, cursor mv nxt
-nnoremap M :call Srch_cursor__mv_nxt('f')<cr>
+nnoremap M :call Srch_7_cursor__mv_nxt('f')<cr>
 
 " srch str set
 nnoremap e :call N_srch_str__(v:false)<cr>
@@ -620,6 +619,7 @@ nnoremap ? <esc>
 "nnoremap # <esc>
 "nnoremap $ <esc>
 "nnoremap % <esc> " ?
+nnoremap & <esc>
 nnoremap ( <esc>
 "nnoremap < <esc>
 nnoremap > <esc>
@@ -676,14 +676,14 @@ nnoremap H <esc>
 "nnoremap L <esc>
 "nnoremap M <esc>
 "nnoremap N <esc>
-nnoremap O <esc>
+"nnoremap O <esc>
 nnoremap Q <esc>
 nnoremap P <esc>
 "nnoremap R <esc>
 "nnoremap S <esc>
 "nnoremap T <esc>
 "nnoremap U <esc>
-nnoremap W <esc>
+"nnoremap W <esc>
 nnoremap V <esc>
 "nnoremap X <esc>
 "nnoremap Y <esc>
@@ -706,9 +706,9 @@ nnoremap <c-g> <esc>
 "nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
-"nnoremap <c-u> <esc>
+nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
-"nnoremap <c-w> <esc>
+nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
 "nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
@@ -852,7 +852,8 @@ vnoremap <expr> <c-y> mode() == '<c-v>' ? '$A' : 'g_'
 vnoremap ! :call V_ins_cmnt_1()<cr>
 
 " ins comment mlt
-vnoremap $ :call V_ins_cmnt_mlt()<cr>
+vnoremap & :call V_ins_cmnt_mlt()<cr>
+"vnoremap $ :call V_ins_cmnt_mlt()<cr>
 
 " ins date time
 "vnoremap * c<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
@@ -989,7 +990,9 @@ vnoremap / <esc>
 "vnoremap ! <esc>
 "vnoremap " <esc>
 "vnoremap # <esc>
-"vnoremap $ <esc>
+vnoremap $ <esc>
+"vnoremap % <esc> " ?
+"vnoremap & <esc>
 "vnoremap _ <esc>
 vnoremap ? <esc>
 vnoremap ( <esc>
@@ -1274,7 +1277,7 @@ cnoremap <kPageUp>   9
 
 nnoremap <leader>f <esc>
 nnoremap <leader>h <esc>
-"nnoremap <leader>p <esc>
+nnoremap <leader>p <esc>
 "nnoremap <leader>r <esc>
 "nnoremap <leader>u <esc>
 "nnoremap <leader>y <esc>
@@ -1515,7 +1518,7 @@ func! Sys_cmd(sys_cmd) abort
   call Exe(l:cmd)
 endfunc
 
-func! Col() abort " alias
+func! Col() abort " crnt
   
   return col('.')
 endfunc
@@ -1712,7 +1715,7 @@ endfunc
 
 " str
 
-func! Str_l(str)
+func! Str_l_char(str)
   
   let l:l_idx = 0
   let l:str_l = a:str[l:l_idx]
@@ -1720,7 +1723,7 @@ func! Str_l(str)
   return l:str_l
 endfunc
 
-func! Str_r(str)
+func! Str_r_char(str)
   
   let l:r_idx = Str_len(a:str) - 1
   let l:str_r = a:str[l:r_idx]
@@ -1728,7 +1731,7 @@ func! Str_r(str)
   return l:str_r
 endfunc
 
-func! Str_len(str)
+func! Str_len(str) " alias
 
   return strchars(a:str)
 endfunc
@@ -1737,6 +1740,26 @@ func! Str_srch(str, ptn) " alias
 
   let l:idx = match(a:str, a:ptn)
   return l:idx
+endfunc
+
+func! Str_srch_end(str, ptn) " alias
+
+  let l:idx = matchend(a:str, a:ptn)
+  return l:idx
+endfunc
+
+" str cnd
+
+func! Is_str_space(str)
+  
+  let l:ptn = '^\s*$'
+  let l:idx = Str_srch(a:str, l:ptn)
+
+  if l:idx == 0
+    return v:true
+  else
+    return v:false
+  end
 endfunc
 
 " cursor
@@ -1792,13 +1815,13 @@ endfunc
 func! Cursor__mv_line_top1() abort
 
   if Is_line_space()
-    call N_cursor__mv_line_end()
+    call Cursor__mv_line_end()
   else
     call Normal('^')
   end
 endfunc
 
-func! N_cursor__mv_line_end() abort
+func! Cursor__mv_line_end() abort
 
   if ! Is_line_emp()
     call Normal('$l')
@@ -1810,11 +1833,21 @@ func! Cursor__mv_char_f() abort
   call Normal('l')
 endfunc
 
+func! Cursor__mv_char_b() abort
+
+  call Normal('h')
+endfunc
+
 func! Cursor__mv_word_f() abort
 
-  if Is_cursor_line_end()
+  if     Is_cursor_line_end() || Is_cursor_line_end_inr()
+
     call Cursor__mv_char_f()
-    "call Normal('l')
+    return
+
+  elseif Is_line_str_side_r_space()
+
+    call Cursor__mv_line_end()
     return
   endif
 
@@ -1835,7 +1868,7 @@ func! Cursor__mv_word_b() abort
   
   if     Is_cursor_line_top0()
     call Normal('k')
-    call N_cursor__mv_line_end()
+    call Cursor__mv_line_end()
     
   elseif Is_line_space()
     call Cursor__mv_line_top0()
@@ -1844,13 +1877,13 @@ func! Cursor__mv_word_b() abort
     call Cursor__mv_line_top0()
     
   elseif l:c_l =~ '\S' && l:c_l =~ '\W' " symbol
-    call Normal('h')
+    call Cursor__mv_char_b()
     
   "elseif l:c_l =~ '\s'
   "  call Normal('ge')
     
   "elseif l:c_l =~ '\W'
-  "  call Normal('h')
+  "  call Cursor__mv_char_b()
 
   else
     call Normal('b')
@@ -1874,12 +1907,14 @@ func! Cursor__mv_by_line_num(line_num) abort
   call Normal(a:line_num . 'G')
 endfunc
 
-func! Cursor__mv_by_lc(line, col) abort
+func! Cursor__mv_by_line_col(line_num, col) abort
+
+  let l:line_num = (a:line_num == v:null) ? Line_num() : a:line_num
   
-  call cursor(a:line, a:col)
+  call cursor(l:line_num, a:col)
 endfunc
 
-func! Cursor__mv_by_pos(pos) abort
+func! Cursor__mv_by_pos(pos) abort " use not
   
   call setpos('.', a:pos)
 endfunc
@@ -1910,6 +1945,15 @@ endfunc
 func! Is_cursor_line_end() abort
 
   if col('.') == col('$')
+    return v:true
+  else
+    return v:false
+  end
+endfunc
+
+func! Is_cursor_line_end_inr() abort
+
+  if col('.') == col('$') - 1
     return v:true
   else
     return v:false
@@ -2043,9 +2087,6 @@ func! V_line_end__del_space() range abort
 
     call Line_end__del_space(line_num)
   endfor
-
-  "let l:rpl_cmd =              's/' . s:line_end_space_ptn . '//g'
-  "call Exe(l:rpl_cmd)
 endfunc
 
 func! V_line_end_padding() range abort
@@ -2137,13 +2178,16 @@ endfunc
 
 func! Is_line_space() abort
   
-  let l:ptn = '^\s*$'
-  let l:idx = Str_srch(Line_str(), l:ptn)
-  if l:idx == 0
-    return v:true
-  else
-    return v:false
-  end
+  let l:line_str = Line_str()
+  let l:ret = Is_str_space(l:line_str)
+  return l:ret
+endfunc
+
+func! Is_line_str_side_r_space() abort
+
+  let l:str = Line_str_side_r()
+  let l:ret = Is_str_space(l:str)
+  return l:ret
 endfunc
 
 " indnt
@@ -2167,7 +2211,7 @@ func! Indnt__del() abort " alias
   call Exe('left')
 endfunc
 
-func! Indnt__shft_r() abort " nnoremap # >>
+func! Indnt__shft_r() abort
 
   if Is_line_emp()
     "let l:col = Indnt_col_by_c()
@@ -2213,10 +2257,10 @@ func! Slct_word() abort
   endif
 endfunc
 
-func! Slct_by_pos(s_pos, e_pos) abort
+func! Slct_by_pos(s_pos, e_pos) abort " use not
 
   call Cursor__mv_by_pos(a:s_pos)
-  normal! v
+  call Normal('v')
   call Cursor__mv_by_pos(a:e_pos)
 endfunc
 
@@ -2225,9 +2269,9 @@ func! Slct_by_line_col(s_line, s_col, e_line, e_col) abort
   let l:s_line = (a:s_line == v:null) ? Line_num() : a:s_line
   let l:e_line = (a:e_line == v:null) ? Line_num() : a:e_line
 
-  call Cursor__mv_by_lc(l:s_line, a:s_col)
+  call Cursor__mv_by_line_col(l:s_line, a:s_col)
   call Normal('v')
-  call Cursor__mv_by_lc(l:e_line, a:e_col)
+  call Cursor__mv_by_line_col(l:e_line, a:e_col)
 endfunc
 
 func! Slct_re() abort
@@ -2436,11 +2480,11 @@ func! Srch_str_word1(str)
 
   let l:str = a:str
   
-  if Str_l(l:str) =~ '\w'
+  if Str_l_char(l:str) =~ '\w'
     let l:str = '\<' . l:str
   endif
   
-  if Str_r(l:str) =~ '\w'
+  if Str_r_char(l:str) =~ '\w'
     let l:str =        l:str . '\>'
   endif
   
@@ -2457,7 +2501,9 @@ func! Srch_str__(str, word1) abort
   endif
   
   let g:srch_prv1 = @/
+
   let @/ = l:str
+  call Normal('/' . l:str) " srch hstry add
 endfunc
 
 func! N_srch_str__(word1) abort
@@ -2530,7 +2576,7 @@ func! V_srch_slct(dir) abort " srch rpl skip
   endif
 endfunc
 
-func! Srch_cursor__mv_nxt(dir) abort
+func! Srch_7_cursor__mv_nxt(dir) abort
 
   call Srch_slct(a:dir)
   call Normal("\<esc>")
@@ -2670,8 +2716,9 @@ func! Ins_markdown_h() abort
 
   call Ins(l:str)
 
-  call Cursor__mv_word_f()
-  call Cursor__mv_char_f()
+  let l:ptn = '^#* '
+  let l:idx = Str_srch_end(Line_str(), l:ptn) + 1
+  call Cursor__mv_by_line_col(v:null, l:idx)
 endfunc
 
 func! Char__tgl_markdown_chk() abort
