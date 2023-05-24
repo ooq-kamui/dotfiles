@@ -227,7 +227,7 @@ nnoremap <c-k> 10<c-y>
 nnoremap <c-j> 10<c-e>
 
 " cursor mv in line start | ins line
-nnoremap y :call N_cursor__mv_line_top_or_new_line()<cr>
+nnoremap y :call Cursor__mv_line_top_or_new_line()<cr>
 
 " cursor mv in line start
 nnoremap <c-a> 0
@@ -446,8 +446,7 @@ nnoremap " :call Indnt__shft_l()<cr>
 nnoremap # :call Indnt__shft_r()<cr>
 
 " indent add
-nnoremap U :call Indnt__add(2)<cr>
-nnoremap Y :call Indnt__add(2)<cr>
+"nnoremap xx :call Indnt__add(2)<cr>
 
 " indent correct
 nnoremap ; :call Indnt__crct()<cr>
@@ -463,11 +462,16 @@ nnoremap ; :call Indnt__crct()<cr>
 " srch char in line repeat
 "nnoremap xx ;
 
-" srch
+" srch cmd
+nnoremap <leader>i /
+
+" srch forward
 nnoremap n     :call Srch('f')<cr>
+
+" srch back
 nnoremap <c-n> :call Srch('b')<cr>
 
-" srch, cursor mv nxt
+" srch, cursor mv nxt char
 nnoremap M :call Srch_7_cursor__mv_nxt('f')<cr>
 
 " srch str set
@@ -475,9 +479,6 @@ nnoremap e :call N_srch_str__(v:false)<cr>
 
 " srch str set ( word 1 )
 nnoremap E :call N_srch_str__(v:true)<cr>
-
-" srch cmdline
-nnoremap <leader>i /
 
 " srch char bracket forward
 nnoremap <c-f> :call Srch_char_bracket('f')<cr>
@@ -492,11 +493,14 @@ nnoremap N :call N_srch_str__prv()<cr>
 " srch hl init
 nnoremap S /<cr>N
 
-" srch replace all > ynk ( file )
-nnoremap :s :%s//<c-r>0/gc
-
-" srch replace one > ynk nxt ( only srch )
+" srch rpl one > ynk nxt ( only srch )
 nnoremap <c-p> :call Srch_slct('f')<cr>
+
+" srch rpl all > ynk ( file )
+"nnoremap :xx :%s//<c-r>0/gc
+
+" srch rpl cmd ( file )
+nnoremap :s :Rpl 
 
 " srch ?=ts
 "nnoremap xx /?ts=<cr>
@@ -551,7 +555,6 @@ nnoremap <leader>rk [`
 nnoremap <leader>j :CmdHstry<cr>
 
 " ins sys cmd ( read )
-"nnoremap :r :r! 
 nnoremap :r :InsSysCmd 
 
 " ins sys ls  ( read )
@@ -682,11 +685,11 @@ nnoremap P <esc>
 "nnoremap R <esc>
 "nnoremap S <esc>
 "nnoremap T <esc>
-"nnoremap U <esc>
+nnoremap U <esc>
 "nnoremap W <esc>
 nnoremap V <esc>
 "nnoremap X <esc>
-"nnoremap Y <esc>
+nnoremap Y <esc>
 
 "nnoremap <c-a> <esc>
 nnoremap <c-b> <esc>
@@ -928,6 +931,9 @@ vnoremap <c-u> ugv
 " srch
 " 
 
+" srch cmd
+vnoremap <leader>i "ay/<c-r>a
+
 " srch forward ( srch rpl skip )
 vnoremap <c-n> :call V_srch_slct('f')<cr>
 
@@ -941,14 +947,11 @@ vnoremap e :call V_srch_str__slctd_str(v:false)<cr>
 " srch str set ( word 1 )
 vnoremap E :call V_srch_str__slctd_str(v:true)<cr>
 
-" srch cmdline
-vnoremap <leader>i "ay/<c-r>a
-
-" srch rpl all > ynk
-vnoremap :s :s//<c-r>0/gc<cr>
-
 " srch rpl one > ynk, nxt
 vnoremap <c-p> :call Slctd_rpl_srch_nxt()<cr>
+
+" srch rpl all > ynk
+vnoremap :s :s//<c-r>0/gc
 
 " 
 " grep
@@ -1919,7 +1922,7 @@ func! Cursor__mv_by_pos(pos) abort " use not
   call setpos('.', a:pos)
 endfunc
 
-func! N_cursor__mv_line_top_or_new_line() abort
+func! Cursor__mv_line_top_or_new_line() abort
 
   if Is_cursor_line_top1()
     
@@ -2015,6 +2018,7 @@ func! Ins_cr() abort
 endfunc
 
 command! -nargs=* InsSysCmd call Ins_sys_cmd(<q-args>)
+
 func! Ins_sys_cmd(sys_cmd) abort " read
 
   call Normal('k')
@@ -2214,7 +2218,6 @@ endfunc
 func! Indnt__shft_r() abort
 
   if Is_line_emp()
-    "let l:col = Indnt_col_by_c()
     let l:col = 2
   else
     let l:col = 2
@@ -2400,6 +2403,7 @@ func! Slctd_r__ins(c) abort
 endfunc
 
 command! -nargs=? SlctdEdgeIns call Slctd_edge__ins(<q-args>)
+
 func! Slctd_edge__ins(c) abort " use not
   
   if     a:c   == '('
@@ -2596,6 +2600,16 @@ func! Srch_char_bracket(dir) abort
   call Srch_char(a:dir, l:char_bracket)
 endfunc
 
+" srch rpl cmd
+
+command! -nargs=* Rpl call Rpl(<f-args>)
+
+func! Rpl(srch, rpl) abort
+
+  let l:cmd =  '%s/' . a:srch . '/' . a:rpl . '/gc'
+  call Exe(l:cmd)
+endfunc
+
 " grep
 
 command! -nargs=? GrepStr call Grep_str(<q-args>)
@@ -2693,6 +2707,8 @@ endfunc
 " markdown
 
 func! Ins_markdown_itm() abort
+
+  call Indnt__crct()
 
   let l:str = '- '
   call Line_top1__ins(l:str)
