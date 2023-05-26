@@ -183,10 +183,10 @@ nnoremap :e :Opn
 nnoremap gh :call Opn_vimrc()<cr>
 
 " opn app slf
-nnoremap go :call Opn_app_slf()<cr>
+nnoremap gi :call Opn_app_slf()<cr>
 
 " opn app
-nnoremap gp :call Opn_app_by_path()<cr>
+nnoremap go :call Opn_app_by_path()<cr>
 
 " opn tmp
 nnoremap gt :call Opn_tmp()<cr>
@@ -201,16 +201,10 @@ nnoremap gm :call Opn_memo()<cr>
 "nnoremap xx :call Opn_grep_work()<cr>
 
 " opn brwsr
-"nnoremap gb <plug>(openbrowser-smart-search)
+"nnoremap xx <plug>(openbrowser-smart-search)
 
 " opn markdown preview
 "nnoremap xx :call Markdown_2_html()<cr>
-
-" markdown __ ins itm
-nnoremap O :call Ins_markdown_itm()<cr>
-
-" markdown __ tgl chk
-"nnoremap xx :call Char__tgl_markdown_chk()<cr>
 
 " 
 " cursor mv
@@ -389,7 +383,7 @@ nnoremap . i.<esc>l
 nnoremap * i<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
 
 " ins time
-nnoremap T i<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
+"nnoremap xx i<c-r>=strftime("%H:%M")<cr><esc>
 
 " ins slf path
 nnoremap gs :call Ins_line_slf_path()<cr>
@@ -397,6 +391,12 @@ nnoremap gs :call Ins_line_slf_path()<cr>
 " ins markdown
 nnoremap R     O```<esc>
 nnoremap <c-r> O```<esc>
+
+" ins markdown itm
+nnoremap O :call Ins_markdown_itm()<cr>
+
+" tgl markdown chk
+"nnoremap xx :call Char__tgl_markdown_chk()<cr>
 
 " del char
 nnoremap s "ax
@@ -450,7 +450,6 @@ nnoremap # :call Indnt__shft_r()<cr>
 
 " indent correct
 nnoremap ; :call Indnt__crct()<cr>
-"nnoremap ; ==^
 
 " 
 " srch
@@ -558,7 +557,7 @@ nnoremap <leader>j :CmdHstry<cr>
 nnoremap :r :InsSysCmd 
 
 " ins sys ls  ( read )
-nnoremap :l :Lf 
+"nnoremap xx :Lf 
 
 " 
 " tab
@@ -580,7 +579,7 @@ nnoremap <s-right> :tabm+1<cr>
 "nnoremap :b :buffers
 
 " inf char
-nnoremap gi ga
+"nnoremap xx ga
 
 " wrap tgl
 nnoremap :w :set wrap!
@@ -684,7 +683,7 @@ nnoremap Q <esc>
 nnoremap P <esc>
 "nnoremap R <esc>
 "nnoremap S <esc>
-"nnoremap T <esc>
+nnoremap T <esc>
 nnoremap U <esc>
 "nnoremap W <esc>
 nnoremap V <esc>
@@ -727,7 +726,7 @@ nnoremap gl <esc>
 "nnoremap gm <esc>
 nnoremap gn <esc>
 "nnoremap go <esc>
-"nnoremap gp <esc>
+nnoremap gp <esc>
 "nnoremap gs <esc>
 "nnoremap gt <esc>
 "nnoremap gu <esc>
@@ -750,7 +749,7 @@ vnoremap v <c-v>
 "vnoremap gb <plug>(openbrowser-smart-search)
 
 " opn app
-vnoremap gp :call V_opn_app()<cr>
+vnoremap go :call V_opn_app()<cr>
 
 " 
 " cursor mv
@@ -1078,8 +1077,8 @@ vnoremap <c-x> <esc>
 vnoremap gg <esc>
 "vnoremap gj <esc>
 "vnoremap gk <esc>
-vnoremap go <esc>
-"vnoremap gp <esc>
+"vnoremap go <esc>
+vnoremap gp <esc>
 
 " 
 " mode insert
@@ -2002,6 +2001,10 @@ endfunc
 
 func! Ins_mlt(str, num) abort
 
+  if a:num == 0
+    return
+  endif
+
   let l:cmd = a:num.'i'.a:str
   call Normal(l:cmd)
 endfunc
@@ -2198,11 +2201,15 @@ endfunc
 
 func! Indnt_col_by_c() abort
 
-  let l:col = cindent(Line_num()    )
+  let l:col = cindent(Line_num())
   return l:col
 endfunc
 
 func! Indnt__add(col) abort
+
+  if a:col == 0
+    return
+  endif
 
   call Normal('0')
   call Ins_mlt(' ', (a:col))
@@ -2232,16 +2239,21 @@ func! Indnt__shft_l() abort
   call Cursor__mv_line_top1()
 endfunc
 
-func! Indnt__crct() abort
+func! Indnt__crct() abort " nnoremap ; ==^
 
-  call Indnt__del()
-  call Indnt__crct_by_c()
+  let l:col = Indnt__crct_by_c()
+  return l:col
 endfunc
 
 func! Indnt__crct_by_c() abort
 
+  call Indnt__del()
+
   let l:col = Indnt_col_by_c()
+  "echo l:col
+
   call Indnt__add(l:col)
+  return l:col
 endfunc
 
 " slct
@@ -2708,9 +2720,10 @@ endfunc
 
 func! Ins_markdown_itm() abort
 
-  call Indnt__crct()
+  let l:col = Indnt__crct()
 
   let l:str = '- '
+  "echo l:str
   call Line_top1__ins(l:str)
 endfunc
 
@@ -2847,8 +2860,8 @@ endfunc
 command! -nargs=? -complete=dir Lf call Lf(<q-args>)
 func! Lf(dir) abort
 
-  let l:exe = 'r! lf ' . trim(a:dir)
-  exe l:exe
+  let l:cmd = 'r! lf ' . trim(a:dir)
+  call Exe(l:cmd)
 endfunc
 
 func! Slf_path() abort
