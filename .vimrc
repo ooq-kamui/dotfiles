@@ -412,8 +412,8 @@ nnoremap <c-d> D
 "nnoremap xx hvbd
 
 " word forward del
-"nnoremap <expr> xx col('.') == Line_end_col() ? '<esc>' : '"adw'
-"nnoremap <expr> xx col('.') == Line_end_col() ? '<esc>' : '"ade'
+"nnoremap <expr> xx Is_cursor_line_end() ? '<esc>' : '"adw'
+"nnoremap <expr> xx Is_cursor_line_end() ? '<esc>' : '"ade'
 
 " del cr ( line join )
 nnoremap <c-m> J
@@ -557,7 +557,7 @@ nnoremap <leader>j :CmdHstry<cr>
 nnoremap :r :InsSysCmd 
 
 " ins sys ls  ( read )
-"nnoremap xx :Lf 
+"nnoremap xx :InsLf 
 
 " 
 " tab
@@ -2024,7 +2024,9 @@ command! -nargs=* InsSysCmd call Ins_sys_cmd(<q-args>)
 
 func! Ins_sys_cmd(sys_cmd) abort " read
 
-  if Is_line_num_eq_1()
+  let l:is_line_num_eq_1 = Is_line_num_eq_1()
+
+  if l:is_line_num_eq_1
     call Normal('O')
   else
     call Normal('k')
@@ -2032,6 +2034,18 @@ func! Ins_sys_cmd(sys_cmd) abort " read
 
   let l:cmd = 'read! ' . a:sys_cmd
   call Exe(l:cmd)
+
+  if l:is_line_num_eq_1
+    call Line__del_by_line_num(1)
+  endif
+endfunc
+
+command! -nargs=? -complete=dir InsLf call Ins_lf(<q-args>)
+
+func! Ins_lf(dir) abort
+
+  let l:cmd = 'lf ' . trim(a:dir)
+  call Ins_sys_cmd(l:cmd)
 endfunc
 
 " line
@@ -2139,7 +2153,8 @@ endfunc
 
 func! Line__del() abort
   
-  if Line_str() =~ '^\s*$'
+  "if Line_str() =~ '^\s*$'
+  if Is_line_space()
     call Normal('"add')
   else
     call Normal('"0dd')
@@ -2156,6 +2171,11 @@ func! V_line_del() abort " use not, todo mod
   "call Normal('"0d')
   
   call Clipboard__ynk()
+endfunc
+
+func! Line__del_by_line_num(line_num) abort
+
+  call deletebufline('%', a:line_num)
 endfunc
 
 func! V_mv_line(ud) range abort
@@ -2179,7 +2199,7 @@ endfunc
 func! Is_line_num_eq_1() abort
 
   if Line_num() == 1
-    return v:ture
+    return v:true
   else
     return v:false
   endif
@@ -2866,13 +2886,6 @@ endfunc
 func! Buf_nr() abort
 
   return bufnr('%')
-endfunc
-
-command! -nargs=? -complete=dir Lf call Lf(<q-args>)
-func! Lf(dir) abort
-
-  let l:cmd = 'r! lf ' . trim(a:dir)
-  call Exe(l:cmd)
 endfunc
 
 func! Slf_path() abort
