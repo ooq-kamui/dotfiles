@@ -412,8 +412,8 @@ nnoremap <c-d> D
 "nnoremap xx hvbd
 
 " word forward del
-"nnoremap <expr> xx col('.') == col('$') ? '<esc>' : '"adw'
-"nnoremap <expr> xx col('.') == col('$') ? '<esc>' : '"ade'
+"nnoremap <expr> xx col('.') == Line_end_col() ? '<esc>' : '"adw'
+"nnoremap <expr> xx col('.') == Line_end_col() ? '<esc>' : '"ade'
 
 " del cr ( line join )
 nnoremap <c-m> J
@@ -1166,9 +1166,9 @@ inoremap <c-w> <c-w>
 
 " del word forword
 inoremap <expr> <c-k>
-\ pumvisible()         ? '<c-p>'   :
-\ col('.') != col('$') ? '<c-o>dw' :
-\                        ''
+\ pumvisible()           ? '<c-p>'   :
+\ ! Is_cursor_line_end() ? '<c-o>dw' :
+\                          ''
 
 " del line
 " non
@@ -1521,7 +1521,7 @@ func! Sys_cmd(sys_cmd) abort
 endfunc
 
 func! Col() abort " crnt
-  
+
   return col('.')
 endfunc
 
@@ -1946,7 +1946,7 @@ endfunc
 
 func! Is_cursor_line_end() abort
 
-  if col('.') == col('$')
+  if col('.') == Line_end_col()
     return v:true
   else
     return v:false
@@ -1955,7 +1955,7 @@ endfunc
 
 func! Is_cursor_line_end_inr() abort
 
-  if col('.') == col('$') - 1
+  if col('.') == Line_end_col() - 1
     return v:true
   else
     return v:false
@@ -2024,7 +2024,11 @@ command! -nargs=* InsSysCmd call Ins_sys_cmd(<q-args>)
 
 func! Ins_sys_cmd(sys_cmd) abort " read
 
-  call Normal('k')
+  if Is_line_num_eq_1()
+    call Normal('O')
+  else
+    call Normal('k')
+  endif
 
   let l:cmd = 'read! ' . a:sys_cmd
   call Exe(l:cmd)
@@ -2106,8 +2110,6 @@ func! V_line_end_padding() range abort
     "call Normal(line_num . 'G')
     call Cursor__mv_by_line_num(line_num)
     
-    "let l:line_end_col = col('$')
-    "let l:len = l:w - l:line_end_col
     let l:len = l:w - Line_end_col()
 
     call Normal(l:len . 'A' . l:char)
@@ -2174,9 +2176,18 @@ endfunc
 
 " line cnd
 
+func! Is_line_num_eq_1() abort
+
+  if Line_num() == 1
+    return v:ture
+  else
+    return v:false
+  endif
+endfunc
+
 func! Is_line_emp() abort
   
-  if col('$') == 1
+  if Line_end_col() == 1
     return v:true
   else
     return v:false
