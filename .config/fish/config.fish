@@ -51,7 +51,6 @@ alias cd_game    "cd ~/doc/hoby/game"
 alias cd_ooq       "cd ~/dev/ooq/g.proto/assets"
 alias cd_ooq_bk    "cd ~/dev/ooq/z.proto.bk"
 alias cd_ooq_artcl "cd ~/dev/ooq-artcl"
-alias cd_hugo      "cd ~/dev/ooq-artcl/hugo"
 
 alias cd_holo      "cd ~/doc/hoby/youtube/vtuber/hololive/prj"
 alias cd_holo_data "cd ~/doc/hoby/youtube/vtuber/hololive/prj/www/song/data"

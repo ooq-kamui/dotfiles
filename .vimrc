@@ -166,11 +166,9 @@ nnoremap a :call Save()<cr>
 
 " opn file rcnt ( hstry )
 nnoremap <leader>l :FileHstry<cr>
-"nnoremap <leader>p :FileHstry<cr>
 
 " file srch ( fzf )
 nnoremap <leader>u :Files <cr>
-"nnoremap <leader>l :Files <cr>
 
 " 
 " opn
@@ -333,8 +331,7 @@ nnoremap p "0P
 "nnoremap xx "+P
 
 " paste rgstr history ( fzf )
-nnoremap <leader>y :RgstrHstry<cr>
-"nnoremap <leader>y :call Rgstr_fzf()<cr>
+nnoremap <leader>r :RgstrHstry<cr>
 
 " 
 " undo, redo
@@ -362,7 +359,9 @@ nnoremap <space> i
 nnoremap m :call Ins_cr()<cr>
 
 " ins comment 1
-nnoremap ! :call Ins_cmnt_1('^')<cr>
+nnoremap <expr> !
+\ Is_file_type('markdown') ? ':call Ins_markdown_h()<cr>' :
+\                            ':call Ins_cmnt_1("^")<cr>'
 
 " ins comment mlt
 nnoremap $ :call Ins_cmnt_mlt()<cr>
@@ -393,7 +392,9 @@ nnoremap R     O```<esc>
 nnoremap <c-r> O```<esc>
 
 " ins markdown itm
-nnoremap O :call Ins_markdown_itm()<cr>
+nnoremap <expr> O
+\ Is_file_type('markdown') ? ':call Ins_markdown_itm()<cr>' :
+\                            ':call Indnt__shft_r()<cr>'
 
 " tgl markdown chk
 "nnoremap xx :call Char__tgl_markdown_chk()<cr>
@@ -441,14 +442,14 @@ nnoremap u :call N_char__tgl()<cr>
 " upper / lower
 "nnoremap xx v~
 
-" indent shift
+" indnt shift
 nnoremap " :call Indnt__shft_l()<cr>
 nnoremap # :call Indnt__shft_r()<cr>
 
-" indent add
+" indnt add
 "nnoremap xx :call Indnt__add(2)<cr>
 
-" indent correct
+" indnt correct
 nnoremap ; :call Indnt__crct()<cr>
 
 " 
@@ -528,30 +529,29 @@ nnoremap r :call N_tag_jmp()<cr>
 " 
 
 " mark lst ( fzf )
-nnoremap <leader>m :Mark<cr>
-nnoremap <leader>rl        :Mark<cr>
+nnoremap <leader>fl :Mark<cr>
 
 " mark show tgl
-nnoremap <leader>rf :call Mark_show_tgl()<cr>
+nnoremap <leader>ff :call Mark_show_tgl()<cr>
 
 " mark add / del tgl
-nnoremap <leader>ro :call Mark_tgl()<cr>
+nnoremap <leader>fo :call Mark_tgl()<cr>
 
 " mark del all
-nnoremap <leader>rd :call Mark_del_all()<cr>
+nnoremap <leader>fd :call Mark_del_all()<cr>
 
 " mark, cursor mv mark forward
-nnoremap <leader>rj ]`
+nnoremap <leader>fj ]`
 
 " mark, cursor mv mark back
-nnoremap <leader>rk [`
+nnoremap <leader>fk [`
 
 " 
 " cmd
 " 
 
 " cmd history ( fzf )
-nnoremap <leader>j :CmdHstry<cr>
+nnoremap <leader>: :CmdHstry<cr>
 
 " ins sys cmd ( read )
 nnoremap :r :InsSysCmd 
@@ -906,14 +906,14 @@ vnoremap - <c-x>
 " num seq
 vnoremap Q g<c-a>
 
-" indent shift
+" indnt shift
 vnoremap # >gv
 vnoremap " <gv
 
-" indent correct
+" indnt correct
 vnoremap ; =gv
 
-" indent tab > space
+" indnt tab > space
 vnoremap :e :!expand -t 2<cr>
 "vnoremap :t :!expand -t 2<cr>
 
@@ -1277,12 +1277,15 @@ cnoremap <kPageUp>   9
 " leader esc
 " 
 
-nnoremap <leader>f <esc>
+"nnoremap <leader>f <esc>
 nnoremap <leader>h <esc>
+nnoremap <leader>j <esc>
+"nnoremap <leader>l <esc>
+nnoremap <leader>m <esc>
 nnoremap <leader>p <esc>
 "nnoremap <leader>r <esc>
 "nnoremap <leader>u <esc>
-"nnoremap <leader>y <esc>
+nnoremap <leader>y <esc>
 
 vnoremap <leader>u <esc>
 "vnoremap <leader>y <esc>
@@ -1299,38 +1302,6 @@ if &term =~ '^screen'
   exe "set <xRight>=\e[1;*C"
   exe "set <xLeft>=\e[1;*D"
 end
-
-" 
-" grep ( rg )
-" 
-func! Grep(opt, p_str) abort
-  
-  if a:opt == v:null
-    let l:opt = ''
-  else
-    let l:opt = a:opt
-  endif
-  
-  if a:p_str != ''
-    let l:str = trim(a:p_str)
-  else
-    let l:str = @/
-  endif
-  
-  let l:str = escape(l:str, '\({')
-
-  let l:exe_str = 'r! rg -n -s "'.l:str.'"'
-  \           . ' -g "*.lua"  -g "*.script" -g "*.gui_script"'
-  \           . ' -g "*.txt"  -g "*.json"   -g "*.fish" -g "*.vim"'
-  \           . ' -g "*.html" -g "*.js"     -g "*.css"  -g "*.md" '
-  \           . ' ' . l:opt
-  
-  "echo l:exe_str
-  "let @+ = l:exe_str
-  
-  call Opn_grep_work()
-  exe l:exe_str
-endfunc
 
 " 
 " quickfix
@@ -1550,6 +1521,17 @@ func! Int_2_str(num) abort
 
   let l:num_str = printf('%o', a:num)
   return l:num_str
+endfunc
+
+" file type cnd
+
+func! Is_file_type(type) abort
+
+  if &filetype == a:type
+    return v:true
+  else
+    return v:false
+  endif
 endfunc
 
 " char
@@ -2153,7 +2135,6 @@ endfunc
 
 func! Line__del() abort
   
-  "if Line_str() =~ '^\s*$'
   if Is_line_space()
     call Normal('"add')
   else
@@ -2216,8 +2197,8 @@ endfunc
 
 func! Is_line_space() abort
   
-  let l:line_str = Line_str()
-  let l:ret = Is_str_space(l:line_str)
+  let l:str = Line_str()
+  let l:ret = Is_str_space(l:str)
   return l:ret
 endfunc
 
@@ -2541,7 +2522,7 @@ endfunc
 
 func! Srch_str__(str, word1) abort
   
-  let l:str  = escape(a:str, '.*~[]\$')
+  let l:str  = escape(a:str, '.*~[]\^$')
   
   if a:word1
     let l:str = Srch_str_word1(l:str)
@@ -2655,6 +2636,32 @@ endfunc
 
 " grep
 
+func! Grep(opt, p_str) abort
+  
+  if a:opt == v:null
+    let l:opt = ''
+  else
+    let l:opt = a:opt
+  endif
+  
+  if a:p_str != ''
+    let l:str = trim(a:p_str)
+  else
+    let l:str = @/
+  endif
+  
+  let l:str = escape(l:str, '\({')
+
+  let l:cmd = 'r! rg -n -s "'.l:str.'"'
+  \         . ' -g "*.lua"  -g "*.script" -g "*.gui_script"'
+  \         . ' -g "*.txt"  -g "*.json"   -g "*.fish" -g "*.vim"'
+  \         . ' -g "*.html" -g "*.js"     -g "*.css"  -g "*.md" '
+  \         . ' ' . l:opt
+  
+  call Opn_grep_work()
+  call Exe(l:cmd)
+endfunc
+
 command! -nargs=? GrepStr call Grep_str(<q-args>)
 
 func! Grep_str(str) abort
@@ -2672,11 +2679,6 @@ endfunc
 " cmnt
 
 func! Ins_cmnt_1(line_top) abort
-
-  if &filetype == 'markdown'
-    call Ins_markdown_h()
-    return
-  endif
 
   let l:cmnt_1_def = {
   \ 'lua'       : '-- ',
@@ -2715,6 +2717,7 @@ func! Ins_cmnt_mlt_by_pos(pos) abort
   \ }
 
   let l:str = get(l:cmnt_mlt_def, &filetype, l:cmnt_mlt_def['dflt'])
+
   "if has_key(l:cmnt_mlt_def, &filetype)
   "  let l:filetype = &filetype
   "else
@@ -2749,20 +2752,6 @@ endfunc
 
 " markdown
 
-func! Ins_markdown_itm() abort
-
-  let l:col = Indnt__crct()
-
-  let l:str = '- '
-  "echo l:str
-  call Line_top1__ins(l:str)
-endfunc
-
-func! Ins_markdown_cr() abort
-
-  call Ins('  ')
-endfunc
-
 func! Ins_markdown_h() abort
 
   call Cursor__mv_line_top0()
@@ -2779,6 +2768,25 @@ func! Ins_markdown_h() abort
   let l:ptn = '^#* '
   let l:idx = Str_srch_end(Line_str(), l:ptn) + 1
   call Cursor__mv_by_line_col(v:null, l:idx)
+endfunc
+
+func! Ins_markdown_cr() abort
+
+  call Ins('  ')
+endfunc
+
+func! Ins_markdown_itm() abort
+
+  if Is_line_markdown_itm()
+    call Indnt__shft_r()
+    return
+  endif
+
+  let l:col = Indnt__crct()
+
+  let l:str = '- '
+  "echo l:str
+  call Line_top1__ins(l:str)
 endfunc
 
 func! Char__tgl_markdown_chk() abort
@@ -2800,7 +2808,7 @@ endfunc
 
 func! Markdown_2_html() abort
   
-  if &filetype != 'markdown'
+  if ! Is_file_type('markdown')
     return
   endif
   
@@ -2809,6 +2817,21 @@ func! Markdown_2_html() abort
   call Exe('! node ~/sh/nodejs/md_2_html.js ' . l:path)
   
   "call Opn_app(l:path . '.html')
+endfunc
+
+" markdown cnd
+
+func! Is_line_markdown_itm() abort
+
+  let l:ptn = '^\s*-'
+  let l:str = Line_str()
+  let l:idx = Str_srch(l:str, l:ptn)
+
+  if l:idx == -1
+    return v:false
+  else
+    return v:true
+  endif
 endfunc
 
 " ???
@@ -2857,8 +2880,8 @@ func! N_tag_jmp() abort
 
   let l:base_buf_nr = Buf_nr()
 
-  let l:line = Line_str()
-  call Tag_jmp(l:line)
+  let l:str = Line_str()
+  call Tag_jmp(l:str)
 
   call Exe('sbuffer ' . l:base_buf_nr)
   call Normal('j')
