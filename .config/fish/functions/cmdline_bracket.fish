@@ -1,4 +1,4 @@
-function commandline_bracket
+function cmdline_bracket
   commandline ( echo " (" ( commandline ) ")" )
 end
 

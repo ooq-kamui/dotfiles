@@ -101,26 +101,30 @@ alias trns_e "trans {en=ja}"
 # 
 
 # corsor mv char
-bind \cL forward-char
-bind \cS backward-char
+bind \cl forward-char
+bind \cs backward-char
 
 # corsor mv word
-bind \cO backward-word
-bind \cF forward-word
+bind \co backward-word
+bind \cf forward-word
 
-bind \cK kill-word
-#bind \cS backward-delete-char
+bind \ck kill-word
+#bind \cx backward-delete-char
 
-bind \cx 'clear; commandline -f repaint'
 bind \cq 'clear; commandline -f repaint'
 
 bind \cu fzf-file-widget
 bind \cy fzf-history-widget
 
-bind \cc commandline_pbcopy
-bind \cb commandline_bracket
-#bind \cr commandline_bracket
-bind \cg commandline_quote
+bind \cc cmdline_pbcopy
+bind \cb cmdline_bracket
+bind \cg cmdline_quote
+bind \c_ cmdline_date
+
+# dmy
+bind \cr cmdline_date
+bind \ct cmdline_date
+bind \cx cmdline_date
 
 
 # color
