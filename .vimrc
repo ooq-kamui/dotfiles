@@ -1798,8 +1798,11 @@ endfunc
 
 func! Cursor__mv_line_top1() abort
 
-  if Is_line_space()
+  if     Is_line_space()
     call Cursor__mv_line_end()
+
+  elseif Is_line_markdown_itm()
+    call Normal('^2l')
   else
     call Normal('^')
   end
@@ -2823,7 +2826,7 @@ endfunc
 
 func! Is_line_markdown_itm() abort
 
-  let l:ptn = '^\s*-'
+  let l:ptn = '^\s*- '
   let l:str = Line_str()
   let l:idx = Str_srch(l:str, l:ptn)
 
