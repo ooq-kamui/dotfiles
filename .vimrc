@@ -165,7 +165,7 @@ nnoremap a :call Save()<cr>
 "nnoremap xx `0
 
 " opn file rcnt ( hstry )
-nnoremap <leader>l :FileHstry<cr>
+nnoremap <leader>y :FileHstry<cr>
 
 " file srch ( fzf )
 nnoremap <leader>u :Files <cr>
@@ -1280,12 +1280,12 @@ cnoremap <kPageUp>   9
 "nnoremap <leader>f <esc>
 nnoremap <leader>h <esc>
 nnoremap <leader>j <esc>
-"nnoremap <leader>l <esc>
+nnoremap <leader>l <esc>
 nnoremap <leader>m <esc>
 nnoremap <leader>p <esc>
 "nnoremap <leader>r <esc>
 "nnoremap <leader>u <esc>
-nnoremap <leader>y <esc>
+"nnoremap <leader>y <esc>
 
 vnoremap <leader>u <esc>
 "vnoremap <leader>y <esc>

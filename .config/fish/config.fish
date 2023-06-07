@@ -46,6 +46,7 @@ alias cd_fish_fnc "cd ~/doc/tech/github/vimrc/.config/fish/functions"
 
 alias cd_life    "cd ~/doc/life"
 alias cd_tech    "cd ~/doc/tech"
+alias cd_hoby    "cd ~/doc/hoby"
 alias cd_game    "cd ~/doc/hoby/game"
 
 alias cd_ooq       "cd ~/dev/ooq/g.proto/assets"
@@ -75,8 +76,8 @@ alias src_fsh_cfg "source ~/.config/fish/config.fish"
 
 alias rgf "rg -l"
 
-alias du  "du -h"
-alias du1 "du -hd1"
+alias du   "du -h"
+alias du_1 "du -hd1"
 
 set -x LC_TIME en_US
 alias date_ymd   "date +'%Y-%m-%d'"
@@ -86,9 +87,7 @@ alias date_y2    "date_y 2"
 alias da         "date +'%Y-%m-%d %a'"
 #alias date "date +'%Y-%m-%d %H:%M %a %Z'"
 
-alias cal3 'cal -3'
-alias ca   'cal'
-alias ca3  'cal -3'
+alias cal_3 'cal -3'
 
 alias ba 'pmset -g ps | grep -oE "[0-9]+%"' # battery
 
