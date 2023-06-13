@@ -715,7 +715,7 @@ nnoremap <c-x> <esc>
 "nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
 
-nnoremap ga <esc>
+"nnoremap ga <esc>
 nnoremap gb <esc>
 nnoremap gg <esc>
 "nnoremap gh <esc>
@@ -809,11 +809,9 @@ vnoremap gj G$l
 
 " slctd expnd
 vnoremap <c-i> :call Slctd__expnd()<cr>
-"vnoremap I     :call Slctd__expnd()<cr>
 
 " slctd expnd bracket forward
 vnoremap I :call Slctd__expnd_bracket_f()<cr>
-"vnoremap <c-f> :call Slctd__expnd_bracket_f()<cr>
 
 " slct all
 vnoremap a <esc>ggVG
@@ -2227,7 +2225,15 @@ func! Indnt__add(col) abort
   endif
 
   call Normal('0')
-  call Ins_mlt(' ', (a:col))
+
+  if &expandtab == 'noexpandtab'
+    let l:char = "\t"
+    let l:col = a:col / 2
+  else
+    let l:char = ' '
+    let l:col = a:col
+  endif
+  call Ins_mlt(l:char, l:col)
 
   call Cursor__mv_line_top1()
 endfunc
@@ -2239,11 +2245,7 @@ endfunc
 
 func! Indnt__shft_r() abort
 
-  if Is_line_emp()
-    let l:col = 2
-  else
-    let l:col = 2
-  endif
+  let l:col = 2
 
   call Indnt__add(l:col)
 endfunc
