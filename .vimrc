@@ -98,7 +98,8 @@ set virtualedit+=block  " box slct
 "set virtualedit=all
 set scrolloff=5
 set wildmode=list:longest
-set tabpagemax=30
+"set tabpagemax=30
+set tabpagemax=50
 set nf=""
 set showtabline=2
 set wildmenu " ?
@@ -165,10 +166,11 @@ nnoremap a :call Save()<cr>
 "nnoremap xx `0
 
 " opn file rcnt ( hstry )
-nnoremap <leader>y :FileHstry<cr>
+"nnoremap <leader>xx :FileHstry<cr>
 
 " file srch ( fzf )
 nnoremap <leader>u :Files <cr>
+nnoremap <c-u>     :Files <cr>
 
 " 
 " opn
@@ -331,7 +333,8 @@ nnoremap p "0P
 "nnoremap xx "+P
 
 " paste rgstr history ( fzf )
-nnoremap <leader>r :RgstrHstry<cr>
+nnoremap <leader>c :RgstrHstry<cr>
+"nnoremap <leader>r :RgstrHstry<cr>
 
 " 
 " undo, redo
@@ -708,7 +711,7 @@ nnoremap <c-g> <esc>
 "nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
-nnoremap <c-u> <esc>
+"nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
 nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
@@ -971,7 +974,8 @@ vnoremap :G "ay:GrepWrd <c-r>a
 vnoremap t :call V_tag_jmp()<cr>
 
 " trns
-vnoremap r :call V_trns()<cr>
+vnoremap r  :call V_trns()<cr>
+vnoremap gt :call V_trns()<cr>
 
 " tst
 "vnoremap T :call Tst()<cr>
@@ -1077,6 +1081,7 @@ vnoremap gg <esc>
 "vnoremap gk <esc>
 "vnoremap go <esc>
 vnoremap gp <esc>
+"vnoremap gt <esc>
 
 " 
 " mode insert
@@ -1275,15 +1280,17 @@ cnoremap <kPageUp>   9
 " leader esc
 " 
 
+"nnoremap <leader>c <esc>
 "nnoremap <leader>f <esc>
 nnoremap <leader>h <esc>
 nnoremap <leader>j <esc>
 nnoremap <leader>l <esc>
 nnoremap <leader>m <esc>
+"nnoremap <leader>n <esc>
 nnoremap <leader>p <esc>
-"nnoremap <leader>r <esc>
+nnoremap <leader>r <esc>
 "nnoremap <leader>u <esc>
-"nnoremap <leader>y <esc>
+nnoremap <leader>y <esc>
 
 vnoremap <leader>u <esc>
 "vnoremap <leader>y <esc>
@@ -1695,6 +1702,20 @@ func! Char__tgl_trn(c) abort
   return l:rpl
 endfunc
 
+" char cnd
+
+func! Is_char_symbol(char)
+
+  let l:ret = v:false
+
+  "if a:char =~ '\S' && a:char =~ '\W'
+  if a:char !~ '\s' && a:char !~ '\w'
+    let l:ret = v:true
+  endif
+
+  return l:ret
+endfunc
+
 " str
 
 func! Str_l_char(str)
@@ -1785,6 +1806,23 @@ endfunc
 
 " cursor mv
 
+func! Cursor__mv_by_line_num(line_num) abort
+
+  call Normal(a:line_num . 'G')
+endfunc
+
+func! Cursor__mv_by_line_col(line_num, col) abort
+
+  let l:line_num = (a:line_num == v:null) ? Line_num() : a:line_num
+  
+  call cursor(l:line_num, a:col)
+endfunc
+
+func! Cursor__mv_by_pos(pos) abort " use not
+  
+  call setpos('.', a:pos)
+endfunc
+
 func! Cursor__mv_line_top0() abort
   
   if Is_line_emp()
@@ -1848,28 +1886,20 @@ endfunc
 
 func! Cursor__mv_word_b() abort
   
-  let l:c_l = Cursor_l_char()
-  echo l:c_l
-  
+  let l:l_char = Cursor_l_char()
+
   if     Is_cursor_line_top0()
-    call Normal('k')
-    call Cursor__mv_line_end()
+    call Cursor__mv_up_line_end()
     
-  elseif Is_line_space()
+  elseif Is_line_str_side_l_space()
     call Cursor__mv_line_top0()
     
   elseif Is_cursor_line_top1()
     call Cursor__mv_line_top0()
     
-  elseif l:c_l =~ '\S' && l:c_l =~ '\W' " symbol
+  elseif Is_char_symbol(l:l_char)
     call Cursor__mv_char_b()
     
-  "elseif l:c_l =~ '\s'
-  "  call Normal('ge')
-    
-  "elseif l:c_l =~ '\W'
-  "  call Cursor__mv_char_b()
-
   else
     call Normal('b')
   end
@@ -1887,21 +1917,10 @@ func! Cursor__mv_word_b_pre() abort " use not
   end
 endfunc
 
-func! Cursor__mv_by_line_num(line_num) abort
+func! Cursor__mv_up_line_end() abort
 
-  call Normal(a:line_num . 'G')
-endfunc
-
-func! Cursor__mv_by_line_col(line_num, col) abort
-
-  let l:line_num = (a:line_num == v:null) ? Line_num() : a:line_num
-  
-  call cursor(l:line_num, a:col)
-endfunc
-
-func! Cursor__mv_by_pos(pos) abort " use not
-  
-  call setpos('.', a:pos)
+  call Normal('k')
+  call Cursor__mv_line_end()
 endfunc
 
 func! Cursor__mv_line_top_or_new_line() abort
@@ -2203,6 +2222,13 @@ func! Is_line_space() abort
   return l:ret
 endfunc
 
+func! Is_line_str_side_l_space() abort
+
+  let l:str = Line_str_side_l()
+  let l:ret = Is_str_space(l:str)
+  return l:ret
+endfunc
+
 func! Is_line_str_side_r_space() abort
 
   let l:str = Line_str_side_r()
@@ -2226,12 +2252,12 @@ func! Indnt__add(col) abort
 
   call Normal('0')
 
-  if &expandtab == 'noexpandtab'
-    let l:char = "\t"
-    let l:col = a:col / 2
-  else
+  if &expandtab " 1:'expandtab', 0:'noexpandtab'
     let l:char = ' '
     let l:col = a:col
+  else
+    let l:char = "\t"
+    let l:col = a:col / 2
   endif
   call Ins_mlt(l:char, l:col)
 

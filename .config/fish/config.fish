@@ -31,6 +31,8 @@ alias shutdown_start "sudo shutdown -r now"
 #alias l "ls -1hAG"
 alias lld "ll -d"
 
+alias cp "cp -p"
+
 alias pwd_cp "pwd | pbcopy"
 
 alias cd_p1 "cd ../"
@@ -94,6 +96,9 @@ alias ba 'pmset -g ps | grep -oE "[0-9]+%"' # battery
 alias trns   "trans"
 alias trns_j "trans {ja=en}"
 alias trns_e "trans {en=ja}"
+
+alias ooq_artcl_build_rsync 'fish ~/dev/ooq-artcl/sh/build.rsync.fish'
+
 
 # 
 # bind
