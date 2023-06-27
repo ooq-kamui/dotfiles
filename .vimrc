@@ -1475,43 +1475,57 @@ endfunc
 
 func! Jmplst() abort
 
-  let l:jmp_lst_all = getjumplist()[0]
+  let l:jmplst_tmp = getjumplist()[0]
 
-  let l:buf_num = Buf_num()
+  "let l:buf_num = Buf_num()
 
-  let l:jmp_lst = []
-  for _jmp_lst_all in l:jmp_lst_all
+  let l:buf_num_key_prefix = 'key_'
+  let l:jmplst = {}
+  for _jmplst_tmp in l:jmplst_tmp
 
-    if l:_jmp_lst_all['bufnr'] == l:buf_num
-      call add(l:jmp_lst, l:_jmp_lst_all)
+    "if l:_jmplst_tmp['bufnr'] == l:buf_num
+    "  call add(l:jmplst, l:_jmplst_tmp)
+    "endif
+
+    let l:_buf_num_key = l:buf_num_key_prefix . l:_jmplst_tmp['bufnr']
+
+    if ! has_key(l:jmplst, l:_buf_num_key)
+      let l:jmplst[l:_buf_num_key] = []
     endif
+
+    call add(l:jmplst[l:_buf_num_key], l:_jmplst_tmp)
   endfor
 
-  call sort(l:jmp_lst, 'Jmp_lst_cmp')
+  for _buf_num_key in keys(l:jmplst)
 
-  return l:jmp_lst
+    call sort(l:jmplst[l:_buf_num_key], 'Jmplst_cmp')
+  endfor
+
+  let l:buf_num_key = l:buf_num_key_prefix . Buf_num()
+  let l:r_jmplst    = get(l:jmplst, buf_num_key, [])
+  return l:r_jmplst
 endfunc
 
 func! Jmplst_line_info() abort
 
-  let l:jmp_lst = Jmplst()
+  let l:jmplst = Jmplst()
 
-  let l:jmp_lst_line_info = []
-  for _jmp_lst in l:jmp_lst
+  let l:jmplst_line_info = []
+  for _jmplst in l:jmplst
 
-    let l:line_num  = l:_jmp_lst['lnum']
+    let l:line_num  = l:_jmplst['lnum']
     let l:line_info = l:line_num . ' ' . getline(l:line_num)
-    call add(l:jmp_lst_line_info, l:line_info)
+    call add(l:jmplst_line_info, l:line_info)
   endfor
 
-  return l:jmp_lst_line_info
+  return l:jmplst_line_info
 endfunc
 
-func! Jmp_lst_cmp(jmp_lst1, jmp_lst2) abort
+func! Jmplst_cmp(jmplst1, jmplst2) abort
 
-  if     a:jmp_lst1['lnum'] >  a:jmp_lst2['lnum']
+  if     a:jmplst1['lnum'] >  a:jmplst2['lnum']
     let l:ret =  1
-  elseif a:jmp_lst1['lnum'] == a:jmp_lst2['lnum']
+  elseif a:jmplst1['lnum'] == a:jmplst2['lnum']
     let l:ret =  0
   else
     let l:ret = -1
@@ -1704,6 +1718,9 @@ func! Char__tgl_etc(c) abort
   elseif a:c == '"'
     let l:rpl = "'"
   elseif a:c == "'"
+    "let l:rpl = '"'
+    let l:rpl = '`'
+  elseif a:c == "`"
     let l:rpl = '"'
 
   elseif a:c == '*'
@@ -1823,24 +1840,40 @@ endfunc
 
 " str cnd
 
-func! Is_str_space(str)
-  
-  let l:ptn = '^\s*$'
-  let l:idx = Str_srch(a:str, l:ptn)
+func! Is_str_eq_ptn(str, ptn) abort
 
-  if l:idx == 0
-    return v:true
-  else
-    return v:false
-  end
+  let l:ret = v:false
+
+  if a:str =~ a:ptn
+    let l:ret = v:true
+  endif
+
+  return l:ret
+endfunc
+
+func! Is_str_space(str) abort
+
+  "let l:ptn = '^\s*$'
+  let l:ptn = '^\s\+$'
+  let l:ret = Is_str_eq_ptn(a:str, l:ptn)
+  return l:ret
+  
+"  todo del after a week
+"  
+"  let l:ptn = '^\s*$'
+"  let l:idx = Str_srch(a:str, l:ptn)
+"  
+"  if l:idx == 0
+"    return v:true
+"  else
+"    return v:false
+"  end
 endfunc
 
 func! Is_str_num(num_str) abort
 
-  let l:ret = v:false
-  if a:num_str =~ '^\d\+$'
-    let l:ret = v:true
-  endif
+  let l:ptn = '^\d\+$'
+  let l:ret = Is_str_eq_ptn(a:str, l:ptn)
   return l:ret
 endfunc
 
@@ -1852,15 +1885,15 @@ func! Cursor_c_char() abort
   return l:c
 endfunc
 
-func! Cursor_r_char() abort
-
-  let l:c = getline('.')[col('.')]
-  return l:c
-endfunc
-
 func! Cursor_l_char() abort
 
   let l:c = getline('.')[col('.')-2]
+  return l:c
+endfunc
+
+func! Cursor_r_char() abort
+
+  let l:c = getline('.')[col('.')]
   return l:c
 endfunc
 
@@ -2366,17 +2399,17 @@ func! Indnt__del() abort " alias
   call Exe('left')
 endfunc
 
+func! Indnt__shft_l() abort
+
+  call Normal('<<')
+  call Cursor__mv_line_top1()
+endfunc
+
 func! Indnt__shft_r() abort
 
   let l:col = 2
 
   call Indnt__add(l:col)
-endfunc
-
-func! Indnt__shft_l() abort
-
-  call Normal('<<')
-  call Cursor__mv_line_top1()
 endfunc
 
 func! Indnt__crct() abort " nnoremap ; ==^
