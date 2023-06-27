@@ -169,6 +169,7 @@ nnoremap a :call Save()<cr>
 "nnoremap <leader>xx :FileHstry<cr>
 
 " file srch ( fzf )
+nnoremap <c-u>     :Files <cr>
 nnoremap <leader>u :Files <cr>
 nnoremap <leader>y :Files <cr>
 
@@ -717,7 +718,7 @@ nnoremap <c-g> <esc>
 "nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
-nnoremap <c-u> <esc>
+"nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
 nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
@@ -1498,7 +1499,7 @@ func! Jmplst_line_info() abort
   let l:jmp_lst_line_info = []
   for _jmp_lst in l:jmp_lst
 
-    let l:line_num = l:_jmp_lst['lnum']
+    let l:line_num  = l:_jmp_lst['lnum']
     let l:line_info = l:line_num . ' ' . getline(l:line_num)
     call add(l:jmp_lst_line_info, l:line_info)
   endfor
@@ -1834,6 +1835,15 @@ func! Is_str_space(str)
   end
 endfunc
 
+func! Is_str_num(num_str) abort
+
+  let l:ret = v:false
+  if a:num_str =~ '^\d\+$'
+    let l:ret = v:true
+  endif
+  return l:ret
+endfunc
+
 " cursor
 
 func! Cursor_c_char() abort
@@ -1876,6 +1886,10 @@ endfunc
 " cursor mv
 
 func! Cursor__mv_by_line_num(line_num) abort
+
+  if ! Is_str_num(a:line_num)
+    return
+  endif
 
   call Normal(a:line_num . 'G')
 endfunc
