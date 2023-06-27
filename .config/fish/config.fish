@@ -118,15 +118,17 @@ bind \ck kill-word
 bind \cq 'clear; commandline -f repaint'
 
 bind \cu fzf-file-widget
-bind \cy fzf-history-widget
+bind \cy fzf-file-widget
+#bind \cy fzf-history-widget
 
 bind \cc cmdline_pbcopy
 bind \cb cmdline_bracket
 bind \cg cmdline_quote
+
 bind \c_ cmdline_date
 
 # dmy
-bind \cr cmdline_date
+#bind \cr cmdline_date
 bind \ct cmdline_date
 bind \cx cmdline_date
 

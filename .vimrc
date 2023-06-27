@@ -170,7 +170,7 @@ nnoremap a :call Save()<cr>
 
 " file srch ( fzf )
 nnoremap <leader>u :Files <cr>
-nnoremap <c-u>     :Files <cr>
+nnoremap <leader>y :Files <cr>
 
 " 
 " opn
@@ -323,7 +323,7 @@ nnoremap c :call N_ynk()<cr>
 " ynk char
 "nnoremap xx "0yl
 
-" ynk clear
+" ynk clr
 nnoremap <c-c> :call Rgstr__clr()<cr>
 
 " paste
@@ -515,8 +515,8 @@ nnoremap :s :Rpl
 " grep ( fzf )
 nnoremap <leader>o :Rg <cr>
 
-" grep bfr ( fzf )
-nnoremap <leader>k :call N_grep_bfr()<cr>
+" grep buf ( fzf )
+nnoremap <leader>k :call N_grep_buf()<cr>
 "nnoremap <leader>k :BLines<cr>
 
 " grep [rg]   ( read )
@@ -526,6 +526,12 @@ nnoremap :G :GrepWrd
 " tag jmp tab new
 nnoremap t :call N_tag_jmp()<cr>
 nnoremap r :call N_tag_jmp()<cr>
+
+" 
+" jmplst ( fzf )
+" 
+
+nnoremap <leader>j :JmplstFzf<cr>
 
 " 
 " mark
@@ -711,7 +717,7 @@ nnoremap <c-g> <esc>
 "nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
-"nnoremap <c-u> <esc>
+nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
 nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
@@ -957,8 +963,8 @@ vnoremap :s :s//<c-r>0/gc
 " grep
 " 
 
-" grep bfr ( fzf )
-vnoremap <leader>k :call V_grep_bfr()<cr>
+" grep buf ( fzf )
+vnoremap <leader>k :call V_grep_buf()<cr>
 
 " grep ( fzf )
 vnoremap <leader>o "ay:Rg <c-r>a<cr>
@@ -1283,17 +1289,17 @@ cnoremap <kPageUp>   9
 "nnoremap <leader>c <esc>
 "nnoremap <leader>f <esc>
 nnoremap <leader>h <esc>
-nnoremap <leader>j <esc>
+"nnoremap <leader>j <esc>
 nnoremap <leader>l <esc>
 nnoremap <leader>m <esc>
 "nnoremap <leader>n <esc>
 nnoremap <leader>p <esc>
 nnoremap <leader>r <esc>
 "nnoremap <leader>u <esc>
-nnoremap <leader>y <esc>
+"nnoremap <leader>y <esc>
 
 vnoremap <leader>u <esc>
-"vnoremap <leader>y <esc>
+vnoremap <leader>y <esc>
 
 
 " 
@@ -1390,13 +1396,13 @@ command! -bang -nargs=* Rg
 \ )
 "\     -g "*.lua" -g "*.script" -g "*.gui_script" 
 
-" grep bfr
-func! N_grep_bfr() abort
+" grep buf
+func! N_grep_buf() abort
   
   exe 'BLines '
 endfunc
 
-func! V_grep_bfr() abort
+func! V_grep_buf() abort
 
   call V_srch_str__slctd_str(v:false)
   exe 'BLines ' . escape(@a, '.*~')
@@ -1425,15 +1431,11 @@ command! -bang -nargs=* CmdHstry
 command! -bang -nargs=* SrchHstry
 \ call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)
 
-" mark
-command! -bang -nargs=* Mark
-\ call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)
-
 " rgstr history
 command! -bang -nargs=* RgstrHstry
 \ call Rgstr_fzf()
 
-func! Rgstr_fzf()
+func! Rgstr_fzf() abort
   
   let l:rgstr_info = execute(':reg')->split("\n")
   call remove(l:rgstr_info, 0)
@@ -1441,17 +1443,85 @@ func! Rgstr_fzf()
   call fzf#run(
   \   {
   \     'source': l:rgstr_info,
-  \     'sink'  : funcref('Rgstr__paste_by_rgstr_info'),
+  \     'sink'  : funcref('Ins_rgstr_by_rgstr_info'),
   \     'window': '-tabnew'
   \   }
   \ )
 endfunc
 
-func! Rgstr__paste_by_rgstr_info(rgstr_info) abort
+func! Ins_rgstr_by_rgstr_info(rgstr_info) abort
   
-  let l:rgstr_name = strcharpart(a:rgstr_info, 5, 2)
-  call Normal(l:rgstr_name . 'P')
+  let l:rgstr = strcharpart(a:rgstr_info, 5, 2) " todo refactoring
+  call Normal(l:rgstr . 'P')
 endfunc
+
+" jmp lst
+
+command! -bang -nargs=* JmplstFzf
+\ call Jmplst_fzf()
+
+func! Jmplst_fzf() abort
+  
+  call fzf#run(
+  \   {
+  \     'source' : Jmplst_line_info(),
+  \     'sink'   : funcref('Cursor__mv_by_line_info'),
+  \     'window' : '-tabnew',
+  \     'options': ['--reverse'],
+  \   }
+  \ )
+endfunc
+
+func! Jmplst() abort
+
+  let l:jmp_lst_all = getjumplist()[0]
+
+  let l:buf_num = Buf_num()
+
+  let l:jmp_lst = []
+  for _jmp_lst_all in l:jmp_lst_all
+
+    if l:_jmp_lst_all['bufnr'] == l:buf_num
+      call add(l:jmp_lst, l:_jmp_lst_all)
+    endif
+  endfor
+
+  call sort(l:jmp_lst, 'Jmp_lst_cmp')
+
+  return l:jmp_lst
+endfunc
+
+func! Jmplst_line_info() abort
+
+  let l:jmp_lst = Jmplst()
+
+  let l:jmp_lst_line_info = []
+  for _jmp_lst in l:jmp_lst
+
+    let l:line_num = l:_jmp_lst['lnum']
+    let l:line_info = l:line_num . ' ' . getline(l:line_num)
+    call add(l:jmp_lst_line_info, l:line_info)
+  endfor
+
+  return l:jmp_lst_line_info
+endfunc
+
+func! Jmp_lst_cmp(jmp_lst1, jmp_lst2) abort
+
+  if     a:jmp_lst1['lnum'] >  a:jmp_lst2['lnum']
+    let l:ret =  1
+  elseif a:jmp_lst1['lnum'] == a:jmp_lst2['lnum']
+    let l:ret =  0
+  else
+    let l:ret = -1
+  endif
+
+  return l:ret
+endfunc
+
+" mark
+command! -bang -nargs=* Mark
+\ call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)
 
 " ctags ( fzf )
 
@@ -1708,7 +1778,6 @@ func! Is_char_symbol(char)
 
   let l:ret = v:false
 
-  "if a:char =~ '\S' && a:char =~ '\W'
   if a:char !~ '\s' && a:char !~ '\w'
     let l:ret = v:true
   endif
@@ -1809,6 +1878,12 @@ endfunc
 func! Cursor__mv_by_line_num(line_num) abort
 
   call Normal(a:line_num . 'G')
+endfunc
+
+func! Cursor__mv_by_line_info(line_info) abort
+  
+  let l:line_num = Line_info_line_num(a:line_info)
+  call Cursor__mv_by_line_num(l:line_num)
 endfunc
 
 func! Cursor__mv_by_line_col(line_num, col) abort
@@ -2123,7 +2198,6 @@ func! V_line_end_padding() range abort
 
   for line_num in range(a:firstline, a:lastline)
     
-    "call Normal(line_num . 'G')
     call Cursor__mv_by_line_num(line_num)
     
     let l:len = l:w - Line_end_col()
@@ -2234,6 +2308,15 @@ func! Is_line_str_side_r_space() abort
   let l:str = Line_str_side_r()
   let l:ret = Is_str_space(l:str)
   return l:ret
+endfunc
+
+" line info
+
+func! Line_info_line_num(line_info) abort
+
+  let l:line_info = trim(a:line_info, ' ', 1)
+  let l:line_num = split(l:line_info, '\s\+')[0]
+  return l:line_num
 endfunc
 
 " indnt
@@ -2909,24 +2992,24 @@ endfunc
 
 func! N_tag_jmp() abort
 
-  let l:base_buf_nr = Buf_nr()
+  let l:base_buf_num = Buf_num()
 
   let l:str = Line_str()
   call Tag_jmp(l:str)
 
-  call Exe('sbuffer ' . l:base_buf_nr)
+  call Exe('sbuffer ' . l:base_buf_num)
   call Normal('j')
 endfunc
 
 func! V_tag_jmp() range abort
 
-  let l:base_buf_nr = Buf_nr()
+  let l:base_buf_num = Buf_num()
 
   for line_num in range(a:firstline, a:lastline)
 
-    let l:line = getline(line_num)
+    let l:line = getline(l:line_num)
     call Tag_jmp(l:line)
-    call Exe('sbuffer ' . l:base_buf_nr)
+    call Exe('sbuffer ' . l:base_buf_num)
   endfor
 endfunc
 
@@ -2937,7 +3020,7 @@ func! Rg_out_parse(line) abort
   return l:ret
 endfunc
 
-func! Buf_nr() abort
+func! Buf_num() abort
 
   return bufnr('%')
 endfunc
