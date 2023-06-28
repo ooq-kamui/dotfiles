@@ -51,32 +51,23 @@ alias cd_tech    "cd ~/doc/tech"
 alias cd_hoby    "cd ~/doc/hoby"
 alias cd_game    "cd ~/doc/hoby/game"
 
-alias cd_ooq       "cd ~/dev/ooq/g.proto/assets"
-alias cd_ooq_bk    "cd ~/dev/ooq/z.proto.bk"
-alias cd_ooq_artcl "cd ~/dev/ooq-artcl"
+alias cd_ooq_game    "cd ~/dev/ooq/g.proto/assets"
+alias cd_ooq_game_bk "cd ~/dev/ooq/z.proto.bk"
+alias cd_ooq_artcl   "cd ~/dev/ooq-artcl"
 
 alias cd_holo      "cd ~/doc/hoby/youtube/vtuber/hololive/prj"
 alias cd_holo_data "cd ~/doc/hoby/youtube/vtuber/hololive/prj/www/song/data"
 
-alias vi  "nvim -p"
 alias vim "nvim -p"
+alias vi  "nvim -p"
 
 alias vi_vimrc    "vi ~/.vimrc"
 alias vi_vim_swap "vi ~/.local/share/nvim/swap/"
 alias vi_fsh_cnf  "vi ~/.config/fish/config.fish"
 alias vi_cnf      "vi ~/.config/fish/config.fish"
 
-alias opn "open"
-
-alias opn_github_vim  "open https://github.com/ooq-kamui/vimrc"
-alias opn_github_holo "open https://github.com/ooq-kamui/holo-song"
-
-alias opn_ooq "open https://ooq.jp/"
-
 alias src         "source"
 alias src_fsh_cfg "source ~/.config/fish/config.fish"
-
-alias rgf "rg -l"
 
 alias du   "du -h"
 alias du_1 "du -hd1"
@@ -89,13 +80,22 @@ alias date_y2    "date_y 2"
 alias da         "date +'%Y-%m-%d %a'"
 #alias date "date +'%Y-%m-%d %H:%M %a %Z'"
 
-alias cal_3 'cal -3'
-
-alias ba 'pmset -g ps | grep -oE "[0-9]+%"' # battery
+alias rgf "rg -l"
 
 alias trns   "trans"
 alias trns_j "trans {ja=en}"
 alias trns_e "trans {en=ja}"
+
+alias ba 'pmset -g ps | grep -oE "[0-9]+%"' # battery
+
+alias cal_3 'cal -3'
+
+alias history_del `history delete`
+
+alias opn "open"
+alias opn_github_vim  "open https://github.com/ooq-kamui/vimrc"
+alias opn_github_holo "open https://github.com/ooq-kamui/holo-song"
+alias opn_ooq         "open https://ooq.jp/"
 
 alias ooq_artcl_build_rsync 'fish ~/dev/ooq-artcl/sh/build.rsync.fish'
 
@@ -144,4 +144,6 @@ set fish_color_search_match   --background=brmagenta
 # cd
 # 
 #cd ~/dev/ooq/g.proto/assets
+
+
 

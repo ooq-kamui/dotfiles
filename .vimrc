@@ -901,6 +901,7 @@ vnoremap <c-e> :call Slctd_str__mv('l')<cr>
 
 " mv str line end
 vnoremap Y :call Slctd_str__mv_line_end()<cr>
+vnoremap E :call Slctd_str__mv_line_end()<cr>
 
 " mv line
 "vnoremap J :call V_mv_line('j')<cr>
@@ -952,7 +953,8 @@ vnoremap n :call V_srch_str__slctd_str(v:false)<cr>
 vnoremap e :call V_srch_str__slctd_str(v:false)<cr>
 
 " srch str set ( word 1 )
-vnoremap E :call V_srch_str__slctd_str(v:true)<cr>
+"vnoremap E :call V_srch_str__slctd_str(v:true)<cr>
+vnoremap N :call V_srch_str__slctd_str(v:true)<cr>
 
 " srch rpl one > ynk, nxt
 vnoremap <c-p> :call Slctd_rpl_srch_nxt()<cr>
@@ -1048,7 +1050,7 @@ vnoremap J <esc>
 vnoremap K <esc>
 vnoremap L <esc>
 vnoremap M <esc>
-vnoremap N <esc>
+"vnoremap N <esc>
 vnoremap O <esc>
 vnoremap P <esc>
 "vnoremap Q <esc>
@@ -1471,6 +1473,7 @@ func! Jmplst_fzf() abort
   \     'options': ['--reverse'],
   \   }
   \ )
+  "\     'options': ['--no-sort'],
 endfunc
 
 func! Jmplst() abort
@@ -1636,7 +1639,8 @@ func! N_char__tgl() abort
   let l:c   = Cursor_c_char()
   let l:rpl = Char__tgl1(l:c)
 
-  if l:rpl == ''
+  "if l:rpl == ''
+  if Is_str_emp(l:rpl)
     call Normal('v~')
     return
   endif
@@ -1649,7 +1653,8 @@ func! N_char__tgl2() abort " use not
   let l:c   = Cursor_c_char()
   let l:rpl = Char__tgl_trn(l:c)
 
-  if l:rpl == ''
+  "if l:rpl == ''
+  if Is_str_emp(l:rpl)
     call Normal('v~')
     return
   endif
@@ -1662,12 +1667,14 @@ func! Char__tgl1(c) abort
   "let l:rpl = Char__tgl_bracket(a:c)
   let l:rpl = Char__tgl_trn(a:c)
 
-  if l:rpl != ''
+  "if l:rpl != ''
+  if ! Is_str_emp(l:rpl)
     return l:rpl
   endif
 
   let l:rpl = Char__tgl_etc(a:c)
-  if l:rpl != ''
+  "if l:rpl != ''
+  if ! Is_str_emp(l:rpl)
     return l:rpl
   endif
 
@@ -1709,19 +1716,18 @@ func! Char__tgl_etc(c) abort
   if     a:c == '/'
     let l:rpl = '-'
   elseif a:c == '-'
-    let l:rpl = "\\"
-  elseif a:c == "\\"
+    let l:rpl = '\'
+  elseif a:c == '\'
     let l:rpl = '|'
   elseif a:c == '|'
     let l:rpl = '/'
 
-  elseif a:c == '"'
-    let l:rpl = "'"
   elseif a:c == "'"
-    "let l:rpl = '"'
+    let l:rpl = '"'
+  elseif a:c == '"'
     let l:rpl = '`'
   elseif a:c == "`"
-    let l:rpl = '"'
+    let l:rpl = "'"
 
   elseif a:c == '*'
     let l:rpl = '+'
@@ -1840,6 +1846,17 @@ endfunc
 
 " str cnd
 
+func! Is_str_emp(str) abort
+
+  let l:ret = v:false
+
+  if a:str == ''
+    let l:ret = v:true
+  endif
+
+  return l:ret
+endfunc
+
 func! Is_str_eq_ptn(str, ptn) abort
 
   let l:ret = v:false
@@ -1873,7 +1890,7 @@ endfunc
 func! Is_str_num(num_str) abort
 
   let l:ptn = '^\d\+$'
-  let l:ret = Is_str_eq_ptn(a:str, l:ptn)
+  let l:ret = Is_str_eq_ptn(a:num_str, l:ptn)
   return l:ret
 endfunc
 
@@ -2362,7 +2379,7 @@ endfunc
 func! Line_info_line_num(line_info) abort
 
   let l:line_info = trim(a:line_info, ' ', 1)
-  let l:line_num = split(l:line_info, '\s\+')[0]
+  let l:line_num  = split(l:line_info, '\s\+')[0]
   return l:line_num
 endfunc
 
@@ -2805,10 +2822,12 @@ func! Grep(opt, p_str) abort
     let l:opt = a:opt
   endif
   
-  if a:p_str != ''
-    let l:str = trim(a:p_str)
-  else
+  "if a:p_str != ''
+  "if ! Is_str_emp(a:p_str)
+  if Is_str_emp(a:p_str)
     let l:str = @/
+  else
+    let l:str = trim(a:p_str)
   endif
   
   let l:str = escape(l:str, '\({')
@@ -3019,7 +3038,8 @@ func! Tag_jmp(rg_out_line) abort
   
   let l:rg_out_line = trim(a:rg_out_line)
 
-  if l:rg_out_line == ''
+  "if l:rg_out_line == ''
+  if Is_str_emp(l:rg_out_line)
     return
   end
   
@@ -3130,8 +3150,10 @@ endfunc
 func! Opn_grep_work() abort
 
   let l:path = 'doc/grep.lua'
+  let l:file_type = getftype(l:path)
     
-  if getftype(l:path) == ''
+  "if getftype(l:path) == ''
+  if Is_str_emp(l:file_type)
 
     call Opn(l:path)
   else
@@ -3309,7 +3331,8 @@ func! Mark_tgl() abort
   let l:alph = Mark_alph_line()
   "echo 'Mark_tgl ' . l:alph
   
-  if l:alph == ''
+  "if l:alph == ''
+  if Is_str_emp(l:alph)
     call Mark_add()
   else
     call Mark_del(l:alph)
