@@ -986,6 +986,9 @@ vnoremap t :call V_tag_jmp()<cr>
 vnoremap r  :call V_trns()<cr>
 vnoremap gt :call V_trns()<cr>
 
+" opn .vimrc
+vnoremap gh :call Opn_vimrc()<cr>
+
 " tst
 "vnoremap T :call Tst()<cr>
 
@@ -1086,6 +1089,7 @@ vnoremap <c-x> <esc>
 "vnoremap <c-y> <esc>
 
 vnoremap gg <esc>
+"vnoremap gh <esc>
 "vnoremap gj <esc>
 "vnoremap gk <esc>
 "vnoremap go <esc>
@@ -1838,10 +1842,14 @@ func! Str_len(str) " alias
   return strchars(a:str)
 endfunc
 
-func! Str_srch(str, ptn) " alias
+func! Str_srch(...) " alias
 
-  let l:idx = match(a:str, a:ptn)
-  return l:idx
+  let l:str =                a:1
+  let l:ptn =                a:2
+  let l:idx = ( a:0 >= 3 ) ? a:3 : v:null
+
+  let l:r_idx = match(l:str, l:ptn, l:idx)
+  return l:r_idx
 endfunc
 
 func! Str_srch_end(str, ptn) " alias
@@ -2530,6 +2538,22 @@ func! Slctd_str_len() abort
   return l:len
 endfunc
 
+func! Slctd_l_col() abort
+
+  call Cursor__mv_slctd_l()
+  
+  let l:col = Col()
+  return l:col
+endfunc
+
+func! Slctd_r_col() abort
+
+  call Cursor__mv_slctd_r()
+  
+  let l:col = Col()
+  return l:col
+endfunc
+
 func! Slctd_l_pos() abort
 
   call Cursor__mv_slctd_l()
@@ -2546,7 +2570,7 @@ func! Slctd_r_pos() abort
   return l:pos
 endfunc
 
-func! Slctd_l_o_char() abort
+func! Slctd_l_out_char() abort
 
   call Cursor__mv_slctd_l()
 
@@ -2554,7 +2578,7 @@ func! Slctd_l_o_char() abort
   return l:l_char
 endfunc
 
-func! Slctd_r_o_char() abort
+func! Slctd_r_out_char() abort
 
   call Cursor__mv_slctd_r()
 
@@ -2564,7 +2588,7 @@ endfunc
 
 func! Slctd__expnd() abort " expnd lr
 
-  let l:ptn = '[' . "'" . '"' . ')' . '\]' . ']'
+  let l:ptn = '[' . "'" . '")\]' . ']'
 
   call Cursor__mv_slctd_r()
   
@@ -2605,15 +2629,18 @@ func! Slctd__expnd() abort " expnd lr
 endfunc
 
 func! Slctd__expnd_bracket_f() abort
-  
-  call Cursor__mv_slctd_l()
-  let l:s_col = Col()
-  
+
   let l:bracket_ptn = '[' . "'" . '")}\]' . ']'
   
+  let l:s_col = Slctd_l_col()
+  
   let l:line_str_r = Line_str_slctd_out_r()
+  echo l:line_str_r
+  "return
 
-  let l:srch_idx = Str_srch(l:line_str_r, l:bracket_ptn)
+  "let l:srch_idx = Str_srch(l:line_str_r, l:bracket_ptn)
+  "let l:srch_idx = match(l:line_str_r, l:bracket_ptn, 1)
+  let l:srch_idx = Str_srch(l:line_str_r, l:bracket_ptn, 1)
 
   if l:srch_idx == -1
     return
