@@ -1589,6 +1589,12 @@ func! Col() abort " crnt
   return col('.')
 endfunc
 
+func! Pos() abort
+
+  let l:pos = getpos('.')
+  return l:pos
+endfunc
+
 func! Save() abort
   
   call Exe('w')
@@ -2114,7 +2120,7 @@ endfunc
 
 func! Is_cursor_line_top1() abort
   
-  let l:pos_c = getpos('.')
+  let l:pos_c = Pos()
   
   let l:col_c = col('.')
   
@@ -2201,16 +2207,32 @@ func! Line_str() abort " alias
   return getline('.')
 endfunc
 
-func! Line_str_side_l() abort
+func! Line_str_cursor_out_l() abort
   
   let l:line_l = getline('.')[:col('.')-2]
   return l:line_l
 endfunc
 
-func! Line_str_side_r() abort
+func! Line_str_cursor_out_r() abort
   
   let l:line_r = getline('.')[col('.'):]
   return l:line_r
+endfunc
+
+func! Line_str_slctd_out_l() abort
+
+  call Cursor__mv_slctd_l()
+
+  let l:str = Line_str_cursor_out_l()
+  return l:str
+endfunc
+
+func! Line_str_slctd_out_r() abort
+
+  call Cursor__mv_slctd_r()
+
+  let l:str = Line_str_cursor_out_r()
+  return l:str
 endfunc
 
 func! Line_top0__ins(str) abort
@@ -2362,14 +2384,14 @@ endfunc
 
 func! Is_line_str_side_l_space() abort
 
-  let l:str = Line_str_side_l()
+  let l:str = Line_str_cursor_out_l()
   let l:ret = Is_str_space(l:str)
   return l:ret
 endfunc
 
 func! Is_line_str_side_r_space() abort
 
-  let l:str = Line_str_side_r()
+  let l:str = Line_str_cursor_out_r()
   let l:ret = Is_str_space(l:str)
   return l:ret
 endfunc
@@ -2462,6 +2484,13 @@ func! Slct_word() abort
   endif
 endfunc
 
+func! Slct_by_col(s_col, len) abort
+
+  let l:e_col = a:len - 1
+
+  call Slct_by_line_col(v:null, a:s_col, v:null, e_col)
+endfunc
+
 func! Slct_by_pos(s_pos, e_pos) abort " use not
 
   call Cursor__mv_by_pos(a:s_pos)
@@ -2486,16 +2515,6 @@ endfunc
 
 " slctd
 
-func! Slctd_pos() abort " use not
-  
-  call Slct_re()
-  let l:pos = getpos('.')
-  
-  call Normal("\<esc>")
-  
-  return l:pos
-endfunc
-
 func! Slctd_str() abort
 
   call Normal('gv"ay')
@@ -2511,13 +2530,45 @@ func! Slctd_str_len() abort
   return l:len
 endfunc
 
-func! Slctd__expnd() abort " expnd lr
+func! Slctd_l_pos() abort
+
+  call Cursor__mv_slctd_l()
+  
+  let l:pos = Pos()
+  return l:pos
+endfunc
+
+func! Slctd_r_pos() abort
 
   call Cursor__mv_slctd_r()
   
+  let l:pos = Pos()
+  return l:pos
+endfunc
+
+func! Slctd_l_o_char() abort
+
+  call Cursor__mv_slctd_l()
+
+  let l:l_char = Cursor_l_char()
+  return l:l_char
+endfunc
+
+func! Slctd_r_o_char() abort
+
+  call Cursor__mv_slctd_r()
+
+  let l:r_char = Cursor_r_char()
+  return l:r_char
+endfunc
+
+func! Slctd__expnd() abort " expnd lr
+
   let l:ptn = '[' . "'" . '"' . ')' . '\]' . ']'
+
+  call Cursor__mv_slctd_r()
   
-  let l:line_r = Line_str_side_r()
+  let l:line_r = Line_str_cursor_out_r()
   let l:r_idx  = Str_srch(l:line_r, l:ptn)
   
   if l:r_idx == -1
@@ -2528,7 +2579,7 @@ func! Slctd__expnd() abort " expnd lr
   
   if l:c == '"' || l:c == "'"
     
-    let l:line_l = Line_str_side_l()
+    let l:line_l = Line_str_cursor_out_l()
     let l:l_idx = strridx(l:line_l, l:c)
     
     if l:l_idx == -1
@@ -2556,19 +2607,20 @@ endfunc
 func! Slctd__expnd_bracket_f() abort
   
   call Cursor__mv_slctd_l()
-  let l:col_l = Col()
+  let l:s_col = Col()
   
   let l:bracket_ptn = '[' . "'" . '")}\]' . ']'
   
-  let l:line_r = Line_str_side_r()
-  let l:r_idx  = Str_srch(l:line_r, l:bracket_ptn)
+  let l:line_str_r = Line_str_slctd_out_r()
 
-  if l:r_idx == -1
+  let l:srch_idx = Str_srch(l:line_str_r, l:bracket_ptn)
+
+  if l:srch_idx == -1
     return
   endif
 
-  let l:slct_col_r = l:col_l + l:r_idx
-  call Slct_by_line_col(v:null, l:col_l, v:null, l:slct_col_r)
+  let l:len = l:s_col + Slctd_str_len() + l:srch_idx
+  call Slct_by_col(l:s_col, l:len)
 endfunc
 
 func! Slctd_str__mv(lr) abort
@@ -2747,6 +2799,8 @@ func! Srch(dir) abort
 
   if     a:dir == 'f'
     call Normal('n')
+    "let  = 'search()'
+    "call Exe()
 
   elseif a:dir == 'b'
     call Normal('N')

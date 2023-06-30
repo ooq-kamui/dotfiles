@@ -104,6 +104,8 @@ alias ooq_artcl_build_rsync 'fish ~/dev/ooq-artcl/sh/build.rsync.fish'
 # bind
 # 
 
+bind \cq 'clear; commandline -f repaint'
+
 # corsor mv char
 bind \cl forward-char
 bind \cs backward-char
@@ -112,20 +114,19 @@ bind \cs backward-char
 bind \co backward-word
 bind \cf forward-word
 
-bind \ck kill-word
 #bind \cx backward-delete-char
+bind \ck kill-word
 
-bind \cq 'clear; commandline -f repaint'
-
-bind \cu fzf-file-widget
-bind \cy fzf-file-widget
-#bind \cy fzf-history-widget
-
+# cmdline
 bind \cc cmdline_pbcopy
 bind \cb cmdline_bracket
 bind \cg cmdline_quote
 
 bind \c_ cmdline_date
+
+bind \cu fzf-file-widget
+bind \cy fzf-file-widget
+#bind \cy fzf-history-widget
 
 # dmy
 #bind \cr cmdline_date
