@@ -2635,11 +2635,6 @@ func! Slctd__expnd_bracket_f() abort
   let l:s_col = Slctd_l_col()
   
   let l:line_str_r = Line_str_slctd_out_r()
-  echo l:line_str_r
-  "return
-
-  "let l:srch_idx = Str_srch(l:line_str_r, l:bracket_ptn)
-  "let l:srch_idx = match(l:line_str_r, l:bracket_ptn, 1)
   let l:srch_idx = Str_srch(l:line_str_r, l:bracket_ptn, 1)
 
   if l:srch_idx == -1
@@ -2825,13 +2820,13 @@ endfunc
 func! Srch(dir) abort
 
   if     a:dir == 'f'
-    call Normal('n')
-    "let  = 'search()'
-    "call Exe()
-
+    let l:op = ''
   elseif a:dir == 'b'
-    call Normal('N')
+    let l:op = 'b'
   endif
+
+  let l:str = @/
+  call search(l:str, l:op)
 endfunc
 
 func! V_srch(dir) abort " use not
