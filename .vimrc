@@ -888,10 +888,11 @@ vnoremap x "ax
 "vnoremap xx J
 
 " del line top space
-"vnoremap xx :call V_line_top__del_space()<cr>
+vnoremap M :call V_line_top__del_space()<cr>
 
 " del line end space
 vnoremap m :call V_line_end__del_space()<cr>
+vnoremap D :call V_line_end__del_space()<cr>
 
 " mv str back
 vnoremap <c-w> :call Slctd_str__mv('h')<cr>
@@ -987,7 +988,7 @@ vnoremap r  :call V_trns()<cr>
 vnoremap gt :call V_trns()<cr>
 
 " opn .vimrc
-vnoremap gh :call Opn_vimrc()<cr>
+vnoremap gh <esc>:call Opn_vimrc()<cr>
 
 " tst
 "vnoremap T :call Tst()<cr>
@@ -1045,14 +1046,14 @@ vnoremap w <esc>
 vnoremap A <esc>
 vnoremap B <esc>
 vnoremap C <esc>
-vnoremap D <esc>
+"vnoremap D <esc>
 vnoremap F <esc>
 vnoremap H <esc>
 "vnoremap I <esc>
 vnoremap J <esc>
 vnoremap K <esc>
 vnoremap L <esc>
-vnoremap M <esc>
+"vnoremap M <esc>
 "vnoremap N <esc>
 vnoremap O <esc>
 vnoremap P <esc>
