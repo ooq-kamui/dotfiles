@@ -221,13 +221,13 @@ nnoremap <Down>  j
 nnoremap <c-k> 10<c-y>
 nnoremap <c-j> 10<c-e>
 
-" cursor mv in line start | ins line
+" cursor mv line start | ins line
 nnoremap y :call Cursor__mv_line_top_or_new_line()<cr>
 
-" cursor mv in line start
+" cursor mv line start
 nnoremap <c-a> 0
 
-" cursor mv in line end
+" cursor mv line end
 nnoremap <expr> <c-y>
 \ Is_cursor_line_end() ? ':call Ins_markdown_cr()<cr>'       :
 \                        ':call Cursor__mv_line_end()<cr>'
@@ -310,7 +310,7 @@ nnoremap i :call Slct_word()<cr>
 nnoremap v <c-v>
 
 " slct all
-"nnoremap A ggVG
+nnoremap A :call Slct_all()<cr>
 
 " slct re
 "nnoremap xx gv
@@ -674,7 +674,7 @@ nnoremap b <esc>
 "nnoremap y <esc>
 nnoremap z <esc>
 
-nnoremap A <esc>
+"nnoremap A <esc>
 nnoremap B <esc>
 "nnoremap C <esc>
 nnoremap D <esc>
@@ -697,7 +697,7 @@ nnoremap T <esc>
 nnoremap U <esc>
 "nnoremap W <esc>
 nnoremap V <esc>
-"nnoremap X <esc>
+nnoremap X <esc>
 nnoremap Y <esc>
 
 "nnoremap <c-a> <esc>
@@ -765,6 +765,9 @@ vnoremap go :call V_opn_app()<cr>
 " cursor mv
 " 
 
+" cursor mv slctd edge tgl
+vnoremap y o
+
 " cursor mv char forward
 vnoremap l l
 
@@ -780,19 +783,17 @@ vnoremap f e
 "vnoremap xx bh
 "vnoremap xx Bh
 
-" cursor mv slctd word reduce dlm _ l
-vnoremap _ of_lo
-"vnoremap <c-_> of_lo
+" cursor mv line end
+"vnoremap <c-y> ref vnoremap <expr> <c-y>
 
-" cursor mv slctd word reduce dlm _ r
+" cursor mv slctd reduce dlm _ l
+vnoremap _     of_lo
+
+" cursor mv slctd reduce dlm _ r
 vnoremap <c-_> F_h
-"vnoremap _ F_h
 
 " cursor mv space - forward ( word pre )
 "vnoremap xx wh
-
-" cursor mv slctd edge
-vnoremap y o
 
 " cursor mv line
 vnoremap <c-j> 10j
@@ -824,7 +825,7 @@ vnoremap <c-i> :call Slctd__expnd()<cr>
 vnoremap I :call Slctd__expnd_bracket_f()<cr>
 
 " slct all
-vnoremap a <esc>ggVG
+vnoremap A :call Slct_all()<cr>
 
 " ynk slctd
 vnoremap o :call V_ynk()<cr>
@@ -835,7 +836,9 @@ vnoremap c :call V_ynk()<cr>
 "vnoremap xx "+y
 
 " paste
-vnoremap <expr> p mode() == '<c-v>' ? 'I<c-r>0<esc>' : '"ad"0P'
+vnoremap <expr> p
+\ mode() == '<c-v>' ? 'I<c-r>0<esc>' :
+\                     '"ad"0P'
 
 " paste visual box
 "vnoremap xx I<c-r>0<esc>
@@ -850,13 +853,18 @@ vnoremap h <esc>u
 " 
 
 " ins | cut & ins
-vnoremap <expr> <space> mode() == '<c-v>' ? 'I' : 'c'
+vnoremap <expr> <space>
+\ mode() == '<c-v>' ? 'I' :
+\                     'c'
+
 
 " cut & ins
 vnoremap <leader><space> "ac
 
 " ins $ | cursor mv in line end
-vnoremap <expr> <c-y> mode() == '<c-v>' ? '$A' : 'g_'
+vnoremap <expr> <c-y>
+\ mode() == '<c-v>' ? '$A' :
+\                     'g_'
 
 " ins comment 1
 vnoremap ! :call V_ins_cmnt_1()<cr>
@@ -892,7 +900,7 @@ vnoremap M :call V_line_top__del_space()<cr>
 
 " del line end space
 vnoremap m :call V_line_end__del_space()<cr>
-vnoremap D :call V_line_end__del_space()<cr>
+"vnoremap D :call V_line_end__del_space()<cr>
 
 " mv str back
 vnoremap <c-w> :call Slctd_str__mv('h')<cr>
@@ -901,7 +909,6 @@ vnoremap <c-w> :call Slctd_str__mv('h')<cr>
 vnoremap <c-e> :call Slctd_str__mv('l')<cr>
 
 " mv str line end
-vnoremap Y :call Slctd_str__mv_line_end()<cr>
 vnoremap E :call Slctd_str__mv_line_end()<cr>
 
 " mv line
@@ -984,8 +991,7 @@ vnoremap :G "ay:GrepWrd <c-r>a
 vnoremap t :call V_tag_jmp()<cr>
 
 " trns
-vnoremap r  :call V_trns()<cr>
-vnoremap gt :call V_trns()<cr>
+vnoremap a  :call V_trns()<cr>
 
 " opn .vimrc
 vnoremap gh <esc>:call Opn_vimrc()<cr>
@@ -1034,7 +1040,7 @@ vnoremap g <esc>
 "vnoremap o <esc>
 "vnoremap p <esc>
 vnoremap q <esc>
-"vnoremap r <esc>
+vnoremap r <esc>
 "vnoremap s <esc>
 "vnoremap t <esc>
 "vnoremap u <esc>
@@ -1043,10 +1049,10 @@ vnoremap w <esc>
 "vnoremap x <esc>
 "vnoremap y <esc>
 
-vnoremap A <esc>
+"vnoremap A <esc>
 vnoremap B <esc>
 vnoremap C <esc>
-"vnoremap D <esc>
+vnoremap D <esc>
 vnoremap F <esc>
 vnoremap H <esc>
 "vnoremap I <esc>
@@ -1063,6 +1069,7 @@ vnoremap S <esc>
 "vnoremap T <esc>
 "vnoremap U <esc>
 vnoremap V <esc>
+vnoremap X <esc>
 "vnoremap Y <esc>
 
 "vnoremap <c-_> <esc>
@@ -1095,7 +1102,7 @@ vnoremap gg <esc>
 "vnoremap gk <esc>
 "vnoremap go <esc>
 vnoremap gp <esc>
-"vnoremap gt <esc>
+vnoremap gt <esc>
 
 " 
 " mode insert
@@ -2520,6 +2527,11 @@ endfunc
 func! Slct_re() abort
   
   call Normal('gv')
+endfunc
+
+func! Slct_all() abort
+
+  call Normal('ggVG')
 endfunc
 
 " slctd
