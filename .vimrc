@@ -1148,10 +1148,14 @@ inoremap <tab> <c-v><tab>
 "inoremap xx <space><space>
 
 " ins complete
-inoremap <expr> <c-y> pumvisible() ? '<c-e>' : '<c-n>'
+inoremap <expr> <c-y>
+\ pumvisible() ? '<c-e>' :
+\                '<c-n>'
 
 " ins bracket
-inoremap <expr> <c-j> pumvisible() ? '<c-n>' : '<c-r>=I_bracket()<cr>'
+inoremap <expr> <c-j>
+\ pumvisible() ? '<c-n>'                 :
+\                '<c-r>=I_bracket()<cr>'
 
 " ins symbol
 inoremap <c-q> <c-r>=I_symbol()<cr>
@@ -3298,7 +3302,7 @@ func! I_bracket() abort
 endfunc
 
 func! I_markdown() abort
-  call complete( col('.'), [ '``', '- ', '---', '```', '- [ ] ' ])
+  call complete( col('.'), [ '``', '[]()', '---', '```' ])
   return ''
 endfunc
 
