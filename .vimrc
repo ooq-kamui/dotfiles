@@ -166,7 +166,7 @@ nnoremap a :call Save()<cr>
 "nnoremap xx `0
 
 " opn file rcnt ( hstry )
-"nnoremap <leader>xx :FileHstry<cr>
+nnoremap <leader>l :FileHstry<cr>
 
 " file srch ( fzf )
 nnoremap <c-u>     :Files <cr>
@@ -930,9 +930,12 @@ vnoremap " <gv
 " indnt correct
 vnoremap ; =gv
 
-" indnt tab > space
-vnoremap :e :!expand -t 2<cr>
+" indnt tab   > space
+vnoremap :e :!expand   -t 2<cr>
 "vnoremap :t :!expand -t 2<cr>
+
+" indnt space > tab
+vnoremap :E :!unexpand -t 2 <cr>
 
 " upper / lower tgl
 vnoremap u ~gv
@@ -992,6 +995,7 @@ vnoremap t :call V_tag_jmp()<cr>
 
 " trns
 vnoremap a  :call V_trns()<cr>
+vnoremap r  :call V_trns()<cr>
 
 " opn .vimrc
 vnoremap gh <esc>:call Opn_vimrc()<cr>
@@ -1040,7 +1044,7 @@ vnoremap g <esc>
 "vnoremap o <esc>
 "vnoremap p <esc>
 vnoremap q <esc>
-vnoremap r <esc>
+"vnoremap r <esc>
 "vnoremap s <esc>
 "vnoremap t <esc>
 "vnoremap u <esc>
@@ -1309,7 +1313,7 @@ cnoremap <kPageUp>   9
 "nnoremap <leader>f <esc>
 nnoremap <leader>h <esc>
 "nnoremap <leader>j <esc>
-nnoremap <leader>l <esc>
+"nnoremap <leader>l <esc>
 nnoremap <leader>m <esc>
 "nnoremap <leader>n <esc>
 nnoremap <leader>p <esc>

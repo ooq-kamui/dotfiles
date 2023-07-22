@@ -55,8 +55,8 @@ alias cd_ooq_game    "cd ~/dev/ooq/g.proto/assets"
 alias cd_ooq_game_bk "cd ~/dev/ooq/z.proto.bk"
 alias cd_ooq_artcl   "cd ~/dev/ooq-artcl"
 
-alias cd_holo      "cd ~/doc/hoby/youtube/vtuber/hololive/prj"
-alias cd_holo_data "cd ~/doc/hoby/youtube/vtuber/hololive/prj/www/song/data"
+alias cd_holo      "cd ~/doc/hoby/youtube/vtuber/holo/prj"
+alias cd_holo_data "cd ~/doc/hoby/youtube/vtuber/holo/prj/www/song/data"
 
 alias vim "nvim -p"
 alias vi  "nvim -p"
