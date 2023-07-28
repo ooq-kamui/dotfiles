@@ -97,6 +97,7 @@ set virtualedit=onemore " cursor mv cr
 set virtualedit+=block  " box slct
 "set virtualedit=all
 set scrolloff=5
+set sidescrolloff=4
 set wildmode=list:longest
 "set tabpagemax=30
 set tabpagemax=50
@@ -460,6 +461,10 @@ nnoremap ; :call Indnt__crct()<cr>
 " srch
 " 
 
+" srch hl init
+nnoremap S /<cr>N
+"nnoremap S :call Srch_init()<cr>
+
 " srch char in line - forward
 "nnoremap xx f
 
@@ -493,9 +498,6 @@ nnoremap <leader>n :SrchHstry<cr>
 " srch str set prv ( tgl )
 nnoremap N :call N_srch_str__prv()<cr>
 "nnoremap N /<c-p><c-p><cr>
-
-" srch hl init
-nnoremap S /<cr>N
 
 " srch rpl one > ynk nxt ( only srch )
 nnoremap <c-p> :call Srch_slct('f')<cr>
@@ -822,7 +824,7 @@ vnoremap gj G$l
 vnoremap <c-i> :call Slctd__expnd()<cr>
 
 " slctd expnd bracket forward
-vnoremap I :call Slctd__expnd_bracket_f()<cr>
+vnoremap I     :call Slctd__expnd_bracket_f()<cr>
 
 " slct all
 vnoremap A :call Slct_all()<cr>
@@ -3515,6 +3517,14 @@ endfunc
 
 " ynk init
 call Ynk__clipboard()
+
+" srch init
+func! Srch_init() abort " use not
+
+  let l:cmd = '/<cr>N'
+  call Normal(l:cmd)
+endfunc
+"call Srch_init()
 
 " netrw " use not
 
