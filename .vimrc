@@ -316,17 +316,20 @@ nnoremap A :call Slct_all()<cr>
 " slct re
 "nnoremap xx gv
 
+" ynk clr
+nnoremap <c-c> :call Rgstr__clr()<cr>
+
 " ynk line
 nnoremap c :call N_ynk()<cr>
-
-" clipboard line
-"nnoremap xx "+yy
 
 " ynk char
 "nnoremap xx "0yl
 
-" ynk clr
-nnoremap <c-c> :call Rgstr__clr()<cr>
+" ynk clipboard
+nnoremap C :call Ynk__clipboard()<cr>
+
+" clipboard line
+"nnoremap xx "+yy
 
 " paste
 nnoremap p "0P
@@ -350,9 +353,6 @@ nnoremap <c-h> <c-r>
 " 
 " edit
 " 
-
-" ynk set clipboard
-nnoremap C :call Ynk__clipboard()<cr>
 
 " mode ins
 nnoremap <space> i
@@ -564,6 +564,9 @@ nnoremap <leader>fk [`
 
 " cmd history ( fzf )
 nnoremap <leader>: :CmdHstry<cr>
+
+" sys cmd
+nnoremap :! :! 
 
 " ins sys cmd ( read )
 nnoremap :r :InsSysCmd 
