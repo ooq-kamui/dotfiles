@@ -320,7 +320,7 @@ nnoremap A :call Slct_all()<cr>
 nnoremap <c-c> :call Rgstr__clr()<cr>
 
 " ynk line
-nnoremap c :call N_ynk()<cr>
+nnoremap c :call Ynk__line()<cr>
 
 " ynk char
 "nnoremap xx "0yl
@@ -332,14 +332,14 @@ nnoremap C :call Ynk__clipboard()<cr>
 "nnoremap xx "+yy
 
 " paste
-nnoremap p "0P
+nnoremap p :call Paste()<cr>
 
 " paste clipboard
-"nnoremap xx "+P
+nnoremap P :call Paste__clipboard()<cr>
 
 " paste rgstr history ( fzf )
-nnoremap <leader>c :RgstrHstry<cr>
-"nnoremap <leader>r :RgstrHstry<cr>
+nnoremap <leader>p :RgstrHstry<cr>
+"nnoremap <leader>c :RgstrHstry<cr>
 
 " 
 " undo, redo
@@ -695,7 +695,7 @@ nnoremap H <esc>
 "nnoremap N <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
-nnoremap P <esc>
+"nnoremap P <esc>
 "nnoremap R <esc>
 "nnoremap S <esc>
 nnoremap T <esc>
@@ -1314,14 +1314,14 @@ cnoremap <kPageUp>   9
 " leader esc
 " 
 
-"nnoremap <leader>c <esc>
+nnoremap <leader>c <esc>
 "nnoremap <leader>f <esc>
 nnoremap <leader>h <esc>
 "nnoremap <leader>j <esc>
 "nnoremap <leader>l <esc>
 nnoremap <leader>m <esc>
 "nnoremap <leader>n <esc>
-nnoremap <leader>p <esc>
+"nnoremap <leader>p <esc>
 nnoremap <leader>r <esc>
 "nnoremap <leader>u <esc>
 "nnoremap <leader>y <esc>
@@ -2750,17 +2750,7 @@ endfunc
 
 " ynk
 
-func! Ynk__clipboard() abort
-
-  let @0 = @+
-endfunc
-
-func! Clipboard__ynk() abort
-
-  let @+ = @0
-endfunc
-
-func! N_ynk() abort
+func! Ynk__line() abort
 
   call Normal('"0yy')
   call Normal('"+yy')
@@ -2768,6 +2758,11 @@ func! N_ynk() abort
   "l:line_str = Line_str()
   "let @0 = l:line_str
   "let @+ = l:line_str
+endfunc
+
+func! Ynk__clipboard() abort
+
+  let @0 = @+
 endfunc
 
 func! V_ynk() abort
@@ -2778,6 +2773,26 @@ func! V_ynk() abort
   "let l:str = Slctd_str()
   "let @0 = l:str
   "let @+ = l:str
+endfunc
+
+" paste
+
+func! Paste() abort
+
+  call Normal('"0P')
+endfunc
+
+func! Paste__clipboard() abort
+
+  call Ynk__clipboard()
+  call Paste()
+endfunc
+
+" clipboard
+
+func! Clipboard__ynk() abort
+
+  let @+ = @0
 endfunc
 
 " srch
