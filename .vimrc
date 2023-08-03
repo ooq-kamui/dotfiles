@@ -179,7 +179,7 @@ nnoremap <leader>y :Files <cr>
 " 
 
 " opn tab file
-nnoremap :e :Opn 
+"nnoremap :xx :Opn 
 
 " opn .vimrc
 nnoremap gh :call Opn_vimrc()<cr>
@@ -905,7 +905,6 @@ vnoremap M :call V_line_top__del_space()<cr>
 
 " del line end space
 vnoremap m :call V_line_end__del_space()<cr>
-"vnoremap D :call V_line_end__del_space()<cr>
 
 " mv str back
 vnoremap <c-w> :call Slctd_str__mv('h')<cr>
@@ -936,11 +935,10 @@ vnoremap " <gv
 vnoremap ; =gv
 
 " indnt tab   > space
-vnoremap :e :!expand   -t 2<cr>
-"vnoremap :t :!expand -t 2<cr>
+vnoremap :e :call V_indnt_2_space()<cr>
 
 " indnt space > tab
-vnoremap :E :!unexpand -t 2 <cr>
+vnoremap :E :call V_indnt_2_tab()<cr>
 
 " upper / lower tgl
 vnoremap u ~gv
@@ -2216,6 +2214,14 @@ func! Ins_sys_cmd(sys_cmd) abort " read
   endif
 endfunc
 
+func! V_ins_sys_cmd(sys_cmd) abort " read
+
+  "call Slct_re()
+
+  let l:cmd = "'<,'>! " . a:sys_cmd
+  call Exe(l:cmd)
+endfunc
+
 command! -nargs=? -complete=dir InsLf call Ins_lf(<q-args>)
 
 func! Ins_lf(dir) abort
@@ -2495,6 +2501,18 @@ func! Indnt__crct_by_c() abort
 
   call Indnt__add(l:col)
   return l:col
+endfunc
+
+func! V_indnt_2_space() abort
+
+  let l:cmd = '  expand   -t 2'
+  call V_ins_sys_cmd(l:cmd)
+endfunc
+
+func! V_indnt_2_tab() abort
+
+  let l:cmd = 'unexpand   -t 2'
+  call V_ins_sys_cmd(l:cmd)
 endfunc
 
 " slct
