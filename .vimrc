@@ -140,14 +140,13 @@ let mapleader = "\<esc>"
 " quit buffer
 nnoremap w :bd<cr>
 
-" quit
-"nnoremap <c-w> :q<cr>
-nnoremap W     :q<cr>
-
-" quit force
+" quit buffer force
 nnoremap :q :q!
 
-" quit other
+" quit vim
+nnoremap W     :q<cr>
+
+" quit tab other
 "nnoremap xx :tabo<cr>
 
 " background job
@@ -160,26 +159,25 @@ nnoremap a :call Save()<cr>
 " reload
 "nnoremap xx :e!
 
-" opn tab new
-"nnoremap xx :tabnew filename
-
-" opn latest
-"nnoremap xx `0
-
-" opn file rcnt ( hstry )
-nnoremap <leader>l :FileHstry<cr>
-
-" file srch ( fzf )
-nnoremap <c-u>     :Files <cr>
-nnoremap <leader>u :Files <cr>
-nnoremap <leader>y :Files <cr>
-
 " 
 " opn
 " 
 
 " opn tab file
-"nnoremap :xx :Opn 
+"nnoremap xx :Opn 
+
+" opn latest
+"nnoremap xx `0
+
+" opn file srch  ( fzf )
+nnoremap <leader>l :Files <cr>
+
+" opn file hstry ( fzf )
+nnoremap <leader>h :FileHstry<cr>
+
+" 
+" opn etc
+" 
 
 " opn .vimrc
 nnoremap gh :call Opn_vimrc()<cr>
@@ -723,7 +721,7 @@ nnoremap <c-g> <esc>
 "nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
-"nnoremap <c-u> <esc>
+nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
 nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
@@ -1314,15 +1312,15 @@ cnoremap <kPageUp>   9
 
 nnoremap <leader>c <esc>
 "nnoremap <leader>f <esc>
-nnoremap <leader>h <esc>
+"nnoremap <leader>h <esc>
 "nnoremap <leader>j <esc>
 "nnoremap <leader>l <esc>
 nnoremap <leader>m <esc>
 "nnoremap <leader>n <esc>
 "nnoremap <leader>p <esc>
 nnoremap <leader>r <esc>
-"nnoremap <leader>u <esc>
-"nnoremap <leader>y <esc>
+nnoremap <leader>u <esc>
+nnoremap <leader>y <esc>
 
 vnoremap <leader>u <esc>
 vnoremap <leader>y <esc>
