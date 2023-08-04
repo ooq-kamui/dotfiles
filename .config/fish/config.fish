@@ -88,9 +88,6 @@ alias trns_e "trans {en=ja}"
 
 alias ba 'pmset -g ps | grep -oE "[0-9]+%"' # battery
 
-#alias cal_3 'cal -3'
-alias cal_3 'cal ( date -v -1m +"%m" ) ( date -v -1m +"%Y" ); cal ( date -v -0m +"%m" ) ( date -v -0m +"%Y" ); cal ( date -v +1m +"%m" ) ( date -v +1m +"%Y" )'
-
 alias history_del 'history delete'
 
 alias opn "open"
