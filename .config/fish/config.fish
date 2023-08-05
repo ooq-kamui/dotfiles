@@ -28,18 +28,15 @@ set -x FZF_DEFAULT_OPTS '--bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward
 
 alias shutdown_start "sudo shutdown -r now"
 
+alias src         "source"
+alias src_fsh_cfg "source ~/.config/fish/config.fish"
+
+alias pwd_cp "pwd | pbcopy"
+
 #alias l "ls -1hAG"
 alias lld "ll -d"
 
 alias cp "cp -p"
-
-alias pwd_cp "pwd | pbcopy"
-
-alias cd_p1 "cd ../"
-alias cd_p2 "cd ../../"
-alias cd_p3 "cd ../../../"
-
-alias cd_dl 'cd ~/Downloads'
 
 alias cd_vim      "cd ~/doc/tech/github/vimrc"
 alias cd_vim_swp  "cd ~/.local/state/nvim/swap"
@@ -58,27 +55,29 @@ alias cd_ooq_artcl   "cd ~/dev/ooq-artcl"
 alias cd_holo      "cd ~/doc/hoby/youtube/vtuber/holo/prj"
 alias cd_holo_data "cd ~/doc/hoby/youtube/vtuber/holo/prj/www/song/data"
 
+alias opn "open"
+alias opn_github_vim  "open https://github.com/ooq-kamui/vimrc"
+alias opn_github_holo "open https://github.com/ooq-kamui/holo-song"
+alias opn_ooq         "open https://ooq.jp/"
+
 alias vim "nvim -p"
 alias vi  "nvim -p"
 
-alias vi_vimrc    "vi ~/.vimrc"
-alias vi_vim_swap "vi ~/.local/share/nvim/swap/"
 alias vi_fsh_cnf  "vi ~/.config/fish/config.fish"
 alias vi_cnf      "vi ~/.config/fish/config.fish"
 
-alias src         "source"
-alias src_fsh_cfg "source ~/.config/fish/config.fish"
-
-alias du   "du -h"
-alias du_1 "du -hd1"
+alias vi_vimrc    "vi ~/.vimrc"
+alias vi_vim_swap "vi ~/.local/share/nvim/swap/"
 
 set -x LC_TIME en_US
 alias date_ymd   "date +'%Y-%m-%d'"
-alias date_ymdhm "date +'%Y-%m-%d %H:%M'"
+alias date_ymdhm "date +'%Y-%m-%d.%H:%M'"
+
 alias date_y1    "date_y 1"
 alias date_y2    "date_y 2"
-alias da         "date +'%Y-%m-%d %a'"
-#alias date "date +'%Y-%m-%d %H:%M %a %Z'"
+
+alias du   "du -h"
+alias du_1 "du -hd1"
 
 alias rgf "rg -l"
 
@@ -90,10 +89,7 @@ alias ba 'pmset -g ps | grep -oE "[0-9]+%"' # battery
 
 alias history_del 'history delete'
 
-alias opn "open"
-alias opn_github_vim  "open https://github.com/ooq-kamui/vimrc"
-alias opn_github_holo "open https://github.com/ooq-kamui/holo-song"
-alias opn_ooq         "open https://ooq.jp/"
+# alias prj
 
 alias ooq_artcl_build_rsync 'fish ~/dev/ooq-artcl/sh/build.rsync.fish'
 
