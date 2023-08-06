@@ -179,17 +179,17 @@ nnoremap <leader>h :FileHstry<cr>
 " opn etc
 " 
 
+" opn fish cnf
+nnoremap gf :call Opn_fish_cnf()<cr>
+
 " opn .vimrc
 nnoremap gh :call Opn_vimrc()<cr>
 
-" opn app slf
-nnoremap gi :call Opn_app_slf()<cr>
-
-" opn app
-nnoremap go :call Opn_app_by_path()<cr>
-
 " opn tmp
 nnoremap gt :call Opn_tmp()<cr>
+
+" opn grep work
+"nnoremap xx :call Opn_grep_work()<cr>
 
 " opn vim key note
 nnoremap gv :call Opn_vim_key()<cr>
@@ -197,8 +197,14 @@ nnoremap gv :call Opn_vim_key()<cr>
 " opn memo
 nnoremap gm :call Opn_memo()<cr>
 
-" opn grep work
-"nnoremap xx :call Opn_grep_work()<cr>
+" opn man
+nnoremap :m :OpnMan 
+
+" opn app
+nnoremap go :call Opn_app_by_path()<cr>
+
+" opn app slf
+nnoremap gi :call Opn_app_slf()<cr>
 
 " opn brwsr
 "nnoremap xx <plug>(openbrowser-smart-search)
@@ -730,6 +736,7 @@ nnoremap <c-z> <esc>
 
 "nnoremap ga <esc>
 nnoremap gb <esc>
+"nnoremap gf <esc>
 nnoremap gg <esc>
 "nnoremap gh <esc>
 "nnoremap gi <esc>
@@ -1362,9 +1369,9 @@ call plug#end()
 " or
 " :PlugClean
 
-"
+" 
 " fzf
-"
+" 
 
 " preview window
 let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
@@ -3248,6 +3255,7 @@ endfunc
 " opn file
 
 command! -nargs=* -complete=file Opn call Opn(<q-args>)
+
 func! Opn(filename) abort
 
   call Exe('tab drop ' . a:filename)
@@ -3266,17 +3274,30 @@ func! Opn_vimrc() abort
   call Opn(l:path)
 endfunc
 
-func! Opn_app_slf() abort
+func! Opn_fish_cnf() abort
 
-  let l:path = Slf_path()
-  "echo l:path
+  let l:path = '~/.config/fish/config.fish'
+  call Opn(l:path)
+endfunc
 
-  call Opn_app(l:path)
+command! -nargs=* OpnMan call Opn_man(<q-args>)
+
+func! Opn_man(cmd) abort
+
+  call Exe('tab new')
+  call Exe('Man ' . a:cmd)
+  call Exe('only')
 endfunc
 
 func! Opn_vim_key() abort
 
   let l:path = '~/doc/tech/vim/m.key.default.md'
+  call Opn(l:path)
+endfunc
+
+func! Opn_memo() abort
+
+  let l:path = 'doc/memo.md'
   call Opn(l:path)
 endfunc
 
@@ -3294,11 +3315,7 @@ func! Opn_grep_work() abort
   endif
 endfunc
 
-func! Opn_memo() abort
-
-  let l:path = 'doc/memo.md'
-  call Opn(l:path)
-endfunc
+" opn app
 
 func Opn_app(path)
   
@@ -3311,18 +3328,26 @@ func Opn_app(path)
   endif
 endfunc
 
-func Opn_app_by_path()
-  
-  let l:path = Cursor_filepath()
-  call Opn_app(l:path)
-endfunc
-
 func V_opn_app()
   
   let l:path = Slctd_str()
   
   let l:path = trim(l:path)
   
+  call Opn_app(l:path)
+endfunc
+
+func Opn_app_by_path()
+  
+  let l:path = Cursor_filepath()
+  call Opn_app(l:path)
+endfunc
+
+func! Opn_app_slf() abort
+
+  let l:path = Slf_path()
+  "echo l:path
+
   call Opn_app(l:path)
 endfunc
 

@@ -33,9 +33,6 @@ alias src_fsh_cfg "source ~/.config/fish/config.fish"
 
 alias pwd_cp "pwd | pbcopy"
 
-#alias l "ls -1hAG"
-alias lld "ll -d"
-
 alias cp "cp -p"
 
 alias cd_vim      "cd ~/doc/tech/github/vimrc"
@@ -43,10 +40,10 @@ alias cd_vim_swp  "cd ~/.local/state/nvim/swap"
 
 alias cd_fish_fnc "cd ~/doc/tech/github/vimrc/.config/fish/functions"
 
-alias cd_life    "cd ~/doc/life"
-alias cd_tech    "cd ~/doc/tech"
-alias cd_hoby    "cd ~/doc/hoby"
-alias cd_game    "cd ~/doc/hoby/game"
+alias cd_game     "cd ~/doc/hoby/game"
+alias cd_tech     "cd ~/doc/tech"
+alias cd_hoby     "cd ~/doc/hoby"
+alias cd_life     "cd ~/doc/life"
 
 alias cd_ooq_game    "cd ~/dev/ooq/g.proto/assets"
 alias cd_ooq_game_bk "cd ~/dev/ooq/z.proto.bk"

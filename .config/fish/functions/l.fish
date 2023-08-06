@@ -1,7 +1,6 @@
 function l
 
-  ls -1hAG  $argv
-  
-  #ls -1dFAG $argv # l1
+  ls -1AG $argv
+  #ls -1hAG $argv
 end
 
