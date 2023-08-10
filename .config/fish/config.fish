@@ -66,9 +66,9 @@ alias vi_cnf      "vi ~/.config/fish/config.fish"
 alias vi_vimrc    "vi ~/.vimrc"
 alias vi_vim_swap "vi ~/.local/share/nvim/swap/"
 
+alias vi_sys      "vi ~/doc/sys/memo.sys.md"
+
 set -x LC_TIME en_US
-alias date_ymd   "date +'%Y-%m-%d'"
-alias date_ymdhm "date +'%Y-%m-%d.%H:%M'"
 
 alias date_y1    "date_y 1"
 alias date_y2    "date_y 2"
