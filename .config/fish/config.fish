@@ -35,6 +35,8 @@ alias pwd_cp "pwd | pbcopy"
 
 alias cp "cp -p"
 
+alias cd_dl       "cd ~/Downloads"
+
 alias cd_vim      "cd ~/doc/tech/github/vimrc"
 alias cd_vim_swp  "cd ~/.local/state/nvim/swap"
 
@@ -47,7 +49,7 @@ alias cd_life     "cd ~/doc/life"
 
 alias cd_ooq_game    "cd ~/dev/ooq/g.proto/assets"
 alias cd_ooq_game_bk "cd ~/dev/ooq/z.proto.bk"
-alias cd_ooq_artcl   "cd ~/dev/ooq-artcl"
+alias cd_ooq_artcl   "cd ~/dev/ooq-artcl/hugo/content"
 
 alias cd_holo      "cd ~/doc/hoby/youtube/vtuber/holo/prj"
 alias cd_holo_data "cd ~/doc/hoby/youtube/vtuber/holo/prj/www/song/data"
@@ -89,6 +91,10 @@ alias history_del 'history delete'
 # alias prj
 
 alias ooq_artcl_build_rsync 'fish ~/dev/ooq-artcl/sh/build.rsync.fish'
+
+# alias path
+
+alias uconv '/opt/homebrew/Cellar/icu4c/73.2/bin/uconv'
 
 
 # 

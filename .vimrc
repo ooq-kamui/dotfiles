@@ -164,7 +164,7 @@ nnoremap a :call Save()<cr>
 " 
 
 " opn tab file
-"nnoremap xx :Opn 
+nnoremap :o :Opn 
 
 " opn latest
 "nnoremap xx `0
@@ -835,7 +835,8 @@ vnoremap <c-i> :call Slctd__expnd()<cr>
 vnoremap I     :call Slctd__expnd_bracket_f()<cr>
 
 " slct all
-vnoremap A :call Slct_all()<cr>
+vnoremap a :call Slct_all()<cr>
+"vnoremap A :call Slct_all()<cr>
 
 " ynk slctd
 vnoremap o :call V_ynk()<cr>
@@ -1002,7 +1003,7 @@ vnoremap :G "ay:GrepWrd <c-r>a
 vnoremap t :call V_tag_jmp()<cr>
 
 " trns
-vnoremap a  :call V_trns()<cr>
+"vnoremap a  :call V_trns()<cr>
 vnoremap r  :call V_trns()<cr>
 
 " opn .vimrc
@@ -1061,7 +1062,7 @@ vnoremap w <esc>
 "vnoremap x <esc>
 "vnoremap y <esc>
 
-"vnoremap A <esc>
+vnoremap A <esc>
 vnoremap B <esc>
 vnoremap C <esc>
 vnoremap D <esc>
@@ -1633,7 +1634,7 @@ func! Rgstr__clr() abort
   let @0 = ''
 endfunc
 
-func! Is_mode_vbox() abort " todo mod
+func! Is_mode_vbox() abort " use not, todo mod
 
   call Slct_re()
 
@@ -1908,21 +1909,9 @@ endfunc
 
 func! Is_str_space(str) abort
 
-  "let l:ptn = '^\s*$'
   let l:ptn = '^\s\+$'
   let l:ret = Is_str_eq_ptn(a:str, l:ptn)
   return l:ret
-  
-"  todo del after a week
-"  
-"  let l:ptn = '^\s*$'
-"  let l:idx = Str_srch(a:str, l:ptn)
-"  
-"  if l:idx == 0
-"    return v:true
-"  else
-"    return v:false
-"  end
 endfunc
 
 func! Is_str_num(num_str) abort
@@ -1930,6 +1919,16 @@ func! Is_str_num(num_str) abort
   let l:ptn = '^\d\+$'
   let l:ret = Is_str_eq_ptn(a:num_str, l:ptn)
   return l:ret
+endfunc
+
+" str mb
+
+command! -range=% -nargs=0 MbCnv <line1>,<line2>call V_mb_cnv()
+
+func! V_mb_cnv() range abort
+
+  let l:sys_cmd = 'mb_cnv'
+  call V_ins_sys_cmd_by_line_rng(l:sys_cmd, a:firstline, a:lastline)
 endfunc
 
 " cursor
@@ -2211,7 +2210,7 @@ func! Ins_sys_cmd(sys_cmd) abort " read
     call Normal('k')
   endif
 
-  let l:cmd = 'read! ' . a:sys_cmd
+  let l:cmd = 'read ! ' . a:sys_cmd
   call Exe(l:cmd)
 
   if l:is_line_num_eq_1
@@ -2221,9 +2220,13 @@ endfunc
 
 func! V_ins_sys_cmd(sys_cmd) abort " read
 
-  "call Slct_re()
+  let l:cmd = "'<,'> ! " . a:sys_cmd
+  call Exe(l:cmd)
+endfunc
 
-  let l:cmd = "'<,'>! " . a:sys_cmd
+func! V_ins_sys_cmd_by_line_rng(sys_cmd, lineS, lineE) abort " read
+
+  let l:cmd = a:lineS . "," . a:lineE . " ! " . a:sys_cmd
   call Exe(l:cmd)
 endfunc
 
@@ -2510,14 +2513,14 @@ endfunc
 
 func! V_indnt_2_space() abort
 
-  let l:cmd = '  expand   -t 2'
-  call V_ins_sys_cmd(l:cmd)
+  let l:sys_cmd = '  expand   -t 2'
+  call V_ins_sys_cmd(l:sys_cmd)
 endfunc
 
 func! V_indnt_2_tab() abort
 
-  let l:cmd = 'unexpand   -t 2'
-  call V_ins_sys_cmd(l:cmd)
+  let l:sys_cmd = 'unexpand   -t 2'
+  call V_ins_sys_cmd(l:sys_cmd)
 endfunc
 
 " slct
