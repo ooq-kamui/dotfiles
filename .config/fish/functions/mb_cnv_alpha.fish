@@ -1,12 +1,13 @@
 function mb_cnv_alpha
 
   set srch_l 'ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ'
-  set srch_u 'ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ'
-
   set rpl_l  'abcdefghijklmnopqrstuvwxyz'
+
+  set srch_u 'ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ'
   set rpl_u  'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
-  cat - |\
-  sed -e "y|$srch_l$srch_u|$rpl_l$rpl_u|"
+  cat -                |\
+  sed_y $srch_l $rpl_l |\
+  sed_y $srch_u $rpl_u
 end
 

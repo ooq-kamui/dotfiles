@@ -4,6 +4,6 @@ function mb_cnv_space
   set rpl  ' '
 
   cat - |\
-  sed -e "y|$srch|$rpl|"
+  sed_y $srch $rpl
 end
 

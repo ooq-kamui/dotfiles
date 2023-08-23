@@ -918,6 +918,9 @@ vnoremap <c-w> :call Slctd_str__mv('h')<cr>
 " mv str forward
 vnoremap <c-e> :call Slctd_str__mv('l')<cr>
 
+" mv str line top
+vnoremap W :call Slctd_str__mv_line_top()<cr>
+
 " mv str line end
 vnoremap E :call Slctd_str__mv_line_end()<cr>
 
@@ -973,7 +976,6 @@ vnoremap n :call V_srch_str__slctd_str(v:false)<cr>
 vnoremap e :call V_srch_str__slctd_str(v:false)<cr>
 
 " srch str set ( word 1 )
-"vnoremap E :call V_srch_str__slctd_str(v:true)<cr>
 vnoremap N :call V_srch_str__slctd_str(v:true)<cr>
 
 " srch rpl one > ynk, nxt
@@ -1066,6 +1068,7 @@ vnoremap A <esc>
 vnoremap B <esc>
 vnoremap C <esc>
 vnoremap D <esc>
+"vnoremap E <esc>
 vnoremap F <esc>
 vnoremap H <esc>
 "vnoremap I <esc>
@@ -1082,6 +1085,7 @@ vnoremap S <esc>
 "vnoremap T <esc>
 "vnoremap U <esc>
 vnoremap V <esc>
+"vnoremap W <esc>
 vnoremap X <esc>
 "vnoremap Y <esc>
 
@@ -2709,6 +2713,11 @@ func! Slctd_str__mv(lr) abort
   endif
 
   call Normal(l:mv_len . 'h')
+endfunc
+
+func! Slctd_str__mv_line_top() abort
+
+  call Normal('gv"ax' . '^'  . '"aP')
 endfunc
 
 func! Slctd_str__mv_line_end() abort

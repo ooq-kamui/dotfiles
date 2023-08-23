@@ -4,6 +4,6 @@ function mb_cnv_num
   set rpl  '0123456789'
 
   cat - |\
-  sed -e "y|$srch|$rpl|"
+  sed_y $srch $rpl
 end
 
