@@ -54,6 +54,8 @@ alias cd_ooq_artcl   "cd ~/dev/ooq-artcl/hugo/content"
 alias cd_holo      "cd ~/doc/hoby/youtube/vtuber/holo/prj"
 alias cd_holo_data "cd ~/doc/hoby/youtube/vtuber/holo/prj/www/song/data"
 
+alias cd_tw "cd ~/doc/tech/brwsr/safari/ext/tw"
+
 alias opn "open"
 alias opn_github_vim  "open https://github.com/ooq-kamui/vimrc"
 alias opn_github_holo "open https://github.com/ooq-kamui/holo-song"
@@ -101,7 +103,7 @@ alias uconv '/opt/homebrew/Cellar/icu4c/73.2/bin/uconv'
 # bind
 # 
 
-bind \cq 'clear; commandline -f repaint'
+bind \c_ 'clear; commandline -f repaint'
 
 # corsor mv char
 bind \cl forward-char
@@ -117,18 +119,17 @@ bind \ck kill-word
 # cmdline
 bind \cc cmdline_pbcopy
 bind \cb cmdline_bracket
-bind \cg cmdline_quote
+#bind \c? cmdline_quote
+bind \cq cmdline_date
 
-bind \c_ cmdline_date
-
-bind \cu fzf-file-widget
+# fzf
 bind \cy fzf-file-widget
-#bind \cy fzf-history-widget
+bind \cu fzf-history-widget
 
 # dmy
 #bind \cr cmdline_date
-bind \ct cmdline_date
-bind \cx cmdline_date
+#bind \ct cmdline_date
+#bind \cx cmdline_date
 
 
 # color

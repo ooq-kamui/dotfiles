@@ -173,7 +173,8 @@ nnoremap :o :Opn
 nnoremap <leader>l :Files <cr>
 
 " opn file hstry ( fzf )
-nnoremap <leader>h :FileHstry<cr>
+nnoremap <leader>u :FileHstry<cr>
+"nnoremap <leader>h :FileHstry<cr>
 
 " 
 " opn etc
@@ -1324,14 +1325,14 @@ cnoremap <kPageUp>   9
 
 nnoremap <leader>c <esc>
 "nnoremap <leader>f <esc>
-"nnoremap <leader>h <esc>
+nnoremap <leader>h <esc>
 "nnoremap <leader>j <esc>
 "nnoremap <leader>l <esc>
 nnoremap <leader>m <esc>
 "nnoremap <leader>n <esc>
 "nnoremap <leader>p <esc>
 nnoremap <leader>r <esc>
-nnoremap <leader>u <esc>
+"nnoremap <leader>u <esc>
 nnoremap <leader>y <esc>
 
 vnoremap <leader>u <esc>
