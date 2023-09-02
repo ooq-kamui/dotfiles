@@ -343,8 +343,8 @@ nnoremap p :call Paste()<cr>
 nnoremap P :call Paste__clipboard()<cr>
 
 " paste rgstr history ( fzf )
-nnoremap <leader>p :RgstrHstry<cr>
-"nnoremap <leader>c :RgstrHstry<cr>
+nnoremap <leader>c :RgstrHstry<cr>
+"nnoremap <leader>p :RgstrHstry<cr>
 
 " 
 " undo, redo
@@ -1323,14 +1323,14 @@ cnoremap <kPageUp>   9
 " leader esc
 " 
 
-nnoremap <leader>c <esc>
+"nnoremap <leader>c <esc>
 "nnoremap <leader>f <esc>
 nnoremap <leader>h <esc>
 "nnoremap <leader>j <esc>
 "nnoremap <leader>l <esc>
 nnoremap <leader>m <esc>
 "nnoremap <leader>n <esc>
-"nnoremap <leader>p <esc>
+nnoremap <leader>p <esc>
 nnoremap <leader>r <esc>
 "nnoremap <leader>u <esc>
 nnoremap <leader>y <esc>
@@ -1514,15 +1514,9 @@ func! Jmplst() abort
 
   let l:jmplst_tmp = getjumplist()[0]
 
-  "let l:buf_num = Buf_num()
-
   let l:buf_num_key_prefix = 'key_'
   let l:jmplst = {}
   for _jmplst_tmp in l:jmplst_tmp
-
-    "if l:_jmplst_tmp['bufnr'] == l:buf_num
-    "  call add(l:jmplst, l:_jmplst_tmp)
-    "endif
 
     let l:_buf_num_key = l:buf_num_key_prefix . l:_jmplst_tmp['bufnr']
 
@@ -2822,6 +2816,12 @@ func! Paste__clipboard() abort
 
   call Ynk__clipboard()
   call Paste()
+endfunc
+
+func! V_paste__clipboard() abort
+
+  call Ynk__clipboard()
+  "call Paste() " todo
 endfunc
 
 " clipboard

@@ -126,10 +126,10 @@ bind \cq cmdline_date
 bind \cy fzf-file-widget
 bind \cu fzf-history-widget
 
-# dmy
-#bind \cr cmdline_date
-#bind \ct cmdline_date
-#bind \cx cmdline_date
+# erase
+bind -e \ct
+bind -e \cr 
+#bind -e \cx 
 
 
 # color
