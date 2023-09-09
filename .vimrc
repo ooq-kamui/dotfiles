@@ -849,8 +849,11 @@ vnoremap c :call V_ynk()<cr>
 
 " paste
 vnoremap <expr> p
-\ mode() == '<c-v>' ? 'I<c-r>0<esc>' :
-\                     '"ad"0P'
+\ mode() == '<c-v>' ? 'I<c-r>0<esc>'        :
+\                     ':call V_paste()<cr>'
+
+" paste clipboard
+vnoremap P :call V_paste__clipboard()<cr>
 
 " paste visual box
 "vnoremap xx I<c-r>0<esc>
@@ -1079,7 +1082,7 @@ vnoremap L <esc>
 "vnoremap M <esc>
 "vnoremap N <esc>
 vnoremap O <esc>
-vnoremap P <esc>
+"vnoremap P <esc>
 "vnoremap Q <esc>
 vnoremap R <esc>
 vnoremap S <esc>
@@ -2812,6 +2815,13 @@ func! Paste() abort
   call Normal('"0P')
 endfunc
 
+func! V_paste() abort
+
+  call Slct_re()
+  call Normal('"ad')
+  call Paste()
+endfunc
+
 func! Paste__clipboard() abort
 
   call Ynk__clipboard()
@@ -2821,7 +2831,7 @@ endfunc
 func! V_paste__clipboard() abort
 
   call Ynk__clipboard()
-  "call Paste() " todo
+  call V_paste()
 endfunc
 
 " clipboard
