@@ -467,8 +467,9 @@ nnoremap ; :call Indnt__crct()<cr>
 " 
 
 " srch hl init
-nnoremap S /<cr>N
-"nnoremap S :call Srch_init()<cr>
+nnoremap H /<cr>N
+"nnoremap S /<cr>N
+"nnoremap xx :call Srch_init()<cr>
 
 " srch char in line - forward
 "nnoremap xx f
@@ -691,7 +692,7 @@ nnoremap D <esc>
 "nnoremap E <esc>
 nnoremap F <esc>
 nnoremap G <esc>
-nnoremap H <esc>
+"nnoremap H <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
@@ -702,7 +703,7 @@ nnoremap H <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
 "nnoremap R <esc>
-"nnoremap S <esc>
+nnoremap S <esc>
 nnoremap T <esc>
 nnoremap U <esc>
 "nnoremap W <esc>
@@ -3390,7 +3391,7 @@ func! I_bracket() abort
 endfunc
 
 func! I_markdown() abort
-  call complete( col('.'), [ '``', '[]()', '---', '```' ])
+  call complete( col('.'), [ '``', '[]()', '```', '---' ])
   return ''
 endfunc
 
