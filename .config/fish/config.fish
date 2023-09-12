@@ -2,6 +2,8 @@
 # source ~/.config/fish/config.fish
 # 
 
+set -U fish_greeting
+
 #set -x LSCOLORS fxgxcxdxexegedabagacad
 set -x LSCOLORS fxgxcxdxxxegedabagacad
 #               ^dir    ^exe
@@ -55,7 +57,9 @@ set   holo_dir     "~/doc/hoby/youtube/vtuber/holo"
 alias cd_holo      "cd $holo_dir/prj/stt"
 alias cd_holo_data "cd $holo_dir/prj/stt/www/song/data"
 
-alias cd_tw "cd ~/doc/tech/brwsr/safari/ext/tw"
+alias cd_tw  "cd ~/doc/tech/brwsr/safari/ext/tw"
+
+alias cd_mdk "cd ~/doc/hoby/medaka"
 
 alias opn "open"
 alias opn_github_vim  "open https://github.com/ooq-kamui/vimrc"
@@ -75,8 +79,11 @@ alias vi_sys      "vi ~/doc/sys/memo.sys.md"
 
 set -x LC_TIME en_US
 
-alias date_y1    "date_y 1"
-alias date_y2    "date_y 2"
+alias da      "date_y 0"
+alias da_y1   "date_y 1"
+alias da_y2   "date_y 2"
+alias date_y1 "date_y 1"
+alias date_y2 "date_y 2"
 
 alias du   "du -h"
 alias du_1 "du -hd1"
@@ -89,7 +96,8 @@ alias trns_e "trans {en=ja}"
 
 alias ba 'pmset -g ps | grep -oE "[0-9]+%"' # battery
 
-alias history_del 'history delete'
+alias his     'history'
+alias his_del 'history delete'
 
 # alias prj
 
@@ -122,6 +130,7 @@ bind \cc cmdline_pbcopy
 bind \cb cmdline_bracket
 #bind \c? cmdline_quote
 bind \cq cmdline_date
+bind \cx cmdline_his_del
 
 # fzf
 bind \cy fzf-file-widget
