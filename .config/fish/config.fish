@@ -33,7 +33,7 @@ alias shutdown_start "sudo shutdown -r now"
 alias src         "source"
 alias src_fsh_cfg "source ~/.config/fish/config.fish"
 
-alias pwd_cp "pwd | pbcopy"
+alias pwd_cp  "pwd | pbcopy"
 
 alias to "touch"
 alias cp "cp -p"

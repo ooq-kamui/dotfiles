@@ -208,10 +208,10 @@ nnoremap go :call Opn_app_by_path()<cr>
 nnoremap gi :call Opn_app_slf()<cr>
 
 " opn brwsr
-"nnoremap xx <plug>(openbrowser-smart-search)
+"nnoremap gx <plug>(openbrowser-smart-search)
 
 " opn markdown preview
-"nnoremap xx :call Markdown_2_html()<cr>
+"nnoremap gx :call Markdown_2_html()<cr>
 
 " 
 " cursor mv
@@ -768,10 +768,13 @@ vnoremap v <c-v>
 "vnoremap xx :Files <cr> " non
 
 " opn brwsr
-"vnoremap gb <plug>(openbrowser-smart-search)
+"vnoremap gx <plug>(openbrowser-smart-search)
 
 " opn app
 vnoremap go :call V_opn_app()<cr>
+
+" opn youtube
+vnoremap gy :call V_opn_yt()<cr>
 
 " 
 " cursor mv
@@ -924,10 +927,10 @@ vnoremap <c-w> :call Slctd_str__mv('h')<cr>
 vnoremap <c-e> :call Slctd_str__mv('l')<cr>
 
 " mv str line top
-vnoremap W :call Slctd_str__mv_line_top()<cr>
+"vnoremap W :call Slctd_str__mv_line_top()<cr>
 
 " mv str line end
-vnoremap E :call Slctd_str__mv_line_end()<cr>
+"vnoremap E :call Slctd_str__mv_line_end()<cr>
 
 " mv line
 "vnoremap J :call V_mv_line('j')<cr>
@@ -982,6 +985,7 @@ vnoremap e :call V_srch_str__slctd_str(v:false)<cr>
 
 " srch str set ( word 1 )
 vnoremap N :call V_srch_str__slctd_str(v:true)<cr>
+vnoremap E :call V_srch_str__slctd_str(v:true)<cr>
 
 " srch rpl one > ynk, nxt
 vnoremap <c-p> :call Slctd_rpl_srch_nxt()<cr>
@@ -1090,7 +1094,7 @@ vnoremap S <esc>
 "vnoremap T <esc>
 "vnoremap U <esc>
 vnoremap V <esc>
-"vnoremap W <esc>
+vnoremap W <esc>
 vnoremap X <esc>
 "vnoremap Y <esc>
 
@@ -1118,6 +1122,7 @@ vnoremap <c-v> <esc>
 vnoremap <c-x> <esc>
 "vnoremap <c-y> <esc>
 
+"vnoremap gb <esc>
 vnoremap gg <esc>
 "vnoremap gh <esc>
 "vnoremap gj <esc>
@@ -1125,6 +1130,7 @@ vnoremap gg <esc>
 "vnoremap go <esc>
 vnoremap gp <esc>
 vnoremap gt <esc>
+"vnoremap gy <esc>
 
 " 
 " mode insert
@@ -3394,6 +3400,21 @@ func! Opn_app_slf() abort
   "echo l:path
 
   call Opn_app(l:path)
+endfunc
+
+func Opn_yt(yt_video_id)
+
+  let l:url = 'https://www.youtube.com/watch?v=' . a:yt_video_id
+  call Opn_app(l:url)
+endfunc
+
+func V_opn_yt()
+  
+  let l:yt_video_id = Slctd_str()
+  
+  let l:yt_video_id = trim(l:yt_video_id)
+  
+  call Opn_yt(l:yt_video_id)
 endfunc
 
 " ins lst
