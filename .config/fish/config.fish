@@ -35,9 +35,12 @@ alias src_fsh_cfg "source ~/.config/fish/config.fish"
 
 alias pwd_cp "pwd | pbcopy"
 
+alias to "touch"
 alias cp "cp -p"
 
 alias cd_dl       "cd ~/Downloads"
+alias cd_iclud    "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
+
 alias cd_fish_fnc "cd ~/doc/tech/github/vimrc/.config/fish/functions"
 alias cd_plist    "cd ~/Library/LaunchAgents"
 
@@ -61,11 +64,6 @@ alias cd_tw  "cd ~/doc/tech/brwsr/safari/ext/tw"
 
 alias cd_mdk "cd ~/doc/hoby/medaka"
 
-alias opn "open"
-alias opn_github_vim  "open https://github.com/ooq-kamui/vimrc"
-alias opn_github_holo "open https://github.com/ooq-kamui/holo-song"
-alias opn_ooq         "open https://ooq.jp/"
-
 alias vim "nvim -p"
 alias vi  "nvim -p"
 
@@ -76,6 +74,11 @@ alias vi_vimrc    "vi ~/.vimrc"
 alias vi_vim_swap "vi ~/.local/share/nvim/swap/"
 
 alias vi_sys      "vi ~/doc/sys/memo.sys.md"
+
+alias opn "open"
+alias opn_github_vim  "open https://github.com/ooq-kamui/vimrc"
+alias opn_github_holo "open https://github.com/ooq-kamui/holo-song"
+alias opn_ooq         "open https://ooq.jp/"
 
 set -x LC_TIME en_US
 

@@ -578,7 +578,7 @@ nnoremap :! :!
 nnoremap :r :InsSysCmd 
 
 " ins sys ls  ( read )
-"nnoremap xx :InsLf 
+"nnoremap xx :Lf 
 
 " 
 " tab
@@ -1632,6 +1632,21 @@ func! Save() abort
   call Exe('w')
 endfunc
 
+command! -nargs=1 Mv call Slf_mv(<q-args>)
+
+func! Slf_mv(file_name_aft) abort
+  
+  let l:dir           = Slf_dir()
+  let l:file_path_bfr = Slf_path()
+  let l:file_path_aft = l:dir . '/' . a:file_name_aft
+
+  let l:cmd = 'file ' . l:file_path_aft
+  call Exe(l:cmd)
+
+  let l:sys_cmd = 'mv ' . l:file_path_bfr . ' ' . l:file_path_aft
+  call Sys_cmd(l:sys_cmd)
+endfunc
+
 func! Rgstr__clr() abort
 
   let @0 = ''
@@ -2233,7 +2248,7 @@ func! V_ins_sys_cmd_by_line_rng(sys_cmd, lineS, lineE) abort " read
   call Exe(l:cmd)
 endfunc
 
-command! -nargs=? -complete=dir InsLf call Ins_lf(<q-args>)
+command! -nargs=? -complete=dir Lf call Ins_lf(<q-args>)
 
 func! Ins_lf(dir) abort
 
@@ -3260,6 +3275,12 @@ func! Slf_path() abort
   
   let l:path = expand('%:p')
   return l:path
+endfunc
+
+func! Slf_dir() abort
+
+  let l:dir = expand('%:p:h')
+  return l:dir
 endfunc
 
 " tmp file
