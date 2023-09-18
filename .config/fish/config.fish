@@ -33,13 +33,15 @@ alias shutdown_start "sudo shutdown -r now"
 alias src         "source"
 alias src_fsh_cfg "source ~/.config/fish/config.fish"
 
+alias fi "fish"
+
 alias pwd_cp  "pwd | pbcopy"
 
 alias to "touch"
 alias cp "cp -p"
 
-alias cd_dl       "cd ~/Downloads"
-alias cd_iclud    "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
+alias cd_dl    "cd ~/Downloads"
+alias cd_ic    "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
 
 alias cd_fish_fnc "cd ~/doc/tech/github/vimrc/.config/fish/functions"
 alias cd_plist    "cd ~/Library/LaunchAgents"
