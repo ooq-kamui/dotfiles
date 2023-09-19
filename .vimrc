@@ -398,8 +398,9 @@ nnoremap * i<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
 nnoremap gs :call Ins_line_slf_path()<cr>
 
 " ins markdown
-nnoremap R     O```<esc>
-nnoremap <c-r> O```<esc>
+nnoremap U O```<esc>
+"nnoremap R     O```<esc>
+"nnoremap <c-r> O```<esc>
 
 " ins markdown itm
 nnoremap <expr> O
@@ -702,10 +703,10 @@ nnoremap G <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
-"nnoremap R <esc>
+nnoremap R <esc>
 nnoremap S <esc>
 nnoremap T <esc>
-nnoremap U <esc>
+"nnoremap U <esc>
 "nnoremap W <esc>
 nnoremap V <esc>
 nnoremap X <esc>
@@ -726,7 +727,7 @@ nnoremap <c-g> <esc>
 "nnoremap <c-o> <esc>
 "nnoremap <c-p> <esc>
 "nnoremap <c-q> <esc>
-"nnoremap <c-r> <esc>
+nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
 nnoremap <c-u> <esc>
