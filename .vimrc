@@ -205,7 +205,8 @@ nnoremap :m :OpnMan
 nnoremap go :call Opn_app_by_path()<cr>
 
 " opn app slf
-nnoremap gi :call Opn_app_slf()<cr>
+nnoremap gs :call Opn_app_slf()<cr>
+"nnoremap gi :call Opn_app_slf()<cr>
 
 " opn brwsr
 "nnoremap gx <plug>(openbrowser-smart-search)
@@ -395,7 +396,8 @@ nnoremap * i<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
 "nnoremap xx i<c-r>=strftime("%H:%M")<cr><esc>
 
 " ins slf path
-nnoremap gs :call Ins_line_slf_path()<cr>
+nnoremap gp :call Ins_line_slf_path()<cr>
+"nnoremap gs :call Ins_line_slf_path()<cr>
 
 " ins markdown
 nnoremap U O```<esc>
@@ -739,17 +741,18 @@ nnoremap <c-z> <esc>
 
 "nnoremap ga <esc>
 nnoremap gb <esc>
+"nnoremap ge <esc>
 "nnoremap gf <esc>
 nnoremap gg <esc>
 "nnoremap gh <esc>
-"nnoremap gi <esc>
+nnoremap gi <esc>
 "nnoremap gj <esc>
 "nnoremap gk <esc>
 nnoremap gl <esc>
 "nnoremap gm <esc>
 nnoremap gn <esc>
 "nnoremap go <esc>
-nnoremap gp <esc>
+"nnoremap gp <esc>
 "nnoremap gs <esc>
 "nnoremap gt <esc>
 "nnoremap gu <esc>
@@ -1126,6 +1129,7 @@ vnoremap <c-x> <esc>
 "vnoremap gb <esc>
 vnoremap gg <esc>
 "vnoremap gh <esc>
+vnoremap gi <esc>
 "vnoremap gj <esc>
 "vnoremap gk <esc>
 "vnoremap go <esc>
@@ -3429,7 +3433,7 @@ func! I_symbol() abort
 endfunc
 
 func! I_bracket() abort
-  call complete( col('.'), [ '()', "''", '[]', '""', '<>', '{}' ])
+  call complete( col('.'), [ '()', "''", '[]', '{}', '""', '<>' ])
   return ''
 endfunc
 
