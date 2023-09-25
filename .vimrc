@@ -123,8 +123,13 @@ set foldmethod=manual
 set shortmess+=I
 "set nrformats+=unsigned " 2022-05-09
 
-packadd Cfilter
+" term
 
+set shell=fish
+autocmd TermOpen * startinsert
+command! -nargs=* Term split | wincmd j | resize 15 | term <args>
+
+packadd Cfilter
 
 " 
 " leader
@@ -596,6 +601,12 @@ nnoremap <s-left>  :tabm-1<cr>
 nnoremap <s-right> :tabm+1<cr>
 
 " 
+" term
+" 
+
+nnoremap :t :Term
+
+" 
 " etc
 " 
 
@@ -757,6 +768,8 @@ nnoremap gn <esc>
 "nnoremap gt <esc>
 "nnoremap gu <esc>
 "nnoremap gv <esc>
+
+" mode normal end
 
 " 
 " mode visual
@@ -1337,6 +1350,11 @@ cnoremap <kRight>    6
 cnoremap <kHome>     7
 cnoremap <kUp>       8
 cnoremap <kPageUp>   9
+
+" 
+" mode term
+" 
+tnoremap <esc> <c-\><c-n>
 
 " 
 " leader esc
