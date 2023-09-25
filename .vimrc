@@ -174,7 +174,6 @@ nnoremap <leader>l :Files <cr>
 
 " opn file hstry ( fzf )
 nnoremap <leader>u :FileHstry<cr>
-"nnoremap <leader>h :FileHstry<cr>
 
 " 
 " opn etc
@@ -235,6 +234,7 @@ nnoremap y :call Cursor__mv_line_top_or_new_line()<cr>
 nnoremap <c-a> 0
 
 " cursor mv line end
+nnoremap <c-e> :call Cursor__mv_line_end()<cr>
 nnoremap <expr> <c-y>
 \ Is_cursor_line_end() ? ':call Ins_markdown_cr()<cr>'       :
 \                        ':call Cursor__mv_line_end()<cr>'
@@ -718,7 +718,7 @@ nnoremap Y <esc>
 nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
-nnoremap <c-e> <esc>
+"nnoremap <c-e> <esc>
 "nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
@@ -770,15 +770,6 @@ vnoremap v <c-v>
 
 " file srch ( fzf )
 "vnoremap xx :Files <cr> " non
-
-" opn brwsr
-"vnoremap gx <plug>(openbrowser-smart-search)
-
-" opn app
-vnoremap go :call V_opn_app()<cr>
-
-" opn youtube
-vnoremap gy :call V_opn_yt()<cr>
 
 " 
 " cursor mv
@@ -1017,12 +1008,24 @@ vnoremap :G "ay:GrepWrd <c-r>a
 " tag jmp
 vnoremap t :call V_tag_jmp()<cr>
 
+" opn .vimrc
+vnoremap gh <esc>:call Opn_vimrc()<cr>
+
+" opn app
+vnoremap go :call V_opn_app()<cr>
+
+" opn youtube video_id
+vnoremap gy :call V_opn_yt()<cr>
+
+" opn ggl search
+vnoremap gs :call V_opn_ggl_srch()<cr>
+
+" opn brwsr
+"vnoremap gx <plug>(openbrowser-smart-search)
+
 " trns
 "vnoremap a  :call V_trns()<cr>
 vnoremap r  :call V_trns()<cr>
-
-" opn .vimrc
-vnoremap gh <esc>:call Opn_vimrc()<cr>
 
 " tst
 "vnoremap T :call Tst()<cr>
@@ -1134,6 +1137,7 @@ vnoremap gi <esc>
 "vnoremap gk <esc>
 "vnoremap go <esc>
 vnoremap gp <esc>
+"vnoremap gs <esc>
 vnoremap gt <esc>
 "vnoremap gy <esc>
 
@@ -3373,7 +3377,7 @@ endfunc
 
 " opn app
 
-func Opn_app(path)
+func! Opn_app(path) abort
   
   let l:path = a:path
   
@@ -3384,7 +3388,7 @@ func Opn_app(path)
   endif
 endfunc
 
-func V_opn_app()
+func! V_opn_app() abort
   
   let l:path = Slctd_str()
   
@@ -3393,7 +3397,7 @@ func V_opn_app()
   call Opn_app(l:path)
 endfunc
 
-func Opn_app_by_path()
+func! Opn_app_by_path() abort
   
   let l:path = Cursor_filepath()
   call Opn_app(l:path)
@@ -3407,19 +3411,30 @@ func! Opn_app_slf() abort
   call Opn_app(l:path)
 endfunc
 
-func Opn_yt(yt_video_id)
+func! Opn_yt(yt_video_id)
 
   let l:url = 'https://www.youtube.com/watch?v=' . a:yt_video_id
   call Opn_app(l:url)
 endfunc
 
-func V_opn_yt()
+func! V_opn_yt() abort
   
   let l:yt_video_id = Slctd_str()
-  
   let l:yt_video_id = trim(l:yt_video_id)
-  
   call Opn_yt(l:yt_video_id)
+endfunc
+
+func! Opn_ggl_srch(word) abort
+
+  let l:url = 'https://www.google.com/search?q=' . a:word
+  call Opn_app(l:url)
+endfunc
+
+func! V_opn_ggl_srch() abort
+
+  let l:word = Slctd_str()
+  let l:word = trim(l:word)
+  call Opn_ggl_srch(l:word)
 endfunc
 
 " ins lst

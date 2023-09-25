@@ -134,6 +134,7 @@ bind \ck kill-word
 bind \cc cmdline_pbcopy
 bind \cb cmdline_bracket
 #bind \c? cmdline_quote
+bind \ct cmdline_date
 bind \cq cmdline_date
 bind \cx cmdline_his_del
 
