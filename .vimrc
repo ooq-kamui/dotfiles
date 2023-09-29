@@ -126,8 +126,8 @@ set shortmess+=I
 " term
 
 set shell=fish
-autocmd TermOpen * startinsert
 command! -nargs=* Term split | wincmd j | resize 15 | term <args>
+"autocmd TermOpen * startinsert
 
 packadd Cfilter
 
@@ -950,7 +950,7 @@ vnoremap - <c-x>
 "vnoremap + g<c-a>
 
 " num seq
-vnoremap Q g<c-a>
+vnoremap S g<c-a>
 
 " indnt shift
 vnoremap # >gv
@@ -1108,9 +1108,9 @@ vnoremap L <esc>
 "vnoremap N <esc>
 vnoremap O <esc>
 "vnoremap P <esc>
-"vnoremap Q <esc>
+vnoremap Q <esc>
 vnoremap R <esc>
-vnoremap S <esc>
+"vnoremap S <esc>
 "vnoremap T <esc>
 "vnoremap U <esc>
 vnoremap V <esc>
@@ -1354,7 +1354,9 @@ cnoremap <kPageUp>   9
 " 
 " mode term
 " 
-tnoremap <esc> <c-\><c-n>
+
+" term > normal
+tnoremap <c-_> <c-\><c-n>
 
 " 
 " leader esc
@@ -1459,7 +1461,32 @@ let g:fzf_colors = {
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
 \   "rg --color=always --line-number --smart-case --no-multiline --no-heading "
-\     ."-- ".shellescape(escape(<q-args>, '().')),
+\   . " -g '*.txt' "               
+\   . " -g '*.md' "                
+\   . " -g '*.lua' "               
+\   . " -g '*.js' "               
+\   . " -g '*.css' "              
+\   . " -g '*.sh' "               
+\   . " -g '*.fish' "             
+\   . " -g '*.tpl' "              
+\   . " -g '*.swp' "              
+\   . " -g '*.font' "             
+\   . " -g '*.script' "           
+\   . " -g '*.gui_script' "       
+\   . " -g '*.tilemap' "          
+\   . " -g '*.tilesource' "       
+\   . " -g '*.atlas' "            
+\   . " -g '*.sprite' "           
+\   . " -g '*.collectionfactory' "
+\   . " -g '*.collection' "       
+\   . " -g '*.factory' "          
+\   . " -g '*.collisionobject' "  
+\   . " -g '*.go' "               
+\   . " -g '*.gui' "              
+\   . " -g '*.label' "            
+\   . " -g '*.sound' "            
+\   . " -g '*.camera' "           
+\   . " -- ".shellescape(escape(<q-args>, '().$')),
 \   0,
 \   fzf#vim#with_preview(
 \     {'options': '--exact --delimiter : --nth 3..'},
@@ -1468,7 +1495,6 @@ command! -bang -nargs=* Rg
 \   ),
 \   <bang>1
 \ )
-"\     -g "*.lua" -g "*.script" -g "*.gui_script" 
 
 " grep buf
 func! N_grep_buf() abort

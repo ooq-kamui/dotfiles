@@ -19,9 +19,21 @@ set -x PATH /opt/homebrew/bin $PATH
 set -x PATH $HOME/.cargo/bin $PATH
 set -x PATH $HOME/.nodebrew/current/bin $PATH
 
+# 
+# ripgrep ( rg )
+# 
+
 set -x RIPGREP_CONFIG_PATH ~/.ripgreprc
 
-set -x FZF_DEFAULT_OPTS '--bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
+# 
+# fzf
+# 
+
+set -x FZF_DEFAULT_COMMAND ( fzf_fd_def )
+set -x FZF_DEFAULT_OPTS    '--bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
+set -x FZF_CTRL_T_COMMAND  ( echo $FZF_DEFAULT_COMMAND )
+#set -x FZF_CTRL_T_OPTS
+#set -x FZF_CTRL_R_OPTS
 
 
 # 
@@ -77,7 +89,7 @@ alias vi_vim_swap "vi ~/.local/share/nvim/swap/"
 
 alias vi_sys      "vi ~/doc/sys/memo.sys.md"
 
-alias opn "open"
+#alias opn "open"
 alias opn_github_vim  "open https://github.com/ooq-kamui/vimrc"
 alias opn_github_holo "open https://github.com/ooq-kamui/holo-song"
 alias opn_ooq         "open https://ooq.jp/"
