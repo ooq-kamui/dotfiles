@@ -197,7 +197,7 @@ nnoremap gt :call Opn_tmp()<cr>
 "nnoremap xx :call Opn_grep_work()<cr>
 
 " opn vim key note
-nnoremap gv :call Opn_vim_key()<cr>
+"nnoremap gv :call Opn_vim_key()<cr>
 
 " opn memo
 nnoremap gm :call Opn_memo()<cr>
@@ -318,14 +318,14 @@ nnoremap i :call Slct_word()<cr>
 " slct char current - word end
 "nnoremap xx ve
 
-" slct box
+" slct visual box
 nnoremap v <c-v>
 
 " slct all
 nnoremap A :call Slct_all()<cr>
 
 " slct re
-"nnoremap xx gv
+nnoremap R :call Slct_re()<cr>
 
 " ynk clr
 nnoremap <c-c> :call Rgstr__clr()<cr>
@@ -406,8 +406,6 @@ nnoremap gp :call Ins_line_slf_path()<cr>
 
 " ins markdown
 nnoremap U O```<esc>
-"nnoremap R     O```<esc>
-"nnoremap <c-r> O```<esc>
 
 " ins markdown itm
 nnoremap <expr> O
@@ -419,7 +417,8 @@ nnoremap <expr> O
 
 " del char
 nnoremap s "ax
-nnoremap x x
+"nnoremap x x
+
 
 " line del
 nnoremap d :call Line__del()<cr>
@@ -551,28 +550,6 @@ nnoremap r :call N_tag_jmp()<cr>
 nnoremap <leader>j :JmplstFzf<cr>
 
 " 
-" mark
-" 
-
-" mark lst ( fzf )
-nnoremap <leader>fl :Mark<cr>
-
-" mark show tgl
-nnoremap <leader>ff :call Mark_show_tgl()<cr>
-
-" mark add / del tgl
-nnoremap <leader>fo :call Mark_tgl()<cr>
-
-" mark del all
-nnoremap <leader>fd :call Mark_del_all()<cr>
-
-" mark, cursor mv mark forward
-nnoremap <leader>fj ]`
-
-" mark, cursor mv mark back
-nnoremap <leader>fk [`
-
-" 
 " cmd
 " 
 
@@ -605,6 +582,28 @@ nnoremap <s-right> :tabm+1<cr>
 " 
 
 nnoremap :t :Term
+
+" 
+" mark
+" 
+
+" mark lst ( fzf )
+nnoremap <leader>fl :Mark<cr>
+
+" mark show tgl
+nnoremap <leader>ff :call Mark_show_tgl()<cr>
+
+" mark add / del tgl
+nnoremap <leader>fo :call Mark_tgl()<cr>
+
+" mark del all
+nnoremap <leader>fd :call Mark_del_all()<cr>
+
+" mark, cursor mv mark forward
+nnoremap <leader>fj ]`
+
+" mark, cursor mv mark back
+nnoremap <leader>fk [`
 
 " 
 " etc
@@ -695,7 +694,7 @@ nnoremap b <esc>
 "nnoremap t <esc>
 "nnoremap u <esc>
 "nnoremap w <esc>
-"nnoremap x <esc>
+nnoremap x <esc>
 "nnoremap y <esc>
 nnoremap z <esc>
 
@@ -716,7 +715,7 @@ nnoremap G <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
-nnoremap R <esc>
+"nnoremap R <esc>
 nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
@@ -767,7 +766,7 @@ nnoremap gn <esc>
 "nnoremap gs <esc>
 "nnoremap gt <esc>
 "nnoremap gu <esc>
-"nnoremap gv <esc>
+nnoremap gv <esc>
 
 " mode normal end
 
@@ -778,7 +777,7 @@ nnoremap gn <esc>
 " mode ch line
 vnoremap i V
 
-" mode ch box
+" mode ch visual box
 vnoremap v <c-v>
 
 " file srch ( fzf )
@@ -849,12 +848,10 @@ vnoremap I     :call Slctd__expnd_bracket_f()<cr>
 
 " slct all
 vnoremap a :call Slct_all()<cr>
-"vnoremap A :call Slct_all()<cr>
 
 " ynk slctd
 vnoremap o :call V_ynk()<cr>
 vnoremap c :call V_ynk()<cr>
-"vnoremap c "0y
 
 " clipboard slctd
 "vnoremap xx "+y
@@ -913,11 +910,13 @@ vnoremap :r :<c-u>SlctdEdgeIns
 vnoremap :b :<c-u>SlctdEdgeIns 
 
 " del str > ynk
-vnoremap d "0d:let @+ = @0<cr>
+vnoremap <expr> d
+\ mode() == '<c-v>' ? '"0d:let @+ = @0<cr>gv' :
+\                     '"0d:let @+ = @0<cr>'
+"vnoremap d "0d:let @+ = @0<cr>
 
 " del str > ynk not
 vnoremap s "ax
-vnoremap x "ax
 
 " del cr
 "vnoremap xx J
@@ -1090,7 +1089,7 @@ vnoremap q <esc>
 "vnoremap u <esc>
 "vnoremap v <esc>
 vnoremap w <esc>
-"vnoremap x <esc>
+vnoremap x <esc>
 "vnoremap y <esc>
 
 vnoremap A <esc>
@@ -1173,7 +1172,9 @@ inoremap <c-e> <c-o>$
 " cursor mv char
 inoremap <c-l> <c-o>l
 inoremap <c-f> <c-o>l
-inoremap <expr> <c-o> pumvisible() ? '<c-y>' : '<c-o>h'
+inoremap <expr> <c-o>
+\ pumvisible() ? '<c-y>'  :
+\                '<c-o>h'
 inoremap <c-s> <c-o>h
 
 " cursor mv word forward
@@ -1311,7 +1312,6 @@ cnoremap <c-e> <c-e>
 
 " cursor mv char
 cnoremap <c-s> <Left>
-"cnoremap <c-b> <Left>
 cnoremap <c-l> <Right>
 
 " cursor mv word
@@ -1338,6 +1338,9 @@ cnoremap <c-v> <c-r>0
 " history
 "cnoremap <c-p> <Up>
 "cnoremap <c-n> <Down>
+
+" cmdline win
+cnoremap <c-_> <c-f>
 
 " numpad shift
 cnoremap <kInsert>   0
@@ -1709,17 +1712,6 @@ endfunc
 func! Rgstr__clr() abort
 
   let @0 = ''
-endfunc
-
-func! Is_mode_vbox() abort " use not, todo mod
-
-  call Slct_re()
-
-  if mode() == '<c-v>'
-    return v:true
-  else
-    return v:false
-  endif
 endfunc
 
 func! Int_2_str(num) abort
@@ -2798,6 +2790,16 @@ func! Slctd_str__mv_line_end() abort
   call Normal('gv"ax' . '$l' . '"aP')
 endfunc
 
+" slctd del
+
+func! V_slctd__del() abort " use not todo mod
+
+  "call Slct_re()
+
+  "call Normal('gv"0d')
+  "let @+ = @0
+endfunc
+
 " slctd ins
 
 func! Slctd_l__ins(c) abort
@@ -2850,6 +2852,15 @@ endfunc
 func! Is_slctd_str_eq_srch_str() abort
 
   if Slctd_str() == @/
+    return v:true
+  else
+    return v:false
+  endif
+endfunc
+
+func! Is_slctd_mode_v() abort " use not
+
+  if mode() == 'v'
     return v:true
   else
     return v:false

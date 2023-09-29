@@ -147,7 +147,7 @@ bind \cc cmdline_pbcopy
 bind \cb cmdline_bracket
 #bind \c? cmdline_quote
 bind \ct cmdline_date
-bind \cq cmdline_date
+#bind \cq cmdline_date
 bind \cx cmdline_his_del
 
 # fzf
@@ -155,8 +155,8 @@ bind \cy fzf-file-widget
 bind \cu fzf-history-widget
 
 # erase
-bind -e \ct
 bind -e \cr 
+#bind -e \ct
 #bind -e \cx 
 
 
