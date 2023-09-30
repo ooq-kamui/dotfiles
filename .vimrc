@@ -849,6 +849,9 @@ vnoremap I     :call Slctd__expnd_bracket_f()<cr>
 " slct all
 vnoremap a :call Slct_all()<cr>
 
+" slct re
+"vnoremap xx :call V_slctd_re()<cr>
+
 " ynk slctd
 vnoremap o :call V_ynk()<cr>
 vnoremap c :call V_ynk()<cr>
@@ -913,7 +916,7 @@ vnoremap :b :<c-u>SlctdEdgeIns
 vnoremap <expr> d
 \ mode() == '<c-v>' ? '"0d:let @+ = @0<cr>gv' :
 \                     '"0d:let @+ = @0<cr>'
-"vnoremap d "0d:let @+ = @0<cr>
+"vnoremap D :call V_slctd__del()<cr>
 
 " del str > ynk not
 vnoremap s "ax
@@ -2637,6 +2640,13 @@ func! Slct_re() abort
   call Normal('gv')
 endfunc
 
+func! V_slctd_re() abort " use not todo dev
+  
+  call Normal('gv')
+  call Normal('"ay')
+  call Normal('gv')
+endfunc
+
 func! Slct_all() abort
 
   call Normal('ggVG')
@@ -2792,9 +2802,9 @@ endfunc
 
 " slctd del
 
-func! V_slctd__del() abort " use not todo mod
+func! V_slctd__del() abort " use not todo dev
 
-  "call Slct_re()
+  call V_slctd_re()
 
   "call Normal('gv"0d')
   "let @+ = @0
