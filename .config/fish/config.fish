@@ -47,7 +47,11 @@ alias src_fsh_cfg "source ~/.config/fish/config.fish"
 
 alias fi "fish"
 
-alias pwd_cp  "pwd | pbcopy"
+alias tmx_init 'fi ~/sh/tmux-win-init.fish'
+alias tmx      'tmux'
+
+alias his     'history'
+alias his_del 'history delete'
 
 alias to "touch"
 alias cp "cp -p"
@@ -111,10 +115,10 @@ alias trns   "trans"
 alias trns_j "trans {ja=en}"
 alias trns_e "trans {en=ja}"
 
-alias ba 'pmset -g ps | grep -oE "[0-9]+%"' # battery
+alias ba 'battery'
+#alias ba 'pmset -g ps | grep -oE "[0-9]+%"' # battery
 
-alias his     'history'
-alias his_del 'history delete'
+alias ca 'cal'
 
 # alias prj
 

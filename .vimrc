@@ -135,7 +135,6 @@ packadd Cfilter
 " leader
 " 
 let mapleader = "\<esc>"
-"let mapleader = "\<space>"
 
 
 " 
@@ -349,8 +348,8 @@ nnoremap p :call Paste()<cr>
 nnoremap P :call Paste__clipboard()<cr>
 
 " paste rgstr history ( fzf )
+nnoremap <leader>p :RgstrHstry<cr>
 nnoremap <leader>c :RgstrHstry<cr>
-"nnoremap <leader>p :RgstrHstry<cr>
 
 " 
 " undo, redo
@@ -1375,7 +1374,7 @@ nnoremap <leader>h <esc>
 "nnoremap <leader>l <esc>
 nnoremap <leader>m <esc>
 "nnoremap <leader>n <esc>
-nnoremap <leader>p <esc>
+"nnoremap <leader>p <esc>
 nnoremap <leader>r <esc>
 "nnoremap <leader>u <esc>
 nnoremap <leader>y <esc>
