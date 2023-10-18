@@ -4,6 +4,7 @@ function fzf_fd_def
   -e txt               \
   -e md                \
   -e lua               \
+  -e html              \
   -e js                \
   -e css               \
   -e sh                \

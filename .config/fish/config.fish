@@ -116,7 +116,6 @@ alias trns_j "trans {ja=en}"
 alias trns_e "trans {en=ja}"
 
 alias ba 'battery'
-#alias ba 'pmset -g ps | grep -oE "[0-9]+%"' # battery
 
 alias ca 'cal'
 

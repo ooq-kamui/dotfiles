@@ -797,7 +797,7 @@ vnoremap <c-s> h
 vnoremap <c-o> h
 
 " cursor mv word - forward
-vnoremap f e
+vnoremap f :call Slctd__expnd_word_f()<cr>
 
 " cursor mv word - back
 "vnoremap xx b
@@ -1466,9 +1466,10 @@ let g:fzf_colors = {
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
 \   "rg --color=always --line-number --smart-case --no-multiline --no-heading "
-\   . " -g '*.txt' "               
-\   . " -g '*.md' "                
-\   . " -g '*.lua' "               
+\   . " -g '*.txt' "              
+\   . " -g '*.md' "               
+\   . " -g '*.lua' "              
+\   . " -g '*.html' "             
 \   . " -g '*.js' "               
 \   . " -g '*.css' "              
 \   . " -g '*.sh' "               
@@ -2775,6 +2776,21 @@ func! Slctd__expnd_bracket_f() abort
 
   let l:len = l:s_col + Slctd_str_len() + l:srch_idx
   call Slct_by_col(l:s_col, l:len)
+endfunc
+
+func! Slctd__expnd_word_f() abort
+
+  let l:slctd_str = Slctd_str()
+  let l:slctd_r_out_char = Slctd_r_out_char()
+
+  call Slct_re()
+
+  if l:slctd_str =~ '\s' && l:slctd_r_out_char =~ '\s'
+
+    call Normal('wh')
+  else
+    call Normal('e')
+  endif
 endfunc
 
 func! Slctd_str__mv(lr) abort
