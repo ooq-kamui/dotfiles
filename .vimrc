@@ -394,7 +394,7 @@ nnoremap . i.<esc>l
 "nnoremap xx i <esc>
 
 " ins date time
-nnoremap * i<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
+nnoremap * :call Ins_ts()<cr>
 
 " ins time
 "nnoremap xx i<c-r>=strftime("%H:%M")<cr><esc>
@@ -2268,6 +2268,12 @@ func! Ins_cr() abort
   
   call Line_end__del_space(l:t_line_num)
   call Normal('j')
+endfunc
+
+func! Ins_ts() abort
+
+  let l:ts = strftime('%Y-%m-%d.%H:%M')
+  call Ins(l:ts)
 endfunc
 
 command! -nargs=* InsSysCmd call Ins_sys_cmd(<q-args>)

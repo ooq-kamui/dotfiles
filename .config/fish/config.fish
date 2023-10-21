@@ -53,11 +53,12 @@ alias tmx      'tmux'
 alias his     'history'
 alias his_del 'history delete'
 
-alias to "touch"
-alias cp "cp -p"
+alias to     'touch'
+alias to_clr ':> '
+alias cp 'cp -p'
 
-alias cd_dl    "cd ~/Downloads"
-alias cd_ic    "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
+alias cd_dl "cd ~/Downloads"
+alias cd_ic "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
 
 alias cd_fish_fnc "cd ~/doc/tech/github/vimrc/.config/fish/functions"
 alias cd_plist    "cd ~/Library/LaunchAgents"
