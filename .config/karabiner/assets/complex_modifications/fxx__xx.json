@@ -11,8 +11,7 @@
           },
           "to": [
             {
-              "modifiers": ["fn"],
-              "key_code": "c"
+              "shell_command": "open -a 'System Settings'"
             }
           ]
         },

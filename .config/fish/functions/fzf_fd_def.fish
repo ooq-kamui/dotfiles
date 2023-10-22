@@ -6,6 +6,7 @@ function fzf_fd_def
   -e lua               \
   -e html              \
   -e js                \
+  -e json              \
   -e css               \
   -e sh                \
   -e fish              \

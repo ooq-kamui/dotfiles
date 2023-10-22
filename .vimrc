@@ -805,7 +805,7 @@ vnoremap f :call Slctd__expnd_word_f()<cr>
 "vnoremap xx Bh
 
 " cursor mv line end
-"vnoremap <c-y> ref vnoremap <expr> <c-y>
+vnoremap <c-y> g_
 
 " cursor mv slctd reduce dlm _ l
 vnoremap _     of_lo
@@ -883,14 +883,13 @@ vnoremap <expr> <space>
 \ mode() == '<c-v>' ? 'I' :
 \                     'c'
 
-
 " cut & ins
 vnoremap <leader><space> "ac
 
-" ins $ | cursor mv in line end
-vnoremap <expr> <c-y>
-\ mode() == '<c-v>' ? '$A' :
-\                     'g_'
+" ins $
+vnoremap <expr> Y
+\ mode() == '<c-v>' ? '$A'      :
+\                     '<c-v>$A'
 
 " ins comment 1
 vnoremap ! :call V_ins_cmnt_1()<cr>
@@ -1471,6 +1470,7 @@ command! -bang -nargs=* Rg
 \   . " -g '*.lua' "              
 \   . " -g '*.html' "             
 \   . " -g '*.js' "               
+\   . " -g '*.json' "               
 \   . " -g '*.css' "              
 \   . " -g '*.sh' "               
 \   . " -g '*.fish' "             
