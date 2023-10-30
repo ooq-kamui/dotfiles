@@ -11,6 +11,7 @@ function fzf_fd_def
   -e sh                \
   -e fish              \
   -e tpl               \
+  -e toml              \
   -e swp               \
   -e font              \
   -e script            \

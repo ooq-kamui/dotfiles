@@ -396,6 +396,10 @@ nnoremap . i.<esc>l
 " ins date time
 nnoremap * :call Ins_ts()<cr>
 
+" ins day of week
+nnoremap ^ :call Ins_week()<cr>
+nnoremap \ :call Ins_week()<cr>
+
 " ins time
 "nnoremap xx i<c-r>=strftime("%H:%M")<cr><esc>
 
@@ -442,8 +446,8 @@ nnoremap <c-m> J
 "nnoremap xx "ayy"aP
 
 " repeat memory
-nnoremap <c-^> qy
-nnoremap ^     @y
+"nnoremap xx qy
+"nnoremap xx @y
 
 " num inc, dec
 nnoremap + <c-a>
@@ -473,8 +477,8 @@ nnoremap ; :call Indnt__crct()<cr>
 " 
 
 " srch hl init
+nnoremap Y /<cr>N
 nnoremap H /<cr>N
-"nnoremap S /<cr>N
 "nnoremap xx :call Srch_init()<cr>
 
 " srch char in line - forward
@@ -647,6 +651,7 @@ nnoremap @ <esc>
 nnoremap ~ <esc>
 "nnoremap ^ <esc>
 nnoremap / <esc>
+"nnoremap \ <esc>
 nnoremap ? <esc>
 
 "nnoremap ! <esc>
@@ -721,7 +726,7 @@ nnoremap T <esc>
 "nnoremap W <esc>
 nnoremap V <esc>
 nnoremap X <esc>
-nnoremap Y <esc>
+"nnoremap Y <esc>
 
 "nnoremap <c-a> <esc>
 nnoremap <c-b> <esc>
@@ -1216,6 +1221,10 @@ inoremap <c-q> <c-r>=I_symbol()<cr>
 inoremap <c-u> <c-r>=I_markdown()<cr>
 
 " ins num
+inoremap <c-r> <c-r>=I_week()<cr>
+inoremap <c-^> <c-r>=I_week()<cr>
+
+" ins num
 "inoremap xx <c-r>=I_num()<cr>
 
 " ins register
@@ -1283,6 +1292,10 @@ inoremap <kPageUp>   9
 inoremap <s-tab> <nop>
 
 inoremap <c-_> <nop>
+"inoremap <c-^> <nop>
+inoremap <c-\> <nop>
+inoremap <c-,> <nop>
+inoremap <c-.> <nop>
 "inoremap <c-:> <nop> " non
 "inoremap <c-;> <nop>
 
@@ -1292,7 +1305,7 @@ inoremap <c-b> <nop>
 "inoremap <c-n> <nop>
 "inoremap <c-p> <nop>
 "inoremap <c-q> <nop>
-inoremap <c-r> <nop>
+"inoremap <c-r> <nop>
 "inoremap <c-s> <nop>
 "inoremap <c-t> <nop>
 "inoremap <c-u> <nop>
@@ -1465,33 +1478,34 @@ let g:fzf_colors = {
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
 \   "rg --color=always --line-number --smart-case --no-multiline --no-heading "
-\   . " -g '*.txt' "              
-\   . " -g '*.md' "               
-\   . " -g '*.lua' "              
-\   . " -g '*.html' "             
-\   . " -g '*.js' "               
-\   . " -g '*.json' "               
-\   . " -g '*.css' "              
-\   . " -g '*.sh' "               
-\   . " -g '*.fish' "             
-\   . " -g '*.tpl' "              
-\   . " -g '*.swp' "              
-\   . " -g '*.font' "             
-\   . " -g '*.script' "           
-\   . " -g '*.gui_script' "       
-\   . " -g '*.tilemap' "          
-\   . " -g '*.tilesource' "       
-\   . " -g '*.atlas' "            
-\   . " -g '*.sprite' "           
+\   . " -g '*.txt' "
+\   . " -g '*.md' "
+\   . " -g '*.lua' "
+\   . " -g '*.html' "
+\   . " -g '*.js' "
+\   . " -g '*.json' "
+\   . " -g '*.css' "
+\   . " -g '*.sh' "
+\   . " -g '*.fish' "
+\   . " -g '*.tpl' "
+\   . " -g '*.toml' "
+\   . " -g '*.swp' "
+\   . " -g '*.font' "
+\   . " -g '*.script' "
+\   . " -g '*.gui_script' "
+\   . " -g '*.tilemap' "
+\   . " -g '*.tilesource' "
+\   . " -g '*.atlas' "
+\   . " -g '*.sprite' "
 \   . " -g '*.collectionfactory' "
-\   . " -g '*.collection' "       
-\   . " -g '*.factory' "          
-\   . " -g '*.collisionobject' "  
-\   . " -g '*.go' "               
-\   . " -g '*.gui' "              
-\   . " -g '*.label' "            
-\   . " -g '*.sound' "            
-\   . " -g '*.camera' "           
+\   . " -g '*.collection' "
+\   . " -g '*.factory' "
+\   . " -g '*.collisionobject' "
+\   . " -g '*.go' "
+\   . " -g '*.gui' "
+\   . " -g '*.label' "
+\   . " -g '*.sound' "
+\   . " -g '*.camera' "
 \   . " -- ".shellescape(escape(<q-args>, '().$')),
 \   0,
 \   fzf#vim#with_preview(
@@ -1746,7 +1760,6 @@ func! N_char__tgl() abort
   let l:c   = Cursor_c_char()
   let l:rpl = Char__tgl1(l:c)
 
-  "if l:rpl == ''
   if Is_str_emp(l:rpl)
     call Normal('v~')
     return
@@ -1760,7 +1773,6 @@ func! N_char__tgl2() abort " use not
   let l:c   = Cursor_c_char()
   let l:rpl = Char__tgl_trn(l:c)
 
-  "if l:rpl == ''
   if Is_str_emp(l:rpl)
     call Normal('v~')
     return
@@ -1829,12 +1841,12 @@ func! Char__tgl_etc(c) abort
   elseif a:c == '|'
     let l:rpl = '/'
 
-  elseif a:c == "'"
-    let l:rpl = '"'
   elseif a:c == '"'
+    let l:rpl = "'"
+  elseif a:c == "'"
     let l:rpl = '`'
   elseif a:c == "`"
-    let l:rpl = "'"
+    let l:rpl = '"'
 
   elseif a:c == '*'
     let l:rpl = '+'
@@ -2276,6 +2288,16 @@ func! Ins_ts() abort
   call Ins(l:ts)
 endfunc
 
+func! Ins_week() abort
+
+  let l:week_def = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ]
+
+  let l:week_num = strftime('%w')
+  let l:week     = l:week_def[l:week_num]
+
+  call Ins(' ' . l:week)
+endfunc
+
 command! -nargs=* InsSysCmd call Ins_sys_cmd(<q-args>)
 
 func! Ins_sys_cmd(sys_cmd) abort " read
@@ -2666,8 +2688,6 @@ func! Slctd_str() abort
 
   call Normal('gv"ay')
   return @a
-  
-  " return @* " ??
 endfunc
 
 func! Slctd_str_len() abort
@@ -3542,6 +3562,12 @@ endfunc
 
 func! I_markdown() abort
   call complete( col('.'), [ '``', '[]()', '```', '---' ])
+  return ''
+endfunc
+
+func! I_week() abort
+  let l:week_def = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ]
+  call complete(col('.'), l:week_def)
   return ''
 endfunc
 
