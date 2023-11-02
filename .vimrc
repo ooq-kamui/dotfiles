@@ -478,7 +478,6 @@ nnoremap ; :call Indnt__crct()<cr>
 
 " srch hl init
 nnoremap Y /<cr>N
-nnoremap H /<cr>N
 "nnoremap xx :call Srch_init()<cr>
 
 " srch char in line - forward
@@ -709,7 +708,7 @@ nnoremap D <esc>
 "nnoremap E <esc>
 nnoremap F <esc>
 nnoremap G <esc>
-"nnoremap H <esc>
+nnoremap H <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
@@ -1711,15 +1710,24 @@ func! Save() abort
   call Exe('w')
 endfunc
 
-command! -nargs=1 Mv call Slf_mv(<q-args>)
+command! -nargs=0 Dpl call Slf__dpl()
 
-func! Slf_mv(file_name_aft) abort
+func! Slf__dpl() abort
   
-  let l:dir           = Slf_dir()
+  let l:sys_cmd = 'dpl ' . Slf_path()
+  call Sys_cmd(l:sys_cmd)
+endfunc
+
+command! -nargs=1 Mv call Slf__mv(<q-args>)
+
+func! Slf__mv(file_name_aft) abort
+  
   let l:file_path_bfr = Slf_path()
+
+  let l:dir           = Slf_dir()
   let l:file_path_aft = l:dir . '/' . a:file_name_aft
 
-  let l:cmd = 'file ' . l:file_path_aft
+  let l:cmd = 'file ' . l:file_path_aft " save file_path ch
   call Exe(l:cmd)
 
   let l:sys_cmd = 'mv ' . l:file_path_bfr . ' ' . l:file_path_aft
