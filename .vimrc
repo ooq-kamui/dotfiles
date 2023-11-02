@@ -1690,8 +1690,10 @@ endfunc
 
 func! Sys_cmd(sys_cmd) abort
 
-  let l:cmd = '! ' . a:sys_cmd
-  call Exe(l:cmd)
+  return system(a:sys_cmd)
+
+  "let l:cmd = '! ' . a:sys_cmd
+  "call Exe(l:cmd)
 endfunc
 
 func! Col() abort " crnt
@@ -1724,14 +1726,14 @@ func! Slf__mv(file_name_aft) abort
   
   let l:file_path_bfr = Slf_path()
 
-  let l:dir           = Slf_dir()
-  let l:file_path_aft = l:dir . '/' . a:file_name_aft
-
-  let l:cmd = 'file ' . l:file_path_aft " save file_path ch
-  call Exe(l:cmd)
+  let l:sys_cmd = 'str_mv_f ' . l:file_path_bfr . ' ' . a:file_name_aft
+  let l:file_path_aft = Sys_cmd(l:sys_cmd)
 
   let l:sys_cmd = 'mv ' . l:file_path_bfr . ' ' . l:file_path_aft
   call Sys_cmd(l:sys_cmd)
+
+  let l:cmd = 'file ' . l:file_path_aft " save file_path ch
+  call Exe(l:cmd)
 endfunc
 
 func! Rgstr__clr() abort
