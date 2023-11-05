@@ -123,6 +123,8 @@ set foldmethod=manual
 set shortmess+=I
 "set nrformats+=unsigned " 2022-05-09
 
+set noswapfile
+
 " term
 
 set shell=fish
@@ -209,7 +211,6 @@ nnoremap go :call Opn_app_by_path()<cr>
 
 " opn app slf
 nnoremap gs :call Opn_app_slf()<cr>
-"nnoremap gi :call Opn_app_slf()<cr>
 
 " opn brwsr
 "nnoremap gx <plug>(openbrowser-smart-search)
@@ -391,13 +392,12 @@ nnoremap < A,<esc>j
 nnoremap . i.<esc>l
 
 " ins space
-"nnoremap xx i <esc>
+nnoremap @ i <esc>l
 
 " ins date time
 nnoremap * :call Ins_ts()<cr>
 
 " ins day of week
-nnoremap ^ :call Ins_week()<cr>
 nnoremap \ :call Ins_week()<cr>
 
 " ins time
@@ -405,7 +405,6 @@ nnoremap \ :call Ins_week()<cr>
 
 " ins slf path
 nnoremap gp :call Ins_line_slf_path()<cr>
-"nnoremap gs :call Ins_line_slf_path()<cr>
 
 " ins markdown
 nnoremap U O```<esc>
@@ -419,9 +418,8 @@ nnoremap <expr> O
 "nnoremap xx :call Char__tgl_markdown_chk()<cr>
 
 " del char
-nnoremap s "ax
-"nnoremap x x
-
+nnoremap s "zx
+"nnoremap s "ax
 
 " line del
 nnoremap d :call Line__del()<cr>
@@ -433,6 +431,8 @@ nnoremap <c-d> D
 "nnoremap xx hvbd
 
 " word forward del
+"nnoremap <expr> xx Is_cursor_line_end() ? '<esc>' : '"zdw'
+"nnoremap <expr> xx Is_cursor_line_end() ? '<esc>' : '"zde'
 "nnoremap <expr> xx Is_cursor_line_end() ? '<esc>' : '"adw'
 "nnoremap <expr> xx Is_cursor_line_end() ? '<esc>' : '"ade'
 
@@ -443,6 +443,7 @@ nnoremap <c-m> J
 "nnoremap xx "0ddk"0P
 
 " line dpl
+"nnoremap xx "zyy"zP
 "nnoremap xx "ayy"aP
 
 " repeat memory
@@ -637,18 +638,19 @@ nnoremap <kPageUp>   9
 " 
 nnoremap <esc>   <esc>
 "nnoremap <space> <esc>
+nnoremap <s-space> <esc>
 "nnoremap <cr>    <esc>
 nnoremap <bs>    <esc>
 
 nnoremap = <esc>
-nnoremap @ <esc>
+"nnoremap @ <esc>
 "nnoremap ; <esc>
 "nnoremap , <esc>
 "nnoremap . <esc>
 "nnoremap * <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
-"nnoremap ^ <esc>
+nnoremap ^ <esc>
 nnoremap / <esc>
 "nnoremap \ <esc>
 nnoremap ? <esc>
@@ -888,7 +890,8 @@ vnoremap <expr> <space>
 \                     'c'
 
 " cut & ins
-vnoremap <leader><space> "ac
+"vnoremap <leader><space> "zc
+"vnoremap <leader><space> "ac
 
 " ins $
 vnoremap <expr> Y
@@ -903,8 +906,10 @@ vnoremap & :call V_ins_cmnt_mlt()<cr>
 "vnoremap $ :call V_ins_cmnt_mlt()<cr>
 
 " ins date time
-"vnoremap * c<c-r>=strftime("%Y-%m-%d.%H:%M")<cr><esc>
 vnoremap * c<c-r>=strftime('%Y-%m-%d.%H:%M')<cr><esc>
+
+" ins day of week
+vnoremap \ x:call Ins_week()<cr>
 
 " ins time
 "vnoremap xx c<c-r>=strftime("%H:%M")<cr><esc>
@@ -921,7 +926,8 @@ vnoremap <expr> d
 vnoremap R :call V_slctd__del()<cr>
 
 " del str > ynk not
-vnoremap s "ax
+vnoremap s "zx
+"vnoremap s "ax
 
 " del cr
 "vnoremap xx J
@@ -983,7 +989,8 @@ vnoremap <c-u> ugv
 " 
 
 " srch cmd
-vnoremap <leader>i "ay/<c-r>a
+vnoremap <leader>i "zy/<c-r>z
+"vnoremap <leader>i "ay/<c-r>a
 
 " srch forward ( srch rpl skip )
 vnoremap <c-n> :call V_srch_slct('f')<cr>
@@ -1013,14 +1020,18 @@ vnoremap :s :s//<c-r>0/gc
 vnoremap <leader>k :call V_grep_buf()<cr>
 
 " grep ( fzf )
-vnoremap <leader>o "ay:Rg <c-r>a<cr>
+vnoremap <leader>o "zy:Rg <c-r>z<cr>
+"vnoremap <leader>o "ay:Rg <c-r>a<cr>
 
 " grep func define ( fzf )
+"vnoremap <leader>xx "zy:Rg <c-r>z<cr>func
 "vnoremap <leader>xx "ay:Rg <c-r>a<cr>func
 
 " grep [rg]   ( read )
-vnoremap :g "ay:GrepStr <c-r>a
-vnoremap :G "ay:GrepWrd <c-r>a
+vnoremap :g "zy:GrepStr <c-r>z
+vnoremap :G "zy:GrepWrd <c-r>z
+"vnoremap :g "ay:GrepStr <c-r>a
+"vnoremap :G "ay:GrepWrd <c-r>a
 
 " tag jmp
 vnoremap t :call V_tag_jmp()<cr>
@@ -1058,6 +1069,7 @@ vnoremap r  :call V_trns()<cr>
 vnoremap @ <esc>
 "vnoremap * <esc>
 vnoremap / <esc>
+"vnoremap \ <esc>
 "vnoremap ! <esc>
 "vnoremap " <esc>
 "vnoremap # <esc>
@@ -1221,7 +1233,6 @@ inoremap <c-u> <c-r>=I_markdown()<cr>
 
 " ins num
 inoremap <c-r> <c-r>=I_week()<cr>
-inoremap <c-^> <c-r>=I_week()<cr>
 
 " ins num
 "inoremap xx <c-r>=I_num()<cr>
@@ -1291,7 +1302,7 @@ inoremap <kPageUp>   9
 inoremap <s-tab> <nop>
 
 inoremap <c-_> <nop>
-"inoremap <c-^> <nop>
+inoremap <c-^> <nop>
 inoremap <c-\> <nop>
 inoremap <c-,> <nop>
 inoremap <c-.> <nop>
@@ -1328,15 +1339,15 @@ cnoremap <c-s> <Left>
 cnoremap <c-l> <Right>
 
 " cursor mv word
-cnoremap <c-o> <S-Left>
-cnoremap <c-f> <S-Right>
+cnoremap <c-o> <s-left>
+cnoremap <c-f> <s-right>
 
 " del char
 cnoremap <c-h> <bs>
 cnoremap <c-d> <del>
 
 " del word forward
-"cnoremap ?? non ? idea <S-Right><c-w>
+"cnoremap ?? non ? idea <s-right><c-w>
 cnoremap <c-k> <del>
 
 " del word back
@@ -1524,7 +1535,8 @@ endfunc
 func! V_grep_buf() abort
 
   call V_srch_str__slctd_str(v:false)
-  exe 'BLines ' . escape(@a, '.*~')
+  exe 'BLines ' . escape(@z, '.*~')
+  "exe 'BLines ' . escape(@a, '.*~')
 endfunc
 
 command! -bang -nargs=? BLines
@@ -1654,6 +1666,7 @@ command! -bang -nargs=* Mark
 " ctags ( fzf )
 
 "nnoremap xx :Tags <c-r><c-w><cr>
+"vnoremap xx "zy:Tags <c-r>z<cr>
 "vnoremap xx "ay:Tags <c-r>a<cr>
 command! -bang -nargs=? Tags
 \ call fzf#vim#tags(<q-args>, <bang>1)
@@ -2305,7 +2318,8 @@ func! Ins_week() abort
   let l:week_num = strftime('%w')
   let l:week     = l:week_def[l:week_num]
 
-  call Ins(' ' . l:week)
+  call Ins(l:week)
+  "call Ins(' ' . l:week)
 endfunc
 
 command! -nargs=* InsSysCmd call Ins_sys_cmd(<q-args>)
@@ -2469,7 +2483,8 @@ endfunc
 func! Line__del() abort
   
   if Is_line_space()
-    call Normal('"add')
+    call Normal('"zdd')
+    "call Normal('"add')
   else
     call Normal('"0dd')
     call Clipboard__ynk()
@@ -2498,9 +2513,11 @@ func! V_mv_line(ud) range abort
   let l:line_num = l:mv_num + 1
 
   call Normal(a:firstline . 'G')
-  call Normal(l:line_num . '"add')
+  call Normal(l:line_num . '"zdd')
+  "call Normal(l:line_num . '"add')
   call Normal(a:ud)
-  call Normal('"aP')
+  call Normal('"zP')
+  "call Normal('"aP')
   call Normal('V')
 
   if l:mv_num >= 1
@@ -2681,7 +2698,8 @@ endfunc
 func! V_slctd_re() abort " use not todo dev
   
   call Normal('gv')
-  call Normal('"ay')
+  call Normal('"zy')
+  "call Normal('"ay')
   call Normal('gv')
 
   "noautocmd normal! "zygv
@@ -2696,8 +2714,10 @@ endfunc
 
 func! Slctd_str() abort
 
-  call Normal('gv"ay')
-  return @a
+  call Normal('gv"zy')
+  return @z
+  "call Normal('gv"ay')
+  "return @a
 endfunc
 
 func! Slctd_str_len() abort
@@ -2831,11 +2851,13 @@ endfunc
 
 func! Slctd_str__mv(lr) abort
 
-  call Normal('gv"ax' . a:lr . '"aP')
+  call Normal('gv"zx' . a:lr . '"zP')
+  "call Normal('gv"ax' . a:lr . '"aP')
 
   call Normal('v')
 
-  let l:mv_len = Str_len(@a) - 1
+  let l:mv_len = Str_len(@z) - 1
+  "let l:mv_len = Str_len(@a) - 1
   if l:mv_len <= 0
     return
   endif
@@ -2845,12 +2867,14 @@ endfunc
 
 func! Slctd_str__mv_line_top() abort
 
-  call Normal('gv"ax' . '^'  . '"aP')
+  call Normal('gv"zx' . '^'  . '"zP')
+  "call Normal('gv"ax' . '^'  . '"aP')
 endfunc
 
 func! Slctd_str__mv_line_end() abort
 
-  call Normal('gv"ax' . '$l' . '"aP')
+  call Normal('gv"zx' . '$l' . '"zP')
+  "call Normal('gv"ax' . '$l' . '"aP')
 endfunc
 
 " slctd del
@@ -2907,7 +2931,8 @@ endfunc
 func! Slctd_rpl_srch_nxt() abort " dir forward only
   
   call Slct_re()
-  call Normal('"ad"0Plgn')
+  call Normal('"zd"0Plgn')
+  "call Normal('"ad"0Plgn')
 endfunc
 
 " slctd cnd
@@ -2967,7 +2992,8 @@ endfunc
 func! V_paste() abort
 
   call Slct_re()
-  call Normal('"ad')
+  call Normal('"zd')
+  "call Normal('"ad')
   call Paste()
 endfunc
 
@@ -3045,6 +3071,10 @@ func! V_srch_str__slctd_str(word1) abort
 endfunc
 
 func! N_srch_str__prv() abort
+
+  if ! exists('g:srch_prv1')
+    return
+  endif
 
   let l:tmp = @/
   
