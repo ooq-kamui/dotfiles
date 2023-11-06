@@ -392,7 +392,9 @@ nnoremap < A,<esc>j
 nnoremap . i.<esc>l
 
 " ins space
-nnoremap @ i <esc>l
+nnoremap M :call Ins_space()<cr>
+"nnoremap M i <esc>l
+"nnoremap @ i <esc>l
 
 " ins date time
 nnoremap * :call Ins_ts()<cr>
@@ -479,7 +481,7 @@ nnoremap ; :call Indnt__crct()<cr>
 
 " srch hl init
 nnoremap Y /<cr>N
-"nnoremap xx :call Srch_init()<cr>
+"nnoremap Y :call Srch_init()<cr>
 
 " srch char in line - forward
 "nnoremap xx f
@@ -497,7 +499,8 @@ nnoremap n     :call Srch('f')<cr>
 nnoremap <c-n> :call Srch('b')<cr>
 
 " srch, cursor mv nxt char
-nnoremap M :call Srch_7_cursor__mv_nxt('f')<cr>
+nnoremap @ :call Srch_7_cursor__mv_nxt('f')<cr>
+"nnoremap M :call Srch_7_cursor__mv_nxt('f')<cr>
 
 " srch str set
 nnoremap e :call N_srch_str__(v:false)<cr>
@@ -509,7 +512,9 @@ nnoremap E :call N_srch_str__(v:true)<cr>
 nnoremap <c-f> :call Srch_char_bracket('f')<cr>
 
 " srch str history ( fzf )
-nnoremap <leader>n :SrchHstry<cr>
+nnoremap <leader>f :SrchHstry<cr>
+nnoremap F         :SrchHstry<cr>
+"nnoremap <leader>n :SrchHstry<cr>
 
 " srch str set prv ( tgl )
 nnoremap N :call N_srch_str__prv()<cr>
@@ -591,22 +596,22 @@ nnoremap :t :Term
 " 
 
 " mark lst ( fzf )
-nnoremap <leader>fl :Mark<cr>
+nnoremap <leader>rl :Mark<cr>
 
 " mark show tgl
-nnoremap <leader>ff :call Mark_show_tgl()<cr>
+nnoremap <leader>rf :call Mark_show_tgl()<cr>
 
 " mark add / del tgl
-nnoremap <leader>fo :call Mark_tgl()<cr>
+nnoremap <leader>ro :call Mark_tgl()<cr>
 
 " mark del all
-nnoremap <leader>fd :call Mark_del_all()<cr>
+nnoremap <leader>rd :call Mark_del_all()<cr>
 
 " mark, cursor mv mark forward
-nnoremap <leader>fj ]`
+nnoremap <leader>rj ]`
 
 " mark, cursor mv mark back
-nnoremap <leader>fk [`
+nnoremap <leader>rk [`
 
 " 
 " etc
@@ -708,7 +713,7 @@ nnoremap B <esc>
 "nnoremap C <esc>
 nnoremap D <esc>
 "nnoremap E <esc>
-nnoremap F <esc>
+"nnoremap F <esc>
 nnoremap G <esc>
 nnoremap H <esc>
 "nnoremap I <esc>
@@ -1052,7 +1057,6 @@ vnoremap gs :call V_opn_ggl_srch()<cr>
 "vnoremap gx <plug>(openbrowser-smart-search)
 
 " trns
-"vnoremap a  :call V_trns()<cr>
 vnoremap r  :call V_trns()<cr>
 
 " tst
@@ -1395,7 +1399,7 @@ nnoremap <leader>h <esc>
 "nnoremap <leader>j <esc>
 "nnoremap <leader>l <esc>
 nnoremap <leader>m <esc>
-"nnoremap <leader>n <esc>
+nnoremap <leader>n <esc>
 "nnoremap <leader>p <esc>
 nnoremap <leader>r <esc>
 "nnoremap <leader>u <esc>
@@ -2303,6 +2307,12 @@ func! Ins_cr() abort
   
   call Line_end__del_space(l:t_line_num)
   call Normal('j')
+endfunc
+
+func! Ins_space() abort
+
+  call Normal('i ')
+  call Normal('l')
 endfunc
 
 func! Ins_ts() abort
@@ -3787,7 +3797,8 @@ func! V_trns() range abort
 
   let l:str = escape(l:str, "'")
   let l:sys_cmd = 'trns -no-ansi ' . l:lang . "'" . l:str . "'"
-  call Sys_cmd(l:sys_cmd)
+  let l:rslt = Sys_cmd(l:sys_cmd)
+  echo l:rslt
 endfunc
 
 func! Hl_grp() abort
