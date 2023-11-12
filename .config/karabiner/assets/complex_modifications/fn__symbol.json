@@ -100,6 +100,19 @@
           "to": [
             { "key_code": "open_bracket" }
           ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "q",
+            "modifiers": {
+              "mandatory": [ "fn" ],
+              "optional": [ "any" ]
+            }
+          },
+          "to": [
+            { "key_code": "equal_sign" }
+          ]
         }
       ]
     }

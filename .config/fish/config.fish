@@ -83,6 +83,8 @@ alias cd_tw  "cd ~/doc/tech/brwsr/safari/ext/tw"
 
 alias cd_mdk "cd ~/doc/hoby/medaka"
 
+alias k 'z'
+
 alias vim "nvim -p"
 alias vi  "nvim -p"
 
@@ -124,7 +126,7 @@ alias ca 'cal'
 
 alias ooq_artcl_build_rsync 'fish ~/dev/ooq-artcl/sh/build.rsync.fish'
 
-# alias path
+# alias cmd path
 
 alias uconv '/opt/homebrew/Cellar/icu4c/73.2/bin/uconv'
 

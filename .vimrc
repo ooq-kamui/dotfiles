@@ -180,6 +180,7 @@ nnoremap <leader>l :Files <cr>
 
 " opn file hstry ( fzf )
 nnoremap <leader>u :FileHstry<cr>
+nnoremap <leader>m :FileHstry<cr>
 
 " 
 " opn etc
@@ -272,14 +273,15 @@ nnoremap <c-_> hT_
 nnoremap <c-l> %
 
 " cursor mv bracket out back
-nnoremap L [{
+nnoremap M [{
+"nnoremap L [{
 
 " cursor mv bracket fnc back
 "nnoremap xx [m
 
 " cursor mv edited ( jmp list )
-nnoremap q     <c-o>
-nnoremap <c-q> <c-i>
+"nnoremap q     <c-o>
+"nnoremap <c-q> <c-i>
 
 " cursor mv file back    ( file begin )
 nnoremap gk gg0
@@ -325,7 +327,7 @@ nnoremap v <c-v>
 nnoremap A :call Slct_all()<cr>
 
 " slct re
-nnoremap R :call Slct_re()<cr>
+"nnoremap xx :call Slct_re()<cr>
 
 " ynk clr
 nnoremap <c-c> :call Rgstr__clr()<cr>
@@ -392,9 +394,8 @@ nnoremap < A,<esc>j
 nnoremap . i.<esc>l
 
 " ins space
-nnoremap M :call Ins_space()<cr>
-"nnoremap M i <esc>l
-"nnoremap @ i <esc>l
+nnoremap L :call Ins_space()<cr>
+"nnoremap M :call Ins_space()<cr>
 
 " ins date time
 nnoremap * :call Ins_ts()<cr>
@@ -500,7 +501,6 @@ nnoremap <c-n> :call Srch('b')<cr>
 
 " srch, cursor mv nxt char
 nnoremap @ :call Srch_7_cursor__mv_nxt('f')<cr>
-"nnoremap M :call Srch_7_cursor__mv_nxt('f')<cr>
 
 " srch str set
 nnoremap e :call N_srch_str__(v:false)<cr>
@@ -513,8 +513,6 @@ nnoremap <c-f> :call Srch_char_bracket('f')<cr>
 
 " srch str history ( fzf )
 nnoremap <leader>f :SrchHstry<cr>
-nnoremap F         :SrchHstry<cr>
-"nnoremap <leader>n :SrchHstry<cr>
 
 " srch str set prv ( tgl )
 nnoremap N :call N_srch_str__prv()<cr>
@@ -589,7 +587,7 @@ nnoremap <s-right> :tabm+1<cr>
 " term
 " 
 
-nnoremap :t :Term
+nnoremap :t :Term 
 
 " 
 " mark
@@ -698,7 +696,7 @@ nnoremap b <esc>
 "nnoremap m <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
-"nnoremap q <esc>
+nnoremap q <esc>
 "nnoremap r <esc>
 "nnoremap s <esc>
 "nnoremap t <esc>
@@ -713,7 +711,7 @@ nnoremap B <esc>
 "nnoremap C <esc>
 nnoremap D <esc>
 "nnoremap E <esc>
-"nnoremap F <esc>
+nnoremap F <esc>
 nnoremap G <esc>
 nnoremap H <esc>
 "nnoremap I <esc>
@@ -725,7 +723,7 @@ nnoremap H <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
-"nnoremap R <esc>
+nnoremap R <esc>
 nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
@@ -748,7 +746,7 @@ nnoremap <c-g> <esc>
 "nnoremap <c-n> <esc>
 "nnoremap <c-o> <esc>
 "nnoremap <c-p> <esc>
-"nnoremap <c-q> <esc>
+nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
@@ -835,7 +833,7 @@ vnoremap <c-k> 10k
 vnoremap <c-l> %
 
 " cursor mv bracket out back
-vnoremap L [{
+"vnoremap xx [{
 
 " cursor mv bracket fnc back
 "vnoremap xx [m
@@ -1398,7 +1396,7 @@ tnoremap <c-_> <c-\><c-n>
 nnoremap <leader>h <esc>
 "nnoremap <leader>j <esc>
 "nnoremap <leader>l <esc>
-nnoremap <leader>m <esc>
+"nnoremap <leader>m <esc>
 nnoremap <leader>n <esc>
 "nnoremap <leader>p <esc>
 nnoremap <leader>r <esc>
