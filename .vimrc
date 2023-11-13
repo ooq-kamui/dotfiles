@@ -273,8 +273,8 @@ nnoremap <c-_> hT_
 nnoremap <c-l> %
 
 " cursor mv bracket out back
+nnoremap R [{
 nnoremap M [{
-"nnoremap L [{
 
 " cursor mv bracket fnc back
 "nnoremap xx [m
@@ -395,7 +395,6 @@ nnoremap . i.<esc>l
 
 " ins space
 nnoremap L :call Ins_space()<cr>
-"nnoremap M :call Ins_space()<cr>
 
 " ins date time
 nnoremap * :call Ins_ts()<cr>
@@ -723,7 +722,7 @@ nnoremap H <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
-nnoremap R <esc>
+"nnoremap R <esc>
 nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>

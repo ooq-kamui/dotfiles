@@ -83,7 +83,7 @@ alias cd_tw  "cd ~/doc/tech/brwsr/safari/ext/tw"
 
 alias cd_mdk "cd ~/doc/hoby/medaka"
 
-alias k 'z'
+alias dir 'z'
 
 alias vim "nvim -p"
 alias vi  "nvim -p"
