@@ -180,7 +180,6 @@ nnoremap <leader>l :Files <cr>
 
 " opn file hstry ( fzf )
 nnoremap <leader>u :FileHstry<cr>
-nnoremap <leader>m :FileHstry<cr>
 
 " 
 " opn etc
@@ -1395,7 +1394,7 @@ tnoremap <c-_> <c-\><c-n>
 nnoremap <leader>h <esc>
 "nnoremap <leader>j <esc>
 "nnoremap <leader>l <esc>
-"nnoremap <leader>m <esc>
+nnoremap <leader>m <esc>
 nnoremap <leader>n <esc>
 "nnoremap <leader>p <esc>
 nnoremap <leader>r <esc>

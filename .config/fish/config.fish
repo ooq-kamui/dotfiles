@@ -55,6 +55,7 @@ alias his_del 'history delete'
 
 alias to     'touch'
 alias to_clr ':> '
+alias rn 'rename'
 alias cp 'cp -p'
 
 alias cd_dl "cd ~/Downloads"
@@ -83,7 +84,7 @@ alias cd_tw  "cd ~/doc/tech/brwsr/safari/ext/tw"
 
 alias cd_mdk "cd ~/doc/hoby/medaka"
 
-alias dir 'z'
+alias cdf 'z'
 
 alias vim "nvim -p"
 alias vi  "nvim -p"
