@@ -407,8 +407,9 @@ nnoremap \ :call Ins_week()<cr>
 " ins slf path
 nnoremap gp :call Ins_line_slf_path()<cr>
 
-" ins markdown
-nnoremap U O```<esc>
+" ins markdown code
+nnoremap <c-u> :call Ins_markdown_code()<cr>
+nnoremap U     :call Ins_markdown_code()<cr>
 
 " ins markdown itm
 nnoremap <expr> O
@@ -510,6 +511,7 @@ nnoremap E :call N_srch_str__(v:true)<cr>
 nnoremap <c-f> :call Srch_char_bracket('f')<cr>
 
 " srch str history ( fzf )
+nnoremap <leader>n :SrchHstry<cr>
 nnoremap <leader>f :SrchHstry<cr>
 
 " srch str set prv ( tgl )
@@ -748,7 +750,7 @@ nnoremap <c-q> <esc>
 nnoremap <c-r> <esc>
 "nnoremap <c-s> <esc>
 nnoremap <c-t> <esc>
-nnoremap <c-u> <esc>
+"nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
 nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
@@ -1395,7 +1397,7 @@ nnoremap <leader>h <esc>
 "nnoremap <leader>j <esc>
 "nnoremap <leader>l <esc>
 nnoremap <leader>m <esc>
-nnoremap <leader>n <esc>
+"nnoremap <leader>n <esc>
 "nnoremap <leader>p <esc>
 nnoremap <leader>r <esc>
 "nnoremap <leader>u <esc>
@@ -3315,6 +3317,12 @@ func! Ins_markdown_itm() abort
   let l:str = '- '
   "echo l:str
   call Line_top1__ins(l:str)
+endfunc
+
+func! Ins_markdown_code() abort
+
+  let l:str = '```'
+  call Ins_line(l:str)
 endfunc
 
 func! Char__tgl_markdown_chk() abort

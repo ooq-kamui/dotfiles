@@ -47,16 +47,19 @@ alias src_fsh_cfg "source ~/.config/fish/config.fish"
 
 alias fi "fish"
 
-alias tmx_init 'fi ~/sh/tmux-win-init.fish'
 alias tmx      'tmux'
+alias tmx_init 'fi ~/sh/tmux-win-init.fish'
 
 alias his     'history'
 alias his_del 'history delete'
 
 alias to     'touch'
-alias to_clr ':> '
+alias to_clr ':>'
 alias rn 'rename'
 alias cp 'cp -p'
+
+alias cdf 'z'
+alias dir 'z'
 
 alias cd_dl "cd ~/Downloads"
 alias cd_ic "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
@@ -83,8 +86,6 @@ alias cd_holo_data "cd $holo_dir/prj/stt/www/song/data"
 alias cd_tw  "cd ~/doc/tech/brwsr/safari/ext/tw"
 
 alias cd_mdk "cd ~/doc/hoby/medaka"
-
-alias cdf 'z'
 
 alias vim "nvim -p"
 alias vi  "nvim -p"
@@ -120,7 +121,6 @@ alias trns_j "trans {ja=en}"
 alias trns_e "trans {en=ja}"
 
 alias ba 'battery'
-
 alias ca 'cal'
 
 # alias prj
