@@ -1751,6 +1751,18 @@ func! Slf__mv(file_name_aft) abort
   call Exe(l:cmd)
 endfunc
 
+func! Slf_path() abort
+  
+  let l:path = expand('%:p')
+  return l:path
+endfunc
+
+func! Slf_dir() abort
+
+  let l:dir = expand('%:p:h')
+  return l:dir
+endfunc
+
 func! Rgstr__clr() abort
 
   let @0 = ''
@@ -2284,6 +2296,10 @@ func! Ins(str) abort
   call Normal(l:cmd)
   call Cursor__mv_char_f()
   "call Normal('l')
+endfunc
+
+func! V_ins(str) range abort
+
 endfunc
 
 func! Ins_mlt(str, num) abort
@@ -2860,12 +2876,10 @@ endfunc
 func! Slctd_str__mv(lr) abort
 
   call Normal('gv"zx' . a:lr . '"zP')
-  "call Normal('gv"ax' . a:lr . '"aP')
 
   call Normal('v')
 
   let l:mv_len = Str_len(@z) - 1
-  "let l:mv_len = Str_len(@a) - 1
   if l:mv_len <= 0
     return
   endif
@@ -2876,13 +2890,11 @@ endfunc
 func! Slctd_str__mv_line_top() abort
 
   call Normal('gv"zx' . '^'  . '"zP')
-  "call Normal('gv"ax' . '^'  . '"aP')
 endfunc
 
 func! Slctd_str__mv_line_end() abort
 
   call Normal('gv"zx' . '$l' . '"zP')
-  "call Normal('gv"ax' . '$l' . '"aP')
 endfunc
 
 " slctd del
@@ -2940,7 +2952,6 @@ func! Slctd_rpl_srch_nxt() abort " dir forward only
   
   call Slct_re()
   call Normal('"zd"0Plgn')
-  "call Normal('"ad"0Plgn')
 endfunc
 
 " slctd cnd
@@ -3001,7 +3012,6 @@ func! V_paste() abort
 
   call Slct_re()
   call Normal('"zd')
-  "call Normal('"ad')
   call Paste()
 endfunc
 
@@ -3388,7 +3398,7 @@ endfunc
 "  call Normal('%')
 "endfunc
 
-" etc
+" tag jmp
 
 func! Tag_jmp(rg_out_line) abort
   
@@ -3441,23 +3451,6 @@ func! Rg_out_parse(line) abort
   let l:dlm = ':'
   let l:ret = split(a:line, l:dlm)
   return l:ret
-endfunc
-
-func! Buf_num() abort
-
-  return bufnr('%')
-endfunc
-
-func! Slf_path() abort
-  
-  let l:path = expand('%:p')
-  return l:path
-endfunc
-
-func! Slf_dir() abort
-
-  let l:dir = expand('%:p:h')
-  return l:dir
 endfunc
 
 " tmp file
@@ -3599,7 +3592,14 @@ func! V_opn_ggl_srch() abort
   call Opn_ggl_srch(l:word)
 endfunc
 
-" ins lst
+" etc
+
+func! Buf_num() abort
+
+  return bufnr('%')
+endfunc
+
+" mode insert ins lst
 
 func! I_symbol() abort
 
@@ -3803,6 +3803,17 @@ func! V_trns() range abort
   let l:sys_cmd = 'trns -no-ansi ' . l:lang . "'" . l:str . "'"
   let l:rslt = Sys_cmd(l:sys_cmd)
   echo l:rslt
+endfunc
+
+" url encdoe
+
+func! V_url_encode() range abort
+
+  let l:str = Slctd_str()
+  let l:sys_cmd = 'url_encode "' . l:str . '"'
+  let l:rslt = Sys_cmd(l:sys_cmd)
+  "echo l:rslt
+  call Ins(l:rslt)
 endfunc
 
 func! Hl_grp() abort

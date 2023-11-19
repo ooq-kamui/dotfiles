@@ -58,8 +58,8 @@ alias to_clr ':>'
 alias rn 'rename'
 alias cp 'cp -p'
 
-alias cdf 'z'
 alias dir 'z'
+alias cdf 'z'
 
 alias cd_dl "cd ~/Downloads"
 alias cd_ic "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
