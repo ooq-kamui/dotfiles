@@ -3869,8 +3869,8 @@ let g:vimrc_win_path = '~/.vimrc_win'
 
 if filereadable(expand(g:vimrc_win_path))
 
-  Exe('source ' . g:vimrc_win_path)
-  echo 'read .vimrc_win'
+  call Exe('source ' . g:vimrc_win_path)
+  "echo 'read .vimrc_win'
 endif
 
 
