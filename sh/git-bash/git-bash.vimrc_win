@@ -1,4 +1,11 @@
 
+
+"hi NonText     ctermfg=blue       ctermbg=none
+hi NonText     ctermfg=darkblue   ctermbg=none
+hi Comment     ctermfg=cyan       ctermbg=none     cterm=none
+
+
+
 nnoremap ; :call Cursor__mv_line_top_or_new_line()<cr>
 nnoremap y :call Indnt__crct()<cr>
 "nnoremap Y /<cr>N

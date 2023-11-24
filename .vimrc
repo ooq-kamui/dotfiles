@@ -948,14 +948,14 @@ vnoremap <c-w> :call Slctd_str__mv('h')<cr>
 vnoremap <c-e> :call Slctd_str__mv('l')<cr>
 
 " mv str line top
-"vnoremap W :call Slctd_str__mv_line_top()<cr>
+"vnoremap xx :call Slctd_str__mv_line_top()<cr>
 
 " mv str line end
-"vnoremap E :call Slctd_str__mv_line_end()<cr>
+"vnoremap xx :call Slctd_str__mv_line_end()<cr>
 
 " mv line
-"vnoremap J :call V_mv_line('j')<cr>
-"vnoremap K :call V_mv_line('k')<cr>
+"vnoremap xx :call V_mv_line('j')<cr>
+"vnoremap xx :call V_mv_line('k')<cr>
 
 " inc, dec
 vnoremap + <c-a>
@@ -2538,10 +2538,8 @@ func! V_mv_line(ud) range abort
 
   call Normal(a:firstline . 'G')
   call Normal(l:line_num . '"zdd')
-  "call Normal(l:line_num . '"add')
   call Normal(a:ud)
   call Normal('"zP')
-  "call Normal('"aP')
   call Normal('V')
 
   if l:mv_num >= 1
