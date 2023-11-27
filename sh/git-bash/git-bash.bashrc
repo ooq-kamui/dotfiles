@@ -19,6 +19,7 @@ bind '"\C-s": backward-char'
 
 bind '"\C-k": kill-word'
 
+
 #alias ll='ls -la'
 alias ll='ls -lgohAG --time-style="+%Y-%m-%d %H:%M"'
 alias ll.='ll -d .*'
@@ -34,13 +35,16 @@ alias vi='vi -p'
 
 alias opn='explorer'
 
-#alias fzf="winpty fzf"
+alias fzf="winpty fzf"
 #alias ff="winpty ff"
+
+#alias prj
+alias cd_wrk='cd ~/Downloads/wrk/'
+alias ssh_dev='sh ~/Desktop/wrk/sh/ssh.dev.sh'
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 
-
-cd ~/Downloads
+cd ~/Desktop/wrk/
 
