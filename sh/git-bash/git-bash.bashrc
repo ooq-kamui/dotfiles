@@ -39,12 +39,15 @@ alias fzf="winpty fzf"
 #alias ff="winpty ff"
 
 #alias prj
-alias cd_wrk='cd ~/Downloads/wrk/'
+alias cd_wrk='cd ~/Desktop/wrk/'
 alias ssh_dev='sh ~/Desktop/wrk/sh/ssh.dev.sh'
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 
-cd ~/Desktop/wrk/
+cd_wrk
+# cd ~/Desktop/wrk/
+
+
 

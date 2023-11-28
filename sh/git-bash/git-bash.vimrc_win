@@ -1,5 +1,4 @@
 
-
 hi StatusLine  ctermfg=cyan       ctermbg=33       cterm=none
 hi NonText     ctermfg=darkblue   ctermbg=none
 hi Search      ctermfg=yellow     ctermbg=magenta  cterm=none
