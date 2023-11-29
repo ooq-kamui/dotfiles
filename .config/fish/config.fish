@@ -15,9 +15,13 @@ set -x LSCOLORS fxgxcxdxxxegedabagacad
 # 
 
 set -x PATH /opt/local/bin $PATH
-set -x PATH /opt/homebrew/bin $PATH 
+set -x PATH /opt/homebrew/bin $PATH
 set -x PATH $HOME/.cargo/bin $PATH
-set -x PATH $HOME/.nodebrew/current/bin $PATH
+set -x PATH /opt/homebrew/var/nodebrew/current/bin $PATH
+#set -x PATH $HOME/.nodebrew/current/bin $PATH
+
+set -x NODEBREW_ROOT /opt/homebrew/var/nodebrew
+
 
 # 
 # ripgrep ( rg )

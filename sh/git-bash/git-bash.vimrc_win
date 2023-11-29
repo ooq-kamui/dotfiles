@@ -1,16 +1,18 @@
 
+set shell=bash
+
 hi StatusLine  ctermfg=cyan       ctermbg=33       cterm=none
 hi NonText     ctermfg=darkblue   ctermbg=none
 hi Search      ctermfg=yellow     ctermbg=magenta  cterm=none
 hi Comment     ctermfg=cyan       ctermbg=none     cterm=none
 
 nnoremap S /<cr>N
-nnoremap ; :call Cursor__mv_line_top_or_new_line()<cr>
-nnoremap y :call Indnt__crct()<cr>
+"nnoremap ; :call Cursor__mv_line_top_or_new_line()<cr>
+"nnoremap y :call Indnt__crct()<cr>
 "nnoremap Y /<cr>N
 
-vnoremap ; o
-vnoremap y =gv
+"vnoremap ; o
+"vnoremap y =gv
 "vnoremap <expr> Y
 "\ mode() == '<c-v>' ? '$A'      :
 "\                     '<c-v>$A'

@@ -1013,7 +1013,7 @@ vnoremap E :call V_srch_str__slctd_str(v:true)<cr>
 vnoremap <c-p> :call Slctd_rpl_srch_nxt()<cr>
 
 " srch rpl all > ynk
-vnoremap :s :s//<c-r>0/gc
+"vnoremap :xx :s//<c-r>0/gc
 
 " 
 " grep
