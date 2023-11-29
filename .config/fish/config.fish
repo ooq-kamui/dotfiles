@@ -100,8 +100,6 @@ alias vi_cnf      "vi ~/.config/fish/config.fish"
 alias vi_vimrc    "vi ~/.vimrc"
 alias vi_vim_swap "vi ~/.local/share/nvim/swap/"
 
-alias vi_sys      "vi ~/doc/sys/memo.sys.md"
-
 #alias opn "open"
 alias opn_github_vim  "open https://github.com/ooq-kamui/vimrc"
 alias opn_github_holo "open https://github.com/ooq-kamui/holo-song"
