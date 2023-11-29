@@ -26,8 +26,9 @@ alias ll.='ll -d .*'
 alias l='ls -1a'
 alias l.='ls -1d .*'
 alias lf='ls -1d $( find * -type f )'
-alias ld='ls -1d $( find * )'
-alias ldo='ls -1d $( find * -type d )'
+alias ld='ls -1d $( find * -type d )'
+alias lfd='ls -1d $( find * )'
+alias ldf='lfd'
 
 alias cp='cp -p'
 
