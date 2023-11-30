@@ -1,14 +1,15 @@
 #!/bin/bash
 
 
-curl -Lo ~/Downloads/git-bash.bashrc \
-  https://raw.githubusercontent.com/ooq-kamui/vimrc/master/sh/git-bash/git-bash.bashrc
+curl -Lo ~/.bashrc \
+  https://raw.githubusercontent.com/ooq-kamui/vimrc/master/sh/git-bash/.bashrc
 
-curl -Lo ~/Downloads/git-bash.vimrc \
+
+curl -Lo ~/.vimrc \
   https://raw.githubusercontent.com/ooq-kamui/vimrc/master/.vimrc
 
-curl -Lo ~/Downloads/git-bash.vimrc_win \
-  https://raw.githubusercontent.com/ooq-kamui/vimrc/master/sh/git-bash/git-bash.vimrc_win
+curl -Lo ~/.vimrc_win \
+  https://raw.githubusercontent.com/ooq-kamui/vimrc/master/sh/git-bash/.vimrc_win
 
 
 
