@@ -34,10 +34,13 @@ alias cp='cp -p'
 
 alias vi='vi -p'
 
+alias to='touch'
+alias clr='clear'
 alias opn='explorer'
 
 alias fzf="winpty fzf"
 #alias ff="winpty ff"
+
 
 #alias prj
 alias cd_wrk='cd ~/Desktop/wrk/task/'
