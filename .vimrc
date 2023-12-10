@@ -329,7 +329,7 @@ nnoremap A :call Slct_all()<cr>
 "nnoremap xx :call Slct_re()<cr>
 
 " ynk clr
-nnoremap <c-c> :call Rgstr__clr()<cr>
+nnoremap <c-c> :call Ynk__clr()<cr>
 
 " ynk line
 nnoremap c :call Ynk__line()<cr>
@@ -524,11 +524,11 @@ nnoremap <c-p> :call Srch_slct('f')<cr>
 " srch rpl all > ynk ( file )
 "nnoremap :xx :%s//<c-r>0/gc
 
-" srch rpl cmd ( file )
-nnoremap :s :Rpl 
-
 " srch ?=ts
 "nnoremap xx /?ts=<cr>
+
+" rpl ( cmd )
+nnoremap :s :Rpl 
 
 " 
 " grep
@@ -926,7 +926,7 @@ vnoremap :b :<c-u>SlctdEdgeIns
 vnoremap <expr> d
 \ mode() == '<c-v>' ? '"0d:let @+ = @0<cr>gv' :
 \                     '"0d:let @+ = @0<cr>'
-vnoremap R :call V_slctd__del()<cr>
+"vnoremap xx :call V_slctd__del()<cr> " dev tst
 
 " del str > ynk not
 vnoremap s "zx
@@ -936,10 +936,10 @@ vnoremap s "zx
 "vnoremap xx J
 
 " del line top space
-vnoremap M :call V_line_top__del_space()<cr>
+vnoremap M :call V_line_top_space__del()<cr>
 
 " del line end space
-vnoremap m :call V_line_end__del_space()<cr>
+vnoremap m :call V_line_end_space__del()<cr>
 
 " mv str back
 vnoremap <c-w> :call Slctd_str__mv('h')<cr>
@@ -1014,6 +1014,9 @@ vnoremap <c-p> :call Slctd_rpl_srch_nxt()<cr>
 
 " srch rpl all > ynk
 "vnoremap :xx :s//<c-r>0/gc
+
+" rpl ( cmd )
+vnoremap :s :Rpl 
 
 " 
 " grep
@@ -1127,7 +1130,7 @@ vnoremap L <esc>
 vnoremap O <esc>
 "vnoremap P <esc>
 vnoremap Q <esc>
-"vnoremap R <esc>
+vnoremap R <esc>
 "vnoremap S <esc>
 "vnoremap T <esc>
 "vnoremap U <esc>
@@ -1763,6 +1766,11 @@ func! Slf_dir() abort
   return l:dir
 endfunc
 
+func! Ynk__clr() abort
+
+  let @0 = ''
+endfunc
+
 func! Rgstr__clr() abort
 
   let @0 = ''
@@ -2319,14 +2327,14 @@ func! Ins_cr() abort
   call Normal("i\<cr> ")
   call Normal('x')
   
-  call Line_end__del_space(l:t_line_num)
+  call Line_end_space__del(l:t_line_num)
   call Normal('j')
 endfunc
 
 func! Ins_space() abort
 
   call Normal('i ')
-  call Normal('l')
+  "call Normal('l')
 endfunc
 
 func! Ins_ts() abort
@@ -2440,7 +2448,7 @@ endfunc
 
 let s:line_top_space_ptn = '^[ \t]*'
 
-func! V_line_top__del_space() abort
+func! V_line_top_space__del() abort
 
   let l:rpl_cmd = 's/' . s:line_top_space_ptn . '//g'
   call Exe(l:rpl_cmd)
@@ -2454,21 +2462,21 @@ endfunc
 
 let s:line_end_space_ptn = '[ \t]*$'
 
-func! Line_end__del_space(line_num) abort
+func! Line_end_space__del(line_num) abort
   
   let l:rpl_cmd = a:line_num . 's/' . s:line_end_space_ptn . '//g'
   call Exe(l:rpl_cmd)
 endfunc
 
-func! V_line_end__del_space() range abort
+func! V_line_end_space__del() range abort
 
   for line_num in range(a:firstline, a:lastline)
 
-    call Line_end__del_space(line_num)
+    call Line_end_space__del(line_num)
   endfor
 endfunc
 
-func! V_line_end_padding() range abort
+func! V_line_end__padding() range abort " not use todo dev
   
   let l:char = ' '
   let l:w    = 75
@@ -2897,7 +2905,7 @@ endfunc
 
 " slctd del
 
-func! V_slctd__del() abort " use not todo dev
+func! V_slctd__del() abort " use not todo dev tst
 
   "call V_slctd_re()
 
@@ -3162,11 +3170,13 @@ endfunc
 
 " srch rpl cmd
 
-command! -nargs=* Rpl call Rpl(<f-args>)
+command! -range=% -nargs=* Rpl <line1>,<line2>call V_rpl(<f-args>)
 
-func! Rpl(srch, rpl) abort
+func! V_rpl(srch, rpl) range abort
 
-  let l:cmd =  '%s/' . a:srch . '/' . a:rpl . '/gc'
+  let l:rng = a:firstline . ',' . a:lastline
+  let l:cmd = l:rng . 's/' . a:srch . '/' . a:rpl . '/gc'
+  "echo l:cmd
   call Exe(l:cmd)
 endfunc
 
