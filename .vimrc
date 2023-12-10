@@ -270,6 +270,7 @@ nnoremap <c-_> hT_
 
 " cursor mv bracket pair
 nnoremap <c-l> %
+"nnoremap L %
 
 " cursor mv bracket out back
 nnoremap R [{
@@ -394,6 +395,7 @@ nnoremap . i.<esc>l
 
 " ins space
 nnoremap L :call Ins_space()<cr>
+"nnoremap <c-l> :call Ins_space()<cr>
 
 " ins date time
 nnoremap * :call Ins_ts()<cr>

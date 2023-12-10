@@ -2,8 +2,8 @@
 
 # function sed_y
 
-srch=$argv[1]
-rpl=$argv[2]
+srch=$1
+rpl=$2
 
 cat - |\
 sed -e "y|$srch|$rpl|"
