@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# function mb_cnv_space
+
+srch='　'
+rpl=' '
+
+cat - |\
+sed_y $srch $rpl
+
+
+
