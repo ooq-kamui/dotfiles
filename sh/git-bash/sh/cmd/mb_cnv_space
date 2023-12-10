@@ -6,7 +6,7 @@ srch='　'
 rpl=' '
 
 cat - |\
-sed_y $srch '$rpl'
+sed_y $srch "$rpl"
 
 
 
