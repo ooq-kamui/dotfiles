@@ -18,12 +18,12 @@ let skip_defaults_vim=1
 
 filetype on
 
-hi LineNr        ctermfg=141                        cterm=none
+hi LineNr      ctermfg=141                         cterm=none
 augroup InsertHook
   au!
   au InsertLeave * hi LineNr ctermfg=141
   au InsertEnter * hi LineNr ctermfg=lightgreen
-augroup END 
+augroup END
 
 hi CursorLineNr ctermfg=magenta
 

@@ -6,6 +6,13 @@ hi NonText     ctermfg=darkblue   ctermbg=none
 hi Search      ctermfg=yellow     ctermbg=magenta  cterm=none
 hi Comment     ctermfg=cyan       ctermbg=none     cterm=none
 
+hi LineNr      ctermfg=blue                        cterm=none
+augroup InsertHook
+  au!
+  au InsertLeave * hi LineNr ctermfg=blue
+  au InsertEnter * hi LineNr ctermfg=lightgreen
+augroup END
+
 
 nnoremap S /<cr>N
 "nnoremap ; :call Cursor__mv_line_top_or_new_line()<cr>
