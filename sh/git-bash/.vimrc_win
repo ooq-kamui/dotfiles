@@ -17,7 +17,7 @@ nnoremap S /<cr>N
 "vnoremap <expr> Y
 "\ mode() == '<c-v>' ? '$A'      :
 "\                     '<c-v>$A'
-vnoremap :s :sort
+vnoremap :s :sort 
 
 
 

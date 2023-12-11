@@ -903,6 +903,11 @@ vnoremap <expr> Y
 \ mode() == '<c-v>' ? '$A'      :
 \                     '<c-v>$A'
 
+" ins space
+vnoremap <expr> L
+\ mode() == '<c-v>' ? 'I <esc>gv' :
+\                     ''
+
 " ins comment 1
 vnoremap ! :call V_ins_cmnt_1()<cr>
 
@@ -1126,7 +1131,7 @@ vnoremap H <esc>
 "vnoremap I <esc>
 vnoremap J <esc>
 vnoremap K <esc>
-vnoremap L <esc>
+"vnoremap L <esc>
 "vnoremap M <esc>
 "vnoremap N <esc>
 vnoremap O <esc>
@@ -3552,6 +3557,8 @@ func! Opn_grep_work() abort
 endfunc
 
 " opn app
+
+command! -nargs=* OpnApp call Opn_app(<f-args>)
 
 func! Opn_app(path) abort
   

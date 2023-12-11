@@ -3,7 +3,6 @@ export PS1="_ "
 
 stty stop undef
 
-
 PATH=$PATH:$HOME/sh/cmd
 
 #PATH=$PATH':/c/Users/yinou/.fzf/bin'
@@ -37,6 +36,7 @@ alias vi='vi -p'
 alias to='touch'
 alias clr='clear'
 alias opn='explorer'
+alias pbcopy='clip'
 
 alias fzf="winpty fzf"
 #alias ff="winpty ff"
