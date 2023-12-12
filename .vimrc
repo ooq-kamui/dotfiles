@@ -131,8 +131,6 @@ set shell=fish
 command! -nargs=* Term split | wincmd j | resize 15 | term <args>
 "autocmd TermOpen * startinsert
 
-packadd Cfilter
-
 " 
 " leader
 " 
@@ -190,6 +188,9 @@ nnoremap gf :call Opn_fish_cnf()<cr>
 
 " opn .vimrc
 nnoremap gh :call Opn_vimrc()<cr>
+
+" opn .vimrc_win
+nnoremap gw :call Opn_vimrc_win()<cr>
 
 " opn tmp
 nnoremap gt :call Opn_tmp()<cr>
@@ -1432,6 +1433,9 @@ end
 " 
 " quickfix
 " 
+
+"packadd Cfilter
+
 autocmd QuickFixCmdPost grep,vimgrep tab cw
 
 
@@ -3513,6 +3517,15 @@ func! Opn_vimrc() abort
 
   let l:path = '~/.vimrc'
   call Opn(l:path)
+endfunc
+
+func! Opn_vimrc_win() abort
+
+  if ! filereadable(expand(g:vimrc_win_path))
+    return
+  endif
+
+  call Opn(g:vimrc_win_path)
 endfunc
 
 func! Opn_fish_cnf() abort
