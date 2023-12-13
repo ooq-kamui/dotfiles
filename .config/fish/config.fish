@@ -63,7 +63,7 @@ alias rn 'rename'
 alias cp 'cp -p'
 
 alias dir 'z'
-alias cdf 'z'
+#alias cdf 'z'
 
 alias cd_dl "cd ~/Downloads"
 alias cd_ic "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
@@ -74,22 +74,7 @@ alias cd_plist    "cd ~/Library/LaunchAgents"
 alias cd_vim      "cd ~/doc/tech/github/vimrc"
 alias cd_vim_swp  "cd ~/.local/state/nvim/swap"
 
-alias cd_game     "cd ~/doc/hoby/game"
-alias cd_tech     "cd ~/doc/tech"
-alias cd_hoby     "cd ~/doc/hoby"
-alias cd_life     "cd ~/doc/life"
-
-alias cd_ooq_game    "cd ~/dev/ooq/g.proto/assets"
-alias cd_ooq_game_bk "cd ~/dev/ooq/z.proto.bk"
-alias cd_ooq_artcl   "cd ~/dev/ooq-artcl/hugo/content"
-
-set   holo_dir     "~/doc/hoby/youtube/vtuber/holo"
-alias cd_holo      "cd $holo_dir/prj/stt"
-alias cd_holo_data "cd $holo_dir/prj/stt/www/song/data"
-
-alias cd_tw  "cd ~/doc/tech/brwsr/safari/ext/tw"
-
-alias cd_mdk "cd ~/doc/hoby/medaka"
+alias l_cp "l | pbcopy"
 
 alias vim "nvim -p"
 alias vi  "nvim -p"
@@ -101,12 +86,8 @@ alias vi_vimrc    "vi ~/.vimrc"
 alias vi_vim_swap "vi ~/.local/share/nvim/swap/"
 
 #alias opn "open"
-alias opn_github_vim  "open https://github.com/ooq-kamui/vimrc"
-alias opn_github_holo "open https://github.com/ooq-kamui/holo-song"
-alias opn_ooq         "open https://ooq.jp/"
 
 set -x LC_TIME en_US
-
 alias da      "date_y 0"
 alias da_y1   "date_y 1"
 alias da_y2   "date_y 2"
@@ -126,6 +107,26 @@ alias ba 'battery'
 alias ca 'cal'
 
 # alias prj
+
+alias cd_game "cd ~/doc/hoby/game"
+alias cd_tech "cd ~/doc/tech"
+alias cd_hoby "cd ~/doc/hoby"
+alias cd_life "cd ~/doc/life"
+
+alias cd_ooq_game    "cd ~/dev/ooq/g.proto/assets"
+alias cd_ooq_game_bk "cd ~/dev/ooq/z.proto.bk"
+alias cd_ooq_artcl   "cd ~/dev/ooq-artcl/hugo/content"
+
+set   holo_dir     "~/doc/hoby/youtube/vtuber/holo"
+alias cd_holo      "cd $holo_dir/prj/stt"
+alias cd_holo_data "cd $holo_dir/prj/stt/www/song/data"
+
+alias cd_tw  "cd ~/doc/tech/brwsr/safari/ext/tw"
+
+alias cd_mdk "cd ~/doc/hoby/medaka"
+alias opn_github_vim  "open https://github.com/ooq-kamui/vimrc"
+alias opn_github_holo "open https://github.com/ooq-kamui/holo-song"
+alias opn_ooq         "open https://ooq.jp/"
 
 alias ooq_artcl_build_rsync 'fish ~/dev/ooq-artcl/sh/build.rsync.fish'
 

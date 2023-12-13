@@ -29,11 +29,15 @@ alias ld='ls -1d $( find * -type d )'
 alias lfd='ls -1d $( find * )'
 alias ldf='lfd'
 
+alias l_cp "l | clip"
+
 alias cp='cp -p'
 
 alias vi='vi -p'
 
 alias to='touch'
+alias to_clr=':>'
+
 alias clr='clear'
 alias opn='explorer'
 alias pbcopy='clip'
