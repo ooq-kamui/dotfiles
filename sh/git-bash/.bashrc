@@ -1,6 +1,8 @@
 
 export PS1="_ "
 
+chcp.com 65001
+
 stty stop undef
 
 PATH=$PATH:$HOME/sh/cmd
@@ -29,7 +31,7 @@ alias ld='ls -1d $( find * -type d )'
 alias lfd='ls -1d $( find * )'
 alias ldf='lfd'
 
-alias l_cp "l | clip"
+alias l_cp='l | clip'
 
 alias cp='cp -p'
 
@@ -42,7 +44,7 @@ alias clr='clear'
 alias opn='explorer'
 alias pbcopy='clip'
 
-alias fzf="winpty fzf"
+alias fzf='winpty fzf'
 #alias ff="winpty ff"
 
 
