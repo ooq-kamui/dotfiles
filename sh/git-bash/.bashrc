@@ -43,6 +43,8 @@ alias to_clr=':>'
 alias clr='clear'
 alias opn='explorer'
 alias pbcopy='clip'
+alias pth='pwd'
+alias pth_cp='pwd | clip'
 
 alias fzf='winpty fzf'
 #alias ff="winpty ff"
