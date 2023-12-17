@@ -121,9 +121,6 @@ set   holo_dir     "~/doc/hoby/youtube/vtuber/holo"
 alias cd_holo      "cd $holo_dir/prj/stt"
 alias cd_holo_data "cd $holo_dir/prj/stt/www/song/data"
 
-alias cd_tw  "cd ~/doc/tech/brwsr/safari/ext/tw"
-
-alias cd_mdk "cd ~/doc/hoby/medaka"
 alias opn_github_vim  "open https://github.com/ooq-kamui/vimrc"
 alias opn_github_holo "open https://github.com/ooq-kamui/holo-song"
 alias opn_ooq         "open https://ooq.jp/"
