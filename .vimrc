@@ -208,7 +208,7 @@ nnoremap gm :call Opn_memo()<cr>
 nnoremap :m :OpnMan 
 
 " opn app
-nnoremap go :call Opn_app_by_path()<cr>
+nnoremap go :call Opn_app_by_cursor_path()<cr>
 
 " opn app slf
 nnoremap gs :call Opn_app_slf()<cr>
@@ -249,8 +249,8 @@ nnoremap <expr> <c-y>
 nnoremap l l
 
 " cursor mv char - back
-nnoremap <c-s> h
 nnoremap <c-o> h
+nnoremap <c-s> h
 
 " cursor mv word - forward
 nnoremap f :call Cursor__mv_word_f()<cr>
@@ -805,8 +805,8 @@ vnoremap y o
 vnoremap l l
 
 " cursor mv char back
-vnoremap <c-s> h
 vnoremap <c-o> h
+"vnoremap <c-s> h
 
 " cursor mv word - forward
 vnoremap f :call Slctd__expnd_word_f()<cr>
@@ -971,7 +971,8 @@ vnoremap - <c-x>
 "vnoremap + g<c-a>
 
 " num seq
-vnoremap S g<c-a>
+vnoremap <c-s> g<c-a>
+"vnoremap S g<c-a>
 
 " indnt shift
 vnoremap # >gv
@@ -1139,7 +1140,7 @@ vnoremap O <esc>
 "vnoremap P <esc>
 vnoremap Q <esc>
 vnoremap R <esc>
-"vnoremap S <esc>
+vnoremap S <esc>
 "vnoremap T <esc>
 "vnoremap U <esc>
 vnoremap V <esc>
@@ -3584,18 +3585,33 @@ func! Opn_app(path) abort
   endif
 endfunc
 
-func! V_opn_app() abort
+func! V_opn_app() range abort
+
+  for line_num in range(a:firstline, a:lastline)
+
+    call Opn_app_by_line_path(l:line_num)
+  endfor
+endfunc
+
+func! Opn_app_by_cursor_path() abort
   
-  let l:path = Slctd_str()
-  
-  let l:path = trim(l:path)
-  
+  let l:path = Cursor_filepath()
   call Opn_app(l:path)
 endfunc
 
-func! Opn_app_by_path() abort
+func! Opn_app_by_line_path(line_num) abort
   
-  let l:path = Cursor_filepath()
+  "let l:path = Line_str()
+  let l:path = getline(a:line_num)
+
+  let l:path = trim(l:path)
+  call Opn_app(l:path)
+endfunc
+
+func! Opn_app_by_slctd_str() abort
+  
+  let l:path = Slctd_str()
+  let l:path = trim(l:path)
   call Opn_app(l:path)
 endfunc
 
