@@ -271,7 +271,6 @@ nnoremap <c-_> hT_
 
 " cursor mv bracket pair
 nnoremap <c-l> %
-"nnoremap L %
 
 " cursor mv bracket out back
 nnoremap R [{
@@ -392,11 +391,14 @@ nnoremap , i, <esc>l
 nnoremap < A,<esc>j
 
 " ins period
-nnoremap . i.<esc>l
+nnoremap . i.<esc>
+
+" ins minus
+nnoremap = :call Ins('-')<esc>
+"nnoremap = i-<esc>
 
 " ins space
 nnoremap L :call Ins_space()<cr>
-"nnoremap <c-l> :call Ins_space()<cr>
 
 " ins date time
 nnoremap * :call Ins_ts()<cr>
@@ -648,7 +650,7 @@ nnoremap <s-space> <esc>
 "nnoremap <cr>    <esc>
 nnoremap <bs>    <esc>
 
-nnoremap = <esc>
+"nnoremap = <esc>
 "nnoremap @ <esc>
 "nnoremap ; <esc>
 "nnoremap , <esc>
@@ -806,7 +808,6 @@ vnoremap l l
 
 " cursor mv char back
 vnoremap <c-o> h
-"vnoremap <c-s> h
 
 " cursor mv word - forward
 vnoremap f :call Slctd__expnd_word_f()<cr>
@@ -872,8 +873,9 @@ vnoremap c :call V_ynk()<cr>
 
 " paste
 vnoremap <expr> p
-\ mode() == '<c-v>' ? 'I<c-r>0<esc>'        :
+\ mode() == '<c-v>' ? '"zd"0P'              :
 \                     ':call V_paste()<cr>'
+"vnoremap p :call V_paste()<cr>
 
 " paste clipboard
 vnoremap P :call V_paste__clipboard()<cr>
@@ -966,13 +968,11 @@ vnoremap <c-e> :call Slctd_str__mv('l')<cr>
 "vnoremap xx :call V_mv_line('k')<cr>
 
 " inc, dec
-vnoremap + <c-a>
+"vnoremap + <c-a>
 vnoremap - <c-x>
-"vnoremap + g<c-a>
 
 " num seq
-vnoremap <c-s> g<c-a>
-"vnoremap S g<c-a>
+vnoremap + g<c-a>
 
 " indnt shift
 vnoremap # >gv
@@ -1097,6 +1097,7 @@ vnoremap ( <esc>
 vnoremap < <esc>
 vnoremap > <esc>
 vnoremap = <esc>
+"vnoremap + <esc>
 vnoremap , <esc>
 vnoremap . <esc>
 
@@ -1165,7 +1166,7 @@ vnoremap <c-m> <esc>
 "vnoremap <c-p> <esc>
 vnoremap <c-q> <esc>
 vnoremap <c-r> <esc>
-"vnoremap <c-s> <esc>
+vnoremap <c-s> <esc>
 "vnoremap <c-u> <esc>
 vnoremap <c-v> <esc>
 "vnoremap <c-w> <esc>
