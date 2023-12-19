@@ -51,7 +51,8 @@ alias fzf='winpty fzf'
 
 
 #alias prj
-alias cd_wrk='cd ~/Desktop/wrk/task/'
+alias cd_wrk='cd ~/Desktop/wrk/prj/crnt/task/'
+alias cd_dl='cd ~/Downloads/'
 alias ssh_dev='sh ~/sh/ssh.dev.sh'
 
 
