@@ -324,7 +324,8 @@ nnoremap i :call Slct_word()<cr>
 nnoremap v <c-v>
 
 " slct all
-nnoremap A :call Slct_all()<cr>
+nnoremap A :call Ynk__line_all()<cr>
+
 
 " slct re
 "nnoremap xx :call Slct_re()<cr>
@@ -336,6 +337,7 @@ nnoremap <c-c> :call Ynk__clr()<cr>
 nnoremap c :call Ynk__line()<cr>
 
 " ynk char
+"nnoremap xx "ayl
 "nnoremap xx "0yl
 
 " ynk clipboard
@@ -426,7 +428,6 @@ nnoremap <expr> O
 
 " del char
 nnoremap s "zx
-"nnoremap s "ax
 
 " line del
 nnoremap d :call Line__del()<cr>
@@ -440,18 +441,16 @@ nnoremap <c-d> D
 " word forward del
 "nnoremap <expr> xx Is_cursor_line_end() ? '<esc>' : '"zdw'
 "nnoremap <expr> xx Is_cursor_line_end() ? '<esc>' : '"zde'
-"nnoremap <expr> xx Is_cursor_line_end() ? '<esc>' : '"adw'
-"nnoremap <expr> xx Is_cursor_line_end() ? '<esc>' : '"ade'
 
 " del cr ( line join )
 nnoremap <c-m> J
 
 " line mv up
+"nnoremap xx "addk"aP
 "nnoremap xx "0ddk"0P
 
 " line dpl
 "nnoremap xx "zyy"zP
-"nnoremap xx "ayy"aP
 
 " repeat memory
 "nnoremap xx qy
@@ -868,13 +867,18 @@ vnoremap a :call Slct_all()<cr>
 vnoremap o :call V_ynk()<cr>
 vnoremap c :call V_ynk()<cr>
 
+" ynk slctd add
+vnoremap O :call V_ynk__add()<cr>
+
 " clipboard slctd
 "vnoremap xx "+y
 
 " paste
 vnoremap <expr> p
-\ mode() == '<c-v>' ? '"zd"0P'              :
+\ mode() == '<c-v>' ? '"zd"aP'              :
 \                     ':call V_paste()<cr>'
+"\ mode() == '<c-v>' ? '"zd"0P'              :
+"\                     ':call V_paste()<cr>'
 "vnoremap p :call V_paste()<cr>
 
 " paste clipboard
@@ -899,7 +903,6 @@ vnoremap <expr> <space>
 
 " cut & ins
 "vnoremap <leader><space> "zc
-"vnoremap <leader><space> "ac
 
 " ins $
 vnoremap <expr> Y
@@ -934,13 +937,17 @@ vnoremap :b :<c-u>SlctdEdgeIns
 
 " del str > ynk
 vnoremap <expr> d
-\ mode() == '<c-v>' ? '"0d:let @+ = @0<cr>gv' :
-\                     '"0d:let @+ = @0<cr>'
+\ mode() == '<c-v>' ? '"ad:let @+ = @a<cr>gv' :
+\                     '"ad:let @+ = @a<cr>'
+"\ mode() == '<c-v>' ? '"0d:let @+ = @0<cr>gv' :
+"\                     '"0d:let @+ = @0<cr>'
 "vnoremap xx :call V_slctd__del()<cr> " dev tst
 
 " del str > ynk not
-vnoremap s "zx
-"vnoremap s "ax
+vnoremap <expr> s
+\ mode() == '<c-v>' ? '"zdgv' :
+\                     '"zx'
+"vnoremap s "zx
 
 " del cr
 "vnoremap xx J
@@ -968,8 +975,8 @@ vnoremap <c-e> :call Slctd_str__mv('l')<cr>
 "vnoremap xx :call V_mv_line('k')<cr>
 
 " inc, dec
-"vnoremap + <c-a>
-vnoremap - <c-x>
+vnoremap = <c-a>gv
+vnoremap - <c-x>gv
 
 " num seq
 vnoremap + g<c-a>
@@ -1002,7 +1009,6 @@ vnoremap <c-u> ugv
 
 " srch cmd
 vnoremap <leader>i "zy/<c-r>z
-"vnoremap <leader>i "ay/<c-r>a
 
 " srch forward ( srch rpl skip )
 vnoremap <c-n> :call V_srch_slct('f')<cr>
@@ -1036,17 +1042,13 @@ vnoremap <leader>k :call V_grep_buf()<cr>
 
 " grep ( fzf )
 vnoremap <leader>o "zy:Rg <c-r>z<cr>
-"vnoremap <leader>o "ay:Rg <c-r>a<cr>
 
 " grep func define ( fzf )
 "vnoremap <leader>xx "zy:Rg <c-r>z<cr>func
-"vnoremap <leader>xx "ay:Rg <c-r>a<cr>func
 
 " grep [rg]   ( read )
 vnoremap :g "zy:GrepStr <c-r>z
 vnoremap :G "zy:GrepWrd <c-r>z
-"vnoremap :g "ay:GrepStr <c-r>a
-"vnoremap :G "ay:GrepWrd <c-r>a
 
 " tag jmp
 vnoremap t :call V_tag_jmp()<cr>
@@ -1096,7 +1098,7 @@ vnoremap ( <esc>
 "vnoremap ; <esc>
 vnoremap < <esc>
 vnoremap > <esc>
-vnoremap = <esc>
+"vnoremap = <esc>
 "vnoremap + <esc>
 vnoremap , <esc>
 vnoremap . <esc>
@@ -1137,7 +1139,7 @@ vnoremap K <esc>
 "vnoremap L <esc>
 "vnoremap M <esc>
 "vnoremap N <esc>
-vnoremap O <esc>
+"vnoremap O <esc>
 "vnoremap P <esc>
 vnoremap Q <esc>
 vnoremap R <esc>
@@ -1554,7 +1556,6 @@ func! V_grep_buf() abort
 
   call V_srch_str__slctd_str(v:false)
   exe 'BLines ' . escape(@z, '.*~')
-  "exe 'BLines ' . escape(@a, '.*~')
 endfunc
 
 command! -bang -nargs=? BLines
@@ -1685,7 +1686,6 @@ command! -bang -nargs=* Mark
 
 "nnoremap xx :Tags <c-r><c-w><cr>
 "vnoremap xx "zy:Tags <c-r>z<cr>
-"vnoremap xx "ay:Tags <c-r>a<cr>
 command! -bang -nargs=? Tags
 \ call fzf#vim#tags(<q-args>, <bang>1)
 
@@ -1781,12 +1781,14 @@ endfunc
 
 func! Ynk__clr() abort
 
-  let @0 = ''
+  let @a = ''
+  "let @0 = ''
 endfunc
 
 func! Rgstr__clr() abort
 
   let @0 = ''
+  "let @a = ''
 endfunc
 
 func! Int_2_str(num) abort
@@ -2529,20 +2531,20 @@ func! Line__del() abort
   
   if Is_line_space()
     call Normal('"zdd')
-    "call Normal('"add')
   else
-    call Normal('"0dd')
+    call Normal('"add')
+    "call Normal('"0dd')
     call Clipboard__ynk()
   endif
 endfunc
 
 func! V_line_del() abort " use not, todo mod
   
-  "call Normal('"0d')
-  "call Normal('gv"0d')
+  "call Normal('"ad')
+  "call Normal('gv"ad')
   
   call Normal('gvj')
-  "call Normal('"0d')
+  "call Normal('"ad')
   
   call Clipboard__ynk()
 endfunc
@@ -2742,7 +2744,6 @@ func! V_slctd_re() abort " use not todo dev
   
   call Normal('gv')
   call Normal('"zy')
-  "call Normal('"ay')
   call Normal('gv')
 
   "noautocmd normal! "zygv
@@ -2759,8 +2760,6 @@ func! Slctd_str() abort
 
   call Normal('gv"zy')
   return @z
-  "call Normal('gv"ay')
-  "return @a
 endfunc
 
 func! Slctd_str_len() abort
@@ -2922,8 +2921,10 @@ func! V_slctd__del() abort " use not todo dev tst
 
   "call V_slctd_re()
 
-  call Normal('gv"0d')
-  let @+ = @0
+  call Normal('gv"ad')
+  let @+ = @a
+  "call Normal('gv"0d')
+  "let @+ = @0
 endfunc
 
 " slctd ins
@@ -2970,7 +2971,8 @@ endfunc
 func! Slctd_rpl_srch_nxt() abort " dir forward only
   
   call Slct_re()
-  call Normal('"zd"0Plgn')
+  call Normal('"zd"aPlgn')
+  "call Normal('"zd"0Plgn')
 endfunc
 
 " slctd cnd
@@ -2997,34 +2999,51 @@ endfunc
 
 func! Ynk__line() abort
 
-  call Normal('"0yy')
-  call Normal('"+yy')
+  call Normal('"ayy')
+  "call Normal('"0yy')
+
+  call Clipboard__ynk()
+  "call Normal('"+yy')
   
   "l:line_str = Line_str()
-  "let @0 = l:line_str
+  "let @a = l:line_str
   "let @+ = l:line_str
+endfunc
+
+func! Ynk__line_all() abort
+
+  let l:cmd = '%y' " todo rgstr a direct
+  call Exe(l:cmd)
+
+  let @a = @0
+  call Clipboard__ynk()
 endfunc
 
 func! Ynk__clipboard() abort
 
-  let @0 = @+
+  let @a = @+
+  "let @0 = @+
 endfunc
 
 func! V_ynk() abort
 
-  call Normal('gv"0y')
-  call Normal('gv"+y')
-  
-  "let l:str = Slctd_str()
-  "let @0 = l:str
-  "let @+ = l:str
+  call Normal('gv"ay')
+  "call Normal('gv"0y')
+  call Clipboard__ynk()
+endfunc
+
+func! V_ynk__add() abort
+
+  call Normal('gv"Ay')
+  call Clipboard__ynk()
 endfunc
 
 " paste
 
 func! Paste() abort
 
-  call Normal('"0P')
+  call Normal('"aP')
+  "call Normal('"0P')
 endfunc
 
 func! V_paste() abort
@@ -3050,7 +3069,8 @@ endfunc
 
 func! Clipboard__ynk() abort
 
-  let @+ = @0
+  let @+ = @a
+  "let @+ = @0
 endfunc
 
 " srch
