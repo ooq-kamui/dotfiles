@@ -327,8 +327,8 @@ nnoremap v <c-v>
 nnoremap A :call Ynk__line_all()<cr>
 
 
-" slct re
-"nnoremap xx :call Slct_re()<cr>
+" slct re in line 1
+"nnoremap xx :call Slct_re_in_line_1()<cr>
 
 " ynk clr
 nnoremap <c-c> :call Ynk__clr()<cr>
@@ -949,6 +949,10 @@ vnoremap <expr> s
 \                     '"zx'
 "vnoremap s "zx
 
+" del str pad space
+vnoremap D "aygvr gv
+"vnoremap D :call V_slctd__del_pad_space()<cr>
+
 " del cr
 "vnoremap xx J
 
@@ -957,6 +961,11 @@ vnoremap M :call V_line_top_space__del()<cr>
 
 " del line end space
 vnoremap m :call V_line_end_space__del()<cr>
+
+" del cursor f space
+vnoremap L :VSpaceCrctL<cr>
+"vnoremap L :call V_cursor_f_space__del()
+
 
 " mv str back
 vnoremap <c-w> :call Slctd_str__mv('h')<cr>
@@ -1112,6 +1121,7 @@ vnoremap b <esc>
 vnoremap g <esc>
 "vnoremap h <esc>
 "vnoremap i <esc>
+"vnoremap l <esc>
 "vnoremap m <esc>
 "vnoremap n <esc>
 "vnoremap o <esc>
@@ -1129,7 +1139,7 @@ vnoremap x <esc>
 vnoremap A <esc>
 vnoremap B <esc>
 vnoremap C <esc>
-vnoremap D <esc>
+"vnoremap D <esc>
 "vnoremap E <esc>
 vnoremap F <esc>
 vnoremap H <esc>
@@ -2487,7 +2497,7 @@ func! V_line_end_space__del() range abort
 
   for line_num in range(a:firstline, a:lastline)
 
-    call Line_end_space__del(line_num)
+    call Line_end_space__del(l:line_num)
   endfor
 endfunc
 
@@ -2498,11 +2508,24 @@ func! V_line_end__padding() range abort " not use todo dev
 
   for line_num in range(a:firstline, a:lastline)
     
-    call Cursor__mv_by_line_num(line_num)
+    call Cursor__mv_by_line_num(l:line_num)
     
     let l:len = l:w - Line_end_col()
 
     call Normal(l:len . 'A' . l:char)
+  endfor
+endfunc
+
+command! -range=% -nargs=* VSpaceCrctL <line1>,<line2>call V_cursor_f_space__del(<f-args>)
+
+func! V_cursor_f_space__del() range abort
+
+  for line_num in range(a:firstline, a:lastline)
+
+    call Normal(l:line_num . 'G')
+
+    call Slct_cursor_f_space()
+    call Normal('"zd')
   endfor
 endfunc
 
@@ -2705,10 +2728,21 @@ func! Slct_word() abort
     call Normal('viw')
 
   elseif l:c =~ ' '
-    call Normal('vwh')
+    call Slct_cursor_f_space()
+    "call Normal('vwh')
   else
     call Normal('v')
   endif
+endfunc
+
+func! Slct_cursor_f_space() abort
+
+  let l:c = Cursor_c_char()
+  if l:c !~ ' '
+    return
+  endif
+
+  call Normal('vwh')
 endfunc
 
 func! Slct_by_col(s_col, len) abort
@@ -2735,8 +2769,13 @@ func! Slct_by_line_col(s_line, s_col, e_line, e_col) abort
   call Cursor__mv_by_line_col(l:e_line, a:e_col)
 endfunc
 
-func! Slct_re() abort
-  
+func! Slct_re() abort " old , in line 1
+
+  call Slct_re_in_line_1()
+endfunc
+
+func! Slct_re_in_line_1() abort " in line 1
+
   call Normal('gv')
 endfunc
 
@@ -2881,7 +2920,7 @@ func! Slctd__expnd_word_f() abort
   let l:slctd_str = Slctd_str()
   let l:slctd_r_out_char = Slctd_r_out_char()
 
-  call Slct_re()
+  call Slct_re_in_line_1()
 
   if l:slctd_str =~ '\s' && l:slctd_r_out_char =~ '\s'
 
@@ -2927,6 +2966,12 @@ func! V_slctd__del() abort " use not todo dev tst
   "let @+ = @0
 endfunc
 
+func! V_slctd__del_pad_space() range abort " use not todo dev
+
+  call Slct_re_in_line_1()
+  call Normal('r ')
+endfunc
+
 " slctd ins
 
 func! Slctd_l__ins(c) abort
@@ -2970,7 +3015,7 @@ endfunc
 
 func! Slctd_rpl_srch_nxt() abort " dir forward only
   
-  call Slct_re()
+  call Slct_re_in_line_1()
   call Normal('"zd"aPlgn')
   "call Normal('"zd"0Plgn')
 endfunc
@@ -3048,7 +3093,7 @@ endfunc
 
 func! V_paste() abort
 
-  call Slct_re()
+  call Slct_re_in_line_1()
   call Normal('"zd')
   call Paste()
 endfunc
@@ -3293,7 +3338,7 @@ func! V_ins_cmnt_1() range abort
 
   for line_num in range(a:firstline, a:lastline)
 
-    call Normal(line_num . 'G')
+    call Normal(l:line_num . 'G')
     call Ins_cmnt_1('0')
   endfor
 endfunc
