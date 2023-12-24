@@ -273,8 +273,8 @@ nnoremap <c-_> hT_
 nnoremap <c-l> %
 
 " cursor mv bracket out back
+nnoremap U [{
 nnoremap R [{
-nnoremap M [{
 
 " cursor mv bracket fnc back
 "nnoremap xx [m
@@ -416,7 +416,7 @@ nnoremap gp :call Ins_line_slf_path()<cr>
 
 " ins markdown code
 nnoremap <c-u> :call Ins_markdown_code()<cr>
-nnoremap U     :call Ins_markdown_code()<cr>
+"nnoremap U     :call Ins_markdown_code()<cr>
 
 " ins markdown itm
 nnoremap <expr> O
@@ -722,7 +722,7 @@ nnoremap H <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
 "nnoremap L <esc>
-"nnoremap M <esc>
+nnoremap M <esc>
 "nnoremap N <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>

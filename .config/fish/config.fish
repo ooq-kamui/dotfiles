@@ -54,6 +54,7 @@ alias fi "fish"
 alias tmx      'tmux'
 alias tmx_init 'fi ~/sh/tmux-win-init.fish'
 
+alias clr     'clear'
 alias his     'history'
 alias his_del 'history delete'
 
@@ -65,8 +66,8 @@ alias cp 'cp -p'
 alias dir 'z'
 #alias cdf 'z'
 
-alias cd_dl "cd ~/Downloads"
-alias cd_ic "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
+alias cd_dl    "cd ~/Downloads"
+alias cd_iclud "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
 
 alias cd_fish_fnc "cd ~/doc/tech/github/vimrc/.config/fish/functions"
 alias cd_plist    "cd ~/Library/LaunchAgents"

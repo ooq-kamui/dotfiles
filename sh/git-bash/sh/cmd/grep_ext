@@ -1,0 +1,6 @@
+#!/bin/bash
+
+grep -r --include="*.md" --include="*.js" $1 . 
+
+
+
