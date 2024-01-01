@@ -160,8 +160,11 @@ nnoremap <c-z> <c-z>
 "nnoremap a :w<cr>
 nnoremap a :call Save()<cr>
 
-" reload
+" load re
 "nnoremap xx :e!
+
+" load re vimrc
+nnoremap :v :source ~/.vimrc
 
 " 
 " opn
@@ -240,10 +243,10 @@ nnoremap y :call Cursor__mv_line_top_or_new_line()<cr>
 nnoremap <c-a> 0
 
 " cursor mv line end
-nnoremap <c-e> :call Cursor__mv_line_end()<cr>
 nnoremap <expr> <c-y>
-\ Is_cursor_line_end() ? ':call Ins_markdown_cr()<cr>'       :
+\ Is_cursor_line_end() ? ':call Ins_markdown_cr()<cr>'     :
 \                        ':call Cursor__mv_line_end()<cr>'
+nnoremap <c-e> :call Cursor__mv_line_end()<cr>
 
 " cursor mv char - forward
 nnoremap l l
@@ -422,6 +425,9 @@ nnoremap <c-u> :call Ins_markdown_code()<cr>
 nnoremap <expr> O
 \ Is_file_type('markdown') ? ':call Ins_markdown_itm()<cr>' :
 \                            ':call Indnt__shft_r()<cr>'
+
+" ins elpss
+nnoremap > :call Ins_elpss()<cr>
 
 " tgl markdown chk
 "nnoremap xx :call Char__tgl_markdown_chk()<cr>
@@ -620,7 +626,7 @@ nnoremap <leader>rk [`
 " 
 
 " buffer list
-"nnoremap :b :buffers
+"nnoremap :xx :buffers
 
 " inf char
 "nnoremap xx ga
@@ -670,7 +676,7 @@ nnoremap ? <esc>
 nnoremap & <esc>
 nnoremap ( <esc>
 "nnoremap < <esc>
-nnoremap > <esc>
+"nnoremap > <esc>
 
 nnoremap <c-space> <esc>
 nnoremap <c-@> <esc>
@@ -817,7 +823,7 @@ vnoremap f :call Slctd__expnd_word_f()<cr>
 "vnoremap xx Bh
 
 " cursor mv line end
-vnoremap <c-y> g_
+vnoremap <c-y> :call V_cursor__mv_line_end()<cr>
 
 " cursor mv slctd reduce dlm _ l
 vnoremap _     of_lo
@@ -2181,6 +2187,17 @@ func! Cursor__mv_line_end() abort
   end
 endfunc
 
+func! V_cursor__mv_line_end() abort
+
+  call Slct_re_in_line_1()
+
+  if ! Is_line_emp()
+
+    call Normal('$h')
+    "call Normal('g_')
+  end
+endfunc
+
 func! Cursor__mv_char_f() abort
 
   call Normal('l')
@@ -2377,6 +2394,26 @@ func! Ins_week() abort
 
   call Ins(l:week)
   "call Ins(' ' . l:week)
+endfunc
+
+let g:elpss_col = 50
+
+func! Ins_elpss() abort
+
+  "let g:elpss_col = 40
+
+  let l:idx = 0
+  let l:str = ''
+  while l:idx < g:elpss_col
+
+    let l:str .= ' '
+
+    let l:idx += 1
+  endwhile
+  let l:str .= '.. '
+
+  let l:line_num = Line_num()
+  call append(l:line_num, l:str)
 endfunc
 
 command! -nargs=* InsSysCmd call Ins_sys_cmd(<q-args>)

@@ -27,4 +27,7 @@ nnoremap S /<cr>N
 vnoremap :s :sort 
 
 
+let g:elpss_col = 50
+
+
 
