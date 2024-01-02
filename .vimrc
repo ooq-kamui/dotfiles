@@ -970,8 +970,6 @@ vnoremap m :call V_line_end_space__del()<cr>
 
 " del cursor f space
 vnoremap L :VSpaceCrctL<cr>
-"vnoremap L :call V_cursor_f_space__del()
-
 
 " mv str back
 vnoremap <c-w> :call Slctd_str__mv('h')<cr>
@@ -2553,16 +2551,32 @@ func! V_line_end__padding() range abort " not use todo dev
   endfor
 endfunc
 
+func! Cursor_f_space__del() abort
+
+  let l:c = Cursor_c_char()
+  if l:c =~ '\s'
+    "echo "del"
+    call Slct_cursor_f_space()
+    call Normal('"zd')
+  else
+    " nothing
+    "echo "nothing"
+  endif
+endfunc
+
 command! -range=% -nargs=* VSpaceCrctL <line1>,<line2>call V_cursor_f_space__del(<f-args>)
 
 func! V_cursor_f_space__del() range abort
 
+  call Slct_re()
+  let l:col = Col()
+
+  call Normal("\<esc>")
+
   for line_num in range(a:firstline, a:lastline)
-
-    call Normal(l:line_num . 'G')
-
-    call Slct_cursor_f_space()
-    call Normal('"zd')
+    "echo l:line_num . ' ' . l:col
+    call Cursor__mv_by_line_col(l:line_num, l:col)
+    call Cursor_f_space__del()
   endfor
 endfunc
 
@@ -2764,9 +2778,9 @@ func! Slct_word() abort
   if     l:c =~ '\w'
     call Normal('viw')
 
-  elseif l:c =~ ' '
+  elseif l:c =~ '\s'
+  "elseif l:c =~ ' '
     call Slct_cursor_f_space()
-    "call Normal('vwh')
   else
     call Normal('v')
   endif
@@ -2775,9 +2789,10 @@ endfunc
 func! Slct_cursor_f_space() abort
 
   let l:c = Cursor_c_char()
-  if l:c !~ ' '
+  if l:c !~ '\s'
     return
   endif
+  "echo l:c
 
   call Normal('vwh')
 endfunc
