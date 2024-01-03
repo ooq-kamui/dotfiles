@@ -89,7 +89,8 @@ alias vi_vim_swap "vi ~/.local/share/nvim/swap/"
 #alias opn "open"
 
 set -x LC_TIME en_US
-alias da      "date_y 0"
+alias da      "date_ymd"
+#alias da      "date_y 0"
 alias da_y1   "date_y 1"
 alias da_y2   "date_y 2"
 alias date_y1 "date_y 1"

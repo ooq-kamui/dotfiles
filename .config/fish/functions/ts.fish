@@ -1,5 +1,5 @@
 function ts
 
-  date_ymdhm
+  date_ymdhms
 end
 

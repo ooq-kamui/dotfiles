@@ -160,7 +160,7 @@ nnoremap <c-z> <c-z>
 "nnoremap a :w<cr>
 nnoremap a :call Save()<cr>
 
-" load re
+" slf load re
 "nnoremap xx :e!
 
 " load re vimrc
@@ -243,6 +243,7 @@ nnoremap y :call Cursor__mv_line_top_or_new_line()<cr>
 nnoremap <c-a> 0
 
 " cursor mv line end
+"nnoremap <c-y> xx
 nnoremap <expr> <c-y>
 \ Is_cursor_line_end() ? ':call Ins_markdown_cr()<cr>'     :
 \                        ':call Cursor__mv_line_end()<cr>'
@@ -365,6 +366,9 @@ nnoremap <leader>c :RgstrHstry<cr>
 nnoremap h     u
 nnoremap <c-h> <c-r>
 
+" undo clr
+nnoremap x :call Undo_clr()<cr>
+
 " repeat
 "nnoremap xx .
 
@@ -382,6 +386,7 @@ nnoremap <space> i
 nnoremap m :call Ins_cr()<cr>
 
 " ins comment 1
+"nnoremap ! xx
 nnoremap <expr> !
 \ Is_file_type('markdown') ? ':call Ins_markdown_h()<cr>' :
 \                            ':call Ins_cmnt_1("^")<cr>'
@@ -406,7 +411,7 @@ nnoremap = :call Ins('-')<esc>
 nnoremap L :call Ins_space()<cr>
 
 " ins date time
-nnoremap * :call Ins_ts()<cr>
+nnoremap * :call Ins_da()<cr>
 
 " ins day of week
 nnoremap \ :call Ins_week()<cr>
@@ -422,6 +427,7 @@ nnoremap <c-u> :call Ins_markdown_code()<cr>
 "nnoremap U     :call Ins_markdown_code()<cr>
 
 " ins markdown itm
+"nnoremap O xx
 nnoremap <expr> O
 \ Is_file_type('markdown') ? ':call Ins_markdown_itm()<cr>' :
 \                            ':call Indnt__shft_r()<cr>'
@@ -712,7 +718,7 @@ nnoremap q <esc>
 "nnoremap t <esc>
 "nnoremap u <esc>
 "nnoremap w <esc>
-nnoremap x <esc>
+"nnoremap x <esc>
 "nnoremap y <esc>
 nnoremap z <esc>
 
@@ -880,12 +886,11 @@ vnoremap O :call V_ynk__add()<cr>
 "vnoremap xx "+y
 
 " paste
+"vnoremap p xx
 vnoremap <expr> p
 \ mode() == '<c-v>' ? '"zd"aP'              :
+\ mode() == 'V'     ? '"zd"aP'              :
 \                     ':call V_paste()<cr>'
-"\ mode() == '<c-v>' ? '"zd"0P'              :
-"\                     ':call V_paste()<cr>'
-"vnoremap p :call V_paste()<cr>
 
 " paste clipboard
 vnoremap P :call V_paste__clipboard()<cr>
@@ -903,6 +908,7 @@ vnoremap h <esc>u
 " 
 
 " ins | cut & ins
+"vnoremap <space> xx
 vnoremap <expr> <space>
 \ mode() == '<c-v>' ? 'I' :
 \                     'c'
@@ -911,11 +917,13 @@ vnoremap <expr> <space>
 "vnoremap <leader><space> "zc
 
 " ins $
+"vnoremap Y xx
 vnoremap <expr> Y
 \ mode() == '<c-v>' ? '$A'      :
 \                     '<c-v>$A'
 
 " ins space
+"vnoremap L xx
 vnoremap <expr> L
 \ mode() == '<c-v>' ? 'I <esc>gv' :
 \                     ''
@@ -928,7 +936,7 @@ vnoremap & :call V_ins_cmnt_mlt()<cr>
 "vnoremap $ :call V_ins_cmnt_mlt()<cr>
 
 " ins date time
-vnoremap * c<c-r>=strftime('%Y-%m-%d.%H:%M')<cr><esc>
+vnoremap * x:call Ins_da()<cr>
 
 " ins day of week
 vnoremap \ x:call Ins_week()<cr>
@@ -942,6 +950,7 @@ vnoremap :r :<c-u>SlctdEdgeIns
 vnoremap :b :<c-u>SlctdEdgeIns 
 
 " del str > ynk
+"vnoremap d xx
 vnoremap <expr> d
 \ mode() == '<c-v>' ? '"ad:let @+ = @a<cr>gv' :
 \                     '"ad:let @+ = @a<cr>'
@@ -950,6 +959,7 @@ vnoremap <expr> d
 "vnoremap xx :call V_slctd__del()<cr> " dev tst
 
 " del str > ynk not
+"vnoremap s xx
 vnoremap <expr> s
 \ mode() == '<c-v>' ? '"zdgv' :
 \                     '"zx'
@@ -969,7 +979,8 @@ vnoremap M :call V_line_top_space__del()<cr>
 vnoremap m :call V_line_end_space__del()<cr>
 
 " del cursor f space
-vnoremap L :VSpaceCrctL<cr>
+vnoremap L :call V_cursor_f_space__del()<cr>
+"vnoremap L :VSpaceCrctL<cr>
 
 " mv str back
 vnoremap <c-w> :call Slctd_str__mv('h')<cr>
@@ -1002,7 +1013,8 @@ vnoremap " <gv
 vnoremap ; =gv
 
 " indnt tab   > space
-vnoremap :e :call V_indnt_2_space()<cr>
+vnoremap :e :call V_indnt_2_space()
+"vnoremap :e :call V_indnt_2_space()<cr>
 
 " indnt space > tab
 vnoremap :E :call V_indnt_2_tab()<cr>
@@ -1206,6 +1218,7 @@ vnoremap gt <esc>
 " 
 
 " quit, esc
+"inoremap <esc> xx
 inoremap <expr> <esc>
 \ pumvisible()          ? '<c-e>'  :
 \ Is_cursor_line_top0() ? '<esc>'  :
@@ -1217,9 +1230,12 @@ inoremap <c-a> <c-o>0
 "inoremap <c-a> <c-o>^
 inoremap <c-e> <c-o>$
 
-" cursor mv char
+" cursor mv char forward
 inoremap <c-l> <c-o>l
 inoremap <c-f> <c-o>l
+
+" cursor mv char back
+"inoremap <c-o> xx
 inoremap <expr> <c-o>
 \ pumvisible() ? '<c-y>'  :
 \                '<c-o>h'
@@ -1247,11 +1263,13 @@ inoremap <tab> <c-v><tab>
 "inoremap xx <space><space>
 
 " ins complete
+"inoremap <c-y> xx
 inoremap <expr> <c-y>
 \ pumvisible() ? '<c-e>' :
 \                '<c-n>'
 
 " ins bracket
+"inoremap <c-j> xx
 inoremap <expr> <c-j>
 \ pumvisible() ? '<c-n>'                 :
 \                '<c-r>=I_bracket()<cr>'
@@ -1295,6 +1313,7 @@ inoremap <c-h> <c-h>
 inoremap <c-w> <c-w>
 
 " del word forword
+"inoremap <c-k> xx
 inoremap <expr> <c-k>
 \ pumvisible()           ? '<c-p>'   :
 \ ! Is_cursor_line_end() ? '<c-o>dw' :
@@ -2377,9 +2396,27 @@ func! Ins_space() abort
   "call Normal('l')
 endfunc
 
+func! Ins_da() abort
+
+  let l:da = strftime('%Y-%m-%d')
+  call Ins(l:da)
+endfunc
+
+func! Ins_tm() abort
+
+  let l:tm = strftime('%H:%M')
+  call Ins(l:tm)
+endfunc
+
+func! Ins_dt() abort
+
+  let l:dt = strftime('%Y-%m-%d.%H:%M')
+  call Ins(l:dt)
+endfunc
+
 func! Ins_ts() abort
 
-  let l:ts = strftime('%Y-%m-%d.%H:%M')
+  let l:ts = strftime('%Y-%m-%d.%H:%M:%S')
   call Ins(l:ts)
 endfunc
 
@@ -2564,7 +2601,7 @@ func! Cursor_f_space__del() abort
   endif
 endfunc
 
-command! -range=% -nargs=* VSpaceCrctL <line1>,<line2>call V_cursor_f_space__del(<f-args>)
+"command! -range=% -nargs=* VSpaceCrctL <line1>,<line2>call V_cursor_f_space__del(<f-args>)
 
 func! V_cursor_f_space__del() range abort
 
@@ -2757,13 +2794,13 @@ func! Indnt__crct_by_c() abort
   return l:col
 endfunc
 
-func! V_indnt_2_space() abort
+func! V_indnt_2_space() range abort
 
   let l:sys_cmd = '  expand   -t 2'
   call V_ins_sys_cmd(l:sys_cmd)
 endfunc
 
-func! V_indnt_2_tab() abort
+func! V_indnt_2_tab() range abort
 
   let l:sys_cmd = 'unexpand   -t 2'
   call V_ins_sys_cmd(l:sys_cmd)
@@ -3850,6 +3887,16 @@ func! I_ooq() abort
 "  \   'end',
 "  \   'nil',
 "  \   'alias',
+endfunc
+
+" undo clr
+
+func! Undo_clr() abort
+
+  let l:undolevels_old = &undolevels
+  setlocal undolevels=-1
+  exe "normal! a \<BS>\<Esc>"
+  let &l:undolevels = l:undolevels_old
 endfunc
 
 " mark
