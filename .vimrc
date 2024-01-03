@@ -367,7 +367,7 @@ nnoremap h     u
 nnoremap <c-h> <c-r>
 
 " undo clr
-nnoremap x :call Undo_clr()<cr>
+nnoremap S :call Undo_clr()<cr>
 
 " repeat
 "nnoremap xx .
@@ -562,8 +562,8 @@ nnoremap :g :GrepStr
 nnoremap :G :GrepWrd 
 
 " tag jmp tab new
-nnoremap t :call N_tag_jmp()<cr>
 nnoremap r :call N_tag_jmp()<cr>
+nnoremap t :call N_tag_jmp()<cr>
 
 " 
 " jmplst ( fzf )
@@ -639,6 +639,9 @@ nnoremap <leader>rk [`
 
 " wrap tgl
 nnoremap :w :set wrap!
+
+" tst
+"nnoremap T :call Tst()<cr>
 
 " numpad shift
 nnoremap <kInsert>   0
@@ -718,7 +721,7 @@ nnoremap q <esc>
 "nnoremap t <esc>
 "nnoremap u <esc>
 "nnoremap w <esc>
-"nnoremap x <esc>
+nnoremap x <esc>
 "nnoremap y <esc>
 nnoremap z <esc>
 
@@ -740,7 +743,7 @@ nnoremap M <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
 "nnoremap R <esc>
-nnoremap S <esc>
+"nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap W <esc>
@@ -889,7 +892,7 @@ vnoremap O :call V_ynk__add()<cr>
 "vnoremap p xx
 vnoremap <expr> p
 \ mode() == '<c-v>' ? '"zd"aP'              :
-\ mode() == 'V'     ? '"zd"aP'              :
+\ mode() == 'v'     ? '"zd"aP'              :
 \                     ':call V_paste()<cr>'
 
 " paste clipboard
@@ -1097,7 +1100,10 @@ vnoremap gs :call V_opn_ggl_srch()<cr>
 vnoremap r  :call V_trns()<cr>
 
 " tst
-"vnoremap T :call Tst()<cr>
+vnoremap T :call Tst()<cr>
+"vnoremap <expr> T :call Tst()<cr>
+"vnoremap <expr> T :call Tst()
+"vnoremap T <sid>Tst()
 
 " 
 " nop
@@ -3177,7 +3183,6 @@ endfunc
 func! Paste() abort
 
   call Normal('"aP')
-  "call Normal('"0P')
 endfunc
 
 func! V_paste() abort
@@ -4054,8 +4059,22 @@ endfunc
 
 " tst
 
-func! Tst() abort
-  return ''
+"func! s:Tst() range abort
+func! Tst() range abort
+
+  call Slct_re()
+
+  if     mode() == "\<c-v>"
+    echo "c-v"
+  elseif mode() == "v"
+    echo "v"
+  elseif mode() == "V"
+    echo "V"
+  else
+    echo "else"
+  endif
+
+  echo "end"
 endfunc
 
 " 
