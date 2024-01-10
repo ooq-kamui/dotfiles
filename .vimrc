@@ -247,7 +247,7 @@ nnoremap <c-a> 0
 nnoremap <expr> <c-y>
 \ Is_cursor_line_end() ? ':call Ins_markdown_cr()<cr>'     :
 \                        ':call Cursor__mv_line_end()<cr>'
-nnoremap <c-e> :call Cursor__mv_line_end()<cr>
+"nnoremap <c-e> :call Cursor__mv_line_end()<cr>
 
 " cursor mv char - forward
 nnoremap l l
@@ -277,8 +277,9 @@ nnoremap <c-_> hT_
 nnoremap <c-l> %
 
 " cursor mv bracket out back
-nnoremap U [{
-nnoremap R [{
+nnoremap <c-w> [{
+nnoremap U     [{
+nnoremap R     [{
 
 " cursor mv bracket fnc back
 "nnoremap xx [m
@@ -410,11 +411,14 @@ nnoremap = :call Ins('-')<esc>
 " ins space
 nnoremap L :call Ins_space()<cr>
 
-" ins date time
+" ins date
 nnoremap * :call Ins_da()<cr>
 
+" ins date time
+nnoremap \ :call Ins_dt()<cr>
+
 " ins day of week
-nnoremap \ :call Ins_week()<cr>
+nnoremap ^ :call Ins_week()<cr>
 
 " ins time
 "nnoremap xx i<c-r>=strftime("%H:%M")<cr><esc>
@@ -424,7 +428,6 @@ nnoremap gp :call Ins_line_slf_path()<cr>
 
 " ins markdown code
 nnoremap <c-u> :call Ins_markdown_code()<cr>
-"nnoremap U     :call Ins_markdown_code()<cr>
 
 " ins markdown itm
 "nnoremap O xx
@@ -672,7 +675,7 @@ nnoremap <bs>    <esc>
 "nnoremap * <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
-nnoremap ^ <esc>
+"nnoremap ^ <esc>
 nnoremap / <esc>
 "nnoremap \ <esc>
 nnoremap ? <esc>
@@ -755,7 +758,7 @@ nnoremap X <esc>
 nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
-"nnoremap <c-e> <esc>
+nnoremap <c-e> <esc>
 "nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
@@ -771,7 +774,7 @@ nnoremap <c-r> <esc>
 nnoremap <c-t> <esc>
 "nnoremap <c-u> <esc>
 nnoremap <c-v> <esc>
-nnoremap <c-w> <esc>
+"nnoremap <c-w> <esc>
 nnoremap <c-x> <esc>
 "nnoremap <c-y> <esc>
 nnoremap <c-z> <esc>
@@ -942,7 +945,7 @@ vnoremap & :call V_ins_cmnt_mlt()<cr>
 vnoremap * x:call Ins_da()<cr>
 
 " ins day of week
-vnoremap \ x:call Ins_week()<cr>
+"vnoremap xx x:call Ins_week()<cr>
 
 " ins time
 "vnoremap xx c<c-r>=strftime("%H:%M")<cr><esc>

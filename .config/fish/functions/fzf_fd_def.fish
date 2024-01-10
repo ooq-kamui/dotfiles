@@ -13,6 +13,7 @@ function fzf_fd_def
   -e tpl               \
   -e toml              \
   -e swp               \
+  -e sql               \
   -e font              \
   -e script            \
   -e gui_script        \
