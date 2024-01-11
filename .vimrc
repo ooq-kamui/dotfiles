@@ -985,8 +985,8 @@ vnoremap M :call V_line_top_space__del()<cr>
 vnoremap m :call V_line_end_space__del()<cr>
 
 " del cursor f space
-vnoremap L :call V_cursor_f_space__del()<cr>
-"vnoremap L :VSpaceCrctL<cr>
+vnoremap K :call V_cursor_f_space__del()<cr>
+"vnoremap <c-d> :call V_cursor_f_space__del()<cr>
 
 " mv str back
 vnoremap <c-w> :call Slctd_str__mv('h')<cr>
@@ -1170,7 +1170,7 @@ vnoremap F <esc>
 vnoremap H <esc>
 "vnoremap I <esc>
 vnoremap J <esc>
-vnoremap K <esc>
+"vnoremap K <esc>
 "vnoremap L <esc>
 "vnoremap M <esc>
 "vnoremap N <esc>
@@ -2610,8 +2610,6 @@ func! Cursor_f_space__del() abort
   endif
 endfunc
 
-"command! -range=% -nargs=* VSpaceCrctL <line1>,<line2>call V_cursor_f_space__del(<f-args>)
-
 func! V_cursor_f_space__del() range abort
 
   call Slct_re()
@@ -3067,7 +3065,8 @@ endfunc
 func! V_slctd__del_pad_space() range abort " use not todo dev
 
   call Slct_re_in_line_1()
-  call Normal('r ')
+
+  call Normal('"aygvr gv')
 endfunc
 
 " slctd ins
