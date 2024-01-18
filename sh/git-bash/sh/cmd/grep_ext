@@ -1,6 +1,7 @@
 #!/bin/bash
 
-grep -r --include="*.md" --include="*.js" $1 . 
+#grep -r --include="*.md" --include="*.js" $1 .
+grep -r --include={'*.md','*.js','*.sql'} $1 .
 
 
 
