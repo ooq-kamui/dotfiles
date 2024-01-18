@@ -1,6 +1,6 @@
 #!/bin/bash
 
-grep -r --include={'*.md'} $1 .
+grep -rn --include='*.md' $1 .
 
 
 
