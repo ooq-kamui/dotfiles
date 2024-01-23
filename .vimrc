@@ -2444,8 +2444,6 @@ let g:elpss_col = 50
 
 func! Ins_elpss() abort
 
-  "let g:elpss_col = 40
-
   let l:idx = 0
   let l:str = ''
   while l:idx < g:elpss_col
@@ -2458,6 +2456,8 @@ func! Ins_elpss() abort
 
   let l:line_num = Line_num()
   call append(l:line_num, l:str)
+
+  call Normal('$lvjhx')
 endfunc
 
 command! -nargs=* InsSysCmd call Ins_sys_cmd(<q-args>)
