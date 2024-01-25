@@ -75,7 +75,7 @@ alias cd_plist    "cd ~/Library/LaunchAgents"
 alias cd_vim      "cd ~/doc/tech/github/vimrc"
 alias cd_vim_swp  "cd ~/.local/state/nvim/swap"
 
-alias l_cp "l | pbcopy"
+alias l_clp "l | pbcopy"
 
 alias vim "nvim -p"
 alias vi  "nvim -p"

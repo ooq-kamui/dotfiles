@@ -3,7 +3,7 @@
 # dl
 
 # curl -Lo ~/sh/dl.sh \
-#   https://raw.githubusercontent.com/ooq-kamui/vimrc/master/sh/git-bash/dl.sh
+#   https://raw.githubusercontent.com/ooq-kamui/vimrc/master/sh/git-bash/sh/dl.sh
 
 # bash
 
