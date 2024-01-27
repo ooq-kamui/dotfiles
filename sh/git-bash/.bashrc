@@ -22,8 +22,10 @@ bind '"\C-k": kill-word'
 
 
 alias clr='clear'
-alias src='source'
 alias his='history | grep'
+
+alias src='source'
+alias src_bashrc='source ~/.bashrc'
 
 alias cdp='cd ..; pwd'
 
@@ -32,6 +34,7 @@ alias ll='ls -lgohAG --time-style="+%Y-%m-%d %H:%M"'
 alias ll.='ll -d .*'
 alias l='ls -1a'
 alias l.='ls -1d .*'
+
 alias lf='ls -1d $( find * -type f )'
 alias ld='ls -1d $( find * -type d )'
 alias lfd='ls -1d $( find * )'
@@ -50,7 +53,7 @@ alias to_clr=':>'
 alias p='pwd'
 alias p_clp='pwd | clip'
 
-#alias pth='pwd' # todo cre
+alias pth='readlink -f'
 
 alias da='date +"%Y-%m-%d"'
 alias dt='date +"%Y-%m-%d.%H:%M"'
@@ -66,8 +69,14 @@ alias vi='vi -p'
 #alias vi_ext
 #alias vi_ext_md
 
+alias vi_bashrc='vi ~/.bashrc'
+
+
 alias fzf='winpty fzf'
 #alias ff="winpty ff"
+
+#export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
+#export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 
 
 #alias wrk

@@ -247,7 +247,8 @@ nnoremap <c-a> 0
 nnoremap <expr> <c-y>
 \ Is_cursor_line_end() ? ':call Ins_markdown_cr()<cr>'     :
 \                        ':call Cursor__mv_line_end()<cr>'
-"nnoremap <c-e> :call Cursor__mv_line_end()<cr>
+
+nnoremap <c-e> :call Cursor__mv_line_end()<cr>
 
 " cursor mv char - forward
 nnoremap l l
@@ -428,6 +429,7 @@ nnoremap gp :call Ins_line_slf_path()<cr>
 
 " ins markdown code
 nnoremap <c-u> :call Ins_markdown_code()<cr>
+nnoremap `     :call Ins_markdown_code()<cr>
 
 " ins markdown itm
 "nnoremap O xx
@@ -682,6 +684,7 @@ nnoremap ? <esc>
 
 "nnoremap ! <esc>
 "nnoremap " <esc>
+"nnoremap ` <esc>
 "nnoremap # <esc>
 "nnoremap $ <esc>
 "nnoremap % <esc> " ?
@@ -758,7 +761,7 @@ nnoremap X <esc>
 nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
-nnoremap <c-e> <esc>
+"nnoremap <c-e> <esc>
 "nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
