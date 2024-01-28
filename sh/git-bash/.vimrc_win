@@ -26,7 +26,7 @@ let g:elpss_col = 60
 
 
 " 
-" dev  -  beta try
+" dev  -  beta  -  try
 " 
 
 let g:grep_work_path = '~/wrk/tmp/grep.java'
@@ -37,6 +37,9 @@ let g:rg_cmd .= ' --path-separator "//"'
 \               . ' -g "*.java"'
 \               . ' -g "*.jsp"'
 \               . ' -g "*.sql"'
+
+nnoremap <leader>o :GitbashFzfRg <c-r>a
+vnoremap <leader>o "zy:GitbashFzfRg <c-r>z
 
 
 

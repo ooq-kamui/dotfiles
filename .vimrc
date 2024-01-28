@@ -558,11 +558,11 @@ nnoremap :s :Rpl
 " 
 
 " grep ( fzf )
-"nnoremap <leader>o :Rg <cr>
+nnoremap <leader>o :Rg <cr>
 
-" grep ( fzf )  -  ( win )  -  todo def mv to .vimrc_win
-" tst
-nnoremap <leader>o :GitbashFzfRg 
+" grep ( fzf )  -  ( win )
+" try
+"nnoremap <leader>o :GitbashFzfRg <c-r>a
 
 " grep buf ( fzf )
 nnoremap <leader>k :call N_grep_buf()<cr>
@@ -1086,7 +1086,11 @@ vnoremap <leader>k :call V_grep_buf()<cr>
 " grep ( fzf )
 vnoremap <leader>o "zy:Rg <c-r>z<cr>
 
-" grep func define ( fzf )
+" grep ( fzf )  -  ( win )
+" try
+"vnoremap <leader>o "zy:GitbashFzfRg <c-r>z
+
+" grep func def ( fzf )
 "vnoremap <leader>xx "zy:Rg <c-r>z<cr>func
 
 " grep [rg]   ( read )
@@ -4127,7 +4131,7 @@ endif
 
 
 " 
-" dev  -  beta try
+" dev  -  beta  -  try
 " 
 
 " rg lst
