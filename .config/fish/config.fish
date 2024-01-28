@@ -46,6 +46,9 @@ set -x FZF_CTRL_T_COMMAND  ( echo $FZF_DEFAULT_COMMAND )
 
 alias shutdown_start "sudo shutdown -r now"
 
+alias clr 'clear'
+alias clp 'pbcopy'
+
 alias src         "source"
 alias src_fsh_cfg "source ~/.config/fish/config.fish"
 
@@ -54,17 +57,15 @@ alias fi "fish"
 alias tmx      'tmux'
 alias tmx_init 'fi ~/sh/tmux-win-init.fish'
 
-alias clr     'clear'
 alias his     'history'
 alias his_del 'history delete'
 
 alias to     'touch'
 alias to_clr ':>'
-alias rn 'rename'
 alias cp 'cp -p'
+alias rn 'rename'
 
-alias dir 'z'
-#alias cdf 'z'
+alias cdp 'cd ../'
 
 alias cd_dl    "cd ~/Downloads"
 alias cd_iclud "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
@@ -74,6 +75,10 @@ alias cd_plist    "cd ~/Library/LaunchAgents"
 
 alias cd_vim      "cd ~/doc/tech/github/vimrc"
 alias cd_vim_swp  "cd ~/.local/state/nvim/swap"
+
+alias dir 'z'
+
+alias p 'pth'
 
 alias l_clp "l | pbcopy"
 
@@ -90,7 +95,6 @@ alias vi_vim_swap "vi ~/.local/share/nvim/swap/"
 
 set -x LC_TIME en_US
 alias da      "date_ymd"
-#alias da      "date_y 0"
 alias da_y1   "date_y 1"
 alias da_y2   "date_y 2"
 alias date_y1 "date_y 1"
@@ -99,14 +103,15 @@ alias date_y2 "date_y 2"
 alias du   "du -h"
 alias du_1 "du -hd1"
 
-alias rgf "rg -l"
-
 alias trns   "trans"
 alias trns_j "trans {ja=en}"
 alias trns_e "trans {en=ja}"
 
 alias ba 'battery'
 alias ca 'cal'
+
+alias rgf "rg -l"
+
 
 # alias prj
 

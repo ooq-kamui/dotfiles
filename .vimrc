@@ -217,7 +217,10 @@ nnoremap go :call Opn_app_by_cursor_path()<cr>
 nnoremap gs :call Opn_app_slf()<cr>
 
 " opn brwsr
-"nnoremap gx <plug>(openbrowser-smart-search)
+nnoremap gb :call Opn_brwsr()<cr>
+
+" opn ggl srch
+nnoremap gg :call Opn_ggl_srch('')<cr>
 
 " opn markdown preview
 "nnoremap gx :call Markdown_2_html()<cr>
@@ -405,9 +408,8 @@ nnoremap < A,<esc>j
 " ins period
 nnoremap . i.<esc>
 
-" ins minus
-nnoremap = :call Ins('-')<esc>
-"nnoremap = i-<esc>
+" ins hyphen
+nnoremap = :call Ins_hyphen()<esc>
 
 " ins space
 nnoremap L :call Ins_space()<cr>
@@ -556,7 +558,11 @@ nnoremap :s :Rpl
 " 
 
 " grep ( fzf )
-nnoremap <leader>o :Rg <cr>
+"nnoremap <leader>o :Rg <cr>
+
+" grep ( fzf )  -  ( win )  -  todo def mv to .vimrc_win
+" tst
+nnoremap <leader>o :GitbashFzfRg 
 
 " grep buf ( fzf )
 nnoremap <leader>k :call N_grep_buf()<cr>
@@ -567,8 +573,10 @@ nnoremap :g :GrepStr
 nnoremap :G :GrepWrd 
 
 " tag jmp tab new
-nnoremap r :call N_tag_jmp()<cr>
 nnoremap t :call N_tag_jmp()<cr>
+
+" tag jmp tab new  -  alias
+nnoremap r :call N_tag_jmp()<cr>
 
 " 
 " jmplst ( fzf )
@@ -783,10 +791,10 @@ nnoremap <c-x> <esc>
 nnoremap <c-z> <esc>
 
 "nnoremap ga <esc>
-nnoremap gb <esc>
+"nnoremap gb <esc>
 "nnoremap ge <esc>
 "nnoremap gf <esc>
-nnoremap gg <esc>
+"nnoremap gg <esc>
 "nnoremap gh <esc>
 nnoremap gi <esc>
 "nnoremap gj <esc>
@@ -935,6 +943,7 @@ vnoremap <expr> Y
 "vnoremap L xx
 vnoremap <expr> L
 \ mode() == '<c-v>' ? 'I <esc>gv' :
+\ mode() == 'v'     ? '>gv' :
 \                     ''
 
 " ins comment 1
@@ -1093,23 +1102,21 @@ vnoremap gh <esc>:call Opn_vimrc()<cr>
 " opn app
 vnoremap go :call V_opn_app()<cr>
 
-" opn youtube video_id
-vnoremap gy :call V_opn_yt()<cr>
-
-" opn ggl search
-vnoremap gs :call V_opn_ggl_srch()<cr>
-
 " opn brwsr
 "vnoremap gx <plug>(openbrowser-smart-search)
+
+" opn ggl srch
+vnoremap gg :call V_opn_ggl_srch()<cr>
+"vnoremap gs :call V_opn_ggl_srch()<cr>
+
+" opn youtube video_id
+vnoremap gy :call V_opn_yt()<cr>
 
 " trns
 vnoremap r  :call V_trns()<cr>
 
 " tst
 vnoremap T :call Tst()<cr>
-"vnoremap <expr> T :call Tst()<cr>
-"vnoremap <expr> T :call Tst()
-"vnoremap T <sid>Tst()
 
 " 
 " nop
@@ -1214,14 +1221,14 @@ vnoremap <c-x> <esc>
 "vnoremap <c-y> <esc>
 
 "vnoremap gb <esc>
-vnoremap gg <esc>
+"vnoremap gg <esc>
 "vnoremap gh <esc>
 vnoremap gi <esc>
 "vnoremap gj <esc>
 "vnoremap gk <esc>
 "vnoremap go <esc>
 vnoremap gp <esc>
-"vnoremap gs <esc>
+vnoremap gs <esc>
 vnoremap gt <esc>
 "vnoremap gy <esc>
 
@@ -1671,6 +1678,7 @@ endfunc
 func! Jmplst() abort
 
   let l:jmplst_tmp = getjumplist()[0]
+  "echo l:jmplst_tmp
 
   let l:buf_num_key_prefix = 'key_'
   let l:jmplst = {}
@@ -1692,6 +1700,8 @@ func! Jmplst() abort
 
   let l:buf_num_key = l:buf_num_key_prefix . Buf_num()
   let l:r_jmplst    = get(l:jmplst, buf_num_key, [])
+  "echo l:r_jmplst
+
   return l:r_jmplst
 endfunc
 
@@ -1706,6 +1716,7 @@ func! Jmplst_line_info() abort
     let l:line_info = l:line_num . ' ' . getline(l:line_num)
     call add(l:jmplst_line_info, l:line_info)
   endfor
+  "echo l:jmplst_line_info
 
   return l:jmplst_line_info
 endfunc
@@ -2377,7 +2388,7 @@ func! Ins(str) abort
   "call Normal('l')
 endfunc
 
-func! V_ins(str) range abort
+func! V_ins(str) range abort " todo cre
 
 endfunc
 
@@ -2406,6 +2417,12 @@ func! Ins_space() abort
 
   call Normal('i ')
   "call Normal('l')
+endfunc
+
+func! Ins_hyphen() abort
+
+  call Normal('i-')
+  "call Ins('-')
 endfunc
 
 func! Ins_da() abort
@@ -3372,30 +3389,12 @@ endfunc
 
 func! Grep(opt, p_str) abort
   
-  if a:opt == v:null
-    let l:opt = ''
-  else
-    let l:opt = a:opt
-  endif
-  
-  "if a:p_str != ''
-  "if ! Is_str_emp(a:p_str)
-  if Is_str_emp(a:p_str)
-    let l:str = @/
-  else
-    let l:str = trim(a:p_str)
-  endif
-  
-  let l:str = escape(l:str, '\({')
-
-  let l:cmd = 'r! rg -n -s "'.l:str.'"'
-  \         . ' -g "*.lua"  -g "*.script" -g "*.gui_script"'
-  \         . ' -g "*.txt"  -g "*.json"   -g "*.fish" -g "*.vim"'
-  \         . ' -g "*.html" -g "*.js"     -g "*.css"  -g "*.md" '
-  \         . ' ' . l:opt
-  
   call Opn_grep_work()
-  call Exe(l:cmd)
+
+  "let l:rg_rslt_txt = Rg_rslt_txt(a:opt, a:p_str)
+
+  let l:rg_cmd = Rg_cmd(a:opt, a:p_str)
+  call Ins_sys_cmd(l:rg_cmd)
 endfunc
 
 command! -nargs=? GrepStr call Grep_str(<q-args>)
@@ -3721,15 +3720,15 @@ func! Opn_memo() abort
   call Opn(l:path)
 endfunc
 
+let g:grep_work_path = 'doc/grep.lua'
+
 func! Opn_grep_work() abort
 
-  let l:path = 'doc/grep.lua'
-  let l:file_type = getftype(l:path)
-    
-  "if getftype(l:path) == ''
+  let l:file_type = getftype(g:grep_work_path)
+
   if Is_str_emp(l:file_type)
 
-    call Opn(l:path)
+    call Opn(g:grep_work_path)
   else
     call Opn_tmp()
   endif
@@ -3786,6 +3785,12 @@ func! Opn_app_slf() abort
   "echo l:path
 
   call Opn_app(l:path)
+endfunc
+
+func! Opn_brwsr()
+
+  let l:url = 'https://www.google.com/'
+  call Opn_app(l:url)
 endfunc
 
 func! Opn_yt(yt_video_id)
@@ -4118,6 +4123,76 @@ if filereadable(expand(g:vimrc_win_path))
   call Exe('source ' . g:vimrc_win_path)
   "echo 'read .vimrc_win'
 endif
+
+
+
+" 
+" dev  -  beta try
+" 
+
+" rg lst
+
+command! -nargs=? GitbashFzfRg call Gitbash_fzf_rg(<q-args>)
+
+func! Gitbash_fzf_rg(str) abort
+
+  call fzf#run(
+  \   {
+  \     'source' : Rg_rslt_ar(a:str),
+  \     'sink'   : funcref('Tag_jmp'),
+  \     'window' : '-tabnew',
+  \   }
+  \ )
+  "\     'options': ['--reverse'],
+  "\     'options': ['--no-sort'],
+endfunc
+
+func! Rg_rslt_ar(str) abort
+
+  let l:rg_rslt_ar = Rg_rslt_txt(v:null, a:str)->split("\n")
+  return l:rg_rslt_ar
+endfunc
+
+let g:rg_cmd = 'rg -ns'
+\              . ' -g "*.lua"'
+\              . ' -g "*.script"'
+\              . ' -g "*.gui_script"'
+\              . ' -g "*.txt"'
+\              . ' -g "*.json"'
+\              . ' -g "*.fish"'
+\              . ' -g "*.vim"'
+\              . ' -g "*.html"'
+\              . ' -g "*.js"'
+\              . ' -g "*.css"'
+\              . ' -g "*.md"'
+
+func! Rg_rslt_txt(opt, p_str) abort " todo refactoring
+  
+  let l:rg_cmd = Rg_cmd(a:opt, a:p_str)
+
+  let l:r_rslt_txt = Sys_cmd(l:rg_cmd)
+  return l:r_rslt_txt
+endfunc
+
+func! Rg_cmd(opt, p_str) abort
+
+  if a:opt == v:null
+    let l:opt = ''
+  else
+    let l:opt = a:opt
+  endif
+  
+  if Is_str_emp(a:p_str)
+    let l:str = @/
+  else
+    let l:str = trim(a:p_str)
+  endif
+  
+  let l:str = escape(l:str, '\({')
+  
+  let l:rg_cmd = g:rg_cmd . ' ' . l:opt . ' "' . l:str . '"'
+  return l:rg_cmd
+endfunc
 
 
 

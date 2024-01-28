@@ -1,6 +1,6 @@
 #!/bin/bash
 
-vi $( lf_ext $1 )
+vi -p $( lf_ext $1 )
 
 
 

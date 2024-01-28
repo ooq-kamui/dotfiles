@@ -1,4 +1,4 @@
-function pwd_cp
+function pwd_clp
 
   pwd $argv |\
   pbcopy
