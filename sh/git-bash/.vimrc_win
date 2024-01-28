@@ -29,7 +29,7 @@ let g:elpss_col = 60
 " dev  -  beta  -  try
 " 
 
-let g:grep_work_path = '~/wrk/tmp/grep.java'
+let g:grep_work_path = '~/wrk/tmp/grep.md'
 
 " grep ( rg )
 

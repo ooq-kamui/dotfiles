@@ -495,8 +495,11 @@ nnoremap # :call Indnt__shft_r()<cr>
 " indnt add
 "nnoremap xx :call Indnt__add(2)<cr>
 
-" indnt correct
+" indnt crct
 nnoremap ; :call Indnt__crct()<cr>
+
+" cursor f space __ crct
+nnoremap H :call Cursor_f_space__crct()<cr>
 
 " 
 " srch
@@ -746,7 +749,7 @@ nnoremap D <esc>
 "nnoremap E <esc>
 nnoremap F <esc>
 nnoremap G <esc>
-nnoremap H <esc>
+"nnoremap H <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
@@ -943,7 +946,7 @@ vnoremap <expr> Y
 "vnoremap L xx
 vnoremap <expr> L
 \ mode() == '<c-v>' ? 'I <esc>gv' :
-\ mode() == 'v'     ? '>gv' :
+\ mode() == 'v'     ? '>gv'       :
 \                     ''
 
 " ins comment 1
@@ -998,7 +1001,6 @@ vnoremap m :call V_line_end_space__del()<cr>
 
 " del cursor f space
 vnoremap K :call V_cursor_f_space__del()<cr>
-"vnoremap <c-d> :call V_cursor_f_space__del()<cr>
 
 " mv str back
 vnoremap <c-w> :call Slctd_str__mv('h')<cr>
@@ -1027,7 +1029,7 @@ vnoremap + g<c-a>
 vnoremap # >gv
 vnoremap " <gv
 
-" indnt correct
+" indnt crct
 vnoremap ; =gv
 
 " indnt tab   > space
@@ -2847,7 +2849,6 @@ func! Slct_word() abort
     call Normal('viw')
 
   elseif l:c =~ '\s'
-  "elseif l:c =~ ' '
     call Slct_cursor_f_space()
   else
     call Normal('v')
@@ -4117,17 +4118,6 @@ hi netrwVersion  ctermfg=130        ctermbg=none    cterm=none
 hi netrwHelpCmd  ctermfg=130        ctermbg=none    cterm=none
 
 
-" 
-" win
-" 
-let g:vimrc_win_path = '~/.vimrc_win'
-
-if filereadable(expand(g:vimrc_win_path))
-
-  call Exe('source ' . g:vimrc_win_path)
-  "echo 'read .vimrc_win'
-endif
-
 
 
 " 
@@ -4197,6 +4187,39 @@ func! Rg_cmd(opt, p_str) abort
   let l:rg_cmd = g:rg_cmd . ' ' . l:opt . ' "' . l:str . '"'
   return l:rg_cmd
 endfunc
+
+func! Cursor_f_space__crct() abort
+
+  call Normal('k')
+
+  let l:c = Cursor_c_char()
+  if l:c !~ '\s'
+    call Normal('j')
+    return
+  endif
+
+  call Slct_cursor_f_space()
+  call Normal('"zy')
+
+  call Normal('j')
+
+  call Slct_cursor_f_space()
+  call Normal('"yx')
+  call Normal('"zP')
+endfunc
+
+
+
+" 
+" win
+" 
+let g:vimrc_win_path = '~/.vimrc_win'
+
+if filereadable(expand(g:vimrc_win_path))
+
+  call Exe('source ' . g:vimrc_win_path)
+  "echo 'read .vimrc_win'
+endif
 
 
 
