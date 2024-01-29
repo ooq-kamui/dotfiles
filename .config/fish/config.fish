@@ -34,7 +34,7 @@ set -x RIPGREP_CONFIG_PATH ~/.ripgreprc
 # 
 
 set -x FZF_DEFAULT_COMMAND ( fzf_fd_def )
-set -x FZF_DEFAULT_OPTS    '--bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
+set -x FZF_DEFAULT_OPTS    '--ansi --bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
 set -x FZF_CTRL_T_COMMAND  ( echo $FZF_DEFAULT_COMMAND )
 #set -x FZF_CTRL_T_OPTS
 #set -x FZF_CTRL_R_OPTS
@@ -52,7 +52,10 @@ alias clp 'pbcopy'
 alias src         "source"
 alias src_fsh_cfg "source ~/.config/fish/config.fish"
 
-alias fi "fish"
+alias fi 'fish'
+
+alias sh_ch_fi 'chsh -s /opt/homebrew/bin/fish'
+alias sh_ch_ba 'chsh -s /bin/bash'
 
 alias tmx      'tmux'
 alias tmx_init 'fi ~/sh/tmux-win-init.fish'

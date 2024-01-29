@@ -1,6 +1,11 @@
 function fzf_fd_def
 
   echo fd --type f     \
+  --hidden             \
+  --color=always       \
+  --hidden             \
+  --follow             \
+  --exclude .git       \
   -e txt               \
   -e md                \
   -e lua               \

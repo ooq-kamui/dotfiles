@@ -349,6 +349,9 @@ nnoremap c :call Ynk__line()<cr>
 "nnoremap xx "ayl
 "nnoremap xx "0yl
 
+" ynk slf path
+nnoremap gy :call Ynk__slf_path()<cr>
+
 " ynk clipboard
 nnoremap C :call Ynk__clipboard()<cr>
 
@@ -410,6 +413,7 @@ nnoremap . i.<esc>
 
 " ins hyphen
 nnoremap = :call Ins_hyphen()<esc>
+nnoremap 0 :call Ins_hyphen()<esc>
 
 " ins space
 nnoremap L :call Ins_space()<cr>
@@ -565,7 +569,7 @@ nnoremap <leader>o :Rg <cr>
 
 " grep ( fzf )  -  ( win )
 " try
-"nnoremap <leader>o :GitbashFzfRg <c-r>a
+"nnoremap <leader>o :GitbashFzfRg <c-r>/
 
 " grep buf ( fzf )
 nnoremap <leader>k :call N_grep_buf()<cr>
@@ -718,7 +722,7 @@ nnoremap <c-@> <esc>
 "nnoremap <c-[> <esc>
 nnoremap <c-]> <esc>
 
-nnoremap 0 <esc>
+"nnoremap 0 <esc>
 "nnoremap a <esc>
 nnoremap b <esc>
 "nnoremap c <esc>
@@ -811,6 +815,7 @@ nnoremap gn <esc>
 "nnoremap gt <esc>
 "nnoremap gu <esc>
 nnoremap gv <esc>
+"nnoremap gy <esc>
 
 " mode normal end
 
@@ -3186,6 +3191,14 @@ func! Ynk__line_all() abort
   call Clipboard__ynk()
 endfunc
 
+func! Ynk__slf_path() abort
+  
+  let l:path = Slf_path()
+
+  let @a = l:path
+  call Clipboard__ynk()
+endfunc
+
 func! Ynk__clipboard() abort
 
   let @a = @+
@@ -3395,8 +3408,6 @@ endfunc
 func! Grep(opt, p_str) abort
   
   call Opn_grep_work()
-
-  "let l:rg_rslt_txt = Rg_rslt_txt(a:opt, a:p_str)
 
   let l:rg_cmd = Rg_cmd(a:opt, a:p_str)
   call Ins_sys_cmd(l:rg_cmd)
@@ -4143,24 +4154,25 @@ endfunc
 
 func! Rg_rslt_ar(str) abort
 
-  let l:rg_rslt_ar = Rg_rslt_txt(v:null, a:str)->split("\n")
+  let l:rg_rslt_txt = Rg_rslt_txt(v:null, a:str)
+  let l:rg_rslt_ar  = split(l:rg_rslt_txt, "\n")
   return l:rg_rslt_ar
 endfunc
 
 let g:rg_cmd = 'rg -ns'
-\              . ' -g "*.lua"'
-\              . ' -g "*.script"'
-\              . ' -g "*.gui_script"'
-\              . ' -g "*.txt"'
-\              . ' -g "*.json"'
-\              . ' -g "*.fish"'
-\              . ' -g "*.vim"'
-\              . ' -g "*.html"'
-\              . ' -g "*.js"'
-\              . ' -g "*.css"'
-\              . ' -g "*.md"'
+\            . ' -g "*.lua"'
+\            . ' -g "*.script"'
+\            . ' -g "*.gui_script"'
+\            . ' -g "*.txt"'
+\            . ' -g "*.json"'
+\            . ' -g "*.fish"'
+\            . ' -g "*.vim"'
+\            . ' -g "*.html"'
+\            . ' -g "*.js"'
+\            . ' -g "*.css"'
+\            . ' -g "*.md"'
 
-func! Rg_rslt_txt(opt, p_str) abort " todo refactoring
+func! Rg_rslt_txt(opt, p_str) abort
   
   let l:rg_cmd = Rg_cmd(a:opt, a:p_str)
 

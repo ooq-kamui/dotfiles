@@ -73,8 +73,8 @@ alias rg='rg -nS --path-separator "//"'
 alias fzf='winpty fzf'
 #alias ff="winpty ff"
 
-export FZF_DEFAULT_COMMAND='fd --type f'
-#export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
+export FZF_DEFAULT_COMMAND='fd --type f --color=always --hidden --follow --exclude .git'
+export FZF_DEFAULT_OPTS='--ansi'
 
 
 #alias wrk

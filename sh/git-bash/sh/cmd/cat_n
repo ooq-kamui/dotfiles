@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# incomplete
+
+line_num_fr=$1
+line_num_to=$2
+
+if [ "$line_num_to" = "" ]
+then
+  line_num_to=$line_num_fr
+fi
+
+sed -n "$line_num_fr,$line_num_to p"
+
+
+
