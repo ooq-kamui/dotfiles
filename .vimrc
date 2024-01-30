@@ -576,8 +576,8 @@ nnoremap <leader>k :call N_grep_buf()<cr>
 "nnoremap <leader>k :BLines<cr>
 
 " grep [rg]   ( read )
-nnoremap :g :GrepStr 
-nnoremap :G :GrepWrd 
+nnoremap :g :GrepStr <c-r>/
+nnoremap :G :GrepWrd <c-r>/
 
 " tag jmp tab new
 nnoremap t :call N_tag_jmp()<cr>
@@ -815,6 +815,7 @@ nnoremap gn <esc>
 "nnoremap gt <esc>
 "nnoremap gu <esc>
 nnoremap gv <esc>
+"nnoremap gw <esc>
 "nnoremap gy <esc>
 
 " mode normal end
@@ -4038,6 +4039,13 @@ func! Mark_del_all() abort
   call Exe('DoShowMarks')
 endfunc
 
+" encode sjis
+
+func! E_enc_sjis() abort
+
+  call Exe('e ++enc sjis')
+endfunc
+
 " trns
 
 func! V_trns() range abort
@@ -4103,6 +4111,7 @@ func! Tst() range abort
   echo "end"
 endfunc
 
+
 " 
 " init
 " 
@@ -4117,6 +4126,7 @@ func! Srch_init() abort " use not
   call Normal(l:cmd)
 endfunc
 "call Srch_init()
+
 
 " netrw " use not
 
@@ -4175,6 +4185,7 @@ let g:rg_cmd = 'rg -ns'
 func! Rg_rslt_txt(opt, p_str) abort
   
   let l:rg_cmd = Rg_cmd(a:opt, a:p_str)
+               . ' --color always'
 
   let l:r_rslt_txt = Sys_cmd(l:rg_cmd)
   return l:r_rslt_txt

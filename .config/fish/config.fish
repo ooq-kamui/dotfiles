@@ -113,6 +113,8 @@ alias trns_e "trans {en=ja}"
 alias ba 'battery'
 alias ca 'cal'
 
+alias fd "fd --hidden --follow --exclude .git"
+
 alias rgf "rg -l"
 
 

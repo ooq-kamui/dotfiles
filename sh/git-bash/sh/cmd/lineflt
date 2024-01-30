@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# incomplete
+# 
 
 line_num_fr=$1
 line_num_to=$2
@@ -10,6 +10,7 @@ then
   line_num_to=$line_num_fr
 fi
 
+cat - |\
 sed -n "$line_num_fr,$line_num_to p"
 
 

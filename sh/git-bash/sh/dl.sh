@@ -1,13 +1,18 @@
 #!/bin/bash
 
-# dl ( slf )
-# curl -Lo ~/sh/dl.sh https://raw.githubusercontent.com/ooq-kamui/vimrc/master/sh/git-bash/sh/dl.sh
+# dl-dl.sh cre ( this dl sh )
+# ```
+# curl -Lo ~/sh/dl.sh \
+#   https://raw.githubusercontent.com/ooq-kamui/vimrc/master/sh/git-bash/sh/dl.sh
+# ```
 
 # bk
 
-cp -p ~/.bashrc    ~/.bashrc.bk    # ~/tmp/
-cp -p ~/.vimrc     ~/.vimrc.bk     # ~/tmp/
-cp -p ~/.vimrc_win ~/.vimrc_win.bk # ~/tmp/
+mkdir -p ~/tmp
+
+cp -p ~/.bashrc    ~/tmp/
+cp -p ~/.vimrc     ~/tmp/
+cp -p ~/.vimrc_win ~/tmp/
 
 
 # bash
@@ -25,6 +30,12 @@ curl -Lo ~/.vimrc \
 
 curl -Lo ~/.vimrc_win \
   https://raw.githubusercontent.com/ooq-kamui/vimrc/master/sh/git-bash/.vimrc_win
+
+
+# cmd
+
+# curl -Lo ~/sh/cmd/xx \
+#   https://raw.githubusercontent.com/ooq-kamui/vimrc/master/sh/git-bash/sh/cmd/xx
 
 
 

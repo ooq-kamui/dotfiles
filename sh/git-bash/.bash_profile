@@ -4,5 +4,5 @@ test -f ~/.profile && . ~/.profile
 test -f ~/.bashrc  && . ~/.bashrc
 
 
-cd_wrk
+#cd_wrk
 

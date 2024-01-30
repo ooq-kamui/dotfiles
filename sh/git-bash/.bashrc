@@ -66,6 +66,9 @@ alias vi='vi -p'
 #alias vi_ext_md
 
 alias vi_bashrc='vi ~/.bashrc'
+alias vi_bashrc_env='vi ~/.bashrc_env'
+
+alias fd='fd --hidden --follow --exclude .git'
 
 alias gr='grep'
 alias rg='rg -nS --path-separator "//"'

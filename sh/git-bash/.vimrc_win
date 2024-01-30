@@ -6,6 +6,7 @@ hi NonText          ctermfg=darkblue ctermbg=none    cterm=none
 hi Search           ctermfg=yellow   ctermbg=magenta cterm=none
 hi Comment          ctermfg=cyan     ctermbg=none    cterm=none
 hi HtmlCommentError ctermfg=red      ctermbg=green   cterm=none
+hi SpecialKey       ctermfg=darkgrey ctermbg=none    cterm=none
 
 hi LineNr      ctermfg=blue                        cterm=none
 augroup InsertHook
