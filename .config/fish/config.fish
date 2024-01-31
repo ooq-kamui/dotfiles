@@ -68,6 +68,9 @@ alias to_clr ':>'
 alias cp 'cp -p'
 alias rn 'rename'
 
+alias psh 'pushd'
+alias pop 'popd'
+
 alias cdp 'cd ../'
 
 alias cd_dl    "cd ~/Downloads"

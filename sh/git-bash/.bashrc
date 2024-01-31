@@ -55,6 +55,7 @@ alias p_clp='pwd | clip'
 alias pth='readlink -f'
 
 alias opn='explorer'
+alias opn_brwsr='explorer https://google.com/'
 
 alias da='date +"%Y-%m-%d"'
 alias dt='date +"%Y-%m-%d.%H:%M"'
@@ -65,8 +66,9 @@ alias vi='vi -p'
 #alias vi_ext
 #alias vi_ext_md
 
-alias vi_bashrc='vi ~/.bashrc'
-alias vi_bashrc_env='vi ~/.bashrc_env'
+#alias vi_bashrc='vi ~/.bashrc'
+#alias vi_bashrc_env='vi ~/.bashrc_env'
+alias vi_bashrc='vi ~/.bashrc ~/.bashrc_env'
 
 alias fd='fd --hidden --follow --exclude .git'
 

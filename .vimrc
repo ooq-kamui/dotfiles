@@ -350,7 +350,7 @@ nnoremap c :call Ynk__line()<cr>
 "nnoremap xx "0yl
 
 " ynk slf path
-nnoremap gy :call Ynk__slf_path()<cr>
+nnoremap gp :call Ynk__slf_path()<cr>
 
 " ynk clipboard
 nnoremap C :call Ynk__clipboard()<cr>
@@ -431,7 +431,7 @@ nnoremap ^ :call Ins_week()<cr>
 "nnoremap xx i<c-r>=strftime("%H:%M")<cr><esc>
 
 " ins slf path
-nnoremap gp :call Ins_line_slf_path()<cr>
+"nnoremap xx :call Ins_line_slf_path()<cr>
 
 " ins markdown code
 nnoremap <c-u> :call Ins_markdown_code()<cr>
@@ -816,7 +816,7 @@ nnoremap gn <esc>
 "nnoremap gu <esc>
 nnoremap gv <esc>
 "nnoremap gw <esc>
-"nnoremap gy <esc>
+nnoremap gy <esc>
 
 " mode normal end
 
@@ -3708,6 +3708,13 @@ func! Opn_vimrc_win() abort
   endif
 
   call Opn(g:vimrc_win_path)
+
+
+  if ! filereadable(expand(g:vimrc_win_env_path))
+    return
+  endif
+
+  call Opn(g:vimrc_win_env_path)
 endfunc
 
 func! Opn_fish_cnf() abort
@@ -3731,10 +3738,11 @@ func! Opn_vim_key() abort
   call Opn(l:path)
 endfunc
 
+let g:opn_memo_path = 'doc/memo.md'
+
 func! Opn_memo() abort
 
-  let l:path = 'doc/memo.md'
-  call Opn(l:path)
+  call Opn(g:opn_memo_path)
 endfunc
 
 let g:grep_work_path = 'doc/grep.lua'
@@ -4043,7 +4051,7 @@ endfunc
 
 func! E_enc_sjis() abort
 
-  call Exe('e ++enc sjis')
+  call Exe('e ++enc=sjis')
 endfunc
 
 " trns
@@ -4185,7 +4193,7 @@ let g:rg_cmd = 'rg -ns'
 func! Rg_rslt_txt(opt, p_str) abort
   
   let l:rg_cmd = Rg_cmd(a:opt, a:p_str)
-               . ' --color always'
+  \            . ' --color always'
 
   let l:r_rslt_txt = Sys_cmd(l:rg_cmd)
   return l:r_rslt_txt
