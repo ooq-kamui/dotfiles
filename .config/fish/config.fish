@@ -85,8 +85,9 @@ alias cd_vim_swp  "cd ~/.local/state/nvim/swap"
 alias dir 'z'
 
 alias p 'pth'
+alias p_clp 'p | clp'
 
-alias l_clp "l | pbcopy"
+alias l_clp "l | clp"
 
 alias vim "nvim -p"
 alias vi  "nvim -p"

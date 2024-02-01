@@ -353,7 +353,7 @@ nnoremap c :call Ynk__line()<cr>
 nnoremap gp :call Ynk__slf_path()<cr>
 
 " ynk clipboard
-nnoremap C :call Ynk__clipboard()<cr>
+"nnoremap xx :call Ynk__clipboard()<cr>
 
 " clipboard line
 "nnoremap xx "+yy
@@ -425,7 +425,7 @@ nnoremap * :call Ins_da()<cr>
 nnoremap \ :call Ins_dt()<cr>
 
 " ins day of week
-nnoremap ^ :call Ins_week()<cr>
+"nnoremap xx :call Ins_week()<cr>
 
 " ins time
 "nnoremap xx i<c-r>=strftime("%H:%M")<cr><esc>
@@ -444,7 +444,7 @@ nnoremap <expr> O
 \                            ':call Indnt__shft_r()<cr>'
 
 " ins elpss
-nnoremap > :call Ins_elpss()<cr>
+nnoremap > :call V_ynk__add_slctd()<cr>
 
 " tgl markdown chk
 "nnoremap xx :call Char__tgl_markdown_chk()<cr>
@@ -692,7 +692,7 @@ nnoremap <bs>    <esc>
 "nnoremap * <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
-"nnoremap ^ <esc>
+nnoremap ^ <esc>
 nnoremap / <esc>
 "nnoremap \ <esc>
 nnoremap ? <esc>
@@ -748,7 +748,7 @@ nnoremap z <esc>
 
 "nnoremap A <esc>
 nnoremap B <esc>
-"nnoremap C <esc>
+nnoremap C <esc>
 nnoremap D <esc>
 "nnoremap E <esc>
 nnoremap F <esc>
@@ -1084,6 +1084,9 @@ vnoremap <c-p> :call Slctd_rpl_srch_nxt()<cr>
 " rpl ( cmd )
 vnoremap :s :Rpl 
 
+" rpl ( cmd )
+vnoremap <c-m> :call V_srch_str__cr()<cr>
+
 " 
 " grep
 " 
@@ -1219,7 +1222,7 @@ vnoremap <c-f> <esc>
 vnoremap <c-h> <esc>
 "vnoremap <c-i> <esc>
 "vnoremap <c-l> <esc>
-vnoremap <c-m> <esc>
+"vnoremap <c-m> <esc>
 "vnoremap <c-n> <esc>
 "vnoremap <c-o> <esc>
 "vnoremap <c-p> <esc>
@@ -1307,6 +1310,10 @@ inoremap <expr> <c-j>
 
 " ins symbol
 inoremap <c-q> <c-r>=I_symbol()<cr>
+inoremap <c-_> <c-r>=I_symbol()<cr>
+inoremap <c-^> <c-r>=I_symbol()<cr>
+inoremap <c--> <c-r>=I_symbol()<cr>
+inoremap <c-\> <c-r>=I_symbol()<cr>
 
 " ins markdown
 inoremap <c-u> <c-r>=I_markdown()<cr>
@@ -1382,13 +1389,15 @@ inoremap <kPageUp>   9
 "inoremap <tab> <nop>
 inoremap <s-tab> <nop>
 
-inoremap <c-_> <nop>
-inoremap <c-^> <nop>
-inoremap <c-\> <nop>
-inoremap <c-,> <nop>
-inoremap <c-.> <nop>
+"inoremap <c-_> <nop>
+"inoremap <c-^> <nop>
+"inoremap <c-\> <nop>
+"inoremap <c--> <nop>
+"inoremap <c-@> <nop> " non
+"inoremap <c-,> <nop> " non
+"inoremap <c-.> <nop> " non
 "inoremap <c-:> <nop> " non
-"inoremap <c-;> <nop>
+"inoremap <c-;> <nop> " non
 
 inoremap <c-b> <nop>
 "inoremap <c-g> <nop>
@@ -2474,7 +2483,7 @@ endfunc
 
 let g:elpss_col = 50
 
-func! Ins_elpss() abort
+func! Ins_dots() abort
 
   let l:idx = 0
   let l:str = ''
@@ -3213,7 +3222,7 @@ func! V_ynk() abort
   call Clipboard__ynk()
 endfunc
 
-func! V_ynk__add() abort
+func! V_ynk__add_slctd() abort
 
   call Normal('gv"Ay')
   call Clipboard__ynk()
@@ -3381,7 +3390,20 @@ func! Srch_char_bracket(dir) abort
   call Srch_char(a:dir, l:char_bracket)
 endfunc
 
-" srch rpl cmd
+" srch __ rpl
+
+func! V_srch_str__cr() range abort
+
+  let l:rng = a:firstline . ',' . a:lastline
+
+  let l:srch_str = @/
+
+  let l:cmd = l:rng . 's/\(' . l:srch_str . '\)/\1\r/g'
+  call Exe(l:cmd)
+  "call Cmd(l:cmd)
+endfunc
+
+" srch __ rpl cmd
 
 command! -range=% -nargs=* Rpl <line1>,<line2>call V_rpl(<f-args>)
 
@@ -3702,6 +3724,15 @@ func! Opn_vimrc() abort
 endfunc
 
 func! Opn_vimrc_win() abort
+
+  if has('mac')
+
+    let l:vimrc_win_dev_path = '~/doc/tech/github/vimrc/sh/git-bash/.vimrc_win'
+
+    call Opn(l:vimrc_win_dev_path)
+    return
+  endif
+
 
   if ! filereadable(expand(g:vimrc_win_path))
     return
