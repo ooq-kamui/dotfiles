@@ -22,7 +22,7 @@ nnoremap S /<cr>N
 
 vnoremap :s :sort 
 
-let g:elpss_col = 60
+let g:dots_put_col = 60
 
 
 

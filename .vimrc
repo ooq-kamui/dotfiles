@@ -443,8 +443,8 @@ nnoremap <expr> O
 \ Is_file_type('markdown') ? ':call Ins_markdown_itm()<cr>' :
 \                            ':call Indnt__shft_r()<cr>'
 
-" ins elpss
-nnoremap > :call V_ynk__add_slctd()<cr>
+" ins dots
+nnoremap > :call Ins_dots()<cr>
 
 " tgl markdown chk
 "nnoremap xx :call Char__tgl_markdown_chk()<cr>
@@ -906,7 +906,7 @@ vnoremap o :call V_ynk()<cr>
 vnoremap c :call V_ynk()<cr>
 
 " ynk slctd add
-vnoremap O :call V_ynk__add()<cr>
+vnoremap O :call V_ynk__add_slctd()<cr>
 
 " clipboard slctd
 "vnoremap xx "+y
@@ -2481,13 +2481,13 @@ func! Ins_week() abort
   "call Ins(' ' . l:week)
 endfunc
 
-let g:elpss_col = 50
+let g:dots_put_col = 50
 
 func! Ins_dots() abort
 
   let l:idx = 0
   let l:str = ''
-  while l:idx < g:elpss_col
+  while l:idx < g:dots_put_col
 
     let l:str .= ' '
 
