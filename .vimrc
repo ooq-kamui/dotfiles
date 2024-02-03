@@ -1581,6 +1581,7 @@ let g:fzf_colors = {
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
 \   "rg --color=always --line-number --smart-case --no-multiline --no-heading "
+\   . " --hidden "
 \   . " -g '*.txt' "
 \   . " -g '*.md' "
 \   . " -g '*.lua' "
@@ -2668,6 +2669,26 @@ func! V_cursor_f_space__del() range abort
     call Cursor__mv_by_line_col(l:line_num, l:col)
     call Cursor_f_space__del()
   endfor
+endfunc
+
+func! Cursor_f_space__crct() abort
+
+  call Normal('k')
+
+  let l:c = Cursor_c_char()
+  if l:c !~ '\s'
+    call Normal('j')
+    return
+  endif
+
+  call Slct_cursor_f_space()
+  call Normal('"zy')
+
+  call Normal('j')
+
+  call Slct_cursor_f_space()
+  call Normal('"yx')
+  call Normal('"zP')
 endfunc
 
 " line ins
@@ -4217,7 +4238,7 @@ func! Rg_rslt_ar(str) abort
   return l:rg_rslt_ar
 endfunc
 
-let g:rg_cmd = 'rg -ns'
+let g:rg_cmd = 'rg -ns --hidden'
 \            . ' -g "*.lua"'
 \            . ' -g "*.script"'
 \            . ' -g "*.gui_script"'
@@ -4257,26 +4278,6 @@ func! Rg_cmd(opt, p_str) abort
   
   let l:rg_cmd = g:rg_cmd . ' ' . l:opt . ' "' . l:str . '"'
   return l:rg_cmd
-endfunc
-
-func! Cursor_f_space__crct() abort
-
-  call Normal('k')
-
-  let l:c = Cursor_c_char()
-  if l:c !~ '\s'
-    call Normal('j')
-    return
-  endif
-
-  call Slct_cursor_f_space()
-  call Normal('"zy')
-
-  call Normal('j')
-
-  call Slct_cursor_f_space()
-  call Normal('"yx')
-  call Normal('"zP')
 endfunc
 
 

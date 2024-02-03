@@ -1,7 +1,6 @@
 function fzf_fd_def
 
   echo fd --type f     \
-  --hidden             \
   --color=always       \
   --hidden             \
   --follow             \

@@ -87,6 +87,13 @@ alias dir 'z'
 alias p 'pth'
 alias p_clp 'p | clp'
 
+alias fd 'fd --hidden --follow --exclude .git'
+
+alias lf  'lf_by_fd'
+alias ld  'ld_by_fd'
+alias lfd 'lfd_by_fd'
+alias l   'l_by_fd'
+
 alias l_clp "l | clp"
 
 alias vim "nvim -p"
@@ -116,8 +123,6 @@ alias trns_e "trans {en=ja}"
 
 alias ba 'battery'
 alias ca 'cal'
-
-alias fd "fd --hidden --follow --exclude .git"
 
 alias rgf "rg -l"
 
