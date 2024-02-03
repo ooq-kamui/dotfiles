@@ -2000,6 +2000,11 @@ func! Char__tgl_etc(c) abort
   elseif a:c == ':'
     let l:rpl = ';'
 
+  elseif a:c == '?'
+    let l:rpl = '!'
+  elseif a:c == '!'
+    let l:rpl = '?'
+
   "elseif a:c ==# 'T'
   "  let l:rpl = 'f'
   "elseif a:c ==# 'F'
@@ -3032,6 +3037,8 @@ func! Slctd__expnd() abort " expnd lr
   elseif l:c == ']'
     call Normal('vi[')
   endif
+
+  call Normal('gv')
 endfunc
 
 func! Slctd__expnd_bracket_f() abort
@@ -3044,6 +3051,8 @@ func! Slctd__expnd_bracket_f() abort
   let l:srch_idx = Str_srch(l:line_str_r, l:bracket_ptn, 1)
 
   if l:srch_idx == -1
+
+    call Normal('gv')
     return
   endif
 
