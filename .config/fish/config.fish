@@ -72,6 +72,7 @@ alias psh 'pushd'
 alias pop 'popd'
 
 alias cdp 'cd ../'
+alias pp 'cd ../'
 
 alias cd_dl    "cd ~/Downloads"
 alias cd_iclud "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
@@ -92,6 +93,7 @@ alias fd 'fd --hidden --follow --exclude .git'
 alias lf  'lf_by_fd'
 alias ld  'ld_by_fd'
 alias lfd 'lfd_by_fd'
+alias ldf 'ldf_by_fd'
 alias l   'l_by_fd'
 
 alias l_clp "l | clp"
