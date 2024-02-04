@@ -35,16 +35,21 @@ alias src_cnf='src_bashrc'
 
 
 alias cdp='cd ..; pwd'
+alias pp='cd ..; pwd'
 
 alias ll='ls -lgohAG --time-style="+%Y-%m-%d %H:%M"'
 alias ll.='ll -d .*'
 alias l.='ls -1d .*'
 
-alias lf='ls -1d $( find * -type f )'
-alias ld='ls -1d $( find * -type d )'
-alias lfd='ls -1d $( find * )'
-alias ldf='lfd'
+#alias lf='ls -1d $( find * -type f )'
+#alias ld='ls -1d $( find * -type d )'
+#alias lfd='ls -1d $( find * )'
+#alias ldf='lfd'
 #alias l='ls -1a'
+alias lf='lf_by_fd'
+alias ld='ld_by_fd'
+alias lfd='lfd_by_fd'
+alias ldf='lfd_by_fd'
 alias l='l_by_fd'
 
 alias l_clp='l | clip'
@@ -54,12 +59,14 @@ alias cp='cp -p'
 alias to='touch'
 alias to_clr=':>'
 
-alias p='pwd'
-alias p_clp='pwd | clip'
+#alias p='pwd'
+alias p='pth'
+alias p_clp='p | clip'
 
-alias pth='readlink -f'
+#alias pth='readlink -f'
 
-alias opn='explorer'
+#alias opn='explorer'
+#alias opn='start'
 alias opn_brwsr='opn https://google.com/'
 
 alias da='date +"%Y-%m-%d"'

@@ -217,7 +217,7 @@ nnoremap go :call Opn_app_by_cursor_path()<cr>
 nnoremap gs :call Opn_app_slf()<cr>
 
 " opn brwsr
-nnoremap gb :call Opn_brwsr()<cr>
+"nnoremap xx :call Opn_brwsr()<cr>
 
 " opn ggl srch
 nnoremap gg :call Opn_ggl_srch('')<cr>
@@ -798,7 +798,7 @@ nnoremap <c-x> <esc>
 nnoremap <c-z> <esc>
 
 "nnoremap ga <esc>
-"nnoremap gb <esc>
+nnoremap gb <esc>
 "nnoremap ge <esc>
 "nnoremap gf <esc>
 "nnoremap gg <esc>
@@ -1122,7 +1122,6 @@ vnoremap go :call V_opn_app()<cr>
 
 " opn ggl srch
 vnoremap gg :call V_opn_ggl_srch()<cr>
-"vnoremap gs :call V_opn_ggl_srch()<cr>
 
 " opn youtube video_id
 vnoremap gy :call V_opn_yt()<cr>
@@ -1235,7 +1234,7 @@ vnoremap <c-v> <esc>
 vnoremap <c-x> <esc>
 "vnoremap <c-y> <esc>
 
-"vnoremap gb <esc>
+vnoremap gb <esc>
 "vnoremap gg <esc>
 "vnoremap gh <esc>
 vnoremap gi <esc>
@@ -3822,16 +3821,16 @@ endfunc
 
 " opn app
 
-command! -nargs=* OpnApp call Opn_app(<f-args>)
+"command! -nargs=* OpnApp call Opn_app(<f-args>)
 
 func! Opn_app(path) abort
   
   let l:path = a:path
   
   if has('mac')
-    let l:res = system('open     ' . "'" . l:path . "'")
+    let l:res = system('open  ' . "'" . l:path . "'")
   else
-    let l:res = system('explorer ' . "'" . l:path . "'")
+    let l:res = system('start ' . "'" . l:path . "'")
   endif
 endfunc
 
@@ -3879,19 +3878,6 @@ func! Opn_brwsr()
   call Opn_app(l:url)
 endfunc
 
-func! Opn_yt(yt_video_id)
-
-  let l:url = 'https://www.youtube.com/watch?v=' . a:yt_video_id
-  call Opn_app(l:url)
-endfunc
-
-func! V_opn_yt() abort
-  
-  let l:yt_video_id = Slctd_str()
-  let l:yt_video_id = trim(l:yt_video_id)
-  call Opn_yt(l:yt_video_id)
-endfunc
-
 func! Opn_ggl_srch(word) abort
 
   let l:url = 'https://www.google.com/search?q=' . a:word
@@ -3903,6 +3889,19 @@ func! V_opn_ggl_srch() abort
   let l:word = Slctd_str()
   let l:word = trim(l:word)
   call Opn_ggl_srch(l:word)
+endfunc
+
+func! Opn_yt(yt_video_id)
+
+  let l:url = 'https://www.youtube.com/watch?v=' . a:yt_video_id
+  call Opn_app(l:url)
+endfunc
+
+func! V_opn_yt() abort
+  
+  let l:yt_video_id = Slctd_str()
+  let l:yt_video_id = trim(l:yt_video_id)
+  call Opn_yt(l:yt_video_id)
 endfunc
 
 " etc

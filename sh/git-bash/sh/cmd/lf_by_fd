@@ -1,6 +1,7 @@
 #!/bin/bash
 
-fd --type f '' $1
+#fd --type f '' $1
+fd --type f --hidden '' $1
 
 
 
