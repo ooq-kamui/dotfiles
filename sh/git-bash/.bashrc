@@ -31,18 +31,21 @@ alias his='history | grep'
 
 alias src='source'
 alias src_bashrc='source ~/.bashrc'
+alias src_cnf='src_bashrc'
+
 
 alias cdp='cd ..; pwd'
 
 alias ll='ls -lgohAG --time-style="+%Y-%m-%d %H:%M"'
 alias ll.='ll -d .*'
-alias l='ls -1a'
 alias l.='ls -1d .*'
 
 alias lf='ls -1d $( find * -type f )'
 alias ld='ls -1d $( find * -type d )'
 alias lfd='ls -1d $( find * )'
 alias ldf='lfd'
+#alias l='ls -1a'
+alias l='l_by_fd'
 
 alias l_clp='l | clip'
 
@@ -67,12 +70,10 @@ alias tm='date +"%H:%M"'
 alias cal='gcal $(date +"%m %Y" -d "-1 month");gcal;gcal $(date +"%m %Y" -d "+1 month")'
 
 alias vi='vi -p'
-#alias vi_ext
-#alias vi_ext_md
 
-#alias vi_bashrc='vi ~/.bashrc'
-#alias vi_bashrc_env='vi ~/.bashrc_env'
 alias vi_bashrc='vi ~/.bashrc ~/.bashrc_env'
+alias vi_cnf='vi_bashrc'
+
 
 alias fd='fd --hidden --follow --exclude .git'
 
@@ -92,6 +93,7 @@ alias cdw='cd_wrk'
 alias cd_dl='cd ~/Downloads/'
 
 alias ssh_dev='sh ~/sh/ssh.dev.sh'
+
 
 [ -f ~/.bashrc_env ] && source ~/.bashrc_env
 
