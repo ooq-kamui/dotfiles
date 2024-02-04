@@ -1,0 +1,6 @@
+#!/bin/bash
+
+fd --type d '' $1
+
+
+
