@@ -22,6 +22,23 @@ nnoremap S /<cr>N
 
 vnoremap :s :sort 
 
+
+" key 1234
+
+" ins comment 1
+"nnoremap ! xx
+nnoremap <expr> 1
+\ Is_file_type('markdown') ? ':call Ins_markdown_h()<cr>' :
+\                            ':call Ins_cmnt_1("^")<cr>'
+
+" indnt shift
+nnoremap 2 :call Indnt__shft_l()<cr>
+nnoremap 3 :call Indnt__shft_r()<cr>
+
+" ins comment mlt
+nnoremap 4 :call Ins_cmnt_mlt()<cr>
+
+
 let g:dots_put_col = 60
 
 

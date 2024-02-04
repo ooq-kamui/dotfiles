@@ -8,11 +8,11 @@
 
 # bk
 
-mkdir -p ~/tmp
+mkdir -p ~/bk.tmp
 
-cp -p ~/.bashrc    ~/tmp/
-cp -p ~/.vimrc     ~/tmp/
-cp -p ~/.vimrc_win ~/tmp/
+cp -p ~/.bashrc    ~/bk.tmp/
+cp -p ~/.vimrc     ~/bk.tmp/
+cp -p ~/.vimrc_win ~/bk.tmp/
 
 
 # bash

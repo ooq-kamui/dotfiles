@@ -5,6 +5,8 @@ chcp.com 65001
 
 stty stop undef
 
+#export MSYS=winsymlinks:nativestrict
+
 PATH=$PATH:$HOME/sh/cmd
 
 #PATH=$PATH':/c/Users/yinou/.fzf/bin'
