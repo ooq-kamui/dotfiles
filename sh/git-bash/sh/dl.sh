@@ -32,10 +32,10 @@ curl -Lo ~/.vimrc_win \
   https://raw.githubusercontent.com/ooq-kamui/vimrc/master/sh/git-bash/.vimrc_win
 
 
-# cmd
+# dl-cmd.dl
 
-# curl -Lo ~/sh/cmd/xx \
-#   https://raw.githubusercontent.com/ooq-kamui/vimrc/master/sh/git-bash/sh/cmd/xx
+curl -Lo ~/sh/dl-cmd.dl \
+  https://raw.githubusercontent.com/ooq-kamui/vimrc/master/sh/git-bash/sh/dl-cmd.dl
 
 
 
