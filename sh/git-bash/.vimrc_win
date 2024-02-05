@@ -1,5 +1,6 @@
 
 set shell=bash
+"set shell=sh.exe
 
 hi StatusLine       ctermfg=cyan     ctermbg=33      cterm=none
 hi NonText          ctermfg=darkblue ctermbg=none    cterm=none
@@ -22,8 +23,9 @@ nnoremap S /<cr>N
 
 vnoremap :s :sort 
 
-
+" 
 " key 1234
+" 
 
 " ins comment 1
 "nnoremap ! xx
@@ -37,6 +39,12 @@ nnoremap 3 :call Indnt__shft_r()<cr>
 
 " ins comment mlt
 nnoremap 4 :call Ins_cmnt_mlt()<cr>
+
+" ins comment 1
+vnoremap 1 :call V_ins_cmnt_1()<cr>
+
+" indnt shift
+vnoremap 2 <gv
 
 
 let g:dots_put_col = 60

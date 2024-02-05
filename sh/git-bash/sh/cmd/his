@@ -1,0 +1,15 @@
+#!/bin/bash
+
+flt_str=$1
+
+if [ "$flt_str" = "" ]
+then
+  #history
+  tail -n 50 ~/.bash_history
+else
+  #history | grep $flt_str
+  cat ~/.bash_history | grep $flt_str | tail -n 50
+fi
+
+
+

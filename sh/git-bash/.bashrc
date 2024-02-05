@@ -27,16 +27,18 @@ bind '"\C-k": kill-word'
 
 alias clr='clear'
 alias clp='clip'
-alias his='history | grep'
+#alias his='history | grep'
 
 alias src='source'
-alias src_bashrc='source ~/.bashrc'
-alias src_cnf='src_bashrc'
 
-
-alias cdp='cd ..; pwd'
+#alias cdp='cd ..; pwd'
 alias pp='cd ..; pwd'
 
+alias psh='pushd'
+alias pop='popd'
+
+
+alias ls='ls -a'
 alias ll='ls -lgohAG --time-style="+%Y-%m-%d %H:%M"'
 alias ll.='ll -d .*'
 alias l.='ls -1d .*'
@@ -59,15 +61,9 @@ alias cp='cp -p'
 alias to='touch'
 alias to_clr=':>'
 
-#alias p='pwd'
 alias p='pth'
 alias p_clp='p | clip'
 
-#alias pth='readlink -f'
-
-#alias opn='explorer'
-#alias opn='start'
-alias opn_brwsr='opn https://google.com/'
 
 alias da='date +"%Y-%m-%d"'
 alias dt='date +"%Y-%m-%d.%H:%M"'
@@ -75,17 +71,19 @@ alias ts='date +"%Y-%m-%d.%H:%M:%S"'
 alias tm='date +"%H:%M"'
 
 alias cal='gcal $(date +"%m %Y" -d "-1 month");gcal;gcal $(date +"%m %Y" -d "+1 month")'
+alias ca='cal'
 
 alias vi='vi -p'
 
-alias vi_bashrc='vi ~/.bashrc ~/.bashrc_env'
-alias vi_cnf='vi_bashrc'
+alias ggl='opn https://google.com/'
+alias opn_brwsr='ggl'
 
 
 alias fd='fd --hidden --follow --exclude .git'
 
 alias gr='grep'
 alias rg='rg -nS --path-separator "//"'
+
 
 alias fzf='winpty fzf'
 #alias ff="winpty ff"
@@ -94,7 +92,17 @@ export FZF_DEFAULT_COMMAND='fd --type f --color=always --hidden --follow --exclu
 export FZF_DEFAULT_OPTS='--ansi'
 
 
+#alias cnf
+
+alias src_bashrc='source ~/.bashrc'
+alias src_cnf='src_bashrc'
+
+alias vi_bashrc='vi ~/.bashrc ~/.bashrc_env'
+alias vi_cnf='vi_bashrc'
+
+
 #alias wrk
+
 alias cd_wrk='cd ~/wrk/prj/'
 alias cdw='cd_wrk'
 alias cd_dl='cd ~/Downloads/'

@@ -1318,7 +1318,7 @@ inoremap <c-\> <c-r>=I_symbol()<cr>
 inoremap <c-u> <c-r>=I_markdown()<cr>
 
 " ins num
-inoremap <c-r> <c-r>=I_week()<cr>
+"inoremap xx <c-r>=I_week()<cr>
 
 " ins num
 "inoremap xx <c-r>=I_num()<cr>
@@ -1404,7 +1404,7 @@ inoremap <c-b> <nop>
 "inoremap <c-n> <nop>
 "inoremap <c-p> <nop>
 "inoremap <c-q> <nop>
-"inoremap <c-r> <nop>
+inoremap <c-r> <nop>
 "inoremap <c-s> <nop>
 "inoremap <c-t> <nop>
 "inoremap <c-u> <nop>
@@ -3915,7 +3915,7 @@ endfunc
 
 func! I_symbol() abort
 
-  let l:lst = ['%', '&', '\', '@', '?', '/']
+  let l:lst = ['$', '%', '&', '\', '@', '?', '/']
 
   call complete(col('.'), l:lst)
   return ''
