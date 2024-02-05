@@ -1,6 +1,6 @@
 function lf_by_fd
 
-  fd '' $argv[1]
+  fd --type f '' $argv[1]
 
 #  set dir ( emp_2_wildcard $argv )
 #
