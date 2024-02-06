@@ -3439,7 +3439,7 @@ command! -range=% -nargs=* Rpl <line1>,<line2>call V_rpl(<f-args>)
 func! V_rpl(srch, rpl) range abort
 
   let l:rng = a:firstline . ',' . a:lastline
-  let l:cmd = l:rng . 's/' . a:srch . '/' . a:rpl . '/gc'
+  let l:cmd = l:rng . 's/' . a:srch . '/' . a:rpl . '/g'
   "echo l:cmd
   call Exe(l:cmd)
 endfunc
@@ -3449,7 +3449,7 @@ command! -range=% -nargs=* RplCr <line1>,<line2>call V_rpl_cr(<f-args>)
 func! V_rpl_cr(srch) range abort
 
   let l:rng = a:firstline . ',' . a:lastline
-  let l:rpl = '\r'
+  let l:rpl = a:srch . '\r'
   let l:cmd = l:rng . 'Rpl ' . a:srch . ' ' . l:rpl
   "echo l:cmd
   call Exe(l:cmd)

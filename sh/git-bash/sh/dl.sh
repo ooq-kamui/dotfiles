@@ -34,8 +34,8 @@ curl -Lo ~/.vimrc_win \
 
 # dl-cmd.dl
 
-curl -Lo ~/sh/dl-cmd.dl \
-  https://raw.githubusercontent.com/ooq-kamui/vimrc/master/sh/git-bash/sh/dl-cmd.dl
+curl -Lo ~/sh/dl-cmd.sh \
+  https://raw.githubusercontent.com/ooq-kamui/vimrc/master/sh/git-bash/sh/dl-cmd.sh
 
 
 
