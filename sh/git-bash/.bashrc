@@ -31,6 +31,8 @@ alias clp='clip'
 
 alias src='source'
 
+alias cd_dl='cd ~/Downloads/'
+
 #alias cdp='cd ..; pwd'
 alias pp='cd ..; pwd'
 
@@ -43,11 +45,6 @@ alias ll='ls -lgohAG --time-style="+%Y-%m-%d %H:%M"'
 alias ll.='ll -d .*'
 alias l.='ls -1d .*'
 
-#alias lf='ls -1d $( find * -type f )'
-#alias ld='ls -1d $( find * -type d )'
-#alias lfd='ls -1d $( find * )'
-#alias ldf='lfd'
-#alias l='ls -1a'
 alias lf='lf_by_fd'
 alias ld='ld_by_fd'
 alias lfd='lfd_by_fd'
@@ -101,11 +98,16 @@ alias vi_bashrc='vi ~/.bashrc ~/.bashrc_env'
 alias vi_cnf='vi_bashrc'
 
 
-#alias wrk
+#alias wrk, src  -  tpl
 
 alias cd_wrk='cd ~/wrk/prj/'
 alias cdw='cd_wrk'
-alias cd_dl='cd ~/Downloads/'
+
+alias cd_src='cd ~/wrk/prj/src/'
+alias cds='cd_src'
+
+alias psh_wrk='psh ~/wrk/prj/'
+alias psh_src='psh ~/wrk/prj/src/'
 
 alias ssh_dev='sh ~/sh/ssh.dev.sh'
 

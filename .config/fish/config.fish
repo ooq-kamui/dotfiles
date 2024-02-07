@@ -71,8 +71,8 @@ alias rn 'rename'
 alias psh 'pushd'
 alias pop 'popd'
 
-alias cdp 'cd ../'
-alias pp 'cd ../'
+#alias cdp 'cd ../'
+alias pp 'cd ../; pwd'
 
 alias cd_dl    "cd ~/Downloads"
 alias cd_iclud "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"

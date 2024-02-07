@@ -45,6 +45,7 @@ vnoremap 1 :call V_ins_cmnt_1()<cr>
 
 " indnt shift
 vnoremap 2 <gv
+vnoremap 3 >gv
 
 
 let g:dots_put_col = 60
