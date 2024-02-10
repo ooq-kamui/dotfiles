@@ -54,15 +54,19 @@ alias src_fsh_cfg "source ~/.config/fish/config.fish"
 
 alias fi 'fish'
 
-alias sh_ch_fi 'chsh -s /opt/homebrew/bin/fish'
-alias sh_ch_ba 'chsh -s /bin/bash'
+# login sh ch
+# confirm : echo $SHELL
+#alias login_sh_fish 'chsh -s /opt/homebrew/bin/fish'
+alias login_sh_bash 'chsh -s /bin/bash'
 
 alias tmx      'tmux'
 alias tmx_init 'fi ~/sh/tmux-win-init.fish'
 
 alias his     'history'
 alias his_del 'history delete'
-alias his_clp 'his_re_clp'
+
+alias re_clp  'his_re_clp'
+alias reclp   'his_re_clp'
 
 alias to     'touch'
 alias to_clr ':>'

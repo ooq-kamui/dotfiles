@@ -1,18 +1,13 @@
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+source "$HOME/.cargo/env"
+
+
+
 export PS1="_ "
 
-# win command output lang code
-chcp.com 65001
-
-# stty ctrl-s off
-stty stop undef
-
-# ln -s , mng account
-#export MSYS=winsymlinks:nativestrict
-
 PATH=$PATH:$HOME/sh/cmd
-
-
 
 bind '"\C-f": forward-word'
 bind '"\C-o": backward-word'
@@ -26,9 +21,11 @@ bind '"\C-k": kill-word'
 # alias
 
 alias clr='clear'
-alias clp='clip'
+alias clp='pbcopy'
 
-alias his_clp='!! | clp'
+#alias his_clp='!! | clp'
+#alias re_clp='$( tail -n 1 ~/.bash_history ) | clp'
+#alias reclp='re_clp'
 
 alias src='source'
 
@@ -42,7 +39,10 @@ alias pop='popd'
 
 
 alias ls='ls -a'
-alias ll='ls -lgohAG --time-style="+%Y-%m-%d %H:%M"'
+#alias ll='ls -l'
+#alias ll='ls -lgohAG --time-style="+%Y-%m-%d %H:%M"'
+alias ll='ls -lgohAGD "%Y-%m-%d %H:%M"'
+
 alias ll.='ll -d .*'
 alias l.='ls -1d .*'
 
@@ -52,7 +52,7 @@ alias lfd='lfd_by_fd'
 alias ldf='lfd_by_fd'
 alias l='l_by_fd'
 
-alias l_clp='l | clip'
+alias l_clp='l | clp'
 
 alias cp='cp -p'
 
@@ -60,7 +60,7 @@ alias to='touch'
 alias to_clr=':>'
 
 alias p='pth'
-alias p_clp='p | clip'
+alias p_clp='p | clp'
 
 
 alias da='date +"%Y-%m-%d"'
@@ -68,7 +68,6 @@ alias dt='date +"%Y-%m-%d.%H:%M"'
 alias ts='date +"%Y-%m-%d.%H:%M:%S"'
 alias tm='date +"%H:%M"'
 
-alias cal='gcal $(date +"%m %Y" -d "-1 month");gcal;gcal $(date +"%m %Y" -d "+1 month")'
 alias ca='cal'
 
 alias vi='vi -p'
@@ -82,10 +81,6 @@ alias fd='fd --hidden --follow -I --exclude .git'
 alias gr='grep'
 alias rg='rg -nS --path-separator "//"'
 
-
-#alias fzf='start fzf'
-#alias fzf='winpty fzf'
-alias fzf='fzf-winpty'
 
 export FZF_DEFAULT_COMMAND='fd --type f --color=always --hidden --follow -I --exclude .git'
 export FZF_DEFAULT_OPTS='--ansi'
@@ -117,9 +112,9 @@ alias psh_src='psh ~/wrk/prj/src/'
 alias ssh_dev='sh ~/sh/ssh.dev.sh'
 
 
-[ -f ~/.bashrc_env ] && source ~/.bashrc_env
+[ -f ~/.bashrc_gitbash ] && source ~/.bashrc_gitbash
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.bashrc_env ] && source ~/.bashrc_env
 
 
 
