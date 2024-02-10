@@ -375,7 +375,7 @@ nnoremap h     u
 nnoremap <c-h> <c-r>
 
 " undo clr
-nnoremap S :call Undo_clr()<cr>
+"nnoremap xx :call Undo_clr()<cr>
 
 " repeat
 "nnoremap xx .
@@ -764,7 +764,7 @@ nnoremap M <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
 "nnoremap R <esc>
-"nnoremap S <esc>
+nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap W <esc>
@@ -994,8 +994,7 @@ vnoremap <expr> s
 
 " del str pad space
 vnoremap S "aygvr gv
-"vnoremap D "aygvr gv
-"vnoremap D :call V_slctd__del_pad_space()<cr>
+"vnoremap S :call V_slctd__space()<cr> " fnc dev doing
 
 " del cr
 "vnoremap xx J
@@ -2659,7 +2658,8 @@ endfunc
 
 func! V_cursor_f_space__del() range abort
 
-  call Slct_re()
+  "call Slct_re()
+  call Slct_re_in_line_1()
   let l:col = Col()
 
   call Normal("\<esc>")
@@ -2931,14 +2931,25 @@ func! Slct_by_line_col(s_line, s_col, e_line, e_col) abort
   call Cursor__mv_by_line_col(l:e_line, a:e_col)
 endfunc
 
-func! Slct_re() abort " old , in line 1
-
-  call Slct_re_in_line_1()
+func! Slct_by_line_rng(line_num_fr, line_num_to) abort
+  
+  call Cursor__mv_by_line_num(a:line_num_fr)
+  call Normal('V')
+  call Cursor__mv_by_line_num(a:line_num_to)
 endfunc
+
+"func! Slct_re() abort " old , in line 1, use not, todo del
+"
+"  call Slct_re_in_line_1()
+"endfunc
 
 func! Slct_re_in_line_1() abort " in line 1
 
   call Normal('gv')
+endfunc
+
+func! Slct_re_box() range abort " todo dev
+  
 endfunc
 
 func! V_slctd_re() abort " use not todo dev
@@ -3132,9 +3143,12 @@ func! V_slctd__del() abort " use not todo dev tst
   "let @+ = @0
 endfunc
 
-func! V_slctd__del_pad_space() range abort " use not todo dev
+func! V_slctd__space() range abort " use not, todo dev
 
-  call Slct_re_in_line_1()
+  "call Slct_re_in_line_1()
+  "or
+  "call Slct_re_box()
+  call Slct_by_line_rng(a:firstline, a:lastline)
 
   call Normal('"aygvr gv')
 endfunc
@@ -3278,7 +3292,7 @@ func! Paste__clipboard() abort
   call Paste()
 endfunc
 
-func! V_paste__clipboard() abort
+func! V_paste__clipboard() range abort
 
   call Ynk__clipboard()
   call V_paste()
@@ -3310,40 +3324,37 @@ func! Srch_str_word1(str)
   return l:str
 endfunc
 
-func! Srch_str__(str, word1) abort
+func! Srch_str__(str, op_word1) abort
   
   let l:str  = escape(a:str, '.*~[]\^$')
   
-  if a:word1
+  if a:op_word1
     let l:str = Srch_str_word1(l:str)
+  endif
+
+  if @/ == l:str
+    return
   endif
   
   let g:srch_prv1 = @/
 
   let @/ = l:str
+
   call Normal('/' . l:str) " srch hstry add
 endfunc
 
-func! N_srch_str__(word1) abort
+func! N_srch_str__(op_word1) abort
 
   let l:str = Cursor_word()
-
-  "if a:word1
-    "let l:str = Srch_str_word1(l:str)
-  "endif
   
-  call Srch_str__(l:str, a:word1)
+  call Srch_str__(l:str, a:op_word1)
 endfunc
 
-func! V_srch_str__slctd_str(word1) abort
+func! V_srch_str__slctd_str(op_word1) abort
 
   let l:str = Slctd_str()
-
-  "if a:word1
-    "let l:str = Srch_str_word1(l:str)
-  "endif
   
-  call Srch_str__(l:str, a:word1)
+  call Srch_str__(l:str, a:op_word1)
 endfunc
 
 func! N_srch_str__prv() abort
@@ -4165,7 +4176,8 @@ endfunc
 "func! s:Tst() range abort
 func! Tst() range abort
 
-  call Slct_re()
+  "call Slct_re()
+  call Slct_re_in_line_1()
 
   if     mode() == "\<c-v>"
     echo "c-v"
