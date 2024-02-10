@@ -1580,36 +1580,15 @@ let g:fzf_colors = {
 
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
-\   "rg --color=always --line-number --smart-case --no-multiline --no-heading "
+\   "rg "
+\   . " --color=always "
+\   . " --line-number "
+\   . " --smart-case "
+\   . " --no-multiline "
+\   . " --no-heading "
 \   . " --hidden "
-\   . " -g '*.txt' "
-\   . " -g '*.md' "
-\   . " -g '*.lua' "
-\   . " -g '*.html' "
-\   . " -g '*.js' "
-\   . " -g '*.json' "
-\   . " -g '*.css' "
-\   . " -g '*.sh' "
-\   . " -g '*.fish' "
-\   . " -g '*.tpl' "
-\   . " -g '*.toml' "
-\   . " -g '*.swp' "
-\   . " -g '*.font' "
-\   . " -g '*.script' "
-\   . " -g '*.gui_script' "
-\   . " -g '*.tilemap' "
-\   . " -g '*.tilesource' "
-\   . " -g '*.atlas' "
-\   . " -g '*.sprite' "
-\   . " -g '*.collectionfactory' "
-\   . " -g '*.collection' "
-\   . " -g '*.factory' "
-\   . " -g '*.collisionobject' "
-\   . " -g '*.go' "
-\   . " -g '*.gui' "
-\   . " -g '*.label' "
-\   . " -g '*.sound' "
-\   . " -g '*.camera' "
+\   . " --no-ignore "
+\   . " -g '!.git' "
 \   . " -- ".shellescape(escape(<q-args>, '().$')),
 \   0,
 \   fzf#vim#with_preview(
@@ -1619,6 +1598,35 @@ command! -bang -nargs=* Rg
 \   ),
 \   <bang>1
 \ )
+
+"\   . " -g '*.txt' "
+"\   . " -g '*.md' "
+"\   . " -g '*.lua' "
+"\   . " -g '*.html' "
+"\   . " -g '*.js' "
+"\   . " -g '*.json' "
+"\   . " -g '*.css' "
+"\   . " -g '*.sh' "
+"\   . " -g '*.fish' "
+"\   . " -g '*.tpl' "
+"\   . " -g '*.toml' "
+"\   . " -g '*.swp' "
+"\   . " -g '*.font' "
+"\   . " -g '*.script' "
+"\   . " -g '*.gui_script' "
+"\   . " -g '*.tilemap' "
+"\   . " -g '*.tilesource' "
+"\   . " -g '*.atlas' "
+"\   . " -g '*.sprite' "
+"\   . " -g '*.collectionfactory' "
+"\   . " -g '*.collection' "
+"\   . " -g '*.factory' "
+"\   . " -g '*.collisionobject' "
+"\   . " -g '*.go' "
+"\   . " -g '*.gui' "
+"\   . " -g '*.label' "
+"\   . " -g '*.sound' "
+"\   . " -g '*.camera' "
 
 " grep buf
 func! N_grep_buf() abort
@@ -4254,18 +4262,26 @@ func! Rg_rslt_ar(str) abort
   return l:rg_rslt_ar
 endfunc
 
-let g:rg_cmd = 'rg -ns --hidden'
-\            . ' -g "*.lua"'
-\            . ' -g "*.script"'
-\            . ' -g "*.gui_script"'
-\            . ' -g "*.txt"'
-\            . ' -g "*.json"'
-\            . ' -g "*.fish"'
-\            . ' -g "*.vim"'
-\            . ' -g "*.html"'
-\            . ' -g "*.js"'
-\            . ' -g "*.css"'
-\            . ' -g "*.md"'
+let g:rg_cmd = 'rg '
+\            . ' --line-number'
+\            . ' --smart-case'
+\            . ' --hidden'
+\            . ' --no-ignore'
+\            . ' -g "!.git" '
+
+"\            . ' -g "*.lua"'
+"\            . ' -g "*.script"'
+"\            . ' -g "*.gui_script"'
+"\            . ' -g "*.txt"'
+"\            . ' -g "*.json"'
+"\            . ' -g "*.fish"'
+"\            . ' -g "*.vim"'
+"\            . ' -g "*.html"'
+"\            . ' -g "*.js"'
+"\            . ' -g "*.css"'
+"\            . ' -g "*.md"'
+
+"\            . ' -ns'
 
 func! Rg_rslt_txt(opt, p_str) abort
   

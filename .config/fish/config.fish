@@ -62,6 +62,7 @@ alias tmx_init 'fi ~/sh/tmux-win-init.fish'
 
 alias his     'history'
 alias his_del 'history delete'
+alias his_clp 'his_re_clp'
 
 alias to     'touch'
 alias to_clr ':>'
@@ -88,7 +89,7 @@ alias dir 'z'
 alias p 'pth'
 alias p_clp 'p | clp'
 
-alias fd 'fd --hidden --follow --exclude .git'
+alias fd 'fd --hidden --follow -I --exclude .git'
 
 alias lf  'lf_by_fd'
 alias ld  'ld_by_fd'
