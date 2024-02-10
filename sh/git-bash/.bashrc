@@ -1,17 +1,17 @@
 
 export PS1="_ "
 
+# win command output lang code
 chcp.com 65001
 
+# stty ctrl-s off
 stty stop undef
 
+# ln -s , mng account
 #export MSYS=winsymlinks:nativestrict
 
 PATH=$PATH:$HOME/sh/cmd
 
-#PATH=$PATH':/c/Users/yinou/.fzf/bin'
-#PATH=$PATH':/c/Users/yinou/.config/fzf'
-#PATH=$PATH':/c/Users/yinou/.config/ff'
 
 
 bind '"\C-f": forward-word'
@@ -34,8 +34,8 @@ alias src='source'
 
 alias cd_dl='cd ~/Downloads/'
 
-#alias cdp='cd ..; pwd'
 alias pp='cd ..; pwd'
+alias cdp='pp'
 
 alias psh='pushd'
 alias pop='popd'
@@ -83,10 +83,11 @@ alias gr='grep'
 alias rg='rg -nS --path-separator "//"'
 
 
-alias fzf='winpty fzf'
-#alias ff="winpty ff"
+#alias fzf='start fzf'
+#alias fzf='winpty fzf'
+alias fzf='fzf-winpty'
 
-export FZF_DEFAULT_COMMAND='fd --type f --color=always --hidden --follow --exclude .git'
+export FZF_DEFAULT_COMMAND='fd --type f --color=always --hidden --follow -I --exclude .git'
 export FZF_DEFAULT_OPTS='--ansi'
 
 

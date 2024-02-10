@@ -193,7 +193,7 @@ nnoremap gf :call Opn_fish_cnf()<cr>
 nnoremap gh :call Opn_vimrc()<cr>
 
 " opn .vimrc_win
-nnoremap gw :call Opn_vimrc_win()<cr>
+"nnoremap gw :call Opn_vimrc_win()<cr>
 
 " opn tmp
 nnoremap gt :call Opn_tmp()<cr>
@@ -708,6 +708,7 @@ nnoremap ( <esc>
 "nnoremap < <esc>
 "nnoremap > <esc>
 
+nnoremap <c-tab> <nop>
 nnoremap <c-space> <esc>
 nnoremap <c-@> <esc>
 "nnoremap <c-^> <esc>
@@ -815,7 +816,7 @@ nnoremap gn <esc>
 "nnoremap gt <esc>
 "nnoremap gu <esc>
 nnoremap gv <esc>
-"nnoremap gw <esc>
+nnoremap gw <esc>
 nnoremap gy <esc>
 
 " mode normal end
@@ -1112,7 +1113,7 @@ vnoremap :G "zy:GrepWrd <c-r>z
 vnoremap t :call V_tag_jmp()<cr>
 
 " opn .vimrc
-vnoremap gh <esc>:call Opn_vimrc()<cr>
+"vnoremap gh <esc>:call Opn_vimrc()<cr>
 
 " opn app
 vnoremap go :call V_opn_app()<cr>
@@ -1236,7 +1237,7 @@ vnoremap <c-x> <esc>
 
 vnoremap gb <esc>
 vnoremap gg <esc>
-"vnoremap gh <esc>
+vnoremap gh <esc>
 vnoremap gi <esc>
 "vnoremap gj <esc>
 "vnoremap gk <esc>
@@ -3762,6 +3763,9 @@ func! Opn_vimrc() abort
 
   let l:path = '~/.vimrc'
   call Opn(l:path)
+
+
+  call Opn_vimrc_win()
 endfunc
 
 func! Opn_vimrc_win() abort
@@ -3771,22 +3775,22 @@ func! Opn_vimrc_win() abort
     let l:vimrc_win_dev_path = '~/doc/tech/github/vimrc/sh/git-bash/.vimrc_win'
 
     call Opn(l:vimrc_win_dev_path)
-    return
+
+  else
+
+    if ! filereadable(expand(g:vimrc_win_path))
+      return
+    endif
+
+    call Opn(g:vimrc_win_path)
+
+
+    if ! filereadable(expand(g:vimrc_win_env_path))
+      return
+    endif
+
+    call Opn(g:vimrc_win_env_path)
   endif
-
-
-  if ! filereadable(expand(g:vimrc_win_path))
-    return
-  endif
-
-  call Opn(g:vimrc_win_path)
-
-
-  if ! filereadable(expand(g:vimrc_win_env_path))
-    return
-  endif
-
-  call Opn(g:vimrc_win_env_path)
 endfunc
 
 func! Opn_fish_cnf() abort

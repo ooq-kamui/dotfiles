@@ -1,6 +1,7 @@
 
-set shell=bash
 "set shell=sh.exe
+"set shell="start sh"
+set shell=bash
 
 hi StatusLine       ctermfg=cyan     ctermbg=33      cterm=none
 hi NonText          ctermfg=darkblue ctermbg=none    cterm=none
@@ -16,12 +17,14 @@ augroup InsertHook
   au InsertEnter * hi LineNr ctermfg=lightgreen
 augroup END
 
-autocmd FileType java   setlocal sw=4 sts=4 ts=4   et " space
+
+"autocmd FileType java   setlocal sw=4 sts=4 ts=4   et " space
 
 
 nnoremap S /<cr>N
 
 vnoremap :s :sort 
+
 
 " 
 " key 1234
