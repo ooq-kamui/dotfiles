@@ -5,4 +5,7 @@ test -f ~/.bashrc  && . ~/.bashrc
 
 
 #cd_wrk
+psh_src
+
+
 
