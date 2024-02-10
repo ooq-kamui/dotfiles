@@ -27,7 +27,8 @@ bind '"\C-k": kill-word'
 
 alias clr='clear'
 alias clp='clip'
-#alias his='history | grep'
+
+alias his_clp='!! | clp'
 
 alias src='source'
 
@@ -76,7 +77,7 @@ alias ggl='opn https://google.com/'
 alias opn_brwsr='ggl'
 
 
-alias fd='fd --hidden --follow --exclude .git'
+alias fd='fd --hidden --follow -I --exclude .git'
 
 alias gr='grep'
 alias rg='rg -nS --path-separator "//"'
@@ -105,6 +106,9 @@ alias cdw='cd_wrk'
 
 alias cd_src='cd ~/wrk/prj/src/'
 alias cds='cd_src'
+
+alias cd_git='cd ~/wrk/prj/src/'
+alias cdg='cd_git'
 
 alias psh_wrk='psh ~/wrk/prj/'
 alias psh_src='psh ~/wrk/prj/src/'

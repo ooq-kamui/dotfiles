@@ -220,7 +220,7 @@ nnoremap gs :call Opn_app_slf()<cr>
 "nnoremap xx :call Opn_brwsr()<cr>
 
 " opn ggl srch
-nnoremap gg :call Opn_ggl_srch('')<cr>
+nnoremap ggl :call Opn_ggl_srch('')<cr>
 
 " opn markdown preview
 "nnoremap gx :call Markdown_2_html()<cr>
@@ -801,7 +801,7 @@ nnoremap <c-z> <esc>
 nnoremap gb <esc>
 "nnoremap ge <esc>
 "nnoremap gf <esc>
-"nnoremap gg <esc>
+nnoremap gg <esc>
 "nnoremap gh <esc>
 nnoremap gi <esc>
 "nnoremap gj <esc>
@@ -993,7 +993,8 @@ vnoremap <expr> s
 "vnoremap s "zx
 
 " del str pad space
-vnoremap D "aygvr gv
+vnoremap S "aygvr gv
+"vnoremap D "aygvr gv
 "vnoremap D :call V_slctd__del_pad_space()<cr>
 
 " del cr
@@ -1121,7 +1122,7 @@ vnoremap go :call V_opn_app()<cr>
 "vnoremap gx <plug>(openbrowser-smart-search)
 
 " opn ggl srch
-vnoremap gg :call V_opn_ggl_srch()<cr>
+vnoremap ggl :call V_opn_ggl_srch()<cr>
 
 " opn youtube video_id
 vnoremap gy :call V_opn_yt()<cr>
@@ -1188,7 +1189,7 @@ vnoremap x <esc>
 vnoremap A <esc>
 vnoremap B <esc>
 vnoremap C <esc>
-"vnoremap D <esc>
+vnoremap D <esc>
 "vnoremap E <esc>
 vnoremap F <esc>
 vnoremap H <esc>
@@ -1202,7 +1203,7 @@ vnoremap J <esc>
 "vnoremap P <esc>
 vnoremap Q <esc>
 vnoremap R <esc>
-vnoremap S <esc>
+"vnoremap S <esc>
 "vnoremap T <esc>
 "vnoremap U <esc>
 vnoremap V <esc>
@@ -1235,7 +1236,7 @@ vnoremap <c-x> <esc>
 "vnoremap <c-y> <esc>
 
 vnoremap gb <esc>
-"vnoremap gg <esc>
+vnoremap gg <esc>
 "vnoremap gh <esc>
 vnoremap gi <esc>
 "vnoremap gj <esc>
