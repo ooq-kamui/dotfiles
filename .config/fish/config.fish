@@ -66,7 +66,8 @@ alias his     'history'
 alias his_del 'history delete'
 
 alias re_clp  'his_re_clp'
-alias reclp   'his_re_clp'
+#alias reclp   're_clp'
+alias rc      're_clp'
 
 alias to     'touch'
 alias to_clr ':>'
@@ -78,6 +79,7 @@ alias pop 'popd'
 
 #alias cdp 'cd ../'
 alias pp 'cd ../; pwd'
+alias i  'cd ../; pwd'
 
 alias cd_dl    "cd ~/Downloads"
 alias cd_iclud "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
@@ -90,8 +92,9 @@ alias cd_vim_swp  "cd ~/.local/state/nvim/swap"
 
 alias dir 'z'
 
-alias p 'pth'
+alias p     'pth'
 alias p_clp 'p | clp'
+alias pc    'p_clp'
 
 alias fd 'fd --hidden --follow -I --exclude .git'
 
@@ -123,6 +126,8 @@ alias date_y2 "date_y 2"
 
 alias du   "du -h"
 alias du_1 "du -hd1"
+
+alias clc  "math"
 
 alias trns   "trans"
 alias trns_j "trans {ja=en}"

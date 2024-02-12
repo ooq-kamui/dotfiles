@@ -24,6 +24,7 @@ alias clr='clear'
 alias clp='pbcopy'
 
 #alias his_clp='!! | clp'
+#alias re='!!'
 #alias re_clp='$( tail -n 1 ~/.bash_history ) | clp'
 #alias reclp='re_clp'
 
@@ -32,7 +33,8 @@ alias src='source'
 alias cd_dl='cd ~/Downloads/'
 
 alias pp='cd ..; pwd'
-alias cdp='pp'
+#alias cdp='pp'
+alias i='pp'
 
 alias psh='pushd'
 alias pop='popd'

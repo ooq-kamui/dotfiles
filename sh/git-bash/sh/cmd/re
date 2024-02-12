@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo "dev doing..."
+
+#tail -n 1 ~/.bash_history
+
+
+

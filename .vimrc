@@ -160,7 +160,8 @@ nnoremap <c-z> <c-z>
 "nnoremap a :w<cr>
 nnoremap a :call Save()<cr>
 
-" slf load re
+" load re slf
+nnoremap :e :call Load_re()
 "nnoremap xx :e!
 
 " load re vimrc
@@ -193,7 +194,7 @@ nnoremap gf :call Opn_fish_cnf()<cr>
 nnoremap gh :call Opn_vimrc()<cr>
 
 " opn .vimrc_win
-"nnoremap gw :call Opn_vimrc_win()<cr>
+"nnoremap xx :call Opn_vimrc_win()<cr>
 
 " opn tmp
 nnoremap gt :call Opn_tmp()<cr>
@@ -1125,7 +1126,7 @@ vnoremap go :call V_opn_app()<cr>
 vnoremap ggl :call V_opn_ggl_srch()<cr>
 
 " opn youtube video_id
-vnoremap gy :call V_opn_yt()<cr>
+"vnoremap gy :call V_opn_yt()<cr>
 
 " trns
 vnoremap r  :call V_trns()<cr>
@@ -1245,7 +1246,7 @@ vnoremap gi <esc>
 vnoremap gp <esc>
 vnoremap gs <esc>
 vnoremap gt <esc>
-"vnoremap gy <esc>
+vnoremap gy <esc>
 
 " 
 " mode insert
@@ -2068,7 +2069,7 @@ endfunc
 
 " char cnd
 
-func! Is_char_symbol(char)
+func! Is_char_symbol(char) abort
 
   let l:ret = v:false
 
@@ -2081,7 +2082,7 @@ endfunc
 
 " str
 
-func! Str_l_char(str)
+func! Str_l_char(str) abort
   
   let l:l_idx = 0
   let l:str_l = a:str[l:l_idx]
@@ -2089,7 +2090,7 @@ func! Str_l_char(str)
   return l:str_l
 endfunc
 
-func! Str_r_char(str)
+func! Str_r_char(str) abort
   
   let l:r_idx = Str_len(a:str) - 1
   let l:str_r = a:str[l:r_idx]
@@ -2097,12 +2098,12 @@ func! Str_r_char(str)
   return l:str_r
 endfunc
 
-func! Str_len(str) " alias
+func! Str_len(str) abort " alias
 
   return strchars(a:str)
 endfunc
 
-func! Str_srch(...) " alias
+func! Str_srch(...) abort " alias
 
   let l:str =                a:1
   let l:ptn =                a:2
@@ -2112,10 +2113,29 @@ func! Str_srch(...) " alias
   return l:r_idx
 endfunc
 
-func! Str_srch_end(str, ptn) " alias
+func! Str_srch_end(str, ptn) abort " alias
 
   let l:idx = matchend(a:str, a:ptn)
   return l:idx
+endfunc
+
+" str rpl
+
+func! Str__rpl(str, srch, rpl) abort " alias
+
+  l:r_str = substitute(a:str, a:srch, a:rpl)
+  return l:r_str
+endfunc
+
+func! Str_path_win__rpl_unix(str) abort
+
+  let l:str = a:str
+
+  let l:str = Str__rpl(l:str, 'C:', '/c')
+  let l:str = Str__rpl(l:str, 'c:', '/c')
+
+  let l:str = Str__rpl(l:str, '\', '/')
+  return l:str
 endfunc
 
 " str cnd
@@ -3772,7 +3792,6 @@ func! Opn_vimrc() abort
   let l:path = '~/.vimrc'
   call Opn(l:path)
 
-
   call Opn_vimrc_win()
 endfunc
 
@@ -3854,6 +3873,7 @@ func! Opn_app(path) abort
   if has('mac')
     let l:res = system('open  ' . "'" . l:path . "'")
   else
+    let l:path = Str_path_win__rpl_unix(l:path)
     let l:res = system('start ' . "'" . l:path . "'")
   endif
 endfunc
@@ -3874,7 +3894,7 @@ endfunc
 
 func! Opn_app_by_line_path(line_num) abort
   
-  "let l:path = Line_str()
+  "let l:path = Line_str_by_line_num()
   let l:path = getline(a:line_num)
 
   let l:path = trim(l:path)
@@ -4131,9 +4151,16 @@ func! Mark_del_all() abort
   call Exe('DoShowMarks')
 endfunc
 
-" encode sjis
+" load re
 
-func! E_enc_sjis() abort
+func! Load_re() abort
+
+  call Exe('e ')
+endfunc
+
+" load re encode sjis
+
+func! Load_re_sjis() abort
 
   call Exe('e ++enc=sjis')
 endfunc
