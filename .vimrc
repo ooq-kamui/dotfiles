@@ -444,8 +444,9 @@ nnoremap <expr> O
 \ Is_file_type('markdown') ? ':call Ins_markdown_itm()<cr>' :
 \                            ':call Indnt__shft_r()<cr>'
 
-" ins dots
+" ins dots ( or crnt )
 nnoremap > :call Ins_dots()<cr>
+"nnoremap > :call Dots__()<cr> " dev doing
 
 " tgl markdown chk
 "nnoremap xx :call Char__tgl_markdown_chk()<cr>
@@ -2110,7 +2111,7 @@ func! Str_srch(...) abort " alias
   let l:idx = ( a:0 >= 3 ) ? a:3 : v:null
 
   let l:r_idx = match(l:str, l:ptn, l:idx)
-  return l:r_idx
+  return l:r_idx " -1 : match not
 endfunc
 
 func! Str_srch_end(str, ptn) abort " alias
@@ -2513,6 +2514,21 @@ func! Ins_week() abort
 
   call Ins(l:week)
   "call Ins(' ' . l:week)
+endfunc
+
+func! Dots__() abort " todo dev, doing
+
+  l:str = ' .. '
+  l:line_str = Line_str()
+  l:idx = Str_srch(l:line_str, l:str)
+
+  if l:idx >= 0
+
+    call Dots__crct()
+  else
+
+    call Ins_dots()
+  endif
 endfunc
 
 let g:dots_put_col = 50

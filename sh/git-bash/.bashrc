@@ -32,9 +32,10 @@ alias src='source'
 
 alias cd_dl='cd ~/Downloads/'
 
-alias pp='cd ..; pwd'
+alias cd_parent='cd ..; pwd'
+alias i='cd_parent'
+alias pp='cd_parent'
 #alias cdp='pp'
-alias i='pp'
 
 alias psh='pushd'
 alias pop='popd'
