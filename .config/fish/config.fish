@@ -79,7 +79,7 @@ alias pop 'popd'
 
 alias cd_parent 'cd ../; pwd'
 alias i  'cd_parent'
-alias pp 'cd_parent'
+#alias pp 'cd_parent'
 #alias cdp 'cd_parent'
 
 alias cd_dl    "cd ~/Downloads"

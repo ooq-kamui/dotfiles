@@ -34,7 +34,7 @@ alias cd_dl='cd ~/Downloads/'
 
 alias cd_parent='cd ..; pwd'
 alias i='cd_parent'
-alias pp='cd_parent'
+#alias pp='cd_parent'
 #alias cdp='pp'
 
 alias psh='pushd'
