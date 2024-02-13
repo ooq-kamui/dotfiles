@@ -9,6 +9,8 @@ stty stop undef
 #export MSYS=winsymlinks:nativestrict
 
 
+alias clp_at_win='clip'
+alias clp='clp_at_win'
 
 alias ll='ls -lgohAG --time-style="+%Y-%m-%d %H:%M"'
 

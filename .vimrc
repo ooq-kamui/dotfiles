@@ -188,7 +188,7 @@ nnoremap <leader>u :FileHstry<cr>
 " 
 
 " opn fish cnf
-nnoremap gf :call Opn_fish_cnf()<cr>
+"nnoremap gf :call Opn_fish_cnf()<cr>
 
 " opn .vimrc
 nnoremap gh :call Opn_vimrc()<cr>
@@ -803,7 +803,7 @@ nnoremap <c-z> <esc>
 "nnoremap ga <esc>
 nnoremap gb <esc>
 "nnoremap ge <esc>
-"nnoremap gf <esc>
+nnoremap gf <esc>
 nnoremap gg <esc>
 "nnoremap gh <esc>
 nnoremap gi <esc>
@@ -2124,7 +2124,7 @@ endfunc
 
 func! Str__rpl(str, srch, rpl) abort " alias
 
-  l:r_str = substitute(a:str, a:srch, a:rpl)
+  let l:r_str = substitute(a:str, a:srch, a:rpl, 'g')
   return l:r_str
 endfunc
 
@@ -2135,7 +2135,7 @@ func! Str_path_win__rpl_unix(str) abort
   let l:str = Str__rpl(l:str, 'C:', '/c')
   let l:str = Str__rpl(l:str, 'c:', '/c')
 
-  let l:str = Str__rpl(l:str, '\', '/')
+  let l:str = Str__rpl(l:str, '/', '\')
   return l:str
 endfunc
 

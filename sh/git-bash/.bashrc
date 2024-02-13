@@ -1,7 +1,7 @@
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-source "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
 
 
@@ -21,7 +21,8 @@ bind '"\C-k": kill-word'
 # alias
 
 alias clr='clear'
-alias clp='pbcopy'
+alias clp_at_mac='pbcopy'
+alias clp='clp_at_mac'
 
 #alias his_clp='!! | clp'
 #alias re='!!'
