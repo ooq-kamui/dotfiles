@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# dl-dl.sh cre ( this dl sh )
+# dl-dl.sh  cre ( dl this sh )
 # ```
 # curl -Lo ~/sh/dl.sh \
 #   https://raw.githubusercontent.com/ooq-kamui/vimrc/master/sh/git-bash/sh/dl.sh
@@ -10,7 +10,9 @@
 
 mkdir -p ~/bk.tmp
 
-cp -p ~/.bashrc    ~/bk.tmp/
+cp -p ~/.bashrc         ~/bk.tmp/
+cp -p ~/.bashrc_gitbash ~/bk.tmp/
+
 cp -p ~/.vimrc     ~/bk.tmp/
 cp -p ~/.vimrc_win ~/bk.tmp/
 
@@ -22,6 +24,10 @@ cp -p ~/.vimrc_win ~/bk.tmp/
 
 curl -Lo ~/.bashrc \
   https://raw.githubusercontent.com/ooq-kamui/vimrc/master/sh/git-bash/.bashrc
+
+curl -Lo ~/.bashrc_gitbash \
+  https://raw.githubusercontent.com/ooq-kamui/vimrc/master/sh/git-bash/.bashrc_gitbash
+
 
 # vim
 

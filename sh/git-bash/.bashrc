@@ -21,7 +21,8 @@ bind '"\C-k": kill-word'
 # alias
 
 alias clr='clear'
-alias clp='pbcopy'
+alias clp_at_mac='pbcopy'
+alias clp='clp_at_mac'
 
 #alias his_clp='!! | clp'
 #alias re='!!'
