@@ -154,7 +154,10 @@ nnoremap W     :q<cr>
 "nnoremap xx :tabo<cr>
 
 " background job
-nnoremap <c-z> <c-z>
+"nnoremap <c-z> <c-z>
+
+" call
+nnoremap :c :call 
 
 " save
 "nnoremap a :w<cr>
@@ -216,6 +219,9 @@ nnoremap go :call Opn_app_by_cursor_path()<cr>
 
 " opn app slf
 nnoremap gs :call Opn_app_slf()<cr>
+
+" opn dir slf
+nnoremap gd :call Opn_dir_slf()<cr>
 
 " opn brwsr
 "nnoremap xx :call Opn_brwsr()<cr>
@@ -802,6 +808,7 @@ nnoremap <c-z> <esc>
 
 "nnoremap ga <esc>
 nnoremap gb <esc>
+"nnoremap gd <esc>
 "nnoremap ge <esc>
 nnoremap gf <esc>
 nnoremap gg <esc>
@@ -2368,10 +2375,13 @@ endfunc
 
 func! Cursor__mv_line_top_or_new_line() abort
 
-  if Is_cursor_line_top1()
-    
+  if     Is_cursor_line_top0()
+
     call Ins_line_emp()
-    "call Indnt__crct()
+
+  elseif Is_cursor_line_top1()
+
+    call Cursor__mv_line_top0()
   else
     call Cursor__mv_line_top1()
   end
@@ -3932,6 +3942,14 @@ func! Opn_app_slf() abort
   call Opn_app(l:path)
 endfunc
 
+func! Opn_dir_slf() abort
+
+  let l:dir = Slf_dir()
+  "echo l:path
+
+  call Opn_app(l:dir)
+endfunc
+
 func! Opn_brwsr()
 
   let l:url = 'https://www.google.com/'
@@ -4203,6 +4221,8 @@ endfunc
 
 " url encdoe
 
+command! -nargs=? UrlEncode <line1>,<line2>call V_url_encode(<f-args>)
+
 func! V_url_encode() range abort
 
   let l:str = Slctd_str()
@@ -4309,8 +4329,9 @@ let g:rg_cmd = 'rg '
 \            . ' --line-number'
 \            . ' --smart-case'
 \            . ' --hidden'
-\            . ' --no-ignore'
 \            . ' -g "!.git" '
+
+"\            . ' --no-ignore'
 
 "\            . ' -g "*.lua"'
 "\            . ' -g "*.script"'
