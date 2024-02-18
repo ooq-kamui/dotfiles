@@ -116,8 +116,6 @@ alias vi_cnf      "vi ~/.config/fish/config.fish"
 alias vi_vimrc    "vi ~/.vimrc"
 alias vi_vim_swap "vi ~/.local/share/nvim/swap/"
 
-#alias opn "open"
-
 set -x LC_TIME en_US
 alias da      "date_ymd"
 alias da_y1   "date_y 1"
@@ -125,14 +123,16 @@ alias da_y2   "date_y 2"
 alias date_y1 "date_y 1"
 alias date_y2 "date_y 2"
 
-alias du   "du -h"
-alias du_1 "du -hd1"
+alias du   'du -h'
+alias du_1 'du -hd1'
 
-alias clc  "math"
+alias tbl 'column -t'
 
-alias trns   "trans"
-alias trns_j "trans {ja=en}"
-alias trns_e "trans {en=ja}"
+alias clc 'math'
+
+alias trns   'trans'
+alias trns_j 'trans {ja=en}'
+alias trns_e 'trans {en=ja}'
 
 alias ba 'battery'
 alias ca 'cal'

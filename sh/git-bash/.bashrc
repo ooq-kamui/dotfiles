@@ -35,8 +35,6 @@ alias cd_dl='cd ~/Downloads/'
 
 alias cd_parent='cd ..; pwd'
 alias i='cd_parent'
-#alias pp='cd_parent'
-#alias cdp='pp'
 
 alias psh='pushd'
 alias pop='popd'
@@ -71,6 +69,8 @@ alias da='date +"%Y-%m-%d"'
 alias dt='date +"%Y-%m-%d.%H:%M"'
 alias ts='date +"%Y-%m-%d.%H:%M:%S"'
 alias tm='date +"%H:%M"'
+
+alias tbl='column -t'
 
 alias ca='cal'
 
