@@ -196,9 +196,6 @@ nnoremap <leader>u :FileHstry<cr>
 " opn .vimrc
 nnoremap gh :call Opn_vimrc()<cr>
 
-" opn .vimrc_win
-"nnoremap xx :call Opn_vimrc_win()<cr>
-
 " opn tmp
 nnoremap gt :call Opn_tmp()<cr>
 
@@ -236,7 +233,7 @@ nnoremap ggl :call Opn_ggl_srch('')<cr>
 " cursor mv
 " 
 
-" cursor mv dir
+" cursor mv drctn
 nnoremap <Right> l
 nnoremap <Left>  h
 nnoremap <Up>    k
@@ -308,7 +305,12 @@ nnoremap gj G$l
 " cursor mv edit latest
 "nnoremap xx `.
 
+" cursor mv thrw
+
+nnoremap :f :CursorMvThrw 
+
 " scroll
+
 nnoremap K      <c-y>
 nnoremap J      <c-e>
 nnoremap <up>   <c-y>
@@ -320,7 +322,7 @@ nnoremap <down> <c-e>
 " scroll cursor line middle
 "nnoremap xx zz
 
-" cursor mv window nxt
+" window nxt
 "nnoremap xx <c-w>w
 
 " 
@@ -451,8 +453,7 @@ nnoremap <expr> O
 \                            ':call Indnt__shft_r()<cr>'
 
 " ins dots ( or crnt )
-nnoremap > :call Ins_dots()<cr>
-"nnoremap > :call Dots__()<cr> " dev doing
+nnoremap > :call Line__dots()<cr>
 
 " tgl markdown chk
 "nnoremap xx :call Char__tgl_markdown_chk()<cr>
@@ -828,7 +829,13 @@ nnoremap gv <esc>
 nnoremap gw <esc>
 nnoremap gy <esc>
 
+"nnoremap :a <esc>
+"nnoremap :b <esc>
+"nnoremap :c <esc>
+"          :
+
 " mode normal end
+
 
 " 
 " mode visual
@@ -1050,7 +1057,6 @@ vnoremap ; =gv
 
 " indnt tab   > space
 vnoremap :e :call V_indnt_2_space()
-"vnoremap :e :call V_indnt_2_space()<cr>
 
 " indnt space > tab
 vnoremap :E :call V_indnt_2_tab()<cr>
@@ -1120,9 +1126,6 @@ vnoremap :G "zy:GrepWrd <c-r>z
 
 " tag jmp
 vnoremap t :call V_tag_jmp()<cr>
-
-" opn .vimrc
-"vnoremap gh <esc>:call Opn_vimrc()<cr>
 
 " opn app
 vnoremap go :call V_opn_app()<cr>
@@ -1822,7 +1825,12 @@ func! Sys_cmd(sys_cmd) abort
   "call Exe(l:cmd)
 endfunc
 
-func! Col() abort " crnt
+func! Col() abort " alias old > Cursor_col_num()
+
+  return call Cursor_col_num()
+endfunc
+
+func! Cursor_col_num() abort " crnt
 
   return col('.')
 endfunc
@@ -2196,21 +2204,29 @@ endfunc
 
 " cursor
 
+"func! Cursor_char() abort " alias  -  use not
+"
+"  call Cursor_c_char()
+"endfunc
+
 func! Cursor_c_char() abort
 
-  let l:c = getline('.')[col('.')-1]
+  "let l:c = getline('.')[col('.')-1]
+  let l:c = getline('.')[Cursor_col_num() - 1]
   return l:c
 endfunc
 
 func! Cursor_l_char() abort
 
-  let l:c = getline('.')[col('.')-2]
+  "let l:c = getline('.')[col('.')-2]
+  let l:c = getline('.')[Cursor_col_num() - 2]
   return l:c
 endfunc
 
 func! Cursor_r_char() abort
 
-  let l:c = getline('.')[col('.')]
+  "let l:c = getline('.')[col('.')-0]
+  let l:c = getline('.')[Cursor_col_num() - 0]
   return l:c
 endfunc
 
@@ -2397,11 +2413,52 @@ func! Cursor__mv_slctd_r() abort
   call Normal('`>')
 endfunc
 
-" cursor cnd
+command! -nargs=* CursorMvThrw call Cursor__mv_thrw(<q-args>)
+
+func! Cursor__mv_thrw(drctn) abort " alias
+
+  call Cursor__mv_space_not(a:drctn)
+endfunc
+
+func! Cursor__mv_space_not(drctn) abort
+
+  if     a:drctn == 'u'
+    let l:n_cmd = 'k'
+  elseif a:drctn == 'd'
+    let l:n_cmd = 'j'
+  else
+    return
+  endif
+
+  call Normal(l:n_cmd)
+
+  while Is_cursor_c_char_space()
+
+    call Normal(l:n_cmd)
+  endwhile
+endfunc
+
+" cursor cnd  char
+
+func! Is_cursor_c_char_space() abort
+
+  let l:c = Cursor_c_char()
+
+  if l:c =~ '\s'
+
+    return v:true
+  else
+    return v:false
+  endif
+endfunc
+
+" cursor cnd  line
 
 func! Is_cursor_line_end() abort
 
-  if col('.') == Line_end_col()
+  "if col('.') == Line_end_col()
+  if Cursor_col_num() == Line_end_col()
+
     return v:true
   else
     return v:false
@@ -2410,7 +2467,9 @@ endfunc
 
 func! Is_cursor_line_end_inr() abort
 
-  if col('.') == Line_end_col() - 1
+  "if col('.') == Line_end_col() - 1
+  if Cursor_col_num() == Line_end_col() - 1
+
     return v:true
   else
     return v:false
@@ -2419,7 +2478,9 @@ endfunc
 
 func! Is_cursor_line_top0() abort
   
-  if col('.') == 1
+  "if col('.') == 1
+  if Cursor_col_num() == 1
+
     return v:true
   else
     return v:false
@@ -2429,11 +2490,13 @@ endfunc
 func! Is_cursor_line_top1() abort
   
   let l:pos_c = Pos()
-  
-  let l:col_c = col('.')
+
+  "let l:col_c = col('.')
+  let l:col_c = Cursor_col_num()
   
   call Cursor__mv_line_top1()
-  let l:col_s1 = col('.')
+  "let l:col_s1 = col('.')
+  let l:col_s1 = Cursor_col_num()
   
   call setpos('.', l:pos_c)
   
@@ -2526,39 +2589,51 @@ func! Ins_week() abort
   "call Ins(' ' . l:week)
 endfunc
 
-func! Dots__() abort " todo dev, doing
+let g:dots_str = ' .. '
+let g:dots_put_col = 50
 
-  l:str = ' .. '
-  l:line_str = Line_str()
-  l:idx = Str_srch(l:line_str, l:str)
+func! Line__dots() abort " todo dev doing
+
+  let l:line_str = Line_str()
+  let l:idx = Str_srch(l:line_str, g:dots_str)
+  "echo l:idx
 
   if l:idx >= 0
 
-    call Dots__crct()
+    call Line__dots_crct()
   else
-
-    call Ins_dots()
+    call Line__add_dots()
   endif
 endfunc
 
-let g:dots_put_col = 50
+func! Line__dots_crct() abort
 
-func! Ins_dots() abort
+  echo 'Line__dots_crct()'
+endfunc
+
+func! Line__add_dots() abort
 
   let l:idx = 0
-  let l:str = ''
+  let l:space_str = ''
   while l:idx < g:dots_put_col
 
-    let l:str .= ' '
+    let l:space_str .= ' '
 
     let l:idx += 1
   endwhile
-  let l:str .= '.. '
+
+  let l:add_str = l:space_str . g:dots_str
 
   let l:line_num = Line_num()
-  call append(l:line_num, l:str)
+  call append(l:line_num, l:add_str)
 
-  call Normal('$lvjhx')
+  "if Cursor_col_num() >= 2
+  if Is_line_emp()
+
+    call Normal('"zx')
+  else
+    call Normal('$lvjhx')
+  endif
 endfunc
 
 command! -nargs=* InsSysCmd call Ins_sys_cmd(<q-args>)
@@ -2715,7 +2790,9 @@ func! V_cursor_f_space__del() range abort
 
   "call Slct_re()
   call Slct_re_in_line_1()
-  let l:col = Col()
+
+  "let l:col = Col()
+  let l:col = Cursor_col_num()
 
   call Normal("\<esc>")
 
@@ -2923,15 +3000,21 @@ func! Indnt__crct_by_c() abort
   return l:col
 endfunc
 
+let g:indnt_col = 2
+
 func! V_indnt_2_space() range abort
 
-  let l:sys_cmd = '  expand   -t 2'
+  let l:sys_cmd = '  expand   -t ' . g:indnt_col
+  "let l:sys_cmd = '  expand   -t 2'
+
   call V_ins_sys_cmd(l:sys_cmd)
 endfunc
 
 func! V_indnt_2_tab() range abort
 
-  let l:sys_cmd = 'unexpand   -t 2'
+  let l:sys_cmd = 'unexpand   -t ' . g:indnt_col
+  "let l:sys_cmd = 'unexpand   -t 2'
+
   call V_ins_sys_cmd(l:sys_cmd)
 endfunc
 
@@ -3040,7 +3123,9 @@ func! Slctd_l_col() abort
 
   call Cursor__mv_slctd_l()
   
-  let l:col = Col()
+  "let l:col = Col()
+  let l:col = Cursor_col_num()
+
   return l:col
 endfunc
 
@@ -3048,7 +3133,9 @@ func! Slctd_r_col() abort
 
   call Cursor__mv_slctd_r()
   
-  let l:col = Col()
+  "let l:col = Col()
+  let l:col = Cursor_col_num()
+
   return l:col
 endfunc
 
@@ -3108,8 +3195,9 @@ func! Slctd__expnd() abort " expnd lr
       return
     endif
     
-    let l:word_col_l =         l:l_idx + 2
-    let l:word_col_r = Col() + l:r_idx
+    let l:word_col_l =                    l:l_idx + 2
+    "let l:word_col_r = Col() + l:r_idx
+    let l:word_col_r = Cursor_col_num() + l:r_idx
     
     if l:r_idx == 0
       let l:word_col_l -= 1
@@ -3558,6 +3646,7 @@ func! Ins_cmnt_1(line_top) abort
   \ 'sh'        : '#'  ,
   \ 'css'       : '/* ',
   \ 'javascript': '// ',
+  \ 'java'      : '// ',
   \ 'dflt'      : '# '
   \ }
   let l:str = get(l:cmnt_1_def, &filetype, l:cmnt_1_def['dflt'])
@@ -3583,6 +3672,7 @@ func! Ins_cmnt_mlt_by_pos(pos) abort
   \  html      : ['<!--' ,  '-->'],
   \  css       : ['/*'   ,  ' */'],
   \  javascript: ['/*'   ,  ' */'],
+  \  java      : ['/*'   ,  ' */'],
   \  dflt      : ['/*'   ,  ' */']
   \ }
 
@@ -3714,11 +3804,11 @@ endfunc
 
 "func! N_bracket_pair_tgl() abort
 "
-"  let l:col1 = col(".")
+"  let l:col1 = col('.')
 "  call N_bracket_tgl()
 "
 "  call Normal('%')
-"  let l:col2 = col(".")
+"  let l:col2 = col('.')
 "
 "  if l:col1 == l:col2
 "    return
@@ -3815,10 +3905,10 @@ endfunc
 
 func! Opn_vimrc() abort
 
+  call Opn_vimrc_win()
+
   let l:path = '~/.vimrc'
   call Opn(l:path)
-
-  call Opn_vimrc_win()
 endfunc
 
 func! Opn_vimrc_win() abort
@@ -3897,11 +3987,13 @@ func! Opn_app(path) abort
   let l:path = a:path
   
   if has('mac')
-    let l:res = system('open  ' . "'" . l:path . "'")
+    let l:cmd_sys = 'open '
   else
     let l:path = Str_path_win__rpl_unix(l:path)
-    let l:res = system('start ' . "'" . l:path . "'")
+    let l:cmd_sys = 'start '
   endif
+
+  let l:res = system(l:cmd_sys . "'" . l:path . "'")
 endfunc
 
 func! V_opn_app() range abort

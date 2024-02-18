@@ -40,11 +40,11 @@ nnoremap <expr> 1
 nnoremap 2 :call Indnt__shft_l()<cr>
 nnoremap 3 :call Indnt__shft_r()<cr>
 
-" ins comment mlt
-nnoremap 4 :call Ins_cmnt_mlt()<cr>
-
 " ins comment 1
 vnoremap 1 :call V_ins_cmnt_1()<cr>
+
+" ins comment mlt
+nnoremap 4 :call Ins_cmnt_mlt()<cr>
 
 " indnt shift
 vnoremap 2 <gv
