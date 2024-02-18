@@ -2143,15 +2143,20 @@ func! Str__rpl(str, srch, rpl) abort " alias
   return l:r_str
 endfunc
 
-func! Str_path_win__rpl_unix(str) abort
+func! Str_path_unix__cnv_win(path) abort
 
-  let l:str = a:str
+  let l:path = a:path
+  let l:path = Str__rpl(l:path, '/c/', 'C:/')
+  let l:path = Str__rpl(l:path, '/', '\')
+  return l:path
+endfunc
 
-  let l:str = Str__rpl(l:str, 'C:', '/c')
-  let l:str = Str__rpl(l:str, 'c:', '/c')
+func! Str_path_win__cnv_unix(path) abort
 
-  let l:str = Str__rpl(l:str, '/', '\')
-  return l:str
+  let l:path = a:path
+  let l:path = Str__rpl(l:path, 'C:', '/c')
+  let l:path = Str__rpl(l:path, '\', '/')
+  return l:path
 endfunc
 
 " str cnd
@@ -2163,7 +2168,6 @@ func! Is_str_emp(str) abort
   if a:str == ''
     let l:ret = v:true
   endif
-
   return l:ret
 endfunc
 
@@ -2174,7 +2178,6 @@ func! Is_str_eq_ptn(str, ptn) abort
   if a:str =~ a:ptn
     let l:ret = v:true
   endif
-
   return l:ret
 endfunc
 
@@ -3989,8 +3992,14 @@ func! Opn_app(path) abort
   if has('mac')
     let l:cmd_sys = 'open '
   else
-    let l:path = Str_path_win__rpl_unix(l:path)
     let l:cmd_sys = 'start '
+  endif
+
+  if has('mac')
+
+    " nothing
+  else
+    let l:path = Str_path_unix__cnv_win(l:path)
   endif
 
   let l:res = system(l:cmd_sys . "'" . l:path . "'")
@@ -4011,7 +4020,7 @@ func! Opn_app_by_cursor_path() abort
 endfunc
 
 func! Opn_app_by_line_path(line_num) abort
-  
+
   "let l:path = Line_str_by_line_num()
   let l:path = getline(a:line_num)
 
@@ -4029,7 +4038,7 @@ endfunc
 func! Opn_app_slf() abort
 
   let l:path = Slf_path()
-  "echo l:path
+  echo l:path
 
   call Opn_app(l:path)
 endfunc
