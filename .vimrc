@@ -512,7 +512,7 @@ nnoremap # :call Indnt__shft_r()<cr>
 nnoremap ; :call Indnt__crct()<cr>
 
 " cursor f space __ crct
-nnoremap H :call Cursor_f_space__crct()<cr>
+"nnoremap xx :call Cursor_f_space__crct()<cr>
 
 " 
 " srch
@@ -763,7 +763,7 @@ nnoremap D <esc>
 "nnoremap E <esc>
 nnoremap F <esc>
 nnoremap G <esc>
-"nnoremap H <esc>
+nnoremap H <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
@@ -2598,7 +2598,7 @@ let g:dots_put_col = 50
 func! Line__dots() abort " todo dev doing
 
   let l:line_str = Line_str()
-  let l:idx = Str_srch(l:line_str, g:dots_str)
+  let l:idx = Str_srch(l:line_str, escape(g:dots_str, '.'))
   "echo l:idx
 
   if l:idx >= 0
@@ -2806,7 +2806,7 @@ func! V_cursor_f_space__del() range abort
   endfor
 endfunc
 
-func! Cursor_f_space__crct() abort
+func! Cursor_f_space__crct() abort " dev doing
 
   call Normal('k')
 
