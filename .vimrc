@@ -182,6 +182,7 @@ nnoremap :o :Opn
 
 " opn file srch  ( fzf )
 nnoremap <leader>l :Files <cr>
+"nnoremap <leader>l :FzfRunFd <cr>
 
 " opn file hstry ( fzf )
 nnoremap <leader>u :FileHstry<cr>
@@ -576,9 +577,8 @@ nnoremap :s :Rpl
 " grep ( fzf )
 nnoremap <leader>o :Rg <cr>
 
-" grep ( fzf )  -  ( win )
-" try
-"nnoremap <leader>o :GitbashFzfRg <c-r>/
+" grep ( fzf run rg )
+"nnoremap <leader>o :FzfRunRg <c-r>/
 
 " grep buf ( fzf )
 nnoremap <leader>k :call N_grep_buf()<cr>
@@ -589,10 +589,8 @@ nnoremap :g :GrepStr <c-r>/
 nnoremap :G :GrepWrd <c-r>/
 
 " tag jmp tab new
-nnoremap t :call N_tag_jmp()<cr>
-
-" tag jmp tab new  -  alias
 nnoremap r :call N_tag_jmp()<cr>
+"nnoremap t :call N_tag_jmp()<cr>
 
 " 
 " jmplst ( fzf )
@@ -749,7 +747,7 @@ nnoremap b <esc>
 nnoremap q <esc>
 "nnoremap r <esc>
 "nnoremap s <esc>
-"nnoremap t <esc>
+nnoremap t <esc>
 "nnoremap u <esc>
 "nnoremap w <esc>
 nnoremap x <esc>
@@ -1117,7 +1115,7 @@ vnoremap <leader>o "zy:Rg <c-r>z<cr>
 
 " grep ( fzf )  -  ( win )
 " try
-"vnoremap <leader>o "zy:GitbashFzfRg <c-r>z
+"vnoremap <leader>o "zy:FzfRunRg <c-r>z
 
 " grep func def ( fzf )
 "vnoremap <leader>xx "zy:Rg <c-r>z<cr>func
@@ -1612,35 +1610,6 @@ command! -bang -nargs=* Rg
 \   ),
 \   <bang>1
 \ )
-
-"\   . " -g '*.txt' "
-"\   . " -g '*.md' "
-"\   . " -g '*.lua' "
-"\   . " -g '*.html' "
-"\   . " -g '*.js' "
-"\   . " -g '*.json' "
-"\   . " -g '*.css' "
-"\   . " -g '*.sh' "
-"\   . " -g '*.fish' "
-"\   . " -g '*.tpl' "
-"\   . " -g '*.toml' "
-"\   . " -g '*.swp' "
-"\   . " -g '*.font' "
-"\   . " -g '*.script' "
-"\   . " -g '*.gui_script' "
-"\   . " -g '*.tilemap' "
-"\   . " -g '*.tilesource' "
-"\   . " -g '*.atlas' "
-"\   . " -g '*.sprite' "
-"\   . " -g '*.collectionfactory' "
-"\   . " -g '*.collection' "
-"\   . " -g '*.factory' "
-"\   . " -g '*.collisionobject' "
-"\   . " -g '*.go' "
-"\   . " -g '*.gui' "
-"\   . " -g '*.label' "
-"\   . " -g '*.sound' "
-"\   . " -g '*.camera' "
 
 " grep buf
 func! N_grep_buf() abort
@@ -4472,17 +4441,15 @@ hi netrwVersion  ctermfg=130        ctermbg=none    cterm=none
 hi netrwHelpCmd  ctermfg=130        ctermbg=none    cterm=none
 
 
-
-
 " 
-" dev  -  beta  -  try
+" dev
 " 
 
 " rg lst
 
-command! -nargs=? GitbashFzfRg call Gitbash_fzf_rg(<q-args>)
+command! -nargs=? FzfRunRg call Fzf_run_rg(<q-args>)
 
-func! Gitbash_fzf_rg(str) abort
+func! Fzf_run_rg(str) abort
 
   call fzf#run(
   \   {
@@ -4507,21 +4474,7 @@ let g:rg_cmd = 'rg '
 \            . ' --smart-case'
 \            . ' --hidden'
 \            . ' -g "!.git" '
-
 "\            . ' --no-ignore'
-
-"\            . ' -g "*.lua"'
-"\            . ' -g "*.script"'
-"\            . ' -g "*.gui_script"'
-"\            . ' -g "*.txt"'
-"\            . ' -g "*.json"'
-"\            . ' -g "*.fish"'
-"\            . ' -g "*.vim"'
-"\            . ' -g "*.html"'
-"\            . ' -g "*.js"'
-"\            . ' -g "*.css"'
-"\            . ' -g "*.md"'
-
 "\            . ' -ns'
 
 func! Rg_rslt_txt(opt, p_str) abort
@@ -4553,6 +4506,79 @@ func! Rg_cmd(opt, p_str) abort
   return l:rg_cmd
 endfunc
 
+" fzf run fd
+
+command! -nargs=0 FzfRunFd call Fzf_run_fd()
+
+func! Fzf_run_fd() abort
+
+  call fzf#run(
+  \   {
+  \     'source' : Fd_rslt_ar(),
+  \     'sink'   : funcref('Tag_jmp'),
+  \     'window' : '-tabnew',
+  \   }
+  \ )
+  "\     'options': ['--reverse'],
+  "\     'options': ['--no-sort'],
+endfunc
+
+func! Fd_rslt_ar() abort
+
+  let l:rslt_txt = Fd_rslt_txt()
+  let l:rslt_ar  = split(l:rslt_txt, "\n")
+  return l:rslt_ar
+endfunc
+
+func! Fd_rslt_txt() abort
+  
+  let l:fd_cmd = Fd_cmd()
+
+  let l:rslt_txt = Sys_cmd(l:fd_cmd)
+  return l:rslt_txt
+endfunc
+
+func! Fd_cmd() abort
+
+  let l:fd_cmd = 'fd --type f'
+  return l:fd_cmd
+endfunc
+
+" fzf run by file memo
+
+"nnoremap <leader>m :FzfRunByFileMemo <cr>
+
+command! -nargs=0 FzfRunByFileMemo call Fzf_run_by_file_memo()
+
+func! Fzf_run_by_file_memo() abort
+
+  call fzf#run(
+  \   {
+  \     'source' : File_memo_ar(),
+  \     'sink'   : funcref('Tag_jmp'),
+  \     'window' : '-tabnew',
+  \   }
+  \ )
+  "\     'options': ['--reverse'],
+  "\     'options': ['--no-sort'],
+endfunc
+
+func! File_memo_ar() abort
+
+  let l:rslt_txt = File_memo_txt()
+  let l:rslt_ar  = split(l:rslt_txt, "\n")
+  return l:rslt_ar
+endfunc
+
+let g:file_memo_path = '~/doc/file_memo.md'
+
+func! File_memo_txt() abort
+
+  let l:cmd = 'cat ' . g:file_memo_path
+
+  let l:file_txt = Sys_cmd(l:cmd)
+  return l:file_txt
+endfunc
 
 
 " 
