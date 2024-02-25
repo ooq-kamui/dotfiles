@@ -305,16 +305,16 @@ nnoremap gj G$l
 " cursor mv edit latest
 "nnoremap xx `.
 
-" cursor mv thrw
-
-nnoremap :f :CursorMvThrw 
-
 " scroll
 
 nnoremap K      <c-y>
 nnoremap J      <c-e>
 nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
+
+" cursor mv jmp
+nnoremap ^ :CursorMvJmp k<cr>
+nnoremap ~ :CursorMvJmp j<cr>
 
 " scroll cursor line upper
 "nnoremap xx zt
@@ -700,8 +700,8 @@ nnoremap <bs>    <esc>
 "nnoremap . <esc>
 "nnoremap * <esc>
 "nnoremap _ <esc>
-nnoremap ~ <esc>
-nnoremap ^ <esc>
+"nnoremap ~ <esc>
+"nnoremap ^ <esc>
 nnoremap / <esc>
 "nnoremap \ <esc>
 nnoremap ? <esc>
@@ -1042,11 +1042,13 @@ vnoremap <c-e> :call Slctd_str__mv('l')<cr>
 "vnoremap xx :call V_mv_line('k')<cr>
 
 " inc, dec
-vnoremap = <c-a>gv
+vnoremap + <c-a>gv
+"vnoremap = <c-a>gv
 vnoremap - <c-x>gv
 
 " num seq
-vnoremap + g<c-a>
+vnoremap = g<c-a>
+"vnoremap + g<c-a>
 
 " indnt shift
 vnoremap # >gv
@@ -2119,6 +2121,20 @@ func! Str_len(str) abort " alias
   return strchars(a:str)
 endfunc
 
+func! Str_space(col) abort
+
+  let l:space_str = ''
+
+  let l:idx = 0
+  while l:idx < a:col
+
+    let l:space_str .= ' '
+
+    let l:idx += 1
+  endwhile
+  return l:space_str
+endfunc
+
 func! Str_srch(...) abort " alias
 
   let l:str =                a:1
@@ -2416,18 +2432,13 @@ func! Cursor__mv_slctd_r() abort
   call Normal('`>')
 endfunc
 
-command! -nargs=* CursorMvThrw call Cursor__mv_thrw(<q-args>)
+command! -nargs=* CursorMvJmp call Cursor__mv_jmp_space_not(<q-args>)
 
-func! Cursor__mv_thrw(drctn) abort " alias
+func! Cursor__mv_jmp_space_not(drctn) abort
 
-  call Cursor__mv_space_not(a:drctn)
-endfunc
-
-func! Cursor__mv_space_not(drctn) abort
-
-  if     a:drctn == 'u'
+  if     a:drctn == 'k'
     let l:n_cmd = 'k'
-  elseif a:drctn == 'd'
+  elseif a:drctn == 'j'
     let l:n_cmd = 'j'
   else
     return
@@ -2435,13 +2446,53 @@ func! Cursor__mv_space_not(drctn) abort
 
   call Normal(l:n_cmd)
 
-  while Is_cursor_c_char_space()
+  while ( ! Is_cursor_line_file_edge()                     )
+  \  && ( Is_cursor_c_char_space() || Is_cursor_line_end() )
 
     call Normal(l:n_cmd)
   endwhile
 endfunc
 
 " cursor cnd  char
+
+func! Is_cursor_line_by_line_num(line_num) abort
+
+  let l:ret = v:false
+
+  let l:line_num = Line_num()
+
+  if l:line_num == a:line_num
+
+    let l:ret = v:true
+  endif
+  return l:ret
+endfunc
+
+func! Is_cursor_line_file_top() abort
+
+  let l:line_num = 1
+  let l:ret = Is_cursor_line_by_line_num(l:line_num)
+  return l:ret
+endfunc
+
+func! Is_cursor_line_file_end() abort
+
+  let l:line_num = Line_num_file_end()
+  let l:ret = Is_cursor_line_by_line_num(l:line_num)
+  return l:ret
+endfunc
+
+func! Is_cursor_line_file_edge() abort
+
+  let l:ret = v:false
+
+  if Is_cursor_line_file_top() || Is_cursor_line_file_end()
+
+    let l:ret = v:true
+  endif
+  "echo l:ret
+  return l:ret
+endfunc
 
 func! Is_cursor_c_char_space() abort
 
@@ -2459,7 +2510,6 @@ endfunc
 
 func! Is_cursor_line_end() abort
 
-  "if col('.') == Line_end_col()
   if Cursor_col_num() == Line_end_col()
 
     return v:true
@@ -2470,7 +2520,6 @@ endfunc
 
 func! Is_cursor_line_end_inr() abort
 
-  "if col('.') == Line_end_col() - 1
   if Cursor_col_num() == Line_end_col() - 1
 
     return v:true
@@ -2599,10 +2648,8 @@ func! Line__dots() abort " todo dev doing
 
   let l:line_str = Line_str()
   let l:idx = Str_srch(l:line_str, escape(g:dots_str, '.'))
-  "echo l:idx
 
   if l:idx >= 0
-
     call Line__dots_crct()
   else
     call Line__add_dots()
@@ -2610,33 +2657,51 @@ func! Line__dots() abort " todo dev doing
 endfunc
 
 func! Line__dots_crct() abort
+  "echo 'Line__dots_crct()'
 
-  echo 'Line__dots_crct()'
+  let l:line_str = Line_str()
+  let l:idx = Str_srch(l:line_str, escape(g:dots_str, '.'))
+
+  if     l:idx < 0
+    return
+  elseif l:idx == g:dots_put_col
+    return
+  endif
+
+  let l:line_str_0 = strcharpart(l:line_str,     0, l:idx)
+  let l:line_str_1 = strcharpart(l:line_str, l:idx       )
+
+  if     l:idx < g:dots_put_col
+
+    let l:space_str = Str_space(g:dots_put_col - l:idx)
+    let l:line_str = l:line_str_0 . l:space_str . l:line_str_1
+  else
+    let l:line_str_0 = strcharpart(l:line_str_0, 0, g:dots_put_col)
+    let l:line_str = l:line_str_0 . l:line_str_1
+  endif
+
+  let l:line_num = Line_num()
+  call setline(l:line_num, l:line_str)
 endfunc
 
 func! Line__add_dots() abort
 
-  let l:idx = 0
-  let l:space_str = ''
-  while l:idx < g:dots_put_col
-
-    let l:space_str .= ' '
-
-    let l:idx += 1
-  endwhile
-
-  let l:add_str = l:space_str . g:dots_str
-
   let l:line_num = Line_num()
-  call append(l:line_num, l:add_str)
 
-  "if Cursor_col_num() >= 2
-  if Is_line_emp()
+  let l:line_str = Line_str()
 
-    call Normal('"zx')
-  else
-    call Normal('$lvjhx')
+  let l:line_str_len = Line_str_len()
+
+  let l:space_len = g:dots_put_col - l:line_str_len
+  if l:space_len < 0
+    let l:space_len = 0
   endif
+
+  let l:space_str = Str_space(l:space_len)
+
+  let l:line_str .= l:space_str . g:dots_str
+
+  call setline(l:line_num, l:line_str)
 endfunc
 
 command! -nargs=* InsSysCmd call Ins_sys_cmd(<q-args>)
@@ -2686,9 +2751,26 @@ func! Line_num() abort " alias
   return line('.')
 endfunc
 
+func! Line_num_file_end() abort
+
+  return line('$')
+endfunc
+
+func! Line_end_col() abort
+
+  let l:col = col('$')
+  return l:col
+endfunc
+
 func! Line_str() abort " alias
 
   return getline('.')
+endfunc
+
+func! Line_str_len() abort
+
+  let l:len = Line_end_col() - 1
+  return l:len
 endfunc
 
 func! Line_str_cursor_out_l() abort
@@ -2737,12 +2819,6 @@ func! V_line_top_space__del() abort
 
   let l:rpl_cmd = 's/' . s:line_top_space_ptn . '//g'
   call Exe(l:rpl_cmd)
-endfunc
-
-func! Line_end_col() abort
-
-  let l:col = col('$')
-  return l:col
 endfunc
 
 let s:line_end_space_ptn = '[ \t]*$'
