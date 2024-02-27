@@ -64,9 +64,10 @@ let g:grep_work_path = '~/wrk/tmp/grep.md'
 " grep ( rg )
 
 let g:rg_cmd .= ' --path-separator "//"'
-\             . ' -g "*.java"'
-\             . ' -g "*.jsp"'
-\             . ' -g "*.sql"'
+
+"\             . ' -g "*.java"'
+"\             . ' -g "*.jsp"'
+"\             . ' -g "*.sql"'
 
 "nnoremap <leader>o :GitbashFzfRg <c-r>/
 "vnoremap <leader>o "zy:GitbashFzfRg <c-r>z

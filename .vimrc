@@ -4540,7 +4540,9 @@ endfunc
 
 func! Fd_cmd() abort
 
-  let l:fd_cmd = 'fd --type f'
+  "let l:fd_cmd = 'fd --type f --hidden --follow -I --exclude .git'
+  let l:fd_cmd = 'fd --type f --hidden --follow --exclude .git'
+
   return l:fd_cmd
 endfunc
 
@@ -4570,11 +4572,11 @@ func! File_memo_ar() abort
   return l:rslt_ar
 endfunc
 
-let g:file_memo_path = '~/doc/file_memo.md'
+let g:memo_src_lst_path = '~/doc/memo.src-lst.md'
 
 func! File_memo_txt() abort
 
-  let l:cmd = 'cat ' . g:file_memo_path
+  let l:cmd = 'cat ' . g:memo_src_lst_path
 
   let l:file_txt = Sys_cmd(l:cmd)
   return l:file_txt
