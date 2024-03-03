@@ -62,7 +62,6 @@ vnoremap 3 >gv
 let g:dots_put_col = 60
 
 
-
 " 
 " dev  -  beta  -  try
 " 

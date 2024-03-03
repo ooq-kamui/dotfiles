@@ -106,6 +106,7 @@ set showtabline=2
 set wildmenu " ?
 "set showmatch
 "set visualbell
+"set ambiwidth=double
 
 "set clipboard+=unnamedplus " ???
 
@@ -590,7 +591,6 @@ nnoremap :G :GrepWrd <c-r>/
 
 " tag jmp tab new
 nnoremap r :call N_tag_jmp()<cr>
-"nnoremap t :call N_tag_jmp()<cr>
 
 " 
 " jmplst ( fzf )
@@ -3868,20 +3868,22 @@ endfunc
 
 " tag jmp
 
-func! Tag_jmp(rg_out_line) abort
+func! Tag_jmp(rg_rslt_line) abort
   
-  let l:rg_out_line = trim(a:rg_out_line)
+  let l:rg_rslt_line = trim(a:rg_rslt_line)
 
-  "if l:rg_out_line == ''
-  if Is_str_emp(l:rg_out_line)
+  if Is_str_emp(l:rg_rslt_line)
     return
   end
   
-  let l:rg_out_line = matchstr(l:rg_out_line, '\S\+')
+  "let l:rg_rslt_line = matchstr(l:rg_rslt_line, '\S\+')
+  "echo l:rg_rslt_line
   
-  let l:rg_out_line_ar = Rg_out_parse(l:rg_out_line)
-  let l:filename = l:rg_out_line_ar[0]
-  let l:line_num = get(l:rg_out_line_ar, 1, 1)
+  let l:rg_rslt_line_ar = Rg_rslt_line_parse(l:rg_rslt_line)
+  "echo l:rg_rslt_line_ar
+
+  let l:filename = l:rg_rslt_line_ar[0]
+  let l:line_num = get(l:rg_rslt_line_ar, 1, 1)
 
   if ! filereadable(l:filename)
     return
@@ -3914,10 +3916,21 @@ func! V_tag_jmp() range abort
   endfor
 endfunc
 
-func! Rg_out_parse(line) abort
+func! Rg_rslt_line_parse(line) abort
 
   let l:dlm = ':'
   let l:ret = split(a:line, l:dlm)
+  "echo l:ret
+
+  let l:idx = 0
+  while l:idx < len(l:ret)
+
+    let l:ret[l:idx] = trim(l:ret[l:idx])
+
+    let l:idx = l:idx + 1
+  endwhile
+  "echo l:ret
+
   return l:ret
 endfunc
 
