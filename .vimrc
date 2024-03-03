@@ -3523,7 +3523,7 @@ func! Srch_str__(str, op_word1) abort
     let l:str = Srch_str_word1(l:str)
   endif
 
-  if @/ == l:str
+  if "@/" == "l:str"
     return
   endif
   
@@ -4474,6 +4474,7 @@ let g:rg_cmd = 'rg '
 \            . ' --smart-case'
 \            . ' --hidden'
 \            . ' -g "!.git" '
+
 "\            . ' --no-ignore'
 "\            . ' -ns'
 
@@ -4550,13 +4551,15 @@ endfunc
 
 "nnoremap <leader>m :FzfRunByFileMemo <cr>
 
-command! -nargs=0 FzfRunByFileMemo call Fzf_run_by_file_memo()
+"command! -nargs=0 FzfRunByFileMemo call Fzf_run_by_file_memo()
+command! -nargs=0 FzfRunByMemo call Fzf_run_by_memo()
 
-func! Fzf_run_by_file_memo() abort
+"func! Fzf_run_by_file_memo() abort
+func! Fzf_run_by_memo() abort
 
   call fzf#run(
   \   {
-  \     'source' : File_memo_ar(),
+  \     'source' : Memo_ar(),
   \     'sink'   : funcref('Tag_jmp'),
   \     'window' : '-tabnew',
   \   }
@@ -4565,18 +4568,20 @@ func! Fzf_run_by_file_memo() abort
   "\     'options': ['--no-sort'],
 endfunc
 
-func! File_memo_ar() abort
+"func! File_memo_ar() abort
+func! Memo_ar() abort
 
-  let l:rslt_txt = File_memo_txt()
+  let l:rslt_txt = Memo_txt()
   let l:rslt_ar  = split(l:rslt_txt, "\n")
   return l:rslt_ar
 endfunc
 
-let g:memo_src_lst_path = '~/doc/memo.src-lst.md'
+let g:fzf_run_memo_path = '~/doc/memo.src-lst.md'
 
-func! File_memo_txt() abort
+"func! File_memo_txt() abort
+func! Memo_txt() abort
 
-  let l:cmd = 'cat ' . g:memo_src_lst_path
+  let l:cmd = 'cat ' . g:fzf_run_memo_path
 
   let l:file_txt = Sys_cmd(l:cmd)
   return l:file_txt

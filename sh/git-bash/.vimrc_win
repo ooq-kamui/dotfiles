@@ -3,6 +3,14 @@
 "set shell="start sh"
 set shell=bash
 
+
+" git bash
+set noerrorbells visualbell t_vb=
+if has('autocmd')
+  autocmd GUIEnter * set visualbell t_vb=
+endif
+
+
 hi StatusLine       ctermfg=cyan     ctermbg=33      cterm=none
 hi NonText          ctermfg=darkblue ctermbg=none    cterm=none
 hi Search           ctermfg=yellow   ctermbg=magenta cterm=none

@@ -1,0 +1,26 @@
+{
+  "title": "shift underscore __ tatebou [ @kamui ]",
+  "rules": [
+    {
+      "description": "shift underscore __ tatebou",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "international1",
+            "modifiers": {
+              "mandatory": [ "shift" ]
+            }
+          },
+          "to": [
+            {
+              "modifiers": ["shift"],
+              "key_code": "international3"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
