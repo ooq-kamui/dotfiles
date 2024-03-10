@@ -288,8 +288,8 @@ nnoremap <c-l> %
 
 " cursor mv bracket out back
 nnoremap <c-w> [{
-nnoremap U     [{
-nnoremap R     [{
+"nnoremap U     [{
+"nnoremap R     [{
 
 " cursor mv bracket fnc back
 "nnoremap xx [m
@@ -317,6 +317,8 @@ nnoremap <down> <c-e>
 " cursor mv jmp
 nnoremap ^ :CursorMvJmp k<cr>
 nnoremap ~ :CursorMvJmp j<cr>
+nnoremap R :CursorMvJmp k<cr>
+nnoremap F :CursorMvJmp j<cr>
 
 " scroll cursor line upper
 "nnoremap xx zt
@@ -531,7 +533,8 @@ nnoremap Y /<cr>N
 "nnoremap xx ;
 
 " srch cmd
-nnoremap <leader>i /
+nnoremap <leader>k /
+"nnoremap <leader>i /
 
 " srch forward
 nnoremap n     :call Srch('f')<cr>
@@ -582,8 +585,8 @@ nnoremap <leader>o :Rg <cr>
 "nnoremap <leader>o :FzfRunRg <c-r>/
 
 " grep buf ( fzf )
-nnoremap <leader>k :call N_grep_buf()<cr>
-"nnoremap <leader>k :BLines<cr>
+nnoremap <leader>i :call N_grep_buf()<cr>
+"nnoremap <leader>k :call N_grep_buf()<cr>
 
 " grep [rg]   ( read )
 nnoremap :g :GrepStr <c-r>/
@@ -759,7 +762,7 @@ nnoremap B <esc>
 nnoremap C <esc>
 nnoremap D <esc>
 "nnoremap E <esc>
-nnoremap F <esc>
+"nnoremap F <esc>
 nnoremap G <esc>
 nnoremap H <esc>
 "nnoremap I <esc>
@@ -774,7 +777,7 @@ nnoremap Q <esc>
 "nnoremap R <esc>
 nnoremap S <esc>
 nnoremap T <esc>
-"nnoremap U <esc>
+nnoremap U <esc>
 "nnoremap W <esc>
 nnoremap V <esc>
 nnoremap X <esc>
@@ -1075,7 +1078,8 @@ vnoremap <c-u> ugv
 " 
 
 " srch cmd
-vnoremap <leader>i "zy/<c-r>z
+vnoremap <leader>k "zy/<c-r>z
+"vnoremap <leader>i "zy/<c-r>z
 
 " srch forward ( srch rpl skip )
 vnoremap <c-n> :call V_srch_slct('f')<cr>
@@ -1108,7 +1112,8 @@ vnoremap <c-m> :call V_srch_str__cr()<cr>
 " 
 
 " grep buf ( fzf )
-vnoremap <leader>k :call V_grep_buf()<cr>
+vnoremap <leader>i :call V_grep_buf()<cr>
+"vnoremap <leader>k :call V_grep_buf()<cr>
 
 " grep ( fzf )
 vnoremap <leader>o "zy:Rg <c-r>z<cr>

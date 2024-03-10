@@ -43,17 +43,17 @@ alias pp='popd'
 
 
 alias ls='ls -a'
-#alias ll='ls -l'
-#alias ll='ls -lgohAG --time-style="+%Y-%m-%d %H:%M"'
 alias ll='ls -lgohAGD "%Y-%m-%d %H:%M"'
 
-alias ll.='ll -d .*'
-alias l.='ls -1d .*'
+alias l_r='lf_by_fd'
+alias lrd='ld_by_fd'
 
-alias lf='lf_by_fd'
-alias ld='ld_by_fd'
-alias lfd='lfd_by_fd'
-alias ldf='lfd_by_fd'
+# old
+#alias lf='lf_by_fd'
+#alias ld='ld_by_fd'
+#alias lfd='lfd_by_fd'
+#alias ldf='lfd_by_fd'
+
 alias l='l_by_fd'
 
 alias l_clp='l | clp'
@@ -71,6 +71,8 @@ alias da='date +"%Y-%m-%d"'
 alias dt='date +"%Y-%m-%d.%H:%M"'
 alias ts='date +"%Y-%m-%d.%H:%M:%S"'
 alias tm='date +"%H:%M"'
+
+alias srt='sort'
 
 alias tbl='column -t'
 
