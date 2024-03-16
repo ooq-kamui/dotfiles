@@ -21,6 +21,7 @@ bind '"\C-k": kill-word'
 # alias
 
 alias clr='clear'
+alias c='clr'
 alias clp_at_mac='pbcopy'
 alias clp='clp_at_mac'
 
@@ -35,28 +36,28 @@ alias cd_dl='cd ~/Downloads/'
 
 alias cd_parent='cd ..; pwd'
 alias k='cd_parent'
-alias i='cd_parent'
+alias kk='k;k'
+alias kkk='k;k;k'
+#alias i='cd_parent'
 
 alias psh='pushd'
 alias pop='popd'
 alias pp='popd'
 
-
 alias ls='ls -a'
 alias ll='ls -lgohAGD "%Y-%m-%d %H:%M"'
 
-alias l_r='lf_by_fd'
-alias lrd='ld_by_fd'
+#alias l='l_by_fd'
+#alias l_clp='l | clp'
+
+#alias l_r='lf_by_fd'
+#alias lrd='ld_by_fd'
 
 # old
 #alias lf='lf_by_fd'
 #alias ld='ld_by_fd'
 #alias lfd='lfd_by_fd'
 #alias ldf='lfd_by_fd'
-
-alias l='l_by_fd'
-
-alias l_clp='l | clp'
 
 alias cp='cp -p'
 
@@ -65,7 +66,6 @@ alias to_clr=':>'
 
 alias p='pth'
 alias p_clp='p | clp'
-
 
 alias da='date +"%Y-%m-%d"'
 alias dt='date +"%Y-%m-%d.%H:%M"'
