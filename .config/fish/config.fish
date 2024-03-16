@@ -47,6 +47,7 @@ set -x FZF_CTRL_T_COMMAND  ( echo $FZF_DEFAULT_COMMAND )
 alias shutdown_start "sudo shutdown -r now"
 
 alias clr 'clear'
+alias c   'clr'
 alias clp 'pbcopy'
 
 alias src         "source"
@@ -79,7 +80,6 @@ alias pop 'popd'
 
 alias cd_parent 'cd ../; pwd'
 alias k  'cd_parent'
-alias i  'cd_parent'
 
 alias cd_dl    "cd ~/Downloads"
 alias cd_iclud "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
@@ -94,17 +94,8 @@ alias dir 'z'
 
 alias p     'pth'
 alias p_clp 'p | clp'
-alias pc    'p_clp'
 
 alias fd 'fd --hidden --follow -I --exclude .git'
-
-alias lf  'lf_by_fd'
-alias ld  'ld_by_fd'
-alias lfd 'lfd_by_fd'
-alias ldf 'ldf_by_fd'
-alias l   'l_by_fd'
-
-alias l_clp "l | clp"
 
 alias vim "nvim -p"
 alias vi  "nvim -p"
