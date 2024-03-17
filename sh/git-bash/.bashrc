@@ -25,6 +25,8 @@ alias c='clr'
 alias clp_at_mac='pbcopy'
 alias clp='clp_at_mac'
 
+alias x='xargs'
+
 #alias his_clp='!! | clp'
 #alias re='!!'
 #alias re_clp='$( tail -n 1 ~/.bash_history ) | clp'
@@ -80,14 +82,13 @@ alias ca='cal'
 
 alias vi='vi -p'
 
-alias ggl='opn https://google.com/'
-alias opn_brwsr='ggl'
-
-
 alias fd='fd --hidden --follow -I --exclude .git'
 
-alias gr='grep'
 alias rg='rg -nS --path-separator "//"'
+alias gr='grep'
+
+alias ggl='opn https://google.com/'
+alias opn_brwsr='ggl'
 
 
 export FZF_DEFAULT_COMMAND='fd --type f --color=always --hidden --follow -I --exclude .git'

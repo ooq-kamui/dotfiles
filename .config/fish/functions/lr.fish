@@ -1,4 +1,4 @@
-function lrf
+function lr
 
   fd '' $argv[1]
 end

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+dir=~/doc/tech
+
+cmdsub="$1"
+
+if   test $cmdsub = 'cd'
+then
+  psh $dir
+
+elif test $cmdsub = 'fd'
+then
+  if test -z $argv[2]
+
+    fd -e md '' $dir
+  else
+    fd -e md '' $dir | rg $argv[2]
+  fi
+
+elif test $cmdsub = 'rg'
+then
+  rg -N -g '*.md' "$argv[1]" $dir/
+  #rg --heading -g '*.md' "$argv[1]" $dir/
+
+elif test $cmdsub = 'vi'
+then
+  vi -c ":cd $dir"
+fi
+

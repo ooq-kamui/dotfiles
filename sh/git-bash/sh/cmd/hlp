@@ -1,0 +1,8 @@
+#!/bin/bash
+
+dir=~/wrk/tps
+
+fd -e md --hidden $1 $dir/
+
+
+

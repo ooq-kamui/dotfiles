@@ -10,5 +10,3 @@ else
   readlink -f $1
 fi
 
-
-

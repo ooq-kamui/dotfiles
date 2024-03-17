@@ -1,6 +1,5 @@
-# 
+
 # source ~/.config/fish/config.fish
-# 
 
 set -U fish_greeting
 
@@ -10,9 +9,8 @@ set -x LSCOLORS fxgxcxdxxxegedabagacad
 #                 ^lnk?
 # a:black, b:red, c:green, d:brown, e:blue, f:magenta, g:cyan, h:grey
 
-# 
+
 # path
-# 
 
 set -x PATH /opt/local/bin $PATH
 set -x PATH /opt/homebrew/bin $PATH
@@ -23,15 +21,12 @@ set -x PATH /opt/homebrew/var/nodebrew/current/bin $PATH
 set -x NODEBREW_ROOT /opt/homebrew/var/nodebrew
 
 
-# 
 # ripgrep ( rg )
-# 
 
 set -x RIPGREP_CONFIG_PATH ~/.ripgreprc
 
-# 
+
 # fzf
-# 
 
 set -x FZF_DEFAULT_COMMAND ( fzf_fd_def )
 set -x FZF_DEFAULT_OPTS    '--ansi --bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
@@ -50,6 +45,8 @@ alias clr 'clear'
 alias c   'clr'
 alias clp 'pbcopy'
 
+alias x 'xargs'
+
 alias src         "source"
 alias src_fsh_cfg "source ~/.config/fish/config.fish"
 
@@ -66,9 +63,9 @@ alias tmx_init 'fi ~/sh/tmux-win-init.fish'
 alias his     'history'
 alias his_del 'history delete'
 
-alias re_clp  'his_re_clp'
-#alias reclp   're_clp'
-alias rc      're_clp'
+#alias re_clp  'his_re_clp'
+
+alias trash 'trash -F'
 
 alias to     'touch'
 alias to_clr ':>'
@@ -77,9 +74,12 @@ alias rn 'rename'
 
 alias psh 'pushd'
 alias pop 'popd'
+alias pp  'pop'
 
 alias cd_parent 'cd ../; pwd'
-alias k  'cd_parent'
+alias k 'cd_parent'
+alias kk 'k;k'
+alias kkk 'k;k;k'
 
 alias cd_dl    "cd ~/Downloads"
 alias cd_iclud "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
@@ -93,9 +93,6 @@ alias cd_vim_swp  "cd ~/.local/state/nvim/swap"
 alias dir 'z'
 
 alias p     'pth'
-alias p_clp 'p | clp'
-
-alias fd 'fd --hidden --follow -I --exclude .git'
 
 alias vim "nvim -p"
 alias vi  "nvim -p"
@@ -127,7 +124,7 @@ alias trns_e 'trans {en=ja}'
 alias ba 'battery'
 alias ca 'cal'
 
-alias rgf "rg -l"
+alias fd 'fd --hidden --follow -I --exclude .git'
 
 
 # alias prj
@@ -198,9 +195,8 @@ set fish_color_autosuggestion cyan
 set fish_color_search_match   --background=brmagenta
 
 
-# 
 # cd
-# 
+
 #cd ~/dev/ooq/g.proto/assets
 
 
