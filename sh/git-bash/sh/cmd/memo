@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dir=~/doc/tech
+dir=~/wrk
 
 cmdsub="$1"
 
@@ -11,7 +11,7 @@ then
 elif test $cmdsub = 'fd'
 then
   if test -z $argv[2]
-
+  then
     fd -e md '' $dir
   else
     fd -e md '' $dir | rg $argv[2]
