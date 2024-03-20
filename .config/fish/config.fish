@@ -148,6 +148,8 @@ alias opn_ooq         "open https://ooq.jp/"
 
 alias ooq_artcl_build_rsync 'fish ~/dev/ooq-artcl/sh/build.rsync.fish'
 
+alias cd_vps 'cd ~/doc/tech/vps'
+
 # alias cmd path
 
 alias uconv '/opt/homebrew/Cellar/icu4c/73.2/bin/uconv'

@@ -7,9 +7,7 @@
 # ```
 
 # bk
-
 mkdir -p ~/bk.tmp
-
 cp -p ~/sh/cmd/* ~/bk.tmp/
 
 
@@ -20,24 +18,28 @@ cp -p ~/sh/cmd/* ~/bk.tmp/
 cmd_lst=$(cat <<EOS
 cat_line
 fd_ext
+fzf-winpty
 grep_ext
 grep_ext_md
 his
-l_by_fd
-ld_by_fd
-lf_by_fd
-lf_ext
-lfd_by_fd
+hlp
+l
+llr
+lr
+lrd
+lrf
 mb_cnv
 mb_cnv_alpha
 mb_cnv_num
 mb_cnv_space
 mb_cnv_symbol
+memo
 mv_ext
 opn
 pth
+re
 sed_y
-vi_ext
+trm
 EOS
 )
 #echo $cmd_lst
