@@ -1,6 +1,0 @@
-#!/bin/bash
-
-vi -p $( lf_ext $1 )
-
-
-
