@@ -1537,11 +1537,12 @@ autocmd QuickFixCmdPost grep,vimgrep tab cw
 " plugin  #bgn#
 " 
 call plug#begin()
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'jacquesbh/vim-showmarks'
 Plug 'mattn/vim-molder'
 "Plug 'mattn/vim-molder-operations'
+"Plug 'jacquesbh/vim-showmarks'
 "Plug 'tyru/open-browser.vim'
 "Plug 'iamcco/markdown-preview.vim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 "Plug 'ctrlpvim/ctrlp.vim'
