@@ -84,10 +84,10 @@ alias kkk 'k;k;k'
 alias cd_dl    "cd ~/Downloads"
 alias cd_iclud "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
 
-alias cd_fish_fnc "cd ~/doc/tech/github/vimrc/.config/fish/functions"
+alias cd_fish_fnc "cd ~/doc/tech/cnf/.config/fish/functions"
 alias cd_plist    "cd ~/Library/LaunchAgents"
 
-alias cd_vim      "cd ~/doc/tech/github/vimrc"
+alias cd_cnf      "cd ~/doc/tech/cnf"
 alias cd_vim_swp  "cd ~/.local/state/nvim/swap"
 
 alias dir 'z'
@@ -142,7 +142,7 @@ set   holo_dir     "~/doc/hoby/youtube/vtuber/holo"
 alias cd_holo      "cd $holo_dir/prj/stt"
 alias cd_holo_data "cd $holo_dir/prj/stt/www/song/data"
 
-alias opn_github_vim  "open https://github.com/ooq-kamui/vimrc"
+alias opn_github_cnf  "open https://github.com/ooq-kamui/cnf"
 alias opn_github_holo "open https://github.com/ooq-kamui/holo-song"
 alias opn_ooq         "open https://ooq.jp/"
 
