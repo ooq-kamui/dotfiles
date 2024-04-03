@@ -69,7 +69,7 @@ alias trash 'trash -F'
 
 alias to     'touch'
 alias to_clr ':>'
-alias cp 'cp -p'
+alias cp 'cp -pi'
 alias rn 'rename'
 
 alias psh 'pushd'

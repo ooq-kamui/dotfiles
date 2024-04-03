@@ -17,6 +17,14 @@ bind '"\C-s": backward-char'
 
 bind '"\C-k": kill-word'
 
+cmd_line__bracket(){
+
+  READLINE_LINE='vi $( '"$READLINE_LINE"' )'
+  READLINE_LINE=2
+}
+
+bind -x '"\C-y": cmd_line__bracket'
+
 
 # alias
 
@@ -61,7 +69,7 @@ alias ll='ls -lgohAGD "%Y-%m-%d %H:%M"'
 #alias lfd='lfd_by_fd'
 #alias ldf='lfd_by_fd'
 
-alias cp='cp -p'
+alias cp='cp -pi'
 
 alias to='touch'
 alias to_clr=':>'
