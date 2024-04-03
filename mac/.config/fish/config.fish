@@ -143,7 +143,9 @@ alias cd_holo      "cd $holo_dir/prj/stt"
 alias cd_holo_data "cd $holo_dir/prj/stt/www/song/data"
 
 alias opn_github_cnf  "open https://github.com/ooq-kamui/cnf"
+alias opn_github_doc  "opn  https://github.com/ooq-kamui/doc-tech"
 alias opn_github_holo "open https://github.com/ooq-kamui/holo-song"
+
 alias opn_ooq         "open https://ooq.jp/"
 
 alias ooq_artcl_build_rsync 'fish ~/dev/ooq-artcl/sh/build.rsync.fish'
