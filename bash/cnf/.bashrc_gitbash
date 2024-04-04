@@ -1,6 +1,6 @@
 
 # win command output lang code
-chcp.com 65001
+#chcp.com 65001
 
 # stty ctrl-s off
 stty stop undef
@@ -9,17 +9,17 @@ stty stop undef
 #export MSYS=winsymlinks:nativestrict
 
 
-alias clp_at_win='clip'
-alias clp='clp_at_win'
+alias clp_win='clip'
+alias clp='clp_win'
 
 alias ll='ls -lgohAG --time-style="+%Y-%m-%d %H:%M"'
 
 
 #alias fzf='start fzf'
 #alias fzf='winpty fzf'
-alias fzf='fzf-winpty'
+#alias fzf='fzf-winpty'
 
-alias cal='gcal $(date +"%m %Y" -d "-1 month");gcal;gcal $(date +"%m %Y" -d "+1 month")'
+#alias cal='gcal $(date +"%m %Y" -d "-1 month");gcal;gcal $(date +"%m %Y" -d "+1 month")'
 
 
 

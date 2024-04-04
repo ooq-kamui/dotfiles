@@ -7,7 +7,8 @@
 
 export PS1="_ "
 
-PATH=$PATH:$HOME/sh/cmd
+#PATH=$PATH:$HOME/wrk/cnf/bash/cmd
+PATH=$PATH:~/wrk/cnf/bash/cmd
 
 bind '"\C-f": forward-word'
 bind '"\C-o": backward-word'
@@ -55,6 +56,7 @@ alias pop='popd'
 alias pp='popd'
 
 alias ls='ls -a'
+#alias ll='ls -lgohAGD "%Y-%m-%d %H:%M"'
 alias ll='ls -lgohAGD "%Y-%m-%d %H:%M"'
 
 #alias l='l_by_fd'
@@ -129,7 +131,7 @@ alias psh_src='psh ~/wrk/prj/src/'
 alias ssh_dev='sh ~/sh/ssh.dev.sh'
 
 
-[ -f ~/.bashrc_gitbash ] && source ~/.bashrc_gitbash
+[ -f ~/wrk/cnf/bash/cnf/.bashrc_gitbash ] && source ~/wrk/cnf/bash/cnf/.bashrc_gitbash
 
 [ -f ~/.bashrc_env ] && source ~/.bashrc_env
 
