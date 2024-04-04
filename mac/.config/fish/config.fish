@@ -41,36 +41,43 @@ set -x FZF_CTRL_T_COMMAND  ( echo $FZF_DEFAULT_COMMAND )
 
 alias shutdown_start "sudo shutdown -r now"
 
-alias clr 'clear'
-alias c   'clr'
-alias clp 'pbcopy'
-
-alias x 'xargs'
-
-alias src         "source"
-alias src_fsh_cfg "source ~/.config/fish/config.fish"
-
-alias fi 'fish'
-
 # login sh ch
 # confirm : echo $SHELL
 #alias login_sh_fish 'chsh -s /opt/homebrew/bin/fish'
 alias login_sh_bash 'chsh -s /bin/bash'
 
+alias fi 'fish'
+
 alias tmx      'tmux'
 alias tmx_init 'fi ~/sh/tmux-win-init.fish'
+
+alias src         "source"
+alias src_fsh_cfg "source ~/.config/fish/config.fish"
 
 alias his     'history'
 alias his_del 'history delete'
 
+alias clr 'clear'
+alias c   'clr'
+
+alias clp 'pbcopy'
 #alias re_clp  'his_re_clp'
 
-alias trash 'trash -F'
+alias x 'xargs'
+
+alias lf 'lrf'
+alias ld 'lrd'
+
+alias p     'pth'
 
 alias to     'touch'
 alias to_clr ':>'
+
 alias cp 'cp -pi'
+
 alias rn 'rename'
+
+alias trash 'trash -F'
 
 alias psh 'pushd'
 alias pop 'popd'
@@ -91,8 +98,6 @@ alias cd_cnf      "cd ~/doc/tech/cnf"
 alias cd_vim_swp  "cd ~/.local/state/nvim/swap"
 
 alias dir 'z'
-
-alias p     'pth'
 
 alias vim "nvim -p"
 alias vi  "nvim -p"
@@ -142,11 +147,11 @@ set   holo_dir     "~/doc/hoby/youtube/vtuber/holo"
 alias cd_holo      "cd $holo_dir/prj/stt"
 alias cd_holo_data "cd $holo_dir/prj/stt/www/song/data"
 
-alias opn_github_cnf  "open https://github.com/ooq-kamui/cnf"
-alias opn_github_doc  "opn  https://github.com/ooq-kamui/doc-tech"
-alias opn_github_holo "open https://github.com/ooq-kamui/holo-song"
+alias opn_github_cnf  "opn https://github.com/ooq-kamui/cnf"
+alias opn_github_doc  "opn https://github.com/ooq-kamui/doc-tech"
+alias opn_github_holo "opn https://github.com/ooq-kamui/holo-song"
 
-alias opn_ooq         "open https://ooq.jp/"
+alias opn_ooq         "opn https://ooq.jp/"
 
 alias ooq_artcl_build_rsync 'fish ~/dev/ooq-artcl/sh/build.rsync.fish'
 
