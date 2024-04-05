@@ -49,27 +49,13 @@ alias cd_parent='cd ..; pwd'
 alias k='cd_parent'
 alias kk='k;k'
 alias kkk='k;k;k'
-#alias i='cd_parent'
 
 alias psh='pushd'
 alias pop='popd'
 alias pp='popd'
 
 alias ls='ls -a'
-#alias ll='ls -lgohAGD "%Y-%m-%d %H:%M"'
 alias ll='ls -lgohAGD "%Y-%m-%d %H:%M"'
-
-#alias l='l_by_fd'
-#alias l_clp='l | clp'
-
-#alias l_r='lf_by_fd'
-#alias lrd='ld_by_fd'
-
-# old
-#alias lf='lf_by_fd'
-#alias ld='ld_by_fd'
-#alias lfd='lfd_by_fd'
-#alias ldf='lfd_by_fd'
 
 alias cp='cp -pi'
 
@@ -107,28 +93,12 @@ export FZF_DEFAULT_OPTS='--ansi'
 
 #alias cnf
 
-alias src_bashrc='source ~/.bashrc'
+alias src_bashrc='src ~/.bashrc'
 alias src_cnf='src_bashrc'
 
 alias vi_bashrc='vi ~/.bashrc ~/.bashrc_env'
 alias vi_cnf='vi_bashrc'
 
-
-#alias wrk, src  -  tpl
-
-alias cd_wrk='cd ~/wrk/prj/'
-alias cdw='cd_wrk'
-
-alias cd_src='cd ~/wrk/prj/src/'
-alias cds='cd_src'
-
-alias cd_git='cd ~/wrk/prj/src/'
-alias cdg='cd_git'
-
-alias psh_wrk='psh ~/wrk/prj/'
-alias psh_src='psh ~/wrk/prj/src/'
-
-alias ssh_dev='sh ~/sh/ssh.dev.sh'
 
 
 [ -f ~/wrk/cnf/bash/cnf/.bashrc_gitbash ] && source ~/wrk/cnf/bash/cnf/.bashrc_gitbash

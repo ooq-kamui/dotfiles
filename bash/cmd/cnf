@@ -1,0 +1,21 @@
+#!/bin/bash
+
+dir=~/wrk/cnf/bash/cnf
+
+cnf_file=$dir/.bashrc
+
+cmdsub="$1"
+
+if   test $cmdsub = 'cd'
+then
+  cd $dir
+
+elif test $cmdsub = 'vi'
+then
+  vi $cnf_file -p -c ":cd $dir"
+
+elif test $cmdsub = 'src'
+then
+  src $cnf_file
+fi
+

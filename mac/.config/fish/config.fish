@@ -49,7 +49,7 @@ alias login_sh_bash 'chsh -s /bin/bash'
 alias fi 'fish'
 
 alias tmx      'tmux'
-alias tmx_init 'fi ~/sh/tmux-win-init.fish'
+alias tmx_init 'fi ~/sh/tmux/tmux-win-init.fish'
 
 alias src         "source"
 alias src_fsh_cfg "source ~/.config/fish/config.fish"
@@ -68,10 +68,12 @@ alias x 'xargs'
 alias lf 'lrf'
 alias ld 'lrd'
 
-alias p     'pth'
+alias p 'pth'
 
 alias to     'touch'
 alias to_clr ':>'
+
+alias mv 'mv -i'
 
 alias cp 'cp -pi'
 
@@ -84,29 +86,14 @@ alias pop 'popd'
 alias pp  'pop'
 
 alias cd_parent 'cd ../; pwd'
-alias k 'cd_parent'
-alias kk 'k;k'
+alias k   'cd_parent'
+alias kk  'k;k'
 alias kkk 'k;k;k'
-
-alias cd_dl    "cd ~/Downloads"
-alias cd_iclud "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
-
-alias cd_fish_fnc "cd ~/doc/tech/cnf/.config/fish/functions"
-alias cd_plist    "cd ~/Library/LaunchAgents"
-
-alias cd_cnf      "cd ~/doc/tech/cnf"
-alias cd_vim_swp  "cd ~/.local/state/nvim/swap"
 
 alias dir 'z'
 
 alias vim "nvim -p"
 alias vi  "nvim -p"
-
-alias vi_fsh_cnf  "vi ~/.config/fish/config.fish"
-alias vi_cnf      "vi ~/.config/fish/config.fish"
-
-alias vi_vimrc    "vi ~/.vimrc"
-alias vi_vim_swap "vi ~/.local/share/nvim/swap/"
 
 set -x LC_TIME en_US
 alias da      "date_ymd"
@@ -132,7 +119,28 @@ alias ca 'cal'
 alias fd 'fd --hidden --follow -I --exclude .git'
 
 
-# alias prj
+# alias arg ( etc )
+
+alias cd_dl    "cd ~/Downloads"
+alias cd_iclud "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
+alias cd_plist "cd ~/Library/LaunchAgents"
+
+# alias arg ( cnf )
+
+alias cd_cnf      "cd ~/doc/tech/cnf"
+alias cd_fish_fnc "cd ~/doc/tech/cnf/mac/.config/fish/functions"
+
+alias vi_fsh_cnf  "vi ~/.config/fish/config.fish"
+alias vi_cnf      "vi ~/.config/fish/config.fish"
+
+# alias arg ( vim )
+
+alias vi_vimrc    "vi ~/.vimrc"
+alias vi_vim_swap "vi ~/.local/share/nvim/swap/"
+
+alias cd_vim_swp  "cd ~/.local/state/nvim/swap"
+
+# alias arg ( prj )
 
 alias cd_game "cd ~/doc/hoby/game"
 alias cd_tech "cd ~/doc/tech"
@@ -181,15 +189,22 @@ bind \ck kill-word
 
 # cmdline
 bind \cc cmdline_pbcopy
-bind \cb cmdline_bracket
+
+#bind \cb cmdline_bracket
+bind \cy cmdline_bracket
+
 #bind \c? cmdline_quote
+
 bind \ct cmdline_date
 #bind \cq cmdline_date
+
 bind \cx cmdline_his_del
 
 # fzf
-bind \cy fzf-file-widget
-bind \cu fzf-history-widget
+
+#bind \cy fzf-file-widget
+bind \cu fzf-file-widget
+bind \cq fzf-history-widget
 
 # erase
 bind -e \cr 

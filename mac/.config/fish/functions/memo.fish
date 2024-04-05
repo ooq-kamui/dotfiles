@@ -1,6 +1,6 @@
 function memo
 
-  set dir ~/doc/tech
+  set dir ~/doc/tech/doc-tech
 
   set cmdsub "$argv[1]"
 
@@ -19,8 +19,8 @@ function memo
 
   else if test $cmdsub = 'rg'
 
-    rg -N -g '*.md' "$argv[1]" $dir/
-    #rg --heading -g '*.md' "$argv[1]" $dir/
+    rg -N -g '*.md' "$argv[2]" $dir/
+    #rg --heading -g '*.md' "$argv[2]" $dir/
 
   else if test $cmdsub = 'vi'
 
