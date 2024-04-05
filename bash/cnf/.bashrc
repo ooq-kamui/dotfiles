@@ -38,13 +38,13 @@ alias x='xargs'
 
 alias src='source'
 
+alias p='pth'
+
 alias ls='ls -a'
 alias ll='ls -lgohAGD "%Y-%m-%d %H:%M"'
 
 alias lf='lrf'
 alias ld='lrd'
-
-#alias cd_dl='cd ~/Downloads/'
 
 alias cd_parent='cd ..; pwd'
 alias k='cd_parent'
@@ -55,26 +55,18 @@ alias psh='pushd'
 alias pop='popd'
 alias pp='popd'
 
-<<<<<<< HEAD
-alias ls='ls -a'
-alias ll='ls -lgohAGD "%Y-%m-%d %H:%M"'
+alias mv='mv -i'
 
-=======
->>>>>>> b1199316aef8f4cbe0d4a6a34927a73ca11bb321
 alias cp='cp -pi'
 
 alias to='touch'
 alias to_clr=':>'
-
-alias p='pth'
-#alias p_clp='p | clp'
 
 alias vi='vi -p'
 
 alias fd='fd --hidden --follow -I --exclude .git'
 
 alias rg='rg -nS --path-separator "//"'
-#alias gr='grep'
 
 alias da='date +"%Y-%m-%d"'
 alias dt='date +"%Y-%m-%d.%H:%M"'
@@ -100,14 +92,8 @@ export FZF_DEFAULT_OPTS='--ansi'
 alias src_bashrc='src ~/.bashrc'
 alias src_cnf='src_bashrc'
 
-<<<<<<< HEAD
-alias vi_bashrc='vi ~/.bashrc ~/.bashrc_env'
-alias vi_cnf='vi_bashrc'
-
-=======
 #alias vi_bashrc='vi ~/.bashrc ~/.bashrc_env'
 #alias vi_cnf='vi_bashrc'
->>>>>>> b1199316aef8f4cbe0d4a6a34927a73ca11bb321
 
 
 [ -f ~/wrk/cnf/bash/cnf/.bashrc_gitbash ] && source ~/wrk/cnf/bash/cnf/.bashrc_gitbash
