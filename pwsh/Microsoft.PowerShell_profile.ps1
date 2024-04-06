@@ -20,17 +20,23 @@ Set-PSReadLineKeyHandler -Key Ctrl+i -Function Complete
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
 
+# 
 # alias ( function )
+# 
+
+Set-Alias c "clear"
 
 Set-Alias p "pwd"
 
-# Set-Alias ll "ls -a"
 Set-Alias ll "Get-ChildItem"
-Set-Alias l  "Get-ChildItem"
+# Set-Alias l  "fd -d 1"
+function l {
+
+  fd -d 1
+}
 
 # Set-Alias dir "z"
 # Set-Alias di "z"
-
 # function dir {
 function di {
 
@@ -41,17 +47,12 @@ function di {
   z $path
 }
 
-
-# Set-Alias k   "Set-Location -Path .."
-# Set-Alias kk  "cd ..\.."
-# Set-Alias kkk "cd ..\..\.."
-
 function k   { Set-Location -Path ..       }
 function kk  { Set-Location -Path ..\..    }
 function kkk { Set-Location -Path ..\..\.. }
 
-Set-Alias vi  "nvim"
 Set-Alias vim "nvim"
+Set-Alias vi  "nvim"
 
 
 
