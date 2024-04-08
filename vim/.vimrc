@@ -1537,238 +1537,238 @@ autocmd QuickFixCmdPost grep,vimgrep tab cw
 " plugin  #bgn#
 " 
 call plug#begin()
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'mattn/vim-molder'
+
+"Plug 'mattn/vim-molder'
 "Plug 'mattn/vim-molder-operations'
 "Plug 'jacquesbh/vim-showmarks'
 "Plug 'tyru/open-browser.vim'
 "Plug 'iamcco/markdown-preview.vim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 "Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
-" do
-" :PlugInstall
-" or
-" :PlugClean
 
-" 
-" fzf
-" 
+" do  :PlugInstall
+" or  :PlugUpdate
+" or  :PlugClean
 
-" preview window
-let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
-let g:fzf_action = {
-\  'ctrl-o': 'tab drop',
-\  'ctrl-s': 'backward-char',
-\ }
-"\  'ctrl-o': 'enter',
-
-let g:fzf_colors = {
-\   'hl'     : ['fg', 'Statement'  ],
-\   'hl+'    : ['fg', 'Statement'  ],
-\ }
-
-"\   'bg+'    : ['bg', 'CursorLine' ],
-"\   'bg+'    : ['bg', 'Normal'     ],
-
-"\   'info'   : ['fg', 'Comment'    ],
-"\   'border' : ['fg', 'Ignore'     ],
-"\   'prompt' : ['fg', 'Function'   ],
-"\   'pointer': ['fg', 'Statement'  ],
-"\   'marker' : ['fg', 'Conditional'],
-
-"\   'info'   : ['Comment'],
-"\   'border' : ['Comment'],
-"\   'prompt' : ['Comment'],
-"\   'pointer': ['Comment'],
-"\   'marker' : ['Comment'],
-
-"let g:fzf_buffers_jump = 1
-"fzf#vim#complete#buffer_line([spec])
-
-" grep ( rg )
-
-" fzf#vim#grep(
-"   command,
-"   [has_column bool],
-"   [spec dict],
-"   [fullscreen bool]
-" )
-
-command! -bang -nargs=* Rg
-\ call fzf#vim#grep(
-\   "rg "
-\   . " --color=always "
-\   . " --line-number "
-\   . " --smart-case "
-\   . " --no-multiline "
-\   . " --no-heading "
-\   . " --hidden "
-\   . " --no-ignore "
-\   . " -g '!.git' "
-\   . " -- ".shellescape(escape(<q-args>, '().$')),
-\   0,
-\   fzf#vim#with_preview(
-\     {'options': '--exact --delimiter : --nth 3..'},
-\     'up:70%:hidden',
-\     '/'
-\   ),
-\   <bang>1
-\ )
-
-" grep buf
-func! N_grep_buf() abort
-  
-  exe 'BLines '
-endfunc
-
-func! V_grep_buf() abort
-
-  call V_srch_str__slctd_str(v:false)
-  exe 'BLines ' . escape(@z, '.*~')
-endfunc
-
-command! -bang -nargs=? BLines
-\ call fzf#vim#buffer_lines(
-\   <q-args>,
-\   {'options': ['--no-sort', '--exact']},
-\   <bang>1
-\ )
-
-" files
-command! -bang -nargs=? -complete=dir Files
-\ call fzf#vim#files(<q-args>, <bang>1)
-
-" file history
-command! -bang -nargs=* FileHstry
-\ call fzf#vim#history(fzf#vim#with_preview(), <bang>1)
-
-" cmd history
-command! -bang -nargs=* CmdHstry
-\ call fzf#vim#command_history(fzf#vim#with_preview(), <bang>1)
-
-" srch history
-command! -bang -nargs=* SrchHstry
-\ call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)
-
-" rgstr history
-command! -bang -nargs=* RgstrHstry
-\ call Rgstr_fzf()
-
-func! Rgstr_fzf() abort
-  
-  let l:rgstr_info = execute(':reg')->split("\n")
-  call remove(l:rgstr_info, 0)
-  
-  call fzf#run(
-  \   {
-  \     'source': l:rgstr_info,
-  \     'sink'  : funcref('Ins_rgstr_by_rgstr_info'),
-  \     'window': '-tabnew'
-  \   }
-  \ )
-endfunc
-
-func! Ins_rgstr_by_rgstr_info(rgstr_info) abort
-  
-  let l:rgstr = strcharpart(a:rgstr_info, 5, 2) " todo refactoring
-  call Normal(l:rgstr . 'P')
-endfunc
-
-" jmp lst
-
-command! -bang -nargs=* JmplstFzf
-\ call Jmplst_fzf()
-
-func! Jmplst_fzf() abort
-  
-  call fzf#run(
-  \   {
-  \     'source' : Jmplst_line_info(),
-  \     'sink'   : funcref('Cursor__mv_by_line_info'),
-  \     'window' : '-tabnew',
-  \     'options': ['--reverse'],
-  \   }
-  \ )
-  "\     'options': ['--no-sort'],
-endfunc
-
-func! Jmplst() abort
-
-  let l:jmplst_tmp = getjumplist()[0]
-  "echo l:jmplst_tmp
-
-  let l:buf_num_key_prefix = 'key_'
-  let l:jmplst = {}
-  for _jmplst_tmp in l:jmplst_tmp
-
-    let l:_buf_num_key = l:buf_num_key_prefix . l:_jmplst_tmp['bufnr']
-
-    if ! has_key(l:jmplst, l:_buf_num_key)
-      let l:jmplst[l:_buf_num_key] = []
-    endif
-
-    call add(l:jmplst[l:_buf_num_key], l:_jmplst_tmp)
-  endfor
-
-  for _buf_num_key in keys(l:jmplst)
-
-    call sort(l:jmplst[l:_buf_num_key], 'Jmplst_cmp')
-  endfor
-
-  let l:buf_num_key = l:buf_num_key_prefix . Buf_num()
-  let l:r_jmplst    = get(l:jmplst, buf_num_key, [])
-  "echo l:r_jmplst
-
-  return l:r_jmplst
-endfunc
-
-func! Jmplst_line_info() abort
-
-  let l:jmplst = Jmplst()
-
-  let l:jmplst_line_info = []
-  for _jmplst in l:jmplst
-
-    let l:line_num  = l:_jmplst['lnum']
-    let l:line_info = l:line_num . ' ' . getline(l:line_num)
-    call add(l:jmplst_line_info, l:line_info)
-  endfor
-  "echo l:jmplst_line_info
-
-  return l:jmplst_line_info
-endfunc
-
-func! Jmplst_cmp(jmplst1, jmplst2) abort
-
-  if     a:jmplst1['lnum'] >  a:jmplst2['lnum']
-    let l:ret =  1
-  elseif a:jmplst1['lnum'] == a:jmplst2['lnum']
-    let l:ret =  0
-  else
-    let l:ret = -1
-  endif
-
-  return l:ret
-endfunc
-
-" mark
-command! -bang -nargs=* Mark
-\ call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)
-
-" ctags ( fzf )
-
-"nnoremap xx :Tags <c-r><c-w><cr>
-"vnoremap xx "zy:Tags <c-r>z<cr>
-command! -bang -nargs=? Tags
-\ call fzf#vim#tags(<q-args>, <bang>1)
-
-set tags=./.tags;
-"nnoremap <c-]> g<c-]>
-"nnoremap xx :!sh sh/ctags.sh
-
-" plugin  #end#
+"" 
+"" fzf
+"" 
+"
+"" preview window
+"let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
+"let g:fzf_action = {
+"\  'ctrl-o': 'tab drop',
+"\  'ctrl-s': 'backward-char',
+"\ }
+""\  'ctrl-o': 'enter',
+"
+"let g:fzf_colors = {
+"\   'hl'     : ['fg', 'Statement'  ],
+"\   'hl+'    : ['fg', 'Statement'  ],
+"\ }
+"
+""\   'bg+'    : ['bg', 'CursorLine' ],
+""\   'bg+'    : ['bg', 'Normal'     ],
+"
+""\   'info'   : ['fg', 'Comment'    ],
+""\   'border' : ['fg', 'Ignore'     ],
+""\   'prompt' : ['fg', 'Function'   ],
+""\   'pointer': ['fg', 'Statement'  ],
+""\   'marker' : ['fg', 'Conditional'],
+"
+""\   'info'   : ['Comment'],
+""\   'border' : ['Comment'],
+""\   'prompt' : ['Comment'],
+""\   'pointer': ['Comment'],
+""\   'marker' : ['Comment'],
+"
+""let g:fzf_buffers_jump = 1
+""fzf#vim#complete#buffer_line([spec])
+"
+"" grep ( rg )
+"
+"" fzf#vim#grep(
+""   command,
+""   [has_column bool],
+""   [spec dict],
+""   [fullscreen bool]
+"" )
+"
+"command! -bang -nargs=* Rg
+"\ call fzf#vim#grep(
+"\   "rg "
+"\   . " --color=always "
+"\   . " --line-number "
+"\   . " --smart-case "
+"\   . " --no-multiline "
+"\   . " --no-heading "
+"\   . " --hidden "
+"\   . " --no-ignore "
+"\   . " -g '!.git' "
+"\   . " -- ".shellescape(escape(<q-args>, '().$')),
+"\   0,
+"\   fzf#vim#with_preview(
+"\     {'options': '--exact --delimiter : --nth 3..'},
+"\     'up:70%:hidden',
+"\     '/'
+"\   ),
+"\   <bang>1
+"\ )
+"
+"" grep buf
+"func! N_grep_buf() abort
+"  
+"  exe 'BLines '
+"endfunc
+"
+"func! V_grep_buf() abort
+"
+"  call V_srch_str__slctd_str(v:false)
+"  exe 'BLines ' . escape(@z, '.*~')
+"endfunc
+"
+"command! -bang -nargs=? BLines
+"\ call fzf#vim#buffer_lines(
+"\   <q-args>,
+"\   {'options': ['--no-sort', '--exact']},
+"\   <bang>1
+"\ )
+"
+"" files
+"command! -bang -nargs=? -complete=dir Files
+"\ call fzf#vim#files(<q-args>, <bang>1)
+"
+"" file history
+"command! -bang -nargs=* FileHstry
+"\ call fzf#vim#history(fzf#vim#with_preview(), <bang>1)
+"
+"" cmd history
+"command! -bang -nargs=* CmdHstry
+"\ call fzf#vim#command_history(fzf#vim#with_preview(), <bang>1)
+"
+"" srch history
+"command! -bang -nargs=* SrchHstry
+"\ call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)
+"
+"" rgstr history
+"command! -bang -nargs=* RgstrHstry
+"\ call Rgstr_fzf()
+"
+"func! Rgstr_fzf() abort
+"  
+"  let l:rgstr_info = execute(':reg')->split("\n")
+"  call remove(l:rgstr_info, 0)
+"  
+"  call fzf#run(
+"  \   {
+"  \     'source': l:rgstr_info,
+"  \     'sink'  : funcref('Ins_rgstr_by_rgstr_info'),
+"  \     'window': '-tabnew'
+"  \   }
+"  \ )
+"endfunc
+"
+"func! Ins_rgstr_by_rgstr_info(rgstr_info) abort
+"  
+"  let l:rgstr = strcharpart(a:rgstr_info, 5, 2) " todo refactoring
+"  call Normal(l:rgstr . 'P')
+"endfunc
+"
+"" jmp lst
+"
+"command! -bang -nargs=* JmplstFzf
+"\ call Jmplst_fzf()
+"
+"func! Jmplst_fzf() abort
+"  
+"  call fzf#run(
+"  \   {
+"  \     'source' : Jmplst_line_info(),
+"  \     'sink'   : funcref('Cursor__mv_by_line_info'),
+"  \     'window' : '-tabnew',
+"  \     'options': ['--reverse'],
+"  \   }
+"  \ )
+"  "\     'options': ['--no-sort'],
+"endfunc
+"
+"func! Jmplst() abort
+"
+"  let l:jmplst_tmp = getjumplist()[0]
+"  "echo l:jmplst_tmp
+"
+"  let l:buf_num_key_prefix = 'key_'
+"  let l:jmplst = {}
+"  for _jmplst_tmp in l:jmplst_tmp
+"
+"    let l:_buf_num_key = l:buf_num_key_prefix . l:_jmplst_tmp['bufnr']
+"
+"    if ! has_key(l:jmplst, l:_buf_num_key)
+"      let l:jmplst[l:_buf_num_key] = []
+"    endif
+"
+"    call add(l:jmplst[l:_buf_num_key], l:_jmplst_tmp)
+"  endfor
+"
+"  for _buf_num_key in keys(l:jmplst)
+"
+"    call sort(l:jmplst[l:_buf_num_key], 'Jmplst_cmp')
+"  endfor
+"
+"  let l:buf_num_key = l:buf_num_key_prefix . Buf_num()
+"  let l:r_jmplst    = get(l:jmplst, buf_num_key, [])
+"  "echo l:r_jmplst
+"
+"  return l:r_jmplst
+"endfunc
+"
+"func! Jmplst_line_info() abort
+"
+"  let l:jmplst = Jmplst()
+"
+"  let l:jmplst_line_info = []
+"  for _jmplst in l:jmplst
+"
+"    let l:line_num  = l:_jmplst['lnum']
+"    let l:line_info = l:line_num . ' ' . getline(l:line_num)
+"    call add(l:jmplst_line_info, l:line_info)
+"  endfor
+"  "echo l:jmplst_line_info
+"
+"  return l:jmplst_line_info
+"endfunc
+"
+"func! Jmplst_cmp(jmplst1, jmplst2) abort
+"
+"  if     a:jmplst1['lnum'] >  a:jmplst2['lnum']
+"    let l:ret =  1
+"  elseif a:jmplst1['lnum'] == a:jmplst2['lnum']
+"    let l:ret =  0
+"  else
+"    let l:ret = -1
+"  endif
+"
+"  return l:ret
+"endfunc
+"
+"" mark
+"command! -bang -nargs=* Mark
+"\ call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)
+"
+"" ctags ( fzf )
+"
+""nnoremap xx :Tags <c-r><c-w><cr>
+""vnoremap xx "zy:Tags <c-r>z<cr>
+"command! -bang -nargs=? Tags
+"\ call fzf#vim#tags(<q-args>, <bang>1)
+"
+"set tags=./.tags;
+""nnoremap <c-]> g<c-]>
+""nnoremap xx :!sh sh/ctags.sh
+"
+"" plugin  #end#
 
 "
 " final
@@ -3974,7 +3974,8 @@ func! Opn_vimrc() abort
 
   call Opn_vimrc_win()
 
-  let l:path = '~/.vimrc'
+  "let l:path = '~/.vimrc'
+  let l:path = '~/wrk/cnf/vim/.vimrc'
   call Opn(l:path)
 endfunc
 
@@ -4617,6 +4618,16 @@ if filereadable(expand(g:vimrc_win_path))
   call Exe('source ' . g:vimrc_win_path)
   "echo 'read .vimrc_win'
 endif
+
+" 
+" pwsh
+" 
+
+let &shell = has('win32') ? 'powershell' : 'pwsh'
+let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+set shellquote= shellxquote=
 
 
 

@@ -2,27 +2,7 @@
 # cnf
 
 
-## vimrc
-
-unite
-- win / mac
-
-
-## dir
-
-dir mod
-- sh/
-
-
-
 ## win
-
-### fzf-vim
-
-
-
-
-
 
 ### power shell
 
@@ -31,12 +11,6 @@ alias
 - ts
 - dt
 - time etc ..
-
-- lf
-- ld
-- lr
-- lrf
-- lrd
 
 - ba : battery
 
@@ -48,6 +22,10 @@ ln
     - bk
   - doc-tec/doc/memo.md
     - bk
+
+
+key bind
+- c-e : c-l : ??
 
 
 function ( cmd )
@@ -64,27 +42,12 @@ zoxide ( z )
       - method research
 
 
-### win keyboard
-
-sticker
-- f2
-- esc
-
-
 ## mac
 
 ### karabiner
 
-mac key mod
+mod
 - xx
-
-
-### dir
-
-dir mv
-- cnf      > wrk/
-- doc-tech > wrk/
-
 
 
 ## icloud doc

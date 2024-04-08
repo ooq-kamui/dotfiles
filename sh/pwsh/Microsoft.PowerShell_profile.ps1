@@ -29,11 +29,10 @@ Set-Alias c "clear"
 Set-Alias p "pwd"
 
 Set-Alias ll "Get-ChildItem"
-# Set-Alias l  "fd -d 1"
-function l {
-
-  fd -d 1
-}
+function l  { fd -d 1     }
+function lf { fd --type f }
+function ld { fd --type d }
+function lr { fd          }
 
 # Set-Alias dir "z"
 # Set-Alias di "z"
