@@ -2,73 +2,69 @@
 # cnf
 
 
+## memo
+
+mrg
+
+
 ## vimrc
 
-unite
+win / mac
+- unite
+
+
+### fzf-vim
+
+vimrc mod
 - win / mac
+  - unite
+
 
 
 ## dir
 
 dir mod
-- sh/
+- sh/*
+- os/mac
+
+  - mac
+    - pull
+    - ln mod
 
 
 
 ## win
 
-### fzf-vim
-
-
-
-
-
-
-### power shell
-
-alias
-- da
-- ts
-- dt
-- time etc ..
-
-- lf
-- ld
-- lr
-- lrf
-- lrd
-
-- ba : battery
-
+### pwsh
 
 ln
-- profile
-- doc
-  - cnf/doc/memo.md
-    - bk
-  - doc-tec/doc/memo.md
-    - bk
+- profile.ps1
 
 
 function ( cmd )
+
 - memo
   - pw
 
 - cnf
 
 
-zoxide ( z )
-- alias / finction
+zoxide
+- alias ( finction ) 
   - dir
-    - def, overwrite
-      - method research
+  - def, overwrite
+    - method research
+
+
+- ba : battery
 
 
 ### win keyboard
 
-sticker
-- f2
-- esc
+v win mv < >
+- setting
+  - what ?
+- sticker
 
 
 ## mac
@@ -79,18 +75,14 @@ mac key mod
 - xx
 
 
-### dir
+### dir  -  mac
 
-dir mv
+git dir mv
 - cnf      > wrk/
 - doc-tech > wrk/
 
+  - ln mod
 
-
-## icloud doc
-
-cnf
-- memo.git-bash.md del
 
 
 
