@@ -1,5 +1,5 @@
 
-function prompt{
+function prompt {
   # "PS " + $( get-location ) + "> "
   "_ "
 }
@@ -24,9 +24,21 @@ Invoke-Expression (& { (zoxide init powershell | Out-String) })
 # alias ( function )
 # 
 
-Set-Alias c "clear"
+Set-Alias clr "clear"
+Set-Alias c   "clear"
+
+# Set-Alias clp "clip"
+function clp {
+
+  # clip
+}
 
 Set-Alias p "pwd"
+
+function pth {
+
+  # ??
+}
 
 Set-Alias ll "Get-ChildItem"
 function l  { fd -d 1     }
@@ -52,6 +64,48 @@ function kkk { Set-Location -Path ..\..\.. }
 
 Set-Alias vim "nvim"
 Set-Alias vi  "nvim"
+
+function da  { Get-Date -Format "yyyy-MM-dd"       }
+function dt  { Get-Date -Format "yyyy-MM-dd.HH:mm" }
+# function ts  { Get-Date -Format "yyyy-MM-dd.HH:mm:??" }
+
+
+# def
+
+$wrk = "$home/wrk"
+
+
+function memo {
+
+  param( $subcmd )
+
+  if ( $subcmd -eq 'pw' ) {
+
+    echo $subcmd
+    # rg 'pw' $home/wrk/doc/
+    rg 'pw' $wrk/doc/
+  }
+}
+
+function cnf {
+
+  param( $subcmd )
+
+  if      ( $subcmd -eq 'src' ) {
+
+    . $profile
+
+  }elseif ( $subcmd -eq 'cp' ) {
+
+    cp $home\OneDrive\Documents\PowerShell\Microsoft.PowerShell_profile.ps1 $home\wrk\cnf\sh\pwsh\
+
+  }elseif ( $subcmd -eq 'vi' ) {
+
+    echo $subcmd
+    # ??
+    # vi -p $home/wrk/doc/OneDrive/Documents/PowerShell/Microsoft.PowerShell_profile.ps1
+  }
+}
 
 
 

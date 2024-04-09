@@ -2,15 +2,6 @@
 # cnf
 
 
-## memo
-
-mrg
-- all
-
-organize
-
-
-
 ## vimrc
 
 win / mac
@@ -23,39 +14,23 @@ win / mac
 
 ### pwsh
 
-ln
-- profile.ps1
-
-
 function
 
-- pth
+- history del
+  - research
 
 
-- memo
-  - pw
-
-- cnf
-
-
-zoxide
-- alias ( finction ) 
-  - dir
-  - def, overwrite
-    - method research
+cmdline
+- c-y : add (  ) : ??
+  - method research
 
 
-- ba : battery
+- c-e : c-l : ??
 
 
-### keyboard  -  win
 
-virtual win mv < >
-
-- setting
-  - how ?
-
-- sticker
+color
+- dir
 
 
 
@@ -69,7 +44,6 @@ mac key mod
 
 
 ---
-
 
 ## yt-plyr
 
