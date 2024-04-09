@@ -5,6 +5,10 @@
 ## memo
 
 mrg
+- all
+
+organize
+
 
 
 ## vimrc
@@ -21,18 +25,6 @@ vimrc mod
 
 
 
-## dir
-
-dir mod
-- sh/*
-- os/mac
-
-  - mac
-    - pull
-    - ln mod
-
-
-
 ## win
 
 ### pwsh
@@ -41,7 +33,10 @@ ln
 - profile.ps1
 
 
-function ( cmd )
+function
+
+- pth
+
 
 - memo
   - pw
@@ -61,9 +56,11 @@ zoxide
 
 ### win keyboard
 
-v win mv < >
+virtual win mv < >
+
 - setting
-  - what ?
+  - how ?
+
 - sticker
 
 

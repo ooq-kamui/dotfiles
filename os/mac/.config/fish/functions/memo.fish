@@ -1,6 +1,7 @@
 function memo
 
-  set dir ~/doc/tech/doc-tech
+  #set dir ~/doc/tech/doc-tech
+  set dir ~/wrk/doc/doc-tech
 
   set cmdsub "$argv[1]"
 
