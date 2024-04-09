@@ -15,13 +15,7 @@ organize
 
 win / mac
 - unite
-
-
-### fzf-vim
-
-vimrc mod
-- win / mac
-  - unite
+  - fzf-vim
 
 
 
@@ -54,7 +48,7 @@ zoxide
 - ba : battery
 
 
-### win keyboard
+### keyboard  -  win
 
 virtual win mv < >
 
@@ -64,22 +58,13 @@ virtual win mv < >
 - sticker
 
 
+
 ## mac
 
 ### karabiner
 
 mac key mod
 - xx
-
-
-### dir  -  mac
-
-git dir mv
-- cnf      > wrk/
-- doc-tech > wrk/
-
-  - ln mod
-
 
 
 
