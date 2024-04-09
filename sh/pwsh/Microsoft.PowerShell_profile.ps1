@@ -4,6 +4,8 @@ function prompt {
   "_ "
 }
 
+$PSStyle.FileInfo.Directory = $PSStyle.Foreground.Cyan
+
 Import-Module PSReadline
 Set-PSReadLineOption -EditMode Emacs
 
@@ -41,19 +43,36 @@ function pth {
 }
 
 Set-Alias ll "Get-ChildItem"
+
 function l  { fd -d 1     }
-function lf { fd --type f }
-function ld { fd --type d }
-function lr { fd          }
+
+function lf {
+
+  param( $path )
+
+  fd --type f '' $path
+}
+
+function ld {
+
+  param( $path )
+
+  fd --type d '' $path
+}
+
+function lr {
+
+  param( $path )
+
+  fd          '' $path
+}
 
 # Set-Alias dir "z"
 # Set-Alias di "z"
 # function dir {
 function di {
 
-  param(
-    $path
-  )
+  param( $path )
 
   z $path
 }
@@ -64,6 +83,12 @@ function kkk { Set-Location -Path ..\..\.. }
 
 Set-Alias vim "nvim"
 Set-Alias vi  "nvim"
+
+function vif {
+
+  vi -p ( fzf )
+}
+
 
 function da  { Get-Date -Format "yyyy-MM-dd"       }
 function dt  { Get-Date -Format "yyyy-MM-dd.HH:mm" }
@@ -93,17 +118,17 @@ function cnf {
 
   if      ( $subcmd -eq 'src' ) {
 
-    . $profile
+    echo $subcmd
+    # ??
+    # . $profile
+
+  }elseif ( $subcmd -eq 'vi' ) {
+
+    vi -p $home\OneDrive\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
 
   }elseif ( $subcmd -eq 'cp' ) {
 
     cp $home\OneDrive\Documents\PowerShell\Microsoft.PowerShell_profile.ps1 $home\wrk\cnf\sh\pwsh\
-
-  }elseif ( $subcmd -eq 'vi' ) {
-
-    echo $subcmd
-    # ??
-    # vi -p $home/wrk/doc/OneDrive/Documents/PowerShell/Microsoft.PowerShell_profile.ps1
   }
 }
 

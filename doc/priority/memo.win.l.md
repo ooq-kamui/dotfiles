@@ -19,7 +19,13 @@ function
 
 - dir
   - alias zoxide
+    - function override
+      - research
 
+
+cmdline
+
+- c-e : c-l : ??
 
 
 

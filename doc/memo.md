@@ -9,14 +9,18 @@ win / mac
   - fzf-vim
 
 
+fzf-vim  -  win
+- decide > tab drop
+
+
+
 
 ## win
 
 ### pwsh
 
-function
-
-- history del
+install
+- trash ( like )
   - research
 
 
@@ -25,12 +29,17 @@ cmdline
   - method research
 
 
-- c-e : c-l : ??
+function
+
+- history del
+  - research
 
 
 
-color
-- dir
+### keyboard  -  win
+
+sticker
+- ctl r
 
 
 
