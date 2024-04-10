@@ -11,7 +11,6 @@ ln
 - profile.ps1
 
 
-
 function
 
 - ba : battery
@@ -27,6 +26,15 @@ cmdline
 
 - c-e : c-l : ??
 
+
+- c-y : add (  ) : ??
+  - method research
+
+
+
+install
+- trash ( like )
+  - research
 
 
 

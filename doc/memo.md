@@ -14,32 +14,21 @@ fzf-vim  -  win
 
 
 
-
 ## win
 
 ### pwsh
 
-install
-- trash ( like )
-  - research
-
-
-cmdline
-- c-y : add (  ) : ??
-  - method research
-
-
 function
+
+- memo
+
+  - rg
+  - fd
+
+
 
 - history del
   - research
-
-
-
-### keyboard  -  win
-
-sticker
-- ctl r
 
 
 
@@ -48,7 +37,7 @@ sticker
 ### karabiner
 
 mac key mod
-- xx
+- screen shot
 
 
 

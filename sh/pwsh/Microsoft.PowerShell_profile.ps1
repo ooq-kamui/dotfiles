@@ -4,7 +4,18 @@ function prompt {
   "_ "
 }
 
-$PSStyle.FileInfo.Directory = $PSStyle.Foreground.Cyan
+# bell sound
+
+Set-PSReadlineOption -BellStyle None
+
+# color
+
+# $PSStyle.FileInfo.Directory = $PSStyle.Foreground.BrightGreen
+$PSStyle.FileInfo.Directory = $PSStyle.Foreground.BrightCyan
+
+Set-PSReadLineOption -Colors @{ InlinePrediction = $PSStyle.Foreground.BrightCyan   }
+Set-PSReadLineOption -Colors @{ Parameter        = $PSStyle.Foreground.BrightYellow }
+
 
 Import-Module PSReadline
 Set-PSReadLineOption -EditMode Emacs
@@ -44,24 +55,40 @@ function pth {
 
 Set-Alias ll "Get-ChildItem"
 
-function l  { fd -d 1     }
+function l  {
+  param( $path )
+
+  if      ( $path -eq $null ) {
+
+    fd -d 1 '' .
+
+  }elseif ( ( Get-Item $path ) -is [System.IO.DirectoryInfo] ) {
+
+    fd -d 1 '' $path
+
+  }elseif ( ( Get-Item $path ) -is [System.IO.FileInfo] ) {
+
+    echo $path
+
+  }else {
+
+    fd -d 1 '' .
+  }
+}
 
 function lf {
-
   param( $path )
 
   fd --type f '' $path
 }
 
 function ld {
-
   param( $path )
 
   fd --type d '' $path
 }
 
 function lr {
-
   param( $path )
 
   fd          '' $path
@@ -71,7 +98,6 @@ function lr {
 # Set-Alias di "z"
 # function dir {
 function di {
-
   param( $path )
 
   z $path
@@ -83,6 +109,8 @@ function kkk { Set-Location -Path ..\..\.. }
 
 Set-Alias vim "nvim"
 Set-Alias vi  "nvim"
+# function vim { nvim -p }
+# function vi  { nvim -p }
 
 function vif {
 
@@ -97,23 +125,9 @@ function dt  { Get-Date -Format "yyyy-MM-dd.HH:mm" }
 
 # def
 
-$wrk = "$home/wrk"
-
-
-function memo {
-
-  param( $subcmd )
-
-  if ( $subcmd -eq 'pw' ) {
-
-    echo $subcmd
-    # rg 'pw' $home/wrk/doc/
-    rg 'pw' $wrk/doc/
-  }
-}
+$wrk          = "$home/wrk"
 
 function cnf {
-
   param( $subcmd )
 
   if      ( $subcmd -eq 'src' ) {
@@ -122,6 +136,10 @@ function cnf {
     # ??
     # . $profile
 
+  }elseif ( $subcmd -eq 'cd' ) {
+
+    cd $home\OneDrive\Documents\PowerShell\
+
   }elseif ( $subcmd -eq 'vi' ) {
 
     vi -p $home\OneDrive\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
@@ -129,8 +147,34 @@ function cnf {
   }elseif ( $subcmd -eq 'cp' ) {
 
     cp $home\OneDrive\Documents\PowerShell\Microsoft.PowerShell_profile.ps1 $home\wrk\cnf\sh\pwsh\
+
+  }else {
+
+    echo $subcmd' ?'
   }
 }
 
+$doc_dir      = "$wrk/doc"
+$doc_tech_dir = "$doc_dir/doc-tech"
 
+function memo {
+  param( $subcmd, $ptn )
+
+  if      ( $subcmd -eq 'pw' ) {
+
+    rg -N -B 2 'pw' $doc_dir/
+
+  }elseif ( $subcmd -eq 'cd' ) {
+
+    cd $doc_tech_dir/
+
+  }elseif ( $subcmd -eq 'fd' ) {
+
+    fd "$ptn" $doc_dir/
+
+  }elseif ( $subcmd -eq 'rg' ) {
+
+    rg -N -A 0 "$ptn" $doc_dir/
+  }
+}
 
