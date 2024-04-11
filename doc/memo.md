@@ -4,18 +4,17 @@
 
 ## mac
 
+### karabiner
+
+mac key mod
+- screen shot
+
+
 ### vim
 
 fzf-vim
 - rg
   - .git exclude
-
-
-
-### karabiner
-
-mac key mod
-- screen shot
 
 
 ### fish
@@ -28,6 +27,10 @@ win
 
 syntax highlight
 - md ?
+
+
+- ln
+
 
 
 
