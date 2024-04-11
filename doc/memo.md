@@ -2,39 +2,12 @@
 # cnf
 
 
-## mac
-
-### karabiner
-
-mac key mod
-- screen shot
-
-
-### vim
-
-fzf-vim
-- rg
-  - .git exclude
-
-
-### fish
-
-
-
-## vimrc
-
-win
-
-syntax highlight
-- md ?
-
-
-- ln
-
-
-
-
 ## win
+
+vim
+- syntax highlight
+  - md ?
+
 
 ### pwsh
 
@@ -49,6 +22,21 @@ clc
   - math ?
   - bc ?
 
+
+
+## mac
+
+### karabiner
+
+mac key mod
+- screen shot
+
+
+### vim
+
+fzf-vim
+- rg
+  - .git exclude
 
 
 
