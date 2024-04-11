@@ -4,13 +4,21 @@
 
 ## vimrc
 
-win / mac
-- unite
+win
+
+
+vinrc unite
+- win / mac
   - fzf-vim
 
 
-fzf-vim  -  win
-- decide > tab drop
+
+- color
+  - tab bg
+
+
+syntax highlight
+- md ?
 
 
 
@@ -20,19 +28,20 @@ fzf-vim  -  win
 
 function
 
-- memo
-
-  - rg
-  - fd
-
-
-
 - history del
   - research
 
 
 
 ## mac
+
+### fish
+
+func
+- dir mv
+  - at mac
+
+
 
 ### karabiner
 
