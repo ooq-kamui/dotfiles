@@ -2,16 +2,34 @@
 # cnf
 
 
+## mac
+
+### fish
+
+func
+- dir mv
+  - at mac
+
+
+
+### vim
+
+fzf-vim
+- rg
+  - .git exclude
+
+
+
+### karabiner
+
+mac key mod
+- screen shot
+
+
+
 ## vimrc
 
 win
-
-
-vinrc unite
-- win / mac
-  - fzf-vim
-
-
 
 - color
   - tab bg
@@ -30,23 +48,6 @@ function
 
 - history del
   - research
-
-
-
-## mac
-
-### fish
-
-func
-- dir mv
-  - at mac
-
-
-
-### karabiner
-
-mac key mod
-- screen shot
 
 
 
