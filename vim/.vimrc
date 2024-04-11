@@ -34,10 +34,10 @@ hi IncSearch   ctermfg=yellow     ctermbg=cyan     cterm=none
 hi MatchParen  ctermfg=magenta    ctermbg=none
 
 hi TabLineSel                     ctermbg=magenta  cterm=none
-hi TabLine     ctermfg=lightblue  ctermbg=33       cterm=none
-hi TabLineFill                    ctermbg=33       cterm=none
+hi TabLine     ctermfg=lightblue  ctermbg=none     cterm=none
+hi TabLineFill                    ctermbg=none     cterm=none
 
-hi StatusLine  ctermfg=lightblue  ctermbg=33       cterm=none
+hi StatusLine  ctermfg=lightblue  ctermbg=none     cterm=none
 hi EndOfBuffer ctermfg=cyan                        cterm=none
 
 hi Pmenu       ctermfg=lightgreen ctermbg=blue

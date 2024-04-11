@@ -26,10 +26,6 @@ mac key mod
 
 win
 
-- color
-  - tab bg
-
-
 syntax highlight
 - md ?
 
@@ -43,6 +39,14 @@ function
 
 - history del
   - research
+
+
+clc
+- research
+  - math ?
+  - bc ?
+
+
 
 
 
