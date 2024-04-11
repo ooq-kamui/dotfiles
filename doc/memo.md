@@ -4,14 +4,6 @@
 
 ## mac
 
-### fish
-
-func
-- dir mv
-  - at mac
-
-
-
 ### vim
 
 fzf-vim
@@ -24,6 +16,9 @@ fzf-vim
 
 mac key mod
 - screen shot
+
+
+### fish
 
 
 
