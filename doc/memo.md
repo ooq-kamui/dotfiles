@@ -4,12 +4,6 @@
 
 ## win
 
-### vim
-
-syntax highlight
-- md ?
-
-
 ### pwsh
 
 function
