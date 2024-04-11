@@ -4,9 +4,10 @@
 
 ## win
 
-vim
-- syntax highlight
-  - md ?
+### vim
+
+syntax highlight
+- md ?
 
 
 ### pwsh
@@ -21,7 +22,6 @@ clc
 - research
   - math ?
   - bc ?
-
 
 
 ## mac
