@@ -191,7 +191,8 @@ bind \ck kill-word
 # cmdline
 bind \cc cmdline_pbcopy
 
-bind \cy cmdline_bracket
+#bind \cy cmdline_bracket
+bind \cu cmdline_bracket
 
 #bind \c? cmdline_quote
 
@@ -201,7 +202,8 @@ bind \cx cmdline_his_del
 
 # fzf
 
-bind \cu fzf-file-widget
+#bind \cu fzf-file-widget
+bind \cy fzf-file-widget
 bind \cq fzf-history-widget
 
 # erase

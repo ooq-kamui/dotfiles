@@ -2,7 +2,9 @@ function cnf
 
   set git_cnf_dir  ~/wrk/cnf
 
-  set fish_cnf_dir ~/wrk/cnf/sh/fish/cnf
+  set doc_file $git_cnf_dir/doc/memo.md
+
+  set fish_cnf_dir $git_cnf_dir/sh/fish/cnf
 
   set cnf_file $fish_cnf_dir/config.fish
 
@@ -19,6 +21,13 @@ function cnf
   else if test $cmdsub = 'src'
 
     src ~/.config/fish/config.fish
+
+  else if test $cmdsub = 'doc'
+
+    vi $doc_file
+
+  else
+    echo $cmdsub
   end
 end
 
