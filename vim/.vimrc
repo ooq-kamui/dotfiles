@@ -186,7 +186,8 @@ nnoremap <leader>l :Files <cr>
 "nnoremap <leader>l :FzfRunFd <cr>
 
 " opn file hstry ( fzf )
-nnoremap <leader>u :FileHstry<cr>
+nnoremap <leader>r :FileHstry<cr>
+"nnoremap <leader>u :FileHstry<cr>
 
 " 
 " opn etc
@@ -640,22 +641,22 @@ nnoremap :t :Term
 " 
 
 " mark lst ( fzf )
-nnoremap <leader>rl :Mark<cr>
+"nnoremap <leader>rl :Mark<cr>
 
 " mark show tgl
-nnoremap <leader>rf :call Mark_show_tgl()<cr>
+"nnoremap <leader>rf :call Mark_show_tgl()<cr>
 
 " mark add / del tgl
-nnoremap <leader>ro :call Mark_tgl()<cr>
+"nnoremap <leader>ro :call Mark_tgl()<cr>
 
 " mark del all
-nnoremap <leader>rd :call Mark_del_all()<cr>
+"nnoremap <leader>rd :call Mark_del_all()<cr>
 
 " mark, cursor mv mark forward
-nnoremap <leader>rj ]`
+"nnoremap <leader>rj ]`
 
 " mark, cursor mv mark back
-nnoremap <leader>rk [`
+"nnoremap <leader>rk [`
 
 " 
 " etc
@@ -1504,8 +1505,8 @@ nnoremap <leader>h <esc>
 nnoremap <leader>m <esc>
 "nnoremap <leader>n <esc>
 "nnoremap <leader>p <esc>
-nnoremap <leader>r <esc>
-"nnoremap <leader>u <esc>
+"nnoremap <leader>r <esc>
+nnoremap <leader>u <esc>
 nnoremap <leader>y <esc>
 
 vnoremap <leader>u <esc>

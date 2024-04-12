@@ -1,18 +1,20 @@
 function cnf
 
-  set dir      ~/doc/tech/cnf
+  set git_cnf_dir  ~/wrk/cnf
 
-  set cnf_file $dir/mac/.config/fish/config.fish
+  set fish_cnf_dir ~/wrk/cnf/sh/fish/cnf
+
+  set cnf_file $fish_cnf_dir/config.fish
 
   set cmdsub "$argv[1]"
 
   if      test $cmdsub = 'cd'
 
-    cd $dir
+    cd $fish_cnf_dir
 
   else if test $cmdsub = 'vi'
 
-    vi $cnf_file -c ":cd $dir"
+    vi $cnf_file -c ":cd $fish_cnf_dir"
 
   else if test $cmdsub = 'src'
 

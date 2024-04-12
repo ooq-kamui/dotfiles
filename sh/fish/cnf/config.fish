@@ -92,8 +92,9 @@ alias kkk 'k;k;k'
 
 alias dir 'z'
 
-alias vim "nvim -p"
-alias vi  "nvim -p"
+alias vim 'nvim -p'
+alias vi  'nvim -p'
+alias vif 'nvim -p ( fzf )'
 
 set -x LC_TIME en_US
 alias da      "date_ymd"
@@ -127,11 +128,11 @@ alias cd_plist "cd ~/Library/LaunchAgents"
 
 # alias arg ( cnf )
 
-alias cd_cnf      "cd ~/doc/tech/cnf"
-alias cd_fish_fnc "cd ~/doc/tech/cnf/mac/.config/fish/functions"
+#alias cd_cnf      "cd ~/doc/tech/cnf"
+#alias cd_fish_fnc "cd ~/doc/tech/cnf/mac/.config/fish/functions"
 
-alias vi_fsh_cnf  "vi ~/.config/fish/config.fish"
-alias vi_cnf      "vi ~/.config/fish/config.fish"
+#alias vi_fsh_cnf  "vi ~/.config/fish/config.fish"
+#alias vi_cnf      "vi ~/.config/fish/config.fish"
 
 # alias arg ( vim )
 
@@ -190,19 +191,16 @@ bind \ck kill-word
 # cmdline
 bind \cc cmdline_pbcopy
 
-#bind \cb cmdline_bracket
 bind \cy cmdline_bracket
 
 #bind \c? cmdline_quote
 
 bind \ct cmdline_date
-#bind \cq cmdline_date
 
 bind \cx cmdline_his_del
 
 # fzf
 
-#bind \cy fzf-file-widget
 bind \cu fzf-file-widget
 bind \cq fzf-history-widget
 

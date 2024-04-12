@@ -2,6 +2,14 @@
 # cnf
 
 
+## mac
+
+### karabiner
+
+fn + \ : (
+
+
+
 ## win
 
 ### pwsh
@@ -10,12 +18,14 @@ function
 
 - history del
   - research
+  - his_del
+  - or his del
 
 
-clc
-- research
-  - math ?
-  - bc ?
+key bind
+- fzf-file-widget
+  - c-u
+
 
 
 git color
@@ -26,17 +36,18 @@ git color
 
 ## mac
 
-### karabiner
-
-mac key mod
-- screen shot
-
-
 ### vim
 
 fzf-vim
 - rg
   - .git exclude
+
+
+### fish fnc
+
+vif
+- his prv
+  - his reg
 
 
 
@@ -53,11 +64,6 @@ repo cre
 
 organize
 
-
-## git
-
-rebase learn re
-- book read
 
 
 ## sakura vpn
