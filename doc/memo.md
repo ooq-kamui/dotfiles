@@ -18,6 +18,12 @@ clc
   - bc ?
 
 
+git color
+- staged
+  - green > light green
+
+
+
 ## mac
 
 ### karabiner

@@ -37,4 +37,11 @@ install
   - research
 
 
+fzf
+
+- ctrl-t
+  - fzf-file-widget
+    - setting
+
+
 
