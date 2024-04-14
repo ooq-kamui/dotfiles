@@ -33,6 +33,13 @@ git color
   - green > light green
 
 
+psfzf
+- install err
+  - scoop
+
+  - winget ?
+
+
 
 ## mac
 
@@ -41,14 +48,6 @@ git color
 fzf-vim
 - rg
   - .git exclude
-
-
-### fish fnc
-
-vif
-- his prv
-  - his reg
-
 
 
 
