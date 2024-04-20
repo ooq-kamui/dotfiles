@@ -107,6 +107,8 @@ set wildmenu " ?
 "set showmatch
 "set visualbell
 "set ambiwidth=double
+set autoread
+
 
 "set clipboard+=unnamedplus " ???
 

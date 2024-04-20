@@ -2,17 +2,26 @@
 # cnf
 
 
-## mac
+## vim
 
-### karabiner
+vim is_env('') fnc cre
 
-fn + \ : (
+- research , tst
+
+
+- add cloud9
+
+
 
 
 
 ## win
 
 ### pwsh
+
+
+opn cre
+
 
 function
 
@@ -26,6 +35,7 @@ key bind
 - fzf-file-widget
   - c-u
 
+  - psfzf install ?
 
 
 git color
@@ -38,7 +48,13 @@ psfzf
   - scoop
 
   - winget ?
+    - try
 
+
+### ubuntsu
+
+win terminal add
+- try
 
 
 ## mac
