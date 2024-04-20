@@ -5,12 +5,20 @@
 ## vim
 
 vim is_env('') fnc cre
-
-- research , tst
-
+- coding at mac
 
 - add cloud9
+  - research
 
+- tst
+  - case each
+
+
+
+
+## aws
+
+### cloud9
 
 
 
@@ -19,42 +27,21 @@ vim is_env('') fnc cre
 
 ### pwsh
 
-
-opn cre
-
-
-function
-
-- history del
-  - research
-  - his_del
-  - or his del
-
-
-key bind
-- fzf-file-widget
-  - c-u
-
-  - psfzf install ?
-
+#### etc  -  pwsh
 
 git color
 - staged
   - green > light green
 
 
-psfzf
-- install err
-  - scoop
 
-  - winget ?
-    - try
+#### function  -  pwsh
 
+history del
+  - research
+  - his del
+    - cre
 
-### ubuntsu
-
-win terminal add
-- try
 
 
 ## mac
@@ -67,26 +54,6 @@ fzf-vim
 
 
 
----
-
-## yt-plyr
-
-dir cre
-- at mac
-
-repo cre
-
-
-organize
-
-
-
-## sakura vpn
-
-login
-- try
-
-
 # docker
 
 docker learn
@@ -96,18 +63,6 @@ docker learn
 
 path def dpl del
 
-
-## hugo
-
-hugo > react
-
-
-artcl divide
-- tech
-
-
-ooq article
-- menu category cre
 
 
 # vim  -  priority l
