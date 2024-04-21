@@ -2,30 +2,17 @@
 # cnf
 
 
-## vim
-
-vim is_env('') fnc cre
-- coding at mac
-
-- add cloud9
-  - research
-
-- tst
-  - case each
-
-
-
-
-## aws
-
-### cloud9
-
-
-
-
 ## win
 
 ### pwsh
+
+#### function  -  pwsh
+
+history del
+  - research
+  - his del
+    - cre
+
 
 #### etc  -  pwsh
 
@@ -35,12 +22,10 @@ git color
 
 
 
-#### function  -  pwsh
+## aws
 
-history del
-  - research
-  - his del
-    - cre
+### cloud9
+
 
 
 

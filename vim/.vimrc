@@ -1539,24 +1539,39 @@ autocmd QuickFixCmdPost grep,vimgrep tab cw
 " 
 " plugin  #bgn#
 " 
-call plug#begin()
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+if     has('mac')
+  let g:vim_plug_path = '~/.vim/autoload/plug.vim'
+elseif has('win64')
+  let g:vim_plug_path = '~/appdata/local/nvim-data/site/autoload/plug.vim'
+elseif has('linux')
+  let g:vim_plug_path = '~/.vim/autoload/plug.vim'
+else
+  let g:vim_plug_path = '~/.vim/autoload/plug.vim'
+end
+let g:is_vim_plug_installed = ! empty(glob(g:vim_plug_path))
+echo 'vim_plug : ' . g:is_vim_plug_installed
 
-Plug 'mattn/vim-molder'
+if g:is_vim_plug_installed
+  echo 'plug#begin'
 
-"Plug 'mattn/vim-molder-operations'
-"Plug 'jacquesbh/vim-showmarks'
-"Plug 'tyru/open-browser.vim'
-"Plug 'iamcco/markdown-preview.vim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-"Plug 'ctrlpvim/ctrlp.vim'
-call plug#end()
+  call plug#begin()
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  
+  Plug 'mattn/vim-molder'
+  
+  "Plug 'mattn/vim-molder-operations'
+  "Plug 'jacquesbh/vim-showmarks'
+  "Plug 'tyru/open-browser.vim'
+  "Plug 'iamcco/markdown-preview.vim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+  "Plug 'ctrlpvim/ctrlp.vim'
+  call plug#end()
+end
+" do :PlugInstall
+" or :PlugUpdate
+" or :PlugClean
 
-" do  :PlugInstall
-" or  :PlugUpdate
-" or  :PlugClean
-
-" fzf     #bgn#
+" fzf #bgn#
 
 " preview window
 let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
@@ -1769,7 +1784,7 @@ set tags=./.tags;
 "nnoremap <c-]> g<c-]>
 "nnoremap xx :!sh sh/ctags.sh
 
-" fzf     #end#
+" fzf #end#
 
 " plugin  #end#
 
@@ -1785,6 +1800,18 @@ au FileType * set fo-=c fo-=r fo-=o
 " 
 " vim script fnc
 " 
+
+" env
+
+func! Is_env(env) abort " alias
+
+  " a:env : 'mac', 'win64', 'win32', 'wsl', 'linux'
+
+  "echo a:env
+  let l:ret = has(a:env)
+  echo a:env . ' : ' . l:ret
+  return l:ret
+endfunc
 
 " primitive
 
@@ -2236,8 +2263,14 @@ endfunc
 
 func! Cursor_filepath() abort
 
-  if has('mac')
+  if     Is_env('mac')
+
     let l:str = expand('<cfile>')
+
+  elseif Is_env('win64')
+
+    let l:str = Line_str()
+
   else
     let l:str = Line_str()
   endif
@@ -4031,20 +4064,24 @@ func! Opn_app(path) abort
   
   let l:path = a:path
   
-  if has('mac')
-    let l:cmd_sys = 'open '
+  if     Is_env('mac')
+
+    let l:cmd_sys = 'open'
+
+  elseif Is_env('win64')
+
+    let l:cmd_sys = 'start'
+
   else
-    let l:cmd_sys = 'start '
+    return
   endif
 
-  if has('mac')
+  if Is_env('win64')
 
-    " nothing
-  else
     let l:path = Str_path_unix__cnv_win(l:path)
   endif
 
-  let l:res = system(l:cmd_sys . "'" . l:path . "'")
+  let l:res = system(l:cmd_sys . " '" . l:path . "'")
 endfunc
 
 func! V_opn_app() range abort
@@ -4591,14 +4628,11 @@ endfunc
 " win
 " 
 
-" 
-" pwsh
-" 
+" pwsh ( for fzf )
 
-if has('mac')
+if Is_env('win64')
 
-else
-  let &shell = has('win32') ? 'powershell' : 'pwsh'
+  let &shell = Is_env('win32') ? 'powershell' : 'pwsh'
   let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
   let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
   let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
