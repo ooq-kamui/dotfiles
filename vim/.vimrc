@@ -1535,24 +1535,48 @@ end
 
 autocmd QuickFixCmdPost grep,vimgrep tab cw
 
+" env fnc
+
+func! Is_env(env) abort " alias
+
+  " a:env : 'mac', 'win64', 'win32', 'wsl', 'linux'
+
+  "echo a:env
+  let l:ret = has(a:env)
+  echo a:env . ' : ' . l:ret
+  return l:ret
+endfunc
 
 " 
 " plugin  #bgn#
 " 
-if     has('mac')
-  let g:vim_plug_path = '~/.vim/autoload/plug.vim'
-elseif has('win64')
-  let g:vim_plug_path = '~/appdata/local/nvim-data/site/autoload/plug.vim'
-elseif has('linux')
-  let g:vim_plug_path = '~/.vim/autoload/plug.vim'
-else
-  let g:vim_plug_path = '~/.vim/autoload/plug.vim'
-end
-let g:is_vim_plug_installed = ! empty(glob(g:vim_plug_path))
-echo 'vim_plug : ' . g:is_vim_plug_installed
 
-if g:is_vim_plug_installed
-  echo 'plug#begin'
+func! Vim_plug_path() abort
+
+  if     Is_env('mac')
+    let l:vim_plug_dir = '~/.vim'
+  elseif Is_env('win64')
+    let l:vim_plug_dir = '~/appdata/local/nvim-data/site'
+  elseif Is_env('linux')
+    let l:vim_plug_dir = '~/.vim'
+  else
+    let l:vim_plug_dir = '~/.vim'
+  end
+  let l:vim_plug_path = l:vim_plug_dir . '/autoload/plug.vim'
+  return l:vim_plug_path
+endfunc
+
+func! Is_vim_plug_installed() abort
+
+  let l:vim_plug_path = Vim_plug_path()
+
+  let l:ret = ! empty(glob(l:vim_plug_path))
+  echo 'vim_plug : ' . l:ret
+  return l:ret
+endfunc
+
+if Is_vim_plug_installed()
+  "echo 'plug#begin'
 
   call plug#begin()
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -1800,18 +1824,6 @@ au FileType * set fo-=c fo-=r fo-=o
 " 
 " vim script fnc
 " 
-
-" env
-
-func! Is_env(env) abort " alias
-
-  " a:env : 'mac', 'win64', 'win32', 'wsl', 'linux'
-
-  "echo a:env
-  let l:ret = has(a:env)
-  echo a:env . ' : ' . l:ret
-  return l:ret
-endfunc
 
 " primitive
 
