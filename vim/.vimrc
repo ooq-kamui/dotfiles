@@ -1541,9 +1541,12 @@ func! Is_env(env) abort " alias
 
   " a:env : 'mac', 'win64', 'win32', 'wsl', 'linux'
 
-  "echo a:env
   let l:ret = has(a:env)
-  echo a:env . ' : ' . l:ret
+
+  if a:env != 'mac'
+    echo a:env . ' : ' . l:ret
+  end
+
   return l:ret
 endfunc
 
@@ -1571,7 +1574,11 @@ func! Is_vim_plug_installed() abort
   let l:vim_plug_path = Vim_plug_path()
 
   let l:ret = ! empty(glob(l:vim_plug_path))
-  echo 'vim_plug : ' . l:ret
+
+  if ! Is_env('mac')
+    echo 'vim_plug : ' . l:ret
+  end
+
   return l:ret
 endfunc
 

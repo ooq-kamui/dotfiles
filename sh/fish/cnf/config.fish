@@ -74,8 +74,8 @@ alias to     'touch'
 alias to_clr ':>'
 
 alias mv 'mv -i'
-
 alias cp 'cp -pi'
+alias rm 'rm -i'
 
 alias rn 'rename'
 

@@ -2,6 +2,17 @@
 # cnf
 
 
+## mac
+
+### vim
+
+fzf-vim
+- rg
+  - .git exclude
+
+
+
+
 ## win
 
 ### pwsh
@@ -26,16 +37,6 @@ git color
 
 ### cloud9
 
-
-
-
-## mac
-
-### vim
-
-fzf-vim
-- rg
-  - .git exclude
 
 
 
