@@ -22,8 +22,9 @@ then
   rg -N -g '*.md' "$2" $dir/
 
 elif test $cmdsub = 'pw'
+then
 
-  rg -N -g '*.md' 'pw' $dir/ -B3
+  rg -N -w -g '*.md' 'pw' $dir/ -B3
 
 elif test $cmdsub = 'vi'
 then
@@ -33,5 +34,15 @@ then
   else
     vi -p -c ":cd $dir" $( fd -e md '' $dir | rg $2 )
   fi
+
+elif test $cmdsub = 'slf'
+then
+  slf_dir=~/wrk/sh/bash/cmd
+  slf_path=$slf_dir/memo
+
+  vi -p $slf_path
+
+else
+  echo cmdsub : $cmdsub ?
 fi
 

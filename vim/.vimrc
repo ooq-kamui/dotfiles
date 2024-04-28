@@ -1,6 +1,9 @@
 " 
 " Configuration file for vim
 " 
+" load re
+" :source ~/.vimrc     " alias :v
+
 set modelines=0  " CVE-2007-2438
 
 " Normally we use vim-extensions. If you want true vi-compatibility
@@ -130,7 +133,6 @@ set noswapfile
 
 " term
 
-set shell=fish
 command! -nargs=* Term split | wincmd j | resize 15 | term <args>
 "autocmd TermOpen * startinsert
 
@@ -188,8 +190,8 @@ nnoremap <leader>l :Files <cr>
 "nnoremap <leader>l :FzfRunFd <cr>
 
 " opn file hstry ( fzf )
+nnoremap <leader>h :FileHstry<cr>
 nnoremap <leader>r :FileHstry<cr>
-"nnoremap <leader>u :FileHstry<cr>
 
 " 
 " opn etc
@@ -363,7 +365,6 @@ nnoremap c :call Ynk__line()<cr>
 
 " ynk char
 "nnoremap xx "ayl
-"nnoremap xx "0yl
 
 " ynk slf path
 nnoremap gp :call Ynk__slf_path()<cr>
@@ -486,7 +487,6 @@ nnoremap <c-m> J
 
 " line mv up
 "nnoremap xx "addk"aP
-"nnoremap xx "0ddk"0P
 
 " line dpl
 "nnoremap xx "zyy"zP
@@ -1002,8 +1002,6 @@ vnoremap :b :<c-u>SlctdEdgeIns
 vnoremap <expr> d
 \ mode() == '<c-v>' ? '"ad:let @+ = @a<cr>gv' :
 \                     '"ad:let @+ = @a<cr>'
-"\ mode() == '<c-v>' ? '"0d:let @+ = @0<cr>gv' :
-"\                     '"0d:let @+ = @0<cr>'
 "vnoremap xx :call V_slctd__del()<cr> " dev tst
 
 " del str > ynk not
@@ -1501,7 +1499,7 @@ tnoremap <c-_> <c-\><c-n>
 
 "nnoremap <leader>c <esc>
 "nnoremap <leader>f <esc>
-nnoremap <leader>h <esc>
+"nnoremap <leader>h <esc>
 "nnoremap <leader>j <esc>
 "nnoremap <leader>l <esc>
 nnoremap <leader>m <esc>
@@ -1544,7 +1542,7 @@ func! Is_env(env) abort " alias
   let l:ret = has(a:env)
 
   if a:env != 'mac'
-    echo a:env . ' : ' . l:ret
+    "echo a:env . ' : ' . l:ret
   end
 
   return l:ret
@@ -1588,9 +1586,7 @@ if Is_vim_plug_installed()
   call plug#begin()
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
-  
   Plug 'mattn/vim-molder'
-  
   "Plug 'mattn/vim-molder-operations'
   "Plug 'jacquesbh/vim-showmarks'
   "Plug 'tyru/open-browser.vim'
@@ -1912,13 +1908,11 @@ endfunc
 func! Ynk__clr() abort
 
   let @a = ''
-  "let @0 = ''
 endfunc
 
 func! Rgstr__clr() abort
 
   let @0 = ''
-  "let @a = ''
 endfunc
 
 func! Int_2_str(num) abort
@@ -2960,7 +2954,6 @@ func! Line__del() abort
     call Normal('"zdd')
   else
     call Normal('"add')
-    "call Normal('"0dd')
     call Clipboard__ynk()
   endif
 endfunc
@@ -3392,8 +3385,6 @@ func! V_slctd__del() abort " use not todo dev tst
 
   call Normal('gv"ad')
   let @+ = @a
-  "call Normal('gv"0d')
-  "let @+ = @0
 endfunc
 
 func! V_slctd__space() range abort " use not, todo dev
@@ -3451,7 +3442,6 @@ func! Slctd_rpl_srch_nxt() abort " dir forward only
   
   call Slct_re_in_line_1()
   call Normal('"zd"aPlgn')
-  "call Normal('"zd"0Plgn')
 endfunc
 
 " slctd cnd
@@ -3479,7 +3469,6 @@ endfunc
 func! Ynk__line() abort
 
   call Normal('"ayy')
-  "call Normal('"0yy')
 
   call Clipboard__ynk()
   "call Normal('"+yy')
@@ -3509,13 +3498,11 @@ endfunc
 func! Ynk__clipboard() abort
 
   let @a = @+
-  "let @0 = @+
 endfunc
 
 func! V_ynk() abort
 
   call Normal('gv"ay')
-  "call Normal('gv"0y')
   call Clipboard__ynk()
 endfunc
 
@@ -3555,8 +3542,10 @@ endfunc
 
 func! Clipboard__ynk() abort
 
-  let @+ = @a
-  "let @+ = @0
+  if ! Is_env('linux')
+
+    let @+ = @a
+  endif
 endfunc
 
 " srch
@@ -4643,13 +4632,15 @@ func! Memo_txt() abort
 endfunc
 
 
-" 
-" win
-" 
+" shell
 
-" pwsh ( for fzf )
+set shell=fish            " default ( mac )
 
-if Is_env('win64')
+if     Is_env('linux')    " cloud9
+
+  set shell=bash
+
+elseif Is_env('win64')    " pwsh ( for fzf )
 
   let &shell = Is_env('win32') ? 'powershell' : 'pwsh'
   let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'

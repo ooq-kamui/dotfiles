@@ -103,8 +103,9 @@ alias da_y2   "date_y 2"
 alias date_y1 "date_y 1"
 alias date_y2 "date_y 2"
 
-alias du   'du -h'
-alias du_1 'du -hd1'
+alias du  'du -h'
+#alias du_1 'du -hd1'
+alias du1 'du -hd1'
 
 alias tbl 'column -t'
 

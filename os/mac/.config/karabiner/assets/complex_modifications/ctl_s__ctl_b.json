@@ -1,8 +1,8 @@
 {
-  "title": "ctl s __ ctl b [ @kamui ]",
+  "title": "ctl key-bind [ @kamui ]",
   "rules": [
     {
-      "description": "ctl s __ ctl b",
+      "description": "ctl key-bind",
       "manipulators": [
         {
           "type": "basic",
@@ -16,6 +16,35 @@
             {
               "modifiers": ["control"],
               "key_code": "b"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Safari$",
+                "^com\\.apple\\.MobileSMS$",
+                "^com\\.apple\\.finder$",
+                "^com\\.apple\\.iCal$",
+                "^com\\.google\\.Chrome$",
+                "^jp\\.naver\\.line\\.mac$",
+                "^com\\.pixelmatorteam\\.pixelmator\\.x$"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": {
+              "mandatory": [ "control" ]
+            },
+            "key_code": "l"
+          },
+          "to": [
+            {
+              "modifiers": ["control"],
+              "key_code": "f"
             }
           ],
           "conditions": [

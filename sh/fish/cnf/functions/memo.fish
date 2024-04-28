@@ -1,6 +1,5 @@
 function memo
 
-  #set dir ~/doc/tech/doc-tech
   set dir ~/wrk/doc/doc-tech
 
   set cmdsub "$argv[1]"
@@ -26,6 +25,17 @@ function memo
   else if test $cmdsub = 'vi'
 
     vi -c ":cd $dir"
+
+  else if test $cmdsub = 'slf'
+
+    set slf_dir  ~/wrk/cnf/sh/fish/cnf/functions
+    set slf_path $slf_dir/memo.fish
+
+    vi $slf_path
+
+  else if test $cmdsub = 'tmp'
+
+    echo $cmdsub
   end
 end
 

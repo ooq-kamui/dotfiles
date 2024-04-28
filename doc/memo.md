@@ -2,27 +2,39 @@
 # cnf
 
 
-## mac
-
 ### vim
+
+fnc
+- 下の行を同 col まで, space で埋める
+
 
 fzf-vim
 - rg
   - .git exclude
 
 
+## bash
+
+memo tmp 
+- if   stdin exist save
+- else put
 
 
 ## win
 
 ### pwsh
 
+#### learn
+
+local var def
+
+
 #### function  -  pwsh
 
 history del
-  - research
-  - his del
-    - cre
+- research
+- his del
+  - cre
 
 
 #### etc  -  pwsh

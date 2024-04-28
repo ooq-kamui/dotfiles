@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dir=~/wrk/cnf/bash/cnf
+dir=~/wrk/cnf/sh/bash/cnf
 
 cnf_file=$dir/.bashrc
 
