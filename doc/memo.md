@@ -2,6 +2,12 @@
 # cnf
 
 
+## mac
+
+.bashrc read not ?
+- bind can not
+
+
 ## bash
 
 clp by tmp/clp.txt
@@ -14,6 +20,16 @@ cmd_line__bracket()
 - fnc file cre
 
 
+bashrc key-bind pos mv in if
+
+
+## pwsh
+
+local var
+- def
+  - research
+
+
 ## vim
 
 fzf-vim
@@ -21,24 +37,9 @@ fzf-vim
   - .git exclude
 
 
-## bash
-
-bashrc key-bind pos mv in if
-
-
-## mac
-
-.bashrc read not ?
-
-
 ## win
 
 ### pwsh
-
-#### learn
-
-local var def
-
 
 #### function  -  pwsh
 
@@ -53,14 +54,6 @@ history del
 git color
 - staged
   - green > light green
-
-
-
-## aws
-
-### cloud9
-
-
 
 
 # docker

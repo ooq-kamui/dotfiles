@@ -1,6 +1,6 @@
 function memo
 
-  set dir ~/wrk/doc/doc-tech
+  set dir ~/wrk/doc-tech
 
   set cmdsub "$argv[1]"
 
@@ -10,11 +10,21 @@ function memo
 
   else if test $cmdsub = 'fd'
 
-    if test -z $argv[2]
+    set ptn "$argv[2]"
+
+    if test -z $ptn
 
       fd -e md '' $dir
     else
-      fd -e md '' $dir | rg $argv[2]
+
+      if      test -z $argv[3]
+
+        fd -e md '' $dir | rg $ptn
+
+      else if test $argv[3] = 'vi'
+
+        vi ( fd -e md '' $dir | rg $ptn )
+      end
     end
 
   else if test $cmdsub = 'rg'
@@ -36,6 +46,9 @@ function memo
   else if test $cmdsub = 'tmp'
 
     echo $cmdsub
+
+  else
+    echo "cmdsub : $cmdsub ?"
   end
 end
 
