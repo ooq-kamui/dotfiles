@@ -463,6 +463,9 @@ nnoremap <expr> O
 " ins dots ( or crnt )
 nnoremap > :call Line__dots()<cr>
 
+" ins indnt space
+nnoremap V :call Ins_line__indnt_space()<cr>
+
 " tgl markdown chk
 "nnoremap xx :call Char__tgl_markdown_chk()<cr>
 
@@ -782,7 +785,7 @@ nnoremap S <esc>
 nnoremap T <esc>
 nnoremap U <esc>
 "nnoremap W <esc>
-nnoremap V <esc>
+"nnoremap V <esc>
 nnoremap X <esc>
 "nnoremap Y <esc>
 
@@ -2877,6 +2880,8 @@ func! V_line_end__padding() range abort " not use todo dev
   endfor
 endfunc
 
+" cursor f
+
 func! Cursor_f_space__del() abort
 
   let l:c = Cursor_c_char()
@@ -2895,7 +2900,6 @@ func! V_cursor_f_space__del() range abort
   "call Slct_re()
   call Slct_re_in_line_1()
 
-  "let l:col = Col()
   let l:col = Cursor_col_num()
 
   call Normal("\<esc>")
@@ -2936,6 +2940,12 @@ func! Ins_line(str) abort
   call Normal('k')
 endfunc
 
+func! Ins_line_d(str) abort
+  
+  let l:line_num = Line_num()
+  call append(l:line_num, a:str)
+endfunc
+
 func! Ins_line_emp() abort
   
   let l:str = ''
@@ -2946,6 +2956,13 @@ func! Ins_line_slf_path() abort
   
   let l:path = Slf_path()
   call Ins_line(l:path)
+endfunc
+
+func! Ins_line__indnt_space() range abort
+
+  let l:space_len = Cursor_col_num() - 1
+  let l:space_str = Str_space(l:space_len)
+  call Ins_line_d(l:space_str)
 endfunc
 
 func! Line__del() abort
@@ -3226,9 +3243,7 @@ func! Slctd_l_col() abort
 
   call Cursor__mv_slctd_l()
   
-  "let l:col = Col()
   let l:col = Cursor_col_num()
-
   return l:col
 endfunc
 
@@ -3236,9 +3251,7 @@ func! Slctd_r_col() abort
 
   call Cursor__mv_slctd_r()
   
-  "let l:col = Col()
   let l:col = Cursor_col_num()
-
   return l:col
 endfunc
 
@@ -3299,7 +3312,6 @@ func! Slctd__expnd() abort " expnd lr
     endif
     
     let l:word_col_l =                    l:l_idx + 2
-    "let l:word_col_r = Col() + l:r_idx
     let l:word_col_r = Cursor_col_num() + l:r_idx
     
     if l:r_idx == 0

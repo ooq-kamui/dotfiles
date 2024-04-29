@@ -1,10 +1,4 @@
 
-if [[ -t 0 ]]
-then
-  stty stop  undef
-  stty start undef
-fi
-
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
 export PS1="_ "
@@ -17,6 +11,14 @@ export LSCOLORS=fxgxcxdxxxegedabagacad
 # a:black, b:red, c:green, d:brown, e:blue, f:magenta, g:cyan, h:grey
 
 
+# key bind
+
+if [[ -t 0 ]]
+then
+  stty stop  undef
+  stty start undef
+fi
+
 bind '"\C-f": forward-word'
 bind '"\C-o": backward-word'
 
@@ -25,13 +27,21 @@ bind '"\C-s": backward-char'
 
 bind '"\C-k": kill-word'
 
+bind -x '"\C-y": cmd_line__bracket'
+
 cmd_line__bracket(){
 
   READLINE_LINE='vi $( '"$READLINE_LINE"' )'
   READLINE_POINT=2
 }
 
-bind -x '"\C-y": cmd_line__bracket'
+clp_paste(){
+
+  clp_str=aaa
+
+  READLINE_LINE="$READLINE_LINE $clp_str"
+}
+bind -x '"\C-v": clp_paste'
 
 
 # alias
@@ -40,7 +50,8 @@ alias clr='clear'
 alias c='clr'
 
 alias clp_mac='pbcopy'
-alias clp='clp_mac'
+alias clp='clp_by_tmp'
+#alias clp='clp_mac'
 
 alias x='xargs'
 
@@ -58,6 +69,8 @@ alias cd_parent='cd ..; pwd'
 alias k='cd_parent'
 alias kk='k;k'
 alias kkk='k;k;k'
+
+alias dir='z'
 
 alias psh='pushd'
 alias pop='popd'

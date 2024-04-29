@@ -2,11 +2,19 @@
 # cnf
 
 
-### vim
+## bash
 
-fnc
-- 下の行を同 col まで, space で埋める
+clp by tmp/clp.txt
 
+- if   stdin exist save
+- else put
+
+
+cmd_line__bracket()
+- fnc file cre
+
+
+## vim
 
 fzf-vim
 - rg
@@ -15,9 +23,12 @@ fzf-vim
 
 ## bash
 
-memo tmp 
-- if   stdin exist save
-- else put
+bashrc key-bind pos mv in if
+
+
+## mac
+
+.bashrc read not ?
 
 
 ## win
