@@ -2,13 +2,9 @@
 # cnf
 
 
-## mac
-
-.bashrc read not ?
-- bind can not
-
-
 ## bash
+
+### cmd
 
 clp by tmp/clp.txt
 
@@ -16,11 +12,15 @@ clp by tmp/clp.txt
 - else put
 
 
-cmd_line__bracket()
-- fnc file cre
+## .vimrc
+
+fzf :Files vnoremap
 
 
-bashrc key-bind pos mv in if
+## mac
+
+.bashrc read not ?
+- bind can not
 
 
 ## pwsh
@@ -54,6 +54,24 @@ history del
 git color
 - staged
   - green > light green
+
+
+## cloud9
+
+.bashrc, .bashrc_*
+- tidy
+  - file name
+
+
+## react
+
+cre try
+
+- react
+- next.js
+- radix ui
+- tailwind
+- ts
 
 
 # docker

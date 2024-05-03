@@ -4205,7 +4205,7 @@ func! I_bracket() abort
 endfunc
 
 func! I_markdown() abort
-  call complete( col('.'), [ '``', '[]()', '```', '---' ])
+  call complete( col('.'), [ '``', '`>`', '[]()', '```', '---' ])
   return ''
 endfunc
 
@@ -4265,6 +4265,35 @@ func! I_ooq() abort
 "  \   'end',
 "  \   'nil',
 "  \   'alias',
+endfunc
+
+" dir ch parent
+
+command! -nargs=0 K   call K()
+command! -nargs=0 Kk  call Kk()
+command! -nargs=0 Kkk call Kkk()
+
+func! K() abort " alias
+
+  call Dir_ch_parent()
+endfunc
+
+func! Kk() abort
+
+  call Dir_ch_parent()
+  call Dir_ch_parent()
+endfunc
+
+func! Kkk() abort
+
+  call Dir_ch_parent()
+  call Dir_ch_parent()
+  call Dir_ch_parent()
+endfunc
+
+func! Dir_ch_parent() abort
+
+  call Exe('cd ..')
 endfunc
 
 " undo clr

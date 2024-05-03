@@ -17,31 +17,24 @@ if [[ -t 0 ]]
 then
   stty stop  undef
   stty start undef
+
+  bind '"\C-f": forward-word'
+  bind '"\C-o": backward-word'
+  
+  bind '"\C-l": forward-char'
+  bind '"\C-s": backward-char'
+  
+  bind '"\C-k": kill-word'
+  
+  bind -x '"\C-u": cmd_line__bracket'
+  bind -x '"\C-b": cmd_line__bracket'
+
+  bind -x '"\C-v": clp_paste'
+
+  bind -x '"\C-y": fzf-file-widget'
+  bind -x '"\C-r": fzf-history-widget'
+  bind -x '"\C-q": fzf-history-widget'
 fi
-
-bind '"\C-f": forward-word'
-bind '"\C-o": backward-word'
-
-bind '"\C-l": forward-char'
-bind '"\C-s": backward-char'
-
-bind '"\C-k": kill-word'
-
-bind -x '"\C-y": cmd_line__bracket'
-
-cmd_line__bracket(){
-
-  READLINE_LINE='vi $( '"$READLINE_LINE"' )'
-  READLINE_POINT=2
-}
-
-clp_paste(){
-
-  clp_str=aaa
-
-  READLINE_LINE="$READLINE_LINE $clp_str"
-}
-bind -x '"\C-v": clp_paste'
 
 
 # alias
@@ -119,6 +112,22 @@ alias rg='rg -nS --path-separator "//"'
 export FZF_DEFAULT_COMMAND='fd --type f --color=always --hidden --follow -I --exclude .git'
 #export FZF_DEFAULT_OPTS='--ansi'
 export FZF_DEFAULT_OPTS='--ansi --bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
+
+
+# fnc
+
+cmd_line__bracket(){
+
+  READLINE_LINE='vi $( '"$READLINE_LINE"' )'
+  READLINE_POINT=2
+}
+
+clp_paste(){
+
+  clp_str=aaa
+
+  READLINE_LINE="$READLINE_LINE $clp_str"
+}
 
 
 #alias cnf

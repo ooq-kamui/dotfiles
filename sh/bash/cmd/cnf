@@ -1,21 +1,31 @@
 #!/bin/bash
 
-dir=~/wrk/cnf/sh/bash/cnf
+cnf_dir=~/wrk/cnf/sh/bash/cnf
 
-cnf_file=$dir/.bashrc
+cnf_path=$cnf_dir/.bashrc
 
 cmdsub="$1"
 
 if   test $cmdsub = 'cd'
 then
-  cd $dir
+  cd $cnf_dir
 
 elif test $cmdsub = 'vi'
 then
-  vi $cnf_file -p -c ":cd $dir"
+  vi $cnf_path -p -c ":cd $cnf_dir"
 
 elif test $cmdsub = 'src'
 then
-  src $cnf_file
+  src $cnf_path
+
+elif test $cmdsub = 'vi'
+then
+  cmd_dir=~/wrk/cnf/sh/bash/cmd
+  slf_path=$cmd_dir/cnf
+
+  vi -p $slf_path
+
+else
+  echo "cmdsub : $cmdsub ?"
 fi
 

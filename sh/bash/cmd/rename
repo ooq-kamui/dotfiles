@@ -1,0 +1,13 @@
+#!/bin/bash
+
+file_path_bfr=$1
+file_name_aft=$2
+
+dir=$( dirname $file_path_bfr )
+
+file_path_aft=$dir/$file_name_aft
+
+mv $file_path_bfr $file_path_aft
+
+
+
