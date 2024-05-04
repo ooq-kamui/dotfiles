@@ -29,7 +29,7 @@ then
   bind -x '"\C-u": cmd_line__bracket'
   bind -x '"\C-b": cmd_line__bracket'
 
-  bind -x '"\C-v": clp_paste'
+  bind -x '"\C-v": clp_by_tmp'
 
   bind -x '"\C-y": fzf-file-widget'
   bind -x '"\C-r": fzf-history-widget'
@@ -120,13 +120,6 @@ cmd_line__bracket(){
 
   READLINE_LINE='vi $( '"$READLINE_LINE"' )'
   READLINE_POINT=2
-}
-
-clp_paste(){
-
-  clp_str=aaa
-
-  READLINE_LINE="$READLINE_LINE $clp_str"
 }
 
 

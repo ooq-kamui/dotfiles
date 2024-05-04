@@ -5,16 +5,17 @@ tmp_file_path=$tmp_dir/tmp.txt
 
 cmdsub="$1"
 
-#if   test -z $cmdsub
 if   test -p /dev/stdin
 then
   cat - >> $tmp_file_path
 
-#elif test $cmdsub = 'paste'
-#then
+elif test $cmdsub = 'clr'
+then
+  :> $tmp_file_path
+
 else
   clp_str=$( tail -n 1 $tmp_file_path )
-  echo $clp_str
+  #echo $clp_str
 
   READLINE_LINE="$READLINE_LINE $clp_str"
 fi

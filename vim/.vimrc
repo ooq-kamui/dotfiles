@@ -1526,7 +1526,7 @@ if &term =~ '^screen'
   exe "set <xDown>=\e[1;*B"
   exe "set <xRight>=\e[1;*C"
   exe "set <xLeft>=\e[1;*D"
-end
+endif
 
 " 
 " quickfix
@@ -1546,7 +1546,7 @@ func! Is_env(env) abort " alias
 
   if a:env != 'mac'
     "echo a:env . ' : ' . l:ret
-  end
+  endif
 
   return l:ret
 endfunc
@@ -1565,7 +1565,8 @@ func! Vim_plug_path() abort
     let l:vim_plug_dir = '~/.vim'
   else
     let l:vim_plug_dir = '~/.vim'
-  end
+  endif
+
   let l:vim_plug_path = l:vim_plug_dir . '/autoload/plug.vim'
   return l:vim_plug_path
 endfunc
@@ -1578,7 +1579,7 @@ func! Is_vim_plug_installed() abort
 
   if ! Is_env('mac')
     echo 'vim_plug : ' . l:ret
-  end
+  endif
 
   return l:ret
 endfunc
@@ -1596,7 +1597,7 @@ if Is_vim_plug_installed()
   "Plug 'iamcco/markdown-preview.vim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
   "Plug 'ctrlpvim/ctrlp.vim'
   call plug#end()
-end
+endif
 " do :PlugInstall
 " or :PlugUpdate
 " or :PlugClean
@@ -1643,16 +1644,23 @@ let g:fzf_colors = {
 "   [fullscreen bool]
 " )
 
+let g:fzf_rg_opt = ''
+\       . ' --color=always'
+\       . ' --line-number'
+\       . ' --smart-case'
+\       . ' --no-multiline'
+\       . ' --no-heading'
+\       . ' --hidden'
+
+if Is_env('mac')
+
+  let g:fzf_rg_opt .= " -g '!.git'"
+endif
+
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
-\   "rg "
-\   . " --color=always "
-\   . " --line-number "
-\   . " --smart-case "
-\   . " --no-multiline "
-\   . " --no-heading "
-\   . " --hidden "
-\   . " -- ".shellescape(escape(<q-args>, '().$')),
+\   'rg ' . g:fzf_rg_opt
+\   . ' -- '.shellescape(escape(<q-args>, '().$')),
 \   0,
 \   fzf#vim#with_preview(
 \     {'options': '--exact --delimiter : --nth 3..'},
@@ -1661,7 +1669,6 @@ command! -bang -nargs=* Rg
 \   ),
 \   <bang>1
 \ )
-"\   . " -g '!.git' "
 
 " grep buf
 func! N_grep_buf() abort
@@ -2329,7 +2336,7 @@ func! Cursor__mv_line_top0() abort
   
   if Is_line_emp()
     return
-  end
+  endif
 
   call Normal('0')
 endfunc
@@ -2343,14 +2350,14 @@ func! Cursor__mv_line_top1() abort
     call Normal('^2l')
   else
     call Normal('^')
-  end
+  endif
 endfunc
 
 func! Cursor__mv_line_end() abort
 
   if ! Is_line_emp()
     call Normal('$l')
-  end
+  endif
 endfunc
 
 func! V_cursor__mv_line_end() abort
@@ -2361,7 +2368,7 @@ func! V_cursor__mv_line_end() abort
 
     call Normal('$h')
     "call Normal('g_')
-  end
+  endif
 endfunc
 
 func! Cursor__mv_char_f() abort
@@ -2394,7 +2401,7 @@ func! Cursor__mv_word_f() abort
     call Normal('w')
   else
     call Normal('el')
-  end
+  endif
 endfunc
 
 func! Cursor__mv_word_b() abort
@@ -2415,7 +2422,7 @@ func! Cursor__mv_word_b() abort
     
   else
     call Normal('b')
-  end
+  endif
 endfunc
 
 func! Cursor__mv_word_b_pre() abort " use not
@@ -2427,7 +2434,7 @@ func! Cursor__mv_word_b_pre() abort " use not
     call Normal('gegel')
   else
     call Normal('gel')
-  end
+  endif
 endfunc
 
 func! Cursor__mv_up_line_end() abort
@@ -2447,7 +2454,7 @@ func! Cursor__mv_line_top_or_new_line() abort
     call Cursor__mv_line_top0()
   else
     call Cursor__mv_line_top1()
-  end
+  endif
 endfunc
 
 func! Cursor__mv_slctd_l() abort
@@ -2543,7 +2550,7 @@ func! Is_cursor_line_end() abort
     return v:true
   else
     return v:false
-  end
+  endif
 endfunc
 
 func! Is_cursor_line_end_inr() abort
@@ -2553,7 +2560,7 @@ func! Is_cursor_line_end_inr() abort
     return v:true
   else
     return v:false
-  end
+  endif
 endfunc
 
 func! Is_cursor_line_top0() abort
@@ -2564,7 +2571,7 @@ func! Is_cursor_line_top0() abort
     return v:true
   else
     return v:false
-  end
+  endif
 endfunc
 
 func! Is_cursor_line_top1() abort
@@ -2584,7 +2591,7 @@ func! Is_cursor_line_top1() abort
     return v:true
   else
     return v:false
-  end
+  endif
 endfunc
 
 " ins
@@ -3024,7 +3031,7 @@ func! Is_line_emp() abort
     return v:true
   else
     return v:false
-  end
+  endif
 endfunc
 
 func! Is_line_space() abort
@@ -3937,7 +3944,7 @@ func! Tag_jmp(rg_rslt_line) abort
 
   if Is_str_emp(l:rg_rslt_line)
     return
-  end
+  endif
   
   "let l:rg_rslt_line = matchstr(l:rg_rslt_line, '\S\+')
   "echo l:rg_rslt_line
@@ -3950,7 +3957,7 @@ func! Tag_jmp(rg_rslt_line) abort
 
   if ! filereadable(l:filename)
     return
-  end
+  endif
 
   call Exe('tab drop ' . l:filename)
   call Normal(l:line_num . 'G')
@@ -4664,7 +4671,7 @@ func! Memo_txt() abort
 
   if ! filereadable(g:fzf_run_memo_path)
     return
-  end
+  endif
 
   let l:cmd = 'cat ' . g:fzf_run_memo_path
 

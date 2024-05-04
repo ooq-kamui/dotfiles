@@ -2,60 +2,6 @@
 # cnf
 
 
-## bash
-
-### cmd
-
-clp by tmp/clp.txt
-
-- if   stdin exist save
-- else put
-
-
-## .vimrc
-
-fzf :Files vnoremap
-
-
-## mac
-
-.bashrc read not ?
-- bind can not
-
-
-## pwsh
-
-local var
-- def
-  - research
-
-
-## vim
-
-fzf-vim
-- rg
-  - .git exclude
-
-
-## win
-
-### pwsh
-
-#### function  -  pwsh
-
-history del
-- research
-- his del
-  - cre
-
-
-#### etc  -  pwsh
-
-git color
-- staged
-  - green > light green
-
-
 ## cloud9
 
 .bashrc, .bashrc_*
@@ -63,9 +9,13 @@ git color
   - file name
 
 
+reg pri
+
+
 ## react
 
 cre try
+- at mac
 
 - react
 - next.js
@@ -74,7 +24,50 @@ cre try
 - ts
 
 
-# docker
+## win
+
+### pwsh
+
+git
+- color setting
+  - staged
+    - green > light green
+
+
+trns
+- install
+  - how ?
+    - research
+
+
+## mac
+
+### bash
+
+at mac
+- key bind invalid
+  - research
+    - how ?
+
+
+
+## pwsh
+
+### fnc  -  pwsh
+
+local var
+- def
+  - research
+  - tst
+
+
+history del
+- research
+- his del
+  - cre
+
+
+## docker
 
 docker learn
 
@@ -85,7 +78,7 @@ path def dpl del
 
 
 
-# vim  -  priority l
+## vim  -  priority l
 
 coc vim
 - try
