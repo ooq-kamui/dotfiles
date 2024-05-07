@@ -8,7 +8,9 @@ function prompt {
 
 Set-PSReadlineOption -BellStyle None
 
+# 
 # color
+# 
 
 # $PSStyle.FileInfo.Directory = $PSStyle.Foreground.BrightGreen
 $PSStyle.FileInfo.Directory = $PSStyle.Foreground.BrightCyan
@@ -16,6 +18,7 @@ $PSStyle.FileInfo.Directory = $PSStyle.Foreground.BrightCyan
 Set-PSReadLineOption -Colors @{ InlinePrediction = $PSStyle.Foreground.BrightGreen  }
 Set-PSReadLineOption -Colors @{ Parameter        = $PSStyle.Foreground.BrightYellow }
 Set-PSReadLineOption -Colors @{ Variable         = $PSStyle.Foreground.BrightCyan   }
+Set-PSReadLineOption -Colors @{ String           = $PSStyle.Foreground.BrightCyan   }
 
 
 Import-Module PSReadline
@@ -37,6 +40,9 @@ Invoke-Expression (& { (zoxide init powershell | Out-String) })
 # 
 # alias ( function )
 # 
+
+# src alias, fnc, can not
+#Set-Alias src "."
 
 Set-Alias clr "clear"
 Set-Alias c   "clear"
@@ -104,9 +110,27 @@ function di {
   z $path
 }
 
-function k   { Set-Location -Path ..       }
-function kk  { Set-Location -Path ..\..    }
-function kkk { Set-Location -Path ..\..\.. }
+function k   { Set-Location -Path ..       ; pwd }
+function kk  { Set-Location -Path ..\..    ; pwd }
+function kkk { Set-Location -Path ..\..\.. ; pwd }
+
+
+# psfzf
+
+# Import-Module PSFzf
+# Enable-PsFzfAliases
+Set-PsFzfOption -PSReadlineChordProvider       'Ctrl+y'
+Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r'
+
+
+function touch {
+  param( $path )
+
+  # echo $path
+  New-Item -Type File $path
+}
+Set-Alias to "touch"
+
 
 Set-Alias vim "nvim"
 Set-Alias vi  "nvim"
@@ -123,6 +147,9 @@ function da  { Get-Date -Format "yyyy-MM-dd"       }
 function dt  { Get-Date -Format "yyyy-MM-dd.HH:mm" }
 # function ts  { Get-Date -Format "yyyy-MM-dd.HH:mm:??" }
 
+Set-Alias opn "explorer"
+
+
 
 # def
 
@@ -134,8 +161,8 @@ function cnf {
   if      ( $subcmd -eq 'src' ) {
 
     echo $subcmd
-    # ??
-    # . $profile
+    # src alias, fnc, can not
+    #. $profile
 
   }elseif ( $subcmd -eq 'cd' ) {
 
