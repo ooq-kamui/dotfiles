@@ -1,8 +1,8 @@
 #!/bin/bash
 
 cnf_dir=~/wrk/cnf/sh/bash/cnf
-
-cnf_path=$cnf_dir/.bashrc
+#cnf_file_path=$cnf_dir/.bashrc
+cnf_file_path=~/.bashrc_my_cloud9
 
 cmdsub="$1"
 
@@ -12,13 +12,15 @@ then
 
 elif test $cmdsub = 'vi'
 then
-  vi $cnf_path -p -c ":cd $cnf_dir"
+  cnf_ref_file_path=$cnf_dir/.bashrc
+
+  vi -p $cnf_file_path $cnf_ref_file_path
 
 elif test $cmdsub = 'src'
 then
-  src $cnf_path
+  src $cnf_file_path
 
-elif test $cmdsub = 'vi'
+elif test $cmdsub = 'slf'
 then
   cmd_dir=~/wrk/cnf/sh/bash/cmd
   slf_path=$cmd_dir/cnf

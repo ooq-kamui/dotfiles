@@ -19,12 +19,23 @@ then
 
 elif test $cmdsub = 'rg'
 then
-  rg -N -g '*.md' "$2" $dir/
+  #rg -N -g '*.md' "$2" $dir/
+
+  ptn="$2"
+  opt="$3"
+
+  if test "$opt" = 'vi'
+  then
+    vi -p $( rg -Nw -B 1 -l -g '*.md' "$ptn" $dir/ )
+  else
+    rg -Nw -B 1 $opt -g '*.md' "$ptn" $dir/
+  fi
 
 elif test $cmdsub = 'pw'
 then
+  prj_dir=$dir/prj
 
-  rg -N -w -g '*.md' 'pw' $dir/ -B3
+  rg -N -w -g '*.md' 'pw' $prj_dir/ -B1 -A1
 
 elif test $cmdsub = 'vi'
 then
@@ -37,7 +48,7 @@ then
 
 elif test $cmdsub = 'slf'
 then
-  slf_dir=~/wrk/sh/bash/cmd
+  slf_dir=~/wrk/cnf/sh/bash/cmd
   slf_path=$slf_dir/memo
 
   vi -p $slf_path

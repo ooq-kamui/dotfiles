@@ -855,7 +855,9 @@ vnoremap i V
 vnoremap v <c-v>
 
 " file srch ( fzf )
-"vnoremap xx :Files <cr> " non
+"vnoremap <leader>l "zy:Files <c-r>z<cr>
+vnoremap <leader>l "zy:Files <c-r>z
+
 
 " 
 " cursor mv
@@ -1512,6 +1514,7 @@ nnoremap <leader>m <esc>
 nnoremap <leader>u <esc>
 nnoremap <leader>y <esc>
 
+"vnoremap <leader>l <esc>
 vnoremap <leader>u <esc>
 vnoremap <leader>y <esc>
 
@@ -1578,7 +1581,7 @@ func! Is_vim_plug_installed() abort
   let l:ret = ! empty(glob(l:vim_plug_path))
 
   if ! Is_env('mac')
-    echo 'vim_plug : ' . l:ret
+    "echo 'vim_plug installed : ' . l:ret
   endif
 
   return l:ret
@@ -4062,7 +4065,7 @@ func! Opn_vim_key() abort
   call Opn(l:path)
 endfunc
 
-let g:opn_memo_path = 'doc/memo.md'
+let g:opn_memo_path = '~/wrk/prj/splir/doc/prj.memo.md'
 
 func! Opn_memo() abort
 
@@ -4639,7 +4642,7 @@ endfunc
 
 " fzf run by memo
 
-nnoremap <leader>m :FzfRunByMemo <cr>
+"nnoremap <leader>m :FzfRunByMemo <cr>
 
 command! -nargs=0 FzfRunByMemo call Fzf_run_by_memo()
 
