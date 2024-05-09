@@ -2,14 +2,36 @@
 # cnf
 
 
+## ofc pc win keyboard sticker
+
+key-normal
+- 13 x 12 mm
+  - y, ;+, \|, @
+
+key-normal
+- 09 x 12 mm
+  - 0,
+
+key-??
+- xx x xx mm
+  - 0, 
+
+
 ## pwsh
 
 ### profile
 
 #### fnc
 
-- opn cre
-  - cp paste
+cnf
+- one-drive chk
+  - `$home/OneDrive/Documents/PowerShell`
+
+
+opn
+- cre
+- cp paste
+
 ```
 function opn() {
 
@@ -25,17 +47,8 @@ function opn() {
 
 vim -p ( param )
 
-cnf
-- one-drive chk
-
 
 ## c9
-
-### bash
-
-clp
-- cre
-
 
 ### ofc
 
@@ -58,10 +71,10 @@ wrk dir cre
 - doc-tech
 
 
-## pc win keyboard sticker
+### bash
 
-key-normal
-- 13 x 12 mm
+clp
+- cre
 
 
 ## mac
@@ -126,6 +139,19 @@ path def dpl del
 coc vim
 - try
   - at ? 2024-01-03
+
+
+
+
+## memo, ofc confirm
+
+cnf
+- profile.ps1, psfzf setting ?
+  - mod at win ?
+
+doc-tech
+- python var scope ?
+  - mod at win ?
 
 
 
