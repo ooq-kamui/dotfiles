@@ -2,29 +2,14 @@
 # cnf
 
 
-pwsh
-- vim -p ( param )
+## pwsh
 
-- fzf key-bind setting
-  - confirm
+### profile
 
-- cnf
-  - one-drive chk
-
-
-keyboard sticker
-- key-normal
-  - 13 x 12 mm
-
-
-pwsh
-- cnf
-  - k, kk, kkk
-    - add `;pwd`
-
+#### fnc
 
 - opn cre
-
+  - cp paste
 ```
 function opn() {
 
@@ -38,9 +23,29 @@ function opn() {
 }
 ```
 
+vim -p ( param )
+
+cnf
+- one-drive chk
 
 
-## cloud9
+## c9
+
+### bash
+
+clp
+- cre
+
+
+### ofc
+
+file name
+- tidy
+- .bashrc, .bashrc_*
+  - .bashrc_my
+
+
+### pri
 
 ssh env
 - cre
@@ -53,17 +58,10 @@ wrk dir cre
 - doc-tech
 
 
+## pc win keyboard sticker
 
-### at ofc
-
-.bashrc, .bashrc_*
-- tidy
-  - file name
-
-
-~/cnf.bk
-- mv *org
-
+key-normal
+- 13 x 12 mm
 
 
 ## mac
