@@ -79,12 +79,13 @@ set tabstop=2    " 4
 set expandtab " tab > space
 
 filetype indent on
-autocmd FileType lua  setlocal sw=2 sts=2 ts=2 noet " tab
-autocmd FileType text setlocal sw=2 sts=2 ts=2   et " space
-autocmd FileType json setlocal sw=2 sts=2 ts=2   et " space
-autocmd FileType vim  setlocal sw=2 sts=2 ts=2   et " space
-autocmd FileType fish setlocal sw=2 sts=2 ts=2   et " space
-autocmd FileType sh   setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType lua      setlocal sw=2 sts=2 ts=2 noet " tab
+autocmd FileType text     setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType json     setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType vim      setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType fish     setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType sh       setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType markdown setlocal sw=2 sts=2 ts=2   et " space
 
 " file opn, cursor mv last
 augroup vimrcEx
@@ -4215,7 +4216,7 @@ func! I_bracket() abort
 endfunc
 
 func! I_markdown() abort
-  call complete( col('.'), [ '``', '`>`', '[]()', '```', '---' ])
+  call complete( col('.'), [ '``', '`>`', '[]()', '![]()', '```', '---' ])
   return ''
 endfunc
 

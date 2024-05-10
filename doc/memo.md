@@ -2,24 +2,15 @@
 # cnf
 
 
-## ofc pc win keyboard sticker
-
-key-normal
-- 13 x 12 mm
-  - y, ;+, \|, @
-
-key-normal
-- 09 x 12 mm
-  - 0,
-
-key-??
-- xx x xx mm
-  - 0, 
-
-
 ## pwsh
 
 ### profile
+
+#### key-bind
+
+fzf cmd-line
+- c-o decide, etc
+
 
 #### fnc
 
@@ -74,6 +65,17 @@ wrk dir cre
 ### bash
 
 clp
+- cre
+
+
+vim alias del
+- vi memo.md
+  - del
+
+vic cre
+
+
+p ( pth )
 - cre
 
 
@@ -142,16 +144,23 @@ coc vim
 
 
 
+## ofc pc win keyboard sticker
 
-## memo, ofc confirm
+key-normal
+- 13 x 12 mm
+  - y, ;+, \|, @, a, esc, shift
 
-cnf
-- profile.ps1, psfzf setting ?
-  - mod at win ?
+key-zen/han
+- 09 x 12 mm
+  - 0,
 
-doc-tech
-- python var scope ?
-  - mod at win ?
+key-caps
+- 16 x 12 mm
+  - ctl
+
+key-fn
+- xx x 11 mm
+  - `<win`, `win>`
 
 
 

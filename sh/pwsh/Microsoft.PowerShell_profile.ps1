@@ -117,8 +117,8 @@ function kkk { Set-Location -Path ..\..\.. ; pwd }
 
 # psfzf
 
-# Import-Module PSFzf
-# Enable-PsFzfAliases
+Import-Module PSFzf
+Enable-PsFzfAliases
 Set-PsFzfOption -PSReadlineChordProvider       'Ctrl+y'
 Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r'
 
