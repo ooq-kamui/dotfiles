@@ -115,10 +115,14 @@ function kk  { Set-Location -Path ..\..    ; pwd }
 function kkk { Set-Location -Path ..\..\.. ; pwd }
 
 
+# fzf
+
+$env:FZF_DEFAULT_OPTS = '--ansi --bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
+
 # psfzf
 
-Import-Module PSFzf
-Enable-PsFzfAliases
+# Import-Module PSFzf
+# Enable-PsFzfAliases
 Set-PsFzfOption -PSReadlineChordProvider       'Ctrl+y'
 Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r'
 
@@ -131,50 +135,63 @@ function touch {
 }
 Set-Alias to "touch"
 
-
 Set-Alias vim "nvim"
 Set-Alias vi  "nvim"
 # function vim { nvim -p }
 # function vi  { nvim -p }
 
-function vif {
-
-  vi -p ( fzf )
-}
 
 
 function da  { Get-Date -Format "yyyy-MM-dd"       }
 function dt  { Get-Date -Format "yyyy-MM-dd.HH:mm" }
 # function ts  { Get-Date -Format "yyyy-MM-dd.HH:mm:??" }
 
-Set-Alias opn "explorer"
+# Set-Alias opn "explorer"
+function opn() {
 
+  param( $path )
+
+  if ( $path -eq $null ){
+    $path = ( Get-Location )
+  }
+
+  explorer $path
+}
 
 
 # def
 
-$wrk          = "$home/wrk"
+$wrk = "$home/wrk"
+
+$cnf_dir       = "$wrk\cnf\sh\pwsh"
+$cnf_file_name = "Microsoft.PowerShell_profile.ps1"
+$cnf_file_path = "$cnf_dir\$cnf_file_name"
+
+$cnf_onedrive_dir  = "$home\OneDrive\Documents\PowerShell"
+$cnf_onedrive_path = "$cnf_onedrive_dir\$cnf_file_name"
 
 function cnf {
   param( $subcmd )
 
   if      ( $subcmd -eq 'src' ) {
 
-    echo $subcmd
-    # src alias, fnc, can not
-    #. $profile
+    echo "run : . $profile"
 
   }elseif ( $subcmd -eq 'cd' ) {
 
-    cd $home\OneDrive\Documents\PowerShell\
+    # cd $cnf_onedrive_dir\
+    cd $cnf_dir
 
   }elseif ( $subcmd -eq 'vi' ) {
 
-    vi -p $home\OneDrive\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
+    vi -p $cnf_file_path
 
-  }elseif ( $subcmd -eq 'cp' ) {
+  }elseif ( $subcmd -eq 'slf' ) {
 
-    cp $home\OneDrive\Documents\PowerShell\Microsoft.PowerShell_profile.ps1 $home\wrk\cnf\sh\pwsh\
+    vi -p $cnf_file_path
+
+  #}elseif ( $subcmd -eq 'cp' ) {
+  #  cp $cnf_onedrive_path $cnf_dir\
 
   }else {
 
@@ -182,15 +199,14 @@ function cnf {
   }
 }
 
-$doc_dir      = "$wrk/doc"
-$doc_tech_dir = "$doc_dir/doc-tech"
+$doc_tech_dir = "$wrk/doc-tech"
 
 function memo {
   param( $subcmd, $ptn )
 
   if      ( $subcmd -eq 'pw' ) {
 
-    rg -N -B 2 'pw' $doc_dir/
+    rg -N -B 2 'pw' $doc_tech_dir/
 
   }elseif ( $subcmd -eq 'cd' ) {
 
@@ -198,11 +214,11 @@ function memo {
 
   }elseif ( $subcmd -eq 'fd' ) {
 
-    fd "$ptn" $doc_dir/
+    fd "$ptn" $doc_tech_dir/
 
   }elseif ( $subcmd -eq 'rg' ) {
 
-    rg -N -A 0 "$ptn" $doc_dir/
+    rg -N -A 0 "$ptn" $doc_tech_dir/
   }
 }
 

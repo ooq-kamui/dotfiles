@@ -203,7 +203,6 @@ bind \cx cmdline_his_del
 
 # fzf
 
-#bind \cu fzf-file-widget
 bind \cy fzf-file-widget
 bind \cq fzf-history-widget
 

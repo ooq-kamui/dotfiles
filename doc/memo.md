@@ -2,43 +2,6 @@
 # cnf
 
 
-## pwsh
-
-### profile
-
-#### key-bind
-
-fzf cmd-line
-- c-o decide, etc
-
-
-#### fnc
-
-cnf
-- one-drive chk
-  - `$home/OneDrive/Documents/PowerShell`
-
-
-opn
-- cre
-- cp paste
-
-```
-function opn() {
-
-  param( $path )
-
-  if ( $path -eq $null ){
-    $path = ( Get-Location )
-  }
-
-  explorer $path
-}
-```
-
-vim -p ( param )
-
-
 ## c9
 
 ### ofc
@@ -107,21 +70,25 @@ at mac
     - how ?
 
 
-
 ## pwsh
 
-### fnc  -  pwsh
+### fnc
+
+vim -p ( param mlt )
+
 
 local var
 - def
   - research
   - tst
+  - write doc-tech
 
 
 history del
 - research
 - his del
   - cre
+
 
 
 ## docker
@@ -139,12 +106,12 @@ path def dpl del
 ## vim  -  priority l
 
 coc vim
-- try
-  - at ? 2024-01-03
 
 
 
-## ofc pc win keyboard sticker
+## keyboard sticker
+
+### win ofc
 
 key-normal
 - 13 x 12 mm
