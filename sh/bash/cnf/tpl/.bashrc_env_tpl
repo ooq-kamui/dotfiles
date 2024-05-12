@@ -1,0 +1,11 @@
+
+# tpl
+
+alias cd_wrk='cd ~/wrk/prj/prj-01/doc/'
+alias cdw='cd_wrk'
+
+alias cd_src='cd ~/wrk/prj/prj-01/src/'
+alias cds='cd_src'
+
+
+

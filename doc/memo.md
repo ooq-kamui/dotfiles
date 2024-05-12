@@ -3,51 +3,42 @@
 
 
 ## c9
-
-### pri
-
-bash env
-- organize
-
-
-prompt mod
-
-
-git clone
-- cnf
-- doc-tech
-
-- vim ?
-
-
-wrk dir cre
-- cnf
-- doc-tech
-
-
-bash file name
-- tidy
-- .bashrc, .bashrc_*
-  - .bashrc_my
-
-
-
 ### ofc
-
-file name
-- tidy
-- .bashrc, .bashrc_*
-  - .bashrc_my
-
-
-### bash  -  c9
+#### bash
 
 vim alias del
 - vi memo.md
   - del
-  - ofc ?
-    - confirm
+  - at ofc, confirm
 
+
+## c9
+
+### pri
+
+c9 ( bash ) setup
+
+- z install
+- fzf install
+- vim-plug install
+
+- doc-tech write
+
+
+## c9
+
+### pri or ofc
+
+.bashrc* file
+- tidy
+- merge
+  - .bashrc
+  - .bashrc_c9
+
+
+## c9
+
+### bash  -  c9
 
 clp by tmp file
 - cre
@@ -105,24 +96,7 @@ history del
   - cre
 
 
-
-## docker
-
-docker learn
-
-
-
-## tmux
-
-path def dpl del
-
-
-
-## vim  -  priority l
-
-coc vim
-
-
+---
 
 ## keyboard sticker
 
@@ -143,6 +117,25 @@ key-caps
 key-fn
 - xx x 11 mm
   - `<win`, `win>`
+
+
+---
+
+## docker
+
+docker learn
+
+
+
+## tmux
+
+path def dpl del
+
+
+
+## vim  -  priority l
+
+coc vim
 
 
 
