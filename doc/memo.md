@@ -4,6 +4,34 @@
 
 ## c9
 
+### pri
+
+bash env
+- organize
+
+
+prompt mod
+
+
+git clone
+- cnf
+- doc-tech
+
+- vim ?
+
+
+wrk dir cre
+- cnf
+- doc-tech
+
+
+bash file name
+- tidy
+- .bashrc, .bashrc_*
+  - .bashrc_my
+
+
+
 ### ofc
 
 file name
@@ -12,30 +40,17 @@ file name
   - .bashrc_my
 
 
-### pri
-
-ssh env
-- cre
-  - console setting
-  - connect
-
-
-wrk dir cre
-- cnf
-- doc-tech
-
-
-### bash
-
-clp
-- cre
-
+### bash  -  c9
 
 vim alias del
 - vi memo.md
   - del
+  - ofc ?
+    - confirm
 
-vic cre
+
+clp by tmp file
+- cre
 
 
 p ( pth )
@@ -46,25 +61,32 @@ p ( pth )
 
 ### fish
 
-fnc
-- dir cre
-- ln mod
+fnc ( fish )
+- dir cre ( mv )
+
+- ln mod ( crnt )
 
 
-~/sh > ~/wrk/sh
+~/sh > ~/wrk/sh ?
 
 
-sndbox under tidy
+sndbox under dir tidy ( fish )
+
+
+mac lcl-sh fish
+- dir mod
 
 
 path
 - add
   - ~/wrk/sh/fish/
+    - done ?
 
 
 ### bash
 
-at mac
+at mac ( terminal )
+
 - key bind invalid
   - research
     - how ?
@@ -75,13 +97,6 @@ at mac
 ### fnc
 
 vim -p ( param mlt )
-
-
-local var
-- def
-  - research
-  - tst
-  - write doc-tech
 
 
 history del
