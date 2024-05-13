@@ -2,38 +2,42 @@
 # cnf
 
 
-## c9
-### ofc
-#### bash
+## ofc
 
-vim alias del
-- vi memo.md
-  - del
-  - at ofc, confirm
+aws pw ch lng
 
+pwsh profile file tidy
 
-## c9
+c9 bash mod,
+- .bashrc_env
 
-### pri
+c9 syntax file
+- push
 
-c9 ( bash ) setup
-
-- z install
-- fzf install
-- vim-plug install
-
-- doc-tech write
+pwsh git push can
+- git config --local user.name
+- git congig --local user.email
 
 
-## c9
+## pwsh
 
-### pri or ofc
+pwsh_profile_my
 
-.bashrc* file
-- tidy
+pwsh_profile_env
+
+
+
+## bash
+
+.bashrc_my, .bashrc_c9
 - merge
-  - .bashrc
-  - .bashrc_c9
+
+
+## c9 pri
+
+install
+- fd
+- rg
 
 
 ## c9
