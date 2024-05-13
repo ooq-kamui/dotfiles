@@ -1,0 +1,12 @@
+
+# c9
+
+[ -f ~/.bashrc_c9 ] && source ~/.bashrc_c9
+
+
+# env
+
+[ -f ~/.bashrc_env ] && source ~/.bashrc_env
+
+
+

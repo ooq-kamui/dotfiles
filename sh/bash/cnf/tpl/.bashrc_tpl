@@ -1,0 +1,11 @@
+
+# .bashrc org
+# :
+# :
+
+# .bashrc_my
+
+[ -f ~/.bashrc_my ] && source ~/.bashrc_my
+
+
+
