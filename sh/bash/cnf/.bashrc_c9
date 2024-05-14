@@ -74,6 +74,7 @@ alias vi='vi -p'
 # etc
 
 alias du1='du -h -d 1'
+alias df='df -h'
 
 alias da='date +"%Y-%m-%d"'
 alias dt='date +"%Y-%m-%d.%H:%M"'
