@@ -4,19 +4,13 @@
 
 ## ofc
 
-aws pw ch lng
-
 pwsh profile file tidy
-
-c9 bash mod,
-- .bashrc_env
-
-c9 syntax file
-- push
 
 pwsh git push can
 - git config --local user.name
 - git congig --local user.email
+
+aws pw ch lng
 
 
 ## pwsh
@@ -50,6 +44,12 @@ clp by tmp file
 
 p ( pth )
 - cre
+
+
+## vim
+
+syntax dir ch
+- `vim/cnf/syntax > ??`
 
 
 ## mac
