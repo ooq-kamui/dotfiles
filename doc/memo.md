@@ -6,9 +6,11 @@
 
 pwsh profile file tidy
 
-pwsh git push can
+pwsh git push
 - git config --local user.name
 - git congig --local user.email
+- git remote add ...
+
 
 aws pw ch lng
 
