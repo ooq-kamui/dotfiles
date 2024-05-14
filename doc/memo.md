@@ -2,28 +2,7 @@
 # cnf
 
 
-## ofc
-
-pwsh profile file tidy
-
-pwsh git push
-- git config --local user.name
-- git congig --local user.email
-- git remote add ...
-
-
-aws pw ch lng
-
-
-## pwsh
-
-pwsh_profile_my
-
-pwsh_profile_env
-
-
-
-## bash
+## bash pri
 
 .bashrc_my, .bashrc_c9
 - merge
@@ -40,17 +19,17 @@ install
 
 ### bash  -  c9
 
-clp by tmp file
+p ( pth )
 - cre
 
 
-p ( pth )
+clp by tmp file
 - cre
 
 
 ## vim
 
-syntax dir ch
+cnf syntax dir ch
 - `vim/cnf/syntax > ??`
 
 
@@ -58,13 +37,12 @@ syntax dir ch
 
 ### fish
 
+```
 fnc ( fish )
 - dir cre ( mv )
 
-- ln mod ( crnt )
-
-
-~/sh > ~/wrk/sh ?
+- ln to dir mod ( crnt )
+  - ~/sh > ~/wrk/sh ?
 
 
 sndbox under dir tidy ( fish )
@@ -78,6 +56,7 @@ path
 - add
   - ~/wrk/sh/fish/
     - done ?
+```
 
 
 ### bash
@@ -94,6 +73,7 @@ at mac ( terminal )
 ### fnc
 
 vim -p ( param mlt )
+- research
 
 
 history del
