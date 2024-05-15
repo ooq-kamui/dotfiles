@@ -2,17 +2,16 @@
 # cnf
 
 
-## bash pri
+## bash
 
-.bashrc_my, .bashrc_c9
-- merge
+killring paste
+- key-bind set
 
 
-## c9 pri
+## vim
 
-install
-- fd
-- rg
+nnoremap :v source .vimrc
+- case env
 
 
 ## c9
@@ -23,14 +22,51 @@ p ( pth )
 - cre
 
 
+---
+
+## keyboard sticker
+
+### win ofc
+
+key-normal
+- 13 x 12 mm
+  - y, ;+, \|, @, a, esc, shift
+
+key-zen/han
+- 09 x 12 mm
+  - 0,
+
+key-caps
+- 16 x 12 mm
+  - ctl
+
+key-fn
+- xx x 11 mm
+  - `<win`, `win>`
+
+
+---
+
+
+## bash pri at home
+
+.bashrc_my, .bashrc_c9
+- merge
+
+
+## c9 pri  at home
+
+install
+- fd
+- rg
+
+
+## c9
+
+### bash  -  c9
+
 clp by tmp file
 - cre
-
-
-## vim
-
-cnf syntax dir ch
-- `vim/cnf/syntax > ??`
 
 
 ## mac
@@ -72,37 +108,10 @@ at mac ( terminal )
 
 ### fnc
 
-vim -p ( param mlt )
-- research
-
-
 history del
 - research
 - his del
   - cre
-
-
----
-
-## keyboard sticker
-
-### win ofc
-
-key-normal
-- 13 x 12 mm
-  - y, ;+, \|, @, a, esc, shift
-
-key-zen/han
-- 09 x 12 mm
-  - 0,
-
-key-caps
-- 16 x 12 mm
-  - ctl
-
-key-fn
-- xx x 11 mm
-  - `<win`, `win>`
 
 
 ---

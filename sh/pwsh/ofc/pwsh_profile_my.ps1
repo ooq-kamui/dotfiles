@@ -127,20 +127,20 @@ function touch {
 }
 Set-Alias to "touch"
 
+function vim {
 
-Set-Alias vim "nvim"
-Set-Alias vi  "nvim"
-# function vim { nvim -p }
-# function vi  { nvim -p }
+  nvim -p $args
+}
 
-function vif {
+function vi {
 
-  vi -p ( fzf )
+  nvim -p $args
 }
 
 
 function da  { Get-Date -Format "yyyy-MM-dd"       }
 function dt  { Get-Date -Format "yyyy-MM-dd.HH:mm" }
+function tm  { Get-Date -Format "HH:mm"            }
 # function ts  { Get-Date -Format "yyyy-MM-dd.HH:mm:??" }
 
 

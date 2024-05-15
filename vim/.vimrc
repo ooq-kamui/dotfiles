@@ -321,10 +321,10 @@ nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 
 " cursor mv jmp
-nnoremap ^ :CursorMvJmp k<cr>
-nnoremap ~ :CursorMvJmp j<cr>
-nnoremap R :CursorMvJmp k<cr>
-nnoremap F :CursorMvJmp j<cr>
+nnoremap rk :CursorMvJmp k<cr>
+nnoremap rj :CursorMvJmp j<cr>
+"nnoremap R :CursorMvJmp k<cr>
+"nnoremap F :CursorMvJmp j<cr>
 
 " scroll cursor line upper
 "nnoremap xx zt
@@ -708,8 +708,8 @@ nnoremap <bs>    <esc>
 "nnoremap . <esc>
 "nnoremap * <esc>
 "nnoremap _ <esc>
-"nnoremap ~ <esc>
-"nnoremap ^ <esc>
+nnoremap ~ <esc>
+nnoremap ^ <esc>
 nnoremap / <esc>
 "nnoremap \ <esc>
 nnoremap ? <esc>
@@ -769,7 +769,7 @@ nnoremap B <esc>
 nnoremap C <esc>
 nnoremap D <esc>
 "nnoremap E <esc>
-"nnoremap F <esc>
+nnoremap F <esc>
 nnoremap G <esc>
 nnoremap H <esc>
 "nnoremap I <esc>
@@ -781,7 +781,7 @@ nnoremap M <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
-"nnoremap R <esc>
+nnoremap R <esc>
 nnoremap S <esc>
 nnoremap T <esc>
 nnoremap U <esc>
@@ -1019,6 +1019,7 @@ vnoremap <expr> s
 
 " del str pad space
 vnoremap S "aygvr gv
+vnoremap W "aygvr gv
 "vnoremap S :call V_slctd__space()<cr> " fnc dev doing
 
 " del cr
@@ -1231,7 +1232,7 @@ vnoremap R <esc>
 "vnoremap T <esc>
 "vnoremap U <esc>
 vnoremap V <esc>
-vnoremap W <esc>
+"vnoremap W <esc>
 vnoremap X <esc>
 "vnoremap Y <esc>
 
@@ -4216,7 +4217,7 @@ func! I_bracket() abort
 endfunc
 
 func! I_markdown() abort
-  call complete( col('.'), [ '``', '`>`', '[]()', '![]()', '```', '---' ])
+  call complete( col('.'), [ '``', '`>` ', '[]()', '![]()', '```', '---' ])
   return ''
 endfunc
 
