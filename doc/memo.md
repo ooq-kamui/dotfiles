@@ -2,17 +2,23 @@
 # cnf
 
 
-## bash
+c9 pri bash .bashrc tidy
+
+
+## bash c9
+
+dt cmdline ins key-bind
+
 
 killring paste
 - key-bind set
+- key-bin c-u ??
 
 
 ## vim
 
 nnoremap :v source .vimrc
 - case env
-
 
 ## c9
 
@@ -24,30 +30,6 @@ p ( pth )
 
 ---
 
-## keyboard sticker
-
-### win ofc
-
-key-normal
-- 13 x 12 mm
-  - y, ;+, \|, @, a, esc, shift
-
-key-zen/han
-- 09 x 12 mm
-  - 0,
-
-key-caps
-- 16 x 12 mm
-  - ctl
-
-key-fn
-- xx x 11 mm
-  - `<win`, `win>`
-
-
----
-
-
 ## bash pri at home
 
 .bashrc_my, .bashrc_c9
@@ -57,8 +39,8 @@ key-fn
 ## c9 pri  at home
 
 install
-- fd
 - rg
+  - install by ??
 
 
 ## c9
@@ -114,7 +96,44 @@ history del
   - cre
 
 
+
 ---
+
+tomorrow
+
+---
+
+
+## vim win ofc
+
+vim-plug install
+
+
+---
+
+## keyboard sticker
+
+### win ofc
+
+key-normal
+- 13 x 12 mm
+  - @, shift
+
+key-zen/han
+- 09 x 12 mm
+  - 0,
+
+key-caps
+- 16 x 12 mm
+  - ctl
+
+key-fn
+- xx x 11 mm
+  - `<win`, `win>`
+
+
+---
+
 
 ## docker
 
