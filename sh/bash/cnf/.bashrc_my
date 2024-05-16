@@ -125,13 +125,8 @@ cmd_line__bracket(){
 
 #alias cnf
 
-alias src_bashrc='src ~/.bashrc'
-alias src_cnf='src_bashrc'
-
-
-[ -f ~/wrk/cnf/bash/cnf/.bashrc_gitbash ] && source ~/wrk/cnf/bash/cnf/.bashrc_gitbash
-
-[ -f ~/.bashrc_env ] && source ~/.bashrc_env
+#alias src_bashrc='src ~/.bashrc'
+#alias src_cnf='src_bashrc'
 
 
 

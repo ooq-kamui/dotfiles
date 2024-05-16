@@ -5,6 +5,9 @@ test -f ~/wrk/cnf/sh/bash/cnf/.bashrc_my && source ~/wrk/cnf/sh/bash/cnf/.bashrc
 # .bashrc c9
 test -f ~/wrk/cnf/sh/bash/cnf/.bashrc_c9 && source ~/wrk/cnf/sh/bash/cnf/.bashrc_c9
 
+# .bashrc gitbash
+# test -f ~/wrk/cnf/sh/bash/cnf/.bashrc_gitbash && source ~/wrk/cnf/sh/bash/cnf/.bashrc_gitbash
+
 
 # ----------------------------
 

@@ -3,27 +3,12 @@ export PS1="_ "
 
 PATH=$PATH:~/wrk/cnf/sh/bash/cmd
 
-# ctrl-s off
-if [[ -t 0 ]]
-then
-  stty stop undef
-  stty start undef
+# fnc
 
-  #. ~/.bashrc_my_cloud9_bind
-  bind '"\C-f": forward-word'
-  bind '"\C-o": backward-word'
+cmd_line__dt(){
 
-  bind '"\C-l": forward-char'
-  bind '"\C-s": backward-char'
-
-  bind '"\C-k": kill-word'
-
-  bind -x '"\C-b": cmd_line__bracket'
-  bind -x '"\C-u": cmd_line__bracket'
-
-  # fzf
-  bind -x '"\C-y": fzf-file-widget'
-fi
+  READLINE_LINE=$READLINE_LINE''$( dt )
+}
 
 cmd_line__bracket(){
 
@@ -112,8 +97,31 @@ export FZF_DEFAULT_OPTS='--ansi --bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:
 . ~/wrk/app/z/z.sh
 
 
-# env
-#[ -f ~/.bashrc_env ] && source ~/.bashrc_env
 
+# key-bind
 
+if [[ -t 0 ]]
+then
+  # ctrl-s off
+  stty stop  undef
+  stty start undef
+
+  #. ~/.bashrc_my_cloud9_bind
+  bind '"\C-f": forward-word'
+  bind '"\C-o": backward-word'
+
+  bind '"\C-l": forward-char'
+  bind '"\C-s": backward-char'
+
+  bind '"\C-k": kill-word'
+
+  bind '"\C-q": yank'
+
+  bind -x '"\C-b": cmd_line__bracket'
+
+  bind -x '"\C-t": cmd_line__dt'
+
+  # fzf
+  bind -x '"\C-y": fzf-file-widget'
+fi
 
