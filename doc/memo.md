@@ -2,58 +2,30 @@
 # cnf
 
 
-c9 pri bash .bashrc tidy
-
-
-## bash c9
-
-dt cmdline ins key-bind
-
-
-killring paste
-- key-bind set
-- key-bin c-u ??
-
-
-## vim
-
-nnoremap :v source .vimrc
-- case env
-
-## c9
-
-### bash  -  c9
+## c9 bash
 
 p ( pth )
 - cre
 
 
----
-
-## bash pri at home
-
-.bashrc_my, .bashrc_c9
+.bashrc_*
 - merge
+  - .bashrc_my
+  - .bashrc_c9
 
-
-## c9 pri  at home
-
-install
-- rg
-  - install by ??
-
-
-## c9
-
-### bash  -  c9
 
 clp by tmp file
 - cre
 
 
-## mac
+## c9 bash pri
 
-### fish
+install
+- rg
+  - ofc install by yum
+
+
+## mac fish
 
 ```
 fnc ( fish )
@@ -77,16 +49,14 @@ path
 ```
 
 
-### bash
+### mac bash
 
-at mac ( terminal )
-
-- key bind invalid
-  - research
-    - how ?
+key bind invalid
+- research
+  - how ?
 
 
-## pwsh
+## win pwsh
 
 ### fnc
 
@@ -96,40 +66,24 @@ history del
   - cre
 
 
-
 ---
 
-tomorrow
-
----
-
-
-## vim win ofc
-
-vim-plug install
-
-
----
 
 ## keyboard sticker
 
-### win ofc
+### ofc 2024
 
 key-normal
 - 13 x 12 mm
-  - @, shift
+  - done
 
-key-zen/han
-- 09 x 12 mm
-  - 0,
-
-key-caps
+shift-left
 - 16 x 12 mm
-  - ctl
+  - f2
 
 key-fn
 - xx x 11 mm
-  - `<win`, `win>`
+  - f2, `<win`, `win>`
 
 
 ---
@@ -140,11 +94,9 @@ key-fn
 docker learn
 
 
-
 ## tmux
 
 path def dpl del
-
 
 
 ## vim  -  priority l

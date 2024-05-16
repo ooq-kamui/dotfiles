@@ -73,6 +73,9 @@ set cursorline
 set splitbelow
 set switchbuf=usetab,newtab
 
+set encoding=utf-8
+set fileencodings=utf-8,sjis
+
 set autoindent
 set shiftwidth=2 " 4
 set tabstop=2    " 4
@@ -174,7 +177,8 @@ nnoremap :e :call Load_re()
 "nnoremap xx :e!
 
 " load re vimrc
-nnoremap :v :source ~/.vimrc
+nnoremap :v :source ~/wrk/cnf/vim/.vimrc
+"nnoremap :v :source ~/.vimrc
 
 " 
 " opn

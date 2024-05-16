@@ -160,8 +160,8 @@ function opn {
 # def
 
 $wrk               = "$home\wrk"
-$profile_dir       = "$home\Documents\PowerShell"
-$profile_file_name = "Microsoft.PowerShell_profile.ps1"
+$profile_dir       = "$wrk\cnf\sh\pwsh\ofc"
+$profile_file_name = "pwsh_profile_my.ps1"
 $profile_file_path = "$profile_dir\$profile_file_name"
 
 function cnf {
@@ -178,19 +178,13 @@ function cnf {
 
   }elseif ( $subcmd -eq 'vi' ) {
 
-    vi -p $profile_file_path $wrk\cnf\sh\pwsh\$profile_file_name
+    vi -p $profile_file_path
 
   }elseif ( $subcmd -eq 'slf' ) {
 
-    vi -p $profile_file_path $wrk\cnf\sh\pwsh\$profile_file_name
-
-  }elseif ( $subcmd -eq 'cp' ) {
-
-    # cp $home\OneDrive\Documents\PowerShell\Microsoft.PowerShell_profile.ps1 $home\wrk\cnf\sh\pwsh\
-    echo $subcmd' dev doing..'
+    vi -p $profile_file_path
 
   }else {
-
     echo $subcmd' ?'
   }
 }
