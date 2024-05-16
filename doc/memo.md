@@ -2,6 +2,18 @@
 # cnf
 
 
+## win pwsh
+
+windows terminal
+- win div
+
+
+## win pri pwsh
+
+fzf sjis path
+- confirm
+
+
 ## c9 bash
 
 p ( pth )
@@ -11,6 +23,7 @@ p ( pth )
 .bashrc_*
 - merge
   - .bashrc_my
+    - comment out
   - .bashrc_c9
 
 
@@ -21,8 +34,7 @@ clp by tmp file
 ## c9 bash pri
 
 install
-- rg
-  - ofc install by yum
+- rg by linuxbrew
 
 
 ## mac fish
@@ -67,27 +79,6 @@ history del
 
 
 ---
-
-
-## keyboard sticker
-
-### ofc 2024
-
-key-normal
-- 13 x 12 mm
-  - done
-
-shift-left
-- 16 x 12 mm
-  - f2
-
-key-fn
-- xx x 11 mm
-  - f2, `<win`, `win>`
-
-
----
-
 
 ## docker
 
