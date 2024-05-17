@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# function line
+
+line_num=$1
+
+cat - |\
+sed -n "$line_num p"
+
+
+
