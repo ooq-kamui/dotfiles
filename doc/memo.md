@@ -4,8 +4,13 @@
 
 ## win pwsh
 
-windows terminal
-- win div
+fnc memo
+- mod ref bash cmd memo
+
+
+## win vim
+
+:e tab > space
 
 
 ## win pri pwsh
@@ -14,11 +19,13 @@ fzf sjis path
 - confirm
 
 
-## c9 bash
+## bash
 
 p ( pth )
 - cre
 
+
+## c9 bash
 
 .bashrc_*
 - merge
@@ -76,6 +83,14 @@ history del
 - research
 - his del
   - cre
+
+
+---
+
+## keyboard sticker
+
+normal
+- `_`
 
 
 ---

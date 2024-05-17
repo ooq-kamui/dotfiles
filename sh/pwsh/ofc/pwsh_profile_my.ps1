@@ -41,11 +41,11 @@ Invoke-Expression (& { (zoxide init powershell | Out-String) })
 Set-Alias clr "clear"
 Set-Alias c   "clear"
 
-# Set-Alias clp "clip"
-function clp {
-
-  # clip
-}
+# Set-Alias clp "clip" # clp read only err
+# function clp {
+# 
+#   # clip
+# }
 
 Set-Alias p "pwd"
 
