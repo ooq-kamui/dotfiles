@@ -3,10 +3,9 @@
 
 if [ "$1" = "" ]
 then
-
   pwd
-else
 
+else
   readlink -f $1
 fi
 

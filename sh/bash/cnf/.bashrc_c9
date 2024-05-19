@@ -32,7 +32,8 @@ alias c='clr'
 alias src='source'
 alias c='clr'
 
-alias p='pwd'
+#alias p='pwd'
+alias p='pth'
 
 alias ls='ls -a'
 alias ll='ls -lgohA --time-style=long-iso --color=auto'
@@ -46,6 +47,7 @@ alias kk='k;k'
 alias kkk='k;k;k'
 
 alias dir='z'
+alias di='z'
 
 alias mv='mv -i'
 alias cp='cp -pi'
