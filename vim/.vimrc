@@ -173,7 +173,7 @@ nnoremap :c :call
 nnoremap a :call Save()<cr>
 
 " load re slf
-nnoremap :e :call Load_re()
+"nnoremap :e :call Load_re()
 "nnoremap xx :e!
 
 " load re vimrc
@@ -3140,10 +3140,14 @@ let g:indnt_col = 2
 
 func! V_indnt_2_space() range abort
 
-  let l:sys_cmd = '  expand   -t ' . g:indnt_col
-  "let l:sys_cmd = '  expand   -t 2'
-
-  call V_ins_sys_cmd(l:sys_cmd)
+  if Is_env('win64')
+    " todo dev
+    "let l:cmd = ':s/\t/  /g'
+    "call Exe(l:cmd)
+  else
+    let l:sys_cmd = '  expand   -t ' . g:indnt_col
+    call V_ins_sys_cmd(l:sys_cmd)
+  endif
 endfunc
 
 func! V_indnt_2_tab() range abort
@@ -3711,7 +3715,6 @@ func! V_srch_str__cr() range abort
 
   let l:cmd = l:rng . 's/\(' . l:srch_str . '\)/\1\r/g'
   call Exe(l:cmd)
-  "call Cmd(l:cmd)
 endfunc
 
 " srch __ rpl cmd

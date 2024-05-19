@@ -6,17 +6,14 @@
 
 fnc memo
 - mod ref bash cmd memo
-
-
-## win vim
-
-:e tab > space
+  - opt add
 
 
 ## win pri pwsh
 
 fzf sjis path
 - confirm
+- doc-tech
 
 
 ## bash

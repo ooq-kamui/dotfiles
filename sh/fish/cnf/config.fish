@@ -91,6 +91,7 @@ alias kk  'k;k'
 alias kkk 'k;k;k'
 
 alias dir 'z'
+alias di  'z'
 
 alias vim 'nvim -p'
 alias vi  'nvim -p'
