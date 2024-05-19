@@ -1,5 +1,6 @@
 
 $profile_dir = "$home\Documents\PowerShell"
+# $profile_dir = "$home\OneDrive\Documents\PowerShell"
 
 
 # profile env

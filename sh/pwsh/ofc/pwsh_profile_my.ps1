@@ -193,25 +193,26 @@ $prj_dir      = "$wrk/prj"
 $doc_tech_dir = "$wrk/doc-tech"
 
 function memo {
-  param( $subcmd, $ptn )
+  param( $subcmd, $ptn, $opt )
 
-  if      ( $subcmd -eq 'pw' ) {
-
-    rg -N -B 2 -w 'pw' $prj_dir/
-
-  }elseif ( $subcmd -eq 'cd' ) {
-
-    cd $doc_tech_dir/
-
-  }elseif ( $subcmd -eq 'fd' ) {
+  if      ( $subcmd -eq 'fd'  ){
 
     fd "$ptn" $prj_dir/
 
-  }elseif ( $subcmd -eq 'rg' ) {
+  }elseif ( $subcmd -eq 'rg'  ){
 
-    rg -N -A 0 "$ptn" $prj_dir/
+    rg -N -A 0 $opt -g '*.md' "$ptn" $prj_dir/
+
+  }elseif ( $subcmd -eq 'pw'  ){
+
+    rg -N -B 2 -w -g '*.md' 'pw' $prj_dir/
+
+  }elseif ( $subcmd -eq 'slf' ){
+
+    vi -p $profile_file_path
+
+  }else{
+
   }
 }
-
-
 

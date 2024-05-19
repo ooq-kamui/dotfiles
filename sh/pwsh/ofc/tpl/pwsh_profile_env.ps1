@@ -1,5 +1,6 @@
 
-$profile_dir = "$home\Documents\PowerShell"
+$profile_dir = "$home\wrk\cnf\pwsh\ofc"
+# $profile_dir = "$home\wrk\cnf\pwsh"
 
 
 # profile my

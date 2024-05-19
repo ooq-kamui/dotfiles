@@ -2,18 +2,11 @@
 # cnf
 
 
-## win pwsh
-
-fnc memo
-- mod ref bash cmd memo
-  - opt add
-
-
 ## win pri pwsh
 
 fzf sjis path
-- confirm
-- doc-tech
+- tst
+  - confirm
 
 
 ## bash
@@ -80,14 +73,6 @@ history del
 - research
 - his del
   - cre
-
-
----
-
-## keyboard sticker
-
-normal
-- `_`
 
 
 ---

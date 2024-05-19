@@ -4,11 +4,7 @@ dir=~/wrk
 
 cmdsub="$1"
 
-if   test $cmdsub = 'cd'
-then
-  psh $dir
-
-elif test $cmdsub = 'fd'
+if   test $cmdsub = 'fd'
 then
   if test -z $2
   then
@@ -19,8 +15,6 @@ then
 
 elif test $cmdsub = 'rg'
 then
-  #rg -N -g '*.md' "$2" $dir/
-
   ptn="$2"
   opt="$3"
 
@@ -36,15 +30,6 @@ then
   prj_dir=$dir/prj
 
   rg -N -w -g '*.md' 'pw' $prj_dir/ -B1 -A1
-
-elif test $cmdsub = 'vi'
-then
-  if test -z $2
-  then
-    vi -p -c ":cd $dir"
-  else
-    vi -p -c ":cd $dir" $( fd -e md '' $dir | rg $2 )
-  fi
 
 elif test $cmdsub = 'slf'
 then
