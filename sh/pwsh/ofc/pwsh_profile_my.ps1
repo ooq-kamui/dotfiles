@@ -30,9 +30,23 @@ Set-PSReadLineKeyHandler -Key Ctrl+l -Function ForwardChar
 Set-PSReadLineKeyHandler -Key Ctrl+k -Function DeleteEndOfWord
 Set-PSReadLineKeyHandler -Key Ctrl+i -Function Complete
 
+# Set-PSReadLineOption -PredictionSource HistoryAndPlugin
+# Set-PSReadLineOption -PredictionViewStyle ListView
+# Set-PSReadLineOption -Colors @{ InLinePrediction = [ConsoleColor]::Cyan }
+
 # zoxide ( z )
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
+# fzf
+
+$env:FZF_DEFAULT_OPTS = '--ansi --bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
+
+# psfzf
+
+# Import-Module PSFzf
+# Enable-PsFzfAliases
+Set-PsFzfOption -PSReadlineChordProvider       'Ctrl+y'
+Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r'
 
 # 
 # alias ( function )
@@ -105,19 +119,6 @@ function di {
 function k   { Set-Location -Path ..       ; pwd }
 function kk  { Set-Location -Path ..\..    ; pwd }
 function kkk { Set-Location -Path ..\..\.. ; pwd }
-
-
-# fzf
-
-$env:FZF_DEFAULT_OPTS = '--ansi --bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
-
-# psfzf
-
-# Import-Module PSFzf
-# Enable-PsFzfAliases
-Set-PsFzfOption -PSReadlineChordProvider       'Ctrl+y'
-Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r'
-
 
 function touch {
   param( $path )
