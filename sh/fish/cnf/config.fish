@@ -43,8 +43,8 @@ alias shutdown_start "sudo shutdown -r now"
 
 # login sh ch
 # confirm : echo $SHELL
-#alias login_sh_fish 'chsh -s /opt/homebrew/bin/fish'
-alias login_sh_bash 'chsh -s /bin/bash'
+#alias login_sh__fish 'chsh -s /opt/homebrew/bin/fish'
+alias login_sh__bash 'chsh -s /bin/bash'
 
 alias fi 'fish'
 
@@ -121,20 +121,11 @@ alias ca 'cal'
 
 alias fd 'fd --hidden --follow -I --exclude .git'
 
-
 # alias arg ( etc )
 
 alias cd_dl    "cd ~/Downloads"
 alias cd_iclud "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
 alias cd_plist "cd ~/Library/LaunchAgents"
-
-# alias arg ( cnf )
-
-#alias cd_cnf      "cd ~/doc/tech/cnf"
-#alias cd_fish_fnc "cd ~/doc/tech/cnf/mac/.config/fish/functions"
-
-#alias vi_fsh_cnf  "vi ~/.config/fish/config.fish"
-#alias vi_cnf      "vi ~/.config/fish/config.fish"
 
 # alias arg ( vim )
 

@@ -9,34 +9,8 @@ test db record count
 
 ## pwsh
 
-インテリセンス
+入力補完
 - line mlt
-- ggl : url : 
-- doc-tech write
-
-
-## mac fish
-
-```
-fnc ( fish )
-- dir cre ( mv )
-
-- ln to dir mod ( crnt )
-  - ~/sh > ~/wrk/sh ?
-
-
-sndbox under dir tidy ( fish )
-
-
-mac lcl-sh fish
-- dir mod
-
-
-path
-- add
-  - ~/wrk/sh/fish/
-    - done ?
-```
 
 
 ## c9 bash
