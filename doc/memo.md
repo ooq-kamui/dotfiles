@@ -2,13 +2,6 @@
 # cnf
 
 
-## win pri pwsh
-
-fzf sjis path
-- tst
-  - confirm
-
-
 ## bash
 
 p ( pth )
@@ -58,6 +51,13 @@ path
 ```
 
 
+## win pri pwsh
+
+fzf sjis path
+- tst
+  - confirm
+
+
 ### mac bash
 
 key bind invalid
@@ -73,6 +73,17 @@ history del
 - research
 - his del
   - cre
+
+
+## sticker win ofc
+
+- normal
+  - `tab`, `q`
+
+
+## watch
+
+`+message` install
 
 
 ---
