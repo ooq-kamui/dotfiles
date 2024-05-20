@@ -2,29 +2,17 @@
 # cnf
 
 
-## bash
+## ofc
 
-p ( pth )
-- cre
-
-
-## c9 bash
-
-.bashrc_*
-- merge
-  - .bashrc_my
-    - comment out
-  - .bashrc_c9
+test db record count
 
 
-clp by tmp file
-- cre
+## pwsh
 
-
-## c9 bash pri
-
-install
-- rg by linuxbrew
+インテリセンス
+- line mlt
+- ggl : url : 
+- doc-tech write
 
 
 ## mac fish
@@ -51,11 +39,22 @@ path
 ```
 
 
-## win pri pwsh
+## c9 bash
+
+clp by tmp file
+- cre
+
+
+## win pwsh
 
 fzf sjis path
-- tst
-  - confirm
+- try
+
+
+## c9 bash pri
+
+install
+- rg by linuxbrew
 
 
 ### mac bash
@@ -71,19 +70,22 @@ key bind invalid
 
 history del
 - research
+  - url : 
+  - doc-tech
+    - write
+
 - his del
   - cre
 
 
-## sticker win ofc
+---
 
-- normal
-  - `tab`, `q`
+priority l
 
+## c9 bash
 
-## watch
-
-`+message` install
+.bashrc_my .bashrc_c9
+- merge
 
 
 ---
