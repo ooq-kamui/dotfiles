@@ -157,7 +157,6 @@ function opn {
 }
 
 
-
 # def
 
 $wrk               = "$home\wrk"
