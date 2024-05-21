@@ -119,6 +119,7 @@ then
 
   bind '"\C-q": yank'
 
+  #bind -x '"\C-u": cmd_line__bracket'
   bind -x '"\C-b": cmd_line__bracket'
 
   bind -x '"\C-t": cmd_line__dt'
