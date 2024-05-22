@@ -2,16 +2,23 @@
 # cnf
 
 
-## pwsh fzf
-
-psfzf path full ??
-- win pri : yes
-- ggl
-
 ## win pwsh
 
-fzf sjis path
-- mod : try
+cp dir
+
+
+## code commit
+
+markdown
+- link direct
+  - [url]()
+  - try
+
+
+## code commit pri
+
+at win
+- git push
 
 
 ## c9 bash
@@ -24,13 +31,6 @@ clp by tmp file
 
 install
 - rg by linuxbrew
-
-
-### mac bash
-
-key bind invalid
-- research
-  - how ?
 
 
 ## win pwsh
@@ -47,6 +47,23 @@ history del
   - cre
 
 
+### mac bash
+
+key bind invalid
+- research
+  - how ?
+
+
+---
+
+priority m
+
+## win pwsh
+
+fzf sjis path
+- mod : try
+
+
 ---
 
 priority l
@@ -55,6 +72,12 @@ priority l
 
 .bashrc_my .bashrc_c9
 - merge
+
+
+## win pwsh fzf
+
+psfzf path full
+- research
 
 
 ---
