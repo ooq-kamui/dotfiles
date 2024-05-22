@@ -5,18 +5,19 @@
 ## pwsh fzf
 
 psfzf path full ??
+- win pri : yes
+- ggl
+
+## win pwsh
+
+fzf sjis path
+- mod : try
 
 
 ## c9 bash
 
 clp by tmp file
 - cre
-
-
-## win pwsh
-
-fzf sjis path
-- try
 
 
 ## c9 bash pri
