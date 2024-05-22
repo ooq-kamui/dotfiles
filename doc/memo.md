@@ -2,15 +2,9 @@
 # cnf
 
 
-## ofc
+## pwsh fzf
 
-test db record count
-
-
-## pwsh
-
-入力補完
-- line mlt
+psfzf path full ??
 
 
 ## c9 bash
