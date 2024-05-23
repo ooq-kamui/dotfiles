@@ -30,6 +30,7 @@ Set-PSReadLineKeyHandler -Key Ctrl+l -Function ForwardChar
 Set-PSReadLineKeyHandler -Key Ctrl+k -Function DeleteEndOfWord
 Set-PSReadLineKeyHandler -Key Ctrl+i -Function Complete
 
+# read line list view
 # Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 # Set-PSReadLineOption -PredictionViewStyle ListView
 # Set-PSReadLineOption -Colors @{ InLinePrediction = [ConsoleColor]::Cyan }
@@ -128,21 +129,14 @@ function touch {
 }
 Set-Alias to "touch"
 
-function vim {
-
-  nvim -p $args
-}
-
-function vi {
-
-  nvim -p $args
-}
+function vim { nvim -p $args }
+function vi  { nvim -p $args }
 
 
-function da  { Get-Date -Format "yyyy-MM-dd"       }
-function dt  { Get-Date -Format "yyyy-MM-dd.HH:mm" }
-function tm  { Get-Date -Format "HH:mm"            }
-# function ts  { Get-Date -Format "yyyy-MM-dd.HH:mm:??" }
+function da { Get-Date -Format "yyyy-MM-dd"       }
+function dt { Get-Date -Format "yyyy-MM-dd.HH:mm" }
+function tm { Get-Date -Format "HH:mm"            }
+# function ts { Get-Date -Format "yyyy-MM-dd.HH:mm:??" }
 
 
 function opn {
@@ -150,7 +144,8 @@ function opn {
 
   if ( $path -eq $null ) {
 
-    $path = ( Get-Location )
+    # $path = ( Get-Location )
+    $path = Get-Location
   }
 
   explorer $path
@@ -174,7 +169,9 @@ function cnf {
 
   }elseif ( $subcmd -eq 'cd' ) {
 
-    cd $profile_dir
+    # cd $profile_dir
+    $profile_env_dir = "$home\Documents\PowerShell"
+    cd $profile_env_dir
 
   }elseif ( $subcmd -eq 'vi' ) {
 
