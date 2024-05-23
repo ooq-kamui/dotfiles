@@ -2,17 +2,17 @@
 # cnf
 
 
-## win pwsh
+## book read
 
-cp dir
+git lab 
 
 
-## code commit
+## pwsh
 
-markdown
-- link direct
-  - [url]()
-  - try
+rm -i
+- confirm
+  - file one
+- fnc $args
 
 
 ## code commit pri
