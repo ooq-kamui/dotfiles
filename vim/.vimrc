@@ -76,8 +76,8 @@ set switchbuf=usetab,newtab
 set encoding=utf-8
 set fileencodings=utf-8,sjis
 
-set mouse=n
-map <LeftMouse> <Nop>
+"set mouse=n
+"map <LeftMouse> <Nop>
 
 set autoindent
 set shiftwidth=2 " 4

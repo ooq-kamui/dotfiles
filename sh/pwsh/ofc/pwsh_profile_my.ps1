@@ -138,6 +138,8 @@ function dt { Get-Date -Format "yyyy-MM-dd.HH:mm" }
 function tm { Get-Date -Format "HH:mm"            }
 # function ts { Get-Date -Format "yyyy-MM-dd.HH:mm:??" }
 
+function ggl { start chrome }
+
 
 function opn {
   param( $path )
