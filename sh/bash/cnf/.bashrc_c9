@@ -16,6 +16,16 @@ cmd_line__bracket(){
   READLINE_POINT=2
 }
 
+cmd_line__clp_by_tmp(){
+
+  tmp_dir=~/wrk/tmp
+  tmp_file_path=$tmp_dir/tmp.txt
+
+  clp_str=$( cat $tmp_file_path )
+
+  READLINE_LINE=$READLINE_LINE$clp_str
+}
+
 
 #export LSCOLORS=fxgxcxdxexegedabagacad
 export LSCOLORS=fxgxcxdxxxegedabagacad
@@ -68,6 +78,8 @@ alias dt='date +"%Y-%m-%d.%H:%M"'
 alias ts='date +"%Y-%m-%d.%H:%M:%S"'
 alias tm='date +"%H:%M"'
 
+alias clp='clp_by_tmp'
+
 alias srt='sort'
 
 alias tbl='column -t'
@@ -117,7 +129,8 @@ then
 
   bind '"\C-k": kill-word'
 
-  bind '"\C-q": yank'
+  #bind '"\C-q": yank'
+  bind -x '"\C-q": cmd_line__clp_by_tmp'
 
   #bind -x '"\C-u": cmd_line__bracket'
   bind -x '"\C-b": cmd_line__bracket'

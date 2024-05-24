@@ -2,17 +2,15 @@
 # cnf
 
 
-## book read
+## book read pri
 
 git lab 
 
 
-## pwsh
+## key sticker
 
-rm -i
-- confirm
-  - file one
-- fnc $args
+9 mm x 12 mm
+- del
 
 
 ## code commit pri
@@ -21,19 +19,18 @@ at win
 - git push
 
 
-## c9 bash
-
-clp by tmp file
-- cre
-
-
 ## c9 bash pri
 
 install
-- rg by linuxbrew
+- rg by brew ? or linuxbrew
 
 
 ## win pwsh
+
+### alias or fnc
+
+ggl
+
 
 ### fnc
 
@@ -47,7 +44,7 @@ history del
   - cre
 
 
-### mac bash
+### mac bash pri
 
 key bind invalid
 - research
@@ -58,9 +55,13 @@ key bind invalid
 
 priority m
 
-## win pwsh
+## win pwsh fzf
 
-fzf sjis path
+psfzf path full
+- research
+
+
+psfzf sjis path
 - mod : try
 
 
@@ -72,12 +73,6 @@ priority l
 
 .bashrc_my .bashrc_c9
 - merge
-
-
-## win pwsh fzf
-
-psfzf path full
-- research
 
 
 ---
