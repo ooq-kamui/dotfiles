@@ -2,49 +2,27 @@
 # cnf
 
 
-## book read pri
+## win gitbash pri
 
-git lab 
-
-
-## key sticker
-
-9 mm x 12 mm
-- del
+.bashrc_my .bashrc_gitbash
+- merge
 
 
 ## code commit pri
 
-at win
+at win / mac
 - git push
 
 
 ## c9 bash pri
 
-install
-- rg by brew ? or linuxbrew
+rg
+- install
+  - by brew ?
+  - ? or linuxbrew
 
 
-## win pwsh
-
-### alias or fnc
-
-ggl
-
-
-### fnc
-
-history del
-- research
-  - url : 
-  - doc-tech
-    - write
-
-- his del
-  - cre
-
-
-### mac bash pri
+## mac bash pri
 
 key bind invalid
 - research
@@ -53,7 +31,12 @@ key bind invalid
 
 ---
 
-priority m
+###### priority m
+
+## key sticker ofc
+
+paste
+
 
 ## win pwsh fzf
 
@@ -63,16 +46,6 @@ psfzf path full
 
 psfzf sjis path
 - mod : try
-
-
----
-
-priority l
-
-## c9 bash
-
-.bashrc_my .bashrc_c9
-- merge
 
 
 ---
