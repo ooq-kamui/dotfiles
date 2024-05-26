@@ -2,30 +2,27 @@
 # cnf
 
 
-## win gitbash pri
+## amp code commit
 
-zoxide path setting
+git push
+- at mac
+  - research ggl
 
-
-## code commit pri
-
-at win / mac
-- git push
-
-
-## c9 bash pri
-
-rg
-- install
-  - by brew ?
-  - ? or linuxbrew
+  - iam ssh setting
+    - https://dev.classmethod.jp/articles/push_to_codecommit/
+    - https://blog.manabusakai.com/2015/07/git-push-to-codecommit/
+    - https://zenn.dev/fdnsy/articles/4098c9a9d6a652
 
 
-## mac bash pri
+- doc-tech write
 
-key bind invalid
-- research
-  - how ?
+
+- at win
+
+
+## amp api
+
+add api try
 
 
 ---
@@ -37,6 +34,12 @@ key bind invalid
 paste
 
 
+## win gitbash
+
+zoxide path setting
+- pwsh research
+
+
 ## win pwsh fzf
 
 psfzf path full
@@ -45,6 +48,19 @@ psfzf path full
 
 psfzf sjis path
 - mod : try
+
+
+## amp c9 pri
+
+fish install
+- `brew install fish`
+
+
+## mac bash pri
+
+key bind invalid
+- research
+  - how ?
 
 
 ---
