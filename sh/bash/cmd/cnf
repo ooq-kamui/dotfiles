@@ -5,7 +5,8 @@ cnf_bash_dir=~/wrk/cnf/sh/bash
 cmd_dir=$cnf_bash_dir/cmd
 
 cnf_dir=$cnf_bash_dir/cnf
-cnf_file_path=$cnf_dir/.bashrc_c9
+cnf_file_path_my=$cnf_dir/.bashrc_my
+cnf_file_path_c9=$cnf_dir/.bashrc_c9
 
 cmdsub="$1"
 
@@ -15,11 +16,12 @@ then
 
 elif test $cmdsub = 'vi'
 then
-  vi -p $cnf_file_path
+  vi -p $cnf_file_path_my $cnf_file_path_c9
 
 elif test $cmdsub = 'src'
 then
-  src $cnf_file_path
+  #src $cnf_file_path
+  echo ". ~/.bashrc"
 
 elif test $cmdsub = 'slf'
 then
