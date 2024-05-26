@@ -1,4 +1,7 @@
 
+# chcp.com 65001
+chcp 65001
+
 function prompt {
   # "PS " + $( get-location ) + "> "
   "_ "
@@ -132,15 +135,6 @@ Set-Alias to "touch"
 function vim { nvim -p $args }
 function vi  { nvim -p $args }
 
-
-function da { Get-Date -Format "yyyy-MM-dd"       }
-function dt { Get-Date -Format "yyyy-MM-dd.HH:mm" }
-function tm { Get-Date -Format "HH:mm"            }
-# function ts { Get-Date -Format "yyyy-MM-dd.HH:mm:??" }
-
-function ggl { start chrome }
-
-
 function opn {
   param( $path )
 
@@ -152,6 +146,16 @@ function opn {
 
   explorer $path
 }
+
+function da { Get-Date -Format "yyyy-MM-dd"       }
+function dt { Get-Date -Format "yyyy-MM-dd.HH:mm" }
+function tm { Get-Date -Format "HH:mm"            }
+# function ts { Get-Date -Format "yyyy-MM-dd.HH:mm:??" }
+
+# gcal
+# $ENV:Path += ";$home\wrk\app\gcal-3.01-1-bin\bin"
+
+function ggl { start chrome }
 
 
 # def
@@ -173,11 +177,11 @@ function cnf {
   }elseif ( $subcmd -eq 'cd' ) {
 
     if ( Test-Path "$home\OneDrive\Documents\PowerShell" ) {
+
       $profile_env_dir = "$home\OneDrive\Documents\PowerShell"
     }else {
       $profile_env_dir = "$home\Documents\PowerShell"
     }
-
     cd $profile_env_dir
 
   }elseif ( $subcmd -eq 'vi' ) {
@@ -219,4 +223,6 @@ function memo {
 
   }
 }
+
+
 

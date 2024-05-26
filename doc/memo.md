@@ -4,8 +4,7 @@
 
 ## win gitbash pri
 
-.bashrc_my .bashrc_gitbash
-- merge
+zoxide path setting
 
 
 ## code commit pri

@@ -43,7 +43,6 @@ alias p='pth'
 
 alias ls='ls -a'
 alias ll='ls -lgohA --time-style=long-iso --color=auto'
-# alias ll='ls -lgohAGD "%Y-%m-%d %H:%M"'
 
 alias lf='lrf'
 alias ld='lrd'
