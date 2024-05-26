@@ -106,15 +106,19 @@ export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
 # fzf
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+test -f ~/.fzf.bash && source ~/.fzf.bash
 
 #export FZF_DEFAULT_COMMAND='fd --type f --color=always --hidden --follow -I --exclude .git'
 export FZF_DEFAULT_OPTS='--ansi --bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
 
 # z
 
-. ~/wrk/app/z/z.sh
+test -f ~/wrk/app/z/z.sh && . ~/wrk/app/z/z.sh
 
+# cargo
+
+# [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
 # key-bind
 
@@ -146,7 +150,6 @@ then
   #bind -x '"\C-r": fzf-history-widget'
 fi
 
-# [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
 
 

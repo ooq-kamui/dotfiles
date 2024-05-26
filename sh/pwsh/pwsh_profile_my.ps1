@@ -157,7 +157,8 @@ function opn {
 # def
 
 $wrk               = "$home\wrk"
-$profile_dir       = "$wrk\cnf\sh\pwsh\ofc"
+# $profile_dir       = "$wrk\cnf\sh\pwsh\ofc"
+$profile_dir       = "$wrk\cnf\sh\pwsh"
 $profile_file_name = "pwsh_profile_my.ps1"
 $profile_file_path = "$profile_dir\$profile_file_name"
 
@@ -171,8 +172,12 @@ function cnf {
 
   }elseif ( $subcmd -eq 'cd' ) {
 
-    # cd $profile_dir
-    $profile_env_dir = "$home\Documents\PowerShell"
+    if ( Test-Path "$home\OneDrive\Documents\PowerShell" ) {
+      $profile_env_dir = "$home\OneDrive\Documents\PowerShell"
+    }else {
+      $profile_env_dir = "$home\Documents\PowerShell"
+    }
+
     cd $profile_env_dir
 
   }elseif ( $subcmd -eq 'vi' ) {
