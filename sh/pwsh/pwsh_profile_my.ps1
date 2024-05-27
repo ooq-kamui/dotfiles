@@ -1,5 +1,4 @@
 
-# chcp.com 65001
 chcp 65001
 
 function prompt {
@@ -158,7 +157,9 @@ function tm { Get-Date -Format "HH:mm"            }
 # function ts { Get-Date -Format "yyyy-MM-dd.HH:mm:??" }
 
 # gcal
-# $ENV:Path += ";$home\wrk\app\gcal-3.01-1-bin\bin"
+$ENV:Path += ";C:\Program Files (x86)\GnuWin32\bin"
+Set-Alias cal "gcal"
+Set-Alias ca  "gcal"
 
 function ggl { start chrome }
 

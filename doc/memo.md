@@ -2,16 +2,6 @@
 # cnf
 
 
-## win gitbash vim pri
-
-fzf rg, file, buffer try
-
-
-## amp api pri
-
-add api try
-
-
 ## amp code commit pri
 
 git push
@@ -24,14 +14,20 @@ git push
 - doc-tech write
 
 
-## win gitbash
+## amp c9 pri
 
-fzf-file-widget setting
+fish install
+- `brew install fish`
 
 
 ## win gitbash pri
 
-zoxide path setting
+fzf dir separator dpl
+
+
+## amp api pri
+
+add api try
 
 
 ## win pwsh
@@ -48,27 +44,18 @@ history del
   - cre
 
 
-## mac bash pri
+---
 
-key bind invalid
-- research
-  - how ?
+###### tomorrow
 
+## win pwsh vim ofc
 
-## amp c9 pri
-
-fish install
-- `brew install fish`
+syntax dir ln
 
 
 ---
 
 ###### priority m
-
-## win pwsh gcal pri
-
-install
-
 
 ## win pwsh fzf
 
