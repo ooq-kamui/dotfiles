@@ -13,14 +13,16 @@ export LC_MONETARY="ja_JP.utf8"
 export LC_MESSAGES="ja_JP.utf8"
 
 
-#PATH=$PATH:~/wrk/app/gcal-3.01-1-bin/bin
-
-
 alias clp_win='clip'
 alias clp='clp_win'
 
-#alias cal='gcal $(date +"%m %Y" -d "-1 month");gcal;gcal $(date +"%m %Y" -d "+1 month")'
-#alias ca='cal'
+# gcal
+PATH="$PATH:/c/Program Files (x86)/GnuWin32/bin"
+alias cal='gcal $(date +"%m %Y" -d "-1 month");gcal;gcal $(date +"%m %Y" -d "+1 month")'
+alias ca='cal'
+
+# rg
+export RIPGREP_CONFIG_PATH=$HOME/wrk/cnf/sh/bash/cnf/.ripgreprc_gitbash
 
 
 # zoxide ( z )
