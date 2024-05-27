@@ -1,7 +1,20 @@
 
 # win command output lang code
-#chcp.com 65001
-chcp 65001
+chcp.com 65001
+
+export LC_ALL=ja_JP.utf8
+export LANG=ja_JP.utf8
+export LANGUAGE=ja_JP.utf8
+export LC_CTYPE="ja_JP.utf8"
+export LC_NUMERIC="ja_JP.utf8"
+export LC_TIME="ja_JP.utf8"
+export LC_COLLATE="ja_JP.utf8"
+export LC_MONETARY="ja_JP.utf8"
+export LC_MESSAGES="ja_JP.utf8"
+
+
+#PATH=$PATH:~/wrk/app/gcal-3.01-1-bin/bin
+
 
 alias clp_win='clip'
 alias clp='clp_win'
@@ -10,9 +23,8 @@ alias clp='clp_win'
 #alias ca='cal'
 
 
-#alias fzf='start fzf'
-#alias fzf='winpty fzf'
-#alias fzf='fzf-winpty'
+# zoxide ( z )
+eval "$(zoxide init bash)"
 
 
 

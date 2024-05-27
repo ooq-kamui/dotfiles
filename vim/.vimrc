@@ -4710,6 +4710,10 @@ elseif Is_env('win64')    " pwsh ( for fzf )
   let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
   let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
   set shellquote= shellxquote=
+
+else                      " gitbash ( for fzf )
+  "echo "gitbash"
+  set shell=bash
 endif
 
 

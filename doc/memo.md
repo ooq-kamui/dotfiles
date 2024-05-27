@@ -2,42 +2,72 @@
 # cnf
 
 
-## amp code commit
+## win gitbash vim pri
+
+fzf rg, file, buffer try
+
+
+## amp api pri
+
+add api try
+
+
+## amp code commit pri
 
 git push
-- at mac
-  - research ggl
+- at mac pri
+  - iam https dl
+  - setting
 
-  - iam ssh setting
-    - https://dev.classmethod.jp/articles/push_to_codecommit/
-    - https://blog.manabusakai.com/2015/07/git-push-to-codecommit/
-    - https://zenn.dev/fdnsy/articles/4098c9a9d6a652
-
+- at win pri
 
 - doc-tech write
 
 
-- at win
+## win gitbash
+
+fzf-file-widget setting
 
 
-## amp api
+## win gitbash pri
 
-add api try
+zoxide path setting
+
+
+## win pwsh
+
+### fnc
+
+history del
+- research
+  - url : 
+  - doc-tech
+    - write
+
+- his del
+  - cre
+
+
+## mac bash pri
+
+key bind invalid
+- research
+  - how ?
+
+
+## amp c9 pri
+
+fish install
+- `brew install fish`
 
 
 ---
 
 ###### priority m
 
-## key sticker ofc
+## win pwsh gcal pri
 
-paste
-
-
-## win gitbash
-
-zoxide path setting
-- pwsh research
+install
 
 
 ## win pwsh fzf
@@ -50,17 +80,10 @@ psfzf sjis path
 - mod : try
 
 
-## amp c9 pri
-
-fish install
-- `brew install fish`
-
-
 ## mac bash pri
 
 key bind invalid
-- research
-  - how ?
+- research why ?
 
 
 ---

@@ -113,8 +113,13 @@ function lr {
   fd          '' $path
 }
 
-# function dir {
 function di {
+  param( $path )
+
+  z $path
+}
+
+function d {
   param( $path )
 
   z $path
