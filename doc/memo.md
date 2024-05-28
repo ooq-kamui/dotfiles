@@ -2,14 +2,10 @@
 # cnf
 
 
----
+## win gitbash
 
-###### home
-
-## amp c9 pri
-
-fish install
-- `brew install fish`
+vim fzf rg
+- .vimrc_gitbash
 
 
 ## amp code commit
@@ -18,6 +14,12 @@ git push
 - at mac pri
   - iam https dl
   - setting
+
+
+## amp c9 pri
+
+fish install
+- `brew install fish`
 
 
 ## amp
