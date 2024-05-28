@@ -2,26 +2,23 @@
 # cnf
 
 
-## win gitbash
-
-fzf dir separator dpl
-- pri
-- ofc confirm
-
-- fd ?
-  - research
-
-
 ---
 
-###### tomorrow
+###### home
 
-## win pwsh vim syntax ofc
+## amp c9 pri
 
-syntax dir ln
+fish install
+- `brew install fish`
 
 
----
+## amp code commit
+
+git push
+- at mac pri
+  - iam https dl
+  - setting
+
 
 ## amp
 
@@ -36,31 +33,6 @@ holo
 ---
 
 ###### priority m
-
-## amp c9 pri
-
-fish install
-- `brew install fish`
-
-
-## win pwsh fzf
-
-psfzf path full
-- path r
-- research
-
-
-psfzf path sjis
-- mod
-
-
-## amp code commit
-
-git push
-- at mac pri
-  - iam https dl
-  - setting
-
 
 ## mac bash pri
 

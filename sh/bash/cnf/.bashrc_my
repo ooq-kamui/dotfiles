@@ -94,14 +94,15 @@ alias ca='cal'
 
 # fd
 
-alias fd='fd --hidden --follow -I --exclude .git'
+alias fd='fd --hidden -I --exclude .git --follow'
 
 # rg ( ripgrep )
 
 alias rg='rg -nS'
 #alias rg='rg -nS --path-separator "//"'
 
-export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
+# export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
+export RIPGREP_CONFIG_PATH=$HOME/wrk/cnf/sh/rg/.ripgreprc
 
 # fzf
 

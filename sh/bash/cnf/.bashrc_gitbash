@@ -21,9 +21,16 @@ PATH="$PATH:/c/Program Files (x86)/GnuWin32/bin"
 alias cal='gcal $(date +"%m %Y" -d "-1 month");gcal;gcal $(date +"%m %Y" -d "+1 month")'
 alias ca='cal'
 
-# rg
-export RIPGREP_CONFIG_PATH=$HOME/wrk/cnf/sh/bash/cnf/.ripgreprc_gitbash
+# fd
+#alias fd='fd --path-separator=/'
 
+# rg
+# export RIPGREP_CONFIG_PATH=$HOME/wrk/cnf/sh/bash/cnf/.ripgreprc_gitbash
+export RIPGREP_CONFIG_PATH=$HOME/wrk/cnf/sh/rg/.ripgreprc_gitbash
+
+# fzf
+export FZF_DEFAULT_COMMAND='fd --hidden -I --exclude .git --follow --color=always --path-separator=/'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # zoxide ( z )
 eval "$(zoxide init bash)"

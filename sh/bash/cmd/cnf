@@ -13,7 +13,7 @@ cmdsub="$1"
 if   test $cmdsub = 'cd'
 then
   #cd $cnf_dir
-  echo $cd cnf_dir
+  echo "cd $cnf_dir"
 
 elif test $cmdsub = 'vi'
 then

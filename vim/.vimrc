@@ -181,7 +181,6 @@ nnoremap a :call Save()<cr>
 
 " load re vimrc
 nnoremap :v :source ~/wrk/cnf/vim/.vimrc
-"nnoremap :v :source ~/.vimrc
 
 " 
 " opn
@@ -4697,13 +4696,17 @@ endfunc
 
 " shell
 
-set shell=fish            " default ( mac )
+set shell=fish         " default
 
-if     Is_env('linux')    " cloud9
+if     Is_env('mac')   " mac
+
+  set shell=fish
+
+elseif Is_env('linux') " cloud9
 
   set shell=bash
 
-elseif Is_env('win64')    " pwsh ( for fzf )
+elseif Is_env('win64') " pwsh ( for fzf )
 
   let &shell = Is_env('win32') ? 'powershell' : 'pwsh'
   let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
@@ -4711,9 +4714,11 @@ elseif Is_env('win64')    " pwsh ( for fzf )
   let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
   set shellquote= shellxquote=
 
-else                      " gitbash ( for fzf )
+else                   " gitbash ( for fzf )
   "echo "gitbash"
   set shell=bash
+
+  source ~/wrk/cnf/vim/.vimrc_gitbash
 endif
 
 
