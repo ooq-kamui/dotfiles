@@ -2,24 +2,24 @@
 # cnf
 
 
-## win gitbash
-
-vim fzf rg
-- .vimrc_gitbash
-
-
-## amp code commit
-
-git push
-- at mac pri
-  - iam https dl
-  - setting
-
-
 ## amp c9 pri
 
 fish install
 - `brew install fish`
+
+- doc-tech write
+
+
+## gitbash vim
+
+opn_app ( gs )
+- err
+
+
+read
+- err
+  - lf
+  - etc
 
 
 ## amp
@@ -34,7 +34,28 @@ holo
 
 ---
 
+###### tomorrow
+
+## c9 ofc
+
+storage up
+
+
+## doc write ofc
+
+app > prj
+
+
+---
+
 ###### priority m
+
+## win gitbash
+
+vim fzf rg
+- refactoring
+  - def mv > .vimrc_gitbash
+
 
 ## mac bash pri
 
