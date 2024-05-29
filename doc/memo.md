@@ -8,6 +8,12 @@ fish install
 - `brew install fish`
 
 - doc-tech write
+  - c9
+
+
+c9 , brew jitai install 
+- doc-tech write
+  - confirm
 
 
 ## gitbash vim
