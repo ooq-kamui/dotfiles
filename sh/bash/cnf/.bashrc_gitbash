@@ -33,10 +33,12 @@ export RIPGREP_CONFIG_PATH=$HOME/wrk/cnf/sh/rg/.ripgreprc_gitbash
 
 export FZF_DEFAULT_COMMAND="fd --hidden -I --exclude .git --follow --color=always"
 
-if test -d "~/OneDrive"
+if test -d "$HOME/OneDrive"
 then
+  #echo "pri"
   fd_path_separator=//
 else
+  #echo "ofc"
   fd_path_separator=/
 fi
 export FZF_DEFAULT_COMMAND="$FZF_DEFAULT_COMMAND --path-separator=$fd_path_separator"
