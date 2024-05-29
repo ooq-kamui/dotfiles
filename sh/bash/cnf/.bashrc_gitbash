@@ -13,6 +13,8 @@ export LC_MONETARY="ja_JP.utf8"
 export LC_MESSAGES="ja_JP.utf8"
 
 
+#alias
+
 alias clp_win='clip'
 alias clp='clp_win'
 
@@ -25,11 +27,20 @@ alias ca='cal'
 #alias fd='fd --path-separator=/'
 
 # rg
-# export RIPGREP_CONFIG_PATH=$HOME/wrk/cnf/sh/bash/cnf/.ripgreprc_gitbash
 export RIPGREP_CONFIG_PATH=$HOME/wrk/cnf/sh/rg/.ripgreprc_gitbash
 
 # fzf
-export FZF_DEFAULT_COMMAND='fd --hidden -I --exclude .git --follow --color=always --path-separator=//'
+
+export FZF_DEFAULT_COMMAND="fd --hidden -I --exclude .git --follow --color=always"
+
+if test -d "~/OneDrive"
+then
+  fd_path_separator=//
+else
+  fd_path_separator=/
+fi
+export FZF_DEFAULT_COMMAND="$FZF_DEFAULT_COMMAND --path-separator=$fd_path_separator"
+
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # zoxide ( z )

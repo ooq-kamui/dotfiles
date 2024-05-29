@@ -547,7 +547,6 @@ nnoremap Y /<cr>N
 
 " srch cmd
 nnoremap <leader>k /
-"nnoremap <leader>i /
 
 " srch forward
 nnoremap n     :call Srch('f')<cr>
@@ -594,12 +593,8 @@ nnoremap :s :Rpl
 " grep ( fzf )
 nnoremap <leader>o :Rg <cr>
 
-" grep ( fzf run rg )
-"nnoremap <leader>o :FzfRunRg <c-r>/
-
 " grep buf ( fzf )
 nnoremap <leader>i :call N_grep_buf()<cr>
-"nnoremap <leader>k :call N_grep_buf()<cr>
 
 " grep [rg]   ( read )
 nnoremap :g :GrepStr <c-r>/
@@ -1132,13 +1127,6 @@ vnoremap <leader>i :call V_grep_buf()<cr>
 " grep ( fzf )
 vnoremap <leader>o "zy:Rg <c-r>z<cr>
 
-" grep ( fzf )  -  ( win )
-" try
-"vnoremap <leader>o "zy:FzfRunRg <c-r>z
-
-" grep func def ( fzf )
-"vnoremap <leader>xx "zy:Rg <c-r>z<cr>func
-
 " grep [rg]   ( read )
 vnoremap :g "zy:GrepStr <c-r>z
 vnoremap :G "zy:GrepWrd <c-r>z
@@ -1574,6 +1562,8 @@ func! Vim_plug_path() abort
     let l:vim_plug_dir = '~/appdata/local/nvim-data/site'
   elseif Is_env('linux')
     let l:vim_plug_dir = '~/.vim'
+  elseif Is_env('win32unix')
+    let l:vim_plug_dir = '~/.vim'
   else
     let l:vim_plug_dir = '~/.vim'
   endif
@@ -1587,10 +1577,7 @@ func! Is_vim_plug_installed() abort
   let l:vim_plug_path = Vim_plug_path()
 
   let l:ret = ! empty(glob(l:vim_plug_path))
-
-  if ! Is_env('mac')
-    "echo 'vim_plug installed : ' . l:ret
-  endif
+  "echo 'vim_plug installed : ' . l:ret
 
   return l:ret
 endfunc
@@ -1668,18 +1655,18 @@ if Is_env('mac')
   let g:fzf_rg_opt .= " -g '!.git'"
 endif
 
-command! -bang -nargs=* Rg
-\ call fzf#vim#grep(
-\   'rg ' . g:fzf_rg_opt
-\   . ' -- '.shellescape(escape(<q-args>, '().$')),
-\   0,
-\   fzf#vim#with_preview(
-\     {'options': '--exact --delimiter : --nth 3..'},
-\     'up:70%:hidden',
-\     '/'
-\   ),
-\   <bang>1
-\ )
+"command! -bang -nargs=* Rg
+"\ call fzf#vim#grep(
+"\   'rg ' . g:fzf_rg_opt
+"\   . ' -- '.shellescape(escape(<q-args>, '().$')),
+"\   0,
+"\   fzf#vim#with_preview(
+"\     {'options': '--exact --delimiter : --nth 3..'},
+"\     'up:70%:hidden',
+"\     '/'
+"\   ),
+"\   <bang>1
+"\ )
 
 " grep buf
 func! N_grep_buf() abort
@@ -2302,6 +2289,10 @@ func! Cursor_filepath() abort
     let l:str = expand('<cfile>')
 
   elseif Is_env('win64')
+
+    let l:str = Line_str()
+
+  elseif Is_env('win32unix')
 
     let l:str = Line_str()
 
@@ -4598,7 +4589,7 @@ func! Rg_cmd(opt, p_str) abort
   else
     let l:opt = a:opt
   endif
-  
+
   if Is_str_emp(a:p_str)
     let l:str = @/
   else
@@ -4694,7 +4685,7 @@ func! Memo_txt() abort
 endfunc
 
 
-" shell
+" shell & .vimrc_env
 
 set shell=fish         " default
 
@@ -4714,11 +4705,14 @@ elseif Is_env('win64') " pwsh ( for fzf )
   let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
   set shellquote= shellxquote=
 
-else                   " gitbash ( for fzf )
+elseif Is_env('win32unix') " gitbash ( for fzf )
   "echo "gitbash"
   set shell=bash
 
   source ~/wrk/cnf/vim/.vimrc_gitbash
+
+else
+  echo "is env else"
 endif
 
 
