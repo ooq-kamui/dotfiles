@@ -16,7 +16,7 @@ then
   #READLINE_LINE="$READLINE_LINE $clp_str"
 
   clp_str=$( cat $tmp_file_path )
-  echo $clp_str
+  echo "$clp_str"
 
 elif test $cmdsub = 'echo'
 then
