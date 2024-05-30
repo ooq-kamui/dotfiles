@@ -4104,6 +4104,10 @@ func! Opn_app(path) abort
 
     let l:cmd_sys = 'start'
 
+  elseif Is_env('win32unix')
+
+    let l:cmd_sys = 'start'
+
   else
     return
   endif

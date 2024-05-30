@@ -2,6 +2,16 @@
 # cnf
 
 
+## gitbash vim
+
+read
+- err
+  - lf
+  - etc
+
+
+---
+
 ## amp c9 pri
 
 fish install
@@ -16,16 +26,14 @@ c9 , brew jitai install
   - confirm
 
 
-## gitbash vim
+## fish pri
 
-opn_app ( gs )
-- err
+config.fish div
+- env
+  - m1 ( base )
+  - c9
 
-
-read
-- err
-  - lf
-  - etc
+  - env at ~/.config/fish/
 
 
 ## amp
@@ -38,30 +46,16 @@ holo
 - hosting
 
 
----
-
-###### tomorrow
-
-## c9 ofc
-
-storage up
-
-
-## doc write ofc
-
-app > prj
-
-
----
-
-###### priority m
-
 ## win gitbash
 
 vim fzf rg
 - refactoring
   - def mv > .vimrc_gitbash
 
+
+---
+
+###### priority m
 
 ## mac bash pri
 
