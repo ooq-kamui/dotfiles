@@ -10,22 +10,6 @@ read
   - etc
 
 
----
-
-## amp c9 pri
-
-fish install
-- `brew install fish`
-
-- doc-tech write
-  - c9
-
-
-c9 , brew jitai install 
-- doc-tech write
-  - confirm
-
-
 ## fish pri
 
 config.fish div
