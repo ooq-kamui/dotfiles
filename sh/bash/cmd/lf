@@ -1,0 +1,6 @@
+#!/bin/bash
+
+fd --type f --hidden '' $1
+
+
+
