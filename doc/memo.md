@@ -8,6 +8,10 @@ z install ?
 - path setting ?
 
 
+vi
+- nvim > vim
+
+
 vim fzf.vim install
 - vimplug install ?
 
@@ -22,11 +26,17 @@ holo
 - hosting
 
 
-## win gitbash
+## win gitbash vim
 
-vim fzf rg
+fzf.vim rg
 - refactoring
-  - def mv > .vimrc_gitbash
+  - rg memo del
+
+
+## win gitbash vim
+
+- cmd alias
+  - research
 
 
 ---
