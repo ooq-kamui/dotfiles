@@ -10,16 +10,6 @@ read
   - etc
 
 
-## fish pri
-
-config.fish div
-- env
-  - m1 ( base )
-  - c9
-
-  - env at ~/.config/fish/
-
-
 ## amp
 
 fe api
