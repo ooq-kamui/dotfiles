@@ -2,12 +2,14 @@
 # cnf
 
 
-## gitbash vim
+## c9 pri fish
 
-read
-- err
-  - lf
-  - etc
+z install ?
+- path setting ?
+
+
+vim fzf.vim install
+- vimplug install ?
 
 
 ## amp
