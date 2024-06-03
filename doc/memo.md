@@ -2,6 +2,13 @@
 # cnf
 
 
+## vim
+
+def
+- nnoremap |
+  - research
+
+
 ## amp
 
 fe api

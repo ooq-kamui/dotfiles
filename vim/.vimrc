@@ -447,6 +447,7 @@ nnoremap * :call Ins_da()<cr>
 
 " ins date time
 nnoremap \ :call Ins_dt()<cr>
+"nnoremap | :call Ins_dt()<cr>
 
 " ins day of week
 "nnoremap xx :call Ins_week()<cr>
@@ -713,6 +714,7 @@ nnoremap ~ <esc>
 nnoremap ^ <esc>
 nnoremap / <esc>
 "nnoremap \ <esc>
+"nnoremap | <esc>
 nnoremap ? <esc>
 
 "nnoremap ! <esc>
