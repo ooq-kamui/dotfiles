@@ -2,20 +2,6 @@
 # cnf
 
 
-## c9 pri fish
-
-z install ?
-- path setting ?
-
-
-vi
-- nvim > vim
-
-
-vim fzf.vim install
-- vimplug install ?
-
-
 ## amp
 
 fe api
