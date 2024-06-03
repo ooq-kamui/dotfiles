@@ -106,7 +106,6 @@ export RIPGREP_CONFIG_PATH=$HOME/wrk/cnf/sh/rg/.ripgreprc
 
 # fzf
 
-#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 test -f ~/.fzf.bash && source ~/.fzf.bash
 
 #export FZF_DEFAULT_COMMAND='fd --type f --color=always --hidden --follow -I --exclude .git'

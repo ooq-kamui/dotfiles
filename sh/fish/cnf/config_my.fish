@@ -20,20 +20,21 @@ set -x PATH /opt/homebrew/var/nodebrew/current/bin $PATH
 
 set -x NODEBREW_ROOT /opt/homebrew/var/nodebrew
 
-
 # ripgrep ( rg )
 
 set -x RIPGREP_CONFIG_PATH ~/.ripgreprc
-
 
 # fzf
 
 set -x FZF_DEFAULT_COMMAND ( fzf_fd_def )
 set -x FZF_DEFAULT_OPTS    '--ansi --bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
-set -x FZF_CTRL_T_COMMAND  ( echo $FZF_DEFAULT_COMMAND )
+#set -x FZF_CTRL_T_COMMAND  ( echo $FZF_DEFAULT_COMMAND )
+set -x FZF_CTRL_T_COMMAND  $FZF_DEFAULT_COMMAND
 #set -x FZF_CTRL_T_OPTS
 #set -x FZF_CTRL_R_OPTS
 
+# z ( bash )
+#test -f ~/wrk/app/z/z.sh && . ~/wrk/app/z/z.sh
 
 # 
 # alias
@@ -95,7 +96,6 @@ alias di  'z'
 
 alias vim 'nvim -p'
 alias vi  'nvim -p'
-alias vif 'nvim -p ( fzf )'
 
 set -x LC_TIME en_US
 alias da      "date_ymd"
@@ -107,6 +107,8 @@ alias date_y2 "date_y 2"
 alias du  'du -h'
 #alias du_1 'du -hd1'
 alias du1 'du -hd1'
+
+alias df 'df -h'
 
 alias tbl 'column -t'
 
@@ -184,8 +186,7 @@ bind \ck kill-word
 # cmdline
 bind \cc cmdline_pbcopy
 
-#bind \cy cmdline_bracket
-#bind \cb cmdline_bracket
+bind \cb cmdline_bracket
 bind \cu cmdline_bracket
 
 #bind \c? cmdline_quote
@@ -197,7 +198,6 @@ bind \cx cmdline_his_del
 # fzf
 
 bind \cy fzf-file-widget
-#bind \cq fzf-history-widget
 bind \cr fzf-history-widget
 
 # erase
