@@ -2,11 +2,31 @@
 # cnf
 
 
+## c9 fish ofc
+
+dir z install
+- .config/fish/conf.d/ ??
+
+
+## c9 fish
+
+- cmdline color cmd
+
+
 ## vim
 
 def
 - nnoremap |
   - research
+
+
+vnoremap K
+- think line blank
+
+
+vnoremap L
+- v ( v mode normal select, pos line middle )
+  - spc decide
 
 
 ## amp
@@ -23,7 +43,8 @@ holo
 
 fzf.vim rg
 - refactoring
-  - rg memo del
+  - rg by memo
+    - del
 
 
 ## win gitbash vim
