@@ -4,28 +4,12 @@
 
 ## vim
 
-def
-- nnoremap |
-  - research
-
-
 vnoremap K
 - case line blank
   - logic think
 
 
-vnoremap L
-- v ( v mode normal select, pos line middle )
-  - spc decide
-
-
-## rg
-
-err
-- /home/xxx/.ripgreprc: No such file or directory (os error 2)
-
-
-## amp
+## aws
 
 fe api
 - api add try
@@ -43,20 +27,33 @@ fzf.vim rg
     - del
 
 
-## win gitbash vim
+## vim
 
-- cmd alias
+def
+- nnoremap |
   - research
 
 
----
+vnoremap L
+- v ( v mode normal select, pos in line )
+  - spc decide
+    - case in line
+      - cnd can ?
 
-###### priority m
 
-## mac bash pri
+## rg at fish ?
 
-key bind invalid
-- research why ?
+err
+- /home/xxx/.ripgreprc: No such file or directory (os error 2)
+- ln
+
+
+## win gitbash
+
+vim
+- cmd alias
+  - def can not ?
+  - research
 
 
 ---
