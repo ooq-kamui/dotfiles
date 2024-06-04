@@ -8,4 +8,17 @@ alias vim 'vim -p'
 alias vi  'vim -p'
 
 
+# color
+
+set fish_color_command cyan
+#set fish_color_error   brmagenta
+set fish_color_error   grey
+set fish_color_autosuggestion brmagenta
+
+
+# rg ( ripgrep )
+
+set -x RIPGREP_CONFIG_PATH ~/wrk/cnf/sh/rg/.ripgreprc
+
+
 

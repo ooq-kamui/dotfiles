@@ -29,6 +29,12 @@ vnoremap L
   - spc decide
 
 
+## rg
+
+err
+- /home/xxx/.ripgreprc: No such file or directory (os error 2)
+
+
 ## amp
 
 fe api
