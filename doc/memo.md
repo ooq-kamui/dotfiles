@@ -2,17 +2,6 @@
 # cnf
 
 
-## c9 fish ofc
-
-dir z install
-- .config/fish/conf.d/ ??
-
-
-## c9 fish
-
-- cmdline color cmd
-
-
 ## vim
 
 def
@@ -21,7 +10,8 @@ def
 
 
 vnoremap K
-- think line blank
+- case line blank
+  - logic think
 
 
 vnoremap L
