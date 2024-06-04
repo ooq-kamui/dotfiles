@@ -1,11 +1,13 @@
 function cnf
 
-  set git_cnf_dir  ~/wrk/cnf
+  set cnf_dir ~/wrk/cnf
 
-  set fish_cnf_dir $git_cnf_dir/sh/fish/cnf
+  set cnf_fish_dir $cnf_dir/sh/fish
 
-  set cnf_file $fish_cnf_dir/config.fish
+  set fish_cnf_dir $cnf_fish_dir/cnf
+  set fish_fnc_dir $cnf_fish_dir/fnc
 
+  set cnf_my_file $fish_cnf_dir/config_my.fish
 
   set cmdsub "$argv[1]"
 
@@ -19,17 +21,13 @@ function cnf
 
   else if test $cmdsub = 'vi'
 
-    vi $cnf_file -c ":cd $fish_cnf_dir"
+    vi $cnf_my_file -c ":cd $fish_cnf_dir"
 
   else if test $cmdsub = 'slf'
 
-    vi $cnf_file -c ":cd $fish_cnf_dir"
+    set slf_file_path $fish_fnc_dir/cnf.fish
 
-  else if test $cmdsub = 'doc'
-
-    set doc_file $git_cnf_dir/doc/memo.md
-
-    vi $doc_file
+    vi $slf_file_path -c ":cd $cnf_fish_dir"
 
   else
     echo $cmdsub
