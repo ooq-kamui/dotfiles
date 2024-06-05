@@ -2,12 +2,6 @@
 # cnf
 
 
-## win gitbash
-
-ggl
-- cre
-
-
 ## vim
 
 cursor mv fnc cre

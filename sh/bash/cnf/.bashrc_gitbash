@@ -18,6 +18,8 @@ export LC_MESSAGES="ja_JP.utf8"
 alias clp_win='clip'
 alias clp='clp_win'
 
+alias ggl='start chrome'
+
 # gcal
 PATH="$PATH:/c/Program Files (x86)/GnuWin32/bin"
 alias cal='gcal $(date +"%m %Y" -d "-1 month");gcal;gcal $(date +"%m %Y" -d "+1 month")'
