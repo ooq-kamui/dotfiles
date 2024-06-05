@@ -60,17 +60,28 @@ Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r'
 Set-Alias clr "clear"
 Set-Alias c   "clear"
 
-# Set-Alias clp "clip" # clp read only err
 # function clp {
 # 
 #   # clip
 # }
+Set-Alias clp "clip" -force # clp read only
 
-Set-Alias p "pwd"
+function p {
+
+  pwd | Convert-Path
+}
 
 function pth {
+  param( $path )
 
-  # ??
+  if      ( $path -eq $null ) {
+
+    pwd | Convert-Path
+
+  }else {
+
+    pwd $path | Convert-Path
+  }
 }
 
 Set-Alias ll "Get-ChildItem"
@@ -114,21 +125,11 @@ function lr {
   fd          '' $path
 }
 
-function di {
-  param( $path )
+Set-Alias dir "z" -Option AllScope # cannot be removed
 
-  z $path
-}
-
-function d {
-  param( $path )
-
-  z $path
-}
-
-function k   { Set-Location -Path ..       ; pwd }
-function kk  { Set-Location -Path ..\..    ; pwd }
-function kkk { Set-Location -Path ..\..\.. ; pwd }
+function k   { Set-Location -Path .. ; p }
+function kk  { k;k   }
+function kkk { k;k;k }
 
 function touch {
   param( $path )

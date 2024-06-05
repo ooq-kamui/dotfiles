@@ -9,6 +9,22 @@ vnoremap K
   - logic think
 
 
+nnoremap r
+- del
+
+
+cursor mv fnc cre
+- line end over : throuth
+- space         : stop
+
+
+select box col 1, op
+- line end over, pad space
+- comment write tips
+- vnoremap ???
+  -  dmy
+
+
 ## aws
 
 fe api
@@ -27,6 +43,12 @@ fzf.vim rg
     - del
 
 
+## pwsh
+
+dir
+- dir; p
+
+
 ## vim
 
 def
@@ -39,13 +61,6 @@ vnoremap L
   - spc decide
     - case in line
       - cnd can ?
-
-
-## rg at fish ?
-
-err
-- /home/xxx/.ripgreprc: No such file or directory (os error 2)
-- ln
 
 
 ## win gitbash
