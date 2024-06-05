@@ -2,6 +2,20 @@
 # cnf
 
 
+## aws
+
+fe api
+- api add try
+- dynamo db
+  - by mysql
+    - research
+    - dl fr prd
+
+
+holo
+- hosting
+
+
 ## vim
 
 cursor mv fnc cre
@@ -19,14 +33,23 @@ slct box f space crct vnoremap K
   - logic think
 
 
-## aws
+## pwsh
 
-fe api
-- api add try
+dir
+- dir; p
+- fnc
+  - override
+  - -Option AllScope
+  - research
 
 
-holo
-- hosting
+## vim
+
+vnoremap L
+- v ( v mode normal select, pos in line )
+  - spc decide
+    - case in line
+      - cnd can ?
 
 
 ## win gitbash vim
@@ -37,32 +60,9 @@ fzf.vim rg
     - del
 
 
-## pwsh
-
-dir
-- dir; p
-
-
-## vim
-
-def
-- nnoremap |
-  - research
-
-
-vnoremap L
-- v ( v mode normal select, pos in line )
-  - spc decide
-    - case in line
-      - cnd can ?
-
-
-## win gitbash
-
-vim
-- cmd alias
-  - def can not ?
-  - research
+cmd alias
+- def can not ?
+- research
 
 
 ---
