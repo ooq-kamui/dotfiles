@@ -22,7 +22,8 @@ set -x NODEBREW_ROOT /opt/homebrew/var/nodebrew
 
 # ripgrep ( rg )
 
-set -x RIPGREP_CONFIG_PATH ~/.ripgreprc
+#set -x RIPGREP_CONFIG_PATH ~/.ripgreprc
+set -x RIPGREP_CONFIG_PATH ~/wrk/cnf/sh/rg/.ripgreprc
 
 # fzf
 
@@ -61,8 +62,7 @@ alias his_del 'history delete'
 alias clr 'clear'
 alias c   'clr'
 
-alias clp 'pbcopy'
-#alias re_clp  'his_re_clp'
+#alias clp 'pbcopy'
 
 alias x 'xargs'
 

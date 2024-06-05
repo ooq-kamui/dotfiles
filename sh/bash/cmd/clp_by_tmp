@@ -21,7 +21,7 @@ then
 elif test $cmdsub = 'echo'
 then
   clp_str=$( cat $tmp_file_path )
-  echo $clp_str
+  echo "$clp_str"
 
 elif test $cmdsub = 'clr'
 then
