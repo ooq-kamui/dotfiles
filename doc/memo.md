@@ -2,27 +2,27 @@
 # cnf
 
 
+## win gitbash
+
+ggl
+- cre
+
+
 ## vim
-
-vnoremap K
-- case line blank
-  - logic think
-
-
-nnoremap r
-- del
-
 
 cursor mv fnc cre
 - line end over : throuth
 - space         : stop
 
+  - while break can ?
 
-select box col 1, op
-- line end over, pad space
-- comment write tips
-- vnoremap ???
-  -  dmy
+  - Cursor__mv_jmp_space_not()
+    - refactoring
+
+
+slct box f space crct vnoremap K
+- case line blank
+  - logic think
 
 
 ## aws

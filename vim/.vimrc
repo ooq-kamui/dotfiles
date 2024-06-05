@@ -300,8 +300,6 @@ nnoremap <c-l> %
 
 " cursor mv bracket out back
 nnoremap <c-w> [{
-"nnoremap U     [{
-"nnoremap R     [{
 
 " cursor mv bracket fnc back
 "nnoremap xx [m
@@ -329,8 +327,6 @@ nnoremap <down> <c-e>
 " cursor mv jmp
 nnoremap rk :CursorMvJmp k<cr>
 nnoremap rj :CursorMvJmp j<cr>
-"nnoremap R :CursorMvJmp k<cr>
-"nnoremap F :CursorMvJmp j<cr>
 
 " scroll cursor line upper
 "nnoremap xx zt
@@ -389,8 +385,8 @@ nnoremap p :call Paste()<cr>
 nnoremap P :call Paste__clipboard()<cr>
 
 " paste rgstr history ( fzf )
-nnoremap <leader>p :RgstrHstry<cr>
 nnoremap <leader>c :RgstrHstry<cr>
+"nnoremap <leader>p :RgstrHstry<cr>
 
 " 
 " undo, redo
@@ -602,7 +598,7 @@ nnoremap :g :GrepStr <c-r>/
 nnoremap :G :GrepWrd <c-r>/
 
 " tag jmp tab new
-nnoremap r :call N_tag_jmp()<cr>
+nnoremap t :call N_tag_jmp()<cr>
 
 " 
 " jmplst ( fzf )
@@ -758,9 +754,9 @@ nnoremap b <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
 nnoremap q <esc>
-"nnoremap r <esc>
+nnoremap r <esc>
 "nnoremap s <esc>
-nnoremap t <esc>
+"nnoremap t <esc>
 "nnoremap u <esc>
 "nnoremap w <esc>
 nnoremap x <esc>
@@ -1075,6 +1071,9 @@ vnoremap :e :call V_indnt_2_space()
 " indnt space > tab
 vnoremap :E :call V_indnt_2_tab()<cr>
 
+" line end ovr
+vnoremap H "ay"aP
+
 " upper / lower tgl
 vnoremap u ~gv
 
@@ -1213,7 +1212,7 @@ vnoremap C <esc>
 vnoremap D <esc>
 "vnoremap E <esc>
 vnoremap F <esc>
-vnoremap H <esc>
+"vnoremap H <esc>
 "vnoremap I <esc>
 vnoremap J <esc>
 "vnoremap K <esc>
@@ -1507,7 +1506,7 @@ tnoremap <c-_> <c-\><c-n>
 "nnoremap <leader>l <esc>
 nnoremap <leader>m <esc>
 "nnoremap <leader>n <esc>
-"nnoremap <leader>p <esc>
+nnoremap <leader>p <esc>
 "nnoremap <leader>r <esc>
 nnoremap <leader>u <esc>
 nnoremap <leader>y <esc>
@@ -2475,17 +2474,16 @@ command! -nargs=* CursorMvJmp call Cursor__mv_jmp_space_not(<q-args>)
 
 func! Cursor__mv_jmp_space_not(drctn) abort
 
-  if     a:drctn == 'k'
-    let l:n_cmd = 'k'
-  elseif a:drctn == 'j'
-    let l:n_cmd = 'j'
+  if a:drctn == 'k' || a:drctn == 'j'
+
+    let l:n_cmd = a:drctn
   else
     return
   endif
 
   call Normal(l:n_cmd)
 
-  while ( ! Is_cursor_line_file_edge()                     )
+  while ( ! Is_cursor_line_file_edge() )
   \  && ( Is_cursor_c_char_space() || Is_cursor_line_end() )
 
     call Normal(l:n_cmd)
@@ -2873,21 +2871,6 @@ func! V_line_end_space__del() range abort
   for line_num in range(a:firstline, a:lastline)
 
     call Line_end_space__del(l:line_num)
-  endfor
-endfunc
-
-func! V_line_end__padding() range abort " not use todo dev
-  
-  let l:char = ' '
-  let l:w    = 75
-
-  for line_num in range(a:firstline, a:lastline)
-    
-    call Cursor__mv_by_line_num(l:line_num)
-    
-    let l:len = l:w - Line_end_col()
-
-    call Normal(l:len . 'A' . l:char)
   endfor
 endfunc
 
