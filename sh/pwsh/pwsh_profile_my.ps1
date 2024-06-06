@@ -125,7 +125,14 @@ function lr {
   fd          '' $path
 }
 
-Set-Alias dir "z" -Option AllScope # cannot be removed
+# Set-Alias dir "z" -Option AllScope # cannot be removed
+function dir_dmy {
+  param( $path )
+
+  z $path
+  p
+}
+Set-Alias dir "dir_dmy" -Option AllScope # cannot be removed
 
 function k   { Set-Location -Path .. ; p }
 function kk  { k;k   }
