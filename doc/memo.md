@@ -2,15 +2,13 @@
 # cnf
 
 
-## win pwsh pri
+## vim fzf.vim
 
-jq install
-
-
-## mac vim
-
-fzf.vim rg
-- confirm
+rg
+- confirm, mod
+  - mac
+  - pwsh
+  - c9
 
 
 ## vim

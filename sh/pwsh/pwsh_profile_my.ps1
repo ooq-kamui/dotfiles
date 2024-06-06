@@ -166,6 +166,10 @@ function dt { Get-Date -Format "yyyy-MM-dd.HH:mm" }
 function tm { Get-Date -Format "HH:mm"            }
 # function ts { Get-Date -Format "yyyy-MM-dd.HH:mm:??" }
 
+# jq
+$ENV:Path += ";$home\wrk\app\bin\pwsh"
+Set-Alias jq "jq-windows-amd64"
+
 # gcal
 $ENV:Path += ";C:\Program Files (x86)\GnuWin32\bin"
 Set-Alias cal "gcal"
