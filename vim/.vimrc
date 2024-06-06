@@ -1654,7 +1654,7 @@ let g:fzf_rg_opt = ''
 \       . ' --no-heading'
 \       . ' --hidden'
 
-if Is_env('mac')
+if Is_env('mac') || Is_env('linux')
 
   let g:fzf_rg_opt .= " -g '!.git'"
 endif
