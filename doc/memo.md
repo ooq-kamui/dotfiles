@@ -2,15 +2,6 @@
 # cnf
 
 
-## vim fzf.vim
-
-rg
-- confirm, mod
-  - mac
-  - pwsh
-  - c9
-
-
 ## vim
 
 cursor mv fnc cre
@@ -24,6 +15,15 @@ cursor mv fnc cre
 slct box f space crct vnoremap K
 - case line blank
   - logic think
+
+
+## vim fzf.vim
+
+rg
+- confirm, mod
+  - mac
+  - pwsh
+  - c9
 
 
 ## c9 pri

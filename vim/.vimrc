@@ -1659,18 +1659,21 @@ if Is_env('mac')
   let g:fzf_rg_opt .= " -g '!.git'"
 endif
 
-"command! -bang -nargs=* Rg
-"\ call fzf#vim#grep(
-"\   'rg ' . g:fzf_rg_opt
-"\   . ' -- '.shellescape(escape(<q-args>, '().$')),
-"\   0,
-"\   fzf#vim#with_preview(
-"\     {'options': '--exact --delimiter : --nth 3..'},
-"\     'up:70%:hidden',
-"\     '/'
-"\   ),
-"\   <bang>1
-"\ )
+if Is_env('mac') || Is_env('win64') || Is_env('linux')
+
+  command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg ' . g:fzf_rg_opt
+  \   . ' -- '.shellescape(escape(<q-args>, '().$')),
+  \   0,
+  \   fzf#vim#with_preview(
+  \     {'options': '--exact --delimiter : --nth 3..'},
+  \     'up:70%:hidden',
+  \     '/'
+  \   ),
+  \   <bang>1
+  \ )
+endif
 
 " grep buf
 func! N_grep_buf() abort
@@ -4694,7 +4697,7 @@ if     Is_env('mac')   " mac
 
   set shell=fish
 
-elseif Is_env('linux') " cloud9
+elseif Is_env('linux') " c9
 
   set shell=bash
 
