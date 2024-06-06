@@ -1654,12 +1654,12 @@ let g:fzf_rg_opt = ''
 \       . ' --no-heading'
 \       . ' --hidden'
 
-if Is_env('mac') || Is_env('linux')
+if Is_env('mac') || Is_env('linux') || Is_env('win64')
 
-  let g:fzf_rg_opt .= " -g '!.git'"
+  let g:fzf_rg_opt .= ' -g "!.git"'
 endif
 
-if Is_env('mac') || Is_env('win64') || Is_env('linux')
+if Is_env('mac') || Is_env('linux') || Is_env('win64')
 
   command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
