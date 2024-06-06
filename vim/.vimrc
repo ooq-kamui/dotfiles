@@ -247,7 +247,7 @@ nnoremap ggl :call Opn_ggl_srch('')<cr>
 " cursor mv
 " 
 
-" cursor mv drctn
+" cursor mv drct
 nnoremap <Right> l
 nnoremap <Left>  h
 nnoremap <Up>    k
@@ -327,6 +327,8 @@ nnoremap <down> <c-e>
 " cursor mv jmp
 nnoremap rk :CursorMvJmp k<cr>
 nnoremap rj :CursorMvJmp j<cr>
+"nnoremap rk :CursorMvJmp k f<cr>
+"nnoremap rj :CursorMvJmp j f<cr>
 
 " scroll cursor line upper
 "nnoremap xx zt
@@ -2473,11 +2475,14 @@ endfunc
 
 command! -nargs=* CursorMvJmp call Cursor__mv_jmp_space_not(<q-args>)
 
-func! Cursor__mv_jmp_space_not(drctn) abort
+"func! Cursor__mv_jmp_space_not(drct, is_space_stop) abort
+func! Cursor__mv_jmp_space_not(drct) abort
 
-  if a:drctn == 'k' || a:drctn == 'j'
+  let l:is_space_stop = 'f'
 
-    let l:n_cmd = a:drctn
+  if a:drct == 'k' || a:drct == 'j'
+
+    let l:n_cmd = a:drct
   else
     return
   endif
@@ -2486,6 +2491,12 @@ func! Cursor__mv_jmp_space_not(drctn) abort
 
   while ( ! Is_cursor_line_file_edge() )
   \  && ( Is_cursor_c_char_space() || Is_cursor_line_end() )
+
+  "while ( ! Is_cursor_line_file_edge() ) && Is_cursor_line_end()
+
+    if ( l:is_space_stop == 't' && Is_cursor_c_char_space() )
+      break
+    endif
 
     call Normal(l:n_cmd)
   endwhile

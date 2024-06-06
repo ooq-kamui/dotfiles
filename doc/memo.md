@@ -2,7 +2,39 @@
 # cnf
 
 
-## aws
+## win pwsh pri
+
+jq install
+
+
+## mac vim
+
+fzf.vim rg
+- confirm
+
+
+## vim
+
+cursor mv fnc cre
+- line end over : throuth
+- space         : stop
+
+  - Cursor__mv_jmp_space_not()
+    - refactoring
+
+
+slct box f space crct vnoremap K
+- case line blank
+  - logic think
+
+
+## c9 pri
+
+login fish
+- tst
+
+
+## aws pri
 
 fe api
 - api add try
@@ -18,33 +50,6 @@ holo
 
 ## vim
 
-cursor mv fnc cre
-- line end over : throuth
-- space         : stop
-
-  - while break can ?
-
-  - Cursor__mv_jmp_space_not()
-    - refactoring
-
-
-slct box f space crct vnoremap K
-- case line blank
-  - logic think
-
-
-## pwsh
-
-dir
-- dir; p
-- fnc
-  - override
-  - -Option AllScope
-  - research
-
-
-## vim
-
 vnoremap L
 - v ( v mode normal select, pos in line )
   - spc decide
@@ -52,7 +57,7 @@ vnoremap L
       - cnd can ?
 
 
-## win gitbash vim
+## win gitbash vim  2024-06-08
 
 fzf.vim rg
 - refactoring
