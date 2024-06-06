@@ -325,10 +325,10 @@ nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 
 " cursor mv jmp
-nnoremap rk :CursorMvJmp k<cr>
-nnoremap rj :CursorMvJmp j<cr>
-"nnoremap rk :CursorMvJmp k f<cr>
-"nnoremap rj :CursorMvJmp j f<cr>
+nnoremap rk :CursorMvJmp k f<cr>
+nnoremap rj :CursorMvJmp j f<cr>
+nnoremap rp :CursorMvJmp k t<cr>
+nnoremap rn :CursorMvJmp j t<cr>
 
 " scroll cursor line upper
 "nnoremap xx zt
@@ -2476,12 +2476,11 @@ func! Cursor__mv_slctd_r() abort
   call Normal('`>')
 endfunc
 
-command! -nargs=* CursorMvJmp call Cursor__mv_jmp_space_not(<q-args>)
+command! -nargs=* CursorMvJmp call Cursor__mv_jmp_space_not(<f-args>)
 
-"func! Cursor__mv_jmp_space_not(drct, is_space_stop) abort
-func! Cursor__mv_jmp_space_not(drct) abort
+func! Cursor__mv_jmp_space_not(drct, is_space_stop) abort
 
-  let l:is_space_stop = 'f'
+  let l:is_space_stop = a:is_space_stop
 
   if a:drct == 'k' || a:drct == 'j'
 
@@ -2493,9 +2492,10 @@ func! Cursor__mv_jmp_space_not(drct) abort
   call Normal(l:n_cmd)
 
   while ( ! Is_cursor_line_file_edge() )
-  \  && ( Is_cursor_c_char_space() || Is_cursor_line_end() )
 
-  "while ( ! Is_cursor_line_file_edge() ) && Is_cursor_line_end()
+    if ! ( Is_cursor_c_char_space() || Is_cursor_line_end() )
+      break
+    endif
 
     if ( l:is_space_stop == 't' && Is_cursor_c_char_space() )
       break

@@ -2,36 +2,6 @@
 # cnf
 
 
-## vim
-
-cursor mv fnc cre
-- line end over : throuth
-- space         : stop
-
-  - Cursor__mv_jmp_space_not()
-    - refactoring
-
-
-slct box f space crct vnoremap K
-- case line blank
-  - logic think
-
-
-## vim fzf.vim
-
-rg
-- confirm, mod
-  - mac
-  - pwsh
-  - c9
-
-
-## c9 pri
-
-login fish
-- tst
-
-
 ## aws pri
 
 fe api
@@ -48,6 +18,19 @@ holo
 
 ## vim
 
+slct box f space crct vnoremap K
+- case line blank
+  - logic think
+
+
+## c9 pri
+
+login fish
+- tst
+
+
+## vim
+
 vnoremap L
 - v ( v mode normal select, pos in line )
   - spc decide
@@ -58,6 +41,7 @@ vnoremap L
 ## win gitbash vim  2024-06-08
 
 fzf.vim rg
+- confirm
 - refactoring
   - rg by memo
     - del
