@@ -2,18 +2,29 @@
 # cnf
 
 
+## aws dynamo db pfc
+
+aws cli desc > output
+
+
 ## aws pri
 
 fe api
 - api add try
+
 - dynamo db
-  - by mysql
-    - research
-    - dl fr prd
+  - ins record
 
 
 holo
 - hosting
+
+
+## doc-tech
+
+repo
+- merge
+- del
 
 
 ## vim
@@ -38,7 +49,7 @@ vnoremap L
       - cnd can ?
 
 
-## win gitbash vim  2024-06-08
+## win gitbash vim
 
 fzf.vim rg
 - confirm
