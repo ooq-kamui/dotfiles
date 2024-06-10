@@ -2,7 +2,12 @@
 # cnf
 
 
-## c9 pri / ofc
+## mac ripgreprg
+
+color match : yellow
+
+
+## c9 ofc
 
 mmv install
 
@@ -20,6 +25,13 @@ fe api
 
 - dynamo db
   - ins record
+    - m
+      - battle
+      - map
+      - stage
+    - t
+      - battle
+      - chara
 
 
 holo
