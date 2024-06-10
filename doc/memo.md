@@ -2,6 +2,11 @@
 # cnf
 
 
+## c9
+
+mmv install
+
+
 ## aws dynamo db pfc
 
 aws cli desc > output
