@@ -2,14 +2,15 @@
 # cnf
 
 
-## c9
+## c9 pri / ofc
 
 mmv install
 
 
-## aws dynamo db pfc
+## fish c9
 
-aws cli desc > output
+file div
+- ooq > ??
 
 
 ## aws pri

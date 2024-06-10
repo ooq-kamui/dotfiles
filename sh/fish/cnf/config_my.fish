@@ -123,6 +123,9 @@ alias ca 'cal'
 
 alias fd 'fd --hidden --follow -I --exclude .git'
 
+alias amp 'amplify'
+
+
 # alias arg ( etc )
 
 alias cd_dl    "cd ~/Downloads"
