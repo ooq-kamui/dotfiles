@@ -40,6 +40,10 @@ Set-PSReadLineKeyHandler -Key Ctrl+i -Function Complete
 # zoxide ( z )
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
+# rg
+
+$env:RIPGREP_CONFIG_PATH = "$home\wrk\cnf\sh\rg\.ripgreprc"
+
 # fzf
 
 $env:FZF_DEFAULT_OPTS    = '--ansi --bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
