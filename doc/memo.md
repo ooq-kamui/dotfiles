@@ -2,14 +2,14 @@
 # cnf
 
 
+## win vim
+
+V_indnt_2_space() s///g
+
+
 ## mac ripgreprg
 
 color match : yellow
-
-
-## c9 ofc
-
-mmv install
 
 
 ## fish c9
@@ -38,11 +38,11 @@ holo
 - hosting
 
 
-## doc-tech
+## ofc keyboard
 
-repo
-- merge
-- del
+sticker
+- `pg ^`, `pg v`
+  - 17 x 7 mm
 
 
 ## vim
@@ -52,19 +52,17 @@ slct box f space crct vnoremap K
   - logic think
 
 
-## c9 pri
-
-login fish
-- tst
-
-
-## vim
-
 vnoremap L
 - v ( v mode normal select, pos in line )
   - spc decide
     - case in line
       - cnd can ?
+
+
+## c9 pri
+
+login fish
+- tst
 
 
 ## win gitbash vim
