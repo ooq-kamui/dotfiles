@@ -2,17 +2,7 @@
 # cnf
 
 
-## ofc keyboard
-
-sticker
-- `pg ^`, `pg v`
-  - 17 x 7 mm
-
-
 ## aws pri
-
-fe api
-- api add try
 
 - dynamo db
   - ins record
@@ -24,6 +14,9 @@ fe api
       - battle
       - chara
 
+fe api
+- api add try
+
 
 holo
 - hosting
@@ -31,26 +24,33 @@ holo
 
 ## vim
 
-vnoremap f
+vnoremap L
+- v mode box
+  - case line end ovr
+    - not, ins space
+    - line end just
+
+vnoremap f ( vnoremap i )
 - case, space .. line end
   - cursor stop line end
 
+  - tst
+```
+      aaa  bb  cc      
+      aaa  bb  cc      
+```
 
-slct box f space crct vnoremap K
-- case line blank
+
+v mode box, f space crct ( vnoremap K )
+- case line blank ( line end ovr )
   - logic think
 
 
 vnoremap L
-- v ( v mode normal select, pos in line )
+- v ( v mode normal, pos in line )
   - spc decide
     - case in line
       - cnd can ?
-
-  - case line end over
-    - not, ins space
-    - line end just
-
 
 ## win gitbash vim
 
