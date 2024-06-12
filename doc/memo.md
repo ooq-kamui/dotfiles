@@ -2,6 +2,11 @@
 # cnf
 
 
+## vim
+
+nnoremap F cursor mv alpha upper
+
+
 ## win vim
 
 V_indnt_2_space() s///g
@@ -45,6 +50,11 @@ sticker
   - 17 x 7 mm
 
 
+## gitlab
+
+ggl
+
+
 ## vim
 
 slct box f space crct vnoremap K
@@ -57,6 +67,15 @@ vnoremap L
   - spc decide
     - case in line
       - cnd can ?
+
+  - case line end over
+    - not, ins space
+    - line end just
+
+
+vnoremap f
+- case, space .. line end
+  - cursor stop line end
 
 
 ## c9 pri

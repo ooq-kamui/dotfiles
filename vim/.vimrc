@@ -327,8 +327,11 @@ nnoremap <down> <c-e>
 " cursor mv jmp
 nnoremap rk :CursorMvJmp k f<cr>
 nnoremap rj :CursorMvJmp j f<cr>
-nnoremap rp :CursorMvJmp k t<cr>
-nnoremap rn :CursorMvJmp j t<cr>
+
+nnoremap re :CursorMvJmp k t<cr>
+nnoremap rf :CursorMvJmp j t<cr>
+"nnoremap rp :CursorMvJmp k t<cr>
+"nnoremap rn :CursorMvJmp j t<cr>
 
 " scroll cursor line upper
 "nnoremap xx zt
