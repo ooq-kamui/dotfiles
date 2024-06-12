@@ -2,25 +2,11 @@
 # cnf
 
 
-## vim
+## ofc keyboard
 
-nnoremap F cursor mv alpha upper
-
-
-## win vim
-
-V_indnt_2_space() s///g
-
-
-## mac ripgreprg
-
-color match : yellow
-
-
-## fish c9
-
-file div
-- ooq > ??
+sticker
+- `pg ^`, `pg v`
+  - 17 x 7 mm
 
 
 ## aws pri
@@ -43,19 +29,12 @@ holo
 - hosting
 
 
-## ofc keyboard
-
-sticker
-- `pg ^`, `pg v`
-  - 17 x 7 mm
-
-
-## gitlab
-
-ggl
-
-
 ## vim
+
+vnoremap f
+- case, space .. line end
+  - cursor stop line end
+
 
 slct box f space crct vnoremap K
 - case line blank
@@ -71,17 +50,6 @@ vnoremap L
   - case line end over
     - not, ins space
     - line end just
-
-
-vnoremap f
-- case, space .. line end
-  - cursor stop line end
-
-
-## c9 pri
-
-login fish
-- tst
 
 
 ## win gitbash vim

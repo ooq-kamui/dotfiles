@@ -295,6 +295,10 @@ nnoremap _ f_l
 nnoremap <c-_> hT_
 "nnoremap _ hT_
 
+" cursor mv word dlm camel - forward
+nnoremap F /\u<cr>
+"nnoremap F :call Cursor__mv_word_dlm_camel_f()<cr>
+
 " cursor mv bracket pair
 nnoremap <c-l> %
 
@@ -327,11 +331,8 @@ nnoremap <down> <c-e>
 " cursor mv jmp
 nnoremap rk :CursorMvJmp k f<cr>
 nnoremap rj :CursorMvJmp j f<cr>
-
 nnoremap re :CursorMvJmp k t<cr>
 nnoremap rf :CursorMvJmp j t<cr>
-"nnoremap rp :CursorMvJmp k t<cr>
-"nnoremap rn :CursorMvJmp j t<cr>
 
 " scroll cursor line upper
 "nnoremap xx zt
@@ -774,7 +775,7 @@ nnoremap B <esc>
 nnoremap C <esc>
 nnoremap D <esc>
 "nnoremap E <esc>
-nnoremap F <esc>
+"nnoremap F <esc>
 nnoremap G <esc>
 nnoremap H <esc>
 "nnoremap I <esc>
@@ -2437,6 +2438,10 @@ func! Cursor__mv_word_b() abort
   endif
 endfunc
 
+func! Cursor__mv_word_dlm_camel_f() abort
+
+endfunc
+
 func! Cursor__mv_word_b_pre() abort " use not
 
   let l:c_char = Cursor_c_char()
@@ -3138,8 +3143,10 @@ func! V_indnt_2_space() range abort
 
   if Is_env('win64')
     " todo dev
-    "let l:cmd = ':s/\t/  /g'
-    "call Exe(l:cmd)
+    let l:space_str = Str_space(g:indnt_col)
+    let l:cmd = "'<,'>" . 's/\t/' . l:space_str . '/g'
+    call Exe(l:cmd)
+
   else
     let l:sys_cmd = '  expand   -t ' . g:indnt_col
     call V_ins_sys_cmd(l:sys_cmd)
