@@ -2,6 +2,35 @@
 # cnf
 
 
+## vim
+
+vnoremap L 
+- fnc cre
+- tst
+```
+   aaa  bbb   ccc
+   aaa  bbb
+
+   aaa  bbb   ccc
+```
+
+
+vnoremap f ( vnoremap i )
+- case, space .. line end
+  - cursor stop line end
+
+  - tst
+```
+      aaa  bb  cc      
+      aaa  bb  cc      
+```
+
+
+v mode box, forward space crct ( vnoremap K )
+- case line blank ( line end ovr )
+  - logic think
+
+
 ## aws pri
 
 - dynamo db
@@ -21,36 +50,6 @@ fe api
 holo
 - hosting
 
-
-## vim
-
-vnoremap L
-- v mode box
-  - case line end ovr
-    - not, ins space
-    - line end just
-
-vnoremap f ( vnoremap i )
-- case, space .. line end
-  - cursor stop line end
-
-  - tst
-```
-      aaa  bb  cc      
-      aaa  bb  cc      
-```
-
-
-v mode box, f space crct ( vnoremap K )
-- case line blank ( line end ovr )
-  - logic think
-
-
-vnoremap L
-- v ( v mode normal, pos in line )
-  - spc decide
-    - case in line
-      - cnd can ?
 
 ## win gitbash vim
 
