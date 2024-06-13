@@ -2,10 +2,38 @@
 # cnf
 
 
+## aws pri
+
+- dynamo db
+  - ins record
+    - t
+      - battle
+      - chara
+  - scan try by aws-cli
+
+
+fe api
+- api add try
+
+
+holo
+- hosting
+
+
 ## vim
+
+v box
+- s///g only v box
+  - research
+
+
+vnoremap gk, gj
+- col mv not
+
 
 vnoremap L 
 - fnc cre
+- line end just, logic think
 - tst
 ```
    aaa  bbb   ccc
@@ -26,29 +54,9 @@ vnoremap f ( vnoremap i )
 ```
 
 
-v mode box, forward space crct ( vnoremap K )
+vnoremap K  -  v box, forward space crct
 - case line blank ( line end ovr )
   - logic think
-
-
-## aws pri
-
-- dynamo db
-  - ins record
-    - m
-      - battle
-      - map
-      - stage
-    - t
-      - battle
-      - chara
-
-fe api
-- api add try
-
-
-holo
-- hosting
 
 
 ## win gitbash vim

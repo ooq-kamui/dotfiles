@@ -960,7 +960,7 @@ vnoremap P :call V_paste__clipboard()<cr>
 " 
 " undo
 " 
-vnoremap h <esc>u
+"vnoremap h <esc>u
 
 " 
 " edit
@@ -1196,7 +1196,7 @@ vnoremap b <esc>
 "vnoremap e <esc>
 "vnoremap f <esc>
 vnoremap g <esc>
-"vnoremap h <esc>
+vnoremap h <esc>
 "vnoremap i <esc>
 "vnoremap l <esc>
 "vnoremap m <esc>
