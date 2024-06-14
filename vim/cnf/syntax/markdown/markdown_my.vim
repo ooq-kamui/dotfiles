@@ -7,6 +7,7 @@ hi mkdCode          ctermfg=141
 hi mkdListitem      ctermfg=cyan
 hi mkdRule          ctermfg=cyan
 
+hi mkdUrl           ctermfg=lightgreen
 hi mkdCodeDelimiter ctermfg=lightgreen
 
 

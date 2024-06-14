@@ -20,6 +20,11 @@ holo
 - hosting
 
 
+## pwsh
+
+cal > cal -3
+
+
 ## vim
 
 v box
