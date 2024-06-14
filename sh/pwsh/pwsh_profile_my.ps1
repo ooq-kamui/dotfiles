@@ -15,10 +15,10 @@ Set-PSReadlineOption -BellStyle None
 # $PSStyle.FileInfo.Directory = $PSStyle.Foreground.BrightGreen
 $PSStyle.FileInfo.Directory = $PSStyle.Foreground.BrightCyan
 
-Set-PSReadLineOption -Colors @{ InlinePrediction = $PSStyle.Foreground.BrightGreen  }
+Set-PSReadLineOption -Colors @{ InlinePrediction = $PSStyle.Foreground.BrightCyan   }
 Set-PSReadLineOption -Colors @{ Parameter        = $PSStyle.Foreground.BrightYellow }
 Set-PSReadLineOption -Colors @{ Variable         = $PSStyle.Foreground.BrightCyan   }
-
+Set-PSReadLineOption -Colors @{ String           = $PSStyle.Foreground.BrightGreen  }
 
 Import-Module PSReadline
 Set-PSReadLineOption -EditMode Emacs
@@ -176,8 +176,15 @@ Set-Alias jq "jq-windows-amd64"
 
 # gcal
 $ENV:Path += ";C:\Program Files (x86)\GnuWin32\bin"
-Set-Alias cal "gcal"
-Set-Alias ca  "gcal"
+# Set-Alias cal "gcal"
+# Set-Alias ca  "gcal"
+function cal {
+
+  gcal (date).AddMonths(-1).toString("MM yyyy")
+  gcal (date).AddMonths( 0).toString("MM yyyy")
+  gcal (date).AddMonths( 1).toString("MM yyyy")
+}
+Set-Alias ca  "cal"
 
 function ggl { start chrome }
 
