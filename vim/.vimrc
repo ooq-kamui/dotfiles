@@ -313,10 +313,12 @@ nnoremap <c-w> [{
 "nnoremap <c-q> <c-i>
 
 " cursor mv file back    ( file begin )
-nnoremap gk gg0
+nnoremap gk gg
+"nnoremap gk gg0
 
 " cursor mv file forward ( file end   )
-nnoremap gj G$l
+nnoremap gj G
+"nnoremap gj G$l
 
 " cursor mv edit latest
 "nnoremap xx `.
@@ -913,10 +915,12 @@ vnoremap <c-l> %
 "vnoremap xx [m
 
 " cursor mv file edge back    ( file begin )
-vnoremap gk gg0
+vnoremap gk gg
+"vnoremap gk gg0
 
 " cursor mv file edge forward ( file end   )
-vnoremap gj G$l
+vnoremap gj G
+"vnoremap gj G$l
 
 " 
 " slct / ynk / paste
@@ -1119,7 +1123,11 @@ vnoremap <c-p> :call Slctd_rpl_srch_nxt()<cr>
 "vnoremap :xx :s//<c-r>0/gc
 
 " rpl ( cmd )
-vnoremap :s :Rpl 
+"vnoremap :s :Rpl 
+vnoremap <expr> :s
+\ mode() == '<c-v>' ? ':RplBox ' :
+\                     ':Rpl '
+
 
 " rpl ( cmd )
 vnoremap <c-m> :call V_srch_str__cr()<cr>
@@ -1255,7 +1263,7 @@ vnoremap <c-h> <esc>
 "vnoremap <c-p> <esc>
 vnoremap <c-q> <esc>
 vnoremap <c-r> <esc>
-vnoremap <c-s> <esc>
+"vnoremap <c-s> <esc>
 "vnoremap <c-u> <esc>
 vnoremap <c-v> <esc>
 "vnoremap <c-w> <esc>
@@ -3728,6 +3736,16 @@ func! V_rpl(srch, rpl) range abort
 
   let l:rng = a:firstline . ',' . a:lastline
   let l:cmd = l:rng . 's/' . a:srch . '/' . a:rpl . '/g'
+  "echo l:cmd
+  call Exe(l:cmd)
+endfunc
+
+command! -range=% -nargs=* RplBox <line1>,<line2>call V_rpl_box(<f-args>)
+
+func! V_rpl_box(srch, rpl) range abort
+
+  let l:rng = a:firstline . ',' . a:lastline
+  let l:cmd = l:rng . 's/' . '\%V' . a:srch . '/' . a:rpl . '/g'
   "echo l:cmd
   call Exe(l:cmd)
 endfunc

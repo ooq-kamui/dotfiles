@@ -20,20 +20,22 @@ holo
 - hosting
 
 
-## pwsh
-
-cal > cal -3
-
-
 ## vim
 
-v box
-- s///g only v box
-  - research
+vnoremap <c-s> 
 
+- tst
+```
+   aaa  bbbbbbbbb "    ccc
+   aaa  abbbbbbbbb"    ccc
+   aaa  bbbbbbbbb "    ccc
+   aaa  bbbbbb    "   ccc
+   aaa  bbb       "  ccc
+   aaa  aaac      " ccc
+   aaa  bbb       "  ccc
+   aaa  bbbbbb    "   ccc
+```
 
-vnoremap gk, gj
-- col mv not
 
 
 vnoremap L 
