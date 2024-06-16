@@ -1,0 +1,6 @@
+
+" paste clipboard«                                                                                                           
+inoremap <c-v> <c-r>a
+
+
+

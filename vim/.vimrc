@@ -309,15 +309,17 @@ nnoremap <c-w> [{
 "nnoremap xx [m
 
 " cursor mv edited ( jmp list )
-"nnoremap q     <c-o>
-"nnoremap <c-q> <c-i>
+"nnoremap xx <c-o>
+"nnoremap xx <c-i>
 
 " cursor mv file back    ( file begin )
-nnoremap gk gg
+nnoremap gk 1G
+"nnoremap gk gg
 "nnoremap gk gg0
 
 " cursor mv file forward ( file end   )
 nnoremap gj G
+"nnoremap gj G
 "nnoremap gj G$l
 
 " cursor mv edit latest
@@ -915,7 +917,8 @@ vnoremap <c-l> %
 "vnoremap xx [m
 
 " cursor mv file edge back    ( file begin )
-vnoremap gk gg
+vnoremap gk 1G
+"vnoremap gk gg
 "vnoremap gk gg0
 
 " cursor mv file edge forward ( file end   )
@@ -4728,6 +4731,8 @@ if     Is_env('mac')   " mac
 elseif Is_env('linux') " c9
 
   set shell=bash
+
+  source ~/wrk/cnf/vim/.vimrc_c9
 
 elseif Is_env('win64') " pwsh ( for fzf )
 
