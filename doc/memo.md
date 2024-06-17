@@ -2,17 +2,20 @@
 # cnf
 
 
+## memo
+
+git version 2.39.3 (Apple Git-146)
+
+
 ## vim
 
-vnoremap f ( vnoremap i )
-- case, space .. line end
-  - cursor stop line end
+nnoremap gj, gk,
+vnoremap gj, gk,
+- fnc
 
-  - tst
-```
-      aaa  bb  cc      
-      aaa  bb  cc      
-```
+- case v box
+  - 2Gk
+  - ?Gj
 
 
 vnoremap K  -  v box, forward space crct
@@ -41,19 +44,28 @@ vnoremap L
 ```
 
 
+vnoremap f ( vnoremap i )
+- case, space .. line end
+  - cursor stop line end
+
+  - tst
+```
+      aaa  bb  cc      
+      aaa  bb  cc      
+```
+
+
 ## aws pri
 
 - dynamo db
   - ins record
     - t
-      - battle
       - chara
-  - scan try by aws-cli
-
+        - dpl ?
+      - battle
 
 fe api
 - api add try
-
 
 holo
 - hosting
