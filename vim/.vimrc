@@ -1126,11 +1126,16 @@ vnoremap <c-p> :call Slctd_rpl_srch_nxt()<cr>
 "vnoremap :xx :s//<c-r>0/gc
 
 " rpl ( cmd )
-"vnoremap :s :Rpl 
+"vnoremap :s 
 vnoremap <expr> :s
 \ mode() == '<c-v>' ? ':RplBox ' :
 \                     ':Rpl '
 
+" rpl ( cmd )
+"vnoremap <c-s> 
+vnoremap <expr> <c-s>
+\ mode() == '<c-v>' ? ':call V_box_fil_space()<cr>' :
+\                     ''
 
 " rpl ( cmd )
 vnoremap <c-m> :call V_srch_str__cr()<cr>
@@ -3747,9 +3752,26 @@ command! -range=% -nargs=* RplBox <line1>,<line2>call V_rpl_box(<f-args>)
 
 func! V_rpl_box(srch, rpl) range abort
 
-  let l:rng = a:firstline . ',' . a:lastline
-  let l:cmd = l:rng . 's/' . '\%V' . a:srch . '/' . a:rpl . '/g'
-  "echo l:cmd
+  let l:srch = a:srch
+  let l:rpl  = a:rpl
+
+  let l:rng = "'<,'>"
+  let l:cmd = l:rng . 's/' . '\%V' . l:srch . '/' . l:rpl . '/g'
+  call Exe(l:cmd)
+endfunc
+
+func! V_box_space_del() range abort
+
+  let l:srch = ' '
+  let l:rpl  = ''
+
+  '<,'>:call V_rpl_box(srch, rpl)
+endfunc
+
+func! V_box_fil_space() range abort
+
+  let l:rng = "'<,'>"
+  let l:cmd = l:rng . 's/' . '\%V\([ ]\+\)\([^ ]\+\)' . '/' . '\2\1' . '/g'
   call Exe(l:cmd)
 endfunc
 

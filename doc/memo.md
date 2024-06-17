@@ -2,6 +2,45 @@
 # cnf
 
 
+## vim
+
+vnoremap f ( vnoremap i )
+- case, space .. line end
+  - cursor stop line end
+
+  - tst
+```
+      aaa  bb  cc      
+      aaa  bb  cc      
+```
+
+
+vnoremap K  -  v box, forward space crct
+- case line blank ( line end ovr )
+  - logic think
+- tst
+```
+   aaa  bbb   cccccc
+   aaa  bbb   ccc
+   aaa  bbb
+
+   aaa  bbb   ccc
+   aaa  bbb   cccccc
+```
+
+
+vnoremap L 
+- fnc cre
+- line end just, logic think
+- tst
+```
+   aaa  bbb   ccc
+   aaa  bbb
+
+   aaa  bbb   ccc
+```
+
+
 ## aws pri
 
 - dynamo db
@@ -18,52 +57,6 @@ fe api
 
 holo
 - hosting
-
-
-## vim
-
-vnoremap <c-s> 
-
-- tst
-```
-   aaa  bbbbbbbbb "    ccc
-   aaa  abbbbbbbbb"    ccc
-   aaa  bbbbbbbbb "    ccc
-   aaa  bbbbbb    "   ccc
-   aaa  bbb       "  ccc
-   aaa  aaac      " ccc
-   aaa  bbb       "  ccc
-   aaa  bbbbbb    "   ccc
-```
-
-
-
-vnoremap L 
-- fnc cre
-- line end just, logic think
-- tst
-```
-   aaa  bbb   ccc
-   aaa  bbb
-
-   aaa  bbb   ccc
-```
-
-
-vnoremap f ( vnoremap i )
-- case, space .. line end
-  - cursor stop line end
-
-  - tst
-```
-      aaa  bb  cc      
-      aaa  bb  cc      
-```
-
-
-vnoremap K  -  v box, forward space crct
-- case line blank ( line end ovr )
-  - logic think
 
 
 ## win gitbash vim

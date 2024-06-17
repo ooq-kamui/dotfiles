@@ -15,10 +15,11 @@ Set-PSReadlineOption -BellStyle None
 # $PSStyle.FileInfo.Directory = $PSStyle.Foreground.BrightGreen
 $PSStyle.FileInfo.Directory = $PSStyle.Foreground.BrightCyan
 
-Set-PSReadLineOption -Colors @{ InlinePrediction = $PSStyle.Foreground.BrightCyan   }
-Set-PSReadLineOption -Colors @{ Parameter        = $PSStyle.Foreground.BrightYellow }
-Set-PSReadLineOption -Colors @{ Variable         = $PSStyle.Foreground.BrightCyan   }
-Set-PSReadLineOption -Colors @{ String           = $PSStyle.Foreground.BrightGreen  }
+# Set-PSReadLineOption -Colors @{ InlinePrediction = $PSStyle.Foreground.BrightCyan    }
+Set-PSReadLineOption -Colors @{ InlinePrediction = $PSStyle.Foreground.BrightMagenta }
+Set-PSReadLineOption -Colors @{ Parameter        = $PSStyle.Foreground.BrightYellow  }
+Set-PSReadLineOption -Colors @{ Variable         = $PSStyle.Foreground.BrightCyan    }
+Set-PSReadLineOption -Colors @{ String           = $PSStyle.Foreground.BrightGreen   }
 
 Import-Module PSReadline
 Set-PSReadLineOption -EditMode Emacs
@@ -72,7 +73,13 @@ Set-Alias clp "clip" -force # clp read only
 
 function p {
 
-  pwd | Convert-Path
+  $dir = ( pwd )
+  if ( Test-Path $dir ) {
+    Convert-Path $dir
+  }else {
+    # echo $dir
+    echo "not exist, run k"
+  }
 }
 
 function pth {
