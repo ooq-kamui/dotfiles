@@ -29,18 +29,6 @@ vnoremap f ( vnoremap i )
 ```
 
 
-vnoremap L 
-- fnc cre
-- line end just, logic think
-- tst
-```
-   aaa  bbb   ccc
-   aaa  bbb
-
-   aaa  bbb   ccc
-```
-
-
 ## aws pri
 
 - dynamo db
@@ -55,6 +43,11 @@ fe api
 
 holo
 - hosting
+
+
+## pwsh
+
+rm confirm fnc
 
 
 ## mac git
