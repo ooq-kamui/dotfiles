@@ -2,6 +2,11 @@
 # cnf
 
 
+## pwsh
+
+rm confirm fnc
+
+
 ## vim
 
 vnoremap K  -  v box, forward space crct
@@ -29,30 +34,7 @@ vnoremap f ( vnoremap i )
 ```
 
 
-## aws pri
-
-- dynamo db
-  - ins record
-    - t
-      - chara
-        - dpl ?
-      - battle
-
-fe api
-- api add try
-
-holo
-- hosting
-
-
-## pwsh
-
-rm confirm fnc
-
-
-## mac git
-
-ver up
+rpl line1 > line2
 
 
 ## win gitbash vim
@@ -63,6 +45,21 @@ fzf.vim rg
   - rg by memo
     - del
 
+
+## aws pri
+
+- dynamo db
+  - ins record
+    - t.battle
+
+fe api
+- api add try
+
+holo
+- hosting
+
+
+## win gitbash vim
 
 cmd alias
 - def can not ?
