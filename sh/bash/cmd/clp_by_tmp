@@ -1,7 +1,8 @@
 #!/bin/bash
 
 tmp_dir=~/wrk/tmp
-tmp_file_path=$tmp_dir/tmp.txt
+#tmp_file_path=$tmp_dir/tmp.txt
+tmp_file_path=$tmp_dir/c9clp.txt
 
 cmdsub="$1"
 
