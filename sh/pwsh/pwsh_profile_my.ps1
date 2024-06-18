@@ -15,8 +15,7 @@ Set-PSReadlineOption -BellStyle None
 # $PSStyle.FileInfo.Directory = $PSStyle.Foreground.BrightGreen
 $PSStyle.FileInfo.Directory = $PSStyle.Foreground.BrightCyan
 
-# Set-PSReadLineOption -Colors @{ InlinePrediction = $PSStyle.Foreground.BrightCyan    }
-Set-PSReadLineOption -Colors @{ InlinePrediction = $PSStyle.Foreground.BrightMagenta }
+Set-PSReadLineOption -Colors @{ InlinePrediction = $PSStyle.Foreground.BrightCyan    }
 Set-PSReadLineOption -Colors @{ Parameter        = $PSStyle.Foreground.BrightYellow  }
 Set-PSReadLineOption -Colors @{ Variable         = $PSStyle.Foreground.BrightCyan    }
 Set-PSReadLineOption -Colors @{ String           = $PSStyle.Foreground.BrightGreen   }
