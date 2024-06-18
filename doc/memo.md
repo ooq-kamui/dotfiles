@@ -2,21 +2,7 @@
 # cnf
 
 
-## memo
-
-git version 2.39.3 (Apple Git-146)
-
-
 ## vim
-
-nnoremap gj, gk,
-vnoremap gj, gk,
-- fnc
-
-- case v box
-  - 2Gk
-  - ?Gj
-
 
 vnoremap K  -  v box, forward space crct
 - case line blank ( line end ovr )
@@ -32,6 +18,17 @@ vnoremap K  -  v box, forward space crct
 ```
 
 
+vnoremap f ( vnoremap i )
+- case, space .. line end
+  - cursor stop line end
+
+  - tst
+```
+      aaa  bb  cc      
+      aaa  bb  cc      
+```
+
+
 vnoremap L 
 - fnc cre
 - line end just, logic think
@@ -41,17 +38,6 @@ vnoremap L
    aaa  bbb
 
    aaa  bbb   ccc
-```
-
-
-vnoremap f ( vnoremap i )
-- case, space .. line end
-  - cursor stop line end
-
-  - tst
-```
-      aaa  bb  cc      
-      aaa  bb  cc      
 ```
 
 
@@ -69,6 +55,11 @@ fe api
 
 holo
 - hosting
+
+
+## mac git
+
+ver up
 
 
 ## win gitbash vim

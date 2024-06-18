@@ -312,15 +312,11 @@ nnoremap <c-w> [{
 "nnoremap xx <c-o>
 "nnoremap xx <c-i>
 
-" cursor mv file back    ( file begin )
-nnoremap gk 1G
-"nnoremap gk gg
-"nnoremap gk gg0
+" cursor mv file edge back    ( file begin )
+nnoremap gk :call Cursor__mv_file_edge('k')<cr>
 
-" cursor mv file forward ( file end   )
-nnoremap gj G
-"nnoremap gj G
-"nnoremap gj G$l
+" cursor mv file edge forward ( file end   )
+nnoremap gj :call Cursor__mv_file_edge('j')<cr>
 
 " cursor mv edit latest
 "nnoremap xx `.
@@ -917,13 +913,10 @@ vnoremap <c-l> %
 "vnoremap xx [m
 
 " cursor mv file edge back    ( file begin )
-vnoremap gk 1G
-"vnoremap gk gg
-"vnoremap gk gg0
+vnoremap gk :call V_cursor__mv_file_edge('k')<cr>
 
 " cursor mv file edge forward ( file end   )
-vnoremap gj G
-"vnoremap gj G$l
+vnoremap gj :call V_cursor__mv_file_edge('j')<cr>
 
 " 
 " slct / ynk / paste
@@ -2529,6 +2522,23 @@ func! Cursor__mv_jmp_space_not(drct, is_space_stop) abort
   endwhile
 endfunc
 
+func! Cursor__mv_file_edge(n_cmd) abort
+
+  if Is_cursor_line_file_edge()
+    call Normal(a:n_cmd)
+  endif
+
+  while ( ! Is_cursor_line_file_edge() )
+    call Normal(a:n_cmd)
+  endwhile
+endfunc
+
+func! V_cursor__mv_file_edge(n_cmd) abort
+
+  call Normal('gv')
+  call Cursor__mv_file_edge(a:n_cmd)
+endfunc
+
 " cursor cnd  char
 
 func! Is_cursor_line_by_line_num(line_num) abort
@@ -2930,7 +2940,6 @@ endfunc
 
 func! V_cursor_f_space__del() range abort
 
-  "call Slct_re()
   call Slct_re_in_line_1()
 
   let l:col = Cursor_col_num()
@@ -3235,11 +3244,6 @@ func! Slct_by_line_rng(line_num_fr, line_num_to) abort
   call Cursor__mv_by_line_num(a:line_num_to)
 endfunc
 
-"func! Slct_re() abort " old , in line 1, use not, todo del
-"
-"  call Slct_re_in_line_1()
-"endfunc
-
 func! Slct_re_in_line_1() abort " in line 1
 
   call Normal('gv')
@@ -3247,6 +3251,7 @@ endfunc
 
 func! Slct_re_box() range abort " todo dev
   
+  call Normal('gv')
 endfunc
 
 func! V_slctd_re() abort " use not todo dev
@@ -4549,7 +4554,6 @@ endfunc
 "func! s:Tst() range abort
 func! Tst() range abort
 
-  "call Slct_re()
   call Slct_re_in_line_1()
 
   if     mode() == "\<c-v>"
