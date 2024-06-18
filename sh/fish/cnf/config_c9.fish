@@ -12,10 +12,11 @@ alias vi  'vim -p'
 
 # color
 
-set fish_color_command cyan
-#set fish_color_error   brmagenta
-set fish_color_error   grey
+set fish_color_command        cyan
+#set fish_color_error          brmagenta
+set fish_color_error          grey
 set fish_color_autosuggestion brmagenta
+set fish_color_quote          brgreen
 
 
 # rg ( ripgrep )
