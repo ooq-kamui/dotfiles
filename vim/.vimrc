@@ -580,9 +580,6 @@ nnoremap N :call N_srch_str__prv()<cr>
 " srch rpl one > ynk nxt ( only srch )
 nnoremap <c-p> :call Srch_slct('f')<cr>
 
-" srch rpl all > ynk ( file )
-"nnoremap :xx :%s//<c-r>0/gc
-
 " srch ?=ts
 "nnoremap xx /?ts=<cr>
 
@@ -1119,22 +1116,19 @@ vnoremap E :call V_srch_str__slctd_str(v:true)<cr>
 " srch rpl one > ynk, nxt
 vnoremap <c-p> :call Slctd_rpl_srch_nxt()<cr>
 
-" srch rpl all > ynk
-"vnoremap :xx :s//<c-r>0/gc
-
 " rpl ( cmd )
 "vnoremap :s 
 vnoremap <expr> :s
 \ mode() == '<c-v>' ? ':RplBox ' :
 \                     ':Rpl '
 
-" rpl ( cmd )
+" v box fil space
 "vnoremap <c-s> 
 vnoremap <expr> <c-s>
 \ mode() == '<c-v>' ? ':call V_box_fil_space()<cr>' :
 \                     ''
 
-" rpl ( cmd )
+" rpl cr
 vnoremap <c-m> :call V_srch_str__cr()<cr>
 
 " 
@@ -2000,16 +1994,13 @@ endfunc
 
 func! Char__tgl1(c) abort
 
-  "let l:rpl = Char__tgl_bracket(a:c)
   let l:rpl = Char__tgl_trn(a:c)
 
-  "if l:rpl != ''
   if ! Is_str_emp(l:rpl)
     return l:rpl
   endif
 
   let l:rpl = Char__tgl_etc(a:c)
-  "if l:rpl != ''
   if ! Is_str_emp(l:rpl)
     return l:rpl
   endif
@@ -2282,21 +2273,18 @@ endfunc
 
 func! Cursor_c_char() abort
 
-  "let l:c = getline('.')[col('.')-1]
   let l:c = getline('.')[Cursor_col_num() - 1]
   return l:c
 endfunc
 
 func! Cursor_l_char() abort
 
-  "let l:c = getline('.')[col('.')-2]
   let l:c = getline('.')[Cursor_col_num() - 2]
   return l:c
 endfunc
 
 func! Cursor_r_char() abort
 
-  "let l:c = getline('.')[col('.')-0]
   let l:c = getline('.')[Cursor_col_num() - 0]
   return l:c
 endfunc
@@ -3767,7 +3755,7 @@ func! Srch_char_bracket(dir) abort
   call Srch_char(a:dir, l:char_bracket)
 endfunc
 
-" srch __ rpl
+" srch __ rpl cr
 
 func! V_srch_str__cr() range abort
 
@@ -3776,6 +3764,21 @@ func! V_srch_str__cr() range abort
   let l:srch_str = @/
 
   let l:cmd = l:rng . 's/\(' . l:srch_str . '\)/\1\r/g'
+  call Exe(l:cmd)
+endfunc
+
+" rpl by line1 line2
+
+func! Rpl_by_line1_line2() range abort
+
+  "let l:srch = 'a'
+  "let l:rpl  = 'b'
+  let l:srch = getline(1)
+  let l:rpl  = getline(2)
+
+  let l:rng = '3,$'
+  let l:cmd = l:rng . 's/' . l:srch . '/' . l:rpl . '/g'
+  "echo l:cmd
   call Exe(l:cmd)
 endfunc
 
@@ -4234,7 +4237,7 @@ endfunc
 
 func! Opn_app_by_line_path(line_num) abort
 
-  "let l:path = Line_str_by_line_num()
+  "let l:path = Line_str_by_line_num(a:line_num)
   let l:path = getline(a:line_num)
 
   let l:path = trim(l:path)

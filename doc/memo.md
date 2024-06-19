@@ -2,9 +2,13 @@
 # cnf
 
 
-## vim
+## win gitbash vim
 
-rpl line1 > line2
+fzf.vim rg
+- confirm
+- refactoring
+  - rg by memo
+    - del
 
 
 ## aws pri
@@ -16,15 +20,6 @@ fe api
 
 holo
 - hosting
-
-
-## win gitbash vim
-
-fzf.vim rg
-- confirm
-- refactoring
-  - rg by memo
-    - del
 
 
 ## win gitbash vim
