@@ -2,39 +2,25 @@
 # cnf
 
 
-## pwsh
-
-rm confirm fnc
-
-
 ## vim
 
-vnoremap K  -  v box, forward space crct
-- case line blank ( line end ovr )
-  - logic think
-- tst
-```
-   aaa  bbb   cccccc
-   aaa  bbb   ccc
-   aaa  bbb
-
-   aaa  bbb   ccc
-   aaa  bbb   cccccc
-```
-
-
-vnoremap f ( vnoremap i )
-- case, space .. line end
-  - cursor stop line end
-
-  - tst
-```
-      aaa  bb  cc      
-      aaa  bb  cc      
-```
-
-
 rpl line1 > line2
+
+
+## aws pri
+
+fe api
+- cre
+  - dynamo db access
+
+holo
+- hosting
+
+
+## pwsh
+
+rm confirm
+- fnc cre
 
 
 ## win gitbash vim
@@ -44,19 +30,6 @@ fzf.vim rg
 - refactoring
   - rg by memo
     - del
-
-
-## aws pri
-
-- dynamo db
-  - ins record
-    - t.battle
-
-fe api
-- api add try
-
-holo
-- hosting
 
 
 ## win gitbash vim

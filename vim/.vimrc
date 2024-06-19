@@ -682,7 +682,7 @@ nnoremap :t :Term
 nnoremap :w :set wrap!
 
 " tst
-"nnoremap T :call Tst()<cr>
+"nnoremap xx :call Tst()<cr>
 
 " numpad shift
 nnoremap <kInsert>   0
@@ -889,6 +889,10 @@ vnoremap f :call Slctd__expnd_word_f()<cr>
 
 " cursor mv line end
 vnoremap <c-y> :call V_cursor__mv_line_end()<cr>
+"vnoremap <expr> <c-y>
+"\ mode() == '<c-v>' ? ':call V_cursor__mv_line_end("b")<cr>' :
+"\ mode() == 'v'     ? ':call V_cursor__mv_line_end("n")<cr>' :
+"\                     ''
 
 " cursor mv slctd reduce dlm _ l
 vnoremap _     of_lo
@@ -1078,7 +1082,7 @@ vnoremap :e :call V_indnt_2_space()
 " indnt space > tab
 vnoremap :E :call V_indnt_2_tab()<cr>
 
-" line end ovr
+" line end ovr, space fil
 vnoremap H "ay"aP
 
 " upper / lower tgl
@@ -1167,7 +1171,7 @@ vnoremap ggl :call V_opn_ggl_srch()<cr>
 vnoremap r  :call V_trns()<cr>
 
 " tst
-vnoremap T :call Tst()<cr>
+"vnoremap xx :call Tst()<cr>
 
 " 
 " nop
@@ -1483,7 +1487,8 @@ cnoremap <c-w> <c-w>
 cnoremap <c-u> <c-u>
 
 " paste
-cnoremap <c-v> <c-r>0
+"cnoremap <c-v> <c-r>0
+cnoremap <c-v> <c-r>a
 
 " history
 "cnoremap <c-p> <Up>
@@ -2382,14 +2387,30 @@ func! Cursor__mv_line_end() abort
   endif
 endfunc
 
-func! V_cursor__mv_line_end() abort
+func! V_cursor__mv_line_end() range abort
 
-  call Slct_re_in_line_1()
+  "call Slct_re_in_line_1()
+  call Slct_re()
 
-  if ! Is_line_emp()
+  if     mode() == "\<c-v>"
+
+    if Is_cursor_line_end_ovr()
+      return
+    endif
 
     call Normal('$h')
     "call Normal('g_')
+
+  elseif mode() == "v"
+
+    if Is_line_emp()
+      return
+    endif
+
+    call Normal('$h')
+    "call Normal('g_')
+  else
+    echo "v mode else"
   endif
 endfunc
 
@@ -2598,6 +2619,15 @@ func! Is_cursor_line_end() abort
 
   if Cursor_col_num() == Line_end_col()
 
+    return v:true
+  else
+    return v:false
+  endif
+endfunc
+
+func! Is_cursor_line_end_ovr() range abort
+
+  if Cursor_col_num() >= Line_end_col() " why ?
     return v:true
   else
     return v:false
@@ -2940,11 +2970,9 @@ endfunc
 
 func! V_cursor_f_space__del() range abort
 
-  call Slct_re_in_line_1()
+  call Slct_re()
 
   let l:col = Cursor_col_num()
-
-  call Normal("\<esc>")
 
   for line_num in range(a:firstline, a:lastline)
     "echo l:line_num . ' ' . l:col
@@ -3210,7 +3238,16 @@ func! Slct_cursor_f_space() abort
   endif
   "echo l:c
 
-  call Normal('vwh')
+  if Is_line_str_side_r_space()
+
+    call Normal('v')
+    call Normal('$h')
+    "call Cursor__mv_word_f()
+    "call Normal('h')
+
+  else
+    call Normal('vwh')
+  endif
 endfunc
 
 func! Slct_by_col(s_col, len) abort
@@ -3249,18 +3286,14 @@ func! Slct_re_in_line_1() abort " in line 1
   call Normal('gv')
 endfunc
 
-func! Slct_re_box() range abort " todo dev
+func! Slct_re() range abort
   
   call Normal('gv')
 endfunc
 
-func! V_slctd_re() abort " use not todo dev
+func! Slct_re_box() range abort " use not
   
   call Normal('gv')
-  call Normal('"zy')
-  call Normal('gv')
-
-  "noautocmd normal! "zygv
 endfunc
 
 func! Slct_all() abort
@@ -3399,9 +3432,14 @@ func! Slctd__expnd_word_f() abort
   let l:slctd_str = Slctd_str()
   let l:slctd_r_out_char = Slctd_r_out_char()
 
-  call Slct_re_in_line_1()
+  "call Slct_re_in_line_1()
+  call Slct_re()
 
-  if l:slctd_str =~ '\s' && l:slctd_r_out_char =~ '\s'
+  if     Is_line_str_side_r_space()
+
+    call Normal('$h')
+
+  elseif l:slctd_str =~ '\s' && l:slctd_r_out_char =~ '\s'
 
     call Normal('wh')
   else
@@ -3776,8 +3814,10 @@ endfunc
 func! V_box_fil_space() range abort
 
   let l:rng = "'<,'>"
-  let l:cmd = l:rng . 's/' . '\%V\([ ]\+\)\([^ ]\+\)' . '/' . '\2\1' . '/g'
+  let l:cmd = l:rng . 's/' . '\%V\([ ]\+\)\([^ ]\)' . '/' . '\2\1' . '/g'
   call Exe(l:cmd)
+
+  call Slct_re()
 endfunc
 
 command! -range=% -nargs=* RplCr <line1>,<line2>call V_rpl_cr(<f-args>)
@@ -4551,22 +4591,19 @@ endfunc
 
 " tst
 
-"func! s:Tst() range abort
-func! Tst() range abort
+func! Tst_slctd() range abort
 
-  call Slct_re_in_line_1()
+  call Slct_re()
 
   if     mode() == "\<c-v>"
     echo "c-v"
   elseif mode() == "v"
     echo "v"
-  elseif mode() == "V"
+  elseif mode() == "V" " < non
     echo "V"
   else
     echo "else"
   endif
-
-  echo "end"
 endfunc
 
 
