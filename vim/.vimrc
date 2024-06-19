@@ -1168,7 +1168,7 @@ vnoremap ggl :call V_opn_ggl_srch()<cr>
 "vnoremap gy :call V_opn_yt()<cr>
 
 " trns
-vnoremap r  :call V_trns()<cr>
+"vnoremap xx  :call V_trns()<cr>
 
 " tst
 "vnoremap xx :call Tst()<cr>
@@ -1217,7 +1217,7 @@ vnoremap h <esc>
 "vnoremap o <esc>
 "vnoremap p <esc>
 vnoremap q <esc>
-"vnoremap r <esc>
+vnoremap r <esc>
 "vnoremap s <esc>
 "vnoremap t <esc>
 "vnoremap u <esc>

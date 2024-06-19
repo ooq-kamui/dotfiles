@@ -10,17 +10,12 @@ rpl line1 > line2
 ## aws pri
 
 fe api
-- cre
+- api-gateway cre
+- lambda cre
   - dynamo db access
 
 holo
 - hosting
-
-
-## pwsh
-
-rm confirm
-- fnc cre
 
 
 ## win gitbash vim
