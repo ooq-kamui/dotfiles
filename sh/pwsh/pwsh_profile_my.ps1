@@ -156,6 +156,13 @@ function touch {
 }
 Set-Alias to "touch"
 
+function rm_dmy {
+  param( $path )
+
+  Remove-Item -Confirm $path
+}
+# Set-Alias rm "rm_dmy" -Option AllScope # cannot be removed
+
 function vim { nvim -p $args }
 function vi  { nvim -p $args }
 
