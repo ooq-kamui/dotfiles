@@ -1045,21 +1045,25 @@ vnoremap m :call V_line_end_space__del()<cr>
 " del cursor f space
 vnoremap K :call V_cursor_f_space__del()<cr>
 
-" mv str back
-vnoremap <c-w> :call Slctd_str__mv('h')<cr>
+" slctd str mv back
+"vnoremap xx :call Slctd_str__mv('l')<cr>
 
-" mv str forward
-vnoremap <c-e> :call Slctd_str__mv('l')<cr>
+" slctd str mv forward
+"vnoremap xx :call Slctd_str__mv('r')<cr>
 
-" mv str line top
+" slctd str mv line top
 "vnoremap xx :call Slctd_str__mv_line_top()<cr>
 
-" mv str line end
+" slctd str mv line end
 "vnoremap xx :call Slctd_str__mv_line_end()<cr>
 
-" mv line
-"vnoremap xx :call V_mv_line('j')<cr>
-"vnoremap xx :call V_mv_line('k')<cr>
+" slctd line mv
+"vnoremap xx :call V_mv_line('j')<cr> " use not, del
+"vnoremap xx :call V_mv_line('k')<cr> " use not, del
+
+" slct box mv
+vnoremap <c-w> :call Slctd_box__mv('l')<cr>
+vnoremap <c-e> :call Slctd_box__mv('r')<cr>
 
 " inc, dec
 vnoremap + <c-a>gv
@@ -3053,21 +3057,21 @@ func! Line__del_by_line_num(line_num) abort
   call deletebufline('%', a:line_num)
 endfunc
 
-func! V_mv_line(ud) range abort
-
-  let l:mv_num   = a:lastline - a:firstline
-  let l:line_num = l:mv_num + 1
-
-  call Normal(a:firstline . 'G')
-  call Normal(l:line_num . '"zdd')
-  call Normal(a:ud)
-  call Normal('"zP')
-  call Normal('V')
-
-  if l:mv_num >= 1
-    call Normal(l:mv_num . 'j')
-  endif
-endfunc
+"func! V_mv_line(ud) range abort
+"
+"  let l:mv_num   = a:lastline - a:firstline
+"  let l:line_num = l:mv_num + 1
+"
+"  call Normal(a:firstline . 'G')
+"  call Normal(l:line_num . '"zdd')
+"  call Normal(a:ud)
+"  call Normal('"zP')
+"  call Normal('V')
+"
+"  if l:mv_num >= 1
+"    call Normal(l:mv_num . 'j')
+"  endif
+"endfunc
 
 " line cnd
 
@@ -3439,9 +3443,23 @@ func! Slctd__expnd_word_f() abort
   endif
 endfunc
 
+func! Lr_2_n_cmd(lr) abort
+
+  if     a:lr == 'l'
+    let l:n_cmd = 'h'
+
+  elseif a:lr == 'r'
+    let l:n_cmd = 'l'
+  endif
+
+  return l:n_cmd
+endfunc
+
 func! Slctd_str__mv(lr) abort
 
-  call Normal('gv"zx' . a:lr . '"zP')
+  let l:n_cmd = Lr_2_n_cmd(a:lr)
+
+  call Normal('gv"zx' . l:n_cmd . '"zP')
 
   call Normal('v')
 
@@ -3461,6 +3479,15 @@ endfunc
 func! Slctd_str__mv_line_end() abort
 
   call Normal('gv"zx' . '$l' . '"zP')
+endfunc
+
+func! Slctd_box__mv(lr) range abort
+
+  let l:n_cmd = Lr_2_n_cmd(a:lr)
+
+  call Slct_re()
+
+  call Normal('o' . l:n_cmd . 'o' . l:n_cmd)
 endfunc
 
 " slctd del
