@@ -22,6 +22,11 @@ holo
 - hosting
 
 
+## pwsh
+
+upd
+
+
 ## win gitbash vim
 
 cmd alias

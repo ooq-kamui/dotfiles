@@ -584,7 +584,8 @@ nnoremap <c-p> :call Srch_slct('f')<cr>
 "nnoremap xx /?ts=<cr>
 
 " rpl ( cmd )
-nnoremap :s :Rpl 
+"nnoremap :s :Rpl 
+nnoremap :s :%s///g
 
 " 
 " grep
@@ -844,6 +845,9 @@ nnoremap gy <esc>
 "nnoremap :b <esc>
 "nnoremap :c <esc>
 "          :
+"nnoremap :s <esc>
+"          :
+"nnoremap :z <esc>
 
 " mode normal end
 
