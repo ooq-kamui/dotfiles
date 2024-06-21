@@ -23,7 +23,8 @@ set fish_color_error          grey
 
 # rg ( ripgrep )
 
-set -x RIPGREP_CONFIG_PATH ~/wrk/cnf/sh/rg/.ripgreprc
+#set -x RIPGREP_CONFIG_PATH ~/wrk/cnf/sh/rg/.ripgreprc
+set -x RIPGREP_CONFIG_PATH ~/wrk/cnf/sh/rg/.ripgreprc_c9
 
 
 

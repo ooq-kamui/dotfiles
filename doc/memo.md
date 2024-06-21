@@ -2,6 +2,20 @@
 # cnf
 
 
+## vim
+
+nnoremap x :K
+
+
+v_indnt_2_space()
+- v_tab_2_space()
+  - arg "    "
+
+
+v box, `[^|]` > space
+- header separat row cre
+
+
 ## aws pri
 
 fe api
