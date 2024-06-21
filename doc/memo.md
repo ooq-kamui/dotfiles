@@ -4,7 +4,8 @@
 
 ## vim
 
-nnoremap x :K
+nnoremap xx :K
+- echo pwd
 
 
 v_indnt_2_space()
@@ -16,6 +17,12 @@ v box, `[^|]` > space
 - header separat row cre
 
 
+v box, slctd mv
+
+
+## pc tracpad
+
+
 ## aws pri
 
 fe api
@@ -25,11 +32,6 @@ fe api
 
 holo
 - hosting
-
-
-## phone num
-
-memo paper renew
 
 
 ## win gitbash vim
