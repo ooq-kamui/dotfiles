@@ -4,23 +4,7 @@
 
 ## vim
 
-nnoremap xx :K
-- echo pwd
-
-
-v_indnt_2_space()
-- v_tab_2_space()
-  - arg "    "
-
-
-v box, `[^|]` > space
-- header separat row cre
-
-
 v box, slctd mv
-
-
-## pc tracpad
 
 
 ## aws pri
@@ -32,6 +16,19 @@ fe api
 
 holo
 - hosting
+
+
+## pwsh vim
+
+v_indnt_2_space()
+- pwsh
+  - cmd research
+
+
+## pwsh
+
+vi ( ... )
+- fnc
 
 
 ## win gitbash vim

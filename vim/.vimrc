@@ -169,7 +169,7 @@ nnoremap W     :q<cr>
 "nnoremap <c-z> <c-z>
 
 " call
-nnoremap :c :call 
+"nnoremap xx :call 
 
 " save
 "nnoremap a :w<cr>
@@ -214,16 +214,16 @@ nnoremap gh :call Opn_vimrc()<cr>
 nnoremap gt :call Opn_tmp()<cr>
 
 " opn grep work
-"nnoremap xx :call Opn_grep_work()<cr>
+"nnoremap xx :call Opn_grep_wk()<cr>
 
 " opn vim key note
-"nnoremap gv :call Opn_vim_key()<cr>
+"nnoremap xx :call Opn_vim_key()<cr>
 
 " opn memo
-nnoremap gm :call Opn_memo()<cr>
+"nnoremap xx :call Opn_memo()<cr>
 
 " opn man
-nnoremap :m :OpnMan 
+"nnoremap xx :OpnMan 
 
 " opn app
 nnoremap go :call Opn_app_by_cursor_path()<cr>
@@ -239,9 +239,6 @@ nnoremap gd :call Opn_dir_slf()<cr>
 
 " opn ggl srch
 nnoremap ggl :call Opn_ggl_srch('')<cr>
-
-" opn markdown preview
-"nnoremap gx :call Markdown_2_html()<cr>
 
 " 
 " cursor mv
@@ -521,7 +518,7 @@ nnoremap u :call N_char__tgl()<cr>
 " upper / lower
 "nnoremap xx v~
 
-" indnt shift
+" indnt shft
 nnoremap " :call Indnt__shft_l()<cr>
 nnoremap # :call Indnt__shft_r()<cr>
 
@@ -597,9 +594,9 @@ nnoremap <leader>o :Rg <cr>
 " grep buf ( fzf )
 nnoremap <leader>i :call N_grep_buf()<cr>
 
-" grep [rg]   ( read )
-nnoremap :g :GrepStr <c-r>/
-nnoremap :G :GrepWrd <c-r>/
+" grep [rg] ( read )
+"nnoremap xx :GrepStr <c-r>/
+"nnoremap xx :GrepWrd <c-r>/
 
 " tag jmp tab new
 nnoremap t :call N_tag_jmp()<cr>
@@ -626,6 +623,12 @@ nnoremap :r :InsSysCmd
 " ins sys ls  ( read )
 "nnoremap xx :Lf 
 
+" pth
+nnoremap :d :Pth <cr>
+
+" cd parent
+nnoremap :a :K <cr>
+
 " 
 " tab
 " 
@@ -642,7 +645,7 @@ nnoremap <s-right> :tabm+1<cr>
 " term
 " 
 
-nnoremap :t :Term 
+nnoremap xx :Term 
 
 " 
 " mark
@@ -842,12 +845,13 @@ nnoremap gw <esc>
 nnoremap gy <esc>
 
 "nnoremap :a <esc>
-"nnoremap :b <esc>
-"nnoremap :c <esc>
+nnoremap :b <esc>
+nnoremap :c <esc>
+"nnoremap :d <esc>
 "          :
 "nnoremap :s <esc>
 "          :
-"nnoremap :z <esc>
+nnoremap :z <esc>
 
 " mode normal end
 
@@ -1074,7 +1078,7 @@ vnoremap - <c-x>gv
 vnoremap = g<c-a>
 "vnoremap + g<c-a>
 
-" indnt shift
+" indnt shft
 vnoremap # >gv
 vnoremap " <gv
 
@@ -1082,10 +1086,13 @@ vnoremap " <gv
 vnoremap ; =gv
 
 " indnt tab   > space
-vnoremap :e :call V_indnt_2_space()
+vnoremap :e :call V_indnt_2_space(2)
 
 " indnt space > tab
-vnoremap :E :call V_indnt_2_tab()<cr>
+"vnoremap xx :call V_indnt_2_tab(2)<cr>
+
+" tab > space
+vnoremap :t :call V_tab_2_space(12)
 
 " line end ovr, space fil
 vnoremap H "ay"aP
@@ -1130,14 +1137,17 @@ vnoremap <expr> :s
 \ mode() == '<c-v>' ? ':RplBox ' :
 \                     ':Rpl '
 
-" v box fil space
-"vnoremap <c-s> 
-vnoremap <expr> <c-s>
-\ mode() == '<c-v>' ? ':call V_box_fil_space()<cr>' :
-\                     ''
-
 " rpl cr
 vnoremap <c-m> :call V_srch_str__cr()<cr>
+
+" v box edge char shft in
+"vnoremap <c-s> 
+vnoremap <expr> <c-s>
+\ mode() == '<c-v>' ? ':call V_box_edge_r_char__shft_in()<cr>' :
+\                     ''
+
+" cnv markdown tbl header
+vnoremap :m :call V_2_markdown_tbl_header()
 
 " 
 " grep
@@ -1288,6 +1298,13 @@ vnoremap gp <esc>
 vnoremap gs <esc>
 vnoremap gt <esc>
 vnoremap gy <esc>
+
+"vnoremap :a <esc>
+" :
+"vnoremap :t <esc>
+" :
+"vnoremap :z <esc>
+
 
 " 
 " mode insert
@@ -1834,17 +1851,6 @@ endfunc
 " mark
 command! -bang -nargs=* Mark
 \ call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)
-
-" ctags ( fzf )
-
-"nnoremap xx :Tags <c-r><c-w><cr>
-"vnoremap xx "zy:Tags <c-r>z<cr>
-command! -bang -nargs=? Tags
-\ call fzf#vim#tags(<q-args>, <bang>1)
-
-set tags=./.tags;
-"nnoremap <c-]> g<c-]>
-"nnoremap xx :!sh sh/ctags.sh
 
 " fzf #end#
 
@@ -3186,28 +3192,45 @@ func! Indnt__crct_by_c() abort
   return l:col
 endfunc
 
-let g:indnt_col = 2
+"let g:indnt_col = 2
+let g:v_rng = "'<,'>"
 
-func! V_indnt_2_space() range abort
+func! V_indnt_2_space(indnt_col) range abort
 
   if Is_env('win64')
-    " todo dev
-    let l:space_str = Str_space(g:indnt_col)
-    let l:cmd = "'<,'>" . 's/\t/' . l:space_str . '/g'
-    call Exe(l:cmd)
+    "let l:space_str = Str_space(a:indnt_col)
+    "let l:cmd = g:v_rng . 's/\t/' . l:space_str . '/g'
+    "call Exe(l:cmd)
+    call V_tab_2_space(a:indnt_col)
 
   else
-    let l:sys_cmd = '  expand   -t ' . g:indnt_col
+    let l:sys_cmd = '  expand   -t ' . a:indnt_col
     call V_ins_sys_cmd(l:sys_cmd)
   endif
 endfunc
 
-func! V_indnt_2_tab() range abort
+func! V_indnt_2_tab(indnt_col) range abort
 
-  let l:sys_cmd = 'unexpand   -t ' . g:indnt_col
-  "let l:sys_cmd = 'unexpand   -t 2'
-
+  let l:sys_cmd = 'unexpand   -t ' . a:indnt_col
   call V_ins_sys_cmd(l:sys_cmd)
+endfunc
+
+" tab
+
+func! V_tab_2_space(space_col) range abort
+
+  let l:space_str = Str_space(a:space_col)
+  let l:cmd = g:v_rng . 's/\t/' . l:space_str . '/g'
+  call Exe(l:cmd)
+endfunc
+
+" markdown tbl header
+
+func! V_2_markdown_tbl_header() range abort
+
+  '<,'>:call V_rpl('[^|]', '-')
+  '<,'>:call V_rpl( '|.',  '| ')
+  '<,'>:call V_rpl('.|' , ' |' )
 endfunc
 
 " slct
@@ -3820,14 +3843,15 @@ command! -range=% -nargs=* Rpl <line1>,<line2>call V_rpl(<f-args>)
 func! V_rpl(srch, rpl) range abort
 
   let l:rng = a:firstline . ',' . a:lastline
+  "let l:rng = "'<,'>"
   let l:cmd = l:rng . 's/' . a:srch . '/' . a:rpl . '/g'
   "echo l:cmd
   call Exe(l:cmd)
 endfunc
 
-command! -range=% -nargs=* RplBox <line1>,<line2>call V_rpl_box(<f-args>)
+command! -range=% -nargs=* RplBox <line1>,<line2>call V_rpl_in_box(<f-args>)
 
-func! V_rpl_box(srch, rpl) range abort
+func! V_rpl_in_box(srch, rpl) range abort
 
   let l:srch = a:srch
   let l:rpl  = a:rpl
@@ -3842,13 +3866,13 @@ func! V_box_space_del() range abort
   let l:srch = ' '
   let l:rpl  = ''
 
-  '<,'>:call V_rpl_box(srch, rpl)
+  '<,'>:call V_rpl_in_box(srch, rpl)
 endfunc
 
-func! V_box_fil_space() range abort
+func! V_box_edge_r_char__shft_in() range abort
 
-  let l:rng = "'<,'>"
-  let l:cmd = l:rng . 's/' . '\%V\([ ]\+\)\([^ ]\)' . '/' . '\2\1' . '/g'
+  "let l:rng = "'<,'>"
+  let l:cmd = g:v_rng . 's/' . '\%V\([ ]\+\)\([^ ]\)' . '/' . '\2\1' . '/g'
   call Exe(l:cmd)
 
   call Slct_re()
@@ -3869,7 +3893,7 @@ endfunc
 
 func! Grep(opt, p_str) abort
   
-  call Opn_grep_work()
+  call Opn_grep_wk()
 
   let l:rg_cmd = Rg_cmd(a:opt, a:p_str)
   call Ins_sys_cmd(l:rg_cmd)
@@ -4027,19 +4051,6 @@ func! Char__tgl_markdown_chk() abort
   call Char__rpl(l:rpl_char)
 endfunc
 
-func! Markdown_2_html() abort
-  
-  if ! Is_file_type('markdown')
-    return
-  endif
-  
-  let l:path = expand('%')
-  
-  call Exe('! node ~/sh/nodejs/md_2_html.js ' . l:path)
-  
-  "call Opn_app(l:path . '.html')
-endfunc
-
 " markdown cnd
 
 func! Is_line_markdown_itm() abort
@@ -4054,24 +4065,6 @@ func! Is_line_markdown_itm() abort
     return v:true
   endif
 endfunc
-
-" ???
-
-"func! N_bracket_pair_tgl() abort
-"
-"  let l:col1 = col('.')
-"  call N_bracket_tgl()
-"
-"  call Normal('%')
-"  let l:col2 = col('.')
-"
-"  if l:col1 == l:col2
-"    return
-"  endif
-"
-"  call N_bracket_tgl()
-"  call Normal('%')
-"endfunc
 
 " tag jmp
 
@@ -4199,22 +4192,23 @@ func! Opn_vim_key() abort
   call Opn(l:path)
 endfunc
 
-let g:opn_memo_path = '~/wrk/prj/splir/doc/prj.memo.md'
+let g:opn_memo_path = '~/wrk/prj/prj001/doc/memo.md'
 
 func! Opn_memo() abort
 
   call Opn(g:opn_memo_path)
 endfunc
 
-let g:grep_work_path = 'doc/grep.lua'
+func! Opn_grep_wk() abort
 
-func! Opn_grep_work() abort
+  "let g:grep_wk_path = 'doc/grep.lua'
+  let g:grep_wk_path = '~/wrk/tmp/rg.md'
 
-  let l:file_type = getftype(g:grep_work_path)
+  let l:file_type = getftype(g:grep_wk_path)
 
   if Is_str_emp(l:file_type)
 
-    call Opn(g:grep_work_path)
+    call Opn(g:grep_wk_path)
   else
     call Opn_tmp()
   endif
@@ -4415,6 +4409,15 @@ func! I_ooq() abort
 "  \   'alias',
 endfunc
 
+" dir crnt
+
+command! -nargs=0 Pth call Pth()
+
+func! Pth() abort
+
+  call Exe('pwd')
+endfunc
+
 " dir ch parent
 
 command! -nargs=0 K   call K()
@@ -4424,6 +4427,7 @@ command! -nargs=0 Kkk call Kkk()
 func! K() abort " alias
 
   call Dir_ch_parent()
+  call Pth()
 endfunc
 
 func! Kk() abort

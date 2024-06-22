@@ -1,0 +1,52 @@
+
+" ctags
+
+set tags=./.tags;
+"nnoremap <c-]> g<c-]>
+"nnoremap xx :!sh sh/ctags.sh
+
+" ctags ( fzf )
+
+"nnoremap xx :Tags <c-r><c-w><cr>
+"vnoremap xx "zy:Tags <c-r>z<cr>
+command! -bang -nargs=? Tags
+\ call fzf#vim#tags(<q-args>, <bang>1)
+
+
+" opn markdown preview
+"nnoremap xx :call Markdown_2_html()<cr>
+
+func! Markdown_2_html() abort
+  
+  if ! Is_file_type('markdown')
+    return
+  endif
+  
+  let l:path = expand('%')
+  
+  call Exe('! node ~/sh/nodejs/md_2_html.js ' . l:path)
+  
+  "call Opn_app(l:path . '.html')
+endfunc
+
+
+" ???
+
+"func! N_bracket_pair_tgl() abort
+"
+"  let l:col1 = col('.')
+"  call N_bracket_tgl()
+"
+"  call Normal('%')
+"  let l:col2 = col('.')
+"
+"  if l:col1 == l:col2
+"    return
+"  endif
+"
+"  call N_bracket_tgl()
+"  call Normal('%')
+"endfunc
+
+
+
