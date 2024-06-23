@@ -163,8 +163,13 @@ function rm_dmy {
 }
 # Set-Alias rm "rm_dmy" -Option AllScope # cannot be removed
 
-function vim { nvim -p ( echo $args ) }
-function vi  { nvim -p ( echo $args ) }
+function vi  {
+
+  # wildcard cnv dev
+  # nvim -p ( ls -Name $args )
+
+  nvim -p ( echo $args )
+}
 
 function opn {
   param( $path )
