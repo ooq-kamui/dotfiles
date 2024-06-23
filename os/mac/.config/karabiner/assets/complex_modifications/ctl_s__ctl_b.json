@@ -22,9 +22,10 @@
             {
               "type": "frontmost_application_if",
               "bundle_identifiers": [
+                "^com\\.apple\\.finder$",
                 "^com\\.apple\\.Safari$",
                 "^com\\.apple\\.MobileSMS$",
-                "^com\\.apple\\.finder$",
+                "^com\\.apple\\.Music$",
                 "^com\\.apple\\.iCal$",
                 "^com\\.google\\.Chrome$",
                 "^jp\\.naver\\.line\\.mac$",
@@ -51,9 +52,10 @@
             {
               "type": "frontmost_application_if",
               "bundle_identifiers": [
+                "^com\\.apple\\.finder$",
                 "^com\\.apple\\.Safari$",
                 "^com\\.apple\\.MobileSMS$",
-                "^com\\.apple\\.finder$",
+                "^com\\.apple\\.Music$",
                 "^com\\.apple\\.iCal$",
                 "^com\\.google\\.Chrome$",
                 "^jp\\.naver\\.line\\.mac$",

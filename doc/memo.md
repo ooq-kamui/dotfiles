@@ -2,6 +2,11 @@
 # cnf
 
 
+## ofc doc
+
+amp install
+
+
 ## aws pri
 
 fe api
@@ -13,11 +18,13 @@ holo
 - hosting
 
 
-## pwsh vim
+## vim
 
-v_indnt_2_space()
-- pwsh
-  - cmd research
++, -,
+- week think
+- cre
+  - str__pls()
+  - str__mns()
 
 
 ## win gitbash vim
