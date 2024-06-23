@@ -940,9 +940,6 @@ vnoremap I     :call Slctd__expnd_bracket_f()<cr>
 " slct all
 vnoremap a :call Slct_all()<cr>
 
-" slct re " tst
-"vnoremap xx :call V_slctd_re()<cr>
-
 " ynk slctd
 vnoremap o :call V_ynk()<cr>
 vnoremap c :call V_ynk()<cr>
@@ -1015,15 +1012,14 @@ vnoremap * x:call Ins_da()<cr>
 "vnoremap xx c<c-r>=strftime('%H:%M')<cr><esc>
 
 " ins at selected edge
-vnoremap :r :<c-u>SlctdEdgeIns 
-vnoremap :b :<c-u>SlctdEdgeIns 
+"vnoremap xx :<c-u>SlctdEdgeIns 
 
 " del str > ynk
 "vnoremap d xx
 vnoremap <expr> d
 \ mode() == '<c-v>' ? '"ad:let @+ = @a<cr>gv' :
 \                     '"ad:let @+ = @a<cr>'
-"vnoremap xx :call V_slctd__del()<cr> " dev tst
+"vnoremap xx :call V_slctd__del()<cr> " dev doing
 
 " del str > ynk not
 "vnoremap s xx
@@ -1035,7 +1031,7 @@ vnoremap <expr> s
 " del str pad space
 vnoremap S "aygvr gv
 vnoremap W "aygvr gv
-"vnoremap S :call V_slctd__space()<cr> " fnc dev doing
+"vnoremap S :call V_slctd__space()<cr> " dev doing
 
 " del cr
 "vnoremap xx J
@@ -1049,25 +1045,17 @@ vnoremap m :call V_line_end_space__del()<cr>
 " del cursor f space
 vnoremap K :call V_cursor_f_space__del()<cr>
 
+" slct box mv back
+vnoremap <c-w> :call Slctd_box__mv('l')<cr>
+
+" slct box mv forward
+vnoremap <c-e> :call Slctd_box__mv('r')<cr>
+
 " slctd str mv back
-"vnoremap xx :call Slctd_str__mv('l')<cr>
+vnoremap <c-s> :call Slctd_box_str__mv('l')<cr>
 
 " slctd str mv forward
-"vnoremap xx :call Slctd_str__mv('r')<cr>
-
-" slctd str mv line top
-"vnoremap xx :call Slctd_str__mv_line_top()<cr>
-
-" slctd str mv line end
-"vnoremap xx :call Slctd_str__mv_line_end()<cr>
-
-" slctd line mv
-"vnoremap xx :call V_mv_line('j')<cr> " use not, del
-"vnoremap xx :call V_mv_line('k')<cr> " use not, del
-
-" slct box mv
-vnoremap <c-w> :call Slctd_box__mv('l')<cr>
-vnoremap <c-e> :call Slctd_box__mv('r')<cr>
+vnoremap <c-f> :call Slctd_box_str__mv('r')<cr>
 
 " inc, dec
 vnoremap + <c-a>gv
@@ -1095,7 +1083,7 @@ vnoremap :e :call V_indnt_2_space(2)
 vnoremap :t :call V_tab_2_space(12)
 
 " line end ovr, space fil
-vnoremap H "ay"aP
+"vnoremap xx "ay"aP
 
 " upper / lower tgl
 vnoremap u ~gv
@@ -1137,12 +1125,13 @@ vnoremap <expr> :s
 \ mode() == '<c-v>' ? ':RplBox ' :
 \                     ':Rpl '
 
-" rpl cr
-vnoremap <c-m> :call V_srch_str__cr()<cr>
+" rpl cr ( add cr )
+vnoremap <c-m> :call V_line_srch_str__add_cr()<cr>
 
 " v box edge char shft in
 "vnoremap <c-s> 
-vnoremap <expr> <c-s>
+"vnoremap <c-h> 
+vnoremap <expr> <c-h>
 \ mode() == '<c-v>' ? ':call V_box_edge_r_char__shft_in()<cr>' :
 \                     ''
 
@@ -1244,7 +1233,7 @@ vnoremap C <esc>
 vnoremap D <esc>
 "vnoremap E <esc>
 vnoremap F <esc>
-"vnoremap H <esc>
+vnoremap H <esc>
 "vnoremap I <esc>
 vnoremap J <esc>
 "vnoremap K <esc>
@@ -1267,11 +1256,11 @@ vnoremap X <esc>
 
 vnoremap <c-a> <esc>
 "vnoremap <c-b> <esc>
-"vnoremap <c-c> <esc>
+vnoremap <c-c> <esc>
 vnoremap <c-d> <esc>
 "vnoremap <c-e> <esc>
-vnoremap <c-f> <esc>
-vnoremap <c-h> <esc>
+"vnoremap <c-f> <esc>
+"vnoremap <c-h> <esc>
 "vnoremap <c-i> <esc>
 "vnoremap <c-l> <esc>
 "vnoremap <c-m> <esc>
@@ -3063,22 +3052,6 @@ func! Line__del_by_line_num(line_num) abort
   call deletebufline('%', a:line_num)
 endfunc
 
-"func! V_mv_line(ud) range abort
-"
-"  let l:mv_num   = a:lastline - a:firstline
-"  let l:line_num = l:mv_num + 1
-"
-"  call Normal(a:firstline . 'G')
-"  call Normal(l:line_num . '"zdd')
-"  call Normal(a:ud)
-"  call Normal('"zP')
-"  call Normal('V')
-"
-"  if l:mv_num >= 1
-"    call Normal(l:mv_num . 'j')
-"  endif
-"endfunc
-
 " line cnd
 
 func! Is_line_num_eq_1() abort
@@ -3228,9 +3201,9 @@ endfunc
 
 func! V_2_markdown_tbl_header() range abort
 
-  '<,'>:call V_rpl('[^|]', '-')
-  '<,'>:call V_rpl( '|.',  '| ')
-  '<,'>:call V_rpl('.|' , ' |' )
+  '<,'>:call V_line__rpl('[^|]', '-')
+  '<,'>:call V_line__rpl( '|.',  '| ')
+  '<,'>:call V_line__rpl('.|' , ' |' )
 endfunc
 
 " slct
@@ -3306,11 +3279,6 @@ func! Slct_re_in_line_1() abort " in line 1
 endfunc
 
 func! Slct_re() range abort
-  
-  call Normal('gv')
-endfunc
-
-func! Slct_re_box() range abort " use not
   
   call Normal('gv')
 endfunc
@@ -3466,6 +3434,28 @@ func! Slctd__expnd_word_f() abort
   endif
 endfunc
 
+func! Slctd_box__mv(lr) range abort
+
+  call Slct_re()
+
+  let l:n_cmd = Lr_2_n_cmd(a:lr)
+  call Normal('o' . l:n_cmd)
+  call Normal('o' . l:n_cmd)
+endfunc
+
+func! Slctd_box_str__mv(lr) range abort
+
+  let l:n_cmd = Lr_2_n_cmd(a:lr)
+
+  call Slct_re()
+  call Normal('"zx')
+  call Normal(l:n_cmd)
+  call Normal('"zP')
+
+  call Slct_re()
+  call Slctd_box__mv(a:lr)
+endfunc
+
 func! Lr_2_n_cmd(lr) abort
 
   if     a:lr == 'l'
@@ -3478,57 +3468,19 @@ func! Lr_2_n_cmd(lr) abort
   return l:n_cmd
 endfunc
 
-func! Slctd_str__mv(lr) abort
+" slctd del
 
-  let l:n_cmd = Lr_2_n_cmd(a:lr)
-
-  call Normal('gv"zx' . l:n_cmd . '"zP')
-
-  call Normal('v')
-
-  let l:mv_len = Str_len(@z) - 1
-  if l:mv_len <= 0
-    return
-  endif
-
-  call Normal(l:mv_len . 'h')
-endfunc
-
-func! Slctd_str__mv_line_top() abort
-
-  call Normal('gv"zx' . '^'  . '"zP')
-endfunc
-
-func! Slctd_str__mv_line_end() abort
-
-  call Normal('gv"zx' . '$l' . '"zP')
-endfunc
-
-func! Slctd_box__mv(lr) range abort
-
-  let l:n_cmd = Lr_2_n_cmd(a:lr)
+func! V_slctd__del() abort " dev doing, can
 
   call Slct_re()
 
-  call Normal('o' . l:n_cmd . 'o' . l:n_cmd)
-endfunc
-
-" slctd del
-
-func! V_slctd__del() abort " use not todo dev tst
-
-  "call V_slctd_re()
-
-  call Normal('gv"ad')
+  call Normal('"ad')
   let @+ = @a
 endfunc
 
-func! V_slctd__space() range abort " use not, todo dev
+func! V_slctd__space() range abort " dev doing, can
 
-  "call Slct_re_in_line_1()
-  "or
-  "call Slct_re_box()
-  call Slct_by_line_rng(a:firstline, a:lastline)
+  call Slct_re()
 
   call Normal('"aygvr gv')
 endfunc
@@ -3549,7 +3501,7 @@ endfunc
 
 command! -nargs=? SlctdEdgeIns call Slctd_edge__ins(<q-args>)
 
-func! Slctd_edge__ins(c) abort " use not
+func! Slctd_edge__ins(c) abort
   
   if     a:c   == '('
     let  l:c_l =  '('
@@ -3809,87 +3761,75 @@ func! Srch_char_bracket(dir) abort
   call Srch_char(a:dir, l:char_bracket)
 endfunc
 
-" srch __ rpl cr
+" v line __ rpl
 
-func! V_srch_str__cr() range abort
+command! -range=% -nargs=* Rpl <line1>,<line2>call V_line__rpl(<f-args>)
 
-  let l:rng = a:firstline . ',' . a:lastline
+func! V_line__rpl(srch, rpl) range abort
 
-  let l:srch_str = @/
-
-  let l:cmd = l:rng . 's/\(' . l:srch_str . '\)/\1\r/g'
+  let l:cmd = g:v_rng . 's/' . a:srch . '/' . a:rpl . '/g'
+  "echo l:cmd
   call Exe(l:cmd)
 endfunc
 
-" rpl by line1 line2
+" v line srch str __ rpl cr ( add cr )
 
-func! Rpl_by_line1_line2() range abort
+func! V_line_srch_str__add_cr() range abort
 
-  "let l:srch = 'a'
-  "let l:rpl  = 'b'
+  let l:srch = @/
+
+  let l:cmd = g:v_rng . 's/\(' . l:srch . '\)/\1\r/g'
+  call Exe(l:cmd)
+endfunc
+
+" v line __ rpl by line1 line2
+
+func! V_line__rpl_by_line1_line2() range abort
+
   let l:srch = getline(1)
   let l:rpl  = getline(2)
 
-  let l:rng = '3,$'
+  "let l:rng = '3,$'
+  let l:rng = g:v_rng
   let l:cmd = l:rng . 's/' . l:srch . '/' . l:rpl . '/g'
   "echo l:cmd
   call Exe(l:cmd)
 endfunc
 
-" srch __ rpl cmd
+" v box __ rpl
 
-command! -range=% -nargs=* Rpl <line1>,<line2>call V_rpl(<f-args>)
+command! -range=% -nargs=* RplBox <line1>,<line2>call V_box__rpl(<f-args>)
 
-func! V_rpl(srch, rpl) range abort
-
-  let l:rng = a:firstline . ',' . a:lastline
-  "let l:rng = "'<,'>"
-  let l:cmd = l:rng . 's/' . a:srch . '/' . a:rpl . '/g'
-  "echo l:cmd
-  call Exe(l:cmd)
-endfunc
-
-command! -range=% -nargs=* RplBox <line1>,<line2>call V_rpl_in_box(<f-args>)
-
-func! V_rpl_in_box(srch, rpl) range abort
+func! V_box__rpl(srch, rpl) range abort
 
   let l:srch = a:srch
   let l:rpl  = a:rpl
 
-  let l:rng = "'<,'>"
-  let l:cmd = l:rng . 's/' . '\%V' . l:srch . '/' . l:rpl . '/g'
+  let l:cmd = g:v_rng . 's/' . '\%V' . l:srch . '/' . l:rpl . '/g'
   call Exe(l:cmd)
 endfunc
 
-func! V_box_space_del() range abort
+" v box space __ del
+
+func! V_box_space__del() range abort
 
   let l:srch = ' '
   let l:rpl  = ''
 
-  '<,'>:call V_rpl_in_box(srch, rpl)
+  '<,'>:call V_box__rpl(srch, rpl)
 endfunc
 
 func! V_box_edge_r_char__shft_in() range abort
 
-  "let l:rng = "'<,'>"
   let l:cmd = g:v_rng . 's/' . '\%V\([ ]\+\)\([^ ]\)' . '/' . '\2\1' . '/g'
   call Exe(l:cmd)
 
   call Slct_re()
 endfunc
 
-command! -range=% -nargs=* RplCr <line1>,<line2>call V_rpl_cr(<f-args>)
-
-func! V_rpl_cr(srch) range abort
-
-  let l:rng = a:firstline . ',' . a:lastline
-  let l:rpl = a:srch . '\r'
-  let l:cmd = l:rng . 'Rpl ' . a:srch . ' ' . l:rpl
-  "echo l:cmd
-  call Exe(l:cmd)
-endfunc
-
+" 
 " grep
+" 
 
 func! Grep(opt, p_str) abort
   

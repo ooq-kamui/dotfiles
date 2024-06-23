@@ -2,11 +2,6 @@
 # cnf
 
 
-## vim
-
-v box, slctd mv
-
-
 ## aws pri
 
 fe api
@@ -23,12 +18,6 @@ holo
 v_indnt_2_space()
 - pwsh
   - cmd research
-
-
-## pwsh
-
-vi ( ... )
-- fnc
 
 
 ## win gitbash vim
