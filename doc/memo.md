@@ -2,9 +2,13 @@
 # cnf
 
 
-## ofc doc
+## vim
 
-amp install
++, -,
+- week think
+- cre
+  - Str__pls()
+  - Str__mns()
 
 
 ## aws pri
@@ -16,15 +20,6 @@ fe api
 
 holo
 - hosting
-
-
-## vim
-
-+, -,
-- week think
-- cre
-  - str__pls()
-  - str__mns()
 
 
 ## win gitbash vim

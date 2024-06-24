@@ -1123,7 +1123,8 @@ vnoremap <c-p> :call Slctd_rpl_srch_nxt()<cr>
 "vnoremap :s 
 vnoremap <expr> :s
 \ mode() == '<c-v>' ? ':RplBox ' :
-\                     ':Rpl '
+\                     ':s///g'
+"\                     ':Rpl '
 
 " rpl cr ( add cr )
 vnoremap <c-m> :call V_line_srch_str__add_cr()<cr>
