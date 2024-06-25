@@ -1,6 +1,15 @@
 
-" paste clipboard«                                                                                                           
+" paste clipboard
 inoremap <c-v> <c-r>a
+
+
+" c9clp __ ynk
+nnoremap C :call C9clp__ynk()<cr>
+
+func! C9clp__ynk() abort
+
+  call Sys_cmd('echo ' . @a . ' | clp_by_tmp')
+endfunc
 
 
 

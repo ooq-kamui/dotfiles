@@ -505,9 +505,13 @@ nnoremap <c-m> J
 "nnoremap xx qy
 "nnoremap xx @y
 
-" num inc, dec
-nnoremap + <c-a>
+" num inc
+"nnoremap + <c-a>
+nnoremap + :call Str__inc()<cr>
+
+" num dcl
 nnoremap - <c-x>
+"nnoremap + :call Str__dcl()<cr>
 
 " char toggle ( upper / lower )
 nnoremap u :call N_char__tgl()<cr>
@@ -627,7 +631,8 @@ nnoremap :r :InsSysCmd
 nnoremap :d :Pth <cr>
 
 " cd parent
-nnoremap :a :K <cr>
+nnoremap :a :cd .. 
+"nnoremap :a :DirUp 
 
 " 
 " tab
@@ -1002,7 +1007,7 @@ vnoremap & :call V_ins_cmnt_mlt()<cr>
 "vnoremap $ :call V_ins_cmnt_mlt()<cr>
 
 " ins date time
-vnoremap * x:call Ins_da()<cr>
+"vnoremap xx x:call Ins_da()<cr>
 
 " ins day of week
 "vnoremap xx x:call Ins_week()<cr>
@@ -1057,14 +1062,15 @@ vnoremap <c-s> :call Slctd_box_str__mv('l')<cr>
 " slctd str mv forward
 vnoremap <c-f> :call Slctd_box_str__mv('r')<cr>
 
-" inc, dec
+" num inc
 vnoremap + <c-a>gv
-"vnoremap = <c-a>gv
+
+" num dcl
 vnoremap - <c-x>gv
 
 " num seq
+vnoremap * g<c-a>
 vnoremap = g<c-a>
-"vnoremap + g<c-a>
 
 " indnt shft
 vnoremap # >gv
@@ -2220,6 +2226,12 @@ func! Str_path_win__cnv_unix(path) abort
   let l:path = Str__rpl(l:path, 'C:', '/c')
   let l:path = Str__rpl(l:path, '\', '/')
   return l:path
+endfunc
+
+func! Str__inc() abort
+
+  let l:n_cmd = "\<c-a>"
+  call Normal(l:n_cmd)
 endfunc
 
 " str cnd
@@ -3631,8 +3643,11 @@ endfunc
 
 func! Clipboard__ynk() abort
 
-  if ! Is_env('linux')
+  if Is_env('linux')
 
+    "call C9clp__ynk()
+
+  else
     let @+ = @a
   endif
 endfunc
@@ -4361,32 +4376,12 @@ endfunc
 
 " dir ch parent
 
-command! -nargs=0 K   call K()
-command! -nargs=0 Kk  call Kk()
-command! -nargs=0 Kkk call Kkk()
+command! -nargs=0 DirUp call Dir__parent()
 
-func! K() abort " alias
-
-  call Dir_ch_parent()
-  call Pth()
-endfunc
-
-func! Kk() abort
-
-  call Dir_ch_parent()
-  call Dir_ch_parent()
-endfunc
-
-func! Kkk() abort
-
-  call Dir_ch_parent()
-  call Dir_ch_parent()
-  call Dir_ch_parent()
-endfunc
-
-func! Dir_ch_parent() abort
+func! Dir__parent() abort
 
   call Exe('cd ..')
+  call Pth()
 endfunc
 
 " undo clr
