@@ -505,13 +505,13 @@ nnoremap <c-m> J
 "nnoremap xx qy
 "nnoremap xx @y
 
-" num inc
+" num icl
+nnoremap + :call Str__icl()<cr>
 "nnoremap + <c-a>
-nnoremap + :call Str__inc()<cr>
 
 " num dcl
-nnoremap - <c-x>
-"nnoremap + :call Str__dcl()<cr>
+nnoremap - :call Str__dcl()<cr>
+"nnoremap - <c-x>
 
 " char toggle ( upper / lower )
 nnoremap u :call N_char__tgl()<cr>
@@ -1062,7 +1062,7 @@ vnoremap <c-s> :call Slctd_box_str__mv('l')<cr>
 " slctd str mv forward
 vnoremap <c-f> :call Slctd_box_str__mv('r')<cr>
 
-" num inc
+" num icl
 vnoremap + <c-a>gv
 
 " num dcl
@@ -2228,10 +2228,30 @@ func! Str_path_win__cnv_unix(path) abort
   return l:path
 endfunc
 
-func! Str__inc() abort
+func! Str__icl() abort
 
-  let l:n_cmd = "\<c-a>"
+  if Is_cursor_c_char_alph()
+
+    call Str_week__icl()
+
+  else
+    let l:n_cmd = "\<c-a>"
+    call Normal(l:n_cmd)
+  endif
+endfunc
+
+func! Str__dcl() abort
+
+  let l:n_cmd = "\<c-x>"
   call Normal(l:n_cmd)
+endfunc
+
+func! Str_week__icl() abort " dev doing
+
+  let l:week_str = Cursor_word()
+
+  "g:week_def " dev doing, dict search
+
 endfunc
 
 " str cnd
@@ -2281,11 +2301,6 @@ func! V_mb_cnv() range abort
 endfunc
 
 " cursor
-
-"func! Cursor_char() abort " alias  -  use not
-"
-"  call Cursor_c_char()
-"endfunc
 
 func! Cursor_c_char() abort
 
@@ -2605,19 +2620,42 @@ func! Is_cursor_line_file_edge() abort
   return l:ret
 endfunc
 
-func! Is_cursor_c_char_space() abort
+" cnd cursor c char
+
+func! Is_cursor_c_char_regex(regex) abort
 
   let l:c = Cursor_c_char()
 
-  if l:c =~ '\s'
-
+  if l:c =~ a:regex
     return v:true
   else
     return v:false
   endif
 endfunc
 
-" cursor cnd  line
+func! Is_cursor_c_char_space() abort
+
+  let l:c = Cursor_c_char()
+
+  if l:c =~ '\s'
+    return v:true
+  else
+    return v:false
+  endif
+
+  " let l:regex = '\s'
+  " let l:ret = Is_cursor_c_char_regex(l:regex)
+  " return l:ret
+endfunc
+
+func! Is_cursor_c_char_alph() abort
+
+  let l:regex = '\a'
+  let l:ret = Is_cursor_c_char_regex(l:regex)
+  return l:ret
+endfunc
+
+" cnd cursor line
 
 func! Is_cursor_line_end() abort
 
@@ -2750,13 +2788,12 @@ func! Ins_ts() abort
   call Ins(l:ts)
 endfunc
 
+let g:week_def = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ]
+
 func! Ins_week() abort
 
-  let l:week_def = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ]
-
   let l:week_num = strftime('%w')
-  let l:week     = l:week_def[l:week_num]
-
+  let l:week     = g:week_def[l:week_num]
   call Ins(l:week)
   "call Ins(' ' . l:week)
 endfunc
@@ -3286,7 +3323,7 @@ func! Slct_by_line_rng(line_num_fr, line_num_to) abort
   call Cursor__mv_by_line_num(a:line_num_to)
 endfunc
 
-func! Slct_re_in_line_1() abort " in line 1
+func! Slct_re_in_line_1() abort " in line 1  -  old
 
   call Normal('gv')
 endfunc
@@ -4308,8 +4345,7 @@ func! I_markdown() abort
 endfunc
 
 func! I_week() abort
-  let l:week_def = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ]
-  call complete(col('.'), l:week_def)
+  call complete(col('.'), g:week_def)
   return ''
 endfunc
 

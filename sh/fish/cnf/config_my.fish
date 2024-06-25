@@ -98,6 +98,8 @@ alias di  'z'
 alias vim 'nvim -p'
 alias vi  'nvim -p'
 
+alias gi 'git'
+
 set -x LC_TIME en_US
 alias da      "date_ymd"
 alias da_y1   "date_y 1"
@@ -105,45 +107,33 @@ alias da_y2   "date_y 2"
 alias date_y1 "date_y 1"
 alias date_y2 "date_y 2"
 
+alias ca 'cal'
+
 alias du  'du -h'
 alias du1 'du -hd1'
+alias df  'df -h'
 
-alias df 'df -h'
-
-alias tbl 'column -t'
+alias zip_un 'unzip'
 
 alias clc 'math'
+alias tbl 'column -t'
+alias col 'awk_arg'
 
 alias trns   'trans'
 alias trns_j 'trans {ja=en}'
 alias trns_e 'trans {en=ja}'
 
 alias ba 'battery'
-alias ca 'cal'
 
 alias fd 'fd --hidden --follow -I --exclude .git'
 
 alias amp 'amplify'
 
-
-# alias arg ( etc )
-
-
-# alias arg ( vim )
-
-
-#alias vi_vimrc    "vi ~/.vimrc"
-#alias vi_vim_swap "vi ~/.local/share/nvim/swap/"
-
-#alias cd_vim_swp  "cd ~/.local/state/nvim/swap"
-
 # alias arg ( prj )
-
 
 # alias cmd path
 
 alias uconv '/opt/homebrew/Cellar/icu4c/73.2/bin/uconv'
-
 
 # 
 # bind

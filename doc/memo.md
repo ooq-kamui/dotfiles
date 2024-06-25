@@ -5,10 +5,7 @@
 ## vim
 
 +, -,
-- week think
-- cre
-  - Str__pls()
-  - Str__mns()
+- __ week
 
 
 ## aws pri
@@ -20,6 +17,12 @@ fe api
 
 holo
 - hosting
+
+
+# c9 fish
+
+ca err
+- mod
 
 
 ## win gitbash vim
