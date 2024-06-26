@@ -2,10 +2,26 @@
 # cnf
 
 
+## pwsh
+
+upload at tmp/ts
+
+
+
+## fish
+
+col arg num only
+
+
 ## vim
 
 +, -,
 - __ week
+  - dict idx get
+
+
+line join by line num
+
 
 
 ## aws pri
@@ -22,7 +38,8 @@ holo
 # c9 fish
 
 ca err
-- mod
+- date case c9 / mac
+
 
 
 ## win gitbash vim
