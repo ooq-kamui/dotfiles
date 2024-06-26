@@ -568,7 +568,7 @@ nnoremap e :call N_srch_str__(v:false)<cr>
 nnoremap E :call N_srch_str__(v:true)<cr>
 
 " srch char bracket forward
-nnoremap <c-f> :call Srch_char_bracket('f')<cr>
+"nnoremap xx :call Srch_char_bracket('f')<cr>
 
 " srch str history ( fzf )
 nnoremap <leader>n :SrchHstry<cr>
@@ -807,7 +807,7 @@ nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
 "nnoremap <c-e> <esc>
-"nnoremap <c-f> <esc>
+nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab

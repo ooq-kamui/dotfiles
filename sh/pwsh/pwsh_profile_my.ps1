@@ -172,6 +172,8 @@ function vi  {
   nvim -p ( echo $args )
 }
 
+# Set-Alias gi "git"
+
 function opn {
   param( $path )
 
