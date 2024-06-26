@@ -4804,6 +4804,7 @@ if     Is_env('mac')   " mac
 elseif Is_env('linux') " c9
 
   set shell=bash
+  "set shell=fish
 
   source ~/wrk/cnf/vim/.vimrc_c9
 
