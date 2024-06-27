@@ -1038,8 +1038,8 @@ vnoremap S "aygvr gv
 vnoremap W "aygvr gv
 "vnoremap S :call V_slctd__space()<cr> " dev doing
 
-" del cr
-"vnoremap xx J
+" line join / per
+"vnoremap J call Line__join()" todo dev
 
 " del line top space
 vnoremap M :call V_line_top_space__del()<cr>
@@ -1242,7 +1242,7 @@ vnoremap D <esc>
 vnoremap F <esc>
 vnoremap H <esc>
 "vnoremap I <esc>
-vnoremap J <esc>
+"vnoremap J <esc>
 "vnoremap K <esc>
 "vnoremap L <esc>
 "vnoremap M <esc>
@@ -4826,5 +4826,29 @@ else
   echo "is env else"
 endif
 
+" 
+" ref ptn regex
+" url : xxx
 
+" \s : space, tab
+" 
+" \w : [0-9A-Za-z_]   word
+" \h : [A-Za-z_]      \w から数字を除いたもの, 単語の先頭文字
+" \a : [A-Za-z]       alph
+" \l : [a-z]          小文字
+" \u : [A-Z]          大文字
+" 
+" \d : [0-9]          10進数
+" \x : [0-9A-Fa-f]    16進数
+" \o : [0-7]           8進数
+"
+" \S : \s 以外
+" \D : \d 以外
+" \X : \x 以外
+" \O : \o 以外
+" \W : \w 以外
+" \H : \h 以外
+" \A : \a 以外
+" \L : \l 以外
+" \U : \u 以外
 

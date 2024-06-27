@@ -2,26 +2,28 @@
 # cnf
 
 
-## pwsh
-
-upload at tmp/ts
-
-
-
-## fish
-
-col arg num only
-
-
 ## vim
+
+line join by line num
+- sed
+- hint
+  - https://nanasi.jp/articles/howto/editing/global-head.html
+
 
 +, -,
 - __ week
   - dict idx get
 
 
-line join by line num
+color_name_lst() fnc
+- cre
 
+
+## fish
+
+col arg num only
+- for idx
+  - ggl
 
 
 ## aws pri
@@ -35,11 +37,15 @@ holo
 - hosting
 
 
+# c9 fish vim
+
+ynk > clp
+
+
 # c9 fish
 
 ca err
 - date case c9 / mac
-
 
 
 ## win gitbash vim
