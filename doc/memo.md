@@ -2,21 +2,27 @@
 # cnf
 
 
-## vim
+## c9
 
-line join by line num
-- sed
-- hint
-  - https://nanasi.jp/articles/howto/editing/global-head.html
+rg
+- .gitignore think
 
 
-+, -,
-- __ week
-  - dict idx get
+vim rg
+- .gitignore think
 
 
-color_name_lst() fnc
-- cre
+jq
+
+
+## c9 vim
+
+- syntax conf str red > ?
+
+
+## c9 fish
+
+dir, and pwd ( pth )
 
 
 ## fish
@@ -26,15 +32,12 @@ col arg num only
   - ggl
 
 
-## aws pri
+## vim
 
-fe api
-- api-gateway cre
-- lambda cre
-  - dynamo db access
+week str __ icl, dcl
 
-holo
-- hosting
+
+line join by line num
 
 
 # c9 fish vim
@@ -46,6 +49,20 @@ ynk > clp
 
 ca err
 - date case c9 / mac
+
+
+
+---
+
+## aws pri
+
+fe api
+- api-gateway cre
+- lambda cre
+  - dynamo db access
+
+holo
+- hosting
 
 
 ## win gitbash vim

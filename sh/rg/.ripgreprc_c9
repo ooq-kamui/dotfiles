@@ -9,5 +9,8 @@
 
 # --line-number
 
+--glob=!amplify/#current-cloud-backend/
+--glob=!amplify/backend/node_modules/
+
 
 

@@ -687,6 +687,9 @@ nnoremap xx :Term
 " wrap tgl
 nnoremap :w :set wrap!
 
+" line num view tgl
+nnoremap :n :set number!
+
 " tst
 "nnoremap xx :call Tst()<cr>
 
@@ -1038,8 +1041,8 @@ vnoremap S "aygvr gv
 vnoremap W "aygvr gv
 "vnoremap S :call V_slctd__space()<cr> " dev doing
 
-" line join / per
-"vnoremap J call Line__join()" todo dev
+" line join / per  " todo dev
+vnoremap J :call Line__join_per_line_num(3)
 
 " del line top space
 vnoremap M :call V_line_top_space__del()<cr>
@@ -1692,6 +1695,11 @@ if Is_env('mac') || Is_env('linux') || Is_env('win64')
   let g:fzf_rg_opt .= ' -g "!.git"'
 endif
 
+"if Is_env('linux') || Is_env('win64')
+"
+"  let g:fzf_rg_opt .= ' -g "!#current-cloud-backend"'
+"endif
+
 if Is_env('mac') || Is_env('linux') || Is_env('win64')
 
   command! -bang -nargs=* Rg
@@ -2232,7 +2240,10 @@ func! Str__icl() abort
 
   if Is_cursor_c_char_alph()
 
-    call Str_week__icl()
+    let l:week_str = Cursor_word()
+    let l:week = Str_week__icl(l:week_str)
+
+    " dev doing
 
   else
     let l:n_cmd = "\<c-a>"
@@ -2246,12 +2257,24 @@ func! Str__dcl() abort
   call Normal(l:n_cmd)
 endfunc
 
-func! Str_week__icl() abort " dev doing
+func! Str_week__icl(week_str) abort " dev doing
 
-  let l:week_str = Cursor_word()
+  let l:idx = index(g:week_def, a:week_str)
 
-  "g:week_def " dev doing, dict search
+  let l:r_idx = Idx__icl(idx, 7)
 
+  return g:week_def[l:r_idx]
+endfunc
+
+func! Idx__icl(idx, ar_len) abort
+
+  let l:r_idx = a:idx + 1
+
+  if r_idx >= a:ar_len
+    let l:r_idx = 0
+  endif
+
+  return l:r_idx
 endfunc
 
 " str cnd
@@ -2992,6 +3015,12 @@ func! V_line_end_space__del() range abort
 
     call Line_end_space__del(l:line_num)
   endfor
+endfunc
+
+func! Line__join_per_line_num(line_num) range abort
+
+  let l:n_cmd = a:line_num . 'J'
+  call Normal(l:n_cmd)
 endfunc
 
 " cursor f
@@ -4585,12 +4614,20 @@ func! V_url_encode() range abort
   call Ins(l:rslt)
 endfunc
 
+" syntax color
+
 func! Hl_grp() abort
 
   echo synIDattr(synID(line('.'), col('.'), 1), 'name')
 endfunc
 " and
 " :highlight [grp name]
+
+func! Color_name_lst() abort
+
+  let l:cmd = "so $VIMRUNTIME/syntax/colortest.vim"
+  call Exe(l:cmd)
+endfunc
 
 func! Defold_err_cnv() abort
 

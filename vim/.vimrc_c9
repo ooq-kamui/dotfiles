@@ -12,4 +12,8 @@ func! C9clp__ynk() abort
 endfunc
 
 
+let g:fzf_rg_opt .= ' -g "!amplify/#current-cloud-backend/"'
+let g:fzf_rg_opt .= ' -g "!amplify/backend/node_modules/"'
+
+
 
