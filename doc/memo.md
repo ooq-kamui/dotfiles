@@ -1,54 +1,40 @@
 
 # cnf
 
-
-## c9
-
-rg
-- .gitignore think
-
-
-vim rg
-- .gitignore think
-
-
-jq
-
-
 ## c9 vim
 
 - syntax conf str red > ?
 
 
-## c9 fish
+# c9 fish vim
 
-dir, and pwd ( pth )
+ynk > clp
+- ggl
+
+
+## c9
+
+jq
+- for aws json
+  - ggl
 
 
 ## fish
 
-col arg num only
-- for idx
-  - ggl
+ca err
+- date case c9 / mac
 
 
 ## vim
 
-week str __ icl, dcl
+V_ins_sys_cmd()
+- tst
+  - Xxx_xx()
 
 
-line join by line num
-
-
-# c9 fish vim
-
-ynk > clp
-
-
-# c9 fish
-
-ca err
-- date case c9 / mac
+refactoring
+- E_xxx()
+  - call Normal()
 
 
 

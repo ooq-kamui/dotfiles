@@ -92,8 +92,8 @@ alias k   'cd_parent'
 alias kk  'k;k'
 alias kkk 'k;k;k'
 
-alias dir 'z'
-alias di  'z'
+#alias dir 'z'
+alias di  'dir'
 
 alias vim 'nvim -p'
 alias vi  'nvim -p'
@@ -117,7 +117,7 @@ alias zip_un 'unzip'
 
 alias clc 'math'
 alias tbl 'column -t'
-alias col 'awk_arg'
+#alias col 'awk_arg'
 
 alias trns   'trans'
 alias trns_j 'trans {ja=en}'

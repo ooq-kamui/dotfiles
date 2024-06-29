@@ -451,9 +451,6 @@ nnoremap <bar> :call Ins_dt()<cr>
 " ins day of week
 "nnoremap xx :call Ins_week()<cr>
 
-" ins time
-"nnoremap xx i<c-r>=strftime("%H:%M")<cr><esc>
-
 " ins slf path
 "nnoremap xx :call Ins_line_slf_path()<cr>
 
@@ -506,11 +503,11 @@ nnoremap <c-m> J
 "nnoremap xx @y
 
 " num icl
-nnoremap + :call Str__icl()<cr>
+nnoremap + :call Cursor_str__icl()<cr>
 "nnoremap + <c-a>
 
 " num dcl
-nnoremap - :call Str__dcl()<cr>
+nnoremap - :call Cursor_str__dcl()<cr>
 "nnoremap - <c-x>
 
 " char toggle ( upper / lower )
@@ -1042,7 +1039,7 @@ vnoremap W "aygvr gv
 "vnoremap S :call V_slctd__space()<cr> " dev doing
 
 " line join / per  " todo dev
-vnoremap J :call Line__join_per_line_num(3)
+vnoremap J :call V_line__join(3)
 
 " del line top space
 vnoremap M :call V_line_top_space__del()<cr>
@@ -1376,7 +1373,7 @@ inoremap <c-\> <c-r>=I_symbol()<cr>
 " ins markdown
 inoremap <c-u> <c-r>=I_markdown()<cr>
 
-" ins num
+" ins week
 "inoremap xx <c-r>=I_week()<cr>
 
 " ins num
@@ -2236,14 +2233,11 @@ func! Str_path_win__cnv_unix(path) abort
   return l:path
 endfunc
 
-func! Str__icl() abort
+func! Cursor_str__icl() abort
 
   if Is_cursor_c_char_alph()
 
-    let l:week_str = Cursor_word()
-    let l:week = Str_week__icl(l:week_str)
-
-    " dev doing
+    call Cursor_str_week__icl()
 
   else
     let l:n_cmd = "\<c-a>"
@@ -2251,19 +2245,50 @@ func! Str__icl() abort
   endif
 endfunc
 
-func! Str__dcl() abort
+func! Cursor_str__dcl() abort
 
-  let l:n_cmd = "\<c-x>"
-  call Normal(l:n_cmd)
+  if Is_cursor_c_char_alph()
+
+    call Cursor_str_week__dcl()
+
+  else
+    let l:n_cmd = "\<c-x>"
+    call Normal(l:n_cmd)
+  endif
 endfunc
 
-func! Str_week__icl(week_str) abort " dev doing
+func! Cursor_str_week__icl() abort
 
-  let l:idx = index(g:week_def, a:week_str)
+  let l:week_str = Cursor_word()
+  let l:week_idx = index(g:week_def, l:week_str)
 
-  let l:r_idx = Idx__icl(idx, 7)
+  if l:week_idx == -1
+    return
+  endif
 
-  return g:week_def[l:r_idx]
+  let l:week_nxt_idx = Idx__icl(week_idx, len(g:week_def))
+  let l:week_nxt_str = g:week_def[l:week_nxt_idx]
+
+  call Slct_word()
+  call Normal('"zd')
+  call Normal('i' . l:week_nxt_str)
+endfunc
+
+func! Cursor_str_week__dcl() abort
+
+  let l:week_str = Cursor_word()
+  let l:week_idx = index(g:week_def, l:week_str)
+
+  if l:week_idx == -1
+    return
+  endif
+
+  let l:week_nxt_idx = Idx__dcl(week_idx, len(g:week_def))
+  let l:week_nxt_str = g:week_def[l:week_nxt_idx]
+
+  call Slct_word()
+  call Normal('"zd')
+  call Normal('i' . l:week_nxt_str)
 endfunc
 
 func! Idx__icl(idx, ar_len) abort
@@ -2272,6 +2297,17 @@ func! Idx__icl(idx, ar_len) abort
 
   if r_idx >= a:ar_len
     let l:r_idx = 0
+  endif
+
+  return l:r_idx
+endfunc
+
+func! Idx__dcl(idx, ar_len) abort
+
+  let l:r_idx = a:idx - 1
+
+  if r_idx < 0
+    let l:r_idx = a:ar_len - 1
   endif
 
   return l:r_idx
@@ -2320,7 +2356,10 @@ command! -range=% -nargs=0 MbCnv <line1>,<line2>call V_mb_cnv()
 func! V_mb_cnv() range abort
 
   let l:sys_cmd = 'mb_cnv'
-  call V_ins_sys_cmd_by_line_rng(l:sys_cmd, a:firstline, a:lastline)
+  '<,'>:call V_ins_sys_cmd(l:sys_cmd)
+
+  "call V_ins_sys_cmd_by_line_rng(l:sys_cmd, a:firstline, a:lastline)
+  "'<,'>:call V_ins_sys_cmd_by_line_rng(l:sys_cmd)
 endfunc
 
 " cursor
@@ -2904,15 +2943,21 @@ func! Ins_sys_cmd(sys_cmd) abort " read
   endif
 endfunc
 
-func! V_ins_sys_cmd(sys_cmd) abort " read
+func! V_ins_sys_cmd(sys_cmd) range abort " read
 
-  let l:cmd = "'<,'> ! " . a:sys_cmd
+  let l:cmd = "'<,'>" . " ! " . a:sys_cmd
   call Exe(l:cmd)
 endfunc
 
-func! V_ins_sys_cmd_by_line_rng(sys_cmd, lineS, lineE) abort " read
+"func! V_ins_sys_cmd_by_line_rng(sys_cmd, lineS, lineE) abort " read
+func! V_ins_sys_cmd_by_line_rng(sys_cmd) range abort " read
 
-  let l:cmd = a:lineS . "," . a:lineE . " ! " . a:sys_cmd
+  "let l:cmd = " ! " . a:sys_cmd
+  "'<,'>:call Exe(l:cmd)
+
+  "let l:cmd = a:lineS . "," . a:lineE . " ! " . a:sys_cmd
+
+  let l:cmd = "'<,'>" . " ! " . a:sys_cmd
   call Exe(l:cmd)
 endfunc
 
@@ -3017,10 +3062,29 @@ func! V_line_end_space__del() range abort
   endfor
 endfunc
 
-func! Line__join_per_line_num(line_num) range abort
+func! V_line__join(per_line_num) range abort
 
-  let l:n_cmd = a:line_num . 'J'
-  call Normal(l:n_cmd)
+  let l:n_cmd = a:per_line_num . 'Jj'
+
+  let l:line_num = a:lastline - a:firstline + 1
+
+  let l:exe_num = l:line_num / a:per_line_num
+  "echo l:exe_num
+
+  for idx in range(1, l:exe_num)
+
+    call Normal(l:n_cmd)
+  endfor
+endfunc
+
+" tbl
+
+command! -range=% -nargs=0 Tbl <line1>,<line2>call V_tbl()
+
+func! V_tbl() range abort
+
+  let l:sys_cmd = 'tbl'
+  '<,'>:call V_ins_sys_cmd(l:sys_cmd)
 endfunc
 
 " cursor f
@@ -3250,9 +3314,6 @@ let g:v_rng = "'<,'>"
 func! V_indnt_2_space(indnt_col) range abort
 
   if Is_env('win64')
-    "let l:space_str = Str_space(a:indnt_col)
-    "let l:cmd = g:v_rng . 's/\t/' . l:space_str . '/g'
-    "call Exe(l:cmd)
     call V_tab_2_space(a:indnt_col)
 
   else
