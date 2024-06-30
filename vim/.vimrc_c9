@@ -1,6 +1,6 @@
 
 " paste clipboard
-inoremap <c-v> <c-r>a
+"inoremap <c-v> <c-r>a
 
 
 " c9clp __ ynk
@@ -14,6 +14,12 @@ endfunc
 
 let g:fzf_rg_opt .= ' -g "!amplify/#current-cloud-backend/"'
 let g:fzf_rg_opt .= ' -g "!amplify/backend/node_modules/"'
+
+
+" plg
+
+source ~/wrk/cnf/vim/plg/osc52.vim
+vnoremap <c-c> :call SendViaOSC52('aaa')<cr>
 
 
 

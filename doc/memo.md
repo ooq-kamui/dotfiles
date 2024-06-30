@@ -1,36 +1,21 @@
 
 # cnf
 
-## c9 vim
+# c9 aws
 
-- syntax conf str red > ?
-
-
-# c9 fish vim
-
-ynk > clp
-- ggl
-
-
-## c9
-
-jq
-- for aws json
+json
+- jq can not ?
   - ggl
 
 
-## fish
+# c9
 
-ca err
-- date case c9 / mac
+clpboard cp
+- fish
+- vim
 
 
 ## vim
-
-V_ins_sys_cmd()
-- tst
-  - Xxx_xx()
-
 
 refactoring
 - E_xxx()

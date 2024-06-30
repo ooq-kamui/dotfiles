@@ -849,14 +849,14 @@ nnoremap gv <esc>
 nnoremap gw <esc>
 nnoremap gy <esc>
 
-"nnoremap :a <esc>
-nnoremap :b <esc>
-nnoremap :c <esc>
-"nnoremap :d <esc>
+"nnoremap :a :a
+nnoremap :b :b
+nnoremap :c :c
+"nnoremap :d :d
 "          :
-"nnoremap :s <esc>
+"nnoremap :s :s
 "          :
-nnoremap :z <esc>
+nnoremap :z :z
 
 " mode normal end
 
