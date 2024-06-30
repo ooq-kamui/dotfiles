@@ -3,16 +3,27 @@
 
 # c9 aws
 
+aws logs
+
+
 json
 - jq can not ?
   - ggl
 
 
+# pwsh pri
+
+ssh c9
+- cp key file mac > win
+
+
 # c9
 
 clpboard cp
-- fish
-- vim
+- pwsh try
+  - c9
+    - fish
+    - vim
 
 
 ## vim
