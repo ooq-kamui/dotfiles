@@ -1173,7 +1173,7 @@ vnoremap ggl :call V_opn_ggl_srch()<cr>
 "vnoremap gy :call V_opn_yt()<cr>
 
 " trns
-"vnoremap xx  :call V_trns()<cr>
+vnoremap r :call V_trns()<cr>
 
 " tst
 "vnoremap xx :call Tst()<cr>
@@ -1222,7 +1222,7 @@ vnoremap h <esc>
 "vnoremap o <esc>
 "vnoremap p <esc>
 vnoremap q <esc>
-vnoremap r <esc>
+"vnoremap r <esc>
 "vnoremap s <esc>
 "vnoremap t <esc>
 "vnoremap u <esc>
@@ -4648,13 +4648,15 @@ func! V_trns() range abort
   let l:str = substitute(l:str, "\n", ' ', 'g')
 
   if l:str =~ '[^\x01-\x7E]' " mlt byte
-    let l:lang = '{ja=en} '
+    let l:lang = '{ja=en}'
   else
-    let l:lang = ''
+    let l:lang = '{en=ja}'
+    "let l:lang = ''
   endif
 
   let l:str = escape(l:str, "'")
-  let l:sys_cmd = 'trns -no-ansi ' . l:lang . "'" . l:str . "'"
+  let l:sys_cmd = 'trans -no-ansi ' . l:lang . " '" . l:str . "'"
+  "let l:sys_cmd = 'trns  -no-ansi ' . l:lang . " '" . l:str . "'"
   let l:rslt = Sys_cmd(l:sys_cmd)
   echo l:rslt
 endfunc

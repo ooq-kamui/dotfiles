@@ -1,35 +1,34 @@
 
 # cnf
 
-# c9
+
+# pwsh ofc
+
+repo del
+- x 3
+
+
+# c9 ofc
 
 trans
 - install
+  - `brew install translate-shell`
+
+
+# c9 aws pri
+
+aws logs
+- lambda cre
+- sqs cre
+- amplify cre
 
 
 # c9 aws
 
-aws logs
-
-
 json
 - jq can not ?
+  - key, quote single, can not ?
   - ggl
-
-
-# pwsh pri
-
-ssh c9
-- cp key file mac > win
-
-
-# c9
-
-clpboard cp
-- pwsh try
-  - c9
-    - fish
-    - vim
 
 
 ## vim
