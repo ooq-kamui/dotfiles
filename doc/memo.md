@@ -1,6 +1,12 @@
 
 # cnf
 
+# c9
+
+trans
+- install
+
+
 # c9 aws
 
 aws logs

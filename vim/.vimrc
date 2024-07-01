@@ -375,11 +375,8 @@ nnoremap c :call Ynk__line()<cr>
 " ynk slf path
 nnoremap gp :call Ynk__slf_path()<cr>
 
-" ynk clipboard
+" ynk __ clipboard
 "nnoremap xx :call Ynk__clipboard()<cr>
-
-" clipboard line
-"nnoremap xx "+yy
 
 " paste
 nnoremap p :call Paste()<cr>
@@ -737,21 +734,6 @@ nnoremap ( <esc>
 "nnoremap < <esc>
 "nnoremap > <esc>
 
-nnoremap <c-tab> <nop>
-nnoremap <c-space> <esc>
-nnoremap <c-@> <esc>
-"nnoremap <c-^> <esc>
-"nnoremap <c--> <esc> " non ?
-"nnoremap <c-*> <esc> " non ?
-"nnoremap <c-:> <esc> " non
-"nnoremap <c-;> <esc> " non
-"nnoremap <c-,> <esc> " non ?
-"nnoremap <c-.> <esc> " non ?
-"nnoremap <c-/> <esc> " non ?
-"nnoremap <c-_> <esc>
-"nnoremap <c-[> <esc>
-nnoremap <c-]> <esc>
-
 "nnoremap 0 <esc>
 "nnoremap a <esc>
 nnoremap b <esc>
@@ -801,6 +783,21 @@ nnoremap U <esc>
 "nnoremap V <esc>
 nnoremap X <esc>
 "nnoremap Y <esc>
+
+nnoremap <c-tab> <nop>
+nnoremap <c-space> <esc>
+nnoremap <c-@> <esc>
+"nnoremap <c-^> <esc>
+"nnoremap <c--> <esc> " non ?
+"nnoremap <c-*> <esc> " non ?
+"nnoremap <c-:> <esc> " non
+"nnoremap <c-;> <esc> " non
+"nnoremap <c-,> <esc> " non ?
+"nnoremap <c-.> <esc> " non ?
+"nnoremap <c-/> <esc> " non ?
+"nnoremap <c-_> <esc>
+"nnoremap <c-[> <esc>
+nnoremap <c-]> <esc>
 
 "nnoremap <c-a> <esc>
 nnoremap <c-b> <esc>
