@@ -59,7 +59,7 @@ alias src_fsh_cfg "source ~/.config/fish/config.fish"
 alias his     'history'
 alias his_del 'history delete'
 
-alias clr 'clear'
+alias clr 'clear; pwd'
 alias c   'clr'
 
 #alias clp 'pbcopy|clp_by_tmp'

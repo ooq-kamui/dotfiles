@@ -1,0 +1,15 @@
+#!/bin/bash
+
+
+#test -f ~/wrk/app/z/z.sh && . ~/wrk/app/z/z.sh
+
+
+#echo "$@"
+#z "$@"
+
+#pwd
+
+echo 'bash cmd dir, dev doing..'
+
+
+

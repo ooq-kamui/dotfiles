@@ -1,7 +1,9 @@
 
 # alias
 
-alias clp 'clp_by_tmp'
+#alias clp 'clp_by_tmp'
+#alias clp '~/wrk/cnf/sh/bash/cmd/osc52.sh'
+alias clp 'osc52.sh'
 
 #alias ll "ls -lgohAGD '%Y-%m-%d %H:%M'"
 alias ll 'ls -lgohA --time-style=long-iso --color=auto'

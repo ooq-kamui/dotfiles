@@ -2,17 +2,18 @@
 # cnf
 
 
-# pwsh ofc
+# c9 aws
 
-repo del
-- x 3
+json
+- jq can not ?
+  - key, quote single, can not ?
+  - ggl
 
 
-# c9 ofc
+# c9 bash
 
-trans
-- install
-  - `brew install translate-shell`
+dir
+- add pwd
 
 
 # c9 aws pri
@@ -21,14 +22,6 @@ aws logs
 - lambda cre
 - sqs cre
 - amplify cre
-
-
-# c9 aws
-
-json
-- jq can not ?
-  - key, quote single, can not ?
-  - ggl
 
 
 ## vim
