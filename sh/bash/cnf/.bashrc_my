@@ -52,9 +52,7 @@ alias k='cd_parent'
 alias kk='k;k'
 alias kkk='k;k;k'
 
-alias dir='z'
-alias di='z'
-#alias dir="~/wrk/cnf/sh/bash/cmd/dir"
+#alias dir='z'
 #alias di='dir'
 
 alias mv='mv -i'
@@ -116,6 +114,14 @@ export FZF_DEFAULT_OPTS='--ansi --bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:
 # z
 
 test -f ~/wrk/app/z/z.sh && . ~/wrk/app/z/z.sh
+
+function dir() {
+
+  #echo "$@"
+  z "$@"
+  pwd
+}
+alias di='dir'
 
 # cargo
 
