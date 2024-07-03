@@ -30,31 +30,33 @@ augroup END
 
 hi CursorLineNr ctermfg=magenta
 
-hi Visual                         ctermbg=magenta  cterm=none
-hi VisualNOS                      ctermbg=magenta  cterm=none
-hi Search      ctermfg=yellow     ctermbg=cyan     cterm=none
-hi IncSearch   ctermfg=yellow     ctermbg=cyan     cterm=none
-hi MatchParen  ctermfg=magenta    ctermbg=none
+hi Visual                           ctermbg=magenta  cterm=none
+hi VisualNOS                        ctermbg=magenta  cterm=none
+hi Search      ctermfg=yellow       ctermbg=cyan     cterm=none
+hi IncSearch   ctermfg=yellow       ctermbg=cyan     cterm=none
+" bracket
+"hi MatchParen  ctermfg=magenta      ctermbg=none
+hi MatchParen  ctermfg=lightmagenta ctermbg=none
 
-hi TabLineSel                     ctermbg=magenta  cterm=none
-hi TabLine     ctermfg=lightblue  ctermbg=none     cterm=none
-hi TabLineFill                    ctermbg=none     cterm=none
+hi TabLineSel                       ctermbg=magenta  cterm=none
+hi TabLine     ctermfg=lightblue    ctermbg=none     cterm=none
+hi TabLineFill                      ctermbg=none     cterm=none
 
-hi StatusLine  ctermfg=lightblue  ctermbg=none     cterm=none
-hi EndOfBuffer ctermfg=cyan                        cterm=none
+hi StatusLine  ctermfg=lightblue    ctermbg=none     cterm=none
+hi EndOfBuffer ctermfg=cyan                          cterm=none
 
-hi Pmenu       ctermfg=lightgreen ctermbg=blue
-hi PmenuSel    ctermfg=cyan       ctermbg=magenta  cterm=bold
+hi Pmenu       ctermfg=lightgreen   ctermbg=blue
+hi PmenuSel    ctermfg=cyan         ctermbg=magenta  cterm=bold
 
-hi ErrorMsg    ctermfg=magenta    ctermbg=none     cterm=none
-hi WarningMsg  ctermfg=magenta    ctermbg=none     cterm=none
+hi ErrorMsg    ctermfg=magenta      ctermbg=none     cterm=none
+hi WarningMsg  ctermfg=magenta      ctermbg=none     cterm=none
 
-hi NonText     ctermfg=25         ctermbg=none     cterm=none
-hi SpecialKey  ctermfg=25         ctermbg=none     cterm=none
+hi NonText     ctermfg=25           ctermbg=none     cterm=none
+hi SpecialKey  ctermfg=25           ctermbg=none     cterm=none
 
-hi Comment     ctermfg=14         ctermbg=none     cterm=none
+hi Comment     ctermfg=14           ctermbg=none     cterm=none
 
-hi FullWidthSpace ctermbg=white
+hi FullWidthSpace                   ctermbg=white
 match FullWidthSpace /　/
 
 au BufNewFile,BufRead *.script     set filetype=lua
@@ -294,7 +296,7 @@ nnoremap <c-_> hT_
 
 " cursor mv word dlm camel - forward
 nnoremap F /\u<cr>
-"nnoremap F :call Cursor__mv_word_dlm_camel_f()<cr>
+"nnoremap F :call Cursor__mv_word_dlm_camel_f()<cr>  " dev doing
 
 " cursor mv bracket pair
 nnoremap <c-l> %
@@ -534,8 +536,9 @@ nnoremap ; :call Indnt__crct()<cr>
 " 
 
 " srch hl init
-nnoremap Y /<cr>N
-"nnoremap Y :call Srch_init()<cr>
+nnoremap B /<cr>N
+"nnoremap B :call Srch_init()<cr>
+"nnoremap Y /<cr>N
 
 " srch char in line - forward
 "nnoremap xx f
@@ -759,7 +762,7 @@ nnoremap x <esc>
 nnoremap z <esc>
 
 "nnoremap A <esc>
-nnoremap B <esc>
+"nnoremap B <esc>
 nnoremap C <esc>
 nnoremap D <esc>
 "nnoremap E <esc>
@@ -782,7 +785,7 @@ nnoremap U <esc>
 "nnoremap W <esc>
 "nnoremap V <esc>
 nnoremap X <esc>
-"nnoremap Y <esc>
+nnoremap Y <esc>
 
 nnoremap <c-tab> <nop>
 nnoremap <c-space> <esc>
@@ -2546,7 +2549,7 @@ func! Cursor__mv_word_b() abort
   endif
 endfunc
 
-func! Cursor__mv_word_dlm_camel_f() abort
+func! Cursor__mv_word_dlm_camel_f() abort " dev doing
 
 endfunc
 
@@ -2860,7 +2863,7 @@ endfunc
 let g:dots_str = ' .. '
 let g:dots_put_col = 50
 
-func! Line__dots() abort " todo dev doing
+func! Line__dots() abort " todo dev doing, mv_str
 
   let l:line_str = Line_str()
   let l:idx = Str_srch(l:line_str, escape(g:dots_str, '.'))

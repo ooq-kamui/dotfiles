@@ -2,18 +2,18 @@
 # cnf
 
 
-# c9 pri
-
-sed md ?
-- md code ?
-
-
 # c9 aws
 
 json
 - jq can not ?
   - key, quote single, can not ?
   - ggl
+
+
+# pc ofc
+
+usb-b cable straight
+- in bag
 
 
 # c9 aws pri
