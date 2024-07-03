@@ -178,8 +178,7 @@ nnoremap W     :q<cr>
 nnoremap a :call Save()<cr>
 
 " load re slf
-"nnoremap :e :call Load_re()
-"nnoremap xx :e!
+"nnoremap xx :call Load_re()
 
 " load re vimrc
 nnoremap :v :source ~/wrk/cnf/vim/.vimrc
@@ -536,8 +535,9 @@ nnoremap ; :call Indnt__crct()<cr>
 " 
 
 " srch hl init
+nnoremap b /<cr>N
 nnoremap B /<cr>N
-"nnoremap B :call Srch_init()<cr>
+"nnoremap b :call Srch_init()<cr>
 "nnoremap Y /<cr>N
 
 " srch char in line - forward
@@ -739,7 +739,7 @@ nnoremap ( <esc>
 
 "nnoremap 0 <esc>
 "nnoremap a <esc>
-nnoremap b <esc>
+"nnoremap b <esc>
 "nnoremap c <esc>
 "nnoremap d <esc>
 "nnoremap e <esc>
@@ -1890,10 +1890,16 @@ func! Sys_cmd(sys_cmd) abort
   "call Exe(l:cmd)
 endfunc
 
-func! Col() abort " alias old > Cursor_col_num()
+func! V_sys_cmd(sys_cmd) range abort
 
-  return call Cursor_col_num()
+  let l:cmd = g:v_rng . '! ' . a:sys_cmd
+  call Exe(l:cmd)
 endfunc
+
+"func! Col() abort " alias old > Cursor_col_num()
+"
+"  return call Cursor_col_num()
+"endfunc
 
 func! Cursor_col_num() abort " crnt
 
@@ -4633,11 +4639,19 @@ endfunc
 func! Load_re() abort
 
   call Exe('e ')
+  "nnoremap xx :e!
 endfunc
 
-" load re encode sjis
+" encode confirm
 
-func! Load_re_sjis() abort
+func! Encode_confirm() abort
+
+  call Exe('set enc?')
+endfunc
+
+" encode sjis  -  load re
+
+func! Load_re__sjis() abort
 
   call Exe('e ++enc=sjis')
 endfunc
@@ -4659,9 +4673,22 @@ func! V_trns() range abort
 
   let l:str = escape(l:str, "'")
   let l:sys_cmd = 'trans -no-ansi ' . l:lang . " '" . l:str . "'"
-  "let l:sys_cmd = 'trns  -no-ansi ' . l:lang . " '" . l:str . "'"
   let l:rslt = Sys_cmd(l:sys_cmd)
   echo l:rslt
+endfunc
+
+" math
+
+func! V_math() range abort
+
+  let l:str = Slctd_str()
+  let l:sys_cmd = 'echo ' . "'" . l:str . "'" . ' | math'
+  let l:rslt = Sys_cmd(l:sys_cmd)
+  echo l:rslt
+  let @a = l:rslt
+
+  "let l:sys_cmd = 'cat | math'
+  "'<,'>:call V_sys_cmd(l:sys_cmd)
 endfunc
 
 " url encdoe

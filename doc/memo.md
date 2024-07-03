@@ -2,18 +2,11 @@
 # cnf
 
 
-# c9 aws
+## c9
 
-json
-- jq can not ?
-  - key, quote single, can not ?
-  - ggl
-
-
-# pc ofc
-
-usb-b cable straight
-- in bag
+tbl ( column )
+- confirm
+  - simple string_mlt
 
 
 # c9 aws pri
@@ -31,6 +24,15 @@ refactoring
   - call Normal()
 
 
+## win gitbash vim
+
+fzf.vim rg
+- confirm
+- refactoring
+  - rg by memo
+    - del
+
+
 
 ---
 
@@ -43,15 +45,6 @@ fe api
 
 holo
 - hosting
-
-
-## win gitbash vim
-
-fzf.vim rg
-- confirm
-- refactoring
-  - rg by memo
-    - del
 
 
 ## win gitbash vim
