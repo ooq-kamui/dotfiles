@@ -2,14 +2,51 @@
 # cnf
 
 
-## c9
+## fish
 
-tbl ( column )
+pth_ext
+pth_file
+pth_dir
+
+
+## unix-cmd
+
+cat_emp_not, cre
+- by sed
+  - case line emp: skip
+
+
+## c9 vim
+
+ynk auto osc52
+- case fr mac ?
+
+
+## win gitbash vim
+
+fzf.vim rg
 - confirm
-  - simple string_mlt
+- refactoring
+  - rg by memo
+    - del
 
 
-# c9 aws pri
+## c9 
+
+column
+- ofc
+```
+type column
+column is /home/linuxbrew/.linuxbrew/bin/column
+```
+
+
+## etc
+
+nail cut
+
+
+## c9 aws pri
 
 aws logs
 - lambda cre
@@ -22,15 +59,6 @@ aws logs
 refactoring
 - E_xxx()
   - call Normal()
-
-
-## win gitbash vim
-
-fzf.vim rg
-- confirm
-- refactoring
-  - rg by memo
-    - del
 
 
 

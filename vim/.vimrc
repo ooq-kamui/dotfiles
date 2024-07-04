@@ -1321,20 +1321,18 @@ inoremap <c-e> <c-o>$
 
 " cursor mv char forward
 inoremap <c-l> <c-o>l
-inoremap <c-f> <c-o>l
 
 " cursor mv char back
-"inoremap <c-o> xx
-inoremap <expr> <c-o>
-\ pumvisible() ? '<c-y>'  :
-\                '<c-o>h'
 inoremap <c-s> <c-o>h
 
 " cursor mv word forward
 "inoremap xx <c-o>e<c-o>l
 
 " cursor mv word back
-"inoremap xx <c-o>b
+"inoremap <c-o> xx
+inoremap <expr> <c-o>
+\ pumvisible() ? '<c-y>'  :
+\                '<c-o>b'
 
 " cursor mv d
 inoremap <c-n> <c-o>j
@@ -1363,21 +1361,17 @@ inoremap <expr> <c-j>
 \ pumvisible() ? '<c-n>'                 :
 \                '<c-r>=I_bracket()<cr>'
 
+" ins num
+inoremap <c-f> <c-r>=I_num()<cr>
+
 " ins symbol
-inoremap <c-q> <c-r>=I_symbol()<cr>
-inoremap <c-_> <c-r>=I_symbol()<cr>
-inoremap <c-^> <c-r>=I_symbol()<cr>
-inoremap <c--> <c-r>=I_symbol()<cr>
-inoremap <c-\> <c-r>=I_symbol()<cr>
+inoremap <c-r> <c-r>=I_symbol()<cr>
 
 " ins markdown
 inoremap <c-u> <c-r>=I_markdown()<cr>
 
 " ins week
 "inoremap xx <c-r>=I_week()<cr>
-
-" ins num
-"inoremap xx <c-r>=I_num()<cr>
 
 " ins register
 "inoremap xx <c-r>=I_reg()<cr>
@@ -1444,10 +1438,10 @@ inoremap <kPageUp>   9
 "inoremap <tab> <nop>
 inoremap <s-tab> <nop>
 
-"inoremap <c-_> <nop>
-"inoremap <c-^> <nop>
-"inoremap <c-\> <nop>
-"inoremap <c--> <nop>
+inoremap <c-_> <nop>
+inoremap <c-^> <nop>
+inoremap <c-\> <nop>
+inoremap <c--> <nop>
 "inoremap <c-@> <nop> " non
 "inoremap <c-,> <nop> " non
 "inoremap <c-.> <nop> " non
@@ -1455,12 +1449,13 @@ inoremap <s-tab> <nop>
 "inoremap <c-;> <nop> " non
 
 inoremap <c-b> <nop>
+"inoremap <c-f> <nop>
 "inoremap <c-g> <nop>
 "inoremap <c-k> <nop>
 "inoremap <c-n> <nop>
 "inoremap <c-p> <nop>
-"inoremap <c-q> <nop>
-inoremap <c-r> <nop>
+inoremap <c-q> <nop>
+"inoremap <c-r> <nop>
 "inoremap <c-s> <nop>
 "inoremap <c-t> <nop>
 "inoremap <c-u> <nop>
