@@ -62,14 +62,17 @@ Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r'
 # alias ( function )
 # 
 
-Set-Alias clr "clear"
-Set-Alias c   "clear"
+# Set-Alias clr "clear; pwd"
+function clr {
 
-# function clp {
-# 
-#   # clip
-# }
-Set-Alias clp "clip" -force # clp read only
+  clear
+  pwd | Convert-Path
+}
+# Set-Alias c   "clear"
+Set-Alias c   "clr"
+
+Set-Alias clp "clip"  -force # alias xxx is read-only or
+
 
 function p {
 
@@ -144,6 +147,7 @@ function dir_dmy {
   p
 }
 Set-Alias dir "dir_dmy" -Option AllScope # cannot be removed
+Set-Alias di  "dir_dmy"
 
 function k   { Set-Location -Path .. ; p }
 function kk  { k;k   }
@@ -172,7 +176,7 @@ function vi  {
   nvim -p ( echo $args )
 }
 
-# Set-Alias gi "git"
+Set-Alias gi "git" -force # alias xxx is read-only or
 
 function opn {
   param( $path )
@@ -197,8 +201,6 @@ Set-Alias jq "jq-windows-amd64"
 
 # gcal
 $ENV:Path += ";C:\Program Files (x86)\GnuWin32\bin"
-# Set-Alias cal "gcal"
-# Set-Alias ca  "gcal"
 function cal {
 
   gcal (date).AddMonths(-1).toString("MM yyyy")
