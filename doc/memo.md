@@ -2,10 +2,25 @@
 # cnf
 
 
+## c9 
+
+column
+- ofc
+```
+type column
+column is /home/linuxbrew/.linuxbrew/bin/column
+```
+- pri
+```
+/usr/bin/column
+```
+
+
 ## fish
 
-pth_ext
 pth_file
+
+pth_ext
 pth_dir
 
 
@@ -29,16 +44,6 @@ fzf.vim rg
 - refactoring
   - rg by memo
     - del
-
-
-## c9 
-
-column
-- ofc
-```
-type column
-column is /home/linuxbrew/.linuxbrew/bin/column
-```
 
 
 ## etc
