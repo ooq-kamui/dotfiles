@@ -93,7 +93,9 @@ alias kk  'k;k'
 alias kkk 'k;k;k'
 
 #alias dir 'z'
-alias di  'dir'
+#alias dj  'dir'
+alias dj  'dir_jmp'
+#alias di  'dir'
 
 alias vim 'nvim -p'
 alias vi  'nvim -p'
@@ -116,8 +118,8 @@ alias df  'df -h'
 alias zip_un 'unzip'
 
 alias clc 'math'
-alias tbl 'column -t'
-#alias col 'awk_arg'
+
+alias tbl    'column -t'
 
 alias trns   'trans'
 alias trns_j 'trans {ja=en}'

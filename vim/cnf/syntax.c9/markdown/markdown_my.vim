@@ -9,7 +9,8 @@ hi mkdCodeDelimiter      ctermfg=red
 "hi mkdLineBreak          ctermfg=141
 
 hi mkdLink               ctermfg=yellow
-hi mkdUrl                ctermfg=lightblue
+"hi mkdUrl                ctermfg=lightblue
+hi mkdUrl                ctermfg=lightmagenta
 hi mkdInlineURL          ctermfg=lightblue
 
 "hi bracket ?   ctermfg=lightred

@@ -1,9 +1,9 @@
 function pth_file
 
   cat - |\
-  sed 's|^.*\([^/]*\)$|\1|'
+  awk -F/ '{print $NF}' \
 
-  # dev doing..
+  #sed -e 's| ??? |\1|'
 
 end
 

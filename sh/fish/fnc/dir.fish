@@ -1,8 +1,1 @@
-function dir
-
-  z $argv
-
-  #pwd
-  pth
-end
-
+dir_jmp.fish

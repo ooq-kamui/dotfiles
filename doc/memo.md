@@ -2,39 +2,32 @@
 # cnf
 
 
-## c9 
+## c9 bash
 
-column
-- ofc
-```
-type column
-column is /home/linuxbrew/.linuxbrew/bin/column
-```
-- pri
-```
-/usr/bin/column
-```
+dj, dir_jmp
+- cre
+  - confirm
+
+- dir, di
+  - del
 
 
-## fish
-
-pth_file
-
-pth_ext
-pth_dir
+c
+- add pwd
 
 
-## unix-cmd
+## mac / c9 pri
 
-cat_emp_not, cre
-- by sed
-  - case line emp: skip
+rg archive
+- confirm
 
 
-## c9 vim
+## bash rg gitbash
 
-ynk auto osc52
-- case fr mac ?
+sh/bash/cnf/.ripgreprc_gitbash
+- del ?
+  - confirm
+    - diff sh/rg/
 
 
 ## win gitbash vim

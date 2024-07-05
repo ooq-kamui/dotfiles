@@ -3,17 +3,9 @@
 "inoremap <c-v> <c-r>a
 
 
-" c9clp __ ynk
-"nnoremap C :call C9clp__ynk()<cr>
-
-func! C9clp__ynk() abort
-
-  call Sys_cmd('echo ' . @a . ' | clp_by_tmp')
-endfunc
-
-
 let g:fzf_rg_opt .= ' -g "!amplify/#current-cloud-backend/"'
 let g:fzf_rg_opt .= ' -g "!amplify/backend/node_modules/"'
+let g:fzf_rg_opt .= ' -g "!amplify/backend/awscloudformation/build"'
 
 
 " 
@@ -23,9 +15,24 @@ let g:fzf_rg_opt .= ' -g "!amplify/backend/node_modules/"'
 " osc52
 
 source ~/wrk/cnf/vim/plg/osc52.vim
+
 nnoremap C :call SendViaOSC52(@a)<cr>
-"nnoremap <c-x> :call SendViaOSC52(@a)<cr>
-"vnoremap <c-c> :call SendViaOSC52('string')<cr>
+
+func! C9clp__ynk() abort
+
+  call SendViaOSC52(@a)
+endfunc
+
+func! Ynk__clipboard() abort
+
+  if Is_env('linux')
+
+    "call Ynk__c9clp()
+
+  else
+    let @a = @+
+  endif
+endfunc
 
 
 

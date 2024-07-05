@@ -11,6 +11,8 @@ alias ll 'ls -lgohA --time-style=long-iso --color=auto'
 alias vim 'vim -p'
 alias vi  'vim -p'
 
+alias column '/usr/bin/column'
+
 
 # color
 

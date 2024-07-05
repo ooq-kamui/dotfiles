@@ -1324,15 +1324,19 @@ inoremap <c-l> <c-o>l
 
 " cursor mv char back
 inoremap <c-s> <c-o>h
-
-" cursor mv word forward
-"inoremap xx <c-o>e<c-o>l
-
-" cursor mv word back
 "inoremap <c-o> xx
 inoremap <expr> <c-o>
 \ pumvisible() ? '<c-y>'  :
-\                '<c-o>b'
+\                '<c-o>h'
+
+" cursor mv word forward
+inoremap <c-f> <c-o>e<c-o>l
+
+" cursor mv word back
+"inoremap xx <c-o>b
+"inoremap <expr> <c-o>
+"\ pumvisible() ? '<c-y>'  :
+"\                '<c-o>b'
 
 " cursor mv d
 inoremap <c-n> <c-o>j
@@ -1351,9 +1355,10 @@ inoremap <tab> <c-v><tab>
 
 " ins complete
 "inoremap <c-y> xx
-inoremap <expr> <c-y>
-\ pumvisible() ? '<c-e>' :
-\                '<c-n>'
+
+"inoremap <expr> <c-y>
+"\ pumvisible() ? '<c-e>' :
+"\                '<c-n>'
 
 " ins bracket
 "inoremap <c-j> xx
@@ -1362,10 +1367,10 @@ inoremap <expr> <c-j>
 \                '<c-r>=I_bracket()<cr>'
 
 " ins num
-inoremap <c-f> <c-r>=I_num()<cr>
+inoremap <c-r> <c-r>=I_num()<cr>
 
 " ins symbol
-inoremap <c-r> <c-r>=I_symbol()<cr>
+inoremap <c-b> <c-r>=I_symbol()<cr>
 
 " ins markdown
 inoremap <c-u> <c-r>=I_markdown()<cr>
@@ -1448,18 +1453,19 @@ inoremap <c--> <nop>
 "inoremap <c-:> <nop> " non
 "inoremap <c-;> <nop> " non
 
-inoremap <c-b> <nop>
+"inoremap <c-b> <nop>
 "inoremap <c-f> <nop>
 "inoremap <c-g> <nop>
 "inoremap <c-k> <nop>
 "inoremap <c-n> <nop>
+"inoremap <c-o> <nop>
 "inoremap <c-p> <nop>
 inoremap <c-q> <nop>
 "inoremap <c-r> <nop>
 "inoremap <c-s> <nop>
 "inoremap <c-t> <nop>
 "inoremap <c-u> <nop>
-"inoremap <c-y> <nop>
+inoremap <c-y> <nop>
 
 " 
 " mode cmd
