@@ -35,7 +35,7 @@ export LSCOLORS=fxgxcxdxxxegedabagacad
 # alias
 
 alias clr='clear'
-alias c='clr'
+alias c='clr; pwd'
 
 alias src='source'
 
@@ -52,8 +52,7 @@ alias k='cd_parent'
 alias kk='k;k'
 alias kkk='k;k;k'
 
-#alias dir='z'
-#alias di='dir'
+#alias dj='dir_jmp'
 
 alias mv='mv -i'
 alias cp='cp -pi'
@@ -115,19 +114,23 @@ export FZF_DEFAULT_OPTS='--ansi --bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:
 
 test -f ~/wrk/app/z/z.sh && . ~/wrk/app/z/z.sh
 
-function dir() {
+function dir_jmp() {
 
   #echo "$@"
   z "$@"
   pwd
 }
-alias di='dir'
+alias dj='dir_jmp'
+alias d='dir_jmp'
 
 # cargo
 
 # [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
+
+# 
 # key-bind
+# 
 
 if [[ -t 0 ]]
 then

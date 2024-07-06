@@ -195,11 +195,10 @@ nnoremap :o :Opn
 
 " opn file srch  ( fzf )
 nnoremap <leader>l :Files <cr>
-"nnoremap <leader>l :FzfRunFd <cr>
+"nnoremap <leader>xx :FzfRunFd <cr>
 
 " opn file hstry ( fzf )
 nnoremap <leader>h :FileHstry<cr>
-nnoremap <leader>r :FileHstry<cr>
 
 " 
 " opn etc
@@ -387,7 +386,6 @@ nnoremap P :call Paste__clipboard()<cr>
 
 " paste rgstr history ( fzf )
 nnoremap <leader>c :RgstrHstry<cr>
-"nnoremap <leader>p :RgstrHstry<cr>
 
 " 
 " undo, redo
@@ -546,8 +544,9 @@ nnoremap B /<cr>N
 " srch char in line repeat
 "nnoremap xx ;
 
-" srch cmd
+" srch by cmd
 nnoremap <leader>k /
+nnoremap <leader>K /\<\><left><left>
 
 " srch forward
 nnoremap n     :call Srch('f')<cr>
@@ -569,11 +568,9 @@ nnoremap E :call N_srch_str__(v:true)<cr>
 
 " srch str history ( fzf )
 nnoremap <leader>n :SrchHstry<cr>
-nnoremap <leader>f :SrchHstry<cr>
 
 " srch str set prv ( tgl )
 nnoremap N :call N_srch_str__prv()<cr>
-"nnoremap N /<c-p><c-p><cr>
 
 " srch rpl one > ynk nxt ( only srch )
 nnoremap <c-p> :call Srch_slct('f')<cr>
@@ -1536,15 +1533,17 @@ tnoremap <c-_> <c-\><c-n>
 " leader esc
 " 
 
+"nnoremap <leader>: <esc>
+
 "nnoremap <leader>c <esc>
-"nnoremap <leader>f <esc>
+nnoremap <leader>f <esc>
 "nnoremap <leader>h <esc>
 "nnoremap <leader>j <esc>
 "nnoremap <leader>l <esc>
 nnoremap <leader>m <esc>
 "nnoremap <leader>n <esc>
 nnoremap <leader>p <esc>
-"nnoremap <leader>r <esc>
+nnoremap <leader>r <esc>
 nnoremap <leader>u <esc>
 nnoremap <leader>y <esc>
 
@@ -4773,7 +4772,7 @@ hi netrwHelpCmd  ctermfg=130        ctermbg=none    cterm=none
 
 
 " 
-" dev slf
+" dev
 " 
 
 " rg lst
