@@ -2,11 +2,6 @@
 # cnf
 
 
-## c9 vim fr pwsh
-
-nnoremap P fr osc52
-
-
 ## vim
 
 fzf run rg
