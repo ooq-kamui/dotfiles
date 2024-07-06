@@ -375,9 +375,6 @@ nnoremap c :call Ynk__line()<cr>
 " ynk slf path
 nnoremap gp :call Ynk__slf_path()<cr>
 
-" ynk __ clipboard
-"nnoremap xx :call Ynk__clipboard()<cr>
-
 " paste
 nnoremap p :call Paste()<cr>
 
@@ -546,6 +543,9 @@ nnoremap B /<cr>N
 
 " srch by cmd
 nnoremap <leader>k /
+
+" srch by cmd word
+
 nnoremap <leader>K /\<\><left><left>
 
 " srch forward
@@ -3778,7 +3778,7 @@ func! Clipboard__ynk() abort
 
   if Is_env('linux')
 
-    "call C9clp__ynk()
+    "call C9clp__ynk() " off
 
   else
     let @+ = @a

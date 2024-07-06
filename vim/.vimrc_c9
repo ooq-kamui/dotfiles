@@ -16,7 +16,8 @@ let g:fzf_rg_opt .= ' -g "!amplify/backend/awscloudformation/build"'
 
 source ~/wrk/cnf/vim/plg/osc52.vim
 
-nnoremap C :call SendViaOSC52(@a)<cr>
+"nnoremap C :call SendViaOSC52(@a)<cr>
+nnoremap C :call C9clp__ynk()<cr>
 
 func! C9clp__ynk() abort
 
