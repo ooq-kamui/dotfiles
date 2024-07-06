@@ -4760,17 +4760,6 @@ endfunc
 "call Srch_init()
 
 
-" netrw " use not
-
-hi netrwDir      ctermfg=lightgreen
-hi netrwTreeBar  ctermfg=lightgreen
-hi netrwClassify ctermfg=lightgreen
-hi netrwComment  ctermfg=14         ctermbg=none    cterm=none
-hi netrwList     ctermfg=yellow     ctermbg=none    cterm=none
-hi netrwVersion  ctermfg=130        ctermbg=none    cterm=none
-hi netrwHelpCmd  ctermfg=130        ctermbg=none    cterm=none
-
-
 " 
 " dev
 " 
@@ -4835,46 +4824,6 @@ func! Rg_cmd(opt, p_str) abort
   
   let l:rg_cmd = g:rg_cmd . ' ' . l:opt . ' "' . l:str . '"'
   return l:rg_cmd
-endfunc
-
-" fzf run fd
-
-command! -nargs=0 FzfRunFd call Fzf_run_fd()
-
-func! Fzf_run_fd() abort
-
-  call fzf#run(
-  \   {
-  \     'source' : Fd_rslt_ar(),
-  \     'sink'   : funcref('Tag_jmp'),
-  \     'window' : '-tabnew',
-  \   }
-  \ )
-  "\     'options': ['--reverse'],
-  "\     'options': ['--no-sort'],
-endfunc
-
-func! Fd_rslt_ar() abort
-
-  let l:rslt_txt = Fd_rslt_txt()
-  let l:rslt_ar  = split(l:rslt_txt, "\n")
-  return l:rslt_ar
-endfunc
-
-func! Fd_rslt_txt() abort
-  
-  let l:fd_cmd = Fd_cmd()
-
-  let l:rslt_txt = Sys_cmd(l:fd_cmd)
-  return l:rslt_txt
-endfunc
-
-func! Fd_cmd() abort
-
-  "let l:fd_cmd = 'fd --type f --hidden --follow -I --exclude .git'
-  let l:fd_cmd = 'fd --type f --hidden --follow --exclude .git'
-
-  return l:fd_cmd
 endfunc
 
 " fzf run by memo

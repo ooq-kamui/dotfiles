@@ -2,46 +2,28 @@
 # cnf
 
 
-## c9 bash
+## c9 vim fr pwsh
 
-dj, dir_jmp
-- cre
-  - confirm
-
-- dir, di
-  - del
+nnoremap P fr osc52
 
 
-c
-- add pwd
+## vim
+
+fzf run rg
+- tidy
 
 
-## mac / c9 pri
-
-rg archive
-- confirm
+fzf run by pth lst
 
 
-## bash rg gitbash
-
-sh/bash/cnf/.ripgreprc_gitbash
-- del ?
-  - confirm
-    - diff sh/rg/
+fzf run memo
+- tidy
 
 
 ## win gitbash vim
 
-fzf.vim rg
-- confirm
-- refactoring
-  - rg by memo
-    - del
-
-
-## etc
-
-nail cut
+fzf run rg
+- <leader>O 
 
 
 ## c9 aws pri

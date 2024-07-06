@@ -1,18 +1,4 @@
 
-" ctags
-
-set tags=./.tags;
-"nnoremap <c-]> g<c-]>
-"nnoremap xx :!sh sh/ctags.sh
-
-" ctags ( fzf )
-
-"nnoremap xx :Tags <c-r><c-w><cr>
-"vnoremap xx "zy:Tags <c-r>z<cr>
-command! -bang -nargs=? Tags
-\ call fzf#vim#tags(<q-args>, <bang>1)
-
-
 " opn markdown preview
 "nnoremap xx :call Markdown_2_html()<cr>
 
@@ -28,6 +14,72 @@ func! Markdown_2_html() abort
   
   "call Opn_app(l:path . '.html')
 endfunc
+
+
+" fzf run fd
+
+command! -nargs=0 FzfRunFd call Fzf_run_fd()
+
+func! Fzf_run_fd() abort
+
+  call fzf#run(
+  \   {
+  \     'source' : Fd_rslt_ar(),
+  \     'sink'   : funcref('Tag_jmp'),
+  \     'window' : '-tabnew',
+  \   }
+  \ )
+  "\     'options': ['--reverse'],
+  "\     'options': ['--no-sort'],
+endfunc
+
+func! Fd_rslt_ar() abort
+
+  let l:rslt_txt = Fd_rslt_txt()
+  let l:rslt_ar  = split(l:rslt_txt, "\n")
+  return l:rslt_ar
+endfunc
+
+func! Fd_rslt_txt() abort
+  
+  let l:fd_cmd = Fd_cmd()
+
+  let l:rslt_txt = Sys_cmd(l:fd_cmd)
+  return l:rslt_txt
+endfunc
+
+func! Fd_cmd() abort
+
+  "let l:fd_cmd = 'fd --type f --hidden --follow -I --exclude .git'
+  let l:fd_cmd = 'fd --type f --hidden --follow --exclude .git'
+
+  return l:fd_cmd
+endfunc
+
+
+" ctags
+
+set tags=./.tags;
+"nnoremap <c-]> g<c-]>
+"nnoremap xx :!sh sh/ctags.sh
+
+" ctags ( fzf )
+
+"nnoremap xx :Tags <c-r><c-w><cr>
+"vnoremap xx "zy:Tags <c-r>z<cr>
+command! -bang -nargs=? Tags
+\ call fzf#vim#tags(<q-args>, <bang>1)
+
+
+" netrw " use not
+
+hi netrwDir      ctermfg=lightgreen
+hi netrwTreeBar  ctermfg=lightgreen
+hi netrwClassify ctermfg=lightgreen
+hi netrwComment  ctermfg=14         ctermbg=none    cterm=none
+hi netrwList     ctermfg=yellow     ctermbg=none    cterm=none
+hi netrwVersion  ctermfg=130        ctermbg=none    cterm=none
+hi netrwHelpCmd  ctermfg=130        ctermbg=none    cterm=none
 
 
 " ???
