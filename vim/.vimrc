@@ -589,6 +589,9 @@ nnoremap :s :%s///g
 " grep ( fzf )
 nnoremap <leader>o :Rg <cr>
 
+" grep ( fzf )  -  myrun
+nnoremap <leader>O :FzfByRgMyrun <cr>
+
 " grep buf ( fzf )
 nnoremap <leader>i :call N_grep_buf()<cr>
 
@@ -1039,7 +1042,7 @@ vnoremap W "aygvr gv
 vnoremap J :call V_line__join(3)
 
 " del line top space
-vnoremap M :call V_line_top_space__del()<cr>
+"vnoremap xx :call V_line_top_space__del()<cr>
 
 " del line end space
 vnoremap m :call V_line_end_space__del()<cr>
@@ -1154,8 +1157,8 @@ vnoremap <leader>i :call V_grep_buf()<cr>
 vnoremap <leader>o "zy:Rg <c-r>z<cr>
 
 " grep [rg]   ( read )
-vnoremap :g "zy:GrepStr <c-r>z
-vnoremap :G "zy:GrepWrd <c-r>z
+"vnoremap xx "zy:GrepStr <c-r>z
+"vnoremap xx "zy:GrepWrd <c-r>z
 
 " tag jmp
 vnoremap t :call V_tag_jmp()<cr>
@@ -1242,7 +1245,7 @@ vnoremap H <esc>
 "vnoremap J <esc>
 "vnoremap K <esc>
 "vnoremap L <esc>
-"vnoremap M <esc>
+vnoremap M <esc>
 "vnoremap N <esc>
 "vnoremap O <esc>
 "vnoremap P <esc>
@@ -1542,6 +1545,7 @@ nnoremap <leader>f <esc>
 "nnoremap <leader>l <esc>
 nnoremap <leader>m <esc>
 "nnoremap <leader>n <esc>
+"nnoremap <leader>o <esc>
 nnoremap <leader>p <esc>
 nnoremap <leader>r <esc>
 nnoremap <leader>u <esc>
@@ -1550,6 +1554,8 @@ nnoremap <leader>y <esc>
 "vnoremap <leader>l <esc>
 vnoremap <leader>u <esc>
 vnoremap <leader>y <esc>
+
+"nnoremap <leader>O <esc>
 
 
 " 
@@ -3976,32 +3982,6 @@ func! V_box_edge_r_char__shft_in() range abort
   call Slct_re()
 endfunc
 
-" 
-" grep
-" 
-
-func! Grep(opt, p_str) abort
-  
-  call Opn_grep_wk()
-
-  let l:rg_cmd = Rg_cmd(a:opt, a:p_str)
-  call Ins_sys_cmd(l:rg_cmd)
-endfunc
-
-command! -nargs=? GrepStr call Grep_str(<q-args>)
-
-func! Grep_str(str) abort
-  
-  call Grep(v:null, a:str)
-endfunc
-
-command! -nargs=? GrepWrd call Grep_wrd(<q-args>)
-
-func! Grep_wrd(str) abort
-  
-  call Grep('-w'  , a:str)
-endfunc
-
 " cmnt
 
 func! Ins_cmnt_1(line_top) abort
@@ -4761,18 +4741,18 @@ endfunc
 
 
 " 
-" dev
+" fzf my  -  dev doing
 " 
 
-" rg lst
+" fzf by rg ( my run )
 
-command! -nargs=? FzfRunRg call Fzf_run_rg(<q-args>)
+command! -nargs=0 FzfByRgMyrun call Fzf_by_rg_myrun()
 
-func! Fzf_run_rg(str) abort
+func! Fzf_by_rg_myrun() abort
 
   call fzf#run(
   \   {
-  \     'source' : Rg_rslt_ar(a:str),
+  \     'source' : Rg_all_rslt_ar(),
   \     'sink'   : funcref('Tag_jmp'),
   \     'window' : '-tabnew',
   \   }
@@ -4781,32 +4761,53 @@ func! Fzf_run_rg(str) abort
   "\     'options': ['--no-sort'],
 endfunc
 
-func! Rg_rslt_ar(str) abort
+func! Rg_all_rslt_ar() abort
 
-  let l:rg_rslt_txt = Rg_rslt_txt(v:null, a:str)
+  let l:opt = '-v'
+  let l:ptn = '^[ \t]*$'
+
+  let l:rslt_ar = Sys_cmd_rg_rslt_ar(l:opt, l:ptn)
+  return l:rslt_ar
+
+"  let l:rg_rslt_txt = Rg_all_rslt_txt()
+"  let l:rslt_ar  = split(l:rg_rslt_txt, "\n")
+"  return l:rslt_ar
+endfunc
+
+"func! Rg_all_rslt_txt() abort " call not
+"
+"  let l:opt = '-v'
+"  let l:ptn = '^[ \t]*$'
+"
+"  let l:rslt_txt = Sys_cmd_rg_rslt_txt(l:opt, l:ptn)
+"  return l:rslt_txt
+"endfunc
+
+func! Sys_cmd_rg_rslt_ar(opt, ptn) abort
+
+  let l:rg_rslt_txt = Sys_cmd_rg_rslt_txt(a:opt, a:ptn)
   let l:rg_rslt_ar  = split(l:rg_rslt_txt, "\n")
   return l:rg_rslt_ar
 endfunc
 
-let g:rg_cmd = 'rg '
-\            . ' --line-number'
-\            . ' --smart-case'
-\            . ' --hidden'
-\            . ' -g "!.git" '
-
-"\            . ' --no-ignore'
-"\            . ' -ns'
-
-func! Rg_rslt_txt(opt, p_str) abort
+func! Sys_cmd_rg_rslt_txt(opt, ptn) abort
   
-  let l:rg_cmd = Rg_cmd(a:opt, a:p_str)
-  \            . ' --color always'
+  let l:rg_cmd_str = Rg_cmd_str(a:opt, a:ptn)
 
-  let l:r_rslt_txt = Sys_cmd(l:rg_cmd)
+  let l:r_rslt_txt = Sys_cmd(l:rg_cmd_str)
   return l:r_rslt_txt
 endfunc
 
-func! Rg_cmd(opt, p_str) abort
+let g:rg_cmd_str = 'rg '
+\            . ' --line-number'
+\            . ' --smart-case'
+\            . ' --hidden'
+\            . ' --color always'
+\            . ' -g "!.git"'
+"\            . ' --no-ignore'
+"\            . ' -ns'
+
+func! Rg_cmd_str(opt, ptn) abort
 
   if a:opt == v:null
     let l:opt = ''
@@ -4814,29 +4815,45 @@ func! Rg_cmd(opt, p_str) abort
     let l:opt = a:opt
   endif
 
-  if Is_str_emp(a:p_str)
-    let l:str = @/
-  else
-    let l:str = trim(a:p_str)
-  endif
+  let l:ptn = trim(a:ptn)
+  let l:ptn = escape(l:ptn, '\({')
   
-  let l:str = escape(l:str, '\({')
-  
-  let l:rg_cmd = g:rg_cmd . ' ' . l:opt . ' "' . l:str . '"'
-  return l:rg_cmd
+  let l:rg_cmd_str = g:rg_cmd_str . ' ' . l:opt . " -e '" . l:ptn . "'"
+  return l:rg_cmd_str
 endfunc
 
-" fzf run by memo
+" fzf by memo
 
-"nnoremap <leader>m :FzfRunByMemo <cr>
+nnoremap <leader>m :FzfByMemo <cr>
 
-command! -nargs=0 FzfRunByMemo call Fzf_run_by_memo()
+command! -nargs=0 FzfByMemo call Fzf_by_memo()
 
-func! Fzf_run_by_memo() abort
+let g:fzf_run_memo_path = '~/doc/memo.src-lst.md'
+
+func! Fzf_by_memo() abort
+
+  l:memo_file_path = g:fzf_run_memo_path
+
+  call Fzf_by_pth_lst(l:memo_file_path)
+
+"  call fzf#run(
+"  \   {
+"  \     'source' : Memo_ar(),
+"  \     'sink'   : funcref('Tag_jmp'),
+"  \     'window' : '-tabnew',
+"  \   }
+"  \ )
+"  "\     'options': ['--reverse'],
+"  "\     'options': ['--no-sort'],
+endfunc
+
+" fzf by pth lst
+
+func! Fzf_by_pth_lst(pth_lst_file_path) abort
 
   call fzf#run(
   \   {
-  \     'source' : Memo_ar(),
+  \     'source' : Pth_lst_ar(a:pth_lst_file_path),
   \     'sink'   : funcref('Tag_jmp'),
   \     'window' : '-tabnew',
   \   }
@@ -4845,27 +4862,24 @@ func! Fzf_run_by_memo() abort
   "\     'options': ['--no-sort'],
 endfunc
 
-func! Memo_ar() abort
+func! Pth_lst_ar(pth_lst_file_path) abort
 
-  let l:rslt_txt = Memo_txt()
+  let l:rslt_txt = Pth_lst_txt(a:pth_lst_file_path)
   let l:rslt_ar  = split(l:rslt_txt, "\n")
   return l:rslt_ar
 endfunc
 
-let g:fzf_run_memo_path = '~/doc/memo.src-lst.md'
+func! Pth_lst_txt(pth_lst_file_path) abort
 
-func! Memo_txt() abort
-
-  let l:file_txt = ''
-
-  if ! filereadable(g:fzf_run_memo_path)
+  if ! filereadable(a:pth_lst_file_path)
     return
   endif
 
-  let l:cmd = 'cat ' . g:fzf_run_memo_path
+  "let l:cmd = 'cat_ee ' . a:pth_lst_file_path
+  let l:cmd = 'cat ' . a:pth_lst_file_path
 
-  let l:file_txt = Sys_cmd(l:cmd)
-  return l:file_txt
+  let l:pth_lst_txt = Sys_cmd(l:cmd)
+  return l:pth_lst_txt
 endfunc
 
 

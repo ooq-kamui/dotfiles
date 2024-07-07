@@ -4,21 +4,18 @@
 
 ## vim
 
-fzf run rg
-- tidy
+fzf by memo
+- tst
+  - memo path ch
 
 
-fzf run by pth lst
-
-
-fzf run memo
-- tidy
+v M : mb cnv
 
 
 ## win gitbash vim
 
-fzf run rg
-- <leader>O 
+fzf by rg myrun
+- tst
 
 
 ## c9 aws pri

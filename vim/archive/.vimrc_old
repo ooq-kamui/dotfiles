@@ -15,6 +15,31 @@ func! Markdown_2_html() abort
   "call Opn_app(l:path . '.html')
 endfunc
 
+" 
+" grep
+" 
+
+"func! Grep(opt, p_str) abort " use not
+"  
+"  call Opn_grep_wk()
+"
+"  let l:rg_cmd = Rg_cmd_str(a:opt, a:p_str)
+"  call Ins_sys_cmd(l:rg_cmd)
+"endfunc
+"
+"command! -nargs=? GrepStr call Grep_str(<q-args>) " use not
+"
+"func! Grep_str(str) abort " use not
+"  
+"  call Grep(v:null, a:str)
+"endfunc
+"
+"command! -nargs=? GrepWrd call Grep_wrd(<q-args>) " use not
+"
+"func! Grep_wrd(str) abort " use not
+"  
+"  call Grep('-w'  , a:str)
+"endfunc
 
 " fzf run fd
 
@@ -55,7 +80,6 @@ func! Fd_cmd() abort
 
   return l:fd_cmd
 endfunc
-
 
 " ctags
 
