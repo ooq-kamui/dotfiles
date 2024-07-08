@@ -92,10 +92,8 @@ alias k   'cd_parent'
 alias kk  'k;k'
 alias kkk 'k;k;k'
 
-#alias dir 'z'
-#alias dj  'dir'
-alias dj  'dir_jmp'
-#alias di  'dir'
+alias dj 'dir_jmp'
+alias d  'dir_jmp'
 
 alias vim 'nvim -p'
 alias vi  'nvim -p'

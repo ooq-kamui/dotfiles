@@ -359,11 +359,15 @@ nnoremap v <c-v>
 " slct all
 nnoremap A :call Ynk__line_all()<cr>
 
-
 " slct re in line 1
 "nnoremap xx :call Slct_re_in_line_1()<cr>
 
+" slct re
+nnoremap r :call Slct_re()<cr>
+"nnoremap R :call Slct_re()<cr>
+
 " ynk clr
+         
 nnoremap <c-c> :call Ynk__clr()<cr>
 
 " ynk line
@@ -531,7 +535,6 @@ nnoremap ; :call Indnt__crct()<cr>
 
 " srch hl init
 nnoremap b /<cr>N
-nnoremap B /<cr>N
 "nnoremap b :call Srch_init()<cr>
 "nnoremap Y /<cr>N
 
@@ -602,11 +605,14 @@ nnoremap <leader>i :call N_grep_buf()<cr>
 " tag jmp tab new
 nnoremap t :call N_tag_jmp()<cr>
 
-" 
-" jmplst ( fzf )
-" 
+" fzf by memo
 
-nnoremap <leader>j :JmplstFzf<cr>
+"nnoremap <leader>m :FzfByMemo <cr>
+
+" jmplst ( fzf )
+
+nnoremap <leader>j :FzfByJmplst<cr>
+
 
 " 
 " cmd
@@ -621,7 +627,7 @@ nnoremap :! :!
 " ins sys cmd ( read )
 nnoremap :r :InsSysCmd 
 
-" ins sys ls  ( read )
+" ins sys ls  ( read ) " use not
 "nnoremap xx :Lf 
 
 " pth
@@ -752,7 +758,7 @@ nnoremap ( <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
 nnoremap q <esc>
-nnoremap r <esc>
+"nnoremap r <esc>
 "nnoremap s <esc>
 "nnoremap t <esc>
 "nnoremap u <esc>
@@ -762,7 +768,7 @@ nnoremap x <esc>
 nnoremap z <esc>
 
 "nnoremap A <esc>
-"nnoremap B <esc>
+nnoremap B <esc>
 nnoremap C <esc>
 nnoremap D <esc>
 "nnoremap E <esc>
@@ -1080,13 +1086,13 @@ vnoremap " <gv
 vnoremap ; =gv
 
 " indnt tab   > space
-vnoremap :e :call V_indnt_2_space(2)
+vnoremap :e :call V_line_indnt__space(2)
 
 " indnt space > tab
-"vnoremap xx :call V_indnt_2_tab(2)<cr>
+"vnoremap xx :call V_line_indnt__tab(2)<cr>
 
 " tab > space
-vnoremap :t :call V_tab_2_space(12)
+vnoremap :t :call V_line_tab__rpl_space(12)
 
 " line end ovr, space fil
 "vnoremap xx "ay"aP
@@ -1099,6 +1105,9 @@ vnoremap U Ugv
 
 " lower all
 vnoremap <c-u> ugv
+
+" str mb
+vnoremap M :MbCnv <cr>
 
 " 
 " srch
@@ -1245,7 +1254,7 @@ vnoremap H <esc>
 "vnoremap J <esc>
 "vnoremap K <esc>
 "vnoremap L <esc>
-vnoremap M <esc>
+"vnoremap M <esc>
 "vnoremap N <esc>
 "vnoremap O <esc>
 "vnoremap P <esc>
@@ -1780,10 +1789,9 @@ endfunc
 
 " jmp lst
 
-command! -bang -nargs=* JmplstFzf
-\ call Jmplst_fzf()
+command! -bang -nargs=* FzfByJmplst call Fzf_by_jmplst()
 
-func! Jmplst_fzf() abort
+func! Fzf_by_jmplst() abort
   
   call fzf#run(
   \   {
@@ -2368,10 +2376,7 @@ command! -range=% -nargs=0 MbCnv <line1>,<line2>call V_mb_cnv()
 func! V_mb_cnv() range abort
 
   let l:sys_cmd = 'mb_cnv'
-  '<,'>:call V_ins_sys_cmd(l:sys_cmd)
-
-  "call V_ins_sys_cmd_by_line_rng(l:sys_cmd, a:firstline, a:lastline)
-  "'<,'>:call V_ins_sys_cmd_by_line_rng(l:sys_cmd)
+  '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
 endfunc
 
 " cursor
@@ -2955,31 +2960,19 @@ func! Ins_sys_cmd(sys_cmd) abort " read
   endif
 endfunc
 
-func! V_ins_sys_cmd(sys_cmd) range abort " read
+func! V_line__rpl_sys_cmd(sys_cmd) range abort " read
 
   let l:cmd = "'<,'>" . " ! " . a:sys_cmd
   call Exe(l:cmd)
 endfunc
 
-"func! V_ins_sys_cmd_by_line_rng(sys_cmd, lineS, lineE) abort " read
-func! V_ins_sys_cmd_by_line_rng(sys_cmd) range abort " read
+"command! -nargs=? -complete=dir Lf call Ins_lf(<q-args>)
 
-  "let l:cmd = " ! " . a:sys_cmd
-  "'<,'>:call Exe(l:cmd)
-
-  "let l:cmd = a:lineS . "," . a:lineE . " ! " . a:sys_cmd
-
-  let l:cmd = "'<,'>" . " ! " . a:sys_cmd
-  call Exe(l:cmd)
-endfunc
-
-command! -nargs=? -complete=dir Lf call Ins_lf(<q-args>)
-
-func! Ins_lf(dir) abort
-
-  let l:cmd = 'lf ' . trim(a:dir)
-  call Ins_sys_cmd(l:cmd)
-endfunc
+"func! Ins_lf(dir) abort
+"
+"  let l:cmd = 'lf ' . trim(a:dir)
+"  call Ins_sys_cmd(l:cmd)
+"endfunc
 
 " line
 
@@ -3096,7 +3089,7 @@ command! -range=% -nargs=0 Tbl <line1>,<line2>call V_tbl()
 func! V_tbl() range abort
 
   let l:sys_cmd = 'tbl'
-  '<,'>:call V_ins_sys_cmd(l:sys_cmd)
+  '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
 endfunc
 
 " cursor f
@@ -3320,29 +3313,28 @@ func! Indnt__crct_by_c() abort
   return l:col
 endfunc
 
-"let g:indnt_col = 2
 let g:v_rng = "'<,'>"
 
-func! V_indnt_2_space(indnt_col) range abort
+func! V_line_indnt__space(indnt_col) range abort
 
   if Is_env('win64')
-    call V_tab_2_space(a:indnt_col)
+    '<,'>:call V_line_tab__rpl_space(a:indnt_col)
 
   else
     let l:sys_cmd = '  expand   -t ' . a:indnt_col
-    call V_ins_sys_cmd(l:sys_cmd)
+    '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
   endif
 endfunc
 
-func! V_indnt_2_tab(indnt_col) range abort
+func! V_line_indnt__tab(indnt_col) range abort
 
   let l:sys_cmd = 'unexpand   -t ' . a:indnt_col
-  call V_ins_sys_cmd(l:sys_cmd)
+  '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
 endfunc
 
 " tab
 
-func! V_tab_2_space(space_col) range abort
+func! V_line_tab__rpl_space(space_col) range abort
 
   let l:space_str = Str_space(a:space_col)
   let l:cmd = g:v_rng . 's/\t/' . l:space_str . '/g'
@@ -3425,10 +3417,10 @@ func! Slct_by_line_rng(line_num_fr, line_num_to) abort
   call Cursor__mv_by_line_num(a:line_num_to)
 endfunc
 
-func! Slct_re_in_line_1() abort " in line 1  -  old
-
-  call Normal('gv')
-endfunc
+"func! Slct_re_in_line_1() abort " in line 1  -  old, refactoring rpl Slct_re()
+"
+"  call Normal('gv')
+"endfunc
 
 func! Slct_re() range abort
   
@@ -3680,7 +3672,8 @@ endfunc
 
 func! Slctd_rpl_srch_nxt() abort " dir forward only
   
-  call Slct_re_in_line_1()
+  "call Slct_re_in_line_1()
+  call Slct_re()
   call Normal('"zd"aPlgn')
 endfunc
 
@@ -3761,7 +3754,8 @@ endfunc
 
 func! V_paste() abort
 
-  call Slct_re_in_line_1()
+  "call Slct_re_in_line_1()
+  call Slct_re()
   call Normal('"zd')
   call Paste()
 endfunc
@@ -4824,15 +4818,13 @@ endfunc
 
 " fzf by memo
 
-nnoremap <leader>m :FzfByMemo <cr>
-
 command! -nargs=0 FzfByMemo call Fzf_by_memo()
 
-let g:fzf_run_memo_path = '~/doc/memo.src-lst.md'
+let g:fzf_run_memo_path = 'doc/memo.md'
 
 func! Fzf_by_memo() abort
 
-  l:memo_file_path = g:fzf_run_memo_path
+  let l:memo_file_path = g:fzf_run_memo_path
 
   call Fzf_by_pth_lst(l:memo_file_path)
 

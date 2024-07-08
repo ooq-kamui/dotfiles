@@ -2,20 +2,15 @@
 # cnf
 
 
-## vim
-
-fzf by memo
-- tst
-  - memo path ch
-
-
-v M : mb cnv
-
-
-## win gitbash vim
+## win gitbash vim pri
 
 fzf by rg myrun
 - tst
+
+
+## pc ofc usb-b
+
+set
 
 
 ## c9 aws pri
