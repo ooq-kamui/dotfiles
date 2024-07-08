@@ -139,15 +139,15 @@ function lr {
   fd          '' $path
 }
 
-# Set-Alias dir "z" -Option AllScope # cannot be removed
-function dir_dmy {
+function dir_jmp {
   param( $path )
 
   z $path
   p
 }
-Set-Alias dir "dir_dmy" -Option AllScope # cannot be removed
-Set-Alias di  "dir_dmy"
+# Set-Alias dir "dir_jmp" -Option AllScope # cannot be removed
+Set-Alias dj "dir_jmp"
+Set-Alias d  "dir_jmp"
 
 function k   { Set-Location -Path .. ; p }
 function kk  { k;k   }
