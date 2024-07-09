@@ -2,17 +2,6 @@
 # cnf
 
 
-## win gitbash vim pri
-
-fzf by rg myrun
-- tst
-
-
-## pc ofc usb-b
-
-set
-
-
 ## c9 aws pri
 
 aws logs
