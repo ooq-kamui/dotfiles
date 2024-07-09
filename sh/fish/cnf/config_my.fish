@@ -117,6 +117,8 @@ alias zip_un 'unzip'
 
 alias clc 'math'
 
+alias cnt 'count'
+
 alias tbl    'column -t'
 
 alias trns   'trans'
