@@ -2,15 +2,21 @@
 # cnf
 
 
-## vim 
+## fish
 
-v edge __ add quote b
+mb__cnv
+- bash
+
+
+## pwsh pfc
+
+git alias
+
+
+## vim
+
+v edge __ ins quote b
 - v <c-u>
-
-
-## clock 
-
-serch at hm
 
 
 ## aws pri
