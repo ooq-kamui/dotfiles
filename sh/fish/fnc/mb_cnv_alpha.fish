@@ -8,6 +8,7 @@ function mb_cnv_alpha
 
   cat -                |\
   sed_y $srch_l $rpl_l |\
-  sed_y $srch_u $rpl_u
+  sed_y $srch_u $rpl_u 
+
 end
 

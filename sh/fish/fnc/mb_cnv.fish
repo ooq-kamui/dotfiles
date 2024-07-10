@@ -4,6 +4,7 @@ function mb_cnv
   mb_cnv_space  |\
   mb_cnv_num    |\
   mb_cnv_alpha  |\
-  mb_cnv_symbol
+  mb_cnv_symbol 
+
 end
 

@@ -2,23 +2,24 @@
 # cnf
 
 
-## c9 aws pri
+## vim 
+
+v edge __ add quote b
+- v <c-u>
+
+
+## clock 
+
+serch at hm
+
+
+## aws pri
 
 aws logs
 - lambda cre
 - sqs cre
 - amplify cre
 
-
-## vim
-
-refactoring
-- E_xxx()
-  - call Normal()
-
-
-
----
 
 ## aws pri
 

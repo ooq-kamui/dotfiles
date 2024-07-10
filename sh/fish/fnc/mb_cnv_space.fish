@@ -5,5 +5,6 @@ function mb_cnv_space
 
   cat - |\
   sed_y $srch $rpl
+
 end
 

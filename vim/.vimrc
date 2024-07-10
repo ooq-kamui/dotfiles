@@ -2371,9 +2371,9 @@ endfunc
 
 " str mb
 
-command! -range=% -nargs=0 MbCnv <line1>,<line2>call V_mb_cnv()
+command! -range=% -nargs=0 MbCnv <line1>,<line2>call V_line_mb__cnv()
 
-func! V_mb_cnv() range abort
+func! V_line_mb__cnv() range abort
 
   let l:sys_cmd = 'mb_cnv'
   '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
@@ -4735,7 +4735,7 @@ endfunc
 
 
 " 
-" fzf my  -  dev doing
+" fzf my
 " 
 
 " fzf by rg ( my run )
@@ -4743,6 +4743,15 @@ endfunc
 command! -nargs=0 FzfByRgMyrun call Fzf_by_rg_myrun()
 
 func! Fzf_by_rg_myrun() abort
+
+  let l:ptn = '^[ \t]*$'
+  let l:rg_cmd = "rg -v -e '" . l:ptn . "' | count"
+  let l:rg_cnt = Sys_cmd(l:rg_cmd)
+
+  if l:rg_cnt > 10000
+    echo "l:rg_cnt, end"
+    return
+  endif
 
   call fzf#run(
   \   {
@@ -4762,20 +4771,7 @@ func! Rg_all_rslt_ar() abort
 
   let l:rslt_ar = Sys_cmd_rg_rslt_ar(l:opt, l:ptn)
   return l:rslt_ar
-
-"  let l:rg_rslt_txt = Rg_all_rslt_txt()
-"  let l:rslt_ar  = split(l:rg_rslt_txt, "\n")
-"  return l:rslt_ar
 endfunc
-
-"func! Rg_all_rslt_txt() abort " call not
-"
-"  let l:opt = '-v'
-"  let l:ptn = '^[ \t]*$'
-"
-"  let l:rslt_txt = Sys_cmd_rg_rslt_txt(l:opt, l:ptn)
-"  return l:rslt_txt
-"endfunc
 
 func! Sys_cmd_rg_rslt_ar(opt, ptn) abort
 
@@ -4792,16 +4788,16 @@ func! Sys_cmd_rg_rslt_txt(opt, ptn) abort
   return l:r_rslt_txt
 endfunc
 
-let g:rg_cmd_str = 'rg '
-\            . ' --line-number'
-\            . ' --smart-case'
-\            . ' --hidden'
-\            . ' --color always'
-\            . ' -g "!.git"'
-"\            . ' --no-ignore'
-"\            . ' -ns'
-
 func! Rg_cmd_str(opt, ptn) abort
+
+  let l:rg_cmd_str = 'rg '
+  \            . ' --line-number'
+  \            . ' --smart-case'
+  \            . ' --hidden'
+  \            . ' --color always'
+  \            . ' -g "!.git"'
+  "\            . ' --no-ignore'
+  "\            . ' -ns'
 
   if a:opt == v:null
     let l:opt = ''
@@ -4812,7 +4808,7 @@ func! Rg_cmd_str(opt, ptn) abort
   let l:ptn = trim(a:ptn)
   let l:ptn = escape(l:ptn, '\({')
   
-  let l:rg_cmd_str = g:rg_cmd_str . ' ' . l:opt . " -e '" . l:ptn . "'"
+  let l:rg_cmd_str = l:rg_cmd_str . ' ' . l:opt . " -e '" . l:ptn . "'"
   return l:rg_cmd_str
 endfunc
 
@@ -4885,8 +4881,8 @@ if     Is_env('mac')   " mac
 
 elseif Is_env('linux') " c9
 
-  set shell=bash
-  "set shell=fish
+  "set shell=bash
+  set shell=fish
 
   source ~/wrk/cnf/vim/.vimrc_c9
 
