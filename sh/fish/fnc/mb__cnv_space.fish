@@ -1,4 +1,4 @@
-function mb_cnv_space
+function mb__cnv_space
 
   set srch '　'
   set rpl  ' '

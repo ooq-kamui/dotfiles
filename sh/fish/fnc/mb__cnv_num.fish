@@ -1,4 +1,4 @@
-function mb_cnv_num
+function mb__cnv_num
 
   set srch '０１２３４５６７８９'
   set rpl  '0123456789'

@@ -74,6 +74,7 @@ set list
 set cursorline
 set splitbelow
 set switchbuf=usetab,newtab
+set showcmd
 
 set encoding=utf-8
 set fileencodings=utf-8,sjis
@@ -94,6 +95,7 @@ autocmd FileType vim      setlocal sw=2 sts=2 ts=2   et " space
 autocmd FileType fish     setlocal sw=2 sts=2 ts=2   et " space
 autocmd FileType sh       setlocal sw=2 sts=2 ts=2   et " space
 autocmd FileType markdown setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType python   setlocal sw=2 sts=2 ts=2   et " space
 
 " file opn, cursor mv last
 augroup vimrcEx
@@ -2375,7 +2377,7 @@ command! -range=% -nargs=0 MbCnv <line1>,<line2>call V_line_mb__cnv()
 
 func! V_line_mb__cnv() range abort
 
-  let l:sys_cmd = 'mb_cnv'
+  let l:sys_cmd = 'mb__cnv'
   '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
 endfunc
 

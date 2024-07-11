@@ -4,13 +4,8 @@
 
 ## fish
 
-mb__cnv
-- bash
-
-
-## pwsh pfc
-
-git alias
+powerline
+- learn
 
 
 ## vim

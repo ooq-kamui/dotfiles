@@ -1,4 +1,4 @@
-function mb_cnv_alpha
+function mb__cnv_alpha
 
   set srch_l 'ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ'
   set rpl_l  'abcdefghijklmnopqrstuvwxyz'

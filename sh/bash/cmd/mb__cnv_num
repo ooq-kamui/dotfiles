@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# function mb_cnv_num
+# function mb__cnv_num
 
 srch='０１２３４５６７８９'
 rpl='0123456789'

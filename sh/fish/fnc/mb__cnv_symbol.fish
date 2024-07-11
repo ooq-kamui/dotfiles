@@ -1,4 +1,4 @@
-function mb_cnv_symbol
+function mb__cnv_symbol
 
   set srch '！＃＄％＆＊＋－＝：；？＠／＾＿｀～'
   set rpl  '!#$%&*+-=:;?@/^_`~'

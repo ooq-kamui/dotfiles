@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# function mb_cnv_alpha
+# function mb__cnv_alpha
 
 srch_l='ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ'
 rpl_l='abcdefghijklmnopqrstuvwxyz'
