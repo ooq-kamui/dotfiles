@@ -2,6 +2,18 @@
 # cnf
 
 
+## git
+
+- learn at code commit
+
+  - commit amend
+    - push
+
+  - pull req
+
+
+
+
 ## fish
 
 powerline
