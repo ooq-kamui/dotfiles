@@ -6,11 +6,7 @@
 
 - learn at code commit
 
-  - commit amend
-    - push
-
   - pull req
-
 
 
 

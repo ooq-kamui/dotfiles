@@ -1,9 +1,14 @@
 #!/bin/bash
 
-# 
+# cat line by sed
 
 line_num_fr=$1
 line_num_to=$2
+
+if [ "$line_num_fr" = "" ]
+then
+  line_num_fr=1
+fi
 
 if [ "$line_num_to" = "" ]
 then
