@@ -2,12 +2,14 @@
 # cnf
 
 
-## git
+## vim
 
-- learn at code commit
+v edge __ ins quote b
+- v <c-u>
 
-  - pull req
-
+- try run confirm
+  - inoremap xx call complete()
+    - aft normal cmd
 
 
 ## fish
@@ -16,26 +18,13 @@ powerline
 - learn
 
 
-## vim
-
-v edge __ ins quote b
-- v <c-u>
-
-
-## aws pri
-
-aws logs
-- lambda cre
-- sqs cre
-- amplify cre
-
-
 ## aws pri
 
 fe api
 - api-gateway cre
 - lambda cre
   - dynamo db access
+
 
 holo
 - hosting
