@@ -193,7 +193,7 @@ function opn {
 function da { Get-Date -Format "yyyy-MM-dd"       }
 function dt { Get-Date -Format "yyyy-MM-dd.HH:mm" }
 function tm { Get-Date -Format "HH:mm"            }
-# function ts { Get-Date -Format "yyyy-MM-dd.HH:mm:??" }
+function ts { Get-Date -Format "yyyy-MM-dd.HH:mm:ss" }
 
 # jq
 $ENV:Path += ";$home\wrk\app\bin\pwsh"
