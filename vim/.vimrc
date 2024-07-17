@@ -59,6 +59,13 @@ hi Comment     ctermfg=14           ctermbg=none     cterm=none
 hi FullWidthSpace                   ctermbg=white
 match FullWidthSpace /　/
 
+" vimdiff
+hi DiffAdd     ctermfg=10           ctermbg=22       cterm=bold
+hi DiffDelete  ctermfg=10           ctermbg=52       cterm=bold
+hi DiffChange  ctermfg=10           ctermbg=17       cterm=bold
+hi DiffText    ctermfg=10           ctermbg=21       cterm=bold
+
+
 au BufNewFile,BufRead *.script     set filetype=lua
 au BufNewFile,BufRead *.gui_script set filetype=lua
 au BufNewFile,BufRead *.fish       set filetype=fish
