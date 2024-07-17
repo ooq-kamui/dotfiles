@@ -7,16 +7,6 @@
 v edge __ ins quote b
 - v <c-u>
 
-- try run confirm
-  - inoremap xx call complete()
-    - aft normal cmd
-
-
-## fish
-
-powerline
-- learn
-
 
 ## aws pri
 
@@ -28,14 +18,6 @@ fe api
 
 holo
 - hosting
-
-
-## win gitbash vim
-
-cmd alias
-- def can not ?
-- research
-
 
 
 ---

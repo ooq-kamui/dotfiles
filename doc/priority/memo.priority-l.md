@@ -2,6 +2,14 @@
 # priority l
 
 
+## win gitbash vim
+
+cmd alias
+- def can not ?
+- research
+
+
+
 ## vim
 
 refactoring
@@ -15,21 +23,19 @@ hl init
   - `>` 手動実行でないとムリのよう
 
 
-## win pwsh
+## pwsh
 
 fnc
-
 - ba : battery
 
 
 cmdline
 - c-b : add (  ) : ??
-  - method research
+  - ggl
 
 
-install
-- trash ( like )
-  - research
+trash ( like )
+- ggl
 
 
 

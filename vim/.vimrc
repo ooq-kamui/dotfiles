@@ -1372,7 +1372,7 @@ inoremap <tab> <c-v><tab>
 "inoremap xx <space><space>
 
 " ins complete
-"inoremap <c-y> xx
+"inoremap xx <c-p>
 
 "inoremap <expr> <c-y>
 "\ pumvisible() ? '<c-e>' :
@@ -1385,10 +1385,11 @@ inoremap <expr> <c-j>
 \                '<c-r>=I_bracket()<cr>'
 
 " ins num
-inoremap <c-r> <c-r>=I_num()<cr>
+inoremap <c-y> <c-r>=I_num()<cr>
+"inoremap <c-r> <c-r>=I_num()<cr>
 
 " ins symbol
-inoremap <c-b> <c-r>=I_symbol()<cr>
+inoremap <c-r> <c-r>=I_symbol()<cr>
 
 " ins markdown
 inoremap <c-u> <c-r>=I_markdown()<cr>
@@ -1471,7 +1472,7 @@ inoremap <c--> <nop>
 "inoremap <c-:> <nop> " non
 "inoremap <c-;> <nop> " non
 
-"inoremap <c-b> <nop>
+inoremap <c-b> <nop>
 "inoremap <c-f> <nop>
 "inoremap <c-g> <nop>
 "inoremap <c-k> <nop>
@@ -1483,7 +1484,7 @@ inoremap <c-q> <nop>
 "inoremap <c-s> <nop>
 "inoremap <c-t> <nop>
 "inoremap <c-u> <nop>
-inoremap <c-y> <nop>
+"inoremap <c-y> <nop>
 
 " 
 " mode cmd
@@ -4414,12 +4415,12 @@ func! I_symbol() abort
 endfunc
 
 func! I_bracket() abort
-  call complete( col('.'), [ '()', "''", '[]', '{}', '""', '<>' ])
+  call complete( col('.'), [ '()', '``', '[]', '{}', "''", '""', '<>' ])
   return ''
 endfunc
 
 func! I_markdown() abort
-  call complete( col('.'), [ '``', '`>` ', '[]()', '![]()', '```', '---' ])
+  call complete( col('.'), [ '[]()', '![]()', '`>` ', '```', '---' ])
   return ''
 endfunc
 
