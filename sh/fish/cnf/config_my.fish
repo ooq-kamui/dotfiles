@@ -83,16 +83,16 @@ alias rn 'rename'
 
 alias trash 'trash -F'
 
-alias psh 'pushd'
-alias pop 'popd'
-alias pp  'pop'
+#alias psh 'pushd'
+#alias pop 'popd'
+#alias pp  'pop'
 
 alias cd_parent 'cd ../; pwd'
 alias k   'cd_parent'
 alias kk  'k;k'
 alias kkk 'k;k;k'
 
-alias dj 'dir_jmp'
+#alias dj 'dir_jmp'
 alias d  'dir_jmp'
 
 alias vim 'nvim -p'
