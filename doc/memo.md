@@ -1,10 +1,6 @@
 
 # cnf
 
-## docusaurus
-
-- md my add
-
 
 ## vim
 
