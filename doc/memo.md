@@ -1,11 +1,16 @@
 
 # cnf
 
+## docusaurus
+
+- md my add
+
 
 ## vim
 
 v edge __ ins quote b
 - v <c-u>
+- menu use ?
 
 
 ## aws pri
@@ -18,6 +23,11 @@ fe api
 
 holo
 - hosting
+
+
+## etc
+
+teiki
 
 
 ---

@@ -983,9 +983,7 @@ vnoremap P :call V_paste__clipboard()<cr>
 " paste visual box
 "vnoremap xx I<c-r>0<esc>
 
-" 
 " undo
-" 
 "vnoremap h <esc>u
 
 " 
@@ -1021,6 +1019,9 @@ vnoremap ! :call V_ins_cmnt_1()<cr>
 vnoremap & :call V_ins_cmnt_mlt()<cr>
 "vnoremap $ :call V_ins_cmnt_mlt()<cr>
 
+" ins selected edge
+vnoremap b :<c-u>SlctdEdgeIns `
+
 " ins date time
 "vnoremap xx x:call Ins_da()<cr>
 
@@ -1030,9 +1031,6 @@ vnoremap & :call V_ins_cmnt_mlt()<cr>
 " ins time
 "vnoremap xx c<c-r>=strftime("%H:%M")<cr><esc>
 "vnoremap xx c<c-r>=strftime('%H:%M')<cr><esc>
-
-" ins at selected edge
-"vnoremap xx :<c-u>SlctdEdgeIns 
 
 " del str > ynk
 "vnoremap d xx
@@ -1053,8 +1051,8 @@ vnoremap S "aygvr gv
 vnoremap W "aygvr gv
 "vnoremap S :call V_slctd__space()<cr> " dev doing
 
-" line join / per  " todo dev
-vnoremap J :call V_line__join(3)
+" line __ join per line
+vnoremap J :call V_line__join_per_line(3)
 
 " del line top space
 "vnoremap xx :call V_line_top_space__del()<cr>
@@ -1151,7 +1149,7 @@ vnoremap <expr> :s
 "\                     ':Rpl '
 
 " rpl cr ( add cr )
-vnoremap <c-m> :call V_line_srch_str__add_cr()<cr>
+vnoremap <c-m> :call V_line_srch_str__rpl_cr()<cr>
 
 " v box edge char shft in
 "vnoremap <c-s> 
@@ -1229,7 +1227,7 @@ vnoremap , <esc>
 vnoremap . <esc>
 
 "vnoremap a <esc>
-vnoremap b <esc>
+"vnoremap b <esc>
 "vnoremap c <esc>
 "vnoremap d <esc>
 "vnoremap e <esc>
@@ -3077,7 +3075,7 @@ func! V_line_end_space__del() range abort
   endfor
 endfunc
 
-func! V_line__join(per_line_num) range abort
+func! V_line__join_per_line(per_line_num) range abort
 
   let l:n_cmd = a:per_line_num . 'Jj'
 
@@ -3655,7 +3653,7 @@ endfunc
 
 command! -nargs=? SlctdEdgeIns call Slctd_edge__ins(<q-args>)
 
-func! Slctd_edge__ins(c) abort
+func! Slctd_edge__ins(c) abort " todo dev
   
   if     a:c   == '('
     let  l:c_l =  '('
@@ -3933,7 +3931,7 @@ endfunc
 
 " v line srch str __ rpl cr ( add cr )
 
-func! V_line_srch_str__add_cr() range abort
+func! V_line_srch_str__rpl_cr() range abort
 
   let l:srch = @/
 
@@ -4408,29 +4406,35 @@ endfunc
 
 func! I_symbol() abort
 
-  let l:lst = ['$', '%', '&', '\', '@', '?', '/']
-
+  let l:lst = [ '$', '%', '&', '\', '@', '?', '/' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
 
 func! I_bracket() abort
-  call complete( col('.'), [ '()', '``', '[]', '{}', "''", '""', '<>' ])
+
+  let l:lst = [ '()', '``', '[]', '{}', '<>', "''", '""' ]
+  call complete(col('.'), l:lst)
   return ''
 endfunc
 
 func! I_markdown() abort
-  call complete( col('.'), [ '[]()', '![]()', '`>` ', '```', '---' ])
+
+  let l:lst = [ '[]()', '![]()', '`>` ', '```', '---' ]
+  call complete(col('.'), l:lst)
   return ''
 endfunc
 
 func! I_week() abort
+
   call complete(col('.'), g:week_def)
   return ''
 endfunc
 
 func! I_num() abort
-  call complete(col('.'), ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])
+
+  let l:lst = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ]
+  call complete(col('.'), l:lst)
   return ''
 endfunc
 
