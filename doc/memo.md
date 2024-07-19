@@ -2,13 +2,6 @@
 # cnf
 
 
-## vim
-
-v edge __ ins quote b
-- v <c-u>
-- menu use ?
-
-
 ## aws pri
 
 fe api
@@ -21,9 +14,11 @@ holo
 - hosting
 
 
-## etc
+## vim > l
 
-teiki
+v edge __ ins quote b
+- v <c-u>
+- menu use ?
 
 
 ---
