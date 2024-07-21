@@ -2,11 +2,6 @@
 # cnf
 
 
-## fish mac
-
-upd
-
-
 ## docusaurus pri
 
 amplify cli
