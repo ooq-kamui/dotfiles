@@ -12,6 +12,11 @@ cmd alias
 
 ## vim
 
+v edge __ ins quote b
+- v <c-u>
+- menu use ?
+
+
 refactoring
 - E_xxx()
   - call Normal()

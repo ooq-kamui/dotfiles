@@ -2,6 +2,18 @@
 # cnf
 
 
+## fish mac
+
+upd
+
+
+## docusaurus pri
+
+amplify cli
+- local mac
+  - install
+
+
 ## aws pri
 
 fe api
@@ -12,13 +24,6 @@ fe api
 
 holo
 - hosting
-
-
-## vim > l
-
-v edge __ ins quote b
-- v <c-u>
-- menu use ?
 
 
 ---
