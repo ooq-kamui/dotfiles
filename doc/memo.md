@@ -33,7 +33,7 @@ docker learn
 path def dpl del
 
 
-## vim  -  priority l
+## vim  -  l
 
 coc vim
 

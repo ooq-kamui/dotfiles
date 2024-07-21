@@ -66,6 +66,10 @@ alias c   'clr'
 
 alias x 'xargs'
 
+alias llk   'pwd ../       ; ll ../'
+alias llkk  'pwd ../../    ; ll ../../'
+alias llkkk 'pwd ../../../ ; ll ../../../'
+
 alias lf 'lrf'
 alias ld 'lrd'
 
@@ -197,7 +201,7 @@ set __fish_git_prompt_color_upstream_behind red
 set __fish_git_prompt_char_dirtystate      'w' # '$' # '⚡'
 set __fish_git_prompt_char_stagedstate     's' # '>' # '→'
 set __fish_git_prompt_char_untrackedfiles  'a' # 'z' # '☡'
-set __fish_git_prompt_char_stashstate      '<'       # '↩'
+set __fish_git_prompt_char_stashstate      't' # '<' # '↩'
 set __fish_git_prompt_char_upstream_ahead  '+'
 set __fish_git_prompt_char_upstream_behind '-'
 
