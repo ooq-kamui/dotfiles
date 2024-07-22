@@ -43,4 +43,9 @@ trash ( like )
 - ggl
 
 
+## tmux
+
+path def dpl del
+
+
 

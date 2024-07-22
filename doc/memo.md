@@ -2,6 +2,12 @@
 # cnf
 
 
+## vim
+
+V_cursor_f_space__del()
+- err
+
+
 ## docusaurus pri
 
 amplify cli
@@ -26,11 +32,6 @@ holo
 ## docker
 
 docker learn
-
-
-## tmux
-
-path def dpl del
 
 
 ## vim  -  l

@@ -79,7 +79,6 @@ alias to     'touch'
 alias to_clr ':>'
 
 alias mv 'mv -i'
-#alias cp 'cp -pi'
 alias cp 'cp -ip'
 alias rm 'rm -i'
 
