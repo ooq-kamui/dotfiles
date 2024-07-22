@@ -2,10 +2,15 @@
 # cnf
 
 
-## vim
+## dynamo cheat sheet
 
-V_cursor_f_space__del()
-- err
+- dynamo.select.fish
+  - cre
+
+
+## docusaurus ofc
+
+blog del
 
 
 ## docusaurus pri
@@ -13,6 +18,12 @@ V_cursor_f_space__del()
 amplify cli
 - local mac
   - install
+
+
+## vim
+
+V_cursor_f_space__del()
+- err
 
 
 ## aws pri
