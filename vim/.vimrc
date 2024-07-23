@@ -640,11 +640,11 @@ nnoremap :r :InsSysCmd
 "nnoremap xx :Lf 
 
 " pth
-nnoremap :d :Pth <cr>
+"nnoremap :d :Pth <cr>
 
 " cd parent
 nnoremap :a :cd .. 
-"nnoremap :a :DirUp 
+nnoremap :u :DirUp <cr>
 
 " 
 " tab
@@ -867,9 +867,12 @@ nnoremap gy <esc>
 "nnoremap :a :a
 nnoremap :b :b
 nnoremap :c :c
-"nnoremap :d :d
+nnoremap :d :d
 "          :
+"nnoremap :r :r
 "nnoremap :s :s
+"          :
+"nnoremap :u :u
 "          :
 nnoremap :z :z
 

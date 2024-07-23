@@ -1,16 +1,18 @@
 function fzf_fd_def
 
-  echo fd              \
-  --hidden             \
-  --follow             \
-  -I                   \
-  --exclude .git       \
-                       \
-  --color=always       \
-
-end
+  echo fd                                \
+    --color=always                       \
+    --hidden                             \
+    --follow                             \
+    -I                                   \
+    --exclude '.git'                     \
+                                         \
+    --exclude '\#current-cloud-backend/' \
+    --exclude '.docusaurus/'             \
+    --exclude 'build/'                   \
+    --exclude 'node_modules/'            \
 
 #  --type f             \
 
-
+end
 
