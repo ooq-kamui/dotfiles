@@ -8,6 +8,9 @@ let g:fzf_rg_opt .= ' -g "!amplify/backend/node_modules/"'
 let g:fzf_rg_opt .= ' -g "!amplify/backend/awscloudformation/build"'
 
 
+nnoremap P :Pth <cr>
+
+
 " 
 " plg
 " 

@@ -643,8 +643,8 @@ nnoremap :r :InsSysCmd
 "nnoremap :d :Pth <cr>
 
 " cd parent
+nnoremap U  :DirUp <cr>
 nnoremap :a :cd .. 
-nnoremap :u :DirUp <cr>
 
 " 
 " tab
@@ -3339,8 +3339,12 @@ endfunc
 
 func! V_line_indnt__tab(indnt_col) range abort
 
-  let l:sys_cmd = 'unexpand   -t ' . a:indnt_col
-  '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
+  if Is_env('win64')
+    " nothing
+  else
+    let l:sys_cmd = 'unexpand   -t ' . a:indnt_col
+    '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
+  endif
 endfunc
 
 " tab

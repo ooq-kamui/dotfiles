@@ -19,7 +19,7 @@ v edge __ ins quote b
 
 refactoring
 - E_xxx()
-  - call Normal()
+  - call Normal() only ?
 
 
 hl init

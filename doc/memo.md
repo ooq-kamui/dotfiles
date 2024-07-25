@@ -2,6 +2,12 @@
 # cnf
 
 
+## vim
+
+nnoremap rk, rj
+- start char str ( emp not )
+
+
 ## docusaurus pri
 
 amplify cli
