@@ -2,6 +2,13 @@
 # cnf
 
 
+## fish
+
+to_da
+- cre
+  - to arg not 
+
+
 ## vim
 
 nnoremap rk, rj
