@@ -318,7 +318,7 @@ nnoremap <c-w> [{
 "nnoremap xx <c-o>
 "nnoremap xx <c-i>
 
-" cursor mv file edge back    ( file begin )
+" cursor mv file edge back    ( file bgn )
 nnoremap gk :call Cursor__mv_file_edge('k')<cr>
 
 " cursor mv file edge forward ( file end   )
@@ -335,10 +335,13 @@ nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 
 " cursor mv jmp
-nnoremap rk :CursorMvJmp k f<cr>
-nnoremap rj :CursorMvJmp j f<cr>
-nnoremap re :CursorMvJmp k t<cr>
-nnoremap rf :CursorMvJmp j t<cr>
+nnoremap rk :call Cursor__mv_jmp_space_not('k', 'f')<cr>
+nnoremap rj :call Cursor__mv_jmp_space_not('j', 'f')<cr>
+"nnoremap re :call Cursor__mv_jmp_space_not('k', 't')<cr>
+"nnoremap rf :call Cursor__mv_jmp_space_not('j', 't')<cr>
+
+nnoremap re :call Cursor__mv_jmp_str_edge('k')<cr>
+nnoremap rf :call Cursor__mv_jmp_str_edge('j')<cr>
 
 " scroll cursor line upper
 "nnoremap xx zt
@@ -543,9 +546,9 @@ nnoremap ; :call Indnt__crct()<cr>
 " 
 
 " srch hl init
+nnoremap / /<cr>N
 nnoremap b /<cr>N
 "nnoremap b :call Srch_init()<cr>
-"nnoremap Y /<cr>N
 
 " srch char in line - forward
 "nnoremap xx f
@@ -735,7 +738,7 @@ nnoremap <bs>    <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
 nnoremap ^ <esc>
-nnoremap / <esc>
+"nnoremap / <esc>
 "nnoremap \ <esc>
 "nnoremap | <esc>
 "nnoremap <bar> <esc>
@@ -944,7 +947,7 @@ vnoremap <c-l> %
 " cursor mv bracket fnc back
 "vnoremap xx [m
 
-" cursor mv file edge back    ( file begin )
+" cursor mv file edge back    ( file bgn )
 vnoremap gk :call V_cursor__mv_file_edge('k')<cr>
 
 " cursor mv file edge forward ( file end   )
@@ -2623,8 +2626,6 @@ func! Cursor__mv_slctd_r() abort
   call Normal('`>')
 endfunc
 
-command! -nargs=* CursorMvJmp call Cursor__mv_jmp_space_not(<f-args>)
-
 func! Cursor__mv_jmp_space_not(drct, is_space_stop) abort
 
   let l:is_space_stop = a:is_space_stop
@@ -2637,8 +2638,10 @@ func! Cursor__mv_jmp_space_not(drct, is_space_stop) abort
   endif
 
   call Normal(l:n_cmd)
+  let l:cnt = 1
+  let l:cnt_max = 10000
 
-  while ( ! Is_cursor_line_file_edge() )
+  while ( !Is_cursor_line_file_edge() && l:cnt < l:cnt_max )
 
     if ! ( Is_cursor_c_char_space() || Is_cursor_line_end() )
       break
@@ -2649,6 +2652,32 @@ func! Cursor__mv_jmp_space_not(drct, is_space_stop) abort
     endif
 
     call Normal(l:n_cmd)
+    let l:cnt = l:cnt + 1
+  endwhile
+endfunc
+
+func! Cursor__mv_jmp_str_edge(drct) abort
+
+  if a:drct == 'k' || a:drct == 'j'
+
+    let l:n_cmd = a:drct
+  else
+    return
+  endif
+
+  call Normal(l:n_cmd)
+  let l:cnt = 1
+  let l:cnt_max = 10000
+  "let l:cnt_max = 10
+
+  while ( !Is_cursor_line_file_edge() && l:cnt < l:cnt_max )
+
+    if Is_cursor_c_char_space() || Is_cursor_line_end()
+      break
+    endif
+
+    call Normal(l:n_cmd)
+    let l:cnt = l:cnt + 1
   endwhile
 endfunc
 
@@ -2658,14 +2687,21 @@ func! Cursor__mv_file_edge(n_cmd) abort
     call Normal(a:n_cmd)
   endif
 
-  while ( ! Is_cursor_line_file_edge() )
+  let l:cnt = 1
+  let l:cnt_max = 10000
+
+  while ( !Is_cursor_line_file_edge() && l:cnt < l:cnt_max )
+
     call Normal(a:n_cmd)
+    let l:cnt = l:cnt + 1
   endwhile
 endfunc
 
 func! V_cursor__mv_file_edge(n_cmd) abort
 
-  call Normal('gv')
+  "call Normal('gv')
+  call Slct_re()
+
   call Cursor__mv_file_edge(a:n_cmd)
 endfunc
 

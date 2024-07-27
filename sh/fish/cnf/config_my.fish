@@ -75,7 +75,7 @@ alias ld 'lrd'
 
 alias p 'pth'
 
-alias to     'touch'
+#alias to     'touch'
 alias to_clr ':>'
 
 alias mv 'mv -i'
@@ -102,6 +102,7 @@ alias vim 'nvim -p'
 alias vi  'nvim -p'
 
 alias gi 'git'
+alias ji 'git'
 
 set -x LC_TIME en_US
 alias da      "date_ymd"

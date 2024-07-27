@@ -2,36 +2,69 @@
 # cnf
 
 
-## fish
+## ooq artcl
 
-to_da
-- cre
-  - to arg not 
+- sakura svr www dir del
+
+- git push at cc
+
+
+- file name `.` `>` `-`
+- youtube mod
+- draft enable
+  - ggl
+- date format
+- build warning mod
+
+- search
+  - node install at svr
+  - path `/` or `/ds/` ?
+
+
+## living
+
+sd set
+
+
+## svr pri mv
+
+svr old del
+
+- fe api
+  - mysql dmp
+- holo
+
+- www
+  - music plyr
+
+- 42ya
 
 
 ## vim
 
-nnoremap rk, rj
-- start char str ( emp not )
+cursor_u_cahr()
+cursor_d_cahr()
 
 
-## docusaurus pri
+## fish
 
-amplify cli
-- local mac
-  - install
+fzf
+- d ( z ) history
+  - file : `??`
 
 
-## aws pri
+## fe api
 
-fe api
+by aws pri
 - api-gateway cre
 - lambda cre
   - dynamo db access
 
 
-holo
-- hosting
+## holo
+
+hosting by aws
+
 
 
 ---
@@ -39,11 +72,6 @@ holo
 ## docker
 
 docker learn
-
-
-## vim  -  l
-
-coc vim
 
 
 

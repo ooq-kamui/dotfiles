@@ -28,6 +28,10 @@ hl init
   - `>` 手動実行でないとムリのよう
 
 
+coc vim
+- learn
+
+
 ## pwsh
 
 fnc
