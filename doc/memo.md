@@ -2,37 +2,41 @@
 # cnf
 
 
-## ooq artcl
+## fish
 
-- sakura svr www dir del
-
-- git push at cc
-
-
-- file name `.` `>` `-`
-- youtube mod
-- draft enable
-  - ggl
-- date format
-- build warning mod
-
-- search
-  - node install at svr
-  - path `/` or `/ds/` ?
+alias d fnc dir_jmp ( z )
+- case $argv     : dir_jmp ( z )
+- case $argv emp : fzf z history
 
 
-## living
+## svr pri rpl
 
-sd set
+### vps
+
+login
+- filewall setting
+
+- brew install
+- fish install
 
 
-## svr pri mv
+hosting
+- sub domain setting
+- proxy reverse
 
-svr old del
+
+- service
+  - holo ranking
+
+
+### svr old
+
+rpl
 
 - fe api
   - mysql dmp
-- holo
+
+- holo ranking
 
 - www
   - music plyr
@@ -40,30 +44,31 @@ svr old del
 - 42ya
 
 
-## vim
-
-cursor_u_cahr()
-cursor_d_cahr()
-
-
 ## fish
 
-fzf
-- d ( z ) history
-  - file : `??`
+~/sh/fish/
+- ln -s
+
+
+## vim
+
+cursor_u_char()
+cursor_d_char()
+
+
+## camera
+
+living
+- sd card set
 
 
 ## fe api
 
-by aws pri
+by aws pri ?
 - api-gateway cre
+
 - lambda cre
   - dynamo db access
-
-
-## holo
-
-hosting by aws
 
 
 

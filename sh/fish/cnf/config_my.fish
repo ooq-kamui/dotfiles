@@ -86,17 +86,14 @@ alias rn 'rename'
 
 alias trash 'trash -F'
 
-#alias psh 'pushd'
-#alias pop 'popd'
-#alias pp  'pop'
-
 alias cd_parent 'cd ../; pwd'
 alias k   'cd_parent'
 alias kk  'k;k'
 alias kkk 'k;k;k'
 
-#alias dj 'dir_jmp'
-alias d  'dir_jmp'
+alias d 'dir_jmp'
+#alias dj  'dir_jmp'
+#alias d  "cd ( cat /Users/kamui/.local/share/z/data | sed 's/|.*//g' | fzf ); pwd"
 
 alias vim 'nvim -p'
 alias vi  'nvim -p'

@@ -376,7 +376,6 @@ nnoremap A :call Ynk__line_all()<cr>
 
 " slct re
 nnoremap r :call Slct_re()<cr>
-"nnoremap R :call Slct_re()<cr>
 
 " ynk clr
          
@@ -547,7 +546,7 @@ nnoremap ; :call Indnt__crct()<cr>
 
 " srch hl init
 nnoremap / /<cr>N
-nnoremap b /<cr>N
+"nnoremap b /<cr>N
 "nnoremap b :call Srch_init()<cr>
 
 " srch char in line - forward
@@ -646,8 +645,8 @@ nnoremap :r :InsSysCmd
 "nnoremap :d :Pth <cr>
 
 " cd parent
-nnoremap U  :DirUp <cr>
-nnoremap :a :cd .. 
+nnoremap :a :DirUp 
+"nnoremap :a :DirUp <cr>
 
 " 
 " tab
@@ -757,7 +756,7 @@ nnoremap ( <esc>
 
 "nnoremap 0 <esc>
 "nnoremap a <esc>
-"nnoremap b <esc>
+nnoremap b <esc>
 "nnoremap c <esc>
 "nnoremap d <esc>
 "nnoremap e <esc>
@@ -799,7 +798,7 @@ nnoremap Q <esc>
 nnoremap R <esc>
 nnoremap S <esc>
 nnoremap T <esc>
-"nnoremap U <esc>
+nnoremap U <esc>
 "nnoremap W <esc>
 "nnoremap V <esc>
 nnoremap X <esc>
@@ -1195,7 +1194,7 @@ vnoremap go :call V_opn_app()<cr>
 vnoremap ggl :call V_opn_ggl_srch()<cr>
 
 " opn youtube video_id
-"vnoremap gy :call V_opn_yt()<cr>
+vnoremap gy :call V_opn_yt()<cr>
 
 " trns
 vnoremap r :call V_trns()<cr>
@@ -1315,7 +1314,7 @@ vnoremap gi <esc>
 vnoremap gp <esc>
 vnoremap gs <esc>
 vnoremap gt <esc>
-vnoremap gy <esc>
+"vnoremap gy <esc>
 
 "vnoremap :a <esc>
 " :
@@ -2101,7 +2100,8 @@ func! Char__tgl_etc(c) abort
   elseif a:c == '"'
     let l:rpl = "'"
   elseif a:c == "'"
-    let l:rpl = '`'
+    let l:rpl = '"'
+    "let l:rpl = '`'
   elseif a:c == "`"
     let l:rpl = '"'
 

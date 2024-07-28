@@ -1,6 +1,12 @@
 function dir_jmp
 
-  z $argv
+  if test -z "$argv"
+
+    cd ( cat /Users/kamui/.local/share/z/data | sed 's/|.*//g' | fzf )
+
+  else
+    z $argv
+  end
 
   pth
 end
