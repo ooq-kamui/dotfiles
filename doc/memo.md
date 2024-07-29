@@ -2,22 +2,11 @@
 # cnf
 
 
-## fish
-
-alias d fnc dir_jmp ( z )
-- case $argv     : dir_jmp ( z )
-- case $argv emp : fzf z history
-
-
 ## svr pri rpl
 
 ### vps
 
-login
-- filewall setting
-
-- brew install
-- fish install
+- filewall setting ?
 
 
 hosting
