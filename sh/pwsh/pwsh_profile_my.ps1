@@ -177,6 +177,7 @@ function vi  {
 }
 
 Set-Alias gi "git" -force # alias xxx is read-only or
+Set-Alias ji "git" -force # alias xxx is read-only or
 
 function opn {
   param( $path )
