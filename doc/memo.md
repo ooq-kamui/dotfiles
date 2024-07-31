@@ -2,9 +2,19 @@
 # cnf
 
 
+## vim
+
+srch or
+- cmd
+
+
+cursor_u_char()
+cursor_d_char()
+
+
 ## keyboard ofc
 
-tochpad
+touchpad
 - mv left
 
 
@@ -16,9 +26,9 @@ setting init by web
 - firewall
 
 
-hosting
+web svr
 - sub domain setting
-- proxy reverse
+- nginx
 
 
 - service
@@ -46,14 +56,37 @@ rpl
 - ln -s
 
 
-## vim
+## ssg
 
-srch or
-- cmd
+artcl
+- top rpl, ln mod
 
 
-cursor_u_char()
-cursor_d_char()
+doc-tech
+- rsync
+
+
+## sns
+
+tw
+
+bsky
+- sallya
+  - cre
+  - imgpf
+  - imgbg
+- olivia
+  - imgbg
+
+ggl
+- sallya
+  - cre
+  - imgpf
+  - imgbg
+- olivia
+  - imgpf
+- etc
+  - srch
 
 
 ## camera
@@ -72,12 +105,9 @@ by aws pri ?
   - dynamo db access
 
 
-
----
-
 ## docker
 
-docker learn
+learn
 
 
 
