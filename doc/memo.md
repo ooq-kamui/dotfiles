@@ -2,11 +2,18 @@
 # cnf
 
 
+## keyboard ofc
+
+tochpad
+- mv left
+
+
 ## svr pri rpl
 
 ### vps
 
-- filewall setting ?
+setting init by web
+- firewall
 
 
 hosting
@@ -41,6 +48,10 @@ rpl
 
 ## vim
 
+srch or
+- cmd
+
+
 cursor_u_char()
 cursor_d_char()
 
@@ -49,6 +60,7 @@ cursor_d_char()
 
 living
 - sd card set
+  - inside confirm
 
 
 ## fe api

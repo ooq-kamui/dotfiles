@@ -631,6 +631,7 @@ nnoremap <leader>j :FzfByJmplst<cr>
 
 " cmd history ( fzf )
 nnoremap <leader>: :CmdHstry<cr>
+nnoremap <leader>y :CmdHstry<cr>
 
 " sys cmd
 nnoremap :! :! 
@@ -1571,7 +1572,7 @@ nnoremap <leader>m <esc>
 nnoremap <leader>p <esc>
 nnoremap <leader>r <esc>
 nnoremap <leader>u <esc>
-nnoremap <leader>y <esc>
+"nnoremap <leader>y <esc>
 
 "vnoremap <leader>l <esc>
 vnoremap <leader>u <esc>
