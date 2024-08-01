@@ -1337,7 +1337,7 @@ inoremap <expr> <esc>
 inoremap <c-c> <esc>
 
 " cursor mv line in
-inoremap <c-a> <c-o>0
+"inoremap <c-a> <c-o>0
 "inoremap <c-a> <c-o>^
 inoremap <c-e> <c-o>$
 
@@ -1376,7 +1376,7 @@ inoremap <tab> <c-v><tab>
 "inoremap xx <space><space>
 
 " ins complete
-"inoremap xx <c-p>
+inoremap <c-a> <c-p>
 
 "inoremap <expr> <c-y>
 "\ pumvisible() ? '<c-e>' :
@@ -1476,6 +1476,7 @@ inoremap <c--> <nop>
 "inoremap <c-:> <nop> " non
 "inoremap <c-;> <nop> " non
 
+"inoremap <c-a> <nop>
 inoremap <c-b> <nop>
 "inoremap <c-f> <nop>
 "inoremap <c-g> <nop>
