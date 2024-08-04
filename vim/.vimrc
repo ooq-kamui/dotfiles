@@ -335,13 +335,16 @@ nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 
 " cursor mv jmp
-nnoremap rk :call Cursor__mv_jmp_space_not('k', 'f')<cr>
-nnoremap rj :call Cursor__mv_jmp_space_not('j', 'f')<cr>
-"nnoremap re :call Cursor__mv_jmp_space_not('k', 't')<cr>
-"nnoremap rf :call Cursor__mv_jmp_space_not('j', 't')<cr>
+nnoremap rk :call Cursor__mv_jmp_v('k')<cr>
+nnoremap rj :call Cursor__mv_jmp_v('j')<cr>
 
-nnoremap re :call Cursor__mv_jmp_str_edge('k')<cr>
-nnoremap rf :call Cursor__mv_jmp_str_edge('j')<cr>
+"nnoremap rk :call Cursor__mv_jmp_space_not('k', 'f')<cr>
+"nnoremap rj :call Cursor__mv_jmp_space_not('j', 'f')<cr>
+
+"nnoremap xx :call Cursor__mv_jmp_space_not('k', 't')<cr>
+"nnoremap xx :call Cursor__mv_jmp_space_not('j', 't')<cr>
+"nnoremap xx :call Cursor__mv_jmp_space('k')<cr>
+"nnoremap xx :call Cursor__mv_jmp_space('j')<cr>
 
 " scroll cursor line upper
 "nnoremap xx zt
@@ -2614,7 +2617,7 @@ func! Cursor__mv_jmp_space_not(drct, is_space_stop) abort
   endwhile
 endfunc
 
-func! Cursor__mv_jmp_str_edge(drct) abort
+func! Cursor__mv_jmp_space(drct) abort
 
   if a:drct == 'k' || a:drct == 'j'
 
@@ -2624,6 +2627,7 @@ func! Cursor__mv_jmp_str_edge(drct) abort
   endif
 
   call Normal(l:n_cmd)
+
   let l:cnt = 1
   let l:cnt_max = 10000
   "let l:cnt_max = 10
@@ -2639,9 +2643,24 @@ func! Cursor__mv_jmp_str_edge(drct) abort
   endwhile
 endfunc
 
-func! Cursor__mv_jmp_v() abort
+func! Cursor__mv_jmp_v(drct) abort
 
-  
+  if a:drct == 'k' || a:drct == 'j'
+
+    let l:n_cmd = a:drct
+  else
+    return
+  endif
+
+  call Normal(l:n_cmd)
+
+  if Is_cursor_c_char_space() || Is_cursor_line_end()
+
+    call Cursor__mv_jmp_space_not(l:n_cmd, 'f')
+
+  else
+    call Cursor__mv_jmp_space(l:n_cmd)
+  endif
 endfunc
 
 " cursor pos
