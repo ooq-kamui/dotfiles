@@ -4,18 +4,40 @@
 
 ## vim
 
-srch or
-- cmd
+cursor__mv_jmp_v()
+
+  Cursor__mv_jmp_str_edge()
+
+aaa bbb ccc
+aaa bbb ccc
+aaa bbb ccc
+aaa bbb ccc
+                  a
+                  a
+                  a
+aaa bbb ccc
+aaa bbb ccc
+aaa bbb ccc
+                  a
+                  a
+aaa bbb ccc
+aaa bbb ccc
+aaa bbb ccc
+aaa bbb ccc
 
 
-cursor_u_char()
-cursor_d_char()
 
 
-## keyboard ofc
+## bsky
 
-touchpad
-- mv left
+profile
+
+
+## camera
+
+living
+- sd card set
+  - inside confirm
 
 
 ## svr pri rpl
@@ -48,52 +70,6 @@ rpl
   - music plyr
 
 - 42ya
-
-
-## fish
-
-~/sh/fish/
-- ln -s
-
-
-## ssg
-
-artcl
-- top rpl, ln mod
-
-
-doc-tech
-- rsync
-
-
-## sns
-
-tw
-
-bsky
-- sallya
-  - cre
-  - imgpf
-  - imgbg
-- olivia
-  - imgbg
-
-ggl
-- sallya
-  - cre
-  - imgpf
-  - imgbg
-- olivia
-  - imgpf
-- etc
-  - srch
-
-
-## camera
-
-living
-- sd card set
-  - inside confirm
 
 
 ## fe api

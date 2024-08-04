@@ -397,7 +397,8 @@ nnoremap p :call Paste()<cr>
 nnoremap P :call Paste__clipboard()<cr>
 
 " paste rgstr history ( fzf )
-nnoremap <leader>c :RgstrHstry<cr>
+nnoremap <leader>r :RgstrHstry<cr>
+"nnoremap <leader>c :RgstrHstry<cr>
 
 " 
 " undo, redo
@@ -562,6 +563,9 @@ nnoremap <leader>k /
 
 nnoremap <leader>K /\<\><left><left>
 
+" srch word or
+"nnoremap xx Xxx
+
 " srch forward
 nnoremap n     :call Srch('f')<cr>
 
@@ -569,7 +573,7 @@ nnoremap n     :call Srch('f')<cr>
 nnoremap <c-n> :call Srch('b')<cr>
 
 " srch, cursor mv nxt char
-nnoremap @ :call Srch_7_cursor__mv_nxt('f')<cr>
+"nnoremap @ :call Srch_7_cursor__mv_nxt('f')<cr>
 
 " srch str set
 nnoremap e :call N_srch_str__(v:false)<cr>
@@ -581,7 +585,7 @@ nnoremap E :call N_srch_str__(v:true)<cr>
 "nnoremap xx :call Srch_char_bracket('f')<cr>
 
 " srch str history ( fzf )
-nnoremap <leader>n :SrchHstry<cr>
+nnoremap <leader>j :SrchHstry<cr>
 
 " srch str set prv ( tgl )
 nnoremap N :call N_srch_str__prv()<cr>
@@ -596,10 +600,6 @@ nnoremap <c-p> :call Srch_slct('f')<cr>
 "nnoremap :s :Rpl 
 nnoremap :s :%s///g
 
-" 
-" grep
-" 
-
 " grep ( fzf )
 nnoremap <leader>o :Rg <cr>
 
@@ -609,21 +609,19 @@ nnoremap <leader>O :FzfByRgMyrun <cr>
 " grep buf ( fzf )
 nnoremap <leader>i :call N_grep_buf()<cr>
 
+" jmplst ( fzf )
+"nnoremap <leader>n :FzfByJmplst<cr>
+nnoremap <leader>m :FzfByJmplst<cr>
+
+" memo ( fzf )
+"nnoremap <leader>m :FzfByMemo <cr>
+
 " grep [rg] ( read )
 "nnoremap xx :GrepStr <c-r>/
 "nnoremap xx :GrepWrd <c-r>/
 
 " tag jmp tab new
 nnoremap t :call N_tag_jmp()<cr>
-
-" fzf by memo
-
-"nnoremap <leader>m :FzfByMemo <cr>
-
-" jmplst ( fzf )
-
-nnoremap <leader>j :FzfByJmplst<cr>
-
 
 " 
 " cmd
@@ -638,9 +636,6 @@ nnoremap :! :!
 
 " ins sys cmd ( read )
 nnoremap :r :InsSysCmd 
-
-" ins sys ls  ( read ) " use not
-"nnoremap xx :Lf 
 
 " pth
 "nnoremap :d :Pth <cr>
@@ -730,7 +725,7 @@ nnoremap <s-space> <esc>
 nnoremap <bs>    <esc>
 
 "nnoremap = <esc>
-"nnoremap @ <esc>
+nnoremap @ <esc>
 "nnoremap ; <esc>
 "nnoremap , <esc>
 "nnoremap . <esc>
@@ -1337,8 +1332,8 @@ inoremap <expr> <esc>
 inoremap <c-c> <esc>
 
 " cursor mv line in
+inoremap <c-a> <c-o>^
 "inoremap <c-a> <c-o>0
-"inoremap <c-a> <c-o>^
 inoremap <c-e> <c-o>$
 
 " cursor mv char forward
@@ -1352,7 +1347,7 @@ inoremap <expr> <c-o>
 \                '<c-o>h'
 
 " cursor mv word forward
-inoremap <c-f> <c-o>e<c-o>l
+"inoremap <c-f> <c-o>e<c-o>l
 
 " cursor mv word back
 "inoremap xx <c-o>b
@@ -1376,7 +1371,8 @@ inoremap <tab> <c-v><tab>
 "inoremap xx <space><space>
 
 " ins complete
-inoremap <c-a> <c-p>
+"inoremap <c-a> <c-p>
+inoremap <c-f> <c-p>
 
 "inoremap <expr> <c-y>
 "\ pumvisible() ? '<c-e>' :
@@ -1562,16 +1558,16 @@ tnoremap <c-_> <c-\><c-n>
 
 "nnoremap <leader>: <esc>
 
-"nnoremap <leader>c <esc>
+nnoremap <leader>c <esc>
 nnoremap <leader>f <esc>
 "nnoremap <leader>h <esc>
 "nnoremap <leader>j <esc>
 "nnoremap <leader>l <esc>
-nnoremap <leader>m <esc>
-"nnoremap <leader>n <esc>
+"nnoremap <leader>m <esc>
+nnoremap <leader>n <esc>
 "nnoremap <leader>o <esc>
 nnoremap <leader>p <esc>
-nnoremap <leader>r <esc>
+"nnoremap <leader>r <esc>
 nnoremap <leader>u <esc>
 "nnoremap <leader>y <esc>
 
@@ -1923,22 +1919,6 @@ func! V_sys_cmd(sys_cmd) range abort
 
   let l:cmd = g:v_rng . '! ' . a:sys_cmd
   call Exe(l:cmd)
-endfunc
-
-"func! Col() abort " alias old > Cursor_col_num()
-"
-"  return call Cursor_col_num()
-"endfunc
-
-func! Cursor_col_num() abort " crnt
-
-  return col('.')
-endfunc
-
-func! Pos() abort
-
-  let l:pos = getpos('.')
-  return l:pos
 endfunc
 
 func! Save() abort
@@ -2397,53 +2377,6 @@ endfunc
 
 " cursor
 
-func! Cursor_c_char() abort
-
-  let l:c = getline('.')[Cursor_col_num() - 1]
-  return l:c
-endfunc
-
-func! Cursor_l_char() abort
-
-  let l:c = getline('.')[Cursor_col_num() - 2]
-  return l:c
-endfunc
-
-func! Cursor_r_char() abort
-
-  let l:c = getline('.')[Cursor_col_num() - 0]
-  return l:c
-endfunc
-
-func! Cursor_word() abort
-
-  let l:word = expand('<cword>')
-  return l:word
-endfunc
-
-func! Cursor_filepath() abort
-
-  if     Is_env('mac')
-
-    let l:str = expand('<cfile>')
-
-  elseif Is_env('win64')
-
-    let l:str = Line_str()
-
-  elseif Is_env('win32unix')
-
-    let l:str = Line_str()
-
-  else
-    let l:str = Line_str()
-  endif
-  
-  let l:str = trim(l:str)
-  
-  return l:str
-endfunc
-
 " cursor mv
 
 func! Cursor__mv_by_line_num(line_num) abort
@@ -2463,7 +2396,7 @@ endfunc
 
 func! Cursor__mv_by_line_col(line_num, col) abort
 
-  let l:line_num = (a:line_num == v:null) ? Line_num() : a:line_num
+  let l:line_num = (a:line_num == v:null) ? Cursor_line_num() : a:line_num
   
   call cursor(l:line_num, a:col)
 endfunc
@@ -2628,6 +2561,29 @@ func! Cursor__mv_slctd_r() abort
   call Normal('`>')
 endfunc
 
+func! Cursor__mv_file_edge(n_cmd) abort
+
+  if Is_cursor_line_file_edge()
+    call Normal(a:n_cmd)
+  endif
+
+  let l:cnt = 1
+  let l:cnt_max = 10000
+
+  while ( !Is_cursor_line_file_edge() && l:cnt < l:cnt_max )
+
+    call Normal(a:n_cmd)
+    let l:cnt = l:cnt + 1
+  endwhile
+endfunc
+
+func! V_cursor__mv_file_edge(n_cmd) abort
+
+  call Slct_re()
+
+  call Cursor__mv_file_edge(a:n_cmd)
+endfunc
+
 func! Cursor__mv_jmp_space_not(drct, is_space_stop) abort
 
   let l:is_space_stop = a:is_space_stop
@@ -2683,72 +2639,138 @@ func! Cursor__mv_jmp_str_edge(drct) abort
   endwhile
 endfunc
 
-func! Cursor__mv_file_edge(n_cmd) abort
+func! Cursor__mv_jmp_v() abort
 
-  if Is_cursor_line_file_edge()
-    call Normal(a:n_cmd)
+  
+endfunc
+
+" cursor pos
+
+func! Pos() abort " alias
+
+  let l:pos = getpos('.')
+  return l:pos
+endfunc
+
+" cursor col
+
+func! Cursor_col_num() abort
+
+  return col('.')
+endfunc
+
+func! Cursor_col_idx() abort
+
+  let l:idx = col('.') - 1
+  return l:idx
+endfunc
+
+func! Cursor_c_char() abort
+
+  let l:idx = Cursor_col_idx()
+  let l:c = getline('.')[l:idx]
+  return l:c
+endfunc
+
+func! Cursor_l_char() abort
+
+  let l:idx = Cursor_col_idx() - 1
+  let l:c = getline('.')[l:idx]
+  return l:c
+endfunc
+
+func! Cursor_r_char() abort
+
+  let l:idx = Cursor_col_idx() + 1
+  let l:c = getline('.')[l:idx]
+  return l:c
+endfunc
+
+func! Cursor_u_char() abort " dev doing
+
+  if Is_cursor_line_file_top()
+    return ''
   endif
 
-  let l:cnt = 1
-  let l:cnt_max = 10000
-
-  while ( !Is_cursor_line_file_edge() && l:cnt < l:cnt_max )
-
-    call Normal(a:n_cmd)
-    let l:cnt = l:cnt + 1
-  endwhile
+  let l:idx = Cursor_col_idx()
+  let l:line_num = Cursor_line_num() - 1
+  let l:c = getline(l:line_num)[l:idx]
+  return l:c
 endfunc
 
-func! V_cursor__mv_file_edge(n_cmd) abort
+func! Cursor_d_char() abort " dev doing
 
-  "call Normal('gv')
-  call Slct_re()
-
-  call Cursor__mv_file_edge(a:n_cmd)
-endfunc
-
-" cursor cnd  char
-
-func! Is_cursor_line_by_line_num(line_num) abort
-
-  let l:ret = v:false
-
-  let l:line_num = Line_num()
-
-  if l:line_num == a:line_num
-
-    let l:ret = v:true
+  if Is_cursor_line_file_end()
+    return ''
   endif
-  return l:ret
+
+  let l:idx = Cursor_col_idx()
+  let l:line_num = Cursor_line_num() + 1
+  let l:c = getline(l:line_num)[l:idx]
+  return l:c
 endfunc
 
-func! Is_cursor_line_file_top() abort
+" cursor col cnd
 
-  let l:line_num = 1
-  let l:ret = Is_cursor_line_by_line_num(l:line_num)
-  return l:ret
-endfunc
+func! Is_cursor_line_end() abort " todo refactoring rename add col
 
-func! Is_cursor_line_file_end() abort
+  if Cursor_col_num() == Cursor_line_end_col()
 
-  let l:line_num = Line_num_file_end()
-  let l:ret = Is_cursor_line_by_line_num(l:line_num)
-  return l:ret
-endfunc
-
-func! Is_cursor_line_file_edge() abort
-
-  let l:ret = v:false
-
-  if Is_cursor_line_file_top() || Is_cursor_line_file_end()
-
-    let l:ret = v:true
+    return v:true
+  else
+    return v:false
   endif
-  "echo l:ret
-  return l:ret
 endfunc
 
-" cnd cursor c char
+func! Is_cursor_line_end_ovr() range abort " todo refactoring rename add col
+
+  if Cursor_col_num() >= Cursor_line_end_col() " why ?
+    return v:true
+  else
+    return v:false
+  endif
+endfunc
+
+func! Is_cursor_line_end_inr() abort " todo refactoring rename add col
+
+  if Cursor_col_num() == Cursor_line_end_col() - 1
+
+    return v:true
+  else
+    return v:false
+  endif
+endfunc
+
+func! Is_cursor_line_top0() abort " todo refactoring rename add col
+  
+  "if col('.') == 1
+  if Cursor_col_num() == 1
+
+    return v:true
+  else
+    return v:false
+  endif
+endfunc
+
+func! Is_cursor_line_top1() abort " todo refactoring rename add col
+  
+  let l:pos_c = Pos()
+
+  let l:col_c = Cursor_col_num()
+  
+  call Cursor__mv_line_top1()
+  let l:col_s1 = Cursor_col_num()
+  
+  call setpos('.', l:pos_c)
+  
+  if l:col_c == l:col_s1
+    return v:true
+  else
+    return v:false
+  endif
+endfunc
+
+" cursor char cnd
 
 func! Is_cursor_c_char_regex(regex) abort
 
@@ -2783,66 +2805,179 @@ func! Is_cursor_c_char_alph() abort
   return l:ret
 endfunc
 
-" cnd cursor line
+" cursor etc
 
-func! Is_cursor_line_end() abort
+func! Cursor_word() abort
 
-  if Cursor_col_num() == Line_end_col()
-
-    return v:true
-  else
-    return v:false
-  endif
+  let l:word = expand('<cword>')
+  return l:word
 endfunc
 
-func! Is_cursor_line_end_ovr() range abort
+func! Cursor_filepath() abort
 
-  if Cursor_col_num() >= Line_end_col() " why ?
-    return v:true
+  if     Is_env('mac')
+
+    let l:str = expand('<cfile>')
+
+  elseif Is_env('win64')
+
+    let l:str = Line_str()
+
+  elseif Is_env('win32unix')
+
+    let l:str = Line_str()
+
   else
-    return v:false
+    let l:str = Line_str()
   endif
-endfunc
-
-func! Is_cursor_line_end_inr() abort
-
-  if Cursor_col_num() == Line_end_col() - 1
-
-    return v:true
-  else
-    return v:false
-  endif
-endfunc
-
-func! Is_cursor_line_top0() abort
   
-  "if col('.') == 1
-  if Cursor_col_num() == 1
-
-    return v:true
-  else
-    return v:false
-  endif
+  let l:str = trim(l:str)
+  
+  return l:str
 endfunc
 
-func! Is_cursor_line_top1() abort
-  
-  let l:pos_c = Pos()
+" cursor line  -  todo refactoring
 
-  "let l:col_c = col('.')
-  let l:col_c = Cursor_col_num()
+func! Cursor_line_num() abort " alias
+
+  return line('.')
+endfunc
+
+func! Cursor_line_num_file_end() abort " alias
+
+  return line('$')
+endfunc
+
+func! Cursor_line_end_col() abort " alias
+
+  let l:col = col('$')
+  return l:col
+endfunc
+
+" cursor line str
+
+func! Line_str() abort " alias
+
+  return getline('.')
+endfunc
+
+func! Line_str_len() abort
+
+  let l:len = Cursor_line_end_col() - 1
+  return l:len
+endfunc
+
+func! Line_str_cursor_out_l() abort
   
+  let l:line_l = getline('.')[:col('.')-2]
+  return l:line_l
+endfunc
+
+func! Line_str_cursor_out_r() abort
+  
+  let l:line_r = getline('.')[col('.'):]
+  return l:line_r
+endfunc
+
+func! Line_str_slctd_out_l() abort
+
+  call Cursor__mv_slctd_l()
+
+  let l:str = Line_str_cursor_out_l()
+  return l:str
+endfunc
+
+func! Line_str_slctd_out_r() abort
+
+  call Cursor__mv_slctd_r()
+
+  let l:str = Line_str_cursor_out_r()
+  return l:str
+endfunc
+
+" cursor line __ ins
+
+func! Line_top0__ins(str) abort
+
+  call Cursor__mv_line_top0()
+  call Ins(a:str)
+endfunc
+
+func! Line_top1__ins(str) abort
+
   call Cursor__mv_line_top1()
-  "let l:col_s1 = col('.')
-  let l:col_s1 = Cursor_col_num()
+  call Ins(a:str)
+endfunc
+
+" cursor line cnd
+
+func! Is_cursor_line_num(line_num) abort
+
+  let l:ret = v:false
+
+  let l:line_num = Cursor_line_num()
+
+  if l:line_num == a:line_num
+
+    let l:ret = v:true
+  endif
+  return l:ret
+endfunc
+
+func! Is_cursor_line_file_top() abort
+
+  let l:line_num = 1
+  let l:ret = Is_cursor_line_num(l:line_num)
+  return l:ret
+endfunc
+
+func! Is_cursor_line_file_end() abort
+
+  let l:line_num = Cursor_line_num_file_end()
+  let l:ret = Is_cursor_line_num(l:line_num)
+  return l:ret
+endfunc
+
+func! Is_cursor_line_file_edge() abort
+
+  let l:ret = v:false
+
+  if Is_cursor_line_file_top() || Is_cursor_line_file_end()
+
+    let l:ret = v:true
+  endif
+  "echo l:ret
+  return l:ret
+endfunc
+
+func! Is_line_emp() abort " todo refactoring rename add cursor
   
-  call setpos('.', l:pos_c)
-  
-  if l:col_c == l:col_s1
+  if Cursor_line_end_col() == 1
     return v:true
   else
     return v:false
   endif
+endfunc
+
+func! Is_line_space() abort " todo refactoring rename add cursor
+  
+  let l:str = Line_str()
+  let l:ret = Is_str_space(l:str)
+  return l:ret
+endfunc
+
+func! Is_line_str_side_l_space() abort " todo refactoring rename add cursor
+
+  let l:str = Line_str_cursor_out_l()
+  let l:ret = Is_str_space(l:str)
+  return l:ret
+endfunc
+
+func! Is_line_str_side_r_space() abort " todo refactoring rename add cursor
+
+  let l:str = Line_str_cursor_out_r()
+  let l:ret = Is_str_space(l:str)
+  return l:ret
 endfunc
 
 " ins
@@ -2926,6 +3061,67 @@ func! Ins_week() abort
   "call Ins(' ' . l:week)
 endfunc
 
+command! -nargs=* InsSysCmd call Ins_sys_cmd(<q-args>)
+
+func! Ins_sys_cmd(sys_cmd) abort " read
+
+  let l:is_line_num_eq_1 = Is_cursor_line_file_top()
+
+  if l:is_line_num_eq_1
+    call Normal('O')
+  else
+    call Normal('k')
+  endif
+
+  let l:cmd = 'read ! ' . a:sys_cmd
+  call Exe(l:cmd)
+
+  if l:is_line_num_eq_1
+    call Line__del_by_line_num(1)
+  endif
+endfunc
+
+" line
+
+let s:line_top_space_ptn = '^[ \t]*'
+
+func! V_line_top_space__del() abort " refactoring ?
+
+  let l:rpl_cmd = 's/' . s:line_top_space_ptn . '//g'
+  call Exe(l:rpl_cmd)
+endfunc
+
+let s:line_end_space_ptn = '[ \t]*$'
+
+func! Line_end_space__del(line_num) abort
+  
+  let l:rpl_cmd = a:line_num . 's/' . s:line_end_space_ptn . '//g'
+  call Exe(l:rpl_cmd)
+endfunc
+
+func! V_line_end_space__del() range abort
+
+  for line_num in range(a:firstline, a:lastline)
+
+    call Line_end_space__del(l:line_num)
+  endfor
+endfunc
+
+func! V_line__join_per_line(per_line_num) range abort
+
+  let l:n_cmd = a:per_line_num . 'Jj'
+
+  let l:line_num = a:lastline - a:firstline + 1
+
+  let l:exe_num = l:line_num / a:per_line_num
+  "echo l:exe_num
+
+  for idx in range(1, l:exe_num)
+
+    call Normal(l:n_cmd)
+  endfor
+endfunc
+
 let g:dots_str = ' .. '
 let g:dots_put_col = 50
 
@@ -2965,13 +3161,13 @@ func! Line__dots_crct() abort
     let l:line_str = l:line_str_0 . l:line_str_1
   endif
 
-  let l:line_num = Line_num()
+  let l:line_num = Cursor_line_num()
   call setline(l:line_num, l:line_str)
 endfunc
 
 func! Line__add_dots() abort
 
-  let l:line_num = Line_num()
+  let l:line_num = Cursor_line_num()
 
   let l:line_str = Line_str()
 
@@ -2989,146 +3185,10 @@ func! Line__add_dots() abort
   call setline(l:line_num, l:line_str)
 endfunc
 
-command! -nargs=* InsSysCmd call Ins_sys_cmd(<q-args>)
-
-func! Ins_sys_cmd(sys_cmd) abort " read
-
-  let l:is_line_num_eq_1 = Is_line_num_eq_1()
-
-  if l:is_line_num_eq_1
-    call Normal('O')
-  else
-    call Normal('k')
-  endif
-
-  let l:cmd = 'read ! ' . a:sys_cmd
-  call Exe(l:cmd)
-
-  if l:is_line_num_eq_1
-    call Line__del_by_line_num(1)
-  endif
-endfunc
-
 func! V_line__rpl_sys_cmd(sys_cmd) range abort " read
 
   let l:cmd = "'<,'>" . " ! " . a:sys_cmd
   call Exe(l:cmd)
-endfunc
-
-"command! -nargs=? -complete=dir Lf call Ins_lf(<q-args>)
-
-"func! Ins_lf(dir) abort
-"
-"  let l:cmd = 'lf ' . trim(a:dir)
-"  call Ins_sys_cmd(l:cmd)
-"endfunc
-
-" line
-
-func! Line_num() abort " alias
-
-  return line('.')
-endfunc
-
-func! Line_num_file_end() abort
-
-  return line('$')
-endfunc
-
-func! Line_end_col() abort
-
-  let l:col = col('$')
-  return l:col
-endfunc
-
-func! Line_str() abort " alias
-
-  return getline('.')
-endfunc
-
-func! Line_str_len() abort
-
-  let l:len = Line_end_col() - 1
-  return l:len
-endfunc
-
-func! Line_str_cursor_out_l() abort
-  
-  let l:line_l = getline('.')[:col('.')-2]
-  return l:line_l
-endfunc
-
-func! Line_str_cursor_out_r() abort
-  
-  let l:line_r = getline('.')[col('.'):]
-  return l:line_r
-endfunc
-
-func! Line_str_slctd_out_l() abort
-
-  call Cursor__mv_slctd_l()
-
-  let l:str = Line_str_cursor_out_l()
-  return l:str
-endfunc
-
-func! Line_str_slctd_out_r() abort
-
-  call Cursor__mv_slctd_r()
-
-  let l:str = Line_str_cursor_out_r()
-  return l:str
-endfunc
-
-func! Line_top0__ins(str) abort
-
-  call Cursor__mv_line_top0()
-  call Ins(a:str)
-endfunc
-
-func! Line_top1__ins(str) abort
-
-  call Cursor__mv_line_top1()
-  call Ins(a:str)
-endfunc
-
-let s:line_top_space_ptn = '^[ \t]*'
-
-func! V_line_top_space__del() abort
-
-  let l:rpl_cmd = 's/' . s:line_top_space_ptn . '//g'
-  call Exe(l:rpl_cmd)
-endfunc
-
-let s:line_end_space_ptn = '[ \t]*$'
-
-func! Line_end_space__del(line_num) abort
-  
-  let l:rpl_cmd = a:line_num . 's/' . s:line_end_space_ptn . '//g'
-  call Exe(l:rpl_cmd)
-endfunc
-
-func! V_line_end_space__del() range abort
-
-  for line_num in range(a:firstline, a:lastline)
-
-    call Line_end_space__del(l:line_num)
-  endfor
-endfunc
-
-func! V_line__join_per_line(per_line_num) range abort
-
-  let l:n_cmd = a:per_line_num . 'Jj'
-
-  let l:line_num = a:lastline - a:firstline + 1
-
-  let l:exe_num = l:line_num / a:per_line_num
-  "echo l:exe_num
-
-  for idx in range(1, l:exe_num)
-
-    call Normal(l:n_cmd)
-  endfor
 endfunc
 
 " tbl
@@ -3193,14 +3253,14 @@ endfunc
 
 func! Ins_line(str) abort
   
-  let l:line_num = Line_num() - 1
+  let l:line_num = Cursor_line_num() - 1
   call append(l:line_num, a:str)
   call Normal('k')
 endfunc
 
 func! Ins_line_d(str) abort
   
-  let l:line_num = Line_num()
+  let l:line_num = Cursor_line_num()
   call append(l:line_num, a:str)
 endfunc
 
@@ -3235,9 +3295,6 @@ endfunc
 
 func! V_line_del() abort " use not, todo mod
   
-  "call Normal('"ad')
-  "call Normal('gv"ad')
-  
   call Normal('gvj')
   "call Normal('"ad')
   
@@ -3250,45 +3307,6 @@ func! Line__del_by_line_num(line_num) abort
 endfunc
 
 " line cnd
-
-func! Is_line_num_eq_1() abort
-
-  if Line_num() == 1
-    return v:true
-  else
-    return v:false
-  endif
-endfunc
-
-func! Is_line_emp() abort
-  
-  if Line_end_col() == 1
-    return v:true
-  else
-    return v:false
-  endif
-endfunc
-
-func! Is_line_space() abort
-  
-  let l:str = Line_str()
-  let l:ret = Is_str_space(l:str)
-  return l:ret
-endfunc
-
-func! Is_line_str_side_l_space() abort
-
-  let l:str = Line_str_cursor_out_l()
-  let l:ret = Is_str_space(l:str)
-  return l:ret
-endfunc
-
-func! Is_line_str_side_r_space() abort
-
-  let l:str = Line_str_cursor_out_r()
-  let l:ret = Is_str_space(l:str)
-  return l:ret
-endfunc
 
 " line info
 
@@ -3303,7 +3321,7 @@ endfunc
 
 func! Indnt_col_by_c() abort
 
-  let l:col = cindent(Line_num())
+  let l:col = cindent(Cursor_line_num())
   return l:col
 endfunc
 
@@ -3455,8 +3473,8 @@ endfunc
 
 func! Slct_by_line_col(s_line, s_col, e_line, e_col) abort
 
-  let l:s_line = (a:s_line == v:null) ? Line_num() : a:s_line
-  let l:e_line = (a:e_line == v:null) ? Line_num() : a:e_line
+  let l:s_line = (a:s_line == v:null) ? Cursor_line_num() : a:s_line
+  let l:e_line = (a:e_line == v:null) ? Cursor_line_num() : a:e_line
 
   call Cursor__mv_by_line_col(l:s_line, a:s_col)
   call Normal('v')
@@ -3755,13 +3773,10 @@ endfunc
 func! Ynk__line() abort
 
   call Normal('"ayy')
-
-  call Clipboard__ynk()
-  "call Normal('"+yy')
-  
   "l:line_str = Line_str()
   "let @a = l:line_str
-  "let @+ = l:line_str
+
+  call Clipboard__ynk()
 endfunc
 
 func! Ynk__line_all() abort
@@ -3840,6 +3855,38 @@ endfunc
 
 " srch
 
+func! Srch(dir) abort
+
+  if     a:dir == 'f'
+    let l:op = ''
+  elseif a:dir == 'b'
+    let l:op = 'b'
+  endif
+
+  let l:str = @/
+  call search(l:str, l:op)
+endfunc
+
+func! V_srch(dir) abort " use not
+
+  if Is_slctd_str_eq_srch_str()
+    return
+  endif
+
+  call V_srch_str__slctd_str(v:false)
+endfunc
+
+command! -nargs=* SrchOr call Srch_or(<f-args>)
+
+func! Srch_or(...) abort
+
+  let l:str = '\(' . join(a:000, '\|') . '\)'
+  "echo l:str
+
+  let @/ = l:str
+  call Srch('f')
+endfunc
+
 func! Srch_str_word1(str)
 
   let l:str = a:str
@@ -3900,27 +3947,6 @@ func! N_srch_str__prv() abort
   let @/ = g:srch_prv1
   
   let g:srch_prv1 = l:tmp
-endfunc
-
-func! Srch(dir) abort
-
-  if     a:dir == 'f'
-    let l:op = ''
-  elseif a:dir == 'b'
-    let l:op = 'b'
-  endif
-
-  let l:str = @/
-  call search(l:str, l:op)
-endfunc
-
-func! V_srch(dir) abort " use not
-
-  if Is_slctd_str_eq_srch_str()
-    return
-  endif
-
-  call V_srch_str__slctd_str(v:false)
 endfunc
 
 func! Srch_slct(dir) abort

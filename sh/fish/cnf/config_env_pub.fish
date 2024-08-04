@@ -25,4 +25,3 @@ alias ooq_artcl_ds_rsync         'fish ~/wrk/prj/ssg/sh/rsync.ooq-artcl.ds.fish'
 
 
 
-
