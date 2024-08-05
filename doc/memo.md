@@ -38,7 +38,6 @@ rpl
 
 living
 - sd card set
-  - inside confirm
 
 
 ## fe api
