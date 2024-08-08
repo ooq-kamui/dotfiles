@@ -2,6 +2,15 @@
 # cnf
 
 
+## etc
+
+electron ggl
+
+
+linter at cmdline
+- python
+
+
 ## svr pri rpl
 
 ### vps
