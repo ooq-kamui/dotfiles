@@ -132,6 +132,8 @@ alias fd 'fd --hidden --follow -I --exclude .git'
 
 alias amp 'amplify'
 
+alias rf 'ruff'
+
 # alias arg ( prj )
 
 # alias cmd path

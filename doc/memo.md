@@ -2,18 +2,9 @@
 # cnf
 
 
-## fish
-
-cnt arg
-
-
 ## etc
 
 electron ggl
-
-
-linter at cmdline
-- python
 
 
 ## svr pri rpl
