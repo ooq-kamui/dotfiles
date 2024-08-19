@@ -2,14 +2,11 @@
 # cnf
 
 
-## etc
-
-electron ggl
-
-
 ## svr pri rpl
 
-### vps
+### vps ( svr new )
+
+#### etc
 
 setting init by web
 - firewall
@@ -35,14 +32,10 @@ rpl
 
 - www
   - music plyr
+    - del
 
 - 42ya
-
-
-## camera
-
-living
-- sd card set
+  - del
 
 
 ## fe api
