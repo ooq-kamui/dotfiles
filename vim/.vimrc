@@ -338,11 +338,11 @@ nnoremap <down> <c-e>
 nnoremap rk :call Cursor__mv_jmp_v('k')<cr>
 nnoremap rj :call Cursor__mv_jmp_v('j')<cr>
 
-"nnoremap rk :call Cursor__mv_jmp_space_not('k', 'f')<cr>
-"nnoremap rj :call Cursor__mv_jmp_space_not('j', 'f')<cr>
+nnoremap rK :call Cursor__mv_jmp_char('k', 'f')<cr>
+nnoremap rJ :call Cursor__mv_jmp_char('j', 'f')<cr>
 
-"nnoremap xx :call Cursor__mv_jmp_space_not('k', 't')<cr>
-"nnoremap xx :call Cursor__mv_jmp_space_not('j', 't')<cr>
+"nnoremap xx :call Cursor__mv_jmp_char('k', 't')<cr>
+"nnoremap xx :call Cursor__mv_jmp_char('j', 't')<cr>
 "nnoremap xx :call Cursor__mv_jmp_space('k')<cr>
 "nnoremap xx :call Cursor__mv_jmp_space('j')<cr>
 
@@ -2587,9 +2587,12 @@ func! V_cursor__mv_file_edge(n_cmd) abort
   call Cursor__mv_file_edge(a:n_cmd)
 endfunc
 
-func! Cursor__mv_jmp_space_not(drct, is_space_stop) abort
+"func! Cursor__mv_jmp_space_not(drct, is_space_stop) abort
+"func! Cursor__mv_jmp_space_not(drct, is_space_through) abort
+func! Cursor__mv_jmp_char(drct, is_space_through) abort
 
-  let l:is_space_stop = a:is_space_stop
+  "let l:is_space_stop = a:is_space_stop
+  let l:is_space_through = a:is_space_through
 
   if a:drct == 'k' || a:drct == 'j'
 
@@ -2608,7 +2611,8 @@ func! Cursor__mv_jmp_space_not(drct, is_space_stop) abort
       break
     endif
 
-    if ( l:is_space_stop == 't' && Is_cursor_c_char_space() )
+    "if ( l:is_space_stop == 't' && Is_cursor_c_char_space() )
+    if ( l:is_space_through == 'f' && Is_cursor_c_char_space() )
       break
     endif
 
@@ -2656,7 +2660,7 @@ func! Cursor__mv_jmp_v(drct) abort
 
   if Is_cursor_c_char_space() || Is_cursor_line_end()
 
-    call Cursor__mv_jmp_space_not(l:n_cmd, 'f')
+    call Cursor__mv_jmp_char(l:n_cmd, 't')
 
   else
     call Cursor__mv_jmp_space(l:n_cmd)
