@@ -70,8 +70,9 @@ alias llk   'pwd ../       ; ll ../'
 alias llkk  'pwd ../../    ; ll ../../'
 alias llkkk 'pwd ../../../ ; ll ../../../'
 
-alias lf 'lrf'
-alias ld 'lrd'
+alias lf  'lrf'
+alias ld  'lrd'
+alias ld2 'lrd2'
 
 alias p 'pth'
 

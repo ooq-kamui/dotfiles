@@ -2,6 +2,16 @@
 # cnf
 
 
+## vim
+
+u num
+
+
+## fish
+
+ld -d 2
+
+
 ## svr pri rpl
 
 ### vps ( svr new )
