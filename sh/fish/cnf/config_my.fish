@@ -66,13 +66,17 @@ alias c   'clr'
 
 alias x 'xargs'
 
-alias llk   'pwd ../       ; ll ../'
-alias llkk  'pwd ../../    ; ll ../../'
-alias llkkk 'pwd ../../../ ; ll ../../../'
+#alias llk   'pwd ../       ; ll ../'
+#alias llkk  'pwd ../../    ; ll ../../'
+#alias llkkk 'pwd ../../../ ; ll ../../../'
+
+alias llu   'pwd ../       ; ll ../'
+alias lluu  'pwd ../../    ; ll ../../'
+alias lluuu 'pwd ../../../ ; ll ../../../'
 
 alias lf  'lrf'
 alias ld  'lrd'
-alias ld2 'lrd2'
+#alias ld2 'lrd2'
 
 alias p 'pth'
 

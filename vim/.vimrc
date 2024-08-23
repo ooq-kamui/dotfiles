@@ -644,7 +644,8 @@ nnoremap :r :InsSysCmd
 "nnoremap :d :Pth <cr>
 
 " cd parent
-nnoremap :a :DirUp 
+nnoremap :a :CdUp
+"nnoremap :a :DirUp 
 "nnoremap :a :DirUp <cr>
 
 " 
@@ -4591,11 +4592,21 @@ endfunc
 
 " dir ch parent
 
-command! -nargs=0 DirUp call Dir__parent()
+command! -nargs=0 CdUp   call Dir__parent(1)
+command! -nargs=0 CdUpp  call Dir__parent(2)
+command! -nargs=0 CdUppp call Dir__parent(3)
+"command! -nargs=0 DirUp call Dir__parent()
 
-func! Dir__parent() abort
+func! Dir__parent(lvl) abort
 
-  call Exe('cd ..')
+  let l:cnt = 1
+  while l:cnt <= a:lvl
+
+    call Exe('cd ..')
+
+    let l:cnt += 1
+  endwhile
+
   call Pth()
 endfunc
 
