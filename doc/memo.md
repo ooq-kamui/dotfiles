@@ -2,31 +2,6 @@
 # cnf
 
 
-## git
-
-learn at sndbox01
-- merge
-- push branch_other
-- pull req
-
-
-## vim
-
-u num inc
-
-
-v box line end space add
-
-
-cd file_crnt_dir
-
-
-## fish
-
-llu
-
-
-
 ## svr pri rpl
 
 ### vps ( svr new )

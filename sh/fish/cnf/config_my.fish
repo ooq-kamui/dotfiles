@@ -66,10 +66,7 @@ alias c   'clr'
 
 alias x 'xargs'
 
-#alias llk   'pwd ../       ; ll ../'
-#alias llkk  'pwd ../../    ; ll ../../'
-#alias llkkk 'pwd ../../../ ; ll ../../../'
-
+alias lu    'pwd ../       ; l ../'
 alias llu   'pwd ../       ; ll ../'
 alias lluu  'pwd ../../    ; ll ../../'
 alias lluuu 'pwd ../../../ ; ll ../../../'
@@ -152,21 +149,24 @@ alias uconv '/opt/homebrew/Cellar/icu4c/73.2/bin/uconv'
 bind \c_ 'clear; commandline -f repaint'
 
 # corsor mv char
-bind \cl forward-char
 bind \cs backward-char
+bind \cl forward-char
+#bind \cf forward-char
 
 # corsor mv word
 bind \co backward-word
 bind \cf forward-word
+#bind \cl forward-word
 
 #bind \cx backward-delete-char
 bind \ck kill-word
 
 # cmdline
-bind \cc cmdline_pbcopy
+#bind \cc cmdline_pbcopy
+bind \cc cmdline_clp
 
 bind \cb cmdline_bracket
-bind \cu cmdline_bracket
+#bind \cu cmdline_bracket
 
 #bind \c? cmdline_quote
 

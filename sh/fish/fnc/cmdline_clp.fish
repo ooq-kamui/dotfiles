@@ -1,4 +1,4 @@
-function cmdline_pbcopy
+function cmdline_clp
 
   if type -q pbcopy
     echo (commandline) | pbcopy

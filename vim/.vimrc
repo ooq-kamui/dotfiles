@@ -515,21 +515,17 @@ nnoremap <c-m> J
 "nnoremap xx @y
 
 " num icl
-nnoremap + :call Cursor_str__icl()<cr>
-"nnoremap + <c-a>
+"nnoremap + :call Cursor_str__icl()<cr>
 
 " num dcl
-nnoremap - :call Cursor_str__dcl()<cr>
-"nnoremap - <c-x>
+nnoremap U :call Cursor_str__dcl()<cr>
+"nnoremap - :call Cursor_str__dcl()<cr>
 
 " char toggle ( upper / lower )
 nnoremap u :call N_char__tgl()<cr>
 
 " char toggle ( turn ) " use not
 "nnoremap xx :call N_char__tgl2()<cr>
-
-" upper / lower
-"nnoremap xx v~
 
 " indnt shft
 nnoremap " :call Indnt__shft_l()<cr>
@@ -613,11 +609,11 @@ nnoremap <leader>O :FzfByRgMyrun <cr>
 nnoremap <leader>i :call N_grep_buf()<cr>
 
 " jmplst ( fzf )
-"nnoremap <leader>n :FzfByJmplst<cr>
 nnoremap <leader>m :FzfByJmplst<cr>
+nnoremap <leader>f :FzfByJmplst<cr>
 
 " memo ( fzf )
-"nnoremap <leader>m :FzfByMemo <cr>
+"nnoremap <leader>xx :FzfByMemo <cr>
 
 " grep [rg] ( read )
 "nnoremap xx :GrepStr <c-r>/
@@ -641,12 +637,14 @@ nnoremap :! :!
 nnoremap :r :InsSysCmd 
 
 " pth
-"nnoremap :d :Pth <cr>
+"nnoremap :xx :Pth <cr>
+
+" cd slf
+nnoremap :h :CdSlf
+nnoremap :d :CdSlf
 
 " cd parent
-nnoremap :a :CdUp
-"nnoremap :a :DirUp 
-"nnoremap :a :DirUp <cr>
+nnoremap :a :Cdu
 
 " 
 " tab
@@ -798,7 +796,7 @@ nnoremap Q <esc>
 nnoremap R <esc>
 nnoremap S <esc>
 nnoremap T <esc>
-nnoremap U <esc>
+"nnoremap U <esc>
 "nnoremap W <esc>
 "nnoremap V <esc>
 nnoremap X <esc>
@@ -869,7 +867,11 @@ nnoremap gy <esc>
 "nnoremap :a :a
 nnoremap :b :b
 nnoremap :c :c
-nnoremap :d :d
+"nnoremap :d :d
+nnoremap :e :e
+nnoremap :f :f
+nnoremap :g :g
+"nnoremap :h :h
 "          :
 "nnoremap :r :r
 "nnoremap :s :s
@@ -1106,7 +1108,8 @@ vnoremap :e :call V_line_indnt__space(2)
 " tab > space
 vnoremap :t :call V_line_tab__rpl_space(12)
 
-" line end ovr, space fil
+" line end ovr, fil __ space
+vnoremap :f :call V_line_end__fil_space()
 "vnoremap xx "ay"aP
 
 " upper / lower tgl
@@ -1317,6 +1320,7 @@ vnoremap gt <esc>
 "vnoremap gy <esc>
 
 "vnoremap :a <esc>
+"vnoremap :f <esc>
 " :
 "vnoremap :t <esc>
 " :
@@ -1404,8 +1408,8 @@ inoremap <c-u> <c-r>=I_markdown()<cr>
 " ins register
 "inoremap xx <c-r>=I_reg()<cr>
 
-" ins lua reserved word
-"inoremap xx <c-r>=I_lua_reserved()<cr>
+" ins reserved word lua
+"inoremap xx <c-r>=I_reserved_lua()<cr>
 
 " ins ooq ( lua )
 "inoremap xx <c-r>=I_ooq()<cr>
@@ -1563,7 +1567,7 @@ tnoremap <c-_> <c-\><c-n>
 "nnoremap <leader>: <esc>
 
 nnoremap <leader>c <esc>
-nnoremap <leader>f <esc>
+"nnoremap <leader>f <esc>
 "nnoremap <leader>h <esc>
 "nnoremap <leader>j <esc>
 "nnoremap <leader>l <esc>
@@ -2003,10 +2007,16 @@ endfunc
 func! N_char__tgl() abort
 
   let l:c   = Cursor_c_char()
-  let l:rpl = Char__tgl1(l:c)
+
+  if l:c =~ '\d'
+    call Cursor_str__icl()
+    return
+  endif
+
+  let l:rpl = Char_tgl1(l:c)
 
   if Is_str_emp(l:rpl)
-    call Normal('v~')
+    call Normal('v~') " upper / lower
     return
   endif
 
@@ -2019,17 +2029,16 @@ func! N_char__tgl2() abort " use not
   let l:rpl = Char__tgl_trn(l:c)
 
   if Is_str_emp(l:rpl)
-    call Normal('v~')
+    call Normal('v~') " upper / lower
     return
   endif
 
   call Char__rpl(l:rpl)
 endfunc
 
-func! Char__tgl1(c) abort
+func! Char_tgl1(c) abort
 
   let l:rpl = Char__tgl_trn(a:c)
-
   if ! Is_str_emp(l:rpl)
     return l:rpl
   endif
@@ -3129,6 +3138,18 @@ func! V_line_end_space__del() range abort
 
     call Line_end_space__del(l:line_num)
   endfor
+endfunc
+
+func! V_line_end__fil_space() range abort
+
+  call Slct_re()
+
+  let l:cmd = '"zy'
+  call Normal(l:cmd)
+  let l:cmd = 'hx'
+  call Normal(l:cmd)
+  let l:cmd = '"zP'
+  call Normal(l:cmd)
 endfunc
 
 func! V_line__join_per_line(per_line_num) range abort
@@ -4539,7 +4560,7 @@ func! I_reg() abort
   return ''
 endfunc
 
-func! I_lua_reserved() abort
+func! I_reserved_lua() abort
   call complete(col('.'), [
   \   'end',
   \   'local',
@@ -4581,7 +4602,7 @@ func! I_ooq() abort
 "  \   'alias',
 endfunc
 
-" dir crnt
+" dir slf
 
 command! -nargs=0 Pth call Pth()
 
@@ -4590,12 +4611,22 @@ func! Pth() abort
   call Exe('pwd')
 endfunc
 
+" dir ch slf
+
+command! -nargs=0 CdSlf call Dir__slf()
+
+func! Dir__slf() abort
+
+  let l:dir = Slf_dir()
+  call Exe('cd ' . l:dir)
+  call Pth()
+endfunc
+
 " dir ch parent
 
-command! -nargs=0 CdUp   call Dir__parent(1)
-command! -nargs=0 CdUpp  call Dir__parent(2)
-command! -nargs=0 CdUppp call Dir__parent(3)
-"command! -nargs=0 DirUp call Dir__parent()
+command! -nargs=0 Cdu   call Dir__parent(1)
+command! -nargs=0 Cduu  call Dir__parent(2)
+command! -nargs=0 Cduuu call Dir__parent(3)
 
 func! Dir__parent(lvl) abort
 

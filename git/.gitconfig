@@ -1,0 +1,29 @@
+[user]
+  name  = ooq-tiki
+  email = ooq.tiki@gmail.com
+[color "diff"]
+  old = magenta
+[color "status"]
+  # added     = magenta
+  changed   = yellow
+  untracked = yellow
+  unmerged  = yellow
+[core]
+pager = less -x2
+  editor = vim
+[pull]
+  rebase = false
+[init]
+  defaultBranch = main
+[merge]
+  tool = vimdiff
+[alias]
+  s = status
+  a = add .
+  b = branch
+  l = log
+  ch = checkout
+  co = commit
+  d = diff
+  mrg = merge
+
