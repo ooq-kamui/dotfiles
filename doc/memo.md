@@ -2,6 +2,32 @@
 # cnf
 
 
+## ofc
+
+### git
+
+branch
+- main.archive
+  - cre
+
+
+branch
+- main
+  - commit read.me del
+
+
+exclude config file
+
+
+
+
+## tw
+
+sally
+- cre
+
+
+
 ## svr pri rpl
 
 ### vps ( svr new )
@@ -13,9 +39,12 @@ setting init by web
 
 
 web svr
-- sub domain setting
 - nginx
+  - install
 
+- hosting
+  - sub domain
+    - setting
 
 - service
   - holo ranking
