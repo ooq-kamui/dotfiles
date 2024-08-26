@@ -4,21 +4,10 @@
 
 ## ofc
 
-### git
+### sakura
 
-branch
-- main.archive
-  - cre
-
-
-branch
-- main
-  - commit read.me del
-
-
-exclude config file
-
-
+login try at ofc win
+- sh cre
 
 
 ## tw

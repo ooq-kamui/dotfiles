@@ -274,6 +274,8 @@ nnoremap <c-a> 0
 nnoremap <expr> <c-y>
 \ Is_cursor_line_end() ? ':call Ins_markdown_cr()<cr>'     :
 \                        ':call Cursor__mv_line_end()<cr>'
+"\ Is_cursor_line_end() ? ':call Ins_space()<cr>'     :
+"\                        ':call Cursor__mv_line_end()<cr>'
 
 nnoremap <c-e> :call Cursor__mv_line_end()<cr>
 
@@ -452,6 +454,7 @@ nnoremap 0 :call Ins_hyphen()<esc>
 
 " ins space
 nnoremap L :call Ins_space()<cr>
+nnoremap Y :call Ins_space()<cr>
 
 " ins date
 nnoremap * :call Ins_da()<cr>
@@ -800,7 +803,7 @@ nnoremap T <esc>
 "nnoremap W <esc>
 "nnoremap V <esc>
 nnoremap X <esc>
-nnoremap Y <esc>
+"nnoremap Y <esc>
 
 nnoremap <c-tab> <nop>
 nnoremap <c-space> <esc>
@@ -3050,8 +3053,10 @@ endfunc
 
 func! Ins_space() abort
 
-  call Normal('i ')
-  "call Normal('l')
+  call Ins(' ')
+
+  "call Normal('i ')
+  ""call Normal('l')
 endfunc
 
 func! Ins_hyphen() abort

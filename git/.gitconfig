@@ -19,7 +19,8 @@ pager = less -x2
   tool = vimdiff
 [alias]
   s = status
-  a = add .
+  a = add
+  aa = add .
   b = branch
   l = log
   ch = checkout
