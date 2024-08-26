@@ -27,4 +27,6 @@ pager = less -x2
   co = commit
   d = diff
   mrg = merge
+  psh = push
+  pll = pull
 
