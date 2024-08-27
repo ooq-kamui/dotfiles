@@ -66,6 +66,10 @@ alias c   'clr'
 
 alias x 'xargs'
 
+alias li    'pwd ../       ; l ../'
+alias lli   'pwd ../       ; ll ../'
+alias llii  'pwd ../../    ; ll ../../'
+alias lliii 'pwd ../../../ ; ll ../../../'
 alias lu    'pwd ../       ; l ../'
 alias llu   'pwd ../       ; ll ../'
 alias lluu  'pwd ../../    ; ll ../../'

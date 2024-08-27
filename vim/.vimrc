@@ -238,7 +238,7 @@ nnoremap gt :call Opn_tmp()<cr>
 nnoremap go :call Opn_app_by_cursor_path()<cr>
 
 " opn app slf
-nnoremap gs :call Opn_app_slf()<cr>
+"nnoremap xx :call Opn_app_slf()<cr>
 
 " opn dir slf
 nnoremap gd :call Opn_dir_slf()<cr>
@@ -380,6 +380,7 @@ nnoremap A :call Ynk__line_all()<cr>
 "nnoremap xx :call Slct_re_in_line_1()<cr>
 
 " slct re
+nnoremap R :call Slct_re()<cr>
 nnoremap r :call Slct_re()<cr>
 
 " ynk clr
@@ -393,7 +394,8 @@ nnoremap c :call Ynk__line()<cr>
 "nnoremap xx "ayl
 
 " ynk slf path
-nnoremap gp :call Ynk__slf_path()<cr>
+nnoremap gs :call Ynk__slf_path()<cr>
+"nnoremap gp :call Ynk__slf_path()<cr>
 
 " paste
 nnoremap p :call Paste()<cr>
@@ -453,8 +455,8 @@ nnoremap = :call Ins_hyphen()<esc>
 nnoremap 0 :call Ins_hyphen()<esc>
 
 " ins space
-nnoremap L :call Ins_space()<cr>
-nnoremap Y :call Ins_space()<cr>
+nnoremap L :call Ins_space(v:false)<cr>
+nnoremap Y :call Ins_space(v:true )<cr>
 
 " ins date
 nnoremap * :call Ins_da()<cr>
@@ -640,7 +642,7 @@ nnoremap :! :!
 nnoremap :r :InsSysCmd 
 
 " pth
-"nnoremap :xx :Pth <cr>
+nnoremap :p :Pth <cr>
 
 " cd slf
 nnoremap :h :CdSlf
@@ -796,7 +798,7 @@ nnoremap M <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
-nnoremap R <esc>
+"nnoremap R <esc>
 nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
@@ -859,7 +861,7 @@ nnoremap gl <esc>
 "nnoremap gm <esc>
 nnoremap gn <esc>
 "nnoremap go <esc>
-"nnoremap gp <esc>
+nnoremap gp <esc>
 "nnoremap gs <esc>
 "nnoremap gt <esc>
 "nnoremap gu <esc>
@@ -876,6 +878,8 @@ nnoremap :f :f
 nnoremap :g :g
 "nnoremap :h :h
 "          :
+"nnoremap :p :p
+"nnoremap :q :q
 "nnoremap :r :r
 "nnoremap :s :s
 "          :
@@ -1743,7 +1747,7 @@ if Is_env('mac') || Is_env('linux') || Is_env('win64')
   \   0,
   \   fzf#vim#with_preview(
   \     {'options': '--exact --delimiter : --nth 3..'},
-  \     'up:70%:hidden',
+  \     'up:60%:hidden',
   \     '/'
   \   ),
   \   <bang>1
@@ -3051,12 +3055,15 @@ func! Ins_cr() abort
   call Normal('j')
 endfunc
 
-func! Ins_space() abort
+func! Ins_space(is_cursor_mv) abort
 
-  call Ins(' ')
+  if a:is_cursor_mv
+    call Ins(' ')
 
-  "call Normal('i ')
-  ""call Normal('l')
+  else
+    call Normal('i ')
+    ""call Normal('l')
+  endif
 endfunc
 
 func! Ins_hyphen() abort
@@ -4632,6 +4639,7 @@ endfunc
 command! -nargs=0 Cdu   call Dir__parent(1)
 command! -nargs=0 Cduu  call Dir__parent(2)
 command! -nargs=0 Cduuu call Dir__parent(3)
+command! -nargs=0 K     call Dir__parent(1)
 
 func! Dir__parent(lvl) abort
 
