@@ -2,17 +2,17 @@
 # cnf
 
 
-## vim
-
-nnoremap E : srch `<>` word
-
-
 ## ofc
 
 ### sakura
 
 login try at ofc win
 - sh cre
+
+
+## vim
+
+nnoremap E : srch `<>` word
 
 
 ## svr pri rpl
