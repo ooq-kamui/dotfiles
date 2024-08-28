@@ -405,7 +405,7 @@ nnoremap P :call Paste__clipboard()<cr>
 
 " paste rgstr history ( fzf )
 nnoremap <leader>r :RgstrHstry<cr>
-"nnoremap <leader>c :RgstrHstry<cr>
+nnoremap <leader>c :RgstrHstry<cr>
 
 " 
 " undo, redo
@@ -435,6 +435,10 @@ nnoremap m :call Ins_cr()<cr>
 " ins comment 1
 "nnoremap ! xx
 nnoremap <expr> !
+\ Is_file_type('markdown') ? ':call Ins_markdown_h()<cr>' :
+\                            ':call Ins_cmnt_1("^")<cr>'
+"nnoremap 1 xx
+nnoremap <expr> 1
 \ Is_file_type('markdown') ? ':call Ins_markdown_h()<cr>' :
 \                            ':call Ins_cmnt_1("^")<cr>'
 
@@ -535,6 +539,8 @@ nnoremap u :call N_char__tgl()<cr>
 " indnt shft
 nnoremap " :call Indnt__shft_l()<cr>
 nnoremap # :call Indnt__shft_r()<cr>
+nnoremap 2 :call Indnt__shft_l()<cr>
+nnoremap 3 :call Indnt__shft_r()<cr>
 
 " indnt add
 "nnoremap xx :call Indnt__add(2)<cr>
@@ -584,12 +590,15 @@ nnoremap e :call N_srch_str__(v:false)<cr>
 
 " srch str set ( word 1 )
 nnoremap E :call N_srch_str__(v:true)<cr>
+"nnoremap E :call N_srch_str__word1_tgl()<cr>
 
 " srch char bracket forward
 "nnoremap xx :call Srch_char_bracket('f')<cr>
 
 " srch str history ( fzf )
-nnoremap <leader>j :SrchHstry<cr>
+nnoremap <leader>f :SrchHstry<cr>
+nnoremap <leader>n :SrchHstry<cr>
+"nnoremap <leader>j :SrchHstry<cr>
 
 " srch str set prv ( tgl )
 nnoremap N :call N_srch_str__prv()<cr>
@@ -614,8 +623,9 @@ nnoremap <leader>O :FzfByRgMyrun <cr>
 nnoremap <leader>i :call N_grep_buf()<cr>
 
 " jmplst ( fzf )
+nnoremap <leader>j :FzfByJmplst<cr>
 nnoremap <leader>m :FzfByJmplst<cr>
-nnoremap <leader>f :FzfByJmplst<cr>
+"nnoremap <leader>f :FzfByJmplst<cr>
 
 " memo ( fzf )
 "nnoremap <leader>xx :FzfByMemo <cr>
@@ -1573,13 +1583,13 @@ tnoremap <c-_> <c-\><c-n>
 
 "nnoremap <leader>: <esc>
 
-nnoremap <leader>c <esc>
+"nnoremap <leader>c <esc>
 "nnoremap <leader>f <esc>
 "nnoremap <leader>h <esc>
 "nnoremap <leader>j <esc>
 "nnoremap <leader>l <esc>
 "nnoremap <leader>m <esc>
-nnoremap <leader>n <esc>
+"nnoremap <leader>n <esc>
 "nnoremap <leader>o <esc>
 nnoremap <leader>p <esc>
 "nnoremap <leader>r <esc>
@@ -1747,7 +1757,7 @@ if Is_env('mac') || Is_env('linux') || Is_env('win64')
   \   0,
   \   fzf#vim#with_preview(
   \     {'options': '--exact --delimiter : --nth 3..'},
-  \     'up:60%:hidden',
+  \     'up:70%:hidden',
   \     '/'
   \   ),
   \   <bang>1
@@ -3963,7 +3973,7 @@ endfunc
 func! Srch_str__(str, op_word1) abort
   
   let l:str  = escape(a:str, '.*~[]\^$')
-  
+
   if a:op_word1
     let l:str = Srch_str_word1(l:str)
   endif
@@ -3980,6 +3990,13 @@ func! Srch_str__(str, op_word1) abort
 endfunc
 
 func! N_srch_str__(op_word1) abort
+
+  let l:str = Cursor_word()
+  
+  call Srch_str__(l:str, a:op_word1)
+endfunc
+
+func! N_srch_str__word1_tgl() abort " dev doing
 
   let l:str = Cursor_word()
   
