@@ -137,8 +137,8 @@ set statusline=%m\                 " 変更あり表示
 set statusline+=%F                 " file name 表示
 set statusline+=%=                 " 以降を右寄せ
 "set statusline+=%{&fileencoding}\  " file encoding
-"set statusline+=%c\                " column num
 set statusline+=%y\                " file type
+set statusline+=%c\                " column num
 set statusline+=%p%%\              " line num %
 set statusline+=%l/%L              " line num / line num all
 set laststatus=2                   " 0:off  1:on when 2 win  2:on
@@ -229,7 +229,7 @@ nnoremap gt :call Opn_tmp()<cr>
 "nnoremap xx :call Opn_vim_key()<cr>
 
 " opn memo
-"nnoremap xx :call Opn_memo()<cr>
+nnoremap gm :call Opn_memo()<cr>
 
 " opn man
 "nnoremap xx :OpnMan 
@@ -1112,6 +1112,8 @@ vnoremap = g<c-a>
 " indnt shft
 vnoremap # >gv
 vnoremap " <gv
+vnoremap 3 >gv
+vnoremap 2 <gv
 
 " indnt crct
 vnoremap ; =gv
@@ -1372,7 +1374,7 @@ inoremap <expr> <c-o>
 \                '<c-o>h'
 
 " cursor mv word forward
-"inoremap <c-f> <c-o>e<c-o>l
+"inoremap xx <c-o>e<c-o>l
 
 " cursor mv word back
 "inoremap xx <c-o>b
@@ -1396,8 +1398,7 @@ inoremap <tab> <c-v><tab>
 "inoremap xx <space><space>
 
 " ins complete
-"inoremap <c-a> <c-p>
-inoremap <c-f> <c-p>
+"inoremap xx <c-p>
 
 "inoremap <expr> <c-y>
 "\ pumvisible() ? '<c-e>' :
@@ -1414,7 +1415,8 @@ inoremap <c-y> <c-r>=I_num()<cr>
 "inoremap <c-r> <c-r>=I_num()<cr>
 
 " ins symbol
-inoremap <c-r> <c-r>=I_symbol()<cr>
+inoremap <c-r> <c-r>=I_symbol01()<cr>
+inoremap <c-f> <c-r>=I_symbol02()<cr>
 
 " ins markdown
 inoremap <c-u> <c-r>=I_markdown()<cr>
@@ -4408,7 +4410,7 @@ func! Opn_vim_key() abort
   call Opn(l:path)
 endfunc
 
-let g:opn_memo_path = '~/wrk/prj/prj001/doc/memo.md'
+let g:opn_memo_path = '../memo.md'
 
 func! Opn_memo() abort
 
@@ -4549,9 +4551,16 @@ endfunc
 
 " mode insert ins lst
 
-func! I_symbol() abort
+func! I_symbol01() abort
 
-  let l:lst = [ '$', '%', '&', '\', '@', '?', '/', '^', '~' ]
+  let l:lst = [ '$', '%', '&', '#', '@', '\', '|', '/' ]
+  call complete(col('.'), l:lst)
+  return ''
+endfunc
+
+func! I_symbol02() abort
+
+  let l:lst = [ '-', '+', '=', '?', '!', ';', '^', '~' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
