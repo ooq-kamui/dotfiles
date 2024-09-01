@@ -2,11 +2,6 @@
 # cnf
 
 
-## vim
-
-nnoremap E : srch word1 __ tgl
-
-
 ## svr pri rpl
 
 ### vps ( svr new )
@@ -44,6 +39,13 @@ rpl
 
 - 42ya
   - del
+
+
+## vim
+
+fzf preview
+- confirm at ofc
+  - c-/ ? > c-u
 
 
 ## fe api

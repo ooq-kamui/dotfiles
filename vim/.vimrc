@@ -586,11 +586,10 @@ nnoremap <c-n> :call Srch('b')<cr>
 "nnoremap @ :call Srch_7_cursor__mv_nxt('f')<cr>
 
 " srch str set
-nnoremap e :call N_srch_str__(v:false)<cr>
+nnoremap e :call N_srch_str__flt()<cr>
 
 " srch str set ( word 1 )
-nnoremap E :call N_srch_str__(v:true)<cr>
-"nnoremap E :call N_srch_str__word1_tgl()<cr>
+nnoremap E :call N_srch_str__word1_tgl()<cr>
 
 " srch char bracket forward
 "nnoremap xx :call Srch_char_bracket('f')<cr>
@@ -624,6 +623,7 @@ nnoremap <leader>i :call N_grep_buf()<cr>
 
 " jmplst ( fzf )
 nnoremap <leader>j :FzfByJmplst<cr>
+nnoremap <leader>e :FzfByJmplst<cr>
 nnoremap <leader>m :FzfByJmplst<cr>
 "nnoremap <leader>f :FzfByJmplst<cr>
 
@@ -1158,12 +1158,12 @@ vnoremap <c-n> :call V_srch_slct('f')<cr>
 "vnoremap xx    :call V_srch_slct('b')<cr>
 
 " srch str set
-vnoremap n :call V_srch_str__slctd_str(v:false)<cr>
-vnoremap e :call V_srch_str__slctd_str(v:false)<cr>
+vnoremap n :call V_srch_str__slctd_str()<cr>
+vnoremap e :call V_srch_str__slctd_str()<cr>
 
 " srch str set ( word 1 )
-vnoremap N :call V_srch_str__slctd_str(v:true)<cr>
-vnoremap E :call V_srch_str__slctd_str(v:true)<cr>
+"vnoremap N :call V_srch_str__slctd_str(v:true)<cr> " old
+"vnoremap E :call V_srch_str__slctd_str(v:true)<cr> " old
 
 " srch rpl one > ynk, nxt
 vnoremap <c-p> :call Slctd_rpl_srch_nxt()<cr>
@@ -1397,8 +1397,8 @@ inoremap <tab> <c-v><tab>
 " ins markdown cr
 "inoremap xx <space><space>
 
-" ins complete
-"inoremap xx <c-p>
+" ins complete default
+inoremap <c-g> <c-p>
 
 "inoremap <expr> <c-y>
 "\ pumvisible() ? '<c-e>' :
@@ -1586,6 +1586,7 @@ tnoremap <c-_> <c-\><c-n>
 "nnoremap <leader>: <esc>
 
 "nnoremap <leader>c <esc>
+"nnoremap <leader>e <esc>
 "nnoremap <leader>f <esc>
 "nnoremap <leader>h <esc>
 "nnoremap <leader>j <esc>
@@ -1774,7 +1775,7 @@ endfunc
 
 func! V_grep_buf() abort
 
-  call V_srch_str__slctd_str(v:false)
+  call V_srch_str__slctd_str()
   exe 'BLines ' . escape(@z, '.*~')
 endfunc
 
@@ -3942,7 +3943,7 @@ func! V_srch(dir) abort " use not
     return
   endif
 
-  call V_srch_str__slctd_str(v:false)
+  call V_srch_str__slctd_str()
 endfunc
 
 command! -nargs=* SrchOr call Srch_or(<f-args>)
@@ -3956,73 +3957,96 @@ func! Srch_or(...) abort
   call Srch('f')
 endfunc
 
-func! Srch_str_word1(str)
+func! Srch_str() abort
 
-  let l:str = a:str
-  
-  if Str_l_char(l:str) =~ '\w'
-    let l:str = '\<' . l:str
-  endif
-  
-  if Str_r_char(l:str) =~ '\w'
-    let l:str =        l:str . '\>'
-  endif
-  
-  "echo l:str
+  let l:str = @/
   return l:str
 endfunc
 
-func! Srch_str__(str, op_word1) abort
-  
-  let l:str  = escape(a:str, '.*~[]\^$')
+func! Srch_str_word1(str) abort
 
-  if a:op_word1
+  if a:str == v:null
+
+    let l:str = Srch_str()
+  else
+    let l:str = a:str
+  endif
+
+  if Str_l_char(l:str) =~ '\w'
+    let l:str = '\<' . l:str
+  endif
+
+  if Str_r_char(l:str) =~ '\w'
+    let l:str =        l:str . '\>'
+  endif
+
+  return l:str
+endfunc
+
+let g:is_srch_word1 = v:false
+let g:srch_str_org = ''
+
+func! Srch_str__(str, op_word1) abort
+
+  let l:str = a:str
+  let g:srch_str_org = l:str
+
+  let l:str  = escape(l:str, '.*~[]\^$')
+
+  if a:op_word1 == v:true
+
     let l:str = Srch_str_word1(l:str)
+    let g:is_srch_word1 = v:true
+  else
+    let g:is_srch_word1 = v:false
   endif
 
   if "@/" == "l:str"
     return
   endif
-  
-  let g:srch_prv1 = @/
+
+  let g:srch_prv01 = @/
 
   let @/ = l:str
 
   call Normal('/' . l:str) " srch hstry add
 endfunc
 
-func! N_srch_str__(op_word1) abort
+func! N_srch_str__flt() abort
 
   let l:str = Cursor_word()
-  
-  call Srch_str__(l:str, a:op_word1)
+  call Srch_str__(l:str, v:false)
 endfunc
 
 func! N_srch_str__word1_tgl() abort " dev doing
 
-  let l:str = Cursor_word()
-  
-  call Srch_str__(l:str, a:op_word1)
+  let l:str = g:srch_str_org
+
+  if g:is_srch_word1 == v:true
+
+    call Srch_str__(l:str, v:false)
+  else
+    call Srch_str__(l:str, v:true)
+  endif
 endfunc
 
-func! V_srch_str__slctd_str(op_word1) abort
+func! V_srch_str__slctd_str() abort
 
   let l:str = Slctd_str()
-  
-  call Srch_str__(l:str, a:op_word1)
+  call Srch_str__(l:str, v:false)
 endfunc
 
 func! N_srch_str__prv() abort
 
-  if ! exists('g:srch_prv1')
+  if ! exists('g:srch_prv01')
     return
   endif
 
   let l:tmp = @/
   
-  let @/ = g:srch_prv1
+  let @/ = g:srch_prv01
   
-  let g:srch_prv1 = l:tmp
+  let g:srch_prv01 = l:tmp
 endfunc
 
 func! Srch_slct(dir) abort
@@ -4133,14 +4157,14 @@ endfunc
 
 " cmnt
 
-func! Ins_cmnt_1(line_top) abort
+func! Ins_cmnt_1(cmd_cursor__mv_line_top) abort
 
   let l:cmnt_1_def = {
   \ 'lua'       : '-- ',
   \ 'text'      : '# ' ,
-  \ 'vim'       : '"'  ,
-  \ 'fish'      : '#'  ,
-  \ 'sh'        : '#'  ,
+  \ 'vim'       : '" '  ,
+  \ 'fish'      : '# '  ,
+  \ 'sh'        : '# '  ,
   \ 'css'       : '/* ',
   \ 'javascript': '// ',
   \ 'java'      : '// ',
@@ -4148,17 +4172,28 @@ func! Ins_cmnt_1(line_top) abort
   \ }
   let l:str = get(l:cmnt_1_def, &filetype, l:cmnt_1_def['dflt'])
 
-  call Normal(a:line_top . 'i' . l:str)
+  if a:cmd_cursor__mv_line_top != v:null
+    call Normal(a:cmd_cursor__mv_line_top)
+  endif
+
+  call Normal('i' . l:str)
   
   call Normal('^') " or '0'
 endfunc
 
 func! V_ins_cmnt_1() range abort
 
+  call Normal(a:firstline . 'G')
+  call Normal('^')
+  let l:col = Cursor_col_num()
+
   for line_num in range(a:firstline, a:lastline)
 
-    call Normal(l:line_num . 'G')
-    call Ins_cmnt_1('0')
+    call Cursor__mv_by_line_col(l:line_num, l:col)
+
+    call Ins_cmnt_1(v:null)
+    " call Ins_cmnt_1('0')
+    " call Ins_cmnt_1('^')
   endfor
 endfunc
 
@@ -4560,7 +4595,7 @@ endfunc
 
 func! I_symbol02() abort
 
-  let l:lst = [ '-', '+', '=', '?', '!', ';', '^', '~' ]
+  let l:lst = [ '-', '+', '=', '!', '?', ';', '^', '~' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
