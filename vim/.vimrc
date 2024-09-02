@@ -1038,6 +1038,7 @@ vnoremap <expr> L
 
 " ins comment 1
 vnoremap ! :call V_ins_cmnt_1()<cr>
+vnoremap 1 :call V_ins_cmnt_1()<cr>
 
 " ins comment mlt
 vnoremap & :call V_ins_cmnt_mlt()<cr>
