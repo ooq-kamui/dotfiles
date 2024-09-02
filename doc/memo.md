@@ -2,6 +2,13 @@
 # cnf
 
 
+## vim
+
+fzf preview
+- confirm at ofc
+  - c-/ ? > c-u
+
+
 ## svr pri rpl
 
 ### vps ( svr new )
@@ -39,13 +46,6 @@ rpl
 
 - 42ya
   - del
-
-
-## vim
-
-fzf preview
-- confirm at ofc
-  - c-/ ? > c-u
 
 
 ## fe api
