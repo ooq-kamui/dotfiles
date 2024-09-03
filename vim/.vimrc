@@ -1762,7 +1762,7 @@ if Is_env('mac') || Is_env('linux') || Is_env('win64')
   \   fzf#vim#with_preview(
   \     {'options': '--exact --delimiter : --nth 3..'},
   \     'up:70%:hidden',
-  \     '/'
+  \     'ctrl-u'
   \   ),
   \   <bang>1
   \ )

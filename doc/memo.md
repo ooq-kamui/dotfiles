@@ -6,7 +6,11 @@
 
 fzf preview
 - confirm at ofc
-  - c-/ ? > c-u
+  - / > c-u
+
+
+srch pre tgl
+- word1 exclude
 
 
 ## svr pri rpl
