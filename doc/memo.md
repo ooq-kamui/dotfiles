@@ -4,11 +4,6 @@
 
 ## vim
 
-fzf preview
-- confirm at ofc
-  - / > c-u
-
-
 srch pre tgl
 - word1 exclude
 
