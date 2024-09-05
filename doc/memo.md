@@ -4,6 +4,12 @@
 
 ## vim
 
+Rg ext filter
+
+
+Rg escape tidy
+
+
 srch pre tgl
 - word1 exclude
 

@@ -380,8 +380,8 @@ nnoremap A :call Ynk__line_all()<cr>
 "nnoremap xx :call Slct_re_in_line_1()<cr>
 
 " slct re
-nnoremap R :call Slct_re()<cr>
 nnoremap r :call Slct_re()<cr>
+"nnoremap R :call Slct_re()<cr>
 
 " ynk clr
          
@@ -808,7 +808,7 @@ nnoremap M <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
-"nnoremap R <esc>
+nnoremap R <esc>
 nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
@@ -1199,6 +1199,7 @@ vnoremap <leader>i :call V_grep_buf()<cr>
 
 " grep ( fzf )
 vnoremap <leader>o "zy:Rg <c-r>z<cr>
+"vnoremap <leader>o "zy:Rg <c-r>z
 
 " grep [rg]   ( read )
 "vnoremap xx "zy:GrepStr <c-r>z
@@ -1357,7 +1358,12 @@ inoremap <expr> <esc>
 \ pumvisible()          ? '<c-e>'  :
 \ Is_cursor_line_top0() ? '<esc>'  :
 \                         '<esc>l'
-inoremap <c-c> <esc>
+
+" inoremap <c-c> <esc>
+inoremap <expr> <c-c>
+\ pumvisible()          ? '<c-e>'  :
+\ Is_cursor_line_top0() ? '<esc>'  :
+\                         '<esc>l'
 
 " cursor mv line in
 inoremap <c-a> <c-o>^
@@ -1413,7 +1419,6 @@ inoremap <expr> <c-j>
 
 " ins num
 inoremap <c-y> <c-r>=I_num()<cr>
-"inoremap <c-r> <c-r>=I_num()<cr>
 
 " ins symbol
 inoremap <c-r> <c-r>=I_symbol01()<cr>
@@ -4596,7 +4601,7 @@ endfunc
 
 func! I_symbol02() abort
 
-  let l:lst = [ '-', '+', '=', '!', '?', '^', '~', '/', ';' ]
+  let l:lst = [ ';', '-', '+', '=', '!', '?', '^', '~', '/' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
