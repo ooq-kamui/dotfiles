@@ -615,8 +615,10 @@ nnoremap :s :%s///g
 " grep ( fzf )
 nnoremap <leader>o :Rg <cr>
 
+nnoremap <leader>O :RgExt 
+
 " grep ( fzf )  -  myrun
-nnoremap <leader>O :FzfByRgMyrun <cr>
+" nnoremap <leader>O :FzfByRgMyrun <cr>
 
 " grep buf ( fzf )
 nnoremap <leader>i :call N_grep_buf()<cr>
@@ -1771,6 +1773,25 @@ if Is_env('mac') || Is_env('linux') || Is_env('win64')
   \   ),
   \   <bang>1
   \ )
+
+  " dev doing dev doing
+  " command! -bang -nargs=* RgExt call Tst()
+
+  " shellescape(escape(<q-args>, '().$'))
+
+
+  " command! -bang -nargs=* RgExt
+  " \ call fzf#vim#grep(
+  " \   'rg ' . g:fzf_rg_opt
+  " \   . ' -- '.shellescape(escape(<q-args>, '().$')),
+  " \   0,
+  " \   fzf#vim#with_preview(
+  " \     {'options': '--exact --delimiter : --nth 3..'},
+  " \     'up:70%:hidden',
+  " \     'ctrl-u'
+  " \   ),
+  " \   <bang>1
+  " \ )
 endif
 
 " grep buf
@@ -4601,7 +4622,7 @@ endfunc
 
 func! I_symbol02() abort
 
-  let l:lst = [ ';', '-', '+', '=', '!', '?', '^', '~', '/' ]
+  let l:lst = [ ';', '=', '!', '-', '+', '?', '^', '~', '/' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
