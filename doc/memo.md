@@ -4,14 +4,10 @@
 
 ## vim
 
-Rg ext filter
+Rg ext
+- escape research
 
-
-Rg escape tidy
-
-
-srch pre tgl
-- word1 exclude
+- ext filter
 
 
 ## svr pri rpl
@@ -19,10 +15,6 @@ srch pre tgl
 ### vps ( svr new )
 
 #### etc
-
-setting init by web
-- firewall
-
 
 web svr
 - nginx
@@ -34,6 +26,10 @@ web svr
 
 - service
   - holo ranking
+
+
+setting init by web
+- firewall
 
 
 ### svr old
@@ -51,6 +47,7 @@ rpl
 
 - 42ya
   - del
+
 
 
 ## fe api

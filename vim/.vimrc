@@ -486,7 +486,7 @@ nnoremap <expr> O
 \                            ':call Indnt__shft_r()<cr>'
 
 " ins dots ( or crnt )
-nnoremap > :call Line__dots()<cr>
+nnoremap > :call Line_end__dots_adjst()<cr>
 
 " ins indnt space
 nnoremap V :call Ins_line__indnt_space()<cr>
@@ -597,7 +597,6 @@ nnoremap E :call N_srch_str__word1_tgl()<cr>
 " srch str history ( fzf )
 nnoremap <leader>f :SrchHstry<cr>
 nnoremap <leader>n :SrchHstry<cr>
-"nnoremap <leader>j :SrchHstry<cr>
 
 " srch str set prv ( tgl )
 nnoremap N :call N_srch_str__prv()<cr>
@@ -615,7 +614,7 @@ nnoremap :s :%s///g
 " grep ( fzf )
 nnoremap <leader>o :Rg <cr>
 
-nnoremap <leader>O :RgExt 
+nnoremap <leader>O :RgExt js
 
 " grep ( fzf )  -  myrun
 " nnoremap <leader>O :FzfByRgMyrun <cr>
@@ -624,9 +623,11 @@ nnoremap <leader>O :RgExt
 nnoremap <leader>i :call N_grep_buf()<cr>
 
 " jmplst ( fzf )
-nnoremap <leader>j :FzfByJmplst<cr>
 nnoremap <leader>e :FzfByJmplst<cr>
-nnoremap <leader>m :FzfByJmplst<cr>
+nnoremap <leader>s :FzfByJmplst<cr>
+nnoremap <leader>d :FzfByJmplst<cr>
+"nnoremap <leader>j :FzfByJmplst<cr>
+"nnoremap <leader>m :FzfByJmplst<cr>
 "nnoremap <leader>f :FzfByJmplst<cr>
 
 " memo ( fzf )
@@ -1132,7 +1133,6 @@ vnoremap :t :call V_line_tab__rpl_space(12)
 
 " line end ovr, fil __ space
 vnoremap :f :call V_line_end__fil_space()
-"vnoremap xx "ay"aP
 
 " upper / lower tgl
 vnoremap u ~gv
@@ -1594,16 +1594,18 @@ tnoremap <c-_> <c-\><c-n>
 "nnoremap <leader>: <esc>
 
 "nnoremap <leader>c <esc>
+"nnoremap <leader>d <esc>
 "nnoremap <leader>e <esc>
 "nnoremap <leader>f <esc>
 "nnoremap <leader>h <esc>
-"nnoremap <leader>j <esc>
+nnoremap <leader>j <esc>
 "nnoremap <leader>l <esc>
-"nnoremap <leader>m <esc>
+nnoremap <leader>m <esc>
 "nnoremap <leader>n <esc>
 "nnoremap <leader>o <esc>
 nnoremap <leader>p <esc>
 "nnoremap <leader>r <esc>
+"nnoremap <leader>s <esc>
 nnoremap <leader>u <esc>
 "nnoremap <leader>y <esc>
 
@@ -1775,15 +1777,23 @@ if Is_env('mac') || Is_env('linux') || Is_env('win64')
   \ )
 
   " dev doing dev doing
-  " command! -bang -nargs=* RgExt call Tst()
+  command! -bang -nargs=* RgExt call Rg_ext(<f-args>)
+endif
 
-  " shellescape(escape(<q-args>, '().$'))
+func! Rg_ext(...) abort
+
+  let l:ext = a:1
+  let l:str = exists('a:2') ? a:2 : ''
+
+  let g:fzf_rg_opt .= ' -g "!.' . l:ext . '"'
+
+  echo shellescape(escape(l:str, '().$'))
 
 
   " command! -bang -nargs=* RgExt
   " \ call fzf#vim#grep(
   " \   'rg ' . g:fzf_rg_opt
-  " \   . ' -- '.shellescape(escape(<q-args>, '().$')),
+  " \   . ' -- '.shellescape(escape(l:str, '().$')),
   " \   0,
   " \   fzf#vim#with_preview(
   " \     {'options': '--exact --delimiter : --nth 3..'},
@@ -1792,7 +1802,8 @@ if Is_env('mac') || Is_env('linux') || Is_env('win64')
   " \   ),
   " \   <bang>1
   " \ )
-endif
+endfunc
+
 
 " grep buf
 func! N_grep_buf() abort
@@ -2901,14 +2912,14 @@ func! Cursor_filepath() abort
 
   elseif Is_env('win64')
 
-    let l:str = Line_str()
+    let l:str = Cursor_line_str()
 
   elseif Is_env('win32unix')
 
-    let l:str = Line_str()
+    let l:str = Cursor_line_str()
 
   else
-    let l:str = Line_str()
+    let l:str = Cursor_line_str()
   endif
   
   let l:str = trim(l:str)
@@ -2936,12 +2947,12 @@ endfunc
 
 " cursor line str
 
-func! Line_str() abort " alias
+func! Cursor_line_str() abort
 
   return getline('.')
 endfunc
 
-func! Line_str_len() abort
+func! Cursor_line_str_len() abort
 
   let l:len = Cursor_line_end_col() - 1
   return l:len
@@ -3041,7 +3052,7 @@ endfunc
 
 func! Is_line_space() abort " todo refactoring rename add cursor
   
-  let l:str = Line_str()
+  let l:str = Cursor_line_str()
   let l:ret = Is_str_space(l:str)
   return l:ret
 endfunc
@@ -3192,16 +3203,32 @@ func! V_line_end_space__del() range abort
   endfor
 endfunc
 
+func! Line_end__fil_space(line_num, fil_end_col) abort
+
+  let l:line_str     = getline(a:line_num)
+  let l:line_str_len = Str_len(l:line_str)
+  let l:space_len    = a:fil_end_col - l:line_str_len
+
+  if l:space_len <= 0
+    return
+  endif
+
+  let l:space_str = Str_space(l:space_len)
+  let l:line_str .= l:space_str
+  call setline(a:line_num, l:line_str)
+endfunc
+
 func! V_line_end__fil_space() range abort
 
   call Slct_re()
+  call Normal('o')
 
-  let l:cmd = '"zy'
-  call Normal(l:cmd)
-  let l:cmd = 'hx'
-  call Normal(l:cmd)
-  let l:cmd = '"zP'
-  call Normal(l:cmd)
+  let l:fil_end_col = Cursor_col_num() - 1
+
+  for line_num in range(a:firstline, a:lastline)
+
+    call Line_end__fil_space(l:line_num, l:fil_end_col)
+  endfor
 endfunc
 
 func! V_line__join_per_line(per_line_num) range abort
@@ -3222,22 +3249,22 @@ endfunc
 let g:dots_str = ' .. '
 let g:dots_put_col = 50
 
-func! Line__dots() abort " todo dev doing, mv_str
+func! Line_end__dots_adjst() abort " todo dev doing, mv_str
 
-  let l:line_str = Line_str()
+  let l:line_str = Cursor_line_str()
   let l:idx = Str_srch(l:line_str, escape(g:dots_str, '.'))
 
   if l:idx >= 0
-    call Line__dots_crct()
+    call Line_end__dots_crct()
   else
-    call Line__add_dots()
+    call Line_end__add_dots()
   endif
 endfunc
 
-func! Line__dots_crct() abort
-  "echo 'Line__dots_crct()'
+func! Line_end__dots_crct() abort
+  "echo 'Line_end__dots_crct()'
 
-  let l:line_str = Line_str()
+  let l:line_str = Cursor_line_str()
   let l:idx = Str_srch(l:line_str, escape(g:dots_str, '.'))
 
   if     l:idx < 0
@@ -3262,13 +3289,13 @@ func! Line__dots_crct() abort
   call setline(l:line_num, l:line_str)
 endfunc
 
-func! Line__add_dots() abort
+func! Line_end__add_dots() abort " todo refactoring
 
   let l:line_num = Cursor_line_num()
 
-  let l:line_str = Line_str()
+  let l:line_str = Cursor_line_str()
 
-  let l:line_str_len = Line_str_len()
+  let l:line_str_len = Cursor_line_str_len()
 
   let l:space_len = g:dots_put_col - l:line_str_len
   if l:space_len < 0
@@ -3870,7 +3897,7 @@ endfunc
 func! Ynk__line() abort
 
   call Normal('"ayy')
-  "l:line_str = Line_str()
+  "l:line_str = Cursor_line_str()
   "let @a = l:line_str
 
   call Clipboard__ynk()
@@ -4015,34 +4042,36 @@ let g:srch_str_org = ''
 
 func! Srch_str__(str, op_word1) abort
 
-  let l:str = a:str
-  let g:srch_str_org = l:str
+  let l:exe_str = a:str
 
-  let l:str  = escape(l:str, '.*~[]\^$')
+  let l:exe_str = escape(l:exe_str, '.*~[]\^$')
 
   if a:op_word1 == v:true
+    let l:exe_str = Srch_str_word1(l:exe_str)
+  endif
 
-    let l:str = Srch_str_word1(l:str)
+  if "@/" == "l:exe_str"
+    return
+  endif
+
+
+  if a:op_word1 == v:true
     let g:is_srch_word1 = v:true
   else
     let g:is_srch_word1 = v:false
   endif
 
-  if "@/" == "l:str"
-    return
-  endif
-
-  let g:srch_prv01 = @/
-
-  let @/ = l:str
-
-  call Normal('/' . l:str) " srch hstry add
+  let @/ = l:exe_str " ??
+  call Normal('/' . l:exe_str) " srch hstry add
 endfunc
 
 func! N_srch_str__flt() abort
 
   let l:str = Cursor_word()
   call Srch_str__(l:str, v:false)
+
+  let g:srch_str_org_prv = g:srch_str_org
+  let g:srch_str_org     = l:str
 endfunc
 
 func! N_srch_str__word1_tgl() abort " dev doing
@@ -4065,15 +4094,20 @@ endfunc
 
 func! N_srch_str__prv() abort
 
-  if ! exists('g:srch_prv01')
+  if ! exists('g:srch_str_org_prv')
+    echo 'not exists'
     return
   endif
 
-  let l:tmp = @/
-  
-  let @/ = g:srch_prv01
-  
-  let g:srch_prv01 = l:tmp
+  let l:tmp              = g:srch_str_org
+  let g:srch_str_org     = g:srch_str_org_prv
+  let g:srch_str_org_prv = l:tmp
+
+  " echo g:srch_str_org
+  " echo g:srch_str_org_prv
+
+  let @/ = g:srch_str_org
+  g:is_srch_word1 == v:false
 endfunc
 
 func! Srch_slct(dir) abort
@@ -4216,11 +4250,11 @@ func! V_ins_cmnt_1() range abort
 
   for line_num in range(a:firstline, a:lastline)
 
+    call Line_end__fil_space(l:line_num, l:col - 1)
+
     call Cursor__mv_by_line_col(l:line_num, l:col)
 
     call Ins_cmnt_1(v:null)
-    " call Ins_cmnt_1('0')
-    " call Ins_cmnt_1('^')
   endfor
 endfunc
 
@@ -4285,7 +4319,7 @@ func! Ins_markdown_h() abort
   call Ins(l:str)
 
   let l:ptn = '^#* '
-  let l:idx = Str_srch_end(Line_str(), l:ptn) + 1
+  let l:idx = Str_srch_end(Cursor_line_str(), l:ptn) + 1
   call Cursor__mv_by_line_col(v:null, l:idx)
 endfunc
 
@@ -4336,7 +4370,7 @@ endfunc
 func! Is_line_markdown_itm() abort
 
   let l:ptn = '^\s*- '
-  let l:str = Line_str()
+  let l:str = Cursor_line_str()
   let l:idx = Str_srch(l:str, l:ptn)
 
   if l:idx == -1
@@ -4377,7 +4411,7 @@ func! N_tag_jmp() abort
 
   let l:base_buf_num = Buf_num()
 
-  let l:str = Line_str()
+  let l:str = Cursor_line_str()
   call Tag_jmp(l:str)
 
   call Exe('sbuffer ' . l:base_buf_num)
