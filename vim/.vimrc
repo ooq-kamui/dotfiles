@@ -662,7 +662,8 @@ nnoremap :h :CdSlf
 nnoremap :d :CdSlf
 
 " cd parent
-nnoremap :a :Cdu
+nnoremap :k :K
+" nnoremap :a :Cdu
 
 " 
 " tab
@@ -882,7 +883,7 @@ nnoremap gv <esc>
 nnoremap gw <esc>
 nnoremap gy <esc>
 
-"nnoremap :a :a
+nnoremap :a :a
 nnoremap :b :b
 nnoremap :c :c
 "nnoremap :d :d
@@ -890,6 +891,8 @@ nnoremap :e :e
 nnoremap :f :f
 nnoremap :g :g
 "nnoremap :h :h
+"          :
+"nnoremap :k :k
 "          :
 "nnoremap :p :p
 "nnoremap :q :q
@@ -4038,7 +4041,8 @@ func! Srch_str_word1(str) abort
 endfunc
 
 let g:is_srch_word1 = v:false
-let g:srch_str_org = ''
+let g:srch_str_org     = ''
+let g:srch_str_org_prv = ''
 
 func! Srch_str__(str, op_word1) abort
 
@@ -4649,14 +4653,14 @@ endfunc
 
 func! I_symbol01() abort
 
-  let l:lst = [ '$', '%', '&', '|', '#', '@', '\' ]
+  let l:lst = [ '$', '%', '&', '|', '#', '@', '\', '/' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
 
 func! I_symbol02() abort
 
-  let l:lst = [ ';', '=', '!', '-', '+', '?', '^', '~', '/' ]
+  let l:lst = [ ';', '=', '!', '-', '+', '?', '^', '~' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
@@ -4762,6 +4766,8 @@ command! -nargs=0 Cdu   call Dir__parent(1)
 command! -nargs=0 Cduu  call Dir__parent(2)
 command! -nargs=0 Cduuu call Dir__parent(3)
 command! -nargs=0 K     call Dir__parent(1)
+command! -nargs=0 Kk    call Dir__parent(2)
+command! -nargs=0 Kkk   call Dir__parent(3)
 
 func! Dir__parent(lvl) abort
 

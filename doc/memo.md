@@ -10,6 +10,9 @@ Rg ext
 - ext filter
 
 
+srch prv str by history
+
+
 ## svr pri rpl
 
 ### vps ( svr new )
