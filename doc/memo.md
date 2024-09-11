@@ -2,14 +2,21 @@
 # cnf
 
 
+## ofc
+
+try
+- git, module, amp
+- doc mod
+
+
 ## vim
 
-vnoremap S xxx
-- tidy
-  - pad space
-    - del pad space
-    - use substitute line end ovr fil space
-  - fil > pad
+srch prv str by history
+
+
+fzf registry
+- decide
+  - yank
 
 
 Rg ext
@@ -18,7 +25,8 @@ Rg ext
 - ext filter
 
 
-srch prv str by history
+linter
+- run
 
 
 ## svr pri rpl

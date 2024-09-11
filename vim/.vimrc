@@ -381,7 +381,6 @@ nnoremap A :call Ynk__line_all()<cr>
 
 " slct re
 nnoremap r :call Slct_re()<cr>
-"nnoremap R :call Slct_re()<cr>
 
 " ynk clr
          
@@ -517,7 +516,9 @@ nnoremap <c-m> J
 "nnoremap xx "addk"aP
 
 " line dpl
-"nnoremap xx "zyy"zP
+nnoremap R "zyy"zP
+nnoremap D "zyy"zP
+nnoremap S "zyy"zP
 
 " repeat memory
 "nnoremap xx qy
@@ -798,7 +799,7 @@ nnoremap z <esc>
 "nnoremap A <esc>
 nnoremap B <esc>
 nnoremap C <esc>
-nnoremap D <esc>
+"nnoremap D <esc>
 "nnoremap E <esc>
 "nnoremap F <esc>
 nnoremap G <esc>
@@ -812,8 +813,8 @@ nnoremap M <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
-nnoremap R <esc>
-nnoremap S <esc>
+"nnoremap R <esc>
+"nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap W <esc>
@@ -888,7 +889,7 @@ nnoremap :b :b
 nnoremap :c :c
 "nnoremap :d :d
 nnoremap :e :e
-nnoremap :f :f
+"nnoremap :f :f
 nnoremap :g :g
 "nnoremap :h :h
 "          :
@@ -1079,7 +1080,7 @@ vnoremap <expr> s
 
 " del str pad space
 vnoremap S "aygvr gv
-"vnoremap S :call V_slctd__space()<cr> " dev doing
+" vnoremap S :call V_slctd__space()<cr> " use not
 
 " line __ join per line
 vnoremap J :call V_line__join_per_line(3)
@@ -1133,8 +1134,8 @@ vnoremap :e :call V_line_indnt__space(2)
 " tab > space
 vnoremap :t :call V_line_tab__rpl_space(12)
 
-" line end ovr, fil __ space
-vnoremap :f :call V_line_end__fil_space()
+" line end ovr, pad __ space
+"vnoremap xx :call V_line_end__pad_space()
 
 " upper / lower tgl
 vnoremap u ~gv
@@ -1345,7 +1346,7 @@ vnoremap gt <esc>
 "vnoremap gy <esc>
 
 "vnoremap :a <esc>
-"vnoremap :f <esc>
+vnoremap :f <esc>
 " :
 "vnoremap :t <esc>
 " :
@@ -3205,7 +3206,7 @@ func! V_line_end_space__del() range abort
   endfor
 endfunc
 
-func! Line_end__fil_space(line_num, fil_end_col) abort
+func! Line_end__pad_space(line_num, fil_end_col) abort
 
   let l:line_str     = getline(a:line_num)
   let l:line_str_len = Str_len(l:line_str)
@@ -3220,7 +3221,9 @@ func! Line_end__fil_space(line_num, fil_end_col) abort
   call setline(a:line_num, l:line_str)
 endfunc
 
-func! V_line_end__fil_space() range abort
+func! V_line_end__pad_space() range abort " use not
+
+  " use recommend "aygvr gv
 
   call Slct_re()
   call Normal('o')
@@ -3229,7 +3232,7 @@ func! V_line_end__fil_space() range abort
 
   for line_num in range(a:firstline, a:lastline)
 
-    call Line_end__fil_space(l:line_num, l:fil_end_col)
+    call Line_end__pad_space(l:line_num, l:fil_end_col)
   endfor
 endfunc
 
@@ -3819,11 +3822,11 @@ func! V_slctd__del() abort " dev doing, can
   let @+ = @a
 endfunc
 
-func! V_slctd__space() range abort " dev doing, can
+func! V_slctd__space() range abort " do not intended
 
-  call Slct_re()
-
-  call Normal('"aygvr gv')
+  call Normal('gv')
+  call Normal('r ')
+  call Normal('gv')
 endfunc
 
 " slctd ins
@@ -4110,7 +4113,7 @@ func! N_srch_str__prv() abort
   " echo g:srch_str_org_prv
 
   let @/ = g:srch_str_org
-  g:is_srch_word1 == v:false
+  let g:is_srch_word1 = v:false
 endfunc
 
 func! Srch_slct(dir) abort
@@ -4253,7 +4256,7 @@ func! V_ins_cmnt_1() range abort
 
   for line_num in range(a:firstline, a:lastline)
 
-    call Line_end__fil_space(l:line_num, l:col - 1)
+    call Line_end__pad_space(l:line_num, l:col - 1)
 
     call Cursor__mv_by_line_col(l:line_num, l:col)
 
