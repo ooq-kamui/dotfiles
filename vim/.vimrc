@@ -1079,7 +1079,6 @@ vnoremap <expr> s
 
 " del str pad space
 vnoremap S "aygvr gv
-vnoremap W "aygvr gv
 "vnoremap S :call V_slctd__space()<cr> " dev doing
 
 " line __ join per line
@@ -1305,7 +1304,7 @@ vnoremap R <esc>
 "vnoremap T <esc>
 "vnoremap U <esc>
 vnoremap V <esc>
-"vnoremap W <esc>
+vnoremap W <esc>
 vnoremap X <esc>
 "vnoremap Y <esc>
 

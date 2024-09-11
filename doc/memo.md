@@ -4,6 +4,14 @@
 
 ## vim
 
+vnoremap S xxx
+- tidy
+  - pad space
+    - del pad space
+    - use substitute line end ovr fil space
+  - fil > pad
+
+
 Rg ext
 - escape research
 
