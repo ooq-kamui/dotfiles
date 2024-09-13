@@ -2,14 +2,10 @@
 # cnf
 
 
-## ofc
-
-try
-- git, module, amp
-- doc mod
-
-
 ## vim
+
+vnoremap rj, rk
+
 
 srch prv str by history
 
@@ -23,6 +19,9 @@ Rg ext
 - escape research
 
 - ext filter
+
+
+tag jmp err msg
 
 
 linter
