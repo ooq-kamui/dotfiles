@@ -404,7 +404,7 @@ nnoremap P :call Paste__clipboard()<cr>
 
 " paste rgstr history ( fzf )
 nnoremap <leader>r :RgstrHstry<cr>
-nnoremap <leader>c :RgstrHstry<cr>
+"nnoremap <leader>c :RgstrHstry<cr>
 
 " 
 " undo, redo
@@ -600,7 +600,7 @@ nnoremap <leader>f :SrchHstry<cr>
 nnoremap <leader>n :SrchHstry<cr>
 
 " srch str set prv ( tgl )
-nnoremap N :call N_srch_str__prv()<cr>
+nnoremap N :call Srch_str__prv_tgl()<cr>
 
 " srch rpl one > ynk nxt ( only srch )
 nnoremap <c-p> :call Srch_slct('f')<cr>
@@ -625,11 +625,6 @@ nnoremap <leader>i :call N_grep_buf()<cr>
 
 " jmplst ( fzf )
 nnoremap <leader>e :FzfByJmplst<cr>
-nnoremap <leader>s :FzfByJmplst<cr>
-nnoremap <leader>d :FzfByJmplst<cr>
-"nnoremap <leader>j :FzfByJmplst<cr>
-"nnoremap <leader>m :FzfByJmplst<cr>
-"nnoremap <leader>f :FzfByJmplst<cr>
 
 " memo ( fzf )
 "nnoremap <leader>xx :FzfByMemo <cr>
@@ -962,6 +957,10 @@ vnoremap <c-_> F_h
 " cursor mv line
 vnoremap <c-j> 10j
 vnoremap <c-k> 10k
+
+" cursor mv jmp
+vnoremap rk :call V_cursor__mv_jmp_v('k')<cr>
+vnoremap rj :call V_cursor__mv_jmp_v('j')<cr>
 
 " cursor mv bracket pair
 vnoremap <c-l> %
@@ -1410,6 +1409,7 @@ inoremap <tab> <c-v><tab>
 "inoremap xx <space><space>
 
 " ins complete default
+inoremap <c-q> <c-p>
 inoremap <c-g> <c-p>
 
 "inoremap <expr> <c-y>
@@ -1518,7 +1518,7 @@ inoremap <c-b> <nop>
 "inoremap <c-n> <nop>
 "inoremap <c-o> <nop>
 "inoremap <c-p> <nop>
-inoremap <c-q> <nop>
+"inoremap <c-q> <nop>
 "inoremap <c-r> <nop>
 "inoremap <c-s> <nop>
 "inoremap <c-t> <nop>
@@ -1596,8 +1596,8 @@ tnoremap <c-_> <c-\><c-n>
 
 "nnoremap <leader>: <esc>
 
-"nnoremap <leader>c <esc>
-"nnoremap <leader>d <esc>
+nnoremap <leader>c <esc>
+nnoremap <leader>d <esc>
 "nnoremap <leader>e <esc>
 "nnoremap <leader>f <esc>
 "nnoremap <leader>h <esc>
@@ -1608,7 +1608,7 @@ nnoremap <leader>m <esc>
 "nnoremap <leader>o <esc>
 nnoremap <leader>p <esc>
 "nnoremap <leader>r <esc>
-"nnoremap <leader>s <esc>
+nnoremap <leader>s <esc>
 nnoremap <leader>u <esc>
 "nnoremap <leader>y <esc>
 
@@ -1855,16 +1855,30 @@ func! Rgstr_fzf() abort
   call fzf#run(
   \   {
   \     'source': l:rgstr_info,
-  \     'sink'  : funcref('Ins_rgstr_by_rgstr_info'),
+  \     'sink'  : funcref('Ynk__by_rgstr_info'),
   \     'window': '-tabnew'
   \   }
   \ )
+  " \     'sink'  : funcref('Ins_rgstr_by_rgstr_info'),
+endfunc
+
+func! Ynk__by_rgstr_info(rgstr_info) abort
+  
+  let l:rgstr = Rgstr_info_rgstr(a:rgstr_info)
+  let l:scrpt = 'let @a = @' . l:rgstr
+  execute(l:scrpt)
 endfunc
 
 func! Ins_rgstr_by_rgstr_info(rgstr_info) abort
   
-  let l:rgstr = strcharpart(a:rgstr_info, 5, 2) " todo refactoring
-  call Normal(l:rgstr . 'P')
+  let l:rgstr = Rgstr_info_rgstr(a:rgstr_info)
+  call Normal('"' . l:rgstr . l:rgstr . 'P')
+endfunc
+
+func! Rgstr_info_rgstr(rgstr_info) abort
+
+  let l:rgstr = strcharpart(a:rgstr_info, 6, 1)
+  return l:rgstr
 endfunc
 
 " jmp lst
@@ -2029,11 +2043,6 @@ func! Slf_dir() abort
 
   let l:dir = expand('%:p:h')
   return l:dir
-endfunc
-
-func! Ynk__clr() abort
-
-  let @a = ''
 endfunc
 
 func! Rgstr__clr() abort
@@ -2267,6 +2276,12 @@ endfunc
 func! Str_len(str) abort " alias
 
   return strchars(a:str)
+endfunc
+
+func! Str_sub(str, idx, len) abort " dev doing
+
+  let l:str = a:str
+  return l:str
 endfunc
 
 func! Str_space(col) abort
@@ -2738,6 +2753,12 @@ func! Cursor__mv_jmp_v(drct) abort
   endif
 endfunc
 
+func! V_cursor__mv_jmp_v(drct) range abort
+
+  call Slct_re()
+  call Cursor__mv_jmp_v(a:drct)
+endfunc
+
 " cursor pos
 
 func! Pos() abort " alias
@@ -3053,21 +3074,21 @@ func! Is_line_emp() abort " todo refactoring rename add cursor
   endif
 endfunc
 
-func! Is_line_space() abort " todo refactoring rename add cursor
+func! Is_line_space() abort " todo refactoring, rename add cursor
   
   let l:str = Cursor_line_str()
   let l:ret = Is_str_space(l:str)
   return l:ret
 endfunc
 
-func! Is_line_str_side_l_space() abort " todo refactoring rename add cursor
+func! Is_line_str_side_l_space() abort " todo refactoring, rename add cursor
 
   let l:str = Line_str_cursor_out_l()
   let l:ret = Is_str_space(l:str)
   return l:ret
 endfunc
 
-func! Is_line_str_side_r_space() abort " todo refactoring rename add cursor
+func! Is_line_str_side_r_space() abort " todo refactoring, rename add cursor
 
   let l:str = Line_str_cursor_out_r()
   let l:ret = Is_str_space(l:str)
@@ -3413,16 +3434,16 @@ func! Ins_line__indnt_space() range abort
 endfunc
 
 func! Line__del() abort
-  
-  if Is_line_space()
-    call Normal('"zdd')
+
+  if Is_line_emp() || Is_line_space()
+    call Normal('"_dd') " rgstr del
   else
     call Normal('"add')
     call Clipboard__ynk()
   endif
 endfunc
 
-func! V_line_del() abort " use not, todo mod
+func! V_line_del() abort " use not, todo dev
   
   call Normal('gvj')
   "call Normal('"ad')
@@ -3899,6 +3920,11 @@ endfunc
 
 " ynk
 
+func! Ynk__clr() abort
+
+  let @a = ''
+endfunc
+
 func! Ynk__line() abort
 
   call Normal('"ayy')
@@ -4022,29 +4048,44 @@ func! Srch_str() abort
   return l:str
 endfunc
 
-func! Srch_str_word1(str) abort
+func! Srch_str_flt() abort
 
-  if a:str == v:null
+  let l:str = @/
 
-    let l:str = Srch_str()
-  else
-    let l:str = a:str
+  if Is_srch_word1()
+    let l:str = strcharpart(l:str, 2, strchars(l:str) - 4)
   endif
-
-  if Str_l_char(l:str) =~ '\w'
-    let l:str = '\<' . l:str
-  endif
-
-  if Str_r_char(l:str) =~ '\w'
-    let l:str =        l:str . '\>'
-  endif
+  " echo l:str
 
   return l:str
 endfunc
 
-let g:is_srch_word1 = v:false
-let g:srch_str_org     = ''
-let g:srch_str_org_prv = ''
+func! Srch_str_word1(str) abort
+
+  if a:str == v:null
+    let l:str = Srch_str_flt()
+  else
+    let l:str = a:str
+  endif
+
+  let l:str = '\<' . l:str . '\>'
+  return l:str
+endfunc
+
+func! Is_srch_word1() abort
+
+  let l:str = @/
+  let l:ret = v:false
+
+  let l:str_l = strcharpart(l:str, 0, 2)
+  let l:str_r = strcharpart(l:str, strchars(l:str) - 2)
+
+  if l:str_l == '\<' && l:str_r == '\>'
+    let l:ret = v:true
+  endif
+
+  return l:ret
+endfunc
 
 func! Srch_str__(str, op_word1) abort
 
@@ -4056,18 +4097,11 @@ func! Srch_str__(str, op_word1) abort
     let l:exe_str = Srch_str_word1(l:exe_str)
   endif
 
-  if "@/" == "l:exe_str"
+  if "@/" == "l:exe_str" " same ltst 01
     return
   endif
 
-
-  if a:op_word1 == v:true
-    let g:is_srch_word1 = v:true
-  else
-    let g:is_srch_word1 = v:false
-  endif
-
-  let @/ = l:exe_str " ??
+  let @/ = l:exe_str " highlight
   call Normal('/' . l:exe_str) " srch hstry add
 endfunc
 
@@ -4075,16 +4109,13 @@ func! N_srch_str__flt() abort
 
   let l:str = Cursor_word()
   call Srch_str__(l:str, v:false)
-
-  let g:srch_str_org_prv = g:srch_str_org
-  let g:srch_str_org     = l:str
 endfunc
 
-func! N_srch_str__word1_tgl() abort " dev doing
+func! N_srch_str__word1_tgl() abort
 
-  let l:str = g:srch_str_org
+  let l:str = Srch_str_flt()
 
-  if g:is_srch_word1 == v:true
+  if Is_srch_word1()
 
     call Srch_str__(l:str, v:false)
   else
@@ -4092,28 +4123,34 @@ func! N_srch_str__word1_tgl() abort " dev doing
   endif
 endfunc
 
+func! Srch_str_ltst_01() abort
+
+  let l:str = histget('/', -1)
+  return l:str
+endfunc
+
+func! Srch_str_ltst_02() abort
+
+  let l:str = histget('/', -2)
+  return l:str
+endfunc
+
+func! Srch_str__prv_tgl() abort
+
+  if @/ == Srch_str_ltst_01()
+
+    let l:srch_str = Srch_str_ltst_02()
+  else
+    let l:srch_str = Srch_str_ltst_01()
+  endif
+
+  let @/ = l:srch_str
+endfunc
+
 func! V_srch_str__slctd_str() abort
 
   let l:str = Slctd_str()
   call Srch_str__(l:str, v:false)
-endfunc
-
-func! N_srch_str__prv() abort
-
-  if ! exists('g:srch_str_org_prv')
-    echo 'not exists'
-    return
-  endif
-
-  let l:tmp              = g:srch_str_org
-  let g:srch_str_org     = g:srch_str_org_prv
-  let g:srch_str_org_prv = l:tmp
-
-  " echo g:srch_str_org
-  " echo g:srch_str_org_prv
-
-  let @/ = g:srch_str_org
-  let g:is_srch_word1 = v:false
 endfunc
 
 func! Srch_slct(dir) abort
@@ -4393,6 +4430,7 @@ func! Tag_jmp(rg_rslt_line) abort
   let l:rg_rslt_line = trim(a:rg_rslt_line)
 
   if Is_str_emp(l:rg_rslt_line)
+    echo 'empty'
     return
   endif
   
@@ -4406,6 +4444,7 @@ func! Tag_jmp(rg_rslt_line) abort
   let l:line_num = get(l:rg_rslt_line_ar, 1, 1)
 
   if ! filereadable(l:filename)
+    echo 'file does not exist'
     return
   endif
 
@@ -5205,7 +5244,7 @@ endif
 " \s : space, tab
 " 
 " \w : [0-9A-Za-z_]   word
-" \h : [A-Za-z_]      \w から数字を除いたもの, 単語の先頭文字
+" \h : [A-Za-z_]      単語の先頭文字, \w から数字を除いたもの
 " \a : [A-Za-z]       alph
 " \l : [a-z]          小文字
 " \u : [A-Z]          大文字

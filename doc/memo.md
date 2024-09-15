@@ -1,19 +1,7 @@
 
 # cnf
 
-
 ## vim
-
-vnoremap rj, rk
-
-
-srch prv str by history
-
-
-fzf registry
-- decide
-  - yank
-
 
 Rg ext
 - escape research
@@ -21,11 +9,11 @@ Rg ext
 - ext filter
 
 
-tag jmp err msg
-
-
 linter
 - run
+
+
+vimdiff learn
 
 
 ## svr pri rpl
@@ -66,6 +54,21 @@ rpl
 - 42ya
   - del
 
+
+
+## ofc
+
+this system
+
+doc brush up
+
+python install
+
+cognito , test account setting, share
+
+code review
+
+iphone app disaster confirm
 
 
 ## fe api
