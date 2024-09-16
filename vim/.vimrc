@@ -60,10 +60,10 @@ hi FullWidthSpace                   ctermbg=white
 match FullWidthSpace /　/
 
 " vimdiff
-hi DiffAdd     ctermfg=10           ctermbg=22       cterm=bold
-hi DiffDelete  ctermfg=10           ctermbg=52       cterm=bold
-hi DiffChange  ctermfg=10           ctermbg=17       cterm=bold
-hi DiffText    ctermfg=10           ctermbg=21       cterm=bold
+hi DiffAdd     ctermfg=10           ctermbg=22       cterm=none
+hi DiffDelete  ctermfg=52           ctermbg=52       cterm=none
+hi DiffChange  ctermfg=10           ctermbg=17       cterm=none
+hi DiffText    ctermfg=10           ctermbg=21       cterm=none
 
 
 au BufNewFile,BufRead *.script     set filetype=lua
@@ -311,7 +311,7 @@ nnoremap F /\u<cr>
 nnoremap <c-l> %
 
 " cursor mv bracket out back
-nnoremap <c-w> [{
+"nnoremap <c-w> [{
 
 " cursor mv bracket fnc back
 "nnoremap xx [m
@@ -354,8 +354,14 @@ nnoremap rJ :call Cursor__mv_jmp_char('j', 'f')<cr>
 " scroll cursor line middle
 "nnoremap xx zz
 
-" window nxt
-"nnoremap xx <c-w>w
+" win mv r
+" nnoremap xx <c-w>l
+
+" win mv l
+" nnoremap xx <c-w>h
+
+" win nxt
+nnoremap <c-w> <c-w>w
 
 " 
 " slct / ynk / paste
@@ -2154,9 +2160,10 @@ func! Char__tgl_etc(c) abort
   let l:rpl = ''
 
   if     a:c == '/'
-    let l:rpl = '-'
-  elseif a:c == '-'
+    " let l:rpl = '-'
     let l:rpl = '\'
+  " elseif a:c == '-'
+    " let l:rpl = '\'
   elseif a:c == '\'
     let l:rpl = '|'
   elseif a:c == '|'
@@ -2170,10 +2177,14 @@ func! Char__tgl_etc(c) abort
   elseif a:c == "`"
     let l:rpl = '"'
 
-  elseif a:c == '*'
+  elseif a:c == '-'
     let l:rpl = '+'
   elseif a:c == '+'
     let l:rpl = '*'
+  elseif a:c == '*'
+    let l:rpl = '='
+  elseif a:c == '='
+    let l:rpl = '-'
 
   elseif a:c == ','
     let l:rpl = '.'
@@ -2497,7 +2508,7 @@ endfunc
 
 func! Cursor__mv_line_top0() abort
   
-  if Is_line_emp()
+  if Is_cursor_line_emp()
     return
   endif
 
@@ -2506,7 +2517,7 @@ endfunc
 
 func! Cursor__mv_line_top1() abort
 
-  if     Is_line_space()
+  if     Is_cursor_line_space()
     call Cursor__mv_line_end()
 
   elseif Is_line_markdown_itm()
@@ -2518,7 +2529,7 @@ endfunc
 
 func! Cursor__mv_line_end() abort
 
-  if ! Is_line_emp()
+  if ! Is_cursor_line_emp()
     call Normal('$l')
   endif
 endfunc
@@ -2539,7 +2550,7 @@ func! V_cursor__mv_line_end() range abort
 
   elseif mode() == "v"
 
-    if Is_line_emp()
+    if Is_cursor_line_emp()
       return
     endif
 
@@ -2567,7 +2578,7 @@ func! Cursor__mv_word_f() abort
     call Cursor__mv_char_f()
     return
 
-  elseif Is_line_str_side_r_space()
+  elseif Is_cursor_line_str_side_r_space()
 
     call Cursor__mv_line_end()
     return
@@ -2590,7 +2601,7 @@ func! Cursor__mv_word_b() abort
   if     Is_cursor_line_top0()
     call Cursor__mv_up_line_end()
     
-  elseif Is_line_str_side_l_space()
+  elseif Is_cursor_line_str_side_l_space()
     call Cursor__mv_line_top0()
     
   elseif Is_cursor_line_top1()
@@ -3065,7 +3076,7 @@ func! Is_cursor_line_file_edge() abort
   return l:ret
 endfunc
 
-func! Is_line_emp() abort " todo refactoring rename add cursor
+func! Is_cursor_line_emp() abort
   
   if Cursor_line_end_col() == 1
     return v:true
@@ -3074,21 +3085,21 @@ func! Is_line_emp() abort " todo refactoring rename add cursor
   endif
 endfunc
 
-func! Is_line_space() abort " todo refactoring, rename add cursor
+func! Is_cursor_line_space() abort
   
   let l:str = Cursor_line_str()
   let l:ret = Is_str_space(l:str)
   return l:ret
 endfunc
 
-func! Is_line_str_side_l_space() abort " todo refactoring, rename add cursor
+func! Is_cursor_line_str_side_l_space() abort
 
   let l:str = Line_str_cursor_out_l()
   let l:ret = Is_str_space(l:str)
   return l:ret
 endfunc
 
-func! Is_line_str_side_r_space() abort " todo refactoring, rename add cursor
+func! Is_cursor_line_str_side_r_space() abort
 
   let l:str = Line_str_cursor_out_r()
   let l:ret = Is_str_space(l:str)
@@ -3435,7 +3446,7 @@ endfunc
 
 func! Line__del() abort
 
-  if Is_line_emp() || Is_line_space()
+  if Is_cursor_line_emp() || Is_cursor_line_space()
     call Normal('"_dd') " rgstr del
   else
     call Normal('"add')
@@ -3595,7 +3606,7 @@ func! Slct_cursor_f_space() abort
   endif
   "echo l:c
 
-  if Is_line_str_side_r_space()
+  if Is_cursor_line_str_side_r_space()
 
     call Normal('v')
     call Normal('$h')
@@ -3787,7 +3798,7 @@ func! Slctd__expnd_word_f() abort
   "call Slct_re_in_line_1()
   call Slct_re()
 
-  if     Is_line_str_side_r_space()
+  if     Is_cursor_line_str_side_r_space()
 
     call Normal('$h')
 

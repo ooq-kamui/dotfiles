@@ -1,19 +1,28 @@
 
 # cnf
 
+
+## ofc
+
+this system
+
+doc brush up
+
+python install
+
+cognito, test account setting, share
+
+code review
+
+iphone app disaster confirm
+
+
 ## vim
 
 Rg ext
 - escape research
 
 - ext filter
-
-
-linter
-- run
-
-
-vimdiff learn
 
 
 ## svr pri rpl
@@ -53,22 +62,6 @@ rpl
 
 - 42ya
   - del
-
-
-
-## ofc
-
-this system
-
-doc brush up
-
-python install
-
-cognito , test account setting, share
-
-code review
-
-iphone app disaster confirm
 
 
 ## fe api
