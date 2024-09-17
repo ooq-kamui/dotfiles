@@ -4,20 +4,14 @@
 
 ## ofc
 
-this system
-
-doc brush up
-
-python install
-
-cognito, test account setting, share
-
-code review
-
-iphone app disaster confirm
+iphone disaster app
+- confirm
 
 
 ## vim
+
+vnoremap U : xx__ch_tgl_type()
+
 
 Rg ext
 - escape research
