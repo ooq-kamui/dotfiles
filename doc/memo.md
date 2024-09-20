@@ -2,14 +2,15 @@
 # cnf
 
 
-## ofc
+## fish
 
-enqueue run
-
-c9 editor markdown linter ?
+to_add_line_emp.fish
 
 
 ## vim
+
+vnoremap p : box paste
+
 
 vnoremap U : xx__ch_tgl_type()
 
