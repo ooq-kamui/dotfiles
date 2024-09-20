@@ -204,6 +204,7 @@ nnoremap :o :Opn
 
 " opn file srch  ( fzf )
 nnoremap <leader>l :Files <cr>
+nnoremap <leader>L :Files ../memo/
 "nnoremap <leader>xx :FzfRunFd <cr>
 
 " opn file hstry ( fzf )
@@ -919,8 +920,7 @@ vnoremap i V
 vnoremap v <c-v>
 
 " file srch ( fzf )
-"vnoremap <leader>l "zy:Files <c-r>z<cr>
-vnoremap <leader>l "zy:Files <c-r>z
+"vnoremap <leader>l "zy:Files <c-r>z
 
 
 " 

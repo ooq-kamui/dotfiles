@@ -9,7 +9,7 @@ to_add_line_emp.fish
 
 ## vim
 
-vnoremap p : box paste
+vnoremap p : ynk 1 line to box paste
 
 
 vnoremap U : xx__ch_tgl_type()
