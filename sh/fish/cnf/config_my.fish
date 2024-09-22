@@ -81,6 +81,7 @@ alias p 'pth'
 
 #alias to     'touch'
 alias to_clr ':>'
+alias to_add_line_emp 'echo "" >>'
 
 alias mv 'mv -i'
 alias cp 'cp -ip'

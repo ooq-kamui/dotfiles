@@ -383,9 +383,6 @@ nnoremap v <c-v>
 " slct all
 nnoremap A :call Ynk__line_all()<cr>
 
-" slct re in line 1
-"nnoremap xx :call Slct_re_in_line_1()<cr>
-
 " slct re
 nnoremap r :call Slct_re()<cr>
 
@@ -498,7 +495,7 @@ nnoremap > :call Line_end__dots_adjst()<cr>
 nnoremap V :call Ins_line__indnt_space()<cr>
 
 " tgl markdown chk
-"nnoremap xx :call Char__tgl_markdown_chk()<cr>
+"nnoremap xx :call Char_markdown_chk__tgl()<cr>
 
 " del char
 nnoremap s "zx
@@ -531,18 +528,17 @@ nnoremap S "zyy"zP
 "nnoremap xx qy
 "nnoremap xx @y
 
-" num icl
-"nnoremap + :call Cursor_str__icl()<cr>
-
-" num dcl
-nnoremap U :call Cursor_str__dcl()<cr>
-"nnoremap - :call Cursor_str__dcl()<cr>
-
-" char toggle ( upper / lower )
+" char tgl
 nnoremap u :call N_char__tgl()<cr>
 
-" char toggle ( turn ) " use not
-"nnoremap xx :call N_char__tgl2()<cr>
+" char tgl type ch
+nnoremap U :call N_char__tgl_shift()<cr>
+
+" num icl
+"nnoremap xx :call Cursor_str__icl()<cr>
+
+" num dcl
+"nnoremap xx :call Cursor_str__dcl()<cr>
 
 " indnt shft
 nnoremap " :call Indnt__shft_l()<cr>
@@ -946,10 +942,6 @@ vnoremap f :call Slctd__expnd_word_f()<cr>
 
 " cursor mv line end
 vnoremap <c-y> :call V_cursor__mv_line_end()<cr>
-"vnoremap <expr> <c-y>
-"\ mode() == '<c-v>' ? ':call V_cursor__mv_line_end("b")<cr>' :
-"\ mode() == 'v'     ? ':call V_cursor__mv_line_end("n")<cr>' :
-"\                     ''
 
 " cursor mv slctd reduce dlm _ l
 vnoremap _     of_lo
@@ -1009,8 +1001,8 @@ vnoremap O :call V_ynk__add_slctd()<cr>
 " paste
 "vnoremap p xx
 vnoremap <expr> p
-\ mode() == '<c-v>' ? '"zd"aP'              :
-\ mode() == 'v'     ? '"zd"aP'              :
+\ mode() == '<c-v>' ? ':call V_box_paste()<cr>' :
+\ mode() == 'v'     ? '"zd"aP'                  :
 \                     ':call V_paste()<cr>'
 
 " paste clipboard
@@ -2082,80 +2074,47 @@ endfunc
 
 func! N_char__tgl() abort
 
-  let l:c   = Cursor_c_char()
+  let l:c = Cursor_c_char()
 
-  if l:c =~ '\d'
+  if     Is_char_num(l:c)
+
     call Cursor_str__icl()
     return
-  endif
 
-  let l:rpl = Char_tgl1(l:c)
+  elseif Is_char_alpha(l:c)
 
-  if Is_str_emp(l:rpl)
     call Normal('v~') " upper / lower
     return
   endif
 
-  call Char__rpl(l:rpl)
-endfunc
-
-func! N_char__tgl2() abort " use not
-
-  let l:c   = Cursor_c_char()
-  let l:rpl = Char__tgl_trn(l:c)
-
-  if Is_str_emp(l:rpl)
-    call Normal('v~') " upper / lower
+  let l:rpl = Is_char_tgl_bracket_trn(l:c)
+  if ! Is_str_emp(l:rpl)
+    call Char__rpl(l:rpl)
     return
   endif
 
-  call Char__rpl(l:rpl)
-endfunc
-
-func! Char_tgl1(c) abort
-
-  let l:rpl = Char__tgl_trn(a:c)
+  let l:rpl = Is_char_tgl_symbol(l:c)
   if ! Is_str_emp(l:rpl)
-    return l:rpl
-  endif
 
-  let l:rpl = Char__tgl_etc(a:c)
-  if ! Is_str_emp(l:rpl)
-    return l:rpl
+    call Char__rpl(l:rpl)
+    return
   endif
-
-  return l:rpl
 endfunc
 
-func! Char__tgl_bracket(c) abort " use not
+func! N_char__tgl_shift() abort
 
-  let l:rpl = ''
+  let l:c = Cursor_c_char()
 
-  if     a:c == '('
-    let l:rpl = '['
-  elseif a:c == ')'
-    let l:rpl = ']'
+  if     Is_char_num(l:c)
 
-  elseif a:c == '['
-    let l:rpl = '{'
-  elseif a:c == ']'
-    let l:rpl = '}'
-
-  elseif a:c == '{'
-    let l:rpl = '<'
-  elseif a:c == '}'
-    let l:rpl = '>'
-
-  elseif a:c == '<'
-    let l:rpl = '('
-  elseif a:c == '>'
-    let l:rpl = ')'
+    call Cursor_str__dcl()
+    return
   endif
 
-  return l:rpl
+  call Char__tgl_type_ch()
 endfunc
 
-func! Char__tgl_etc(c) abort
+func! Is_char_tgl_symbol(c) abort
 
   let l:rpl = ''
 
@@ -2200,33 +2159,13 @@ func! Char__tgl_etc(c) abort
     let l:rpl = '!'
   elseif a:c == '!'
     let l:rpl = '?'
-
-  "elseif a:c ==# 'T'
-  "  let l:rpl = 'f'
-  "elseif a:c ==# 'F'
-  "  let l:rpl = 't'
-
-  "elseif a:c ==# 'L'
-  "  let l:rpl = 'r'
-  "elseif a:c ==# 'R'
-  "  let l:rpl = 'l'
-
-  "elseif a:c ==# 'X'
-  "  let l:rpl = 'y'
-  "elseif a:c ==# 'Y'
-  "  let l:rpl = 'x'
-
-  "elseif a:c ==# 'I'
-  "  let l:rpl = 'o'
-  "elseif a:c ==# 'O'
-  "  let l:rpl = 'i'
   endif
 
   return l:rpl
 endfunc
 
-func! Char__tgl_trn(c) abort
-  
+func! Is_char_tgl_bracket_trn(c) abort
+
   let l:rpl = ''
 
   if     a:c == '<'
@@ -2253,7 +2192,59 @@ func! Char__tgl_trn(c) abort
   return l:rpl
 endfunc
 
+func! Is_char_tgl_alpha_trn(c) abort " use not
+  
+  let l:rpl = ''
+
+  if     a:c ==# 'T'
+    let l:rpl = 'f'
+  elseif a:c ==# 'F'
+    let l:rpl = 't'
+  endif
+
+  return l:rpl
+endfunc
+
+func! Char__tgl_type_ch() abort
+
+  let l:rpl = ''
+
+  if     a:c == '"'
+    let l:rpl = '`'
+  elseif a:c == "'"
+    let l:rpl = '`'
+  endif
+
+  if ! Is_str_emp(l:rpl)
+
+    call Char__rpl(l:rpl)
+    return
+  endif
+endfunc
+
 " char cnd
+
+func! Is_char_num(char) abort
+
+  let l:ret = v:false
+
+  if a:char =~ '\d'
+    let l:ret = v:true
+  endif
+
+  return l:ret
+endfunc
+
+func! Is_char_alpha(char) abort
+
+  let l:ret = v:false
+
+  if a:char =~ '\a'
+    let l:ret = v:true
+  endif
+
+  return l:ret
+endfunc
 
 func! Is_char_symbol(char) abort
 
@@ -2351,26 +2342,14 @@ endfunc
 
 func! Cursor_str__icl() abort
 
-  if Is_cursor_c_char_alph()
-
-    call Cursor_str_week__icl()
-
-  else
-    let l:n_cmd = "\<c-a>"
-    call Normal(l:n_cmd)
-  endif
+  let l:n_cmd = "\<c-a>"
+  call Normal(l:n_cmd)
 endfunc
 
 func! Cursor_str__dcl() abort
 
-  if Is_cursor_c_char_alph()
-
-    call Cursor_str_week__dcl()
-
-  else
-    let l:n_cmd = "\<c-x>"
-    call Normal(l:n_cmd)
-  endif
+  let l:n_cmd = "\<c-x>"
+  call Normal(l:n_cmd)
 endfunc
 
 func! Cursor_str_week__icl() abort
@@ -2536,7 +2515,6 @@ endfunc
 
 func! V_cursor__mv_line_end() range abort
 
-  "call Slct_re_in_line_1()
   call Slct_re()
 
   if     mode() == "\<c-v>"
@@ -3649,11 +3627,6 @@ func! Slct_by_line_rng(line_num_fr, line_num_to) abort
   call Cursor__mv_by_line_num(a:line_num_to)
 endfunc
 
-"func! Slct_re_in_line_1() abort " in line 1  -  old, refactoring rpl Slct_re()
-"
-"  call Normal('gv')
-"endfunc
-
 func! Slct_re() range abort
   
   call Normal('gv')
@@ -3795,7 +3768,6 @@ func! Slctd__expnd_word_f() abort
   let l:slctd_str = Slctd_str()
   let l:slctd_r_out_char = Slctd_r_out_char()
 
-  "call Slct_re_in_line_1()
   call Slct_re()
 
   if     Is_cursor_line_str_side_r_space()
@@ -3904,7 +3876,6 @@ endfunc
 
 func! Slctd_rpl_srch_nxt() abort " dir forward only
   
-  "call Slct_re_in_line_1()
   call Slct_re()
   call Normal('"zd"aPlgn')
 endfunc
@@ -3988,10 +3959,24 @@ endfunc
 
 func! V_paste() abort
 
-  "call Slct_re_in_line_1()
   call Slct_re()
   call Normal('"zd')
   call Paste()
+endfunc
+
+func! V_box_paste() range abort
+
+  call Slct_re()
+
+  call Normal('"zd')
+
+  let l:col = Cursor_col_num()
+
+  for line_num in range(a:firstline, a:lastline)
+
+    call Cursor__mv_by_line_col(l:line_num, l:col)
+    call Paste()
+  endfor
 endfunc
 
 func! Paste__clipboard() abort
@@ -4402,7 +4387,7 @@ func! Ins_markdown_code() abort
   call Ins_line(l:str)
 endfunc
 
-func! Char__tgl_markdown_chk() abort
+func! Char_markdown_chk__tgl() abort
   
   if Cursor_l_char() != '[' || Cursor_r_char() != ']'
     return

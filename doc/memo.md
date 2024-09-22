@@ -2,25 +2,6 @@
 # cnf
 
 
-## fish
-
-to_add_line_emp.fish
-
-
-## vim
-
-vnoremap p : ynk 1 line to box paste
-
-
-vnoremap U : xx__ch_tgl_type()
-
-
-Rg ext
-- escape research
-
-- ext filter
-
-
 ## svr pri rpl
 
 ### vps ( svr new )
@@ -58,6 +39,14 @@ rpl
 
 - 42ya
   - del
+
+
+## vim
+
+Rg ext
+- escape research
+
+- ext filter
 
 
 ## fe api
