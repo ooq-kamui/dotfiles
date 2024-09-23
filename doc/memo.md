@@ -2,6 +2,13 @@
 # cnf
 
 
+## artcl game 攻略 eng ?
+
+zelda, tears of the kingdom
+
+fire emblem, three houses
+
+
 ## svr pri rpl
 
 ### vps ( svr new )
@@ -9,18 +16,20 @@
 #### etc
 
 web svr
-- nginx
-  - install
-
 - hosting
   - sub domain
     - setting
+    - tiki.ooq.jp
+    - at onamae.com
+
+- ssl setting
+
 
 - service
   - holo ranking
 
 
-setting init by web
+setting at sakura console
 - firewall
 
 
@@ -28,10 +37,10 @@ setting init by web
 
 rpl
 
+- holo ranking
+
 - fe api
   - mysql dmp
-
-- holo ranking
 
 - www
   - music plyr

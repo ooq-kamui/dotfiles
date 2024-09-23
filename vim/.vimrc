@@ -384,7 +384,8 @@ nnoremap v <c-v>
 nnoremap A :call Ynk__line_all()<cr>
 
 " slct re
-nnoremap r :call Slct_re()<cr>
+nnoremap rr :call Slct_re()<cr>
+"nnoremap r :call Slct_re()<cr>
 
 " ynk clr
          
@@ -3966,6 +3967,11 @@ endfunc
 
 func! V_box_paste() range abort
 
+  if @a =~ '\_.'
+    echo 'yank is include cr'
+    return
+  endif
+
   call Slct_re()
 
   call Normal('"zd')
@@ -5258,4 +5264,6 @@ endif
 " \A : \a 以外
 " \L : \l 以外
 " \U : \u 以外
+
+" \_<上記> : 改行を含む上記
 
