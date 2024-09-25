@@ -2,11 +2,11 @@
 # cnf
 
 
-## artcl game 攻略 eng ?
+## vim
 
-zelda, tears of the kingdom
-
-fire emblem, three houses
+Rg ext
+- escape research
+- ext filter
 
 
 ## svr pri rpl
@@ -16,15 +16,10 @@ fire emblem, three houses
 #### etc
 
 web svr
-- hosting
-  - sub domain
-    - setting
-    - tiki.ooq.jp
-    - at onamae.com
-
-- ssl setting
-
-
+- sub domain
+  - kamui.xxx setting
+  - tiki.xxx setting
+- ssl
 - service
   - holo ranking
 
@@ -36,26 +31,14 @@ setting at sakura console
 ### svr old
 
 rpl
-
 - holo ranking
-
 - fe api
   - mysql dmp
-
 - www
   - music plyr
     - del
-
 - 42ya
   - del
-
-
-## vim
-
-Rg ext
-- escape research
-
-- ext filter
 
 
 ## fe api

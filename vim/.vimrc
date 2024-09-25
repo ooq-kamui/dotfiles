@@ -338,11 +338,15 @@ nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
 
 " cursor mv jmp
-nnoremap rk :call Cursor__mv_jmp_v('k')<cr>
-nnoremap rj :call Cursor__mv_jmp_v('j')<cr>
+nnoremap rk        :call Cursor__mv_jmp_v('k')<cr>
+nnoremap rj        :call Cursor__mv_jmp_v('j')<cr>
+nnoremap r<space>k :call Cursor__mv_jmp_char('k', 'f')<cr>
+nnoremap r<space>j :call Cursor__mv_jmp_char('j', 'f')<cr>
 
-nnoremap rK :call Cursor__mv_jmp_char('k', 'f')<cr>
-nnoremap rJ :call Cursor__mv_jmp_char('j', 'f')<cr>
+"nnoremap RK :call Cursor__mv_jmp_char('k', 'f')<cr>
+"nnoremap RJ :call Cursor__mv_jmp_char('j', 'f')<cr>
+"nnoremap rK :call Cursor__mv_jmp_char('k', 'f')<cr>
+"nnoremap rJ :call Cursor__mv_jmp_char('j', 'f')<cr>
 
 "nnoremap xx :call Cursor__mv_jmp_char('k', 't')<cr>
 "nnoremap xx :call Cursor__mv_jmp_char('j', 't')<cr>
@@ -521,9 +525,9 @@ nnoremap <c-m> J
 "nnoremap xx "addk"aP
 
 " line dpl
-nnoremap R "zyy"zP
 nnoremap D "zyy"zP
 nnoremap S "zyy"zP
+"nnoremap R "zyy"zP
 
 " repeat memory
 "nnoremap xx qy
@@ -786,7 +790,7 @@ nnoremap b <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
 nnoremap q <esc>
-"nnoremap r <esc>
+nnoremap r <esc>
 "nnoremap s <esc>
 "nnoremap t <esc>
 "nnoremap u <esc>
@@ -812,7 +816,7 @@ nnoremap M <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
-"nnoremap R <esc>
+nnoremap R <esc>
 "nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
@@ -1092,6 +1096,9 @@ vnoremap m :call V_line_end_space__del()<cr>
 " del cursor f space
 vnoremap K :call V_cursor_f_space__del()<cr>
 
+" del v box space
+vnoremap D :call V_box_space__del()<cr>
+
 " slct box mv back
 vnoremap <c-w> :call Slctd_box__mv('l')<cr>
 
@@ -1285,7 +1292,7 @@ vnoremap x <esc>
 vnoremap A <esc>
 vnoremap B <esc>
 vnoremap C <esc>
-vnoremap D <esc>
+"vnoremap D <esc>
 "vnoremap E <esc>
 vnoremap F <esc>
 vnoremap H <esc>
