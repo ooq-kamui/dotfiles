@@ -3976,7 +3976,7 @@ func! V_box_paste() range abort
 
   if @a =~ '\_.'
     echo 'yank is include cr'
-    return
+    " return
   endif
 
   call Slct_re()
