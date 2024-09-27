@@ -1172,10 +1172,6 @@ vnoremap <c-n> :call V_srch_slct('f')<cr>
 vnoremap n :call V_srch_str__slctd_str()<cr>
 vnoremap e :call V_srch_str__slctd_str()<cr>
 
-" srch str set ( word 1 )
-"vnoremap N :call V_srch_str__slctd_str(v:true)<cr> " old
-"vnoremap E :call V_srch_str__slctd_str(v:true)<cr> " old
-
 " srch rpl one > ynk, nxt
 vnoremap <c-p> :call Slctd_rpl_srch_nxt()<cr>
 
