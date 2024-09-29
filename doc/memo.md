@@ -2,11 +2,10 @@
 # cnf
 
 
-## vim
+## ofc
 
-Rg ext
-- escape research
-- ext filter
+send_mail_flg
+- 別 reg なのを考慮する必要がある ( たぶん )
 
 
 ## svr pri rpl
@@ -16,10 +15,9 @@ Rg ext
 #### etc
 
 web svr
-- sub domain
-  - kamui.xxx setting
-  - tiki.xxx setting
-- ssl
+- ssl setting
+  - research
+  - setting
 - service
   - holo ranking
 
@@ -39,6 +37,13 @@ rpl
     - del
 - 42ya
   - del
+
+
+## vim
+
+Rg ext
+- ext filter
+- escape research
 
 
 ## fe api

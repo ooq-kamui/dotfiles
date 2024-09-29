@@ -389,7 +389,7 @@ nnoremap A :call Ynk__line_all()<cr>
 
 " slct re
 nnoremap rr :call Slct_re()<cr>
-"nnoremap r :call Slct_re()<cr>
+nnoremap r  :call Slct_re()<cr>
 
 " ynk clr
          
@@ -790,7 +790,7 @@ nnoremap b <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
 nnoremap q <esc>
-nnoremap r <esc>
+"nnoremap r <esc>
 "nnoremap s <esc>
 "nnoremap t <esc>
 "nnoremap u <esc>
@@ -2143,10 +2143,10 @@ func! Is_char_tgl_symbol(c) abort
   elseif a:c == '-'
     let l:rpl = '+'
   elseif a:c == '+'
-    let l:rpl = '*'
-  elseif a:c == '*'
     let l:rpl = '='
   elseif a:c == '='
+    let l:rpl = '*'
+  elseif a:c == '*'
     let l:rpl = '-'
 
   elseif a:c == ','
@@ -3970,9 +3970,9 @@ endfunc
 
 func! V_box_paste() range abort
 
-  if @a =~ '\_.'
+  if @a =~ '\n'
     echo 'yank is include cr'
-    " return
+    return
   endif
 
   call Slct_re()
@@ -4699,14 +4699,14 @@ endfunc
 
 func! I_symbol01() abort
 
-  let l:lst = [ '|', '&', '%', '#', '$', '\' ]
+  let l:lst = [ '|', '&', '%', '#', '$', '=', '+', '\' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
 
 func! I_symbol02() abort
 
-  let l:lst = [ ';', '-', '!', '=', '+', '?', '@', '^', '~', '/' ]
+  let l:lst = [ ';', '-', '!', '?', '@', '^', '~', '/' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
@@ -5246,17 +5246,20 @@ endif
 " ref ptn regex
 " url : xxx
 
+" \n : 改行
+" \t : tab
+
 " \s : space, tab
 " 
-" \w : [0-9A-Za-z_]   word
-" \h : [A-Za-z_]      単語の先頭文字, \w から数字を除いたもの
-" \a : [A-Za-z]       alph
-" \l : [a-z]          小文字
-" \u : [A-Z]          大文字
+" \w : [0-9A-Za-z_]  word
+" \h : [A-Za-z_]     単語の先頭文字, \w から数字を除いたもの
+" \a : [A-Za-z]      alph
+" \l : [a-z]         小文字
+" \u : [A-Z]         大文字
 " 
-" \d : [0-9]          10進数
-" \x : [0-9A-Fa-f]    16進数
-" \o : [0-7]           8進数
+" \d : [0-9]         10進数
+" \x : [0-9A-Fa-f]   16進数
+" \o : [0-7]          8進数
 "
 " \S : \s 以外
 " \D : \d 以外
@@ -5268,5 +5271,7 @@ endif
 " \L : \l 以外
 " \U : \u 以外
 
-" \_<上記> : 改行を含む上記
+" \_<上記(の\の後ろ)> : 改行を含む上記
+" ex
+"   \_s : 改行, space, tab のいずれか
 
