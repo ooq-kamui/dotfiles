@@ -760,7 +760,7 @@ nnoremap ~ <esc>
 nnoremap ^ <esc>
 "nnoremap / <esc>
 "nnoremap \ <esc>
-"nnoremap | <esc>
+"nnoremap | <esc> " replace key : <bar>
 "nnoremap <bar> <esc>
 nnoremap ? <esc>
 
@@ -1179,7 +1179,8 @@ vnoremap <c-p> :call Slctd_rpl_srch_nxt()<cr>
 "vnoremap :s 
 vnoremap <expr> :s
 \ mode() == '<c-v>' ? ':RplBox ' :
-\                     ':s///g'
+\                     ':sort'
+"\                     ':s///g'
 "\                     ':Rpl '
 
 " rpl cr ( add cr )
@@ -1243,7 +1244,7 @@ vnoremap r :call V_trns()<cr>
 vnoremap @ <esc>
 "vnoremap * <esc>
 vnoremap / <esc>
-"vnoremap \ <esc>
+vnoremap \ <esc>
 "vnoremap ! <esc>
 "vnoremap " <esc>
 "vnoremap # <esc>
@@ -1260,6 +1261,7 @@ vnoremap > <esc>
 "vnoremap + <esc>
 vnoremap , <esc>
 vnoremap . <esc>
+vnoremap <bar> <esc>
 
 "vnoremap a <esc>
 "vnoremap b <esc>

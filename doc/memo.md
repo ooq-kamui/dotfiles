@@ -2,12 +2,6 @@
 # cnf
 
 
-## ofc
-
-send_mail_flg
-- 別 reg なのを考慮する必要がある ( たぶん )
-
-
 ## svr pri rpl
 
 ### vps ( svr new )
