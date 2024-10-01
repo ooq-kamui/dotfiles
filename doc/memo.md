@@ -2,6 +2,29 @@
 # cnf
 
 
+## hm
+
+contact l carry
+
+
+## vim
+
+v box pad space at line end ovr
+- rgstr a ? 
+
+
+v box paste
+- think mb col
+
+
+vnoremap n, case v box, nnoremap n ( srch )
+
+
+Rg ext
+- ext filter
+- escape research
+
+
 ## svr pri rpl
 
 ### vps ( svr new )
@@ -31,13 +54,6 @@ rpl
     - del
 - 42ya
   - del
-
-
-## vim
-
-Rg ext
-- ext filter
-- escape research
 
 
 ## fe api

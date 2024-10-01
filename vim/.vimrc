@@ -1169,8 +1169,14 @@ vnoremap <c-n> :call V_srch_slct('f')<cr>
 "vnoremap xx    :call V_srch_slct('b')<cr>
 
 " srch str set
-vnoremap n :call V_srch_str__slctd_str()<cr>
-vnoremap e :call V_srch_str__slctd_str()<cr>
+"vnoremap n 
+vnoremap <expr> n
+\ mode() == '<c-v>' ? '<esc>' :
+\                     ':call V_srch_str__slctd_str()<cr>'
+"vnoremap e 
+vnoremap <expr> e
+\ mode() == '<c-v>' ? '<esc>' :
+\                     ':call V_srch_str__slctd_str()<cr>'
 
 " srch rpl one > ynk, nxt
 vnoremap <c-p> :call Slctd_rpl_srch_nxt()<cr>
@@ -2117,7 +2123,7 @@ func! N_char__tgl_shift() abort
     return
   endif
 
-  call Char__tgl_type_ch()
+  call Char__tgl_type_ch(l:c)
 endfunc
 
 func! Is_char_tgl_symbol(c) abort
@@ -2211,7 +2217,7 @@ func! Is_char_tgl_alpha_trn(c) abort " use not
   return l:rpl
 endfunc
 
-func! Char__tgl_type_ch() abort
+func! Char__tgl_type_ch(c) abort
 
   let l:rpl = ''
 
