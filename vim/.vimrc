@@ -4721,15 +4721,14 @@ endfunc
 
 func! I_bracket() abort
 
-  let l:lst = [ '()', '``', '[]', '{}', '<>', '""', "''" ]
+  let l:lst = [ '()', '``', '{}', '<>', '[]', '""', "''" ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
 
 func! I_markdown() abort
 
-  "let l:lst = [ '[]()', '![]()', '`>` ', '```', '---' ]
-  let l:lst = [ '[]()', '![]()', '```', '---' ]
+  let l:lst = [ '[]', '[]()', '![]()' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
