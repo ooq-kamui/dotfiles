@@ -1185,8 +1185,8 @@ vnoremap <c-p> :call Slctd_rpl_srch_nxt()<cr>
 "vnoremap :s 
 vnoremap <expr> :s
 \ mode() == '<c-v>' ? ':RplBox ' :
-\                     ':sort'
-"\                     ':s///g'
+\                     ':s///g'
+"\                     ':sort'
 "\                     ':Rpl '
 
 " rpl cr ( add cr )
@@ -1238,6 +1238,14 @@ vnoremap r :call V_trns()<cr>
 
 " tst
 "vnoremap xx :call Tst()<cr>
+
+" 
+" cmd
+" 
+
+" cmd history ( fzf )
+vnoremap <leader>: :CmdHstry<cr>
+vnoremap <leader>y :CmdHstry<cr>
 
 " 
 " nop
@@ -1622,11 +1630,13 @@ nnoremap <leader>s <esc>
 nnoremap <leader>u <esc>
 "nnoremap <leader>y <esc>
 
+"nnoremap <leader>O <esc>
+
+"vnoremap <leader>: <esc>
+
 "vnoremap <leader>l <esc>
 vnoremap <leader>u <esc>
-vnoremap <leader>y <esc>
-
-"nnoremap <leader>O <esc>
+"vnoremap <leader>y <esc>
 
 
 " 
@@ -4707,21 +4717,21 @@ endfunc
 
 func! I_symbol01() abort
 
-  let l:lst = [ '|', '&', '%', '#', '$', '=', '+', '\' ]
+  let l:lst = [ ';', '&', '%', '#', '$', '=', '+', '|' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
 
 func! I_symbol02() abort
 
-  let l:lst = [ ';', '-', '!', '?', '@', '^', '~', '/' ]
+  let l:lst = [ '-', '!', '?', '@', '^', '~', '\', '/' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
 
 func! I_bracket() abort
 
-  let l:lst = [ '()', '``', '{}', '<>', '[]', '""', "''" ]
+  let l:lst = [ '()', '``', '[]', '{}', '<>', '""', "''" ]
   call complete(col('.'), l:lst)
   return ''
 endfunc

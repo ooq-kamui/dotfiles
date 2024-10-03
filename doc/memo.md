@@ -2,12 +2,10 @@
 # cnf
 
 
-## hm
-
-contact l carry
-
-
 ## vim
+
+func param get space ?
+
 
 v box pad space at line end ovr
 - rgstr a ? 
