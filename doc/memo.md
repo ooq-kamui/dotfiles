@@ -2,37 +2,28 @@
 # cnf
 
 
-## vim
+## fish alias cre
 
-func param get space ?
+rsync lcl
 
+npm run build
 
-v box pad space at line end ovr
-- rgstr a ? 
-
-
-v box paste
-- think mb col
-
-
-vnoremap n, case v box, nnoremap n ( srch )
-
-
-Rg ext
-- ext filter
-- escape research
+rsync svr
 
 
 ## svr pri rpl
 
-### vps ( svr new )
-
-#### etc
+### vps
 
 web svr
-- ssl setting
-  - research
-  - setting
+- ssl
+  - official cirtificate
+    - reg at sakura
+    - csr
+      - cre
+
+  - svr setting
+
 - service
   - holo ranking
 
@@ -52,6 +43,17 @@ rpl
     - del
 - 42ya
   - del
+
+
+## vim
+
+func param get space ?
+- research
+
+
+Rg ext
+- ext filter
+- escape research
 
 
 ## fe api

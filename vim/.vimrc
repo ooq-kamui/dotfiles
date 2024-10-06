@@ -1081,7 +1081,8 @@ vnoremap <expr> s
 "vnoremap s "zx
 
 " del str pad space
-vnoremap S "aygvr gv
+" vnoremap S "aygvr gv
+vnoremap S "zygvr gv
 " vnoremap S :call V_slctd__space()<cr> " use not
 
 " line __ join per line
@@ -1171,7 +1172,7 @@ vnoremap <c-n> :call V_srch_slct('f')<cr>
 " srch str set
 "vnoremap n 
 vnoremap <expr> n
-\ mode() == '<c-v>' ? '<esc>' :
+\ mode() == '<c-v>' ? '<esc>:call Srch("f")<cr>' :
 \                     ':call V_srch_str__slctd_str()<cr>'
 "vnoremap e 
 vnoremap <expr> e
@@ -2235,6 +2236,25 @@ func! Char__tgl_type_ch(c) abort
     let l:rpl = '`'
   elseif a:c == "'"
     let l:rpl = '`'
+
+  elseif a:c == "{"
+    let l:rpl = '['
+  elseif a:c == "["
+    let l:rpl = '('
+  elseif a:c == "("
+    let l:rpl = '<'
+  elseif a:c == "<"
+    let l:rpl = '{'
+
+  elseif a:c == "}"
+    let l:rpl = ']'
+  elseif a:c == "]"
+    let l:rpl = ')'
+  elseif a:c == ")"
+    let l:rpl = '>'
+  elseif a:c == ">"
+    let l:rpl = '}'
+
   endif
 
   if ! Is_str_emp(l:rpl)
@@ -3994,15 +4014,17 @@ func! V_box_paste() range abort
   endif
 
   call Slct_re()
-
-  call Normal('"zd')
-
-  let l:col = Cursor_col_num()
+  call Cursor__mv_slctd_l()
+  call Normal("\<esc>")
 
   for line_num in range(a:firstline, a:lastline)
 
-    call Cursor__mv_by_line_col(l:line_num, l:col)
+    let l:col = Cursor_col_num()
+
     call Paste()
+
+    call Cursor__mv_by_line_col(l:line_num, l:col)
+    call Normal('j')
   endfor
 endfunc
 
