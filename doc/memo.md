@@ -2,6 +2,21 @@
 # cnf
 
 
+## vim
+
+vnoremap n ??
+- case cr ( line mlt )
+
+
+func param get space ?
+- research
+
+
+Rg ext
+- ext filter
+- escape research
+
+
 ## fish alias cre
 
 rsync lcl
@@ -43,17 +58,6 @@ rpl
     - del
 - 42ya
   - del
-
-
-## vim
-
-func param get space ?
-- research
-
-
-Rg ext
-- ext filter
-- escape research
 
 
 ## fe api
