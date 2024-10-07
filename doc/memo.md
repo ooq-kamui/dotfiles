@@ -17,6 +17,12 @@ Rg ext
 - escape research
 
 
+## doc-tech
+
+- ssg
+- github
+
+
 ## fish alias cre
 
 rsync lcl
@@ -33,11 +39,14 @@ rsync svr
 web svr
 - ssl
   - official cirtificate
-    - reg at sakura
-    - csr
-      - cre
+    - xxx.key
+      - bk lcl
+    - pay
+    - svr setting
 
-  - svr setting
+  - www
+    - console setting
+      - at onamae
 
 - service
   - holo ranking
@@ -60,6 +69,28 @@ rpl
   - del
 
 
+<<<<<<< Updated upstream
+=======
+## vim
+
+func param get space ?
+- research
+
+
+Rg ext
+- ext filter
+- escape research
+
+
+## doc-tech
+
+fish alias cre
+- rsync lcl
+- npm run build
+- rsync svr
+
+
+>>>>>>> Stashed changes
 ## fe api
 
 by aws pri ?
