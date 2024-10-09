@@ -650,6 +650,7 @@ nnoremap t :call N_tag_jmp()<cr>
 
 " cmd history ( fzf )
 nnoremap <leader>: :CmdHstry<cr>
+nnoremap <leader>a :CmdHstry<cr>
 nnoremap <leader>y :CmdHstry<cr>
 
 " sys cmd
@@ -749,6 +750,8 @@ nnoremap <s-space> <esc>
 "nnoremap <cr>    <esc>
 nnoremap <bs>    <esc>
 
+nnoremap - <esc>
+nnoremap + <esc>
 "nnoremap = <esc>
 nnoremap @ <esc>
 "nnoremap ; <esc>
@@ -1081,9 +1084,15 @@ vnoremap <expr> s
 "vnoremap s "zx
 
 " del str pad space
-" vnoremap S "aygvr gv
 vnoremap S "zygvr gv
-" vnoremap S :call V_slctd__space()<cr> " use not
+" vnoremap S "aygvr gv
+" vnoremap S :call V_slctd__space()<cr> " use not ?
+
+" del str pad -
+vnoremap - "zygvr-gv
+
+" del str pad |
+vnoremap <bar> "zygvr<bar>gv
 
 " line __ join per line
 vnoremap J :call V_line__join_per_line(3)
@@ -1113,14 +1122,14 @@ vnoremap <c-s> :call Slctd_box_str__mv('l')<cr>
 vnoremap <c-f> :call Slctd_box_str__mv('r')<cr>
 
 " num icl
-vnoremap + <c-a>gv
+"vnoremap + <c-a>gv
 
 " num dcl
-vnoremap - <c-x>gv
+"vnoremap - <c-x>gv
 
 " num seq
-vnoremap * g<c-a>
 vnoremap = g<c-a>
+vnoremap * g<c-a>
 
 " indnt shft
 vnoremap # >gv
@@ -1273,10 +1282,11 @@ vnoremap ( <esc>
 vnoremap < <esc>
 vnoremap > <esc>
 "vnoremap = <esc>
-"vnoremap + <esc>
+"vnoremap - <esc>
+vnoremap + <esc>
 vnoremap , <esc>
 vnoremap . <esc>
-vnoremap <bar> <esc>
+"vnoremap <bar> <esc>
 
 "vnoremap a <esc>
 "vnoremap b <esc>
@@ -1615,6 +1625,7 @@ tnoremap <c-_> <c-\><c-n>
 
 "nnoremap <leader>: <esc>
 
+"nnoremap <leader>a <esc>
 nnoremap <leader>c <esc>
 nnoremap <leader>d <esc>
 "nnoremap <leader>e <esc>

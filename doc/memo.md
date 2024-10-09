@@ -4,6 +4,11 @@
 
 ## vim
 
+vnoremap -
+- fnc cre
+- vnoremap <bar>
+
+
 vnoremap n ??
 - case cr ( line mlt )
 
@@ -15,12 +20,6 @@ func param get space ?
 Rg ext
 - ext filter
 - escape research
-
-
-## doc-tech
-
-- ssg
-- github
 
 
 ## fish alias cre
@@ -69,20 +68,11 @@ rpl
   - del
 
 
-<<<<<<< Updated upstream
-=======
-## vim
-
-func param get space ?
-- research
-
-
-Rg ext
-- ext filter
-- escape research
-
-
 ## doc-tech
+
+- ssg
+- github
+
 
 fish alias cre
 - rsync lcl
@@ -90,7 +80,6 @@ fish alias cre
 - rsync svr
 
 
->>>>>>> Stashed changes
 ## fe api
 
 by aws pri ?

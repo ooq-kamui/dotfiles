@@ -149,22 +149,21 @@ alias uconv '/opt/homebrew/Cellar/icu4c/73.2/bin/uconv'
 # bind
 # 
 
-bind \c_ 'clear; commandline -f repaint'
-
 # corsor mv char
 bind \cs backward-char
 bind \cl forward-char
-#bind \cf forward-char
 
 # corsor mv word
 bind \co backward-word
 bind \cf forward-word
-#bind \cl forward-word
 
 #bind \cx backward-delete-char
 bind \ck kill-word
 
 # cmdline
+
+bind \c_ 'clear; commandline -f repaint'
+
 #bind \cc cmdline_pbcopy
 bind \cc cmdline_clp
 
@@ -176,6 +175,8 @@ bind \cb cmdline_bracket
 bind \ct cmdline_date
 
 bind \cx cmdline_his_del
+
+bind \cx 'cmdline_his_del;'
 
 # fzf
 
