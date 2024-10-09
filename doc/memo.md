@@ -2,6 +2,12 @@
 # cnf
 
 
+## ofc
+
+fnc ref cre
+- used
+
+
 ## vim
 
 vnoremap -
@@ -80,7 +86,20 @@ fish alias cre
 - rsync svr
 
 
+## pri
+
+apl adrs real ch
+- research
+
+
 ## fe api
+
+ggl, bsky
+- lucina
+- celica
+- kamilla
+- liz
+
 
 by aws pri ?
 - api-gateway cre
