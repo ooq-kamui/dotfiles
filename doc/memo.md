@@ -2,12 +2,6 @@
 # cnf
 
 
-## ofc
-
-fnc ref cre
-- used
-
-
 ## vim
 
 vnoremap -
@@ -26,6 +20,7 @@ func param get space ?
 Rg ext
 - ext filter
 - escape research
+- 1 ext
 
 
 ## fish alias cre
@@ -87,6 +82,9 @@ fish alias cre
 
 
 ## pri
+
+nail cut hand
+
 
 apl adrs real ch
 - research

@@ -4035,7 +4035,10 @@ func! V_box_paste() range abort
     call Paste()
 
     call Cursor__mv_by_line_col(l:line_num, l:col)
-    call Normal('j')
+
+    if l:line_num != a:lastline
+      call Normal('j')
+    endif
   endfor
 endfunc
 
