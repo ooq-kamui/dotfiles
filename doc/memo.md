@@ -5,8 +5,11 @@
 ## vim
 
 vnoremap -
-- fnc cre
-- vnoremap <bar>
+- fnc nize
+  - cre
+  - prm
+    - vnoremap -
+    - vnoremap <bar>
 
 
 vnoremap n ??
@@ -83,11 +86,24 @@ fish alias cre
 
 ## pri
 
+watch timer bluetooth
+- try
+
+
 nail cut hand
 
 
 apl adrs real ch
 - research
+
+
+## ofc
+
+contact carry
+- line 2
+
+
+keyboarc, square +1
 
 
 ## fe api
