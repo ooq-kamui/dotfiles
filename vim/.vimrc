@@ -360,10 +360,10 @@ nnoremap r<space>j :call Cursor__mv_jmp_char('j', 'f')<cr>
 "nnoremap xx zz
 
 " win mv r
-" nnoremap xx <c-w>l
+"nnoremap xx <c-w>l
 
 " win mv l
-" nnoremap xx <c-w>h
+"nnoremap xx <c-w>h
 
 " win nxt
 nnoremap <c-w> <c-w>w
@@ -686,7 +686,7 @@ nnoremap <s-right> :tabm+1<cr>
 " term
 " 
 
-nnoremap xx :Term 
+"nnoremap xx :Term 
 
 " 
 " mark
@@ -890,6 +890,8 @@ nnoremap gv <esc>
 nnoremap gw <esc>
 nnoremap gy <esc>
 
+nnoremap xx <esc>
+
 nnoremap :a :a
 nnoremap :b :b
 nnoremap :c :c
@@ -1083,16 +1085,14 @@ vnoremap <expr> s
 \                     '"zx'
 "vnoremap s "zx
 
-" del str pad space
-vnoremap S "zygvr gv
-" vnoremap S "aygvr gv
-" vnoremap S :call V_slctd__space()<cr> " use not ?
+" pad space
+vnoremap S :call V_slctd__pad_space()<cr>
 
-" del str pad -
-vnoremap - "zygvr-gv
+" pad -
+vnoremap - :call V_slctd__pad('-')<cr>
 
-" del str pad |
-vnoremap <bar> "zygvr<bar>gv
+"  pad |
+vnoremap <bar> :call V_slctd__pad_bar()<cr>
 
 " line __ join per line
 vnoremap J :call V_line__join_per_line(3)
@@ -1179,10 +1179,10 @@ vnoremap <c-n> :call V_srch_slct('f')<cr>
 "vnoremap xx    :call V_srch_slct('b')<cr>
 
 " srch str set
-"vnoremap n 
-vnoremap <expr> n
-\ mode() == '<c-v>' ? '<esc>:call Srch("f")<cr>' :
-\                     ':call V_srch_str__slctd_str()<cr>'
+vnoremap n :call V_srch()<cr>
+"vnoremap <expr> n
+"\ mode() == '<c-v>' ? '<esc>:call Srch("f")<cr>' :
+"\                     ':call V_srch_str__slctd_str()<cr>'
 "vnoremap e 
 vnoremap <expr> e
 \ mode() == '<c-v>' ? '<esc>' :
@@ -1455,7 +1455,12 @@ inoremap <expr> <c-j>
 inoremap <c-y> <c-r>=I_num()<cr>
 
 " ins symbol
+
 inoremap <c-r> <c-r>=I_symbol01()<cr>
+"inoremap <expr> <c-r>
+"\ pumvisible() ? '<esc><c-r>=I_symbol01()<cr>' : " run not 
+"\                '     <c-r>=I_symbol01()<cr>'
+
 inoremap <c-f> <c-r>=I_symbol02()<cr>
 
 " ins markdown
@@ -1791,11 +1796,6 @@ if Is_env('mac') || Is_env('linux') || Is_env('win64')
   let g:fzf_rg_opt .= ' -g "!.git"'
 endif
 
-"if Is_env('linux') || Is_env('win64')
-"
-"  let g:fzf_rg_opt .= ' -g "!#current-cloud-backend"'
-"endif
-
 if Is_env('mac') || Is_env('linux') || Is_env('win64')
 
   command! -bang -nargs=* Rg
@@ -1825,18 +1825,6 @@ func! Rg_ext(...) abort
   echo shellescape(escape(l:str, '().$'))
 
 
-  " command! -bang -nargs=* RgExt
-  " \ call fzf#vim#grep(
-  " \   'rg ' . g:fzf_rg_opt
-  " \   . ' -- '.shellescape(escape(l:str, '().$')),
-  " \   0,
-  " \   fzf#vim#with_preview(
-  " \     {'options': '--exact --delimiter : --nth 3..'},
-  " \     'up:70%:hidden',
-  " \     'ctrl-u'
-  " \   ),
-  " \   <bang>1
-  " \ )
 endfunc
 
 
@@ -3879,11 +3867,31 @@ func! V_slctd__del() abort " dev doing, can
   let @+ = @a
 endfunc
 
-func! V_slctd__space() range abort " do not intended
+" slctd __ pad
 
-  call Normal('gv')
-  call Normal('r ')
-  call Normal('gv')
+func! V_slctd__pad(char) range abort
+
+  let l:char = a:char
+
+  call Slct_re()
+
+  if l:char == '|'
+    let l:char = "\<bar>"
+  endif
+
+  call Normal('r' . l:char)
+
+  call Slct_re()
+endfunc
+
+func! V_slctd__pad_space() range abort
+
+  call V_slctd__pad(' ')
+endfunc
+
+func! V_slctd__pad_bar() range abort
+
+  call V_slctd__pad('|')
 endfunc
 
 " slctd ins
@@ -3938,6 +3946,15 @@ endfunc
 func! Is_slctd_str_eq_srch_str() abort
 
   if Slctd_str() == @/
+    return v:true
+  else
+    return v:false
+  endif
+endfunc
+
+func! Is_slctd_str_line_mlt() abort
+
+  if Slctd_str() =~ '\n'
     return v:true
   else
     return v:false
@@ -4081,13 +4098,16 @@ func! Srch(dir) abort
   call search(l:str, l:op)
 endfunc
 
-func! V_srch(dir) abort " use not
+func! V_srch() abort " srch, set or run
 
-  if Is_slctd_str_eq_srch_str()
-    return
+  if Is_slctd_str_line_mlt()
+
+    call Slct_re()
+    call Srch("f")
+
+  else
+    call V_srch_str__slctd_str()
   endif
-
-  call V_srch_str__slctd_str()
 endfunc
 
 command! -nargs=* SrchOr call Srch_or(<f-args>)
@@ -4207,6 +4227,14 @@ func! Srch_str__prv_tgl() abort
 endfunc
 
 func! V_srch_str__slctd_str() abort
+
+  if Is_slctd_str_line_mlt()
+    return
+  endif
+
+  if Is_slctd_str_eq_srch_str()
+    return
+  endif
 
   let l:str = Slctd_str()
   call Srch_str__(l:str, v:false)
@@ -5004,7 +5032,6 @@ endfunc
 func! Load_re() abort
 
   call Exe('e ')
-  "nnoremap xx :e!
 endfunc
 
 " encode confirm

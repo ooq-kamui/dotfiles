@@ -2,42 +2,23 @@
 # cnf
 
 
-## vim
+## doc-tech
 
-vnoremap -
-- fnc nize
-  - cre
-  - prm
-    - vnoremap -
-    - vnoremap <bar>
-
-
-vnoremap n ??
-- case cr ( line mlt )
+doc-tech-ds
+- lcl
+  - init
+  - push
+- remote
+  - pushd
 
 
-func param get space ?
-- research
+fish alias cre
+- rsync lcl
+- npm run build
+- rsync svr
 
 
-Rg ext
-- ext filter
-- escape research
-- 1 ext
-
-
-## fish alias cre
-
-rsync lcl
-
-npm run build
-
-rsync svr
-
-
-## svr pri rpl
-
-### vps
+## sakura vps
 
 web svr
 - ssl
@@ -59,7 +40,25 @@ setting at sakura console
 - firewall
 
 
-### svr old
+## bsky
+
+camilla
+- top img
+  - fe if movie
+
+
+## vim
+
+Rg ext 1
+- opt cre add
+  - fzf_rg_opt_ext
+
+
+func param get space ?
+- research
+
+
+## svr old
 
 rpl
 - holo ranking
@@ -72,48 +71,7 @@ rpl
   - del
 
 
-## doc-tech
-
-- ssg
-- github
-
-
-fish alias cre
-- rsync lcl
-- npm run build
-- rsync svr
-
-
-## pri
-
-watch timer bluetooth
-- try
-
-
-nail cut hand
-
-
-apl adrs real ch
-- research
-
-
-## ofc
-
-contact carry
-- line 2
-
-
-keyboarc, square +1
-
-
 ## fe api
-
-ggl, bsky
-- lucina
-- celica
-- kamilla
-- liz
-
 
 by aws pri ?
 - api-gateway cre
