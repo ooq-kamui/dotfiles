@@ -2,6 +2,17 @@
 # cnf
 
 
+## vim
+
+Rg ext 1
+- opt cre add
+  - fzf_rg_opt_ext
+
+
+func param get space ?
+- research
+
+
 ## doc-tech
 
 doc-tech-ds
@@ -40,24 +51,6 @@ setting at sakura console
 - firewall
 
 
-## bsky
-
-camilla
-- top img
-  - fe if movie
-
-
-## vim
-
-Rg ext 1
-- opt cre add
-  - fzf_rg_opt_ext
-
-
-func param get space ?
-- research
-
-
 ## svr old
 
 rpl
@@ -73,11 +66,7 @@ rpl
 
 ## fe api
 
-by aws pri ?
-- api-gateway cre
-
-- lambda cre
-  - dynamo db access
+db tbl > json
 
 
 ## docker
