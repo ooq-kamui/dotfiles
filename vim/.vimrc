@@ -4781,14 +4781,14 @@ endfunc
 
 func! I_symbol01() abort
 
-  let l:lst = [ ';', '&', '%', '#', '$', '+', '=', '|' ]
+  let l:lst = [ ';', '%', '#', '$', '@' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
 
 func! I_symbol02() abort
 
-  let l:lst = [ '-', '!', '?', '@', '^', '~', '\', '/' ]
+  let l:lst = [ '-', '!', '?', '=', '+', '^', '~', '&', '|', '\', '/' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
