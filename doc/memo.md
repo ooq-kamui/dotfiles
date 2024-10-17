@@ -2,31 +2,16 @@
 # cnf
 
 
-## vim
-
-Rg ext 1
-- opt cre add
-  - fzf_rg_opt_ext
-
-
-func param get space ?
-- research
-
-
 ## doc-tech
 
 doc-tech-ds
-- lcl
-  - init
-  - push
-- remote
-  - pushd
+- dir new
+  - build
+    - err
 
+rsync svr
 
-fish alias cre
-- rsync lcl
-- npm run build
-- rsync svr
+ofc git setting
 
 
 ## sakura vps
@@ -51,6 +36,22 @@ setting at sakura console
 - firewall
 
 
+## vim
+
+Rg ext 1
+- opt cre add
+  - fzf_rg_opt_ext
+
+
+func param get space ?
+- research
+
+
+## fe api
+
+db tbl > json
+
+
 ## svr old
 
 rpl
@@ -62,11 +63,6 @@ rpl
     - del
 - 42ya
   - del
-
-
-## fe api
-
-db tbl > json
 
 
 ## docker
