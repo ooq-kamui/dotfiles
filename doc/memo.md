@@ -2,16 +2,14 @@
 # cnf
 
 
-## doc-tech
+## doc-tech-ds
 
-doc-tech-ds
-- dir new
-  - build
-    - err
+hm
+- build err
+- rsync svr, fish
 
-rsync svr
-
-ofc git setting
+write
+- git config, name, email
 
 
 ## sakura vps
