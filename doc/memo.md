@@ -2,33 +2,20 @@
 # cnf
 
 
-## doc-tech
+## vim
 
-doc-tech-ds
-- dir new
-  - build
-    - err
-
-rsync svr
-
-ofc git setting
+func param get space ?
+- research
 
 
 ## sakura vps
 
-web svr
+web-svr
 - ssl
-  - official cirtificate
-    - xxx.key
-      - bk lcl
-    - pay
-    - svr setting
+  - confirm at ofc
 
-  - www
-    - console setting
-      - at onamae
-
-- service
+service
+- mv ( cp )
   - holo ranking
 
 
@@ -36,15 +23,9 @@ setting at sakura console
 - firewall
 
 
-## vim
+## warp
 
-Rg ext 1
-- opt cre add
-  - fzf_rg_opt_ext
-
-
-func param get space ?
-- research
+fish setting
 
 
 ## fe api

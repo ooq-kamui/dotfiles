@@ -623,7 +623,9 @@ nnoremap :s :%s///g
 " grep ( fzf )
 nnoremap <leader>o :Rg <cr>
 
+" grep ( fzf ), ext
 nnoremap <leader>O :RgExt js
+" nnoremap <leader>O :call Rg_ext('js')
 
 " grep ( fzf )  -  myrun
 " nnoremap <leader>O :FzfByRgMyrun <cr>
@@ -1222,7 +1224,6 @@ vnoremap <leader>i :call V_grep_buf()<cr>
 
 " grep ( fzf )
 vnoremap <leader>o "zy:Rg <c-r>z<cr>
-"vnoremap <leader>o "zy:Rg <c-r>z
 
 " grep [rg]   ( read )
 "vnoremap xx "zy:GrepStr <c-r>z
@@ -1800,7 +1801,7 @@ if Is_env('mac') || Is_env('linux') || Is_env('win64')
 
   command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg ' . g:fzf_rg_opt
+  \   'rg ' . g:fzf_rg_opt . g:fzf_rg_opt_ext
   \   . ' -- '.shellescape(escape(<q-args>, '().$')),
   \   0,
   \   fzf#vim#with_preview(
@@ -1811,22 +1812,35 @@ if Is_env('mac') || Is_env('linux') || Is_env('win64')
   \   <bang>1
   \ )
 
-  " dev doing dev doing
-  command! -bang -nargs=* RgExt call Rg_ext(<f-args>)
+  " tst
+  command! -bang -nargs=1 RgExt call Rg_ext(<f-args>)
+  " command! -bang -nargs=* RgExt
+  " \ call fzf#vim#grep(
+  " \   'rg ' . g:fzf_rg_opt . g:fzf_rg_opt_ext
+  " \   . ' -- '.shellescape(escape(<q-args>, '().$')),
+  " \   0,
+  " \   fzf#vim#with_preview(
+  " \     {'options': '--exact --delimiter : --nth 3..'},
+  " \     'up:70%:hidden',
+  " \     'ctrl-u'
+  " \   ),
+  " \   <bang>1
+  " \ )
 endif
 
-func! Rg_ext(...) abort
+let g:fzf_rg_opt_ext = ''
 
-  let l:ext = a:1
-  let l:str = exists('a:2') ? a:2 : ''
+func! Rg_ext(ext) abort
 
-  let g:fzf_rg_opt .= ' -g "!.' . l:ext . '"'
+  let l:ext = a:ext
 
-  echo shellescape(escape(l:str, '().$'))
+  let g:fzf_rg_opt_ext = ' -g "*.' . l:ext . '"'
 
+  " call Exe('RgExt')
+  call Exe('Rg')
 
+  let g:fzf_rg_opt_ext = ''
 endfunc
-
 
 " grep buf
 func! N_grep_buf() abort
