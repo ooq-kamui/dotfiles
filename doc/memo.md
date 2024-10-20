@@ -14,9 +14,11 @@ web-svr
 - ssl
   - confirm at ofc
 
-service
-- mv ( cp )
-  - holo ranking
+
+service mv ( cp )
+- doc-tech-ds
+- ooq-artcl
+- holo ranking
 
 
 setting at sakura console
