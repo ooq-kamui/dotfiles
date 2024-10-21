@@ -8,6 +8,10 @@ func param get space ?
 - research
 
 
+vnoremap xx Rg
+- escape('().')
+
+
 ## sakura vps
 
 web-svr

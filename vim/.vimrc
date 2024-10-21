@@ -1224,6 +1224,7 @@ vnoremap <leader>i :call V_grep_buf()<cr>
 
 " grep ( fzf )
 vnoremap <leader>o "zy:Rg <c-r>z<cr>
+"vnoremap <leader>o "zy:Rg <c-r>z
 
 " grep [rg]   ( read )
 "vnoremap xx "zy:GrepStr <c-r>z
