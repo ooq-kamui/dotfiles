@@ -2,6 +2,14 @@
 # cnf
 
 
+## sakura vps
+
+web-svr
+- ssl
+  - confirm at komeda
+    - crt
+
+
 ## vim
 
 func param get space ?
@@ -15,12 +23,6 @@ vnoremap xx Rg
 
 
 ## sakura vps
-
-web-svr
-- ssl
-  - confirm at ofc
-    - crt
-
 
 site mv ( cp )
 - doc-tech-ds
@@ -56,7 +58,7 @@ github
 
 ### git setting
 
-pw : access token
+repo permission setting
 
 
 ## warp
