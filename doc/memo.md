@@ -2,12 +2,21 @@
 # cnf
 
 
-## sakura vps
+## doc-tech-ds
 
-web-svr
-- ssl
-  - confirm at komeda
-    - crt
+### write
+
+github
+- index div
+
+### setting
+
+psh at xx
+
+
+## ofc
+
+aws export ggl
 
 
 ## vim
@@ -20,6 +29,19 @@ func param get space ?
 
 vnoremap xx Rg
 - escape('().')
+
+
+## warp
+
+fish setting
+
+
+## sakura vps
+
+web-svr
+- ssl
+  - confirm at komeda
+    - crt
 
 
 ## sakura vps
@@ -39,33 +61,6 @@ setting at sakura console
 - firewall
 
 
-## ofc
-
-tst account mail
-- tidy
-
-
-md write
-- logout, auth expire
-
-
-## doc-tech-ds
-
-### write
-
-github
-- index div
-
-### git setting
-
-repo permission setting
-
-
-## warp
-
-fish setting
-
-
 ## fe api
 
 db tbl > json
@@ -73,7 +68,7 @@ db tbl > json
 
 ## svr old
 
-rpl
+bk lcl
 - holo ranking
 - fe api
   - mysql dmp
