@@ -2,23 +2,6 @@
 # cnf
 
 
-## doc-tech-ds
-
-### write
-
-github
-- index div
-
-### setting
-
-psh at xx
-
-
-## ofc
-
-aws export ggl
-
-
 ## vim
 
 func param get space ?
