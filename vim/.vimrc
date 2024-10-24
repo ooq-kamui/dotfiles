@@ -388,7 +388,7 @@ nnoremap v <c-v>
 nnoremap A :call Ynk__line_all()<cr>
 
 " slct re
-nnoremap rr :call Slct_re()<cr>
+"nnoremap rr :call Slct_re()<cr>
 nnoremap r  :call Slct_re()<cr>
 
 " ynk clr
@@ -433,6 +433,11 @@ nnoremap <c-h> <c-r>
 
 " mode ins
 nnoremap <space> i
+
+" mode ins rpl
+nnoremap R  R
+nnoremap rr R
+"nnoremap <leader><space> R
 
 " ins line
 " ref nnoremap y
@@ -526,8 +531,7 @@ nnoremap <c-m> J
 
 " line dpl
 nnoremap D "zyy"zP
-nnoremap S "zyy"zP
-"nnoremap R "zyy"zP
+"nnoremap S "zyy"zP
 
 " repeat memory
 "nnoremap xx qy
@@ -821,8 +825,8 @@ nnoremap M <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
-nnoremap R <esc>
-"nnoremap S <esc>
+"nnoremap R <esc>
+nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap W <esc>

@@ -2,7 +2,19 @@
 # cnf
 
 
+## hm
+
+sleep time mod
+
+keyboard square
+
+cd cp re
+
+
 ## vim
+
+v, cr あり srch ?
+
 
 func param get space ?
 - research
