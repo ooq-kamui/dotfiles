@@ -2,18 +2,10 @@
 # cnf
 
 
-## hm
-
-sleep time mod
-
-keyboard square
-
-cd cp re
-
-
 ## vim
 
 v, cr あり srch ?
+- tst
 
 
 func param get space ?
@@ -40,8 +32,6 @@ web-svr
     - crt
 
 
-## sakura vps
-
 site mv ( cp )
 - doc-tech-ds
   - rsync ( fish )
@@ -55,6 +45,15 @@ site mv ( cp )
 
 setting at sakura console
 - firewall
+
+
+## hm
+
+sleep time mod
+
+keyboard square
+
+cd cp re
 
 
 ## fe api
