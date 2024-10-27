@@ -4,10 +4,6 @@
 
 ## vim
 
-v, cr あり srch ?
-- tst
-
-
 func param get space ?
 - research
 - try
@@ -19,18 +15,11 @@ vnoremap xx Rg
 - escape('().')
 
 
-## warp
-
-fish setting
+v, cr あり srch ?
+- tst
 
 
 ## sakura vps
-
-web-svr
-- ssl
-  - confirm at komeda
-    - crt
-
 
 site mv ( cp )
 - doc-tech-ds
@@ -43,17 +32,29 @@ site mv ( cp )
   - rsync ( fish )
 
 
+web-svr
+- ssl
+  - confirm at komeda
+    - crt
+
+
 setting at sakura console
 - firewall
 
 
-## hm
+## skr svr old
 
-sleep time mod
+ssl continue
 
-keyboard square
 
-cd cp re
+## ofc win
+
+lang english
+
+
+## warp
+
+fish setting
 
 
 ## fe api
@@ -61,7 +62,7 @@ cd cp re
 db tbl > json
 
 
-## svr old
+## skr svr old
 
 bk lcl
 - holo ranking
