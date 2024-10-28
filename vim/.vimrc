@@ -388,8 +388,8 @@ nnoremap v <c-v>
 nnoremap A :call Ynk__line_all()<cr>
 
 " slct re
-"nnoremap rr :call Slct_re()<cr>
 nnoremap r  :call Slct_re()<cr>
+"nnoremap rr :call Slct_re()<cr>
 
 " ynk clr
          
@@ -436,6 +436,7 @@ nnoremap <space> i
 
 " mode ins rpl
 nnoremap R  R
+nnoremap r<space> R
 nnoremap rr R
 "nnoremap <leader><space> R
 

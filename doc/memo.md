@@ -2,6 +2,11 @@
 # cnf
 
 
+## ofc win
+
+lang english
+
+
 ## vim
 
 func param get space ?
@@ -42,16 +47,6 @@ setting at sakura console
 - firewall
 
 
-## skr svr old
-
-ssl continue
-
-
-## ofc win
-
-lang english
-
-
 ## warp
 
 fish setting
@@ -60,6 +55,8 @@ fish setting
 ## fe api
 
 db tbl > json
+
+repo cre github
 
 
 ## skr svr old
