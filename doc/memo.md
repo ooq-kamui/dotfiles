@@ -9,6 +9,9 @@ lang english
 
 ## vim
 
+v p , think at line end
+
+
 func param get space ?
 - research
 - try
