@@ -2,9 +2,11 @@
 # cnf
 
 
-## ofc win
+## hm
 
-lang english
+watch
+- charge
+- os upd
 
 
 ## vim
