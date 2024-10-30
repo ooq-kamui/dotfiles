@@ -2,13 +2,6 @@
 # cnf
 
 
-## hm
-
-watch
-- charge
-- os upd
-
-
 ## vim
 
 v p , think at line end
