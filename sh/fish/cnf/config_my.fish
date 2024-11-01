@@ -174,7 +174,8 @@ bind \cb cmdline_bracket
 
 #bind \c? cmdline_quote
 
-bind \ct cmdline_date
+#bind \ct cmdline_date
+bind \ct cmdline_ts
 
 bind \cx cmdline_his_del
 
