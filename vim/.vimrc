@@ -532,7 +532,6 @@ nnoremap <c-m> J
 
 " line dpl
 nnoremap D "zyy"zP
-"nnoremap S "zyy"zP
 
 " repeat memory
 "nnoremap xx qy
@@ -543,6 +542,9 @@ nnoremap u :call N_char__tgl()<cr>
 
 " char tgl type ch
 nnoremap U :call N_char__tgl_shift()<cr>
+
+" char del
+nnoremap S :call Cursor_char__del_ynk()<cr>
 
 " num icl
 "nnoremap xx :call Cursor_str__icl()<cr>
@@ -630,7 +632,6 @@ nnoremap <leader>o :Rg <cr>
 
 " grep ( fzf ), ext
 nnoremap <leader>O :RgExt js
-" nnoremap <leader>O :call Rg_ext('js')
 
 " grep ( fzf )  -  myrun
 " nnoremap <leader>O :FzfByRgMyrun <cr>
@@ -734,7 +735,7 @@ nnoremap :w :set wrap!
 nnoremap :n :set number!
 
 " tst
-"nnoremap xx :call Tst()<cr>
+" nnoremap xx :call Tst()<cr>
 
 " numpad shift
 nnoremap <kInsert>   0
@@ -827,7 +828,7 @@ nnoremap M <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
 "nnoremap R <esc>
-nnoremap S <esc>
+"nnoremap S <esc>
 nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap W <esc>
@@ -1088,9 +1089,12 @@ vnoremap <expr> d
 " del str > ynk not
 "vnoremap s xx
 vnoremap <expr> s
-\ mode() == '<c-v>' ? '"zdgv' :
+\ mode() == '<c-v>' ? ':call Slctd__del()<cr>' :
 \                     '"zx'
-"vnoremap s "zx
+
+" vnoremap <expr> s
+" \ mode() == '<c-v>' ? '"zdgv' :
+" \                     '"zx'
 
 " pad space
 vnoremap S :call V_slctd__pad_space()<cr>
@@ -1149,6 +1153,7 @@ vnoremap ; =gv
 
 " indnt tab   > space
 vnoremap :e :call V_line_indnt__space(2)
+vnoremap t  :call V_line_indnt__space(2)
 
 " indnt space > tab
 "vnoremap xx :call V_line_indnt__tab(2)<cr>
@@ -1229,14 +1234,13 @@ vnoremap <leader>i :call V_grep_buf()<cr>
 
 " grep ( fzf )
 vnoremap <leader>o "zy:Rg <c-r>z<cr>
-"vnoremap <leader>o "zy:Rg <c-r>z
 
 " grep [rg]   ( read )
 "vnoremap xx "zy:GrepStr <c-r>z
 "vnoremap xx "zy:GrepWrd <c-r>z
 
 " tag jmp
-vnoremap t :call V_tag_jmp()<cr>
+"vnoremap t :call V_tag_jmp()<cr>
 
 " opn app
 vnoremap go :call V_opn_app()<cr>
@@ -1820,18 +1824,6 @@ if Is_env('mac') || Is_env('linux') || Is_env('win64')
 
   " tst
   command! -bang -nargs=1 RgExt call Rg_ext(<f-args>)
-  " command! -bang -nargs=* RgExt
-  " \ call fzf#vim#grep(
-  " \   'rg ' . g:fzf_rg_opt . g:fzf_rg_opt_ext
-  " \   . ' -- '.shellescape(escape(<q-args>, '().$')),
-  " \   0,
-  " \   fzf#vim#with_preview(
-  " \     {'options': '--exact --delimiter : --nth 3..'},
-  " \     'up:70%:hidden',
-  " \     'ctrl-u'
-  " \   ),
-  " \   <bang>1
-  " \ )
 endif
 
 let g:fzf_rg_opt_ext = ''
@@ -2830,51 +2822,6 @@ func! Cursor_col_idx() abort
   return l:idx
 endfunc
 
-func! Cursor_c_char() abort
-
-  let l:idx = Cursor_col_idx()
-  let l:c = getline('.')[l:idx]
-  return l:c
-endfunc
-
-func! Cursor_l_char() abort
-
-  let l:idx = Cursor_col_idx() - 1
-  let l:c = getline('.')[l:idx]
-  return l:c
-endfunc
-
-func! Cursor_r_char() abort
-
-  let l:idx = Cursor_col_idx() + 1
-  let l:c = getline('.')[l:idx]
-  return l:c
-endfunc
-
-func! Cursor_u_char() abort " dev doing
-
-  if Is_cursor_line_file_top()
-    return ''
-  endif
-
-  let l:idx = Cursor_col_idx()
-  let l:line_num = Cursor_line_num() - 1
-  let l:c = getline(l:line_num)[l:idx]
-  return l:c
-endfunc
-
-func! Cursor_d_char() abort " dev doing
-
-  if Is_cursor_line_file_end()
-    return ''
-  endif
-
-  let l:idx = Cursor_col_idx()
-  let l:line_num = Cursor_line_num() + 1
-  let l:c = getline(l:line_num)[l:idx]
-  return l:c
-endfunc
-
 " cursor col cnd
 
 func! Is_cursor_line_end() abort " todo refactoring rename add col
@@ -2933,6 +2880,59 @@ func! Is_cursor_line_top1() abort " todo refactoring rename add col
   else
     return v:false
   endif
+endfunc
+
+" cursor char
+
+func! Cursor_c_char() abort
+
+  let l:idx = Cursor_col_idx()
+  let l:c = getline('.')[l:idx]
+  return l:c
+endfunc
+
+func! Cursor_l_char() abort
+
+  let l:idx = Cursor_col_idx() - 1
+  let l:c = getline('.')[l:idx]
+  return l:c
+endfunc
+
+func! Cursor_r_char() abort
+
+  let l:idx = Cursor_col_idx() + 1
+  let l:c = getline('.')[l:idx]
+  return l:c
+endfunc
+
+func! Cursor_u_char() abort " dev doing
+
+  if Is_cursor_line_file_top()
+    return ''
+  endif
+
+  let l:idx = Cursor_col_idx()
+  let l:line_num = Cursor_line_num() - 1
+  let l:c = getline(l:line_num)[l:idx]
+  return l:c
+endfunc
+
+func! Cursor_d_char() abort " dev doing
+
+  if Is_cursor_line_file_end()
+    return ''
+  endif
+
+  let l:idx = Cursor_col_idx()
+  let l:line_num = Cursor_line_num() + 1
+  let l:c = getline(l:line_num)[l:idx]
+  return l:c
+endfunc
+
+func! Cursor_char__del_ynk() abort
+
+  let l:cmd = '"ax'
+  call Normal(l:cmd)
 endfunc
 
 " cursor char cnd
@@ -3887,6 +3887,16 @@ func! V_slctd__del() abort " dev doing, can
   let @+ = @a
 endfunc
 
+func! Slctd__del() range abort
+
+  call Slct_re()
+
+  let l:rgstr = 'z'
+
+  let l:cmd = '"' . l:rgstr . 'dgv'
+  call Normal(l:cmd)
+endfunc
+
 " slctd __ pad
 
 func! V_slctd__pad(char) range abort
@@ -4062,6 +4072,14 @@ func! V_box_paste() range abort
   endif
 
   call Slct_re()
+
+  if Is_cursor_line_end()
+    call V_slctd__pad_space()
+
+    " call Normal('"zdgv') " see
+    call Slctd__del()
+  endif
+
   call Cursor__mv_slctd_l()
   call Normal("\<esc>")
 
@@ -5139,6 +5157,23 @@ func! Defold_err_cnv() abort
 endfunc
 
 " tst
+
+"nnoremap xx :TstPrmF 
+command! -bang -nargs=* TstPrmF call Tst_prm_f(<f-args>)
+
+func! Tst_prm_f(prm01, prm02) range abort
+
+  echo a:prm01 . 'end'
+  echo a:prm02 . 'end'
+endfunc
+
+"nnoremap xx :TstPrmQ 
+command! -bang -nargs=* TstPrmQ call Tst_prm_q(<q-args>)
+
+func! Tst_prm_q(prm01) range abort
+
+  echo a:prm01 . 'end'
+endfunc
 
 func! Tst_slctd() range abort
 

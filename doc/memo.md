@@ -4,22 +4,32 @@
 
 ## vim
 
-v p , think at line end
+v, case include cr, srch ?
+- tst
+  - nnoremap e
 
 
-func param get space ?
-- research
-- try
-  - tst fnc
-    - case x 2
+is_xxx_yyy()
+- is_xxx__yyy()
 
 
 vnoremap xx Rg
 - escape('().')
+  - confirm
+    - ofc ??
+    - mac ok
 
 
-v, cr あり srch ?
-- tst
+## ofc
+
+cognito link write
+
+
+## fish
+
+mvm
+- cre
+  - mvm dir_to exclude_file ..
 
 
 ## sakura vps
@@ -45,16 +55,21 @@ setting at sakura console
 - firewall
 
 
-## warp
-
-fish setting
-
-
 ## fe api
 
 db tbl > json
 
-repo cre github
+
+## warp
+
+fish err
+- research
+
+
+## karabiner
+
+err
+- research
 
 
 ## skr svr old
@@ -62,12 +77,6 @@ repo cre github
 bk lcl
 - holo ranking
 - fe api
-  - mysql dmp
-- www
-  - music plyr
-    - del
-- 42ya
-  - del
 
 
 ## docker
