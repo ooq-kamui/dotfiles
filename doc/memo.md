@@ -20,16 +20,12 @@ vnoremap xx Rg
     - mac ok
 
 
-## ofc
-
-cognito link write
-
-
 ## fish
 
-mvm
+mv_mlt
 - cre
-  - mvm dir_to exclude_file ..
+  - alias mvm
+  - mv_mlt dir_to exclude_file ..
 
 
 ## sakura vps
@@ -66,10 +62,21 @@ fish err
 - research
 
 
+## pri aws
+
+del
+- excld c9
+
+
 ## karabiner
 
 err
 - research
+
+
+## pri
+
+keyboard, mail reg
 
 
 ## skr svr old

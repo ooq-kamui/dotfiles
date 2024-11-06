@@ -112,6 +112,7 @@ alias da_y1   "date_y 1"
 alias da_y2   "date_y 2"
 alias date_y1 "date_y 1"
 alias date_y2 "date_y 2"
+alias t       'ts'
 
 alias ca 'cal'
 
