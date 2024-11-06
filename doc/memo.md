@@ -2,6 +2,12 @@
 # cnf
 
 
+## ofc
+
+case record nil
+- coding, tst
+
+
 ## vim
 
 v, case include cr, srch ?
@@ -56,12 +62,6 @@ setting at sakura console
 db tbl > json
 
 
-## warp
-
-fish err
-- research
-
-
 ## pri aws
 
 del
@@ -72,18 +72,6 @@ del
 
 err
 - research
-
-
-## pri
-
-keyboard, mail reg
-
-
-## skr svr old
-
-bk lcl
-- holo ranking
-- fe api
 
 
 ## docker
