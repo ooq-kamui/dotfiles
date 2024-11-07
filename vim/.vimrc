@@ -1192,9 +1192,6 @@ vnoremap <c-n> :call V_srch_slct('f')<cr>
 
 " srch str set
 vnoremap n :call V_srch()<cr>
-"vnoremap <expr> n
-"\ mode() == '<c-v>' ? '<esc>:call Srch("f")<cr>' :
-"\                     ':call V_srch_str__slctd_str()<cr>'
 "vnoremap e 
 vnoremap <expr> e
 \ mode() == '<c-v>' ? '<esc>' :
@@ -3700,7 +3697,8 @@ endfunc
 
 " slctd
 
-func! Slctd_str() abort
+" func! Slctd_str() abort
+func! Slctd_str() range abort
 
   call Normal('gv"zy')
   return @z
@@ -4210,6 +4208,9 @@ func! Srch_str__(str, op_word1) abort
 
   let l:exe_str = escape(l:exe_str, '.*~[]\^$')
 
+  let l:exe_str = substitute(l:exe_str, '\n', '\\n', 'g')
+  " echo l:exe_str
+
   if a:op_word1 == v:true
     let l:exe_str = Srch_str_word1(l:exe_str)
   endif
@@ -4264,17 +4265,18 @@ func! Srch_str__prv_tgl() abort
   let @/ = l:srch_str
 endfunc
 
-func! V_srch_str__slctd_str() abort
+func! V_srch_str__slctd_str() range abort
 
-  if Is_slctd_str_line_mlt()
-    return
-  endif
+  " if Is_slctd_str_line_mlt()
+  "   return
+  " endif
 
   if Is_slctd_str_eq_srch_str()
     return
   endif
 
   let l:str = Slctd_str()
+  " echo l:str
   call Srch_str__(l:str, v:false)
 endfunc
 

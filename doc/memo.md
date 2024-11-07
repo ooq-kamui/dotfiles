@@ -2,22 +2,7 @@
 # cnf
 
 
-## ofc
-
-case record nil
-- coding, tst
-
-
 ## vim
-
-v, case include cr, srch ?
-- tst
-  - nnoremap e
-
-
-is_xxx_yyy()
-- is_xxx__yyy()
-
 
 vnoremap xx Rg
 - escape('().')
@@ -26,15 +11,19 @@ vnoremap xx Rg
     - mac ok
 
 
+is_xxx__yyy()
+- is_xxx_yyy()
+- is_xxx_eq_yyy()
+
+
 ## fish
 
-mv_mlt
-- cre
-  - alias mvm
-  - mv_mlt dir_to exclude_file ..
+mv_excld
+- alias mve
+- mv_excld dir_fr dir_to exclude_file ..
 
 
-## sakura vps
+## skr vps
 
 site mv ( cp )
 - doc-tech-ds
@@ -53,7 +42,7 @@ web-svr
     - crt
 
 
-setting at sakura console
+setting at skr console
 - firewall
 
 
