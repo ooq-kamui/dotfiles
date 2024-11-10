@@ -87,7 +87,8 @@ alias mv 'mv -i'
 alias cp 'cp -ip'
 alias rm 'rm -i'
 
-alias rn 'rename'
+alias mve 'mv_excld'
+alias rn  'rename'
 
 alias trash 'trash -F'
 
@@ -103,7 +104,7 @@ alias d 'dir_jmp'
 alias vim 'nvim -p'
 alias vi  'nvim -p'
 
-alias gi 'git'
+#alias gi 'git'
 alias ji 'git'
 
 set -x LC_TIME en_US

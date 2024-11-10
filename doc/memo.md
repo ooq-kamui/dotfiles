@@ -2,25 +2,10 @@
 # cnf
 
 
-## vim
+## fe api
 
-vnoremap xx Rg
-- escape('().')
-  - confirm
-    - ofc ??
-    - mac ok
-
-
-is_xxx__yyy()
-- is_xxx_yyy()
-- is_xxx_eq_yyy()
-
-
-## fish
-
-mv_excld
-- alias mve
-- mv_excld dir_fr dir_to exclude_file ..
+db tbl > json
+- git tmp
 
 
 ## skr vps
@@ -36,25 +21,8 @@ site mv ( cp )
   - rsync ( fish )
 
 
-web-svr
-- ssl
-  - confirm at komeda
-    - crt
-
-
 setting at skr console
 - firewall
-
-
-## fe api
-
-db tbl > json
-
-
-## pri aws
-
-del
-- excld c9
 
 
 ## karabiner
@@ -63,15 +31,23 @@ err
 - research
 
 
-## hm
+## aws
 
-head set
-gloves
+confirm payment
 
 
 ## docker
 
 learn
+
+
+## vim
+
+vnoremap xx Rg
+- escape('().')
+  - confirm
+    - ofc ??
+    - mac ok
 
 
 

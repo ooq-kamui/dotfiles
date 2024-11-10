@@ -273,10 +273,10 @@ nnoremap <c-a> 0
 " cursor mv line end
 "nnoremap <c-y> xx
 nnoremap <expr> <c-y>
-\ Is_cursor_line_end() ? ':call Ins_markdown_cr()<cr>'     :
-\                        ':call Cursor__mv_line_end()<cr>'
-"\ Is_cursor_line_end() ? ':call Ins_space()<cr>'     :
-"\                        ':call Cursor__mv_line_end()<cr>'
+\ Is_cursor__line_end() ? ':call Ins_markdown_cr()<cr>'     :
+\                         ':call Cursor__mv_line_end()<cr>'
+"\ Is_cursor__line_end() ? ':call Ins_space()<cr>'     :
+"\                         ':call Cursor__mv_line_end()<cr>'
 
 nnoremap <c-e> :call Cursor__mv_line_end()<cr>
 
@@ -449,12 +449,12 @@ nnoremap m :call Ins_cr()<cr>
 " ins comment 1
 "nnoremap ! xx
 nnoremap <expr> !
-\ Is_file_type('markdown') ? ':call Ins_markdown_h()<cr>' :
-\                            ':call Ins_cmnt_1("^")<cr>'
+\ Is_file_type__('markdown') ? ':call Ins_markdown_h()<cr>' :
+\                              ':call Ins_cmnt_1("^")<cr>'
 "nnoremap 1 xx
 nnoremap <expr> 1
-\ Is_file_type('markdown') ? ':call Ins_markdown_h()<cr>' :
-\                            ':call Ins_cmnt_1("^")<cr>'
+\ Is_file_type__('markdown') ? ':call Ins_markdown_h()<cr>' :
+\                              ':call Ins_cmnt_1("^")<cr>'
 
 " ins comment mlt
 nnoremap $ :call Ins_cmnt_mlt()<cr>
@@ -496,8 +496,8 @@ nnoremap `     :call Ins_markdown_code()<cr>
 " ins markdown itm
 "nnoremap O xx
 nnoremap <expr> O
-\ Is_file_type('markdown') ? ':call Ins_markdown_itm()<cr>' :
-\                            ':call Indnt__shft_r()<cr>'
+\ Is_file_type__('markdown') ? ':call Ins_markdown_itm()<cr>' :
+\                              ':call Indnt__shft_r()<cr>'
 
 " ins dots ( or crnt )
 nnoremap > :call Line_end__dots_adjst()<cr>
@@ -521,8 +521,8 @@ nnoremap <c-d> D
 "nnoremap xx hvbd
 
 " word forward del
-"nnoremap <expr> xx Is_cursor_line_end() ? '<esc>' : '"zdw'
-"nnoremap <expr> xx Is_cursor_line_end() ? '<esc>' : '"zde'
+"nnoremap <expr> xx Is_cursor__line_end() ? '<esc>' : '"zdw'
+"nnoremap <expr> xx Is_cursor__line_end() ? '<esc>' : '"zde'
 
 " del cr ( line join )
 nnoremap <c-m> J
@@ -732,7 +732,10 @@ nnoremap <s-right> :tabm+1<cr>
 nnoremap :w :set wrap!
 
 " line num view tgl
-nnoremap :n :set number!
+nnoremap :N :set number!
+
+" line num rel tgl
+nnoremap :n :set relativenumber!
 
 " tst
 " nnoremap xx :call Tst()<cr>
@@ -1396,15 +1399,15 @@ vnoremap :f <esc>
 " quit, esc
 "inoremap <esc> xx
 inoremap <expr> <esc>
-\ pumvisible()          ? '<c-e>'  :
-\ Is_cursor_line_top0() ? '<esc>'  :
-\                         '<esc>l'
+\ pumvisible()           ? '<c-e>'  :
+\ Is_cursor__line_top0() ? '<esc>'  :
+\                          '<esc>l'
 
 " inoremap <c-c> <esc>
 inoremap <expr> <c-c>
-\ pumvisible()          ? '<c-e>'  :
-\ Is_cursor_line_top0() ? '<esc>'  :
-\                         '<esc>l'
+\ pumvisible()           ? '<c-e>'  :
+\ Is_cursor__line_top0() ? '<esc>'  :
+\                          '<esc>l'
 
 " cursor mv line in
 inoremap <c-a> <c-o>^
@@ -1506,9 +1509,9 @@ inoremap <c-w> <c-w>
 " del word forword
 "inoremap <c-k> xx
 inoremap <expr> <c-k>
-\ pumvisible()           ? '<c-p>'   :
-\ ! Is_cursor_line_end() ? '<c-o>dw' :
-\                          ''
+\ pumvisible()            ? '<c-p>'   :
+\ ! Is_cursor__line_end() ? '<c-o>dw' :
+\                           ''
 
 " del line
 " non
@@ -1686,7 +1689,7 @@ autocmd QuickFixCmdPost grep,vimgrep tab cw
 
 " env fnc
 
-func! Is_env(env) abort " alias
+func! Is_env__(env) abort " alias
 
   " a:env : 'mac', 'win64', 'win32', 'wsl', 'linux'
 
@@ -1705,13 +1708,13 @@ endfunc
 
 func! Vim_plug_path() abort
 
-  if     Is_env('mac')
+  if     Is_env__('mac')
     let l:vim_plug_dir = '~/.vim'
-  elseif Is_env('win64')
+  elseif Is_env__('win64')
     let l:vim_plug_dir = '~/appdata/local/nvim-data/site'
-  elseif Is_env('linux')
+  elseif Is_env__('linux')
     let l:vim_plug_dir = '~/.vim'
-  elseif Is_env('win32unix')
+  elseif Is_env__('win32unix')
     let l:vim_plug_dir = '~/.vim'
   else
     let l:vim_plug_dir = '~/.vim'
@@ -1721,7 +1724,7 @@ func! Vim_plug_path() abort
   return l:vim_plug_path
 endfunc
 
-func! Is_vim_plug_installed() abort
+func! Is_vim_plug__installed() abort
 
   let l:vim_plug_path = Vim_plug_path()
 
@@ -1731,7 +1734,7 @@ func! Is_vim_plug_installed() abort
   return l:ret
 endfunc
 
-if Is_vim_plug_installed()
+if Is_vim_plug__installed()
   "echo 'plug#begin'
 
   call plug#begin()
@@ -1799,12 +1802,12 @@ let g:fzf_rg_opt = ''
 \       . ' --no-heading'
 \       . ' --hidden'
 
-if Is_env('mac') || Is_env('linux') || Is_env('win64')
+if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
 
   let g:fzf_rg_opt .= ' -g "!.git"'
 endif
 
-if Is_env('mac') || Is_env('linux') || Is_env('win64')
+if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
 
   command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
@@ -2087,7 +2090,7 @@ endfunc
 
 " file type cnd
 
-func! Is_file_type(type) abort
+func! Is_file_type__(type) abort
 
   if &filetype == a:type
     return v:true
@@ -2107,25 +2110,25 @@ func! N_char__tgl() abort
 
   let l:c = Cursor_c_char()
 
-  if     Is_char_num(l:c)
+  if     Is_char__num(l:c)
 
     call Cursor_str__icl()
     return
 
-  elseif Is_char_alpha(l:c)
+  elseif Is_char__alpha(l:c)
 
     call Normal('v~') " upper / lower
     return
   endif
 
-  let l:rpl = Is_char_tgl_bracket_trn(l:c)
-  if ! Is_str_emp(l:rpl)
+  let l:rpl = Is_char__tgl_bracket_trn(l:c)
+  if ! Is_str__emp(l:rpl)
     call Char__rpl(l:rpl)
     return
   endif
 
-  let l:rpl = Is_char_tgl_symbol(l:c)
-  if ! Is_str_emp(l:rpl)
+  let l:rpl = Is_char__tgl_symbol(l:c)
+  if ! Is_str__emp(l:rpl)
 
     call Char__rpl(l:rpl)
     return
@@ -2136,7 +2139,7 @@ func! N_char__tgl_shift() abort
 
   let l:c = Cursor_c_char()
 
-  if     Is_char_num(l:c)
+  if     Is_char__num(l:c)
 
     call Cursor_str__dcl()
     return
@@ -2145,7 +2148,80 @@ func! N_char__tgl_shift() abort
   call Char__tgl_type_ch(l:c)
 endfunc
 
-func! Is_char_tgl_symbol(c) abort
+func! Char__tgl_type_ch(c) abort
+
+  let l:rpl = ''
+
+  if     a:c == '"'
+    let l:rpl = '`'
+  elseif a:c == "'"
+    let l:rpl = '`'
+
+  elseif a:c == "{"
+    let l:rpl = '['
+  elseif a:c == "["
+    let l:rpl = '('
+  elseif a:c == "("
+    let l:rpl = '<'
+  elseif a:c == "<"
+    let l:rpl = '{'
+
+  elseif a:c == "}"
+    let l:rpl = ']'
+  elseif a:c == "]"
+    let l:rpl = ')'
+  elseif a:c == ")"
+    let l:rpl = '>'
+  elseif a:c == ">"
+    let l:rpl = '}'
+
+  endif
+
+  if ! Is_str__emp(l:rpl)
+
+    call Char__rpl(l:rpl)
+    return
+  endif
+endfunc
+
+" char cnd
+
+func! Is_char__num(char) abort
+
+  let l:ret = v:false
+
+  if a:char =~ '\d'
+    let l:ret = v:true
+  endif
+
+  return l:ret
+endfunc
+
+func! Is_char__alpha(char) abort
+
+  let l:ret = v:false
+
+  if a:char =~ '\a'
+    let l:ret = v:true
+  endif
+
+  return l:ret
+endfunc
+
+func! Is_char__symbol(char) abort
+
+  let l:ret = v:false
+
+  if a:char !~ '\s' && a:char !~ '\w'
+    let l:ret = v:true
+  endif
+
+  return l:ret
+endfunc
+
+" char cnd tgl
+
+func! Is_char__tgl_symbol(c) abort
 
   let l:rpl = ''
 
@@ -2195,7 +2271,7 @@ func! Is_char_tgl_symbol(c) abort
   return l:rpl
 endfunc
 
-func! Is_char_tgl_bracket_trn(c) abort
+func! Is_char__tgl_bracket_trn(c) abort
 
   let l:rpl = ''
 
@@ -2223,7 +2299,7 @@ func! Is_char_tgl_bracket_trn(c) abort
   return l:rpl
 endfunc
 
-func! Is_char_tgl_alpha_trn(c) abort " use not
+func! Is_char__tgl_alpha_trn(c) abort " use not
   
   let l:rpl = ''
 
@@ -2234,77 +2310,6 @@ func! Is_char_tgl_alpha_trn(c) abort " use not
   endif
 
   return l:rpl
-endfunc
-
-func! Char__tgl_type_ch(c) abort
-
-  let l:rpl = ''
-
-  if     a:c == '"'
-    let l:rpl = '`'
-  elseif a:c == "'"
-    let l:rpl = '`'
-
-  elseif a:c == "{"
-    let l:rpl = '['
-  elseif a:c == "["
-    let l:rpl = '('
-  elseif a:c == "("
-    let l:rpl = '<'
-  elseif a:c == "<"
-    let l:rpl = '{'
-
-  elseif a:c == "}"
-    let l:rpl = ']'
-  elseif a:c == "]"
-    let l:rpl = ')'
-  elseif a:c == ")"
-    let l:rpl = '>'
-  elseif a:c == ">"
-    let l:rpl = '}'
-
-  endif
-
-  if ! Is_str_emp(l:rpl)
-
-    call Char__rpl(l:rpl)
-    return
-  endif
-endfunc
-
-" char cnd
-
-func! Is_char_num(char) abort
-
-  let l:ret = v:false
-
-  if a:char =~ '\d'
-    let l:ret = v:true
-  endif
-
-  return l:ret
-endfunc
-
-func! Is_char_alpha(char) abort
-
-  let l:ret = v:false
-
-  if a:char =~ '\a'
-    let l:ret = v:true
-  endif
-
-  return l:ret
-endfunc
-
-func! Is_char_symbol(char) abort
-
-  let l:ret = v:false
-
-  if a:char !~ '\s' && a:char !~ '\w'
-    let l:ret = v:true
-  endif
-
-  return l:ret
 endfunc
 
 " str
@@ -2460,7 +2465,7 @@ endfunc
 
 " str cnd
 
-func! Is_str_emp(str) abort
+func! Is_str__emp(str) abort
 
   let l:ret = v:false
 
@@ -2470,7 +2475,7 @@ func! Is_str_emp(str) abort
   return l:ret
 endfunc
 
-func! Is_str_eq_ptn(str, ptn) abort
+func! Is_str__ptn(str, ptn) abort
 
   let l:ret = v:false
 
@@ -2480,17 +2485,17 @@ func! Is_str_eq_ptn(str, ptn) abort
   return l:ret
 endfunc
 
-func! Is_str_space(str) abort
+func! Is_str__space(str) abort
 
   let l:ptn = '^\s\+$'
-  let l:ret = Is_str_eq_ptn(a:str, l:ptn)
+  let l:ret = Is_str__ptn(a:str, l:ptn)
   return l:ret
 endfunc
 
-func! Is_str_num(num_str) abort
+func! Is_str__num(str) abort
 
   let l:ptn = '^\d\+$'
-  let l:ret = Is_str_eq_ptn(a:num_str, l:ptn)
+  let l:ret = Is_str__ptn(a:str, l:ptn)
   return l:ret
 endfunc
 
@@ -2510,7 +2515,7 @@ endfunc
 
 func! Cursor__mv_by_line_num(line_num) abort
 
-  if ! Is_str_num(a:line_num)
+  if ! Is_str__num(a:line_num)
     return
   endif
 
@@ -2537,7 +2542,7 @@ endfunc
 
 func! Cursor__mv_line_top0() abort
   
-  if Is_cursor_line_emp()
+  if Is_cursor_line__emp()
     return
   endif
 
@@ -2546,7 +2551,7 @@ endfunc
 
 func! Cursor__mv_line_top1() abort
 
-  if     Is_cursor_line_space()
+  if     Is_cursor_line__space()
     call Cursor__mv_line_end()
 
   elseif Is_line_markdown_itm()
@@ -2558,7 +2563,7 @@ endfunc
 
 func! Cursor__mv_line_end() abort
 
-  if ! Is_cursor_line_emp()
+  if ! Is_cursor_line__emp()
     call Normal('$l')
   endif
 endfunc
@@ -2569,7 +2574,7 @@ func! V_cursor__mv_line_end() range abort
 
   if     mode() == "\<c-v>"
 
-    if Is_cursor_line_end_ovr()
+    if Is_cursor__line_end_ovr()
       return
     endif
 
@@ -2578,7 +2583,7 @@ func! V_cursor__mv_line_end() range abort
 
   elseif mode() == "v"
 
-    if Is_cursor_line_emp()
+    if Is_cursor_line__emp()
       return
     endif
 
@@ -2601,12 +2606,12 @@ endfunc
 
 func! Cursor__mv_word_f() abort
 
-  if     Is_cursor_line_end() || Is_cursor_line_end_inr()
+  if     Is_cursor__line_end() || Is_cursor__line_end_inr()
 
     call Cursor__mv_char_f()
     return
 
-  elseif Is_cursor_line_str_side_r_space()
+  elseif Is_cursor_line_str_side_r__space()
 
     call Cursor__mv_line_end()
     return
@@ -2626,16 +2631,16 @@ func! Cursor__mv_word_b() abort
   
   let l:l_char = Cursor_l_char()
 
-  if     Is_cursor_line_top0()
+  if     Is_cursor__line_top0()
     call Cursor__mv_up_line_end()
     
-  elseif Is_cursor_line_str_side_l_space()
+  elseif Is_cursor_line_str_side_l__space()
     call Cursor__mv_line_top0()
     
-  elseif Is_cursor_line_top1()
+  elseif Is_cursor__line_top1()
     call Cursor__mv_line_top0()
     
-  elseif Is_char_symbol(l:l_char)
+  elseif Is_char__symbol(l:l_char)
     call Cursor__mv_char_b()
     
   else
@@ -2667,11 +2672,11 @@ endfunc
 
 func! Cursor__mv_line_top_or_new_line() abort
 
-  if     Is_cursor_line_top0()
+  if     Is_cursor__line_top0()
 
     call Ins_line_emp()
 
-  elseif Is_cursor_line_top1()
+  elseif Is_cursor__line_top1()
 
     call Cursor__mv_line_top0()
   else
@@ -2691,14 +2696,14 @@ endfunc
 
 func! Cursor__mv_file_edge(n_cmd) abort
 
-  if Is_cursor_line_file_edge()
+  if Is_cursor_line__file_edge()
     call Normal(a:n_cmd)
   endif
 
   let l:cnt = 1
   let l:cnt_max = 10000
 
-  while ( !Is_cursor_line_file_edge() && l:cnt < l:cnt_max )
+  while ( !Is_cursor_line__file_edge() && l:cnt < l:cnt_max )
 
     call Normal(a:n_cmd)
     let l:cnt = l:cnt + 1
@@ -2730,14 +2735,14 @@ func! Cursor__mv_jmp_char(drct, is_space_through) abort
   let l:cnt = 1
   let l:cnt_max = 10000
 
-  while ( !Is_cursor_line_file_edge() && l:cnt < l:cnt_max )
+  while ( !Is_cursor_line__file_edge() && l:cnt < l:cnt_max )
 
-    if ! ( Is_cursor_c_char_space() || Is_cursor_line_end() )
+    if ! ( Is_cursor_c_char__space() || Is_cursor__line_end() )
       break
     endif
 
-    "if ( l:is_space_stop == 't' && Is_cursor_c_char_space() )
-    if ( l:is_space_through == 'f' && Is_cursor_c_char_space() )
+    "if ( l:is_space_stop == 't' && Is_cursor_c_char__space() )
+    if ( l:is_space_through == 'f' && Is_cursor_c_char__space() )
       break
     endif
 
@@ -2761,9 +2766,9 @@ func! Cursor__mv_jmp_space(drct) abort
   let l:cnt_max = 10000
   "let l:cnt_max = 10
 
-  while ( !Is_cursor_line_file_edge() && l:cnt < l:cnt_max )
+  while ( !Is_cursor_line__file_edge() && l:cnt < l:cnt_max )
 
-    if Is_cursor_c_char_space() || Is_cursor_line_end()
+    if Is_cursor_c_char__space() || Is_cursor__line_end()
       break
     endif
 
@@ -2783,7 +2788,7 @@ func! Cursor__mv_jmp_v(drct) abort
 
   call Normal(l:n_cmd)
 
-  if Is_cursor_c_char_space() || Is_cursor_line_end()
+  if Is_cursor_c_char__space() || Is_cursor__line_end()
 
     call Cursor__mv_jmp_char(l:n_cmd, 't')
 
@@ -2821,7 +2826,7 @@ endfunc
 
 " cursor col cnd
 
-func! Is_cursor_line_end() abort " todo refactoring rename add col
+func! Is_cursor__line_end() abort " todo refactoring rename add col
 
   if Cursor_col_num() == Cursor_line_end_col()
 
@@ -2831,7 +2836,7 @@ func! Is_cursor_line_end() abort " todo refactoring rename add col
   endif
 endfunc
 
-func! Is_cursor_line_end_ovr() range abort " todo refactoring rename add col
+func! Is_cursor__line_end_ovr() range abort " todo refactoring rename add col
 
   if Cursor_col_num() >= Cursor_line_end_col() " why ?
     return v:true
@@ -2840,7 +2845,7 @@ func! Is_cursor_line_end_ovr() range abort " todo refactoring rename add col
   endif
 endfunc
 
-func! Is_cursor_line_end_inr() abort " todo refactoring rename add col
+func! Is_cursor__line_end_inr() abort " todo refactoring, rename add col
 
   if Cursor_col_num() == Cursor_line_end_col() - 1
 
@@ -2850,7 +2855,7 @@ func! Is_cursor_line_end_inr() abort " todo refactoring rename add col
   endif
 endfunc
 
-func! Is_cursor_line_top0() abort " todo refactoring rename add col
+func! Is_cursor__line_top0() abort " todo refactoring rename add col
   
   "if col('.') == 1
   if Cursor_col_num() == 1
@@ -2861,7 +2866,7 @@ func! Is_cursor_line_top0() abort " todo refactoring rename add col
   endif
 endfunc
 
-func! Is_cursor_line_top1() abort " todo refactoring rename add col
+func! Is_cursor__line_top1() abort " todo refactoring rename add col
   
   let l:pos_c = Pos()
 
@@ -2904,7 +2909,7 @@ endfunc
 
 func! Cursor_u_char() abort " dev doing
 
-  if Is_cursor_line_file_top()
+  if Is_cursor_line__file_top()
     return ''
   endif
 
@@ -2916,7 +2921,7 @@ endfunc
 
 func! Cursor_d_char() abort " dev doing
 
-  if Is_cursor_line_file_end()
+  if Is_cursor_line__file_end()
     return ''
   endif
 
@@ -2934,18 +2939,18 @@ endfunc
 
 " cursor char cnd
 
-func! Is_cursor_c_char_regex(regex) abort
+func! Is_cursor_c_char__ptn(ptn) abort
 
   let l:c = Cursor_c_char()
 
-  if l:c =~ a:regex
+  if l:c =~ a:ptn
     return v:true
   else
     return v:false
   endif
 endfunc
 
-func! Is_cursor_c_char_space() abort
+func! Is_cursor_c_char__space() abort
 
   let l:c = Cursor_c_char()
 
@@ -2955,15 +2960,15 @@ func! Is_cursor_c_char_space() abort
     return v:false
   endif
 
-  " let l:regex = '\s'
-  " let l:ret = Is_cursor_c_char_regex(l:regex)
+  " let l:ptn = '\s'
+  " let l:ret = Is_cursor_c_char__ptn(l:ptn)
   " return l:ret
 endfunc
 
-func! Is_cursor_c_char_alph() abort
+func! Is_cursor_c_char__alph() abort
 
-  let l:regex = '\a'
-  let l:ret = Is_cursor_c_char_regex(l:regex)
+  let l:ptn = '\a'
+  let l:ret = Is_cursor_c_char__ptn(l:ptn)
   return l:ret
 endfunc
 
@@ -2977,15 +2982,15 @@ endfunc
 
 func! Cursor_filepath() abort
 
-  if     Is_env('mac')
+  if     Is_env__('mac')
 
     let l:str = expand('<cfile>')
 
-  elseif Is_env('win64')
+  elseif Is_env__('win64')
 
     let l:str = Cursor_line_str()
 
-  elseif Is_env('win32unix')
+  elseif Is_env__('win32unix')
 
     let l:str = Cursor_line_str()
 
@@ -3073,7 +3078,7 @@ endfunc
 
 " cursor line cnd
 
-func! Is_cursor_line_num(line_num) abort
+func! Is_cursor_line__num(line_num) abort
 
   let l:ret = v:false
 
@@ -3086,25 +3091,25 @@ func! Is_cursor_line_num(line_num) abort
   return l:ret
 endfunc
 
-func! Is_cursor_line_file_top() abort
+func! Is_cursor_line__file_top() abort
 
   let l:line_num = 1
-  let l:ret = Is_cursor_line_num(l:line_num)
+  let l:ret = Is_cursor_line__num(l:line_num)
   return l:ret
 endfunc
 
-func! Is_cursor_line_file_end() abort
+func! Is_cursor_line__file_end() abort
 
   let l:line_num = Cursor_line_num_file_end()
-  let l:ret = Is_cursor_line_num(l:line_num)
+  let l:ret = Is_cursor_line__num(l:line_num)
   return l:ret
 endfunc
 
-func! Is_cursor_line_file_edge() abort
+func! Is_cursor_line__file_edge() abort
 
   let l:ret = v:false
 
-  if Is_cursor_line_file_top() || Is_cursor_line_file_end()
+  if Is_cursor_line__file_top() || Is_cursor_line__file_end()
 
     let l:ret = v:true
   endif
@@ -3112,7 +3117,7 @@ func! Is_cursor_line_file_edge() abort
   return l:ret
 endfunc
 
-func! Is_cursor_line_emp() abort
+func! Is_cursor_line__emp() abort
   
   if Cursor_line_end_col() == 1
     return v:true
@@ -3121,24 +3126,24 @@ func! Is_cursor_line_emp() abort
   endif
 endfunc
 
-func! Is_cursor_line_space() abort
+func! Is_cursor_line__space() abort
   
   let l:str = Cursor_line_str()
-  let l:ret = Is_str_space(l:str)
+  let l:ret = Is_str__space(l:str)
   return l:ret
 endfunc
 
-func! Is_cursor_line_str_side_l_space() abort
+func! Is_cursor_line_str_side_l__space() abort
 
   let l:str = Line_str_cursor_out_l()
-  let l:ret = Is_str_space(l:str)
+  let l:ret = Is_str__space(l:str)
   return l:ret
 endfunc
 
-func! Is_cursor_line_str_side_r_space() abort
+func! Is_cursor_line_str_side_r__space() abort
 
   let l:str = Line_str_cursor_out_r()
-  let l:ret = Is_str_space(l:str)
+  let l:ret = Is_str__space(l:str)
   return l:ret
 endfunc
 
@@ -3232,7 +3237,7 @@ command! -nargs=* InsSysCmd call Ins_sys_cmd(<q-args>)
 
 func! Ins_sys_cmd(sys_cmd) abort " read
 
-  let l:is_line_num_eq_1 = Is_cursor_line_file_top()
+  let l:is_line_num_eq_1 = Is_cursor_line__file_top()
 
   if l:is_line_num_eq_1
     call Normal('O')
@@ -3482,7 +3487,7 @@ endfunc
 
 func! Line__del() abort
 
-  if Is_cursor_line_emp() || Is_cursor_line_space()
+  if Is_cursor_line__emp() || Is_cursor_line__space()
     call Normal('"_dd') " rgstr del
   else
     call Normal('"add')
@@ -3581,7 +3586,7 @@ let g:v_rng = "'<,'>"
 
 func! V_line_indnt__space(indnt_col) range abort
 
-  if Is_env('win64')
+  if Is_env__('win64')
     '<,'>:call V_line_tab__rpl_space(a:indnt_col)
 
   else
@@ -3592,7 +3597,7 @@ endfunc
 
 func! V_line_indnt__tab(indnt_col) range abort
 
-  if Is_env('win64')
+  if Is_env__('win64')
     " nothing
   else
     let l:sys_cmd = 'unexpand   -t ' . a:indnt_col
@@ -3642,7 +3647,7 @@ func! Slct_cursor_f_space() abort
   endif
   "echo l:c
 
-  if Is_cursor_line_str_side_r_space()
+  if Is_cursor_line_str_side_r__space()
 
     call Normal('v')
     call Normal('$h')
@@ -3829,7 +3834,7 @@ func! Slctd__expnd_word_f() abort
 
   call Slct_re()
 
-  if     Is_cursor_line_str_side_r_space()
+  if     Is_cursor_line_str_side_r__space()
 
     call Normal('$h')
 
@@ -3971,7 +3976,7 @@ endfunc
 
 " slctd cnd
 
-func! Is_slctd_str_eq_srch_str() abort
+func! Is_slctd_str__srch_str() abort
 
   if Slctd_str() == @/
     return v:true
@@ -4071,7 +4076,7 @@ func! V_box_paste() range abort
 
   call Slct_re()
 
-  if Is_cursor_line_end()
+  if Is_cursor__line_end()
     call V_slctd__pad_space()
 
     " call Normal('"zdgv') " see
@@ -4111,7 +4116,7 @@ endfunc
 
 func! Clipboard__ynk() abort
 
-  if Is_env('linux')
+  if Is_env__('linux')
 
     "call C9clp__ynk() " off
 
@@ -4271,7 +4276,7 @@ func! V_srch_str__slctd_str() range abort
   "   return
   " endif
 
-  if Is_slctd_str_eq_srch_str()
+  if Is_slctd_str__srch_str()
     return
   endif
 
@@ -4556,7 +4561,7 @@ func! Tag_jmp(rg_rslt_line) abort
   
   let l:rg_rslt_line = trim(a:rg_rslt_line)
 
-  if Is_str_emp(l:rg_rslt_line)
+  if Is_str__emp(l:rg_rslt_line)
     echo 'empty'
     return
   endif
@@ -4692,7 +4697,7 @@ func! Opn_grep_wk() abort
 
   let l:file_type = getftype(g:grep_wk_path)
 
-  if Is_str_emp(l:file_type)
+  if Is_str__emp(l:file_type)
 
     call Opn(g:grep_wk_path)
   else
@@ -4708,15 +4713,15 @@ func! Opn_app(path) abort
   
   let l:path = a:path
   
-  if     Is_env('mac')
+  if     Is_env__('mac')
 
     let l:cmd_sys = 'open'
 
-  elseif Is_env('win64')
+  elseif Is_env__('win64')
 
     let l:cmd_sys = 'start'
 
-  elseif Is_env('win32unix')
+  elseif Is_env__('win32unix')
 
     let l:cmd_sys = 'start'
 
@@ -4724,7 +4729,7 @@ func! Opn_app(path) abort
     return
   endif
 
-  if Is_env('win64')
+  if Is_env__('win64')
 
     let l:path = Str_path_unix__cnv_win(l:path)
   endif
@@ -5026,7 +5031,7 @@ func! Mark_tgl() abort
   "echo 'Mark_tgl ' . l:alph
   
   "if l:alph == ''
-  if Is_str_emp(l:alph)
+  if Is_str__emp(l:alph)
     call Mark_add()
   else
     call Mark_del(l:alph)
@@ -5350,26 +5355,26 @@ endfunc
 
 set shell=fish         " default
 
-if     Is_env('mac')   " mac
+if     Is_env__('mac')   " mac
 
   set shell=fish
 
-elseif Is_env('linux') " c9
+elseif Is_env__('linux') " c9
 
   "set shell=bash
   set shell=fish
 
   source ~/wrk/cnf/vim/.vimrc_c9
 
-elseif Is_env('win64') " pwsh ( for fzf )
+elseif Is_env__('win64') " pwsh ( for fzf )
 
-  let &shell = Is_env('win32') ? 'powershell' : 'pwsh'
+  let &shell = Is_env__('win32') ? 'powershell' : 'pwsh'
   let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
   let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
   let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
   set shellquote= shellxquote=
 
-elseif Is_env('win32unix') " gitbash ( for fzf )
+elseif Is_env__('win32unix') " gitbash ( for fzf )
   "echo "gitbash"
   set shell=bash
 
@@ -5380,7 +5385,7 @@ else
 endif
 
 " 
-" ref ptn regex
+" ref ptn ( regex )
 " url : xxx
 
 " \n : 改行
