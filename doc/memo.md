@@ -2,12 +2,6 @@
 # cnf
 
 
-## fe api
-
-db tbl > json
-- git tmp
-
-
 ## skr vps
 
 site mv ( cp )
@@ -25,6 +19,20 @@ setting at skr console
 - firewall
 
 
+## fe api
+
+db tbl > json
+- edt at cnf
+
+
+## vim
+
+vnoremap xx Rg
+- escape('().')
+  - confirm
+    - hm at c9
+
+
 ## karabiner
 
 err
@@ -39,15 +47,6 @@ confirm payment
 ## docker
 
 learn
-
-
-## vim
-
-vnoremap xx Rg
-- escape('().')
-  - confirm
-    - ofc ng ? at c9 ?
-    - mac ok
 
 
 
