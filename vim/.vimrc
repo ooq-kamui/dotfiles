@@ -1822,7 +1822,7 @@ if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
   \   <bang>1
   \ )
 
-  " tst
+  " rg ext
   command! -bang -nargs=1 RgExt call Rg_ext(<f-args>)
 endif
 

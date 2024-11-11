@@ -46,7 +46,7 @@ learn
 vnoremap xx Rg
 - escape('().')
   - confirm
-    - ofc ??
+    - ofc ng ? at c9 ?
     - mac ok
 
 
