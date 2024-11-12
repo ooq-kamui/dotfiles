@@ -15,10 +15,6 @@ site mv ( cp )
   - rsync ( fish )
 
 
-setting at skr console
-- firewall
-
-
 ## fe api
 
 db tbl > json
@@ -44,9 +40,16 @@ err
 confirm payment
 
 
+## skr vps
+
+setting at skr console
+- firewall
+
+
 ## docker
 
 learn
+- read book
 
 
 
