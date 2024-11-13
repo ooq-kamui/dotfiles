@@ -23,8 +23,14 @@ db tbl > json
 
 ## vim
 
-Tbl ( culmun ) mb
+Tbl ( column ) mb
 - tst
+  - aaa
+  - aaa)
+  - aaa.)
+
+
+Tbl (column) mb
 
 
 vnoremap xx Rg

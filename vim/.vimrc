@@ -1809,10 +1809,11 @@ endif
 
 if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
 
-  command! -bang -nargs=* Rg
+  command! -bang -nargs=1 Rg
   \ call fzf#vim#grep(
-  \   'rg ' . g:fzf_rg_opt . g:fzf_rg_opt_ext
-  \   . ' -- '.shellescape(escape(<q-args>, '().$')),
+  \   'rg '
+  \   . g:fzf_rg_opt . g:fzf_rg_opt_ext
+  \   . ' -- ' . "'" . escape(<f-args>, '().$') . "'",
   \   0,
   \   fzf#vim#with_preview(
   \     {'options': '--exact --delimiter : --nth 3..'},
@@ -1821,6 +1822,9 @@ if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
   \   ),
   \   <bang>1
   \ )
+
+  " moto
+  " \   . ' -- ' . shellescape(escape(<q-args>, '().$')),
 
   " rg ext
   command! -bang -nargs=1 RgExt call Rg_ext(<f-args>)
@@ -5313,9 +5317,9 @@ endfunc
 "endfunc
 
 " tst escape
-nnoremap T :TstEscapeConfirm ().$
+nnoremap T :TstEscape ().$
 
-command! -bang -nargs=* TstEscapeConfirm call Tst_esacpe( shellescape( escape(<q-args>, '().$') ) )
+command! -bang -nargs=* TstEscape call Tst_esacpe( shellescape( escape(<q-args>, '().$') ) )
 
 func! Tst_esacpe(arg) abort
 
@@ -5323,7 +5327,7 @@ func! Tst_esacpe(arg) abort
   echo l:arg
 endfunc
 
-" command! -bang -nargs=* TstEscapeConfirm call Tst_esacpe(<q-args>)
+" command! -bang -nargs=* TstEscape call Tst_esacpe(<q-args>)
 " 
 " func! Tst_esacpe(arg) abort
 " 
