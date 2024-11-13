@@ -77,6 +77,8 @@ alias lf  'lrf'
 alias ld  'lrd'
 #alias ld2 'lrd2'
 
+alias fd 'fd --hidden --follow -I --exclude .git'
+
 alias p 'pth'
 
 #alias to     'touch'
@@ -129,7 +131,9 @@ alias clc 'math'
 
 #alias cnt 'count'
 
-alias tbl    'column -t'
+alias tbl 'column -t'
+
+alias mb_chk 'file -i'
 
 alias trns   'trans'
 alias trns_j 'trans {ja=en}'
@@ -137,13 +141,9 @@ alias trns_e 'trans {en=ja}'
 
 alias ba 'battery'
 
-alias fd 'fd --hidden --follow -I --exclude .git'
-
 alias amp 'amplify'
 
 alias rf 'ruff'
-
-# alias arg ( prj )
 
 # alias cmd path
 

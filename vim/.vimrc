@@ -85,6 +85,7 @@ set showcmd
 
 set encoding=utf-8
 set fileencodings=utf-8,sjis
+set termencoding=utf-8
 
 "set mouse=n
 "map <LeftMouse> <Nop>
@@ -737,9 +738,6 @@ nnoremap :N :set number!
 " line num rel tgl
 nnoremap :n :set relativenumber!
 
-" tst
-" nnoremap xx :call Tst()<cr>
-
 " numpad shift
 nnoremap <kInsert>   0
 nnoremap <kEnd>      1
@@ -832,7 +830,7 @@ nnoremap Q <esc>
 "nnoremap P <esc>
 "nnoremap R <esc>
 "nnoremap S <esc>
-nnoremap T <esc>
+"nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap W <esc>
 "nnoremap V <esc>
@@ -925,6 +923,28 @@ nnoremap :z :z
 
 " mode normal end
 
+" leader esc
+
+"nnoremap <leader>: <esc>
+
+"nnoremap <leader>a <esc>
+nnoremap <leader>c <esc>
+nnoremap <leader>d <esc>
+"nnoremap <leader>e <esc>
+"nnoremap <leader>f <esc>
+"nnoremap <leader>h <esc>
+nnoremap <leader>j <esc>
+"nnoremap <leader>l <esc>
+nnoremap <leader>m <esc>
+"nnoremap <leader>n <esc>
+"nnoremap <leader>o <esc>
+nnoremap <leader>p <esc>
+"nnoremap <leader>r <esc>
+nnoremap <leader>s <esc>
+nnoremap <leader>u <esc>
+"nnoremap <leader>y <esc>
+
+"nnoremap <leader>O <esc>
 
 " 
 " mode visual
@@ -1162,7 +1182,10 @@ vnoremap t  :call V_line_indnt__space(2)
 "vnoremap xx :call V_line_indnt__tab(2)<cr>
 
 " tab > space
-vnoremap :t :call V_line_tab__rpl_space(12)
+"vnoremap :t :call V_line_tab__rpl_space(12)
+
+" tidy tbl
+vnoremap :t :Tbl <cr>
 
 " line end ovr, pad __ space
 "vnoremap xx :call V_line_end__pad_space()
@@ -1259,6 +1282,8 @@ vnoremap r :call V_trns()<cr>
 
 " tst
 "vnoremap xx :call Tst()<cr>
+
+
 
 " 
 " cmd
@@ -1391,6 +1416,13 @@ vnoremap :f <esc>
 " :
 "vnoremap :z <esc>
 
+" leader esc
+
+"vnoremap <leader>: <esc>
+
+"vnoremap <leader>l <esc>
+vnoremap <leader>u <esc>
+"vnoremap <leader>y <esc>
 
 " 
 " mode insert
@@ -1634,38 +1666,6 @@ cnoremap <kPageUp>   9
 
 " term > normal
 tnoremap <c-_> <c-\><c-n>
-
-" 
-" leader esc
-" 
-
-"nnoremap <leader>: <esc>
-
-"nnoremap <leader>a <esc>
-nnoremap <leader>c <esc>
-nnoremap <leader>d <esc>
-"nnoremap <leader>e <esc>
-"nnoremap <leader>f <esc>
-"nnoremap <leader>h <esc>
-nnoremap <leader>j <esc>
-"nnoremap <leader>l <esc>
-nnoremap <leader>m <esc>
-"nnoremap <leader>n <esc>
-"nnoremap <leader>o <esc>
-nnoremap <leader>p <esc>
-"nnoremap <leader>r <esc>
-nnoremap <leader>s <esc>
-nnoremap <leader>u <esc>
-"nnoremap <leader>y <esc>
-
-"nnoremap <leader>O <esc>
-
-"vnoremap <leader>: <esc>
-
-"vnoremap <leader>l <esc>
-vnoremap <leader>u <esc>
-"vnoremap <leader>y <esc>
-
 
 " 
 " etc
@@ -3399,7 +3399,9 @@ command! -range=% -nargs=0 Tbl <line1>,<line2>call V_tbl()
 
 func! V_tbl() range abort
 
-  let l:sys_cmd = 'tbl'
+  " let l:sys_cmd = 'tbl'
+  let l:sys_cmd = 'column -t'
+
   '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
 endfunc
 
@@ -5163,57 +5165,6 @@ func! Defold_err_cnv() abort
   exe '%s/^ *//g'
 endfunc
 
-" tst
-
-"nnoremap xx :TstPrmF 
-command! -bang -nargs=* TstPrmF call Tst_prm_f(<f-args>)
-
-func! Tst_prm_f(prm01, prm02) range abort
-
-  echo a:prm01 . 'end'
-  echo a:prm02 . 'end'
-endfunc
-
-"nnoremap xx :TstPrmQ 
-command! -bang -nargs=* TstPrmQ call Tst_prm_q(<q-args>)
-
-func! Tst_prm_q(prm01) range abort
-
-  echo a:prm01 . 'end'
-endfunc
-
-func! Tst_slctd() range abort
-
-  call Slct_re()
-
-  if     mode() == "\<c-v>"
-    echo "c-v"
-  elseif mode() == "v"
-    echo "v"
-  elseif mode() == "V" " < non
-    echo "V"
-  else
-    echo "else"
-  endif
-endfunc
-
-
-" 
-" init
-" 
-
-" ynk init
-call Ynk__clipboard()
-
-" srch init
-func! Srch_init() abort " use not
-
-  let l:cmd = '/<cr>N'
-  call Normal(l:cmd)
-endfunc
-"call Srch_init()
-
-
 " 
 " fzf my
 " 
@@ -5350,6 +5301,101 @@ func! Pth_lst_txt(pth_lst_file_path) abort
   return l:pth_lst_txt
 endfunc
 
+" 
+" tst
+" 
+
+"nnoremap T :Tst arg
+"command! -bang -nargs=1 Tst call Tst(<f-args>)
+"func! Tst(arg) abort
+"  let l:arg = a:arg
+"  echo l:arg
+"endfunc
+
+" tst escape
+nnoremap T :TstEscapeConfirm ().$
+
+command! -bang -nargs=* TstEscapeConfirm call Tst_esacpe( shellescape( escape(<q-args>, '().$') ) )
+
+func! Tst_esacpe(arg) abort
+
+  let l:arg = a:arg
+  echo l:arg
+endfunc
+
+" command! -bang -nargs=* TstEscapeConfirm call Tst_esacpe(<q-args>)
+" 
+" func! Tst_esacpe(arg) abort
+" 
+"   let l:arg = a:arg
+"   echo l:arg
+" 
+"   let l:arg = escape(l:arg, '().$')
+"   echo l:arg
+" 
+"   let l:arg = shellescape(l:arg)
+"   echo l:arg
+" endfunc
+
+"nnoremap xx :TstPrmF 
+command! -bang -nargs=* TstPrmF call Tst_prm_f(<f-args>)
+
+func! Tst_prm_f(prm01, prm02) range abort
+
+  echo a:prm01 . 'end'
+  echo a:prm02 . 'end'
+endfunc
+
+"nnoremap xx :TstPrmQ 
+command! -bang -nargs=* TstPrmQ call Tst_prm_q(<q-args>)
+
+func! Tst_prm_q(prm01) range abort
+
+  echo a:prm01 . 'end'
+endfunc
+
+func! Tst_slctd() range abort
+
+  call Slct_re()
+
+  if     mode() == "\<c-v>"
+    echo "c-v"
+  elseif mode() == "v"
+    echo "v"
+  elseif mode() == "V" " < non
+    echo "V"
+  else
+    echo "else"
+  endif
+endfunc
+
+vnoremap T :TstMb 
+command! -range=% -nargs=* TstMb <line1>,<line2>call Tst_mb()
+
+func! Tst_mb() range abort
+
+  let l:pth = '~/wrk/cnf/doc/tst/tst.md'
+  let l:sys_cmd = 'cat ' . l:pth . ' | column -t | cat'
+  " let l:sys_cmd = 'cat ' . l:pth
+
+  '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
+endfunc
+
+
+" 
+" init
+" 
+
+" ynk init
+call Ynk__clipboard()
+
+" srch init
+func! Srch_init() abort " use not
+
+  let l:cmd = '/<cr>N'
+  call Normal(l:cmd)
+endfunc
+"call Srch_init()
 
 " shell & .vimrc_env
 

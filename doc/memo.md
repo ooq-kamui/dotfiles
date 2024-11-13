@@ -23,10 +23,16 @@ db tbl > json
 
 ## vim
 
+Tbl ( culmun ) mb
+- tst
+
+
 vnoremap xx Rg
 - escape('().')
   - confirm
-    - hm at c9
+    - at hm
+      - c9
+      - mac
 
 
 ## karabiner
@@ -38,6 +44,8 @@ err
 ## aws
 
 confirm payment
+- pst
+- nxt
 
 
 ## skr vps
