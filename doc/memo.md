@@ -19,29 +19,26 @@ site mv ( cp )
 
 db tbl > json
 - edt at cnf
+- bk, js, sql, github psh
 
 
 ## vim
 
 Tbl ( column ) mb
 - tst
-  - aaa
-  - aaa)
-  - aaa.)
 
-
-Tbl (column) mb
-
-
-vnoremap xx Rg
-- escape('().')
-  - confirm
-    - at hm
-      - c9
-      - mac
+aaa  bbb     ccc
+aaa  あああ  bbb  ccc
+aaa  bbbbbb  ccc
+aaa  bbb     ccc
+aaa  cc      bbb  ccc
+aaa  bbb     ccc
 
 
 ## karabiner
+
+sticker cre
+
 
 err
 - research
