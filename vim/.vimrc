@@ -630,6 +630,7 @@ nnoremap :s :%s///g
 
 " grep ( fzf )
 nnoremap <leader>o :Rg <cr>
+"nnoremap <leader>o :Rg 
 
 " grep ( fzf ), ext
 nnoremap <leader>O :RgExt js
@@ -1185,7 +1186,7 @@ vnoremap t  :call V_line_indnt__space(2)
 "vnoremap :t :call V_line_tab__rpl_space(12)
 
 " tidy tbl
-vnoremap :t :Tbl <cr>
+vnoremap :t :Tbl 
 
 " line end ovr, pad __ space
 "vnoremap xx :call V_line_end__pad_space()
@@ -1258,6 +1259,9 @@ vnoremap <leader>i :call V_grep_buf()<cr>
 " grep ( fzf )
 vnoremap <leader>o "zy:Rg <c-r>z<cr>
 
+" grep ( fzf )  -  word1  " todo dev
+"vnoremap <leader>O "zy:RgWord1 <c-r>z<cr>
+
 " grep [rg]   ( read )
 "vnoremap xx "zy:GrepStr <c-r>z
 "vnoremap xx "zy:GrepWrd <c-r>z
@@ -1279,11 +1283,6 @@ vnoremap gy :call V_opn_yt()<cr>
 
 " trns
 vnoremap r :call V_trns()<cr>
-
-" tst
-"vnoremap xx :call Tst()<cr>
-
-
 
 " 
 " cmd
@@ -1809,11 +1808,11 @@ endif
 
 if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
 
-  command! -bang -nargs=1 Rg
+  command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg '
   \   . g:fzf_rg_opt . g:fzf_rg_opt_ext
-  \   . ' -- ' . "'" . escape(<f-args>, '().$') . "'",
+  \   . ' -- ' . "'" . escape(<q-args>, '().$') . "'",
   \   0,
   \   fzf#vim#with_preview(
   \     {'options': '--exact --delimiter : --nth 3..'},
@@ -1823,8 +1822,13 @@ if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
   \   <bang>1
   \ )
 
-  " moto
+  " org
   " \   . ' -- ' . shellescape(escape(<q-args>, '().$')),
+  " try
+  " \   . ' -- ' . "'" . escape(<f-args>, '().$') . "'",
+  " \   . ' -- ' . escape(<f-args>, '().$')
+  " try - fin ?
+  " \   . ' -- ' . "'" . escape(<q-args>, '().$') . "'",
 
   " rg ext
   command! -bang -nargs=1 RgExt call Rg_ext(<f-args>)
@@ -3404,7 +3408,11 @@ command! -range=% -nargs=0 Tbl <line1>,<line2>call V_tbl()
 func! V_tbl() range abort
 
   " let l:sys_cmd = 'tbl'
-  let l:sys_cmd = 'column -t'
+  if Is_env__('linux')
+    let l:sys_cmd = '/usr/bin/column -t'
+  else
+    let l:sys_cmd = 'column -t'
+  endif
 
   '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
 endfunc
@@ -4404,12 +4412,13 @@ func! Ins_cmnt_1(cmd_cursor__mv_line_top) abort
   let l:cmnt_1_def = {
   \ 'lua'       : '-- ',
   \ 'text'      : '# ' ,
-  \ 'vim'       : '" '  ,
-  \ 'fish'      : '# '  ,
-  \ 'sh'        : '# '  ,
+  \ 'vim'       : '" ' ,
+  \ 'fish'      : '# ' ,
+  \ 'sh'        : '# ' ,
   \ 'css'       : '/* ',
   \ 'javascript': '// ',
   \ 'java'      : '// ',
+  \ 'sql'       : '-- ',
   \ 'dflt'      : '# '
   \ }
   let l:str = get(l:cmnt_1_def, &filetype, l:cmnt_1_def['dflt'])
@@ -5309,54 +5318,62 @@ endfunc
 " tst
 " 
 
-"nnoremap T :Tst arg
-"command! -bang -nargs=1 Tst call Tst(<f-args>)
-"func! Tst(arg) abort
-"  let l:arg = a:arg
-"  echo l:arg
-"endfunc
-
 " tst escape
-nnoremap T :TstEscape ().$
 
-command! -bang -nargs=* TstEscape call Tst_esacpe( shellescape( escape(<q-args>, '().$') ) )
+"nnoremap T :call Tst_esacpe()<cr>
 
-func! Tst_esacpe(arg) abort
+func! Tst_esacpe() abort
 
-  let l:arg = a:arg
-  echo l:arg
+  let l:str = '().$a'
+  echo l:str
+
+  let l:str = escape(l:str, l:str)
+  echo l:str
 endfunc
 
-" command! -bang -nargs=* TstEscape call Tst_esacpe(<q-args>)
-" 
-" func! Tst_esacpe(arg) abort
-" 
-"   let l:arg = a:arg
-"   echo l:arg
-" 
-"   let l:arg = escape(l:arg, '().$')
-"   echo l:arg
-" 
-"   let l:arg = shellescape(l:arg)
-"   echo l:arg
-" endfunc
+" tst escape shell
 
-"nnoremap xx :TstPrmF 
-command! -bang -nargs=* TstPrmF call Tst_prm_f(<f-args>)
+"nnoremap T :call Tst_esacpe_shell() <cr>
 
-func! Tst_prm_f(prm01, prm02) range abort
+func! Tst_esacpe_shell() abort
 
-  echo a:prm01 . 'end'
-  echo a:prm02 . 'end'
+  let l:str = '().$a \ / | & b c '
+  echo l:str
+
+  let l:str = shellescape(l:str)
+  echo l:str
 endfunc
 
-"nnoremap xx :TstPrmQ 
-command! -bang -nargs=* TstPrmQ call Tst_prm_q(<q-args>)
+" tst arg f
 
-func! Tst_prm_q(prm01) range abort
+nnoremap T :TstArgF 
+"nnoremap T :TstArgF aa().a \/|&bbb 'aa().a \/|&bbb'
 
-  echo a:prm01 . 'end'
+command! -bang -nargs=* TstArgF call Tst_arg_f(<f-args>)
+
+func! Tst_arg_f(arg01, arg02, arg03, arg04) range abort
+
+  echo a:arg01
+  echo a:arg02
+  echo a:arg03
+  echo a:arg04
 endfunc
+
+" tst arg q
+
+"nnoremap T :TstArgQ aa "bbb ccc" '().\a bbb""' "().\a bbb''"
+
+command! -bang -nargs=* TstArgQ call Tst_arg_q(<q-args>)
+
+func! Tst_arg_q(arg01) range abort
+
+  echo a:arg01
+  " echo a:arg01 . 'end'
+endfunc
+
+" tst slctd
+
+"vnoremap T :Tst_slctd 
 
 func! Tst_slctd() range abort
 
@@ -5373,13 +5390,18 @@ func! Tst_slctd() range abort
   endif
 endfunc
 
-vnoremap T :TstMb 
-command! -range=% -nargs=* TstMb <line1>,<line2>call Tst_mb()
+" tst slctd __ rpl sys cmd mb
 
-func! Tst_mb() range abort
+"vnoremap T :TstSlctdRplSysCmdMb 
+vnoremap T :TstSlctdRplSysCmdMb <cr>
 
-  let l:pth = '~/wrk/cnf/doc/tst/tst.md'
-  let l:sys_cmd = 'cat ' . l:pth . ' | column -t | cat'
+command! -range=% -nargs=* TstSlctdRplSysCmdMb <line1>,<line2>call Tst_slctd_rpl_sys_cmd_mb()
+
+func! Tst_slctd_rpl_sys_cmd_mb() range abort
+
+  let l:pth = '~/wrk/cnf/doc/tst/tst-in.md'
+  " let l:sys_cmd = 'cat ' . l:pth . ' | column -t | cat'
+  let l:sys_cmd = 'cat ' . l:pth . ' | column -t'
   " let l:sys_cmd = 'cat ' . l:pth
 
   '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)

@@ -8,9 +8,11 @@ site mv ( cp )
 - doc-tech-ds
   - rsync ( fish )
   - dir doc-tech/ds
+
 - ooq-artcl
   - rsync ( fish )
   - dir artcl/ds
+
 - holo ranking
   - rsync ( fish )
 
@@ -24,15 +26,11 @@ db tbl > json
 
 ## vim
 
-Tbl ( column ) mb
-- tst
-
-aaa  bbb     ccc
-aaa  あああ  bbb  ccc
-aaa  bbbbbb  ccc
-aaa  bbb     ccc
-aaa  cc      bbb  ccc
-aaa  bbb     ccc
+Rg() fnc cre
+- rg_word1, cre
+  - tst
+    - tst
+    - tsttst
 
 
 ## karabiner
@@ -46,7 +44,7 @@ err
 
 ## aws
 
-confirm payment
+payment confirm
 - pst
 - nxt
 
