@@ -5446,6 +5446,8 @@ elseif Is_env__('win64') " pwsh ( for fzf )
   let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
   set shellquote= shellxquote=
 
+  source ~/wrk/cnf/vim/.vimrc_pwsh
+
 elseif Is_env__('win32unix') " gitbash ( for fzf )
   "echo "gitbash"
   set shell=bash

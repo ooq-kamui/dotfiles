@@ -38,5 +38,3 @@ func! Ynk__clipboard() abort
   endif
 endfunc
 
-
-

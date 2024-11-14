@@ -43,7 +43,8 @@ Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
 # rg
 
-$env:RIPGREP_CONFIG_PATH = "$home\wrk\cnf\sh\rg\.ripgreprc"
+# $env:RIPGREP_CONFIG_PATH = "$home\wrk\cnf\sh\rg\.ripgreprc"
+$env:RIPGREP_CONFIG_PATH = "$home\wrk\cnf\sh\rg\.ripgreprc_pwsh"
 
 # fzf
 
@@ -195,6 +196,7 @@ function da { Get-Date -Format "yyyy-MM-dd"       }
 function dt { Get-Date -Format "yyyy-MM-dd.HH:mm" }
 function tm { Get-Date -Format "HH:mm"            }
 function ts { Get-Date -Format "yyyy-MM-dd.HH:mm:ss" }
+Set-Alias t "ts"
 
 # jq
 $ENV:Path += ";$home\wrk\app\bin\pwsh"
@@ -209,6 +211,9 @@ function cal {
   gcal (date).AddMonths( 1).toString("MM yyyy")
 }
 Set-Alias ca  "cal"
+
+# postgres, psql
+$ENV:Path += ";C:\Program Files\PostgreSQL\16\bin"
 
 function ggl { start chrome }
 

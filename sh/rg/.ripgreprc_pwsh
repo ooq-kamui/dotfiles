@@ -1,0 +1,18 @@
+
+--colors=path:fg:cyan
+--colors=line:fg:yellow
+# --colors=match:fg:yellow
+
+--smart-case
+
+# --no-heading
+
+# --line-number
+
+# --glob=!amplify/#current-cloud-backend/
+# --glob=!amplify/backend/node_modules/
+# --glob=!build/
+# --glob=!node_modules/
+
+
+

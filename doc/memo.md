@@ -33,6 +33,11 @@ Rg() fnc cre
     - tsttst
 
 
+### pwsh
+
+rg -g "!node_modules"
+
+
 ## karabiner
 
 sticker cre
