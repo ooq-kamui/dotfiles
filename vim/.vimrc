@@ -629,7 +629,8 @@ nnoremap <c-p> :call Srch_slct('f')<cr>
 nnoremap :s :%s///g
 
 " grep ( fzf )
-nnoremap <leader>o :call Rg('[^\s]')<cr>
+nnoremap <leader>o :call Rg('')<cr>
+"nnoremap <leader>o :call Rg('[^\s]')<cr>
 "nnoremap <leader>o :Rg <cr>
 "nnoremap <leader>o :Rg 
 
@@ -1806,7 +1807,7 @@ let g:fzf_rg_opt = ''
 if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
 
   if Is_env__('win64')
-    " let g:fzf_rg_opt .= ' -g "\!.git/"'
+    let g:fzf_rg_opt .= ' -g "\!.git/"'
   else
     let g:fzf_rg_opt .= ' -g "!.git/"'
   endif
