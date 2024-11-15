@@ -61,6 +61,7 @@ Rg() fnc cre
 rg -g "!node_modules"
 - at vim, 
   - `rg -g "\!node_modules"`
+    - escape しないでいいときもある ?
 
   - arg の ptn を `"` で囲みでないと err, `'` で囲むと err
 

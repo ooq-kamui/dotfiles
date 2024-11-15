@@ -1807,7 +1807,7 @@ let g:fzf_rg_opt = ''
 if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
 
   if Is_env__('win64')
-    let g:fzf_rg_opt .= ' -g "\!.git/"'
+    let g:fzf_rg_opt .= ' -g "!.git/"'
   else
     let g:fzf_rg_opt .= ' -g "!.git/"'
   endif
