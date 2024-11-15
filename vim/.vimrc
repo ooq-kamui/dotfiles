@@ -629,7 +629,7 @@ nnoremap <c-p> :call Srch_slct('f')<cr>
 nnoremap :s :%s///g
 
 " grep ( fzf )
-nnoremap <leader>o :call Rg('')<cr>
+nnoremap <leader>o :call Rg('[^\s]')<cr>
 "nnoremap <leader>o :Rg <cr>
 "nnoremap <leader>o :Rg 
 
@@ -1805,33 +1805,37 @@ let g:fzf_rg_opt = ''
 
 if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
 
-  let g:fzf_rg_opt .= ' -g "!.git/"'
+  if Is_env__('win64')
+    " let g:fzf_rg_opt .= ' -g "\!.git/"'
+  else
+    let g:fzf_rg_opt .= ' -g "!.git/"'
+  endif
 endif
 
-if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
-
-  command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg '
-  \   . g:fzf_rg_opt . g:fzf_rg_opt_ext
-  \   . ' -- ' . "'" . escape(<q-args>, '().$') . "'",
-  \   0,
-  \   fzf#vim#with_preview(
-  \     {'options': '--exact --delimiter : --nth 3..'},
-  \     'up:70%:hidden',
-  \     'ctrl-u'
-  \   ),
-  \   <bang>1
-  \ )
-
-  " org
-  " \   . ' -- ' . shellescape(escape(<q-args>, '().$')),
-  " try
-  " \   . ' -- ' . "'" . escape(<f-args>, '().$') . "'",
-  " \   . ' -- ' . escape(<f-args>, '().$')
-  " try - fin ?
-  " \   . ' -- ' . "'" . escape(<q-args>, '().$') . "'",
-endif
+" if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
+" 
+"   command! -bang -nargs=* Rg
+"   \ call fzf#vim#grep(
+"   \   'rg '
+"   \   . g:fzf_rg_opt . g:fzf_rg_opt_ext
+"   \   . ' -- ' . "'" . escape(<q-args>, '().$') . "'",
+"   \   0,
+"   \   fzf#vim#with_preview(
+"   \     {'options': '--exact --delimiter : --nth 3..'},
+"   \     'up:70%:hidden',
+"   \     'ctrl-u'
+"   \   ),
+"   \   <bang>1
+"   \ )
+" 
+"   " org
+"   " \   . ' -- ' . shellescape(escape(<q-args>, '().$')),
+"   " try
+"   " \   . ' -- ' . "'" . escape(<f-args>, '().$') . "'",
+"   " \   . ' -- ' . escape(<f-args>, '().$')
+"   " try - fin ?
+"   " \   . ' -- ' . "'" . escape(<q-args>, '().$') . "'",
+" endif
 
 func! Rg(arg) abort " dev doing
 
@@ -1840,9 +1844,10 @@ func! Rg(arg) abort " dev doing
   endif
 
   let l:rg_cmd = 'rg '
-  \     . g:fzf_rg_opt . g:fzf_rg_opt_ext
-  \     . ' -- ' . "'" . escape(a:arg, '().$') . "'"
-  echo l:rg_cmd
+  \     . g:fzf_rg_opt
+  \     . g:fzf_rg_opt_ext
+  \     . ' -- ' . '"' . escape(a:arg, '().$') . '"'
+  " echo l:rg_cmd
 
   call fzf#vim#grep(
   \      l:rg_cmd,
@@ -5448,9 +5453,11 @@ func! Srch_init() abort " use not
 endfunc
 "call Srch_init()
 
+" 
 " shell & .vimrc_env
+" 
 
-set shell=fish         " default
+set shell=fish           " default
 
 if     Is_env__('mac')   " mac
 
@@ -5474,6 +5481,7 @@ elseif Is_env__('win64') " pwsh ( for fzf )
   source ~/wrk/cnf/vim/.vimrc_pwsh
 
 elseif Is_env__('win32unix') " gitbash ( for fzf )
+
   "echo "gitbash"
   set shell=bash
 
