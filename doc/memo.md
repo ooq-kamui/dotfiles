@@ -27,10 +27,13 @@ db tbl > json
 ## vim
 
 Rg() fnc cre
+
 - rg_word1, cre
   - tst
     - tst
     - tsttst
+
+- Rg_ext() mod
 
 
 ### pwsh

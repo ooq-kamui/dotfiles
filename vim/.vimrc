@@ -629,7 +629,8 @@ nnoremap <c-p> :call Srch_slct('f')<cr>
 nnoremap :s :%s///g
 
 " grep ( fzf )
-nnoremap <leader>o :Rg <cr>
+nnoremap <leader>o :call Rg('')<cr>
+"nnoremap <leader>o :Rg <cr>
 "nnoremap <leader>o :Rg 
 
 " grep ( fzf ), ext
@@ -1257,7 +1258,8 @@ vnoremap <leader>i :call V_grep_buf()<cr>
 "vnoremap <leader>k :call V_grep_buf()<cr>
 
 " grep ( fzf )
-vnoremap <leader>o "zy:Rg <c-r>z<cr>
+vnoremap <leader>o "zy:call Rg('<c-r>z')<cr>
+"vnoremap <leader>o "zy:Rg <c-r>z<cr>
 
 " grep ( fzf )  -  word1  " todo dev
 "vnoremap <leader>O "zy:RgWord1 <c-r>z<cr>
@@ -1794,16 +1796,16 @@ let g:fzf_colors = {
 " )
 
 let g:fzf_rg_opt = ''
-\       . ' --color=always'
-\       . ' --line-number'
-\       . ' --smart-case'
-\       . ' --no-multiline'
-\       . ' --no-heading'
-\       . ' --hidden'
+\     . ' --color=always'
+\     . ' --line-number'
+\     . ' --smart-case'
+\     . ' --no-multiline'
+\     . ' --no-heading'
+\     . ' --hidden'
 
 if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
 
-  let g:fzf_rg_opt .= ' -g "!.git"'
+  let g:fzf_rg_opt .= ' -g "!.git/"'
 endif
 
 if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
@@ -1829,10 +1831,33 @@ if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
   " \   . ' -- ' . escape(<f-args>, '().$')
   " try - fin ?
   " \   . ' -- ' . "'" . escape(<q-args>, '().$') . "'",
-
-  " rg ext
-  command! -bang -nargs=1 RgExt call Rg_ext(<f-args>)
 endif
+
+func! Rg(arg) abort " dev doing
+
+  if ! ( Is_env__('mac') || Is_env__('linux') || Is_env__('win64') )
+    return
+  endif
+
+  let l:rg_cmd = 'rg '
+  \     . g:fzf_rg_opt . g:fzf_rg_opt_ext
+  \     . ' -- ' . "'" . escape(a:arg, '().$') . "'"
+  echo l:rg_cmd
+
+  call fzf#vim#grep(
+  \      l:rg_cmd,
+  \      0,
+  \      fzf#vim#with_preview(
+  \        {'options': '--exact --delimiter : --nth 3..'},
+  \        'up:70%:hidden',
+  \        'ctrl-u'
+  \      ),
+  \      1
+  \    )
+endfunc
+
+" rg ext
+command! -bang -nargs=1 RgExt call Rg_ext(<f-args>)
 
 let g:fzf_rg_opt_ext = ''
 
