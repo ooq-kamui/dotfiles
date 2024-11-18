@@ -29,12 +29,7 @@ site mv ( cp )
   - rsync ( fish )
 
 
-## fe api
-
-db tbl > json
-
-
-## vim
+## vim  pwsh
 
 rg glob ignore
 - `--glob \!xxx`
