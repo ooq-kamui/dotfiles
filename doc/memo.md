@@ -2,6 +2,25 @@
 # cnf
 
 
+## vim  pwsh
+
+rg glob ignore
+- `--glob \!xxx`
+- confirm
+  - at hm pwsh
+
+
+## sns
+
+celica
+- bsky cre
+
+
+## fe
+
+fe-fu json mod
+
+
 ## vim
 
 Rg() fnc cre
@@ -29,14 +48,6 @@ site mv ( cp )
   - rsync ( fish )
 
 
-## vim  pwsh
-
-rg glob ignore
-- `--glob \!xxx`
-- confirm
-  - at hm pwsh
-
-
 ## karabiner
 
 m4 sticker cre
@@ -44,12 +55,6 @@ m4 sticker cre
 
 err
 - research
-
-
-## sns
-
-celica
-- bsky cre
 
 
 ## aws
