@@ -5229,12 +5229,12 @@ func! Fzf_by_rg_myrun() abort
   endif
 
   call fzf#run(
-  \   {
-  \     'source' : Rg_all_rslt_ar(),
-  \     'sink'   : funcref('Tag_jmp'),
-  \     'window' : '-tabnew',
-  \   }
-  \ )
+  \      {
+  \        'source' : Rg_all_rslt_ar(),
+  \        'sink'   : funcref('Tag_jmp'),
+  \        'window' : '-tabnew',
+  \      }
+  \    )
   "\     'options': ['--reverse'],
   "\     'options': ['--no-sort'],
 endfunc
@@ -5377,7 +5377,7 @@ endfunc
 
 " tst arg f
 
-nnoremap T :TstArgF 
+"nnoremap T :TstArgF 
 "nnoremap T :TstArgF aa().a \/|&bbb 'aa().a \/|&bbb'
 
 command! -bang -nargs=* TstArgF call Tst_arg_f(<f-args>)
@@ -5402,9 +5402,20 @@ func! Tst_arg_q(arg01) range abort
   " echo a:arg01 . 'end'
 endfunc
 
+" tst bang
+
+nnoremap T :TstBang
+
+command! -bang -nargs=* TstBang call Tst_bang(<bang>1)
+
+func! Tst_bang(bang)
+
+  echo a:bang
+endfunc
+
 " tst slctd
 
-"vnoremap T :Tst_slctd 
+vnoremap T :Tst_slctd 
 
 func! Tst_slctd() range abort
 
@@ -5423,8 +5434,7 @@ endfunc
 
 " tst slctd __ rpl sys cmd mb
 
-"vnoremap T :TstSlctdRplSysCmdMb 
-vnoremap T :TstSlctdRplSysCmdMb <cr>
+"vnoremap T :TstSlctdRplSysCmdMb <cr>
 
 command! -range=% -nargs=* TstSlctdRplSysCmdMb <line1>,<line2>call Tst_slctd_rpl_sys_cmd_mb()
 

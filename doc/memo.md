@@ -2,6 +2,18 @@
 # cnf
 
 
+## vim
+
+Rg() fnc cre
+
+- rg_word1, cre
+  - tst
+    - tst
+    - tsttst
+
+- Rg_ext() mod
+
+
 ## skr vps
 
 site mv ( cp )
@@ -20,55 +32,19 @@ site mv ( cp )
 ## fe api
 
 db tbl > json
-- edt at cnf
-- bk, js, sql, github psh
 
 
 ## vim
 
-doc write, bang
-
-
-.vimrc dir def
-
-
-at win
-- rg
-  - run confirm
-  - ignore escape `\!`
-    - doc write
-
-
-Rg() fnc cre
-
-- rg_word1, cre
-  - tst
-    - tst
-    - tsttst
-
-- Rg_ext() mod
-
-
-### rg
-
-`--glob`
-- accept , ignore 同時にあるとき ?
-  - doc write
-
-
-### pwsh
-
-rg -g "!node_modules"
-- at vim, 
-  - `rg -g "\!node_modules"`
-    - escape しないでいいときもある ?
-
-  - arg の ptn を `"` で囲みでないと err, `'` で囲むと err
+rg glob ignore
+- `--glob \!xxx`
+- confirm
+  - at hm pwsh
 
 
 ## karabiner
 
-sticker cre
+m4 sticker cre
 
 
 err
@@ -77,7 +53,8 @@ err
 
 ## sns
 
-celica cre, ggl, bsky
+celica
+- bsky cre
 
 
 ## aws

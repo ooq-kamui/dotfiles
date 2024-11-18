@@ -131,7 +131,7 @@ alias clc 'math'
 
 #alias cnt 'count'
 
-alias tbl 'column -t'
+alias tbl '/usr/bin/column -t'
 
 alias mb_chk 'file -i'
 
