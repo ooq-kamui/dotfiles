@@ -2,25 +2,6 @@
 # cnf
 
 
-## vim  pwsh
-
-rg glob ignore
-- `--glob \!xxx`
-- confirm
-  - at hm pwsh
-
-
-## sns
-
-celica
-- bsky cre
-
-
-## fe
-
-fe-fu json mod
-
-
 ## vim
 
 Rg() fnc cre
@@ -31,6 +12,20 @@ Rg() fnc cre
     - tsttst
 
 - Rg_ext() mod
+
+
+fzf my > fzf ( rg ) by run
+- refactoring
+
+
+## bsky
+
+domain ch
+
+
+## fe
+
+fe-fu json mod
 
 
 ## skr vps
@@ -46,6 +41,14 @@ site mv ( cp )
 
 - holo ranking
   - rsync ( fish )
+
+
+## vim  pwsh
+
+rg glob ignore
+- `--glob \!xxx`
+- confirm
+  - at hm pwsh
 
 
 ## karabiner
