@@ -2,14 +2,23 @@
 # cnf
 
 
+## wall-paper
+
+cre
+
+
+## ofc github
+
+life, fe
+- fix, usr, email
+
+
 ## vim
 
 Rg() fnc cre
 
 - rg_word1, cre
-  - tst
-    - tst
-    - tsttst
+  - tst  tsttst
 
 - Rg_ext() mod
 
@@ -49,6 +58,11 @@ rg glob ignore
 - `--glob \!xxx`
 - confirm
   - at hm pwsh
+
+
+## artcl
+
+tech del
 
 
 ## karabiner
