@@ -2,17 +2,6 @@
 # cnf
 
 
-## wall-paper
-
-cre
-
-
-## ofc github
-
-life, fe
-- fix, usr, email
-
-
 ## vim
 
 Rg() fnc cre
@@ -27,14 +16,24 @@ fzf my > fzf ( rg ) by run
 - refactoring
 
 
-## bsky
-
-domain ch
-
-
 ## fe
 
 fe-fu json mod
+
+
+## sndbox hm
+
+dir mv, tidy
+
+
+## wall-paper
+
+mod
+
+
+## bsky
+
+domain ch
 
 
 ## skr vps
