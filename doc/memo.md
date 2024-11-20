@@ -2,6 +2,16 @@
 # cnf
 
 
+## wall-paper
+
+mod
+
+
+## bsky
+
+domain ch
+
+
 ## vim
 
 Rg() fnc cre
@@ -16,24 +26,7 @@ fzf my > fzf ( rg ) by run
 - refactoring
 
 
-## fe
-
-fe-fu json mod
-
-
-## sndbox hm
-
-dir mv, tidy
-
-
-## wall-paper
-
-mod
-
-
-## bsky
-
-domain ch
+mb err tidy
 
 
 ## skr vps
@@ -51,6 +44,25 @@ site mv ( cp )
   - rsync ( fish )
 
 
+## artcl
+
+movie ranking upd
+
+
+tech del
+
+
+vps setting
+
+
+github pri
+- lcl dir mv share
+
+
+blog > docs
+- both ?
+
+
 ## vim  pwsh
 
 rg glob ignore
@@ -59,9 +71,9 @@ rg glob ignore
   - at hm pwsh
 
 
-## artcl
+## fe
 
-tech del
+js cre
 
 
 ## karabiner

@@ -31,4 +31,5 @@ pager = less -x2
   mrg = merge
   psh = push
   pll = pull
+  cnf = config
 
