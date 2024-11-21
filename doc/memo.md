@@ -9,6 +9,7 @@ nnoremap ro : 3
 
 
 arg, case: dir, exit
+- research
 
 
 Rg() fnc cre
