@@ -2,17 +2,14 @@
 # cnf
 
 
-## wall-paper
-
-mod
-
-
-## bsky
-
-domain ch
-
-
 ## vim
+
+nnoremap ri : 2
+nnoremap ro : 3
+
+
+arg, case: dir, exit
+
 
 Rg() fnc cre
 
@@ -26,7 +23,20 @@ fzf my > fzf ( rg ) by run
 - refactoring
 
 
+v box, paste, case: line end ovr
+
+
 mb err tidy
+
+
+## fe
+
+js cre
+
+
+## bsky
+
+domain ch
 
 
 ## skr vps
@@ -69,11 +79,6 @@ rg glob ignore
 - `--glob \!xxx`
 - confirm
   - at hm pwsh
-
-
-## fe
-
-js cre
 
 
 ## karabiner

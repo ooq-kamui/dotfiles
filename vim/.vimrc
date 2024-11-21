@@ -389,7 +389,7 @@ nnoremap v <c-v>
 nnoremap A :call Ynk__line_all()<cr>
 
 " slct re
-nnoremap r  :call Slct_re()<cr>
+"nnoremap r  :call Slct_re()<cr>
 nnoremap rr :call Slct_re()<cr>
 
 " ynk clr
@@ -436,9 +436,8 @@ nnoremap <c-h> <c-r>
 nnoremap <space> i
 
 " mode ins rpl
-nnoremap R  R
 nnoremap r<space> R
-"nnoremap rr R
+"nnoremap R        R
 "nnoremap <leader><space> R
 
 " ins line
@@ -501,7 +500,10 @@ nnoremap <expr> O
 \                              ':call Indnt__shft_r()<cr>'
 
 " ins dots ( or crnt )
-nnoremap > :call Line_end__dots_adjst()<cr>
+nnoremap ru :call Line_end__dots_adjst()<cr>
+nnoremap ri :call Line_end__dots_adjst()<cr>
+"nnoremap ro :call Line_end__dots_adjst()<cr>
+"nnoremap > :call Line_end__dots_adjst()<cr>
 
 " ins indnt space
 nnoremap V :call Ins_line__indnt_space()<cr>
@@ -788,7 +790,7 @@ nnoremap ? <esc>
 nnoremap & <esc>
 nnoremap ( <esc>
 "nnoremap < <esc>
-"nnoremap > <esc>
+nnoremap > <esc>
 
 "nnoremap 0 <esc>
 "nnoremap a <esc>
@@ -805,7 +807,7 @@ nnoremap b <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
 nnoremap q <esc>
-"nnoremap r <esc>
+nnoremap r <esc>
 "nnoremap s <esc>
 "nnoremap t <esc>
 "nnoremap u <esc>
@@ -831,7 +833,7 @@ nnoremap M <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
-"nnoremap R <esc>
+nnoremap R <esc>
 "nnoremap S <esc>
 "nnoremap T <esc>
 "nnoremap U <esc>
@@ -902,7 +904,10 @@ nnoremap gv <esc>
 nnoremap gw <esc>
 nnoremap gy <esc>
 
+"nnoremap ri <esc>
+nnoremap ro <esc>
 "nnoremap rr <esc>
+"nnoremap ru <esc>
 
 nnoremap xx <esc>
 
