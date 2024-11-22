@@ -106,6 +106,8 @@ alias d 'dir_jmp'
 alias vim 'nvim -p'
 alias vi  'nvim -p'
 
+alias line 'cat_line'
+
 #alias gi 'git'
 alias ji 'git'
 

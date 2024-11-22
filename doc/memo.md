@@ -4,12 +4,10 @@
 
 ## vim
 
-nnoremap ri : 2
-nnoremap ro : 3
-
-
 arg, case: dir, exit
 - research
+- ref
+  - https://zenn.dev/garchomp_game/articles/12201d1b53c7fe
 
 
 Rg() fnc cre
@@ -28,11 +26,22 @@ v box, paste, case: line end ovr
 
 
 mb err tidy
+- nnoremap f
+  - case: line end
+    - case: mb space
 
 
-## fe
+## etc
 
-js cre
+wall-paper
+- repo div
+
+
+## fish
+
+mve
+- arg `dir/` err
+  - trim r `/` ?
 
 
 ## bsky

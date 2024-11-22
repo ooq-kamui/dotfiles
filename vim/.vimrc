@@ -344,11 +344,6 @@ nnoremap rj        :call Cursor__mv_jmp_v('j')<cr>
 nnoremap r<space>k :call Cursor__mv_jmp_char('k', 'f')<cr>
 nnoremap r<space>j :call Cursor__mv_jmp_char('j', 'f')<cr>
 
-"nnoremap RK :call Cursor__mv_jmp_char('k', 'f')<cr>
-"nnoremap RJ :call Cursor__mv_jmp_char('j', 'f')<cr>
-"nnoremap rK :call Cursor__mv_jmp_char('k', 'f')<cr>
-"nnoremap rJ :call Cursor__mv_jmp_char('j', 'f')<cr>
-
 "nnoremap xx :call Cursor__mv_jmp_char('k', 't')<cr>
 "nnoremap xx :call Cursor__mv_jmp_char('j', 't')<cr>
 "nnoremap xx :call Cursor__mv_jmp_space('k')<cr>
@@ -436,9 +431,8 @@ nnoremap <c-h> <c-r>
 nnoremap <space> i
 
 " mode ins rpl
-nnoremap r<space> R
+"nnoremap r<space> R
 "nnoremap R        R
-"nnoremap <leader><space> R
 
 " ins line
 " ref nnoremap y
@@ -501,7 +495,7 @@ nnoremap <expr> O
 
 " ins dots ( or crnt )
 nnoremap ru :call Line_end__dots_adjst()<cr>
-nnoremap ri :call Line_end__dots_adjst()<cr>
+"nnoremap ri :call Line_end__dots_adjst()<cr>
 "nnoremap ro :call Line_end__dots_adjst()<cr>
 "nnoremap > :call Line_end__dots_adjst()<cr>
 
@@ -556,10 +550,12 @@ nnoremap S :call Cursor_char__del_ynk()<cr>
 "nnoremap xx :call Cursor_str__dcl()<cr>
 
 " indnt shft
-nnoremap " :call Indnt__shft_l()<cr>
-nnoremap # :call Indnt__shft_r()<cr>
-nnoremap 2 :call Indnt__shft_l()<cr>
-nnoremap 3 :call Indnt__shft_r()<cr>
+nnoremap ri :call Indnt__shft_l()<cr>
+nnoremap ro :call Indnt__shft_r()<cr>
+nnoremap "  :call Indnt__shft_l()<cr>
+nnoremap #  :call Indnt__shft_r()<cr>
+nnoremap 2  :call Indnt__shft_l()<cr>
+nnoremap 3  :call Indnt__shft_r()<cr>
 
 " indnt add
 "nnoremap xx :call Indnt__add(2)<cr>
@@ -905,7 +901,7 @@ nnoremap gw <esc>
 nnoremap gy <esc>
 
 "nnoremap ri <esc>
-nnoremap ro <esc>
+"nnoremap ro <esc>
 "nnoremap rr <esc>
 "nnoremap ru <esc>
 
@@ -1176,10 +1172,12 @@ vnoremap = g<c-a>
 vnoremap * g<c-a>
 
 " indnt shft
-vnoremap # >gv
+vnoremap ri <gv
+vnoremap ro >gv
 vnoremap " <gv
-vnoremap 3 >gv
+vnoremap # >gv
 vnoremap 2 <gv
+vnoremap 3 >gv
 
 " indnt crct
 vnoremap ; =gv
@@ -1475,7 +1473,7 @@ inoremap <expr> <c-o>
 "\                '<c-o>b'
 
 " cursor mv d
-inoremap <c-n> <c-o>j
+"inoremap <c-n> <c-o>j
 
 " cursor mv u
 inoremap <c-p> <c-o>k
@@ -1490,7 +1488,7 @@ inoremap <tab> <c-v><tab>
 "inoremap xx <space><space>
 
 " ins complete default
-inoremap <c-q> <c-p>
+"inoremap <c-q> <c-p>
 inoremap <c-g> <c-p>
 
 "inoremap <expr> <c-y>
@@ -1508,6 +1506,8 @@ inoremap <c-y> <c-r>=I_num()<cr>
 
 " ins symbol
 
+inoremap <c-n> <c-r>=I_symbol01()<cr>
+inoremap <c-b> <c-r>=I_symbol01()<cr>
 inoremap <c-r> <c-r>=I_symbol01()<cr>
 "inoremap <expr> <c-r>
 "\ pumvisible() ? '<esc><c-r>=I_symbol01()<cr>' : " run not 
@@ -1597,14 +1597,14 @@ inoremap <c--> <nop>
 "inoremap <c-;> <nop> " non
 
 "inoremap <c-a> <nop>
-inoremap <c-b> <nop>
+"inoremap <c-b> <nop>
 "inoremap <c-f> <nop>
 "inoremap <c-g> <nop>
 "inoremap <c-k> <nop>
 "inoremap <c-n> <nop>
 "inoremap <c-o> <nop>
 "inoremap <c-p> <nop>
-"inoremap <c-q> <nop>
+inoremap <c-q> <nop>
 "inoremap <c-r> <nop>
 "inoremap <c-s> <nop>
 "inoremap <c-t> <nop>
@@ -2757,8 +2757,6 @@ func! V_cursor__mv_file_edge(n_cmd) abort
   call Cursor__mv_file_edge(a:n_cmd)
 endfunc
 
-"func! Cursor__mv_jmp_space_not(drct, is_space_stop) abort
-"func! Cursor__mv_jmp_space_not(drct, is_space_through) abort
 func! Cursor__mv_jmp_char(drct, is_space_through) abort
 
   "let l:is_space_stop = a:is_space_stop
