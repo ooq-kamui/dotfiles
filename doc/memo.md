@@ -2,53 +2,6 @@
 # cnf
 
 
-## vim
-
-arg, case: dir, exit
-- research
-- ref
-  - https://zenn.dev/garchomp_game/articles/12201d1b53c7fe
-
-
-Rg() fnc cre
-
-- rg_word1, cre
-  - tst  tsttst
-
-- Rg_ext() mod
-
-
-fzf my > fzf ( rg ) by run
-- refactoring
-
-
-v box, paste, case: line end ovr
-
-
-mb err tidy
-- nnoremap f
-  - case: line end
-    - case: mb space
-
-
-## etc
-
-wall-paper
-- repo div
-
-
-## fish
-
-mve
-- arg `dir/` err
-  - trim r `/` ?
-
-
-## bsky
-
-domain ch
-
-
 ## skr vps
 
 site mv ( cp )
@@ -83,12 +36,49 @@ blog > docs
 - both ?
 
 
+## vim
+
+Rg() fnc cre
+
+- rg_word1, cre
+  - tst  tsttst
+
+- Rg_ext() mod
+
+
+fzf my > fzf ( rg ) by run
+- refactoring
+
+
+v box, paste, case: line end ovr
+
+
+mb err tidy
+- nnoremap f
+  - case: line end
+    - case: mb space
+
+
+arg, case: dir, exit
+- research
+- ref
+  - https://zenn.dev/garchomp_game/articles/12201d1b53c7fe
+- try, echo "aaa"
+
+
 ## vim  pwsh
 
 rg glob ignore
 - `--glob \!xxx`
 - confirm
   - at hm pwsh
+
+
+## fish
+
+mve
+- arg `dir/` err
+  - trim r `/` ?
 
 
 ## karabiner
