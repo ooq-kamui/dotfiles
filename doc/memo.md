@@ -2,38 +2,17 @@
 # cnf
 
 
-## skr vps
+# bsky
 
-site mv ( cp )
-- doc-tech-ds
-  - rsync ( fish )
-  - dir doc-tech/ds
-
-- ooq-artcl
-  - rsync ( fish )
-  - dir artcl/ds
-
-- holo ranking
-  - rsync ( fish )
+domain
+- ssl
 
 
-## artcl
+## fish
 
-movie ranking upd
-
-
-tech del
-
-
-vps setting
-
-
-github pri
-- lcl dir mv share
-
-
-blog > docs
-- both ?
+mve
+- arg `dir/` err
+  - trim r `/` ?
 
 
 ## vim
@@ -53,17 +32,37 @@ fzf my > fzf ( rg ) by run
 v box, paste, case: line end ovr
 
 
-mb err tidy
-- nnoremap f
-  - case: line end
-    - case: mb space
-
+## vim doc write
 
 arg, case: dir, exit
 - research
+- try, echo "aaa"
 - ref
   - https://zenn.dev/garchomp_game/articles/12201d1b53c7fe
-- try, echo "aaa"
+
+
+## holo song
+
+mv ( cp ) to skr vps
+- api url mod
+  - confirm
+
+
+git dir mv share
+- at mac
+
+
+## artcl
+
+blog > docs
+- both ?
+- try, research
+
+
+ln > build
+- nginx
+  - can ?
+    - research
 
 
 ## vim  pwsh
@@ -74,17 +73,18 @@ rg glob ignore
   - at hm pwsh
 
 
-## fish
+# m4 mac
 
-mve
-- arg `dir/` err
-  - trim r `/` ?
+m4 sticker
+- cre
+
+
+# m4 mac
+
+setting
 
 
 ## karabiner
-
-m4 sticker cre
-
 
 err
 - research
@@ -97,10 +97,18 @@ payment confirm
 - nxt
 
 
-## skr vps
+## skr-vps
 
 setting at skr console
 - firewall
+
+
+## vim
+
+mb err tidy
+- nnoremap f
+  - case: line end
+    - case: mb space
 
 
 ## docker
