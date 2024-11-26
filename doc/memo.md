@@ -2,28 +2,16 @@
 # cnf
 
 
-# bsky
+## vim doc write
 
-domain
-- ssl
-
-
-## fish
-
-mve
-- arg `dir/` err
-  - trim r `/` ?
+arg, case: dir, exit
+- research
+- try, echo "aaa"
+- ref
+  - https://zenn.dev/garchomp_game/articles/12201d1b53c7fe
 
 
 ## vim
-
-Rg() fnc cre
-
-- rg_word1, cre
-  - tst  tsttst
-
-- Rg_ext() mod
-
 
 fzf my > fzf ( rg ) by run
 - refactoring
@@ -32,13 +20,23 @@ fzf my > fzf ( rg ) by run
 v box, paste, case: line end ovr
 
 
-## vim doc write
+# wall-paper
 
-arg, case: dir, exit
-- research
-- try, echo "aaa"
-- ref
-  - https://zenn.dev/garchomp_game/articles/12201d1b53c7fe
+green > blue
+
+
+## vim  pwsh
+
+rg glob ignore
+- `--glob \!xxx`
+- confirm
+  - at hm pwsh
+
+
+# bsky
+
+domain
+- ssl
 
 
 ## holo song
@@ -63,14 +61,6 @@ ln > build
 - nginx
   - can ?
     - research
-
-
-## vim  pwsh
-
-rg glob ignore
-- `--glob \!xxx`
-- confirm
-  - at hm pwsh
 
 
 # m4 mac

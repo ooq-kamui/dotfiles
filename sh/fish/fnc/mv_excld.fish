@@ -1,13 +1,13 @@
 function mv_excld
   
   if test -n "$argv[1]"
-    set fr_dir $argv[1]
+    set fr_dir (string trim -r -c / $argv[1] )
   else
     return
   end
 
   if test -n "$argv[2]"
-    set to_dir $argv[2]
+    set to_dir (string trim -r -c / $argv[2] )
   else
     return
   end
@@ -24,7 +24,7 @@ function mv_excld
     return
   end
 
-  set fr_file_lst_tmp ( ls $fr_dir )
+  set fr_file_lst_tmp ( command ls $fr_dir )
 
   # set fr_file_lst ''
 
@@ -42,7 +42,7 @@ function mv_excld
   # echo $excld_files
   # echo $fr_file_lst
 
-  # echo $fr_file_lst $to_dir
+  echo "mv $fr_file_lst $to_dir"
 
   mv $fr_file_lst $to_dir
 end

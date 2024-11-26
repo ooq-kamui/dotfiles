@@ -628,9 +628,6 @@ nnoremap :s :%s///g
 
 " grep ( fzf )
 nnoremap <leader>o :call Rg('')<cr>
-"nnoremap <leader>o :call Rg('[^\s]')<cr>
-"nnoremap <leader>o :Rg <cr>
-"nnoremap <leader>o :Rg 
 
 " grep ( fzf ), ext
 nnoremap <leader>O :RgExt js
@@ -1820,17 +1817,19 @@ if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
   endif
 endif
 
-func! Rg(ptn) abort " dev doing
+" func! Rg(ptn, ext) abort " dev doing
+func! Rg(...) abort " dev doing
 
   if ! ( Is_env__('mac') || Is_env__('linux') || Is_env__('win64') )
     return
   endif
 
-  " let l:rg_cmd = 'rg '
-  " \     . g:fzf_rg_opt
-  " \     . g:fzf_rg_opt_ext
-  " \     . ' -- ' . '"' . escape(a:ptn, '().$') . '"'
-  let l:rg_cmd = Rg_cmd(a:ptn)
+  let l:ptn   = a:1
+  " let l:ext   = a:2
+  let l:ext   = ( a:0 >= 2 ) ? a:2 : v:null
+  let l:word1 = ( a:0 >= 3 ) ? a:3 : v:false
+
+  let l:rg_cmd = Rg_cmd(l:ptn, l:ext, l:word1)
   " echo l:rg_cmd
 
   call fzf#vim#grep(
@@ -1845,12 +1844,30 @@ func! Rg(ptn) abort " dev doing
   \    )
 endfunc
 
-func! Rg_cmd(ptn) abort
+func! Rg_cmd(ptn, ext, word1) abort
+
+  if a:ext == v:null
+    let l:fzf_rg_opt_ext = ''
+  else
+    let l:fzf_rg_opt_ext = ' -g "*.' . a:ext . '"'
+  endif
+
+  if a:word1 == v:true
+    let l:fzf_rg_opt_word1 = ' -w'
+  else
+    let l:fzf_rg_opt_word1 = ''
+  endif
 
   let l:rg_cmd = 'rg '
   \     . g:fzf_rg_opt
-  \     . g:fzf_rg_opt_ext
+  \     . l:fzf_rg_opt_ext
+  \     . l:fzf_rg_opt_word1
   \     . ' -- ' . '"' . escape(a:ptn, '().$') . '"'
+
+  " let l:rg_cmd = 'rg '
+  " \     . g:fzf_rg_opt
+  " \     . g:fzf_rg_opt_ext
+  " \     . ' -- ' . '"' . escape(a:ptn, '().$') . '"'
 
   return l:rg_cmd
 endfunc
@@ -1858,26 +1875,24 @@ endfunc
 " rg ext
 command! -bang -nargs=1 RgExt call Rg_ext(<f-args>)
 
-let g:fzf_rg_opt_ext = ''
+" let g:fzf_rg_opt_ext = ''
 
 func! Rg_ext(ext) abort
 
   let l:ext = a:ext
 
-  let g:fzf_rg_opt_ext = ' -g "*.' . l:ext . '"'
+  " let g:fzf_rg_opt_ext = ' -g "*.' . l:ext . '"'
 
   " call Exe('Rg')
-  call Rg('')
+  call Rg('', l:ext)
 
-  let g:fzf_rg_opt_ext = ''
+  " let g:fzf_rg_opt_ext = ''
 endfunc
 
 " rg word1
 func! Rg_word1(ptn) abort
 
-  " todo dev
-
-
+  call Rg(a:ptn, v:null, v:true)
 endfunc
 
 " grep buf
@@ -5533,34 +5548,4 @@ endif
 " \_<上記(の\の後ろ)> : 改行を含む上記
 " ex
 "   \_s : 改行, space, tab のいずれか
-
-
-
-" --------
-" trash
-
-" if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
-" 
-"   command! -bang -nargs=* Rg
-"   \ call fzf#vim#grep(
-"   \   'rg '
-"   \   . g:fzf_rg_opt . g:fzf_rg_opt_ext
-"   \   . ' -- ' . "'" . escape(<q-args>, '().$') . "'",
-"   \   0,
-"   \   fzf#vim#with_preview(
-"   \     {'options': '--exact --delimiter : --nth 3..'},
-"   \     'up:70%:hidden',
-"   \     'ctrl-u'
-"   \   ),
-"   \   <bang>1
-"   \ )
-" 
-"   " org
-"   " \   . ' -- ' . shellescape(escape(<q-args>, '().$')),
-"   " try
-"   " \   . ' -- ' . "'" . escape(<f-args>, '().$') . "'",
-"   " \   . ' -- ' . escape(<f-args>, '().$')
-"   " try - fin ?
-"   " \   . ' -- ' . "'" . escape(<q-args>, '().$') . "'",
-" endif
 
