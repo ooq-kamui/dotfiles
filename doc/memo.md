@@ -2,7 +2,12 @@
 # cnf
 
 
-## vim doc write
+## vim
+
+fzf my > fzf ( rg ) by run
+- refactoring
+  - fnc name mod
+
 
 arg, case: dir, exit
 - research
@@ -11,18 +16,22 @@ arg, case: dir, exit
   - https://zenn.dev/garchomp_game/articles/12201d1b53c7fe
 
 
+## artcl
+
+blog > docs
+- both ?
+  - diff cnf
+
+
+# m4 mac
+
+m4 sticker
+- cre
+
+
 ## vim
 
-fzf my > fzf ( rg ) by run
-- refactoring
-
-
 v box, paste, case: line end ovr
-
-
-# wall-paper
-
-green > blue
 
 
 ## vim  pwsh
@@ -41,37 +50,26 @@ domain
 
 ## holo song
 
+git dir mv to share
+- at mac
+
+
 mv ( cp ) to skr vps
 - api url mod
   - confirm
 
 
-git dir mv share
-- at mac
-
-
 ## artcl
 
-blog > docs
-- both ?
-- try, research
-
-
-ln > build
-- nginx
+nginx
+- ln > build
   - can ?
     - research
 
 
 # m4 mac
 
-m4 sticker
-- cre
-
-
-# m4 mac
-
-setting
+setup
 
 
 ## karabiner
