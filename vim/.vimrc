@@ -494,9 +494,8 @@ nnoremap <expr> O
 \                              ':call Indnt__shft_r()<cr>'
 
 " ins dots ( or crnt )
+nnoremap rp :call Line_end__dots_adjst()<cr>
 nnoremap ru :call Line_end__dots_adjst()<cr>
-"nnoremap ri :call Line_end__dots_adjst()<cr>
-"nnoremap ro :call Line_end__dots_adjst()<cr>
 "nnoremap > :call Line_end__dots_adjst()<cr>
 
 " ins indnt space
@@ -552,10 +551,10 @@ nnoremap S :call Cursor_char__del_ynk()<cr>
 " indnt shft
 nnoremap ri :call Indnt__shft_l()<cr>
 nnoremap ro :call Indnt__shft_r()<cr>
-nnoremap "  :call Indnt__shft_l()<cr>
-nnoremap #  :call Indnt__shft_r()<cr>
-nnoremap 2  :call Indnt__shft_l()<cr>
-nnoremap 3  :call Indnt__shft_r()<cr>
+"nnoremap "  :call Indnt__shft_l()<cr>
+"nnoremap #  :call Indnt__shft_r()<cr>
+"nnoremap 2  :call Indnt__shft_l()<cr>
+"nnoremap 3  :call Indnt__shft_r()<cr>
 
 " indnt add
 "nnoremap xx :call Indnt__add(2)<cr>
@@ -775,9 +774,9 @@ nnoremap ^ <esc>
 nnoremap ? <esc>
 
 "nnoremap ! <esc>
-"nnoremap " <esc>
+nnoremap " <esc>
 "nnoremap ` <esc>
-"nnoremap # <esc>
+nnoremap # <esc>
 "nnoremap $ <esc>
 "nnoremap % <esc> " ?
 nnoremap & <esc>
@@ -899,6 +898,7 @@ nnoremap gy <esc>
 
 "nnoremap ri <esc>
 "nnoremap ro <esc>
+"nnoremap rp <esc>
 "nnoremap rr <esc>
 "nnoremap ru <esc>
 
@@ -1024,7 +1024,8 @@ vnoremap gj :call V_cursor__mv_file_edge('j')<cr>
 " 
 
 " slctd expnd
-vnoremap <c-i> :call Slctd__expnd()<cr>
+"vnoremap <c-i> :call Slctd__expnd()<cr>
+vnoremap <c-i> :call Slctd__expnd()
 
 " slctd expnd bracket forward
 vnoremap I     :call Slctd__expnd_bracket_f()<cr>
@@ -1446,7 +1447,7 @@ inoremap <expr> <c-c>
 \                          '<esc>l'
 
 " cursor mv line in
-inoremap <c-a> <c-o>^
+"inoremap <c-a> <c-o>^
 "inoremap <c-a> <c-o>0
 inoremap <c-e> <c-o>$
 
@@ -1593,7 +1594,7 @@ inoremap <c--> <nop>
 "inoremap <c-:> <nop> " non
 "inoremap <c-;> <nop> " non
 
-"inoremap <c-a> <nop>
+inoremap <c-a> <nop>
 "inoremap <c-b> <nop>
 "inoremap <c-f> <nop>
 "inoremap <c-g> <nop>
@@ -3825,7 +3826,7 @@ endfunc
 
 func! Slctd__expnd() abort " expnd lr
 
-  let l:ptn = '[' . "'" . '")\]' . ']'
+  let l:ptn = '[' . "'" . '"`)\]' . ']'
 
   call Cursor__mv_slctd_r()
   
@@ -3869,7 +3870,7 @@ endfunc
 
 func! Slctd__expnd_bracket_f() abort
 
-  let l:bracket_ptn = '[' . "'" . '")}\]' . ']'
+  let l:bracket_ptn = '[' . "'" . '"`)}\]' . ']'
   
   let l:s_col = Slctd_l_col()
   
