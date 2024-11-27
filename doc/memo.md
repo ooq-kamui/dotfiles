@@ -16,11 +16,34 @@ arg, case: dir, exit
   - https://zenn.dev/garchomp_game/articles/12201d1b53c7fe
 
 
+Slctd__expnd()
+- bug ?? err ??
+
+
+vnoremap <c-_>
+- bug ?? err ??
+
+
 ## artcl
 
 blog > docs
 - both ?
   - diff cnf
+
+
+## wall-paper
+
+forest green > blue
+
+
+## ofc
+
+keyboard board square set
+
+
+ofc win, key ch
+- `9` `<>` `/`
+  - sticker cre, paste
 
 
 # m4 mac
@@ -95,8 +118,7 @@ setting at skr console
 
 mb err tidy
 - nnoremap f
-  - case: line end
-    - case: mb space
+  - case: mb space $
 
 
 ## docker
