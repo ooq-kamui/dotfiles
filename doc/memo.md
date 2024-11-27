@@ -2,7 +2,20 @@
 # cnf
 
 
+## ofc keyboard
+
+keyboard board square set
+
+key ch
+- `9` `<>` `/`
+  - sticker paste
+
+
 ## vim
+
+Slctd__expnd()
+- bug ?? err ??
+
 
 fzf my > fzf ( rg ) by run
 - refactoring
@@ -16,34 +29,34 @@ arg, case: dir, exit
   - https://zenn.dev/garchomp_game/articles/12201d1b53c7fe
 
 
-Slctd__expnd()
+<c-_>
 - bug ?? err ??
+  - nnoremap <c-_>
+  - vnoremap <c-_>
+- tst
+  - aaa_bbb_ccc_ddd aaa_bbb_ccc_ddd
+- env
+  - mac pri ok
+  - c9  pri ok
+  - c9  ofc ??
+  - win pri ok
+  - win ofc ??
 
 
-vnoremap <c-_>
-- bug ?? err ??
+## doc-tech-ds
+
+base path
+- fix
 
 
 ## artcl
 
 blog > docs
-- both ?
-  - diff cnf
-
-
-## wall-paper
-
-forest green > blue
-
-
-## ofc
-
-keyboard board square set
-
-
-ofc win, key ch
-- `9` `<>` `/`
-  - sticker cre, paste
+- both
+  - sidebar
+  - header
+- dir mv
+  - dir mod
 
 
 # m4 mac
@@ -55,14 +68,6 @@ m4 sticker
 ## vim
 
 v box, paste, case: line end ovr
-
-
-## vim  pwsh
-
-rg glob ignore
-- `--glob \!xxx`
-- confirm
-  - at hm pwsh
 
 
 # bsky
@@ -101,11 +106,20 @@ err
 - research
 
 
+## vim  pwsh
+
+rg glob ignore
+- `--glob \!xxx`
+- confirm
+  - at hm pwsh
+
+
 ## aws
 
 payment confirm
 - pst
 - nxt
+- history
 
 
 ## skr-vps
