@@ -299,11 +299,10 @@ nnoremap o :call Cursor__mv_word_b()<cr>
 
 " cursor mv word dlm _ forward
 nnoremap _ f_l
-"nnoremap <c-_> f_l
 
 " cursor mv word dlm _ back
 nnoremap <c-_> hT_
-"nnoremap _ hT_
+nnoremap ?     hT_
 
 " cursor mv word dlm camel - forward
 nnoremap F /\u<cr>
@@ -771,7 +770,7 @@ nnoremap ^ <esc>
 "nnoremap \ <esc>
 "nnoremap | <esc> " replace key : <bar>
 "nnoremap <bar> <esc>
-nnoremap ? <esc>
+"nnoremap ? <esc>
 
 "nnoremap ! <esc>
 nnoremap " <esc>

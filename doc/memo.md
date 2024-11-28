@@ -2,13 +2,10 @@
 # cnf
 
 
-## ofc keyboard
+## wall-paper
 
-keyboard board square set
-
-key ch
-- `9` `<>` `/`
-  - sticker paste
+color-point purple
+green > blue
 
 
 ## vim
@@ -29,24 +26,24 @@ arg, case: dir, exit
   - https://zenn.dev/garchomp_game/articles/12201d1b53c7fe
 
 
-<c-_>
-- bug ?? err ??
-  - nnoremap <c-_>
-  - vnoremap <c-_>
-- tst
-  - aaa_bbb_ccc_ddd aaa_bbb_ccc_ddd
-- env
-  - mac pri ok
-  - c9  pri ok
-  - c9  ofc ??
-  - win pri ok
-  - win ofc ??
+Cursor__mv_word_dlm_camel_f() mod
+
+
+v box col ( width ) 1
+- fnc cre
+
+
+## vim
+
+v box, paste, case: line end ovr
+- paste not, line nxt
 
 
 ## doc-tech-ds
 
 base path
 - fix
+  - at skr-vps
 
 
 ## artcl
@@ -59,15 +56,16 @@ blog > docs
   - dir mod
 
 
+# book
+
+refactoring
+readable
+
+
 # m4 mac
 
 m4 sticker
 - cre
-
-
-## vim
-
-v box, paste, case: line end ovr
 
 
 # bsky
@@ -108,10 +106,15 @@ err
 
 ## vim  pwsh
 
-rg glob ignore
+rg glob ignore escape ??
 - `--glob \!xxx`
 - confirm
   - at hm pwsh
+
+
+## pwsh ofc
+
+<c-_>  ??
 
 
 ## aws
