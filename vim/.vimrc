@@ -1166,8 +1166,8 @@ vnoremap <c-f> :call Slctd_box_str__mv('r')<cr>
 "vnoremap - <c-x>gv
 
 " num seq
-vnoremap = g<c-a>
 vnoremap * g<c-a>
+vnoremap = g<c-a>
 
 " indnt shft
 vnoremap ri <gv
@@ -1485,9 +1485,9 @@ inoremap <tab> <c-v><tab>
 " ins markdown cr
 "inoremap xx <space><space>
 
-" ins complete default
-"inoremap <c-q> <c-p>
-inoremap <c-g> <c-p>
+" ins cmp default
+inoremap <c-g>     <c-p>
+"inoremap <leader>i <c-p>
 
 "inoremap <expr> <c-y>
 "\ pumvisible() ? '<c-e>' :
@@ -1500,7 +1500,8 @@ inoremap <expr> <c-j>
 \                '<c-r>=I_bracket()<cr>'
 
 " ins num
-inoremap <c-y> <c-r>=I_num()<cr>
+inoremap <c-y>     <c-r>=I_num()<cr>
+"inoremap <leader>k <c-r>=I_num()<cr>
 
 " ins symbol
 
@@ -1515,6 +1516,9 @@ inoremap <c-f> <c-r>=I_symbol02()<cr>
 
 " ins markdown
 inoremap <c-u> <c-r>=I_markdown()<cr>
+
+" ins todo status
+"inoremap <leader>f <c-r>=I_todo_status()<cr>
 
 " ins week
 "inoremap xx <c-r>=I_week()<cr>
@@ -1608,6 +1612,10 @@ inoremap <c-q> <nop>
 "inoremap <c-t> <nop>
 "inoremap <c-u> <nop>
 "inoremap <c-y> <nop>
+
+inoremap <leader>   <esc>
+inoremap <esc>      <esc>
+"inoremap <esc><esc> <esc>
 
 " 
 " mode cmd
@@ -4894,7 +4902,7 @@ endfunc
 
 func! I_symbol02() abort
 
-  let l:lst = [ '-', '!', '?', '=', '+', '^', '~', '&', '|', '\', '/' ]
+  let l:lst = [ '-', '=', '!', '?', '+', '^', '~', '&', '|', '\', '/' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
@@ -4928,6 +4936,13 @@ endfunc
 
 func! I_reg() abort
   call complete(col('.'), [@0, @1, @2, @3])
+  return ''
+endfunc
+
+func! I_todo_status() abort
+
+  let l:lst = [ 'done', 'doing', 'on hold' ]
+  call complete(col('.'), l:lst)
   return ''
 endfunc
 
