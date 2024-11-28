@@ -4153,9 +4153,9 @@ func! V_box_paste() range abort
   call Cursor__mv_slctd_l()
   call Normal("\<esc>")
 
-  for line_num in range(a:firstline, a:lastline)
+  let l:col = Cursor_col_num()
 
-    let l:col = Cursor_col_num()
+  for line_num in range(a:firstline, a:lastline)
 
     call Paste()
 

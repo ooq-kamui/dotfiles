@@ -10,10 +10,6 @@ green > blue
 
 ## vim
 
-Slctd__expnd()
-- bug ?? err ??
-
-
 fzf my > fzf ( rg ) by run
 - refactoring
   - fnc name mod
@@ -24,19 +20,20 @@ arg, case: dir, exit
 - try, echo "aaa"
 - ref
   - https://zenn.dev/garchomp_game/articles/12201d1b53c7fe
+  - molder
+  - doc write
 
 
-Cursor__mv_word_dlm_camel_f() mod
+Cursor__mv_word_dlm_camel_f()
+- fnc mod
 
 
-v box col ( width ) 1
+v box col ( width ) ch 1
 - fnc cre
 
 
-## vim
-
-v box, paste, case: line end ovr
-- paste not, line nxt
+Slctd__expnd()
+- bug ?? err ??
 
 
 ## doc-tech-ds
@@ -56,16 +53,13 @@ blog > docs
   - dir mod
 
 
-# book
-
-refactoring
-readable
-
-
 # m4 mac
 
 m4 sticker
 - cre
+
+
+setup
 
 
 # bsky
@@ -93,28 +87,19 @@ nginx
     - research
 
 
-# m4 mac
-
-setup
-
-
 ## karabiner
 
 err
 - research
 
 
-## vim  pwsh
+## vim pwsh
 
 rg glob ignore escape ??
 - `--glob \!xxx`
 - confirm
   - at hm pwsh
-
-
-## pwsh ofc
-
-<c-_>  ??
+- doc write
 
 
 ## aws
@@ -123,6 +108,11 @@ payment confirm
 - pst
 - nxt
 - history
+
+
+## fe
+
+js mod
 
 
 ## skr-vps
