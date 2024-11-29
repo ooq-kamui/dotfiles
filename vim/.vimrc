@@ -304,9 +304,8 @@ nnoremap _ f_l
 nnoremap <c-_> hT_
 nnoremap ?     hT_
 
-" cursor mv word dlm camel - forward
-nnoremap F /\u<cr>
-"nnoremap F :call Cursor__mv_word_dlm_camel_f()<cr>  " dev doing
+" cursor mv word dlm ( camel or _ )  -  forward
+nnoremap F :call Cursor__mv_word_dlm_f()<cr>
 
 " cursor mv bracket pair
 nnoremap <c-l> %
@@ -639,8 +638,8 @@ nnoremap <leader>i :call N_grep_buf()<cr>
 " jmplst ( fzf )
 nnoremap <leader>e :FzfByJmplst<cr>
 
-" memo ( fzf )
-"nnoremap <leader>xx :FzfByMemo <cr>
+" rg pth lst ( fzf )
+"nnoremap <leader>xx :RgPthLst <cr>
 
 " grep [rg] ( read )
 "nnoremap xx :GrepStr <c-r>/
@@ -2711,8 +2710,16 @@ func! Cursor__mv_word_b() abort
   endif
 endfunc
 
-func! Cursor__mv_word_dlm_camel_f() abort " dev doing
+func! Cursor__mv_word_dlm_f() abort
 
+  let l:ptn = '[_ABCDEFGHIJKLMNOPQRSTUVWXYZ]'
+  " let l:ptn = '[_\u]'
+  " let l:ptn = '\u'
+
+  let l:line_num = Cursor_line_num()
+
+  call search(l:ptn, 'zW', l:line_num)
+  "call search(l:ptn)
 endfunc
 
 func! Cursor__mv_word_b_pre() abort " use not
@@ -4041,6 +4048,14 @@ func! Slctd_rpl_srch_nxt() abort " dir forward only
   call Normal('"zd"aPlgn')
 endfunc
 
+" v box width __ 1
+
+func! V_box_width__1() abort
+
+  " todo dev
+  " ... ??
+endfunc
+
 " slctd cnd
 
 func! Is_slctd_str__srch_str() abort
@@ -4194,11 +4209,11 @@ endfunc
 
 " srch
 
-func! Srch(dir) abort
+func! Srch(drct) abort
 
-  if     a:dir == 'f'
+  if     a:drct == 'f'
     let l:op = ''
-  elseif a:dir == 'b'
+  elseif a:drct == 'b'
     let l:op = 'b'
   endif
 
@@ -5238,15 +5253,11 @@ func! Defold_err_cnv() abort
   exe '%s/^ *//g'
 endfunc
 
-" 
-" fzf my
-" 
-
 " fzf by rg ( my run )
 
-command! -nargs=0 FzfByRgMyrun call Fzf_by_rg_myrun()
+command! -nargs=0 FzfByRgMyrun call Rg_by_run()
 
-func! Fzf_by_rg_myrun() abort
+func! Rg_by_run() abort
 
   let l:ptn = '^[ \t]*$'
   let l:rg_cmd = "rg -v -e '" . l:ptn . "' | count"
@@ -5273,28 +5284,28 @@ func! Rg_all_rslt_ar() abort
   let l:opt = '-v'
   let l:ptn = '^[ \t]*$'
 
-  let l:rslt_ar = Sys_cmd_rg_rslt_ar(l:opt, l:ptn)
+  let l:rslt_ar = Rg_rslt_ar(l:opt, l:ptn)
   return l:rslt_ar
 endfunc
 
-func! Sys_cmd_rg_rslt_ar(opt, ptn) abort
+func! Rg_rslt_ar(opt, ptn) abort
 
-  let l:rg_rslt_txt = Sys_cmd_rg_rslt_txt(a:opt, a:ptn)
+  let l:rg_rslt_txt = Rg_rslt_txt(a:opt, a:ptn)
   let l:rg_rslt_ar  = split(l:rg_rslt_txt, "\n")
   return l:rg_rslt_ar
 endfunc
 
-func! Sys_cmd_rg_rslt_txt(opt, ptn) abort
+func! Rg_rslt_txt(opt, ptn) abort
   
-  let l:rg_cmd_str = Rg_cmd_str(a:opt, a:ptn)
+  let l:rg_cmd = Rg_by_run_cmd(a:opt, a:ptn)
 
-  let l:r_rslt_txt = Sys_cmd(l:rg_cmd_str)
+  let l:r_rslt_txt = Sys_cmd(l:rg_cmd)
   return l:r_rslt_txt
 endfunc
 
-func! Rg_cmd_str(opt, ptn) abort
+func! Rg_by_run_cmd(opt, ptn) abort
 
-  let l:rg_cmd_str = 'rg '
+  let l:rg_cmd = 'rg '
   \            . ' --line-number'
   \            . ' --smart-case'
   \            . ' --hidden'
@@ -5312,40 +5323,21 @@ func! Rg_cmd_str(opt, ptn) abort
   let l:ptn = trim(a:ptn)
   let l:ptn = escape(l:ptn, '\({')
   
-  let l:rg_cmd_str = l:rg_cmd_str . ' ' . l:opt . " -e '" . l:ptn . "'"
-  return l:rg_cmd_str
+  let l:rg_cmd = l:rg_cmd . ' ' . l:opt . " -e '" . l:ptn . "'"
+  return l:rg_cmd
 endfunc
 
-" fzf by memo
+" rg pth lst
 
-command! -nargs=0 FzfByMemo call Fzf_by_memo()
+command! -nargs=0 RgPthLst call Rg_pth_lst()
 
-let g:fzf_run_memo_path = 'doc/memo.md'
+func! Rg_pth_lst() abort
 
-func! Fzf_by_memo() abort
-
-  let l:memo_file_path = g:fzf_run_memo_path
-
-  call Fzf_by_pth_lst(l:memo_file_path)
-
-"  call fzf#run(
-"  \   {
-"  \     'source' : Memo_ar(),
-"  \     'sink'   : funcref('Tag_jmp'),
-"  \     'window' : '-tabnew',
-"  \   }
-"  \ )
-"  "\     'options': ['--reverse'],
-"  "\     'options': ['--no-sort'],
-endfunc
-
-" fzf by pth lst
-
-func! Fzf_by_pth_lst(pth_lst_file_path) abort
+  let l:pth_lst_file_path = 'doc/memo.md'
 
   call fzf#run(
   \   {
-  \     'source' : Pth_lst_ar(a:pth_lst_file_path),
+  \     'source' : Pth_lst_ar(l:pth_lst_file_path),
   \     'sink'   : funcref('Tag_jmp'),
   \     'window' : '-tabnew',
   \   }
@@ -5367,7 +5359,6 @@ func! Pth_lst_txt(pth_lst_file_path) abort
     return
   endif
 
-  "let l:cmd = 'cat_ee ' . a:pth_lst_file_path
   let l:cmd = 'cat ' . a:pth_lst_file_path
 
   let l:pth_lst_txt = Sys_cmd(l:cmd)

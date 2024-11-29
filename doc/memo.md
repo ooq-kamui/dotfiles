@@ -2,38 +2,35 @@
 # cnf
 
 
-## wall-paper
-
-color-point purple
-green > blue
-
-
 ## vim
 
 fzf my > fzf ( rg ) by run
 - refactoring
   - fnc name mod
+  - Fzf_rg_xxx() ??
 
 
-arg, case: dir, exit
+vi arg, case: dir, exit
 - research
 - try, echo "aaa"
 - ref
   - https://zenn.dev/garchomp_game/articles/12201d1b53c7fe
-  - molder
-  - doc write
+- doc write
 
 
-Cursor__mv_word_dlm_camel_f()
-- fnc mod
-
-
-v box col ( width ) ch 1
+v box width ch 1
 - fnc cre
+- ref https://vim-jp.org/vimdoc-ja/visual.html#blockwise-operators
 
 
 Slctd__expnd()
 - bug ?? err ??
+
+
+## wall-paper
+
+color-point purple
+green > blue
 
 
 ## doc-tech-ds
