@@ -493,8 +493,8 @@ nnoremap <expr> O
 \                              ':call Indnt__shft_r()<cr>'
 
 " ins dots ( or crnt )
-nnoremap rp :call Line_end__dots_adjst()<cr>
 nnoremap ru :call Line_end__dots_adjst()<cr>
+"nnoremap rp :call Line_end__dots_adjst()<cr>
 "nnoremap > :call Line_end__dots_adjst()<cr>
 
 " ins indnt space
@@ -897,7 +897,7 @@ nnoremap gy <esc>
 
 "nnoremap ri <esc>
 "nnoremap ro <esc>
-"nnoremap rp <esc>
+nnoremap rp <esc>
 "nnoremap rr <esc>
 "nnoremap ru <esc>
 
