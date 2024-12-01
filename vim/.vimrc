@@ -623,23 +623,23 @@ nnoremap <c-p> :call Srch_slct('f')<cr>
 "nnoremap :s :Rpl 
 nnoremap :s :%s///g
 
-" grep ( fzf )
+" fzf rg
 nnoremap <leader>o :call Rg('')<cr>
 
-" grep ( fzf ), ext
+" fzf rg fltr ext
 nnoremap <leader>O :RgExt js
 
-" grep ( fzf )  -  myrun
-" nnoremap <leader>O :FzfByRgMyrun <cr>
+" fzf rg by run
+" nnoremap <leader>O :FzfRgByRun <cr>
 
-" grep buf ( fzf )
+" fzf grep buf
 nnoremap <leader>i :call N_grep_buf()<cr>
 
-" jmplst ( fzf )
+" fzf jmplst
 nnoremap <leader>e :FzfByJmplst<cr>
 
-" rg pth lst ( fzf )
-"nnoremap <leader>xx :RgPthLst <cr>
+" fzf pth lst
+"nnoremap <leader>xx :FzfPthLst <cr>
 
 " grep [rg] ( read )
 "nnoremap xx :GrepStr <c-r>/
@@ -1902,7 +1902,130 @@ func! Rg_word1(ptn) abort
   call Rg(a:ptn, v:null, v:true)
 endfunc
 
+" fzf rg by run
+
+command! -nargs=0 FzfRgByRun call Fzf_rg_by_run()
+
+func! Fzf_rg_by_run() abort
+
+  let l:rg_cnt = Rg_all_cnt()
+
+  if l:rg_cnt > 10000
+    echo "l:rg_cnt, end"
+    return
+  endif
+
+  call fzf#run(
+  \      {
+  \        'source' : Rg_all_rslt_ar(),
+  \        'sink'   : funcref('Tag_jmp'),
+  \        'window' : '-tabnew',
+  \      }
+  \    )
+  "\     'options': ['--reverse'],
+  "\     'options': ['--no-sort'],
+endfunc
+
+let g:rg_all_ptn = '^[ \t]*$'
+
+func! Rg_all_cnt() abort
+
+  " let l:ptn = '^[ \t]*$'
+  let l:rg_cmd = "rg -v -e '" . g:rg_all_ptn . "' | count"
+  let l:rg_cnt = Sys_cmd(l:rg_cmd)
+
+  return l:rg_cnt
+endfunc
+
+func! Rg_all_rslt_ar() abort
+
+  let l:opt = '-v'
+  " let l:ptn = '^[ \t]*$'
+
+  let l:rslt_ar = Rg_rslt_ar(l:opt, g:rg_all_ptn)
+  return l:rslt_ar
+endfunc
+
+func! Rg_rslt_ar(opt, ptn) abort
+
+  let l:rg_rslt_txt = Rg_rslt_txt(a:opt, a:ptn)
+  let l:rg_rslt_ar  = split(l:rg_rslt_txt, "\n")
+  return l:rg_rslt_ar
+endfunc
+
+func! Rg_rslt_txt(opt, ptn) abort
+  
+  let l:rg_cmd = Rg_cmd_for_run(a:opt, a:ptn)
+
+  let l:r_rslt_txt = Sys_cmd(l:rg_cmd)
+  return l:r_rslt_txt
+endfunc
+
+func! Rg_cmd_for_run(opt, ptn) abort
+
+  let l:rg_cmd = 'rg '
+  \            . ' --line-number'
+  \            . ' --smart-case'
+  \            . ' --hidden'
+  \            . ' --color always'
+  \            . ' -g "!.git"'
+  "\            . ' --no-ignore'
+  "\            . ' -ns'
+
+  if a:opt == v:null
+    let l:opt = ''
+  else
+    let l:opt = a:opt
+  endif
+
+  let l:ptn = trim(a:ptn)
+  let l:ptn = escape(l:ptn, '\({')
+  
+  let l:rg_cmd = l:rg_cmd . ' ' . l:opt . " -e '" . l:ptn . "'"
+  return l:rg_cmd
+endfunc
+
+" rg pth lst
+
+command! -nargs=0 FzfPthLst call Fzf_pth_lst()
+
+func! Fzf_pth_lst() abort
+
+  " let l:pth_lst_file_path = 'doc/memo.md' " dflt
+  let l:pth_lst_file_path = 'doc/memo.md'
+
+  call fzf#run(
+  \   {
+  \     'source' : Pth_lst_ar(l:pth_lst_file_path),
+  \     'sink'   : funcref('Tag_jmp'),
+  \     'window' : '-tabnew',
+  \   }
+  \ )
+  "\     'options': ['--reverse'],
+  "\     'options': ['--no-sort'],
+endfunc
+
+func! Pth_lst_ar(pth_lst_file_path) abort
+
+  let l:rslt_txt = Pth_lst_txt(a:pth_lst_file_path)
+  let l:rslt_ar  = split(l:rslt_txt, "\n")
+  return l:rslt_ar
+endfunc
+
+func! Pth_lst_txt(pth_lst_file_path) abort
+
+  if ! filereadable(a:pth_lst_file_path)
+    return
+  endif
+
+  let l:cmd = 'cat ' . a:pth_lst_file_path
+
+  let l:pth_lst_txt = Sys_cmd(l:cmd)
+  return l:pth_lst_txt
+endfunc
+
 " grep buf
+
 func! N_grep_buf() abort
   
   exe 'BLines '
@@ -2575,6 +2698,17 @@ endfunc
 
 " cursor mv
 
+func! Cursor__mv_by_col_num(col_num) abort
+
+  if ! Is_str__num(a:col_num)
+    return
+  endif
+
+  let l:line_num = Cursor_line_num()
+
+  call Cursor__mv_by_line_col(l:line_num, a:col_num)
+endfunc
+
 func! Cursor__mv_by_line_num(line_num) abort
 
   if ! Is_str__num(a:line_num)
@@ -2584,17 +2718,17 @@ func! Cursor__mv_by_line_num(line_num) abort
   call Normal(a:line_num . 'G')
 endfunc
 
-func! Cursor__mv_by_line_info(line_info) abort
-  
-  let l:line_num = Line_info_line_num(a:line_info)
-  call Cursor__mv_by_line_num(l:line_num)
-endfunc
-
 func! Cursor__mv_by_line_col(line_num, col) abort
 
   let l:line_num = (a:line_num == v:null) ? Cursor_line_num() : a:line_num
   
   call cursor(l:line_num, a:col)
+endfunc
+
+func! Cursor__mv_by_line_info(line_info) abort
+  
+  let l:line_num = Line_info_line_num(a:line_info)
+  call Cursor__mv_by_line_num(l:line_num)
 endfunc
 
 func! Cursor__mv_by_pos(pos) abort " use not
@@ -3924,14 +4058,29 @@ func! Slctd_box__mv(lr) range abort
 
   call Slct_re()
 
-  let l:n_cmd = Lr_2_n_cmd(a:lr)
+  let l:n_cmd = Lr_2_normal_cmd(a:lr)
   call Normal('o' . l:n_cmd)
   call Normal('o' . l:n_cmd)
 endfunc
 
+func! Slctd_box_w__1() range abort
+
+  call Slct_re()
+
+  if ! mode() == "\<c-v>"
+    return
+  endif
+
+  call Normal('o')
+  let l:col_num = Cursor_col_num()
+
+  call Normal('o')
+  call Cursor__mv_by_col_num(l:col_num)
+endfunc
+
 func! Slctd_box_str__mv(lr) range abort
 
-  let l:n_cmd = Lr_2_n_cmd(a:lr)
+  let l:n_cmd = Lr_2_normal_cmd(a:lr)
 
   call Slct_re()
   call Normal('"zx')
@@ -3942,7 +4091,7 @@ func! Slctd_box_str__mv(lr) range abort
   call Slctd_box__mv(a:lr)
 endfunc
 
-func! Lr_2_n_cmd(lr) abort
+func! Lr_2_normal_cmd(lr) abort
 
   if     a:lr == 'l'
     let l:n_cmd = 'h'
@@ -4046,14 +4195,6 @@ func! Slctd_rpl_srch_nxt() abort " dir forward only
   
   call Slct_re()
   call Normal('"zd"aPlgn')
-endfunc
-
-" v box width __ 1
-
-func! V_box_width__1() abort
-
-  " todo dev
-  " ... ??
 endfunc
 
 " slctd cnd
@@ -4168,13 +4309,13 @@ func! V_box_paste() range abort
   call Cursor__mv_slctd_l()
   call Normal("\<esc>")
 
-  let l:col = Cursor_col_num()
+  let l:col_num = Cursor_col_num()
 
   for line_num in range(a:firstline, a:lastline)
 
     call Paste()
 
-    call Cursor__mv_by_line_col(l:line_num, l:col)
+    call Cursor__mv_by_line_col(l:line_num, l:col_num)
 
     if l:line_num != a:lastline
       call Normal('j')
@@ -5251,118 +5392,6 @@ func! Defold_err_cnv() abort
   exe '%s/^ERROR:SCRIPT:/ERROR:SCRIPT:\r/g'
   exe '%s/\/assets\///g'
   exe '%s/^ *//g'
-endfunc
-
-" fzf by rg ( my run )
-
-command! -nargs=0 FzfByRgMyrun call Rg_by_run()
-
-func! Rg_by_run() abort
-
-  let l:ptn = '^[ \t]*$'
-  let l:rg_cmd = "rg -v -e '" . l:ptn . "' | count"
-  let l:rg_cnt = Sys_cmd(l:rg_cmd)
-
-  if l:rg_cnt > 10000
-    echo "l:rg_cnt, end"
-    return
-  endif
-
-  call fzf#run(
-  \      {
-  \        'source' : Rg_all_rslt_ar(),
-  \        'sink'   : funcref('Tag_jmp'),
-  \        'window' : '-tabnew',
-  \      }
-  \    )
-  "\     'options': ['--reverse'],
-  "\     'options': ['--no-sort'],
-endfunc
-
-func! Rg_all_rslt_ar() abort
-
-  let l:opt = '-v'
-  let l:ptn = '^[ \t]*$'
-
-  let l:rslt_ar = Rg_rslt_ar(l:opt, l:ptn)
-  return l:rslt_ar
-endfunc
-
-func! Rg_rslt_ar(opt, ptn) abort
-
-  let l:rg_rslt_txt = Rg_rslt_txt(a:opt, a:ptn)
-  let l:rg_rslt_ar  = split(l:rg_rslt_txt, "\n")
-  return l:rg_rslt_ar
-endfunc
-
-func! Rg_rslt_txt(opt, ptn) abort
-  
-  let l:rg_cmd = Rg_by_run_cmd(a:opt, a:ptn)
-
-  let l:r_rslt_txt = Sys_cmd(l:rg_cmd)
-  return l:r_rslt_txt
-endfunc
-
-func! Rg_by_run_cmd(opt, ptn) abort
-
-  let l:rg_cmd = 'rg '
-  \            . ' --line-number'
-  \            . ' --smart-case'
-  \            . ' --hidden'
-  \            . ' --color always'
-  \            . ' -g "!.git"'
-  "\            . ' --no-ignore'
-  "\            . ' -ns'
-
-  if a:opt == v:null
-    let l:opt = ''
-  else
-    let l:opt = a:opt
-  endif
-
-  let l:ptn = trim(a:ptn)
-  let l:ptn = escape(l:ptn, '\({')
-  
-  let l:rg_cmd = l:rg_cmd . ' ' . l:opt . " -e '" . l:ptn . "'"
-  return l:rg_cmd
-endfunc
-
-" rg pth lst
-
-command! -nargs=0 RgPthLst call Rg_pth_lst()
-
-func! Rg_pth_lst() abort
-
-  let l:pth_lst_file_path = 'doc/memo.md'
-
-  call fzf#run(
-  \   {
-  \     'source' : Pth_lst_ar(l:pth_lst_file_path),
-  \     'sink'   : funcref('Tag_jmp'),
-  \     'window' : '-tabnew',
-  \   }
-  \ )
-  "\     'options': ['--reverse'],
-  "\     'options': ['--no-sort'],
-endfunc
-
-func! Pth_lst_ar(pth_lst_file_path) abort
-
-  let l:rslt_txt = Pth_lst_txt(a:pth_lst_file_path)
-  let l:rslt_ar  = split(l:rslt_txt, "\n")
-  return l:rslt_ar
-endfunc
-
-func! Pth_lst_txt(pth_lst_file_path) abort
-
-  if ! filereadable(a:pth_lst_file_path)
-    return
-  endif
-
-  let l:cmd = 'cat ' . a:pth_lst_file_path
-
-  let l:pth_lst_txt = Sys_cmd(l:cmd)
-  return l:pth_lst_txt
 endfunc
 
 " 

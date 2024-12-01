@@ -2,52 +2,57 @@
 # cnf
 
 
+## ofc
+
+log seq renew
+
+
 ## vim
 
-fzf my > fzf ( rg ) by run
-- refactoring
-  - fnc name mod
-  - Fzf_rg_xxx() ??
+Is_mode__v_box()
+- cre
+  - ref Tst_slctd()
+  - if cannot, fnc comment
 
 
-vi arg, case: dir, exit
-- research
-- try, echo "aaa"
-- ref
-  - https://zenn.dev/garchomp_game/articles/12201d1b53c7fe
-- doc write
-
-
-v box width ch 1
-- fnc cre
-- ref https://vim-jp.org/vimdoc-ja/visual.html#blockwise-operators
+vi arg, case: dir
+- ref https://zenn.dev/garchomp_game/articles/12201d1b53c7fe
+  - read
+- try
+  - autocmd
+    - try
+    - evnt lst
+  - echo "aaa"
 
 
 Slctd__expnd()
 - bug ?? err ??
 
 
-## wall-paper
+# bsky
 
-color-point purple
-green > blue
+domain
+- ssl
+  - encrypt
+    - kamui
+      - cre
 
 
-## doc-tech-ds
+## skr-vps
 
-base path
-- fix
-  - at skr-vps
+rg, fd, 
+su permission ch
+- /usr/share/nginx/html
+sh cp build, cre
+clp ?
+ll dir color
 
 
 ## artcl
 
-blog > docs
-- both
-  - sidebar
-  - header
-- dir mv
-  - dir mod
+docs `>` blog 
+- sidebar
+  - ref https://docusaurus.io/docs/sidebar
 
 
 # m4 mac
@@ -57,12 +62,6 @@ m4 sticker
 
 
 setup
-
-
-# bsky
-
-domain
-- ssl
 
 
 ## holo song
@@ -99,6 +98,12 @@ rg glob ignore escape ??
 - doc write
 
 
+## skr-vps
+
+setting at skr console
+- firewall
+
+
 ## aws
 
 payment confirm
@@ -109,13 +114,11 @@ payment confirm
 
 ## fe
 
-js mod
-
-
-## skr-vps
-
-setting at skr console
-- firewall
+js cre
+- react
+- logic tidy
+  - rslt row
+  - fltr
 
 
 ## vim
