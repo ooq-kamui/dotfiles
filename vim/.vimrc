@@ -894,7 +894,10 @@ nnoremap gv <esc>
 nnoremap gw <esc>
 nnoremap gy <esc>
 
+"nnoremap rh <esc>
 "nnoremap ri <esc>
+"nnoremap rj <esc>
+"nnoremap rk <esc>
 "nnoremap ro <esc>
 nnoremap rp <esc>
 "nnoremap rr <esc>

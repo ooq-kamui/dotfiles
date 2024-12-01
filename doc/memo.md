@@ -6,6 +6,10 @@
 
 log seq renew
 
+cp ( & mv )
+
+python class
+
 
 ## vim
 
@@ -16,12 +20,9 @@ Is_mode__v_box()
 
 
 vi arg, case: dir
-- ref https://zenn.dev/garchomp_game/articles/12201d1b53c7fe
-  - read
+- autocmd
+  - evnt lst
 - try
-  - autocmd
-    - try
-    - evnt lst
   - echo "aaa"
 
 
@@ -32,10 +33,15 @@ Slctd__expnd()
 # bsky
 
 domain
+- ref                                              .. 
+  - https://qiita.com/yukitkns/items/fb49bbd6f9cc289ecaac
+  - https://weblabo.oscasierra.net/letsencrypt-renew-cron/
 - ssl
   - encrypt
     - kamui
       - cre
+    - certbot
+      - install
 
 
 ## skr-vps
@@ -46,6 +52,7 @@ su permission ch
 sh cp build, cre
 clp ?
 ll dir color
+fish color
 
 
 ## artcl
