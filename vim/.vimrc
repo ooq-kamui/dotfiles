@@ -1154,6 +1154,9 @@ vnoremap <c-w> :call Slctd_box__mv('l')<cr>
 " slct box mv forward
 vnoremap <c-e> :call Slctd_box__mv('r')<cr>
 
+" slct box w __ 1
+vnoremap w :call Slctd_box_w__1()<cr>
+
 " slctd str mv back
 vnoremap <c-s> :call Slctd_box_str__mv('l')<cr>
 
@@ -1350,7 +1353,7 @@ vnoremap q <esc>
 "vnoremap t <esc>
 "vnoremap u <esc>
 "vnoremap v <esc>
-vnoremap w <esc>
+"vnoremap w <esc>
 vnoremap x <esc>
 "vnoremap y <esc>
 
