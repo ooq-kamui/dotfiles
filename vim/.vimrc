@@ -624,10 +624,10 @@ nnoremap <c-p> :call Srch_slct('f')<cr>
 nnoremap :s :%s///g
 
 " fzf rg
-nnoremap <leader>o :call Rg('')<cr>
+nnoremap <leader>o :call Fzf_rg('')<cr>
 
 " fzf rg fltr ext
-nnoremap <leader>O :RgExt js
+nnoremap <leader>O :FzfRgExt js
 
 " fzf rg by run
 " nnoremap <leader>O :FzfRgByRun <cr>
@@ -1266,8 +1266,7 @@ vnoremap <leader>i :call V_grep_buf()<cr>
 "vnoremap <leader>k :call V_grep_buf()<cr>
 
 " grep ( fzf )
-vnoremap <leader>o "zy:call Rg('<c-r>z')<cr>
-"vnoremap <leader>o "zy:Rg <c-r>z<cr>
+vnoremap <leader>o "zy:call Fzf_rg('<c-r>z')<cr>
 
 " grep ( fzf )  -  word1  " todo dev
 "vnoremap <leader>O "zy:RgWord1 <c-r>z<cr>
@@ -1830,8 +1829,7 @@ if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
   endif
 endif
 
-" func! Rg(ptn, ext) abort " dev doing
-func! Rg(...) abort " dev doing
+func! Fzf_rg(...) abort " dev doing
 
   if ! ( Is_env__('mac') || Is_env__('linux') || Is_env__('win64') )
     return
@@ -1886,26 +1884,25 @@ func! Rg_cmd(ptn, ext, word1) abort
 endfunc
 
 " rg ext
-command! -bang -nargs=1 RgExt call Rg_ext(<f-args>)
+command! -bang -nargs=1 FzfRgExt call Fzf_rg_ext(<f-args>)
 
 " let g:fzf_rg_opt_ext = ''
 
-func! Rg_ext(ext) abort
+func! Fzf_rg_ext(ext) abort
 
   let l:ext = a:ext
 
   " let g:fzf_rg_opt_ext = ' -g "*.' . l:ext . '"'
 
-  " call Exe('Rg')
-  call Rg('', l:ext)
+  call Fzf_rg('', l:ext)
 
   " let g:fzf_rg_opt_ext = ''
 endfunc
 
 " rg word1
-func! Rg_word1(ptn) abort
+func! Fzf_rg_word1(ptn) abort
 
-  call Rg(a:ptn, v:null, v:true)
+  call Fzf_rg(a:ptn, v:null, v:true)
 endfunc
 
 " fzf rg by run
@@ -4223,13 +4220,21 @@ func! Is_slctd_str_line_mlt() abort
   endif
 endfunc
 
-func! Is_slctd_mode_v() abort " use not
+func! Is_slctd_mode__box() range abort
 
-  if mode() == 'v'
-    return v:true
+  call Slct_re()
+
+  let l:ret = v:false
+
+  if     mode() == "\<c-v>"
+    echo "c-v"
+    let l:ret = v:true
+  elseif mode() == "v"
+    echo "v"
   else
-    return v:false
+    echo "else"
   endif
+  return l:ret
 endfunc
 
 " ynk
@@ -5470,21 +5475,12 @@ endfunc
 
 " tst slctd
 
-vnoremap T :Tst_slctd 
+vnoremap T :call Tst()
 
-func! Tst_slctd() range abort
+func! Tst() range abort
 
-  call Slct_re()
-
-  if     mode() == "\<c-v>"
-    echo "c-v"
-  elseif mode() == "v"
-    echo "v"
-  elseif mode() == "V" " < non
-    echo "V"
-  else
-    echo "else"
-  endif
+  let l:val = Is_slctd_mode__v_box()
+  echo l:val
 endfunc
 
 " tst slctd __ rpl sys cmd mb

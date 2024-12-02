@@ -2,28 +2,13 @@
 # cnf
 
 
-## ofc
-
-log seq renew
-
-cp ( & mv )
-
-python class
-
-
 ## vim
 
-Is_mode__v_box()
+if mode() == `??` refactoring
+
+
+Rg_fnc_exe()
 - cre
-  - ref Tst_slctd()
-  - if cannot, fnc comment
-
-
-vi arg, case: dir
-- autocmd
-  - evnt lst
-- try
-  - echo "aaa"
 
 
 Slctd__expnd()
@@ -60,6 +45,17 @@ fish color
 docs `>` blog 
 - sidebar
   - ref https://docusaurus.io/docs/sidebar
+
+
+## unix
+
+cp dir ( & name ch )
+- ggl
+
+
+## python
+
+class ggl
 
 
 # m4 mac
