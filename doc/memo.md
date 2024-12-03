@@ -2,10 +2,65 @@
 # cnf
 
 
+## aws
+
+payment confirm
+- pst
+- nxt
+- history
+
+
+## ofc
+
+keyboard
+- 9 `<>` del
+  - sticker, ? ?
+
+- ctrl
+  - sticker, 18 x 12 mm
+
+
+## gitbash cmd
+
+awk_tbl
+
+col
+
+
+## artcl
+
+nginx
+- ln > build
+  - permission ?
+    - tst dir
+
+
+docs `>` blog 
+- sidebar
+  - category
+  - ref https://docusaurus.io/docs/sidebar
+
+
+## skr-vps
+
+rg, fd, 
+su permission ch
+- /usr/share/nginx/html
+sh cp build, cre
+clp ?
+ll dir color
+fish color
+
+
+## m4 mac
+
+setup
+
+
+m4 sticker
+
+
 ## vim
-
-if mode() == `??` refactoring
-
 
 Rg_fnc_exe()
 - cre
@@ -29,44 +84,6 @@ domain
       - install
 
 
-## skr-vps
-
-rg, fd, 
-su permission ch
-- /usr/share/nginx/html
-sh cp build, cre
-clp ?
-ll dir color
-fish color
-
-
-## artcl
-
-docs `>` blog 
-- sidebar
-  - ref https://docusaurus.io/docs/sidebar
-
-
-## unix
-
-cp dir ( & name ch )
-- ggl
-
-
-## python
-
-class ggl
-
-
-# m4 mac
-
-m4 sticker
-- cre
-
-
-setup
-
-
 ## holo song
 
 git dir mv to share
@@ -76,14 +93,6 @@ git dir mv to share
 mv ( cp ) to skr vps
 - api url mod
   - confirm
-
-
-## artcl
-
-nginx
-- ln > build
-  - can ?
-    - research
 
 
 ## karabiner
@@ -105,14 +114,6 @@ rg glob ignore escape ??
 
 setting at skr console
 - firewall
-
-
-## aws
-
-payment confirm
-- pst
-- nxt
-- history
 
 
 ## fe

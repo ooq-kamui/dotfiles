@@ -2771,7 +2771,8 @@ func! V_cursor__mv_line_end() range abort
 
   call Slct_re()
 
-  if     mode() == "\<c-v>"
+  " if     mode() == "\<c-v>"
+  if     Is_slctd_mode__box()
 
     if Is_cursor__line_end_ovr()
       return
@@ -2780,7 +2781,8 @@ func! V_cursor__mv_line_end() range abort
     call Normal('$h')
     "call Normal('g_')
 
-  elseif mode() == "v"
+  " elseif mode() == "v"
+  elseif Is_slctd_mode__line()
 
     if Is_cursor_line__emp()
       return
@@ -4070,7 +4072,8 @@ func! Slctd_box_w__1() range abort
 
   call Slct_re()
 
-  if ! mode() == "\<c-v>"
+  " if ! mode() == "\<c-v>"
+  if ! Is_slctd_mode__box()
     return
   endif
 
@@ -4226,13 +4229,22 @@ func! Is_slctd_mode__box() range abort
 
   let l:ret = v:false
 
-  if     mode() == "\<c-v>"
-    echo "c-v"
+  if mode() == "\<c-v>"
+    " echo "c-v"
     let l:ret = v:true
-  elseif mode() == "v"
-    echo "v"
-  else
-    echo "else"
+  endif
+  return l:ret
+endfunc
+
+func! Is_slctd_mode__line() range abort
+
+  call Slct_re()
+
+  let l:ret = v:false
+
+  if mode() == "v"
+    " echo "v"
+    let l:ret = v:true
   endif
   return l:ret
 endfunc
@@ -5462,24 +5474,13 @@ func! Tst_arg_q(arg01) range abort
   " echo a:arg01 . 'end'
 endfunc
 
-" tst bang
-
-nnoremap T :TstBang
-
-command! -bang -nargs=* TstBang call Tst_bang(<bang>1)
-
-func! Tst_bang(bang)
-
-  echo a:bang
-endfunc
-
 " tst slctd
 
 vnoremap T :call Tst()
 
 func! Tst() range abort
 
-  let l:val = Is_slctd_mode__v_box()
+  let l:val = Is_slctd_mode__box()
   echo l:val
 endfunc
 

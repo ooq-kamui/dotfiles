@@ -10,6 +10,6 @@ function col
   set awk_arg ( string join , $awk_arg )
 
   #echo $awk_arg
-  cat - | awk_arg $awk_arg
+  cat - | awk_tbl $awk_arg
 end
 
