@@ -461,7 +461,6 @@ nnoremap < A,<esc>j
 nnoremap . i.<esc>
 
 " ins hyphen
-nnoremap = :call Ins_hyphen()<esc>
 nnoremap 0 :call Ins_hyphen()<esc>
 
 " ins space
@@ -558,7 +557,7 @@ nnoremap ro :call Indnt__shft_r()<cr>
 "nnoremap xx :call Indnt__add(2)<cr>
 
 " indnt crct
-nnoremap ; :call Indnt__crct()<cr>
+nnoremap re :call Indnt__crct()<cr>
 
 " cursor f space __ crct
 "nnoremap xx :call Cursor_f_space__crct()<cr>
@@ -756,9 +755,9 @@ nnoremap <bs>    <esc>
 
 nnoremap - <esc>
 nnoremap + <esc>
-"nnoremap = <esc>
+nnoremap = <esc>
 nnoremap @ <esc>
-"nnoremap ; <esc>
+nnoremap ; <esc>
 "nnoremap , <esc>
 "nnoremap . <esc>
 "nnoremap * <esc>
@@ -894,6 +893,7 @@ nnoremap gv <esc>
 nnoremap gw <esc>
 nnoremap gy <esc>
 
+"nnoremap re <esc>
 "nnoremap rh <esc>
 "nnoremap ri <esc>
 "nnoremap rj <esc>
@@ -3776,7 +3776,7 @@ func! Indnt__shft_r() abort
   call Indnt__add(l:col)
 endfunc
 
-func! Indnt__crct() abort " nnoremap ; ==^
+func! Indnt__crct() abort
 
   let l:col = Indnt__crct_by_c()
   return l:col
