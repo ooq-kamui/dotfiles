@@ -2,7 +2,6 @@
 # alias arg ( prj )
 
 alias opn_github_cnf  "opn https://github.com/ooq-kamui/cnf"
-alias opn_github_doc  "opn https://github.com/ooq-kamui/doc-tech"
 alias opn_github_holo "opn https://github.com/ooq-kamui/holo-song"
 
 alias ooq_artcl_ds_rsync         'fish ~/wrk/prj/ssg/sh/rsync.ooq-artcl.ds.fish'
