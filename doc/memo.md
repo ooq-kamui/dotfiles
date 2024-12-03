@@ -2,14 +2,6 @@
 # cnf
 
 
-## aws
-
-payment confirm
-- pst
-- nxt
-- history
-
-
 ## ofc
 
 keyboard
@@ -31,8 +23,7 @@ col
 
 nginx
 - ln > build
-  - permission ?
-    - tst dir
+  - cnf ggl
 
 
 docs `>` blog 
@@ -47,7 +38,7 @@ rg, fd,
 su permission ch
 - /usr/share/nginx/html
 sh cp build, cre
-clp ?
+clp
 ll dir color
 fish color
 
@@ -70,6 +61,22 @@ Slctd__expnd()
 - bug ?? err ??
 
 
+## holo song
+
+git dir mv to share
+- at mac
+
+
+mv ( cp ) to skr vps
+- api url mod
+  - confirm
+
+
+## aws
+
+card history confirm
+
+
 # bsky
 
 domain
@@ -82,17 +89,6 @@ domain
       - cre
     - certbot
       - install
-
-
-## holo song
-
-git dir mv to share
-- at mac
-
-
-mv ( cp ) to skr vps
-- api url mod
-  - confirm
 
 
 ## karabiner
