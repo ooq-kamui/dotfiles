@@ -4,22 +4,20 @@
 
 ## bash
 
-d
+d dir_jmp
 - case arg nul: fzf
 
 
 ## ofc
 
 keyboard
-- 9 `<>` del
-  - sticker
-    - paste
-
 - `-` `<>` `\`
   - sticker
     - cre
       - `\` : normal
+        - 13 x 12 mm
       - `-` : normal-min
+        -  9 x 12 mm
     - paste
 
 
