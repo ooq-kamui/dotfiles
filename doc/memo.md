@@ -2,12 +2,6 @@
 # cnf
 
 
-## bash
-
-d dir_jmp
-- case arg nul: fzf
-
-
 ## ofc
 
 keyboard
@@ -19,6 +13,30 @@ keyboard
       - `-` : normal-min
         -  9 x 12 mm
     - paste
+
+
+## bash
+
+d dir_jmp
+- case arg nul: fzf
+
+
+## vim
+
+Rg_fnc_exe()
+- cre
+
+
+## skr-vps
+
+brew install
+rg, fd, 
+su permission ch
+- /usr/share/nginx/html
+sh cp build, cre
+clp
+ll dir color
+fish color
 
 
 ## artcl
@@ -34,18 +52,6 @@ docs `>` blog
   - ref https://docusaurus.io/docs/sidebar
 
 
-## skr-vps
-
-brew install
-rg, fd, 
-su permission ch
-- /usr/share/nginx/html
-sh cp build, cre
-clp
-ll dir color
-fish color
-
-
 ## m4 mac
 
 setup
@@ -55,10 +61,6 @@ m4 sticker
 
 
 ## vim
-
-Rg_fnc_exe()
-- cre
-
 
 Slctd__expnd()
 - bug ?? err ??
