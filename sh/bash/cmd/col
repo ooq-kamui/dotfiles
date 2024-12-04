@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# echo "$@"
+
+for col_num in "$@"
+do
+  if [ -z "$awk_arg_col" ]
+  then
+      awk_arg_col='$'$col_num
+  else
+      awk_arg_col=$awk_arg_col',$'$col_num
+  fi
+done
+
+cat - | awk_by_arg_col $awk_arg_col
+

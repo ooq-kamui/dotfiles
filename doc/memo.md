@@ -6,17 +6,16 @@
 
 keyboard
 - 9 `<>` del
-  - sticker, ? ?
+  - power toys
+  - sticker
+    - paste
 
-- ctrl
-  - sticker, 18 x 12 mm
-
-
-## gitbash cmd
-
-awk_tbl
-
-col
+- `-` `<>` `\`
+  - sticker
+    - cre
+      - `\` : normal
+      - `-` : normal-min
+    - paste
 
 
 ## artcl
@@ -34,6 +33,7 @@ docs `>` blog
 
 ## skr-vps
 
+brew install
 rg, fd, 
 su permission ch
 - /usr/share/nginx/html
@@ -94,7 +94,7 @@ domain
 ## karabiner
 
 err
-- research
+- research, ggl
 
 
 ## vim pwsh

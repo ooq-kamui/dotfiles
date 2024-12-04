@@ -1,4 +1,4 @@
-function awk_tbl
+function awk_by_arg_col
 
   awk "{print $argv }" | tbl
 end

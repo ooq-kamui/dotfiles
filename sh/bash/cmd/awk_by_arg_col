@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# echo "$@"
+
+awk "{print $@ }" | /usr/bin/column -t
+# awk "{print $@ }" 
+
+
+

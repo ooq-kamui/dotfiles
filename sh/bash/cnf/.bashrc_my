@@ -63,6 +63,8 @@ alias to_clr=':>'
 
 alias vi='vi -p'
 
+alias ji='git'
+
 # etc
 
 alias du1='du -h -d 1'
@@ -81,7 +83,9 @@ alias clp='clp_by_tmp'
 
 alias srt='sort'
 
-alias tbl='column -t'
+# alias tbl='column -t'
+alias tbl='/usr/bin/column -t'
+alias col="$HOME/wrk/cnf/sh/bash/cmd/col"
 
 alias cal='cal -3'
 alias ca='cal'

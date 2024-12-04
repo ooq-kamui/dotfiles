@@ -100,8 +100,6 @@ alias kk  'k;k'
 alias kkk 'k;k;k'
 
 alias d 'dir_jmp'
-#alias dj  'dir_jmp'
-#alias d  "cd ( cat /Users/kamui/.local/share/z/data | sed 's/|.*//g' | fzf ); pwd"
 
 alias vim 'nvim -p'
 alias vi  'nvim -p'
