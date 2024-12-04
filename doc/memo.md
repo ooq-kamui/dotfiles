@@ -2,11 +2,16 @@
 # cnf
 
 
+## bash
+
+d
+- case arg nul: fzf
+
+
 ## ofc
 
 keyboard
 - 9 `<>` del
-  - power toys
   - sticker
     - paste
 
@@ -21,8 +26,8 @@ keyboard
 ## artcl
 
 nginx
-- ln > build
-  - cnf ggl
+- ln 403
+  - cnf mod, ggl
 
 
 docs `>` blog 
