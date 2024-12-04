@@ -1,17 +1,19 @@
 
-hi vimString      ctermfg=lightblue
-hi vimVar         ctermfg=yellow
+source ~/AppData/Local/nvim/syntax/dflt.vim
 
-hi vimLineComment ctermfg=green
-hi vimComment     ctermfg=green
 
-hi vimCommand     ctermfg=yellow
-hi vimOption      ctermfg=cyan
+hi vimString        ctermfg=lightblue
+hi vimVar           ctermfg=yellow
+hi vimFuncVar       ctermfg=yellow
+hi vimFunction      ctermfg=lightblue
 
-hi vimParenSep    ctermfg=lightmagenta
-hi vimContinue    ctermfg=lightmagenta
+hi vimParenSep      ctermfg=lightmagenta
+hi vimContinue      ctermfg=lightmagenta
 
-hi vimNotation    ctermfg=lightblue
+hi vimNotation      ctermfg=lightblue
+
+
+hi vimHiCtermColor  ctermfg=cyan
 
 
 
