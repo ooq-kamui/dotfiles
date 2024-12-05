@@ -3,8 +3,9 @@ hi shOption              ctermfg=yellow
 hi shComment             ctermfg=green
 hi shEcho                ctermfg=lightmagenta
 
-hi shDoubleQuote         ctermfg=lightmagenta
 hi shQuote               ctermfg=lightmagenta
+hi shSingleQuote         ctermfg=lightmagenta
+hi shDoubleQuote         ctermfg=lightmagenta
 
 hi shConditional         ctermfg=yellow
 
