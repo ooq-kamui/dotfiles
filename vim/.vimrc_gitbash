@@ -9,10 +9,10 @@ endif
 
 " grep ( fzf  -  gitbash )
 
-"nnoremap <leader>o :FzfRunRg <c-r>/
-nnoremap <leader>o :FzfRunRg <cr>
+"nnoremap <leader>o :FzfRunRg <cr>
+nnoremap <leader>o :FzfRgByRun <cr>
 
-vnoremap <leader>o "zy:FzfRunRg <c-r>z<cr>
+vnoremap <leader>o "zy:FzfRgByRun <c-r>z<cr>
 
 
 

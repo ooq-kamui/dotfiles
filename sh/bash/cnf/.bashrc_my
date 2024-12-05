@@ -52,8 +52,6 @@ alias k='cd_parent'
 alias kk='k;k'
 alias kkk='k;k;k'
 
-#alias dj='dir_jmp'
-
 alias mv='mv -i'
 alias cp='cp -pi'
 alias rm='rm -i'
@@ -117,16 +115,18 @@ export FZF_DEFAULT_OPTS='--ansi --bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:
 
 # z
 
-test -f ~/wrk/app/z/z.sh && . ~/wrk/app/z/z.sh
+if test -f ~/wrk/app/z/z.sh
+then
+  source ~/wrk/app/z/z.sh
+  z_history_file_path=~/.z
+fi
 
 function dir_jmp(){
 
+  # echo $z_history_file_path
+
   if test -z "$@"
   then
-  
-    z_history_file_path=~/.z
-    #echo $z_history_file_path
-  
     dir=$( cat $z_history_file_path | sed 's/|.*//g' | fzf )
     # echo $dir
   
@@ -142,10 +142,6 @@ function dir_jmp(){
   fi
 
   pth
-
-  # echo "$@"
-  # z "$@"
-  # pwd
 }
 alias d='dir_jmp'
 
@@ -185,7 +181,6 @@ then
   bind -x '"\C-y": fzf-file-widget'
   #bind -x '"\C-r": fzf-history-widget'
 fi
-
 
 
 

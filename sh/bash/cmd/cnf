@@ -7,6 +7,7 @@ cmd_dir=$cnf_bash_dir/cmd
 cnf_dir=$cnf_bash_dir/cnf
 cnf_file_path_my=$cnf_dir/.bashrc_my
 cnf_file_path_c9=$cnf_dir/.bashrc_c9
+cnf_file_path_gitbash=$cnf_dir/.bashrc_gitbash
 
 cmdsub="$1"
 
@@ -17,7 +18,7 @@ then
 
 elif test $cmdsub = 'vi'
 then
-  vi -p $cnf_file_path_my $cnf_file_path_c9
+  vi -p $cnf_file_path_my $cnf_file_path_c9 $cnf_file_path_gitbash
 
 elif test $cmdsub = 'src'
 then

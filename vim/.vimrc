@@ -1907,9 +1907,11 @@ endfunc
 
 " fzf rg by run
 
-command! -nargs=0 FzfRgByRun call Fzf_rg_by_run()
+command! -nargs=? FzfRgByRun call Fzf_rg_by_run(<f-args>)
 
-func! Fzf_rg_by_run() abort
+func! Fzf_rg_by_run(...) abort
+
+  let l:str = ( a:0 >= 1 ) ? a:1 : v:null
 
   let l:rg_cnt = Rg_all_cnt()
 
@@ -4905,8 +4907,13 @@ endfunc
 func! Opn_vimrc() abort
 
   let l:path = '~/wrk/cnf/vim/.vimrc'
-
   call Opn(l:path)
+
+  if Is_env__('win32unix') " gitbash
+
+    let l:path = '~/wrk/cnf/vim/.vimrc_gitbash'
+    call Opn(l:path)
+  endif
 endfunc
 
 func! Opn_fish_cnf() abort

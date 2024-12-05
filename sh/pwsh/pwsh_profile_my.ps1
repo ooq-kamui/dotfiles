@@ -143,12 +143,21 @@ function lr {
 function dir_jmp {
   param( $path )
 
-  z $path
+  if ( $path -eq $null ) {
+
+    $dir = ( zoxide query --list | fzf )
+    # echo $dir
+    cd $dir
+
+  }else {
+
+    z $path
+  }
+
   p
 }
 # Set-Alias dir "dir_jmp" -Option AllScope # cannot be removed
-Set-Alias dj "dir_jmp"
-Set-Alias d  "dir_jmp"
+Set-Alias d "dir_jmp"
 
 function k   { Set-Location -Path .. ; p }
 function kk  { k;k   }

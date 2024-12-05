@@ -50,5 +50,26 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # zoxide ( z )
 eval "$(zoxide init bash)"
 
+function dir_jmp(){
+
+  if test -z "$@"
+  then
+    dir=$( zoxide query --list | fzf )
+    # echo $dir
+
+    if test -z "$dir"
+    then
+      return
+    fi
+  
+    cd $dir
+  
+  else
+    z "$@"
+  fi
+
+  pth
+}
+
 
 
