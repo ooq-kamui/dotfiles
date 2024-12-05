@@ -204,12 +204,12 @@ nnoremap :o :Opn
 "nnoremap xx `0
 
 " opn file srch  ( fzf )
-nnoremap <leader>l :Files <cr>
-nnoremap <leader>L :Files ../memo/
+nnoremap <leader>l :FzfFile <cr>
+nnoremap <leader>L :FzfFile ../memo/
 "nnoremap <leader>xx :FzfRunFd <cr>
 
 " opn file hstry ( fzf )
-nnoremap <leader>h :FileHstry<cr>
+nnoremap <leader>h :FzfFileHstry<cr>
 
 " 
 " opn etc
@@ -406,8 +406,7 @@ nnoremap p :call Paste()<cr>
 nnoremap P :call Paste__clipboard()<cr>
 
 " paste rgstr history ( fzf )
-nnoremap <leader>r :RgstrHstry<cr>
-"nnoremap <leader>c :RgstrHstry<cr>
+nnoremap <leader>r :FzfRgstr<cr>
 
 " 
 " undo, redo
@@ -606,8 +605,8 @@ nnoremap E :call N_srch_str__word1_tgl()<cr>
 "nnoremap xx :call Srch_char_bracket('f')<cr>
 
 " srch str history ( fzf )
-nnoremap <leader>f :SrchHstry<cr>
-nnoremap <leader>n :SrchHstry<cr>
+nnoremap <leader>f :FzfSrchHstry<cr>
+"nnoremap <leader>n :FzfSrchHstry<cr>
 
 " srch str set prv ( tgl )
 nnoremap N :call Srch_str__prv_tgl()<cr>
@@ -631,18 +630,14 @@ nnoremap <leader>O :FzfRgExt js
 " fzf rg by run
 " nnoremap <leader>O :FzfRgByRun <cr>
 
-" fzf grep buf
-nnoremap <leader>i :call N_grep_buf()<cr>
+" fzf buf
+nnoremap <leader>i :call N_fzf_buf()<cr>
 
 " fzf jmplst
-nnoremap <leader>e :FzfByJmplst<cr>
+nnoremap <leader>e :FzfJmplst<cr>
 
 " fzf pth lst
 "nnoremap <leader>xx :FzfPthLst <cr>
-
-" grep [rg] ( read )
-"nnoremap xx :GrepStr <c-r>/
-"nnoremap xx :GrepWrd <c-r>/
 
 " tag jmp tab new
 nnoremap t :call N_tag_jmp()<cr>
@@ -652,9 +647,8 @@ nnoremap t :call N_tag_jmp()<cr>
 " 
 
 " cmd history ( fzf )
-nnoremap <leader>: :CmdHstry<cr>
-nnoremap <leader>a :CmdHstry<cr>
-nnoremap <leader>y :CmdHstry<cr>
+nnoremap <leader>: :FzfCmdHstry<cr>
+nnoremap <leader>y :FzfCmdHstry<cr>
 
 " sys cmd
 nnoremap :! :! 
@@ -961,7 +955,7 @@ vnoremap i V
 vnoremap v <c-v>
 
 " file srch ( fzf )
-"vnoremap <leader>l "zy:Files <c-r>z
+"vnoremap <leader>l "zy:FzfFile <c-r>z
 
 
 " 
@@ -1257,23 +1251,14 @@ vnoremap <expr> <c-h>
 " cnv markdown tbl header
 vnoremap :m :call V_2_markdown_tbl_header()
 
-" 
-" grep
-" 
+" fzf buf
+vnoremap <leader>i :call V_fzf_buf()<cr>
 
-" grep buf ( fzf )
-vnoremap <leader>i :call V_grep_buf()<cr>
-"vnoremap <leader>k :call V_grep_buf()<cr>
-
-" grep ( fzf )
+" fzf rg
 vnoremap <leader>o "zy:call Fzf_rg('<c-r>z')<cr>
 
-" grep ( fzf )  -  word1  " todo dev
+" fzf  -  word1  " todo dev
 "vnoremap <leader>O "zy:RgWord1 <c-r>z<cr>
-
-" grep [rg]   ( read )
-"vnoremap xx "zy:GrepStr <c-r>z
-"vnoremap xx "zy:GrepWrd <c-r>z
 
 " tag jmp
 "vnoremap t :call V_tag_jmp()<cr>
@@ -1298,8 +1283,8 @@ vnoremap r :call V_trns()<cr>
 " 
 
 " cmd history ( fzf )
-vnoremap <leader>: :CmdHstry<cr>
-vnoremap <leader>y :CmdHstry<cr>
+vnoremap <leader>: :FzfCmdHstry<cr>
+vnoremap <leader>y :FzfCmdHstry<cr>
 
 " 
 " nop
@@ -1915,14 +1900,21 @@ func! Fzf_rg_by_run(...) abort
 
   let l:rg_cnt = Rg_all_cnt()
 
-  if l:rg_cnt > 10000
+  if l:rg_cnt > 30000
     echo "l:rg_cnt, end"
     return
   endif
 
+  if l:str == v:null
+  
+    let l:fzf_src = Rg_all_rslt_ar()
+  else
+    let l:fzf_src = Rg_rslt_ar(v:null, l:str)
+  endif
+
   call fzf#run(
   \      {
-  \        'source' : Rg_all_rslt_ar(),
+  \        'source' : l:fzf_src,
   \        'sink'   : funcref('Tag_jmp'),
   \        'window' : '-tabnew',
   \      }
@@ -1945,8 +1937,6 @@ endfunc
 func! Rg_all_rslt_ar() abort
 
   let l:opt = '-v'
-  " let l:ptn = '^[ \t]*$'
-
   let l:rslt_ar = Rg_rslt_ar(l:opt, g:rg_all_ptn)
   return l:rslt_ar
 endfunc
@@ -2029,47 +2019,47 @@ func! Pth_lst_txt(pth_lst_file_path) abort
   return l:pth_lst_txt
 endfunc
 
-" grep buf
+" fzf buf
 
-func! N_grep_buf() abort
+func! N_fzf_buf() abort
   
-  exe 'BLines '
+  exe 'FzfBufCrnt '
 endfunc
 
-func! V_grep_buf() abort
+func! V_fzf_buf() abort
 
   call V_srch_str__slctd_str()
-  exe 'BLines ' . escape(@z, '.*~')
+  exe 'FzfBufCrnt ' . escape(@z, '.*~')
 endfunc
 
-command! -bang -nargs=? BLines
+command! -bang -nargs=? FzfBufCrnt
 \ call fzf#vim#buffer_lines(
 \   <q-args>,
 \   {'options': ['--no-sort', '--exact']},
 \   <bang>1
 \ )
 
-" files
-command! -bang -nargs=? -complete=dir Files
+" fzf file
+command! -bang -nargs=? -complete=dir FzfFile
 \ call fzf#vim#files(<q-args>, <bang>1)
 
-" file history
-command! -bang -nargs=* FileHstry
+" fzf file history
+command! -bang -nargs=* FzfFileHstry
 \ call fzf#vim#history(fzf#vim#with_preview(), <bang>1)
 
-" cmd history
-command! -bang -nargs=* CmdHstry
+" fzf cmd history
+command! -bang -nargs=* FzfCmdHstry
 \ call fzf#vim#command_history(fzf#vim#with_preview(), <bang>1)
 
-" srch history
-command! -bang -nargs=* SrchHstry
+" fzf srch history
+command! -bang -nargs=* FzfSrchHstry
 \ call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)
 
-" rgstr history
-command! -bang -nargs=* RgstrHstry
-\ call Rgstr_fzf()
+" fzf rgstr
+command! -bang -nargs=* FzfRgstr
+\ call Fzf_rgstr()
 
-func! Rgstr_fzf() abort
+func! Fzf_rgstr() abort
   
   let l:rgstr_info = execute(':reg')->split("\n")
   call remove(l:rgstr_info, 0)
@@ -2103,11 +2093,11 @@ func! Rgstr_info_rgstr(rgstr_info) abort
   return l:rgstr
 endfunc
 
-" jmp lst
+" fzf jmplst
 
-command! -bang -nargs=* FzfByJmplst call Fzf_by_jmplst()
+command! -bang -nargs=* FzfJmplst call Fzf_jmplst()
 
-func! Fzf_by_jmplst() abort
+func! Fzf_jmplst() abort
   
   call fzf#run(
   \   {
@@ -4946,7 +4936,6 @@ endfunc
 
 func! Opn_grep_wk() abort
 
-  "let g:grep_wk_path = 'doc/grep.lua'
   let g:grep_wk_path = '~/wrk/tmp/rg.md'
 
   let l:file_type = getftype(g:grep_wk_path)
