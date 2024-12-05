@@ -2,23 +2,13 @@
 # cnf
 
 
-## ofc
-
-keyboard
-- `-` `<>` `\`
-  - sticker
-    - cre
-      - `\` : normal
-        - 13 x 12 mm
-      - `-` : normal-min
-        -  9 x 12 mm
-    - paste
-
-
 ## bash
 
 d dir_jmp
 - case arg nul: fzf
+
+- cre
+  - gitbash
 
 
 ## vim

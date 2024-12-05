@@ -76,6 +76,7 @@ alias da='date +"%Y-%m-%d"'
 alias dt='date +"%Y-%m-%d.%H:%M"'
 alias ts='date +"%Y-%m-%d.%H:%M:%S"'
 alias tm='date +"%H:%M"'
+alias t='ts'
 
 alias clp='clp_by_tmp'
 # alias clp_mac='pbcopy'
@@ -118,13 +119,34 @@ export FZF_DEFAULT_OPTS='--ansi --bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:
 
 test -f ~/wrk/app/z/z.sh && . ~/wrk/app/z/z.sh
 
-function dir_jmp() {
+function dir_jmp(){
 
-  #echo "$@"
-  z "$@"
-  pwd
+  if test -z "$@"
+  then
+  
+    z_history_file_path=~/.z
+    #echo $z_history_file_path
+  
+    dir=$( cat $z_history_file_path | sed 's/|.*//g' | fzf )
+    # echo $dir
+  
+    if test -z "$dir"
+    then
+      return
+    fi
+  
+    cd $dir
+  
+  else
+    z "$@"
+  fi
+
+  pth
+
+  # echo "$@"
+  # z "$@"
+  # pwd
 }
-alias dj='dir_jmp'
 alias d='dir_jmp'
 
 # cargo

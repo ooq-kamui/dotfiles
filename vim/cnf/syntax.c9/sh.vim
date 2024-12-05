@@ -5,5 +5,7 @@ hi shOption       ctermfg=lightblue
 "hi shDoubleQuote  ctermfg=lightgreen
 hi shDoubleQuote  ctermfg=lightblue
 
+hi shCommandSub   ctermfg=cyan
+
 
 
