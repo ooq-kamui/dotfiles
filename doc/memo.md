@@ -20,12 +20,12 @@ ll dir color
 fish color
 
 
-## artcl
-
 nginx
 - ln 403
   - cnf mod, ggl
 
+
+## artcl
 
 docs `>` blog 
 - sidebar
@@ -81,6 +81,7 @@ domain
 
 err
 - research, ggl
+- try
 
 
 ## vim pwsh
