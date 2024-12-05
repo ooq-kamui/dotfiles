@@ -2,18 +2,9 @@
 # cnf
 
 
-## bash
-
-d dir_jmp
-- case arg nul: fzf
-
-- cre
-  - gitbash
-
-
 ## vim
 
-Rg_fnc_exe()
+Fzf_vim_fnc_exe()
 - cre
 
 
