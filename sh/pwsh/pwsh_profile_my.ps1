@@ -85,6 +85,7 @@ function p {
     echo "not exist, run k"
   }
 }
+Set-Alias o "p"
 
 function pth {
   param( $path )

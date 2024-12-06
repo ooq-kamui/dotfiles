@@ -407,6 +407,7 @@ nnoremap P :call Paste__clipboard()<cr>
 
 " paste rgstr history ( fzf )
 nnoremap <leader>r :FzfRgstr<cr>
+nnoremap R         :FzfRgstr<cr>
 
 " 
 " undo, redo
@@ -428,8 +429,7 @@ nnoremap <c-h> <c-r>
 nnoremap <space> i
 
 " mode ins rpl
-"nnoremap r<space> R
-"nnoremap R        R
+"nnoremap xx R
 
 " ins line
 " ref nnoremap y
@@ -667,6 +667,8 @@ nnoremap :d :CdSlf
 nnoremap :k :K
 " nnoremap :a :Cdu
 
+nnoremap T :call Fzf_vim_fnc_exe() 
+
 " 
 " tab
 " 
@@ -690,22 +692,22 @@ nnoremap <s-right> :tabm+1<cr>
 " 
 
 " mark lst ( fzf )
-"nnoremap <leader>rl :Mark<cr>
+"nnoremap <leader>xx :FzfMark<cr>
 
 " mark show tgl
-"nnoremap <leader>rf :call Mark_show_tgl()<cr>
+"nnoremap <leader>xx :call Mark_show_tgl()<cr>
 
 " mark add / del tgl
-"nnoremap <leader>ro :call Mark_tgl()<cr>
+"nnoremap <leader>xx :call Mark_tgl()<cr>
 
 " mark del all
-"nnoremap <leader>rd :call Mark_del_all()<cr>
+"nnoremap <leader>xx :call Mark_del_all()<cr>
 
 " mark, cursor mv mark forward
-"nnoremap <leader>rj ]`
+"nnoremap <leader>xx ]`
 
 " mark, cursor mv mark back
-"nnoremap <leader>rk [`
+"nnoremap <leader>xx [`
 
 " 
 " etc
@@ -816,7 +818,7 @@ nnoremap M <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
-nnoremap R <esc>
+"nnoremap R <esc>
 "nnoremap S <esc>
 "nnoremap T <esc>
 "nnoremap U <esc>
@@ -2169,8 +2171,46 @@ func! Jmplst_cmp(jmplst1, jmplst2) abort
   return l:ret
 endfunc
 
+func! Fzf_vim_fnc_exe() abort
+
+
+
+endfunc
+
+func! Fzf_by_run(...) abort " todo dev doing
+
+  let l:str      = ( a:0 >= 1 ) ? a:1 : v:null
+  let l:fnc_name = ( a:0 >= 2 ) ? a:2 : v:null
+
+  let l:txt_line_cnt = 30000
+
+
+
+  if l:rg_cnt > l:txt_line_cnt
+    echo "l:rg_cnt, end"
+    return
+  endif
+
+  if l:str == v:null
+  
+    let l:fzf_src = Rg_all_rslt_ar()
+  else
+    let l:fzf_src = Rg_rslt_ar(v:null, l:str)
+  endif
+
+  call fzf#run(
+  \      {
+  \        'source' : l:fzf_src,
+  \        'sink'   : funcref(l:fnc_name),
+  \        'window' : '-tabnew',
+  \      }
+  \    )
+  "\     'options': ['--reverse'],
+  "\     'options': ['--no-sort'],
+endfunc
+
 " mark
-command! -bang -nargs=* Mark
+command! -bang -nargs=* FzfMark
 \ call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)
 
 " fzf #end#

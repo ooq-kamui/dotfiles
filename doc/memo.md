@@ -7,6 +7,10 @@
 Fzf_vim_fnc_exe()
 - cre
 
+Rg_cmd refactoring
+Fzf_pth_lst() refactoring
+Fzf_by_run(...) cre doing
+
 
 rgstr history
 - research
