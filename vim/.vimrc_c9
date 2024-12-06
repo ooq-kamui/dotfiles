@@ -29,7 +29,7 @@ endfunc
 
 func! Ynk__clipboard() abort
 
-  if Is_env('linux')
+  if Is_env__('linux')
 
     "call Ynk__c9clp()
 

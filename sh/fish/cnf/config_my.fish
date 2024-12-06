@@ -79,7 +79,7 @@ alias ld  'lrd'
 
 alias fd 'fd --hidden --follow -I --exclude .git'
 
-alias p 'pth'
+#alias p 'pth'
 alias o 'pth'
 
 #alias to     'touch'

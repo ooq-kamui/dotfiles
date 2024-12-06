@@ -8,6 +8,14 @@ Fzf_vim_fnc_exe()
 - cre
 
 
+rgstr history
+- research
+
+
+rgstr undo
+- cre
+
+
 ## skr-vps
 
 brew install
@@ -23,6 +31,19 @@ fish color
 nginx
 - ln 403
   - cnf mod, ggl
+
+
+## wall-paper
+
+mod
+
+
+## win pri
+
+trackpad try
+- driver install
+  - ggl
+  - select
 
 
 ## artcl
