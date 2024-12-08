@@ -2,25 +2,23 @@
 # cnf
 
 
-## skr-vps
+## artcl
 
-su permission ch
-- /usr/share/nginx/html
-
-clp
-
-sh cp build, cre
-
+docs `>` blog 
+- sidebar
+  - category
+  - ggl
+  - ref https://docusaurus.io/docs/sidebar
 
 
-nginx
-- ln 403
-  - cnf mod, ggl
+## ofc c9
+
+ls color setting
 
 
-## wall-paper
+## pwsh
 
-mod
+say fnc cre
 
 
 ## win pri
@@ -30,13 +28,8 @@ trackpad try
   - ggl
   - select
 
-
-## artcl
-
-docs `>` blog 
-- sidebar
-  - category
-  - ref https://docusaurus.io/docs/sidebar
+key map ch
+- / 9
 
 
 ## m4 mac
@@ -47,9 +40,9 @@ setup
 m4 sticker
 
 
-## ofc c9
+## skr-vps
 
-ls color setting
+cp build, sh cre
 
 
 ## holo song
@@ -63,15 +56,10 @@ mv ( cp ) to skr vps
   - confirm
 
 
-## aws
-
-card history confirm
-
-
 # bsky
 
 domain
-- ref                                              .. 
+- ref
   - https://qiita.com/yukitkns/items/fb49bbd6f9cc289ecaac
   - https://weblabo.oscasierra.net/letsencrypt-renew-cron/
 - ssl
@@ -91,23 +79,7 @@ rg glob ignore escape ??
 - doc write
 
 
-## pwsh
-
-say ...
-
-
 ## vim
-
-undo history restore
-- setting
-
-```
-if has('persistent_undo')
-  set undodir=~/.vim/undo
-  set undofile                                                                                                                                   
-endif
-```
-
 
 Fzf_vim_fnc_exe()
 - cre

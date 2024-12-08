@@ -150,6 +150,12 @@ set shortmess+=I
 
 set noswapfile
 
+" undo
+if has('persistent_undo')
+  set undodir=~/.vim-undo
+  set undofile                                                                                                                                   
+endif
+
 " term
 
 command! -nargs=* Term split | wincmd j | resize 15 | term <args>
