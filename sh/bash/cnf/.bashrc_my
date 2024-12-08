@@ -77,7 +77,7 @@ alias ts='date +"%Y-%m-%d.%H:%M:%S"'
 alias tm='date +"%H:%M"'
 alias t='ts'
 
-alias clp='clp_by_tmp'
+# alias clp='clp_by_tmp'
 # alias clp_mac='pbcopy'
 # alias clp='clp_mac'
 
