@@ -1701,7 +1701,8 @@ func! Is_env__(env) abort " alias
   let l:ret = has(a:env)
 
   if a:env != 'mac'
-    "echo a:env . ' : ' . l:ret
+    " echo a:env . ' : ' . l:ret
+    " echo hostname()
   endif
 
   return l:ret
@@ -1718,7 +1719,11 @@ func! Vim_plug_path() abort
   elseif Is_env__('win64')
     let l:vim_plug_dir = '~/appdata/local/nvim-data/site'
   elseif Is_env__('linux')
-    let l:vim_plug_dir = '~/.vim'
+    if isdirectory('~/.vim')
+      let l:vim_plug_dir = '~/.vim' " c9, todo refactoring
+    else
+      let l:vim_plug_dir = '~/.local/share/nvim/site' " s9, todo refactoring
+    endif
   elseif Is_env__('win32unix')
     let l:vim_plug_dir = '~/.vim'
   else
@@ -1734,7 +1739,7 @@ func! Is_vim_plug__installed() abort
   let l:vim_plug_path = Vim_plug_path()
 
   let l:ret = ! empty(glob(l:vim_plug_path))
-  "echo 'vim_plug installed : ' . l:ret
+  echo 'vim_plug installed : ' . l:ret
 
   return l:ret
 endfunc

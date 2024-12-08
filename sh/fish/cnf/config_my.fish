@@ -3,11 +3,16 @@
 
 set -U fish_greeting
 
+# ls color, mac
 #set -x LSCOLORS fxgxcxdxexegedabagacad
-set -x LSCOLORS fxgxcxdxxxegedabagacad
-#               ^dir    ^exe
-#                 ^lnk?
-# a:black, b:red, c:green, d:brown, e:blue, f:magenta, g:cyan, h:grey
+#set -x LSCOLORS fxgxcxdxxxegedabagacad
+set -x LSCOLORS fxgxcxdxexegedabagacad
+#               ^dir    ^exe           2 chars set, foreground background
+#                 ^lnk
+# a:black, b:red, c:green, d:brown, e:blue, f:magenta, g:cyan, h:grey, x:default
+
+# ls color, linux
+# ref: ~/.colorrc
 
 
 # path
@@ -41,7 +46,7 @@ set -x FZF_CTRL_T_COMMAND  $FZF_DEFAULT_COMMAND
 # alias
 # 
 
-alias shutdown_start "sudo shutdown -r now"
+# alias shutdown_start "sudo shutdown -r now"
 
 # login sh ch
 #   confirm : echo $SHELL
@@ -200,6 +205,7 @@ export GREP_COLOR="1;33"
 
 set fish_color_autosuggestion cyan
 set fish_color_search_match   --background=brmagenta
+set fish_color_command   brmagenta
 
 
 # git prompt
