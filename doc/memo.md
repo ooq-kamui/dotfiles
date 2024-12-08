@@ -2,34 +2,15 @@
 # cnf
 
 
-## vim
-
-Fzf_vim_fnc_exe()
-- cre
-
-Rg_cmd refactoring
-Fzf_pth_lst() refactoring
-Fzf_by_run(...) cre doing
-
-
-rgstr history
-- research
-
-
-rgstr undo
-- cre
-
-
 ## skr-vps
 
-brew install
-rg, fd, 
 su permission ch
 - /usr/share/nginx/html
-sh cp build, cre
+
 clp
-ll dir color
-fish color
+
+sh cp build, cre
+
 
 
 nginx
@@ -66,10 +47,9 @@ setup
 m4 sticker
 
 
-## vim
+## ofc c9
 
-Slctd__expnd()
-- bug ?? err ??
+ls color setting
 
 
 ## holo song
@@ -102,13 +82,6 @@ domain
       - install
 
 
-## karabiner
-
-err
-- research, ggl
-- try
-
-
 ## vim pwsh
 
 rg glob ignore escape ??
@@ -116,6 +89,37 @@ rg glob ignore escape ??
 - confirm
   - at hm pwsh
 - doc write
+
+
+## pwsh
+
+say ...
+
+
+## vim
+
+undo history restore
+- setting
+
+```
+if has('persistent_undo')
+  set undodir=~/.vim/undo
+  set undofile                                                                                                                                   
+endif
+```
+
+
+Fzf_vim_fnc_exe()
+- cre
+
+
+Rg_cmd refactoring
+Fzf_pth_lst() refactoring
+Fzf_by_run(...) cre doing
+
+
+Slctd__expnd()
+- bug ?? err ??
 
 
 ## skr-vps

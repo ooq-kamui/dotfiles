@@ -382,7 +382,6 @@ nnoremap v <c-v>
 nnoremap A :call Ynk__line_all()<cr>
 
 " slct re
-"nnoremap r  :call Slct_re()<cr>
 nnoremap rr :call Slct_re()<cr>
 
 " ynk clr
@@ -1739,7 +1738,7 @@ func! Is_vim_plug__installed() abort
   let l:vim_plug_path = Vim_plug_path()
 
   let l:ret = ! empty(glob(l:vim_plug_path))
-  echo 'vim_plug installed : ' . l:ret
+  " echo 'vim_plug installed : ' . l:ret
 
   return l:ret
 endfunc
@@ -4325,6 +4324,10 @@ func! Ynk__clipboard() abort
 endfunc
 
 func! V_ynk() abort
+
+  let @d = @c
+  let @c = @b
+  let @b = @a
 
   call Normal('gv"ay')
   call Clipboard__ynk()
