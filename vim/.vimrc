@@ -421,7 +421,7 @@ nnoremap h     u
 nnoremap <c-h> <c-r>
 
 " undo clr
-"nnoremap xx :call Undo_clr()<cr>
+"nnoremap xx :call Undo__clr()<cr>
 
 " repeat
 "nnoremap xx .
@@ -672,7 +672,7 @@ nnoremap :d :CdSlf
 nnoremap :k :K
 " nnoremap :a :Cdu
 
-nnoremap T :call Fzf_vim_fnc_exe() 
+nnoremap T :call Fzf_vim_fnc_exe()<cr>
 
 " 
 " tab
@@ -1721,13 +1721,20 @@ func! Vim_plug_path() abort
 
   if     Is_env__('mac')
     let l:vim_plug_dir = '~/.vim'
+
   elseif Is_env__('win64')
     let l:vim_plug_dir = '~/appdata/local/nvim-data/site'
+
   elseif Is_env__('linux')
-    if isdirectory('~/.vim')
-      let l:vim_plug_dir = '~/.vim' " c9, todo refactoring
-    else
-      let l:vim_plug_dir = '~/.local/share/nvim/site' " s9, todo refactoring
+
+    let l:vim_plug_dir_c9 = "/home/ec2-user/.vim"
+    let l:vim_plug_dir_s9 = "/home/centos/.local/share/nvim/site"
+
+    if     isdirectory(l:vim_plug_dir_c9)
+      let l:vim_plug_dir = l:vim_plug_dir_c9
+
+    elseif isdirectory(l:vim_plug_dir_s9)
+      let l:vim_plug_dir = l:vim_plug_dir_s9
     endif
   elseif Is_env__('win32unix')
     let l:vim_plug_dir = '~/.vim'
@@ -1742,6 +1749,7 @@ endfunc
 func! Is_vim_plug__installed() abort
 
   let l:vim_plug_path = Vim_plug_path()
+  " echo l:vim_plug_path
 
   let l:ret = ! empty(glob(l:vim_plug_path))
   " echo 'vim_plug installed : ' . l:ret
@@ -1910,23 +1918,25 @@ func! Fzf_rg_by_run(...) abort
 
   let l:str = ( a:0 >= 1 ) ? a:1 : v:null
 
-  let l:rg_cnt = Rg_all_cnt()
+  let l:rg_rslt_cnt = Rg_all_cnt()
 
-  if l:rg_cnt > 30000
-    echo "l:rg_cnt, end"
+  let l:rg_rslt_cnt_max = 30000
+
+  if l:rg_rslt_cnt > l:rg_rslt_cnt_max
+    echo "l:rg_rslt_cnt, end"
     return
   endif
 
   if l:str == v:null
   
-    let l:fzf_src = Rg_all_rslt_ar()
+    let l:fzf_src_ar = Rg_all_rslt_ar()
   else
-    let l:fzf_src = Rg_rslt_ar(v:null, l:str)
+    let l:fzf_src_ar = Rg_ptn_rslt_ar(v:null, l:str)
   endif
 
   call fzf#run(
   \      {
-  \        'source' : l:fzf_src,
+  \        'source' : l:fzf_src_ar,
   \        'sink'   : funcref('Tag_jmp'),
   \        'window' : '-tabnew',
   \      }
@@ -1935,25 +1945,24 @@ func! Fzf_rg_by_run(...) abort
   "\     'options': ['--no-sort'],
 endfunc
 
-let g:rg_all_ptn = '^[ \t]*$'
+let g:rg_emp_line_ptn = '^[ \t]*$'
 
 func! Rg_all_cnt() abort
 
-  " let l:ptn = '^[ \t]*$'
-  let l:rg_cmd = "rg -v -e '" . g:rg_all_ptn . "' | count"
-  let l:rg_cnt = Sys_cmd(l:rg_cmd)
+  let l:rg_cmd = "rg -v -e '" . g:rg_emp_line_ptn . "' | count"
+  let l:rg_rslt_cnt = Sys_cmd(l:rg_cmd)
 
-  return l:rg_cnt
+  return l:rg_rslt_cnt
 endfunc
 
 func! Rg_all_rslt_ar() abort
 
   let l:opt = '-v'
-  let l:rslt_ar = Rg_rslt_ar(l:opt, g:rg_all_ptn)
+  let l:rslt_ar = Rg_ptn_rslt_ar(l:opt, g:rg_emp_line_ptn)
   return l:rslt_ar
 endfunc
 
-func! Rg_rslt_ar(opt, ptn) abort
+func! Rg_ptn_rslt_ar(opt, ptn) abort
 
   let l:rg_rslt_txt = Rg_rslt_txt(a:opt, a:ptn)
   let l:rg_rslt_ar  = split(l:rg_rslt_txt, "\n")
@@ -2181,42 +2190,48 @@ func! Jmplst_cmp(jmplst1, jmplst2) abort
   return l:ret
 endfunc
 
-func! Fzf_vim_fnc_exe() abort
+func! Fzf_vim_fnc_exe() abort " todo dev
 
+  " let l:sys_cmd = 'cat -n ' . g:vimrc_file_path
+  " dmy
+  let l:sys_cmd = "rg " . g:fzf_rg_opt . " --with-filename -v '^[ \t]*$' " . g:vimrc_file_path
 
+  let l:src_txt  = Sys_cmd(l:sys_cmd)
 
+  let l:fnc_name = 'Tag_jmp' " dmy
+
+  call Fzf_by_run(l:src_txt, l:fnc_name)
 endfunc
 
 func! Fzf_by_run(...) abort " todo dev doing
 
-  let l:str      = ( a:0 >= 1 ) ? a:1 : v:null
+  let l:src_txt  = ( a:0 >= 1 ) ? a:1 : v:null
   let l:fnc_name = ( a:0 >= 2 ) ? a:2 : v:null
 
-  let l:txt_line_cnt = 30000
+  let l:src_ar = Txt_to_ar(l:src_txt)
 
+  let l:fzf_line_cnt_max = 30000
 
-
-  if l:rg_cnt > l:txt_line_cnt
-    echo "l:rg_cnt, end"
+  if len(l:src_ar) > l:fzf_line_cnt_max
+    echo "l:fzf src_ar, end"
     return
-  endif
-
-  if l:str == v:null
-  
-    let l:fzf_src = Rg_all_rslt_ar()
-  else
-    let l:fzf_src = Rg_rslt_ar(v:null, l:str)
   endif
 
   call fzf#run(
   \      {
-  \        'source' : l:fzf_src,
+  \        'source' : l:src_ar,
   \        'sink'   : funcref(l:fnc_name),
   \        'window' : '-tabnew',
   \      }
   \    )
   "\     'options': ['--reverse'],
   "\     'options': ['--no-sort'],
+endfunc
+
+func! Txt_to_ar(txt) abort
+
+  let l:line_ar  = split(a:txt, "\n")
+  return l:line_ar
 endfunc
 
 " mark
@@ -4948,15 +4963,16 @@ func! Opn_tmp() abort
   call Opn(l:path)
 endfunc
 
+let g:vimrc_file_path = '~/wrk/cnf/vim/.vimrc'
+
 func! Opn_vimrc() abort
 
-  let l:path = '~/wrk/cnf/vim/.vimrc'
-  call Opn(l:path)
+  call Opn(g:vimrc_file_path)
 
   if Is_env__('win32unix') " gitbash
 
-    let l:path = '~/wrk/cnf/vim/.vimrc_gitbash'
-    call Opn(l:path)
+    let l:vimrc_gitbash_file_path = '~/wrk/cnf/vim/.vimrc_gitbash'
+    call Opn(l:vimrc_gitbash_file_path)
   endif
 endfunc
 
@@ -5260,7 +5276,7 @@ endfunc
 
 " undo clr
 
-func! Undo_clr() abort
+func! Undo__clr() abort
 
   let l:undolevels_old = &undolevels
   setlocal undolevels=-1

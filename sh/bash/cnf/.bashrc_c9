@@ -1,5 +1,5 @@
 
-# nothing..
+eval `dircolors ~/.colorrc`
 
 
 

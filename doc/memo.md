@@ -2,31 +2,20 @@
 # cnf
 
 
-## artcl
+## vim
 
-docs `>` blog 
-- sidebar
-  - category
-  - ggl
-  - ref https://docusaurus.io/docs/sidebar
+Fzf_vim_fnc_exe()
+- cre
 
 
-## ofc c9
-
-ls color setting
-
-
-## pwsh
-
-say fnc cre
+refactoring
+- Rg_cmd() 
+- Fzf_by_run()
+- Fzf_rg_by_run()
+- Fzf_pth_lst()
 
 
 ## win pri
-
-trackpad try
-- driver install
-  - ggl
-  - select
 
 key map ch
 - / 9
@@ -35,6 +24,7 @@ key map ch
 ## m4 mac
 
 setup
+- battery charge
 
 
 m4 sticker
@@ -42,18 +32,8 @@ m4 sticker
 
 ## skr-vps
 
-cp build, sh cre
-
-
-## holo song
-
-git dir mv to share
-- at mac
-
-
-mv ( cp ) to skr vps
-- api url mod
-  - confirm
+build cp
+- sh cre
 
 
 # bsky
@@ -70,6 +50,32 @@ domain
       - install
 
 
+## artcl
+
+docs `>` blog 
+- sidebar
+  - category
+  - ggl
+  - ref https://docusaurus.io/docs/sidebar
+
+
+## holo song
+
+git dir mv to share
+- at mac
+
+
+mv ( cp ) to skr vps
+- api url mod
+  - confirm
+
+
+## vim
+
+Slctd__expnd()
+- bug ?? err ??
+
+
 ## vim pwsh
 
 rg glob ignore escape ??
@@ -77,21 +83,6 @@ rg glob ignore escape ??
 - confirm
   - at hm pwsh
 - doc write
-
-
-## vim
-
-Fzf_vim_fnc_exe()
-- cre
-
-
-Rg_cmd refactoring
-Fzf_pth_lst() refactoring
-Fzf_by_run(...) cre doing
-
-
-Slctd__expnd()
-- bug ?? err ??
 
 
 ## skr-vps
