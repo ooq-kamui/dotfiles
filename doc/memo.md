@@ -8,17 +8,11 @@ Fzf_vim_fnc_exe()
 - cre
 
 
-refactoring
+fzf rg refactoring
 - Rg_cmd() 
 - Fzf_by_run()
 - Fzf_rg_by_run()
 - Fzf_pth_lst()
-
-
-## win pri
-
-key map ch
-- / 9
 
 
 ## m4 mac
@@ -52,11 +46,16 @@ domain
 
 ## artcl
 
-docs `>` blog 
-- sidebar
-  - category
-  - ggl
-  - ref https://docusaurus.io/docs/sidebar
+docusaurus blog sidebar
+- category
+- ggl
+- ref https://docusaurus.io/docs/sidebar
+
+
+## win pri
+
+key map ch
+- / 9
 
 
 ## holo song
@@ -76,13 +75,10 @@ Slctd__expnd()
 - bug ?? err ??
 
 
-## vim pwsh
+## pwsh
 
-rg glob ignore escape ??
-- `--glob \!xxx`
-- confirm
-  - at hm pwsh
-- doc write
+fnc arg mlt
+- say
 
 
 ## skr-vps
