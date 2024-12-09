@@ -87,6 +87,7 @@ function p {
 }
 Set-Alias o "p"
 
+# dev doing
 function pth {
   param( $path )
 
@@ -226,6 +227,12 @@ Set-Alias ca  "cal"
 $ENV:Path += ";C:\Program Files\PostgreSQL\16\bin"
 
 function ggl { start chrome }
+
+function say {
+  param( $str )
+
+  ( New-Object -ComObject SAPI.SpVoice ).Speak( $str )
+}
 
 
 # def
