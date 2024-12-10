@@ -4,10 +4,6 @@
 
 ## vim
 
-Fzf_vim_fnc_exe()
-- cre
-
-
 fzf rg refactoring
 - Rg_cmd() 
 - Fzf_by_run()
@@ -15,19 +11,38 @@ fzf rg refactoring
 - Fzf_pth_lst()
 
 
-## m4 mac
-
-setup
-- battery charge
+Fzf_vim_fnc_exe()
+- cre
 
 
-m4 sticker
+v case: char 1, quote bgn, cursor __ mv f, quote end
+- vnoremap f xx
+
+- ref Slctd__expnd()
+  - bug ?? err ??
+
+
+## pwsh
+
+fnc arg mlt
+- say tst hm
 
 
 ## skr-vps
 
 build cp
-- sh cre
+- doc-tech-ds
+  - cp
+    - sh dir cre
+      - `.gitignore`
+  - rcync
+    - same up
+
+- ooq-artcl-ds
+  - cp
+    - same up
+  - rcync
+    - same up
 
 
 # bsky
@@ -42,6 +57,24 @@ domain
       - cre
     - certbot
       - install
+
+
+## win pri
+
+magic trackpad
+- driver
+  - buy
+    - research
+  - install
+
+
+## m4 mac
+
+setup
+- battery charge
+
+
+m4 sticker
 
 
 ## artcl
@@ -67,18 +100,6 @@ git dir mv to share
 mv ( cp ) to skr vps
 - api url mod
   - confirm
-
-
-## vim
-
-Slctd__expnd()
-- bug ?? err ??
-
-
-## pwsh
-
-fnc arg mlt
-- say
 
 
 ## skr-vps
