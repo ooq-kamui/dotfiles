@@ -1888,6 +1888,30 @@ func! Rg_cmd(ptn, ext, word1) abort
   return l:rg_cmd
 endfunc
 
+func! Rg_cmd_for_run(opt, ptn) abort
+
+  let l:rg_cmd = 'rg '
+  \            . ' --line-number'
+  \            . ' --smart-case'
+  \            . ' --hidden'
+  \            . ' --color always'
+  \            . ' -g "!.git"'
+  "\            . ' --no-ignore'
+  "\            . ' -ns'
+
+  if a:opt == v:null
+    let l:opt = ''
+  else
+    let l:opt = a:opt
+  endif
+
+  let l:ptn = trim(a:ptn)
+  let l:ptn = escape(l:ptn, '\({')
+  
+  let l:rg_cmd = l:rg_cmd . ' ' . l:opt . " -e '" . l:ptn . "'"
+  return l:rg_cmd
+endfunc
+
 " rg ext
 command! -bang -nargs=1 FzfRgExt call Fzf_rg_ext(<f-args>)
 
@@ -1918,9 +1942,9 @@ func! Fzf_rg_by_run(...) abort
 
   let l:str = ( a:0 >= 1 ) ? a:1 : v:null
 
-  let l:rg_rslt_cnt = Rg_all_cnt()
-
   let l:rg_rslt_cnt_max = 30000
+
+  let l:rg_rslt_cnt = Rg_all_cnt()
 
   if l:rg_rslt_cnt > l:rg_rslt_cnt_max
     echo "l:rg_rslt_cnt, end"
@@ -1947,46 +1971,9 @@ endfunc
 
 let g:rg_emp_line_ptn = '^[ \t]*$'
 
-func! Rg_all_cnt() abort
+" let g:rg_some_line_ptn = '^[^ \t]+$'
 
-  let l:rg_cmd = "rg -v -e '" . g:rg_emp_line_ptn . "' | count"
-  let l:rg_rslt_cnt = Sys_cmd(l:rg_cmd)
-
-  return l:rg_rslt_cnt
-endfunc
-
-func! Rg_all_rslt_ar() abort
-
-  let l:opt = '-v'
-  let l:rslt_ar = Rg_ptn_rslt_ar(l:opt, g:rg_emp_line_ptn)
-  return l:rslt_ar
-endfunc
-
-func! Rg_ptn_rslt_ar(opt, ptn) abort
-
-  let l:rg_rslt_txt = Rg_rslt_txt(a:opt, a:ptn)
-  let l:rg_rslt_ar  = split(l:rg_rslt_txt, "\n")
-  return l:rg_rslt_ar
-endfunc
-
-func! Rg_rslt_txt(opt, ptn) abort
-  
-  let l:rg_cmd = Rg_cmd_for_run(a:opt, a:ptn)
-
-  let l:r_rslt_txt = Sys_cmd(l:rg_cmd)
-  return l:r_rslt_txt
-endfunc
-
-func! Rg_cmd_for_run(opt, ptn) abort
-
-  let l:rg_cmd = 'rg '
-  \            . ' --line-number'
-  \            . ' --smart-case'
-  \            . ' --hidden'
-  \            . ' --color always'
-  \            . ' -g "!.git"'
-  "\            . ' --no-ignore'
-  "\            . ' -ns'
+func! Rg_ptn_cnt(opt, ptn) abort
 
   if a:opt == v:null
     let l:opt = ''
@@ -1994,11 +1981,46 @@ func! Rg_cmd_for_run(opt, ptn) abort
     let l:opt = a:opt
   endif
 
-  let l:ptn = trim(a:ptn)
-  let l:ptn = escape(l:ptn, '\({')
+  let l:rg_cmd = "rg " . l:opt . " -e '" . a:ptn . "' | count"
+  let l:rg_rslt_cnt = Sys_cmd(l:rg_cmd)
+  return l:rg_rslt_cnt
+endfunc
+
+func! Rg_all_cnt() abort
+
+  l:opt = '-v'
+  l:ptn = g:rg_emp_line_ptn
+
+  let l:rg_rslt_cnt = Rg_ptn_cnt(l:opt, l:ptn)
+  return l:rg_rslt_cnt
+
+  " let l:rg_cmd = "rg -v -e '" . g:rg_emp_line_ptn . "' | count"
+  " let l:rg_rslt_cnt = Sys_cmd(l:rg_cmd)
+  " return l:rg_rslt_cnt
+endfunc
+
+func! Rg_all_rslt_ar() abort
+
+  let l:opt = '-v'
+
+  let l:rslt_ar = Rg_ptn_rslt_ar(l:opt, g:rg_emp_line_ptn)
+  return l:rslt_ar
+endfunc
+
+func! Rg_ptn_rslt_ar(opt, ptn) abort
+
+  let l:rg_rslt_txt = Rg_ptn_rslt_txt(a:opt, a:ptn)
+  let l:rg_rslt_ar  = split(l:rg_rslt_txt, "\n")
+  return l:rg_rslt_ar
+endfunc
+
+func! Rg_ptn_rslt_txt(opt, ptn) abort
   
-  let l:rg_cmd = l:rg_cmd . ' ' . l:opt . " -e '" . l:ptn . "'"
-  return l:rg_cmd
+  let l:rg_cmd = Rg_cmd_for_run(a:opt, a:ptn)
+  " let l:rg_cmd = Rg_cmd(a:opt, a:ptn) " todo dev doing
+
+  let l:r_rslt_txt = Sys_cmd(l:rg_cmd)
+  return l:r_rslt_txt
 endfunc
 
 " rg pth lst

@@ -4,6 +4,13 @@
 
 ## vim
 
+v case: char 1, quote bgn, cursor __ mv f, quote end
+- vnoremap f xx
+
+- ref Slctd__expnd()
+  - bug ?? err ??
+
+
 fzf rg refactoring
 - Rg_cmd() 
 - Fzf_by_run()
@@ -13,19 +20,6 @@ fzf rg refactoring
 
 Fzf_vim_fnc_exe()
 - cre
-
-
-v case: char 1, quote bgn, cursor __ mv f, quote end
-- vnoremap f xx
-
-- ref Slctd__expnd()
-  - bug ?? err ??
-
-
-## pwsh
-
-fnc arg mlt
-- say tst hm
 
 
 ## skr-vps
@@ -83,12 +77,6 @@ docusaurus blog sidebar
 - category
 - ggl
 - ref https://docusaurus.io/docs/sidebar
-
-
-## win pri
-
-key map ch
-- / 9
 
 
 ## holo song
