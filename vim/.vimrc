@@ -627,7 +627,8 @@ nnoremap <c-p> :call Srch_slct('f')<cr>
 nnoremap :s :%s///g
 
 " fzf rg
-nnoremap <leader>o :call Fzf_rg('')<cr>
+" nnoremap <leader>o :call Fzf_rg('')<cr>
+nnoremap <leader>o :call Fzf_rg(v:null)<cr>
 
 " fzf rg fltr ext
 nnoremap <leader>O :FzfRgExt js
@@ -1834,19 +1835,24 @@ if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
   endif
 endif
 
-func! Fzf_rg(...) abort " dev doing
+func! Fzf_rg_by_grep(...) abort " dev doing
+
+endfunc
+
+func! Fzf_rg(...) abort " dev doing, alias
 
   if ! ( Is_env__('mac') || Is_env__('linux') || Is_env__('win64') )
     return
   endif
 
-  let l:ptn   = a:1
-  " let l:ext   = a:2
+  let l:ptn   = ( a:1 >= 1 ) ? a:1 : ''
+  " let l:ptn   = ( a:1 >= 1 ) ? a:1 : g:rg_some_line_ptn
+
   let l:ext   = ( a:0 >= 2 ) ? a:2 : v:null
   let l:word1 = ( a:0 >= 3 ) ? a:3 : v:false
 
   let l:rg_cmd = Rg_cmd(l:ptn, l:ext, l:word1)
-  " echo l:rg_cmd
+  echo l:rg_cmd
 
   call fzf#vim#grep(
   \      l:rg_cmd,
@@ -1861,6 +1867,12 @@ func! Fzf_rg(...) abort " dev doing
 endfunc
 
 func! Rg_cmd(ptn, ext, word1) abort
+
+  if a:ptn == v:null
+    let l:ptn = ''
+  else
+    let l:ptn = a:ptn
+  endif
 
   if a:ext == v:null
     let l:fzf_rg_opt_ext = ''
@@ -1878,12 +1890,7 @@ func! Rg_cmd(ptn, ext, word1) abort
   \     . g:fzf_rg_opt
   \     . l:fzf_rg_opt_ext
   \     . l:fzf_rg_opt_word1
-  \     . ' -- ' . '"' . escape(a:ptn, '().$') . '"'
-
-  " let l:rg_cmd = 'rg '
-  " \     . g:fzf_rg_opt
-  " \     . g:fzf_rg_opt_ext
-  " \     . ' -- ' . '"' . escape(a:ptn, '().$') . '"'
+  \     . ' -- ' . '"' . escape(l:ptn, '().$') . '"'
 
   return l:rg_cmd
 endfunc
@@ -1896,6 +1903,7 @@ func! Rg_cmd_for_run(opt, ptn) abort
   \            . ' --hidden'
   \            . ' --color always'
   \            . ' -g "!.git"'
+
   "\            . ' --no-ignore'
   "\            . ' -ns'
 
@@ -1915,17 +1923,10 @@ endfunc
 " rg ext
 command! -bang -nargs=1 FzfRgExt call Fzf_rg_ext(<f-args>)
 
-" let g:fzf_rg_opt_ext = ''
-
 func! Fzf_rg_ext(ext) abort
 
   let l:ext = a:ext
-
-  " let g:fzf_rg_opt_ext = ' -g "*.' . l:ext . '"'
-
-  call Fzf_rg('', l:ext)
-
-  " let g:fzf_rg_opt_ext = ''
+  call Fzf_rg(v:null, l:ext)
 endfunc
 
 " rg word1
@@ -1940,23 +1941,31 @@ command! -nargs=? FzfRgByRun call Fzf_rg_by_run(<f-args>)
 
 func! Fzf_rg_by_run(...) abort
 
-  let l:str = ( a:0 >= 1 ) ? a:1 : v:null
+  let l:ptn = ( a:0 >= 1 ) ? a:1 : v:null
 
-  let l:rg_rslt_cnt_max = 30000
+  if l:ptn == v:null
 
-  let l:rg_rslt_cnt = Rg_all_cnt()
+    let l:rg_rslt_cnt = Rg_all_cnt()
 
-  if l:rg_rslt_cnt > l:rg_rslt_cnt_max
-    echo "l:rg_rslt_cnt, end"
-    return
-  endif
+    if l:rg_rslt_cnt > g:fzf_line_cnt_max
+      echo "l:rg_rslt_cnt, end"
+      return
+    endif
 
-  if l:str == v:null
-  
     let l:fzf_src_ar = Rg_all_rslt_ar()
+
   else
-    let l:fzf_src_ar = Rg_ptn_rslt_ar(v:null, l:str)
+    let l:rg_rslt_cnt = Rg_ptn_cnt()
+
+    if l:rg_rslt_cnt > g:fzf_line_cnt_max
+      echo "l:rg_rslt_cnt, end"
+      return
+    endif
+
+    let l:fzf_src_ar = Rg_ptn_rslt_ar(v:null, l:ptn)
   endif
+
+  " return
 
   call fzf#run(
   \      {
@@ -1969,9 +1978,37 @@ func! Fzf_rg_by_run(...) abort
   "\     'options': ['--no-sort'],
 endfunc
 
+let g:fzf_line_cnt_max = 30000
+
+func! Fzf_src_by_run(...) abort " todo dev doing
+
+  let l:src_txt  = ( a:0 >= 1 ) ? a:1 : v:null
+  let l:fnc_name = ( a:0 >= 2 ) ? a:2 : v:null
+
+  let l:src_ar = Txt_to_ar(l:src_txt)
+
+  " let l:fzf_line_cnt_max = 30000
+
+  if len(l:src_ar) > g:fzf_line_cnt_max
+    echo "l:fzf src_ar, end"
+    return
+  endif
+
+  call fzf#run(
+  \      {
+  \        'source' : l:src_ar,
+  \        'sink'   : funcref(l:fnc_name),
+  \        'window' : '-tabnew',
+  \      }
+  \    )
+  "\     'options': ['--reverse'],
+  "\     'options': ['--no-sort'],
+endfunc
+
 let g:rg_emp_line_ptn = '^[ \t]*$'
 
 " let g:rg_some_line_ptn = '^[^ \t]+$'
+let g:rg_some_line_ptn = '[^ \t]'
 
 func! Rg_ptn_cnt(opt, ptn) abort
 
@@ -1988,22 +2025,19 @@ endfunc
 
 func! Rg_all_cnt() abort
 
-  l:opt = '-v'
-  l:ptn = g:rg_emp_line_ptn
+  let l:opt = '-v'
+  let l:ptn = g:rg_emp_line_ptn
 
   let l:rg_rslt_cnt = Rg_ptn_cnt(l:opt, l:ptn)
   return l:rg_rslt_cnt
-
-  " let l:rg_cmd = "rg -v -e '" . g:rg_emp_line_ptn . "' | count"
-  " let l:rg_rslt_cnt = Sys_cmd(l:rg_cmd)
-  " return l:rg_rslt_cnt
 endfunc
 
 func! Rg_all_rslt_ar() abort
 
   let l:opt = '-v'
+  let l:ptn = g:rg_emp_line_ptn
 
-  let l:rslt_ar = Rg_ptn_rslt_ar(l:opt, g:rg_emp_line_ptn)
+  let l:rslt_ar = Rg_ptn_rslt_ar(l:opt, l:ptn)
   return l:rslt_ar
 endfunc
 
@@ -2018,6 +2052,7 @@ func! Rg_ptn_rslt_txt(opt, ptn) abort
   
   let l:rg_cmd = Rg_cmd_for_run(a:opt, a:ptn)
   " let l:rg_cmd = Rg_cmd(a:opt, a:ptn) " todo dev doing
+  " echo l:rg_cmd
 
   let l:r_rslt_txt = Sys_cmd(l:rg_cmd)
   return l:r_rslt_txt
@@ -2222,32 +2257,7 @@ func! Fzf_vim_fnc_exe() abort " todo dev
 
   let l:fnc_name = 'Tag_jmp' " dmy
 
-  call Fzf_by_run(l:src_txt, l:fnc_name)
-endfunc
-
-func! Fzf_by_run(...) abort " todo dev doing
-
-  let l:src_txt  = ( a:0 >= 1 ) ? a:1 : v:null
-  let l:fnc_name = ( a:0 >= 2 ) ? a:2 : v:null
-
-  let l:src_ar = Txt_to_ar(l:src_txt)
-
-  let l:fzf_line_cnt_max = 30000
-
-  if len(l:src_ar) > l:fzf_line_cnt_max
-    echo "l:fzf src_ar, end"
-    return
-  endif
-
-  call fzf#run(
-  \      {
-  \        'source' : l:src_ar,
-  \        'sink'   : funcref(l:fnc_name),
-  \        'window' : '-tabnew',
-  \      }
-  \    )
-  "\     'options': ['--reverse'],
-  "\     'options': ['--no-sort'],
+  call Fzf_src_by_run(l:src_txt, l:fnc_name)
 endfunc
 
 func! Txt_to_ar(txt) abort
@@ -3994,7 +4004,6 @@ endfunc
 
 " slctd
 
-" func! Slctd_str() abort
 func! Slctd_str() range abort
 
   call Normal('gv"zy')
@@ -4888,7 +4897,7 @@ endfunc
 " tag jmp
 
 func! Tag_jmp(rg_rslt_line) abort
-  
+
   let l:rg_rslt_line = trim(a:rg_rslt_line)
 
   if Is_str__emp(l:rg_rslt_line)

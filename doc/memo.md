@@ -17,6 +17,9 @@ fzf rg refactoring
 - Fzf_rg_by_run()
 - Fzf_pth_lst()
 
+- Fzf_rg_by_grep(...)
+  - arg mlt alias, research
+
 
 Fzf_vim_fnc_exe()
 - cre
