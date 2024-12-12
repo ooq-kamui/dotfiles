@@ -2,6 +2,15 @@
 # cnf
 
 
+## win pri
+
+magic trackpad
+- driver
+  - buy
+    - research
+  - install
+
+
 ## vim
 
 v case: char 1, quote bgn, cursor __ mv f, quote end
@@ -54,15 +63,6 @@ domain
       - cre
     - certbot
       - install
-
-
-## win pri
-
-magic trackpad
-- driver
-  - buy
-    - research
-  - install
 
 
 ## m4 mac
