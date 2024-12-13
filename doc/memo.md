@@ -2,6 +2,32 @@
 # cnf
 
 
+## vim
+
+v case: char 1, quote bgn, cursor __ mv f, quote end
+- vnoremap f xx
+- vnoremap <c-l> switch
+
+- ref Slctd__expnd()
+  - bug ?? err ??
+
+
+fzf rg refactoring
+- Fzf_pth_lst()
+
+Fzf_vim_fnc_exe()
+- cre
+
+
+vnoremap K dir u or d 
+- dir u, err ?
+
+
+fzf rg 
+- color ?
+- v err
+
+
 ## win pri
 
 magic trackpad
@@ -9,29 +35,6 @@ magic trackpad
   - buy
     - research
   - install
-
-
-## vim
-
-v case: char 1, quote bgn, cursor __ mv f, quote end
-- vnoremap f xx
-
-- ref Slctd__expnd()
-  - bug ?? err ??
-
-
-fzf rg refactoring
-- Rg_cmd() 
-- Fzf_by_run()
-- Fzf_rg_by_run()
-- Fzf_pth_lst()
-
-- Fzf_rg_by_grep(...)
-  - arg mlt alias, research
-
-
-Fzf_vim_fnc_exe()
-- cre
 
 
 ## skr-vps
