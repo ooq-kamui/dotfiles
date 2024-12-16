@@ -2,70 +2,46 @@
 # cnf
 
 
-## vim
+# wallpaper
 
-v case: char 1, quote bgn, cursor __ mv f, quote end
-- vnoremap f xx
-- vnoremap <c-l> switch
-
-- ref Slctd__expnd()
-  - bug ?? err ??
+mod
 
 
-fzf rg refactoring
-- Fzf_pth_lst()
+# bsky
 
-Fzf_vim_fnc_exe()
-- cre
-
-
-vnoremap K dir u or d 
-- dir u, err ?
-
-
-fzf rg 
-- color ?
-- v err
-
-
-## win pri
-
-magic trackpad
-- driver
-  - buy
-    - research
-  - install
+sub account lst
+- ooq artcl
 
 
 ## skr-vps
 
 build cp
 - doc-tech-ds
-  - cp
+  - rcync
+    - same up
     - sh dir cre
       - `.gitignore`
-  - rcync
-    - same up
 
 - ooq-artcl-ds
-  - cp
-    - same up
   - rcync
     - same up
 
 
-# bsky
+## vim
 
-domain
-- ref
-  - https://qiita.com/yukitkns/items/fb49bbd6f9cc289ecaac
-  - https://weblabo.oscasierra.net/letsencrypt-renew-cron/
-- ssl
-  - encrypt
-    - kamui
-      - cre
-    - certbot
-      - install
+Slctd__expnd_quote()
+- v case: char 1,
+  - quote bgn, cursor __ mv f, quote end
+- vnoremap <c-l> switch
+
+
+Slctd__expnd()
+- err ?  confirm
+
+
+vnoremap K, err
+- Cursor_f_space__del()
+  - err ?  debug
 
 
 ## m4 mac
@@ -83,6 +59,18 @@ docusaurus blog sidebar
 - category
 - ggl
 - ref https://docusaurus.io/docs/sidebar
+
+
+## vim win
+
+fzf rg
+- color ?
+- v err
+
+
+## watch
+
+film ch
 
 
 ## holo song

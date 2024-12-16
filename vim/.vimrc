@@ -643,7 +643,7 @@ nnoremap <leader>i :call N_fzf_buf()<cr>
 nnoremap <leader>e :FzfJmplst<cr>
 
 " fzf pth lst
-"nnoremap <leader>xx :FzfPthLst <cr>
+"nnoremap <leader>xx :FzfTagjmpByFile <cr>
 
 " tag jmp tab new
 nnoremap t :call N_tag_jmp()<cr>
@@ -653,8 +653,7 @@ nnoremap t :call N_tag_jmp()<cr>
 " 
 
 " cmd history ( fzf )
-nnoremap <leader>: :FzfCmdHstry<cr>
-nnoremap <leader>y :FzfCmdHstry<cr>
+nnoremap <leader>j :FzfCmdHstry<cr>
 
 " sys cmd
 nnoremap :! :! 
@@ -673,7 +672,8 @@ nnoremap :d :CdSlf
 nnoremap :k :K
 " nnoremap :a :Cdu
 
-nnoremap T :call Fzf_vim_fnc_exe()<cr>
+" vim fnc lst
+nnoremap <leader>d :call Fzf_vim_fnc_exe()<cr>
 
 " 
 " tab
@@ -931,15 +931,15 @@ nnoremap :z :z
 
 " leader esc
 
-"nnoremap <leader>: <esc>
+nnoremap <leader>: <esc>
 
 "nnoremap <leader>a <esc>
 nnoremap <leader>c <esc>
-nnoremap <leader>d <esc>
+"nnoremap <leader>d <esc>
 "nnoremap <leader>e <esc>
 "nnoremap <leader>f <esc>
 "nnoremap <leader>h <esc>
-nnoremap <leader>j <esc>
+"nnoremap <leader>j <esc>
 "nnoremap <leader>l <esc>
 nnoremap <leader>m <esc>
 "nnoremap <leader>n <esc>
@@ -948,7 +948,7 @@ nnoremap <leader>p <esc>
 "nnoremap <leader>r <esc>
 nnoremap <leader>s <esc>
 nnoremap <leader>u <esc>
-"nnoremap <leader>y <esc>
+nnoremap <leader>y <esc>
 
 "nnoremap <leader>O <esc>
 
@@ -1291,8 +1291,7 @@ vnoremap r :call V_trns()<cr>
 " 
 
 " cmd history ( fzf )
-vnoremap <leader>: :FzfCmdHstry<cr>
-vnoremap <leader>y :FzfCmdHstry<cr>
+"vnoremap <leader>xx :FzfCmdHstry<cr>
 
 " 
 " nop
@@ -1419,7 +1418,7 @@ vnoremap :f <esc>
 
 " leader esc
 
-"vnoremap <leader>: <esc>
+vnoremap <leader>: <esc>
 
 "vnoremap <leader>l <esc>
 vnoremap <leader>u <esc>
@@ -1909,32 +1908,6 @@ func! Rg_cmd(ptn, ext, word1, opt) abort
   return l:rg_cmd
 endfunc
 
-" func! Rg_cmd_for_run(ptn, opt) abort
-" 
-"   if a:opt == v:null
-"     let l:opt = ''
-"   else
-"     let l:opt = a:opt
-"   endif
-" 
-"   let l:ptn = trim(a:ptn)
-"   let l:ptn = escape(l:ptn, '\({')
-" 
-"   let l:rg_cmd = 'rg '
-"   \     . ' --line-number'
-"   \     . ' --smart-case'
-"   \     . ' --hidden'
-"   \     . ' --color always'
-"   \     . ' -g "!.git"'
-"   \     . ' ' . l:opt
-"   \     . " -e '" . l:ptn . "'"
-" 
-"   return l:rg_cmd
-" 
-"   "\     . ' --no-ignore'
-"   "\     . ' -ns'
-" endfunc
-
 " rg ext
 command! -bang -nargs=1 FzfRgExt call Fzf_rg_ext(<f-args>)
 
@@ -2061,50 +2034,23 @@ endfunc
 func! Rg_ptn_rslt_txt(ptn, opt) abort
   
   let l:rg_cmd = Rg_cmd(a:ptn, v:null, v:null, a:opt) " todo dev
-  " let l:rg_cmd = Rg_cmd_for_run(a:ptn, a:opt)
-  " echo l:rg_cmd
-
   let l:r_rslt_txt = Sys_cmd(l:rg_cmd)
   return l:r_rslt_txt
 endfunc
 
-" rg pth lst
+" fzf tag jmp by file
 
-command! -nargs=0 FzfPthLst call Fzf_pth_lst()
+command! -nargs=? FzfTagjmpByFile call Fzf_tag_jmp_by_file(<f-args>)
 
-func! Fzf_pth_lst() abort
+func! Fzf_tag_jmp_by_file(...) abort
 
-  " let l:pth_lst_file_path = 'doc/memo.md' " dflt
-  let l:pth_lst_file_path = 'doc/memo.md'
+  let l:file_path = ( a:0 >= 1 ) ? a:1 : 'doc/memo.md'
 
-  call fzf#run(
-  \   {
-  \     'source' : Pth_lst_ar(l:pth_lst_file_path),
-  \     'sink'   : funcref('Tag_jmp'),
-  \     'window' : '-tabnew',
-  \   }
-  \ )
-  "\     'options': ['--reverse'],
-  "\     'options': ['--no-sort'],
-endfunc
+  let l:fzf_src_txt = File_txt(l:file_path)
 
-func! Pth_lst_ar(pth_lst_file_path) abort
+  let l:fnc_name = 'Tag_jmp'
 
-  let l:rslt_txt = Pth_lst_txt(a:pth_lst_file_path)
-  let l:rslt_ar  = split(l:rslt_txt, "\n")
-  return l:rslt_ar
-endfunc
-
-func! Pth_lst_txt(pth_lst_file_path) abort
-
-  if ! filereadable(a:pth_lst_file_path)
-    return
-  endif
-
-  let l:cmd = 'cat ' . a:pth_lst_file_path
-
-  let l:pth_lst_txt = Sys_cmd(l:cmd)
-  return l:pth_lst_txt
+  call Fzf_src_by_run(fzf_src_txt, fnc_name)
 endfunc
 
 " fzf buf
@@ -2257,17 +2203,31 @@ func! Jmplst_cmp(jmplst1, jmplst2) abort
   return l:ret
 endfunc
 
-func! Fzf_vim_fnc_exe() abort " todo dev
+func! Fzf_vim_fnc_exe() abort " todo dev..., impossible ?
 
-  " let l:sys_cmd = 'cat -n ' . g:vimrc_file_path
-  " dmy
-  let l:sys_cmd = "rg " . g:fzf_rg_opt . " --with-filename -v '^[ \t]*$' " . g:vimrc_file_path
+  let l:rg_ptn = '^func! [\w]+\(.*\)'
 
-  let l:src_txt  = Sys_cmd(l:sys_cmd)
+  let l:sys_cmd_rg = "rg " . "-No '" . l:rg_ptn . "' " . g:vimrc_file_path
 
-  let l:fnc_name = 'Tag_jmp' " dmy
+  let l:sys_cmd_sed = 'sed "s/func! //g"'
 
-  call Fzf_src_by_run(l:src_txt, l:fnc_name)
+  let l:sys_cmd = l:sys_cmd_rg . ' | ' . l:sys_cmd_sed
+  let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
+
+  let l:fnc_name = 'Cmdline__'
+  " let l:fnc_name = 'Nothing'
+
+  call Fzf_src_by_run(l:fzf_src_txt, l:fnc_name)
+endfunc
+
+func! Nothing(str) abort
+
+  " echo "do nothing.."
+endfunc
+
+func! Cmdline__(str) abort
+
+  call feedkeys(':call ' . a:str)
 endfunc
 
 func! Txt_to_ar(txt) abort
@@ -2384,6 +2344,27 @@ func! Is_file_type__(type) abort
   else
     return v:false
   endif
+endfunc
+
+" file
+
+func! File_txt(file_path) abort
+
+  if ! filereadable(a:file_path)
+    return
+  endif
+
+  let l:cmd = 'cat ' . a:file_path
+
+  let l:pth_lst_txt = Sys_cmd(l:cmd)
+  return l:pth_lst_txt
+endfunc
+
+func! File_line_ar(file_path) abort
+
+  let l:file_txt = File_txt(a:file_path)
+  let l:file_line_ar = Txt_to_ar(file_txt)
+  return l:file_line_ar
 endfunc
 
 " char
@@ -3721,12 +3702,12 @@ func! Cursor_f_space__del() abort
 
   let l:c = Cursor_c_char()
   if l:c =~ '\s'
-    "echo "del"
+    echo "del"
     call Slct_cursor_f_space()
     call Normal('"zd')
   else
     " nothing
-    "echo "nothing"
+    echo "nothing"
   endif
 endfunc
 
@@ -3735,9 +3716,13 @@ func! V_cursor_f_space__del() range abort
   call Slct_re()
 
   let l:col = Cursor_col_num()
+  " echo l:col
+  " echo a:firstline
+  " echo a:lastline
+  " return
 
   for line_num in range(a:firstline, a:lastline)
-    "echo l:line_num . ' ' . l:col
+    " echo l:line_num . ' ' . l:col
     call Cursor__mv_by_line_col(l:line_num, l:col)
     call Cursor_f_space__del()
   endfor
@@ -4155,6 +4140,11 @@ func! Slctd__expnd_word_f() abort
   else
     call Normal('e')
   endif
+endfunc
+
+func! Slctd__expnd_quote() abort " dev doing
+
+
 endfunc
 
 func! Slctd_box__mv(lr) range abort
@@ -4843,8 +4833,8 @@ func! Ins_markdown_h() abort
   call Ins(l:str)
 
   let l:ptn = '^#* '
-  let l:idx = Str_srch_end(Cursor_line_str(), l:ptn) + 1
-  call Cursor__mv_by_line_col(v:null, l:idx)
+  let l:col = Str_srch_end(Cursor_line_str(), l:ptn) + 1
+  call Cursor__mv_by_line_col(v:null, l:col)
 endfunc
 
 func! Ins_markdown_cr() abort
