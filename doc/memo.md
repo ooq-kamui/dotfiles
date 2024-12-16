@@ -2,29 +2,17 @@
 # cnf
 
 
-# wallpaper
-
-mod
-
-
 # bsky
 
 sub account lst
 - ooq artcl
 
+- animal cre
 
-## skr-vps
 
-build cp
-- doc-tech-ds
-  - rcync
-    - same up
-    - sh dir cre
-      - `.gitignore`
+# wallpaper
 
-- ooq-artcl-ds
-  - rcync
-    - same up
+mod
 
 
 ## vim
@@ -37,6 +25,8 @@ Slctd__expnd_quote()
 
 Slctd__expnd()
 - err ?  confirm
+- refactoring
+  - use nnoremap F logic
 
 
 vnoremap K, err
@@ -68,11 +58,6 @@ fzf rg
 - v err
 
 
-## watch
-
-film ch
-
-
 ## holo song
 
 git dir mv to share
@@ -84,12 +69,6 @@ mv ( cp ) to skr vps
   - confirm
 
 
-## skr-vps
-
-setting at skr console
-- firewall
-
-
 ## fe
 
 js cre
@@ -97,6 +76,12 @@ js cre
 - logic tidy
   - rslt row
   - fltr
+
+
+## skr-vps
+
+setting at skr console
+- firewall
 
 
 ## vim
