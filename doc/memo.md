@@ -17,18 +17,6 @@ mod
 
 ## vim
 
-Slctd__expnd_quote()
-- v case: char 1,
-  - quote bgn, cursor __ mv f, quote end
-- vnoremap <c-l> switch
-
-
-Slctd__expnd()
-- err ?  confirm
-- refactoring
-  - use nnoremap F logic
-
-
 vnoremap K, err
 - Cursor_f_space__del()
   - err ?  debug

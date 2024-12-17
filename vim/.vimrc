@@ -1027,11 +1027,18 @@ vnoremap gj :call V_cursor__mv_file_edge('j')<cr>
 " 
 
 " slctd expnd
-"vnoremap <c-i> :call Slctd__expnd()<cr>
-vnoremap <c-i> :call Slctd__expnd()
+"vnoremap xx :call Slctd__expnd()
 
 " slctd expnd bracket forward
-vnoremap I     :call Slctd__expnd_bracket_f()<cr>
+" vnoremap xx :call Slctd__expnd_bracket_f()<cr>
+
+" slctd expnd quote
+vnoremap <c-i> :call Slctd__expnd_quote_f()<cr>
+vnoremap I     :call Slctd__expnd_quote_b()<cr>
+
+" slctd expnd quote in
+vnoremap F     :call Slctd__expnd_quote_in_f()<cr>
+vnoremap H     :call Slctd__expnd_quote_in_f()<cr>
 
 " slct all
 vnoremap a :call Slct_all()<cr>
@@ -1097,7 +1104,7 @@ vnoremap & :call V_ins_cmnt_mlt()<cr>
 "vnoremap $ :call V_ins_cmnt_mlt()<cr>
 
 " ins selected edge
-vnoremap b :<c-u>SlctdEdgeIns `
+"vnoremap xx :<c-u>SlctdEdgeIns `
 
 " ins date time
 "vnoremap xx x:call Ins_da()<cr>
@@ -1250,7 +1257,6 @@ vnoremap <expr> :s
 vnoremap <c-m> :call V_line_srch_str__rpl_cr()<cr>
 
 " v box edge char shft in
-"vnoremap <c-s> 
 "vnoremap <c-h> 
 vnoremap <expr> <c-h>
 \ mode() == '<c-v>' ? ':call V_box_edge_r_char__shft_in()<cr>' :
@@ -1325,7 +1331,7 @@ vnoremap . <esc>
 "vnoremap <bar> <esc>
 
 "vnoremap a <esc>
-"vnoremap b <esc>
+vnoremap b <esc>
 "vnoremap c <esc>
 "vnoremap d <esc>
 "vnoremap e <esc>
@@ -1353,8 +1359,8 @@ vnoremap B <esc>
 vnoremap C <esc>
 "vnoremap D <esc>
 "vnoremap E <esc>
-vnoremap F <esc>
-vnoremap H <esc>
+"vnoremap F <esc>
+"vnoremap H <esc>
 "vnoremap I <esc>
 "vnoremap J <esc>
 "vnoremap K <esc>
@@ -2929,16 +2935,31 @@ func! Cursor__mv_word_b() abort
   endif
 endfunc
 
+func! Cursor__mv_ptn(ptn, dir) range abort
+
+  let l:ptn = a:ptn
+
+  if a:dir == 'b'
+    let l:opt_dir = 'b'
+  else
+    let l:opt_dir = ''
+  endif
+  " let l:opt = 'zW' . l:opt_dir
+  let l:opt = 'W' . l:opt_dir
+
+  let l:line_num = Cursor_line_num()
+
+  call search(l:ptn, l:opt, l:line_num)
+endfunc
+
 func! Cursor__mv_word_dlm_f() abort
 
   let l:ptn = '[_ABCDEFGHIJKLMNOPQRSTUVWXYZ]'
   " let l:ptn = '[_\u]'
-  " let l:ptn = '\u'
 
   let l:line_num = Cursor_line_num()
 
   call search(l:ptn, 'zW', l:line_num)
-  "call search(l:ptn)
 endfunc
 
 func! Cursor__mv_word_b_pre() abort " use not
@@ -4060,48 +4081,8 @@ func! Slctd_r_out_char() abort
   return l:r_char
 endfunc
 
-func! Slctd__expnd() abort " expnd lr
+func! Slctd__expnd() abort " expnd lr, cre re
 
-  let l:ptn = '[' . "'" . '"`)\]' . ']'
-
-  call Cursor__mv_slctd_r()
-  
-  let l:line_r = Line_str_cursor_out_r()
-  let l:r_idx  = Str_srch(l:line_r, l:ptn)
-  
-  if l:r_idx == -1
-    return
-  endif
-  
-  let l:c = l:line_r[l:r_idx]
-  
-  if l:c == '"' || l:c == "'"
-    
-    let l:line_l = Line_str_cursor_out_l()
-    let l:l_idx = strridx(l:line_l, l:c)
-    
-    if l:l_idx == -1
-      return
-    endif
-    
-    let l:word_col_l =                    l:l_idx + 2
-    let l:word_col_r = Cursor_col_num() + l:r_idx
-    
-    if l:r_idx == 0
-      let l:word_col_l -= 1
-      let l:word_col_r += 1
-    endif
-    
-    call Slct_by_line_col(v:null, l:word_col_l, v:null, l:word_col_r)
-    
-  elseif l:c == ')'
-    call Normal('vi(')
-    
-  elseif l:c == ']'
-    call Normal('vi[')
-  endif
-
-  call Normal('gv')
 endfunc
 
 func! Slctd__expnd_bracket_f() abort
@@ -4142,9 +4123,28 @@ func! Slctd__expnd_word_f() abort
   endif
 endfunc
 
-func! Slctd__expnd_quote() abort " dev doing
+let g:quote_ptn = '[' . "'" . '"' . ']'
 
+func! Slctd__expnd_quote_f() range abort
 
+  call Slct_re()
+  call Cursor__mv_ptn(g:quote_ptn, 'f')
+endfunc
+
+func! Slctd__expnd_quote_b() range abort
+
+  call Slct_re()
+
+  " call Cursor__mv_slctd_l()
+  call Normal('o')
+
+  call Cursor__mv_ptn(g:quote_ptn, 'b')
+endfunc
+
+func! Slctd__expnd_quote_in_f() abort
+
+  call Slctd__expnd_quote_f()
+  call Normal('h')
 endfunc
 
 func! Slctd_box__mv(lr) range abort
@@ -4720,6 +4720,8 @@ func! V_box_space__del() range abort
 
   '<,'>:call V_box__rpl(srch, rpl)
 endfunc
+
+" v box char __ shft
 
 func! V_box_edge_r_char__shft_in() range abort
 
