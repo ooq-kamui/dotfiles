@@ -10,16 +10,12 @@ sub account lst
 - animal cre
 
 
-# wallpaper
+## artcl
 
-mod
-
-
-## vim
-
-vnoremap K, err
-- Cursor_f_space__del()
-  - err ?  debug
+docusaurus blog sidebar
+- category
+- ggl
+- ref https://docusaurus.io/docs/sidebar
 
 
 ## m4 mac
@@ -31,19 +27,9 @@ setup
 m4 sticker
 
 
-## artcl
+# wallpaper
 
-docusaurus blog sidebar
-- category
-- ggl
-- ref https://docusaurus.io/docs/sidebar
-
-
-## vim win
-
-fzf rg
-- color ?
-- v err
+mod
 
 
 ## holo song
@@ -66,10 +52,18 @@ js cre
   - fltr
 
 
-## skr-vps
+## vim
 
-setting at skr console
-- firewall
+Slctd__expnd_quote_swtch()
+- cre
+  aaa 'bbb ccc ddd'
+  aaa "bbb ccc ddd"
+  aaa 'bbb ccc ddd'
+  aaa 'bbb ccc ddd'
+
+vnoremap K, err
+- Cursor_f_space__del()
+  - err ?  debug
 
 
 ## vim
@@ -77,6 +71,12 @@ setting at skr console
 mb err tidy
 - nnoremap f
   - case: mb space $
+
+
+## skr-vps
+
+setting at skr console
+- firewall
 
 
 ## docker

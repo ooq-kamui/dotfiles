@@ -23,7 +23,8 @@ set -x RIPGREP_CONFIG_PATH ~/wrk/cnf/sh/rg/.ripgreprc_c9
 alias clp 'osc52.sh'
 
 #alias ll "ls -lgohAGD '%Y-%m-%d %H:%M'"
-alias ll 'ls -lgohA --time-style=long-iso --color=auto'
+alias ll  'ls -lgohA --time-style=long-iso --color=auto'
+alias lll 'ls -lhA   --time-style=long-iso --color=auto'
 
 alias vim 'vim -p'
 alias vi  'vim -p'

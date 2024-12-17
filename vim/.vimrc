@@ -421,7 +421,7 @@ nnoremap h     u
 nnoremap <c-h> <c-r>
 
 " undo clr
-"nnoremap xx :call Undo__clr()<cr>
+nnoremap H :call Undo__clr()<cr>
 
 " repeat
 "nnoremap xx .
@@ -814,7 +814,7 @@ nnoremap C <esc>
 "nnoremap E <esc>
 "nnoremap F <esc>
 nnoremap G <esc>
-nnoremap H <esc>
+"nnoremap H <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
@@ -835,6 +835,7 @@ nnoremap X <esc>
 
 nnoremap <c-tab> <nop>
 nnoremap <c-space> <esc>
+
 nnoremap <c-@> <esc>
 "nnoremap <c-^> <esc>
 "nnoremap <c--> <esc> " non ?
@@ -971,7 +972,8 @@ vnoremap v <c-v>
 " 
 
 " cursor mv slctd edge tgl
-vnoremap y o
+"vnoremap y o
+vnoremap y :call Cursor__mv_slctd_edge_tgl()<cr>
 
 " cursor mv char forward
 vnoremap l l
@@ -1033,7 +1035,9 @@ vnoremap gj :call V_cursor__mv_file_edge('j')<cr>
 " vnoremap xx :call Slctd__expnd_bracket_f()<cr>
 
 " slctd expnd quote
-vnoremap <c-i> :call Slctd__expnd_quote_f()<cr>
+vnoremap <c-i> :call Slctd__expnd_quote_swtch()<cr>
+
+"vnoremap <c-i> :call Slctd__expnd_quote_f()<cr>
 vnoremap I     :call Slctd__expnd_quote_b()<cr>
 
 " slctd expnd quote in
@@ -2994,6 +2998,12 @@ func! Cursor__mv_line_top_or_new_line() abort
   endif
 endfunc
 
+func! Cursor__mv_slctd_edge_tgl() range abort
+
+  call Slct_re()
+  call Normal('o')
+endfunc
+
 func! Cursor__mv_slctd_l() abort
   
   call Normal('`<')
@@ -4141,7 +4151,14 @@ func! Slctd__expnd_quote_b() range abort
   call Cursor__mv_ptn(g:quote_ptn, 'b')
 endfunc
 
-func! Slctd__expnd_quote_in_f() abort
+func! Slctd__expnd_quote_swtch() range abort
+
+  call Slct_re()
+
+  call Slctd__expnd_quote_f()
+endfunc
+
+func! Slctd__expnd_quote_in_f() range abort
 
   call Slctd__expnd_quote_f()
   call Normal('h')
@@ -5307,14 +5324,17 @@ func! Dir__parent(lvl) abort
   call Pth()
 endfunc
 
-" undo clr
+" undo clr , file ( crnt buf ? )
 
 func! Undo__clr() abort
 
-  let l:undolevels_old = &undolevels
+  let l:undo_lvl_tmp = &undolevels
+
   setlocal undolevels=-1
+
   exe "normal! a \<BS>\<Esc>"
-  let &l:undolevels = l:undolevels_old
+
+  let &l:undolevels = l:undo_lvl_tmp
 endfunc
 
 " mark
