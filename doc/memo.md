@@ -4,10 +4,7 @@
 
 # bsky
 
-sub account lst
-- ooq artcl
-
-- animal cre
+elise mod
 
 
 ## artcl
@@ -16,6 +13,11 @@ docusaurus blog sidebar
 - category
 - ggl
 - ref https://docusaurus.io/docs/sidebar
+
+
+# fish
+
+c-u non
 
 
 ## m4 mac
