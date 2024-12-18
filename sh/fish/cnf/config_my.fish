@@ -186,8 +186,7 @@ bind \cb cmdline_bracket
 bind \ct cmdline_ts
 
 bind \cx cmdline_his_del
-
-bind \cx 'cmdline_his_del;'
+#bind \cx 'cmdline_his_del;'
 
 # fzf
 
@@ -195,9 +194,10 @@ bind \cy fzf-file-widget
 bind \cr fzf-history-widget
 
 # erase
-#bind -e \cr 
+bind -e \cu
+#bind -e \cr
 #bind -e \ct
-#bind -e \cx 
+#bind -e \cx
 
 
 # color

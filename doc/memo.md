@@ -7,17 +7,28 @@
 elise mod
 
 
+## holo song
+
+git dir mv to share
+- at mac
+
+
+svr mv, to skr vps
+- api url mod
+  - confirm
+
+
+repository
+- tidy
+
+
 ## artcl
 
 docusaurus blog sidebar
 - category
 - ggl
 - ref https://docusaurus.io/docs/sidebar
-
-
-# fish
-
-c-u non
+- try
 
 
 ## m4 mac
@@ -34,17 +45,6 @@ m4 sticker
 mod
 
 
-## holo song
-
-git dir mv to share
-- at mac
-
-
-mv ( cp ) to skr vps
-- api url mod
-  - confirm
-
-
 ## fe
 
 js cre
@@ -52,27 +52,6 @@ js cre
 - logic tidy
   - rslt row
   - fltr
-
-
-## vim
-
-Slctd__expnd_quote_swtch()
-- cre
-  aaa 'bbb ccc ddd'
-  aaa "bbb ccc ddd"
-  aaa 'bbb ccc ddd'
-  aaa 'bbb ccc ddd'
-
-vnoremap K, err
-- Cursor_f_space__del()
-  - err ?  debug
-
-
-## vim
-
-mb err tidy
-- nnoremap f
-  - case: mb space $
 
 
 ## skr-vps

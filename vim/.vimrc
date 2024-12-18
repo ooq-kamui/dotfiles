@@ -1036,13 +1036,13 @@ vnoremap gj :call V_cursor__mv_file_edge('j')<cr>
 
 " slctd expnd quote
 vnoremap <c-i> :call Slctd__expnd_quote_swtch()<cr>
-
 "vnoremap <c-i> :call Slctd__expnd_quote_f()<cr>
-vnoremap I     :call Slctd__expnd_quote_b()<cr>
+"vnoremap I     :call Slctd__expnd_quote_b()<cr>
 
 " slctd expnd quote in
-vnoremap F     :call Slctd__expnd_quote_in_f()<cr>
-vnoremap H     :call Slctd__expnd_quote_in_f()<cr>
+vnoremap I     :call Slctd__expnd_quote_in_swtch()<cr>
+"vnoremap F     :call Slctd__expnd_quote_in_f()<cr>
+"vnoremap H     :call Slctd__expnd_quote_in_f()<cr>
 
 " slct all
 vnoremap a :call Slct_all()<cr>
@@ -1363,8 +1363,8 @@ vnoremap B <esc>
 vnoremap C <esc>
 "vnoremap D <esc>
 "vnoremap E <esc>
-"vnoremap F <esc>
-"vnoremap H <esc>
+vnoremap F <esc>
+vnoremap H <esc>
 "vnoremap I <esc>
 "vnoremap J <esc>
 "vnoremap K <esc>
@@ -2277,6 +2277,11 @@ endfunc
 func! Normal(cmd) abort
 
   call Exe('normal! ' . a:cmd)
+endfunc
+
+func! Esc() abort
+
+  call Normal("\<esc>")
 endfunc
 
 func! Sys_cmd(sys_cmd) abort
@@ -3732,30 +3737,33 @@ endfunc
 func! Cursor_f_space__del() abort
 
   let l:c = Cursor_c_char()
+
   if l:c =~ '\s'
-    echo "del"
+    " echo "del"
     call Slct_cursor_f_space()
     call Normal('"zd')
   else
     " nothing
-    echo "nothing"
+    " echo "nothing"
   endif
 endfunc
 
 func! V_cursor_f_space__del() range abort
 
   call Slct_re()
-
   let l:col = Cursor_col_num()
   " echo l:col
-  " echo a:firstline
-  " echo a:lastline
-  " return
+  call Slctd__cancel()
+
+  " echo a:firstline . ' ' . a:lastline
+  call Cursor__mv_by_line_col(a:firstline, l:col)
 
   for line_num in range(a:firstline, a:lastline)
     " echo l:line_num . ' ' . l:col
-    call Cursor__mv_by_line_col(l:line_num, l:col)
+    " call Cursor__mv_by_line_col(l:line_num, l:col)
+
     call Cursor_f_space__del()
+    call Normal('j')
   endfor
 endfunc
 
@@ -3764,6 +3772,7 @@ func! Cursor_f_space__crct() abort " dev doing
   call Normal('k')
 
   let l:c = Cursor_c_char()
+
   if l:c !~ '\s'
     call Normal('j')
     return
@@ -3970,6 +3979,7 @@ endfunc
 func! Slct_cursor_f_space() abort
 
   let l:c = Cursor_c_char()
+
   if l:c !~ '\s'
     return
   endif
@@ -4029,6 +4039,11 @@ func! Slct_all() abort
 endfunc
 
 " slctd
+
+func! Slctd__cancel() range abort
+
+  call Normal("\<esc>")
+endfunc
 
 func! Slctd_str() range abort
 
@@ -4155,13 +4170,38 @@ func! Slctd__expnd_quote_swtch() range abort
 
   call Slct_re()
 
-  call Slctd__expnd_quote_f()
+  let l:c = Cursor_c_char()
+
+  if l:c !~ g:quote_ptn
+    call Slctd__expnd_quote_f()
+  else
+    call Slctd__expnd_quote_b()
+  endif
 endfunc
 
 func! Slctd__expnd_quote_in_f() range abort
 
   call Slctd__expnd_quote_f()
   call Normal('h')
+endfunc
+
+func! Slctd__expnd_quote_in_b() range abort
+
+  call Slctd__expnd_quote_b()
+  call Normal('l')
+endfunc
+
+func! Slctd__expnd_quote_in_swtch() range abort
+
+  call Slct_re()
+
+  let l:c = Cursor_r_char()
+
+  if l:c !~ g:quote_ptn
+    call Slctd__expnd_quote_in_f()
+  else
+    call Slctd__expnd_quote_in_b()
+  endif
 endfunc
 
 func! Slctd_box__mv(lr) range abort
@@ -5619,6 +5659,7 @@ func! Tst_slctd_rpl_sys_cmd_mb() range abort
   '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
 endfunc
 
+"nnoremap T :call Cursor_f_space__del()<cr>
 
 " 
 " init
@@ -5702,7 +5743,9 @@ endif
 " \L : \l 以外
 " \U : \u 以外
 
-" \_<上記(の\の後ろ)> : 改行を含む上記
+" 上記のそれぞれ + 改行
 " ex
 "   \_s : 改行, space, tab のいずれか
+
+" [^\x01-\x7E] : 全角
 
