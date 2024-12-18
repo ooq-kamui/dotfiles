@@ -223,8 +223,10 @@ function cal {
 }
 Set-Alias ca  "cal"
 
-# postgres, psql
-$ENV:Path += ";C:\Program Files\PostgreSQL\16\bin"
+function ba {
+
+  Get-CimInstance -ClassName Win32_Battery | Select-Object -Property EstimatedChargeRemaining
+}
 
 function ggl { start chrome }
 
@@ -235,6 +237,8 @@ function say {
   ( New-Object -ComObject SAPI.SpVoice ).Speak( $args )
 }
 
+# postgres, psql
+$ENV:Path += ";C:\Program Files\PostgreSQL\16\bin"
 
 # def
 

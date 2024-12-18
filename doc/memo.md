@@ -2,6 +2,15 @@
 # cnf
 
 
+# vim
+
+Slctd_edge__quote_tgl()
+
+  aaa   bbb ccc ddd  eee
+  aaa  'bbb ccc ddd' eee
+  aaa  "bbb ccc ddd" eee
+
+
 # bsky
 
 elise mod

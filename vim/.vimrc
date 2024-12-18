@@ -486,7 +486,6 @@ nnoremap <bar> :call Ins_dt()<cr>
 
 " ins markdown code
 nnoremap <c-u> :call Ins_markdown_code()<cr>
-nnoremap `     :call Ins_markdown_code()<cr>
 
 " ins markdown itm
 "nnoremap O xx
@@ -506,7 +505,11 @@ nnoremap V :call Ins_line__indnt_space()<cr>
 "nnoremap xx :call Char_markdown_chk__tgl()<cr>
 
 " del char
-nnoremap s "zx
+"nnoremap s "zx
+nnoremap s :call Cursor_c_char__del()<cr>
+
+" del char ynk
+"nnoremap xx :call Cursor_c_char__del_ynk()<cr>
 
 " line del
 nnoremap d :call Line__del()<cr>
@@ -539,9 +542,6 @@ nnoremap u :call N_char__tgl()<cr>
 
 " char tgl type ch
 nnoremap U :call N_char__tgl_shift()<cr>
-
-" char del
-nnoremap S :call Cursor_char__del_ynk()<cr>
 
 " num icl
 "nnoremap xx :call Cursor_str__icl()<cr>
@@ -774,7 +774,7 @@ nnoremap ^ <esc>
 
 "nnoremap ! <esc>
 nnoremap " <esc>
-"nnoremap ` <esc>
+nnoremap ` <esc>
 nnoremap # <esc>
 "nnoremap $ <esc>
 "nnoremap % <esc> " ?
@@ -825,7 +825,7 @@ nnoremap M <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
 "nnoremap R <esc>
-"nnoremap S <esc>
+nnoremap S <esc>
 "nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap W <esc>
@@ -1107,9 +1107,6 @@ vnoremap 1 :call V_ins_cmnt_1()<cr>
 vnoremap & :call V_ins_cmnt_mlt()<cr>
 "vnoremap $ :call V_ins_cmnt_mlt()<cr>
 
-" ins selected edge
-"vnoremap xx :<c-u>SlctdEdgeIns `
-
 " ins date time
 "vnoremap xx x:call Ins_da()<cr>
 
@@ -1158,6 +1155,18 @@ vnoremap m :call V_line_end_space__del()<cr>
 " del cursor f space
 vnoremap K :call V_cursor_f_space__del()<cr>
 
+" slctd edge __ quote tgl
+vnoremap <c-u> :call Slctd_edge__quote_tgl()<cr>
+
+" slctd edge out char __ del
+vnoremap W Slctd_edge_out_cahr__del()
+
+" slctd str mv back
+vnoremap <c-s> :call Slctd_box_str__mv('l')<cr>
+
+" slctd str mv forward
+vnoremap <c-f> :call Slctd_box_str__mv('r')<cr>
+
 " del v box space
 vnoremap D :call V_box_space__del()<cr>
 
@@ -1169,12 +1178,6 @@ vnoremap <c-e> :call Slctd_box__mv('r')<cr>
 
 " slct box w __ 1
 vnoremap w :call Slctd_box_w__1()<cr>
-
-" slctd str mv back
-vnoremap <c-s> :call Slctd_box_str__mv('l')<cr>
-
-" slctd str mv forward
-vnoremap <c-f> :call Slctd_box_str__mv('r')<cr>
 
 " num icl
 "vnoremap + <c-a>gv
@@ -1220,7 +1223,7 @@ vnoremap u ~gv
 vnoremap U Ugv
 
 " lower all
-vnoremap <c-u> ugv
+"vnoremap <c-u> ugv
 
 " str mb
 vnoremap M :MbCnv <cr>
@@ -1379,7 +1382,7 @@ vnoremap R <esc>
 "vnoremap T <esc>
 "vnoremap U <esc>
 vnoremap V <esc>
-vnoremap W <esc>
+"vnoremap W <esc>
 vnoremap X <esc>
 "vnoremap Y <esc>
 
@@ -2422,7 +2425,7 @@ func! N_char__tgl_shift() abort
 
   let l:c = Cursor_c_char()
 
-  if     Is_char__num(l:c)
+  if Is_char__num(l:c)
 
     call Cursor_str__dcl()
     return
@@ -2866,7 +2869,6 @@ func! V_cursor__mv_line_end() range abort
 
   call Slct_re()
 
-  " if     mode() == "\<c-v>"
   if     Is_slctd_mode__box()
 
     if Is_cursor__line_end_ovr()
@@ -2876,7 +2878,6 @@ func! V_cursor__mv_line_end() range abort
     call Normal('$h')
     "call Normal('g_')
 
-  " elseif mode() == "v"
   elseif Is_slctd_mode__line()
 
     if Is_cursor_line__emp()
@@ -3011,11 +3012,13 @@ endfunc
 
 func! Cursor__mv_slctd_l() abort
   
+  call Slct_re()
   call Normal('`<')
 endfunc
 
 func! Cursor__mv_slctd_r() abort
   
+  call Slct_re()
   call Normal('`>')
 endfunc
 
@@ -3254,7 +3257,15 @@ func! Cursor_d_char() abort " dev doing
   return l:c
 endfunc
 
-func! Cursor_char__del_ynk() abort
+" cursor char edit
+
+func! Cursor_c_char__del() abort
+
+  let l:cmd = '"zx'
+  call Normal(l:cmd)
+endfunc
+
+func! Cursor_c_char__del_ynk() abort
 
   let l:cmd = '"ax'
   call Normal(l:cmd)
@@ -3477,7 +3488,6 @@ func! Ins(str) abort
   let l:cmd = 'i' . a:str
   call Normal(l:cmd)
   call Cursor__mv_char_f()
-  "call Normal('l')
 endfunc
 
 func! V_ins(str) range abort " todo cre
@@ -4029,7 +4039,11 @@ func! Slct_by_line_rng(line_num_fr, line_num_to) abort
 endfunc
 
 func! Slct_re() range abort
-  
+
+  if mode() == "\<c-v>" || mode() == "v"
+    return
+  endif
+
   call Normal('gv')
 endfunc
 
@@ -4090,7 +4104,7 @@ func! Slctd_r_pos() abort
   return l:pos
 endfunc
 
-func! Slctd_l_out_char() abort
+func! Slctd_edge_l_out_char() abort
 
   call Cursor__mv_slctd_l()
 
@@ -4098,7 +4112,7 @@ func! Slctd_l_out_char() abort
   return l:l_char
 endfunc
 
-func! Slctd_r_out_char() abort
+func! Slctd_edge_r_out_char() abort
 
   call Cursor__mv_slctd_r()
 
@@ -4132,7 +4146,7 @@ endfunc
 func! Slctd__expnd_word_f() abort
 
   let l:slctd_str = Slctd_str()
-  let l:slctd_r_out_char = Slctd_r_out_char()
+  let l:slctd_r_out_char = Slctd_edge_r_out_char()
 
   call Slct_re()
 
@@ -4161,7 +4175,8 @@ func! Slctd__expnd_quote_b() range abort
   call Slct_re()
 
   " call Cursor__mv_slctd_l()
-  call Normal('o')
+  call Cursor__mv_slctd_edge_tgl()
+  " call Normal('o')
 
   call Cursor__mv_ptn(g:quote_ptn, 'b')
 endfunc
@@ -4217,7 +4232,6 @@ func! Slctd_box_w__1() range abort
 
   call Slct_re()
 
-  " if ! mode() == "\<c-v>"
   if ! Is_slctd_mode__box()
     return
   endif
@@ -4303,41 +4317,113 @@ endfunc
 
 " slctd ins
 
-func! Slctd_l__ins(c) abort
+func! Slctd_l__ins(c) range abort
 
+  call Slct_re()
+
+  call Cursor__mv_slctd_edge_tgl()
   call Normal('`<')
+
+  call Slctd__cancel()
   call Ins(a:c)
+
+  call Slct_re()
+  call Cursor__mv_char_f()
+  " call Cursor__mv_char_f()
+  call Cursor__mv_slctd_edge_tgl()
 endfunc
 
-func! Slctd_r__ins(c) abort
+func! Slctd_r__ins(c) range abort
 
-  call Normal('`>l')
+  call Slct_re()
+
+  " call Normal('`>l')
+  call Normal('`>')
+  call Cursor__mv_char_f()
+
+  call Slctd__cancel()
   call Ins(a:c)
+
+  call Slct_re()
 endfunc
 
-command! -nargs=? SlctdEdgeIns call Slctd_edge__ins(<q-args>)
+func! Slctd_edge__ins(c) range abort
 
-func! Slctd_edge__ins(c) abort " todo dev
-  
-  if     a:c   == '('
-    let  l:c_l =  '('
-    let  l:c_r =  ')'
-  elseif a:c   == '['
-    let  l:c_l =  '['
-    let  l:c_r =  ']'
-  elseif a:c   == '{'
-    let  l:c_l =  '{'
-    let  l:c_r =  '}'
-  elseif a:c   == '<'
-    let  l:c_l =  '<'
-    let  l:c_r =  '>'
+  call Slct_re()
+
+  " if     a:c   == '('
+  "   let  l:c_l =  '('
+  "   let  l:c_r =  ')'
+  " elseif a:c   == '['
+  "   let  l:c_l =  '['
+  "   let  l:c_r =  ']'
+  " elseif a:c   == '{'
+  "   let  l:c_l =  '{'
+  "   let  l:c_r =  '}'
+  " elseif a:c   == '<'
+  "   let  l:c_l =  '<'
+  "   let  l:c_r =  '>'
+  " else
+  "   let  l:c_l = a:c
+  "   let  l:c_r = a:c
+  " endif
+
+  let l:c_l = a:c
+  let l:c_r = a:c
+
+  call Slctd_r__ins(l:c_r) " 1st
+  call Slctd_l__ins(l:c_l) " 2nd
+endfunc
+
+func! Slctd_edge__quote_tgl() range abort
+
+  call Slct_re()
+
+  " char chk
+  let l:c_l = Slctd_edge_l_out_char()
+  let l:c_r = Slctd_edge_r_out_char()
+
+  if     l:c_l == "'" && l:c_l == l:c_r
+
+    call Slctd_edge_out_cahr__del()
+
+    let l:c = '"'
+    call Slctd_edge__ins(l:c)
+
+  elseif l:c_l == '"' && l:c_l == l:c_r
+
+    call Slctd_edge_out_cahr__del()
   else
-    let  l:c_l = a:c
-    let  l:c_r = a:c
+    let l:c = "'"
+    call Slctd_edge__ins(l:c)
   endif
-  
-  call Slctd_r__ins(l:c_r)
-  call Slctd_l__ins(l:c_l)
+endfunc
+
+func! Slctd_edge_out_cahr__del() range abort " todo dev doing
+
+  call Slct_re()
+  call Cursor__mv_slctd_r()
+  call Slctd__cancel()
+
+  call Cursor__mv_char_f()
+  call Cursor_c_char__del()
+
+  call Slct_re()
+  call Cursor__mv_slctd_l()
+  call Slctd__cancel()
+
+  call Cursor__mv_char_b()
+  call Cursor_c_char__del()
+
+  call Slct_re()
+endfunc
+
+func! Slctd_edge_out_l_cahr__del() range abort
+
+endfunc
+
+func! Slctd_edge_out_r_cahr__del() range abort
+
 endfunc
 
 " slctd rpl, srch nxt slctd
@@ -4370,7 +4456,7 @@ endfunc
 
 func! Is_slctd_mode__box() range abort
 
-  call Slct_re()
+  " call Slct_re()
 
   let l:ret = v:false
 
@@ -4383,7 +4469,7 @@ endfunc
 
 func! Is_slctd_mode__line() range abort
 
-  call Slct_re()
+  " call Slct_re()
 
   let l:ret = v:false
 
@@ -4705,7 +4791,6 @@ func! Srch_7_cursor__mv_nxt(dir) abort
   call Srch_slct(a:dir)
   call Normal("\<esc>")
   call Cursor__mv_char_f()
-  "call Normal('l')
 endfunc
 
 func! Srch_char(dir, char) abort
