@@ -1052,7 +1052,7 @@ vnoremap o :call V_ynk()<cr>
 vnoremap c :call V_ynk()<cr>
 
 " ynk slctd add
-vnoremap O :call V_ynk__add_slctd()<cr>
+"vnoremap xx :call V_ynk__add_slctd()<cr>
 
 " clipboard slctd
 "vnoremap xx "+y
@@ -3732,9 +3732,10 @@ command! -range=% -nargs=0 Tbl <line1>,<line2>call V_tbl()
 
 func! V_tbl() range abort
 
-  " let l:sys_cmd = 'tbl'
-  if Is_env__('linux')
+  if     Is_env__('linux')
     let l:sys_cmd = '/usr/bin/column -t'
+  elseif Is_env__('mac')
+    let l:sys_cmd = 'column -t'
   else
     let l:sys_cmd = 'column -t'
   endif
@@ -4520,6 +4521,7 @@ endfunc
 
 func! V_ynk() abort
 
+  let @e = @d
   let @d = @c
   let @c = @b
   let @b = @a

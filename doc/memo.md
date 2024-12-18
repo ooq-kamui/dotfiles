@@ -10,10 +10,26 @@ Slctd_edge__quote_tgl()
   aaa  'bbb ccc ddd' eee
   aaa  "bbb ccc ddd" eee
 
+v md li
+- vnoremap O 
+
+slctd edge lr out
+- fnc name refactoring
+
 
 # bsky
 
-elise mod
+mute off
+- mmbr
+  - camilla
+  - tiki
+  - aqua
+  - olivia
+  - linda
+  - celica
+
+elise setting
+- header
 
 
 ## holo song
