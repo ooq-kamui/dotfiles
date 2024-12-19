@@ -73,10 +73,17 @@ js cre
 
 ## vim
 
-slctd edge lr out
-- fnc name refactoring
-  - cursor __ md slctd edge xx
+Slctd__expnd_quote_swtch()
+- in line, find not `'"`
+  - Is_cursor_line_str__srch_ptn() cre
 
+- fnc name, refactoring
+  - xxx()
+    - `>` is_cursor line num __ num ()
+
+  - case mode n
+    - edge lr
+      - `>` side lr
 
 ## skr-vps
 

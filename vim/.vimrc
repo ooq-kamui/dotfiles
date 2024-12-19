@@ -1038,14 +1038,10 @@ vnoremap gj :call V_cursor__mv_file_edge('j')<cr>
 " vnoremap xx :call Slctd__expnd_bracket_f()<cr>
 
 " slctd expnd quote
-vnoremap <c-i> :call Slctd__expnd_quote_swtch()<cr>
-"vnoremap <c-i> :call Slctd__expnd_quote_f()<cr>
-"vnoremap I     :call Slctd__expnd_quote_b()<cr>
+vnoremap I     :call Slctd__expnd_quote_swtch()<cr>
 
 " slctd expnd quote in
-vnoremap I     :call Slctd__expnd_quote_in_swtch()<cr>
-"vnoremap F     :call Slctd__expnd_quote_in_f()<cr>
-"vnoremap H     :call Slctd__expnd_quote_in_f()<cr>
+vnoremap <c-i> :call Slctd__expnd_quote_in_swtch()<cr>
 
 " slct all
 vnoremap a :call Slct_all()<cr>
@@ -1410,6 +1406,7 @@ vnoremap <c-q> <esc>
 vnoremap <c-r> <esc>
 "vnoremap <c-s> <esc>
 "vnoremap <c-u> <esc>
+" v disable ??
 vnoremap <c-v> <esc>
 "vnoremap <c-w> <esc>
 vnoremap <c-x> <esc>
@@ -2686,51 +2683,7 @@ func! Str_path_win__cnv_unix(path) abort
   return l:path
 endfunc
 
-func! Cursor_str__icl() abort
-
-  let l:n_cmd = "\<c-a>"
-  call Normal(l:n_cmd)
-endfunc
-
-func! Cursor_str__dcl() abort
-
-  let l:n_cmd = "\<c-x>"
-  call Normal(l:n_cmd)
-endfunc
-
-func! Cursor_str_week__icl() abort
-
-  let l:week_str = Cursor_word()
-  let l:week_idx = index(g:week_def, l:week_str)
-
-  if l:week_idx == -1
-    return
-  endif
-
-  let l:week_nxt_idx = Idx__icl(week_idx, len(g:week_def))
-  let l:week_nxt_str = g:week_def[l:week_nxt_idx]
-
-  call Slct_word()
-  call Normal('"zd')
-  call Normal('i' . l:week_nxt_str)
-endfunc
-
-func! Cursor_str_week__dcl() abort
-
-  let l:week_str = Cursor_word()
-  let l:week_idx = index(g:week_def, l:week_str)
-
-  if l:week_idx == -1
-    return
-  endif
-
-  let l:week_nxt_idx = Idx__dcl(week_idx, len(g:week_def))
-  let l:week_nxt_str = g:week_def[l:week_nxt_idx]
-
-  call Slct_word()
-  call Normal('"zd')
-  call Normal('i' . l:week_nxt_str)
-endfunc
+" num idx
 
 func! Idx__icl(idx, ar_len) abort
 
@@ -2959,8 +2912,8 @@ func! Cursor__mv_ptn(ptn, dir) range abort
   else
     let l:opt_dir = ''
   endif
-  " let l:opt = 'zW' . l:opt_dir
   let l:opt = 'W' . l:opt_dir
+  " let l:opt = 'zW' . l:opt_dir
 
   let l:line_num = Cursor_line_num()
 
@@ -3015,13 +2968,15 @@ func! Cursor__mv_slctd_edge_tgl() range abort
   call Normal('o')
 endfunc
 
-func! Cursor__mv_slctd_l() abort
+" func! Cursor__mv_slctd_l() abort
+func! Cursor__mv_slctd_edge_l() abort
   
   call Slct_re()
   call Normal('`<')
 endfunc
 
-func! Cursor__mv_slctd_r() abort
+" func! Cursor__mv_slctd_r() abort
+func! Cursor__mv_slctd_edge_r() abort
   
   call Slct_re()
   call Normal('`>')
@@ -3311,6 +3266,54 @@ func! Is_cursor_c_char__alph() abort
   return l:ret
 endfunc
 
+" cursor str
+
+func! Cursor_str__icl() abort
+
+  let l:n_cmd = "\<c-a>"
+  call Normal(l:n_cmd)
+endfunc
+
+func! Cursor_str__dcl() abort
+
+  let l:n_cmd = "\<c-x>"
+  call Normal(l:n_cmd)
+endfunc
+
+func! Cursor_str_week__icl() abort
+
+  let l:week_str = Cursor_word()
+  let l:week_idx = index(g:week_def, l:week_str)
+
+  if l:week_idx == -1
+    return
+  endif
+
+  let l:week_nxt_idx = Idx__icl(week_idx, len(g:week_def))
+  let l:week_nxt_str = g:week_def[l:week_nxt_idx]
+
+  call Slct_word()
+  call Normal('"zd')
+  call Normal('i' . l:week_nxt_str)
+endfunc
+
+func! Cursor_str_week__dcl() abort
+
+  let l:week_str = Cursor_word()
+  let l:week_idx = index(g:week_def, l:week_str)
+
+  if l:week_idx == -1
+    return
+  endif
+
+  let l:week_nxt_idx = Idx__dcl(week_idx, len(g:week_def))
+  let l:week_nxt_str = g:week_def[l:week_nxt_idx]
+
+  call Slct_word()
+  call Normal('"zd')
+  call Normal('i' . l:week_nxt_str)
+endfunc
+
 " cursor etc
 
 func! Cursor_word() abort
@@ -3349,11 +3352,6 @@ func! Cursor_line_num() abort " alias
   return line('.')
 endfunc
 
-func! Cursor_line_num_file_end() abort " alias
-
-  return line('$')
-endfunc
-
 func! Cursor_line_end_col() abort " alias
 
   let l:col = col('$')
@@ -3373,46 +3371,16 @@ func! Cursor_line_str_len() abort
   return l:len
 endfunc
 
-func! Line_str_cursor_out_l() abort
+func! Cursor_line_str_l_out() abort
   
   let l:line_l = getline('.')[:col('.')-2]
   return l:line_l
 endfunc
 
-func! Line_str_cursor_out_r() abort
+func! Cursor_line_str_r_out() abort
   
   let l:line_r = getline('.')[col('.'):]
   return l:line_r
-endfunc
-
-func! Line_str_slctd_out_l() abort
-
-  call Cursor__mv_slctd_l()
-
-  let l:str = Line_str_cursor_out_l()
-  return l:str
-endfunc
-
-func! Line_str_slctd_out_r() abort
-
-  call Cursor__mv_slctd_r()
-
-  let l:str = Line_str_cursor_out_r()
-  return l:str
-endfunc
-
-" cursor line __ ins
-
-func! Line_top0__ins(str) abort
-
-  call Cursor__mv_line_top0()
-  call Ins(a:str)
-endfunc
-
-func! Line_top1__ins(str) abort
-
-  call Cursor__mv_line_top1()
-  call Ins(a:str)
 endfunc
 
 " cursor line cnd
@@ -3439,7 +3407,7 @@ endfunc
 
 func! Is_cursor_line__file_end() abort
 
-  let l:line_num = Cursor_line_num_file_end()
+  let l:line_num = Line_num_file_end()
   let l:ret = Is_cursor_line__num(l:line_num)
   return l:ret
 endfunc
@@ -3474,16 +3442,22 @@ endfunc
 
 func! Is_cursor_line_str_side_l__space() abort
 
-  let l:str = Line_str_cursor_out_l()
+  let l:str = Cursor_line_str_l_out()
   let l:ret = Is_str__space(l:str)
   return l:ret
 endfunc
 
 func! Is_cursor_line_str_side_r__space() abort
 
-  let l:str = Line_str_cursor_out_r()
+  let l:str = Cursor_line_str_r_out()
   let l:ret = Is_str__space(l:str)
   return l:ret
+endfunc
+
+func! Is_cursor_line_str__srch_ptn() abort " todo dev
+
+  " xxx
+
 endfunc
 
 " ins
@@ -3591,7 +3565,30 @@ func! Ins_sys_cmd(sys_cmd) abort " read
   endif
 endfunc
 
+" 
 " line
+" 
+
+" line num, todo refactoring, def pos mv
+
+func! Line_num_file_end() abort " alias
+
+  return line('$')
+endfunc
+
+" line xx __ ins, todo refactoring, def pos mv
+
+func! Line_top0__ins(str) abort
+
+  call Cursor__mv_line_top0()
+  call Ins(a:str)
+endfunc
+
+func! Line_top1__ins(str) abort
+
+  call Cursor__mv_line_top1()
+  call Ins(a:str)
+endfunc
 
 let s:line_top_space_ptn = '^[ \t]*'
 
@@ -4065,6 +4062,8 @@ func! Slctd__cancel() range abort
   call Normal("\<esc>")
 endfunc
 
+" slctd str
+
 func! Slctd_str() range abort
 
   call Normal('gv"zy')
@@ -4078,9 +4077,11 @@ func! Slctd_str_len() abort
   return l:len
 endfunc
 
+" slctd edge
+
 func! Slctd_l_col() abort
 
-  call Cursor__mv_slctd_l()
+  call Cursor__mv_slctd_edge_l()
   
   let l:col = Cursor_col_num()
   return l:col
@@ -4088,7 +4089,7 @@ endfunc
 
 func! Slctd_r_col() abort
 
-  call Cursor__mv_slctd_r()
+  call Cursor__mv_slctd_edge_r()
   
   let l:col = Cursor_col_num()
   return l:col
@@ -4096,7 +4097,7 @@ endfunc
 
 func! Slctd_l_pos() abort
 
-  call Cursor__mv_slctd_l()
+  call Cursor__mv_slctd_edge_l()
   
   let l:pos = Pos()
   return l:pos
@@ -4104,7 +4105,7 @@ endfunc
 
 func! Slctd_r_pos() abort
 
-  call Cursor__mv_slctd_r()
+  call Cursor__mv_slctd_edge_r()
   
   let l:pos = Pos()
   return l:pos
@@ -4112,7 +4113,7 @@ endfunc
 
 func! Slctd_edge_l_out_char() abort
 
-  call Cursor__mv_slctd_l()
+  call Cursor__mv_slctd_edge_l()
 
   let l:l_char = Cursor_l_char()
   return l:l_char
@@ -4120,11 +4121,31 @@ endfunc
 
 func! Slctd_edge_r_out_char() abort
 
-  call Cursor__mv_slctd_r()
+  call Cursor__mv_slctd_edge_r()
 
   let l:r_char = Cursor_r_char()
   return l:r_char
 endfunc
+
+" slctd line str
+
+func! Slctd_edge_l_out_str() abort
+
+  call Cursor__mv_slctd_edge_l()
+
+  let l:str = Cursor_line_str_l_out()
+  return l:str
+endfunc
+
+func! Slctd_edge_r_out_str() abort
+
+  call Cursor__mv_slctd_edge_r()
+
+  let l:str = Cursor_line_str_r_out()
+  return l:str
+endfunc
+
+" slctd __ expnd
 
 func! Slctd__expnd() abort " expnd lr, cre re
 
@@ -4136,7 +4157,7 @@ func! Slctd__expnd_bracket_f() abort
   
   let l:s_col = Slctd_l_col()
   
-  let l:line_str_r = Line_str_slctd_out_r()
+  let l:line_str_r = Slctd_edge_r_out_str()
   let l:srch_idx = Str_srch(l:line_str_r, l:bracket_ptn, 1)
 
   if l:srch_idx == -1
@@ -4180,7 +4201,7 @@ func! Slctd__expnd_quote_b() range abort
 
   call Slct_re()
 
-  " call Cursor__mv_slctd_l()
+  " call Cursor__mv_slctd_edge_l()
   call Cursor__mv_slctd_edge_tgl()
   " call Normal('o')
 
@@ -4188,6 +4209,8 @@ func! Slctd__expnd_quote_b() range abort
 endfunc
 
 func! Slctd__expnd_quote_swtch() range abort
+
+  " Is_cursor_line_str__srch_ptn() " todo dev
 
   call Slct_re()
 
@@ -4383,6 +4406,10 @@ endfunc
 
 func! Slctd_edge__quote_tgl() range abort
 
+  if a:firstline != a:lastline
+    return
+  endif
+
   call Slct_re()
 
   " char chk
@@ -4417,7 +4444,7 @@ func! Slctd_edge_out_cahr__del() range abort
 
   " edge r
   call Slct_re()
-  call Cursor__mv_slctd_r()
+  call Cursor__mv_slctd_edge_r()
   call Slctd__cancel()
 
   call Cursor__mv_char_f()
@@ -4428,7 +4455,7 @@ func! Slctd_edge_out_cahr__del() range abort
   call Slct_re()
   call Cursor__mv_char_b()
   call Cursor__mv_slctd_edge_tgl()
-  call Cursor__mv_slctd_l()
+  call Cursor__mv_slctd_edge_l()
   call Slctd__cancel()
 
   call Cursor__mv_char_b()
@@ -4465,7 +4492,7 @@ func! Is_slctd_str__srch_str() abort
   endif
 endfunc
 
-func! Is_slctd_str_line_mlt() abort
+func! Is_slctd_str__line_mlt() abort
 
   if Slctd_str() =~ '\n'
     return v:true
@@ -4585,7 +4612,7 @@ func! V_box_paste() range abort
     call Slctd__del()
   endif
 
-  call Cursor__mv_slctd_l()
+  call Cursor__mv_slctd_edge_l()
   call Normal("\<esc>")
 
   let l:col_num = Cursor_col_num()
@@ -4643,7 +4670,7 @@ endfunc
 
 func! V_srch() abort " srch, set or run
 
-  if Is_slctd_str_line_mlt()
+  if Is_slctd_str__line_mlt()
 
     call Slct_re()
     call Srch("f")
@@ -4774,7 +4801,7 @@ endfunc
 
 func! V_srch_str__slctd_str() range abort
 
-  " if Is_slctd_str_line_mlt()
+  " if Is_slctd_str__line_mlt()
   "   return
   " endif
 
