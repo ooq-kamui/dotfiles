@@ -961,11 +961,13 @@ nnoremap <leader>y <esc>
 vnoremap i V
 
 " mode ch visual box
-vnoremap v <c-v>
+"vnoremap v <c-v>
+vnoremap <expr> v
+\ mode() == '<c-v>' ? ':call Slctd_box_w__1()<cr>' :
+\                     '<c-v>'
 
 " file srch ( fzf )
-"vnoremap <leader>l "zy:FzfFile <c-r>z
-
+"vnoremap <leader>xx "zy:FzfFile <c-r>z
 
 " 
 " cursor mv
@@ -974,6 +976,7 @@ vnoremap v <c-v>
 " cursor mv slctd edge tgl
 "vnoremap y o
 vnoremap y :call Cursor__mv_slctd_edge_tgl()<cr>
+vnoremap O O
 
 " cursor mv char forward
 vnoremap l l
@@ -1159,7 +1162,8 @@ vnoremap K :call V_cursor_f_space__del()<cr>
 vnoremap <c-u> :call Slctd_edge__quote_tgl()<cr>
 
 " slctd edge out char __ del
-vnoremap W Slctd_edge_out_cahr__del()
+vnoremap w :call Slctd_edge_out_cahr__del()<cr>
+"vnoremap W :call Slctd_edge_out_cahr__del()<cr>
 
 " slctd str mv back
 vnoremap <c-s> :call Slctd_box_str__mv('l')<cr>
@@ -1177,7 +1181,8 @@ vnoremap <c-w> :call Slctd_box__mv('l')<cr>
 vnoremap <c-e> :call Slctd_box__mv('r')<cr>
 
 " slct box w __ 1
-vnoremap w :call Slctd_box_w__1()<cr>
+"vnoremap xx :call Slctd_box_w__1()<cr>
+"vnoremap v :call Slctd_box_w__1()<cr>
 
 " num icl
 "vnoremap + <c-a>gv
@@ -1382,7 +1387,7 @@ vnoremap R <esc>
 "vnoremap T <esc>
 "vnoremap U <esc>
 vnoremap V <esc>
-"vnoremap W <esc>
+vnoremap W <esc>
 vnoremap X <esc>
 "vnoremap Y <esc>
 
@@ -4394,29 +4399,43 @@ func! Slctd_edge__quote_tgl() range abort
   elseif l:c_l == '"' && l:c_l == l:c_r
 
     call Slctd_edge_out_cahr__del()
+
+    let l:c = '`'
+    call Slctd_edge__ins(l:c)
+
+  elseif l:c_l == '`' && l:c_l == l:c_r
+
+    call Slctd_edge_out_cahr__del()
+
   else
     let l:c = "'"
     call Slctd_edge__ins(l:c)
   endif
 endfunc
 
-func! Slctd_edge_out_cahr__del() range abort " todo dev doing
+func! Slctd_edge_out_cahr__del() range abort
 
+  " edge r
   call Slct_re()
   call Cursor__mv_slctd_r()
   call Slctd__cancel()
 
   call Cursor__mv_char_f()
   call Cursor_c_char__del()
-
   call Slct_re()
+
+  " edge l
+  call Slct_re()
+  call Cursor__mv_char_b()
+  call Cursor__mv_slctd_edge_tgl()
   call Cursor__mv_slctd_l()
   call Slctd__cancel()
 
   call Cursor__mv_char_b()
   call Cursor_c_char__del()
-
   call Slct_re()
+  call Cursor__mv_char_b()
+  call Cursor__mv_slctd_edge_tgl()
 endfunc
 
 func! Slctd_edge_out_l_cahr__del() range abort

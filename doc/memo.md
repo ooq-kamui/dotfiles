@@ -2,26 +2,11 @@
 # cnf
 
 
-# vim
-
-Slctd_edge__quote_tgl()
-
-  aaa   bbb ccc ddd  eee
-  aaa  'bbb ccc ddd' eee
-  aaa  "bbb ccc ddd" eee
-
-v md li
-- vnoremap O 
-
-slctd edge lr out
-- fnc name refactoring
-
-
-# bsky
+## bsky
 
 mute off
 - mmbr
-  - camilla
+  - camilla done ? confirm
   - tiki
   - aqua
   - olivia
@@ -29,7 +14,7 @@ mute off
   - celica
 
 elise setting
-- header
+- header img
 
 
 ## holo song
@@ -56,6 +41,13 @@ docusaurus blog sidebar
 - try
 
 
+# ofc
+
+tracpad
+- side box buy, carry
+- cable usb-mini
+
+
 ## m4 mac
 
 setup
@@ -77,6 +69,13 @@ js cre
 - logic tidy
   - rslt row
   - fltr
+
+
+## vim
+
+slctd edge lr out
+- fnc name refactoring
+  - cursor __ md slctd edge xx
 
 
 ## skr-vps
