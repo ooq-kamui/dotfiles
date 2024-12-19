@@ -2,6 +2,12 @@
 # cnf
 
 
+## git
+
+faq
+- sndbox
+
+
 ## bsky
 
 mute off
