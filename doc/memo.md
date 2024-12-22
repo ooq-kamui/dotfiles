@@ -2,44 +2,11 @@
 # cnf
 
 
-## vim
-
-Slctd__expnd_quote_swtch()
-- in line, find not `'"`
-  - Is_cursor_line_str__srch_ptn() cre
-
-- fnc name, refactoring
-  - xxx()
-    - `>` is_cursor line num __ num ()
-
-  - case mode n
-    - edge lr
-      - `>` side lr
-
-v box paste
-- logic mod, k ( cursor down )
-
-
 ## git
 
 faq
 - sndbox
 - doc write
-
-
-## bsky
-
-mute off
-- mmbr
-  - camilla done ? confirm
-  - tiki
-  - aqua
-  - olivia
-  - linda
-  - celica
-
-elise setting
-- header img
 
 
 ## holo song
@@ -57,6 +24,26 @@ repository
 - tidy
 
 
+## vim
+
+fnc name mod
+- file top `>` file bgn
+- search() `>` Cursor__mv_srch_ptn() " alias
+
+
+Slctd__expnd_quote_swtch()
+- Slctd__expnd_quote_in_swtch()
+- Slctd__expnd_quote_on_swtch()
+
+  aaa  "bbb eee ccc"  ddd
+  aaa  bbb  ccc  ddd
+
+
+slctd edge bth __ quote tgl () err
+- case: line end
+- case: char 1
+
+
 ## artcl
 
 docusaurus blog sidebar
@@ -69,7 +56,7 @@ docusaurus blog sidebar
 # ofc
 
 tracpad
-- side box buy, carry
+- side box buy at seria, carry
 - cable usb-mini
 
 

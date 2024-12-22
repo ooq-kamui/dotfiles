@@ -268,13 +268,17 @@ nnoremap <Up>    k
 nnoremap <Down>  j
 
 " cursor mv line
+nnoremap k k
+nnoremap j j
+
+" cursor mv line mlt
 nnoremap <c-k> 10<c-y>
 nnoremap <c-j> 10<c-e>
 
-" cursor mv line start | ins line
+" cursor mv line top | ins line
 nnoremap y :call Cursor__mv_line_top_or_new_line()<cr>
 
-" cursor mv line start
+" cursor mv line top
 nnoremap <c-a> 0
 
 " cursor mv line end
@@ -308,7 +312,6 @@ nnoremap _ f_l
 
 " cursor mv word dlm _ back
 nnoremap <c-_> hT_
-nnoremap ?     hT_
 
 " cursor mv word dlm ( camel or _ )  -  forward
 nnoremap F :call Cursor__mv_word_dlm_f()<cr>
@@ -326,11 +329,13 @@ nnoremap <c-l> %
 "nnoremap xx <c-o>
 "nnoremap xx <c-i>
 
-" cursor mv file edge back    ( file bgn )
-nnoremap gk :call Cursor__mv_file_edge('k')<cr>
+" cursor mv file edge bgn
+nnoremap gk :call Cursor__mv_file_edge_bgn()<cr>
+"nnoremap gk :call Cursor__mv_file_edge('k')<cr>
 
-" cursor mv file edge forward ( file end   )
-nnoremap gj :call Cursor__mv_file_edge('j')<cr>
+" cursor mv file edge end
+nnoremap gj :call Cursor__mv_file_edge_end()<cr>
+"nnoremap gj :call Cursor__mv_file_edge('j')<cr>
 
 " cursor mv edit latest
 "nnoremap xx `.
@@ -465,7 +470,10 @@ nnoremap < A,<esc>j
 nnoremap . i.<esc>
 
 " ins hyphen
-nnoremap 0 :call Ins_hyphen()<esc>
+nnoremap 0 :call Ins_hyphen()<cr>
+
+" cahr rpl, under score
+nnoremap <bar> :call Char__rpl_underscore()<cr>
 
 " ins space
 nnoremap L :call Ins_space(v:false)<cr>
@@ -475,8 +483,7 @@ nnoremap Y :call Ins_space(v:true )<cr>
 nnoremap * :call Ins_da()<cr>
 
 " ins date time
-nnoremap \     :call Ins_dt()<cr>
-nnoremap <bar> :call Ins_dt()<cr>
+"nnoremap xx :call Ins_dt()<cr>
 
 " ins day of week
 "nnoremap xx :call Ins_week()<cr>
@@ -572,8 +579,7 @@ nnoremap re :call Indnt__crct()<cr>
 
 " srch hl init
 nnoremap / /<cr>N
-"nnoremap b /<cr>N
-"nnoremap b :call Srch_init()<cr>
+"nnoremap / :call Srch_init()<cr>
 
 " srch char in line - forward
 "nnoremap xx f
@@ -767,10 +773,10 @@ nnoremap ; <esc>
 nnoremap ~ <esc>
 nnoremap ^ <esc>
 "nnoremap / <esc>
-"nnoremap \ <esc>
-"nnoremap | <esc> " replace key : <bar>
+nnoremap \ <esc>
+"nnoremap | <esc> " vvv ref nnoremap <bar>
 "nnoremap <bar> <esc>
-"nnoremap ? <esc>
+nnoremap ? <esc>
 
 "nnoremap ! <esc>
 nnoremap " <esc>
@@ -793,6 +799,8 @@ nnoremap b <esc>
 "nnoremap g <esc>
 "nnoremap h <esc>
 "nnoremap i <esc>
+"nnoremap j <esc>
+"nnoremap k <esc>
 "nnoremap l <esc>
 "nnoremap m <esc>
 "nnoremap n <esc>
@@ -1038,7 +1046,7 @@ vnoremap gj :call V_cursor__mv_file_edge('j')<cr>
 " vnoremap xx :call Slctd__expnd_bracket_f()<cr>
 
 " slctd expnd quote
-vnoremap I     :call Slctd__expnd_quote_swtch()<cr>
+vnoremap I     :call Slctd__expnd_quote_on_swtch()<cr>
 
 " slctd expnd quote in
 vnoremap <c-i> :call Slctd__expnd_quote_in_swtch()<cr>
@@ -2284,7 +2292,7 @@ func! Normal(cmd) abort
   call Exe('normal! ' . a:cmd)
 endfunc
 
-func! Esc() abort
+func! Esc() abort " alias
 
   call Normal("\<esc>")
 endfunc
@@ -2389,9 +2397,20 @@ endfunc
 
 " char
 
+" char rpl
+
 func! Char__rpl(rpl) abort
 
   call Normal('r' . a:rpl)
+endfunc
+
+func! Char__rpl_underscore()abort " alias
+
+  " todo, case: line end
+
+  call Char__rpl('_')
+  call Normal('l')
+  " call Cursor__mv_char_forward() " todo, fnc cre
 endfunc
 
 func! N_char__tgl() abort
@@ -2797,7 +2816,7 @@ endfunc
 
 func! Cursor__mv_line_top0() abort
   
-  if Is_cursor_line__emp()
+  if Is_cursor_line_str__emp()
     return
   endif
 
@@ -2806,7 +2825,7 @@ endfunc
 
 func! Cursor__mv_line_top1() abort
 
-  if     Is_cursor_line__space()
+  if     Is_cursor_line_str__space()
     call Cursor__mv_line_end()
 
   elseif Is_line_markdown_itm()
@@ -2818,7 +2837,7 @@ endfunc
 
 func! Cursor__mv_line_end() abort
 
-  if ! Is_cursor_line__emp()
+  if ! Is_cursor_line_str__emp()
     call Normal('$l')
   endif
 endfunc
@@ -2838,7 +2857,7 @@ func! V_cursor__mv_line_end() range abort
 
   elseif Is_slctd_mode__line()
 
-    if Is_cursor_line__emp()
+    if Is_cursor_line_str__emp()
       return
     endif
 
@@ -2887,7 +2906,7 @@ func! Cursor__mv_word_b() abort
   let l:l_char = Cursor_l_char()
 
   if     Is_cursor__line_top0()
-    call Cursor__mv_up_line_end()
+    call Cursor__mv_u_line_end()
     
   elseif Is_cursor_line_str_side_l__space()
     call Cursor__mv_line_top0()
@@ -2942,9 +2961,20 @@ func! Cursor__mv_word_b_pre() abort " use not
   endif
 endfunc
 
-func! Cursor__mv_up_line_end() abort
+func! Cursor__mv_u() abort " alias
 
   call Normal('k')
+endfunc
+
+func! Cursor__mv_d() abort " alias
+
+  call Normal('j')
+endfunc
+
+func! Cursor__mv_u_line_end() abort
+
+  " call Normal('k')
+  call Cursor__mv_u()
   call Cursor__mv_line_end()
 endfunc
 
@@ -2968,14 +2998,12 @@ func! Cursor__mv_slctd_edge_tgl() range abort
   call Normal('o')
 endfunc
 
-" func! Cursor__mv_slctd_l() abort
 func! Cursor__mv_slctd_edge_l() abort
   
   call Slct_re()
   call Normal('`<')
 endfunc
 
-" func! Cursor__mv_slctd_r() abort
 func! Cursor__mv_slctd_edge_r() abort
   
   call Slct_re()
@@ -2984,18 +3012,28 @@ endfunc
 
 func! Cursor__mv_file_edge(n_cmd) abort
 
-  if Is_cursor_line__file_edge()
+  if Is_cursor_line_num__file_edge()
     call Normal(a:n_cmd)
   endif
 
   let l:cnt = 1
   let l:cnt_max = 10000
 
-  while ( !Is_cursor_line__file_edge() && l:cnt < l:cnt_max )
+  while ( !Is_cursor_line_num__file_edge() && l:cnt < l:cnt_max )
 
     call Normal(a:n_cmd)
     let l:cnt = l:cnt + 1
   endwhile
+endfunc
+
+func! Cursor__mv_file_edge_bgn() abort " alias
+
+  call Cursor__mv_file_edge('k')
+endfunc
+
+func! Cursor__mv_file_edge_end() abort " alias
+
+  call Cursor__mv_file_edge('j')
 endfunc
 
 func! V_cursor__mv_file_edge(n_cmd) abort
@@ -3021,7 +3059,7 @@ func! Cursor__mv_jmp_char(drct, is_space_through) abort
   let l:cnt = 1
   let l:cnt_max = 10000
 
-  while ( !Is_cursor_line__file_edge() && l:cnt < l:cnt_max )
+  while ( !Is_cursor_line_num__file_edge() && l:cnt < l:cnt_max )
 
     if ! ( Is_cursor_c_char__space() || Is_cursor__line_end() )
       break
@@ -3052,7 +3090,7 @@ func! Cursor__mv_jmp_space(drct) abort
   let l:cnt_max = 10000
   "let l:cnt_max = 10
 
-  while ( !Is_cursor_line__file_edge() && l:cnt < l:cnt_max )
+  while ( !Is_cursor_line_num__file_edge() && l:cnt < l:cnt_max )
 
     if Is_cursor_c_char__space() || Is_cursor__line_end()
       break
@@ -3195,7 +3233,7 @@ endfunc
 
 func! Cursor_u_char() abort " dev doing
 
-  if Is_cursor_line__file_top()
+  if Is_cursor_line_num__file_top()
     return ''
   endif
 
@@ -3207,7 +3245,7 @@ endfunc
 
 func! Cursor_d_char() abort " dev doing
 
-  if Is_cursor_line__file_end()
+  if Is_cursor_line_num__file_end()
     return ''
   endif
 
@@ -3371,13 +3409,13 @@ func! Cursor_line_str_len() abort
   return l:len
 endfunc
 
-func! Cursor_line_str_l_out() abort
+func! Cursor_line_str_side_l() abort
   
   let l:line_l = getline('.')[:col('.')-2]
   return l:line_l
 endfunc
 
-func! Cursor_line_str_r_out() abort
+func! Cursor_line_str_side_r() abort
   
   let l:line_r = getline('.')[col('.'):]
   return l:line_r
@@ -3385,7 +3423,7 @@ endfunc
 
 " cursor line cnd
 
-func! Is_cursor_line__num(line_num) abort
+func! Is_cursor_line_num__(line_num) abort
 
   let l:ret = v:false
 
@@ -3398,25 +3436,25 @@ func! Is_cursor_line__num(line_num) abort
   return l:ret
 endfunc
 
-func! Is_cursor_line__file_top() abort
+func! Is_cursor_line_num__file_top() abort
 
   let l:line_num = 1
-  let l:ret = Is_cursor_line__num(l:line_num)
+  let l:ret = Is_cursor_line_num__(l:line_num)
   return l:ret
 endfunc
 
-func! Is_cursor_line__file_end() abort
+func! Is_cursor_line_num__file_end() abort
 
   let l:line_num = Line_num_file_end()
-  let l:ret = Is_cursor_line__num(l:line_num)
+  let l:ret = Is_cursor_line_num__(l:line_num)
   return l:ret
 endfunc
 
-func! Is_cursor_line__file_edge() abort
+func! Is_cursor_line_num__file_edge() abort
 
   let l:ret = v:false
 
-  if Is_cursor_line__file_top() || Is_cursor_line__file_end()
+  if Is_cursor_line_num__file_top() || Is_cursor_line_num__file_end()
 
     let l:ret = v:true
   endif
@@ -3424,7 +3462,7 @@ func! Is_cursor_line__file_edge() abort
   return l:ret
 endfunc
 
-func! Is_cursor_line__emp() abort
+func! Is_cursor_line_str__emp() abort
   
   if Cursor_line_end_col() == 1
     return v:true
@@ -3433,7 +3471,7 @@ func! Is_cursor_line__emp() abort
   endif
 endfunc
 
-func! Is_cursor_line__space() abort
+func! Is_cursor_line_str__space() abort
   
   let l:str = Cursor_line_str()
   let l:ret = Is_str__space(l:str)
@@ -3442,22 +3480,29 @@ endfunc
 
 func! Is_cursor_line_str_side_l__space() abort
 
-  let l:str = Cursor_line_str_l_out()
+  let l:str = Cursor_line_str_side_l()
   let l:ret = Is_str__space(l:str)
   return l:ret
 endfunc
 
 func! Is_cursor_line_str_side_r__space() abort
 
-  let l:str = Cursor_line_str_r_out()
+  let l:str = Cursor_line_str_side_r()
   let l:ret = Is_str__space(l:str)
   return l:ret
 endfunc
 
-func! Is_cursor_line_str__srch_ptn() abort " todo dev
+func! Is_cursor_line_str__ptn(ptn) abort " todo dev
 
-  " xxx
+  let l:str = Cursor_line_str_side_r()
 
+  let l:ret = v:false
+
+  if Is_str__ptn(l:str, a:ptn)
+
+    let l:ret = v:true
+  endif
+  return l:ret
 endfunc
 
 " ins
@@ -3491,7 +3536,8 @@ func! Ins_cr() abort
   call Normal('x')
   
   call Line_end_space__del(l:t_line_num)
-  call Normal('j')
+  " call Normal('j')
+  call Cursor__mv_d()
 endfunc
 
 func! Ins_space(is_cursor_mv) abort
@@ -3549,12 +3595,13 @@ command! -nargs=* InsSysCmd call Ins_sys_cmd(<q-args>)
 
 func! Ins_sys_cmd(sys_cmd) abort " read
 
-  let l:is_line_num_eq_1 = Is_cursor_line__file_top()
+  let l:is_line_num_eq_1 = Is_cursor_line_num__file_top()
 
   if l:is_line_num_eq_1
     call Normal('O')
   else
-    call Normal('k')
+    " call Normal('k')
+    call Cursor__mv_u()
   endif
 
   let l:cmd = 'read ! ' . a:sys_cmd
@@ -3776,25 +3823,29 @@ func! V_cursor_f_space__del() range abort
     " call Cursor__mv_by_line_col(l:line_num, l:col)
 
     call Cursor_f_space__del()
-    call Normal('j')
+    " call Normal('j')
+    call Cursor__mv_d()
   endfor
 endfunc
 
 func! Cursor_f_space__crct() abort " dev doing
 
-  call Normal('k')
+  " call Normal('k')
+  call Cursor__mv_u()
 
   let l:c = Cursor_c_char()
 
   if l:c !~ '\s'
-    call Normal('j')
+    " call Normal('j')
+    call Cursor__mv_d()
     return
   endif
 
   call Slct_cursor_f_space()
   call Normal('"zy')
 
-  call Normal('j')
+  " call Normal('j')
+  call Cursor__mv_d()
 
   call Slct_cursor_f_space()
   call Normal('"yx')
@@ -3807,7 +3858,8 @@ func! Ins_line(str) abort
   
   let l:line_num = Cursor_line_num() - 1
   call append(l:line_num, a:str)
-  call Normal('k')
+  " call Normal('k')
+  call Cursor__mv_u()
 endfunc
 
 func! Ins_line_d(str) abort
@@ -3837,7 +3889,7 @@ endfunc
 
 func! Line__del() abort
 
-  if Is_cursor_line__emp() || Is_cursor_line__space()
+  if Is_cursor_line_str__emp() || Is_cursor_line_str__space()
     call Normal('"_dd') " rgstr del
   else
     call Normal('"add')
@@ -4057,9 +4109,10 @@ endfunc
 
 " slctd
 
-func! Slctd__cancel() range abort
+func! Slctd__cancel() range abort " alias
 
-  call Normal("\<esc>")
+  call Esc()
+  " call Normal("\<esc>")
 endfunc
 
 " slctd str
@@ -4133,7 +4186,7 @@ func! Slctd_edge_l_out_str() abort
 
   call Cursor__mv_slctd_edge_l()
 
-  let l:str = Cursor_line_str_l_out()
+  let l:str = Cursor_line_str_side_l()
   return l:str
 endfunc
 
@@ -4141,7 +4194,7 @@ func! Slctd_edge_r_out_str() abort
 
   call Cursor__mv_slctd_edge_r()
 
-  let l:str = Cursor_line_str_r_out()
+  let l:str = Cursor_line_str_side_r()
   return l:str
 endfunc
 
@@ -4191,53 +4244,54 @@ endfunc
 
 let g:quote_ptn = '[' . "'" . '"' . ']'
 
-func! Slctd__expnd_quote_f() range abort
+func! Slctd__expnd_quote_on_f() range abort
 
   call Slct_re()
   call Cursor__mv_ptn(g:quote_ptn, 'f')
 endfunc
 
-func! Slctd__expnd_quote_b() range abort
+func! Slctd__expnd_quote_on_b() range abort
 
   call Slct_re()
 
-  " call Cursor__mv_slctd_edge_l()
   call Cursor__mv_slctd_edge_tgl()
-  " call Normal('o')
-
   call Cursor__mv_ptn(g:quote_ptn, 'b')
 endfunc
 
-func! Slctd__expnd_quote_swtch() range abort
+func! Slctd__expnd_quote_on_swtch() range abort
 
-  " Is_cursor_line_str__srch_ptn() " todo dev
+  " Is_cursor_line_str__ptn() " todo dev ?
 
   call Slct_re()
 
   let l:c = Cursor_c_char()
 
   if l:c !~ g:quote_ptn
-    call Slctd__expnd_quote_f()
+    call Slctd__expnd_quote_on_f()
   else
-    call Slctd__expnd_quote_b()
+    call Slctd__expnd_quote_on_b()
   endif
 endfunc
 
 func! Slctd__expnd_quote_in_f() range abort
 
-  call Slctd__expnd_quote_f()
+  call Slctd__expnd_quote_on_f()
   call Normal('h')
 endfunc
 
 func! Slctd__expnd_quote_in_b() range abort
 
-  call Slctd__expnd_quote_b()
+  call Slctd__expnd_quote_on_b()
   call Normal('l')
 endfunc
 
 func! Slctd__expnd_quote_in_swtch() range abort
 
   call Slct_re()
+
+  if ! Is_cursor_line_str__ptn(g:quote_ptn)
+    return
+  endif
 
   let l:c = Cursor_r_char()
 
@@ -4608,24 +4662,28 @@ func! V_box_paste() range abort
   if Is_cursor__line_end()
     call V_slctd__pad_space()
 
-    " call Normal('"zdgv') " see
     call Slctd__del()
+    " call Normal('"zdgv') " see
   endif
 
   call Cursor__mv_slctd_edge_l()
-  call Normal("\<esc>")
+  call Esc()
+  " call Normal("\<esc>")
 
-  let l:col_num = Cursor_col_num()
+  " let l:col_num = Cursor_col_num()
 
   for line_num in range(a:firstline, a:lastline)
+
+    let l:col_num = Cursor_col_num()
 
     call Paste()
 
     call Cursor__mv_by_line_col(l:line_num, l:col_num)
 
-    if l:line_num != a:lastline
-      call Normal('j')
-    endif
+    call Cursor__mv_d()
+    " if l:line_num != a:lastline
+    "   call Normal('j')
+    " endif
   endfor
 endfunc
 
@@ -4837,7 +4895,9 @@ endfunc
 func! Srch_7_cursor__mv_nxt(dir) abort
 
   call Srch_slct(a:dir)
-  call Normal("\<esc>")
+  call Esc()
+  " call Normal("\<esc>")
+  call Esc()
   call Cursor__mv_char_f()
 endfunc
 
@@ -5123,7 +5183,8 @@ func! N_tag_jmp() abort
   call Tag_jmp(l:str)
 
   call Exe('sbuffer ' . l:base_buf_num)
-  call Normal('j')
+  " call Normal('j')
+  call Cursor__mv_d()
 endfunc
 
 func! V_tag_jmp() range abort
