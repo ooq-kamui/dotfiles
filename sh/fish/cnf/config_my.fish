@@ -69,14 +69,12 @@ alias c   'clr'
 
 #alias clp 'pbcopy|clp_by_tmp'
 
-alias x 'xargs'
+alias cd_parent 'cd ../; pwd'
+alias k   'cd_parent'
+alias kk  'k;k'
+alias kkk 'k;k;k'
 
-alias lk    'pwd ../       ; l ../'
-alias lkk   'pwd ../       ; l ../../'
-alias lkkk  'pwd ../       ; l ../../../'
-alias llk   'pwd ../       ; ll ../'
-alias llkk  'pwd ../../    ; ll ../../'
-alias llkkk 'pwd ../../../ ; ll ../../../'
+alias d 'dir_jmp'
 
 alias lf  'lrf'
 alias ld  'lrd'
@@ -86,6 +84,15 @@ alias fd 'fd --hidden --follow -I --exclude .git'
 
 #alias p 'pth'
 alias o 'pth'
+alias oo     'pwd ../       ; l  ../      '
+alias ooo    'pwd ../       ; l  ../../   '
+alias oooo   'pwd ../       ; l  ../../../'
+alias ool    'pwd ../       ; ll ../      '
+alias oool   'pwd ../../    ; ll ../../   '
+alias ooool  'pwd ../../../ ; ll ../../../'
+alias ooll   'pwd ../       ; ll ../      '
+alias oooll  'pwd ../../    ; ll ../../   '
+alias ooooll 'pwd ../../../ ; ll ../../../'
 
 #alias to     'touch'
 alias to_clr ':>'
@@ -99,13 +106,6 @@ alias mve 'mv_excld'
 alias rn  'rename'
 
 alias trash 'trash -F'
-
-alias cd_parent 'cd ../; pwd'
-alias k   'cd_parent'
-alias kk  'k;k'
-alias kkk 'k;k;k'
-
-alias d 'dir_jmp'
 
 alias vim 'nvim -p'
 alias vi  'nvim -p'
@@ -128,6 +128,8 @@ alias ca 'cal'
 alias du  'du -h'
 alias du1 'du -hd1'
 alias df  'df -h'
+
+# alias x 'xargs'
 
 alias zip_un 'unzip'
 

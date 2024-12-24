@@ -2,11 +2,19 @@
 # cnf
 
 
-## git
+## vim
 
-faq
-- sndbox
-- doc write
+Slctd__expnd_quote_swtch()
+- Slctd__expnd_quote_in_swtch()
+- Slctd__expnd_quote_on_swtch()
+
+  aaa  "bbb eee ccc"  ddd
+  aaa  bbb  ccc  ddd
+
+
+slctd edge bth __ quote tgl () err
+- case: line end
+- case: char 1
 
 
 ## holo song
@@ -24,26 +32,6 @@ repository
 - tidy
 
 
-## vim
-
-fnc name mod
-- file top `>` file bgn
-- search() `>` Cursor__mv_srch_ptn() " alias
-
-
-Slctd__expnd_quote_swtch()
-- Slctd__expnd_quote_in_swtch()
-- Slctd__expnd_quote_on_swtch()
-
-  aaa  "bbb eee ccc"  ddd
-  aaa  bbb  ccc  ddd
-
-
-slctd edge bth __ quote tgl () err
-- case: line end
-- case: char 1
-
-
 ## artcl
 
 docusaurus blog sidebar
@@ -51,13 +39,6 @@ docusaurus blog sidebar
 - ggl
 - ref https://docusaurus.io/docs/sidebar
 - try
-
-
-# ofc
-
-tracpad
-- side box buy at seria, carry
-- cable usb-mini
 
 
 ## m4 mac

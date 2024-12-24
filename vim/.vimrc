@@ -502,8 +502,6 @@ nnoremap <expr> O
 
 " ins dots ( or crnt )
 nnoremap ru :call Line_end__dots_adjst()<cr>
-"nnoremap rp :call Line_end__dots_adjst()<cr>
-"nnoremap > :call Line_end__dots_adjst()<cr>
 
 " ins indnt space
 nnoremap V :call Ins_line__indnt_space()<cr>
@@ -598,10 +596,10 @@ nnoremap <leader>K /\<\><left><left>
 "nnoremap xx Xxx
 
 " srch forward
-nnoremap n     :call Srch('f')<cr>
+nnoremap n     :call Cursor__mv_srch('f')<cr>
 
 " srch back
-nnoremap <c-n> :call Srch('b')<cr>
+nnoremap <c-n> :call Cursor__mv_srch('b')<cr>
 
 " srch, cursor mv nxt char
 "nnoremap @ :call Srch_7_cursor__mv_nxt('f')<cr>
@@ -671,7 +669,6 @@ nnoremap :r :InsSysCmd
 nnoremap :p :Pth <cr>
 
 " cd slf
-nnoremap :h :CdSlf
 nnoremap :d :CdSlf
 
 " cd parent
@@ -692,6 +689,23 @@ nnoremap <s-tab> gT
 " tab order
 nnoremap <s-left>  :tabm-1<cr>
 nnoremap <s-right> :tabm+1<cr>
+
+" 
+" buf
+" 
+
+" buf list
+"nnoremap :xx :buffers
+
+" buf splt
+nnoremap gi :call Buf_splt()<cr>
+nnoremap gu :call Buf_splt_quit()<cr>
+nnoremap gn :call Buf_splt_cursor__mv_nxt()<cr>
+
+"nnoremap rh :call Buf_splt_tgl()<cr>
+nnoremap rh :call Buf_splt()<cr>
+nnoremap rH :call Buf_splt_quit()<cr>
+nnoremap rn :call Buf_splt_cursor__mv_nxt()<cr>
 
 " 
 " term
@@ -724,9 +738,6 @@ nnoremap <s-right> :tabm+1<cr>
 " 
 " etc
 " 
-
-" buffer list
-"nnoremap :xx :buffers
 
 " inf char
 "nnoremap xx ga
@@ -889,12 +900,12 @@ nnoremap gb <esc>
 nnoremap gf <esc>
 nnoremap gg <esc>
 "nnoremap gh <esc>
-nnoremap gi <esc>
+"nnoremap gi <esc>
 "nnoremap gj <esc>
 "nnoremap gk <esc>
 nnoremap gl <esc>
 "nnoremap gm <esc>
-nnoremap gn <esc>
+"nnoremap gn <esc>
 "nnoremap go <esc>
 nnoremap gp <esc>
 "nnoremap gs <esc>
@@ -904,15 +915,24 @@ nnoremap gv <esc>
 nnoremap gw <esc>
 nnoremap gy <esc>
 
+nnoremap ra <esc>
+"        :
 "nnoremap re <esc>
+"        :
 "nnoremap rh <esc>
 "nnoremap ri <esc>
 "nnoremap rj <esc>
 "nnoremap rk <esc>
+"        :
+"nnoremap rn <esc>
 "nnoremap ro <esc>
 nnoremap rp <esc>
+"        :
 "nnoremap rr <esc>
+"        :
 "nnoremap ru <esc>
+"        :
+nnoremap rz <esc>
 
 nnoremap xx <esc>
 
@@ -923,7 +943,7 @@ nnoremap :c :c
 nnoremap :e :e
 "nnoremap :f :f
 nnoremap :g :g
-"nnoremap :h :h
+nnoremap :h :h
 "          :
 "nnoremap :k :k
 "          :
@@ -1252,7 +1272,7 @@ vnoremap <c-n> :call V_srch_slct('f')<cr>
 "vnoremap xx    :call V_srch_slct('b')<cr>
 
 " srch str set
-vnoremap n :call V_srch()<cr>
+vnoremap n :call V_cursor__mv_srch()<cr>
 "vnoremap e 
 vnoremap <expr> e
 \ mode() == '<c-v>' ? '<esc>' :
@@ -2922,23 +2942,6 @@ func! Cursor__mv_word_b() abort
   endif
 endfunc
 
-func! Cursor__mv_ptn(ptn, dir) range abort
-
-  let l:ptn = a:ptn
-
-  if a:dir == 'b'
-    let l:opt_dir = 'b'
-  else
-    let l:opt_dir = ''
-  endif
-  let l:opt = 'W' . l:opt_dir
-  " let l:opt = 'zW' . l:opt_dir
-
-  let l:line_num = Cursor_line_num()
-
-  call search(l:ptn, l:opt, l:line_num)
-endfunc
-
 func! Cursor__mv_word_dlm_f() abort
 
   let l:ptn = '[_ABCDEFGHIJKLMNOPQRSTUVWXYZ]'
@@ -3127,6 +3130,61 @@ func! V_cursor__mv_jmp_v(drct) range abort
   call Cursor__mv_jmp_v(a:drct)
 endfunc
 
+" refactoring, srch > cursor__mv_srch_ptn
+
+func! Cursor__mv_ptn(ptn, dir) range abort
+
+  let l:ptn = a:ptn
+
+  if a:dir == 'b'
+    let l:opt_dir = 'b'
+  else
+    let l:opt_dir = ''
+  endif
+  let l:opt = 'W' . l:opt_dir
+  " let l:opt = 'zW' . l:opt_dir
+
+  let l:line_num = Cursor_line_num()
+
+  call search(l:ptn, l:opt, l:line_num)
+endfunc
+
+" func! Srch(drct) abort
+func! Cursor__mv_srch(drct) abort
+
+  if     a:drct == 'f'
+    let l:op = ''
+  elseif a:drct == 'b'
+    let l:op = 'b'
+  endif
+
+  let l:ptn = @/
+  call search(l:ptn, l:op)
+endfunc
+
+func! V_cursor__mv_srch() abort " srch, set or run
+
+  if Is_slctd_str__line_mlt()
+
+    call Slct_re()
+    call Cursor__mv_srch("f")
+
+  else
+    call V_srch_str__slctd_str()
+  endif
+endfunc
+
+command! -nargs=* SrchOr call Srch_or(<f-args>)
+
+func! Srch_or(...) abort
+
+  let l:str = '\(' . join(a:000, '\|') . '\)'
+  "echo l:str
+
+  let @/ = l:str
+  call Cursor__mv_srch('f')
+endfunc
+
 " cursor pos
 
 func! Pos() abort " alias
@@ -3233,7 +3291,7 @@ endfunc
 
 func! Cursor_u_char() abort " dev doing
 
-  if Is_cursor_line_num__file_top()
+  if Is_cursor_line_num__file_edge_bgn()
     return ''
   endif
 
@@ -3245,7 +3303,7 @@ endfunc
 
 func! Cursor_d_char() abort " dev doing
 
-  if Is_cursor_line_num__file_end()
+  if Is_cursor_line_num__file_edge_end()
     return ''
   endif
 
@@ -3436,16 +3494,16 @@ func! Is_cursor_line_num__(line_num) abort
   return l:ret
 endfunc
 
-func! Is_cursor_line_num__file_top() abort
+func! Is_cursor_line_num__file_edge_bgn() abort
 
   let l:line_num = 1
   let l:ret = Is_cursor_line_num__(l:line_num)
   return l:ret
 endfunc
 
-func! Is_cursor_line_num__file_end() abort
+func! Is_cursor_line_num__file_edge_end() abort
 
-  let l:line_num = Line_num_file_end()
+  let l:line_num = Line_num_file_edge_end()
   let l:ret = Is_cursor_line_num__(l:line_num)
   return l:ret
 endfunc
@@ -3454,7 +3512,7 @@ func! Is_cursor_line_num__file_edge() abort
 
   let l:ret = v:false
 
-  if Is_cursor_line_num__file_top() || Is_cursor_line_num__file_end()
+  if Is_cursor_line_num__file_edge_bgn() || Is_cursor_line_num__file_edge_end()
 
     let l:ret = v:true
   endif
@@ -3595,7 +3653,7 @@ command! -nargs=* InsSysCmd call Ins_sys_cmd(<q-args>)
 
 func! Ins_sys_cmd(sys_cmd) abort " read
 
-  let l:is_line_num_eq_1 = Is_cursor_line_num__file_top()
+  let l:is_line_num_eq_1 = Is_cursor_line_num__file_edge_bgn()
 
   if l:is_line_num_eq_1
     call Normal('O')
@@ -3616,9 +3674,12 @@ endfunc
 " line
 " 
 
-" line num, todo refactoring, def pos mv
+func! Line_num_file_edge_bgn() abort
 
-func! Line_num_file_end() abort " alias
+  return line('^')
+endfunc
+
+func! Line_num_file_edge_end() abort " alias
 
   return line('$')
 endfunc
@@ -4714,40 +4775,7 @@ endfunc
 
 " srch
 
-func! Srch(drct) abort
-
-  if     a:drct == 'f'
-    let l:op = ''
-  elseif a:drct == 'b'
-    let l:op = 'b'
-  endif
-
-  let l:str = @/
-  call search(l:str, l:op)
-endfunc
-
-func! V_srch() abort " srch, set or run
-
-  if Is_slctd_str__line_mlt()
-
-    call Slct_re()
-    call Srch("f")
-
-  else
-    call V_srch_str__slctd_str()
-  endif
-endfunc
-
-command! -nargs=* SrchOr call Srch_or(<f-args>)
-
-func! Srch_or(...) abort
-
-  let l:str = '\(' . join(a:000, '\|') . '\)'
-  "echo l:str
-
-  let @/ = l:str
-  call Srch('f')
-endfunc
+" srch exe, ref: cursor __ mv srch ptn
 
 func! Srch_str() abort
 
@@ -4904,7 +4932,7 @@ endfunc
 func! Srch_char(dir, char) abort
 
   let @/ = '[' . a:char . ']'
-  call Srch(a:dir)
+  call Cursor__mv_srch(a:dir)
 endfunc
 
 func! Srch_char_bracket(dir) abort
@@ -5412,11 +5440,36 @@ func! V_opn_yt() abort
   call Opn_yt(l:yt_video_id)
 endfunc
 
-" etc
+" buf
 
 func! Buf_num() abort
 
   return bufnr('%')
+endfunc
+
+" buf splt
+
+func! Buf_splt() abort
+
+  let l:cmd = 'split'
+  call Exe(l:cmd)
+endfunc
+
+func! Buf_splt_quit() abort
+
+  let l:n_cmd = "\<c-w>c"
+  call Normal(l:n_cmd)
+endfunc
+
+func! Buf_splt_tgl() abort " todo dev
+
+  
+endfunc
+
+func! Buf_splt_cursor__mv_nxt() abort
+
+  let l:n_cmd = "\<c-w>w"
+  call Normal(l:n_cmd)
 endfunc
 
 " mode insert ins lst
@@ -5430,7 +5483,7 @@ endfunc
 
 func! I_symbol02() abort
 
-  let l:lst = [ '-', '=', '!', '?', '+', '^', '~', '&', '|', '\', '/' ]
+  let l:lst = [ '-', '=', '!', '+', '?', '^', '~', '&', '|', '\', '/' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
@@ -5515,6 +5568,8 @@ func! I_ooq() abort
 "  \   'nil',
 "  \   'alias',
 endfunc
+
+" etc
 
 " dir slf
 
@@ -5853,8 +5908,6 @@ func! Tst_slctd_rpl_sys_cmd_mb() range abort
   '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
 endfunc
 
-"nnoremap T :call Cursor_f_space__del()<cr>
-
 " 
 " init
 " 
@@ -5910,11 +5963,12 @@ endif
 
 " 
 " ref ptn ( regex )
+" 
 " url : xxx
 
 " \n : 改行
 " \t : tab
-
+" 
 " \s : space, tab
 " 
 " \w : [0-9A-Za-z_]  word
@@ -5936,10 +5990,10 @@ endif
 " \A : \a 以外
 " \L : \l 以外
 " \U : \u 以外
-
+" 
 " 上記のそれぞれ + 改行
 " ex
 "   \_s : 改行, space, tab のいずれか
-
+" 
 " [^\x01-\x7E] : 全角
 
