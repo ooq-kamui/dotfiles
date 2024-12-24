@@ -64,6 +64,11 @@ js cre
   - fltr
 
 
+## astro
+
+try
+
+
 ## skr-vps
 
 setting at skr console
