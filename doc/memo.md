@@ -8,6 +8,10 @@ v space __ pad _ ()
 - vnoremap b ?
 
 
+cursor mv __ slctd edge l, r
+- research
+
+
 Slctd__expnd_quote()
 - case tst
   - case: line end
