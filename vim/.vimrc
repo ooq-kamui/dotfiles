@@ -705,6 +705,7 @@ nnoremap gn :call Buf_splt_cursor__mv_nxt()<cr>
 "nnoremap rh :call Buf_splt_tgl()<cr>
 nnoremap rh :call Buf_splt()<cr>
 nnoremap rH :call Buf_splt_quit()<cr>
+nnoremap rf :call Buf_splt_quit()<cr>
 nnoremap rn :call Buf_splt_cursor__mv_nxt()<cr>
 
 " 
@@ -918,6 +919,7 @@ nnoremap gy <esc>
 nnoremap ra <esc>
 "        :
 "nnoremap re <esc>
+"nnoremap rf <esc>
 "        :
 "nnoremap rh <esc>
 "nnoremap ri <esc>
@@ -1066,10 +1068,13 @@ vnoremap gj :call V_cursor__mv_file_edge('j')<cr>
 " vnoremap xx :call Slctd__expnd_bracket_f()<cr>
 
 " slctd expnd quote
-vnoremap I     :call Slctd__expnd_quote_on_swtch()<cr>
+vnoremap <c-i> :call Slctd__expnd_quote_tgl()<cr>
+
+" slctd expnd quote on
+"vnoremap I     :call Slctd__expnd_quote_on_swtch()<cr>
 
 " slctd expnd quote in
-vnoremap <c-i> :call Slctd__expnd_quote_in_swtch()<cr>
+"vnoremap <c-i> :call Slctd__expnd_quote_in_swtch()<cr>
 
 " slct all
 vnoremap a :call Slct_all()<cr>
@@ -1195,16 +1200,19 @@ vnoremap <c-s> :call Slctd_box_str__mv('l')<cr>
 " slctd str mv forward
 vnoremap <c-f> :call Slctd_box_str__mv('r')<cr>
 
-" del v box space
+" slctd box space __ del
 vnoremap D :call V_box_space__del()<cr>
 
-" slct box mv back
+" slctd box space __ _ ( under-score ) " todo dev
+"vnoremap xx :call V_box_space__underscore()<cr>
+
+" slctd box mv back
 vnoremap <c-w> :call Slctd_box__mv('l')<cr>
 
-" slct box mv forward
+" slctd box mv forward
 vnoremap <c-e> :call Slctd_box__mv('r')<cr>
 
-" slct box w __ 1
+" slctd box w __ 1
 "vnoremap xx :call Slctd_box_w__1()<cr>
 "vnoremap v :call Slctd_box_w__1()<cr>
 
@@ -1279,7 +1287,7 @@ vnoremap <expr> e
 \                     ':call V_srch_str__slctd_str()<cr>'
 
 " srch rpl one > ynk, nxt
-vnoremap <c-p> :call Slctd_rpl_srch_nxt()<cr>
+vnoremap <c-p> :call Slctd__rpl_7_srch_nxt()<cr>
 
 " rpl ( cmd )
 "vnoremap :s 
@@ -4212,7 +4220,6 @@ endfunc
 func! Slctd_l_pos() abort
 
   call Cursor__mv_slctd_edge_l()
-  
   let l:pos = Pos()
   return l:pos
 endfunc
@@ -4220,9 +4227,24 @@ endfunc
 func! Slctd_r_pos() abort
 
   call Cursor__mv_slctd_edge_r()
-  
   let l:pos = Pos()
   return l:pos
+endfunc
+
+func! Slctd_edge_l_char() abort
+
+  call Cursor__mv_slctd_edge_l()
+
+  let l:c_char = Cursor_c_char()
+  return l:c_char
+endfunc
+
+func! Slctd_edge_r_char() abort
+
+  call Cursor__mv_slctd_edge_r()
+
+  let l:c_char = Cursor_c_char()
+  return l:c_char
 endfunc
 
 func! Slctd_edge_l_out_char() abort
@@ -4317,6 +4339,7 @@ func! Slctd__expnd_quote_on_b() range abort
 
   call Cursor__mv_slctd_edge_tgl()
   call Cursor__mv_ptn(g:quote_ptn, 'b')
+  " call Cursor__mv_slctd_edge_tgl ()
 endfunc
 
 func! Slctd__expnd_quote_on_swtch() range abort
@@ -4334,6 +4357,14 @@ func! Slctd__expnd_quote_on_swtch() range abort
   endif
 endfunc
 
+func! Slctd__expnd_quote_on() range abort
+
+  call Slct_re()
+
+  call Slctd__expnd_quote_on_f()
+  call Slctd__expnd_quote_on_b()
+endfunc
+
 func! Slctd__expnd_quote_in_f() range abort
 
   call Slctd__expnd_quote_on_f()
@@ -4344,6 +4375,7 @@ func! Slctd__expnd_quote_in_b() range abort
 
   call Slctd__expnd_quote_on_b()
   call Normal('l')
+  " call Cursor__mv_slctd_edge_tgl()
 endfunc
 
 func! Slctd__expnd_quote_in_swtch() range abort
@@ -4354,12 +4386,31 @@ func! Slctd__expnd_quote_in_swtch() range abort
     return
   endif
 
-  let l:c = Cursor_r_char()
+  " let l:c_r = Cursor_r_char()
+  let l:c_r = Slctd_edge_r_out_char()
 
-  if l:c !~ g:quote_ptn
+  if l:c_r !~ g:quote_ptn
+
     call Slctd__expnd_quote_in_f()
   else
     call Slctd__expnd_quote_in_b()
+  endif
+endfunc
+
+func! Slctd__expnd_quote_tgl() range abort
+
+  call Slct_re()
+
+  if Is_slctd_edge_char__quote()
+    call Esc()
+    return
+  endif
+
+  if Is_slctd_edge_out_char__quote()
+
+    call Slctd__expnd_quote_on()
+  else
+    call Slctd__expnd_quote_in_swtch()
   endif
 endfunc
 
@@ -4558,13 +4609,31 @@ endfunc
 func! Slctd_edge_out_cahr__del() range abort
 
   " edge r
-  call Slct_re()
-  call Cursor__mv_slctd_edge_r()
-  call Slctd__cancel()
+  call Slctd_edge_out_r_cahr__del()
+  " call Slct_re()
+  " call Cursor__mv_slctd_edge_r()
+  " call Slctd__cancel()
+  " 
+  " call Cursor__mv_char_f()
+  " call Cursor_c_char__del()
+  " call Slct_re()
 
-  call Cursor__mv_char_f()
-  call Cursor_c_char__del()
-  call Slct_re()
+  " edge l
+  call Slctd_edge_out_l_cahr__del()
+  " call Slct_re()
+  " call Cursor__mv_char_b()
+  " call Cursor__mv_slctd_edge_tgl()
+  " call Cursor__mv_slctd_edge_l()
+  " call Slctd__cancel()
+  " 
+  " call Cursor__mv_char_b()
+  " call Cursor_c_char__del()
+  " call Slct_re()
+  " call Cursor__mv_char_b()
+  " call Cursor__mv_slctd_edge_tgl()
+endfunc
+
+func! Slctd_edge_out_l_cahr__del() range abort
 
   " edge l
   call Slct_re()
@@ -4580,17 +4649,91 @@ func! Slctd_edge_out_cahr__del() range abort
   call Cursor__mv_slctd_edge_tgl()
 endfunc
 
-func! Slctd_edge_out_l_cahr__del() range abort
-
-endfunc
-
 func! Slctd_edge_out_r_cahr__del() range abort
 
+  " edge r
+  call Slct_re()
+  call Cursor__mv_slctd_edge_r()
+  call Slctd__cancel()
+
+  call Cursor__mv_char_f()
+  call Cursor_c_char__del()
+  call Slct_re()
+endfunc
+
+" vvv todo refactoring, fnc name mod
+
+" v line __ rpl
+
+command! -range=% -nargs=* Rpl <line1>,<line2>call V_line__rpl(<f-args>)
+
+func! V_line__rpl(srch, rpl) range abort
+
+  let l:cmd = g:v_rng . 's/' . a:srch . '/' . a:rpl . '/g'
+  "echo l:cmd
+  call Exe(l:cmd)
+endfunc
+
+" v line srch str __ rpl cr ( add cr )
+
+func! V_line_srch_str__rpl_cr() range abort
+
+  let l:srch = @/
+
+  let l:cmd = g:v_rng . 's/\(' . l:srch . '\)/\1\r/g'
+  call Exe(l:cmd)
+endfunc
+
+" v line __ rpl by line1 line2
+
+func! V_line__rpl_by_line1_line2() range abort
+
+  let l:srch = getline(1)
+  let l:rpl  = getline(2)
+
+  "let l:rng = '3,$'
+  let l:rng = g:v_rng
+  let l:cmd = l:rng . 's/' . l:srch . '/' . l:rpl . '/g'
+  "echo l:cmd
+  call Exe(l:cmd)
+endfunc
+
+" v box __ rpl
+
+command! -range=% -nargs=* RplBox <line1>,<line2>call V_box__rpl(<f-args>)
+
+func! V_box__rpl(srch, rpl) range abort
+
+  let l:srch = a:srch
+  let l:rpl  = a:rpl
+
+  let l:cmd = g:v_rng . 's/' . '\%V' . l:srch . '/' . l:rpl . '/g'
+  call Exe(l:cmd)
+endfunc
+
+" v box space __ del
+
+func! V_box_space__del() range abort
+
+  let l:srch = ' '
+  let l:rpl  = ''
+
+  '<,'>:call V_box__rpl(srch, rpl)
+endfunc
+
+" v box char __ shft
+
+func! V_box_edge_r_char__shft_in() range abort
+
+  let l:cmd = g:v_rng . 's/' . '\%V\([ ]\+\)\([^ ]\)' . '/' . '\2\1' . '/g'
+  call Exe(l:cmd)
+
+  call Slct_re()
 endfunc
 
 " slctd rpl, srch nxt slctd
 
-func! Slctd_rpl_srch_nxt() abort " dir forward only
+func! Slctd__rpl_7_srch_nxt() abort " dir forward only
   
   call Slct_re()
   call Normal('"zd"aPlgn')
@@ -4639,6 +4782,49 @@ func! Is_slctd_mode__line() range abort
     " echo "v"
     let l:ret = v:true
   endif
+  return l:ret
+endfunc
+
+" is slctd edge
+
+func! Is_char_bth__(ptn, c1, c2)
+
+  let l:ret = v:false
+
+  if a:c1 =~ a:ptn && a:c2 =~ a:ptn
+    let l:ret = v:true
+  endif
+
+  return l:ret
+endfunc
+
+func! Is_slctd_edge_char__(ptn)
+
+  let l:c1 = Slctd_edge_l_char()
+  let l:c2 = Slctd_edge_r_char()
+
+  let l:ret = Is_char_bth__(a:ptn, l:c1, l:c2)
+  return l:ret
+endfunc
+
+func! Is_slctd_edge_char__quote() abort
+
+  let l:ret = Is_slctd_edge_char__(g:quote_ptn)
+  return l:ret
+endfunc
+
+func! Is_slctd_edge_out_char__(ptn)
+
+  let l:c1 = Slctd_edge_l_out_char()
+  let l:c2 = Slctd_edge_r_out_char()
+
+  let l:ret = Is_char_bth__(a:ptn, l:c1, l:c2)
+  return l:ret
+endfunc
+
+func! Is_slctd_edge_out_char__quote() abort
+
+  let l:ret = Is_slctd_edge_out_char__(g:quote_ptn)
   return l:ret
 endfunc
 
@@ -4939,74 +5125,6 @@ func! Srch_char_bracket(dir) abort
 
   let l:char_bracket = "'" . '")}\]'
   call Srch_char(a:dir, l:char_bracket)
-endfunc
-
-" v line __ rpl
-
-command! -range=% -nargs=* Rpl <line1>,<line2>call V_line__rpl(<f-args>)
-
-func! V_line__rpl(srch, rpl) range abort
-
-  let l:cmd = g:v_rng . 's/' . a:srch . '/' . a:rpl . '/g'
-  "echo l:cmd
-  call Exe(l:cmd)
-endfunc
-
-" v line srch str __ rpl cr ( add cr )
-
-func! V_line_srch_str__rpl_cr() range abort
-
-  let l:srch = @/
-
-  let l:cmd = g:v_rng . 's/\(' . l:srch . '\)/\1\r/g'
-  call Exe(l:cmd)
-endfunc
-
-" v line __ rpl by line1 line2
-
-func! V_line__rpl_by_line1_line2() range abort
-
-  let l:srch = getline(1)
-  let l:rpl  = getline(2)
-
-  "let l:rng = '3,$'
-  let l:rng = g:v_rng
-  let l:cmd = l:rng . 's/' . l:srch . '/' . l:rpl . '/g'
-  "echo l:cmd
-  call Exe(l:cmd)
-endfunc
-
-" v box __ rpl
-
-command! -range=% -nargs=* RplBox <line1>,<line2>call V_box__rpl(<f-args>)
-
-func! V_box__rpl(srch, rpl) range abort
-
-  let l:srch = a:srch
-  let l:rpl  = a:rpl
-
-  let l:cmd = g:v_rng . 's/' . '\%V' . l:srch . '/' . l:rpl . '/g'
-  call Exe(l:cmd)
-endfunc
-
-" v box space __ del
-
-func! V_box_space__del() range abort
-
-  let l:srch = ' '
-  let l:rpl  = ''
-
-  '<,'>:call V_box__rpl(srch, rpl)
-endfunc
-
-" v box char __ shft
-
-func! V_box_edge_r_char__shft_in() range abort
-
-  let l:cmd = g:v_rng . 's/' . '\%V\([ ]\+\)\([^ ]\)' . '/' . '\2\1' . '/g'
-  call Exe(l:cmd)
-
-  call Slct_re()
 endfunc
 
 " cmnt

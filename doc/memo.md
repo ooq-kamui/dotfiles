@@ -4,13 +4,14 @@
 
 ## vim
 
-Slctd__expnd_quote_swtch()
-- Slctd__expnd_quote_in_swtch()
-- Slctd__expnd_quote_on_swtch()
+v space __ pad _ ()
+- vnoremap b ?
 
-  aaa  "bbb eee ccc"  ddd
-  aaa  bbb  ccc  ddd
 
+Slctd__expnd_quote()
+- case tst
+  - case: line end
+  - case: char 1
 
 slctd edge bth __ quote tgl () err
 - case: line end
