@@ -1004,8 +1004,9 @@ vnoremap <expr> v
 " 
 
 " cursor mv slctd edge tgl
-"vnoremap y o
 vnoremap y :call Cursor__mv_slctd_edge_tgl()<cr>
+
+" cursor mv slctd edge tgl, v box line same
 vnoremap O O
 
 " cursor mv char forward
@@ -1071,10 +1072,10 @@ vnoremap gj :call V_cursor__mv_file_edge('j')<cr>
 vnoremap <c-i> :call Slctd__expnd_quote_tgl()<cr>
 
 " slctd expnd quote on
-"vnoremap I     :call Slctd__expnd_quote_on_swtch()<cr>
+"vnoremap xx :call Slctd__expnd_quote_on_swtch()<cr>
 
 " slctd expnd quote in
-"vnoremap <c-i> :call Slctd__expnd_quote_in_swtch()<cr>
+"vnoremap xx :call Slctd__expnd_quote_in_swtch()<cr>
 
 " slct all
 vnoremap a :call Slct_all()<cr>
@@ -1405,12 +1406,12 @@ vnoremap C <esc>
 "vnoremap E <esc>
 vnoremap F <esc>
 vnoremap H <esc>
-"vnoremap I <esc>
+vnoremap I <esc>
 "vnoremap J <esc>
 "vnoremap K <esc>
 "vnoremap L <esc>
 "vnoremap M <esc>
-"vnoremap N <esc>
+vnoremap N <esc>
 "vnoremap O <esc>
 "vnoremap P <esc>
 vnoremap Q <esc>
@@ -3009,16 +3010,74 @@ func! Cursor__mv_slctd_edge_tgl() range abort
   call Normal('o')
 endfunc
 
-func! Cursor__mv_slctd_edge_l() abort
-  
+" vnoremap T :call Cursor__mv_slctd_edge_l_dev()<cr>
+
+func! Cursor__mv_slctd_edge_l_dev() abort
+
+  " todo dev
+  " call Esc()
+
   call Slct_re()
-  call Normal('`<')
+  let l:n_cmd = '`<'
+  call Normal(l:n_cmd)
+endfunc
+
+vnoremap T :call Slctd_cursor_drct__forward()<cr>
+
+func! Slctd_cursor_drct__forward() abort
+
+  call Slct_re()
+
+  if Is_slctd_cursor_drct__forward()
+    " nothing
+  else
+    " call Cursor__mv_slctd_edge_tgl()
+  endif
+endfunc
+
+" vnoremap T :call Is_slctd_cursor_drct__forward()<cr>
+
+func! Is_slctd_cursor_drct__forward() abort
+
+  let l:ret = v:false
+
+  call Slct_re()
+  " call Slctd__cancel()
+
+  let l:c_pos = Cursor_pos()
+  " echo l:c_pos
+
+  let l:r_pos = Slctd_r_pos()
+  " echo l:r_pos
+
+  if l:c_pos == l:r_pos
+     let l:ret = v:true
+  endif
+
+  call Slctd__cancel()
+
+  " echo l:ret
+  return l:ret
+endfunc
+
+func! Cursor__mv_slctd_edge_l() abort
+
+  " todo dev
+  " call Esc()
+
+  call Slct_re()
+  let l:n_cmd = '`<'
+  call Normal(l:n_cmd)
 endfunc
 
 func! Cursor__mv_slctd_edge_r() abort
   
+  " todo dev
+  " call Esc()
+
   call Slct_re()
-  call Normal('`>')
+  let l:n_cmd = '`>'
+  call Normal(l:n_cmd)
 endfunc
 
 func! Cursor__mv_file_edge(n_cmd) abort
@@ -3195,7 +3254,7 @@ endfunc
 
 " cursor pos
 
-func! Pos() abort " alias
+func! Cursor_pos() abort " alias
 
   let l:pos = getpos('.')
   return l:pos
@@ -3258,7 +3317,7 @@ endfunc
 
 func! Is_cursor__line_top1() abort " todo refactoring rename add col
   
-  let l:pos_c = Pos()
+  let l:pos_c = Cursor_pos()
 
   let l:col_c = Cursor_col_num()
   
@@ -4220,14 +4279,14 @@ endfunc
 func! Slctd_l_pos() abort
 
   call Cursor__mv_slctd_edge_l()
-  let l:pos = Pos()
+  let l:pos = Cursor_pos()
   return l:pos
 endfunc
 
 func! Slctd_r_pos() abort
 
   call Cursor__mv_slctd_edge_r()
-  let l:pos = Pos()
+  let l:pos = Cursor_pos()
   return l:pos
 endfunc
 
@@ -4386,7 +4445,6 @@ func! Slctd__expnd_quote_in_swtch() range abort
     return
   endif
 
-  " let l:c_r = Cursor_r_char()
   let l:c_r = Slctd_edge_r_out_char()
 
   if l:c_r !~ g:quote_ptn
@@ -4608,34 +4666,12 @@ endfunc
 
 func! Slctd_edge_out_cahr__del() range abort
 
-  " edge r
   call Slctd_edge_out_r_cahr__del()
-  " call Slct_re()
-  " call Cursor__mv_slctd_edge_r()
-  " call Slctd__cancel()
-  " 
-  " call Cursor__mv_char_f()
-  " call Cursor_c_char__del()
-  " call Slct_re()
-
-  " edge l
   call Slctd_edge_out_l_cahr__del()
-  " call Slct_re()
-  " call Cursor__mv_char_b()
-  " call Cursor__mv_slctd_edge_tgl()
-  " call Cursor__mv_slctd_edge_l()
-  " call Slctd__cancel()
-  " 
-  " call Cursor__mv_char_b()
-  " call Cursor_c_char__del()
-  " call Slct_re()
-  " call Cursor__mv_char_b()
-  " call Cursor__mv_slctd_edge_tgl()
 endfunc
 
 func! Slctd_edge_out_l_cahr__del() range abort
 
-  " edge l
   call Slct_re()
   call Cursor__mv_char_b()
   call Cursor__mv_slctd_edge_tgl()
@@ -4651,7 +4687,6 @@ endfunc
 
 func! Slctd_edge_out_r_cahr__del() range abort
 
-  " edge r
   call Slct_re()
   call Cursor__mv_slctd_edge_r()
   call Slctd__cancel()
@@ -6002,7 +6037,7 @@ endfunc
 
 " tst slctd
 
-vnoremap T :call Tst()
+"vnoremap T :call Tst()
 
 func! Tst() range abort
 
