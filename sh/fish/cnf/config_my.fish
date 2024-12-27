@@ -143,9 +143,9 @@ alias tbl '/usr/bin/column -t'
 
 alias mb_chk 'file -i'
 
-alias trns   'trans'
-alias trns_j 'trans {ja=en}'
-alias trns_e 'trans {en=ja}'
+alias trns     'trans'
+alias trns_j2e 'trans {ja=en}'
+alias trns_e2j 'trans {en=ja}'
 
 alias ba 'battery'
 
