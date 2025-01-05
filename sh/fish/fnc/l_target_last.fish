@@ -1,4 +1,4 @@
-function le # ls list target val mv last
+function l_target_last # ls list, $argv[1] view last
 
   set last $argv[1]
 

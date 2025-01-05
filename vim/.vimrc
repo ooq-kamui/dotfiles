@@ -1015,9 +1015,6 @@ vnoremap l l
 " cursor mv char back
 vnoremap <c-o> h
 
-" cursor mv word - forward
-vnoremap f :call Slctd__expnd_word_f()<cr>
-
 " cursor mv word - back
 "vnoremap xx b
 "vnoremap xx bh
@@ -1065,8 +1062,11 @@ vnoremap gj :call V_cursor__mv_file_edge('j')<cr>
 " slctd expnd
 "vnoremap xx :call Slctd__expnd()
 
-" slctd expnd bracket forward
-" vnoremap xx :call Slctd__expnd_bracket_f()<cr>
+" slctd expnd srch
+vnoremap N :call Slctd__expnd_srch()
+
+" slctd expnd word forward
+vnoremap f :call Slctd__expnd_word_f()<cr>
 
 " slctd expnd quote
 vnoremap <c-i> :call Slctd__expnd_quote_tgl()<cr>
@@ -1076,6 +1076,9 @@ vnoremap <c-i> :call Slctd__expnd_quote_tgl()<cr>
 
 " slctd expnd quote in
 "vnoremap xx :call Slctd__expnd_quote_in_swtch()<cr>
+
+" slctd expnd bracket forward
+" vnoremap xx :call Slctd__expnd_bracket_f()<cr>
 
 " slct all
 vnoremap a :call Slct_all()<cr>
@@ -1275,10 +1278,10 @@ vnoremap <leader>k "zy/<c-r>z
 "vnoremap <leader>i "zy/<c-r>z
 
 " srch forward ( srch rpl skip )
-vnoremap <c-n> :call V_srch_slct('f')<cr>
+vnoremap <c-n> :call V_srch_7_slct('f')<cr>
 
 " srch back
-"vnoremap xx    :call V_srch_slct('b')<cr>
+"vnoremap xx    :call V_srch_7_slct('b')<cr>
 
 " srch str set
 vnoremap n :call V_cursor__mv_srch()<cr>
@@ -1411,7 +1414,7 @@ vnoremap I <esc>
 "vnoremap K <esc>
 "vnoremap L <esc>
 "vnoremap M <esc>
-vnoremap N <esc>
+"vnoremap N <esc>
 "vnoremap O <esc>
 "vnoremap P <esc>
 vnoremap Q <esc>
@@ -1910,7 +1913,7 @@ func! Fzf_rg_by_grep(...) abort
   let l:word1 = ( a:0 >= 3 ) ? a:3 : v:false
 
   let l:rg_cmd = Rg_cmd(l:ptn, l:ext, l:word1, v:null)
-  echo l:rg_cmd
+  " echo l:rg_cmd
 
   call fzf#vim#grep(
   \      l:rg_cmd,
@@ -3010,74 +3013,47 @@ func! Cursor__mv_slctd_edge_tgl() range abort
   call Normal('o')
 endfunc
 
-" vnoremap T :call Cursor__mv_slctd_edge_l_dev()<cr>
+vnoremap T :call Cursor__mv_slctd_edge_l()<cr>
 
-func! Cursor__mv_slctd_edge_l_dev() abort
-
-  " todo dev
-  " call Esc()
-
-  call Slct_re()
-  let l:n_cmd = '`<'
-  call Normal(l:n_cmd)
-endfunc
-
-vnoremap T :call Slctd_cursor_drct__forward()<cr>
-
-func! Slctd_cursor_drct__forward() abort
+func! Cursor__mv_slctd_edge_l() range abort
 
   call Slct_re()
 
-  if Is_slctd_cursor_drct__forward()
-    " nothing
-  else
-    " call Cursor__mv_slctd_edge_tgl()
-  endif
-endfunc
-
-" vnoremap T :call Is_slctd_cursor_drct__forward()<cr>
-
-func! Is_slctd_cursor_drct__forward() abort
-
-  let l:ret = v:false
-
-  call Slct_re()
-  " call Slctd__cancel()
-
-  let l:c_pos = Cursor_pos()
-  " echo l:c_pos
-
-  let l:r_pos = Slctd_r_pos()
-  " echo l:r_pos
-
-  if l:c_pos == l:r_pos
-     let l:ret = v:true
+  if ! Is_slctd_cursor_pos__r()
+    return
   endif
 
-  call Slctd__cancel()
+  call Cursor__mv_slctd_edge_tgl()
 
-  " echo l:ret
-  return l:ret
+  " let l:n_cmd = '`<'
+  " call Normal(l:n_cmd)
 endfunc
 
-func! Cursor__mv_slctd_edge_l() abort
-
-  " todo dev
-  " call Esc()
-
-  call Slct_re()
-  let l:n_cmd = '`<'
-  call Normal(l:n_cmd)
-endfunc
-
-func! Cursor__mv_slctd_edge_r() abort
+func! Cursor__mv_slctd_edge_r() range abort
   
-  " todo dev
-  " call Esc()
+  call Slct_re()
+
+  if   Is_slctd_cursor_pos__r()
+    return
+  endif
+
+  call Cursor__mv_slctd_edge_tgl()
+
+  " let l:n_cmd = '`>'
+  " call Normal(l:n_cmd)
+endfunc
+
+" vnoremap T :call Slctd_cursor_drct__mv_forward()<cr>
+
+func! Slctd_cursor_drct__mv_forward() range abort
 
   call Slct_re()
-  let l:n_cmd = '`>'
-  call Normal(l:n_cmd)
+
+  if Is_slctd_cursor_pos__r()
+    return
+  endif
+
+  call Cursor__mv_slctd_edge_tgl()
 endfunc
 
 func! Cursor__mv_file_edge(n_cmd) abort
@@ -3331,6 +3307,40 @@ func! Is_cursor__line_top1() abort " todo refactoring rename add col
   else
     return v:false
   endif
+endfunc
+
+" func! Is_slctd_cursor_drct__forward() range abort
+func! Is_slctd_cursor_pos__r() range abort
+
+  let l:ret = v:false
+
+  call Slct_re()
+  " call Slctd__cancel()
+
+  let l:cursor_pos1 = Cursor_pos()
+  " echo l:cursor_pos1
+
+  call Cursor__mv_slctd_edge_tgl()
+  let l:cursor_pos2 = Cursor_pos()
+  " echo l:cursor_pos2
+
+  call Cursor__mv_slctd_edge_tgl()
+
+
+  if     l:cursor_pos1[1] >  l:cursor_pos2[1] " line
+    let l:ret = v:true
+
+  elseif l:cursor_pos1[1] == l:cursor_pos2[1] " line
+
+    if   l:cursor_pos1[2] >= l:cursor_pos2[2] " col
+      let l:ret = v:true
+    endif
+  endif
+
+  " call Slctd__cancel()
+
+  " echo l:ret
+  return l:ret
 endfunc
 
 " cursor char
@@ -4346,23 +4356,10 @@ func! Slctd__expnd() abort " expnd lr, cre re
 
 endfunc
 
-func! Slctd__expnd_bracket_f() abort
+" todo dev
 
-  let l:bracket_ptn = '[' . "'" . '"`)}\]' . ']'
-  
-  let l:s_col = Slctd_l_col()
-  
-  let l:line_str_r = Slctd_edge_r_out_str()
-  let l:srch_idx = Str_srch(l:line_str_r, l:bracket_ptn, 1)
+func! Slctd__expnd_srch() range abort
 
-  if l:srch_idx == -1
-
-    call Normal('gv')
-    return
-  endif
-
-  let l:len = l:s_col + Slctd_str_len() + l:srch_idx
-  call Slct_by_col(l:s_col, l:len)
 endfunc
 
 func! Slctd__expnd_word_f() abort
@@ -4470,6 +4467,25 @@ func! Slctd__expnd_quote_tgl() range abort
   else
     call Slctd__expnd_quote_in_swtch()
   endif
+endfunc
+
+func! Slctd__expnd_bracket_f() range abort
+
+  let l:bracket_ptn = '[' . "'" . '"`)}\]' . ']'
+  
+  let l:s_col = Slctd_l_col()
+  
+  let l:line_str_r = Slctd_edge_r_out_str()
+  let l:srch_idx = Str_srch(l:line_str_r, l:bracket_ptn, 1)
+
+  if l:srch_idx == -1
+
+    call Normal('gv')
+    return
+  endif
+
+  let l:len = l:s_col + Slctd_str_len() + l:srch_idx
+  call Slct_by_col(l:s_col, l:len)
 endfunc
 
 func! Slctd_box__mv(lr) range abort
@@ -5131,7 +5147,7 @@ func! Srch_slct(dir) abort
   endif
 endfunc
 
-func! V_srch_slct(dir) abort " srch rpl skip
+func! V_srch_7_slct(dir) abort " srch rpl skip
 
   if     a:dir == 'f'
     call Normal('`>lgn')

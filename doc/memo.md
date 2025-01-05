@@ -2,10 +2,21 @@
 # cnf
 
 
+# wallpaper
+
+mod
+
+
 ## vim
 
-cursor mv __ slctd edge l, r
-- refactoring
+Slctd__expnd_srch()
+- vnoremap N 
+
+
+v box paste, logic improve
+- line loop down
+  - tst
+    - case: mb
 
 
 v space __ pad _ ()
@@ -17,20 +28,10 @@ Slctd__expnd_quote()
   - case: line end
   - case: char 1
 
+
 slctd edge bth __ quote tgl () err
 - case: line end
 - case: char 1
-
-
-v box paste, logic fix
-- line loop down
-  - tst
-    - case: mb
-
-
-slctd__expnd_srch()
-- vnoremap N 
-- vnoremap <c-n> ?
 
 
 ## holo song
@@ -66,9 +67,9 @@ setup
 m4 sticker
 
 
-# wallpaper
+## pwsh
 
-mod
+ca 3, case year, ch
 
 
 ## fe
