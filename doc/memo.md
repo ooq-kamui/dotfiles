@@ -2,11 +2,6 @@
 # cnf
 
 
-# wallpaper
-
-mod
-
-
 ## vim
 
 Slctd__expnd_srch()
@@ -70,6 +65,7 @@ m4 sticker
 ## pwsh
 
 ca 3, case year, ch
+- confirm
 
 
 ## fe
