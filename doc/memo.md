@@ -2,17 +2,24 @@
 # cnf
 
 
+## keyboard sticker, ofc logicool
+
+masking tape x 1
+
+`<win` `win>` `pg^` `pg^` `pgv` 
+- size: 13 mm x 09 mm
+
+`α`
+- size: 13 mm x 12 mm
+
+`win`
+- size: 13 mm x 12 mm
+
+`o`
+- size: 13 mm x 12 mm
+
+
 ## vim
-
-Slctd__expnd_srch()
-- vnoremap N 
-
-
-v box paste, logic improve
-- line loop down
-  - tst
-    - case: mb
-
 
 v space __ pad _ ()
 - vnoremap b ?
@@ -56,10 +63,9 @@ docusaurus blog sidebar
 ## m4 mac
 
 setup
-- battery charge
+- film paste
 
-
-m4 sticker
+keyboard sticker
 
 
 ## pwsh

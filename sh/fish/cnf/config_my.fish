@@ -76,9 +76,17 @@ alias kkk 'k;k;k'
 
 alias d 'dir_jmp'
 
-alias lf  'lrf'
-alias ld  'lrd'
-#alias ld2 'lrd2'
+alias lr_oo  'lr_d2'
+alias lr_ooo 'lr_d3'
+
+alias lf     'lrf'
+alias lf_oo  'lrf_d2'
+alias lf_ooo 'lrf_d3'
+alias lf_ext 'lrf_ext'
+
+alias ld     'lrd'
+alias ld_oo  'lrd_d2'
+alias ld_ooo 'lrd_d3'
 
 alias fd 'fd --hidden --follow -I --exclude .git'
 

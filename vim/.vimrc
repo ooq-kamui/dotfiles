@@ -1063,7 +1063,7 @@ vnoremap gj :call V_cursor__mv_file_edge('j')<cr>
 "vnoremap xx :call Slctd__expnd()
 
 " slctd expnd srch
-vnoremap N :call Slctd__expnd_srch()
+vnoremap N :call Slctd__expnd_srch()<cr>
 
 " slctd expnd word forward
 vnoremap f :call Slctd__expnd_word_f()<cr>
@@ -1284,7 +1284,7 @@ vnoremap <c-n> :call V_srch_7_slct('f')<cr>
 "vnoremap xx    :call V_srch_7_slct('b')<cr>
 
 " srch str set
-vnoremap n :call V_cursor__mv_srch()<cr>
+vnoremap n :call V_srch_str__or_srch()<cr>
 "vnoremap e 
 vnoremap <expr> e
 \ mode() == '<c-v>' ? '<esc>' :
@@ -3205,13 +3205,15 @@ func! Cursor__mv_srch(drct) abort
   call search(l:ptn, l:op)
 endfunc
 
-func! V_cursor__mv_srch() abort " srch, set or run
+" func! V_cursor__mv_srch() abort
+func! V_srch_str__or_srch() abort " srch, set or run
 
   if Is_slctd_str__line_mlt()
 
-    call Slct_re()
-    call Cursor__mv_srch("f")
+    call Slctd__expnd_srch()
 
+    " call Slct_re()
+    " call Cursor__mv_srch("f")
   else
     call V_srch_str__slctd_str()
   endif
@@ -4360,6 +4362,8 @@ endfunc
 
 func! Slctd__expnd_srch() range abort
 
+  call Slct_re()
+  call Cursor__mv_srch("f")
 endfunc
 
 func! Slctd__expnd_word_f() abort
@@ -4977,7 +4981,6 @@ func! V_box_paste() range abort
     call Paste()
 
     call Cursor__mv_by_line_col(l:line_num, l:col_num)
-
     call Cursor__mv_d()
     " if l:line_num != a:lastline
     "   call Normal('j')
