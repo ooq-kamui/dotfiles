@@ -217,9 +217,9 @@ Set-Alias jq "jq-windows-amd64"
 $ENV:Path += ";C:\Program Files (x86)\GnuWin32\bin"
 function cal {
 
-  gcal (date).AddMonths(-1).toString("MM yyyy")
-  gcal (date).AddMonths( 0).toString("MM yyyy")
-  gcal (date).AddMonths( 1).toString("MM yyyy")
+  gcal (date).AddMonths(-1).toString("MM yyyy").split()
+  gcal (date).AddMonths( 0).toString("MM yyyy").split()
+  gcal (date).AddMonths( 1).toString("MM yyyy").split()
 }
 Set-Alias ca  "cal"
 

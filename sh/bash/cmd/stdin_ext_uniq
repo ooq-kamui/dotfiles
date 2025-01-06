@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# function stdin_ext_uniq
+
+cat -                         |\
+rg --only-matching '\.[^.]+$' |\
+sort                          |\
+uniq                           \
+
+
+
