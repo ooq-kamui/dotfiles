@@ -1,0 +1,11 @@
+#!/bin/bash
+
+fd |\
+stdin_ext_uniq
+
+
+# fd --type f --hidden '' $1
+#fd --type f '' $1
+
+
+
