@@ -2,21 +2,6 @@
 # cnf
 
 
-## holo song
-
-git dir mv to share
-- at mac
-
-
-svr mv, to skr vps
-- api url mod
-  - confirm
-
-
-repository
-- tidy
-
-
 ## vim
 
 Slctd__expnd_quote()
@@ -34,11 +19,19 @@ v space __ pad _ ()
 - vnoremap b ?
 
 
-## win ofc
+## holo song
 
-kotei-key on
+git dir mv to share
+- at mac
 
-caps ctrl off
+
+svr mv, to skr vps
+- api url mod
+  - confirm
+
+
+repository
+- tidy
 
 
 ## artcl

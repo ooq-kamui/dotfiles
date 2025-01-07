@@ -102,6 +102,9 @@ alias ooll   'pwd ../       ; ll ../      '
 alias oooll  'pwd ../../    ; ll ../../   '
 alias ooooll 'pwd ../../../ ; ll ../../../'
 
+alias oo_lf  'lf ../'
+alias ooo_lf 'lf ../../'
+
 #alias to     'touch'
 alias to_clr ':>'
 alias to_add_line_emp 'echo "" >>'
