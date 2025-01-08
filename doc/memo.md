@@ -2,6 +2,15 @@
 # cnf
 
 
+## ofc keyboard, prackpad
+
+j poch paste
+- in bag
+
+magic trackpad
+- in bag
+
+
 ## vim
 
 Slctd__expnd_quote()
