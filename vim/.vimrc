@@ -669,14 +669,18 @@ nnoremap :r :InsSysCmd
 nnoremap :p :Pth <cr>
 
 " cd slf
-nnoremap :d :CdSlf
+nnoremap :d :call Dir__slf()
+"nnoremap :d :CdSlf
 
 " cd parent
 nnoremap :k :K
-" nnoremap :a :Cdu
+
+" fzf cd
+nnoremap <leader>d :call Fzf_dir_jmp()<cr>
 
 " vim fnc lst
-nnoremap <leader>d :call Fzf_vim_fnc_exe()<cr>
+nnoremap <leader>v :call Fzf_vim_fnc_exe()<cr>
+"nnoremap <leader>d :call Fzf_vim_fnc_exe()<cr>
 
 " 
 " tab
@@ -980,6 +984,7 @@ nnoremap <leader>p <esc>
 nnoremap <leader>s <esc>
 nnoremap <leader>u <esc>
 nnoremap <leader>y <esc>
+"nnoremap <leader>v <esc>
 
 "nnoremap <leader>O <esc>
 
@@ -2102,9 +2107,7 @@ func! Fzf_tag_jmp_by_file(...) abort
   let l:file_path = ( a:0 >= 1 ) ? a:1 : 'doc/memo.md'
 
   let l:fzf_src_txt = File_txt(l:file_path)
-
-  let l:fnc_name = 'Tag_jmp'
-
+  let l:fnc_name    = 'Tag_jmp'
   call Fzf_src_by_run(fzf_src_txt, fnc_name)
 endfunc
 
@@ -2272,6 +2275,15 @@ func! Fzf_vim_fnc_exe() abort " todo dev..., impossible ?
   let l:fnc_name = 'Cmdline__'
   " let l:fnc_name = 'Nothing'
 
+  call Fzf_src_by_run(l:fzf_src_txt, l:fnc_name)
+endfunc
+
+func! Fzf_dir_jmp() abort
+
+  let l:sys_cmd = 'dir_jmp_lst'
+  let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
+
+  let l:fnc_name = 'Dir__'
   call Fzf_src_by_run(l:fzf_src_txt, l:fnc_name)
 endfunc
 
@@ -5743,7 +5755,7 @@ endfunc
 
 " etc
 
-" dir slf
+" dir crnt
 
 command! -nargs=0 Pth call Pth()
 
@@ -5752,22 +5764,29 @@ func! Pth() abort
   call Exe('pwd')
 endfunc
 
+" dir ch
+
+func! Dir__(dir) abort
+
+  call Exe('cd ' . a:dir)
+  call Pth()
+endfunc
+
 " dir ch slf
 
-command! -nargs=0 CdSlf call Dir__slf()
+" command! -nargs=0 CdSlf call Dir__slf()
 
 func! Dir__slf() abort
 
   let l:dir = Slf_dir()
-  call Exe('cd ' . l:dir)
-  call Pth()
+  call Dir__(l:dir)
+  " call Exe('cd ' . l:dir)
+
+  " call Pth()
 endfunc
 
 " dir ch parent
 
-command! -nargs=0 Cdu   call Dir__parent(1)
-command! -nargs=0 Cduu  call Dir__parent(2)
-command! -nargs=0 Cduuu call Dir__parent(3)
 command! -nargs=0 K     call Dir__parent(1)
 command! -nargs=0 Kk    call Dir__parent(2)
 command! -nargs=0 Kkk   call Dir__parent(3)

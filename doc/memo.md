@@ -2,16 +2,29 @@
 # cnf
 
 
-## ofc keyboard, prackpad
+## keyboard
 
-j poch paste
-- in bag
+sticker cre re
+- j k l y
+- h
 
-magic trackpad
+poch flat paste
+- j
+
+
+## magic trackpad
+
+carry to ofc
 - in bag
 
 
 ## vim
+
+fzf wrk prj share memo
+
+
+fzf dir
+
 
 Slctd__expnd_quote()
 - case tst
