@@ -2,22 +2,6 @@
 # cnf
 
 
-## keyboard
-
-sticker cre re
-- j k l y
-- h
-
-poch flat paste
-- j
-
-
-## magic trackpad
-
-carry to ofc
-- in bag
-
-
 ## vim
 
 fzf wrk prj share memo
@@ -54,6 +38,42 @@ svr mv, to skr vps
 
 repository
 - tidy
+
+
+## pwsh
+
+cmdline git view
+- install
+
+
+## keyboard
+
+logicool
+- sticker
+  - shift
+  
+- poch flat
+  - j     paste pos   under
+  - y     paste pos   under
+  - space paste drctn vertical
+
+mac book
+- poch flat
+  - j     paste pos   under
+  - y     paste pos   under
+  - h     hole
+
+
+## parm rest
+
+scissor
+- carry to ofc
+
+
+## magic trackpad
+
+carry to ofc
+- in bag
 
 
 ## artcl
