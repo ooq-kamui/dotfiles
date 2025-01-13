@@ -678,6 +678,9 @@ nnoremap :k :K
 " fzf cd
 nnoremap <leader>d :call Fzf_dir_jmp()<cr>
 
+" fzf doc memo
+nnoremap <leader>w :call Fzf_doc_memo_opn()<cr>
+
 " vim fnc lst
 nnoremap <leader>v :call Fzf_vim_fnc_exe()<cr>
 "nnoremap <leader>d :call Fzf_vim_fnc_exe()<cr>
@@ -1868,7 +1871,7 @@ let g:fzf_colors = {
 "let g:fzf_buffers_jump = 1
 "fzf#vim#complete#buffer_line([spec])
 
-" grep ( rg )
+" grep ( rg ) " ref
 
 " fzf#vim#grep(
 "   command,
@@ -1876,6 +1879,8 @@ let g:fzf_colors = {
 "   [spec dict],
 "   [fullscreen bool]
 " )
+
+" fzf init
 
 let g:fzf_rg_opt = ''
 \     . ' --color=always'
@@ -1893,6 +1898,18 @@ if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
     let g:fzf_rg_opt .= ' -g "!.git/"'
   endif
 endif
+
+" fzf cmd def
+" todo: refactoring
+" :
+
+" fzf fnc def
+" todo: refactoring
+" :
+
+" rg fnc def
+" todo: refactoring
+" :
 
 func! Fzf_rg(...) abort " alias
 
@@ -1968,7 +1985,7 @@ func! Rg_cmd(ptn, ext, word1, opt) abort
   return l:rg_cmd
 endfunc
 
-" rg ext
+" fzf rg ext
 command! -bang -nargs=1 FzfRgExt call Fzf_rg_ext(<f-args>)
 
 func! Fzf_rg_ext(ext) abort
@@ -1989,7 +2006,7 @@ let g:fzf_line_cnt_max = 30000
 
 command! -nargs=? FzfRgByRun call Fzf_rg_by_run(<f-args>)
 
-func! Fzf_rg_by_run(...) abort
+func! Fzf_rg_by_run(...) abort " todo: fnc name re
 
   let l:ptn = ( a:0 >= 1 ) ? a:1 : v:null
 
@@ -2026,12 +2043,22 @@ func! Fzf_rg_by_run(...) abort
   "\     'options': ['--no-sort'],
 endfunc
 
-func! Fzf_src_by_run(...) abort " todo dev
+" func! Fzf_src_by_run(...) abort
+" func! Fzf_src(...) abort
+func! Fzf_by_txt(...) abort
 
   let l:src_txt  = ( a:0 >= 1 ) ? a:1 : v:null
   let l:fnc_name = ( a:0 >= 2 ) ? a:2 : v:null
 
   let l:src_ar = Txt_to_ar(l:src_txt)
+
+  call Fzf_by_ar(l:src_ar, fnc_name)
+endfunc
+
+func! Fzf_by_ar(...) abort
+
+  let l:src_ar   = ( a:0 >= 1 ) ? a:1 : v:null
+  let l:fnc_name = ( a:0 >= 2 ) ? a:2 : v:null
 
   if len(l:src_ar) > g:fzf_line_cnt_max
     echo "l:fzf src_ar, end"
@@ -2108,7 +2135,7 @@ func! Fzf_tag_jmp_by_file(...) abort
 
   let l:fzf_src_txt = File_txt(l:file_path)
   let l:fnc_name    = 'Tag_jmp'
-  call Fzf_src_by_run(fzf_src_txt, fnc_name)
+  call Fzf_by_txt(fzf_src_txt, fnc_name)
 endfunc
 
 " fzf buf
@@ -2273,9 +2300,8 @@ func! Fzf_vim_fnc_exe() abort " todo dev..., impossible ?
   let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
 
   let l:fnc_name = 'Cmdline__'
-  " let l:fnc_name = 'Nothing'
 
-  call Fzf_src_by_run(l:fzf_src_txt, l:fnc_name)
+  call Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
 endfunc
 
 func! Fzf_dir_jmp() abort
@@ -2284,17 +2310,20 @@ func! Fzf_dir_jmp() abort
   let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
 
   let l:fnc_name = 'Dir__'
-  call Fzf_src_by_run(l:fzf_src_txt, l:fnc_name)
+  call Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
 endfunc
 
-func! Nothing(str) abort
+func! Fzf_doc_memo_opn() abort
 
-  " echo "do nothing.."
-endfunc
+  let l:fzf_src_ar = [
+  \   '~/wrk/cnf/doc/memo.md:1',
+  \   '~/wrk/prj-pri-share/doc-tech-ds/doc/memo.md:1',
+  \   '~/wrk/prj-pri-share/life/doc/memo.md:1',
+  \   '~/wrk/prj-pri-share/wall-paper/doc/memo.md:1'
+  \ ]
 
-func! Cmdline__(str) abort
-
-  call feedkeys(':call ' . a:str)
+  let l:fnc_name    = 'Tag_jmp'
+  call Fzf_by_ar(l:fzf_src_ar, l:fnc_name)
 endfunc
 
 func! Txt_to_ar(txt) abort
@@ -2303,7 +2332,7 @@ func! Txt_to_ar(txt) abort
   return l:line_ar
 endfunc
 
-" mark
+" fzf cmd def : mark
 command! -bang -nargs=* FzfMark
 \ call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)
 
@@ -2326,6 +2355,12 @@ au FileType * set fo-=c fo-=r fo-=o
 
 " primitive
 
+" func! Nothing(str) abort " todo: dev
+func! Nothing() abort
+
+  " echo "do nothing.."
+endfunc
+
 func! Exe(cmd) abort
 
   exe a:cmd
@@ -2339,6 +2374,11 @@ endfunc
 func! Esc() abort " alias
 
   call Normal("\<esc>")
+endfunc
+
+func! Cmdline__(str) abort
+
+  call feedkeys(':call ' . a:str)
 endfunc
 
 func! Sys_cmd(sys_cmd) abort
@@ -3955,8 +3995,7 @@ func! Cursor_f_space__del() abort
     call Slct_cursor_f_space()
     call Normal('"zd')
   else
-    " nothing
-    " echo "nothing"
+    call Nothing()
   endif
 endfunc
 
@@ -4152,7 +4191,7 @@ endfunc
 func! V_line_indnt__tab(indnt_col) range abort
 
   if Is_env__('win64')
-    " nothing
+    call Nothing()
   else
     let l:sys_cmd = 'unexpand   -t ' . a:indnt_col
     '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)

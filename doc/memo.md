@@ -4,10 +4,15 @@
 
 ## vim
 
-fzf wrk prj share memo
+fzf doc memo
+- nnoremap <leader>w
 
 
-fzf dir
+nnoremap <c-_> word by under score __ slct()
+
+
+v space __ pad _ ()
+- vnoremap b ?
 
 
 Slctd__expnd_quote()
@@ -19,10 +24,6 @@ Slctd__expnd_quote()
 slctd edge bth __ quote tgl () err
 - case: line end
 - case: char 1
-
-
-v space __ pad _ ()
-- vnoremap b ?
 
 
 ## holo song
@@ -40,42 +41,6 @@ repository
 - tidy
 
 
-## pwsh
-
-cmdline git view
-- install
-
-
-## keyboard
-
-logicool
-- sticker
-  - shift
-  
-- poch flat
-  - j     paste pos   under
-  - y     paste pos   under
-  - space paste drctn vertical
-
-mac book
-- poch flat
-  - j     paste pos   under
-  - y     paste pos   under
-  - h     hole
-
-
-## parm rest
-
-scissor
-- carry to ofc
-
-
-## magic trackpad
-
-carry to ofc
-- in bag
-
-
 ## artcl
 
 docusaurus blog sidebar
@@ -91,6 +56,36 @@ setup
 - film paste
 
 keyboard sticker
+
+
+## pwsh
+
+cmdline git view
+- install
+
+
+## keyboard
+
+logicool
+- sticker
+  - shift
+
+- poch flat
+  - j     paste pos   under
+  - y     paste pos   under
+  - space paste drctn vertical
+
+
+## parm rest
+
+scissor
+- carry to ofc
+
+
+## magic trackpad
+
+carry to ofc
+- in bag
 
 
 ## fe
