@@ -2,17 +2,45 @@
 # cnf
 
 
+## artcl
+
+docusaurus blog sidebar
+- category
+- ggl
+- ref https://docusaurus.io/docs/sidebar
+- try
+
+
+## keyboard
+
+logicool
+- sticker
+  - shift
+
+
+## magic trackpad
+
+carry to ofc
+- in bag
+
+
 ## vim
 
-fzf doc memo
-- nnoremap <leader>w
+ref
+- https://qiita.com/ykyk1218/items/ab1c89c4eb6a2f90333a
+  - vi"
+  - vi)
+  - vi]
+  - va"
+  - va)
+  - va]
 
+- https://thinca.hatenablog.com/entry/I_expect_to_colorscheme
+  - hl search bg
 
-nnoremap <c-_> word by under score __ slct()
-
-
-v space __ pad _ ()
-- vnoremap b ?
+- ddc.vim
+  - https://zenn.dev/shougo/articles/ddc-vim-make-plugins
+  - https://qiita.com/maachan_9692/items/9b507fd043424013abde
 
 
 Slctd__expnd_quote()
@@ -41,13 +69,10 @@ repository
 - tidy
 
 
-## artcl
+## pwsh
 
-docusaurus blog sidebar
-- category
-- ggl
-- ref https://docusaurus.io/docs/sidebar
-- try
+cmdline git view
+- install
 
 
 ## m4 mac
@@ -56,36 +81,6 @@ setup
 - film paste
 
 keyboard sticker
-
-
-## pwsh
-
-cmdline git view
-- install
-
-
-## keyboard
-
-logicool
-- sticker
-  - shift
-
-- poch flat
-  - j     paste pos   under
-  - y     paste pos   under
-  - space paste drctn vertical
-
-
-## parm rest
-
-scissor
-- carry to ofc
-
-
-## magic trackpad
-
-carry to ofc
-- in bag
 
 
 ## fe

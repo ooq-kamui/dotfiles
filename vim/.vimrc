@@ -65,6 +65,8 @@ hi DiffDelete  ctermfg=52           ctermbg=52       cterm=none
 hi DiffChange  ctermfg=10           ctermbg=17       cterm=none
 hi DiffText    ctermfg=10           ctermbg=21       cterm=none
 
+" wildmenu
+" hi wildMenu ??    ctermfg=cyan
 
 au BufNewFile,BufRead *.script     set filetype=lua
 au BufNewFile,BufRead *.gui_script set filetype=lua
@@ -211,6 +213,8 @@ nnoremap :o :Opn
 
 " opn file srch  ( fzf )
 nnoremap <leader>l :FzfFile <cr>
+
+" opn file srch memo  ( fzf )
 nnoremap <leader>L :FzfFile ../memo/
 "nnoremap <leader>xx :FzfRunFd <cr>
 
@@ -374,14 +378,21 @@ nnoremap r<space>j :call Cursor__mv_jmp_char('j', 'f')<cr>
 nnoremap <c-w> <c-w>w
 
 " 
-" slct / ynk / paste
+" slct / slctd / ynk / paste
 " 
 
 " slct
 nnoremap I v
 
-" slct word
-nnoremap i :call Slct_word()<cr>
+" slctd __ word
+nnoremap i :call Slctd__word()<cr>
+
+" slctd __ word by under score
+
+" todo dev
+"nnoremap <c-_> :call Slctd__word_by_under_score()<cr>
+" nnoremap <c-_> f_l
+" hT_
 
 " slct char current - word end
 "nnoremap xx ve
@@ -417,15 +428,15 @@ nnoremap P :call Paste__clipboard()<cr>
 
 " paste rgstr history ( fzf )
 nnoremap <leader>r :FzfRgstr<cr>
-nnoremap R         :FzfRgstr<cr>
+"nnoremap R         :FzfRgstr<cr>
 
-" 
-" undo, redo
-" 
+" undo
 nnoremap h     u
+
+" redo
 nnoremap <c-h> <c-r>
 
-" undo clr
+" undo history clr
 nnoremap H :call Undo__clr()<cr>
 
 " repeat
@@ -477,7 +488,7 @@ nnoremap <bar> :call Char__rpl_underscore()<cr>
 
 " ins space
 nnoremap L :call Ins_space(v:false)<cr>
-nnoremap Y :call Ins_space(v:true )<cr>
+"nnoremap Y :call Ins_space(v:true )<cr>
 
 " ins date
 nnoremap * :call Ins_da()<cr>
@@ -669,8 +680,7 @@ nnoremap :r :InsSysCmd
 nnoremap :p :Pth <cr>
 
 " cd slf
-nnoremap :d :call Dir__slf()
-"nnoremap :d :CdSlf
+"nnoremap :d :call Dir__slf()
 
 " cd parent
 nnoremap :k :K
@@ -679,11 +689,10 @@ nnoremap :k :K
 nnoremap <leader>d :call Fzf_dir_jmp()<cr>
 
 " fzf doc memo
-nnoremap <leader>w :call Fzf_doc_memo_opn()<cr>
+nnoremap <leader>g :call Fzf_doc_memo_opn()<cr>
 
-" vim fnc lst
-nnoremap <leader>v :call Fzf_vim_fnc_exe()<cr>
-"nnoremap <leader>d :call Fzf_vim_fnc_exe()<cr>
+" fzf vim fnc call
+nnoremap <leader>c :call Fzf_vim_fnc_call()<cr>
 
 " 
 " tab
@@ -851,14 +860,14 @@ nnoremap M <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
-"nnoremap R <esc>
+nnoremap R <esc>
 nnoremap S <esc>
 "nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap W <esc>
 "nnoremap V <esc>
 nnoremap X <esc>
-"nnoremap Y <esc>
+nnoremap Y <esc>
 
 nnoremap <c-tab> <nop>
 nnoremap <c-space> <esc>
@@ -948,7 +957,7 @@ nnoremap xx <esc>
 nnoremap :a :a
 nnoremap :b :b
 nnoremap :c :c
-"nnoremap :d :d
+nnoremap :d :d
 nnoremap :e :e
 "nnoremap :f :f
 nnoremap :g :g
@@ -972,10 +981,12 @@ nnoremap :z :z
 nnoremap <leader>: <esc>
 
 "nnoremap <leader>a <esc>
-nnoremap <leader>c <esc>
+nnoremap <leader>b <esc>
+"nnoremap <leader>c <esc>
 "nnoremap <leader>d <esc>
 "nnoremap <leader>e <esc>
 "nnoremap <leader>f <esc>
+"nnoremap <leader>g <esc>
 "nnoremap <leader>h <esc>
 "nnoremap <leader>j <esc>
 "nnoremap <leader>l <esc>
@@ -986,8 +997,9 @@ nnoremap <leader>p <esc>
 "nnoremap <leader>r <esc>
 nnoremap <leader>s <esc>
 nnoremap <leader>u <esc>
+nnoremap <leader>v <esc>
+nnoremap <leader>w <esc>
 nnoremap <leader>y <esc>
-"nnoremap <leader>v <esc>
 
 "nnoremap <leader>O <esc>
 
@@ -1184,8 +1196,11 @@ vnoremap S :call V_slctd__pad_space()<cr>
 " pad -
 vnoremap - :call V_slctd__pad('-')<cr>
 
-"  pad |
+" pad |
 vnoremap <bar> :call V_slctd__pad_bar()<cr>
+
+" slctd space __ pad _
+vnoremap b :call V_char__rpl(' ', '_')<cr>
 
 " line __ join per line
 vnoremap J :call V_line__join_per_line(3)
@@ -1207,10 +1222,10 @@ vnoremap w :call Slctd_edge_out_cahr__del()<cr>
 "vnoremap W :call Slctd_edge_out_cahr__del()<cr>
 
 " slctd str mv back
-vnoremap <c-s> :call Slctd_box_str__mv('l')<cr>
+"vnoremap <c-s> :call Slctd_box_str__mv('l')<cr>
 
 " slctd str mv forward
-vnoremap <c-f> :call Slctd_box_str__mv('r')<cr>
+"vnoremap <c-f> :call Slctd_box_str__mv('r')<cr>
 
 " slctd box space __ del
 vnoremap D :call V_box_space__del()<cr>
@@ -1387,7 +1402,7 @@ vnoremap . <esc>
 "vnoremap <bar> <esc>
 
 "vnoremap a <esc>
-vnoremap b <esc>
+"vnoremap b <esc>
 "vnoremap c <esc>
 "vnoremap d <esc>
 "vnoremap e <esc>
@@ -1442,7 +1457,7 @@ vnoremap <c-a> <esc>
 vnoremap <c-c> <esc>
 vnoremap <c-d> <esc>
 "vnoremap <c-e> <esc>
-"vnoremap <c-f> <esc>
+vnoremap <c-f> <esc>
 "vnoremap <c-h> <esc>
 "vnoremap <c-i> <esc>
 "vnoremap <c-l> <esc>
@@ -1452,7 +1467,7 @@ vnoremap <c-d> <esc>
 "vnoremap <c-p> <esc>
 vnoremap <c-q> <esc>
 vnoremap <c-r> <esc>
-"vnoremap <c-s> <esc>
+vnoremap <c-s> <esc>
 "vnoremap <c-u> <esc>
 " v disable ??
 vnoremap <c-v> <esc>
@@ -1562,14 +1577,7 @@ inoremap <c-y>     <c-r>=I_num()<cr>
 "inoremap <leader>k <c-r>=I_num()<cr>
 
 " ins symbol
-
 inoremap <c-n> <c-r>=I_symbol01()<cr>
-inoremap <c-b> <c-r>=I_symbol01()<cr>
-inoremap <c-r> <c-r>=I_symbol01()<cr>
-"inoremap <expr> <c-r>
-"\ pumvisible() ? '<esc><c-r>=I_symbol01()<cr>' : " run not 
-"\                '     <c-r>=I_symbol01()<cr>'
-
 inoremap <c-f> <c-r>=I_symbol02()<cr>
 
 " ins markdown
@@ -1657,7 +1665,7 @@ inoremap <c--> <nop>
 "inoremap <c-;> <nop> " non
 
 inoremap <c-a> <nop>
-"inoremap <c-b> <nop>
+inoremap <c-b> <nop>
 "inoremap <c-f> <nop>
 "inoremap <c-g> <nop>
 "inoremap <c-k> <nop>
@@ -1665,7 +1673,7 @@ inoremap <c-a> <nop>
 "inoremap <c-o> <nop>
 "inoremap <c-p> <nop>
 inoremap <c-q> <nop>
-"inoremap <c-r> <nop>
+inoremap <c-r> <nop>
 "inoremap <c-s> <nop>
 "inoremap <c-t> <nop>
 "inoremap <c-u> <nop>
@@ -1752,15 +1760,13 @@ if &term =~ '^screen'
   exe "set <xLeft>=\e[1;*D"
 endif
 
-" 
 " quickfix
-" 
 
 "packadd Cfilter
 
 autocmd QuickFixCmdPost grep,vimgrep tab cw
 
-" env fnc
+" env
 
 func! Is_env__(env) abort " alias
 
@@ -1776,9 +1782,7 @@ func! Is_env__(env) abort " alias
   return l:ret
 endfunc
 
-" 
 " plugin  #bgn#
-" 
 
 func! Vim_plug_path() abort
 
@@ -1838,16 +1842,22 @@ endif
 " or :PlugUpdate
 " or :PlugClean
 
-" fzf #bgn#
+" plugin  #end#
 
+" fzf setting
+
+" use not ?
 " preview window
-let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
-let g:fzf_action = {
-\  'ctrl-o': 'tab drop',
-\  'ctrl-s': 'backward-char',
-\ }
-"\  'ctrl-o': 'enter',
+" let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
+" let g:fzf_action = {
+" \  'ctrl-o': 'tab drop',
+" \  'ctrl-s': 'backward-char',
+" \ }
 
+"\  'ctrl-o': 'enter',
+"\  'ctrl-i': 'item slct mtl',
+
+" use not ?
 let g:fzf_colors = {
 \   'hl'     : ['fg', 'Statement'  ],
 \   'hl+'    : ['fg', 'Statement'  ],
@@ -1871,58 +1881,55 @@ let g:fzf_colors = {
 "let g:fzf_buffers_jump = 1
 "fzf#vim#complete#buffer_line([spec])
 
-" grep ( rg ) " ref
-
-" fzf#vim#grep(
-"   command,
-"   [has_column bool],
-"   [spec dict],
-"   [fullscreen bool]
-" )
-
-" fzf init
-
-let g:fzf_rg_opt = ''
-\     . ' --color=always'
-\     . ' --line-number'
-\     . ' --smart-case'
-\     . ' --no-multiline'
-\     . ' --no-heading'
-\     . ' --hidden'
-
-if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
-
-  if Is_env__('win64')
-    let g:fzf_rg_opt .= ' -g "!.git/"'
-  else
-    let g:fzf_rg_opt .= ' -g "!.git/"'
-  endif
-endif
-
 " fzf cmd def
-" todo: refactoring
-" :
 
-" fzf fnc def
-" todo: refactoring
-" :
+command! -bang -nargs=1 FzfRgExt call Fzf_rg_ext(<f-args>)
 
-" rg fnc def
-" todo: refactoring
-" :
+command! -nargs=? FzfRgByRun call Fzf_rg_with_run(<f-args>)
+
+command! -nargs=? FzfTagjmpByFile call Fzf_tag_jmp_by_file(<f-args>)
+
+command! -bang -nargs=? FzfBufCrnt
+\ call fzf#vim#buffer_lines(
+\   <q-args>,
+\   {'options': ['--no-sort', '--exact']},
+\   <bang>1
+\ )
+
+" fzf file
+command! -bang -nargs=? -complete=dir FzfFile call fzf#vim#files(<q-args>, <bang>1)
+
+" fzf file history
+command! -bang -nargs=* FzfFileHstry call fzf#vim#history(fzf#vim#with_preview(), <bang>1)
+
+" fzf cmd history
+command! -bang -nargs=* FzfCmdHstry call fzf#vim#command_history(fzf#vim#with_preview(), <bang>1)
+
+" fzf srch history
+command! -bang -nargs=* FzfSrchHstry call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)
+
+" fzf rgstr
+command! -bang -nargs=* FzfRgstr call Fzf_rgstr()
+
+command! -bang -nargs=* FzfJmplst call Fzf_jmplst()
+
+" fzf cmd def : mark
+command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)
+
+" fzf
 
 func! Fzf_rg(...) abort " alias
 
   let l:ptn   = ( a:0 >= 1 ) ? a:1 : ''
   " let l:ptn   = ( a:0 >= 1 ) ? a:1 : g:rg_some_line_ptn
-
+  
   let l:ext   = ( a:0 >= 2 ) ? a:2 : v:null
   let l:word1 = ( a:0 >= 3 ) ? a:3 : v:false
 
-  call Fzf_rg_by_grep(l:ptn, l:ext, l:word1)
+  call Fzf_rg_with_grep(l:ptn, l:ext, l:word1)
 endfunc
 
-func! Fzf_rg_by_grep(...) abort
+func! Fzf_rg_with_grep(...) abort
 
   if ! ( Is_env__('mac') || Is_env__('linux') || Is_env__('win64') )
     return
@@ -1947,46 +1954,17 @@ func! Fzf_rg_by_grep(...) abort
   \      ),
   \      1
   \    )
-endfunc
 
-func! Rg_cmd(ptn, ext, word1, opt) abort
-
-  if a:ptn == v:null
-    let l:ptn = ''
-  else
-    let l:ptn = a:ptn
-  endif
-
-  if a:ext == v:null
-    let l:fzf_rg_opt_ext = ''
-  else
-    let l:fzf_rg_opt_ext = ' -g "*.' . a:ext . '"'
-  endif
-
-  if a:word1 == v:true
-    let l:fzf_rg_opt_word1 = ' -w'
-  else
-    let l:fzf_rg_opt_word1 = ''
-  endif
-
-  if a:opt == v:null
-    let l:opt = ''
-  else
-    let l:opt = ' ' . a:opt
-  endif
-
-  let l:rg_cmd = 'rg '
-  \     . g:fzf_rg_opt
-  \     . l:fzf_rg_opt_ext
-  \     . l:fzf_rg_opt_word1
-  \     . l:opt
-  \     . ' -- ' . '"' . escape(l:ptn, '().$') . '"'
-
-  return l:rg_cmd
+  " ref
+  " fzf#vim#grep(
+  "   command,
+  "   [has_column bool],
+  "   [spec dict],
+  "   [fullscreen bool]
+  " )
 endfunc
 
 " fzf rg ext
-command! -bang -nargs=1 FzfRgExt call Fzf_rg_ext(<f-args>)
 
 func! Fzf_rg_ext(ext) abort
 
@@ -2004,9 +1982,7 @@ endfunc
 
 let g:fzf_line_cnt_max = 30000
 
-command! -nargs=? FzfRgByRun call Fzf_rg_by_run(<f-args>)
-
-func! Fzf_rg_by_run(...) abort " todo: fnc name re
+func! Fzf_rg_with_run(...) abort " todo: fnc name re
 
   let l:ptn = ( a:0 >= 1 ) ? a:1 : v:null
 
@@ -2043,8 +2019,6 @@ func! Fzf_rg_by_run(...) abort " todo: fnc name re
   "\     'options': ['--no-sort'],
 endfunc
 
-" func! Fzf_src_by_run(...) abort
-" func! Fzf_src(...) abort
 func! Fzf_by_txt(...) abort
 
   let l:src_txt  = ( a:0 >= 1 ) ? a:1 : v:null
@@ -2074,6 +2048,157 @@ func! Fzf_by_ar(...) abort
   \    )
   "\     'options': ['--reverse'],
   "\     'options': ['--no-sort'],
+endfunc
+
+" fzf tag jmp by file
+
+func! Fzf_tag_jmp_by_file(...) abort
+
+  let l:file_path = ( a:0 >= 1 ) ? a:1 : 'doc/memo.md'
+
+  let l:fzf_src_txt = File_txt(l:file_path)
+  let l:fnc_name    = 'Tag_jmp'
+  call Fzf_by_txt(fzf_src_txt, fnc_name)
+endfunc
+
+" fzf buf
+
+func! N_fzf_buf() abort
+  
+  exe 'FzfBufCrnt '
+endfunc
+
+func! V_fzf_buf() abort
+
+  call V_srch_str__slctd_str()
+  exe 'FzfBufCrnt ' . escape(@z, '.*~')
+endfunc
+
+func! Fzf_rgstr() abort
+  
+  let l:rgstr_info = execute(':reg')->split("\n")
+  call remove(l:rgstr_info, 0)
+  
+  call fzf#run(
+  \   {
+  \     'source': l:rgstr_info,
+  \     'sink'  : funcref('Ynk__by_rgstr_info'),
+  \     'window': '-tabnew'
+  \   }
+  \ )
+  " \     'sink'  : funcref('Ins_rgstr_by_rgstr_info'),
+endfunc
+
+" fzf jmplst
+
+func! Fzf_jmplst() abort
+  
+  call fzf#run(
+  \   {
+  \     'source' : Jmplst_line_info(),
+  \     'sink'   : funcref('Cursor__mv_by_line_info'),
+  \     'window' : '-tabnew',
+  \     'options': ['--reverse'],
+  \   }
+  \ )
+  "\     'options': ['--no-sort'],
+endfunc
+
+func! Fzf_dir_jmp() abort
+
+  let l:sys_cmd = 'dir_jmp_lst'
+  let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
+
+  let l:fnc_name = 'Dir__'
+  call Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
+endfunc
+
+func! Fzf_doc_memo_opn() abort
+
+  let l:dir = '~'
+
+  let l:fzf_src_ar = [
+  \   l:dir . '/wrk/cnf/doc/memo.md',
+  \   l:dir . '/wrk/prj-pri-share/doc-tech-ds/doc/memo.md',
+  \   l:dir . '/wrk/prj-pri-share/life/doc/memo.md',
+  \   l:dir . '/wrk/prj-pri-share/wall-paper/doc/memo.md'
+  \ ]
+
+  let l:fnc_name    = 'Opn'
+  call Fzf_by_ar(l:fzf_src_ar, l:fnc_name)
+endfunc
+
+func! Fzf_vim_fnc_call() abort
+
+  let l:rg_ptn = '^func! [\w]+\(.*\)'
+
+  let l:sys_cmd_rg = "rg " . "-No '" . l:rg_ptn . "' " . g:vimrc_file_path
+
+  let l:sys_cmd_sed = 'sed "s/func! //g"'
+
+  let l:sys_cmd = l:sys_cmd_rg . ' | ' . l:sys_cmd_sed
+  let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
+
+  let l:fnc_name = 'Cmdline__'
+
+  call Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
+endfunc
+
+" rg fnc def
+
+" fzf init
+
+let g:fzf_rg_opt = ''
+\     . ' --color=always'
+\     . ' --line-number'
+\     . ' --smart-case'
+\     . ' --no-multiline'
+\     . ' --no-heading'
+\     . ' --hidden'
+
+if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
+
+  if Is_env__('win64')
+    let g:fzf_rg_opt .= ' -g "!.git/"'
+  else
+    let g:fzf_rg_opt .= ' -g "!.git/"'
+  endif
+endif
+
+func! Rg_cmd(ptn, ext, word1, opt) abort
+
+  if a:ptn == v:null
+    let l:ptn = ''
+  else
+    let l:ptn = a:ptn
+  endif
+
+  if a:ext == v:null
+    let l:fzf_rg_opt_ext = ''
+  else
+    let l:fzf_rg_opt_ext = ' -g "*.' . a:ext . '"'
+  endif
+
+  if a:word1 == v:true
+    let l:fzf_rg_opt_word1 = ' -w'
+  else
+    let l:fzf_rg_opt_word1 = ''
+  endif
+
+  if a:opt == v:null
+    let l:opt = ''
+  else
+    let l:opt = ' ' . a:opt
+  endif
+
+  let l:rg_cmd = 'rg '
+  \     . g:fzf_rg_opt
+  \     . l:fzf_rg_opt_ext
+  \     . l:fzf_rg_opt_word1
+  \     . l:opt
+  \     . ' -- ' . '"' . escape(l:ptn, '().$') . '"'
+
+  return l:rg_cmd
 endfunc
 
 let g:rg_emp_line_ptn  = '^[ \t]*$'
@@ -2125,74 +2250,6 @@ func! Rg_ptn_rslt_txt(ptn, opt) abort
   return l:r_rslt_txt
 endfunc
 
-" fzf tag jmp by file
-
-command! -nargs=? FzfTagjmpByFile call Fzf_tag_jmp_by_file(<f-args>)
-
-func! Fzf_tag_jmp_by_file(...) abort
-
-  let l:file_path = ( a:0 >= 1 ) ? a:1 : 'doc/memo.md'
-
-  let l:fzf_src_txt = File_txt(l:file_path)
-  let l:fnc_name    = 'Tag_jmp'
-  call Fzf_by_txt(fzf_src_txt, fnc_name)
-endfunc
-
-" fzf buf
-
-func! N_fzf_buf() abort
-  
-  exe 'FzfBufCrnt '
-endfunc
-
-func! V_fzf_buf() abort
-
-  call V_srch_str__slctd_str()
-  exe 'FzfBufCrnt ' . escape(@z, '.*~')
-endfunc
-
-command! -bang -nargs=? FzfBufCrnt
-\ call fzf#vim#buffer_lines(
-\   <q-args>,
-\   {'options': ['--no-sort', '--exact']},
-\   <bang>1
-\ )
-
-" fzf file
-command! -bang -nargs=? -complete=dir FzfFile
-\ call fzf#vim#files(<q-args>, <bang>1)
-
-" fzf file history
-command! -bang -nargs=* FzfFileHstry
-\ call fzf#vim#history(fzf#vim#with_preview(), <bang>1)
-
-" fzf cmd history
-command! -bang -nargs=* FzfCmdHstry
-\ call fzf#vim#command_history(fzf#vim#with_preview(), <bang>1)
-
-" fzf srch history
-command! -bang -nargs=* FzfSrchHstry
-\ call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)
-
-" fzf rgstr
-command! -bang -nargs=* FzfRgstr
-\ call Fzf_rgstr()
-
-func! Fzf_rgstr() abort
-  
-  let l:rgstr_info = execute(':reg')->split("\n")
-  call remove(l:rgstr_info, 0)
-  
-  call fzf#run(
-  \   {
-  \     'source': l:rgstr_info,
-  \     'sink'  : funcref('Ynk__by_rgstr_info'),
-  \     'window': '-tabnew'
-  \   }
-  \ )
-  " \     'sink'  : funcref('Ins_rgstr_by_rgstr_info'),
-endfunc
-
 func! Ynk__by_rgstr_info(rgstr_info) abort
   
   let l:rgstr = Rgstr_info_rgstr(a:rgstr_info)
@@ -2210,23 +2267,6 @@ func! Rgstr_info_rgstr(rgstr_info) abort
 
   let l:rgstr = strcharpart(a:rgstr_info, 6, 1)
   return l:rgstr
-endfunc
-
-" fzf jmplst
-
-command! -bang -nargs=* FzfJmplst call Fzf_jmplst()
-
-func! Fzf_jmplst() abort
-  
-  call fzf#run(
-  \   {
-  \     'source' : Jmplst_line_info(),
-  \     'sink'   : funcref('Cursor__mv_by_line_info'),
-  \     'window' : '-tabnew',
-  \     'options': ['--reverse'],
-  \   }
-  \ )
-  "\     'options': ['--no-sort'],
 endfunc
 
 func! Jmplst() abort
@@ -2288,57 +2328,11 @@ func! Jmplst_cmp(jmplst1, jmplst2) abort
   return l:ret
 endfunc
 
-func! Fzf_vim_fnc_exe() abort " todo dev..., impossible ?
-
-  let l:rg_ptn = '^func! [\w]+\(.*\)'
-
-  let l:sys_cmd_rg = "rg " . "-No '" . l:rg_ptn . "' " . g:vimrc_file_path
-
-  let l:sys_cmd_sed = 'sed "s/func! //g"'
-
-  let l:sys_cmd = l:sys_cmd_rg . ' | ' . l:sys_cmd_sed
-  let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
-
-  let l:fnc_name = 'Cmdline__'
-
-  call Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
-endfunc
-
-func! Fzf_dir_jmp() abort
-
-  let l:sys_cmd = 'dir_jmp_lst'
-  let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
-
-  let l:fnc_name = 'Dir__'
-  call Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
-endfunc
-
-func! Fzf_doc_memo_opn() abort
-
-  let l:fzf_src_ar = [
-  \   '~/wrk/cnf/doc/memo.md:1',
-  \   '~/wrk/prj-pri-share/doc-tech-ds/doc/memo.md:1',
-  \   '~/wrk/prj-pri-share/life/doc/memo.md:1',
-  \   '~/wrk/prj-pri-share/wall-paper/doc/memo.md:1'
-  \ ]
-
-  let l:fnc_name    = 'Tag_jmp'
-  call Fzf_by_ar(l:fzf_src_ar, l:fnc_name)
-endfunc
-
 func! Txt_to_ar(txt) abort
 
   let l:line_ar  = split(a:txt, "\n")
   return l:line_ar
 endfunc
-
-" fzf cmd def : mark
-command! -bang -nargs=* FzfMark
-\ call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)
-
-" fzf #end#
-
-" plugin  #end#
 
 
 "
@@ -3369,7 +3363,7 @@ func! Is_slctd_cursor_pos__r() range abort
   let l:ret = v:false
 
   call Slct_re()
-  " call Slctd__cancel()
+  " call Slctd__esc()
 
   let l:cursor_pos1 = Cursor_pos()
   " echo l:cursor_pos1
@@ -3391,7 +3385,7 @@ func! Is_slctd_cursor_pos__r() range abort
     endif
   endif
 
-  " call Slctd__cancel()
+  " call Slctd__esc()
 
   " echo l:ret
   return l:ret
@@ -3519,7 +3513,7 @@ func! Cursor_str_week__icl() abort
   let l:week_nxt_idx = Idx__icl(week_idx, len(g:week_def))
   let l:week_nxt_str = g:week_def[l:week_nxt_idx]
 
-  call Slct_word()
+  call Slctd__word()
   call Normal('"zd')
   call Normal('i' . l:week_nxt_str)
 endfunc
@@ -3536,7 +3530,7 @@ func! Cursor_str_week__dcl() abort
   let l:week_nxt_idx = Idx__dcl(week_idx, len(g:week_def))
   let l:week_nxt_str = g:week_def[l:week_nxt_idx]
 
-  call Slct_word()
+  call Slctd__word()
   call Normal('"zd')
   call Normal('i' . l:week_nxt_str)
 endfunc
@@ -4004,7 +3998,7 @@ func! V_cursor_f_space__del() range abort
   call Slct_re()
   let l:col = Cursor_col_num()
   " echo l:col
-  call Slctd__cancel()
+  call Slctd__esc()
 
   " echo a:firstline . ' ' . a:lastline
   call Cursor__mv_by_line_col(a:firstline, l:col)
@@ -4217,94 +4211,9 @@ func! V_2_markdown_tbl_header() range abort
 endfunc
 
 " slct
-
-func! Slct_word() abort
-
-  let l:c = Cursor_c_char()
-
-  if     l:c =~ '\w'
-    call Normal('viw')
-
-  elseif l:c =~ '\s'
-    call Slct_cursor_f_space()
-  else
-    call Normal('v')
-  endif
-endfunc
-
-func! Slct_cursor_f_space() abort
-
-  let l:c = Cursor_c_char()
-
-  if l:c !~ '\s'
-    return
-  endif
-  "echo l:c
-
-  if Is_cursor_line_str_side_r__space()
-
-    call Normal('v')
-    call Normal('$h')
-    "call Cursor__mv_word_f()
-    "call Normal('h')
-
-  else
-    call Normal('vwh')
-  endif
-endfunc
-
-func! Slct_by_col(s_col, len) abort
-
-  let l:e_col = a:len - 1
-
-  call Slct_by_line_col(v:null, a:s_col, v:null, e_col)
-endfunc
-
-func! Slct_by_pos(s_pos, e_pos) abort " use not
-
-  call Cursor__mv_by_pos(a:s_pos)
-  call Normal('v')
-  call Cursor__mv_by_pos(a:e_pos)
-endfunc
-
-func! Slct_by_line_col(s_line, s_col, e_line, e_col) abort
-
-  let l:s_line = (a:s_line == v:null) ? Cursor_line_num() : a:s_line
-  let l:e_line = (a:e_line == v:null) ? Cursor_line_num() : a:e_line
-
-  call Cursor__mv_by_line_col(l:s_line, a:s_col)
-  call Normal('v')
-  call Cursor__mv_by_line_col(l:e_line, a:e_col)
-endfunc
-
-func! Slct_by_line_rng(line_num_fr, line_num_to) abort
-  
-  call Cursor__mv_by_line_num(a:line_num_fr)
-  call Normal('V')
-  call Cursor__mv_by_line_num(a:line_num_to)
-endfunc
-
-func! Slct_re() range abort
-
-  if mode() == "\<c-v>" || mode() == "v"
-    return
-  endif
-
-  call Normal('gv')
-endfunc
-
-func! Slct_all() abort
-
-  call Normal('ggVG')
-endfunc
+" ...
 
 " slctd
-
-func! Slctd__cancel() range abort " alias
-
-  call Esc()
-  " call Normal("\<esc>")
-endfunc
 
 " slctd str
 
@@ -4403,15 +4312,107 @@ func! Slctd_edge_r_out_str() abort
   return l:str
 endfunc
 
+" slctd __ 
+
+func! Slctd__esc() range abort " alias
+
+  call Esc()
+  " call Normal("\<esc>")
+endfunc
+
+" slctd __ " refactoring
+
+func! Slctd__word() abort
+
+  let l:c = Cursor_c_char()
+
+  if     l:c =~ '\w'
+    call Normal('viw')
+
+  elseif l:c =~ '\s'
+    call Slct_cursor_f_space()
+  else
+    call Normal('v')
+  endif
+endfunc
+
+func! Slctd__word_by_under_score() abort
+
+endfunc
+
+func! Slct_cursor_f_space() abort
+
+  let l:c = Cursor_c_char()
+
+  if l:c !~ '\s'
+    return
+  endif
+  "echo l:c
+
+  if Is_cursor_line_str_side_r__space()
+
+    call Normal('v')
+    call Normal('$h')
+    "call Cursor__mv_word_f()
+    "call Normal('h')
+
+  else
+    call Normal('vwh')
+  endif
+endfunc
+
+func! Slct_by_col(s_col, len) abort
+
+  let l:e_col = a:len - 1
+
+  call Slct_by_line_col(v:null, a:s_col, v:null, e_col)
+endfunc
+
+func! Slct_by_pos(s_pos, e_pos) abort " use not
+
+  call Cursor__mv_by_pos(a:s_pos)
+  call Normal('v')
+  call Cursor__mv_by_pos(a:e_pos)
+endfunc
+
+func! Slct_by_line_col(s_line, s_col, e_line, e_col) abort
+
+  let l:s_line = (a:s_line == v:null) ? Cursor_line_num() : a:s_line
+  let l:e_line = (a:e_line == v:null) ? Cursor_line_num() : a:e_line
+
+  call Cursor__mv_by_line_col(l:s_line, a:s_col)
+  call Normal('v')
+  call Cursor__mv_by_line_col(l:e_line, a:e_col)
+endfunc
+
+func! Slct_by_line_rng(line_num_fr, line_num_to) abort
+  
+  call Cursor__mv_by_line_num(a:line_num_fr)
+  call Normal('V')
+  call Cursor__mv_by_line_num(a:line_num_to)
+endfunc
+
+func! Slct_re() range abort
+
+  if mode() == "\<c-v>" || mode() == "v"
+    return
+  endif
+
+  call Normal('gv')
+endfunc
+
+func! Slct_all() abort
+
+  call Normal('ggVG')
+endfunc
+
 " slctd __ expnd
 
 func! Slctd__expnd() abort " expnd lr, cre re
 
 endfunc
 
-" todo dev
-
-func! Slctd__expnd_srch() range abort
+func! Slctd__expnd_srch() range abort " todo dev
 
   call Slct_re()
   call Cursor__mv_srch("f")
@@ -4524,7 +4525,7 @@ func! Slctd__expnd_quote_tgl() range abort
   endif
 endfunc
 
-func! Slctd__expnd_bracket_f() range abort
+func! Slctd__expnd_bracket_f() range abort " todo dev
 
   let l:bracket_ptn = '[' . "'" . '"`)}\]' . ']'
   
@@ -4618,11 +4619,11 @@ func! V_slctd__pad(char) range abort
 
   let l:char = a:char
 
-  call Slct_re()
-
   if l:char == '|'
     let l:char = "\<bar>"
   endif
+
+  call Slct_re()
 
   call Normal('r' . l:char)
 
@@ -4648,7 +4649,7 @@ func! Slctd_l__ins(c) range abort
   call Cursor__mv_slctd_edge_tgl()
   call Normal('`<')
 
-  call Slctd__cancel()
+  call Slctd__esc()
   call Ins(a:c)
 
   call Slct_re()
@@ -4665,7 +4666,7 @@ func! Slctd_r__ins(c) range abort
   call Normal('`>')
   call Cursor__mv_char_f()
 
-  call Slctd__cancel()
+  call Slctd__esc()
   call Ins(a:c)
 
   call Slct_re()
@@ -4747,7 +4748,7 @@ func! Slctd_edge_out_l_cahr__del() range abort
   call Cursor__mv_char_b()
   call Cursor__mv_slctd_edge_tgl()
   call Cursor__mv_slctd_edge_l()
-  call Slctd__cancel()
+  call Slctd__esc()
 
   call Cursor__mv_char_b()
   call Cursor_c_char__del()
@@ -4760,7 +4761,7 @@ func! Slctd_edge_out_r_cahr__del() range abort
 
   call Slct_re()
   call Cursor__mv_slctd_edge_r()
-  call Slctd__cancel()
+  call Slctd__esc()
 
   call Cursor__mv_char_f()
   call Cursor_c_char__del()
@@ -4804,17 +4805,29 @@ func! V_line__rpl_by_line1_line2() range abort
   call Exe(l:cmd)
 endfunc
 
-" v box __ rpl
+" v char __ rpl
 
-command! -range=% -nargs=* RplBox <line1>,<line2>call V_box__rpl(<f-args>)
-
-func! V_box__rpl(srch, rpl) range abort
+func! V_char__rpl(srch, rpl) range abort
 
   let l:srch = a:srch
   let l:rpl  = a:rpl
 
   let l:cmd = g:v_rng . 's/' . '\%V' . l:srch . '/' . l:rpl . '/g'
   call Exe(l:cmd)
+endfunc
+
+" v box __ rpl
+
+command! -range=% -nargs=* RplBox <line1>,<line2>call V_box__rpl(<f-args>)
+
+func! V_box__rpl(srch, rpl) range abort " alias
+
+  call V_char__rpl(a:srch, a:rpl)
+  " let l:srch = a:srch
+  " let l:rpl  = a:rpl
+  " 
+  " let l:cmd = g:v_rng . 's/' . '\%V' . l:srch . '/' . l:rpl . '/g'
+  " call Exe(l:cmd)
 endfunc
 
 " v box space __ del
@@ -5706,7 +5719,7 @@ endfunc
 
 func! I_symbol02() abort
 
-  let l:lst = [ '-', '=', '!', '+', '?', '^', '~', '&', '|', '\', '/' ]
+  let l:lst = [ '!', '+', '?', '^', '~', '-', '=', '&', '|', '\', '/' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
@@ -5811,9 +5824,7 @@ func! Dir__(dir) abort
   call Pth()
 endfunc
 
-" dir ch slf
-
-" command! -nargs=0 CdSlf call Dir__slf()
+" dir ch __ slf
 
 func! Dir__slf() abort
 
