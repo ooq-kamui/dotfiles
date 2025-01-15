@@ -12,10 +12,9 @@ ref
   - a"
   - a)
   - a]
-
-  - tst
-      'bbb  ddd '
-      "aaa bbb ccc"
+  - tst  
+    'bbb  ddd '
+    "aaa bbb ccc"
 
 
 Slctd__expnd_quote()

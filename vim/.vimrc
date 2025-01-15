@@ -5858,7 +5858,7 @@ func! Dir__parent(lvl) abort
   call Pth()
 endfunc
 
-" undo clr , file ( crnt buf ? )
+" undo clr, file ( crnt buf ? )
 
 func! Undo__clr() abort
 
