@@ -2,45 +2,20 @@
 # cnf
 
 
-## artcl
-
-docusaurus blog sidebar
-- category
-- ggl
-- ref https://docusaurus.io/docs/sidebar
-- try
-
-
-## keyboard
-
-logicool
-- sticker
-  - shift
-
-
-## magic trackpad
-
-carry to ofc
-- in bag
-
-
 ## vim
 
 ref
 - https://qiita.com/ykyk1218/items/ab1c89c4eb6a2f90333a
-  - vi"
-  - vi)
-  - vi]
-  - va"
-  - va)
-  - va]
+  - i"
+  - i)
+  - i]
+  - a"
+  - a)
+  - a]
 
-- https://thinca.hatenablog.com/entry/I_expect_to_colorscheme
-  - hl search bg
-
-- ddc.vim
-  - https://zenn.dev/shougo/articles/ddc-vim-make-plugins
-  - https://qiita.com/maachan_9692/items/9b507fd043424013abde
+  - tst
+      'bbb  ddd '
+      "aaa bbb ccc"
 
 
 Slctd__expnd_quote()
@@ -72,7 +47,8 @@ repository
 ## pwsh
 
 cmdline git view
-- install
+- xxx
+  - install
 
 
 ## m4 mac

@@ -484,7 +484,7 @@ nnoremap . i.<esc>
 nnoremap 0 :call Ins_hyphen()<cr>
 
 " cahr rpl, under score
-nnoremap <bar> :call Char__rpl_underscore()<cr>
+nnoremap <bar> :call Cursor_char__rpl_underscore()<cr>
 
 " ins space
 nnoremap L :call Ins_space(v:false)<cr>
@@ -862,7 +862,7 @@ nnoremap Q <esc>
 "nnoremap P <esc>
 nnoremap R <esc>
 nnoremap S <esc>
-"nnoremap T <esc>
+nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap W <esc>
 "nnoremap V <esc>
@@ -2475,18 +2475,18 @@ endfunc
 
 " char
 
-" char rpl
+" char rpl " todo refactoring fnc name ch
 
-func! Char__rpl(rpl) abort
+func! Cursor_char__rpl(rpl) abort
 
   call Normal('r' . a:rpl)
 endfunc
 
-func! Char__rpl_underscore()abort " alias
+func! Cursor_char__rpl_underscore()abort " alias
 
   " todo, case: line end
 
-  call Char__rpl('_')
+  call Cursor_char__rpl('_')
   call Normal('l')
   " call Cursor__mv_char_forward() " todo, fnc cre
 endfunc
@@ -2508,14 +2508,14 @@ func! N_char__tgl() abort
 
   let l:rpl = Is_char__tgl_bracket_trn(l:c)
   if ! Is_str__emp(l:rpl)
-    call Char__rpl(l:rpl)
+    call Cursor_char__rpl(l:rpl)
     return
   endif
 
   let l:rpl = Is_char__tgl_symbol(l:c)
   if ! Is_str__emp(l:rpl)
 
-    call Char__rpl(l:rpl)
+    call Cursor_char__rpl(l:rpl)
     return
   endif
 endfunc
@@ -2530,17 +2530,19 @@ func! N_char__tgl_shift() abort
     return
   endif
 
-  call Char__tgl_type_ch(l:c)
+  call Cursor_char__tgl_type_shift(l:c)
 endfunc
 
-func! Char__tgl_type_ch(c) abort
+func! Cursor_char__tgl_type_shift(c) abort
 
   let l:rpl = ''
 
-  if     a:c == '"'
+  if     a:c == "'"
+    let l:rpl = '"'
+  elseif a:c == '"'
     let l:rpl = '`'
-  elseif a:c == "'"
-    let l:rpl = '`'
+  elseif a:c == '`'
+    let l:rpl = "'"
 
   elseif a:c == "{"
     let l:rpl = '['
@@ -2559,12 +2561,11 @@ func! Char__tgl_type_ch(c) abort
     let l:rpl = '>'
   elseif a:c == ">"
     let l:rpl = '}'
-
   endif
 
   if ! Is_str__emp(l:rpl)
 
-    call Char__rpl(l:rpl)
+    call Cursor_char__rpl(l:rpl)
     return
   endif
 endfunc
@@ -2620,13 +2621,12 @@ func! Is_char__tgl_symbol(c) abort
   elseif a:c == '|'
     let l:rpl = '/'
 
-  elseif a:c == '"'
-    let l:rpl = "'"
   elseif a:c == "'"
     let l:rpl = '"'
-    "let l:rpl = '`'
-  elseif a:c == "`"
-    let l:rpl = '"'
+  elseif a:c == '"'
+    let l:rpl = '`'
+  elseif a:c == '`'
+    let l:rpl = "'"
 
   elseif a:c == '-'
     let l:rpl = '+'
@@ -3059,7 +3059,7 @@ func! Cursor__mv_slctd_edge_tgl() range abort
   call Normal('o')
 endfunc
 
-vnoremap T :call Cursor__mv_slctd_edge_l()<cr>
+"vnoremap T :call Cursor__mv_slctd_edge_l()<cr>
 
 func! Cursor__mv_slctd_edge_l() range abort
 
@@ -3089,7 +3089,7 @@ func! Cursor__mv_slctd_edge_r() range abort
   " call Normal(l:n_cmd)
 endfunc
 
-" vnoremap T :call Slctd_cursor_drct__mv_forward()<cr>
+"vnoremap T :call Slctd_cursor_drct__mv_forward()<cr>
 
 func! Slctd_cursor_drct__mv_forward() range abort
 
@@ -4469,6 +4469,10 @@ func! Slctd__expnd_quote_on_swtch() range abort
   endif
 endfunc
 
+"nnoremap T vi"
+vnoremap T i'
+"vnoremap T a"
+
 func! Slctd__expnd_quote_on() range abort
 
   call Slct_re()
@@ -5392,7 +5396,7 @@ func! Char_markdown_chk__tgl() abort
     let l:rpl_char = ' '
   endif
   
-  call Char__rpl(l:rpl_char)
+  call Cursor_char__rpl(l:rpl_char)
 endfunc
 
 " markdown cnd
@@ -6203,6 +6207,11 @@ else
 endif
 
 " 
+" ref normal
+" 
+" https://vim-jp.org/vimdoc-ja/vimindex.html
+
+
 " ref ptn ( regex )
 " 
 " url : xxx
