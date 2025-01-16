@@ -2,6 +2,11 @@
 # cnf
 
 
+## ofc keyboard
+
+sticker p
+
+
 ## holo song
 
 git dir mv to share
@@ -19,9 +24,8 @@ repository
 
 ## pwsh
 
-cmdline git view
-- xxx
-  - install
+posh-git
+- try, install
 
 
 ## m4 mac

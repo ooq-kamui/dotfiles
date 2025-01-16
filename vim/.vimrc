@@ -32,8 +32,8 @@ hi CursorLineNr ctermfg=magenta
 
 hi Visual                           ctermbg=darkmagenta cterm=none
 hi VisualNOS                        ctermbg=darkmagenta cterm=none
-hi IncSearch   ctermfg=yellow       ctermbg=cyan        cterm=none
-hi Search      ctermfg=lightblue    ctermbg=darkblue    cterm=none
+hi IncSearch   ctermfg=lightyellow  ctermbg=34          cterm=none
+hi Search      ctermfg=lightyellow  ctermbg=36          cterm=none
 " bracket
 hi MatchParen  ctermfg=lightmagenta ctermbg=none
 
@@ -240,7 +240,7 @@ nnoremap gt :call Opn_tmp()<cr>
 "nnoremap xx :call Opn_vim_key()<cr>
 
 " opn memo
-nnoremap gm :call Opn_memo()<cr>
+"nnoremap gm :call Opn_memo()<cr>
 
 " opn man
 "nnoremap xx :OpnMan 
@@ -678,7 +678,8 @@ nnoremap :k :K
 nnoremap <leader>d :call Fzf_dir_jmp()<cr>
 
 " fzf doc memo
-nnoremap <leader>g :call Fzf_doc_memo_opn()<cr>
+nnoremap <leader>m :call Fzf_doc_memo_opn()<cr>
+"nnoremap <leader>g :call Fzf_doc_memo_opn()<cr>
 
 " fzf vim fnc call
 nnoremap <leader>c :call Fzf_vim_fnc_call()<cr>
@@ -910,7 +911,7 @@ nnoremap gg <esc>
 "nnoremap gj <esc>
 "nnoremap gk <esc>
 nnoremap gl <esc>
-"nnoremap gm <esc>
+nnoremap gm <esc>
 "nnoremap gn <esc>
 "nnoremap go <esc>
 nnoremap gp <esc>
@@ -975,11 +976,11 @@ nnoremap <leader>b <esc>
 "nnoremap <leader>d <esc>
 "nnoremap <leader>e <esc>
 "nnoremap <leader>f <esc>
-"nnoremap <leader>g <esc>
+nnoremap <leader>g <esc>
 "nnoremap <leader>h <esc>
 "nnoremap <leader>j <esc>
 "nnoremap <leader>l <esc>
-nnoremap <leader>m <esc>
+"nnoremap <leader>m <esc>
 "nnoremap <leader>n <esc>
 "nnoremap <leader>o <esc>
 nnoremap <leader>p <esc>
@@ -5601,7 +5602,8 @@ func! Opn_vim_key() abort
   call Opn(l:path)
 endfunc
 
-let g:opn_memo_path = '../memo.md'
+" let g:opn_memo_path = '../memo.md'
+let g:opn_memo_path = 'doc/memo.md'
 
 func! Opn_memo() abort
 
