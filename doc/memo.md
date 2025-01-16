@@ -2,32 +2,6 @@
 # cnf
 
 
-## vim
-
-ref
-- https://qiita.com/ykyk1218/items/ab1c89c4eb6a2f90333a
-  - i"
-  - i)
-  - i]
-  - a"
-  - a)
-  - a]
-  - tst  
-    'bbb  ddd '
-    "aaa bbb ccc"
-
-
-Slctd__expnd_quote()
-- case tst
-  - case: line end
-  - case: char 1
-
-
-slctd edge bth __ quote tgl () err
-- case: line end
-- case: char 1
-
-
 ## holo song
 
 git dir mv to share
@@ -58,6 +32,17 @@ setup
 keyboard sticker
 
 
+## vim
+
+slctd edge bth __ quote tgl () err
+- case: char 1
+
+
+## astro
+
+try
+
+
 ## fe
 
 js cre
@@ -65,11 +50,6 @@ js cre
 - logic tidy
   - rslt row
   - fltr
-
-
-## astro
-
-try
 
 
 ## skr-vps

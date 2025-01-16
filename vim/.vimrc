@@ -30,40 +30,39 @@ augroup END
 
 hi CursorLineNr ctermfg=magenta
 
-hi Visual                           ctermbg=magenta  cterm=none
-hi VisualNOS                        ctermbg=magenta  cterm=none
-hi Search      ctermfg=yellow       ctermbg=cyan     cterm=none
-hi IncSearch   ctermfg=yellow       ctermbg=cyan     cterm=none
+hi Visual                           ctermbg=darkmagenta cterm=none
+hi VisualNOS                        ctermbg=darkmagenta cterm=none
+hi IncSearch   ctermfg=yellow       ctermbg=cyan        cterm=none
+hi Search      ctermfg=lightblue    ctermbg=darkblue    cterm=none
 " bracket
-"hi MatchParen  ctermfg=magenta      ctermbg=none
 hi MatchParen  ctermfg=lightmagenta ctermbg=none
 
-hi TabLineSel                       ctermbg=magenta  cterm=none
-hi TabLine     ctermfg=lightblue    ctermbg=none     cterm=none
-hi TabLineFill                      ctermbg=none     cterm=none
+hi TabLineSel                       ctermbg=magenta     cterm=none
+hi TabLine     ctermfg=lightblue    ctermbg=none        cterm=none
+hi TabLineFill                      ctermbg=none        cterm=none
 
-hi StatusLine  ctermfg=lightblue    ctermbg=none     cterm=none
-hi EndOfBuffer ctermfg=cyan                          cterm=none
+hi StatusLine  ctermfg=lightblue    ctermbg=none        cterm=none
+hi EndOfBuffer ctermfg=cyan                             cterm=none
 
 hi Pmenu       ctermfg=lightgreen   ctermbg=blue
-hi PmenuSel    ctermfg=cyan         ctermbg=magenta  cterm=bold
+hi PmenuSel    ctermfg=cyan         ctermbg=magenta     cterm=bold
 
-hi ErrorMsg    ctermfg=magenta      ctermbg=none     cterm=none
-hi WarningMsg  ctermfg=magenta      ctermbg=none     cterm=none
+hi ErrorMsg    ctermfg=magenta      ctermbg=none        cterm=none
+hi WarningMsg  ctermfg=magenta      ctermbg=none        cterm=none
 
-hi NonText     ctermfg=25           ctermbg=none     cterm=none
-hi SpecialKey  ctermfg=25           ctermbg=none     cterm=none
+hi NonText     ctermfg=25           ctermbg=none        cterm=none
+hi SpecialKey  ctermfg=25           ctermbg=none        cterm=none
 
-hi Comment     ctermfg=14           ctermbg=none     cterm=none
+hi Comment     ctermfg=14           ctermbg=none        cterm=none
 
 hi FullWidthSpace                   ctermbg=white
 match FullWidthSpace /　/
 
 " vimdiff
-hi DiffAdd     ctermfg=10           ctermbg=22       cterm=none
-hi DiffDelete  ctermfg=52           ctermbg=52       cterm=none
-hi DiffChange  ctermfg=10           ctermbg=17       cterm=none
-hi DiffText    ctermfg=10           ctermbg=21       cterm=none
+hi DiffAdd     ctermfg=10           ctermbg=22          cterm=none
+hi DiffDelete  ctermfg=52           ctermbg=52          cterm=none
+hi DiffChange  ctermfg=10           ctermbg=17          cterm=none
+hi DiffText    ctermfg=10           ctermbg=21          cterm=none
 
 " wildmenu
 " hi wildMenu ??    ctermfg=cyan
@@ -288,9 +287,9 @@ nnoremap <c-a> 0
 " cursor mv line end
 "nnoremap <c-y> xx
 nnoremap <expr> <c-y>
-\ Is_cursor__line_end() ? ':call Ins_markdown_cr()<cr>'     :
+\ Is_cursor_col__line_end() ? ':call Ins_markdown_cr()<cr>'     :
 \                         ':call Cursor__mv_line_end()<cr>'
-"\ Is_cursor__line_end() ? ':call Ins_space()<cr>'     :
+"\ Is_cursor_col__line_end() ? ':call Ins_space()<cr>'     :
 "\                         ':call Cursor__mv_line_end()<cr>'
 
 nnoremap <c-e> :call Cursor__mv_line_end()<cr>
@@ -484,7 +483,7 @@ nnoremap . i.<esc>
 nnoremap 0 :call Ins_hyphen()<cr>
 
 " cahr rpl, under score
-nnoremap <bar> :call Cursor_char__rpl_underscore()<cr>
+"nnoremap <bar> :call Cursor_char__rpl_underscore()<cr>
 
 " ins space
 nnoremap L :call Ins_space(v:false)<cr>
@@ -537,8 +536,8 @@ nnoremap <c-d> D
 "nnoremap xx hvbd
 
 " word forward del
-"nnoremap <expr> xx Is_cursor__line_end() ? '<esc>' : '"zdw'
-"nnoremap <expr> xx Is_cursor__line_end() ? '<esc>' : '"zde'
+"nnoremap <expr> xx Is_cursor_col__line_end() ? '<esc>' : '"zdw'
+"nnoremap <expr> xx Is_cursor_col__line_end() ? '<esc>' : '"zde'
 
 " del cr ( line join )
 nnoremap <c-m> J
@@ -553,25 +552,15 @@ nnoremap D "zyy"zP
 "nnoremap xx qy
 "nnoremap xx @y
 
-" char tgl
-nnoremap u :call N_char__tgl()<cr>
+" char tgl 01 ( ?? / num icl  )
+nnoremap u :call N_char__tgl_switch01()<cr>
 
-" char tgl type ch
-nnoremap U :call N_char__tgl_shift()<cr>
-
-" num icl
-"nnoremap xx :call Cursor_str__icl()<cr>
-
-" num dcl
-"nnoremap xx :call Cursor_str__dcl()<cr>
+" char tgl 02 ( type ch / num dcl )
+nnoremap U :call N_char__tgl_switch02()<cr>
 
 " indnt shft
 nnoremap ri :call Indnt__shft_l()<cr>
 nnoremap ro :call Indnt__shft_r()<cr>
-"nnoremap "  :call Indnt__shft_l()<cr>
-"nnoremap #  :call Indnt__shft_r()<cr>
-"nnoremap 2  :call Indnt__shft_l()<cr>
-"nnoremap 3  :call Indnt__shft_r()<cr>
 
 " indnt add
 "nnoremap xx :call Indnt__add(2)<cr>
@@ -802,8 +791,8 @@ nnoremap ~ <esc>
 nnoremap ^ <esc>
 "nnoremap / <esc>
 nnoremap \ <esc>
-"nnoremap | <esc> " vvv ref nnoremap <bar>
-"nnoremap <bar> <esc>
+"nnoremap | <esc> " ref vvv
+nnoremap <bar> <esc>
 nnoremap ? <esc>
 
 "nnoremap ! <esc>
@@ -1215,7 +1204,7 @@ vnoremap m :call V_line_end_space__del()<cr>
 vnoremap K :call V_cursor_f_space__del()<cr>
 
 " slctd edge __ quote tgl
-vnoremap <c-u> :call Slctd_edge__quote_tgl()<cr>
+vnoremap <c-u> :call Slctd_edge_quote__tgl()<cr>
 
 " slctd edge out char __ del
 vnoremap w :call Slctd_edge_out_cahr__del()<cr>
@@ -1510,13 +1499,13 @@ vnoremap <leader>u <esc>
 "inoremap <esc> xx
 inoremap <expr> <esc>
 \ pumvisible()           ? '<c-e>'  :
-\ Is_cursor__line_top0() ? '<esc>'  :
+\ Is_cursor_col__line_top0() ? '<esc>'  :
 \                          '<esc>l'
 
 " inoremap <c-c> <esc>
 inoremap <expr> <c-c>
 \ pumvisible()           ? '<c-e>'  :
-\ Is_cursor__line_top0() ? '<esc>'  :
+\ Is_cursor_col__line_top0() ? '<esc>'  :
 \                          '<esc>l'
 
 " cursor mv line in
@@ -1619,7 +1608,7 @@ inoremap <c-w> <c-w>
 "inoremap <c-k> xx
 inoremap <expr> <c-k>
 \ pumvisible()            ? '<c-p>'   :
-\ ! Is_cursor__line_end() ? '<c-o>dw' :
+\ ! Is_cursor_col__line_end() ? '<c-o>dw' :
 \                           ''
 
 " del line
@@ -2475,14 +2464,14 @@ endfunc
 
 " char
 
-" char rpl " todo refactoring fnc name ch
+" cursor char rpl
 
 func! Cursor_char__rpl(rpl) abort
 
   call Normal('r' . a:rpl)
 endfunc
 
-func! Cursor_char__rpl_underscore()abort " alias
+func! Cursor_char__rpl_underscore() abort " alias
 
   " todo, case: line end
 
@@ -2491,7 +2480,7 @@ func! Cursor_char__rpl_underscore()abort " alias
   " call Cursor__mv_char_forward() " todo, fnc cre
 endfunc
 
-func! N_char__tgl() abort
+func! N_char__tgl_switch01() abort " todo fnc name mod
 
   let l:c = Cursor_c_char()
 
@@ -2520,7 +2509,7 @@ func! N_char__tgl() abort
   endif
 endfunc
 
-func! N_char__tgl_shift() abort
+func! N_char__tgl_switch02() abort
 
   let l:c = Cursor_c_char()
 
@@ -2544,23 +2533,23 @@ func! Cursor_char__tgl_type_shift(c) abort
   elseif a:c == '`'
     let l:rpl = "'"
 
-  elseif a:c == "{"
+  elseif a:c == "("
     let l:rpl = '['
   elseif a:c == "["
-    let l:rpl = '('
-  elseif a:c == "("
+    let l:rpl = '{'
+  elseif a:c == "{"
     let l:rpl = '<'
   elseif a:c == "<"
-    let l:rpl = '{'
+    let l:rpl = '('
 
-  elseif a:c == "}"
+  elseif a:c == ")"
     let l:rpl = ']'
   elseif a:c == "]"
-    let l:rpl = ')'
-  elseif a:c == ")"
+    let l:rpl = '}'
+  elseif a:c == "}"
     let l:rpl = '>'
   elseif a:c == ">"
-    let l:rpl = '}'
+    let l:rpl = ')'
   endif
 
   if ! Is_str__emp(l:rpl)
@@ -2926,7 +2915,7 @@ func! V_cursor__mv_line_end() range abort
 
   if     Is_slctd_mode__box()
 
-    if Is_cursor__line_end_ovr()
+    if Is_cursor_col__line_end_ovr()
       return
     endif
 
@@ -2958,7 +2947,7 @@ endfunc
 
 func! Cursor__mv_word_f() abort
 
-  if     Is_cursor__line_end() || Is_cursor__line_end_inr()
+  if     Is_cursor_col__line_end() || Is_cursor_col__line_end_inr()
 
     call Cursor__mv_char_f()
     return
@@ -2983,13 +2972,13 @@ func! Cursor__mv_word_b() abort
   
   let l:l_char = Cursor_l_char()
 
-  if     Is_cursor__line_top0()
+  if     Is_cursor_col__line_top0()
     call Cursor__mv_u_line_end()
     
   elseif Is_cursor_line_str_side_l__space()
     call Cursor__mv_line_top0()
     
-  elseif Is_cursor__line_top1()
+  elseif Is_cursor_col__line_top1()
     call Cursor__mv_line_top0()
     
   elseif Is_char__symbol(l:l_char)
@@ -3041,11 +3030,11 @@ endfunc
 
 func! Cursor__mv_line_top_or_new_line() abort
 
-  if     Is_cursor__line_top0()
+  if     Is_cursor_col__line_top0()
 
     call Ins_line_emp()
 
-  elseif Is_cursor__line_top1()
+  elseif Is_cursor_col__line_top1()
 
     call Cursor__mv_line_top0()
   else
@@ -3058,8 +3047,6 @@ func! Cursor__mv_slctd_edge_tgl() range abort
   call Slct_re()
   call Normal('o')
 endfunc
-
-"vnoremap T :call Cursor__mv_slctd_edge_l()<cr>
 
 func! Cursor__mv_slctd_edge_l() range abort
 
@@ -3088,8 +3075,6 @@ func! Cursor__mv_slctd_edge_r() range abort
   " let l:n_cmd = '`>'
   " call Normal(l:n_cmd)
 endfunc
-
-"vnoremap T :call Slctd_cursor_drct__mv_forward()<cr>
 
 func! Slctd_cursor_drct__mv_forward() range abort
 
@@ -3153,7 +3138,7 @@ func! Cursor__mv_jmp_char(drct, is_space_through) abort
 
   while ( !Is_cursor_line_num__file_edge() && l:cnt < l:cnt_max )
 
-    if ! ( Is_cursor_c_char__space() || Is_cursor__line_end() )
+    if ! ( Is_cursor_c_char__space() || Is_cursor_col__line_end() )
       break
     endif
 
@@ -3184,7 +3169,7 @@ func! Cursor__mv_jmp_space(drct) abort
 
   while ( !Is_cursor_line_num__file_edge() && l:cnt < l:cnt_max )
 
-    if Is_cursor_c_char__space() || Is_cursor__line_end()
+    if Is_cursor_c_char__space() || Is_cursor_col__line_end()
       break
     endif
 
@@ -3204,7 +3189,7 @@ func! Cursor__mv_jmp_v(drct) abort
 
   call Normal(l:n_cmd)
 
-  if Is_cursor_c_char__space() || Is_cursor__line_end()
+  if Is_cursor_c_char__space() || Is_cursor_col__line_end()
 
     call Cursor__mv_jmp_char(l:n_cmd, 't')
 
@@ -3299,7 +3284,7 @@ endfunc
 
 " cursor col cnd
 
-func! Is_cursor__line_end() abort " todo refactoring rename add col
+func! Is_cursor_col__line_end() abort
 
   if Cursor_col_num() == Cursor_line_end_col()
 
@@ -3309,16 +3294,16 @@ func! Is_cursor__line_end() abort " todo refactoring rename add col
   endif
 endfunc
 
-func! Is_cursor__line_end_ovr() range abort " todo refactoring rename add col
+func! Is_cursor_col__line_end_ovr() range abort
 
-  if Cursor_col_num() >= Cursor_line_end_col() " why ?
+  if Cursor_col_num() >= Cursor_line_end_col()
     return v:true
   else
     return v:false
   endif
 endfunc
 
-func! Is_cursor__line_end_inr() abort " todo refactoring, rename add col
+func! Is_cursor_col__line_end_inr() abort
 
   if Cursor_col_num() == Cursor_line_end_col() - 1
 
@@ -3328,19 +3313,17 @@ func! Is_cursor__line_end_inr() abort " todo refactoring, rename add col
   endif
 endfunc
 
-func! Is_cursor__line_top0() abort " todo refactoring rename add col
-  
-  "if col('.') == 1
-  if Cursor_col_num() == 1
+func! Is_cursor_col__line_top0() abort
 
+  if Cursor_col_num() == 1
     return v:true
   else
     return v:false
   endif
 endfunc
 
-func! Is_cursor__line_top1() abort " todo refactoring rename add col
-  
+func! Is_cursor_col__line_top1() abort
+
   let l:pos_c = Cursor_pos()
 
   let l:col_c = Cursor_col_num()
@@ -3357,7 +3340,6 @@ func! Is_cursor__line_top1() abort " todo refactoring rename add col
   endif
 endfunc
 
-" func! Is_slctd_cursor_drct__forward() range abort
 func! Is_slctd_cursor_pos__r() range abort
 
   let l:ret = v:false
@@ -4437,6 +4419,8 @@ func! Slctd__expnd_word_f() abort
   endif
 endfunc
 
+" slctd __ expnd quote
+
 let g:quote_ptn = '[' . "'" . '"' . ']'
 
 func! Slctd__expnd_quote_on_f() range abort
@@ -4468,10 +4452,6 @@ func! Slctd__expnd_quote_on_swtch() range abort
     call Slctd__expnd_quote_on_b()
   endif
 endfunc
-
-"nnoremap T vi"
-vnoremap T i'
-"vnoremap T a"
 
 func! Slctd__expnd_quote_on() range abort
 
@@ -4546,6 +4526,74 @@ func! Slctd__expnd_bracket_f() range abort " todo dev
 
   let l:len = l:s_col + Slctd_str_len() + l:srch_idx
   call Slct_by_col(l:s_col, l:len)
+endfunc
+
+" slctd __ expnd 2
+
+"vnoremap T :call Slctd__expnd2_quote_s_in()<cr>
+
+func! Slctd__expnd2_quote_s_in() range abort
+
+  call Slct_re()
+  call Normal("i'")
+endfunc
+
+"vnoremap T :call Slctd__expnd2_quote_s_on()<cr>
+
+func! Slctd__expnd2_quote_s_on() range abort
+
+  call Slct_re()
+  call Normal("a'")
+  call Normal('h')
+endfunc
+
+"vnoremap T :call Slctd__expnd2_quote_d_in()<cr>
+
+func! Slctd__expnd2_quote_d_in() range abort
+
+  call Slct_re()
+  call Normal('i"')
+endfunc
+
+"vnoremap T :call Slctd__expnd2_quote_d_on()<cr>
+
+func! Slctd__expnd2_quote_d_on() range abort
+
+  call Slct_re()
+  call Normal('a"')
+  call Normal('h')
+endfunc
+
+"vnoremap T :call Slctd__expnd2_bracket_1_in()<cr>
+
+func! Slctd__expnd2_bracket_1_in() range abort
+
+  call Slct_re()
+  call Normal('i)')
+endfunc
+
+"vnoremap T :call Slctd__expnd2_bracket_1_on()<cr>
+
+func! Slctd__expnd2_bracket_1_on() range abort
+
+  call Slct_re()
+  call Normal('a)')
+endfunc
+
+"vnoremap T :call Slctd__expnd2_bracket_2_in()<cr>
+
+func! Slctd__expnd2_bracket_2_in() range abort
+
+  call Slct_re()
+  call Normal('i]')
+endfunc
+
+vnoremap T :call Slctd__expnd2_bracket_2_on()<cr>
+
+func! Slctd__expnd2_bracket_2_on() range abort
+
+  call Slct_re()
+  call Normal('a]')
 endfunc
 
 func! Slctd_box__mv(lr) range abort
@@ -4704,13 +4752,17 @@ func! Slctd_edge__ins(c) range abort
   call Slctd_l__ins(l:c_l) " 2nd
 endfunc
 
-func! Slctd_edge__quote_tgl() range abort
+func! Slctd_edge_quote__tgl() range abort
+
+  call Slct_re()
 
   if a:firstline != a:lastline
     return
   endif
 
-  call Slct_re()
+  if Is_cursor_col__line_end()
+    return
+  endif
 
   " char chk
   let l:c_l = Slctd_edge_l_out_char()
@@ -4772,7 +4824,7 @@ func! Slctd_edge_out_r_cahr__del() range abort
   call Slct_re()
 endfunc
 
-" vvv todo refactoring, fnc name mod
+" todo refactoring, fnc name mod > ??
 
 " v line __ rpl
 
@@ -5029,7 +5081,7 @@ func! V_box_paste() range abort
 
   call Slct_re()
 
-  if Is_cursor__line_end()
+  if Is_cursor_col__line_end()
     call V_slctd__pad_space()
 
     call Slctd__del()
@@ -5730,7 +5782,7 @@ endfunc
 
 func! I_bracket() abort
 
-  let l:lst = [ '()', '``', '[]', '{}', '<>', '""', "''" ]
+  let l:lst = [ '()', '[]', '{}', '<>', '``', '""', "''" ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
