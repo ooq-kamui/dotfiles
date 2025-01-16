@@ -1240,8 +1240,10 @@ vnoremap <c-e> :call Slctd_box__mv('r')<cr>
 "vnoremap - <c-x>gv
 
 " num seq
-vnoremap * g<c-a>
-vnoremap = g<c-a>
+vnoremap + r0gvg<c-a>gv
+"          ^^^^^^^^^^^^> r0 gv g<c-a> gv
+"vnoremap * g<c-a>
+"vnoremap = g<c-a>
 
 " indnt shft
 vnoremap ri <gv
@@ -1369,7 +1371,7 @@ vnoremap r :call V_trns()<cr>
 " esc
 " 
 vnoremap @ <esc>
-"vnoremap * <esc>
+vnoremap * <esc>
 vnoremap / <esc>
 vnoremap \ <esc>
 "vnoremap ! <esc>
@@ -1384,9 +1386,9 @@ vnoremap ( <esc>
 "vnoremap ; <esc>
 vnoremap < <esc>
 vnoremap > <esc>
-"vnoremap = <esc>
+vnoremap = <esc>
 "vnoremap - <esc>
-vnoremap + <esc>
+"vnoremap + <esc>
 vnoremap , <esc>
 vnoremap . <esc>
 "vnoremap <bar> <esc>
@@ -1834,20 +1836,16 @@ endif
 
 " plugin  #end#
 
-" fzf setting
+" fzf var def ( in plugin ) bgn
 
-" use not ?
-" preview window
-" let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
-" let g:fzf_action = {
-" \  'ctrl-o': 'tab drop',
-" \  'ctrl-s': 'backward-char',
-" \ }
-
-"\  'ctrl-o': 'enter',
+let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
+let g:fzf_action = {
+\  'ctrl-o': 'tab drop',
+\  'ctrl-s': 'backward-char',
+\ }
 "\  'ctrl-i': 'item slct mtl',
+"\  'ctrl-o': 'enter',
 
-" use not ?
 let g:fzf_colors = {
 \   'hl'     : ['fg', 'Statement'  ],
 \   'hl+'    : ['fg', 'Statement'  ],
@@ -1868,8 +1866,11 @@ let g:fzf_colors = {
 "\   'pointer': ['Comment'],
 "\   'marker' : ['Comment'],
 
+" use ??
 "let g:fzf_buffers_jump = 1
 "fzf#vim#complete#buffer_line([spec])
+
+" fzf var def ( in plugin ) end
 
 " fzf cmd def
 

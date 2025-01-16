@@ -39,7 +39,11 @@ keyboard sticker
 ## vim
 
 slctd edge bth __ quote tgl () err
-- case: char 1
+- case: slctd str __ char 1
+
+
+Slctd_edge_out_cahr__del()
+- case slctd l col __ line top
 
 
 ## astro
