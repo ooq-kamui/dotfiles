@@ -28,6 +28,7 @@ augroup InsertHook
   au InsertEnter * hi LineNr ctermfg=lightgreen
 augroup END
 
+" hi Cursor                           ctermbg=gray
 hi CursorLineNr ctermfg=magenta
 
 hi Visual                           ctermbg=darkmagenta cterm=none
@@ -355,11 +356,8 @@ nnoremap rk        :call Cursor__mv_jmp_v('k')<cr>
 nnoremap rj        :call Cursor__mv_jmp_v('j')<cr>
 nnoremap r<space>k :call Cursor__mv_jmp_char('k', 'f')<cr>
 nnoremap r<space>j :call Cursor__mv_jmp_char('j', 'f')<cr>
-
-"nnoremap xx :call Cursor__mv_jmp_char('k', 't')<cr>
-"nnoremap xx :call Cursor__mv_jmp_char('j', 't')<cr>
-"nnoremap xx :call Cursor__mv_jmp_space('k')<cr>
-"nnoremap xx :call Cursor__mv_jmp_space('j')<cr>
+nnoremap Rk        :call Cursor__mv_jmp_char('k', 'f')<cr>
+nnoremap Rj        :call Cursor__mv_jmp_char('j', 'f')<cr>
 
 " scroll cursor line upper
 "nnoremap xx zt
@@ -942,6 +940,9 @@ nnoremap rp <esc>
 "        :
 nnoremap rz <esc>
 
+"nnoremap Rj <esc>
+"nnoremap Rk <esc>
+
 nnoremap xx <esc>
 
 nnoremap :a :a
@@ -1209,7 +1210,6 @@ vnoremap <c-u> :call Slctd_edge_quote__tgl()<cr>
 
 " slctd edge out char __ del
 vnoremap w :call Slctd_edge_out_cahr__del()<cr>
-"vnoremap W :call Slctd_edge_out_cahr__del()<cr>
 
 " slctd str mv back
 "vnoremap <c-s> :call Slctd_box_str__mv('l')<cr>
@@ -1220,7 +1220,7 @@ vnoremap w :call Slctd_edge_out_cahr__del()<cr>
 " slctd box space __ del
 vnoremap D :call V_box_space__del()<cr>
 
-" slctd box space __ _ ( under-score ) " todo dev
+" slctd box space __ under score " todo dev
 "vnoremap xx :call V_box_space__underscore()<cr>
 
 " slctd box mv back
@@ -1230,7 +1230,6 @@ vnoremap <c-w> :call Slctd_box__mv('l')<cr>
 vnoremap <c-e> :call Slctd_box__mv('r')<cr>
 
 " slctd box w __ 1
-"vnoremap xx :call Slctd_box_w__1()<cr>
 "vnoremap v :call Slctd_box_w__1()<cr>
 
 " num icl
@@ -1311,7 +1310,7 @@ vnoremap <c-p> :call Slctd__rpl_7_srch_nxt()<cr>
 " rpl ( cmd )
 "vnoremap :s 
 vnoremap <expr> :s
-\ mode() == '<c-v>' ? ':RplBox ' :
+\ mode() == '<c-v>' ? ':VBoxRpl ' :
 \                     ':s///g'
 "\                     ':sort'
 "\                     ':Rpl '
@@ -4796,6 +4795,8 @@ endfunc
 
 func! Slctd_edge_out_cahr__del() range abort
 
+  " todo case cursor __ line_top return
+
   call Slctd_edge_out_r_cahr__del()
   call Slctd_edge_out_l_cahr__del()
 endfunc
@@ -4864,28 +4865,33 @@ func! V_line__rpl_by_line1_line2() range abort
 endfunc
 
 " v char __ rpl
+" todo refactoring fnc name re
 
 func! V_char__rpl(srch, rpl) range abort
+
+  call V_box__rpl(a:srch, a:rpl)
+
+  " let l:srch = a:srch
+  " let l:rpl  = a:rpl
+  " 
+  " let l:cmd = g:v_rng . 's/' . '\%V' . l:srch . '/' . l:rpl . '/g'
+  " call Exe(l:cmd)
+endfunc
+
+" v box __ rpl
+" todo refactoring fnc name re
+
+command! -range=% -nargs=* VBoxRpl <line1>,<line2>call V_box__rpl(<f-args>)
+
+func! V_box__rpl(srch, rpl) range abort
 
   let l:srch = a:srch
   let l:rpl  = a:rpl
 
   let l:cmd = g:v_rng . 's/' . '\%V' . l:srch . '/' . l:rpl . '/g'
   call Exe(l:cmd)
-endfunc
 
-" v box __ rpl
-
-command! -range=% -nargs=* RplBox <line1>,<line2>call V_box__rpl(<f-args>)
-
-func! V_box__rpl(srch, rpl) range abort " alias
-
-  call V_char__rpl(a:srch, a:rpl)
-  " let l:srch = a:srch
-  " let l:rpl  = a:rpl
-  " 
-  " let l:cmd = g:v_rng . 's/' . '\%V' . l:srch . '/' . l:rpl . '/g'
-  " call Exe(l:cmd)
+  " call V_char__rpl(a:srch, a:rpl)
 endfunc
 
 " v box space __ del
@@ -4895,7 +4901,7 @@ func! V_box_space__del() range abort
   let l:srch = ' '
   let l:rpl  = ''
 
-  '<,'>:call V_box__rpl(srch, rpl)
+  '<,'>:call V_char__rpl(srch, rpl)
 endfunc
 
 " v box char __ shft
