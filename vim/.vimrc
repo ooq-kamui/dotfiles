@@ -28,7 +28,7 @@ augroup InsertHook
   au InsertEnter * hi LineNr ctermfg=lightgreen
 augroup END
 
-" hi Cursor                           ctermbg=gray
+" hi Cursor                           ctermbg=gray    guibg=gray
 hi CursorLineNr ctermfg=magenta
 
 hi Visual                           ctermbg=darkmagenta cterm=none
@@ -1538,7 +1538,7 @@ inoremap <expr> <c-o>
 "inoremap <c-n> <c-o>j
 
 " cursor mv u
-inoremap <c-p> <c-o>k
+"inoremap <c-p> <c-o>k
 
 " ins cr
 inoremap <c-m> <cr>
@@ -1570,6 +1570,7 @@ inoremap <c-y>     <c-r>=I_num()<cr>
 " ins symbol
 inoremap <c-n> <c-r>=I_symbol01()<cr>
 inoremap <c-f> <c-r>=I_symbol02()<cr>
+inoremap <c-p> <c-r>=I_symbol03()<cr>
 
 " ins markdown
 inoremap <c-u> <c-r>=I_markdown()<cr>
@@ -1609,9 +1610,9 @@ inoremap <c-w> <c-w>
 " del word forword
 "inoremap <c-k> xx
 inoremap <expr> <c-k>
-\ pumvisible()            ? '<c-p>'   :
+\ pumvisible()                ? '<c-p>'   :
 \ ! Is_cursor_col__line_end() ? '<c-o>dw' :
-\                           ''
+\                               ''
 
 " del line
 " non
@@ -5784,7 +5785,15 @@ endfunc
 
 func! I_symbol02() abort
 
-  let l:lst = [ '!', '+', '?', '^', '~', '-', '=', '&', '|', '\', '/' ]
+  " let l:lst = [ '!', '+', '?', '^', '~', '=', '-', '&', '|', '\', '/' ]
+  let l:lst = [ '!', '?', '^', '~', '&', '|', '\', '/' ]
+  call complete(col('.'), l:lst)
+  return ''
+endfunc
+
+func! I_symbol03() abort
+
+  let l:lst = [ '=', '+', '-' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
