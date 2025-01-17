@@ -2,9 +2,25 @@
 # cnf
 
 
+## pwsh
+
+posh-git
+- try, install
+
+
 ## ofc keyboard
 
-sticker p
+sticker p, ^
+
+
+## vim
+
+slctd edge bth __ quote tgl () err
+- case: slctd str __ char 1
+
+
+Slctd_edge_out_cahr__del()
+- case slctd l col __ line top
 
 
 ## holo song
@@ -22,28 +38,12 @@ repository
 - tidy
 
 
-## pwsh
-
-posh-git
-- try, install
-
-
 ## m4 mac
 
 setup
 - film paste
 
 keyboard sticker
-
-
-## vim
-
-slctd edge bth __ quote tgl () err
-- case: slctd str __ char 1
-
-
-Slctd_edge_out_cahr__del()
-- case slctd l col __ line top
 
 
 ## astro
