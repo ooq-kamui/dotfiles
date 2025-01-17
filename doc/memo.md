@@ -2,25 +2,17 @@
 # cnf
 
 
+## vim
+
+slctd edge bth __ quote tgl () err
+- case: is slctd str __ char 1
+  - slctd str len () cre
+
+
 ## pwsh
 
 posh-git
 - try, install
-
-
-## ofc keyboard
-
-sticker p, ^
-
-
-## vim
-
-slctd edge bth __ quote tgl () err
-- case: slctd str __ char 1
-
-
-Slctd_edge_out_cahr__del()
-- case slctd l col __ line top
 
 
 ## holo song
@@ -49,6 +41,13 @@ keyboard sticker
 ## astro
 
 try
+
+
+## ofc keyboard
+
+sticker
+- ^    x : 17 mm
+- tab  x : 13 mm ( normal )
 
 
 ## fe

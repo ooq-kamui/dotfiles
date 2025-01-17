@@ -468,14 +468,17 @@ nnoremap <expr> 1
 " ins comment mlt
 nnoremap $ :call Ins_cmnt_mlt()<cr>
 
+" ins equal
+nnoremap 2 i=<esc>
+
+" ins period
+nnoremap . i.<esc>
+
 " ins comma
 nnoremap , i, <esc>l
 
 " ins comma $, nxt line
 nnoremap < A,<esc>j
-
-" ins period
-nnoremap . i.<esc>
 
 " ins hyphen
 nnoremap 0 :call Ins_hyphen()<cr>
@@ -1209,7 +1212,7 @@ vnoremap K :call V_cursor_f_space__del()<cr>
 vnoremap <c-u> :call Slctd_edge_quote__tgl()<cr>
 
 " slctd edge out char __ del
-vnoremap w :call Slctd_edge_out_cahr__del()<cr>
+"vnoremap xx :call Slctd_edge_out_cahr__del()<cr>
 
 " slctd str mv back
 "vnoremap <c-s> :call Slctd_box_str__mv('l')<cr>
@@ -1412,7 +1415,7 @@ vnoremap q <esc>
 "vnoremap t <esc>
 "vnoremap u <esc>
 "vnoremap v <esc>
-"vnoremap w <esc>
+vnoremap w <esc>
 vnoremap x <esc>
 "vnoremap y <esc>
 
@@ -1645,6 +1648,7 @@ inoremap <kPageUp>   9
 
 "inoremap <tab> <nop>
 inoremap <s-tab> <nop>
+inoremap <c-space> <nop>
 
 inoremap <c-_> <nop>
 inoremap <c-^> <nop>
@@ -3342,6 +3346,25 @@ func! Is_cursor_col__line_top1() abort
   endif
 endfunc
 
+func! Is_slctd_edge_l_col__line_top() range abort
+
+  let l:ret = v:false
+
+  call Slct_re()
+
+  call Cursor__mv_slctd_edge_tgl()
+  let l:cursor_l_pos = Cursor_pos()
+  " echo l:cursor_l_pos
+
+  call Cursor__mv_slctd_edge_tgl()
+
+  if l:cursor_l_pos[2] == 1 " col
+    let l:ret = v:true
+  endif
+
+  return l:ret
+endfunc
+
 func! Is_slctd_cursor_pos__r() range abort
 
   let l:ret = v:false
@@ -4796,7 +4819,9 @@ endfunc
 
 func! Slctd_edge_out_cahr__del() range abort
 
-  " todo case cursor __ line_top return
+  if Is_slctd_edge_l_col__line_top()
+    return
+  endif
 
   call Slctd_edge_out_r_cahr__del()
   call Slctd_edge_out_l_cahr__del()
