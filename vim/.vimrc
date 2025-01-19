@@ -521,7 +521,6 @@ nnoremap V :call Ins_line__indnt_space()<cr>
 "nnoremap xx :call Char_markdown_chk__tgl()<cr>
 
 " del char
-"nnoremap s "zx
 nnoremap s :call Cursor_c_char__del()<cr>
 
 " del char ynk
@@ -1214,6 +1213,8 @@ vnoremap <c-u> :call Slctd_edge_quote__tgl()<cr>
 " slctd edge out char __ del
 "vnoremap xx :call Slctd_edge_out_cahr__del()<cr>
 
+vnoremap w :call Slctd_edge__ins('a')<cr>
+
 " slctd str mv back
 "vnoremap <c-s> :call Slctd_box_str__mv('l')<cr>
 
@@ -1301,7 +1302,8 @@ vnoremap <c-n> :call V_srch_7_slct('f')<cr>
 "vnoremap xx    :call V_srch_7_slct('b')<cr>
 
 " srch str set
-vnoremap n :call V_srch_str__or_srch()<cr>
+" vnoremap n :call V_srch_str__or_srch()<cr>
+vnoremap n :call V_srch_switch()<cr>
 "vnoremap e 
 vnoremap <expr> e
 \ mode() == '<c-v>' ? '<esc>' :
@@ -1415,7 +1417,7 @@ vnoremap q <esc>
 "vnoremap t <esc>
 "vnoremap u <esc>
 "vnoremap v <esc>
-vnoremap w <esc>
+"vnoremap w <esc>
 vnoremap x <esc>
 "vnoremap y <esc>
 
@@ -2367,6 +2369,8 @@ endfunc
 
 func! Cmdline__(str) abort
 
+  call Ynk__(a:str)
+
   call feedkeys(':call ' . a:str)
 endfunc
 
@@ -3243,7 +3247,8 @@ func! Cursor__mv_srch(drct) abort
 endfunc
 
 " func! V_cursor__mv_srch() abort
-func! V_srch_str__or_srch() abort " srch, set or run
+" func! V_srch_str__or_srch() abort " srch, set or run
+func! V_srch_switch() abort " srch, set or run
 
   if Is_slctd_str__line_mlt()
 
@@ -3370,7 +3375,7 @@ func! Is_slctd_cursor_pos__r() range abort
   let l:ret = v:false
 
   call Slct_re()
-  " call Slctd__esc()
+  " call Slctd__cancel()
 
   let l:cursor_pos1 = Cursor_pos()
   " echo l:cursor_pos1
@@ -3392,7 +3397,7 @@ func! Is_slctd_cursor_pos__r() range abort
     endif
   endif
 
-  " call Slctd__esc()
+  " call Slctd__cancel()
 
   " echo l:ret
   return l:ret
@@ -4005,7 +4010,7 @@ func! V_cursor_f_space__del() range abort
   call Slct_re()
   let l:col = Cursor_col_num()
   " echo l:col
-  call Slctd__esc()
+  call Slctd__cancel()
 
   " echo a:firstline . ' ' . a:lastline
   call Cursor__mv_by_line_col(a:firstline, l:col)
@@ -4226,11 +4231,19 @@ endfunc
 
 func! Slctd_str() range abort
 
-  call Normal('gv"zy')
+  " call Normal('gv"zy')
+
+  call Slct_re()
+  call Normal('"zy')
+
+  call Slct_re()
+
   return @z
 endfunc
 
-func! Slctd_str_len() abort
+func! Slctd_str_len() range abort
+
+  call Slct_re()
 
   let l:slctd_str = Slctd_str()
   let l:len       = Str_len(l:slctd_str)
@@ -4321,7 +4334,8 @@ endfunc
 
 " slctd __ 
 
-func! Slctd__esc() range abort " alias
+" func! Slctd__esc() range abort " alias
+func! Slctd__cancel() range abort " alias
 
   call Esc()
   " call Normal("\<esc>")
@@ -4721,60 +4735,50 @@ endfunc
 
 func! Slctd_l__ins(c) range abort
 
-  call Slct_re()
-
-  call Cursor__mv_slctd_edge_tgl()
-  call Normal('`<')
-
-  call Slctd__esc()
-  call Ins(a:c)
-
-  call Slct_re()
-  call Cursor__mv_char_f()
+  " call Slct_re()
+  " 
+  " call Cursor__mv_slctd_edge_tgl()
+  " call Normal('`<')
+  " 
+  " call Slctd__cancel()
+  " call Ins(a:c)
+  " 
+  " call Slct_re()
   " call Cursor__mv_char_f()
-  call Cursor__mv_slctd_edge_tgl()
+  " " call Cursor__mv_char_f()
+  " call Cursor__mv_slctd_edge_tgl()
 endfunc
 
 func! Slctd_r__ins(c) range abort
 
-  call Slct_re()
-
-  " call Normal('`>l')
-  call Normal('`>')
-  call Cursor__mv_char_f()
-
-  call Slctd__esc()
-  call Ins(a:c)
-
-  call Slct_re()
+  " call Slct_re()
+  " 
+  " " call Normal('`>l')
+  " call Normal('`>')
+  " call Cursor__mv_char_f()
+  " 
+  " call Slctd__cancel()
+  " call Ins(a:c)
+  " 
+  " call Slct_re()
 endfunc
 
 func! Slctd_edge__ins(c) range abort
 
   call Slct_re()
 
-  " if     a:c   == '('
-  "   let  l:c_l =  '('
-  "   let  l:c_r =  ')'
-  " elseif a:c   == '['
-  "   let  l:c_l =  '['
-  "   let  l:c_r =  ']'
-  " elseif a:c   == '{'
-  "   let  l:c_l =  '{'
-  "   let  l:c_r =  '}'
-  " elseif a:c   == '<'
-  "   let  l:c_l =  '<'
-  "   let  l:c_r =  '>'
-  " else
-  "   let  l:c_l = a:c
-  "   let  l:c_r = a:c
-  " endif
-
   let l:c_l = a:c
   let l:c_r = a:c
 
-  call Slctd_r__ins(l:c_r) " 1st
-  call Slctd_l__ins(l:c_l) " 2nd
+  call Normal('"zx')
+  call Ins(l:c_l . l:c_r)
+  call Normal('h')
+  call Normal('"zP')
+  call Normal('gv')
+  call Slctd_box__mv('r')
+
+  " call Slctd_r__ins(l:c_r) " 1st
+  " call Slctd_l__ins(l:c_l) " 2nd
 endfunc
 
 func! Slctd_edge_quote__tgl() range abort
@@ -4792,25 +4796,24 @@ func! Slctd_edge_quote__tgl() range abort
   " char chk
   let l:c_l = Slctd_edge_l_out_char()
   let l:c_r = Slctd_edge_r_out_char()
+  " echo l:c_l l:c_r
 
   if     l:c_l == "'" && l:c_l == l:c_r
 
     call Slctd_edge_out_cahr__del()
-
+    " return
     let l:c = '"'
     call Slctd_edge__ins(l:c)
 
   elseif l:c_l == '"' && l:c_l == l:c_r
 
     call Slctd_edge_out_cahr__del()
-
     let l:c = '`'
     call Slctd_edge__ins(l:c)
 
   elseif l:c_l == '`' && l:c_l == l:c_r
 
     call Slctd_edge_out_cahr__del()
-
   else
     let l:c = "'"
     call Slctd_edge__ins(l:c)
@@ -4819,38 +4822,23 @@ endfunc
 
 func! Slctd_edge_out_cahr__del() range abort
 
+  call Slct_re()
+
   if Is_slctd_edge_l_col__line_top()
     return
   endif
 
-  call Slctd_edge_out_r_cahr__del()
-  call Slctd_edge_out_l_cahr__del()
+  call Normal('"zx')
+  call Normal('xhx')
+  call Normal('"zP')
+  call Normal('gv')
+  call Slctd_box__mv('l')
 endfunc
 
 func! Slctd_edge_out_l_cahr__del() range abort
-
-  call Slct_re()
-  call Cursor__mv_char_b()
-  call Cursor__mv_slctd_edge_tgl()
-  call Cursor__mv_slctd_edge_l()
-  call Slctd__esc()
-
-  call Cursor__mv_char_b()
-  call Cursor_c_char__del()
-  call Slct_re()
-  call Cursor__mv_char_b()
-  call Cursor__mv_slctd_edge_tgl()
 endfunc
 
 func! Slctd_edge_out_r_cahr__del() range abort
-
-  call Slct_re()
-  call Cursor__mv_slctd_edge_r()
-  call Slctd__esc()
-
-  call Cursor__mv_char_f()
-  call Cursor_c_char__del()
-  call Slct_re()
 endfunc
 
 " todo refactoring, fnc name mod > ??
@@ -5042,6 +5030,11 @@ endfunc
 func! Ynk__clr() abort
 
   let @a = ''
+endfunc
+
+func! Ynk__(str) abort
+
+  let @a = a:str
 endfunc
 
 func! Ynk__line() abort
@@ -5281,17 +5274,16 @@ endfunc
 
 func! V_srch_str__slctd_str() range abort
 
-  " if Is_slctd_str__line_mlt()
-  "   return
-  " endif
-
   if Is_slctd_str__srch_str()
+    call Slctd__cancel()
     return
   endif
 
+  call Slct_re()
+
   let l:str = Slctd_str()
-  " echo l:str
   call Srch_str__(l:str, v:false)
+  call Slctd__cancel()
 endfunc
 
 func! Srch_slct(dir) abort

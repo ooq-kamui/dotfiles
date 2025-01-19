@@ -2,17 +2,14 @@
 # cnf
 
 
-## vim
+## ofc keyboard
 
-slctd edge bth __ quote tgl () err
-- case: is slctd str __ char 1
-  - slctd str len () cre
+sticker
+- paste: ^ tab
 
-
-## pwsh
-
-posh-git
-- try, install
+logi options+
+- install
+- setting
 
 
 ## holo song
@@ -30,24 +27,15 @@ repository
 - tidy
 
 
-## m4 mac
+## pwsh
 
-setup
-- film paste
-
-keyboard sticker
+posh-git
+- try, install
 
 
 ## astro
 
 try
-
-
-## ofc keyboard
-
-sticker
-- ^    x : 17 mm
-- tab  x : 13 mm ( normal )
 
 
 ## fe
