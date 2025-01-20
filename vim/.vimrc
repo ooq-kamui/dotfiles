@@ -679,7 +679,7 @@ nnoremap <leader>d :call Fzf_dir_jmp()<cr>
 
 " fzf doc memo
 nnoremap <leader>m :call Fzf_doc_memo_opn()<cr>
-"nnoremap <leader>g :call Fzf_doc_memo_opn()<cr>
+nnoremap <leader>g :call Fzf_doc_memo_opn()<cr>
 
 " fzf vim fnc call
 nnoremap <leader>c :call Fzf_vim_fnc_call()<cr>
@@ -979,7 +979,7 @@ nnoremap <leader>b <esc>
 "nnoremap <leader>d <esc>
 "nnoremap <leader>e <esc>
 "nnoremap <leader>f <esc>
-nnoremap <leader>g <esc>
+noremap <leader>g <esc>
 "nnoremap <leader>h <esc>
 "nnoremap <leader>j <esc>
 "nnoremap <leader>l <esc>

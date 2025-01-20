@@ -2,14 +2,10 @@
 # cnf
 
 
-## ofc keyboard
+## keyboard
 
-sticker
-- paste: ^ tab
-
-logi options+
-- install
-- setting
+palm rest
+- box rpl
 
 
 ## holo song
