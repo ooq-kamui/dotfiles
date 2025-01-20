@@ -1563,10 +1563,14 @@ inoremap <c-g>     <c-p>
 "\                '<c-n>'
 
 " ins bracket
+inoremap <c-u> <c-r>=I_bracket()<cr>
+
+" ins quote
 "inoremap <c-j> xx
 inoremap <expr> <c-j>
 \ pumvisible() ? '<c-n>'                 :
-\                '<c-r>=I_bracket()<cr>'
+\                '<c-r>=I_quote()<cr>'
+" \                '<c-r>=I_bracket_and_quote()<cr>'
 
 " ins num
 inoremap <c-y>     <c-r>=I_num()<cr>
@@ -1578,7 +1582,7 @@ inoremap <c-f> <c-r>=I_symbol02()<cr>
 inoremap <c-p> <c-r>=I_symbol03()<cr>
 
 " ins markdown
-inoremap <c-u> <c-r>=I_markdown()<cr>
+"inoremap <c-u> <c-r>=I_markdown()<cr>
 
 " ins todo status
 "inoremap <leader>f <c-r>=I_todo_status()<cr>
@@ -1648,9 +1652,15 @@ inoremap <kPageUp>   9
 " nop
 " 
 
+inoremap <leader>   <esc>
+inoremap <esc>      <esc>
+"inoremap <esc><esc> <esc>
+
 "inoremap <tab> <nop>
 inoremap <s-tab> <nop>
-inoremap <c-space> <nop>
+inoremap <c-tab> <nop>
+"inoremap <c-space> <nop>
+inoremap <c-space> <tab>
 
 inoremap <c-_> <nop>
 inoremap <c-^> <nop>
@@ -1666,6 +1676,7 @@ inoremap <c-a> <nop>
 inoremap <c-b> <nop>
 "inoremap <c-f> <nop>
 "inoremap <c-g> <nop>
+"inoremap <c-i> <nop>
 "inoremap <c-k> <nop>
 "inoremap <c-n> <nop>
 "inoremap <c-o> <nop>
@@ -1676,10 +1687,6 @@ inoremap <c-r> <nop>
 "inoremap <c-t> <nop>
 "inoremap <c-u> <nop>
 "inoremap <c-y> <nop>
-
-inoremap <leader>   <esc>
-inoremap <esc>      <esc>
-"inoremap <esc><esc> <esc>
 
 " 
 " mode cmd
@@ -5815,9 +5822,23 @@ func! I_symbol03() abort
   return ''
 endfunc
 
+func! I_bracket_and_quote() abort
+
+  let l:lst = [ '()', '{}', '[]', '<>', '``', '""', "''" ]
+  call complete(col('.'), l:lst)
+  return ''
+endfunc
+
 func! I_bracket() abort
 
-  let l:lst = [ '()', '[]', '{}', '<>', '``', '""', "''" ]
+  let l:lst = [ '()', '{}', '[]', '<>' ]
+  call complete(col('.'), l:lst)
+  return ''
+endfunc
+
+func! I_quote() abort
+
+  let l:lst = [ "''", '""', '``' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc

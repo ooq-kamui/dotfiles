@@ -102,6 +102,8 @@ function pth {
 }
 
 Set-Alias ll "Get-ChildItem"
+function oo_ll  { Get-ChildItem ..    }
+function ooo_ll { Get-ChildItem ..\.. }
 
 function l  {
   param( $path )
@@ -188,9 +190,6 @@ function vi  {
   nvim -p ( echo $args )
 }
 
-Set-Alias gi "git" -force # alias xxx is read-only or
-Set-Alias ji "git" -force # alias xxx is read-only or
-
 function opn {
   param( $path )
 
@@ -208,6 +207,18 @@ function dt { Get-Date -Format "yyyy-MM-dd.HH:mm" }
 function tm { Get-Date -Format "HH:mm"            }
 function ts { Get-Date -Format "yyyy-MM-dd.HH:mm:ss" }
 Set-Alias t "ts"
+
+# git
+Set-Alias ji "git" -force # alias xxx is read-only or
+
+# posh-git
+Import-Module posh-git
+
+# $global:GitPromptSettings.BeforeText = '['
+# $global:GitPromptSettings.AfterText  = '] '
+
+# . (Resolve-Path "$env:LOCALAPPDATA\GitHub\shell.ps1")
+# . $env:github_posh_git\profile.example.ps1
 
 # jq
 $ENV:Path += ";$home\wrk\app\bin\pwsh"
