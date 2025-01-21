@@ -3,7 +3,13 @@ chcp 65001
 
 function prompt {
   # "PS " + $( get-location ) + "> "
-  "_ "
+  $brnch = ( Write-VcsStatus )
+
+  if ($brnch){
+    $brnch.Trim() + " "
+  }else {
+    "_ "
+  }
 }
 
 # bell sound
@@ -213,12 +219,6 @@ Set-Alias ji "git" -force # alias xxx is read-only or
 
 # posh-git
 Import-Module posh-git
-
-# $global:GitPromptSettings.BeforeText = '['
-# $global:GitPromptSettings.AfterText  = '] '
-
-# . (Resolve-Path "$env:LOCALAPPDATA\GitHub\shell.ps1")
-# . $env:github_posh_git\profile.example.ps1
 
 # jq
 $ENV:Path += ";$home\wrk\app\bin\pwsh"
