@@ -29,12 +29,6 @@ repository
 - tidy
 
 
-## pwsh
-
-posh-git
-- try, install
-
-
 ## astro
 
 try
