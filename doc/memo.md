@@ -4,8 +4,14 @@
 
 ## keyboard
 
-palm rest
-- box rpl
+sticker
+```
+<win win> pg^ pg^ pgv
+0 )
+win ]} ;+ <x [{
+f2
+esc ^
+```
 
 
 ## holo song

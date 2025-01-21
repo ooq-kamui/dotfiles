@@ -1082,7 +1082,7 @@ vnoremap N :call Slctd__expnd_srch()<cr>
 vnoremap f :call Slctd__expnd_word_f()<cr>
 
 " slctd expnd quote
-vnoremap <c-i> :call Slctd__expnd_quote_tgl()<cr>
+vnoremap <c-i> :call Slctd__expnd_quote_switch()<cr>
 
 " slctd expnd quote on
 "vnoremap xx :call Slctd__expnd_quote_on_swtch()<cr>
@@ -1338,8 +1338,8 @@ vnoremap <leader>i :call V_fzf_buf()<cr>
 " fzf rg
 vnoremap <leader>o "zy:call Fzf_rg('<c-r>z')<cr>
 
-" fzf  -  word1  " todo dev
-"vnoremap <leader>O "zy:RgWord1 <c-r>z<cr>
+" fzf rg word1
+vnoremap <leader>O "zy:call Fzf_rg_word1('<c-r>z')<cr>
 
 " tag jmp
 "vnoremap t :call V_tag_jmp()<cr>
@@ -1582,7 +1582,7 @@ inoremap <c-f> <c-r>=I_symbol02()<cr>
 inoremap <c-p> <c-r>=I_symbol03()<cr>
 
 " ins markdown
-"inoremap <c-u> <c-r>=I_markdown()<cr>
+"inoremap <c-u> <c-r>=I_markdown_lnk()<cr>
 
 " ins todo status
 "inoremap <leader>f <c-r>=I_todo_status()<cr>
@@ -4467,7 +4467,7 @@ endfunc
 
 " slctd __ expnd quote
 
-let g:quote_ptn = '[' . "'" . '"' . ']'
+let g:quote_ptn = '[' . "'" . '"' . '`' . ']'
 
 func! Slctd__expnd_quote_on_f() range abort
 
@@ -4538,12 +4538,12 @@ func! Slctd__expnd_quote_in_swtch() range abort
   endif
 endfunc
 
-func! Slctd__expnd_quote_tgl() range abort
+func! Slctd__expnd_quote_switch() range abort
 
   call Slct_re()
 
   if Is_slctd_edge_char__quote()
-    call Esc()
+    " call Esc()
     return
   endif
 
@@ -5822,16 +5822,9 @@ func! I_symbol03() abort
   return ''
 endfunc
 
-func! I_bracket_and_quote() abort
-
-  let l:lst = [ '()', '{}', '[]', '<>', '``', '""', "''" ]
-  call complete(col('.'), l:lst)
-  return ''
-endfunc
-
 func! I_bracket() abort
 
-  let l:lst = [ '()', '{}', '[]', '<>' ]
+  let l:lst = [ '()', '{}', '[]', '<>', '[]()' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
@@ -5843,7 +5836,14 @@ func! I_quote() abort
   return ''
 endfunc
 
-func! I_markdown() abort
+func! I_bracket_and_quote() abort
+
+  let l:lst = [ '()', '{}', '[]', '<>', '``', '""', "''" ]
+  call complete(col('.'), l:lst)
+  return ''
+endfunc
+
+func! I_markdown_lnk() abort
 
   let l:lst = [ '[]()', '[][]', '![]()' ]
   call complete(col('.'), l:lst)
