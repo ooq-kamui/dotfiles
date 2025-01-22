@@ -2,15 +2,24 @@
 # cnf
 
 
+## keyboard keychron
+
+poch paste
+
+
+setting at win
+
+
 ## fish
 
 ji ssl fzf
 - bind c-g
 
 
-## keyboard keychron
+## vim
 
-poch paste
+`~~xxx~~`
+- Slctd_line__markdown_strikethrough()
 
 
 ## holo song
@@ -40,12 +49,6 @@ js cre
 - logic tidy
   - rslt row
   - fltr
-
-
-## vim
-
-`~~xxx~~`
-- Slctd_line__markdown_strikethrough()
 
 
 ## skr-vps
