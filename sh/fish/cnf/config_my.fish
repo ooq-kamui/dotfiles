@@ -33,7 +33,6 @@ set -x RIPGREP_CONFIG_PATH ~/wrk/cnf/sh/rg/.ripgreprc
 
 set -x FZF_DEFAULT_COMMAND ( fzf_fd_def )
 set -x FZF_DEFAULT_OPTS    '--ansi --bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
-#set -x FZF_CTRL_T_COMMAND  ( echo $FZF_DEFAULT_COMMAND )
 set -x FZF_CTRL_T_COMMAND  $FZF_DEFAULT_COMMAND
 #set -x FZF_CTRL_T_OPTS
 #set -x FZF_CTRL_R_OPTS
@@ -67,7 +66,7 @@ alias his_del 'history delete'
 alias clr 'clear; pwd'
 alias c   'clr'
 
-#alias clp 'pbcopy|clp_by_tmp'
+#alias clp 'pbcopy'
 
 alias cd_parent 'cd ../; pwd'
 alias k         'cd_parent'
@@ -119,8 +118,11 @@ alias vi  'nvim -p'
 
 alias line 'cat_line'
 
-#alias gi 'git'
-alias ji 'git'
+alias ji     'git'
+alias ji_ssl 'git ssl'
+
+alias f       'cmdline__fzf'
+#alias fzf_ins 'cmdline__fzf'
 
 set -x LC_TIME en_US
 alias da      "date_ymd"

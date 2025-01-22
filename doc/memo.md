@@ -2,16 +2,15 @@
 # cnf
 
 
-## keyboard
+## fish
 
-sticker
-```
-<win win> pg^ pg^ pgv
-0 )
-win ]} ;+ <x [{
-f2
-esc ^
-```
+ji ssl fzf
+- bind c-g
+
+
+## keyboard keychron
+
+poch paste
 
 
 ## holo song
@@ -41,6 +40,12 @@ js cre
 - logic tidy
   - rslt row
   - fltr
+
+
+## vim
+
+`~~xxx~~`
+- Slctd_line__markdown_strikethrough()
 
 
 ## skr-vps

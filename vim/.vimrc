@@ -1563,13 +1563,18 @@ inoremap <c-g>     <c-p>
 "\                '<c-n>'
 
 " ins bracket
-inoremap <c-u> <c-r>=I_bracket()<cr>
+"inoremap <c-u> <c-r>=I_quote()<cr>
+inoremap <expr> <c-u>
+\ pumvisible() ? '<c-n>'               :
+\                '<c-r>=I_quote()<cr>'
+"inoremap <c-u> <c-r>=I_bracket()<cr>
 
 " ins quote
 "inoremap <c-j> xx
 inoremap <expr> <c-j>
 \ pumvisible() ? '<c-n>'                 :
-\                '<c-r>=I_quote()<cr>'
+\                '<c-r>=I_bracket()<cr>'
+" \                '<c-r>=I_quote()<cr>'
 " \                '<c-r>=I_bracket_and_quote()<cr>'
 
 " ins num
@@ -4740,36 +4745,6 @@ endfunc
 
 " slctd ins
 
-func! Slctd_l__ins(c) range abort
-
-  " call Slct_re()
-  " 
-  " call Cursor__mv_slctd_edge_tgl()
-  " call Normal('`<')
-  " 
-  " call Slctd__cancel()
-  " call Ins(a:c)
-  " 
-  " call Slct_re()
-  " call Cursor__mv_char_f()
-  " " call Cursor__mv_char_f()
-  " call Cursor__mv_slctd_edge_tgl()
-endfunc
-
-func! Slctd_r__ins(c) range abort
-
-  " call Slct_re()
-  " 
-  " " call Normal('`>l')
-  " call Normal('`>')
-  " call Cursor__mv_char_f()
-  " 
-  " call Slctd__cancel()
-  " call Ins(a:c)
-  " 
-  " call Slct_re()
-endfunc
-
 func! Slctd_edge__ins(c) range abort
 
   call Slct_re()
@@ -4783,9 +4758,6 @@ func! Slctd_edge__ins(c) range abort
   call Normal('"zP')
   call Normal('gv')
   call Slctd_box__mv('r')
-
-  " call Slctd_r__ins(l:c_r) " 1st
-  " call Slctd_l__ins(l:c_l) " 2nd
 endfunc
 
 func! Slctd_edge_quote__tgl() range abort
@@ -4842,13 +4814,7 @@ func! Slctd_edge_out_cahr__del() range abort
   call Slctd_box__mv('l')
 endfunc
 
-func! Slctd_edge_out_l_cahr__del() range abort
-endfunc
-
-func! Slctd_edge_out_r_cahr__del() range abort
-endfunc
-
-" todo refactoring, fnc name mod > ??
+" todo refactoring, fnc name mod, v > slctd
 
 " v line __ rpl
 
@@ -4871,9 +4837,7 @@ func! V_line_srch_str__rpl_cr() range abort
   call Exe(l:cmd)
 endfunc
 
-" v line __ rpl by line1 line2
-
-func! V_line__rpl_by_line1_line2() range abort
+func! Slctd_line__rpl_by_line1_line2() range abort
 
   let l:srch = getline(1)
   let l:rpl  = getline(2)
@@ -4885,18 +4849,16 @@ func! V_line__rpl_by_line1_line2() range abort
   call Exe(l:cmd)
 endfunc
 
+func! Slctd_line__markdown_strikethrough() range abort " todo dev
+
+endfunc
+
 " v char __ rpl
 " todo refactoring fnc name re
 
 func! V_char__rpl(srch, rpl) range abort
 
   call V_box__rpl(a:srch, a:rpl)
-
-  " let l:srch = a:srch
-  " let l:rpl  = a:rpl
-  " 
-  " let l:cmd = g:v_rng . 's/' . '\%V' . l:srch . '/' . l:rpl . '/g'
-  " call Exe(l:cmd)
 endfunc
 
 " v box __ rpl
@@ -4911,8 +4873,6 @@ func! V_box__rpl(srch, rpl) range abort
 
   let l:cmd = g:v_rng . 's/' . '\%V' . l:srch . '/' . l:rpl . '/g'
   call Exe(l:cmd)
-
-  " call V_char__rpl(a:srch, a:rpl)
 endfunc
 
 " v box space __ del
