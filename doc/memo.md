@@ -2,24 +2,31 @@
 # cnf
 
 
+## fish
+
+cmdline __ fzf git sml
+- sml
+  - ssl
+  - swl
+- bind c-?
+
+
+## vim
+
+line num relation
+- research
+
+
+`~~xxx~~`
+- Slctd_line__markdown_strikethrough()
+
+
 ## keyboard keychron
 
 poch paste
 
 
 setting at win
-
-
-## fish
-
-ji ssl fzf
-- bind c-g
-
-
-## vim
-
-`~~xxx~~`
-- Slctd_line__markdown_strikethrough()
 
 
 ## holo song

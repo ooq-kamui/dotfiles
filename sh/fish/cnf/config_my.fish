@@ -204,6 +204,8 @@ bind \cx cmdline_his_del
 bind \cy fzf-file-widget
 bind \cr fzf-history-widget
 
+bind \cg cmdline__fzf_git_ssl
+
 # erase
 bind -e \cu
 #bind -e \cr
