@@ -79,6 +79,7 @@ set incsearch
 set hlsearch
 set ignorecase smartcase
 set number
+"set relativenumber
 set list
 set cursorline
 set splitbelow

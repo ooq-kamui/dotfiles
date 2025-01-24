@@ -2,23 +2,15 @@
 # cnf
 
 
-## fish
-
-cmdline __ fzf git sml
-- sml
-  - ssl
-  - swl
-- bind c-?
-
-
 ## vim
-
-line num relation
-- research
-
 
 `~~xxx~~`
 - Slctd_line__markdown_strikethrough()
+
+
+## win ofc
+
+icon search
 
 
 ## keyboard keychron

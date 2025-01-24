@@ -189,7 +189,6 @@ bind \c_ 'clear; commandline -f repaint'
 bind \cc cmdline_clp
 
 bind \cb cmdline_bracket
-#bind \cu cmdline_bracket
 
 #bind \c? cmdline_quote
 
@@ -203,11 +202,12 @@ bind \cx cmdline_his_del
 
 bind \cy fzf-file-widget
 bind \cr fzf-history-widget
+bind \cu fzf-history-widget
 
 bind \cg cmdline__fzf_git_ssl
 
 # erase
-bind -e \cu
+#bind -e \cu
 #bind -e \cr
 #bind -e \ct
 #bind -e \cx
