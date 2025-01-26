@@ -2,23 +2,36 @@
 # cnf
 
 
+## win keyboard
+
+keychron setting
+- key sticker del
+- power toys setting del
+- setting at web
+  - youtube watch re
+  - setting
+
+
 ## vim
 
 `~~xxx~~`
 - Slctd_line__markdown_strikethrough()
+  - slctd __ line
+    - slctd __ line markdown
+      - normal
+      - kajogaki
 
 
-## win ofc
+## p-touch
 
-icon search
-
-
-## keyboard keychron
-
-poch paste
+read note
 
 
-setting at win
+## mac m4 setting
+
+doc write
+- page cre
+fish install
 
 
 ## holo song
