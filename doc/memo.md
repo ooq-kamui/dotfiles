@@ -2,6 +2,13 @@
 # cnf
 
 
+## mac m4 setting
+
+git confirm
+
+fish install
+
+
 ## win keyboard
 
 keychron setting
@@ -25,13 +32,6 @@ keychron setting
 ## p-touch
 
 read note
-
-
-## mac m4 setting
-
-doc write
-- page cre
-fish install
 
 
 ## holo song
