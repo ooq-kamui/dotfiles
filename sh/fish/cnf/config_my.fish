@@ -113,8 +113,10 @@ alias rn  'rename'
 
 alias trash 'trash -F'
 
-alias vim 'nvim -p'
-alias vi  'nvim -p'
+alias vim 'nvim -c / -p'
+#alias vi  'nvim -c / -p'
+alias vi  'vim'
+# alias vi  'ls'
 
 alias line 'cat_line'
 

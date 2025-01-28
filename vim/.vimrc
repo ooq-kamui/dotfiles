@@ -33,8 +33,10 @@ hi CursorLineNr ctermfg=magenta
 
 hi Visual                           ctermbg=darkmagenta cterm=none
 hi VisualNOS                        ctermbg=darkmagenta cterm=none
-hi IncSearch   ctermfg=lightyellow  ctermbg=34          cterm=none
+
 hi Search      ctermfg=lightyellow  ctermbg=36          cterm=none
+hi CurSearch   ctermfg=lightyellow  ctermbg=36          cterm=none
+hi IncSearch   ctermfg=lightyellow  ctermbg=34          cterm=none
 " bracket
 hi MatchParen  ctermfg=lightmagenta ctermbg=none
 
@@ -1115,7 +1117,7 @@ vnoremap <expr> p
 \                     ':call V_paste()<cr>'
 
 " paste clipboard
-vnoremap P :call V_paste__clipboard()<cr>
+"vnoremap xx :call V_paste__clipboard()<cr>
 
 " paste visual box
 "vnoremap xx I<c-r>0<esc>
@@ -1436,11 +1438,11 @@ vnoremap I <esc>
 "vnoremap M <esc>
 "vnoremap N <esc>
 "vnoremap O <esc>
-"vnoremap P <esc>
+vnoremap P <esc>
 vnoremap Q <esc>
 vnoremap R <esc>
 "vnoremap S <esc>
-"vnoremap T <esc>
+vnoremap T <esc>
 "vnoremap U <esc>
 vnoremap V <esc>
 vnoremap W <esc>
@@ -4582,15 +4584,11 @@ endfunc
 
 " slctd __ expnd 2
 
-"vnoremap T :call Slctd__expnd2_quote_s_in()<cr>
-
 func! Slctd__expnd2_quote_s_in() range abort
 
   call Slct_re()
   call Normal("i'")
 endfunc
-
-"vnoremap T :call Slctd__expnd2_quote_s_on()<cr>
 
 func! Slctd__expnd2_quote_s_on() range abort
 
@@ -4599,15 +4597,11 @@ func! Slctd__expnd2_quote_s_on() range abort
   call Normal('h')
 endfunc
 
-"vnoremap T :call Slctd__expnd2_quote_d_in()<cr>
-
 func! Slctd__expnd2_quote_d_in() range abort
 
   call Slct_re()
   call Normal('i"')
 endfunc
-
-"vnoremap T :call Slctd__expnd2_quote_d_on()<cr>
 
 func! Slctd__expnd2_quote_d_on() range abort
 
@@ -4616,15 +4610,11 @@ func! Slctd__expnd2_quote_d_on() range abort
   call Normal('h')
 endfunc
 
-"vnoremap T :call Slctd__expnd2_bracket_1_in()<cr>
-
 func! Slctd__expnd2_bracket_1_in() range abort
 
   call Slct_re()
   call Normal('i)')
 endfunc
-
-"vnoremap T :call Slctd__expnd2_bracket_1_on()<cr>
 
 func! Slctd__expnd2_bracket_1_on() range abort
 
@@ -4632,15 +4622,11 @@ func! Slctd__expnd2_bracket_1_on() range abort
   call Normal('a)')
 endfunc
 
-"vnoremap T :call Slctd__expnd2_bracket_2_in()<cr>
-
 func! Slctd__expnd2_bracket_2_in() range abort
 
   call Slct_re()
   call Normal('i]')
 endfunc
-
-vnoremap T :call Slctd__expnd2_bracket_2_on()<cr>
 
 func! Slctd__expnd2_bracket_2_on() range abort
 
@@ -4744,7 +4730,14 @@ func! V_slctd__pad_bar() range abort
   call V_slctd__pad('|')
 endfunc
 
-" slctd ins
+" slctd __ ( rpl )
+
+func! Slctd__(str) range abort " todo dev
+
+  
+endfunc
+
+" slctd __ ins
 
 func! Slctd_edge__ins(c) range abort
 
@@ -4852,6 +4845,7 @@ endfunc
 
 func! Slctd_line__markdown_strikethrough() range abort " todo dev
 
+  
 endfunc
 
 " v char __ rpl
@@ -5763,14 +5757,13 @@ endfunc
 
 func! I_symbol01() abort
 
-  let l:lst = [ '$', ';', '@', '%', '#' ]
+  let l:lst = [ '$', '#', ';', '%', '@' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
 
 func! I_symbol02() abort
 
-  " let l:lst = [ '!', '+', '?', '^', '~', '=', '-', '&', '|', '\', '/' ]
   let l:lst = [ '!', '?', '^', '~', '&', '|', '\', '/' ]
   call complete(col('.'), l:lst)
   return ''

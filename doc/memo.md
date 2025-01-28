@@ -2,6 +2,16 @@
 # cnf
 
 
+## vim
+
+`~~xxx~~`
+- Slctd_line__markdown_strikethrough()
+  - slctd __ line
+    - slctd __ line markdown
+      - normal
+      - kajogaki
+
+
 ## mac m4 setting
 
 git confirm
@@ -17,16 +27,6 @@ keychron setting
 - setting at web
   - youtube watch re
   - setting
-
-
-## vim
-
-`~~xxx~~`
-- Slctd_line__markdown_strikethrough()
-  - slctd __ line
-    - slctd __ line markdown
-      - normal
-      - kajogaki
 
 
 ## p-touch
