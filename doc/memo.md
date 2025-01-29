@@ -12,9 +12,14 @@
       - kajogaki
 
 
+vnoremap p, refactoring
+
+
 ## mac m4 setting
 
 git confirm
+
+brew install
 
 fish install
 

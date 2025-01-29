@@ -123,8 +123,8 @@ alias line 'cat_line'
 alias ji     'git'
 alias ji_ssl 'git ssl'
 
-alias f       'cmdline__fzf'
 #alias fzf_ins 'cmdline__fzf'
+#alias f       'cmdline__fzf'
 
 set -x LC_TIME en_US
 alias da      "date_ymd"
@@ -162,7 +162,7 @@ alias ba 'battery'
 
 alias amp 'amplify'
 
-alias rf 'ruff'
+#alias rf 'ruff'
 
 # alias cmd path
 
@@ -207,6 +207,7 @@ bind \cr fzf-history-widget
 bind \cu fzf-history-widget
 
 bind \cg cmdline__fzf_git_ssl
+bind \cq cmdline__fzf_git_ssl
 
 # erase
 #bind -e \cu
