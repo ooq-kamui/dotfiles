@@ -15,13 +15,15 @@
 vnoremap p, refactoring
 
 
-## mac m4 setting
+## mac m4
 
-git confirm
+terminal
+- continue
 
-brew install
+app
+- keycastr
 
-fish install
+launch tidy
 
 
 ## win keyboard
