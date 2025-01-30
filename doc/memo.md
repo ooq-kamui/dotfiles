@@ -19,12 +19,10 @@ vnoremap p, refactoring
 ## mac m4
 
 terminal
-- continue
+- wrk
 
 app
 - keycastr
-
-launch tidy
 
 
 ## win keyboard
