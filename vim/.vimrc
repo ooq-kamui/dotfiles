@@ -327,7 +327,7 @@ nnoremap F :call Cursor__mv_word_dlm_f()<cr>
 nnoremap <c-l> %
 
 " cursor mv bracket out back
-"nnoremap <c-w> [{
+"nnoremap xx [{
 
 " cursor mv bracket fnc back
 "nnoremap xx [m
@@ -683,7 +683,7 @@ nnoremap <leader>d :call Fzf_dir_jmp()<cr>
 
 " fzf doc memo
 nnoremap <leader>m :call Fzf_doc_memo_opn()<cr>
-nnoremap <leader>g :call Fzf_doc_memo_opn()<cr>
+"nnoremap <leader>g :call Fzf_doc_memo_opn()<cr>
 
 " fzf vim fnc call
 nnoremap <leader>c :call Fzf_vim_fnc_call()<cr>
@@ -983,7 +983,7 @@ nnoremap <leader>b <esc>
 "nnoremap <leader>d <esc>
 "nnoremap <leader>e <esc>
 "nnoremap <leader>f <esc>
-noremap <leader>g <esc>
+nnoremap <leader>g <esc>
 "nnoremap <leader>h <esc>
 "nnoremap <leader>j <esc>
 "nnoremap <leader>l <esc>
@@ -1111,11 +1111,13 @@ vnoremap c :call V_ynk()<cr>
 "vnoremap xx "+y
 
 " paste
+" todo refactoring
 "vnoremap p xx
 vnoremap <expr> p
 \ mode() == '<c-v>' ? ':call V_box_paste()<cr>' :
-\ mode() == 'v'     ? '"zd"aP'                  :
+\ mode() == 'v'     ? ':call V_paste()<cr>'     :
 \                     ':call V_paste()<cr>'
+" \ mode() == 'v'     ? '"zd"aP'                  :
 
 " paste clipboard
 "vnoremap xx :call V_paste__clipboard()<cr>
@@ -5055,12 +5057,17 @@ func! Paste() abort
   call Normal('"aP')
 endfunc
 
+" todo refactoring, v paste > slctd __ ynk
+
 func! V_paste() abort
 
   call Slct_re()
   call Normal('"zd')
   call Paste()
 endfunc
+
+" todo refactoring, v box paste > v box 7 paste
+" todo refactoring, v paste > slctd box __ ynk
 
 func! V_box_paste() range abort
 
