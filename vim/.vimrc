@@ -1255,12 +1255,15 @@ vnoremap + r0gvg<c-a>gv
 "vnoremap = g<c-a>
 
 " indnt shft
+" slctd indnt __ shft l, r  -  todo dev,
+"vnoremap ri :call Slctd_indnt__shft_l()<cr>
+"vnoremap ro :call Slctd_indnt__shft_r()<cr>
 vnoremap ri <gv
 vnoremap ro >gv
-vnoremap " <gv
-vnoremap # >gv
-vnoremap 2 <gv
-vnoremap 3 >gv
+"vnoremap " <gv
+"vnoremap # >gv
+"vnoremap 2 <gv
+"vnoremap 3 >gv
 
 " indnt crct
 vnoremap ; =gv
@@ -1385,8 +1388,8 @@ vnoremap * <esc>
 vnoremap / <esc>
 vnoremap \ <esc>
 "vnoremap ! <esc>
-"vnoremap " <esc>
-"vnoremap # <esc>
+vnoremap " <esc>
+vnoremap # <esc>
 vnoremap $ <esc>
 "vnoremap % <esc> " ?
 "vnoremap & <esc>
@@ -3272,8 +3275,6 @@ func! V_srch_switch() abort " srch, set or run
 
     call Slctd__expnd_srch()
 
-    " call Slct_re()
-    " call Cursor__mv_srch("f")
   else
     call V_srch_str__slctd_str()
   endif
@@ -3393,7 +3394,6 @@ func! Is_slctd_cursor_pos__r() range abort
   let l:ret = v:false
 
   call Slct_re()
-  " call Slctd__cancel()
 
   let l:cursor_pos1 = Cursor_pos()
   " echo l:cursor_pos1
@@ -3414,8 +3414,6 @@ func! Is_slctd_cursor_pos__r() range abort
       let l:ret = v:true
     endif
   endif
-
-  " call Slctd__cancel()
 
   " echo l:ret
   return l:ret
@@ -4587,55 +4585,55 @@ endfunc
 
 " slctd __ expnd 2
 
-func! Slctd__expnd2_quote_s_in() range abort
-
-  call Slct_re()
-  call Normal("i'")
-endfunc
-
-func! Slctd__expnd2_quote_s_on() range abort
-
-  call Slct_re()
-  call Normal("a'")
-  call Normal('h')
-endfunc
-
-func! Slctd__expnd2_quote_d_in() range abort
-
-  call Slct_re()
-  call Normal('i"')
-endfunc
-
-func! Slctd__expnd2_quote_d_on() range abort
-
-  call Slct_re()
-  call Normal('a"')
-  call Normal('h')
-endfunc
-
-func! Slctd__expnd2_bracket_1_in() range abort
-
-  call Slct_re()
-  call Normal('i)')
-endfunc
-
-func! Slctd__expnd2_bracket_1_on() range abort
-
-  call Slct_re()
-  call Normal('a)')
-endfunc
-
-func! Slctd__expnd2_bracket_2_in() range abort
-
-  call Slct_re()
-  call Normal('i]')
-endfunc
-
-func! Slctd__expnd2_bracket_2_on() range abort
-
-  call Slct_re()
-  call Normal('a]')
-endfunc
+" func! Slctd__expnd2_quote_s_in() range abort
+" 
+"   call Slct_re()
+"   call Normal("i'")
+" endfunc
+" 
+" func! Slctd__expnd2_quote_s_on() range abort
+" 
+"   call Slct_re()
+"   call Normal("a'")
+"   call Normal('h')
+" endfunc
+" 
+" func! Slctd__expnd2_quote_d_in() range abort
+" 
+"   call Slct_re()
+"   call Normal('i"')
+" endfunc
+" 
+" func! Slctd__expnd2_quote_d_on() range abort
+" 
+"   call Slct_re()
+"   call Normal('a"')
+"   call Normal('h')
+" endfunc
+" 
+" func! Slctd__expnd2_bracket_1_in() range abort
+" 
+"   call Slct_re()
+"   call Normal('i)')
+" endfunc
+" 
+" func! Slctd__expnd2_bracket_1_on() range abort
+" 
+"   call Slct_re()
+"   call Normal('a)')
+" endfunc
+" 
+" func! Slctd__expnd2_bracket_2_in() range abort
+" 
+"   call Slct_re()
+"   call Normal('i]')
+" endfunc
+" 
+" func! Slctd__expnd2_bracket_2_on() range abort
+" 
+"   call Slct_re()
+"   call Normal('a]')
+" endfunc
 
 func! Slctd_box__mv(lr) range abort
 
@@ -4899,6 +4897,16 @@ func! Slctd__rpl_7_srch_nxt() abort " dir forward only
   
   call Slct_re()
   call Normal('"zd"aPlgn')
+endfunc
+
+" slctd indnt __ shft
+
+func! Slctd_indnt__shft_l() abort
+
+endfunc
+
+func! Slctd_indnt__shft_r() abort
+
 endfunc
 
 " slctd cnd
