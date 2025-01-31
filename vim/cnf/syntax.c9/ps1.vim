@@ -9,5 +9,3 @@ hi ps1Constant      ctermfg=lightmagenta
 hi ps1Variable      ctermfg=lightgreen
 hi ps1ScopeModifier ctermfg=grey
 
-
-

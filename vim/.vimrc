@@ -1243,13 +1243,13 @@ vnoremap <c-e> :call Slctd_box__mv('r')<cr>
 "vnoremap v :call Slctd_box_w__1()<cr>
 
 " num icl
-"vnoremap + <c-a>gv
+vnoremap + <c-a>gv
 
 " num dcl
 "vnoremap - <c-x>gv
 
 " num seq
-vnoremap + r0gvg<c-a>gv
+vnoremap * r0gvg<c-a>gv
 "          ^^^^^^^^^^^^> r0 gv g<c-a> gv
 "vnoremap * g<c-a>
 "vnoremap = g<c-a>
@@ -1384,7 +1384,7 @@ vnoremap r :call V_trns()<cr>
 " esc
 " 
 vnoremap @ <esc>
-vnoremap * <esc>
+"vnoremap * <esc>
 vnoremap / <esc>
 vnoremap \ <esc>
 "vnoremap ! <esc>
@@ -5780,7 +5780,7 @@ endfunc
 
 func! I_symbol02() abort
 
-  let l:lst = [ '!', '?', '^', '~', '&', '|', '\', '/' ]
+  let l:lst = [ '!', '?', '~', '^', '&', '|', '\', '/' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc

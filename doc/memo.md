@@ -37,7 +37,12 @@ keychron setting
 
 ## p-touch
 
-read note
+read doc
+
+
+## asmr
+
+dl at iphone
 
 
 ## holo song
