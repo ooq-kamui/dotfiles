@@ -32,4 +32,6 @@ pager = less -x2
   psh = push
   pll = pull
   cnf = config
+[log]
+  date = iso-local
 
