@@ -2,6 +2,11 @@
 # cnf
 
 
+## asmr
+
+dl at iphone
+
+
 ## vim
 
 `~~xxx~~`
@@ -14,15 +19,6 @@
 
 vnoremap p, refactoring
 - v box, refactoring
-
-
-## mac m4
-
-terminal
-- wrk
-
-app
-- keycastr
 
 
 ## win keyboard
@@ -38,11 +34,7 @@ keychron setting
 ## p-touch
 
 read doc
-
-
-## asmr
-
-dl at iphone
+try
 
 
 ## holo song
