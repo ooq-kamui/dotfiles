@@ -1807,6 +1807,7 @@ func! Vim_plug_path() abort
 
   if     Is_env__('mac')
     let l:vim_plug_dir = '~/.vim'
+    let l:vim_plug_dir = '~/.local/share/nvim/site'
 
   elseif Is_env__('win64')
     let l:vim_plug_dir = '~/appdata/local/nvim-data/site'
@@ -1822,8 +1823,10 @@ func! Vim_plug_path() abort
     elseif isdirectory(l:vim_plug_dir_s9)
       let l:vim_plug_dir = l:vim_plug_dir_s9
     endif
+
   elseif Is_env__('win32unix')
     let l:vim_plug_dir = '~/.vim'
+
   else
     let l:vim_plug_dir = '~/.vim'
   endif
@@ -1852,9 +1855,6 @@ if Is_vim_plug__installed()
   Plug 'mattn/vim-molder'
   "Plug 'mattn/vim-molder-operations'
   "Plug 'jacquesbh/vim-showmarks'
-  "Plug 'tyru/open-browser.vim'
-  "Plug 'iamcco/markdown-preview.vim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-  "Plug 'ctrlpvim/ctrlp.vim'
   call plug#end()
 endif
 " do :PlugInstall
