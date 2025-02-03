@@ -2124,7 +2124,8 @@ endfunc
 
 func! Fzf_dir_jmp() abort
 
-  let l:sys_cmd = 'dir_jmp_lst'
+  let l:sys_cmd = 'dir_jmp_lst_with_z'
+  " let l:sys_cmd = 'dir_jmp_lst_with_zoxide'
   let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
 
   let l:fnc_name = 'Dir__'

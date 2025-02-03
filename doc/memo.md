@@ -2,12 +2,11 @@
 # cnf
 
 
-## asmr
-
-dl at iphone
-
-
 ## vim
+
+vnoremap p, refactoring
+- v box, refactoring
+
 
 `~~xxx~~`
 - Slctd_line__markdown_strikethrough()
@@ -15,10 +14,6 @@ dl at iphone
     - slctd __ line markdown
       - normal
       - kajogaki
-
-
-vnoremap p, refactoring
-- v box, refactoring
 
 
 ## win keyboard

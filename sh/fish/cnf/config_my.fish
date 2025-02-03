@@ -37,9 +37,8 @@ set -x FZF_CTRL_T_COMMAND  $FZF_DEFAULT_COMMAND
 #set -x FZF_CTRL_T_OPTS
 #set -x FZF_CTRL_R_OPTS
 
-# z ( bash )
-#test -f ~/wrk/app/z/z.sh && . ~/wrk/app/z/z.sh
-# at mac : ^ install not, ref doc-tech
+# zoxide ( z )
+zoxide init fish | source
 
 # 
 # alias
@@ -73,7 +72,8 @@ alias k         'cd_parent'
 alias kk        'k;k'
 alias kkk       'k;k;k'
 
-alias d 'dir_jmp'
+#alias d 'dir_jmp_with_z'
+alias d 'dir_jmp_with_zoxide'
 
 alias lr_oo  'lr_d2'
 alias lr_ooo 'lr_d3'

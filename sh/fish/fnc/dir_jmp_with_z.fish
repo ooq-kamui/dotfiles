@@ -1,4 +1,4 @@
-function dir_jmp
+function dir_jmp_with_z
 
   if test -z "$argv"
 
@@ -6,7 +6,7 @@ function dir_jmp
     #echo $z_history_file_path
 
     # set dir ( cat $z_history_file_path | sed 's/|.*//g' | fzf )
-    set dir ( dir_jmp_lst | fzf )
+    set dir ( dir_jmp_lst_with_z | fzf )
 
     #if test -n "$dir"
     if test -z "$dir"
