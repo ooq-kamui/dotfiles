@@ -4,6 +4,15 @@
 
 ## vim
 
+m1
+- neovim launch confirm
+- filepath confirm
+
+
+m4
+- hl slctd fg
+
+
 vnoremap p, refactoring
 - v box, refactoring
 
