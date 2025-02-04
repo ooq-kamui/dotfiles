@@ -1,6 +1,8 @@
 
 hi ps1Comment       ctermfg=green
 
+hi ps1Type          ctermfg=lightmagenta
+
 hi ps1String        ctermfg=lightgreen
 hi ps1Number        ctermfg=lightgreen
 hi ps1Constant      ctermfg=lightmagenta
@@ -16,5 +18,6 @@ hi ps1Boolean       ctermfg=lightmagenta
 
 "hi ps1Variable      ctermfg=darkyellow
 hi ps1Variable      ctermfg=lightgreen
-hi ps1ScopeModifier ctermfg=grey
+hi ps1ScopeModifier ctermfg=lightyellow
+hi ps1BuiltIn       ctermfg=lightyellow
 

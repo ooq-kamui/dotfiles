@@ -2,12 +2,22 @@
 # cnf
 
 
+## battery
+
+iphone > watch
+
+mobile search
+
+
+## wall-paper
+
+kirby shape
+
+
 ## vim
 
 m1
 - neovim launch confirm
-- filepath confirm
-
 
 m4
 - hl slctd fg

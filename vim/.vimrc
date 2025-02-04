@@ -316,9 +316,13 @@ nnoremap o :call Cursor__mv_word_b()<cr>
 
 " cursor mv word dlm _ forward
 nnoremap _ f_l
+"nnoremap \ f_l
 
 " cursor mv word dlm _ back
 nnoremap <c-_> hT_
+nnoremap \     T_h
+nnoremap <bar> T_h
+"nnoremap <c-\> T_h
 
 " cursor mv word dlm ( camel or _ )  -  forward
 nnoremap F :call Cursor__mv_word_dlm_f()<cr>
@@ -382,7 +386,7 @@ nnoremap <c-w> <c-w>w
 " 
 
 " slct
-nnoremap I v
+"nnoremap I v
 
 " slctd __ word
 nnoremap i :call Slctd__word()<cr>
@@ -394,8 +398,8 @@ nnoremap i :call Slctd__word()<cr>
 " nnoremap <c-_> f_l
 " hT_
 
-" slct char current - word end
-"nnoremap xx ve
+" slctd __ char current - word end
+nnoremap I ve
 
 " slct visual box
 nnoremap v <c-v>
@@ -795,9 +799,9 @@ nnoremap @ <esc>
 nnoremap ~ <esc>
 nnoremap ^ <esc>
 "nnoremap / <esc>
-nnoremap \ <esc>
+"nnoremap \ <esc>
 "nnoremap | <esc> " ref vvv
-nnoremap <bar> <esc>
+"nnoremap <bar> <esc>
 nnoremap ? <esc>
 
 "nnoremap ! <esc>
@@ -868,13 +872,14 @@ nnoremap <c-space> <esc>
 
 nnoremap <c-@> <esc>
 "nnoremap <c-^> <esc>
-"nnoremap <c--> <esc> " non ?
+"nnoremap <c--> <esc> " non
 "nnoremap <c-*> <esc> " non ?
 "nnoremap <c-:> <esc> " non
 "nnoremap <c-;> <esc> " non
 "nnoremap <c-,> <esc> " non ?
 "nnoremap <c-.> <esc> " non ?
 "nnoremap <c-/> <esc> " non ?
+nnoremap <c-\> <esc>
 "nnoremap <c-_> <esc>
 "nnoremap <c-[> <esc>
 nnoremap <c-]> <esc>
@@ -1041,10 +1046,13 @@ vnoremap <c-o> h
 vnoremap <c-y> :call V_cursor__mv_line_end()<cr>
 
 " cursor mv slctd reduce dlm _ l
-vnoremap _     of_lo
+vnoremap _ of_lo
+"vnoremap \ of_lo
 
 " cursor mv slctd reduce dlm _ r
 vnoremap <c-_> F_h
+vnoremap \     F_h
+"vnoremap <c-\> F_h
 
 " cursor mv space - forward ( word pre )
 "vnoremap xx wh
@@ -1386,7 +1394,9 @@ vnoremap r :call V_trns()<cr>
 vnoremap @ <esc>
 "vnoremap * <esc>
 vnoremap / <esc>
-vnoremap \ <esc>
+"vnoremap \ <esc>
+"vnoremap | <esc> " ref vvv
+"vnoremap <bar> <esc>
 "vnoremap ! <esc>
 vnoremap " <esc>
 vnoremap # <esc>
@@ -1404,7 +1414,6 @@ vnoremap = <esc>
 "vnoremap + <esc>
 vnoremap , <esc>
 vnoremap . <esc>
-"vnoremap <bar> <esc>
 
 "vnoremap a <esc>
 "vnoremap b <esc>
@@ -1456,6 +1465,7 @@ vnoremap X <esc>
 "vnoremap Y <esc>
 
 "vnoremap <c-_> <esc>
+vnoremap <c-\> <esc>
 
 vnoremap <c-a> <esc>
 "vnoremap <c-b> <esc>
@@ -1806,8 +1816,19 @@ endfunc
 func! Vim_plug_path() abort
 
   if     Is_env__('mac')
-    let l:vim_plug_dir = '~/.vim'
-    let l:vim_plug_dir = '~/.local/share/nvim/site'
+
+    let l:vim_plug_dir_mac_nvim = '~/.local/share/nvim/site'
+    let l:vim_plug_dir_mac_vim  = '~/.vim'
+
+    if     isdirectory(l:vim_plug_dir_mac_nvim)
+      let l:vim_plug_dir = l:vim_plug_dir_mac_nvim
+
+    elseif isdirectory(l:vim_plug_dir_mac_vim)
+      let l:vim_plug_dir = l:vim_plug_dir_mac_vim
+
+    else
+      let l:vim_plug_dir = l:vim_plug_dir_mac_vim
+    endif
 
   elseif Is_env__('win64')
     let l:vim_plug_dir = '~/appdata/local/nvim-data/site'
@@ -5795,7 +5816,7 @@ endfunc
 
 func! I_bracket() abort
 
-  let l:lst = [ '()', '{}', '[]', '<>', '[]()' ]
+  let l:lst = [ '()', '{}', '[]', '<>', '[]()', '[][]' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
