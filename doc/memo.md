@@ -4,9 +4,8 @@
 
 ## battery
 
-iphone > watch
-
-mobile search
+mobile
+- research
 
 
 ## wall-paper
@@ -33,6 +32,11 @@ vnoremap p, refactoring
     - slctd __ line markdown
       - normal
       - kajogaki
+
+`xxx,`
+- Slctd_line_end__ins_comma()
+- Slctd_line_top__ins_comma()
+  - ref Line_end__ins_dots()
 
 
 ## win keyboard

@@ -13,6 +13,10 @@ function dir_jmp_with_zoxide
 
   else
     z $argv
+
+    if test "$status" -eq "1"
+      return
+    end
   end
 
   pth

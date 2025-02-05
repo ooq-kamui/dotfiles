@@ -1,5 +1,6 @@
 
 hi ps1Comment       ctermfg=green
+hi ps1CommentTodo   ctermfg=lightmagenta
 
 hi ps1Type          ctermfg=lightmagenta
 

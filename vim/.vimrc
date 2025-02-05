@@ -292,7 +292,7 @@ nnoremap <c-a> 0
 "nnoremap <c-y> xx
 nnoremap <expr> <c-y>
 \ Is_cursor_col__line_end() ? ':call Ins_markdown_cr()<cr>'     :
-\                         ':call Cursor__mv_line_end()<cr>'
+\                             ':call Cursor__mv_line_end()<cr>'
 "\ Is_cursor_col__line_end() ? ':call Ins_space()<cr>'     :
 "\                         ':call Cursor__mv_line_end()<cr>'
 
@@ -485,7 +485,7 @@ nnoremap . i.<esc>
 nnoremap , i, <esc>l
 
 " ins comma $, nxt line
-nnoremap < A,<esc>j
+"nnoremap < A,<esc>j
 
 " ins hyphen
 nnoremap 0 :call Ins_hyphen()<cr>
@@ -812,8 +812,10 @@ nnoremap # <esc>
 "nnoremap % <esc> " ?
 nnoremap & <esc>
 nnoremap ( <esc>
-"nnoremap < <esc>
+nnoremap < <esc>
 nnoremap > <esc>
+"nnoremap << <esc>
+"nnoremap >> <esc>
 
 "nnoremap 0 <esc>
 "nnoremap a <esc>
@@ -1684,6 +1686,7 @@ inoremap <esc>      <esc>
 inoremap <s-tab> <nop>
 inoremap <c-tab> <nop>
 "inoremap <c-space> <nop>
+"inoremap <c-space> <tab> " ?? todo research
 inoremap <c-space> <tab>
 
 inoremap <c-_> <nop>
@@ -3945,20 +3948,20 @@ endfunc
 let g:dots_str = ' .. '
 let g:dots_put_col = 50
 
-func! Line_end__dots_adjst() abort " todo dev doing, mv_str
+func! Line_end__dots_adjst() abort " todo dev doing, mb_str
 
   let l:line_str = Cursor_line_str()
   let l:idx = Str_srch(l:line_str, escape(g:dots_str, '.'))
 
   if l:idx >= 0
-    call Line_end__dots_crct()
+    call Line_end_dots__crct()
   else
-    call Line_end__add_dots()
+    call Line_end__ins_dots()
   endif
 endfunc
 
-func! Line_end__dots_crct() abort
-  "echo 'Line_end__dots_crct()'
+func! Line_end_dots__crct() abort
+  "echo 'Line_end_dots__crct()'
 
   let l:line_str = Cursor_line_str()
   let l:idx = Str_srch(l:line_str, escape(g:dots_str, '.'))
@@ -3985,7 +3988,7 @@ func! Line_end__dots_crct() abort
   call setline(l:line_num, l:line_str)
 endfunc
 
-func! Line_end__add_dots() abort " todo refactoring
+func! Line_end__ins_dots() abort " todo refactoring ?
 
   let l:line_num = Cursor_line_num()
 
@@ -5795,7 +5798,7 @@ endfunc
 
 func! I_symbol01() abort
 
-  let l:lst = [ '$', '#', ';', '%', '@' ]
+  let l:lst = [ '$', '@', '#', ';', '%' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
