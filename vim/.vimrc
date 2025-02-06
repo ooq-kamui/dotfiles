@@ -1826,8 +1826,8 @@ func! Vim_plug_path() abort
 
   if     Is_env__('mac')
 
-    let l:vim_plug_dir_mac_nvim = '~/.local/share/nvim/site'
-    let l:vim_plug_dir_mac_vim  = '~/.vim'
+    let l:vim_plug_dir_mac_nvim = '/Users/kamui/.local/share/nvim/site'
+    let l:vim_plug_dir_mac_vim  = '/Users/kamui/.vim'
 
     if     isdirectory(l:vim_plug_dir_mac_nvim)
       let l:vim_plug_dir = l:vim_plug_dir_mac_nvim

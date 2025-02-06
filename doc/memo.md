@@ -2,14 +2,10 @@
 # cnf
 
 
-## watch
-
-watch band magic
-- clean
-  - by tape
-
-
 ## vim
+
+is_directory path $home
+
 
 m4
 - hl slctd fg
@@ -31,15 +27,12 @@ vnoremap p, refactoring
 - Slctd_line_top__ins_comma()
   - ref Line_end__ins_dots()
 
-inoremap <c-space> ?
-- research
 
+## watch
 
-## wall-paper
-
-kirby
-- obj mv up
-  - chk win pri
+watch band magic
+- clean
+  - by tape
 
 
 ## win keyboard
@@ -97,6 +90,5 @@ setting at skr console
 
 learn
 - read book
-
 
 
