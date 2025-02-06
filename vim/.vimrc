@@ -1526,19 +1526,21 @@ vnoremap <leader>u <esc>
 " quit, esc
 "inoremap <esc> xx
 inoremap <expr> <esc>
-\ pumvisible()           ? '<c-e>'  :
+\ pumvisible()               ? '<c-e>'  :
 \ Is_cursor_col__line_top0() ? '<esc>'  :
-\                          '<esc>l'
+\                              '<esc>l'
 
 " inoremap <c-c> <esc>
 inoremap <expr> <c-c>
-\ pumvisible()           ? '<c-e>'  :
+\ pumvisible()               ? '<c-e>'  :
 \ Is_cursor_col__line_top0() ? '<esc>'  :
-\                          '<esc>l'
+\                              '<esc>l'
 
-" cursor mv line in
+" cursor mv in line top
 "inoremap <c-a> <c-o>^
 "inoremap <c-a> <c-o>0
+
+" cursor mv in line end
 inoremap <c-e> <c-o>$
 
 " cursor mv char forward
@@ -1576,8 +1578,9 @@ inoremap <tab> <c-v><tab>
 "inoremap xx <space><space>
 
 " ins cmp default
-inoremap <c-g>     <c-p>
-"inoremap <leader>i <c-p>
+inoremap <leader>f <c-p>
+inoremap <c-a>     <c-p>
+inoremap <c-q>     <c-p>
 
 "inoremap <expr> <c-y>
 "\ pumvisible() ? '<c-e>' :
@@ -1699,21 +1702,24 @@ inoremap <c--> <nop>
 "inoremap <c-:> <nop> " non
 "inoremap <c-;> <nop> " non
 
-inoremap <c-a> <nop>
+"inoremap <c-a> <nop>
 inoremap <c-b> <nop>
 "inoremap <c-f> <nop>
-"inoremap <c-g> <nop>
+inoremap <c-g> <nop>
 "inoremap <c-i> <nop>
 "inoremap <c-k> <nop>
 "inoremap <c-n> <nop>
 "inoremap <c-o> <nop>
 "inoremap <c-p> <nop>
-inoremap <c-q> <nop>
+"inoremap <c-q> <nop>
 inoremap <c-r> <nop>
 "inoremap <c-s> <nop>
 "inoremap <c-t> <nop>
 "inoremap <c-u> <nop>
 "inoremap <c-y> <nop>
+
+"inoremap <leader>f <nop>
+inoremap <leader>i <nop>
 
 " 
 " mode cmd

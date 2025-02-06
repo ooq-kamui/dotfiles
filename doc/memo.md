@@ -2,21 +2,14 @@
 # cnf
 
 
-## battery
+## watch
 
-mobile
-- research
-
-
-## wall-paper
-
-kirby shape
+watch band magic
+- clean
+  - by tape
 
 
 ## vim
-
-m1
-- neovim launch confirm
 
 m4
 - hl slctd fg
@@ -37,6 +30,16 @@ vnoremap p, refactoring
 - Slctd_line_end__ins_comma()
 - Slctd_line_top__ins_comma()
   - ref Line_end__ins_dots()
+
+inoremap <c-space> ?
+- research
+
+
+## wall-paper
+
+kirby
+- obj mv up
+  - chk win pri
 
 
 ## win keyboard
