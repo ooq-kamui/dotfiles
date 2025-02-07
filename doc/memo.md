@@ -4,6 +4,11 @@
 
 ## vim
 
+fzf c-s
+- confirm
+  - at mac
+
+
 is_directory path $home
 
 
