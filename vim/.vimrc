@@ -218,8 +218,7 @@ nnoremap :o :Opn
 nnoremap <leader>l :FzfFile <cr>
 
 " opn file srch memo  ( fzf )
-nnoremap <leader>L :FzfFile ../memo/
-"nnoremap <leader>xx :FzfRunFd <cr>
+"nnoremap <leader>L :FzfFile ../memo/
 
 " opn file hstry ( fzf )
 nnoremap <leader>h :FzfFileHstry<cr>
@@ -428,7 +427,7 @@ nnoremap gs :call Ynk__slf_path()<cr>
 nnoremap p :call Paste()<cr>
 
 " paste clipboard
-nnoremap P :call Paste__clipboard()<cr>
+nnoremap P :call Paste_by_clipboard()<cr>
 
 " paste rgstr history ( fzf )
 nnoremap <leader>r :FzfRgstr<cr>
@@ -1005,6 +1004,7 @@ nnoremap <leader>v <esc>
 nnoremap <leader>w <esc>
 nnoremap <leader>y <esc>
 
+"nnoremap <leader>L <esc>
 "nnoremap <leader>O <esc>
 
 " 
@@ -1130,7 +1130,7 @@ vnoremap <expr> p
 " \ mode() == 'v'     ? '"zd"aP'                  :
 
 " paste clipboard
-"vnoremap xx :call V_paste__clipboard()<cr>
+"vnoremap xx :call V_paste_by_clipboard()<cr>
 
 " paste visual box
 "vnoremap xx I<c-r>0<esc>
@@ -1579,7 +1579,7 @@ inoremap <tab> <c-v><tab>
 
 " ins cmp default
 inoremap <leader>f <c-p>
-inoremap <c-a>     <c-p>
+inoremap <c-r>     <c-p>
 inoremap <c-q>     <c-p>
 
 "inoremap <expr> <c-y>
@@ -1614,7 +1614,7 @@ inoremap <c-p> <c-r>=I_symbol03()<cr>
 "inoremap <c-u> <c-r>=I_markdown_lnk()<cr>
 
 " ins todo status
-"inoremap <leader>f <c-r>=I_todo_status()<cr>
+"inoremap xx <c-r>=I_todo_status()<cr>
 
 " ins week
 "inoremap xx <c-r>=I_week()<cr>
@@ -1702,7 +1702,7 @@ inoremap <c--> <nop>
 "inoremap <c-:> <nop> " non
 "inoremap <c-;> <nop> " non
 
-"inoremap <c-a> <nop>
+inoremap <c-a> <nop>
 inoremap <c-b> <nop>
 "inoremap <c-f> <nop>
 inoremap <c-g> <nop>
@@ -1712,7 +1712,7 @@ inoremap <c-g> <nop>
 "inoremap <c-o> <nop>
 "inoremap <c-p> <nop>
 "inoremap <c-q> <nop>
-inoremap <c-r> <nop>
+"inoremap <c-r> <nop>
 "inoremap <c-s> <nop>
 "inoremap <c-t> <nop>
 "inoremap <c-u> <nop>
@@ -1826,8 +1826,8 @@ func! Vim_plug_path() abort
 
   if     Is_env__('mac')
 
-    let l:vim_plug_dir_mac_nvim = '/Users/kamui/.local/share/nvim/site'
-    let l:vim_plug_dir_mac_vim  = '/Users/kamui/.vim'
+    let l:vim_plug_dir_mac_nvim = $HOME . '/.local/share/nvim/site'
+    let l:vim_plug_dir_mac_vim  = $HOME . '/.vim'
 
     if     isdirectory(l:vim_plug_dir_mac_nvim)
       let l:vim_plug_dir = l:vim_plug_dir_mac_nvim
@@ -1898,10 +1898,11 @@ endif
 let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
 let g:fzf_action = {
 \  'ctrl-o': 'tab drop',
-\  'ctrl-s': 'backward-char',
 \ }
-"\  'ctrl-i': 'item slct mtl',
+
 "\  'ctrl-o': 'enter',
+"\  'ctrl-i': 'item slct mtl',
+"\  'ctrl-s': 'backward-char',
 
 let g:fzf_colors = {
 \   'hl'     : ['fg', 'Statement'  ],
@@ -2934,7 +2935,7 @@ endfunc
 
 func! Cursor__mv_by_line_info(line_info) abort
   
-  let l:line_num = Line_info_line_num(a:line_info)
+  let l:line_num = Line_num_by_Line_info(a:line_info)
   call Cursor__mv_by_line_num(l:line_num)
 endfunc
 
@@ -3747,7 +3748,7 @@ func! Is_cursor_line_str__ptn(ptn) abort " todo dev
   return l:ret
 endfunc
 
-" ins
+" ins " todo refactoring, ins > cursor__ins
 
 func! Ins(str) abort
 
@@ -3852,6 +3853,19 @@ func! Ins_sys_cmd(sys_cmd) abort " read
   if l:is_line_num_eq_1
     call Line__del_by_line_num(1)
   endif
+endfunc
+
+" ins __ ynk ( paste )
+
+func! Paste() abort
+
+  call Normal('"aP')
+endfunc
+
+func! Paste_by_clipboard() abort
+
+  call Ynk__clipboard()
+  call Paste()
 endfunc
 
 " 
@@ -4020,7 +4034,7 @@ func! V_line__rpl_sys_cmd(sys_cmd) range abort " read
   call Exe(l:cmd)
 endfunc
 
-" tbl
+" slctd line __ tbl
 
 command! -range=% -nargs=0 Tbl <line1>,<line2>call V_tbl()
 
@@ -4096,7 +4110,7 @@ func! Cursor_f_space__crct() abort " dev doing
   call Normal('"zP')
 endfunc
 
-" line ins
+" line ins > cursor __ ins line
 
 func! Ins_line(str) abort
   
@@ -4156,9 +4170,9 @@ endfunc
 
 " line cnd
 
-" line info
+" line num
 
-func! Line_info_line_num(line_info) abort
+func! Line_num_by_Line_info(line_info) abort
 
   let l:line_info = trim(a:line_info, ' ', 1)
   let l:line_num  = split(l:line_info, '\s\+')[0]
@@ -4172,6 +4186,8 @@ func! Indnt_col_by_c() abort
   let l:col = cindent(Cursor_line_num())
   return l:col
 endfunc
+
+" indnt > cursor line indnt __ add
 
 func! Indnt__add(col) abort
 
@@ -4269,10 +4285,9 @@ func! V_2_markdown_tbl_header() range abort
   '<,'>:call V_line__rpl('.|' , ' |' )
 endfunc
 
-" slct
-" ...
-
+" 
 " slctd
+" 
 
 " slctd str
 
@@ -4379,7 +4394,7 @@ func! Slctd_edge_r_out_str() abort
   return l:str
 endfunc
 
-" slctd __ 
+" slctd __ ( slct )
 
 " func! Slctd__esc() range abort " alias
 func! Slctd__cancel() range abort " alias
@@ -4472,6 +4487,70 @@ endfunc
 func! Slct_all() abort
 
   call Normal('ggVG')
+endfunc
+
+" slctd __ xx
+
+func! Slctd__ynk() abort " todo refactoring, v paste > slctd __ ynk
+
+endfunc
+
+func! V_paste() range abort " todo refactoring, v paste > slctd __ ynk
+
+  call Slct_re()
+  call Normal('"zd')
+  call Paste()
+endfunc
+
+" todo refactoring, v paste > slctd box __ ynk
+" func! V_paste __ clipboard() range abort
+
+func! V_paste_by_clipboard() range abort
+
+  call Ynk__clipboard()
+  call V_paste()
+endfunc
+
+" todo refactoring, v box paste > v box 7 paste
+
+func! Slctd_box_7_paste() range abort
+
+endfunc
+
+func! V_box_paste() range abort
+
+  if @a =~ '\n'
+    echo 'yank is include cr'
+    return
+  endif
+
+  call Slct_re()
+
+  if Is_cursor_col__line_end()
+    call V_slctd__pad_space()
+
+    call Slctd__del()
+    " call Normal('"zdgv') " see
+  endif
+
+  call Cursor__mv_slctd_edge_l()
+  call Esc()
+  " call Normal("\<esc>")
+
+  " let l:col_num = Cursor_col_num()
+
+  for line_num in range(a:firstline, a:lastline)
+
+    let l:col_num = Cursor_col_num()
+
+    call Paste()
+
+    call Cursor__mv_by_line_col(l:line_num, l:col_num)
+    call Cursor__mv_d()
+    " if l:line_num != a:lastline
+    "   call Normal('j')
+    " endif
+  endfor
 endfunc
 
 " slctd __ expnd
@@ -4613,58 +4692,6 @@ func! Slctd__expnd_bracket_f() range abort " todo dev
   let l:len = l:s_col + Slctd_str_len() + l:srch_idx
   call Slct_by_col(l:s_col, l:len)
 endfunc
-
-" slctd __ expnd 2
-
-" func! Slctd__expnd2_quote_s_in() range abort
-" 
-"   call Slct_re()
-"   call Normal("i'")
-" endfunc
-" 
-" func! Slctd__expnd2_quote_s_on() range abort
-" 
-"   call Slct_re()
-"   call Normal("a'")
-"   call Normal('h')
-" endfunc
-" 
-" func! Slctd__expnd2_quote_d_in() range abort
-" 
-"   call Slct_re()
-"   call Normal('i"')
-" endfunc
-" 
-" func! Slctd__expnd2_quote_d_on() range abort
-" 
-"   call Slct_re()
-"   call Normal('a"')
-"   call Normal('h')
-" endfunc
-" 
-" func! Slctd__expnd2_bracket_1_in() range abort
-" 
-"   call Slct_re()
-"   call Normal('i)')
-" endfunc
-" 
-" func! Slctd__expnd2_bracket_1_on() range abort
-" 
-"   call Slct_re()
-"   call Normal('a)')
-" endfunc
-" 
-" func! Slctd__expnd2_bracket_2_in() range abort
-" 
-"   call Slct_re()
-"   call Normal('i]')
-" endfunc
-" 
-" func! Slctd__expnd2_bracket_2_on() range abort
-" 
-"   call Slct_re()
-"   call Normal('a]')
-" endfunc
 
 func! Slctd_box__mv(lr) range abort
 
@@ -4932,11 +4959,11 @@ endfunc
 
 " slctd indnt __ shft
 
-func! Slctd_indnt__shft_l() abort
+func! Slctd_indnt__shft_l() abort " todo
 
 endfunc
 
-func! Slctd_indnt__shft_r() abort
+func! Slctd_indnt__shft_r() abort " todo
 
 endfunc
 
@@ -5087,73 +5114,6 @@ func! V_ynk__add_slctd() abort
 
   call Normal('gv"Ay')
   call Clipboard__ynk()
-endfunc
-
-" paste
-
-func! Paste() abort
-
-  call Normal('"aP')
-endfunc
-
-" todo refactoring, v paste > slctd __ ynk
-
-func! V_paste() abort
-
-  call Slct_re()
-  call Normal('"zd')
-  call Paste()
-endfunc
-
-" todo refactoring, v box paste > v box 7 paste
-" todo refactoring, v paste > slctd box __ ynk
-
-func! V_box_paste() range abort
-
-  if @a =~ '\n'
-    echo 'yank is include cr'
-    return
-  endif
-
-  call Slct_re()
-
-  if Is_cursor_col__line_end()
-    call V_slctd__pad_space()
-
-    call Slctd__del()
-    " call Normal('"zdgv') " see
-  endif
-
-  call Cursor__mv_slctd_edge_l()
-  call Esc()
-  " call Normal("\<esc>")
-
-  " let l:col_num = Cursor_col_num()
-
-  for line_num in range(a:firstline, a:lastline)
-
-    let l:col_num = Cursor_col_num()
-
-    call Paste()
-
-    call Cursor__mv_by_line_col(l:line_num, l:col_num)
-    call Cursor__mv_d()
-    " if l:line_num != a:lastline
-    "   call Normal('j')
-    " endif
-  endfor
-endfunc
-
-func! Paste__clipboard() abort
-
-  call Ynk__clipboard()
-  call Paste()
-endfunc
-
-func! V_paste__clipboard() range abort
-
-  call Ynk__clipboard()
-  call V_paste()
 endfunc
 
 " clipboard
@@ -6095,18 +6055,18 @@ func! Load_re() abort
   call Exe('e ')
 endfunc
 
-" encode confirm
-
-func! Encode_confirm() abort
-
-  call Exe('set enc?')
-endfunc
-
 " encode sjis  -  load re
 
 func! Load_re__sjis() abort
 
   call Exe('e ++enc=sjis')
+endfunc
+
+" encode confirm
+
+func! Encode_confirm() abort
+
+  call Exe('set enc?')
 endfunc
 
 " trns
@@ -6234,6 +6194,21 @@ func! Tst_arg_q(arg01) range abort
 
   echo a:arg01
   " echo a:arg01 . 'end'
+endfunc
+
+" tst is_directory ~
+
+"nnoremap T :call Tst_is_directory()<cr>
+
+func! Tst_is_directory() range abort
+
+  " let l:path = "~/wrk"        " ng
+  let l:path = $HOME . "/wrk" " ok
+  if isdirectory(l:path)
+    echo "true"
+  else
+    echo "false"
+  endif
 endfunc
 
 " tst slctd

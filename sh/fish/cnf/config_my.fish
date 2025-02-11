@@ -32,7 +32,7 @@ set -x RIPGREP_CONFIG_PATH ~/wrk/cnf/sh/rg/.ripgreprc
 # fzf
 
 set -x FZF_DEFAULT_COMMAND ( fzf_fd_def )
-set -x FZF_DEFAULT_OPTS    '--ansi --bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
+set -x FZF_DEFAULT_OPTS    '--ansi --bind=ctrl-o:accept,ctrl-s:backward-char,ctrl-l:forward-char,ctrl-f:forward-word'
 set -x FZF_CTRL_T_COMMAND  $FZF_DEFAULT_COMMAND
 #set -x FZF_CTRL_T_OPTS
 #set -x FZF_CTRL_R_OPTS

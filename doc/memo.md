@@ -2,15 +2,23 @@
 # cnf
 
 
+## keyboard win
+
+keychron setting
+- key sticker del
+- power toys setting del
+- setting at web
+  - youtube watch re
+  - setting
+
+
+## keyboard mac m4
+
+karabiner
+- fn + ??
+
+
 ## vim
-
-fzf c-s
-- confirm
-  - at mac
-
-
-is_directory path $home
-
 
 m4
 - hl slctd fg
@@ -33,27 +41,8 @@ vnoremap p, refactoring
   - ref Line_end__ins_dots()
 
 
-## watch
-
-watch band magic
-- clean
-  - by tape
-
-
-## win keyboard
-
-keychron setting
-- key sticker del
-- power toys setting del
-- setting at web
-  - youtube watch re
-  - setting
-
-
-## p-touch
-
-read doc
-try
+fzf file ( <leader>l )
+- excld dir
 
 
 ## holo song
