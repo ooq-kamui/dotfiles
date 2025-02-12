@@ -2,30 +2,21 @@
 # cnf
 
 
-## keyboard win
-
-keychron setting
-- key sticker del
-- power toys setting del
-- setting at web
-  - youtube watch re
-  - setting
-
-
-## keyboard mac m4
-
-karabiner
-- fn + ??
-
-
 ## vim
+
+fnc def pos mv
+  - by index
+
+
+fnc name re
+- vnoremap p
+  - v box xxx > slctd box xxx
+
+- buf xxx > win xxx
+
 
 m4
 - hl slctd fg
-
-
-vnoremap p, refactoring
-- v box, refactoring
 
 
 `~~xxx~~`
@@ -43,6 +34,28 @@ vnoremap p, refactoring
 
 fzf file ( <leader>l )
 - excld dir
+
+
+## keyboard mac m4
+
+karabiner
+- fn + ??
+
+
+## keyboard logi
+
+sticker carry to ofc
+- in plastic bag
+
+
+## keyboard win
+
+keychron setting
+- key sticker del
+- power toys setting del
+- setting at web
+  - youtube watch re
+  - setting
 
 
 ## holo song

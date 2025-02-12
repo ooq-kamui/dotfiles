@@ -371,15 +371,6 @@ nnoremap Rj        :call Cursor__mv_jmp_char('j', 'f')<cr>
 " scroll cursor line middle
 "nnoremap xx zz
 
-" win mv r
-"nnoremap xx <c-w>l
-
-" win mv l
-"nnoremap xx <c-w>h
-
-" win nxt
-nnoremap <c-w> <c-w>w
-
 " 
 " slct / slctd / ynk / paste
 " 
@@ -710,6 +701,13 @@ nnoremap <s-right> :tabm+1<cr>
 " buf list
 "nnoremap :xx :buffers
 
+" 
+" win ( buf )
+" 
+
+" win nxt
+nnoremap <c-w> <c-w>w
+
 " buf splt
 nnoremap gi :call Buf_splt()<cr>
 nnoremap gu :call Buf_splt_quit()<cr>
@@ -720,6 +718,12 @@ nnoremap rh :call Buf_splt()<cr>
 nnoremap rH :call Buf_splt_quit()<cr>
 nnoremap rf :call Buf_splt_quit()<cr>
 nnoremap rn :call Buf_splt_cursor__mv_nxt()<cr>
+
+" win mv r
+"nnoremap xx <c-w>l
+
+" win mv l
+"nnoremap xx <c-w>h
 
 " 
 " term
@@ -749,21 +753,21 @@ nnoremap rn :call Buf_splt_cursor__mv_nxt()<cr>
 " mark, cursor mv mark back
 "nnoremap <leader>xx [`
 
-" 
-" etc
-" 
+" setting
+
+" setting  -  line view wrap tgl
+nnoremap :w :set wrap!
+
+" setting  -  line num view tgl
+nnoremap :N :set number!
+
+" setting  -  line num rel tgl
+nnoremap :n :set relativenumber!
+
+" inf
 
 " inf char
 "nnoremap xx ga
-
-" wrap tgl
-nnoremap :w :set wrap!
-
-" line num view tgl
-nnoremap :N :set number!
-
-" line num rel tgl
-nnoremap :n :set relativenumber!
 
 " numpad shift
 nnoremap <kInsert>   0
@@ -1786,9 +1790,7 @@ cnoremap <kPageUp>   9
 " term > normal
 tnoremap <c-_> <c-\><c-n>
 
-" 
 " etc
-" 
 
 if &term =~ '^screen'
   " tmux will send xterm-style keys when its xterm-keys option is on
@@ -1804,133 +1806,41 @@ endif
 
 autocmd QuickFixCmdPost grep,vimgrep tab cw
 
-" env
+" 
+" cmd def
+" 
 
-func! Is_env__(env) abort " alias
+command! -nargs=0 Pth call Pth()
 
-  " a:env : 'mac', 'win64', 'win32', 'wsl', 'linux'
+command! -nargs=0 K     call Dir__parent(1)
+command! -nargs=0 Kk    call Dir__parent(2)
+command! -nargs=0 Kkk   call Dir__parent(3)
 
-  let l:ret = has(a:env)
+command! -nargs=0 Dpl call Slf__dpl()
 
-  if a:env != 'mac'
-    " echo a:env . ' : ' . l:ret
-    " echo hostname()
-  endif
+command! -nargs=1 Mv call Slf__mv(<q-args>)
 
-  return l:ret
-endfunc
+command! -range=% -nargs=0 MbCnv <line1>,<line2>call V_line_mb__cnv()
 
-" plugin  #bgn#
+command! -nargs=* SrchOr call Srch_or(<f-args>)
 
-func! Vim_plug_path() abort
+command! -nargs=* InsSysCmd call Ins_sys_cmd(<q-args>)
 
-  if     Is_env__('mac')
+command! -range=% -nargs=0 Tbl <line1>,<line2>call V_tbl()
 
-    let l:vim_plug_dir_mac_nvim = $HOME . '/.local/share/nvim/site'
-    let l:vim_plug_dir_mac_vim  = $HOME . '/.vim'
+command! -range=% -nargs=* Rpl <line1>,<line2>call V_line__rpl(<f-args>)
 
-    if     isdirectory(l:vim_plug_dir_mac_nvim)
-      let l:vim_plug_dir = l:vim_plug_dir_mac_nvim
+command! -range=% -nargs=* VBoxRpl <line1>,<line2>call V_box__rpl(<f-args>)
 
-    elseif isdirectory(l:vim_plug_dir_mac_vim)
-      let l:vim_plug_dir = l:vim_plug_dir_mac_vim
+command! -nargs=* -complete=file Opn call Opn(<q-args>)
 
-    else
-      let l:vim_plug_dir = l:vim_plug_dir_mac_vim
-    endif
+command! -nargs=* OpnMan call Opn_man(<q-args>)
 
-  elseif Is_env__('win64')
-    let l:vim_plug_dir = '~/appdata/local/nvim-data/site'
+"command! -nargs=* OpnApp call Opn_app(<f-args>)
 
-  elseif Is_env__('linux')
+command! -nargs=? UrlEncode <line1>,<line2>call V_url_encode(<f-args>)
 
-    let l:vim_plug_dir_c9 = "/home/ec2-user/.vim"
-    let l:vim_plug_dir_s9 = "/home/centos/.local/share/nvim/site"
-
-    if     isdirectory(l:vim_plug_dir_c9)
-      let l:vim_plug_dir = l:vim_plug_dir_c9
-
-    elseif isdirectory(l:vim_plug_dir_s9)
-      let l:vim_plug_dir = l:vim_plug_dir_s9
-    endif
-
-  elseif Is_env__('win32unix')
-    let l:vim_plug_dir = '~/.vim'
-
-  else
-    let l:vim_plug_dir = '~/.vim'
-  endif
-
-  let l:vim_plug_path = l:vim_plug_dir . '/autoload/plug.vim'
-  return l:vim_plug_path
-endfunc
-
-func! Is_vim_plug__installed() abort
-
-  let l:vim_plug_path = Vim_plug_path()
-  " echo l:vim_plug_path
-
-  let l:ret = ! empty(glob(l:vim_plug_path))
-  " echo 'vim_plug installed : ' . l:ret
-
-  return l:ret
-endfunc
-
-if Is_vim_plug__installed()
-  "echo 'plug#begin'
-
-  call plug#begin()
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-  Plug 'mattn/vim-molder'
-  "Plug 'mattn/vim-molder-operations'
-  "Plug 'jacquesbh/vim-showmarks'
-  call plug#end()
-endif
-" do :PlugInstall
-" or :PlugUpdate
-" or :PlugClean
-
-" plugin  #end#
-
-" fzf var def ( in plugin ) bgn
-
-let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
-let g:fzf_action = {
-\  'ctrl-o': 'tab drop',
-\ }
-
-"\  'ctrl-o': 'enter',
-"\  'ctrl-i': 'item slct mtl',
-"\  'ctrl-s': 'backward-char',
-
-let g:fzf_colors = {
-\   'hl'     : ['fg', 'Statement'  ],
-\   'hl+'    : ['fg', 'Statement'  ],
-\ }
-
-"\   'bg+'    : ['bg', 'CursorLine' ],
-"\   'bg+'    : ['bg', 'Normal'     ],
-
-"\   'info'   : ['fg', 'Comment'    ],
-"\   'border' : ['fg', 'Ignore'     ],
-"\   'prompt' : ['fg', 'Function'   ],
-"\   'pointer': ['fg', 'Statement'  ],
-"\   'marker' : ['fg', 'Conditional'],
-
-"\   'info'   : ['Comment'],
-"\   'border' : ['Comment'],
-"\   'prompt' : ['Comment'],
-"\   'pointer': ['Comment'],
-"\   'marker' : ['Comment'],
-
-" use ??
-"let g:fzf_buffers_jump = 1
-"fzf#vim#complete#buffer_line([spec])
-
-" fzf var def ( in plugin ) end
-
-" fzf cmd def
+" cmd def fzf
 
 command! -bang -nargs=1 FzfRgExt call Fzf_rg_ext(<f-args>)
 
@@ -1965,436 +1875,132 @@ command! -bang -nargs=* FzfJmplst call Fzf_jmplst()
 " fzf cmd def : mark
 command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)
 
-" fzf
 
-func! Fzf_rg(...) abort " alias
+" 
+" fnc tst
+" 
 
-  let l:ptn   = ( a:0 >= 1 ) ? a:1 : ''
-  " let l:ptn   = ( a:0 >= 1 ) ? a:1 : g:rg_some_line_ptn
-  
-  let l:ext   = ( a:0 >= 2 ) ? a:2 : v:null
-  let l:word1 = ( a:0 >= 3 ) ? a:3 : v:false
+" tst escape
 
-  call Fzf_rg_with_grep(l:ptn, l:ext, l:word1)
+"nnoremap T :call Tst_esacpe()<cr>
+
+func! Tst_esacpe() abort
+
+  let l:str = '().$a'
+  echo l:str
+
+  let l:str = escape(l:str, l:str)
+  echo l:str
 endfunc
 
-func! Fzf_rg_with_grep(...) abort
+" tst escape shell
 
-  if ! ( Is_env__('mac') || Is_env__('linux') || Is_env__('win64') )
-    return
-  endif
+"nnoremap T :call Tst_esacpe_shell() <cr>
 
-  let l:ptn   = ( a:0 >= 1 ) ? a:1 : ''
-  " let l:ptn   = ( a:0 >= 1 ) ? a:1 : g:rg_some_line_ptn
+func! Tst_esacpe_shell() abort
 
-  let l:ext   = ( a:0 >= 2 ) ? a:2 : v:null
-  let l:word1 = ( a:0 >= 3 ) ? a:3 : v:false
+  let l:str = '().$a \ / | & b c '
+  echo l:str
 
-  let l:rg_cmd = Rg_cmd(l:ptn, l:ext, l:word1, v:null)
-  " echo l:rg_cmd
-
-  call fzf#vim#grep(
-  \      l:rg_cmd,
-  \      0,
-  \      fzf#vim#with_preview(
-  \        {'options': '--exact --delimiter : --nth 3..'},
-  \        'up:70%:hidden',
-  \        'ctrl-u'
-  \      ),
-  \      1
-  \    )
-
-  " ref
-  " fzf#vim#grep(
-  "   command,
-  "   [has_column bool],
-  "   [spec dict],
-  "   [fullscreen bool]
-  " )
+  let l:str = shellescape(l:str)
+  echo l:str
 endfunc
 
-" fzf rg ext
+" tst arg f
 
-func! Fzf_rg_ext(ext) abort
+"nnoremap T :TstArgF 
+"nnoremap T :TstArgF aa().a \/|&bbb 'aa().a \/|&bbb'
 
-  let l:ext = a:ext
-  call Fzf_rg(v:null, l:ext)
+command! -bang -nargs=* TstArgF call Tst_arg_f(<f-args>)
+
+func! Tst_arg_f(arg01, arg02, arg03, arg04) range abort
+
+  echo a:arg01
+  echo a:arg02
+  echo a:arg03
+  echo a:arg04
 endfunc
 
-" rg word1
-func! Fzf_rg_word1(ptn) abort
+" tst arg q
 
-  call Fzf_rg(a:ptn, v:null, v:true)
+"nnoremap T :TstArgQ aa "bbb ccc" '().\a bbb""' "().\a bbb''"
+
+command! -bang -nargs=* TstArgQ call Tst_arg_q(<q-args>)
+
+func! Tst_arg_q(arg01) range abort
+
+  echo a:arg01
+  " echo a:arg01 . 'end'
 endfunc
 
-" fzf rg by run
+" tst is_directory ~
 
-let g:fzf_line_cnt_max = 30000
+"nnoremap T :call Tst_is_directory()<cr>
 
-func! Fzf_rg_with_run(...) abort " todo: fnc name re
+func! Tst_is_directory() range abort
 
-  let l:ptn = ( a:0 >= 1 ) ? a:1 : v:null
-
-  if l:ptn == v:null
-
-    let l:rg_rslt_cnt = Rg_all_cnt()
-
-    if l:rg_rslt_cnt > g:fzf_line_cnt_max
-      echo "l:rg_rslt_cnt, end"
-      return
-    endif
-
-    let l:fzf_src_ar = Rg_all_rslt_ar()
-
+  " let l:path = "~/wrk"        " ng
+  let l:path = $HOME . "/wrk" " ok
+  if isdirectory(l:path)
+    echo "true"
   else
-    let l:rg_rslt_cnt = Rg_ptn_cnt(l:ptn, v:null)
-
-    if l:rg_rslt_cnt > g:fzf_line_cnt_max
-      echo "l:rg_rslt_cnt, end"
-      return
-    endif
-
-    let l:fzf_src_ar = Rg_ptn_rslt_ar(l:ptn, v:null)
+    echo "false"
   endif
-
-  call fzf#run(
-  \      {
-  \        'source' : l:fzf_src_ar,
-  \        'sink'   : funcref('Tag_jmp'),
-  \        'window' : '-tabnew',
-  \      }
-  \    )
-  "\     'options': ['--reverse'],
-  "\     'options': ['--no-sort'],
 endfunc
 
-func! Fzf_by_txt(...) abort
+" tst slctd
 
-  let l:src_txt  = ( a:0 >= 1 ) ? a:1 : v:null
-  let l:fnc_name = ( a:0 >= 2 ) ? a:2 : v:null
+"vnoremap T :call Tst()
 
-  let l:src_ar = Txt_to_ar(l:src_txt)
+func! Tst() range abort
 
-  call Fzf_by_ar(l:src_ar, fnc_name)
+  let l:val = Is_slctd_mode__box()
+  echo l:val
 endfunc
 
-func! Fzf_by_ar(...) abort
+" tst slctd __ rpl sys cmd mb
 
-  let l:src_ar   = ( a:0 >= 1 ) ? a:1 : v:null
-  let l:fnc_name = ( a:0 >= 2 ) ? a:2 : v:null
+"vnoremap T :TstSlctdRplSysCmdMb <cr>
 
-  if len(l:src_ar) > g:fzf_line_cnt_max
-    echo "l:fzf src_ar, end"
-    return
-  endif
+command! -range=% -nargs=* TstSlctdRplSysCmdMb <line1>,<line2>call Tst_slctd_rpl_sys_cmd_mb()
 
-  call fzf#run(
-  \      {
-  \        'source' : l:src_ar,
-  \        'sink'   : funcref(l:fnc_name),
-  \        'window' : '-tabnew',
-  \      }
-  \    )
-  "\     'options': ['--reverse'],
-  "\     'options': ['--no-sort'],
+func! Tst_slctd_rpl_sys_cmd_mb() range abort
+
+  let l:pth = '~/wrk/cnf/doc/tst/tst-in.md'
+  " let l:sys_cmd = 'cat ' . l:pth . ' | column -t | cat'
+  let l:sys_cmd = 'cat ' . l:pth . ' | column -t'
+  " let l:sys_cmd = 'cat ' . l:pth
+
+  '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
 endfunc
-
-" fzf tag jmp by file
-
-func! Fzf_tag_jmp_by_file(...) abort
-
-  let l:file_path = ( a:0 >= 1 ) ? a:1 : 'doc/memo.md'
-
-  let l:fzf_src_txt = File_txt(l:file_path)
-  let l:fnc_name    = 'Tag_jmp'
-  call Fzf_by_txt(fzf_src_txt, fnc_name)
-endfunc
-
-" fzf buf
-
-func! N_fzf_buf() abort
-  
-  exe 'FzfBufCrnt '
-endfunc
-
-func! V_fzf_buf() abort
-
-  call V_srch_str__slctd_str()
-  exe 'FzfBufCrnt ' . escape(@z, '.*~')
-endfunc
-
-func! Fzf_rgstr() abort
-  
-  let l:rgstr_info = execute(':reg')->split("\n")
-  call remove(l:rgstr_info, 0)
-  
-  call fzf#run(
-  \   {
-  \     'source': l:rgstr_info,
-  \     'sink'  : funcref('Ynk__by_rgstr_info'),
-  \     'window': '-tabnew'
-  \   }
-  \ )
-  " \     'sink'  : funcref('Ins_rgstr_by_rgstr_info'),
-endfunc
-
-" fzf jmplst
-
-func! Fzf_jmplst() abort
-  
-  call fzf#run(
-  \   {
-  \     'source' : Jmplst_line_info(),
-  \     'sink'   : funcref('Cursor__mv_by_line_info'),
-  \     'window' : '-tabnew',
-  \     'options': ['--reverse'],
-  \   }
-  \ )
-  "\     'options': ['--no-sort'],
-endfunc
-
-func! Fzf_dir_jmp() abort
-
-  let l:sys_cmd = 'dir_jmp_lst_with_z'
-  " let l:sys_cmd = 'dir_jmp_lst_with_zoxide'
-  let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
-
-  let l:fnc_name = 'Dir__'
-  call Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
-endfunc
-
-func! Fzf_doc_memo_opn() abort
-
-  let l:dir = '~'
-
-  let l:fzf_src_ar = [
-  \   l:dir . '/wrk/cnf/doc/memo.md',
-  \   l:dir . '/wrk/prj-pri-share/doc-tech-ds/doc/memo.md',
-  \   l:dir . '/wrk/prj-pri-share/life/doc/memo.md',
-  \   l:dir . '/wrk/prj-pri-share/wall-paper/doc/memo.md'
-  \ ]
-
-  let l:fnc_name    = 'Opn'
-  call Fzf_by_ar(l:fzf_src_ar, l:fnc_name)
-endfunc
-
-func! Fzf_vim_fnc_call() abort
-
-  let l:rg_ptn = '^func! [\w]+\(.*\)'
-
-  let l:sys_cmd_rg = "rg " . "-No '" . l:rg_ptn . "' " . g:vimrc_file_path
-
-  let l:sys_cmd_sed = 'sed "s/func! //g"'
-
-  let l:sys_cmd = l:sys_cmd_rg . ' | ' . l:sys_cmd_sed
-  let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
-
-  let l:fnc_name = 'Cmdline__'
-
-  call Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
-endfunc
-
-" rg fnc def
-
-" fzf init
-
-let g:fzf_rg_opt = ''
-\     . ' --color=always'
-\     . ' --line-number'
-\     . ' --smart-case'
-\     . ' --no-multiline'
-\     . ' --no-heading'
-\     . ' --hidden'
-
-if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
-
-  if Is_env__('win64')
-    let g:fzf_rg_opt .= ' -g "!.git/"'
-  else
-    let g:fzf_rg_opt .= ' -g "!.git/"'
-  endif
-endif
-
-func! Rg_cmd(ptn, ext, word1, opt) abort
-
-  if a:ptn == v:null
-    let l:ptn = ''
-  else
-    let l:ptn = a:ptn
-  endif
-
-  if a:ext == v:null
-    let l:fzf_rg_opt_ext = ''
-  else
-    let l:fzf_rg_opt_ext = ' -g "*.' . a:ext . '"'
-  endif
-
-  if a:word1 == v:true
-    let l:fzf_rg_opt_word1 = ' -w'
-  else
-    let l:fzf_rg_opt_word1 = ''
-  endif
-
-  if a:opt == v:null
-    let l:opt = ''
-  else
-    let l:opt = ' ' . a:opt
-  endif
-
-  let l:rg_cmd = 'rg '
-  \     . g:fzf_rg_opt
-  \     . l:fzf_rg_opt_ext
-  \     . l:fzf_rg_opt_word1
-  \     . l:opt
-  \     . ' -- ' . '"' . escape(l:ptn, '().$') . '"'
-
-  return l:rg_cmd
-endfunc
-
-let g:rg_emp_line_ptn  = '^[ \t]*$'
-let g:rg_some_line_ptn = '^[^ \t]+$'
-" let g:rg_some_line_ptn = '[^ \t]'
-
-func! Rg_ptn_cnt(ptn, opt) abort
-
-  if a:opt == v:null
-    let l:opt = ''
-  else
-    let l:opt = a:opt
-  endif
-
-  let l:rg_cmd = "rg " . l:opt . " -e '" . a:ptn . "' | count"
-  let l:rg_rslt_cnt = Sys_cmd(l:rg_cmd)
-  return l:rg_rslt_cnt
-endfunc
-
-func! Rg_all_cnt() abort
-
-  let l:ptn = g:rg_emp_line_ptn
-  let l:opt = '-v'
-
-  let l:rg_rslt_cnt = Rg_ptn_cnt(l:ptn, l:opt)
-  return l:rg_rslt_cnt
-endfunc
-
-func! Rg_all_rslt_ar() abort
-
-  let l:ptn = g:rg_emp_line_ptn
-  let l:opt = '-v'
-
-  let l:rslt_ar = Rg_ptn_rslt_ar(l:ptn, l:opt)
-  return l:rslt_ar
-endfunc
-
-func! Rg_ptn_rslt_ar(ptn, opt) abort
-
-  let l:rg_rslt_txt = Rg_ptn_rslt_txt(a:ptn, a:opt)
-  let l:rg_rslt_ar  = split(l:rg_rslt_txt, "\n")
-  return l:rg_rslt_ar
-endfunc
-
-func! Rg_ptn_rslt_txt(ptn, opt) abort
-  
-  let l:rg_cmd = Rg_cmd(a:ptn, v:null, v:null, a:opt) " todo dev
-  let l:r_rslt_txt = Sys_cmd(l:rg_cmd)
-  return l:r_rslt_txt
-endfunc
-
-func! Ynk__by_rgstr_info(rgstr_info) abort
-  
-  let l:rgstr = Rgstr_info_rgstr(a:rgstr_info)
-  let l:scrpt = 'let @a = @' . l:rgstr
-  execute(l:scrpt)
-endfunc
-
-func! Ins_rgstr_by_rgstr_info(rgstr_info) abort
-  
-  let l:rgstr = Rgstr_info_rgstr(a:rgstr_info)
-  call Normal('"' . l:rgstr . l:rgstr . 'P')
-endfunc
-
-func! Rgstr_info_rgstr(rgstr_info) abort
-
-  let l:rgstr = strcharpart(a:rgstr_info, 6, 1)
-  return l:rgstr
-endfunc
-
-func! Jmplst() abort
-
-  let l:jmplst_tmp = getjumplist()[0]
-  "echo l:jmplst_tmp
-
-  let l:buf_num_key_prefix = 'key_'
-  let l:jmplst = {}
-  for _jmplst_tmp in l:jmplst_tmp
-
-    let l:_buf_num_key = l:buf_num_key_prefix . l:_jmplst_tmp['bufnr']
-
-    if ! has_key(l:jmplst, l:_buf_num_key)
-      let l:jmplst[l:_buf_num_key] = []
-    endif
-
-    call add(l:jmplst[l:_buf_num_key], l:_jmplst_tmp)
-  endfor
-
-  for _buf_num_key in keys(l:jmplst)
-
-    call sort(l:jmplst[l:_buf_num_key], 'Jmplst_cmp')
-  endfor
-
-  let l:buf_num_key = l:buf_num_key_prefix . Buf_num()
-  let l:r_jmplst    = get(l:jmplst, buf_num_key, [])
-  "echo l:r_jmplst
-
-  return l:r_jmplst
-endfunc
-
-func! Jmplst_line_info() abort
-
-  let l:jmplst = Jmplst()
-
-  let l:jmplst_line_info = []
-  for _jmplst in l:jmplst
-
-    let l:line_num  = l:_jmplst['lnum']
-    let l:line_info = l:line_num . ' ' . getline(l:line_num)
-    call add(l:jmplst_line_info, l:line_info)
-  endfor
-  "echo l:jmplst_line_info
-
-  return l:jmplst_line_info
-endfunc
-
-func! Jmplst_cmp(jmplst1, jmplst2) abort
-
-  if     a:jmplst1['lnum'] >  a:jmplst2['lnum']
-    let l:ret =  1
-  elseif a:jmplst1['lnum'] == a:jmplst2['lnum']
-    let l:ret =  0
-  else
-    let l:ret = -1
-  endif
-
-  return l:ret
-endfunc
-
-func! Txt_to_ar(txt) abort
-
-  let l:line_ar  = split(a:txt, "\n")
-  return l:line_ar
-endfunc
-
-
-"
-" final
-"
-
-" comment auto off
-au FileType * set fo-=c fo-=r fo-=o
 
 
 " 
-" vim script fnc
+" fnc def
+" 
+
+" fnc def index
+" 
+" - primitive
+"   - basic ( vim )
+"   - char
+"   - str
+"   - num
+" 
+" - file ( sys )
+" - opn
+" - win ( buf )
+" 
+" - line
+" - cursor
+" - slctd
+" - complete
+" - srch
+" - env
+" - plugin
+" - fzf
+" - rg
+" - mark
 " 
 
 " primitive
@@ -2405,12 +2011,12 @@ func! Nothing() abort
   " echo "do nothing.."
 endfunc
 
-func! Exe(cmd) abort
+func! Exe(cmd) abort " alias
 
   exe a:cmd
 endfunc
 
-func! Normal(cmd) abort
+func! Normal(cmd) abort " alias
 
   call Exe('normal! ' . a:cmd)
 endfunc
@@ -2435,26 +2041,87 @@ func! Sys_cmd(sys_cmd) abort
   "call Exe(l:cmd)
 endfunc
 
-func! V_sys_cmd(sys_cmd) range abort
+" undo clr, file ( crnt buf ? )
 
-  let l:cmd = g:v_rng . '! ' . a:sys_cmd
+func! Undo__clr() abort
+
+  let l:undo_lvl_tmp = &undolevels
+
+  setlocal undolevels=-1
+
+  exe "normal! a \<BS>\<Esc>"
+
+  let &l:undolevels = l:undo_lvl_tmp
+endfunc
+
+" syntax color
+
+func! Hl_grp() abort
+
+  echo synIDattr(synID(line('.'), col('.'), 1), 'name')
+endfunc
+" and
+" :highlight [grp name]
+
+func! Color_name_lst() abort
+
+  let l:cmd = "so $VIMRUNTIME/syntax/colortest.vim"
   call Exe(l:cmd)
 endfunc
+
+" dir crnt
+
+func! Pth() abort
+
+  call Exe('pwd')
+endfunc
+
+" dir ch
+
+func! Dir__(dir) abort
+
+  call Exe('cd ' . a:dir)
+  call Pth()
+endfunc
+
+" dir ch __ slf
+
+func! Dir__slf() abort
+
+  let l:dir = Slf_dir()
+  call Dir__(l:dir)
+  " call Exe('cd ' . l:dir)
+
+  " call Pth()
+endfunc
+
+" dir ch parent
+
+func! Dir__parent(lvl) abort
+
+  let l:cnt = 1
+  while l:cnt <= a:lvl
+
+    call Exe('cd ..')
+
+    let l:cnt += 1
+  endwhile
+
+  call Pth()
+endfunc
+
+" file
 
 func! Save() abort
   
   call Exe('w')
 endfunc
 
-command! -nargs=0 Dpl call Slf__dpl()
-
 func! Slf__dpl() abort
   
   let l:sys_cmd = 'dpl ' . Slf_path()
   call Sys_cmd(l:sys_cmd)
 endfunc
-
-command! -nargs=1 Mv call Slf__mv(<q-args>)
 
 func! Slf__mv(file_name_aft) abort
   
@@ -2894,17 +2561,17 @@ endfunc
 
 " str mb
 
-command! -range=% -nargs=0 MbCnv <line1>,<line2>call V_line_mb__cnv()
-
 func! V_line_mb__cnv() range abort
 
   let l:sys_cmd = 'mb__cnv'
   '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
 endfunc
 
+" 
 " cursor
+" 
 
-" cursor mv
+" cursor __ mv
 
 func! Cursor__mv_by_col_num(col_num) abort
 
@@ -3311,8 +2978,6 @@ func! V_srch_switch() abort " srch, set or run
     call V_srch_str__slctd_str()
   endif
 endfunc
-
-command! -nargs=* SrchOr call Srch_or(<f-args>)
 
 func! Srch_or(...) abort
 
@@ -3834,8 +3499,6 @@ func! Ins_week() abort
   "call Ins(' ' . l:week)
 endfunc
 
-command! -nargs=* InsSysCmd call Ins_sys_cmd(<q-args>)
-
 func! Ins_sys_cmd(sys_cmd) abort " read
 
   let l:is_line_num_eq_1 = Is_cursor_line_num__file_edge_bgn()
@@ -4035,8 +3698,6 @@ func! V_line__rpl_sys_cmd(sys_cmd) range abort " read
 endfunc
 
 " slctd line __ tbl
-
-command! -range=% -nargs=0 Tbl <line1>,<line2>call V_tbl()
 
 func! V_tbl() range abort
 
@@ -4495,6 +4156,12 @@ func! Slctd__ynk() abort " todo refactoring, v paste > slctd __ ynk
 
 endfunc
 
+func! V_sys_cmd(sys_cmd) range abort " todo def pos mv , slctd
+
+  let l:cmd = g:v_rng . '! ' . a:sys_cmd
+  call Exe(l:cmd)
+endfunc
+
 func! V_paste() range abort " todo refactoring, v paste > slctd __ ynk
 
   call Slct_re()
@@ -4871,8 +4538,6 @@ endfunc
 
 " v line __ rpl
 
-command! -range=% -nargs=* Rpl <line1>,<line2>call V_line__rpl(<f-args>)
-
 func! V_line__rpl(srch, rpl) range abort
 
   let l:cmd = g:v_rng . 's/' . a:srch . '/' . a:rpl . '/g'
@@ -4917,8 +4582,6 @@ endfunc
 
 " v box __ rpl
 " todo refactoring fnc name re
-
-command! -range=% -nargs=* VBoxRpl <line1>,<line2>call V_box__rpl(<f-args>)
 
 func! V_box__rpl(srch, rpl) range abort
 
@@ -5548,8 +5211,6 @@ endfunc
 
 " opn file
 
-command! -nargs=* -complete=file Opn call Opn(<q-args>)
-
 func! Opn(filename) abort
 
   call Exe('tab drop ' . a:filename)
@@ -5580,8 +5241,6 @@ func! Opn_fish_cnf() abort
   let l:path = '~/.config/fish/config.fish'
   call Opn(l:path)
 endfunc
-
-command! -nargs=* OpnMan call Opn_man(<q-args>)
 
 func! Opn_man(cmd) abort
 
@@ -5619,8 +5278,6 @@ func! Opn_grep_wk() abort
 endfunc
 
 " opn app
-
-"command! -nargs=* OpnApp call Opn_app(<f-args>)
 
 func! Opn_app(path) abort
   
@@ -5878,66 +5535,412 @@ func! I_ooq() abort
 "  \   'alias',
 endfunc
 
-" etc
+" fzf fnc
 
-" dir crnt
+func! Fzf_rg(...) abort " alias
 
-command! -nargs=0 Pth call Pth()
+  let l:ptn   = ( a:0 >= 1 ) ? a:1 : ''
+  " let l:ptn   = ( a:0 >= 1 ) ? a:1 : g:rg_some_line_ptn
+  
+  let l:ext   = ( a:0 >= 2 ) ? a:2 : v:null
+  let l:word1 = ( a:0 >= 3 ) ? a:3 : v:false
 
-func! Pth() abort
-
-  call Exe('pwd')
+  call Fzf_rg_with_grep(l:ptn, l:ext, l:word1)
 endfunc
 
-" dir ch
+func! Fzf_rg_with_grep(...) abort
 
-func! Dir__(dir) abort
+  if ! ( Is_env__('mac') || Is_env__('linux') || Is_env__('win64') )
+    return
+  endif
 
-  call Exe('cd ' . a:dir)
-  call Pth()
+  let l:ptn   = ( a:0 >= 1 ) ? a:1 : ''
+  " let l:ptn   = ( a:0 >= 1 ) ? a:1 : g:rg_some_line_ptn
+
+  let l:ext   = ( a:0 >= 2 ) ? a:2 : v:null
+  let l:word1 = ( a:0 >= 3 ) ? a:3 : v:false
+
+  let l:rg_cmd = Rg_cmd(l:ptn, l:ext, l:word1, v:null)
+  " echo l:rg_cmd
+
+  call fzf#vim#grep(
+  \      l:rg_cmd,
+  \      0,
+  \      fzf#vim#with_preview(
+  \        {'options': '--exact --delimiter : --nth 3..'},
+  \        'up:70%:hidden',
+  \        'ctrl-u'
+  \      ),
+  \      1
+  \    )
+
+  " ref
+  " fzf#vim#grep(
+  "   command,
+  "   [has_column bool],
+  "   [spec dict],
+  "   [fullscreen bool]
+  " )
 endfunc
 
-" dir ch __ slf
+" fzf rg ext
 
-func! Dir__slf() abort
+func! Fzf_rg_ext(ext) abort
 
-  let l:dir = Slf_dir()
-  call Dir__(l:dir)
-  " call Exe('cd ' . l:dir)
-
-  " call Pth()
+  let l:ext = a:ext
+  call Fzf_rg(v:null, l:ext)
 endfunc
 
-" dir ch parent
+" rg word1
+func! Fzf_rg_word1(ptn) abort
 
-command! -nargs=0 K     call Dir__parent(1)
-command! -nargs=0 Kk    call Dir__parent(2)
-command! -nargs=0 Kkk   call Dir__parent(3)
-
-func! Dir__parent(lvl) abort
-
-  let l:cnt = 1
-  while l:cnt <= a:lvl
-
-    call Exe('cd ..')
-
-    let l:cnt += 1
-  endwhile
-
-  call Pth()
+  call Fzf_rg(a:ptn, v:null, v:true)
 endfunc
 
-" undo clr, file ( crnt buf ? )
+" fzf rg by run
 
-func! Undo__clr() abort
+let g:fzf_line_cnt_max = 30000
 
-  let l:undo_lvl_tmp = &undolevels
+func! Fzf_rg_with_run(...) abort " todo: fnc name re
 
-  setlocal undolevels=-1
+  let l:ptn = ( a:0 >= 1 ) ? a:1 : v:null
 
-  exe "normal! a \<BS>\<Esc>"
+  if l:ptn == v:null
 
-  let &l:undolevels = l:undo_lvl_tmp
+    let l:rg_rslt_cnt = Rg_all_cnt()
+
+    if l:rg_rslt_cnt > g:fzf_line_cnt_max
+      echo "l:rg_rslt_cnt, end"
+      return
+    endif
+
+    let l:fzf_src_ar = Rg_all_rslt_ar()
+
+  else
+    let l:rg_rslt_cnt = Rg_ptn_cnt(l:ptn, v:null)
+
+    if l:rg_rslt_cnt > g:fzf_line_cnt_max
+      echo "l:rg_rslt_cnt, end"
+      return
+    endif
+
+    let l:fzf_src_ar = Rg_ptn_rslt_ar(l:ptn, v:null)
+  endif
+
+  call fzf#run(
+  \      {
+  \        'source' : l:fzf_src_ar,
+  \        'sink'   : funcref('Tag_jmp'),
+  \        'window' : '-tabnew',
+  \      }
+  \    )
+  "\     'options': ['--reverse'],
+  "\     'options': ['--no-sort'],
+endfunc
+
+func! Fzf_by_txt(...) abort
+
+  let l:src_txt  = ( a:0 >= 1 ) ? a:1 : v:null
+  let l:fnc_name = ( a:0 >= 2 ) ? a:2 : v:null
+
+  let l:src_ar = Txt_to_ar(l:src_txt)
+
+  call Fzf_by_ar(l:src_ar, fnc_name)
+endfunc
+
+func! Fzf_by_ar(...) abort
+
+  let l:src_ar   = ( a:0 >= 1 ) ? a:1 : v:null
+  let l:fnc_name = ( a:0 >= 2 ) ? a:2 : v:null
+
+  if len(l:src_ar) > g:fzf_line_cnt_max
+    echo "l:fzf src_ar, end"
+    return
+  endif
+
+  call fzf#run(
+  \      {
+  \        'source' : l:src_ar,
+  \        'sink'   : funcref(l:fnc_name),
+  \        'window' : '-tabnew',
+  \      }
+  \    )
+  "\     'options': ['--reverse'],
+  "\     'options': ['--no-sort'],
+endfunc
+
+" fzf tag jmp by file
+
+func! Fzf_tag_jmp_by_file(...) abort
+
+  let l:file_path = ( a:0 >= 1 ) ? a:1 : 'doc/memo.md'
+
+  let l:fzf_src_txt = File_txt(l:file_path)
+  let l:fnc_name    = 'Tag_jmp'
+  call Fzf_by_txt(fzf_src_txt, fnc_name)
+endfunc
+
+" fzf buf
+
+func! N_fzf_buf() abort
+  
+  exe 'FzfBufCrnt '
+endfunc
+
+func! V_fzf_buf() abort
+
+  call V_srch_str__slctd_str()
+  exe 'FzfBufCrnt ' . escape(@z, '.*~')
+endfunc
+
+func! Fzf_rgstr() abort
+  
+  let l:rgstr_info = execute(':reg')->split("\n")
+  call remove(l:rgstr_info, 0)
+  
+  call fzf#run(
+  \   {
+  \     'source': l:rgstr_info,
+  \     'sink'  : funcref('Ynk__by_rgstr_info'),
+  \     'window': '-tabnew'
+  \   }
+  \ )
+  " \     'sink'  : funcref('Ins_rgstr_by_rgstr_info'),
+endfunc
+
+" fzf jmplst
+
+func! Fzf_jmplst() abort
+  
+  call fzf#run(
+  \   {
+  \     'source' : Jmplst_line_info(),
+  \     'sink'   : funcref('Cursor__mv_by_line_info'),
+  \     'window' : '-tabnew',
+  \     'options': ['--reverse'],
+  \   }
+  \ )
+  "\     'options': ['--no-sort'],
+endfunc
+
+func! Fzf_dir_jmp() abort
+
+  let l:sys_cmd = 'dir_jmp_lst_with_z'
+  " let l:sys_cmd = 'dir_jmp_lst_with_zoxide'
+  let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
+
+  let l:fnc_name = 'Dir__'
+  call Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
+endfunc
+
+func! Fzf_doc_memo_opn() abort
+
+  let l:dir = '~'
+
+  let l:fzf_src_ar = [
+  \   l:dir . '/wrk/cnf/doc/memo.md',
+  \   l:dir . '/wrk/prj-pri-share/doc-tech-ds/doc/memo.md',
+  \   l:dir . '/wrk/prj-pri-share/life/doc/memo.md',
+  \   l:dir . '/wrk/prj-pri-share/wall-paper/doc/memo.md'
+  \ ]
+
+  let l:fnc_name    = 'Opn'
+  call Fzf_by_ar(l:fzf_src_ar, l:fnc_name)
+endfunc
+
+func! Fzf_vim_fnc_call() abort
+
+  let l:rg_ptn = '^func! [\w]+\(.*\)'
+
+  let l:sys_cmd_rg = "rg " . "-No '" . l:rg_ptn . "' " . g:vimrc_file_path
+
+  let l:sys_cmd_sed = 'sed "s/func! //g"'
+
+  let l:sys_cmd = l:sys_cmd_rg . ' | ' . l:sys_cmd_sed
+  let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
+
+  let l:fnc_name = 'Cmdline__'
+
+  call Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
+endfunc
+
+" rg
+
+let g:fzf_rg_opt = ''
+\     . ' --color=always'
+\     . ' --line-number'
+\     . ' --smart-case'
+\     . ' --no-multiline'
+\     . ' --no-heading'
+\     . ' --hidden'
+
+func! Rg_cmd(ptn, ext, word1, opt) abort
+
+  if a:ptn == v:null
+    let l:ptn = ''
+  else
+    let l:ptn = a:ptn
+  endif
+
+  if a:ext == v:null
+    let l:fzf_rg_opt_ext = ''
+  else
+    let l:fzf_rg_opt_ext = ' -g "*.' . a:ext . '"'
+  endif
+
+  if a:word1 == v:true
+    let l:fzf_rg_opt_word1 = ' -w'
+  else
+    let l:fzf_rg_opt_word1 = ''
+  endif
+
+  if a:opt == v:null
+    let l:opt = ''
+  else
+    let l:opt = ' ' . a:opt
+  endif
+
+  let l:rg_cmd = 'rg '
+  \     . g:fzf_rg_opt
+  \     . l:fzf_rg_opt_ext
+  \     . l:fzf_rg_opt_word1
+  \     . l:opt
+  \     . ' -- ' . '"' . escape(l:ptn, '().$') . '"'
+
+  return l:rg_cmd
+endfunc
+
+let g:rg_emp_line_ptn  = '^[ \t]*$'
+let g:rg_some_line_ptn = '^[^ \t]+$'
+" let g:rg_some_line_ptn = '[^ \t]'
+
+func! Rg_ptn_cnt(ptn, opt) abort
+
+  if a:opt == v:null
+    let l:opt = ''
+  else
+    let l:opt = a:opt
+  endif
+
+  let l:rg_cmd = "rg " . l:opt . " -e '" . a:ptn . "' | count"
+  let l:rg_rslt_cnt = Sys_cmd(l:rg_cmd)
+  return l:rg_rslt_cnt
+endfunc
+
+func! Rg_all_cnt() abort
+
+  let l:ptn = g:rg_emp_line_ptn
+  let l:opt = '-v'
+
+  let l:rg_rslt_cnt = Rg_ptn_cnt(l:ptn, l:opt)
+  return l:rg_rslt_cnt
+endfunc
+
+func! Rg_all_rslt_ar() abort
+
+  let l:ptn = g:rg_emp_line_ptn
+  let l:opt = '-v'
+
+  let l:rslt_ar = Rg_ptn_rslt_ar(l:ptn, l:opt)
+  return l:rslt_ar
+endfunc
+
+func! Rg_ptn_rslt_ar(ptn, opt) abort
+
+  let l:rg_rslt_txt = Rg_ptn_rslt_txt(a:ptn, a:opt)
+  let l:rg_rslt_ar  = split(l:rg_rslt_txt, "\n")
+  return l:rg_rslt_ar
+endfunc
+
+func! Rg_ptn_rslt_txt(ptn, opt) abort
+  
+  let l:rg_cmd = Rg_cmd(a:ptn, v:null, v:null, a:opt) " todo dev
+  let l:r_rslt_txt = Sys_cmd(l:rg_cmd)
+  return l:r_rslt_txt
+endfunc
+
+func! Ynk__by_rgstr_info(rgstr_info) abort
+  
+  let l:rgstr = Rgstr_info_rgstr(a:rgstr_info)
+  let l:scrpt = 'let @a = @' . l:rgstr
+  execute(l:scrpt)
+endfunc
+
+func! Ins_rgstr_by_rgstr_info(rgstr_info) abort
+  
+  let l:rgstr = Rgstr_info_rgstr(a:rgstr_info)
+  call Normal('"' . l:rgstr . l:rgstr . 'P')
+endfunc
+
+func! Rgstr_info_rgstr(rgstr_info) abort
+
+  let l:rgstr = strcharpart(a:rgstr_info, 6, 1)
+  return l:rgstr
+endfunc
+
+func! Jmplst() abort
+
+  let l:jmplst_tmp = getjumplist()[0]
+  "echo l:jmplst_tmp
+
+  let l:buf_num_key_prefix = 'key_'
+  let l:jmplst = {}
+  for _jmplst_tmp in l:jmplst_tmp
+
+    let l:_buf_num_key = l:buf_num_key_prefix . l:_jmplst_tmp['bufnr']
+
+    if ! has_key(l:jmplst, l:_buf_num_key)
+      let l:jmplst[l:_buf_num_key] = []
+    endif
+
+    call add(l:jmplst[l:_buf_num_key], l:_jmplst_tmp)
+  endfor
+
+  for _buf_num_key in keys(l:jmplst)
+
+    call sort(l:jmplst[l:_buf_num_key], 'Jmplst_cmp')
+  endfor
+
+  let l:buf_num_key = l:buf_num_key_prefix . Buf_num()
+  let l:r_jmplst    = get(l:jmplst, buf_num_key, [])
+  "echo l:r_jmplst
+
+  return l:r_jmplst
+endfunc
+
+func! Jmplst_line_info() abort
+
+  let l:jmplst = Jmplst()
+
+  let l:jmplst_line_info = []
+  for _jmplst in l:jmplst
+
+    let l:line_num  = l:_jmplst['lnum']
+    let l:line_info = l:line_num . ' ' . getline(l:line_num)
+    call add(l:jmplst_line_info, l:line_info)
+  endfor
+  "echo l:jmplst_line_info
+
+  return l:jmplst_line_info
+endfunc
+
+func! Jmplst_cmp(jmplst1, jmplst2) abort
+
+  if     a:jmplst1['lnum'] >  a:jmplst2['lnum']
+    let l:ret =  1
+  elseif a:jmplst1['lnum'] == a:jmplst2['lnum']
+    let l:ret =  0
+  else
+    let l:ret = -1
+  endif
+
+  return l:ret
+endfunc
+
+func! Txt_to_ar(txt) abort
+
+  let l:line_ar  = split(a:txt, "\n")
+  return l:line_ar
 endfunc
 
 " mark
@@ -6106,8 +6109,6 @@ endfunc
 
 " url encdoe
 
-command! -nargs=? UrlEncode <line1>,<line2>call V_url_encode(<f-args>)
-
 func! V_url_encode() range abort
 
   let l:str = Slctd_str()
@@ -6117,21 +6118,6 @@ func! V_url_encode() range abort
   call Ins(l:rslt)
 endfunc
 
-" syntax color
-
-func! Hl_grp() abort
-
-  echo synIDattr(synID(line('.'), col('.'), 1), 'name')
-endfunc
-" and
-" :highlight [grp name]
-
-func! Color_name_lst() abort
-
-  let l:cmd = "so $VIMRUNTIME/syntax/colortest.vim"
-  call Exe(l:cmd)
-endfunc
-
 func! Defold_err_cnv() abort
 
   exe '%s/^ERROR:SCRIPT:/ERROR:SCRIPT:\r/g'
@@ -6139,123 +6125,103 @@ func! Defold_err_cnv() abort
   exe '%s/^ *//g'
 endfunc
 
-" 
-" tst
-" 
+" env
 
-" tst escape
+func! Is_env__(env) abort " alias
 
-"nnoremap T :call Tst_esacpe()<cr>
+  " a:env : 'mac', 'win64', 'win32', 'wsl', 'linux'
 
-func! Tst_esacpe() abort
+  let l:ret = has(a:env)
 
-  let l:str = '().$a'
-  echo l:str
-
-  let l:str = escape(l:str, l:str)
-  echo l:str
-endfunc
-
-" tst escape shell
-
-"nnoremap T :call Tst_esacpe_shell() <cr>
-
-func! Tst_esacpe_shell() abort
-
-  let l:str = '().$a \ / | & b c '
-  echo l:str
-
-  let l:str = shellescape(l:str)
-  echo l:str
-endfunc
-
-" tst arg f
-
-"nnoremap T :TstArgF 
-"nnoremap T :TstArgF aa().a \/|&bbb 'aa().a \/|&bbb'
-
-command! -bang -nargs=* TstArgF call Tst_arg_f(<f-args>)
-
-func! Tst_arg_f(arg01, arg02, arg03, arg04) range abort
-
-  echo a:arg01
-  echo a:arg02
-  echo a:arg03
-  echo a:arg04
-endfunc
-
-" tst arg q
-
-"nnoremap T :TstArgQ aa "bbb ccc" '().\a bbb""' "().\a bbb''"
-
-command! -bang -nargs=* TstArgQ call Tst_arg_q(<q-args>)
-
-func! Tst_arg_q(arg01) range abort
-
-  echo a:arg01
-  " echo a:arg01 . 'end'
-endfunc
-
-" tst is_directory ~
-
-"nnoremap T :call Tst_is_directory()<cr>
-
-func! Tst_is_directory() range abort
-
-  " let l:path = "~/wrk"        " ng
-  let l:path = $HOME . "/wrk" " ok
-  if isdirectory(l:path)
-    echo "true"
-  else
-    echo "false"
+  if a:env != 'mac'
+    " echo a:env . ' : ' . l:ret
+    " echo hostname()
   endif
+
+  return l:ret
 endfunc
 
-" tst slctd
+" 
+" plugin
+" 
 
-"vnoremap T :call Tst()
+func! Vim_plug_path() abort
 
-func! Tst() range abort
+  if     Is_env__('mac')
 
-  let l:val = Is_slctd_mode__box()
-  echo l:val
+    let l:vim_plug_dir_mac_nvim = $HOME . '/.local/share/nvim/site'
+    let l:vim_plug_dir_mac_vim  = $HOME . '/.vim'
+
+    if     isdirectory(l:vim_plug_dir_mac_nvim)
+      let l:vim_plug_dir = l:vim_plug_dir_mac_nvim
+
+    elseif isdirectory(l:vim_plug_dir_mac_vim)
+      let l:vim_plug_dir = l:vim_plug_dir_mac_vim
+
+    else
+      let l:vim_plug_dir = l:vim_plug_dir_mac_vim
+    endif
+
+  elseif Is_env__('win64')
+    let l:vim_plug_dir = '~/appdata/local/nvim-data/site'
+
+  elseif Is_env__('linux')
+
+    let l:vim_plug_dir_c9 = "/home/ec2-user/.vim"
+    let l:vim_plug_dir_s9 = "/home/centos/.local/share/nvim/site"
+
+    if     isdirectory(l:vim_plug_dir_c9)
+      let l:vim_plug_dir = l:vim_plug_dir_c9
+
+    elseif isdirectory(l:vim_plug_dir_s9)
+      let l:vim_plug_dir = l:vim_plug_dir_s9
+    endif
+
+  elseif Is_env__('win32unix')
+    let l:vim_plug_dir = '~/.vim'
+
+  else
+    let l:vim_plug_dir = '~/.vim'
+  endif
+
+  let l:vim_plug_path = l:vim_plug_dir . '/autoload/plug.vim'
+  return l:vim_plug_path
 endfunc
 
-" tst slctd __ rpl sys cmd mb
+func! Is_vim_plug__installed() abort
 
-"vnoremap T :TstSlctdRplSysCmdMb <cr>
+  let l:vim_plug_path = Vim_plug_path()
+  " echo l:vim_plug_path
 
-command! -range=% -nargs=* TstSlctdRplSysCmdMb <line1>,<line2>call Tst_slctd_rpl_sys_cmd_mb()
+  let l:ret = ! empty(glob(l:vim_plug_path))
+  " echo 'vim_plug installed : ' . l:ret
 
-func! Tst_slctd_rpl_sys_cmd_mb() range abort
-
-  let l:pth = '~/wrk/cnf/doc/tst/tst-in.md'
-  " let l:sys_cmd = 'cat ' . l:pth . ' | column -t | cat'
-  let l:sys_cmd = 'cat ' . l:pth . ' | column -t'
-  " let l:sys_cmd = 'cat ' . l:pth
-
-  '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
+  return l:ret
 endfunc
 
 " 
 " init
 " 
 
+if Is_vim_plug__installed()
+  "echo 'plug#begin'
+
+  call plug#begin()
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  Plug 'mattn/vim-molder'
+  "Plug 'mattn/vim-molder-operations'
+  "Plug 'jacquesbh/vim-showmarks'
+  call plug#end()
+endif
+" do :PlugInstall
+" or :PlugUpdate
+" or :PlugClean
+
 " ynk init
 call Ynk__clipboard()
 
-" srch init
-func! Srch_init() abort " use not
-
-  let l:cmd = '/<cr>N'
-  call Normal(l:cmd)
-endfunc
-"call Srch_init()
-
-" 
 " shell & .vimrc_env
-" 
-
 set shell=fish           " default
 
 if     Is_env__('mac')   " mac
@@ -6290,7 +6256,68 @@ else
   echo "is env else"
 endif
 
+" fzf init
+
+let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
+let g:fzf_action = {
+\  'ctrl-o': 'tab drop',
+\ }
+
+"\  'ctrl-o': 'enter',
+"\  'ctrl-i': 'item slct mtl',
+"\  'ctrl-s': 'backward-char',
+
+let g:fzf_colors = {
+\   'hl'     : ['fg', 'Statement'  ],
+\   'hl+'    : ['fg', 'Statement'  ],
+\ }
+
+"\   'bg+'    : ['bg', 'CursorLine' ],
+"\   'bg+'    : ['bg', 'Normal'     ],
+
+"\   'info'   : ['fg', 'Comment'    ],
+"\   'border' : ['fg', 'Ignore'     ],
+"\   'prompt' : ['fg', 'Function'   ],
+"\   'pointer': ['fg', 'Statement'  ],
+"\   'marker' : ['fg', 'Conditional'],
+
+"\   'info'   : ['Comment'],
+"\   'border' : ['Comment'],
+"\   'prompt' : ['Comment'],
+"\   'pointer': ['Comment'],
+"\   'marker' : ['Comment'],
+
+" use ??
+"let g:fzf_buffers_jump = 1
+"fzf#vim#complete#buffer_line([spec])
+
+" fzf var def ( in plugin ) end
+
+if Is_env__('mac') || Is_env__('linux') || Is_env__('win64')
+
+  if Is_env__('win64')
+    let g:fzf_rg_opt .= ' -g "!.git/"'
+  else
+    let g:fzf_rg_opt .= ' -g "!.git/"'
+  endif
+endif
+
+" srch init
+func! Srch_init() abort " use not
+
+  let l:cmd = '/<cr>N'
+  call Normal(l:cmd)
+endfunc
+"call Srch_init()
+
+" comment auto off ( final def )
+au FileType * set fo-=c fo-=r fo-=o
+
+
 " 
+" ref normal
+" 
+
 " ref normal
 " 
 " https://vim-jp.org/vimdoc-ja/vimindex.html
