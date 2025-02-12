@@ -34,18 +34,7 @@ m4
 
 fzf file ( <leader>l )
 - excld dir
-
-
-## keyboard mac m4
-
-karabiner
-- fn + ??
-
-
-## keyboard logi
-
-sticker carry to ofc
-- in plastic bag
+  - call fzf run
 
 
 ## keyboard win
@@ -56,6 +45,17 @@ keychron setting
 - setting at web
   - youtube watch re
   - setting
+
+
+## keyboard sticker
+
+mac
+
+dell
+
+logi
+
+keychron
 
 
 ## holo song
