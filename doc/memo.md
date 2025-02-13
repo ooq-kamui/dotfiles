@@ -2,6 +2,12 @@
 # cnf
 
 
+## ofc
+
+watch setting
+- second view
+
+
 ## vim
 
 fnc def pos mv

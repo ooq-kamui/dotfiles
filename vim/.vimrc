@@ -705,24 +705,26 @@ nnoremap <s-right> :tabm+1<cr>
 " win ( buf )
 " 
 
-" win nxt
-nnoremap <c-w> <c-w>w
+" win ( buf ) nxt
+nnoremap <c-w> :call Buf_splt_cursor__mv_nxt()<cr>
+"nnoremap <c-w> <c-w>w
 
-" buf splt
-nnoremap gi :call Buf_splt()<cr>
-nnoremap gu :call Buf_splt_quit()<cr>
-nnoremap gn :call Buf_splt_cursor__mv_nxt()<cr>
+" win ( buf ) splt quit
+nnoremap rq :call Buf_splt_quit()<cr>
 
+" win ( buf ) splt h
+nnoremap rh :call Buf_splt_h()<cr>
+
+" win ( buf ) splt v
+nnoremap rv :call Buf_splt_v()<cr>
+
+" win ( buf ) splt tgl
 "nnoremap rh :call Buf_splt_tgl()<cr>
-nnoremap rh :call Buf_splt()<cr>
-nnoremap rH :call Buf_splt_quit()<cr>
-nnoremap rf :call Buf_splt_quit()<cr>
-nnoremap rn :call Buf_splt_cursor__mv_nxt()<cr>
 
-" win mv r
+" win ( buf ) mv r
 "nnoremap xx <c-w>l
 
-" win mv l
+" win ( buf ) mv l
 "nnoremap xx <c-w>h
 
 " 
@@ -921,17 +923,17 @@ nnoremap gb <esc>
 nnoremap gf <esc>
 nnoremap gg <esc>
 "nnoremap gh <esc>
-"nnoremap gi <esc>
+nnoremap gi <esc>
 "nnoremap gj <esc>
 "nnoremap gk <esc>
 nnoremap gl <esc>
 nnoremap gm <esc>
-"nnoremap gn <esc>
+nnoremap gn <esc>
 "nnoremap go <esc>
 nnoremap gp <esc>
 "nnoremap gs <esc>
 "nnoremap gt <esc>
-"nnoremap gu <esc>
+nnoremap gu <esc>
 nnoremap gv <esc>
 nnoremap gw <esc>
 nnoremap gy <esc>
@@ -946,13 +948,15 @@ nnoremap ra <esc>
 "nnoremap rj <esc>
 "nnoremap rk <esc>
 "        :
-"nnoremap rn <esc>
+nnoremap rn <esc>
 "nnoremap ro <esc>
 nnoremap rp <esc>
 "        :
 "nnoremap rr <esc>
 "        :
 "nnoremap ru <esc>
+"        :
+"nnoremap rv <esc>
 "        :
 nnoremap rz <esc>
 
@@ -5392,11 +5396,19 @@ func! Buf_num() abort
   return bufnr('%')
 endfunc
 
-" buf splt
+" buf splt h
 
-func! Buf_splt() abort
+func! Buf_splt_h() abort
 
   let l:cmd = 'split'
+  call Exe(l:cmd)
+endfunc
+
+" buf splt v
+
+func! Buf_splt_v() abort
+
+  let l:cmd = 'vsplit'
   call Exe(l:cmd)
 endfunc
 
