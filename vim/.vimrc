@@ -2335,13 +2335,10 @@ func! Is_char__tgl_symbol(c) abort
   let l:rpl = ''
 
   if     a:c == '/'
-    " let l:rpl = '-'
-    let l:rpl = '\'
-  " elseif a:c == '-'
-    " let l:rpl = '\'
-  elseif a:c == '\'
     let l:rpl = '|'
   elseif a:c == '|'
+    let l:rpl = '\'
+  elseif a:c == '\'
     let l:rpl = '/'
 
   elseif a:c == "'"
