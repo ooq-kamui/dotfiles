@@ -19,12 +19,6 @@ logi
 del
 
 
-## karabiner
-
-m4
-- mission control, mv side
-
-
 ## keyboard win
 
 keychron setting
