@@ -2,45 +2,27 @@
 # cnf
 
 
-## ofc
+## keyboard sticker
 
-watch setting
-- second view
+mac
+- print
+- paste
+
+keychron
+- print
+- paste
+
+logi
+- print
+- paste
+
+del
 
 
-## vim
-
-fnc def pos mv
-  - by index
-
-
-fnc name re
-- vnoremap p
-  - v box xxx > slctd box xxx
-
-- buf xxx > win xxx
-
+## karabiner
 
 m4
-- hl slctd fg
-
-
-`~~xxx~~`
-- Slctd_line__markdown_strikethrough()
-  - slctd __ line
-    - slctd __ line markdown
-      - normal
-      - kajogaki
-
-`xxx,`
-- Slctd_line_end__ins_comma()
-- Slctd_line_top__ins_comma()
-  - ref Line_end__ins_dots()
-
-
-fzf file ( <leader>l )
-- excld dir
-  - call fzf run
+- mission control, mv side
 
 
 ## keyboard win
@@ -53,15 +35,37 @@ keychron setting
   - setting
 
 
-## keyboard sticker
+## vim
 
-mac
+`~~xxx~~`
+- Slctd_line__markdown_strikethrough()
+  - slctd __ line
+    - slctd __ line markdown
+      - normal
+      - kajogaki
 
-dell
+`xxx,`
+- Slctd_line_end__ins_comma()
+- Slctd_line_top__ins_comma()
+  - ref Line_end__ins_dots()
+fnc def pos mv
+- by index
 
-logi
 
-keychron
+fnc name re
+- vnoremap p
+  - v box xxx > slctd box xxx
+
+- buf xxx > win xxx
+
+
+fzf file ( <leader>l )
+- excld dir
+  - call fzf run
+
+
+m4
+- hl slctd fg
 
 
 ## holo song
