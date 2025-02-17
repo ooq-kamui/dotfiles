@@ -37,10 +37,6 @@ hl slctd fg
 ## keyboard sticker
 
 logi
-- design
-  - text
-    - main pos down
-
 - lst
   - alpha
     - u i o p
