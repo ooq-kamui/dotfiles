@@ -706,20 +706,20 @@ nnoremap <s-right> :tabm+1<cr>
 " 
 
 " win ( buf ) nxt
-nnoremap <c-w> :call Buf_splt_cursor__mv_nxt()<cr>
+nnoremap <c-w> :call Win_splt_cursor__mv_nxt()<cr>
 "nnoremap <c-w> <c-w>w
 
 " win ( buf ) splt quit
-nnoremap rq :call Buf_splt_quit()<cr>
+nnoremap rq :call Win_splt_quit()<cr>
 
 " win ( buf ) splt h
-nnoremap rh :call Buf_splt_h()<cr>
+nnoremap rh :call Win_splt_h()<cr>
 
 " win ( buf ) splt v
-nnoremap rv :call Buf_splt_v()<cr>
+nnoremap rv :call Win_splt_v()<cr>
 
 " win ( buf ) splt tgl
-"nnoremap rh :call Buf_splt_tgl()<cr>
+"nnoremap rh :call Win_splt_tgl()<cr>
 
 " win ( buf ) mv r
 "nnoremap xx <c-w>l
@@ -5393,34 +5393,32 @@ func! Buf_num() abort
   return bufnr('%')
 endfunc
 
-" buf splt h
+" win splt
 
-func! Buf_splt_h() abort
+func! Win_splt_h() abort
 
   let l:cmd = 'split'
   call Exe(l:cmd)
 endfunc
 
-" buf splt v
-
-func! Buf_splt_v() abort
+func! Win_splt_v() abort
 
   let l:cmd = 'vsplit'
   call Exe(l:cmd)
 endfunc
 
-func! Buf_splt_quit() abort
+func! Win_splt_quit() abort
 
   let l:n_cmd = "\<c-w>c"
   call Normal(l:n_cmd)
 endfunc
 
-func! Buf_splt_tgl() abort " todo dev
+func! Win_splt_tgl() abort " todo dev
 
   
 endfunc
 
-func! Buf_splt_cursor__mv_nxt() abort
+func! Win_splt_cursor__mv_nxt() abort
 
   let l:n_cmd = "\<c-w>w"
   call Normal(l:n_cmd)

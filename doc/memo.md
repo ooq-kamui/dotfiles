@@ -2,34 +2,12 @@
 # cnf
 
 
-## keyboard sticker
-
-mac
-- print
-- paste
-
-keychron
-- print
-- paste
-
-logi
-- print
-- paste
-
-del
-
-
-## keyboard win
-
-keychron setting
-- key sticker del
-- power toys setting del
-- setting at web
-  - youtube watch re
-  - setting
-
-
 ## vim
+
+fnc name re
+- vnoremap p
+  - v box xxx > slctd box xxx
+
 
 `~~xxx~~`
 - Slctd_line__markdown_strikethrough()
@@ -46,20 +24,57 @@ fnc def pos mv
 - by index
 
 
-fnc name re
-- vnoremap p
-  - v box xxx > slctd box xxx
-
-- buf xxx > win xxx
-
-
 fzf file ( <leader>l )
 - excld dir
   - call fzf run
 
 
-m4
-- hl slctd fg
+## vim m4
+
+hl slctd fg
+
+
+## keyboard sticker
+
+logi
+- design
+  - text
+    - main pos down
+
+- lst
+  - alpha
+    - u i o p
+    - h j k l y
+    - q n m 
+  - symbol
+    - /? \| @`
+    - `win tab ]} ;+ _ back-space`
+    - `strl [{ :*`
+    - `,< .> enter f2`
+    - `shift alpha esc ctrl`
+  - num
+    - `0 9)`
+  - fn
+    - `<win win> pg^ pg^ pgv`
+
+- cre
+  - alpha
+
+
+keychron
+
+mac m4
+
+
+## keychron setting
+
+win
+- key sticker del
+- power toys setting del
+
+setting at web
+- see youtube re
+- setting
 
 
 ## holo song
