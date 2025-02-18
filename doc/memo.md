@@ -37,24 +37,19 @@ hl slctd fg
 ## keyboard sticker
 
 logi
-- lst
+- cre / paste
   - alpha
-    - u i o p
-    - h j k l y
-    - q n m 
+    - h (cut d)
   - symbol
-    - /? \| @`
-    - `win tab ]} ;+ _ back-space`
-    - `strl [{ :*`
-    - `,< .> enter f2`
+    - @`
+    - `win tab`
+    - `ctrl`
+    - `enter f2`
     - `shift alpha esc ctrl`
   - num
     - `0 9)`
   - fn
     - `<win win> pg^ pg^ pgv`
-
-- cre
-  - alpha
 
 
 keychron
