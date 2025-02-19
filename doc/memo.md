@@ -4,11 +4,6 @@
 
 ## vim
 
-fnc name re
-- vnoremap p
-  - v box xxx > slctd box xxx
-
-
 `~~xxx~~`
 - Slctd_line__markdown_strikethrough()
   - slctd __ line
@@ -24,6 +19,14 @@ fnc def pos mv
 - by index
 
 
+fnc name re
+- vnoremap p
+  - v box xxx > slctd box xxx
+
+
+fzf dir
+
+
 fzf file ( <leader>l )
 - excld dir
   - call fzf run
@@ -36,23 +39,21 @@ hl slctd fg
 
 ## keyboard sticker
 
+keychron
+
 logi
 - cre / paste
-  - alpha
-    - h (cut d)
-  - symbol
-    - @`
-    - `win tab`
-    - `ctrl`
-    - `enter f2`
-    - `shift alpha esc ctrl`
-  - num
-    - `0 9)`
   - fn
     - `<win win> pg^ pg^ pgv`
-
-
-keychron
+  - num
+    - `0 9)`
+  - alpha
+    - h (cut d)
+  - modify
+    - `win`
+    - `ctrl`
+    - `f2`
+    - `α esc ctrl`
 
 mac m4
 
