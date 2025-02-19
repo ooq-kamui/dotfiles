@@ -39,8 +39,6 @@ hl slctd fg
 
 ## keyboard sticker
 
-keychron
-
 logi
 - cre / paste
   - fn
@@ -54,8 +52,6 @@ logi
     - `ctrl`
     - `f2`
     - `α esc ctrl`
-
-mac m4
 
 
 ## keychron setting
