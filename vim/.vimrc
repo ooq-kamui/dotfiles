@@ -339,6 +339,10 @@ nnoremap <c-l> %
 "nnoremap xx <c-o>
 "nnoremap xx <c-i>
 
+" cursor mv indnt auto
+nnoremap <c-f> ll
+" nnoremap <c-f> :call Cursor__mv_indnt_auto()<cr> " todo dev
+
 " cursor mv file edge bgn
 nnoremap gk :call Cursor__mv_file_edge_bgn()<cr>
 "nnoremap gk :call Cursor__mv_file_edge('k')<cr>
@@ -674,6 +678,7 @@ nnoremap :k :K
 
 " fzf cd
 nnoremap <leader>d :call Fzf_dir_jmp()<cr>
+" nnoremap <leader>d :call Fzf_dir()<cr>
 
 " fzf doc memo
 nnoremap <leader>m :call Fzf_doc_memo_opn()<cr>
@@ -896,7 +901,7 @@ nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
 "nnoremap <c-e> <esc>
-nnoremap <c-f> <esc>
+"nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
@@ -5728,6 +5733,12 @@ func! Fzf_jmplst() abort
   \   }
   \ )
   "\     'options': ['--no-sort'],
+endfunc
+
+" fzf dir
+
+func! Fzf_dir() abort " todo dev
+
 endfunc
 
 func! Fzf_dir_jmp() abort
