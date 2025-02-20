@@ -43,15 +43,12 @@ logi
 - cre / paste
   - fn
     - `<win win> pg^ pg^ pgv`
-  - num
-    - `0 9)`
   - alpha
-    - h (cut d)
+    - j y
   - modify
     - `win`
     - `ctrl`
-    - `f2`
-    - `α esc ctrl`
+    - `ctrl`
 
 
 ## keychron setting
