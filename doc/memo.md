@@ -4,6 +4,10 @@
 
 ## vim
 
+slctd edge __ ins bracket
+- vnoremap ?
+
+
 `~~xxx~~`
 - Slctd_line__markdown_strikethrough()
   - slctd __ line
@@ -46,9 +50,12 @@ logi
   - alpha
     - j y
   - modify
+    - `win` 15 mm
+    - `ctrl` 20 mm ( div file 12 mm )
     - `win`
-    - `ctrl`
-    - `ctrl`
+
+design
+- shift
 
 
 ## keychron setting

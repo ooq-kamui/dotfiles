@@ -1030,7 +1030,7 @@ vnoremap i V
 " mode ch visual box
 "vnoremap v <c-v>
 vnoremap <expr> v
-\ mode() == '<c-v>' ? ':call Slctd_box_w__1()<cr>' :
+\ mode() == '<c-v>' ? ':call Slctd_box_width__1()<cr>' :
 \                     '<c-v>'
 
 " file srch ( fzf )
@@ -1125,7 +1125,6 @@ vnoremap a :call Slct_all()<cr>
 
 " ynk slctd
 vnoremap o :call V_ynk()<cr>
-vnoremap c :call V_ynk()<cr>
 
 " ynk slctd add
 "vnoremap xx :call V_ynk__add_slctd()<cr>
@@ -1147,9 +1146,6 @@ vnoremap <expr> p
 
 " paste visual box
 "vnoremap xx I<c-r>0<esc>
-
-" undo
-"vnoremap h <esc>u
 
 " 
 " edit
@@ -1222,7 +1218,7 @@ vnoremap - :call V_slctd__pad('-')<cr>
 vnoremap <bar> :call V_slctd__pad_bar()<cr>
 
 " slctd space __ pad _
-vnoremap b :call V_char__rpl(' ', '_')<cr>
+"vnoremap xx :call Slctd__rpl(' ', '_')<cr>
 
 " line __ join per line
 vnoremap J :call V_line__join_per_line(3)
@@ -1236,22 +1232,23 @@ vnoremap m :call V_line_end_space__del()<cr>
 " del cursor f space
 vnoremap K :call V_cursor_f_space__del()<cr>
 
-" slctd edge __ quote tgl
-vnoremap <c-u> :call Slctd_edge_quote__tgl()<cr>
+" slctd edge quote __ tgl
+vnoremap w     :call Slctd_edge_quote__tgl()<cr>
+"vnoremap q     :call Slctd_edge_quote__tgl()<cr>
+"vnoremap <c-u> :call Slctd_edge_quote__tgl()<cr>
 
-" slctd edge out char __ del
-"vnoremap xx :call Slctd_edge_out_cahr__del()<cr>
-
-vnoremap w :call Slctd_edge__ins('a')<cr>
+" slctd edge bracket __ tgl
+vnoremap W :call Slctd_edge_bracket__tgl()<cr>
+"vnoremap b :call Slctd_edge_bracket__tgl()<cr>
 
 " slctd str mv back
-"vnoremap <c-s> :call Slctd_box_str__mv('l')<cr>
+"vnoremap xx :call Slctd_box_str__mv('l')<cr>
 
 " slctd str mv forward
-"vnoremap <c-f> :call Slctd_box_str__mv('r')<cr>
+"vnoremap xx :call Slctd_box_str__mv('r')<cr>
 
 " slctd box space __ del
-vnoremap D :call V_box_space__del()<cr>
+vnoremap D :call Slctd_box_space__del()<cr>
 
 " slctd box space __ under score " todo dev
 "vnoremap xx :call V_box_space__underscore()<cr>
@@ -1261,9 +1258,6 @@ vnoremap <c-w> :call Slctd_box__mv('l')<cr>
 
 " slctd box mv forward
 vnoremap <c-e> :call Slctd_box__mv('r')<cr>
-
-" slctd box w __ 1
-"vnoremap v :call Slctd_box_w__1()<cr>
 
 " num icl
 vnoremap + <c-a>gv
@@ -1293,7 +1287,6 @@ vnoremap ; =gv
 
 " indnt tab   > space
 vnoremap :e :call V_line_indnt__space(2)
-vnoremap t  :call V_line_indnt__space(2)
 
 " indnt space > tab
 "vnoremap xx :call V_line_indnt__tab(2)<cr>
@@ -1310,11 +1303,11 @@ vnoremap :t :Tbl
 " upper / lower tgl
 vnoremap u ~gv
 
-" upper all
+" upper force
 vnoremap U Ugv
 
-" lower all
-"vnoremap <c-u> ugv
+" lower force
+"vnoremap xx ugv
 
 " str mb
 vnoremap M :MbCnv <cr>
@@ -1431,8 +1424,8 @@ vnoremap , <esc>
 vnoremap . <esc>
 
 "vnoremap a <esc>
-"vnoremap b <esc>
-"vnoremap c <esc>
+vnoremap b <esc>
+vnoremap c <esc>
 "vnoremap d <esc>
 "vnoremap e <esc>
 "vnoremap f <esc>
@@ -1447,7 +1440,7 @@ vnoremap h <esc>
 vnoremap q <esc>
 "vnoremap r <esc>
 "vnoremap s <esc>
-"vnoremap t <esc>
+vnoremap t <esc>
 "vnoremap u <esc>
 "vnoremap v <esc>
 "vnoremap w <esc>
@@ -1475,7 +1468,7 @@ vnoremap R <esc>
 vnoremap T <esc>
 "vnoremap U <esc>
 vnoremap V <esc>
-vnoremap W <esc>
+"vnoremap W <esc>
 vnoremap X <esc>
 "vnoremap Y <esc>
 
@@ -1487,7 +1480,7 @@ vnoremap <c-a> <esc>
 vnoremap <c-c> <esc>
 vnoremap <c-d> <esc>
 "vnoremap <c-e> <esc>
-vnoremap <c-f> <esc>
+"vnoremap <c-f> <esc>
 "vnoremap <c-h> <esc>
 "vnoremap <c-i> <esc>
 "vnoremap <c-l> <esc>
@@ -1498,7 +1491,7 @@ vnoremap <c-f> <esc>
 vnoremap <c-q> <esc>
 vnoremap <c-r> <esc>
 vnoremap <c-s> <esc>
-"vnoremap <c-u> <esc>
+vnoremap <c-u> <esc>
 " v disable ??
 vnoremap <c-v> <esc>
 "vnoremap <c-w> <esc>
@@ -1612,7 +1605,6 @@ inoremap <expr> <c-j>
 \ pumvisible() ? '<c-n>'                 :
 \                '<c-r>=I_bracket()<cr>'
 " \                '<c-r>=I_quote()<cr>'
-" \                '<c-r>=I_bracket_and_quote()<cr>'
 
 " ins num
 inoremap <c-y>     <c-r>=I_num()<cr>
@@ -1839,7 +1831,7 @@ command! -range=% -nargs=0 Tbl <line1>,<line2>call V_tbl()
 
 command! -range=% -nargs=* Rpl <line1>,<line2>call V_line__rpl(<f-args>)
 
-command! -range=% -nargs=* VBoxRpl <line1>,<line2>call V_box__rpl(<f-args>)
+command! -range=% -nargs=* VBoxRpl <line1>,<line2>call Slctd_box__rpl(<f-args>)
 
 command! -nargs=* -complete=file Opn call Opn(<q-args>)
 
@@ -4375,7 +4367,7 @@ func! Slctd_box__mv(lr) range abort
   call Normal('o' . l:n_cmd)
 endfunc
 
-func! Slctd_box_w__1() range abort
+func! Slctd_box_width__1() range abort
 
   call Slct_re()
 
@@ -4525,6 +4517,16 @@ func! Slctd_edge_quote__tgl() range abort
   endif
 endfunc
 
+func! Slctd_edge_bracket__tgl() range abort " todo dev
+
+  call Slct_re()
+
+  call Normal('"ad')
+  call Normal('i')
+  " call I_bracket()
+  call Paste()
+endfunc
+
 func! Slctd_edge_out_cahr__del() range abort
 
   call Slct_re()
@@ -4578,18 +4580,16 @@ func! Slctd_line__markdown_strikethrough() range abort " todo dev
   
 endfunc
 
-" v char __ rpl
-" todo refactoring fnc name re
+" slctd char __ rpl
 
-func! V_char__rpl(srch, rpl) range abort
+func! Slctd__rpl(srch, rpl) range abort
 
-  call V_box__rpl(a:srch, a:rpl)
+  call Slctd_box__rpl(a:srch, a:rpl)
 endfunc
 
-" v box __ rpl
-" todo refactoring fnc name re
+" slctd box __ rpl
 
-func! V_box__rpl(srch, rpl) range abort
+func! Slctd_box__rpl(srch, rpl) range abort
 
   let l:srch = a:srch
   let l:rpl  = a:rpl
@@ -4598,14 +4598,14 @@ func! V_box__rpl(srch, rpl) range abort
   call Exe(l:cmd)
 endfunc
 
-" v box space __ del
+" slctd box space __ del
 
-func! V_box_space__del() range abort
+func! Slctd_box_space__del() range abort
 
   let l:srch = ' '
   let l:rpl  = ''
 
-  '<,'>:call V_char__rpl(srch, rpl)
+  '<,'>:call Slctd__rpl(srch, rpl)
 endfunc
 
 " v box char __ shft
@@ -5462,13 +5462,6 @@ endfunc
 func! I_quote() abort
 
   let l:lst = [ "''", '""', '``' ]
-  call complete(col('.'), l:lst)
-  return ''
-endfunc
-
-func! I_bracket_and_quote() abort
-
-  let l:lst = [ '()', '{}', '[]', '<>', '``', '""', "''" ]
   call complete(col('.'), l:lst)
   return ''
 endfunc
