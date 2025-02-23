@@ -2,11 +2,26 @@
 # cnf
 
 
+## m4
+
+sys cp
+
+
+## vim m4
+
+hl slctd fg
+
+
+## keychron setting
+
+win key setting crnt del
+- key sticker
+- power toys
+
+setting at hard
+
+
 ## vim
-
-slctd edge __ ins bracket
-- vnoremap ?
-
 
 `~~xxx~~`
 - Slctd_line__markdown_strikethrough()
@@ -28,19 +43,6 @@ fnc name re
   - v box xxx > slctd box xxx
 
 
-fzf dir
-
-
-fzf file ( <leader>l )
-- excld dir
-  - call fzf run
-
-
-## vim m4
-
-hl slctd fg
-
-
 ## keyboard sticker
 
 logi
@@ -53,20 +55,6 @@ logi
     - `win` 15 mm
     - `ctrl` 20 mm ( div file 12 mm )
     - `win`
-
-design
-- shift
-
-
-## keychron setting
-
-win
-- key sticker del
-- power toys setting del
-
-setting at web
-- see youtube re
-- setting
 
 
 ## holo song

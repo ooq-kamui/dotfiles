@@ -215,10 +215,8 @@ nnoremap :o :Opn
 "nnoremap xx `0
 
 " opn file srch  ( fzf )
-nnoremap <leader>l :FzfFile <cr>
-
-" opn file srch memo  ( fzf )
-"nnoremap <leader>L :FzfFile ../memo/
+nnoremap <leader>l :call Fzf_file()<cr>
+"nnoremap <leader>l :FzfFile <cr>
 
 " opn file hstry ( fzf )
 nnoremap <leader>h :FzfFileHstry<cr>
@@ -677,12 +675,14 @@ nnoremap :p :Pth <cr>
 nnoremap :k :K
 
 " fzf cd
+nnoremap <leader>y :call Fzf_dir()<cr>
+
+" fzf cd ( dir jmp )
 nnoremap <leader>d :call Fzf_dir_jmp()<cr>
-" nnoremap <leader>d :call Fzf_dir()<cr>
 
 " fzf doc memo
 nnoremap <leader>m :call Fzf_doc_memo_opn()<cr>
-"nnoremap <leader>g :call Fzf_doc_memo_opn()<cr>
+"nnoremap <leader>M :FzfFile ../memo/
 
 " fzf vim fnc call
 nnoremap <leader>c :call Fzf_vim_fnc_call()<cr>
@@ -1015,9 +1015,10 @@ nnoremap <leader>s <esc>
 nnoremap <leader>u <esc>
 nnoremap <leader>v <esc>
 nnoremap <leader>w <esc>
-nnoremap <leader>y <esc>
+"nnoremap <leader>y <esc>
 
 "nnoremap <leader>L <esc>
+nnoremap <leader>M <esc>
 "nnoremap <leader>O <esc>
 
 " 
@@ -4468,7 +4469,17 @@ func! Slctd_edge__ins(c) range abort
   call Slct_re()
 
   let l:c_l = a:c
+
   let l:c_r = a:c
+  if     a:c == '('
+    let l:c_r = ')'
+  elseif a:c == '{'
+    let l:c_r = '}'
+  elseif a:c == '['
+    let l:c_r = ']'
+  elseif a:c == '<'
+    let l:c_r = '>'
+  endif
 
   call Normal('"zx')
   call Ins(l:c_l . l:c_r)
@@ -4498,7 +4509,6 @@ func! Slctd_edge_quote__tgl() range abort
   if     l:c_l == "'" && l:c_l == l:c_r
 
     call Slctd_edge_out_cahr__del()
-    " return
     let l:c = '"'
     call Slctd_edge__ins(l:c)
 
@@ -4517,14 +4527,48 @@ func! Slctd_edge_quote__tgl() range abort
   endif
 endfunc
 
-func! Slctd_edge_bracket__tgl() range abort " todo dev
+func! Slctd_edge_bracket__tgl() range abort
 
   call Slct_re()
 
-  call Normal('"ad')
-  call Normal('i')
-  " call I_bracket()
-  call Paste()
+  if a:firstline != a:lastline
+    return
+  endif
+
+  if Is_cursor_col__line_end()
+    return
+  endif
+
+  " char chk
+  let l:c_l = Slctd_edge_l_out_char()
+  let l:c_r = Slctd_edge_r_out_char()
+  " echo l:c_l l:c_r
+
+  if     l:c_l == '(' && l:c_r == ')'
+
+    call Slctd_edge_out_cahr__del()
+    let l:c = '{'
+    call Slctd_edge__ins(l:c)
+
+  elseif l:c_l == '{' && l:c_r == '}'
+
+    call Slctd_edge_out_cahr__del()
+    let l:c = '['
+    call Slctd_edge__ins(l:c)
+
+  elseif l:c_l == '[' && l:c_r == ']'
+
+    call Slctd_edge_out_cahr__del()
+    let l:c = '<'
+    call Slctd_edge__ins(l:c)
+
+  elseif l:c_l == '<' && l:c_r == '>'
+
+    call Slctd_edge_out_cahr__del()
+  else
+    let l:c = '('
+    call Slctd_edge__ins(l:c)
+  endif
 endfunc
 
 func! Slctd_edge_out_cahr__del() range abort
@@ -5728,16 +5772,33 @@ func! Fzf_jmplst() abort
   "\     'options': ['--no-sort'],
 endfunc
 
+" fzf file
+
+func! Fzf_file() abort
+
+  let l:sys_cmd = 'fd --type f'
+  let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
+
+  let l:fnc_name = 'Dir__'
+  call Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
+endfunc
+
 " fzf dir
 
-func! Fzf_dir() abort " todo dev
+func! Fzf_dir() abort
 
+  let l:sys_cmd = 'fd --type d'
+  let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
+
+  let l:fnc_name = 'Dir__'
+  call Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
 endfunc
 
 func! Fzf_dir_jmp() abort
 
   let l:sys_cmd = 'dir_jmp_lst_with_z'
   " let l:sys_cmd = 'dir_jmp_lst_with_zoxide'
+
   let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
 
   let l:fnc_name = 'Dir__'
