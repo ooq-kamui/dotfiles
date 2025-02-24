@@ -31,7 +31,7 @@ augroup END
 " hi Cursor                           ctermbg=gray    guibg=gray
 hi CursorLineNr ctermfg=magenta
 
-hi Visual                           ctermbg=darkmagenta cterm=none
+hi Visual      ctermfg=none         ctermbg=darkmagenta cterm=none
 hi VisualNOS                        ctermbg=darkmagenta cterm=none
 
 hi Search      ctermfg=lightyellow  ctermbg=36          cterm=none

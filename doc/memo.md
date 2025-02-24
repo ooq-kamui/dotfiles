@@ -2,23 +2,18 @@
 # cnf
 
 
-## m4
+## keyboard sticker
 
-sys cp
-
-
-## vim m4
-
-hl slctd fg
-
-
-## keychron setting
-
-win key setting crnt del
-- key sticker
-- power toys
-
-setting at hard
+logi
+- cre / paste
+  - fn
+    - `<win win> pg^ pg^ pgv`
+  - alpha
+    - j y
+  - modify
+    - `win` 15 mm
+    - `ctrl` 20 mm ( div file 12 mm )
+    - `win`
 
 
 ## vim
@@ -43,18 +38,33 @@ fnc name re
   - v box xxx > slctd box xxx
 
 
-## keyboard sticker
+## keychron setting
 
-logi
-- cre / paste
-  - fn
-    - `<win win> pg^ pg^ pgv`
-  - alpha
-    - j y
-  - modify
-    - `win` 15 mm
-    - `ctrl` 20 mm ( div file 12 mm )
-    - `win`
+win key setting crnt del
+- key sticker
+- power toys
+
+setting at hard
+
+
+## m4
+
+setting
+- any, see m1
+- notice bell volume down
+
+
+vim
+hl i menu bg
+
+
+install
+- tmux
+- defold
+- godot
+
+
+music data
 
 
 ## holo song
