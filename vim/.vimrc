@@ -5779,7 +5779,7 @@ func! Fzf_file() abort
   let l:sys_cmd = 'fd --type f'
   let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
 
-  let l:fnc_name = 'Dir__'
+  let l:fnc_name = 'Opn'
   call Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
 endfunc
 

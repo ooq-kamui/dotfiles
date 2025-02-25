@@ -216,7 +216,9 @@ function ts { Get-Date -Format "yyyy-MM-dd.HH:mm:ss" }
 Set-Alias t "ts"
 
 # git
-Set-Alias ji "git" -force # alias xxx is read-only or
+Set-Alias ji  "git"    -force # alias xxx is read-only or
+# Set-Alias jis "git s"  -force # alias xxx is read-only or
+# Set-Alias jia "git aa" -force # alias xxx is read-only or
 
 # posh-git
 Import-Module posh-git
