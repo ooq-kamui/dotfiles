@@ -2,6 +2,16 @@
 # cnf
 
 
+## keyboard sticker
+
+logi
+- cre / paste
+  - fn
+    - `<win win> pg^ pg^ pgv`
+  - alpha
+    - j y ( & poch line )
+
+
 ## keychron setting
 
 win key setting crnt del
@@ -12,15 +22,6 @@ setting at hard
 
 
 ## vim
-
-m4
-- hl i menu bg
-
-```
-  hi Pmenu       ctermfg=lightgreen   ctermbg=blue
-  hi PmenuSel    ctermfg=cyan         ctermbg=magenta     cterm=bold
-```
-
 
 `~~xxx~~`
 - Slctd_line__markdown_strikethrough()
@@ -40,16 +41,6 @@ fnc def pos mv
 fnc name re
 - vnoremap p
   - v box xxx > slctd box xxx
-
-
-## keyboard sticker
-
-logi
-- cre / paste
-  - fn
-    - `<win win> pg^ pg^ pgv`
-  - alpha
-    - j y ( & poch line )
 
 
 ## m1
