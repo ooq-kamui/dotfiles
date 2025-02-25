@@ -45,8 +45,6 @@ fnc name re
 
 ## m1
 
-dir tidy del
-
 battery ch
 
 
