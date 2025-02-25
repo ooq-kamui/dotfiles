@@ -120,7 +120,9 @@ alias vi  'vim'
 alias line 'cat_line'
 
 alias ji     'git'
-alias ji_ssl 'git ssl'
+alias jis    'git s'
+alias jia    'git aa'
+alias ji_ssl 'git ssl' # status staged list
 
 #alias fzf_ins 'cmdline__fzf'
 #alias f       'cmdline__fzf'

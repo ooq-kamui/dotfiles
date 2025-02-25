@@ -47,7 +47,7 @@ hi TabLineFill                      ctermbg=none        cterm=none
 hi StatusLine  ctermfg=lightblue    ctermbg=none        cterm=none
 hi EndOfBuffer ctermfg=cyan                             cterm=none
 
-hi Pmenu       ctermfg=lightgreen   ctermbg=blue
+hi Pmenu       ctermfg=lightgreen   ctermbg=darkblue    cterm=none
 hi PmenuSel    ctermfg=cyan         ctermbg=magenta     cterm=bold
 
 hi ErrorMsg    ctermfg=magenta      ctermbg=none        cterm=none

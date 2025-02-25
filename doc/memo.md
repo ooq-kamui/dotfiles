@@ -2,21 +2,25 @@
 # cnf
 
 
-## keyboard sticker
+## keychron setting
 
-logi
-- cre / paste
-  - fn
-    - `<win win> pg^ pg^ pgv`
-  - alpha
-    - j y
-  - modify
-    - `win` 15 mm
-    - `ctrl` 20 mm ( div file 12 mm )
-    - `win`
+win key setting crnt del
+- key sticker
+- power toys
+
+setting at hard
 
 
 ## vim
+
+m4
+- hl i menu bg
+
+```
+  hi Pmenu       ctermfg=lightgreen   ctermbg=blue
+  hi PmenuSel    ctermfg=cyan         ctermbg=magenta     cterm=bold
+```
+
 
 `~~xxx~~`
 - Slctd_line__markdown_strikethrough()
@@ -38,13 +42,19 @@ fnc name re
   - v box xxx > slctd box xxx
 
 
-## keychron setting
+## keyboard sticker
 
-win key setting crnt del
-- key sticker
-- power toys
+logi
+- cre / paste
+  - fn
+    - `<win win> pg^ pg^ pgv`
+  - alpha
+    - j y ( & poch line )
 
-setting at hard
+
+## m1
+
+dir tidy
 
 
 ## m4
@@ -54,20 +64,17 @@ setting
 - notice bell volume down
 
 
-vim
-hl i menu bg
-
-
 install
 - tmux
-- defold
-- godot
 
 
 music data
 
 
 ## holo song
+
+service close info write up
+
 
 git dir mv to share
 - at mac
