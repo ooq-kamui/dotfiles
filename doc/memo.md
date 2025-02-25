@@ -54,7 +54,9 @@ logi
 
 ## m1
 
-dir tidy
+dir tidy del
+
+battery ch
 
 
 ## m4
