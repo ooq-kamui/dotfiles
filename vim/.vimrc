@@ -397,7 +397,7 @@ nnoremap I ve
 nnoremap v <c-v>
 
 " slct all
-nnoremap A :call Ynk__line_all()<cr>
+"nnoremap xx :call Ynk__line_all()<cr>
 
 " slct re
 nnoremap rr :call Slct_re()<cr>
@@ -853,7 +853,7 @@ nnoremap x <esc>
 "nnoremap y <esc>
 nnoremap z <esc>
 
-"nnoremap A <esc>
+nnoremap A <esc>
 nnoremap B <esc>
 nnoremap C <esc>
 "nnoremap D <esc>
@@ -1828,7 +1828,7 @@ command! -nargs=* SrchOr call Srch_or(<f-args>)
 
 command! -nargs=* InsSysCmd call Ins_sys_cmd(<q-args>)
 
-command! -range=% -nargs=0 Tbl <line1>,<line2>call V_tbl()
+command! -range=% -nargs=0 Tbl <line1>,<line2>call Slctd_line__crct_tbl()
 
 command! -range=% -nargs=* Rpl <line1>,<line2>call V_line__rpl(<f-args>)
 
@@ -1973,7 +1973,7 @@ func! Tst_slctd_rpl_sys_cmd_mb() range abort
   let l:sys_cmd = 'cat ' . l:pth . ' | column -t'
   " let l:sys_cmd = 'cat ' . l:pth
 
-  '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
+  '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
 endfunc
 
 
@@ -2563,7 +2563,7 @@ endfunc
 func! V_line_mb__cnv() range abort
 
   let l:sys_cmd = 'mb__cnv'
-  '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
+  '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
 endfunc
 
 " 
@@ -3690,7 +3690,7 @@ func! Line_end__ins_dots() abort " todo refactoring ?
   call setline(l:line_num, l:line_str)
 endfunc
 
-func! V_line__rpl_sys_cmd(sys_cmd) range abort " read
+func! Slctd_line__rpl_sys_cmd(sys_cmd) range abort " read
 
   let l:cmd = "'<,'>" . " ! " . a:sys_cmd
   call Exe(l:cmd)
@@ -3698,7 +3698,7 @@ endfunc
 
 " slctd line __ tbl
 
-func! V_tbl() range abort
+func! Slctd_line__crct_tbl() range abort
 
   if     Is_env__('linux')
     let l:sys_cmd = '/usr/bin/column -t'
@@ -3708,7 +3708,7 @@ func! V_tbl() range abort
     let l:sys_cmd = 'column -t'
   endif
 
-  '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
+  '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
 endfunc
 
 " cursor f
@@ -3913,7 +3913,7 @@ func! V_line_indnt__space(indnt_col) range abort
 
   else
     let l:sys_cmd = '  expand   -t ' . a:indnt_col
-    '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
+    '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
   endif
 endfunc
 
@@ -3923,7 +3923,7 @@ func! V_line_indnt__tab(indnt_col) range abort
     call Nothing()
   else
     let l:sys_cmd = 'unexpand   -t ' . a:indnt_col
-    '<,'>:call V_line__rpl_sys_cmd(l:sys_cmd)
+    '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
   endif
 endfunc
 

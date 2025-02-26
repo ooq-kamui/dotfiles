@@ -2,26 +2,16 @@
 # cnf
 
 
-## keyboard sticker
-
-logi
-- cre / paste
-  - fn
-    - `<win win> pg^ pg^ pgv`
-  - alpha
-    - j y ( & poch line )
-
-
-## keychron setting
-
-win key setting crnt del
-- key sticker
-- power toys
-
-setting at hard
-
-
 ## vim
+
+fzf_doc_tech
+
+win nvim-qt try
+
+cursor l char col __ crct auto
+
+buf filter
+- ex jq
 
 `~~xxx~~`
 - Slctd_line__markdown_strikethrough()
@@ -34,32 +24,43 @@ setting at hard
 - Slctd_line_end__ins_comma()
 - Slctd_line_top__ins_comma()
   - ref Line_end__ins_dots()
-fnc def pos mv
-- by index
 
+fnc def pos mv
+- ref index
 
 fnc name re
 - vnoremap p
   - v box xxx > slctd box xxx
 
 
-## m1
-
-battery ch
-
-
 ## m4
+
+install
+- tmux
 
 setting
 - any, see m1
 - notice bell volume down
 
-
-install
-- tmux
-
-
 music data
+
+
+## keychron setting
+
+win key setting crnt del
+- key sticker
+- power toys
+
+setting at hard
+
+
+## keyboard sticker
+
+logi
+- cre / paste
+  - fn
+    - `pg ^` x 2
+  - space mat ( square )
 
 
 ## holo song
@@ -78,6 +79,12 @@ svr mv, to skr vps
 
 repository
 - tidy
+
+
+## m1
+
+battery ch
+- order, research
 
 
 ## astro
