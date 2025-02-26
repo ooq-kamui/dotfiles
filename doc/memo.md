@@ -2,6 +2,15 @@
 # cnf
 
 
+## keyboard sticker
+
+logi
+- cre / paste
+  - fn
+    - `pg ^` x 2
+  - space mat ( square )
+
+
 ## vim
 
 fzf_doc_tech
@@ -35,32 +44,18 @@ fnc name re
 
 ## m4
 
-install
-- tmux
-
 setting
 - any, see m1
 - notice bell volume down
 
 music data
 
+film paste
+
 
 ## keychron setting
 
-win key setting crnt del
-- key sticker
-- power toys
-
 setting at hard
-
-
-## keyboard sticker
-
-logi
-- cre / paste
-  - fn
-    - `pg ^` x 2
-  - space mat ( square )
 
 
 ## holo song
