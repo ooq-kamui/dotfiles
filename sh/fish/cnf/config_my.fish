@@ -158,6 +158,8 @@ alias mb_chk 'file -i'
 alias trns     'trans'
 alias trns_j2e 'trans {ja=en}'
 alias trns_e2j 'trans {en=ja}'
+alias trns_je  'trans {ja=en}'
+alias trns_ej  'trans {en=ja}'
 
 alias ba 'battery'
 
