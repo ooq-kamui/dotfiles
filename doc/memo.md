@@ -2,7 +2,17 @@
 # cnf
 
 
+## keyboard sticker
+
+logi
+- space mat ( bar )
+
+
 ## vim
+
+win ofc
+- ginit.vim include ginit.vim
+
 
 fzf_doc_tech
 
@@ -32,35 +42,18 @@ fnc name re
   - v box xxx > slctd box xxx
 
 
-## nintendo
+## m4
 
-ctrlr rply
+film paste
+
+music data
 
 
 ## win
 
 keychron
 - setting
-
-nvim-qt
-- install
-- launch try
-
-
-## m4
-
-setting
-- any, see m1
-
-music data
-
-film paste
-
-
-## keyboard sticker
-
-logi
-- space mat ( bar )
+  - tst all key
 
 
 ## holo song
