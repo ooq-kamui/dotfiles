@@ -1698,6 +1698,7 @@ inoremap <c-tab> <nop>
 "inoremap <c-space> <tab> " ?? todo research
 inoremap <c-space> <tab>
 
+"inoremap <c-_> <nop> " non ?
 inoremap <c-_> <nop>
 inoremap <c-^> <nop>
 inoremap <c-\> <nop>
@@ -6384,7 +6385,6 @@ endfunc
 
 " comment auto off ( final def )
 au FileType * set fo-=c fo-=r fo-=o
-
 
 " 
 " ref normal
