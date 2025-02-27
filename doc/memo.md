@@ -2,25 +2,15 @@
 # cnf
 
 
-## keyboard sticker
-
-logi
-- cre / paste
-  - fn
-    - `pg ^` x 2
-  - space mat ( square )
-
-
 ## vim
 
 fzf_doc_tech
-
-win nvim-qt try
 
 cursor l char col __ crct auto
 
 buf filter
 - ex jq
+
 
 `~~xxx~~`
 - Slctd_line__markdown_strikethrough()
@@ -42,20 +32,35 @@ fnc name re
   - v box xxx > slctd box xxx
 
 
+## nintendo
+
+ctrlr rply
+
+
+## win
+
+keychron
+- setting
+
+nvim-qt
+- install
+- launch try
+
+
 ## m4
 
 setting
 - any, see m1
-- notice bell volume down
 
 music data
 
 film paste
 
 
-## keychron setting
+## keyboard sticker
 
-setting at hard
+logi
+- space mat ( bar )
 
 
 ## holo song
