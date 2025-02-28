@@ -568,16 +568,17 @@ nnoremap ro :call Indnt__shft_r()<cr>
 " indnt crct
 nnoremap re :call Indnt__crct()<cr>
 
-" cursor f space __ crct
-"nnoremap xx :call Cursor_f_space__crct()<cr>
+" cursor l char col __ crct
+nnoremap T :call Cursor_l_char_col__crct()<cr>
 
 " 
 " srch
 " 
 
 " srch hl init
-nnoremap / /<cr>N
-"nnoremap / :call Srch_init()<cr>
+nnoremap S /<cr>N
+"nnoremap / /<cr>N
+"nnoremap xx :call Srch_init()<cr>
 
 " srch char in line - forward
 "nnoremap xx f
@@ -637,8 +638,8 @@ nnoremap <leader>o :call Fzf_rg(v:null)<cr>
 " fzf rg fltr ext
 nnoremap <leader>O :FzfRgExt js
 
-" fzf rg by run
-" nnoremap <leader>O :FzfRgByRun <cr>
+" fzf rg with run
+" nnoremap <leader>O :FzfRgWithRun <cr>
 
 " fzf buf
 nnoremap <leader>i :call N_fzf_buf()<cr>
@@ -650,7 +651,7 @@ nnoremap <leader>e :FzfJmplst<cr>
 "nnoremap <leader>xx :FzfTagjmpByFile <cr>
 
 " tag jmp tab new
-nnoremap t :call N_tag_jmp()<cr>
+nnoremap t :call Tag_jmp_by_cursor_line()<cr>
 
 " 
 " cmd
@@ -661,6 +662,7 @@ nnoremap <leader>j :FzfCmdHstry<cr>
 
 " sys cmd
 nnoremap :! :! 
+nnoremap :1 :! 
 
 " ins sys cmd ( read )
 nnoremap :r :InsSysCmd 
@@ -687,6 +689,9 @@ nnoremap <leader>m :call Fzf_doc_memo_opn()<cr>
 " fzf vim fnc call
 nnoremap <leader>c :call Fzf_vim_fnc_call()<cr>
 
+" fzf doc tech
+nnoremap <leader>t :call Fzf_doc_tech()<cr>
+
 " 
 " tab
 " 
@@ -705,6 +710,10 @@ nnoremap <s-right> :tabm+1<cr>
 
 " buf list
 "nnoremap :xx :buffers
+
+" buf fltr
+nnoremap :f :%! jq
+"nnoremap :xx :call Buf__fltr()<cr> " use not
 
 " 
 " win ( buf )
@@ -808,7 +817,7 @@ nnoremap @ <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
 nnoremap ^ <esc>
-"nnoremap / <esc>
+nnoremap / <esc>
 "nnoremap \ <esc>
 "nnoremap | <esc> " ref vvv
 "nnoremap <bar> <esc>
@@ -871,8 +880,8 @@ nnoremap M <esc>
 nnoremap Q <esc>
 "nnoremap P <esc>
 nnoremap R <esc>
-nnoremap S <esc>
-nnoremap T <esc>
+"nnoremap S <esc>
+"nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap W <esc>
 "nnoremap V <esc>
@@ -1012,6 +1021,7 @@ nnoremap <leader>g <esc>
 nnoremap <leader>p <esc>
 "nnoremap <leader>r <esc>
 nnoremap <leader>s <esc>
+"nnoremap <leader>t <esc>
 nnoremap <leader>u <esc>
 nnoremap <leader>v <esc>
 nnoremap <leader>w <esc>
@@ -1328,12 +1338,11 @@ vnoremap <c-n> :call V_srch_7_slct('f')<cr>
 "vnoremap xx    :call V_srch_7_slct('b')<cr>
 
 " srch str set
-" vnoremap n :call V_srch_str__or_srch()<cr>
-vnoremap n :call V_srch_switch()<cr>
+vnoremap n :call Slctd_srch__switch()<cr>
 "vnoremap e 
 vnoremap <expr> e
 \ mode() == '<c-v>' ? '<esc>' :
-\                     ':call V_srch_str__slctd_str()<cr>'
+\                     ':call Slctd_srch_str__slctd_str()<cr>'
 
 " srch rpl one > ynk, nxt
 vnoremap <c-p> :call Slctd__rpl_7_srch_nxt()<cr>
@@ -1368,7 +1377,7 @@ vnoremap <leader>o "zy:call Fzf_rg('<c-r>z')<cr>
 vnoremap <leader>O "zy:call Fzf_rg_word1('<c-r>z')<cr>
 
 " tag jmp
-"vnoremap t :call V_tag_jmp()<cr>
+"vnoremap t :call Tag_jmp_by_slctd_line()<cr>
 
 " opn app
 vnoremap go :call V_opn_app()<cr>
@@ -1847,7 +1856,7 @@ command! -nargs=? UrlEncode <line1>,<line2>call V_url_encode(<f-args>)
 
 command! -bang -nargs=1 FzfRgExt call Fzf_rg_ext(<f-args>)
 
-command! -nargs=? FzfRgByRun call Fzf_rg_with_run(<f-args>)
+command! -nargs=? FzfRgWithRun call Fzf_rg_with_run(<f-args>)
 
 command! -nargs=? FzfTagjmpByFile call Fzf_tag_jmp_by_file(<f-args>)
 
@@ -2008,10 +2017,14 @@ endfunc
 
 " primitive
 
-" func! Nothing(str) abort " todo: dev
-func! Nothing() abort
+func! Nothing() abort " use by tst
 
   " echo "do nothing.."
+endfunc
+
+func! Echo(str) abort " alias
+
+  echo a:str
 endfunc
 
 func! Exe(cmd) abort " alias
@@ -2966,16 +2979,14 @@ func! Cursor__mv_srch(drct) abort
   call search(l:ptn, l:op)
 endfunc
 
-" func! V_cursor__mv_srch() abort
-" func! V_srch_str__or_srch() abort " srch, set or run
-func! V_srch_switch() abort " srch, set or run
+func! Slctd_srch__switch() abort " srch, set or run
 
   if Is_slctd_str__line_mlt()
 
     call Slctd__expnd_srch()
 
   else
-    call V_srch_str__slctd_str()
+    call Slctd_srch_str__slctd_str()
   endif
 endfunc
 
@@ -3747,7 +3758,7 @@ func! V_cursor_f_space__del() range abort
   endfor
 endfunc
 
-func! Cursor_f_space__crct() abort " dev doing
+func! Cursor_l_char_col__crct() abort " dev doing
 
   " call Normal('k')
   call Cursor__mv_u()
@@ -4685,7 +4696,7 @@ endfunc
 
 func! Is_slctd_str__srch_str() abort
 
-  if Slctd_str() == @/
+  if Slctd_str() ==# @/
     return v:true
   else
     return v:false
@@ -4955,7 +4966,7 @@ func! Srch_str__prv_tgl() abort
   let @/ = l:srch_str
 endfunc
 
-func! V_srch_str__slctd_str() range abort
+func! Slctd_srch_str__slctd_str() range abort
 
   if Is_slctd_str__srch_str()
     call Slctd__cancel()
@@ -5175,9 +5186,9 @@ func! Is_line_markdown_itm() abort
   endif
 endfunc
 
-" tag jmp
+" tag jmp by str
 
-func! Tag_jmp(rg_rslt_line) abort
+func! Tag_jmp_by_str(rg_rslt_line) abort
 
   let l:rg_rslt_line = trim(a:rg_rslt_line)
 
@@ -5188,12 +5199,16 @@ func! Tag_jmp(rg_rslt_line) abort
   
   "let l:rg_rslt_line = matchstr(l:rg_rslt_line, '\S\+')
   "echo l:rg_rslt_line
-  
+
+  let l:rg_rslt_line = '/home/ec2-user/wrk/prj-pri-share/doc-tech-ds/docs/md/it-etc/pc-etc/wifi/wifi.md'
+
   let l:rg_rslt_line_ar = Rg_rslt_line_parse(l:rg_rslt_line)
-  "echo l:rg_rslt_line_ar
+  " echo l:rg_rslt_line_ar
 
   let l:filename = l:rg_rslt_line_ar[0]
   let l:line_num = get(l:rg_rslt_line_ar, 1, 1)
+  " echo l:line_num
+  " return
 
   if ! filereadable(l:filename)
     echo 'file does not exist'
@@ -5204,26 +5219,26 @@ func! Tag_jmp(rg_rslt_line) abort
   call Normal(l:line_num . 'G')
 endfunc
 
-func! N_tag_jmp() abort
+func! Tag_jmp_by_cursor_line() abort
 
   let l:base_buf_num = Buf_num()
 
   let l:str = Cursor_line_str()
-  call Tag_jmp(l:str)
+  call Tag_jmp_by_str(l:str)
 
   call Exe('sbuffer ' . l:base_buf_num)
   " call Normal('j')
   call Cursor__mv_d()
 endfunc
 
-func! V_tag_jmp() range abort
+func! Tag_jmp_by_slctd_line() range abort
 
   let l:base_buf_num = Buf_num()
 
   for line_num in range(a:firstline, a:lastline)
 
     let l:line = getline(l:line_num)
-    call Tag_jmp(l:line)
+    call Tag_jmp_by_str(l:line)
     call Exe('sbuffer ' . l:base_buf_num)
   endfor
 endfunc
@@ -5241,7 +5256,10 @@ func! Rg_rslt_line_parse(line) abort
 
     let l:idx = l:idx + 1
   endwhile
-  "echo l:ret
+
+  if ( len(l:ret) > 1 ) && ( ! Is_char__num(l:ret[1]) )
+    let l:ret[1] = '1'
+  endif
 
   return l:ret
 endfunc
@@ -5441,6 +5459,10 @@ endfunc
 func! Buf_num() abort
 
   return bufnr('%')
+endfunc
+
+func! Buf__fltr() abort " use not
+
 endfunc
 
 " win splt
@@ -5651,7 +5673,7 @@ endfunc
 
 let g:fzf_line_cnt_max = 30000
 
-func! Fzf_rg_with_run(...) abort " todo: fnc name re
+func! Fzf_rg_with_run(...) abort
 
   let l:ptn = ( a:0 >= 1 ) ? a:1 : v:null
 
@@ -5680,7 +5702,7 @@ func! Fzf_rg_with_run(...) abort " todo: fnc name re
   call fzf#run(
   \      {
   \        'source' : l:fzf_src_ar,
-  \        'sink'   : funcref('Tag_jmp'),
+  \        'sink'   : funcref('Tag_jmp_by_str'),
   \        'window' : '-tabnew',
   \      }
   \    )
@@ -5726,7 +5748,7 @@ func! Fzf_tag_jmp_by_file(...) abort
   let l:file_path = ( a:0 >= 1 ) ? a:1 : 'doc/memo.md'
 
   let l:fzf_src_txt = File_txt(l:file_path)
-  let l:fnc_name    = 'Tag_jmp'
+  let l:fnc_name    = 'Tag_jmp_by_str'
   call Fzf_by_txt(fzf_src_txt, fnc_name)
 endfunc
 
@@ -5739,7 +5761,7 @@ endfunc
 
 func! V_fzf_buf() abort
 
-  call V_srch_str__slctd_str()
+  call Slctd_srch_str__slctd_str()
   exe 'FzfBufCrnt ' . escape(@z, '.*~')
 endfunc
 
@@ -5835,6 +5857,34 @@ func! Fzf_vim_fnc_call() abort
   let l:fnc_name = 'Cmdline__'
 
   call Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
+endfunc
+
+let g:doc_tech_dir_rel = 'wrk/prj-pri-share/doc-tech-ds/docs/md'
+
+func! Fzf_doc_tech() abort
+
+  let l:ptn = g:rg_emp_line_ptn
+  let l:opt  = ' -v'
+  let l:opt .= ' --no-heading'
+  " let l:opt .= ' --line-number'
+  let l:sys_cmd_rg = "rg" . l:opt . " '" . l:ptn . "' ~/" . g:doc_tech_dir_rel
+  " echo l:sys_cmd
+
+  let l:sys_cmd_sed = 'sed "s|^.*' . g:doc_tech_dir_rel . '/||g"'
+
+  let l:sys_cmd = l:sys_cmd_rg . ' | ' . l:sys_cmd_sed
+
+  let l:fzf_src_txt = Sys_cmd(l:sys_cmd)
+
+  let l:fnc_name = 'Doc_tech_tag_jmp'
+  call Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
+endfunc
+
+func! Doc_tech_tag_jmp(str) abort
+
+  let l:str = $HOME . '/' . g:doc_tech_dir_rel . '/' . a:str
+  " echo l:str
+  call Tag_jmp_by_str(l:str)
 endfunc
 
 " rg

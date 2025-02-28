@@ -2,24 +2,9 @@
 # cnf
 
 
-## keyboard sticker
-
-logi
-- space mat ( bar )
-
-
 ## vim
 
-win ofc
-- ginit.vim include ginit.vim
-
-
-fzf_doc_tech
-
-cursor l char col __ crct auto
-
-buf filter
-- ex jq
+Cursor_l_char_col__crct()
 
 
 `~~xxx~~`
@@ -44,7 +29,7 @@ fnc name re
 
 ## m4
 
-film paste
+film paste re
 
 music data
 
@@ -54,6 +39,17 @@ music data
 keychron
 - setting
   - tst all key
+
+
+## btl
+
+sticker name
+
+
+## key sticker
+
+logi
+- shift
 
 
 ## holo song
