@@ -493,7 +493,6 @@ nnoremap * :call Ins_da()<cr>
 
 " ins date time
 nnoremap ; :call Ins_dt()<cr>
-"nnoremap xx :call Ins_dt()<cr>
 
 " ins day of week
 "nnoremap xx :call Ins_week()<cr>
@@ -835,6 +834,9 @@ nnoremap < <esc>
 nnoremap > <esc>
 "nnoremap << <esc>
 "nnoremap >> <esc>
+
+"nnoremap [ <esc>
+"nnoremap ] <esc>
 
 "nnoremap 0 <esc>
 "nnoremap a <esc>
@@ -1244,9 +1246,10 @@ vnoremap m :call V_line_end_space__del()<cr>
 vnoremap K :call V_cursor_f_space__del()<cr>
 
 " slctd edge quote __ tgl
-vnoremap w     :call Slctd_edge_quote__tgl()<cr>
-"vnoremap q     :call Slctd_edge_quote__tgl()<cr>
-"vnoremap <c-u> :call Slctd_edge_quote__tgl()<cr>
+"vnoremap w     :call Slctd_edge_quote__tgl()<cr>
+vnoremap <expr> w
+\ mode() == '<c-v>' ? ':call Slctd_box_width__1()<cr>'    :
+\                     ':call Slctd_edge_quote__tgl()<cr>'
 
 " slctd edge bracket __ tgl
 vnoremap W :call Slctd_edge_bracket__tgl()<cr>
