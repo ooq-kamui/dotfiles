@@ -568,7 +568,6 @@ nnoremap re :call Indnt__crct()<cr>
 
 " cursor l char col __ crct
 nnoremap q :call Cursor_f_str_col__crct_by_line_u()<cr>
-"nnoremap Y :call Cursor_f_str_col__crct_by_line_u()<cr>
 
 " 
 " srch

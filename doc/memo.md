@@ -2,6 +2,18 @@
 # cnf
 
 
+## keyboard
+
+logi
+- tab
+- n
+- shift
+
+
+## node
+ver manager ggl
+
+
 ## vim
 
 `~~xxx~~`
@@ -40,11 +52,6 @@ keychron win
   - tst all key
     - alpha
     - modify kana
-
-logi
-- tab
-- n
-- shift
 
 
 ## holo song
