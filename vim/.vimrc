@@ -487,7 +487,6 @@ nnoremap 0 :call Ins_hyphen()<cr>
 
 " ins space
 nnoremap L :call Ins_space(v:false)<cr>
-"nnoremap Y :call Ins_space(v:true )<cr>
 
 " ins date
 nnoremap * :call Ins_da()<cr>
@@ -569,7 +568,8 @@ nnoremap ro :call Indnt__shft_r()<cr>
 nnoremap re :call Indnt__crct()<cr>
 
 " cursor l char col __ crct
-nnoremap T :call Cursor_l_char_col__crct()<cr>
+nnoremap q :call Cursor_f_str_col__crct_by_line_u()<cr>
+"nnoremap Y :call Cursor_f_str_col__crct_by_line_u()<cr>
 
 " 
 " srch
@@ -852,7 +852,7 @@ nnoremap b <esc>
 "nnoremap m <esc>
 "nnoremap n <esc>
 "nnoremap o <esc>
-nnoremap q <esc>
+"nnoremap q <esc>
 nnoremap r <esc>
 "nnoremap s <esc>
 "nnoremap t <esc>
@@ -881,7 +881,7 @@ nnoremap Q <esc>
 "nnoremap P <esc>
 nnoremap R <esc>
 "nnoremap S <esc>
-"nnoremap T <esc>
+nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap W <esc>
 "nnoremap V <esc>
@@ -1073,12 +1073,12 @@ vnoremap <c-y> :call V_cursor__mv_line_end()<cr>
 
 " cursor mv slctd reduce dlm _ l
 vnoremap _ of_lo
-"vnoremap \ of_lo
+"vnoremap h of_lo
 
 " cursor mv slctd reduce dlm _ r
-vnoremap <c-_> F_h
-vnoremap \     F_h
-"vnoremap <c-\> F_h
+vnoremap h     F_h
+"vnoremap H     F_h
+"vnoremap <c-_> F_h
 
 " cursor mv space - forward ( word pre )
 "vnoremap xx wh
@@ -1412,7 +1412,7 @@ vnoremap r :call V_trns()<cr>
 vnoremap @ <esc>
 "vnoremap * <esc>
 vnoremap / <esc>
-"vnoremap \ <esc>
+vnoremap \ <esc>
 "vnoremap | <esc> " ref vvv
 "vnoremap <bar> <esc>
 "vnoremap ! <esc>
@@ -1440,7 +1440,7 @@ vnoremap c <esc>
 "vnoremap e <esc>
 "vnoremap f <esc>
 vnoremap g <esc>
-vnoremap h <esc>
+"vnoremap h <esc>
 "vnoremap i <esc>
 "vnoremap l <esc>
 "vnoremap m <esc>
@@ -1482,7 +1482,7 @@ vnoremap V <esc>
 vnoremap X <esc>
 "vnoremap Y <esc>
 
-"vnoremap <c-_> <esc>
+vnoremap <c-_> <esc>
 vnoremap <c-\> <esc>
 
 vnoremap <c-a> <esc>
@@ -2458,12 +2458,12 @@ func! Str_sub(str, idx, len) abort " dev doing
   return l:str
 endfunc
 
-func! Str_space(col) abort
+func! Str_space(len) abort
 
   let l:space_str = ''
 
   let l:idx = 0
-  while l:idx < a:col
+  while l:idx < a:len
 
     let l:space_str .= ' '
 
@@ -2619,7 +2619,7 @@ func! Cursor__mv_by_line_info(line_info) abort
   call Cursor__mv_by_line_num(l:line_num)
 endfunc
 
-func! Cursor__mv_by_pos(pos) abort " use not
+func! Cursor__mv_by_pos(pos) abort
   
   call setpos('.', a:pos)
 endfunc
@@ -3329,15 +3329,163 @@ func! Cursor_line_str_len() abort
 endfunc
 
 func! Cursor_line_str_side_l() abort
-  
+
   let l:line_l = getline('.')[:col('.')-2]
   return l:line_l
 endfunc
 
 func! Cursor_line_str_side_r() abort
-  
+
   let l:line_r = getline('.')[col('.'):]
   return l:line_r
+endfunc
+
+func! Cursor_line_str_side_r_with_c() abort
+
+  let l:line_r = getline('.')[col('.') - 1:]
+  return l:line_r
+endfunc
+
+" cursor __ ins
+
+func! Cursor__ins(str) abort
+
+  let l:cmd = 'i' . a:str
+  call Normal(l:cmd)
+  call Cursor__mv_char_f()
+endfunc
+
+func! Cursor__ins_with_cursor_fix(str) abort " todo dev
+
+endfunc
+
+func! Ins_mlt(str, num) abort
+
+  if a:num == 0
+    return
+  endif
+
+  let l:cmd = a:num.'i'.a:str
+  call Normal(l:cmd)
+endfunc
+
+" todo refactoring ins xx > cursor __ ins xx
+
+func! Ins_cr() abort
+
+  let l:t_line_num = line('.')
+
+  call Normal("i\<cr> ")
+  call Normal('x')
+
+  call Line_end_space__del(l:t_line_num)
+  " call Normal('j')
+  call Cursor__mv_d()
+endfunc
+
+" todo refactoring ins xx > cursor __ ins xx
+
+func! Ins_space(is_cursor_mv) abort
+
+  if a:is_cursor_mv
+    call Cursor__ins(' ')
+
+  else
+    call Normal('i ')
+    ""call Normal('l')
+  endif
+endfunc
+
+" todo refactoring ins xx > cursor __ ins xx
+
+func! Ins_hyphen() abort
+
+  call Normal('i-')
+  "call Cursor__ins('-')
+endfunc
+
+" todo refactoring ins xx > cursor __ ins xx
+
+func! Ins_da() abort
+
+  let l:da = strftime('%Y-%m-%d')
+  call Cursor__ins(l:da)
+endfunc
+
+" todo refactoring ins xx > cursor __ ins xx
+
+func! Ins_tm() abort
+
+  let l:tm = strftime('%H:%M')
+  call Cursor__ins(l:tm)
+endfunc
+
+" todo refactoring ins xx > cursor __ ins xx
+
+func! Ins_dt() abort
+
+  let l:dt = strftime('%Y-%m-%d.%H:%M')
+  call Cursor__ins(l:dt)
+endfunc
+
+" todo refactoring ins xx > cursor __ ins xx
+
+func! Ins_ts() abort
+
+  let l:ts = strftime('%Y-%m-%d.%H:%M:%S')
+  call Cursor__ins(l:ts)
+endfunc
+
+" todo refactoring ins xx > cursor __ ins xx
+
+let g:week_def = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ]
+
+func! Ins_week() abort
+
+  let l:week_num = strftime('%w')
+  let l:week     = g:week_def[l:week_num]
+  call Cursor__ins(l:week)
+  "call Cursor__ins(' ' . l:week)
+endfunc
+
+" todo refactoring ins xx > cursor __ ins xx
+
+func! Ins_sys_cmd(sys_cmd) abort " read
+
+  let l:is_line_num_eq_1 = Is_cursor_line_num__file_edge_bgn()
+
+  if l:is_line_num_eq_1
+    call Normal('O')
+  else
+    " call Normal('k')
+    call Cursor__mv_u()
+  endif
+
+  let l:cmd = 'read ! ' . a:sys_cmd
+  call Exe(l:cmd)
+
+  if l:is_line_num_eq_1
+    call Line__del_by_line_num(1)
+  endif
+endfunc
+
+" cursor __ ins ynk ( paste )
+
+" todo refactoring paste > cursor __ ins ynk()
+
+func! Paste() abort
+
+  call Normal('"aP')
+endfunc
+
+func! Paste_by_clipboard() abort
+
+  call Ynk__clipboard()
+  call Paste()
+endfunc
+
+func! Slctd__ins(str) range abort " todo cre
+
 endfunc
 
 " cursor line cnd
@@ -3424,124 +3572,6 @@ func! Is_cursor_line_str__ptn(ptn) abort " todo dev
   return l:ret
 endfunc
 
-" ins " todo refactoring, ins > cursor__ins
-
-func! Ins(str) abort
-
-  let l:cmd = 'i' . a:str
-  call Normal(l:cmd)
-  call Cursor__mv_char_f()
-endfunc
-
-func! V_ins(str) range abort " todo cre
-
-endfunc
-
-func! Ins_mlt(str, num) abort
-
-  if a:num == 0
-    return
-  endif
-
-  let l:cmd = a:num.'i'.a:str
-  call Normal(l:cmd)
-endfunc
-
-func! Ins_cr() abort
-
-  let l:t_line_num = line('.')
-  
-  call Normal("i\<cr> ")
-  call Normal('x')
-  
-  call Line_end_space__del(l:t_line_num)
-  " call Normal('j')
-  call Cursor__mv_d()
-endfunc
-
-func! Ins_space(is_cursor_mv) abort
-
-  if a:is_cursor_mv
-    call Ins(' ')
-
-  else
-    call Normal('i ')
-    ""call Normal('l')
-  endif
-endfunc
-
-func! Ins_hyphen() abort
-
-  call Normal('i-')
-  "call Ins('-')
-endfunc
-
-func! Ins_da() abort
-
-  let l:da = strftime('%Y-%m-%d')
-  call Ins(l:da)
-endfunc
-
-func! Ins_tm() abort
-
-  let l:tm = strftime('%H:%M')
-  call Ins(l:tm)
-endfunc
-
-func! Ins_dt() abort
-
-  let l:dt = strftime('%Y-%m-%d.%H:%M')
-  call Ins(l:dt)
-endfunc
-
-func! Ins_ts() abort
-
-  let l:ts = strftime('%Y-%m-%d.%H:%M:%S')
-  call Ins(l:ts)
-endfunc
-
-let g:week_def = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ]
-
-func! Ins_week() abort
-
-  let l:week_num = strftime('%w')
-  let l:week     = g:week_def[l:week_num]
-  call Ins(l:week)
-  "call Ins(' ' . l:week)
-endfunc
-
-func! Ins_sys_cmd(sys_cmd) abort " read
-
-  let l:is_line_num_eq_1 = Is_cursor_line_num__file_edge_bgn()
-
-  if l:is_line_num_eq_1
-    call Normal('O')
-  else
-    " call Normal('k')
-    call Cursor__mv_u()
-  endif
-
-  let l:cmd = 'read ! ' . a:sys_cmd
-  call Exe(l:cmd)
-
-  if l:is_line_num_eq_1
-    call Line__del_by_line_num(1)
-  endif
-endfunc
-
-" ins __ ynk ( paste )
-
-func! Paste() abort
-
-  call Normal('"aP')
-endfunc
-
-func! Paste_by_clipboard() abort
-
-  call Ynk__clipboard()
-  call Paste()
-endfunc
-
 " 
 " line
 " 
@@ -3561,13 +3591,13 @@ endfunc
 func! Line_top0__ins(str) abort
 
   call Cursor__mv_line_top0()
-  call Ins(a:str)
+  call Cursor__ins(a:str)
 endfunc
 
 func! Line_top1__ins(str) abort
 
   call Cursor__mv_line_top1()
-  call Ins(a:str)
+  call Cursor__ins(a:str)
 endfunc
 
 let s:line_top_space_ptn = '^[ \t]*'
@@ -3758,28 +3788,33 @@ func! V_cursor_f_space__del() range abort
   endfor
 endfunc
 
-func! Cursor_l_char_col__crct() abort " dev doing
+func! Cursor_f_str_col__crct_by_line_u() abort
 
-  " call Normal('k')
+  let l:cursor_pos = Cursor_pos()
+
+  let l:str = Cursor_line_str_side_r_with_c()
+  let l:trim_len = Str_srch(l:str, '[^ ]')
+  " echo l:trim_len
+  let l:str = trim(l:str)
+
+  let l:cursor_r_char =  Str_l_char(l:str)
+  " echo l:cursor_r_char
+
   call Cursor__mv_u()
+  let l:target_line_str = Cursor_line_str_side_r()
+  call Cursor__mv_d()
 
-  let l:c = Cursor_c_char()
-
-  if l:c !~ '\s'
-    " call Normal('j')
-    call Cursor__mv_d()
+  let l:crct_len = Str_srch(l:target_line_str, l:cursor_r_char) + 1
+  " echo l:crct_len
+  if l:crct_len == -1
     return
   endif
 
-  call Slct_cursor_f_space()
-  call Normal('"zy')
+  let l:crct_len = l:crct_len - l:trim_len
+  let l:space_str = Str_space(l:crct_len)
+  call Cursor__ins(l:space_str)
 
-  " call Normal('j')
-  call Cursor__mv_d()
-
-  call Slct_cursor_f_space()
-  call Normal('"yx')
-  call Normal('"zP')
+  call Cursor__mv_by_pos(l:cursor_pos)
 endfunc
 
 " line ins > cursor __ ins line
@@ -4494,7 +4529,7 @@ func! Slctd_edge__ins(c) range abort
   endif
 
   call Normal('"zx')
-  call Ins(l:c_l . l:c_r)
+  call Cursor__ins(l:c_l . l:c_r)
   call Normal('h')
   call Normal('"zP')
   call Normal('gv')
@@ -5122,7 +5157,7 @@ func! Ins_markdown_h() abort
     let l:str .= ' '
   endif
 
-  call Ins(l:str)
+  call Cursor__ins(l:str)
 
   let l:ptn = '^#* '
   let l:col = Str_srch_end(Cursor_line_str(), l:ptn) + 1
@@ -5131,7 +5166,7 @@ endfunc
 
 func! Ins_markdown_cr() abort
 
-  call Ins('  ')
+  call Cursor__ins('  ')
 endfunc
 
 func! Ins_markdown_itm() abort
@@ -5196,11 +5231,9 @@ func! Tag_jmp_by_str(rg_rslt_line) abort
     echo 'empty'
     return
   endif
-  
-  "let l:rg_rslt_line = matchstr(l:rg_rslt_line, '\S\+')
-  "echo l:rg_rslt_line
 
-  let l:rg_rslt_line = '/home/ec2-user/wrk/prj-pri-share/doc-tech-ds/docs/md/it-etc/pc-etc/wifi/wifi.md'
+  let l:rg_rslt_line = matchstr(l:rg_rslt_line, '\S\+')
+  " echo l:rg_rslt_line
 
   let l:rg_rslt_line_ar = Rg_rslt_line_parse(l:rg_rslt_line)
   " echo l:rg_rslt_line_ar
@@ -6238,7 +6271,7 @@ func! V_url_encode() range abort
   let l:sys_cmd = 'url_encode "' . l:str . '"'
   let l:rslt = Sys_cmd(l:sys_cmd)
   "echo l:rslt
-  call Ins(l:rslt)
+  call Cursor__ins(l:rslt)
 endfunc
 
 func! Defold_err_cnv() abort

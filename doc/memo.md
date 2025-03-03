@@ -2,17 +2,7 @@
 # cnf
 
 
-## keyboard
-
-sticker
-- logi
-  - shift
-
-
 ## vim
-
-Cursor_l_char_col__crct()
-
 
 `~~xxx~~`
 - Slctd_line__markdown_strikethrough()
@@ -34,16 +24,13 @@ fnc name re
   - v box xxx > slctd box xxx
 
 
-## artcl
-
-env set
-
-
 ## m4
 
-film paste re
+artcl env set
 
 music data
+
+film paste re
 
 
 ## keyboard
@@ -53,6 +40,11 @@ keychron win
   - tst all key
     - alpha
     - modify kana
+
+logi
+- tab
+- n
+- shift
 
 
 ## holo song
