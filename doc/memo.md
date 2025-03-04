@@ -29,8 +29,7 @@ fnc name re
 ## m4
 
 artcl env set
-- node install
-  - nvm install
+- node install, fr nvm, ggl
 
 music data
 
