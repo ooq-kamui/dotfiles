@@ -442,30 +442,17 @@ nnoremap H :call Undo__clr()<cr>
 " edit
 " 
 
-" mode ins
+" mode ch ins
 nnoremap <space> i
 
-" mode ins rpl
+" mode ch ins rpl
 "nnoremap xx R
-
-" ins line
-" ref nnoremap y
 
 " ins cr
 nnoremap m :call Ins_cr()<cr>
 
-" ins comment 1
-"nnoremap ! xx
-nnoremap <expr> !
-\ Is_file_type__('markdown') ? ':call Ins_markdown_h()<cr>' :
-\                              ':call Ins_cmnt_1("^")<cr>'
-"nnoremap 1 xx
-nnoremap <expr> 1
-\ Is_file_type__('markdown') ? ':call Ins_markdown_h()<cr>' :
-\                              ':call Ins_cmnt_1("^")<cr>'
-
-" ins comment mlt
-nnoremap $ :call Ins_cmnt_mlt()<cr>
+" ins space
+nnoremap L :call Ins_space(v:false)<cr>
 
 " ins equal
 nnoremap 2 i=<esc>
@@ -482,11 +469,8 @@ nnoremap , i, <esc>l
 " ins hyphen
 nnoremap 0 :call Ins_hyphen()<cr>
 
-" cahr rpl, under score
-"nnoremap <bar> :call Cursor_char__rpl_underscore()<cr>
-
-" ins space
-nnoremap L :call Ins_space(v:false)<cr>
+" ins bracket
+nnoremap <c-w> :call Ins_bracket()<cr>
 
 " ins date
 nnoremap * :call Ins_da()<cr>
@@ -512,8 +496,27 @@ nnoremap <expr> O
 " ins dots ( or crnt )
 nnoremap ru :call Line_end__dots_adjst()<cr>
 
+" ins line emp
+" ref nnoremap y
+
+" ins comment mlt
+nnoremap $ :call Ins_cmnt_mlt()<cr>
+
+" ins comment 1
+"nnoremap ! xx
+nnoremap <expr> !
+\ Is_file_type__('markdown') ? ':call Ins_markdown_h()<cr>' :
+\                              ':call Ins_cmnt_1("^")<cr>'
+"nnoremap 1 xx
+nnoremap <expr> 1
+\ Is_file_type__('markdown') ? ':call Ins_markdown_h()<cr>' :
+\                              ':call Ins_cmnt_1("^")<cr>'
+
 " ins indnt space
 nnoremap V :call Ins_line__indnt_space()<cr>
+
+" cahr rpl, under score
+"nnoremap <bar> :call Cursor_char__rpl_underscore()<cr>
 
 " tgl markdown chk
 "nnoremap xx :call Char_markdown_chk__tgl()<cr>
@@ -718,7 +721,7 @@ nnoremap :f :%! jq
 " 
 
 " win ( buf ) nxt
-nnoremap <c-w> :call Win_splt_cursor__mv_nxt()<cr>
+"nnoremap <c-w> :call Win_splt_cursor__mv_nxt()<cr>
 "nnoremap <c-w> <c-w>w
 
 " win ( buf ) splt quit
@@ -1072,12 +1075,13 @@ vnoremap <c-o> h
 " cursor mv line end
 vnoremap <c-y> :call V_cursor__mv_line_end()<cr>
 
-" cursor mv slctd reduce dlm _ l
+" slctd __ reduce dlm _ r
 vnoremap _ of_lo
 "vnoremap h of_lo
 
-" cursor mv slctd reduce dlm _ r
-vnoremap h     F_h
+" slctd __ reduce dlm _ l
+"vnoremap h     F_h
+vnoremap h     :call Slctd__reduce_dlm_l('_')<cr>
 "vnoremap H     F_h
 "vnoremap <c-_> F_h
 
@@ -3408,6 +3412,15 @@ endfunc
 
 " todo refactoring ins xx > cursor __ ins xx
 
+func! Ins_bracket() abort
+
+  call Normal("i' '")
+  call Normal('h')
+  "call Cursor__ins('-')
+endfunc
+
+" todo refactoring ins xx > cursor __ ins xx
+
 func! Ins_da() abort
 
   let l:da = strftime('%Y-%m-%d')
@@ -4406,6 +4419,22 @@ func! Slctd__expnd_bracket_f() range abort " todo dev
 
   let l:len = l:s_col + Slctd_str_len() + l:srch_idx
   call Slct_by_col(l:s_col, l:len)
+endfunc
+
+func! Slctd__reduce_dlm_l(char) range abort
+
+  let l:char = a:char
+
+  call Slct_re()
+
+  let l:slctd_str = Slctd_str()
+  let l:srch_idx = Str_srch(l:slctd_str, l:char)
+  if l:srch_idx == -1
+    return
+  endif
+
+  let l:n_cmd = 'F' . l:char . 'h'
+  call Normal(l:n_cmd)
 endfunc
 
 func! Slctd_box__mv(lr) range abort
