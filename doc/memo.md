@@ -2,23 +2,9 @@
 # cnf
 
 
-## keyboard
-
-logi
-- tab
-- n
-- shift
-
-
-## node
-ver manager ggl
-
-
 ## vim
 
-aaa_bbb_ccc
-
-
+nnoremap N, skip nnoremap E tgl
 
 `~~xxx~~`
 - Slctd_line__markdown_strikethrough()
@@ -43,6 +29,8 @@ fnc name re
 ## m4
 
 artcl env set
+- node install
+  - nvm install
 
 music data
 
