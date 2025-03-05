@@ -31,6 +31,8 @@ fnc name re
 artcl env set
 - node install, fr nvm, ggl
 
+app install, cmp m1
+
 music data
 
 film paste re
@@ -38,12 +40,15 @@ film paste re
 
 ## keyboard
 
-keychron win
-- setting
-  - tst all key
-    - alpha
-    - modify kana
-
+keychron
+- kana
+  - setting
+    - win setting
+      - 無変換 key : ime-on
+      - 変換   key : ime-off
+    - power toys
+      - shortcut
+        - alt + ime-convert : ime-non-convert
 
 ## holo song
 
