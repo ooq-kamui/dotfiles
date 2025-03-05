@@ -2,9 +2,17 @@
 # cnf
 
 
+## git
+
+commit chk prv ggl
+
+stash drop auto when pop at mac
+
+
 ## vim
 
 nnoremap N, skip nnoremap E tgl
+- use srch history my
 
 `~~xxx~~`
 - Slctd_line__markdown_strikethrough()
@@ -29,9 +37,8 @@ fnc name re
 ## m4
 
 artcl env set
-- node install, fr nvm, ggl
-
-app install, cmp m1
+- node install, fr nvm
+  - https://qiita.com/ffggss/items/94f1c4c5d311db2ec71a
 
 music data
 
