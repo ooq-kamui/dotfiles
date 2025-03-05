@@ -15,7 +15,8 @@ hi vimNotation    ctermfg=lightblue
 
 hi vimUserFunc    ctermfg=yellow
 
-hi vimLet         ctermfg=darkyellow
+" hi vimLet         ctermfg=darkyellow
+hi vimLet         ctermfg=lightgreen
 hi vimCommand     ctermfg=lightgreen
 hi vimIsCommand   ctermfg=darkyellow
 hi vimNotFunc     ctermfg=lightgreen

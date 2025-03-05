@@ -578,7 +578,7 @@ nnoremap q :call Cursor_f_str_col__crct_by_line_u()<cr>
 
 " srch hl init
 nnoremap S /<cr>N
-"nnoremap / /<cr>N
+nnoremap / /<cr>N
 "nnoremap xx :call Srch_init()<cr>
 
 " srch char in line - forward
@@ -818,7 +818,7 @@ nnoremap @ <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
 nnoremap ^ <esc>
-nnoremap / <esc>
+"nnoremap / <esc>
 "nnoremap \ <esc>
 "nnoremap | <esc> " ref vvv
 "nnoremap <bar> <esc>
@@ -4430,6 +4430,7 @@ func! Slctd__reduce_dlm_l(char) range abort
   let l:slctd_str = Slctd_str()
   let l:srch_idx = Str_srch(l:slctd_str, l:char)
   if l:srch_idx == -1
+    call Slctd__cancel()
     return
   endif
 
