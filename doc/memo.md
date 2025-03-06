@@ -2,14 +2,10 @@
 # cnf
 
 
-## git
-
-commit chk prv ggl
-
-stash drop auto when pop at mac
-
-
 ## vim
+
+vnoremap <c-d>
+- range nnoremap <c-d>
 
 nnoremap N, skip nnoremap E tgl
 - use srch history my

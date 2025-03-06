@@ -4293,7 +4293,7 @@ func! Slctd__expnd_srch() range abort " todo dev
   call Cursor__mv_srch("f")
 endfunc
 
-func! Slctd__expnd_word_f() abort
+func! Slctd__expnd_word_f() abort " todo run confirm ?
 
   let l:slctd_str = Slctd_str()
   let l:slctd_r_out_char = Slctd_edge_r_out_char()
