@@ -223,6 +223,9 @@ Set-Alias ji  "git"    -force # alias xxx is read-only or
 # posh-git
 Import-Module posh-git
 
+# zip
+# todo dev
+
 # jq
 $ENV:Path += ";$home\wrk\app\bin\pwsh"
 Set-Alias jq "jq-windows-amd64"
