@@ -2,20 +2,16 @@
 # cnf
 
 
-## m4
-
-artcl env set
-- node install, fr nvm
-  - https://qiita.com/ffggss/items/94f1c4c5d311db2ec71a
-
-
 ## vim
 
-vnoremap <c-d>
-- range nnoremap <c-d>
+vnoremap f, err ?
+- Slctd__expnd_word_f()
 
 nnoremap N, skip nnoremap E tgl
 - use srch history my
+
+Slctd_edge_out_char__tgl()
+- Slctd_edge_out_char__tgl_switch()
 
 `~~xxx~~`
 - Slctd_line__markdown_strikethrough()
@@ -31,10 +27,6 @@ nnoremap N, skip nnoremap E tgl
 
 - Slctd_line__markdown_bold()
 
-Slctd_edge_out_char__tgl_switch()
-- Slctd_edge_out_char__tgl_quote()
-- Slctd_edge_out_char__tgl_bracket()
-
 
 fnc def pos mv
 - ref index
@@ -45,14 +37,25 @@ fnc name re
 
 
 ## m4
+
+artcl env set
+- node install, fr nvm
+  - uninstall nvm at brew
+  - https://qiita.com/ffggss/items/94f1c4c5d311db2ec71a
+    - install by bash, can ?
+      - tst: cmdline: bash
+
 music data
 
 film paste re
 
+neovim-qt
+- tst: at m1 install
 
-## neovim-qt
 
-mac m1 install
+## img
+
+js7 svg
 
 
 ## keyboard
@@ -65,12 +68,6 @@ keychron
   - power toys
     - shortcut
       - alt + ime-convert : ime-non-convert
-
-
-## ofc
-
-devtoys
-- install
 
 
 ## holo song
