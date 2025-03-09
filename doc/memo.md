@@ -4,14 +4,17 @@
 
 ## vim
 
-vnoremap f, err ?
-- Slctd__expnd_word_f()
-
 nnoremap N, skip nnoremap E tgl
 - use srch history my
 
+vnoremap f, err ?
+- Slctd__expnd_word_f()
+  - back ?
+
 Slctd_edge_out_char__tgl()
 - Slctd_edge_out_char__tgl_switch()
+
+neovim-qt  install
 
 `~~xxx~~`
 - Slctd_line__markdown_strikethrough()
@@ -39,35 +42,10 @@ fnc name re
 ## m4
 
 artcl env set
-- node install, fr nvm
-  - uninstall nvm at brew
-  - https://qiita.com/ffggss/items/94f1c4c5d311db2ec71a
-    - install by bash, can ?
-      - tst: cmdline: bash
 
 music data
 
-film paste re
-
-neovim-qt
-- tst: at m1 install
-
-
-## img
-
-js7 svg
-
-
-## keyboard
-
-keychron
-- kana setting
-  - win setting
-    - 無変換 key : ime-on
-    - 変換   key : ime-off
-  - power toys
-    - shortcut
-      - alt + ime-convert : ime-non-convert
+film paste
 
 
 ## holo song
@@ -88,30 +66,15 @@ repository
 - tidy
 
 
-## m1
-
-battery ch
-- order, research
-
-
-## astro
-
-try
-
-
-## fe
-
-js cre
-- react
-- logic tidy
-  - rslt row
-  - fltr
-
-
 ## skr-vps
 
 setting at skr console
 - firewall
+
+
+## astro
+
+learn
 
 
 ## docker
