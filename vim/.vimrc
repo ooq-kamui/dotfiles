@@ -1208,8 +1208,8 @@ vnoremap & :call V_ins_cmnt_mlt()<cr>
 "vnoremap xx c<c-r>=strftime('%H:%M')<cr><esc>
 
 " pad space
-vnoremap <c-s> :call Slctd__pad_space()<cr>
-"vnoremap S :call Slctd__pad_space()<cr>
+vnoremap S :call Slctd__pad_space()<cr>
+"vnoremap <c-s> :call Slctd__pad_space()<cr>
 
 " pad -
 vnoremap - :call Slctd__pad('-')<cr>
@@ -1260,7 +1260,8 @@ vnoremap <expr> w
 vnoremap W :call Slctd_edge_out_bracket__tgl()<cr>
 
 " slctd edge out __ ins space
-vnoremap S :call Slctd_edge_out__ins(' ')<cr>
+vnoremap <c-s> :call Slctd_edge_out__ins(' ')<cr>
+"vnoremap S :call Slctd_edge_out__ins(' ')<cr>
 
 " slctd str mv back
 "vnoremap xx :call Slctd_box_str__mv('l')<cr>
