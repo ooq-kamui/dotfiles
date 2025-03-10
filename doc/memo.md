@@ -15,6 +15,7 @@ cursor __ mv indnt crct col
 vnoremap f, err ?
 - Slctd__expnd_word_f()
   - back ?
+  - case line mlt ?
 
 fnc def pos mv
 - ref index
@@ -37,18 +38,32 @@ logi
 
 ## icn
 
-psh
+merge svg
+up
+
+
+## artcl
+
+movie write
+- 2025
+- ltst
 
 
 ## m4
 
-artcl
-- build
-- rcync
-
 music data
+- cp
 
 film paste
+
+
+## zsh
+
+.zshrc
+- alias
+  - ll
+
+- prompto
 
 
 ## holo song
