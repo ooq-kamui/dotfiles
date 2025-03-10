@@ -4,32 +4,17 @@
 
 ## vim
 
-nnoremap N, skip nnoremap E tgl
-- use srch history my
+indnt __ crct
+- logic mod
+
+- fnc name re
+  - indnt __ crct > cursor line indnt __ crct
+
+cursor __ mv indnt crct col
 
 vnoremap f, err ?
 - Slctd__expnd_word_f()
   - back ?
-
-Slctd_edge_out_char__tgl()
-- Slctd_edge_out_char__tgl_switch()
-
-neovim-qt  install
-
-`~~xxx~~`
-- Slctd_line__markdown_strikethrough()
-  - slctd __ line
-    - slctd __ line markdown
-      - normal
-      - kajogaki
-
-`xxx,`
-- Slctd_line_end__ins_comma()
-- Slctd_line_top__ins_comma()
-  - ref Line_end__ins_dots()
-
-- Slctd_line__markdown_bold()
-
 
 fnc def pos mv
 - ref index
@@ -38,10 +23,28 @@ fnc name re
 - vnoremap p
   - v box xxx > slctd box xxx
 
+- ins xx > cursor __ ins xx
+
+neovim-qt  install
+- win m4
+
+
+## keyboard
+
+logi
+- j, cut d
+
+
+## icn
+
+psh
+
 
 ## m4
 
-artcl env set
+artcl
+- build
+- rcync
 
 music data
 

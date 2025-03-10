@@ -1189,14 +1189,6 @@ vnoremap <expr> L
 \ mode() == 'v'     ? '>gv'       :
 \                     ''
 
-" ins comment 1
-vnoremap ! :call V_ins_cmnt_1()<cr>
-vnoremap 1 :call V_ins_cmnt_1()<cr>
-
-" ins comment mlt
-vnoremap & :call V_ins_cmnt_mlt()<cr>
-"vnoremap $ :call V_ins_cmnt_mlt()<cr>
-
 " ins date time
 "vnoremap xx x:call Ins_da()<cr>
 
@@ -1207,13 +1199,23 @@ vnoremap & :call V_ins_cmnt_mlt()<cr>
 "vnoremap xx c<c-r>=strftime("%H:%M")<cr><esc>
 "vnoremap xx c<c-r>=strftime('%H:%M')<cr><esc>
 
+" line __ ins comment 1
+vnoremap ! :call V_ins_cmnt_1()<cr>
+vnoremap 1 :call V_ins_cmnt_1()<cr>
+
+" line mlt __ ins comment
+vnoremap & :call V_ins_cmnt_mlt()<cr>
+"vnoremap $ :call V_ins_cmnt_mlt()<cr>
+
+" line end __ ins comma
+vnoremap , :call Curosr_line_end__ins(',')<cr>
+
 " pad space
 vnoremap S :call Slctd__pad_space()<cr>
 "vnoremap <c-s> :call Slctd__pad_space()<cr>
 
 " pad -
 vnoremap - :call Slctd__pad('-')<cr>
-" vnoremap - :call V_slctd__pad('-')<cr>
 
 " pad |
 vnoremap <bar> :call Slctd__pad_bar()<cr>
@@ -1262,6 +1264,12 @@ vnoremap W :call Slctd_edge_out_bracket__tgl()<cr>
 " slctd edge out __ ins space
 vnoremap <c-s> :call Slctd_edge_out__ins(' ')<cr>
 "vnoremap S :call Slctd_edge_out__ins(' ')<cr>
+
+" slctd edge out __ ins markdown strikethrough
+vnoremap ~ :call Slctd_edge_out__ins_markdown_strikethrough()<cr>
+
+" slctd edge out __ ins markdown strikethrough
+vnoremap b :call Slctd_edge_out__ins_markdown_bold()<cr>
 
 " slctd str mv back
 "vnoremap xx :call Slctd_box_str__mv('l')<cr>
@@ -1441,11 +1449,12 @@ vnoremap > <esc>
 vnoremap = <esc>
 "vnoremap - <esc>
 "vnoremap + <esc>
-vnoremap , <esc>
+"vnoremap , <esc>
 vnoremap . <esc>
+"vnoremap ~ <esc>
 
 "vnoremap a <esc>
-vnoremap b <esc>
+"vnoremap b <esc>
 vnoremap c <esc>
 "vnoremap d <esc>
 "vnoremap e <esc>
@@ -3508,6 +3517,12 @@ func! Slctd__ins(str) range abort " todo cre
 
 endfunc
 
+func! Curosr_line_end__ins(str) abort
+
+  let l:n_cmd = 'A' . a:str
+  call Normal(l:n_cmd)
+endfunc
+
 " cursor line cnd
 
 func! Is_cursor_line_num__(line_num) abort
@@ -4572,29 +4587,70 @@ func! Slctd_edge_out__ins(c) range abort
 
   call Normal('"zx')
   call Cursor__ins(l:c_l . l:c_r)
-  call Normal('h')
+
+  let l:str_len = Str_len(l:c_l)
+  call Normal(l:str_len . 'h')
+
   call Normal('"zP')
   call Normal('gv')
-  call Slctd_box__mv('r')
+
+  let l:cnt = 0
+  while l:cnt < l:str_len
+    call Slctd_box__mv('r')
+
+    let l:cnt += 1
+  endwhile
+endfunc
+
+func! Slctd_edge_out__ins_markdown_strikethrough()
+
+  call Slct_re()
+
+  if a:firstline != a:lastline
+    call Slctd__cancel()
+    return
+  endif
+
+  call Slctd_edge_out__ins('~~')
+endfunc
+
+func! Slctd_edge_out__ins_markdown_bold()
+
+  call Slctd_edge_out__ins('**')
 endfunc
 
 func! Slctd_edge_out_char__tgl() range abort
 
-  call Slctd_edge_out_quote__tgl()
-
-  " call Slctd_edge_out_char__tgl_switch()
-
+  call Slctd_edge_out_char__tgl_switch()
+  " call Slctd_edge_out_quote__tgl()
 endfunc
 
 func! Slctd_edge_out_char__tgl_switch() range abort
 
-  if v:true " todo dev
+  " char chk
+  let l:c_l = Slctd_edge_l_out_char()
+  let l:c_r = Slctd_edge_r_out_char()
+  " echo l:c_l l:c_r
+
+  if     l:c_l == "'" && l:c_l == l:c_r
     call Slctd_edge_out_quote__tgl()
-  else
+  elseif l:c_l == '"' && l:c_l == l:c_r
+    call Slctd_edge_out_quote__tgl()
+  elseif l:c_l == '`' && l:c_l == l:c_r
+    call Slctd_edge_out_quote__tgl()
+
+  elseif l:c_l == '(' && l:c_r == ')'
     call Slctd_edge_out_bracket__tgl()
+  elseif l:c_l == '{' && l:c_r == '}'
+    call Slctd_edge_out_bracket__tgl()
+  elseif l:c_l == '[' && l:c_r == ']'
+    call Slctd_edge_out_bracket__tgl()
+  elseif l:c_l == '<' && l:c_r == '>'
+    call Slctd_edge_out_bracket__tgl()
+
+  else
+    call Slctd_edge_out_quote__tgl()
   endif
-
-
 endfunc
 
 func! Slctd_edge_out_quote__tgl() range abort
@@ -5038,25 +5094,27 @@ func! N_srch_str__word1_tgl() abort
   endif
 endfunc
 
-func! Srch_str_ltst_01() abort
+func! Srch_str_ltst(idx) abort
 
-  let l:str = histget('/', -1)
-  return l:str
-endfunc
-
-func! Srch_str_ltst_02() abort
-
-  let l:str = histget('/', -2)
+  let l:str = histget('/', - a:idx)
   return l:str
 endfunc
 
 func! Srch_str__prv_tgl() abort
 
-  if @/ == Srch_str_ltst_01()
+  if @/ == Srch_str_ltst(1)
 
-    let l:srch_str = Srch_str_ltst_02()
+    if            Srch_str_ltst(1)        == '\<' . Srch_str_ltst(2) . '\>'
+      let l:srch_str = Srch_str_ltst(3)
+
+    elseif '\<' . Srch_str_ltst(1) . '\>' ==        Srch_str_ltst(2)
+
+      let l:srch_str = Srch_str_ltst(3)
+    else
+      let l:srch_str = Srch_str_ltst(2)
+    endif
   else
-    let l:srch_str = Srch_str_ltst_01()
+    let l:srch_str = Srch_str_ltst(1)
   endif
 
   let @/ = l:srch_str
