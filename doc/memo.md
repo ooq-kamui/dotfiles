@@ -2,12 +2,20 @@
 # cnf
 
 
+## artcl
+
+movie write
+- 2025
+- ltst
+
+
 ## keyboard
 
 logi
 - sticker
   - n + mending tape
-  - win svg x 4
+  - win svg x 2
+  - fn win svg x 2
 
 
 ## vim
@@ -30,32 +38,17 @@ fnc def pos mv
 - ref index
 
 
-neovim-qt  install
-- win m4
-
-
-## artcl
-
-movie write
-- 2025
-- ltst
-
-
 ## zsh
 
 .zshrc
-- ref page ggl
-
 - alias
   - ll
-
 - prompto
 
 
 ## m4
 
-music data
-- cp
+music data cp
 
 film paste
 
