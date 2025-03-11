@@ -2,6 +2,14 @@
 # cnf
 
 
+## keyboard
+
+logi
+- sticker
+  - n + mending tape
+  - win svg x 4
+
+
 ## vim
 
 fnc name re
