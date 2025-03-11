@@ -4,13 +4,14 @@
 
 ## vim
 
+fnc name re
+- v line xxx > slctd line xxx
+
 indnt __ crct
 - logic mod
 
-- fnc name re
-  - indnt __ crct > cursor line indnt __ crct
-
 cursor __ mv indnt crct col
+- cre
 
 vnoremap f, err ?
 - Slctd__expnd_word_f()
@@ -20,26 +21,9 @@ vnoremap f, err ?
 fnc def pos mv
 - ref index
 
-fnc name re
-- vnoremap p
-  - v box xxx > slctd box xxx
-
-- ins xx > cursor __ ins xx
 
 neovim-qt  install
 - win m4
-
-
-## keyboard
-
-logi
-- j, cut d
-
-
-## icn
-
-merge svg
-up
 
 
 ## artcl
@@ -49,21 +33,23 @@ movie write
 - ltst
 
 
+## zsh
+
+.zshrc
+- ref page ggl
+
+- alias
+  - ll
+
+- prompto
+
+
 ## m4
 
 music data
 - cp
 
 film paste
-
-
-## zsh
-
-.zshrc
-- alias
-  - ll
-
-- prompto
 
 
 ## holo song

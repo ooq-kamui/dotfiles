@@ -290,7 +290,7 @@ nnoremap <c-a> 0
 nnoremap <expr> <c-y>
 \ Is_cursor_col__line_end() ? ':call Ins_markdown_cr()<cr>'     :
 \                             ':call Cursor__mv_line_end()<cr>'
-"\ Is_cursor_col__line_end() ? ':call Ins_space()<cr>'     :
+"\ Is_cursor_col__line_end() ? ':call Cursor__ins_space()<cr>'     :
 "\                         ':call Cursor__mv_line_end()<cr>'
 
 nnoremap <c-e> :call Cursor__mv_line_end()<cr>
@@ -417,10 +417,10 @@ nnoremap gs :call Ynk__slf_path()<cr>
 "nnoremap gp :call Ynk__slf_path()<cr>
 
 " paste
-nnoremap p :call Paste()<cr>
+nnoremap p :call Cursor__ins_ynk()<cr>
 
 " paste clipboard
-nnoremap P :call Paste_by_clipboard()<cr>
+nnoremap P :call Cursor__ins_clipboard()<cr>
 
 " paste rgstr history ( fzf )
 nnoremap <leader>r :FzfRgstr<cr>
@@ -449,10 +449,10 @@ nnoremap <space> i
 "nnoremap xx R
 
 " ins cr
-nnoremap m :call Ins_cr()<cr>
+nnoremap m :call Cursor__ins_cr()<cr>
 
 " ins space
-nnoremap L :call Ins_space(v:false)<cr>
+nnoremap L :call Cursor__ins_space(v:false)<cr>
 
 " ins equal
 nnoremap 2 i=<esc>
@@ -467,22 +467,22 @@ nnoremap , i, <esc>l
 "nnoremap < A,<esc>j
 
 " ins hyphen
-nnoremap 0 :call Ins_hyphen()<cr>
+nnoremap 0 :call Cursor__ins_hyphen()<cr>
 
 " ins bracket
-nnoremap <c-w> :call Ins_bracket()<cr>
+nnoremap <c-w> :call Cursor__ins_bracket()<cr>
 
 " ins date
-nnoremap * :call Ins_da()<cr>
+nnoremap * :call Cursor__ins_da()<cr>
 
 " ins date time
-nnoremap ; :call Ins_dt()<cr>
+nnoremap ; :call Cursor__ins_dt()<cr>
 
 " ins day of week
-"nnoremap xx :call Ins_week()<cr>
+"nnoremap xx :call Cursor__ins_week()<cr>
 
 " ins slf path
-"nnoremap xx :call Ins_line_slf_path()<cr>
+"nnoremap xx :call Cursor__ins_line_slf_path()<cr>
 
 " ins markdown code
 nnoremap <c-u> :call Ins_markdown_code()<cr>
@@ -491,7 +491,7 @@ nnoremap <c-u> :call Ins_markdown_code()<cr>
 "nnoremap O xx
 nnoremap <expr> O
 \ Is_file_type__('markdown') ? ':call Ins_markdown_itm()<cr>' :
-\                              ':call Indnt__shft_r()<cr>'
+\                              ':call Cursor_line_indnt__shft_r()<cr>'
 
 " ins dots ( or crnt )
 nnoremap ru :call Line_end__dots_adjst()<cr>
@@ -512,8 +512,8 @@ nnoremap <expr> 1
 \ Is_file_type__('markdown') ? ':call Ins_markdown_h()<cr>' :
 \                              ':call Ins_cmnt_1("^")<cr>'
 
-" ins indnt space
-nnoremap V :call Ins_line__indnt_space()<cr>
+" ins __ line indnt space
+nnoremap V :call Cursor_d__ins_line_space()<cr>
 
 " cahr rpl, under score
 "nnoremap <bar> :call Cursor_char__rpl_underscore()<cr>
@@ -528,7 +528,7 @@ nnoremap s :call Cursor_c_char__del()<cr>
 "nnoremap xx :call Cursor_c_char__del_ynk()<cr>
 
 " line del
-nnoremap d :call Line__del()<cr>
+nnoremap d :call Cursor_line__del()<cr>
 
 " line forward del
 nnoremap <c-d> D
@@ -560,14 +560,14 @@ nnoremap u :call N_char__tgl_switch01()<cr>
 nnoremap U :call N_char__tgl_switch02()<cr>
 
 " indnt shft
-nnoremap ri :call Indnt__shft_l()<cr>
-nnoremap ro :call Indnt__shft_r()<cr>
+nnoremap ri :call Cursor_line_indnt__shft_l()<cr>
+nnoremap ro :call Cursor_line_indnt__shft_r()<cr>
 
 " indnt add
-"nnoremap xx :call Indnt__add(2)<cr>
+"nnoremap xx :call Cursor_line_indnt__add(2)<cr>
 
 " indnt crct
-nnoremap re :call Indnt__crct()<cr>
+nnoremap re :call Cursor_line_indnt__crct()<cr>
 
 " cursor l char col __ crct
 nnoremap q :call Cursor_f_str_col__crct_by_line_u()<cr>
@@ -1140,10 +1140,10 @@ vnoremap <c-i> :call Slctd__expnd_quote_switch()<cr>
 vnoremap a :call Slct_all()<cr>
 
 " ynk slctd
-vnoremap o :call V_ynk()<cr>
+vnoremap o :call Ynk__slctd()<cr>
 
 " ynk slctd add
-"vnoremap xx :call V_ynk__add_slctd()<cr>
+"vnoremap xx :call Ynk__add_slctd()<cr>
 
 " clipboard slctd
 "vnoremap xx "+y
@@ -1152,13 +1152,13 @@ vnoremap o :call V_ynk()<cr>
 " todo refactoring
 "vnoremap p xx
 vnoremap <expr> p
-\ mode() == '<c-v>' ? ':call V_box_paste()<cr>' :
-\ mode() == 'v'     ? ':call V_paste()<cr>'     :
-\                     ':call V_paste()<cr>'
+\ mode() == '<c-v>' ? ':call Slctd_box_edge_l__ynk_line_1()<cr>' :
+\ mode() == 'v'     ? ':call Slctd__ynk()<cr>'     :
+\                     ':call Slctd__ynk()<cr>'
 " \ mode() == 'v'     ? '"zd"aP'                  :
 
 " paste clipboard
-"vnoremap xx :call V_paste_by_clipboard()<cr>
+"vnoremap xx :call Slctd__clipboard()<cr>
 
 " paste visual box
 "vnoremap xx I<c-r>0<esc>
@@ -1190,10 +1190,10 @@ vnoremap <expr> L
 \                     ''
 
 " ins date time
-"vnoremap xx x:call Ins_da()<cr>
+"vnoremap xx x:call Cursor__ins_da()<cr>
 
 " ins day of week
-"vnoremap xx x:call Ins_week()<cr>
+"vnoremap xx x:call Cursor__ins_week()<cr>
 
 " ins time
 "vnoremap xx c<c-r>=strftime("%H:%M")<cr><esc>
@@ -1249,7 +1249,7 @@ vnoremap <c-d> D
 vnoremap m :call V_line_end_space__del()<cr>
 
 " del cursor f space
-vnoremap K :call V_cursor_f_space__del()<cr>
+vnoremap K :call Slctd_box_cursor_r_space__crct()<cr>
 
 " slctd edge quote __ tgl
 "vnoremap w     :call Slctd_edge_out_quote__tgl()<cr>
@@ -1380,7 +1380,7 @@ vnoremap <c-m> :call V_line_srch_str__rpl_cr()<cr>
 " v box edge char shft in
 "vnoremap <c-h> 
 vnoremap <expr> <c-h>
-\ mode() == '<c-v>' ? ':call V_box_edge_r_char__shft_in()<cr>' :
+\ mode() == '<c-v>' ? ':call Slctd_box_edge_r_char__shft_in()<cr>' :
 \                     ''
 
 " cnv markdown tbl header
@@ -1856,7 +1856,7 @@ command! -range=% -nargs=0 MbCnv <line1>,<line2>call V_line_mb__cnv()
 
 command! -nargs=* SrchOr call Srch_or(<f-args>)
 
-command! -nargs=* InsSysCmd call Ins_sys_cmd(<q-args>)
+command! -nargs=* InsSysCmd call Cursor__ins_sys_cmd(<q-args>)
 
 command! -range=% -nargs=0 Tbl <line1>,<line2>call Slctd_line__crct_tbl()
 
@@ -2795,7 +2795,7 @@ func! Cursor__mv_line_top_or_new_line() abort
 
   if     Is_cursor_col__line_top0()
 
-    call Ins_line_emp()
+    call Cursor__ins_line_emp()
 
   elseif Is_cursor_col__line_top1()
 
@@ -3379,7 +3379,7 @@ func! Cursor__ins_with_cursor_fix(str) abort " todo dev
 
 endfunc
 
-func! Ins_mlt(str, num) abort
+func! Cursor__ins_mlt(str, num) abort
 
   if a:num == 0
     return
@@ -3389,9 +3389,7 @@ func! Ins_mlt(str, num) abort
   call Normal(l:cmd)
 endfunc
 
-" todo refactoring ins xx > cursor __ ins xx
-
-func! Ins_cr() abort
+func! Cursor__ins_cr() abort
 
   let l:t_line_num = line('.')
 
@@ -3403,9 +3401,7 @@ func! Ins_cr() abort
   call Cursor__mv_d()
 endfunc
 
-" todo refactoring ins xx > cursor __ ins xx
-
-func! Ins_space(is_cursor_mv) abort
+func! Cursor__ins_space(is_cursor_mv) abort
 
   if a:is_cursor_mv
     call Cursor__ins(' ')
@@ -3416,60 +3412,46 @@ func! Ins_space(is_cursor_mv) abort
   endif
 endfunc
 
-" todo refactoring ins xx > cursor __ ins xx
-
-func! Ins_hyphen() abort
+func! Cursor__ins_hyphen() abort
 
   call Normal('i-')
   "call Cursor__ins('-')
 endfunc
 
-" todo refactoring ins xx > cursor __ ins xx
-
-func! Ins_bracket() abort
+func! Cursor__ins_bracket() abort
 
   call Normal("i' '")
   call Normal('h')
   "call Cursor__ins('-')
 endfunc
 
-" todo refactoring ins xx > cursor __ ins xx
-
-func! Ins_da() abort
+func! Cursor__ins_da() abort
 
   let l:da = strftime('%Y-%m-%d')
   call Cursor__ins(l:da)
 endfunc
 
-" todo refactoring ins xx > cursor __ ins xx
-
-func! Ins_tm() abort
+func! Cursor__ins_tm() abort
 
   let l:tm = strftime('%H:%M')
   call Cursor__ins(l:tm)
 endfunc
 
-" todo refactoring ins xx > cursor __ ins xx
-
-func! Ins_dt() abort
+func! Cursor__ins_dt() abort
 
   let l:dt = strftime('%Y-%m-%d.%H:%M')
   call Cursor__ins(l:dt)
 endfunc
 
-" todo refactoring ins xx > cursor __ ins xx
-
-func! Ins_ts() abort
+func! Cursor__ins_ts() abort
 
   let l:ts = strftime('%Y-%m-%d.%H:%M:%S')
   call Cursor__ins(l:ts)
 endfunc
 
-" todo refactoring ins xx > cursor __ ins xx
-
 let g:week_def = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ]
 
-func! Ins_week() abort
+func! Cursor__ins_week() abort
 
   let l:week_num = strftime('%w')
   let l:week     = g:week_def[l:week_num]
@@ -3477,9 +3459,7 @@ func! Ins_week() abort
   "call Cursor__ins(' ' . l:week)
 endfunc
 
-" todo refactoring ins xx > cursor __ ins xx
-
-func! Ins_sys_cmd(sys_cmd) abort " read
+func! Cursor__ins_sys_cmd(sys_cmd) abort " read
 
   let l:is_line_num_eq_1 = Is_cursor_line_num__file_edge_bgn()
 
@@ -3500,17 +3480,15 @@ endfunc
 
 " cursor __ ins ynk ( paste )
 
-" todo refactoring paste > cursor __ ins ynk()
-
-func! Paste() abort
+func! Cursor__ins_ynk() abort
 
   call Normal('"aP')
 endfunc
 
-func! Paste_by_clipboard() abort
+func! Cursor__ins_clipboard() abort
 
   call Ynk__clipboard()
-  call Paste()
+  call Cursor__ins_ynk()
 endfunc
 
 func! Slctd__ins(str) range abort " todo cre
@@ -3803,7 +3781,7 @@ func! Cursor_f_space__del() abort
   endif
 endfunc
 
-func! V_cursor_f_space__del() range abort
+func! Slctd_box_cursor_r_space__crct() range abort
 
   call Slct_re()
   let l:col = Cursor_col_num()
@@ -3854,7 +3832,7 @@ endfunc
 
 " line ins > cursor __ ins line
 
-func! Ins_line(str) abort
+func! Cursor__ins_line(str) abort
   
   let l:line_num = Cursor_line_num() - 1
   call append(l:line_num, a:str)
@@ -3862,32 +3840,32 @@ func! Ins_line(str) abort
   call Cursor__mv_u()
 endfunc
 
-func! Ins_line_d(str) abort
+func! Cursor_d__ins_line_d(str) abort
   
   let l:line_num = Cursor_line_num()
   call append(l:line_num, a:str)
 endfunc
 
-func! Ins_line_emp() abort
+func! Cursor__ins_line_emp() abort
   
   let l:str = ''
-  call Ins_line(l:str)
+  call Cursor__ins_line(l:str)
 endfunc
 
-func! Ins_line_slf_path() abort
+func! Cursor__ins_line_slf_path() abort
   
   let l:path = Slf_path()
-  call Ins_line(l:path)
+  call Cursor__ins_line(l:path)
 endfunc
 
-func! Ins_line__indnt_space() range abort
+func! Cursor_d__ins_line_space() range abort
 
   let l:space_len = Cursor_col_num() - 1
   let l:space_str = Str_space(l:space_len)
-  call Ins_line_d(l:space_str)
+  call Cursor_d__ins_line_d(l:space_str)
 endfunc
 
-func! Line__del() abort
+func! Cursor_line__del() abort
 
   if Is_cursor_line_str__emp() || Is_cursor_line_str__space()
     call Normal('"_dd') " rgstr del
@@ -3897,11 +3875,11 @@ func! Line__del() abort
   endif
 endfunc
 
-func! V_line_del() abort " use not, todo dev
-  
+func! Slctd_line__del() abort " use not, todo dev
+
   call Normal('gvj')
   "call Normal('"ad')
-  
+
   call Clipboard__ynk()
 endfunc
 
@@ -3923,15 +3901,13 @@ endfunc
 
 " indnt
 
-func! Indnt_col_by_c() abort
+func! Cursor_line_indnt_col_with_c() abort
 
   let l:col = cindent(Cursor_line_num())
   return l:col
 endfunc
 
-" indnt > cursor line indnt __ add
-
-func! Indnt__add(col) abort
+func! Cursor_line_indnt__add(col) abort
 
   if a:col == 0
     return
@@ -3946,47 +3922,49 @@ func! Indnt__add(col) abort
     let l:char = "\t"
     let l:col = a:col / 2
   endif
-  call Ins_mlt(l:char, l:col)
+  call Cursor__ins_mlt(l:char, l:col)
 
   call Cursor__mv_line_top1()
 endfunc
 
-func! Indnt__del() abort " alias
+func! Cursor_line_indnt__del() abort " alias
 
   call Exe('left')
 endfunc
 
-func! Indnt__shft_l() abort
+func! Cursor_line_indnt__shft_l() abort
 
   call Normal('<<')
   call Cursor__mv_line_top1()
 endfunc
 
-func! Indnt__shft_r() abort
+func! Cursor_line_indnt__shft_r() abort
 
   let l:col = 2
 
-  call Indnt__add(l:col)
+  call Cursor_line_indnt__add(l:col)
 endfunc
 
-func! Indnt__crct() abort
+func! Cursor_line_indnt__crct() abort
 
-  let l:col = Indnt__crct_by_c()
+  let l:col = Cursor_line_indnt__crct_by_c()
   return l:col
 endfunc
 
-func! Indnt__crct_by_c() abort
+func! Cursor_line_indnt__crct_by_c() abort
 
-  call Indnt__del()
+  call Cursor_line_indnt__del()
 
-  let l:col = Indnt_col_by_c()
+  let l:col = Cursor_line_indnt_col_with_c()
   "echo l:col
 
-  call Indnt__add(l:col)
+  call Cursor_line_indnt__add(l:col)
   return l:col
 endfunc
 
 let g:v_rng = "'<,'>"
+
+" v line xxx > slctd line xxx
 
 func! V_line_indnt__space(indnt_col) range abort
 
@@ -4233,39 +4211,26 @@ endfunc
 
 " slctd __ xx
 
-func! Slctd__ynk() abort " todo refactoring, v paste > slctd __ ynk
+func! Slctd__ynk() range abort " todo refactoring, v paste > slctd __ ynk
 
+  call Slct_re()
+  call Normal('"zd')
+  call Cursor__ins_ynk()
 endfunc
 
-func! V_sys_cmd(sys_cmd) range abort " todo def pos mv , slctd
+func! Slctd__clipboard() range abort
+
+  call Ynk__clipboard()
+  call Slctd__ynk()
+endfunc
+
+func! Slctd__sys_cmd(sys_cmd) range abort
 
   let l:cmd = g:v_rng . '! ' . a:sys_cmd
   call Exe(l:cmd)
 endfunc
 
-func! V_paste() range abort " todo refactoring, v paste > slctd __ ynk
-
-  call Slct_re()
-  call Normal('"zd')
-  call Paste()
-endfunc
-
-" todo refactoring, v paste > slctd box __ ynk
-" func! V_paste __ clipboard() range abort
-
-func! V_paste_by_clipboard() range abort
-
-  call Ynk__clipboard()
-  call V_paste()
-endfunc
-
-" todo refactoring, v box paste > v box 7 paste
-
-func! Slctd_box_7_paste() range abort
-
-endfunc
-
-func! V_box_paste() range abort
+func! Slctd_box_edge_l__ynk_line_1() range abort
 
   if @a =~ '\n'
     echo 'yank is include cr'
@@ -4291,7 +4256,7 @@ func! V_box_paste() range abort
 
     let l:col_num = Cursor_col_num()
 
-    call Paste()
+    call Cursor__ins_ynk()
 
     call Cursor__mv_by_line_col(l:line_num, l:col_num)
     call Cursor__mv_d()
@@ -4816,9 +4781,9 @@ func! Slctd_box_space__del() range abort
   '<,'>:call Slctd__rpl(srch, rpl)
 endfunc
 
-" v box char __ shft
+" slctd box char __ shft
 
-func! V_box_edge_r_char__shft_in() range abort
+func! Slctd_box_edge_r_char__shft_in() range abort
 
   let l:cmd = g:v_rng . 's/' . '\%V\([ ]\+\)\([^ ]\)' . '/' . '\2\1' . '/g'
   call Exe(l:cmd)
@@ -4976,7 +4941,8 @@ func! Ynk__clipboard() abort
   let @a = @+
 endfunc
 
-func! V_ynk() abort
+" func! V_ynk() abort
+func! Ynk__slctd() abort
 
   let @e = @d
   let @d = @c
@@ -4987,7 +4953,7 @@ func! V_ynk() abort
   call Clipboard__ynk()
 endfunc
 
-func! V_ynk__add_slctd() abort
+func! Ynk__add_slctd() abort
 
   call Normal('gv"Ay')
   call Clipboard__ynk()
@@ -5291,11 +5257,11 @@ endfunc
 func! Ins_markdown_itm() abort
 
   if Is_line_markdown_itm()
-    call Indnt__shft_r()
+    call Cursor_line_indnt__shft_r()
     return
   endif
 
-  let l:col = Indnt__crct()
+  let l:col = Cursor_line_indnt__crct()
 
   let l:str = '- '
   "echo l:str
@@ -5305,7 +5271,7 @@ endfunc
 func! Ins_markdown_code() abort
 
   let l:str = '```'
-  call Ins_line(l:str)
+  call Cursor__ins_line(l:str)
 endfunc
 
 func! Char_markdown_chk__tgl() abort
@@ -6377,9 +6343,6 @@ func! V_math() range abort
   let l:rslt = Sys_cmd(l:sys_cmd)
   echo l:rslt
   let @a = l:rslt
-
-  "let l:sys_cmd = 'cat | math'
-  "'<,'>:call V_sys_cmd(l:sys_cmd)
 endfunc
 
 " url encdoe
