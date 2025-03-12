@@ -1220,8 +1220,8 @@ vnoremap - :call Slctd__pad('-')<cr>
 " pad |
 vnoremap <bar> :call Slctd__pad_bar()<cr>
 
-" slctd space __ pad _
-"vnoremap xx :call Slctd__rpl(' ', '_')<cr>
+" slctd str space __ under score
+vnoremap q :call Slctd_str_space__underscore()<cr>
 
 " line __ join per line
 vnoremap J :call V_line__join_per_line(3)
@@ -1246,7 +1246,7 @@ vnoremap <c-d> D
 "vnoremap xx :call V_line_top_space__del()<cr>
 
 " del line end space
-vnoremap m :call V_line_end_space__del()<cr>
+vnoremap m :call Slctd_line_end_space__del()<cr>
 
 " del cursor f space
 vnoremap K :call Slctd_box_cursor_r_space__crct()<cr>
@@ -1271,17 +1271,14 @@ vnoremap ~ :call Slctd_edge_out__ins_markdown_strikethrough()<cr>
 " slctd edge out __ ins markdown strikethrough
 vnoremap b :call Slctd_edge_out__ins_markdown_bold()<cr>
 
-" slctd str mv back
+" slctd box str mv back
 "vnoremap xx :call Slctd_box_str__mv('l')<cr>
 
-" slctd str mv forward
+" slctd box str mv forward
 "vnoremap xx :call Slctd_box_str__mv('r')<cr>
 
 " slctd box space __ del
 vnoremap D :call Slctd_box_space__del()<cr>
-
-" slctd box space __ under score " todo dev
-"vnoremap xx :call V_box_space__underscore()<cr>
 
 " slctd box mv back
 vnoremap <c-w> :call Slctd_box__mv('l')<cr>
@@ -1467,7 +1464,7 @@ vnoremap g <esc>
 "vnoremap n <esc>
 "vnoremap o <esc>
 "vnoremap p <esc>
-vnoremap q <esc>
+"vnoremap q <esc>
 "vnoremap r <esc>
 "vnoremap s <esc>
 vnoremap t <esc>
@@ -4223,9 +4220,16 @@ endfunc
 
 " slctd str __ rpl
 
-func! Slctd__rpl(srch, rpl) range abort
+func! Slctd_str__rpl(srch, rpl) range abort
 
   call Slctd_box__rpl(a:srch, a:rpl)
+endfunc
+
+" slctd str __ ( rpl )
+
+func! Slctd_str__(str) range abort " todo dev
+
+  
 endfunc
 
 " slctd str __ rpl, srch nxt slctd
@@ -4283,12 +4287,12 @@ func! Slctd__pad_bar() range abort
   call Slctd__pad('|')
 endfunc
 
-" slctd str __ ( rpl )
+func! Slctd_str_space__underscore() range abort
 
-func! Slctd__(str) range abort " todo dev
-
-  
+  call Slctd_str__rpl(' ', '_')
 endfunc
+
+" slctd str __ ( edit ) end
 
 " slctd str edge
 
@@ -4563,8 +4567,6 @@ endfunc
 
 " slctd str edge __ ( edit ) end
 
-" slctd str __ ( edit ) end
-
 " slctd line
 
 "   : none ?
@@ -4631,7 +4633,8 @@ func! V_line_top_space__del() abort " refactoring ?
   call Exe(l:rpl_cmd)
 endfunc
 
-func! V_line_end_space__del() range abort
+" func! V_line_end_space__del() range abort
+func! Slctd_line_end_space__del() range abort
 
   for line_num in range(a:firstline, a:lastline)
 
@@ -4833,7 +4836,7 @@ func! Slctd_box_space__del() range abort
   let l:srch = ' '
   let l:rpl  = ''
 
-  '<,'>:call Slctd__rpl(srch, rpl)
+  '<,'>:call Slctd_str__rpl(srch, rpl)
 endfunc
 
 " slctd box char __ shft
@@ -5126,6 +5129,8 @@ func! Srch_str__prv_tgl() abort
 
   let @/ = l:srch_str
 endfunc
+
+" refactoring Slctd_srch_str__slctd_str > Srch_str__slctd_str ?
 
 func! Slctd_srch_str__slctd_str() range abort
 

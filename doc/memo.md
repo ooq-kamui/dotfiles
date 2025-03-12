@@ -9,6 +9,8 @@ fnc name re
   - v line xxx > slctd line xxx
 - cursor line
   - line > cursor line
+- ins > cursor __ ins
+  - v ins > slctd xxx __ ins
 
 
 vnoremap f, err ?
@@ -45,7 +47,11 @@ movie write
 ## keyboard
 
 logi sticker
-- fn win x 2
+- fn win x 2 ( mending )
+- fn
+  - pg ^ x 2 svg
+  - pg v x 1 svg
+- tab ( mending )
 
 
 ## m4
