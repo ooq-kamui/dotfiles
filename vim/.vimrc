@@ -2228,6 +2228,20 @@ func! File_line_ar(file_path) abort
   return l:file_line_ar
 endfunc
 
+" utl
+
+func! Lr_2_normal_cmd(lr) abort
+
+  if     a:lr == 'l'
+    let l:n_cmd = 'h'
+
+  elseif a:lr == 'r'
+    let l:n_cmd = 'l'
+  endif
+
+  return l:n_cmd
+endfunc
+
 " char
 
 " cursor char rpl
@@ -3615,26 +3629,12 @@ endfunc
 
 let s:line_top_space_ptn = '^[ \t]*'
 
-func! V_line_top_space__del() abort " refactoring ?
-
-  let l:rpl_cmd = 's/' . s:line_top_space_ptn . '//g'
-  call Exe(l:rpl_cmd)
-endfunc
-
 let s:line_end_space_ptn = '[ \t]*$'
 
 func! Line_end_space__del(line_num) abort
   
   let l:rpl_cmd = a:line_num . 's/' . s:line_end_space_ptn . '//g'
   call Exe(l:rpl_cmd)
-endfunc
-
-func! V_line_end_space__del() range abort
-
-  for line_num in range(a:firstline, a:lastline)
-
-    call Line_end_space__del(l:line_num)
-  endfor
 endfunc
 
 func! Line_end__pad_space(line_num, fil_end_col) abort
@@ -3650,36 +3650,6 @@ func! Line_end__pad_space(line_num, fil_end_col) abort
   let l:space_str = Str_space(l:space_len)
   let l:line_str .= l:space_str
   call setline(a:line_num, l:line_str)
-endfunc
-
-func! V_line_end__pad_space() range abort " use not
-
-  " use recommend "aygvr gv
-
-  call Slct_re()
-  call Normal('o')
-
-  let l:fil_end_col = Cursor_col_num() - 1
-
-  for line_num in range(a:firstline, a:lastline)
-
-    call Line_end__pad_space(l:line_num, l:fil_end_col)
-  endfor
-endfunc
-
-func! V_line__join_per_line(per_line_num) range abort
-
-  let l:n_cmd = a:per_line_num . 'Jj'
-
-  let l:line_num = a:lastline - a:firstline + 1
-
-  let l:exe_num = l:line_num / a:per_line_num
-  "echo l:exe_num
-
-  for idx in range(1, l:exe_num)
-
-    call Normal(l:n_cmd)
-  endfor
 endfunc
 
 let g:dots_str = ' .. '
@@ -3743,27 +3713,6 @@ func! Line_end__ins_dots() abort " todo refactoring ?
   let l:line_str .= l:space_str . g:dots_str
 
   call setline(l:line_num, l:line_str)
-endfunc
-
-func! Slctd_line__rpl_sys_cmd(sys_cmd) range abort " read
-
-  let l:cmd = "'<,'>" . " ! " . a:sys_cmd
-  call Exe(l:cmd)
-endfunc
-
-" slctd line __ tbl
-
-func! Slctd_line__crct_tbl() range abort
-
-  if     Is_env__('linux')
-    let l:sys_cmd = '/usr/bin/column -t'
-  elseif Is_env__('mac')
-    let l:sys_cmd = 'column -t'
-  else
-    let l:sys_cmd = 'column -t'
-  endif
-
-  '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
 endfunc
 
 " cursor f
@@ -3964,166 +3913,34 @@ endfunc
 
 let g:v_rng = "'<,'>"
 
-" v line xxx > slctd line xxx
-
-func! V_line_indnt__space(indnt_col) range abort
-
-  if Is_env__('win64')
-    '<,'>:call V_line_tab__rpl_space(a:indnt_col)
-
-  else
-    let l:sys_cmd = '  expand   -t ' . a:indnt_col
-    '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
-  endif
-endfunc
-
-func! V_line_indnt__tab(indnt_col) range abort
-
-  if Is_env__('win64')
-    call Nothing()
-  else
-    let l:sys_cmd = 'unexpand   -t ' . a:indnt_col
-    '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
-  endif
-endfunc
-
-" tab
-
-func! V_line_tab__rpl_space(space_col) range abort
-
-  let l:space_str = Str_space(a:space_col)
-  let l:cmd = g:v_rng . 's/\t/' . l:space_str . '/g'
-  call Exe(l:cmd)
-endfunc
-
-" markdown tbl header
-
-func! V_2_markdown_tbl_header() range abort
-
-  '<,'>:call V_line__rpl('[^|]', '-')
-  '<,'>:call V_line__rpl( '|.',  '| ')
-  '<,'>:call V_line__rpl('.|' , ' |' )
-endfunc
-
 " 
 " slctd
 " 
 
-" slctd str
-
-func! Slctd_str() range abort
-
-  " call Normal('gv"zy')
-
-  call Slct_re()
-  call Normal('"zy')
-
-  call Slct_re()
-
-  return @z
-endfunc
-
-func! Slctd_str_len() range abort
-
-  call Slct_re()
-
-  let l:slctd_str = Slctd_str()
-  let l:len       = Str_len(l:slctd_str)
-  return l:len
-endfunc
-
-" slctd edge
-
-func! Slctd_l_col() abort
-
-  call Cursor__mv_slctd_edge_l()
-  
-  let l:col = Cursor_col_num()
-  return l:col
-endfunc
-
-func! Slctd_r_col() abort
-
-  call Cursor__mv_slctd_edge_r()
-  
-  let l:col = Cursor_col_num()
-  return l:col
-endfunc
-
-func! Slctd_l_pos() abort
-
-  call Cursor__mv_slctd_edge_l()
-  let l:pos = Cursor_pos()
-  return l:pos
-endfunc
-
-func! Slctd_r_pos() abort
-
-  call Cursor__mv_slctd_edge_r()
-  let l:pos = Cursor_pos()
-  return l:pos
-endfunc
-
-func! Slctd_edge_l_char() abort
-
-  call Cursor__mv_slctd_edge_l()
-
-  let l:c_char = Cursor_c_char()
-  return l:c_char
-endfunc
-
-func! Slctd_edge_r_char() abort
-
-  call Cursor__mv_slctd_edge_r()
-
-  let l:c_char = Cursor_c_char()
-  return l:c_char
-endfunc
-
-func! Slctd_edge_l_out_char() abort
-
-  call Cursor__mv_slctd_edge_l()
-
-  let l:l_char = Cursor_l_char()
-  return l:l_char
-endfunc
-
-func! Slctd_edge_r_out_char() abort
-
-  call Cursor__mv_slctd_edge_r()
-
-  let l:r_char = Cursor_r_char()
-  return l:r_char
-endfunc
-
-" slctd line str
-
-func! Slctd_edge_l_out_str() abort
-
-  call Cursor__mv_slctd_edge_l()
-
-  let l:str = Cursor_line_str_side_l()
-  return l:str
-endfunc
-
-func! Slctd_edge_r_out_str() abort
-
-  call Cursor__mv_slctd_edge_r()
-
-  let l:str = Cursor_line_str_side_r()
-  return l:str
-endfunc
-
 " slctd __ ( slct )
 
-" func! Slctd__esc() range abort " alias
 func! Slctd__cancel() range abort " alias
 
   call Esc()
-  " call Normal("\<esc>")
 endfunc
 
-" slctd __ " refactoring
+" refactoring slct > slctd __ xxx
+
+func! Slct_re() range abort
+
+  if mode() == "\<c-v>" || mode() == "v"
+    return
+  endif
+
+  call Normal('gv')
+endfunc
+
+" refactoring slct > slctd __ xxx
+
+func! Slct_all() abort
+
+  call Normal('ggVG')
+endfunc
 
 func! Slctd__word() abort
 
@@ -4142,6 +3959,8 @@ endfunc
 func! Slctd__word_by_under_score() abort
 
 endfunc
+
+" refactoring slct > slctd __ xxx
 
 func! Slct_cursor_f_space() abort
 
@@ -4164,6 +3983,8 @@ func! Slct_cursor_f_space() abort
   endif
 endfunc
 
+" refactoring slct > slctd __ xxx
+
 func! Slct_by_col(s_col, len) abort
 
   let l:e_col = a:len - 1
@@ -4171,12 +3992,16 @@ func! Slct_by_col(s_col, len) abort
   call Slct_by_line_col(v:null, a:s_col, v:null, e_col)
 endfunc
 
+" refactoring slct > slctd __ xxx
+
 func! Slct_by_pos(s_pos, e_pos) abort " use not
 
   call Cursor__mv_by_pos(a:s_pos)
   call Normal('v')
   call Cursor__mv_by_pos(a:e_pos)
 endfunc
+
+" refactoring slct > slctd __ xxx
 
 func! Slct_by_line_col(s_line, s_col, e_line, e_col) abort
 
@@ -4188,82 +4013,13 @@ func! Slct_by_line_col(s_line, s_col, e_line, e_col) abort
   call Cursor__mv_by_line_col(l:e_line, a:e_col)
 endfunc
 
+" refactoring slct > slctd __ xxx
+
 func! Slct_by_line_rng(line_num_fr, line_num_to) abort
   
   call Cursor__mv_by_line_num(a:line_num_fr)
   call Normal('V')
   call Cursor__mv_by_line_num(a:line_num_to)
-endfunc
-
-func! Slct_re() range abort
-
-  if mode() == "\<c-v>" || mode() == "v"
-    return
-  endif
-
-  call Normal('gv')
-endfunc
-
-func! Slct_all() abort
-
-  call Normal('ggVG')
-endfunc
-
-" slctd __ xx
-
-func! Slctd__ynk() range abort " todo refactoring, v paste > slctd __ ynk
-
-  call Slct_re()
-  call Normal('"zd')
-  call Cursor__ins_ynk()
-endfunc
-
-func! Slctd__clipboard() range abort
-
-  call Ynk__clipboard()
-  call Slctd__ynk()
-endfunc
-
-func! Slctd__sys_cmd(sys_cmd) range abort
-
-  let l:cmd = g:v_rng . '! ' . a:sys_cmd
-  call Exe(l:cmd)
-endfunc
-
-func! Slctd_box_edge_l__ynk_line_1() range abort
-
-  if @a =~ '\n'
-    echo 'yank is include cr'
-    return
-  endif
-
-  call Slct_re()
-
-  if Is_cursor_col__line_end()
-    call Slctd__pad_space()
-
-    call Slctd__del()
-    " call Normal('"zdgv') " see
-  endif
-
-  call Cursor__mv_slctd_edge_l()
-  call Esc()
-  " call Normal("\<esc>")
-
-  " let l:col_num = Cursor_col_num()
-
-  for line_num in range(a:firstline, a:lastline)
-
-    let l:col_num = Cursor_col_num()
-
-    call Cursor__ins_ynk()
-
-    call Cursor__mv_by_line_col(l:line_num, l:col_num)
-    call Cursor__mv_d()
-    " if l:line_num != a:lastline
-    "   call Normal('j')
-    " endif
-  endfor
 endfunc
 
 " slctd __ expnd
@@ -4423,56 +4179,64 @@ func! Slctd__reduce_dlm_l(char) range abort
   call Normal(l:n_cmd)
 endfunc
 
-func! Slctd_box__mv(lr) range abort
+" slctd str
+
+func! Slctd_str() range abort
+
+  " call Normal('gv"zy')
+
+  call Slct_re()
+  call Normal('"zy')
 
   call Slct_re()
 
-  let l:n_cmd = Lr_2_normal_cmd(a:lr)
-  call Normal('o' . l:n_cmd)
-  call Normal('o' . l:n_cmd)
+  return @z
 endfunc
 
-func! Slctd_box_width__1() range abort
+func! Slctd_str_len() range abort
 
   call Slct_re()
 
-  if ! Is_slctd_mode__box()
-    return
-  endif
-
-  call Normal('o')
-  let l:col_num = Cursor_col_num()
-
-  call Normal('o')
-  call Cursor__mv_by_col_num(l:col_num)
+  let l:slctd_str = Slctd_str()
+  let l:len       = Str_len(l:slctd_str)
+  return l:len
 endfunc
 
-func! Slctd_box_str__mv(lr) range abort
+" slctd str end
 
-  let l:n_cmd = Lr_2_normal_cmd(a:lr)
+" slctd str __ ( edit )
+
+" todo refactoring, v paste > slctd __ ynk
+
+func! Slctd__ynk() range abort
 
   call Slct_re()
-  call Normal('"zx')
-  call Normal(l:n_cmd)
-  call Normal('"zP')
+  call Normal('"zd')
+  call Cursor__ins_ynk()
+endfunc
+
+func! Slctd__clipboard() range abort
+
+  call Ynk__clipboard()
+  call Slctd__ynk()
+endfunc
+
+" slctd str __ rpl
+
+func! Slctd__rpl(srch, rpl) range abort
+
+  call Slctd_box__rpl(a:srch, a:rpl)
+endfunc
+
+" slctd str __ rpl, srch nxt slctd
+
+func! Slctd__rpl_7_srch_nxt() abort " dir forward only
 
   call Slct_re()
-  call Slctd_box__mv(a:lr)
+  call Normal('"zd"aPlgn')
 endfunc
 
-func! Lr_2_normal_cmd(lr) abort
-
-  if     a:lr == 'l'
-    let l:n_cmd = 'h'
-
-  elseif a:lr == 'r'
-    let l:n_cmd = 'l'
-  endif
-
-  return l:n_cmd
-endfunc
-
-" slctd del
+" slctd str __ del
 
 func! V_slctd__del() abort " dev doing, can
 
@@ -4492,7 +4256,7 @@ func! Slctd__del() range abort
   call Normal(l:cmd)
 endfunc
 
-" slctd __ pad
+" slctd str __ pad
 
 func! Slctd__pad(char) range abort
 
@@ -4519,14 +4283,96 @@ func! Slctd__pad_bar() range abort
   call Slctd__pad('|')
 endfunc
 
-" slctd __ ( rpl )
+" slctd str __ ( rpl )
 
 func! Slctd__(str) range abort " todo dev
 
   
 endfunc
 
-" slctd __ ins
+" slctd str edge
+
+func! Slctd_l_col() abort
+
+  call Cursor__mv_slctd_edge_l()
+  
+  let l:col = Cursor_col_num()
+  return l:col
+endfunc
+
+func! Slctd_r_col() abort
+
+  call Cursor__mv_slctd_edge_r()
+  
+  let l:col = Cursor_col_num()
+  return l:col
+endfunc
+
+func! Slctd_l_pos() abort
+
+  call Cursor__mv_slctd_edge_l()
+  let l:pos = Cursor_pos()
+  return l:pos
+endfunc
+
+func! Slctd_r_pos() abort
+
+  call Cursor__mv_slctd_edge_r()
+  let l:pos = Cursor_pos()
+  return l:pos
+endfunc
+
+func! Slctd_edge_l_char() abort
+
+  call Cursor__mv_slctd_edge_l()
+
+  let l:c_char = Cursor_c_char()
+  return l:c_char
+endfunc
+
+func! Slctd_edge_r_char() abort
+
+  call Cursor__mv_slctd_edge_r()
+
+  let l:c_char = Cursor_c_char()
+  return l:c_char
+endfunc
+
+func! Slctd_edge_l_out_char() abort
+
+  call Cursor__mv_slctd_edge_l()
+
+  let l:l_char = Cursor_l_char()
+  return l:l_char
+endfunc
+
+func! Slctd_edge_r_out_char() abort
+
+  call Cursor__mv_slctd_edge_r()
+
+  let l:r_char = Cursor_r_char()
+  return l:r_char
+endfunc
+
+func! Slctd_edge_l_out_str() abort
+
+  call Cursor__mv_slctd_edge_l()
+
+  let l:str = Cursor_line_str_side_l()
+  return l:str
+endfunc
+
+func! Slctd_edge_r_out_str() abort
+
+  call Cursor__mv_slctd_edge_r()
+
+  let l:str = Cursor_line_str_side_r()
+  return l:str
+endfunc
+
+" slctd str edge end
+
+" slctd str edge __ ( edit )
 
 func! Slctd_edge_out__ins(c) range abort
 
@@ -4715,6 +4561,18 @@ func! Slctd_edge_out_cahr__del() range abort
   call Slctd_box__mv('l')
 endfunc
 
+" slctd str edge __ ( edit ) end
+
+" slctd str __ ( edit ) end
+
+" slctd line
+
+"   : none ?
+
+" slctd line end
+
+" slctd line __ ( edit )
+
 " todo refactoring, fnc name mod, v > slctd
 
 " v line __ rpl
@@ -4753,11 +4611,208 @@ func! Slctd_line__markdown_strikethrough() range abort " todo dev
   
 endfunc
 
-" slctd char __ rpl
+func! Slctd__sys_cmd(sys_cmd) range abort
 
-func! Slctd__rpl(srch, rpl) range abort
+  let l:cmd = g:v_rng . '! ' . a:sys_cmd
+  call Exe(l:cmd)
+endfunc
 
-  call Slctd_box__rpl(a:srch, a:rpl)
+func! Slctd_line__rpl_sys_cmd(sys_cmd) range abort " read
+
+  let l:cmd = "'<,'>" . " ! " . a:sys_cmd
+  call Exe(l:cmd)
+endfunc
+
+" refactoring , v line > slctd line, pos
+
+func! V_line_top_space__del() abort " refactoring ?
+
+  let l:rpl_cmd = 's/' . s:line_top_space_ptn . '//g'
+  call Exe(l:rpl_cmd)
+endfunc
+
+func! V_line_end_space__del() range abort
+
+  for line_num in range(a:firstline, a:lastline)
+
+    call Line_end_space__del(l:line_num)
+  endfor
+endfunc
+
+func! V_line_end__pad_space() range abort " use not
+
+  " use recommend "aygvr gv
+
+  call Slct_re()
+  call Normal('o')
+
+  let l:fil_end_col = Cursor_col_num() - 1
+
+  for line_num in range(a:firstline, a:lastline)
+
+    call Line_end__pad_space(l:line_num, l:fil_end_col)
+  endfor
+endfunc
+
+func! V_line__join_per_line(per_line_num) range abort
+
+  let l:n_cmd = a:per_line_num . 'Jj'
+
+  let l:line_num = a:lastline - a:firstline + 1
+
+  let l:exe_num = l:line_num / a:per_line_num
+  "echo l:exe_num
+
+  for idx in range(1, l:exe_num)
+
+    call Normal(l:n_cmd)
+  endfor
+endfunc
+
+" slctd line __ crct tbl
+
+func! Slctd_line__crct_tbl() range abort
+
+  if     Is_env__('linux')
+    let l:sys_cmd = '/usr/bin/column -t'
+  elseif Is_env__('mac')
+    let l:sys_cmd = 'column -t'
+  else
+    let l:sys_cmd = 'column -t'
+  endif
+
+  '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
+endfunc
+
+" v line xxx > slctd line xxx
+
+func! V_line_indnt__space(indnt_col) range abort
+
+  if Is_env__('win64')
+    '<,'>:call V_line_tab__rpl_space(a:indnt_col)
+
+  else
+    let l:sys_cmd = '  expand   -t ' . a:indnt_col
+    '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
+  endif
+endfunc
+
+func! V_line_indnt__tab(indnt_col) range abort
+
+  if Is_env__('win64')
+    call Nothing()
+  else
+    let l:sys_cmd = 'unexpand   -t ' . a:indnt_col
+    '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
+  endif
+endfunc
+
+" slctd line tab
+
+func! V_line_tab__rpl_space(space_col) range abort
+
+  let l:space_str = Str_space(a:space_col)
+  let l:cmd = g:v_rng . 's/\t/' . l:space_str . '/g'
+  call Exe(l:cmd)
+endfunc
+
+" markdown tbl header
+
+func! V_2_markdown_tbl_header() range abort
+
+  '<,'>:call V_line__rpl('[^|]', '-')
+  '<,'>:call V_line__rpl( '|.',  '| ')
+  '<,'>:call V_line__rpl('.|' , ' |' )
+endfunc
+
+
+
+
+" slctd line indnt __ shft
+
+func! Slctd_indnt__shft_l() abort " todo
+
+endfunc
+
+func! Slctd_indnt__shft_r() abort " todo
+
+endfunc
+
+" slctd line __ ( edit ) end
+
+" slctd box __ ( edit )
+
+func! Slctd_box_edge_l__ynk_line_1() range abort
+
+  if @a =~ '\n'
+    echo 'yank is include cr'
+    return
+  endif
+
+  call Slct_re()
+
+  if Is_cursor_col__line_end()
+    call Slctd__pad_space()
+
+    call Slctd__del()
+    " call Normal('"zdgv') " see
+  endif
+
+  call Cursor__mv_slctd_edge_l()
+  call Esc()
+  " call Normal("\<esc>")
+
+  " let l:col_num = Cursor_col_num()
+
+  for line_num in range(a:firstline, a:lastline)
+
+    let l:col_num = Cursor_col_num()
+
+    call Cursor__ins_ynk()
+
+    call Cursor__mv_by_line_col(l:line_num, l:col_num)
+    call Cursor__mv_d()
+    " if l:line_num != a:lastline
+    "   call Normal('j')
+    " endif
+  endfor
+endfunc
+
+func! Slctd_box__mv(lr) range abort
+
+  call Slct_re()
+
+  let l:n_cmd = Lr_2_normal_cmd(a:lr)
+  call Normal('o' . l:n_cmd)
+  call Normal('o' . l:n_cmd)
+endfunc
+
+func! Slctd_box_width__1() range abort
+
+  call Slct_re()
+
+  if ! Is_slctd_mode__box()
+    return
+  endif
+
+  call Normal('o')
+  let l:col_num = Cursor_col_num()
+
+  call Normal('o')
+  call Cursor__mv_by_col_num(l:col_num)
+endfunc
+
+func! Slctd_box_str__mv(lr) range abort
+
+  let l:n_cmd = Lr_2_normal_cmd(a:lr)
+
+  call Slct_re()
+  call Normal('"zx')
+  call Normal(l:n_cmd)
+  call Normal('"zP')
+
+  call Slct_re()
+  call Slctd_box__mv(a:lr)
 endfunc
 
 " slctd box __ rpl
@@ -4791,23 +4846,9 @@ func! Slctd_box_edge_r_char__shft_in() range abort
   call Slct_re()
 endfunc
 
-" slctd rpl, srch nxt slctd
+" slctd box __ ( edit ) end
 
-func! Slctd__rpl_7_srch_nxt() abort " dir forward only
-  
-  call Slct_re()
-  call Normal('"zd"aPlgn')
-endfunc
-
-" slctd indnt __ shft
-
-func! Slctd_indnt__shft_l() abort " todo
-
-endfunc
-
-func! Slctd_indnt__shft_r() abort " todo
-
-endfunc
+" slctd end
 
 " slctd cnd
 

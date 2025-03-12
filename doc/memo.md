@@ -2,40 +2,36 @@
 # cnf
 
 
-## artcl
-
-movie write
-- 2025
-- ltst
-
-
-## keyboard
-
-logi
-- sticker
-  - n + mending tape
-  - win svg x 2
-  - fn win svg x 2
-
-
 ## vim
 
 fnc name re
-- v line xxx > slctd line xxx
+- slctd
+  - v line xxx > slctd line xxx
+- cursor line
+  - line > cursor line
 
-indnt __ crct
-- logic mod
-
-cursor __ mv indnt crct col
-- cre
 
 vnoremap f, err ?
 - Slctd__expnd_word_f()
   - back ?
   - case line mlt ?
 
+indnt __ crct
+- logic mod
+
+- cursor __ mv indnt crct col
+  - cre
+
+
 fnc def pos mv
 - ref index
+
+
+## artcl
+
+movie write
+- 2025
+- ltst
 
 
 ## zsh
@@ -44,6 +40,12 @@ fnc def pos mv
 - alias
   - ll
 - prompto
+
+
+## keyboard
+
+logi sticker
+- fn win x 2
 
 
 ## m4
