@@ -2,6 +2,23 @@
 # cnf
 
 
+## keyboard
+
+logi sticker
+- fn win x 2 ( mending )
+- fn
+  - pg ^ x 2 svg
+  - pg v x 1 svg
+- tab ( mending )
+
+
+## artcl
+
+movie write
+- 2025
+- ltst
+
+
 ## vim
 
 fnc name re
@@ -29,29 +46,12 @@ fnc def pos mv
 - ref index
 
 
-## artcl
-
-movie write
-- 2025
-- ltst
-
-
 ## zsh
 
 .zshrc
 - alias
   - ll
 - prompto
-
-
-## keyboard
-
-logi sticker
-- fn win x 2 ( mending )
-- fn
-  - pg ^ x 2 svg
-  - pg v x 1 svg
-- tab ( mending )
 
 
 ## m4
