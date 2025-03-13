@@ -2,6 +2,13 @@
 # cnf
 
 
+## keyboard
+
+logi sticker
+- fn `win >` ( mending )
+- tab ( mending )
+
+
 ## vim
 
 fnc name re
@@ -30,13 +37,6 @@ indnt __ crct
 
 fnc def pos mv
 - ref index
-
-
-## keyboard
-
-logi sticker
-- fn `win >` ( mending )
-- tab ( mending )
 
 
 ## artcl
