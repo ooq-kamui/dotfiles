@@ -2,33 +2,19 @@
 # cnf
 
 
-## keyboard
-
-logi sticker
-- fn win x 2 ( mending )
-- fn
-  - pg ^ x 2 svg
-  - pg v x 1 svg
-- tab ( mending )
-
-
-## artcl
-
-movie write
-- 2025
-- ltst
-
-
 ## vim
 
 fnc name re
 - slctd
   - v line xxx > slctd line xxx
-- cursor line
-  - line > cursor line
-- ins > cursor __ ins
-  - v ins > slctd xxx __ ins
 
+vnoremap W , slctd str edge __ ins shft ( `( <> '` )
+
+nnoremap w , win_splt __ pop
+- win splt cnt
+
+win splt , status line hl
+- https://zenn.dev/kawarimidoll/articles/0fe2ef584a56b6
 
 vnoremap f, err ?
 - Slctd__expnd_word_f()
@@ -44,6 +30,20 @@ indnt __ crct
 
 fnc def pos mv
 - ref index
+
+
+## keyboard
+
+logi sticker
+- fn `win >` ( mending )
+- tab ( mending )
+
+
+## artcl
+
+movie write
+- 2025
+- ltst
 
 
 ## zsh
