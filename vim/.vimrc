@@ -177,7 +177,9 @@ let mapleader = "\<esc>"
 " 
 
 " quit buffer
-nnoremap w :bd<cr>
+nnoremap w :call Buf__quit_swtch()<cr>
+"nnoremap w :call Buf__quit()<cr>
+"nnoremap w :bd<cr>
 
 " quit buffer force
 nnoremap :q :q!
@@ -300,7 +302,7 @@ nnoremap l l
 
 " cursor mv char - back
 nnoremap <c-o> h
-nnoremap <c-s> h
+"nnoremap <c-s> h
 
 " cursor mv word - forward
 nnoremap f :call Cursor__mv_word_f()<cr>
@@ -470,7 +472,9 @@ nnoremap , i, <esc>l
 nnoremap 0 :call Cursor__ins_hyphen()<cr>
 
 " ins bracket
-nnoremap <c-w> :call Cursor__ins_bracket()<cr>
+nnoremap <c-e> :call Cursor__ins_bracket()<cr>
+nnoremap <c-s> :call Cursor__ins_bracket()<cr>
+"nnoremap <c-w> :call Cursor__ins_bracket()<cr>
 
 " ins date
 nnoremap * :call Cursor__ins_da()<cr>
@@ -721,20 +725,19 @@ nnoremap :f :%! jq
 " 
 
 " win ( buf ) splt quit
-nnoremap rq :call Win_splt_quit()<cr>
+"nnoremap rq :call Win_splt__quit()<cr>
 
 " win ( buf ) splt h
-nnoremap rh :call Win_splt_h()<cr>
+nnoremap rh :call Win__splt_h()<cr>
 
 " win ( buf ) splt v
-nnoremap rv :call Win_splt_v()<cr>
+nnoremap rn :call Win__splt_v()<cr>
+"nnoremap rv :call Win__splt_v()<cr>
 
 " win ( buf ) nxt
-nnoremap <c-e> :call Win_splt_cursor__mv_nxt()<cr>
-nnoremap re    :call Win_splt_cursor__mv_nxt()<cr>
-
-" win ( buf ) splt tgl
-"nnoremap xx :call Win_splt_tgl()<cr>
+nnoremap <c-w> :call Win_splt_cursor__mv_nxt()<cr>
+"nnoremap <c-e> :call Win_splt_cursor__mv_nxt()<cr>
+"nnoremap re    :call Win_splt_cursor__mv_nxt()<cr>
 
 " win ( buf ) mv r
 "nnoremap xx <c-w>l
@@ -958,7 +961,7 @@ nnoremap gy <esc>
 
 nnoremap ra <esc>
 "        :
-"nnoremap re <esc>
+nnoremap re <esc>
 "nnoremap rf <esc>
 "        :
 "nnoremap rh <esc>
@@ -966,15 +969,14 @@ nnoremap ra <esc>
 "nnoremap rj <esc>
 "nnoremap rk <esc>
 "        :
-nnoremap rn <esc>
+"nnoremap rn <esc>
 "nnoremap ro <esc>
 nnoremap rp <esc>
-"        :
+nnoremap rq <esc>
 "nnoremap rr <esc>
 "        :
 "nnoremap ru <esc>
-"        :
-"nnoremap rv <esc>
+nnoremap rv <esc>
 "        :
 nnoremap rz <esc>
 
@@ -2020,43 +2022,51 @@ endfunc
 "   - file                   2253      
 "                                      
 " - file ( sys )             ?         
-" - opn                      ?         
-" - win ( buf )              ?         
+" - opn                      2568      
+" - tag jmp                  2745      
+" - buf                      2802      
+" - win                      2813      
 "                                      
 " - line                     ?         
 "                                      
-" - cursor                   2546      
-"   - cursor __ ( mv )       2549      
-"   - cursor __ ( ins )                
-"   - cursor char                      
-"   - cursor str             3263      
-"   -   cursor str __        3265      
+" - cursor                   2911      
+"   - cursor __ ( mv )       2914      
+"   - cursor __ ( ins )      3378      
+"     - cursor __ str                  
+"     - cursor __ line                 
+"     - cursor __ sys                  
+"   - cursor char            3378      
+"   - cursor str             3823      
+"   -   cursor str __        3825      
 "   - cursor line                      
 " 
 " - slctd                    3909      
 "   - slctd cursor                     
 "   - slctd __ expnd                   
 "   - slctd str                        
-"   - slctd line                       
-"   - slctd edge                       
-"     - slctd edge cnd                 
+"     - slctd str edge                 
+"      - slctd str edge cnd            
+"   - slctd line             4973      
 "   - slctd box                        
+"     - slctd box edge                 
 "   - slctd mode                       
 "     - slctd mode cnd                 
 "   - slctd etc              4962      
 " 
-" - ynk                      4965      
-" - srch                     5040      
+" - ynk                      5413      
+" - srch                     5489      
 " 
-" - complete                           
+" - complete                 5699      
 " - env                                
 " - plugin                             
-" - fzf                                
+" - fzf                      5810      
 " - rg                                 
 " - mark                               
 " 
 
+" 
 " primitive
+" 
 
 " char
 
@@ -2519,17 +2529,6 @@ func! Int_2_str(num) abort
   return l:num_str
 endfunc
 
-" file type cnd
-
-func! Is_file_type__(type) abort
-
-  if &filetype == a:type
-    return v:true
-  else
-    return v:false
-  endif
-endfunc
-
 func! File_txt(file_path) abort
 
   if ! filereadable(a:file_path)
@@ -2548,6 +2547,383 @@ func! File_line_ar(file_path) abort
   let l:file_line_ar = Txt_to_ar(file_txt)
   return l:file_line_ar
 endfunc
+
+" tmp file
+
+func! Tmp_cre() abort " alias
+
+  let l:tmp_path = Tmp_cre_sys()
+  return l:tmp_path
+endfunc
+
+func! Tmp_cre_sys() abort
+
+  let l:tmp_path = system('mktemp ')
+  return l:tmp_path
+endfunc
+
+" file cnd
+
+func! Is_file_type__(type) abort
+
+  if &filetype == a:type
+    return v:true
+  else
+    return v:false
+  endif
+endfunc
+
+" opn xxx
+
+" opn file
+
+func! Opn(filename) abort
+
+  call Exe('tab drop ' . a:filename)
+endfunc
+
+func! Opn_tmp() abort
+
+  let l:path = Tmp_cre()
+  echo l:path
+  call Opn(l:path)
+endfunc
+
+let g:vimrc_file_path = '~/wrk/cnf/vim/.vimrc'
+
+func! Opn_vimrc() abort
+
+  call Opn(g:vimrc_file_path)
+
+  if Is_env__('win32unix') " gitbash
+
+    let l:vimrc_gitbash_file_path = '~/wrk/cnf/vim/.vimrc_gitbash'
+    call Opn(l:vimrc_gitbash_file_path)
+  endif
+endfunc
+
+func! Opn_fish_cnf() abort
+
+  let l:path = '~/.config/fish/config.fish'
+  call Opn(l:path)
+endfunc
+
+func! Opn_man(cmd) abort
+
+  call Exe('tab new')
+  call Exe('Man ' . a:cmd)
+  call Exe('only')
+endfunc
+
+func! Opn_vim_key() abort
+
+  let l:path = '~/doc/tech/vim/m.key.default.md'
+  call Opn(l:path)
+endfunc
+
+" let g:opn_memo_path = '../memo.md'
+let g:opn_memo_path = 'doc/memo.md'
+
+func! Opn_memo() abort
+
+  call Opn(g:opn_memo_path)
+endfunc
+
+func! Opn_grep_wk() abort
+
+  let g:grep_wk_path = '~/wrk/tmp/rg.md'
+
+  let l:file_type = getftype(g:grep_wk_path)
+
+  if Is_str__emp(l:file_type)
+
+    call Opn(g:grep_wk_path)
+  else
+    call Opn_tmp()
+  endif
+endfunc
+
+" opn app
+
+func! Opn_app(path) abort
+  
+  let l:path = a:path
+  
+  if     Is_env__('mac')
+
+    let l:cmd_sys = 'open'
+
+  elseif Is_env__('win64')
+
+    let l:cmd_sys = 'start'
+
+  elseif Is_env__('win32unix')
+
+    let l:cmd_sys = 'start'
+
+  else
+    return
+  endif
+
+  if Is_env__('win64')
+
+    let l:path = Str_path_unix__cnv_win(l:path)
+  endif
+
+  let l:res = system(l:cmd_sys . " '" . l:path . "'")
+endfunc
+
+func! V_opn_app() range abort
+
+  for line_num in range(a:firstline, a:lastline)
+
+    call Opn_app_by_line_path(l:line_num)
+  endfor
+endfunc
+
+func! Opn_app_by_cursor_path() abort
+  
+  let l:path = Cursor_filepath()
+  call Opn_app(l:path)
+endfunc
+
+func! Opn_app_by_line_path(line_num) abort
+
+  "let l:path = Line_str_by_line_num(a:line_num)
+  let l:path = getline(a:line_num)
+
+  let l:path = trim(l:path)
+  call Opn_app(l:path)
+endfunc
+
+func! Opn_app_by_slctd_str() abort
+  
+  let l:path = Slctd_str()
+  let l:path = trim(l:path)
+  call Opn_app(l:path)
+endfunc
+
+func! Opn_app_slf() abort
+
+  let l:path = Slf_path()
+  echo l:path
+
+  call Opn_app(l:path)
+endfunc
+
+func! Opn_dir_slf() abort
+
+  let l:dir = Slf_dir()
+  "echo l:path
+
+  call Opn_app(l:dir)
+endfunc
+
+func! Opn_brwsr()
+
+  let l:url = 'https://www.google.com/'
+  call Opn_app(l:url)
+endfunc
+
+func! Opn_ggl_srch(word) abort
+
+  let l:url = 'https://www.google.com/search?q=' . a:word
+  call Opn_app(l:url)
+endfunc
+
+func! V_opn_ggl_srch() abort
+
+  let l:word = Slctd_str()
+  let l:word = trim(l:word)
+  call Opn_ggl_srch(l:word)
+endfunc
+
+func! Opn_yt(yt_video_id)
+
+  let l:url = 'https://www.youtube.com/watch?v=' . a:yt_video_id
+  call Opn_app(l:url)
+endfunc
+
+func! V_opn_yt() abort
+  
+  let l:yt_video_id = Slctd_str()
+  let l:yt_video_id = trim(l:yt_video_id)
+  call Opn_yt(l:yt_video_id)
+endfunc
+
+" tag jmp
+
+" tag jmp by str
+
+func! Tag_jmp_by_str(rg_rslt_line) abort
+
+  let l:rg_rslt_line = trim(a:rg_rslt_line)
+
+  if Is_str__emp(l:rg_rslt_line)
+    echo 'empty'
+    return
+  endif
+
+  let l:rg_rslt_line = matchstr(l:rg_rslt_line, '\S\+')
+  " echo l:rg_rslt_line
+
+  let l:rg_rslt_line_ar = Rg_rslt_line_parse(l:rg_rslt_line)
+  " echo l:rg_rslt_line_ar
+
+  let l:filename = l:rg_rslt_line_ar[0]
+  let l:line_num = get(l:rg_rslt_line_ar, 1, 1)
+  " echo l:line_num
+  " return
+
+  if ! filereadable(l:filename)
+    echo 'file does not exist'
+    return
+  endif
+
+  call Exe('tab drop ' . l:filename)
+  call Normal(l:line_num . 'G')
+endfunc
+
+func! Tag_jmp_by_cursor_line() abort
+
+  let l:base_buf_num = Buf_num()
+
+  let l:str = Cursor_line_str()
+  call Tag_jmp_by_str(l:str)
+
+  call Exe('sbuffer ' . l:base_buf_num)
+  " call Normal('j')
+  call Cursor__mv_d()
+endfunc
+
+func! Tag_jmp_by_slctd_line() range abort
+
+  let l:base_buf_num = Buf_num()
+
+  for line_num in range(a:firstline, a:lastline)
+
+    let l:line = getline(l:line_num)
+    call Tag_jmp_by_str(l:line)
+    call Exe('sbuffer ' . l:base_buf_num)
+  endfor
+endfunc
+
+" buf
+
+func! Buf__quit() abort
+
+  let l:cmd = 'bd'
+  call Exe(l:cmd)
+endfunc
+
+func! Buf__quit_swtch() abort
+
+  let l:win_num = winnr('$')
+
+  if l:win_num > 1
+    call Win_splt__quit()
+  else
+    call Buf__quit()
+    " let l:cmd = 'bd'
+    " call Exe(l:cmd)
+  endif
+endfunc
+
+func! Buf_num() abort
+
+  return bufnr('%')
+endfunc
+
+func! Buf__fltr() abort " use not
+
+endfunc
+
+" win splt
+
+func! Win__splt_h() abort
+
+  let l:cmd = 'split'
+  call Exe(l:cmd)
+endfunc
+
+func! Win__splt_v() abort
+
+  let l:cmd = 'vsplit'
+  call Exe(l:cmd)
+endfunc
+
+func! Win_splt_cursor__mv_nxt() abort
+
+  let l:n_cmd = "\<c-w>w"
+  call Normal(l:n_cmd)
+endfunc
+
+func! Win_splt__quit() abort
+
+  let l:n_cmd = "\<c-w>c"
+  call Normal(l:n_cmd)
+endfunc
+
+" 
+" line
+" 
+
+func! Line_num_file_edge_bgn() abort
+
+  return line('^')
+endfunc
+
+func! Line_num_file_edge_end() abort " alias
+
+  return line('$')
+endfunc
+
+" line xx __ ins
+
+let s:line_top_space_ptn = '^[ \t]*'
+
+let s:line_end_space_ptn = '[ \t]*$'
+
+func! Line_end_space__del(line_num) abort
+  
+  let l:rpl_cmd = a:line_num . 's/' . s:line_end_space_ptn . '//g'
+  call Exe(l:rpl_cmd)
+endfunc
+
+func! Line_end__pad_space(line_num, fil_end_col) abort
+
+  let l:line_str     = getline(a:line_num)
+  let l:line_str_len = Str_len(l:line_str)
+  let l:space_len    = a:fil_end_col - l:line_str_len
+
+  if l:space_len <= 0
+    return
+  endif
+
+  let l:space_str = Str_space(l:space_len)
+  let l:line_str .= l:space_str
+  call setline(a:line_num, l:line_str)
+endfunc
+
+let g:dots_str = ' .. '
+let g:dots_put_col = 50
+
+func! Line__del_by_line_num(line_num) abort
+
+  call deletebufline('%', a:line_num)
+endfunc
+
+" line num
+
+func! Line_num_by_Line_info(line_info) abort
+
+  let l:line_info = trim(a:line_info, ' ', 1)
+  let l:line_num  = split(l:line_info, '\s\+')[0]
+  return l:line_num
+endfunc
+
+" line cnd
+
 
 " 
 " cursor
@@ -2819,7 +3195,6 @@ func! Cursor__mv_jmp_space(drct) abort
 
   let l:cnt = 1
   let l:cnt_max = 10000
-  "let l:cnt_max = 10
 
   while ( !Is_cursor_line_num__file_edge() && l:cnt < l:cnt_max )
 
@@ -3016,6 +3391,262 @@ func! Is_slctd_cursor_pos__r() range abort
 
   " echo l:ret
   return l:ret
+endfunc
+
+" cursor __ ins
+
+func! Cursor__ins(str) abort
+
+  let l:cmd = 'i' . a:str
+  call Normal(l:cmd)
+  call Cursor__mv_char_f()
+endfunc
+
+func! Cursor__ins_with_cursor_fix(str) abort " todo dev
+
+endfunc
+
+" cursor __ ins ynk ( paste )
+
+func! Cursor__ins_ynk() abort
+
+  call Normal('"aP')
+endfunc
+
+func! Cursor__ins_clipboard() abort
+
+  call Ynk__clipboard()
+  call Cursor__ins_ynk()
+endfunc
+
+func! Cursor__ins_mlt(str, num) abort
+
+  if a:num == 0
+    return
+  endif
+
+  let l:cmd = a:num.'i'.a:str
+  call Normal(l:cmd)
+endfunc
+
+func! Cursor__ins_cr() abort
+
+  let l:t_line_num = line('.')
+
+  call Normal("i\<cr> ")
+  call Normal('x')
+
+  call Line_end_space__del(l:t_line_num)
+  " call Normal('j')
+  call Cursor__mv_d()
+endfunc
+
+func! Cursor__ins_space(is_cursor_mv) abort
+
+  if a:is_cursor_mv
+    call Cursor__ins(' ')
+
+  else
+    call Normal('i ')
+    ""call Normal('l')
+  endif
+endfunc
+
+func! Cursor__ins_hyphen() abort
+
+  call Normal('i-')
+  "call Cursor__ins('-')
+endfunc
+
+func! Cursor__ins_bracket() abort
+
+  call Normal("i' '")
+  call Normal('h')
+  "call Cursor__ins('-')
+endfunc
+
+func! Cursor__ins_da() abort
+
+  let l:da = strftime('%Y-%m-%d')
+  call Cursor__ins(l:da)
+endfunc
+
+func! Cursor__ins_tm() abort
+
+  let l:tm = strftime('%H:%M')
+  call Cursor__ins(l:tm)
+endfunc
+
+func! Cursor__ins_dt() abort
+
+  let l:dt = strftime('%Y-%m-%d.%H:%M')
+  call Cursor__ins(l:dt)
+endfunc
+
+func! Cursor__ins_ts() abort
+
+  let l:ts = strftime('%Y-%m-%d.%H:%M:%S')
+  call Cursor__ins(l:ts)
+endfunc
+
+let g:week_def = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ]
+
+func! Cursor__ins_week() abort
+
+  let l:week_num = strftime('%w')
+  let l:week     = g:week_def[l:week_num]
+  call Cursor__ins(l:week)
+  "call Cursor__ins(' ' . l:week)
+endfunc
+
+" cmnt
+
+func! Cursor__ins_cmnt_1(cmd_cursor__mv_line_top) abort
+
+  let l:cmnt_1_def = {
+  \ 'lua'       : '-- ',
+  \ 'text'      : '# ' ,
+  \ 'vim'       : '" ' ,
+  \ 'fish'      : '# ' ,
+  \ 'sh'        : '# ' ,
+  \ 'css'       : '/* ',
+  \ 'javascript': '// ',
+  \ 'java'      : '// ',
+  \ 'sql'       : '-- ',
+  \ 'dflt'      : '# '
+  \ }
+  let l:str = get(l:cmnt_1_def, &filetype, l:cmnt_1_def['dflt'])
+
+  if a:cmd_cursor__mv_line_top != v:null
+    call Normal(a:cmd_cursor__mv_line_top)
+  endif
+
+  call Normal('i' . l:str)
+  
+  call Normal('^') " or '0'
+endfunc
+
+func! V_ins_cmnt_1() range abort
+
+  call Normal(a:firstline . 'G')
+  call Normal('^')
+  let l:col = Cursor_col_num()
+
+  for line_num in range(a:firstline, a:lastline)
+
+    call Line_end__pad_space(l:line_num, l:col - 1)
+
+    call Cursor__mv_by_line_col(l:line_num, l:col)
+
+    call Cursor__ins_cmnt_1(v:null)
+  endfor
+endfunc
+
+func! Cursor__ins_cmnt_mlt_by_pos(pos) abort
+
+  let l:cmnt_mlt_def = #{
+  \  lua       : ['--[[' , '--]]'],
+  \  html      : ['<!--' ,  '-->'],
+  \  css       : ['/*'   ,  ' */'],
+  \  javascript: ['/*'   ,  ' */'],
+  \  java      : ['/*'   ,  ' */'],
+  \  dflt      : ['/*'   ,  ' */']
+  \ }
+
+  let l:str = get(l:cmnt_mlt_def, &filetype, l:cmnt_mlt_def['dflt'])
+
+  "if has_key(l:cmnt_mlt_def, &filetype)
+  "  let l:filetype = &filetype
+  "else
+  "  let l:filetype = 'dflt'
+  "endif
+  "let l:str = l:cmnt_mlt_def[l:filetype]
+
+  if     a:pos == 'bgn'
+    call Normal('O')
+    call Normal('i' . l:str[0])
+
+  elseif a:pos == 'end'
+    call Normal('o')
+    call Normal('i' . l:str[1])
+  endif
+endfunc
+
+func! Cursor__ins_cmnt_mlt() abort
+
+  call Cursor__ins_cmnt_mlt_by_pos('bgn')
+  call Cursor__ins_cmnt_mlt_by_pos('end')
+endfunc
+
+func! V_ins_cmnt_mlt() range abort
+
+  call Normal(a:lastline  . 'G')
+  call Cursor__ins_cmnt_mlt_by_pos('end')
+
+  call Normal(a:firstline . 'G')
+  call Cursor__ins_cmnt_mlt_by_pos('bgn')
+endfunc
+
+" markdown
+
+func! Cursor__ins_markdown_h() abort
+
+  call Cursor__mv_line_top0()
+  let l:top0_char = Cursor_c_char()
+
+  let l:str = '#'
+
+  if l:top0_char != l:str
+    let l:str .= ' '
+  endif
+
+  call Cursor__ins(l:str)
+
+  let l:ptn = '^#* '
+  let l:col = Str_srch_end(Cursor_line_str(), l:ptn) + 1
+  call Cursor__mv_by_line_col(v:null, l:col)
+endfunc
+
+func! Cursor__ins_markdown_cr() abort
+
+  call Cursor__ins('  ')
+endfunc
+
+func! Cursor__ins_markdown_itm() abort
+
+  if Is_line_markdown_itm()
+    call Cursor_line_indnt__shft_r()
+    return
+  endif
+
+  let l:col = Cursor_line_indnt__crct()
+
+  let l:str = '- '
+  "echo l:str
+  call Cursor_line_top1__ins(l:str)
+endfunc
+
+func! Cursor__ins_markdown_code() abort
+
+  let l:str = '```'
+  call Cursor__ins_line(l:str)
+endfunc
+
+func! Char_markdown_chk__tgl() abort
+  
+  if Cursor_l_char() != '[' || Cursor_r_char() != ']'
+    return
+  endif
+  
+  let l:cursor_char = Cursor_c_char()
+  
+  if l:cursor_char == ' '
+    let l:rpl_char = 'x'
+  else
+    let l:rpl_char = ' '
+  endif
+  
+  call Cursor_char__rpl(l:rpl_char)
 endfunc
 
 " cursor char
@@ -3288,131 +3919,6 @@ func! Cursor_filepath() abort
   return l:str
 endfunc
 
-" cursor __ ins
-
-func! Cursor__ins(str) abort
-
-  let l:cmd = 'i' . a:str
-  call Normal(l:cmd)
-  call Cursor__mv_char_f()
-endfunc
-
-func! Cursor__ins_with_cursor_fix(str) abort " todo dev
-
-endfunc
-
-" cursor __ ins ynk ( paste )
-
-func! Cursor__ins_ynk() abort
-
-  call Normal('"aP')
-endfunc
-
-func! Cursor__ins_clipboard() abort
-
-  call Ynk__clipboard()
-  call Cursor__ins_ynk()
-endfunc
-
-func! Cursor__ins_mlt(str, num) abort
-
-  if a:num == 0
-    return
-  endif
-
-  let l:cmd = a:num.'i'.a:str
-  call Normal(l:cmd)
-endfunc
-
-func! Cursor__ins_cr() abort
-
-  let l:t_line_num = line('.')
-
-  call Normal("i\<cr> ")
-  call Normal('x')
-
-  call Line_end_space__del(l:t_line_num)
-  " call Normal('j')
-  call Cursor__mv_d()
-endfunc
-
-func! Cursor__ins_space(is_cursor_mv) abort
-
-  if a:is_cursor_mv
-    call Cursor__ins(' ')
-
-  else
-    call Normal('i ')
-    ""call Normal('l')
-  endif
-endfunc
-
-func! Cursor__ins_hyphen() abort
-
-  call Normal('i-')
-  "call Cursor__ins('-')
-endfunc
-
-func! Cursor__ins_bracket() abort
-
-  call Normal("i' '")
-  call Normal('h')
-  "call Cursor__ins('-')
-endfunc
-
-func! Cursor__ins_da() abort
-
-  let l:da = strftime('%Y-%m-%d')
-  call Cursor__ins(l:da)
-endfunc
-
-func! Cursor__ins_tm() abort
-
-  let l:tm = strftime('%H:%M')
-  call Cursor__ins(l:tm)
-endfunc
-
-func! Cursor__ins_dt() abort
-
-  let l:dt = strftime('%Y-%m-%d.%H:%M')
-  call Cursor__ins(l:dt)
-endfunc
-
-func! Cursor__ins_ts() abort
-
-  let l:ts = strftime('%Y-%m-%d.%H:%M:%S')
-  call Cursor__ins(l:ts)
-endfunc
-
-let g:week_def = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ]
-
-func! Cursor__ins_week() abort
-
-  let l:week_num = strftime('%w')
-  let l:week     = g:week_def[l:week_num]
-  call Cursor__ins(l:week)
-  "call Cursor__ins(' ' . l:week)
-endfunc
-
-func! Cursor__ins_sys_cmd(sys_cmd) abort " read
-
-  let l:is_line_num_eq_1 = Is_cursor_line_num__file_edge_bgn()
-
-  if l:is_line_num_eq_1
-    call Normal('O')
-  else
-    " call Normal('k')
-    call Cursor__mv_u()
-  endif
-
-  let l:cmd = 'read ! ' . a:sys_cmd
-  call Exe(l:cmd)
-
-  if l:is_line_num_eq_1
-    call Line__del_by_line_num(1)
-  endif
-endfunc
-
 " cursor __ ins line
 
 func! Cursor__ins_line(str) abort
@@ -3447,7 +3953,6 @@ func! Cursor_d__ins_line_space() range abort
   let l:space_str = Str_space(l:space_len)
   call Cursor_d__ins_line_d(l:space_str)
 endfunc
-
 
 func! Curosr_line_end__ins(str) abort
 
@@ -3591,9 +4096,6 @@ endfunc
 
 " cursor __ ins line
 
-
-
-
 func! Cursor_line__del() abort
 
   if Is_cursor_line_str__emp() || Is_cursor_line_str__space()
@@ -3631,6 +4133,25 @@ func! Cursor_f_str_col__crct_by_line_u() abort
   call Cursor__ins(l:space_str)
 
   call Cursor__mv_by_pos(l:cursor_pos)
+endfunc
+
+func! Cursor__ins_sys_cmd(sys_cmd) abort " read
+
+  let l:is_line_num_eq_1 = Is_cursor_line_num__file_edge_bgn()
+
+  if l:is_line_num_eq_1
+    call Normal('O')
+  else
+    " call Normal('k')
+    call Cursor__mv_u()
+  endif
+
+  let l:cmd = 'read ! ' . a:sys_cmd
+  call Exe(l:cmd)
+
+  if l:is_line_num_eq_1
+    call Line__del_by_line_num(1)
+  endif
 endfunc
 
 " cursor line str __ end
@@ -3717,98 +4238,6 @@ func! Is_cursor_line_str__ptn(ptn) abort " todo dev
     let l:ret = v:true
   endif
   return l:ret
-endfunc
-
-" 
-" line
-" 
-
-func! Line_num_file_edge_bgn() abort
-
-  return line('^')
-endfunc
-
-func! Line_num_file_edge_end() abort " alias
-
-  return line('$')
-endfunc
-
-" line xx __ ins
-
-let s:line_top_space_ptn = '^[ \t]*'
-
-let s:line_end_space_ptn = '[ \t]*$'
-
-func! Line_end_space__del(line_num) abort
-  
-  let l:rpl_cmd = a:line_num . 's/' . s:line_end_space_ptn . '//g'
-  call Exe(l:rpl_cmd)
-endfunc
-
-func! Line_end__pad_space(line_num, fil_end_col) abort
-
-  let l:line_str     = getline(a:line_num)
-  let l:line_str_len = Str_len(l:line_str)
-  let l:space_len    = a:fil_end_col - l:line_str_len
-
-  if l:space_len <= 0
-    return
-  endif
-
-  let l:space_str = Str_space(l:space_len)
-  let l:line_str .= l:space_str
-  call setline(a:line_num, l:line_str)
-endfunc
-
-let g:dots_str = ' .. '
-let g:dots_put_col = 50
-
-" refactoring def pos
-
-func! Slctd_box_cursor_r_space__crct() range abort
-
-  call Slct_re()
-  let l:col = Cursor_col_num()
-  " echo l:col
-  call Slctd__cancel()
-
-  " echo a:firstline . ' ' . a:lastline
-  call Cursor__mv_by_line_col(a:firstline, l:col)
-
-  for line_num in range(a:firstline, a:lastline)
-    " echo l:line_num . ' ' . l:col
-    " call Cursor__mv_by_line_col(l:line_num, l:col)
-
-    call Cursor_f_space__del()
-    " call Normal('j')
-    call Cursor__mv_d()
-  endfor
-endfunc
-
-" line ins > cursor __ ins line
-
-func! Slctd_line__del() abort " use not, todo dev
-
-  call Normal('gvj')
-  "call Normal('"ad')
-
-  call Clipboard__ynk()
-endfunc
-
-func! Line__del_by_line_num(line_num) abort
-
-  call deletebufline('%', a:line_num)
-endfunc
-
-" line cnd
-
-" line num
-
-func! Line_num_by_Line_info(line_info) abort
-
-  let l:line_info = trim(a:line_info, ' ', 1)
-  let l:line_num  = split(l:line_info, '\s\+')[0]
-  return l:line_num
 endfunc
 
 " indnt
@@ -4567,6 +4996,14 @@ endfunc
 
 " slctd line __ ( edit )
 
+func! Slctd_line__del() abort " use not, todo dev
+
+  call Normal('gvj')
+  "call Normal('"ad')
+
+  call Clipboard__ynk()
+endfunc
+
 " todo refactoring, fnc name mod, v > slctd
 
 " v line __ rpl
@@ -4602,7 +5039,6 @@ endfunc
 
 func! Slctd_line__markdown_strikethrough() range abort " todo dev
 
-  
 endfunc
 
 func! Slctd__sys_cmd(sys_cmd) range abort
@@ -4838,6 +5274,26 @@ func! Slctd_box_edge_r_char__shft_in() range abort
   call Slct_re()
 endfunc
 
+func! Slctd_box_cursor_r_space__crct() range abort
+
+  call Slct_re()
+  let l:col = Cursor_col_num()
+  " echo l:col
+  call Slctd__cancel()
+
+  " echo a:firstline . ' ' . a:lastline
+  call Cursor__mv_by_line_col(a:firstline, l:col)
+
+  for line_num in range(a:firstline, a:lastline)
+    " echo l:line_num . ' ' . l:col
+    " call Cursor__mv_by_line_col(l:line_num, l:col)
+
+    call Cursor_f_space__del()
+    " call Normal('j')
+    call Cursor__mv_d()
+  endfor
+endfunc
+
 " slctd box __ ( edit ) end
 
 " slctd end
@@ -4971,7 +5427,9 @@ func! Slctd_srch__switch() abort " srch, set or run
   endif
 endfunc
 
+" 
 " ynk
+" 
 
 func! Ynk__clr() abort
 
@@ -5218,156 +5676,6 @@ func! Srch_char_bracket(dir) abort
   call Srch_char(a:dir, l:char_bracket)
 endfunc
 
-" cmnt
-
-func! Cursor__ins_cmnt_1(cmd_cursor__mv_line_top) abort
-
-  let l:cmnt_1_def = {
-  \ 'lua'       : '-- ',
-  \ 'text'      : '# ' ,
-  \ 'vim'       : '" ' ,
-  \ 'fish'      : '# ' ,
-  \ 'sh'        : '# ' ,
-  \ 'css'       : '/* ',
-  \ 'javascript': '// ',
-  \ 'java'      : '// ',
-  \ 'sql'       : '-- ',
-  \ 'dflt'      : '# '
-  \ }
-  let l:str = get(l:cmnt_1_def, &filetype, l:cmnt_1_def['dflt'])
-
-  if a:cmd_cursor__mv_line_top != v:null
-    call Normal(a:cmd_cursor__mv_line_top)
-  endif
-
-  call Normal('i' . l:str)
-  
-  call Normal('^') " or '0'
-endfunc
-
-func! V_ins_cmnt_1() range abort
-
-  call Normal(a:firstline . 'G')
-  call Normal('^')
-  let l:col = Cursor_col_num()
-
-  for line_num in range(a:firstline, a:lastline)
-
-    call Line_end__pad_space(l:line_num, l:col - 1)
-
-    call Cursor__mv_by_line_col(l:line_num, l:col)
-
-    call Cursor__ins_cmnt_1(v:null)
-  endfor
-endfunc
-
-func! Cursor__ins_cmnt_mlt_by_pos(pos) abort
-
-  let l:cmnt_mlt_def = #{
-  \  lua       : ['--[[' , '--]]'],
-  \  html      : ['<!--' ,  '-->'],
-  \  css       : ['/*'   ,  ' */'],
-  \  javascript: ['/*'   ,  ' */'],
-  \  java      : ['/*'   ,  ' */'],
-  \  dflt      : ['/*'   ,  ' */']
-  \ }
-
-  let l:str = get(l:cmnt_mlt_def, &filetype, l:cmnt_mlt_def['dflt'])
-
-  "if has_key(l:cmnt_mlt_def, &filetype)
-  "  let l:filetype = &filetype
-  "else
-  "  let l:filetype = 'dflt'
-  "endif
-  "let l:str = l:cmnt_mlt_def[l:filetype]
-
-  if     a:pos == 'bgn'
-    call Normal('O')
-    call Normal('i' . l:str[0])
-
-  elseif a:pos == 'end'
-    call Normal('o')
-    call Normal('i' . l:str[1])
-  endif
-endfunc
-
-func! Cursor__ins_cmnt_mlt() abort
-
-  call Cursor__ins_cmnt_mlt_by_pos('bgn')
-  call Cursor__ins_cmnt_mlt_by_pos('end')
-endfunc
-
-func! V_ins_cmnt_mlt() range abort
-
-  call Normal(a:lastline  . 'G')
-  call Cursor__ins_cmnt_mlt_by_pos('end')
-
-  call Normal(a:firstline . 'G')
-  call Cursor__ins_cmnt_mlt_by_pos('bgn')
-endfunc
-
-" markdown
-
-func! Cursor__ins_markdown_h() abort
-
-  call Cursor__mv_line_top0()
-  let l:top0_char = Cursor_c_char()
-
-  let l:str = '#'
-
-  if l:top0_char != l:str
-    let l:str .= ' '
-  endif
-
-  call Cursor__ins(l:str)
-
-  let l:ptn = '^#* '
-  let l:col = Str_srch_end(Cursor_line_str(), l:ptn) + 1
-  call Cursor__mv_by_line_col(v:null, l:col)
-endfunc
-
-func! Cursor__ins_markdown_cr() abort
-
-  call Cursor__ins('  ')
-endfunc
-
-func! Cursor__ins_markdown_itm() abort
-
-  if Is_line_markdown_itm()
-    call Cursor_line_indnt__shft_r()
-    return
-  endif
-
-  let l:col = Cursor_line_indnt__crct()
-
-  let l:str = '- '
-  "echo l:str
-  call Cursor_line_top1__ins(l:str)
-endfunc
-
-func! Cursor__ins_markdown_code() abort
-
-  let l:str = '```'
-  call Cursor__ins_line(l:str)
-endfunc
-
-func! Char_markdown_chk__tgl() abort
-  
-  if Cursor_l_char() != '[' || Cursor_r_char() != ']'
-    return
-  endif
-  
-  let l:cursor_char = Cursor_c_char()
-  
-  if l:cursor_char == ' '
-    let l:rpl_char = 'x'
-  else
-    let l:rpl_char = ' '
-  endif
-  
-  call Cursor_char__rpl(l:rpl_char)
-endfunc
-
 " markdown cnd
 
 func! Is_line_markdown_itm() abort
@@ -5383,60 +5691,7 @@ func! Is_line_markdown_itm() abort
   endif
 endfunc
 
-" tag jmp by str
-
-func! Tag_jmp_by_str(rg_rslt_line) abort
-
-  let l:rg_rslt_line = trim(a:rg_rslt_line)
-
-  if Is_str__emp(l:rg_rslt_line)
-    echo 'empty'
-    return
-  endif
-
-  let l:rg_rslt_line = matchstr(l:rg_rslt_line, '\S\+')
-  " echo l:rg_rslt_line
-
-  let l:rg_rslt_line_ar = Rg_rslt_line_parse(l:rg_rslt_line)
-  " echo l:rg_rslt_line_ar
-
-  let l:filename = l:rg_rslt_line_ar[0]
-  let l:line_num = get(l:rg_rslt_line_ar, 1, 1)
-  " echo l:line_num
-  " return
-
-  if ! filereadable(l:filename)
-    echo 'file does not exist'
-    return
-  endif
-
-  call Exe('tab drop ' . l:filename)
-  call Normal(l:line_num . 'G')
-endfunc
-
-func! Tag_jmp_by_cursor_line() abort
-
-  let l:base_buf_num = Buf_num()
-
-  let l:str = Cursor_line_str()
-  call Tag_jmp_by_str(l:str)
-
-  call Exe('sbuffer ' . l:base_buf_num)
-  " call Normal('j')
-  call Cursor__mv_d()
-endfunc
-
-func! Tag_jmp_by_slctd_line() range abort
-
-  let l:base_buf_num = Buf_num()
-
-  for line_num in range(a:firstline, a:lastline)
-
-    let l:line = getline(l:line_num)
-    call Tag_jmp_by_str(l:line)
-    call Exe('sbuffer ' . l:base_buf_num)
-  endfor
-endfunc
+" rg
 
 func! Rg_rslt_line_parse(line) abort
 
@@ -5457,238 +5712,6 @@ func! Rg_rslt_line_parse(line) abort
   endif
 
   return l:ret
-endfunc
-
-" tmp file
-
-func! Tmp_cre() abort " alias
-
-  let l:tmp_path = Tmp_cre_sys()
-  return l:tmp_path
-endfunc
-
-func! Tmp_cre_sys() abort
-
-  let l:tmp_path = system('mktemp ')
-  return l:tmp_path
-endfunc
-
-" opn file
-
-func! Opn(filename) abort
-
-  call Exe('tab drop ' . a:filename)
-endfunc
-
-func! Opn_tmp() abort
-
-  let l:path = Tmp_cre()
-  echo l:path
-  call Opn(l:path)
-endfunc
-
-let g:vimrc_file_path = '~/wrk/cnf/vim/.vimrc'
-
-func! Opn_vimrc() abort
-
-  call Opn(g:vimrc_file_path)
-
-  if Is_env__('win32unix') " gitbash
-
-    let l:vimrc_gitbash_file_path = '~/wrk/cnf/vim/.vimrc_gitbash'
-    call Opn(l:vimrc_gitbash_file_path)
-  endif
-endfunc
-
-func! Opn_fish_cnf() abort
-
-  let l:path = '~/.config/fish/config.fish'
-  call Opn(l:path)
-endfunc
-
-func! Opn_man(cmd) abort
-
-  call Exe('tab new')
-  call Exe('Man ' . a:cmd)
-  call Exe('only')
-endfunc
-
-func! Opn_vim_key() abort
-
-  let l:path = '~/doc/tech/vim/m.key.default.md'
-  call Opn(l:path)
-endfunc
-
-" let g:opn_memo_path = '../memo.md'
-let g:opn_memo_path = 'doc/memo.md'
-
-func! Opn_memo() abort
-
-  call Opn(g:opn_memo_path)
-endfunc
-
-func! Opn_grep_wk() abort
-
-  let g:grep_wk_path = '~/wrk/tmp/rg.md'
-
-  let l:file_type = getftype(g:grep_wk_path)
-
-  if Is_str__emp(l:file_type)
-
-    call Opn(g:grep_wk_path)
-  else
-    call Opn_tmp()
-  endif
-endfunc
-
-" opn app
-
-func! Opn_app(path) abort
-  
-  let l:path = a:path
-  
-  if     Is_env__('mac')
-
-    let l:cmd_sys = 'open'
-
-  elseif Is_env__('win64')
-
-    let l:cmd_sys = 'start'
-
-  elseif Is_env__('win32unix')
-
-    let l:cmd_sys = 'start'
-
-  else
-    return
-  endif
-
-  if Is_env__('win64')
-
-    let l:path = Str_path_unix__cnv_win(l:path)
-  endif
-
-  let l:res = system(l:cmd_sys . " '" . l:path . "'")
-endfunc
-
-func! V_opn_app() range abort
-
-  for line_num in range(a:firstline, a:lastline)
-
-    call Opn_app_by_line_path(l:line_num)
-  endfor
-endfunc
-
-func! Opn_app_by_cursor_path() abort
-  
-  let l:path = Cursor_filepath()
-  call Opn_app(l:path)
-endfunc
-
-func! Opn_app_by_line_path(line_num) abort
-
-  "let l:path = Line_str_by_line_num(a:line_num)
-  let l:path = getline(a:line_num)
-
-  let l:path = trim(l:path)
-  call Opn_app(l:path)
-endfunc
-
-func! Opn_app_by_slctd_str() abort
-  
-  let l:path = Slctd_str()
-  let l:path = trim(l:path)
-  call Opn_app(l:path)
-endfunc
-
-func! Opn_app_slf() abort
-
-  let l:path = Slf_path()
-  echo l:path
-
-  call Opn_app(l:path)
-endfunc
-
-func! Opn_dir_slf() abort
-
-  let l:dir = Slf_dir()
-  "echo l:path
-
-  call Opn_app(l:dir)
-endfunc
-
-func! Opn_brwsr()
-
-  let l:url = 'https://www.google.com/'
-  call Opn_app(l:url)
-endfunc
-
-func! Opn_ggl_srch(word) abort
-
-  let l:url = 'https://www.google.com/search?q=' . a:word
-  call Opn_app(l:url)
-endfunc
-
-func! V_opn_ggl_srch() abort
-
-  let l:word = Slctd_str()
-  let l:word = trim(l:word)
-  call Opn_ggl_srch(l:word)
-endfunc
-
-func! Opn_yt(yt_video_id)
-
-  let l:url = 'https://www.youtube.com/watch?v=' . a:yt_video_id
-  call Opn_app(l:url)
-endfunc
-
-func! V_opn_yt() abort
-  
-  let l:yt_video_id = Slctd_str()
-  let l:yt_video_id = trim(l:yt_video_id)
-  call Opn_yt(l:yt_video_id)
-endfunc
-
-" buf
-
-func! Buf_num() abort
-
-  return bufnr('%')
-endfunc
-
-func! Buf__fltr() abort " use not
-
-endfunc
-
-" win splt
-
-func! Win_splt_h() abort
-
-  let l:cmd = 'split'
-  call Exe(l:cmd)
-endfunc
-
-func! Win_splt_v() abort
-
-  let l:cmd = 'vsplit'
-  call Exe(l:cmd)
-endfunc
-
-func! Win_splt_quit() abort
-
-  let l:n_cmd = "\<c-w>c"
-  call Normal(l:n_cmd)
-endfunc
-
-func! Win_splt_tgl() abort " todo dev
-
-  
-endfunc
-
-func! Win_splt_cursor__mv_nxt() abort
-
-  let l:n_cmd = "\<c-w>w"
-  call Normal(l:n_cmd)
 endfunc
 
 " complete  -  mode insert ins lst

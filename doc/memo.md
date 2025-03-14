@@ -2,23 +2,14 @@
 # cnf
 
 
-## keyboard
-
-logi sticker
-- fn `win >` ( mending )
-- tab ( mending )
-
-
 ## vim
 
 fnc name re
 - slctd
   - v line xxx > slctd line xxx
+- switch > swtch
 
-vnoremap W , slctd str edge __ ins shft ( `( <> '` )
-
-nnoremap w , win_splt __ pop
-- win splt cnt
+vnoremap W , slctd str edge __ tgl shft ( `( <> '` )
 
 win splt , status line hl
 - https://zenn.dev/kawarimidoll/articles/0fe2ef584a56b6
@@ -37,6 +28,12 @@ indnt __ crct
 
 fnc def pos mv
 - ref index
+
+
+## keyboard sticker
+
+logi
+- shift alpha esc ( mending )
 
 
 ## artcl
