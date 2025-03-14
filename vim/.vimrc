@@ -383,7 +383,7 @@ nnoremap Rj        :call Cursor__mv_jmp_char('j', 'f')<cr>
 "nnoremap I v
 
 " slctd __ word
-nnoremap i :call Slctd__word()<cr>
+nnoremap i :call Slctd_str__word()<cr>
 
 " slctd __ word by under score
 
@@ -558,10 +558,10 @@ nnoremap D "zyy"zP
 "nnoremap xx @y
 
 " char tgl 01 ( ?? / num icl  )
-nnoremap u :call N_char__tgl_switch01()<cr>
+nnoremap u :call N_char__tgl_swtch01()<cr>
 
 " char tgl 02 ( type ch / num dcl )
-nnoremap U :call N_char__tgl_switch02()<cr>
+nnoremap U :call N_char__tgl_swtch02()<cr>
 
 " indnt shft
 nnoremap ri :call Cursor_line_indnt__shft_l()<cr>
@@ -1127,7 +1127,7 @@ vnoremap N :call Slctd__expnd_srch()<cr>
 vnoremap f :call Slctd__expnd_word_f()<cr>
 
 " slctd expnd quote
-vnoremap <c-i> :call Slctd__expnd_quote_switch()<cr>
+vnoremap <c-i> :call Slctd__expnd_quote_swtch()<cr>
 
 " slctd expnd quote on
 "vnoremap xx :call Slctd__expnd_quote_on_swtch()<cr>
@@ -1139,7 +1139,7 @@ vnoremap <c-i> :call Slctd__expnd_quote_switch()<cr>
 " vnoremap xx :call Slctd__expnd_bracket_f()<cr>
 
 " slct all
-vnoremap a :call Slct_all()<cr>
+vnoremap a :call Slctd_str__all()<cr>
 
 " ynk slctd
 vnoremap o :call Ynk__slctd()<cr>
@@ -1226,7 +1226,7 @@ vnoremap <bar> :call Slctd__pad_bar()<cr>
 vnoremap q :call Slctd_str_space__underscore()<cr>
 
 " line __ join per line
-vnoremap J :call V_line__join_per_line(3)
+vnoremap J :call Slctd_line__join_per_line(3)
 
 " del str > ynk
 "vnoremap d xx
@@ -1245,7 +1245,7 @@ vnoremap <expr> s
 vnoremap <c-d> D
 
 " del line top space
-"vnoremap xx :call V_line_top_space__del()<cr>
+"vnoremap xx :call Slctd_line_top_space__del()<cr>
 
 " del line end space
 vnoremap m :call Slctd_line_end_space__del()<cr>
@@ -1315,19 +1315,19 @@ vnoremap ro >gv
 vnoremap ; =gv
 
 " indnt tab   > space
-vnoremap :e :call V_line_indnt__space(2)
+vnoremap :e :call Slctd_line_indnt__space(2)
 
 " indnt space > tab
-"vnoremap xx :call V_line_indnt__tab(2)<cr>
+"vnoremap xx :call Slctd_line_indnt__tab(2)<cr>
 
 " tab > space
-"vnoremap :t :call V_line_tab__rpl_space(12)
+"vnoremap :t :call Slctd_line_tab__rpl_space(12)
 
 " tidy tbl
 vnoremap :t :Tbl 
 
 " line end ovr, pad __ space
-"vnoremap xx :call V_line_end__pad_space()
+"vnoremap xx :call Slctd_line_end__pad_space()
 
 " upper / lower tgl
 vnoremap u ~gv
@@ -1356,7 +1356,7 @@ vnoremap <c-n> :call V_srch_7_slct('f')<cr>
 "vnoremap xx    :call V_srch_7_slct('b')<cr>
 
 " srch str set
-vnoremap n :call Slctd_srch__switch()<cr>
+vnoremap n :call Slctd_srch__swtch()<cr>
 "vnoremap e 
 vnoremap <expr> e
 \ mode() == '<c-v>' ? '<esc>' :
@@ -1374,7 +1374,7 @@ vnoremap <expr> :s
 "\                     ':Rpl '
 
 " rpl cr ( add cr )
-vnoremap <c-m> :call V_line_srch_str__rpl_cr()<cr>
+vnoremap <c-m> :call Slctd_line_srch_str__rpl_cr()<cr>
 
 " v box edge char shft in
 "vnoremap <c-h> 
@@ -1383,7 +1383,7 @@ vnoremap <expr> <c-h>
 \                     ''
 
 " cnv markdown tbl header
-vnoremap :m :call V_2_markdown_tbl_header()
+vnoremap :m :call Slctd_2_markdown_tbl_header()
 
 " fzf buf
 vnoremap <leader>i :call V_fzf_buf()<cr>
@@ -1404,10 +1404,10 @@ vnoremap go :call V_opn_app()<cr>
 "vnoremap gx <plug>(openbrowser-smart-search)
 
 " opn ggl srch
-vnoremap ggl :call V_opn_ggl_srch()<cr>
+vnoremap ggl :call Slctd_7_opn_ggl_srch()<cr>
 
 " opn youtube video_id
-vnoremap gy :call V_opn_yt()<cr>
+vnoremap gy :call Slctd_7_opn_yt()<cr>
 
 " trns
 vnoremap r :call V_trns()<cr>
@@ -1851,7 +1851,7 @@ command! -nargs=0 Dpl call Slf__dpl()
 
 command! -nargs=1 Mv call Slf__mv(<q-args>)
 
-command! -range=% -nargs=0 MbCnv <line1>,<line2>call V_line_mb__cnv()
+command! -range=% -nargs=0 MbCnv <line1>,<line2>call Slctd_line_mb__cnv()
 
 command! -nargs=* SrchOr call Srch_or(<f-args>)
 
@@ -1859,7 +1859,7 @@ command! -nargs=* InsSysCmd call Cursor__ins_sys_cmd(<q-args>)
 
 command! -range=% -nargs=0 Tbl <line1>,<line2>call Slctd_line__crct_tbl()
 
-command! -range=% -nargs=* Rpl <line1>,<line2>call V_line__rpl(<f-args>)
+command! -range=% -nargs=* Rpl <line1>,<line2>call Slctd_line__rpl(<f-args>)
 
 command! -range=% -nargs=* VBoxRpl <line1>,<line2>call Slctd_box__rpl(<f-args>)
 
@@ -2014,12 +2014,12 @@ endfunc
 " 
 " - primitive                2041      
 "   - char                   2254      
-"   - str                    2389      
-"     - str cnd              2473      
-"   - num                    2503      
+"   - str                    2225      
+"     - str cnd              2308      
+"   - num                    2344      
 "                                      
 " - vim                                
-"   - file                   2253      
+"   - file                   2479      
 "                                      
 " - file ( sys )             ?         
 " - opn                      2568      
@@ -2040,14 +2040,19 @@ endfunc
 "   -   cursor str __        3825      
 "   - cursor line                      
 " 
-" - slctd                    3909      
+" - slctd                    4292      
 "   - slctd cursor                     
-"   - slctd __ expnd                   
-"   - slctd str                        
+"   - slctd __ ( rng )                   
+"   - slctd str              4583
 "     - slctd str edge                 
 "      - slctd str edge cnd            
 "   - slctd line             4973      
-"   - slctd box                        
+"     - slctd line __      
+"     - slctd line indnt     
+"     - slctd line markdown     
+"     - slctd line sys     
+"   - slctd box              5169      
+"     - slctd box __ ( mv )                 
 "     - slctd box edge                 
 "   - slctd mode                       
 "     - slctd mode cnd                 
@@ -2070,7 +2075,7 @@ endfunc
 
 " char
 
-func! Lr_2_normal_cmd(lr) abort
+func! Char_lr_2_normal_cmd(lr) abort
 
   if     a:lr == 'l'
     let l:n_cmd = 'h'
@@ -2219,6 +2224,11 @@ endfunc
 
 " str
 
+func! Str_len(str) abort " alias
+
+  return strchars(a:str)
+endfunc
+
 func! Str_l_char(str) abort
   
   let l:l_idx = 0
@@ -2233,11 +2243,6 @@ func! Str_r_char(str) abort
   let l:str_r = a:str[l:r_idx]
   "echo l:str_r
   return l:str_r
-endfunc
-
-func! Str_len(str) abort " alias
-
-  return strchars(a:str)
 endfunc
 
 func! Str_sub(str, idx, len) abort " dev doing
@@ -2276,7 +2281,7 @@ func! Str_srch_end(str, ptn) abort " alias
   return l:idx
 endfunc
 
-" str rpl
+" str __ rpl
 
 func! Str__rpl(str, srch, rpl) abort " alias
 
@@ -2336,14 +2341,6 @@ func! Is_str__num(str) abort
   return l:ret
 endfunc
 
-" str mb
-
-func! V_line_mb__cnv() range abort
-
-  let l:sys_cmd = 'mb__cnv'
-  '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
-endfunc
-
 " num ( idx )
 
 func! Idx__icl(idx, ar_len) abort
@@ -2366,6 +2363,12 @@ func! Idx__dcl(idx, ar_len) abort
   endif
 
   return l:r_idx
+endfunc
+
+func! Int_2_str(num) abort
+
+  let l:num_str = printf('%o', a:num)
+  return l:num_str
 endfunc
 
 " vim
@@ -2521,12 +2524,6 @@ endfunc
 func! Rgstr__clr() abort
 
   let @0 = ''
-endfunc
-
-func! Int_2_str(num) abort
-
-  let l:num_str = printf('%o', a:num)
-  return l:num_str
 endfunc
 
 func! File_txt(file_path) abort
@@ -2731,24 +2728,10 @@ func! Opn_ggl_srch(word) abort
   call Opn_app(l:url)
 endfunc
 
-func! V_opn_ggl_srch() abort
-
-  let l:word = Slctd_str()
-  let l:word = trim(l:word)
-  call Opn_ggl_srch(l:word)
-endfunc
-
 func! Opn_yt(yt_video_id)
 
   let l:url = 'https://www.youtube.com/watch?v=' . a:yt_video_id
   call Opn_app(l:url)
-endfunc
-
-func! V_opn_yt() abort
-  
-  let l:yt_video_id = Slctd_str()
-  let l:yt_video_id = trim(l:yt_video_id)
-  call Opn_yt(l:yt_video_id)
 endfunc
 
 " tag jmp
@@ -3712,7 +3695,7 @@ func! Cursor_char__rpl_underscore() abort " alias
   " call Cursor__mv_char_forward() " todo, fnc cre
 endfunc
 
-func! N_char__tgl_switch01() abort " todo fnc name mod
+func! N_char__tgl_swtch01() abort " todo fnc name mod
 
   let l:c = Cursor_c_char()
 
@@ -3741,7 +3724,7 @@ func! N_char__tgl_switch01() abort " todo fnc name mod
   endif
 endfunc
 
-func! N_char__tgl_switch02() abort
+func! N_char__tgl_swtch02() abort
 
   let l:c = Cursor_c_char()
 
@@ -3866,7 +3849,7 @@ func! Cursor_str_week__icl() abort
   let l:week_nxt_idx = Idx__icl(week_idx, len(g:week_def))
   let l:week_nxt_str = g:week_def[l:week_nxt_idx]
 
-  call Slctd__word()
+  call Slctd_str__word()
   call Normal('"zd')
   call Normal('i' . l:week_nxt_str)
 endfunc
@@ -3883,7 +3866,7 @@ func! Cursor_str_week__dcl() abort
   let l:week_nxt_idx = Idx__dcl(week_idx, len(g:week_def))
   let l:week_nxt_str = g:week_def[l:week_nxt_idx]
 
-  call Slctd__word()
+  call Slctd_str__word()
   call Normal('"zd')
   call Normal('i' . l:week_nxt_str)
 endfunc
@@ -4087,7 +4070,7 @@ func! Cursor_f_space__del() abort
 
   if l:c =~ '\s'
     " echo "del"
-    call Slct_cursor_f_space()
+    call Slctd_str__cursor_f_space()
     call Normal('"zd')
   else
     call Nothing()
@@ -4327,14 +4310,12 @@ func! Slct_re() range abort
   call Normal('gv')
 endfunc
 
-" refactoring slct > slctd __ xxx
-
-func! Slct_all() abort
+func! Slctd_str__all() abort
 
   call Normal('ggVG')
 endfunc
 
-func! Slctd__word() abort
+func! Slctd_str__word() abort
 
   let l:c = Cursor_c_char()
 
@@ -4342,7 +4323,7 @@ func! Slctd__word() abort
     call Normal('viw')
 
   elseif l:c =~ '\s'
-    call Slct_cursor_f_space()
+    call Slctd_str__cursor_f_space()
   else
     call Normal('v')
   endif
@@ -4352,9 +4333,7 @@ func! Slctd__word_by_under_score() abort
 
 endfunc
 
-" refactoring slct > slctd __ xxx
-
-func! Slct_cursor_f_space() abort
+func! Slctd_str__cursor_f_space() abort
 
   let l:c = Cursor_c_char()
 
@@ -4375,9 +4354,7 @@ func! Slct_cursor_f_space() abort
   endif
 endfunc
 
-" refactoring slct > slctd __ xxx
-
-func! Slct_by_col(s_col, len) abort
+func! Slctd_str__by_col_len(s_col, len) abort
 
   let l:e_col = a:len - 1
 
@@ -4414,9 +4391,7 @@ func! Slct_by_line_rng(line_num_fr, line_num_to) abort
   call Cursor__mv_by_line_num(a:line_num_to)
 endfunc
 
-" refactoring, def pos, > slctd cursor __ mv
-
-func! Cursor__mv_slctd_edge_r() range abort
+func! Slctd_cursor__mv_slctd_edge_r() range abort
   
   call Slct_re()
 
@@ -4439,6 +4414,13 @@ func! Slctd_cursor_drct__mv_forward() range abort
   endif
 
   call Cursor__mv_slctd_edge_tgl()
+endfunc
+
+func! Slctd_cursor__mv_file_edge(n_cmd) abort
+
+  call Slct_re()
+
+  call Cursor__mv_file_edge(a:n_cmd)
 endfunc
 
 " slctd __ expnd
@@ -4545,7 +4527,7 @@ func! Slctd__expnd_quote_in_swtch() range abort
   endif
 endfunc
 
-func! Slctd__expnd_quote_switch() range abort
+func! Slctd__expnd_quote_swtch() range abort
 
   call Slct_re()
 
@@ -4578,7 +4560,7 @@ func! Slctd__expnd_bracket_f() range abort " todo dev
   endif
 
   let l:len = l:s_col + Slctd_str_len() + l:srch_idx
-  call Slct_by_col(l:s_col, l:len)
+  call Slctd_str__by_col_len(l:s_col, l:len)
 endfunc
 
 func! Slctd__reduce_dlm_l(char) range abort
@@ -4713,8 +4695,6 @@ func! Slctd_str_space__underscore() range abort
   call Slctd_str__rpl(' ', '_')
 endfunc
 
-" slctd str __ ( edit ) end
-
 " slctd str edge
 
 func! Slctd_l_col() abort
@@ -4727,7 +4707,7 @@ endfunc
 
 func! Slctd_r_col() abort
 
-  call Cursor__mv_slctd_edge_r()
+  call Slctd_cursor__mv_slctd_edge_r()
   
   let l:col = Cursor_col_num()
   return l:col
@@ -4742,9 +4722,23 @@ endfunc
 
 func! Slctd_r_pos() abort
 
-  call Cursor__mv_slctd_edge_r()
+  call Slctd_cursor__mv_slctd_edge_r()
   let l:pos = Cursor_pos()
   return l:pos
+endfunc
+
+func! Slctd_7_opn_ggl_srch() abort
+
+  let l:word = Slctd_str()
+  let l:word = trim(l:word)
+  call Opn_ggl_srch(l:word)
+endfunc
+
+func! Slctd_7_opn_yt() abort
+  
+  let l:yt_video_id = Slctd_str()
+  let l:yt_video_id = trim(l:yt_video_id)
+  call Opn_yt(l:yt_video_id)
 endfunc
 
 func! Slctd_edge_l_char() abort
@@ -4757,7 +4751,7 @@ endfunc
 
 func! Slctd_edge_r_char() abort
 
-  call Cursor__mv_slctd_edge_r()
+  call Slctd_cursor__mv_slctd_edge_r()
 
   let l:c_char = Cursor_c_char()
   return l:c_char
@@ -4773,7 +4767,7 @@ endfunc
 
 func! Slctd_edge_r_out_char() abort
 
-  call Cursor__mv_slctd_edge_r()
+  call Slctd_cursor__mv_slctd_edge_r()
 
   let l:r_char = Cursor_r_char()
   return l:r_char
@@ -4789,13 +4783,11 @@ endfunc
 
 func! Slctd_edge_r_out_str() abort
 
-  call Cursor__mv_slctd_edge_r()
+  call Slctd_cursor__mv_slctd_edge_r()
 
   let l:str = Cursor_line_str_side_r()
   return l:str
 endfunc
-
-" slctd str edge end
 
 " slctd str edge __ ( edit )
 
@@ -4857,11 +4849,10 @@ endfunc
 
 func! Slctd_edge_out_char__tgl() range abort
 
-  call Slctd_edge_out_char__tgl_switch()
-  " call Slctd_edge_out_quote__tgl()
+  call Slctd_edge_out_char__tgl_swtch()
 endfunc
 
-func! Slctd_edge_out_char__tgl_switch() range abort
+func! Slctd_edge_out_char__tgl_swtch() range abort
 
   " char chk
   let l:c_l = Slctd_edge_l_out_char()
@@ -4986,13 +4977,7 @@ func! Slctd_edge_out_cahr__del() range abort
   call Slctd_box__mv('l')
 endfunc
 
-" slctd str edge __ ( edit ) end
-
 " slctd line
-
-"   : none ?
-
-" slctd line end
 
 " slctd line __ ( edit )
 
@@ -5006,22 +4991,12 @@ endfunc
 
 " todo refactoring, fnc name mod, v > slctd
 
-" v line __ rpl
+" slctd line __ rpl
 
-func! V_line__rpl(srch, rpl) range abort
+func! Slctd_line__rpl(srch, rpl) range abort
 
   let l:cmd = g:v_rng . 's/' . a:srch . '/' . a:rpl . '/g'
   "echo l:cmd
-  call Exe(l:cmd)
-endfunc
-
-" v line srch str __ rpl cr ( add cr )
-
-func! V_line_srch_str__rpl_cr() range abort
-
-  let l:srch = @/
-
-  let l:cmd = g:v_rng . 's/\(' . l:srch . '\)/\1\r/g'
   call Exe(l:cmd)
 endfunc
 
@@ -5037,6 +5012,20 @@ func! Slctd_line__rpl_by_line1_line2() range abort
   call Exe(l:cmd)
 endfunc
 
+func! Slctd_line__rpl_sys_cmd(sys_cmd) range abort " read
+
+  let l:cmd = "'<,'>" . " ! " . a:sys_cmd
+  call Exe(l:cmd)
+endfunc
+
+func! Slctd_line_srch_str__rpl_cr() range abort
+
+  let l:srch = @/
+
+  let l:cmd = g:v_rng . 's/\(' . l:srch . '\)/\1\r/g'
+  call Exe(l:cmd)
+endfunc
+
 func! Slctd_line__markdown_strikethrough() range abort " todo dev
 
 endfunc
@@ -5047,21 +5036,12 @@ func! Slctd__sys_cmd(sys_cmd) range abort
   call Exe(l:cmd)
 endfunc
 
-func! Slctd_line__rpl_sys_cmd(sys_cmd) range abort " read
-
-  let l:cmd = "'<,'>" . " ! " . a:sys_cmd
-  call Exe(l:cmd)
-endfunc
-
-" refactoring , v line > slctd line, pos
-
-func! V_line_top_space__del() abort " refactoring ?
+func! Slctd_line_top_space__del() abort " refactoring ?
 
   let l:rpl_cmd = 's/' . s:line_top_space_ptn . '//g'
   call Exe(l:rpl_cmd)
 endfunc
 
-" func! V_line_end_space__del() range abort
 func! Slctd_line_end_space__del() range abort
 
   for line_num in range(a:firstline, a:lastline)
@@ -5070,7 +5050,7 @@ func! Slctd_line_end_space__del() range abort
   endfor
 endfunc
 
-func! V_line_end__pad_space() range abort " use not
+func! Slctd_line_end__pad_space() range abort " use not
 
   " use recommend "aygvr gv
 
@@ -5085,7 +5065,7 @@ func! V_line_end__pad_space() range abort " use not
   endfor
 endfunc
 
-func! V_line__join_per_line(per_line_num) range abort
+func! Slctd_line__join_per_line(per_line_num) range abort
 
   let l:n_cmd = a:per_line_num . 'Jj'
 
@@ -5098,6 +5078,46 @@ func! V_line__join_per_line(per_line_num) range abort
 
     call Normal(l:n_cmd)
   endfor
+endfunc
+
+func! Slctd_line_indnt__space(indnt_col) range abort
+
+  if Is_env__('win64')
+    '<,'>:call Slctd_line_tab__rpl_space(a:indnt_col)
+
+  else
+    let l:sys_cmd = '  expand   -t ' . a:indnt_col
+    '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
+  endif
+endfunc
+
+func! Slctd_line_indnt__tab(indnt_col) range abort
+
+  if Is_env__('win64')
+    call Nothing()
+  else
+    let l:sys_cmd = 'unexpand   -t ' . a:indnt_col
+    '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
+  endif
+endfunc
+
+" slctd line tab
+
+func! Slctd_line_tab__rpl_space(space_col) range abort
+
+  let l:space_str = Str_space(a:space_col)
+  let l:cmd = g:v_rng . 's/\t/' . l:space_str . '/g'
+  call Exe(l:cmd)
+endfunc
+
+" slctd line indnt __ shft
+
+func! Slctd_indnt__shft_l() abort " todo
+
+endfunc
+
+func! Slctd_indnt__shft_r() abort " todo
+
 endfunc
 
 " slctd line __ crct tbl
@@ -5115,55 +5135,21 @@ func! Slctd_line__crct_tbl() range abort
   '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
 endfunc
 
-" v line xxx > slctd line xxx
-
-func! V_line_indnt__space(indnt_col) range abort
-
-  if Is_env__('win64')
-    '<,'>:call V_line_tab__rpl_space(a:indnt_col)
-
-  else
-    let l:sys_cmd = '  expand   -t ' . a:indnt_col
-    '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
-  endif
-endfunc
-
-func! V_line_indnt__tab(indnt_col) range abort
-
-  if Is_env__('win64')
-    call Nothing()
-  else
-    let l:sys_cmd = 'unexpand   -t ' . a:indnt_col
-    '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
-  endif
-endfunc
-
-" slctd line tab
-
-func! V_line_tab__rpl_space(space_col) range abort
-
-  let l:space_str = Str_space(a:space_col)
-  let l:cmd = g:v_rng . 's/\t/' . l:space_str . '/g'
-  call Exe(l:cmd)
-endfunc
-
 " markdown tbl header
 
-func! V_2_markdown_tbl_header() range abort
+func! Slctd_2_markdown_tbl_header() range abort
 
-  '<,'>:call V_line__rpl('[^|]', '-')
-  '<,'>:call V_line__rpl( '|.',  '| ')
-  '<,'>:call V_line__rpl('.|' , ' |' )
+  '<,'>:call Slctd_line__rpl('[^|]', '-')
+  '<,'>:call Slctd_line__rpl( '|.',  '| ')
+  '<,'>:call Slctd_line__rpl('.|' , ' |' )
 endfunc
 
-" slctd line indnt __ shft
+" str mb
 
-func! Slctd_indnt__shft_l() abort " todo
+func! Slctd_line_mb__cnv() range abort
 
-endfunc
-
-func! Slctd_indnt__shft_r() abort " todo
-
+  let l:sys_cmd = 'mb__cnv'
+  '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
 endfunc
 
 " slctd line __ ( edit ) end
@@ -5210,7 +5196,7 @@ func! Slctd_box__mv(lr) range abort
 
   call Slct_re()
 
-  let l:n_cmd = Lr_2_normal_cmd(a:lr)
+  let l:n_cmd = Char_lr_2_normal_cmd(a:lr)
   call Normal('o' . l:n_cmd)
   call Normal('o' . l:n_cmd)
 endfunc
@@ -5232,7 +5218,7 @@ endfunc
 
 func! Slctd_box_str__mv(lr) range abort
 
-  let l:n_cmd = Lr_2_normal_cmd(a:lr)
+  let l:n_cmd = Char_lr_2_normal_cmd(a:lr)
 
   call Slct_re()
   call Normal('"zx')
@@ -5344,7 +5330,7 @@ func! Is_slctd_mode__line() range abort
   return l:ret
 endfunc
 
-" slctd edge cnd
+" slctd str edge cnd
 
 func! Is_slctd_edge_char__(ptn)
 
@@ -5408,16 +5394,9 @@ func! Slctd_cursor__mv_line_end() range abort
   endif
 endfunc
 
-func! Slctd_cursor__mv_file_edge(n_cmd) abort
-
-  call Slct_re()
-
-  call Cursor__mv_file_edge(a:n_cmd)
-endfunc
-
 " slctd etc
 
-func! Slctd_srch__switch() abort " srch, set or run
+func! Slctd_srch__swtch() abort " srch, set or run
 
   if Is_slctd_str__line_mlt()
 

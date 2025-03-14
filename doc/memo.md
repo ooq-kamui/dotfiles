@@ -4,11 +4,6 @@
 
 ## vim
 
-fnc name re
-- slctd
-  - v line xxx > slctd line xxx
-- switch > swtch
-
 vnoremap W , slctd str edge __ tgl shft ( `( <> '` )
 
 win splt , status line hl
