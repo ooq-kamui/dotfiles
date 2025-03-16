@@ -2,7 +2,20 @@
 # cnf
 
 
+## keyboard sticker
+
+logi
+- shift alpha esc ( mending )
+  - paste
+
+
 ## vim
+
+fnc name re
+- slctd edge > slctd str edge
+
+fnc def pos mv
+- ref index
 
 vnoremap W , slctd str edge __ tgl shft ( `( <> '` )
 
@@ -21,21 +34,11 @@ indnt __ crct
   - cre
 
 
-fnc def pos mv
-- ref index
+## m4
 
+music data cp
 
-## keyboard sticker
-
-logi
-- shift alpha esc ( mending )
-
-
-## artcl
-
-movie write
-- 2025
-- ltst
+film paste
 
 
 ## zsh
@@ -46,11 +49,9 @@ movie write
 - prompto
 
 
-## m4
+## godot
 
-music data cp
-
-film paste
+learn
 
 
 ## holo song
@@ -71,15 +72,15 @@ repository
 - tidy
 
 
+## astro
+
+learn
+
+
 ## skr-vps
 
 setting at skr console
 - firewall
-
-
-## astro
-
-learn
 
 
 ## docker
