@@ -2,13 +2,22 @@
 # cnf
 
 
+## keyboard sticker
+
+logi
+- j ( h 12 mm ) ( mending )
+- ctrl ( w 12 mm ) ( mending )
+  - paste
+
+
 ## vim
+
+vnoremap W , slctd str edge __ tgl shft ( `( <> '` )
 
 fnc name re
 - slctd __ expnd > slctd str __ expnd ?
-- slf > buf
 
-vnoremap W , slctd str edge __ tgl shft ( `( <> '` )
+- slf > buf
 
 
 vnoremap f, err ?
@@ -23,6 +32,21 @@ indnt __ crct
   - cre
 
 cls try
+
+
+## holo song
+
+service close info write up
+
+git dir mv to share
+- at mac
+
+svr mv, to skr vps
+- api url mod
+  - confirm
+
+repository
+- tidy
 
 
 ## m4
@@ -40,31 +64,9 @@ film paste
 - prompto
 
 
-## keyboard sticker
-
-logi
-- ctrl w 12 mm ( mending )
-  - paste
-
-
 ## godot
 
 learn
-
-
-## holo song
-
-service close info write up
-
-git dir mv to share
-- at mac
-
-svr mv, to skr vps
-- api url mod
-  - confirm
-
-repository
-- tidy
 
 
 ## astro
