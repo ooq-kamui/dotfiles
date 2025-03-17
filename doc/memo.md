@@ -2,25 +2,14 @@
 # cnf
 
 
-## keyboard sticker
-
-logi
-- shift alpha esc ( mending )
-  - paste
-
-
 ## vim
 
 fnc name re
-- slctd edge > slctd str edge
-
-fnc def pos mv
-- ref index
+- slctd __ expnd > slctd str __ expnd ?
+- slf > buf
 
 vnoremap W , slctd str edge __ tgl shft ( `( <> '` )
 
-win splt , status line hl
-- https://zenn.dev/kawarimidoll/articles/0fe2ef584a56b6
 
 vnoremap f, err ?
 - Slctd__expnd_word_f()
@@ -32,6 +21,8 @@ indnt __ crct
 
 - cursor __ mv indnt crct col
   - cre
+
+cls try
 
 
 ## m4
@@ -49,6 +40,13 @@ film paste
 - prompto
 
 
+## keyboard sticker
+
+logi
+- ctrl w 12 mm ( mending )
+  - paste
+
+
 ## godot
 
 learn
@@ -58,15 +56,12 @@ learn
 
 service close info write up
 
-
 git dir mv to share
 - at mac
-
 
 svr mv, to skr vps
 - api url mod
   - confirm
-
 
 repository
 - tidy
