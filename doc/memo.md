@@ -2,6 +2,13 @@
 # cnf
 
 
+## keyboard sticker
+
+logi
+- ctrl ( w 12 mm ) ( mending )
+  - paste
+
+
 ## vim
 
 vnoremap f, err ?
@@ -50,8 +57,6 @@ learn
 
 music data cp
 
-film paste
-
 
 ## zsh
 
@@ -59,13 +64,6 @@ film paste
 - alias
   - ll
 - prompto
-
-
-## keyboard sticker
-
-logi
-- ctrl ( w 12 mm ) ( mending )
-  - paste
 
 
 ## godot
