@@ -1,6 +1,4 @@
 " 
-" Configuration file for vim
-" 
 " load re
 " :source ~/.vimrc     " alias :v
 
@@ -56,8 +54,6 @@ hi WarningMsg  ctermfg=magenta      ctermbg=none        cterm=none
 hi NonText     ctermfg=25           ctermbg=none        cterm=none
 hi SpecialKey  ctermfg=25           ctermbg=none        cterm=none
 
-hi Comment     ctermfg=14           ctermbg=none        cterm=none
-
 hi FullWidthSpace                   ctermbg=white
 match FullWidthSpace /　/
 
@@ -69,6 +65,11 @@ hi DiffText    ctermfg=10           ctermbg=21          cterm=none
 
 " wildmenu
 " hi wildMenu ??    ctermfg=cyan
+
+" hi dflt
+
+hi Comment     ctermfg=14           ctermbg=none        cterm=none
+
 
 au BufNewFile,BufRead *.script     set filetype=lua
 au BufNewFile,BufRead *.gui_script set filetype=lua
@@ -1087,7 +1088,7 @@ vnoremap _ of_lo
 
 " slctd __ reduce dlm _ l
 "vnoremap h     F_h
-vnoremap h     :call Slctd__reduce_dlm_l('_')<cr>
+vnoremap h     :call Slctd_str__reduce_dlm_l('_')<cr>
 "vnoremap H     F_h
 "vnoremap <c-_> F_h
 
@@ -1122,25 +1123,25 @@ vnoremap gj :call Slctd_cursor__mv_file_edge('j')<cr>
 " 
 
 " slctd expnd
-"vnoremap xx :call Slctd__expnd()
+"vnoremap xx :call Slctd_str__expnd()
 
 " slctd expnd srch
-vnoremap N :call Slctd__expnd_srch()<cr>
+vnoremap N :call Slctd_str__expnd_srch()<cr>
 
 " slctd expnd word forward
-vnoremap f :call Slctd__expnd_word_f()<cr>
+vnoremap f :call Slctd_str__expnd_word_f()<cr>
 
 " slctd expnd quote
-vnoremap <c-i> :call Slctd__expnd_quote_swtch()<cr>
+vnoremap <c-i> :call Slctd_str__expnd_quote_swtch()<cr>
 
 " slctd expnd quote on
-"vnoremap xx :call Slctd__expnd_quote_on_swtch()<cr>
+"vnoremap xx :call Slctd_str__expnd_quote_on_swtch()<cr>
 
 " slctd expnd quote in
-"vnoremap xx :call Slctd__expnd_quote_in_swtch()<cr>
+"vnoremap xx :call Slctd_str__expnd_quote_in_swtch()<cr>
 
 " slctd expnd bracket forward
-" vnoremap xx :call Slctd__expnd_bracket_f()<cr>
+" vnoremap xx :call Slctd_str__expnd_bracket_f()<cr>
 
 " slct all
 vnoremap a :call Slctd_str__all()<cr>
@@ -2054,12 +2055,12 @@ endfunc
 "   - slctd cursor                        
 "     - slctd cursor __ mv
 "     - slctd cursor cnd        4424
-"   - slctd __ ( rng )                    
-"   - slctd str                 4583
+"   - slctd str                 4456
+"     - slctd __ ( expnd )      4493
 "     - slctd str cnd
 "     - slctd str edge                    
 "       - slctd str edge cnd    4962      
-"   - slctd line                5013      
+"   - slctd line                5077      
 "     - slctd line __ ( edit )       
 "     - slctd line indnt        
 "     - slctd line markdown        
@@ -2073,7 +2074,7 @@ endfunc
 "     - slctd mode cnd                    
 "   - slctd etc                 4962      
 " 
-" - ynk                         5413      
+" - ynk                         5427      
 "   - rgstr                           
 " - srch                        5489      
 "   - srch cnd                  5649      
@@ -2083,8 +2084,8 @@ endfunc
 " - plugin                                
 " - fzf                         5810      
 " - rg                                    
-" - jmplst                                  
-" - mark                                  
+" - jmplst                                
+" - mark                        6287      
 " 
 
 " 
@@ -2463,7 +2464,7 @@ func! Hl_grp() abort
   echo synIDattr(synID(line('.'), col('.'), 1), 'name')
 endfunc
 " and
-" :highlight [grp name]
+" :hi [grp name]
 
 func! Color_name_lst() abort
 
@@ -4453,163 +4454,6 @@ func! Is_slctd_cursor_pos__r() range abort
   return l:ret
 endfunc
 
-" slctd __ expnd  " todo ? > slctd_str__expand ?
-
-func! Slctd__expnd() abort " expnd lr, cre re
-
-endfunc
-
-func! Slctd__expnd_srch() range abort " todo dev
-
-  call Slct_re()
-  call Cursor__mv_srch("f")
-endfunc
-
-func! Slctd__expnd_word_f() abort " todo run confirm ?
-
-  let l:slctd_str = Slctd_str()
-  let l:slctd_r_out_char = Slctd_str_edge_r_out_char()
-
-  call Slct_re()
-
-  if     Is_cursor_line_str_side_r__space()
-
-    call Normal('$h')
-
-  elseif l:slctd_str =~ '\s' && l:slctd_r_out_char =~ '\s'
-
-    call Normal('wh')
-  else
-    call Normal('e')
-  endif
-endfunc
-
-" slctd __ expnd quote
-
-let g:quote_ptn = '[' . "'" . '"' . '`' . ']'
-
-func! Slctd__expnd_quote_on_f() range abort
-
-  call Slct_re()
-  call Cursor__mv_srch_ptn(g:quote_ptn, 'f')
-endfunc
-
-func! Slctd__expnd_quote_on_b() range abort
-
-  call Slct_re()
-
-  call Cursor__mv_slctd_edge_tgl()
-  call Cursor__mv_srch_ptn(g:quote_ptn, 'b')
-  " call Cursor__mv_slctd_edge_tgl ()
-endfunc
-
-func! Slctd__expnd_quote_on_swtch() range abort
-
-  " Is_cursor_line_str__ptn() " todo dev ?
-
-  call Slct_re()
-
-  let l:c = Cursor_c_char()
-
-  if l:c !~ g:quote_ptn
-    call Slctd__expnd_quote_on_f()
-  else
-    call Slctd__expnd_quote_on_b()
-  endif
-endfunc
-
-func! Slctd__expnd_quote_on() range abort
-
-  call Slct_re()
-
-  call Slctd__expnd_quote_on_f()
-  call Slctd__expnd_quote_on_b()
-endfunc
-
-func! Slctd__expnd_quote_in_f() range abort
-
-  call Slctd__expnd_quote_on_f()
-  call Normal('h')
-endfunc
-
-func! Slctd__expnd_quote_in_b() range abort
-
-  call Slctd__expnd_quote_on_b()
-  call Normal('l')
-  " call Cursor__mv_slctd_edge_tgl()
-endfunc
-
-func! Slctd__expnd_quote_in_swtch() range abort
-
-  call Slct_re()
-
-  if ! Is_cursor_line_str__ptn(g:quote_ptn)
-    return
-  endif
-
-  let l:c_r = Slctd_str_edge_r_out_char()
-
-  if l:c_r !~ g:quote_ptn
-
-    call Slctd__expnd_quote_in_f()
-  else
-    call Slctd__expnd_quote_in_b()
-  endif
-endfunc
-
-func! Slctd__expnd_quote_swtch() range abort
-
-  call Slct_re()
-
-  if Is_slctd_str_edge_char__quote()
-    " call Esc()
-    return
-  endif
-
-  if Is_slctd_str_edge_out_char__quote()
-
-    call Slctd__expnd_quote_on()
-  else
-    call Slctd__expnd_quote_in_swtch()
-  endif
-endfunc
-
-func! Slctd__expnd_bracket_f() range abort " todo dev
-
-  let l:bracket_ptn = '[' . "'" . '"`)}\]' . ']'
-  
-  let l:s_col = Slctd_str_edge_l_col()
-  
-  let l:line_str_r = Slctd_str_edge_r_out_str()
-  let l:srch_idx = Str_srch(l:line_str_r, l:bracket_ptn, 1)
-
-  if l:srch_idx == -1
-
-    call Normal('gv')
-    return
-  endif
-
-  let l:len = l:s_col + Slctd_str_len() + l:srch_idx
-  call Slctd_str__by_col_len(l:s_col, l:len)
-endfunc
-
-func! Slctd__reduce_dlm_l(char) range abort
-
-  let l:char = a:char
-
-  call Slct_re()
-
-  let l:slctd_str = Slctd_str()
-  let l:srch_idx = Str_srch(l:slctd_str, l:char)
-  if l:srch_idx == -1
-    call Slctd__cancel()
-    return
-  endif
-
-  let l:n_cmd = 'F' . l:char . 'h'
-  call Normal(l:n_cmd)
-endfunc
-
 " slctd str
 
 func! Slctd_str() range abort
@@ -4645,6 +4489,163 @@ func! Slctd_str_7_opn_yt() abort
   let l:yt_video_id = Slctd_str()
   let l:yt_video_id = trim(l:yt_video_id)
   call Opn_yt(l:yt_video_id)
+endfunc
+
+" slctd str __ ( expnd )
+
+func! Slctd_str__expnd() abort " expnd lr, cre re
+
+endfunc
+
+func! Slctd_str__expnd_srch() range abort " todo dev
+
+  call Slct_re()
+  call Cursor__mv_srch("f")
+endfunc
+
+func! Slctd_str__expnd_word_f() abort " todo run confirm ?
+
+  let l:slctd_str = Slctd_str()
+  let l:slctd_r_out_char = Slctd_str_edge_r_out_char()
+
+  call Slct_re()
+
+  if     Is_cursor_line_str_side_r__space()
+
+    call Normal('$h')
+
+  elseif l:slctd_str =~ '\s' && l:slctd_r_out_char =~ '\s'
+
+    call Normal('wh')
+  else
+    call Normal('e')
+  endif
+endfunc
+
+" slctd __ expnd quote
+
+let g:quote_ptn = '[' . "'" . '"' . '`' . ']'
+
+func! Slctd_str__expnd_quote_on_f() range abort
+
+  call Slct_re()
+  call Cursor__mv_srch_ptn(g:quote_ptn, 'f')
+endfunc
+
+func! Slctd_str__expnd_quote_on_b() range abort
+
+  call Slct_re()
+
+  call Cursor__mv_slctd_edge_tgl()
+  call Cursor__mv_srch_ptn(g:quote_ptn, 'b')
+  " call Cursor__mv_slctd_edge_tgl ()
+endfunc
+
+func! Slctd_str__expnd_quote_on_swtch() range abort
+
+  " Is_cursor_line_str__ptn() " todo dev ?
+
+  call Slct_re()
+
+  let l:c = Cursor_c_char()
+
+  if l:c !~ g:quote_ptn
+    call Slctd_str__expnd_quote_on_f()
+  else
+    call Slctd_str__expnd_quote_on_b()
+  endif
+endfunc
+
+func! Slctd_str__expnd_quote_on() range abort
+
+  call Slct_re()
+
+  call Slctd_str__expnd_quote_on_f()
+  call Slctd_str__expnd_quote_on_b()
+endfunc
+
+func! Slctd_str__expnd_quote_in_f() range abort
+
+  call Slctd_str__expnd_quote_on_f()
+  call Normal('h')
+endfunc
+
+func! Slctd_str__expnd_quote_in_b() range abort
+
+  call Slctd_str__expnd_quote_on_b()
+  call Normal('l')
+  " call Cursor__mv_slctd_edge_tgl()
+endfunc
+
+func! Slctd_str__expnd_quote_in_swtch() range abort
+
+  call Slct_re()
+
+  if ! Is_cursor_line_str__ptn(g:quote_ptn)
+    return
+  endif
+
+  let l:c_r = Slctd_str_edge_r_out_char()
+
+  if l:c_r !~ g:quote_ptn
+
+    call Slctd_str__expnd_quote_in_f()
+  else
+    call Slctd_str__expnd_quote_in_b()
+  endif
+endfunc
+
+func! Slctd_str__expnd_quote_swtch() range abort
+
+  call Slct_re()
+
+  if Is_slctd_str_edge_char__quote()
+    " call Esc()
+    return
+  endif
+
+  if Is_slctd_str_edge_out_char__quote()
+
+    call Slctd_str__expnd_quote_on()
+  else
+    call Slctd_str__expnd_quote_in_swtch()
+  endif
+endfunc
+
+func! Slctd_str__expnd_bracket_f() range abort " todo dev
+
+  let l:bracket_ptn = '[' . "'" . '"`)}\]' . ']'
+  
+  let l:s_col = Slctd_str_edge_l_col()
+  
+  let l:line_str_r = Slctd_str_edge_r_out_str()
+  let l:srch_idx = Str_srch(l:line_str_r, l:bracket_ptn, 1)
+
+  if l:srch_idx == -1
+
+    call Normal('gv')
+    return
+  endif
+
+  let l:len = l:s_col + Slctd_str_len() + l:srch_idx
+  call Slctd_str__by_col_len(l:s_col, l:len)
+endfunc
+
+func! Slctd_str__reduce_dlm_l(char) range abort
+
+  let l:char = a:char
+
+  call Slct_re()
+
+  let l:slctd_str = Slctd_str()
+  let l:srch_idx = Str_srch(l:slctd_str, l:char)
+  if l:srch_idx == -1
+    call Slctd__cancel()
+    return
+  endif
+
+  let l:n_cmd = 'F' . l:char . 'h'
+  call Normal(l:n_cmd)
 endfunc
 
 " slctd str __ ( edit )
@@ -5417,7 +5418,7 @@ func! Slctd_srch__swtch() abort " srch, set or run
 
   if Is_slctd_str__line_mlt()
 
-    call Slctd__expnd_srch()
+    call Slctd_str__expnd_srch()
   else
     call Slctd_srch_str__slctd_str()
   endif
@@ -6660,10 +6661,8 @@ au FileType * set fo-=c fo-=r fo-=o
 " https://vim-jp.org/vimdoc-ja/vimindex.html
 
 
-" ref ptn ( regex )
+" ptn ( regex )
 " 
-" url : xxx
-
 " \n : 改行
 " \t : tab
 " 
@@ -6694,4 +6693,10 @@ au FileType * set fo-=c fo-=r fo-=o
 "   \_s : 改行, space, tab のいずれか
 " 
 " [^\x01-\x7E] : 全角
+" 
+" ref: [url]
+
+" when unknown server )
+"   curl https://raw.githubusercontent.com/ooq-kamui/cnf/refs/heads/main/vim/.vimrc > .vimrc
+"   vim -u .vimrc
 

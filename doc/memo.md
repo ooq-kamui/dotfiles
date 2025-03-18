@@ -2,34 +2,26 @@
 # cnf
 
 
-## keyboard sticker
-
-logi
-- j ( h 12 mm ) ( mending )
-- ctrl ( w 12 mm ) ( mending )
-  - paste
-
-
 ## vim
-
-vnoremap W , slctd str edge __ tgl shft ( `( <> '` )
-
-fnc name re
-- slctd __ expnd > slctd str __ expnd ?
-
-- slf > buf
-
 
 vnoremap f, err ?
 - Slctd__expnd_word_f()
   - back ?
   - case line mlt ?
 
+vnoremap W , slctd str edge __ tgl shft ( `( <> '` )
+
+
+fnc name re
+- slf > buf
+
 indnt __ crct
 - logic mod
 
 - cursor __ mv indnt crct col
   - cre
+
+hi dflt ( primitive ) at .vimrc
 
 cls try
 
@@ -49,6 +41,11 @@ repository
 - tidy
 
 
+## astro
+
+learn
+
+
 ## m4
 
 music data cp
@@ -64,12 +61,14 @@ film paste
 - prompto
 
 
+## keyboard sticker
+
+logi
+- ctrl ( w 12 mm ) ( mending )
+  - paste
+
+
 ## godot
-
-learn
-
-
-## astro
 
 learn
 
