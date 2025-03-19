@@ -2,25 +2,22 @@
 # cnf
 
 
-## keyboard sticker
-
-logi
-- ctrl ( w 12 mm ) ( mending )
-  - paste
-
-
 ## vim
 
-vnoremap f, err ?
-- Slctd__expnd_word_f()
-  - back ?
-  - case line mlt ?
-
-vnoremap W , slctd str edge __ tgl shft ( `( <> '` )
+nnoremap A  cursor __ ins line anchor
+- line ins
+- comment anchro
+  - comment str refactoring
 
 
-fnc name re
-- slf > buf
+nnoremap <c-f>  cursor __ mv fnc name
+- logic
+  - srch (
+  - cursor __ mv back word
+
+
+cursor __ mv speed up
+
 
 indnt __ crct
 - logic mod
@@ -28,9 +25,9 @@ indnt __ crct
 - cursor __ mv indnt crct col
   - cre
 
-hi dflt ( primitive ) at .vimrc
 
-cls try
+fnc name re
+- slf > buf
 
 
 ## holo song
@@ -51,6 +48,13 @@ repository
 ## astro
 
 learn
+
+
+## skr-vps
+
+ssh
+- at ofc
+- at m4
 
 
 ## m4

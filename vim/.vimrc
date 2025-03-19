@@ -19,7 +19,7 @@ let skip_defaults_vim=1
 
 filetype on
 
-hi LineNr      ctermfg=141                         cterm=none
+hi LineNr       ctermfg=141                         cterm=none
 augroup InsertHook
   au!
   au InsertLeave * hi LineNr ctermfg=141
@@ -29,46 +29,46 @@ augroup END
 " hi Cursor                           ctermbg=gray    guibg=gray
 hi CursorLineNr ctermfg=magenta
 
-hi Visual      ctermfg=none         ctermbg=darkmagenta cterm=none
-hi VisualNOS                        ctermbg=darkmagenta cterm=none
+hi Visual       ctermfg=none         ctermbg=darkmagenta cterm=none
+hi VisualNOS                         ctermbg=darkmagenta cterm=none
 
-hi Search      ctermfg=lightyellow  ctermbg=36          cterm=none
-hi CurSearch   ctermfg=lightyellow  ctermbg=36          cterm=none
-hi IncSearch   ctermfg=lightyellow  ctermbg=34          cterm=none
+hi Search       ctermfg=lightyellow  ctermbg=36          cterm=none
+hi CurSearch    ctermfg=lightyellow  ctermbg=36          cterm=none
+hi IncSearch    ctermfg=lightyellow  ctermbg=34          cterm=none
 " bracket
-hi MatchParen  ctermfg=lightmagenta ctermbg=none
+hi MatchParen   ctermfg=lightmagenta ctermbg=none
 
-hi TabLineSel                       ctermbg=magenta     cterm=none
-hi TabLine     ctermfg=lightblue    ctermbg=none        cterm=none
-hi TabLineFill                      ctermbg=none        cterm=none
+hi TabLineSel                        ctermbg=magenta     cterm=none
+hi TabLine      ctermfg=lightblue    ctermbg=none        cterm=none
+hi TabLineFill                       ctermbg=none        cterm=none
 
-hi StatusLine  ctermfg=lightblue    ctermbg=none        cterm=none
-hi EndOfBuffer ctermfg=cyan                             cterm=none
+hi StatusLine   ctermfg=lightblue    ctermbg=none        cterm=none
+hi EndOfBuffer  ctermfg=cyan                             cterm=none
 
-hi Pmenu       ctermfg=lightgreen   ctermbg=darkblue    cterm=none
-hi PmenuSel    ctermfg=cyan         ctermbg=magenta     cterm=bold
+hi Pmenu        ctermfg=lightgreen   ctermbg=darkblue    cterm=none
+hi PmenuSel     ctermfg=cyan         ctermbg=magenta     cterm=bold
 
-hi ErrorMsg    ctermfg=magenta      ctermbg=none        cterm=none
-hi WarningMsg  ctermfg=magenta      ctermbg=none        cterm=none
+hi ErrorMsg     ctermfg=magenta      ctermbg=none        cterm=none
+hi WarningMsg   ctermfg=magenta      ctermbg=none        cterm=none
 
-hi NonText     ctermfg=25           ctermbg=none        cterm=none
-hi SpecialKey  ctermfg=25           ctermbg=none        cterm=none
+hi NonText      ctermfg=25           ctermbg=none        cterm=none
+hi SpecialKey   ctermfg=25           ctermbg=none        cterm=none
 
-hi FullWidthSpace                   ctermbg=white
+hi FullWidthSpace                    ctermbg=white
 match FullWidthSpace /　/
 
 " vimdiff
-hi DiffAdd     ctermfg=10           ctermbg=22          cterm=none
-hi DiffDelete  ctermfg=52           ctermbg=52          cterm=none
-hi DiffChange  ctermfg=10           ctermbg=17          cterm=none
-hi DiffText    ctermfg=10           ctermbg=21          cterm=none
+hi DiffAdd      ctermfg=10           ctermbg=22          cterm=none
+hi DiffDelete   ctermfg=52           ctermbg=52          cterm=none
+hi DiffChange   ctermfg=10           ctermbg=17          cterm=none
+hi DiffText     ctermfg=10           ctermbg=21          cterm=none
 
 " wildmenu
 " hi wildMenu ??    ctermfg=cyan
 
 " hi dflt
 
-hi Comment     ctermfg=14           ctermbg=none        cterm=none
+hi Comment      ctermfg=14           ctermbg=none        cterm=none
 
 
 au BufNewFile,BufRead *.script     set filetype=lua
@@ -329,7 +329,8 @@ nnoremap <bar> T_h
 "nnoremap <c-\> T_h
 
 " cursor mv word dlm ( camel or _ )  -  forward
-nnoremap F :call Cursor__mv_word_dlm_f()<cr>
+nnoremap M :call Cursor__mv_word_dlm_f()<cr>
+"nnoremap F :call Cursor__mv_word_dlm_f()<cr>
 
 " cursor mv bracket pair
 nnoremap <c-l> %
@@ -345,8 +346,8 @@ nnoremap <c-l> %
 "nnoremap xx <c-i>
 
 " cursor mv indnt auto
-nnoremap <c-f> ll
-" nnoremap <c-f> :call Cursor__mv_indnt_auto()<cr> " todo dev
+"nnoremap <c-f> :call Cursor__mv_indnt_auto()<cr> " todo dev
+"nnoremap <c-f> ll
 
 " cursor mv file edge bgn
 nnoremap gk :call Cursor__mv_file_edge_bgn()<cr>
@@ -656,6 +657,7 @@ nnoremap <leader>i :call N_fzf_buf()<cr>
 
 " fzf jmplst
 nnoremap <leader>e :FzfJmplst<cr>
+nnoremap <leader>a :FzfJmplst<cr>
 
 " fzf pth lst
 "nnoremap <leader>xx :FzfTagjmpByFile <cr>
@@ -879,14 +881,14 @@ nnoremap B <esc>
 nnoremap C <esc>
 "nnoremap D <esc>
 "nnoremap E <esc>
-"nnoremap F <esc>
+nnoremap F <esc>
 nnoremap G <esc>
 "nnoremap H <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
 "nnoremap L <esc>
-nnoremap M <esc>
+"nnoremap M <esc>
 "nnoremap N <esc>
 "nnoremap O <esc>
 nnoremap Q <esc>
@@ -922,7 +924,7 @@ nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
 "nnoremap <c-e> <esc>
-"nnoremap <c-f> <esc>
+nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
@@ -1249,33 +1251,36 @@ vnoremap <expr> s
 " line mlt forward del
 vnoremap <c-d> D
 
-" del line top space
+" slctd line __ del line top space
 "vnoremap xx :call Slctd_line_top_space__del()<cr>
 
-" del line end space
+" slctd line __ del end space
 vnoremap m :call Slctd_line_end_space__del()<cr>
 
-" del cursor f space
+" slctd box __ del cursor f space
 vnoremap K :call Slctd_box_cursor_r_space__crct()<cr>
 
-" slctd edge quote __ tgl
+" slctd str edge out quote __ tgl
 "vnoremap w     :call Slctd_str_edge_out_quote__tgl()<cr>
 vnoremap <expr> w
 \ mode() == '<c-v>' ? ':call Slctd_box_width__1()<cr>'    :
 \                     ':call Slctd_str_edge_out_char__tgl()<cr>'
 " \                     ':call Slctd_str_edge_out_quote__tgl()<cr>'
 
-" slctd edge bracket __ tgl
-vnoremap W :call Slctd_str_edge_out_bracket__tgl()<cr>
+" slctd str edge bracket __ tgl
+" vnoremap W :call Slctd_str_edge_out_bracket__tgl()<cr>
 
-" slctd edge out __ ins space
+" slctd str edge out __ tgl shft
+vnoremap W :call Slctd_str_edge_out__tgl_shft()<cr>
+
+" slctd str edge out __ ins space
 vnoremap <c-s> :call Slctd_str_edge_out__ins(' ')<cr>
 "vnoremap S :call Slctd_str_edge_out__ins(' ')<cr>
 
-" slctd edge out __ ins markdown strikethrough
+" slctd str edge out __ ins markdown strikethrough
 vnoremap ~ :call Slctd_str_edge_out__ins_markdown_strikethrough()<cr>
 
-" slctd edge out __ ins markdown strikethrough
+" slctd str edge out __ ins markdown strikethrough
 vnoremap b :call Slctd_str_edge_out__ins_markdown_bold()<cr>
 
 " slctd box str mv back
@@ -2010,6 +2015,32 @@ func! Tst_slctd_rpl_sys_cmd_mb() range abort
   '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
 endfunc
 
+" tst cls vim 9
+"   https://vim-jp.org/vimdoc-ja/vim9class.html
+" 
+" class TextPosition
+"   var lnum: number
+"   var col: number
+" 
+"   def new(lnum: number, col: number)
+"      this.lnum = lnum
+"      this.col = col
+"   enddef
+" 
+"   def SetLnum(lnum: number)
+"      this.lnum = lnum
+"   enddef
+" 
+"   def SetCol(col: number)
+"      this.col = col
+"   enddef
+" 
+"   def SetPosition(lnum: number, col: number)
+"      this.lnum = lnum
+"      this.col = col
+"   enddef
+" endclass
+
 
 " 
 " fnc def
@@ -2141,11 +2172,45 @@ func! Is_char__symbol(char) abort
   return l:ret
 endfunc
 
-func! Is_char_bth__(ptn, c1, c2)
+" char cnd  -  char pair __
+
+func! Is_char_pair__(ptn, c1, c2)
 
   let l:ret = v:false
 
   if a:c1 =~ a:ptn && a:c2 =~ a:ptn
+    let l:ret = v:true
+  endif
+
+  return l:ret
+endfunc
+
+func! Is_char_pair__quote(c1, c2)
+
+  let l:ret = v:false
+
+  if     a:c1 == "'" && a:c2 == "'"
+    let l:ret = v:true
+  elseif a:c1 == '"' && a:c2 == '"'
+    let l:ret = v:true
+  elseif a:c1 == '`' && a:c2 == '`'
+    let l:ret = v:true
+  endif
+
+  return l:ret
+endfunc
+
+func! Is_char_pair__bracket(c1, c2)
+
+  let l:ret = v:false
+
+  if     a:c1 == '(' && a:c2 == ')'
+    let l:ret = v:true
+  elseif a:c1 == '{' && a:c2 == '}'
+    let l:ret = v:true
+  elseif a:c1 == '[' && a:c2 == ']'
+    let l:ret = v:true
+  elseif a:c1 == '<' && a:c2 == '>'
     let l:ret = v:true
   endif
 
@@ -3870,42 +3935,42 @@ endfunc
 " cursor __ ins line
 
 func! Cursor__ins_line(str) abort
-  
+
   let l:line_num = Cursor_line_num() - 1
   call append(l:line_num, a:str)
   " call Normal('k')
   call Cursor__mv_u()
 endfunc
 
-func! Cursor_d__ins_line_d(str) abort
-  
-  let l:line_num = Cursor_line_num()
-  call append(l:line_num, a:str)
-endfunc
-
 func! Cursor__ins_line_emp() abort
-  
+
   let l:str = ''
   call Cursor__ins_line(l:str)
 endfunc
 
 func! Cursor__ins_line_slf_path() abort
-  
+
   let l:path = Slf_path()
   call Cursor__ins_line(l:path)
+endfunc
+
+func! Cursor__ins_line_anchor() abort
+
+  let l:str = 'anchor'
+  call Cursor__ins_line(l:str)
+endfunc
+
+func! Cursor_d__ins_line(str) abort
+
+  let l:line_num = Cursor_line_num()
+  call append(l:line_num, a:str)
 endfunc
 
 func! Cursor_d__ins_line_space() range abort
 
   let l:space_len = Cursor_col_num() - 1
   let l:space_str = Str_space(l:space_len)
-  call Cursor_d__ins_line_d(l:space_str)
-endfunc
-
-func! Curosr_line_end__ins(str) abort
-
-  let l:n_cmd = 'A' . a:str
-  call Normal(l:n_cmd)
+  call Cursor_d__ins_line(l:space_str)
 endfunc
 
 " cursor line  -  todo refactoring
@@ -4025,6 +4090,12 @@ func! Cursor_line_end__ins_dots() abort
   let l:line_str .= l:space_str . g:dots_str
 
   call setline(l:line_num, l:line_str)
+endfunc
+
+func! Curosr_line_end__ins(str) abort
+
+  let l:n_cmd = 'A' . a:str
+  call Normal(l:n_cmd)
 endfunc
 
 " cursor f
@@ -4503,7 +4574,7 @@ func! Slctd_str__expnd_srch() range abort " todo dev
   call Cursor__mv_srch("f")
 endfunc
 
-func! Slctd_str__expnd_word_f() abort " todo run confirm ?
+func! Slctd_str__expnd_word_f() range abort
 
   let l:slctd_str = Slctd_str()
   let l:slctd_r_out_char = Slctd_str_edge_r_out_char()
@@ -4946,19 +5017,19 @@ func! Slctd_str_edge_out_quote__tgl() range abort
 
   if     l:c_l == "'" && l:c_l == l:c_r
 
-    call Slctd_str_edge_out_cahr__del()
+    call Slctd_str_edge_out_char__del()
     let l:c = '"'
     call Slctd_str_edge_out__ins(l:c)
 
   elseif l:c_l == '"' && l:c_l == l:c_r
 
-    call Slctd_str_edge_out_cahr__del()
+    call Slctd_str_edge_out_char__del()
     let l:c = '`'
     call Slctd_str_edge_out__ins(l:c)
 
   elseif l:c_l == '`' && l:c_l == l:c_r
 
-    call Slctd_str_edge_out_cahr__del()
+    call Slctd_str_edge_out_char__del()
   else
     let l:c = "'"
     call Slctd_str_edge_out__ins(l:c)
@@ -4984,32 +5055,62 @@ func! Slctd_str_edge_out_bracket__tgl() range abort
 
   if     l:c_l == '(' && l:c_r == ')'
 
-    call Slctd_str_edge_out_cahr__del()
+    call Slctd_str_edge_out_char__del()
     let l:c = '{'
     call Slctd_str_edge_out__ins(l:c)
 
   elseif l:c_l == '{' && l:c_r == '}'
 
-    call Slctd_str_edge_out_cahr__del()
+    call Slctd_str_edge_out_char__del()
     let l:c = '['
     call Slctd_str_edge_out__ins(l:c)
 
   elseif l:c_l == '[' && l:c_r == ']'
 
-    call Slctd_str_edge_out_cahr__del()
+    call Slctd_str_edge_out_char__del()
     let l:c = '<'
     call Slctd_str_edge_out__ins(l:c)
 
   elseif l:c_l == '<' && l:c_r == '>'
 
-    call Slctd_str_edge_out_cahr__del()
+    call Slctd_str_edge_out_char__del()
   else
     let l:c = '('
     call Slctd_str_edge_out__ins(l:c)
   endif
 endfunc
 
-func! Slctd_str_edge_out_cahr__del() range abort
+func! Slctd_str_edge_out__tgl_shft() range abort
+
+  call Slct_re()
+
+  if a:firstline != a:lastline
+    return
+  endif
+
+  if Is_cursor_col__line_end()
+    return
+  endif
+
+  " char chk
+  let l:c_l = Slctd_str_edge_l_out_char()
+  let l:c_r = Slctd_str_edge_r_out_char()
+  " echo l:c_l l:c_r
+
+  if     Is_char_pair__quote(l:c_l, l:c_r)
+    call Slctd_str_edge_out_char__del()
+    call Slctd_str_edge_out_bracket__tgl()
+
+  elseif Is_char_pair__bracket(l:c_l, l:c_r)
+    call Slctd_str_edge_out_char__del()
+    call Slctd_str_edge_out_quote__tgl()
+
+  else
+    call Slctd_str_edge_out_bracket__tgl()
+  endif
+endfunc
+
+func! Slctd_str_edge_out_char__del() range abort
 
   call Slct_re()
 
@@ -5031,7 +5132,7 @@ func! Is_slctd_str_edge_char__(ptn)
   let l:c1 = Slctd_str_edge_l_char()
   let l:c2 = Slctd_str_edge_r_char()
 
-  let l:ret = Is_char_bth__(a:ptn, l:c1, l:c2)
+  let l:ret = Is_char_pair__(a:ptn, l:c1, l:c2)
   return l:ret
 endfunc
 
@@ -5046,7 +5147,7 @@ func! Is_slctd_str_edge_out_char__(ptn)
   let l:c1 = Slctd_str_edge_l_out_char()
   let l:c2 = Slctd_str_edge_r_out_char()
 
-  let l:ret = Is_char_bth__(a:ptn, l:c1, l:c2)
+  let l:ret = Is_char_pair__(a:ptn, l:c1, l:c2)
   return l:ret
 endfunc
 
