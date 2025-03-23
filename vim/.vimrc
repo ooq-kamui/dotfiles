@@ -279,12 +279,17 @@ nnoremap <Up>    k
 nnoremap <Down>  j
 
 " cursor mv line
-nnoremap k k
-nnoremap j j
+"nnoremap k k
+"nnoremap j j
+nnoremap k :call Cursor__mv_u()<cr>
+nnoremap j :call Cursor__mv_d()<cr>
+" dev anchor
 
 " cursor mv line mlt
-nnoremap <c-k> 10<c-y>
-nnoremap <c-j> 10<c-e>
+"nnoremap <c-k> 10<c-y>
+"nnoremap <c-j> 10<c-e>
+nnoremap <c-k> :call Cursor__mv_mlt_u()<cr>
+nnoremap <c-j> :call Cursor__mv_mlt_d()<cr>
 
 " cursor mv line top | ins line
 nnoremap y :call Cursor__mv_line_top_or_new_line()<cr>
@@ -332,6 +337,9 @@ nnoremap <bar> T_h
 nnoremap M :call Cursor__mv_word_dlm_f()<cr>
 "nnoremap F :call Cursor__mv_word_dlm_f()<cr>
 
+" cursor mv fnc name
+nnoremap <c-f> :call Cursor__mv_fnc_name()<cr>
+
 " cursor mv bracket pair
 nnoremap <c-l> %
 
@@ -346,8 +354,8 @@ nnoremap <c-l> %
 "nnoremap xx <c-i>
 
 " cursor mv indnt auto
-"nnoremap <c-f> :call Cursor__mv_indnt_auto()<cr> " todo dev
-"nnoremap <c-f> ll
+"nnoremap xx :call Cursor__mv_indnt_auto()<cr> " todo dev
+"nnoremap xx ll
 
 " cursor mv file edge bgn
 nnoremap gk :call Cursor__mv_file_edge_bgn()<cr>
@@ -493,6 +501,9 @@ nnoremap ; :call Cursor__ins_dt()<cr>
 
 " ins slf path
 "nnoremap xx :call Cursor__ins_line_slf_path()<cr>
+
+" ins anchor
+nnoremap A :call Cursor__ins_line_anchor()<cr>
 
 " ins markdown code
 nnoremap <c-u> :call Cursor__ins_markdown_code()<cr>
@@ -876,7 +887,7 @@ nnoremap x <esc>
 "nnoremap y <esc>
 nnoremap z <esc>
 
-nnoremap A <esc>
+"nnoremap A <esc>
 nnoremap B <esc>
 nnoremap C <esc>
 "nnoremap D <esc>
@@ -924,7 +935,7 @@ nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
 "nnoremap <c-e> <esc>
-nnoremap <c-f> <esc>
+"nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
 "nnoremap <c-i> <esc> " tab
@@ -2389,6 +2400,25 @@ func! Str_path_win__cnv_unix(path) abort
   return l:path
 endfunc
 
+func! Str_cmnt_1() abort
+
+  let l:cmnt_1_def = {
+  \ 'lua'       : '-- ',
+  \ 'text'      : '# ' ,
+  \ 'vim'       : '" ' ,
+  \ 'fish'      : '# ' ,
+  \ 'sh'        : '# ' ,
+  \ 'css'       : '/* ',
+  \ 'javascript': '// ',
+  \ 'java'      : '// ',
+  \ 'sql'       : '-- ',
+  \ 'dflt'      : '# '
+  \ }
+
+  let l:str = get(l:cmnt_1_def, &filetype, l:cmnt_1_def['dflt'])
+  return l:str
+endfunc
+
 " str cnd
 
 func! Is_str__emp(str) abort
@@ -3223,6 +3253,12 @@ func! Cursor__mv_word_b_pre() abort " use not
   endif
 endfunc
 
+func! Cursor__mv_fnc_name() abort " use not
+
+  call Cursor__mv_srch_ptn('(', 'f')
+  call Cursor__mv_word_b()
+endfunc
+
 func! Cursor__mv_u() abort " alias
 
   call Normal('k')
@@ -3233,9 +3269,27 @@ func! Cursor__mv_d() abort " alias
   call Normal('j')
 endfunc
 
+let g:cursor_mv_line_step_dflt = 10
+
+func! Cursor__mv_mlt_u() abort " alias
+
+  let g:cursor_mv_line_step = g:cursor_mv_line_step_dflt
+
+  let l:n_cmd = g:cursor_mv_line_step . "\<c-y>"
+  call Normal(l:n_cmd)
+endfunc
+
+func! Cursor__mv_mlt_d() abort " alias
+
+  let g:cursor_mv_line_step = g:cursor_mv_line_step_dflt
+
+  let l:n_cmd = g:cursor_mv_line_step . "\<c-e>"
+  call Normal(l:n_cmd)
+endfunc
+" dev anchor
+
 func! Cursor__mv_u_line_end() abort
 
-  " call Normal('k')
   call Cursor__mv_u()
   call Cursor__mv_line_end()
 endfunc
@@ -3450,7 +3504,6 @@ func! Cursor__ins_cr() abort
   call Normal('x')
 
   call Line_end_space__del(l:t_line_num)
-  " call Normal('j')
   call Cursor__mv_d()
 endfunc
 
@@ -3516,24 +3569,11 @@ endfunc
 
 func! Cursor__ins_cmnt_1(cmd_cursor__mv_line_top) abort
 
-  let l:cmnt_1_def = {
-  \ 'lua'       : '-- ',
-  \ 'text'      : '# ' ,
-  \ 'vim'       : '" ' ,
-  \ 'fish'      : '# ' ,
-  \ 'sh'        : '# ' ,
-  \ 'css'       : '/* ',
-  \ 'javascript': '// ',
-  \ 'java'      : '// ',
-  \ 'sql'       : '-- ',
-  \ 'dflt'      : '# '
-  \ }
-  let l:str = get(l:cmnt_1_def, &filetype, l:cmnt_1_def['dflt'])
-
   if a:cmd_cursor__mv_line_top != v:null
     call Normal(a:cmd_cursor__mv_line_top)
   endif
 
+  let l:str = Str_cmnt_1()
   call Normal('i' . l:str)
   
   call Normal('^') " or '0'
@@ -3938,7 +3978,6 @@ func! Cursor__ins_line(str) abort
 
   let l:line_num = Cursor_line_num() - 1
   call append(l:line_num, a:str)
-  " call Normal('k')
   call Cursor__mv_u()
 endfunc
 
@@ -3956,7 +3995,9 @@ endfunc
 
 func! Cursor__ins_line_anchor() abort
 
-  let l:str = 'anchor'
+  let l:str  = Str_cmnt_1()
+  let l:str .= 'dev '
+  let l:str .= 'anchor'
   call Cursor__ins_line(l:str)
 endfunc
 

@@ -2,21 +2,15 @@
 # cnf
 
 
+## ofc
+
+cal confirm 04 05
+
+
 ## vim
 
-nnoremap A  cursor __ ins line anchor
-- line ins
-- comment anchro
-  - comment str refactoring
-
-
-nnoremap <c-f>  cursor __ mv fnc name
-- logic
-  - srch (
-  - cursor __ mv back word
-
-
-cursor __ mv speed up
+fnc name re
+- slf > buf
 
 
 indnt __ crct
@@ -26,40 +20,33 @@ indnt __ crct
   - cre
 
 
-fnc name re
-- slf > buf
-
-
-## holo song
-
-service close info write up
-
-git dir mv to share
-- at mac
-
-svr mv, to skr vps
-- api url mod
-  - confirm
-
-repository
-- tidy
-
-
-## astro
-
-learn
-
-
-## skr-vps
-
-ssh
-- at ofc
-- at m4
+gitconfig color
+- m4
+  - confirm m1
 
 
 ## m4
 
 music data cp
+- upd ( refresh )
+
+
+## holo song
+
+svr mv, to skr vps
+- at m4 repo > main
+- api url mod
+  - confirm
+
+
+## godot
+
+tst prj
+- cre
+- 
+
+tutorial
+- see, read
 
 
 ## zsh
@@ -70,20 +57,20 @@ music data cp
 - prompto
 
 
-## godot
+## astro
 
 learn
-
-
-## skr-vps
-
-setting at skr console
-- firewall
 
 
 ## docker
 
 learn
 - read book
+
+
+## skr-vps
+
+setting at skr console
+- firewall
 
 
