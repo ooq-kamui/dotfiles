@@ -28,6 +28,7 @@ music data cp
 svr mv, to skr vps
 - at m4 repo > main
   - dir tidy
+- doc cp fr m1
 - api url mod
   - confirm
 
