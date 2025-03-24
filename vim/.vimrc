@@ -257,10 +257,10 @@ nnoremap gt :call Opn_tmp()<cr>
 nnoremap go :call Opn_app_by_cursor_path()<cr>
 
 " opn app slf
-"nnoremap xx :call Opn_app_slf()<cr>
+"nnoremap xx :call Opn_app_buf_file()<cr>
 
 " opn dir slf
-nnoremap gd :call Opn_dir_slf()<cr>
+nnoremap gd :call Opn_buf_file_dir()<cr>
 
 " opn brwsr
 "nnoremap xx :call Opn_brwsr()<cr>
@@ -429,8 +429,7 @@ nnoremap c :call Ynk__line()<cr>
 "nnoremap xx "ayl
 
 " ynk slf path
-nnoremap gs :call Ynk__slf_path()<cr>
-"nnoremap gp :call Ynk__slf_path()<cr>
+nnoremap gs :call Ynk__buf_file_path()<cr>
 
 " paste
 nnoremap p :call Cursor__ins_ynk()<cr>
@@ -500,7 +499,7 @@ nnoremap ; :call Cursor__ins_dt()<cr>
 "nnoremap xx :call Cursor__ins_week()<cr>
 
 " ins slf path
-"nnoremap xx :call Cursor__ins_line_slf_path()<cr>
+"nnoremap xx :call Cursor__ins_line_buf_file_path()<cr>
 
 " ins anchor
 nnoremap A :call Cursor__ins_line_anchor()<cr>
@@ -694,7 +693,7 @@ nnoremap :r :InsSysCmd
 nnoremap :p :Pth <cr>
 
 " cd slf
-"nnoremap :d :call Dir__slf()
+"nnoremap :d :call Dir__buf_file_dir()
 
 " cd parent
 nnoremap :k :K
@@ -1868,9 +1867,9 @@ command! -nargs=0 K     call Dir__parent(1)
 command! -nargs=0 Kk    call Dir__parent(2)
 command! -nargs=0 Kkk   call Dir__parent(3)
 
-command! -nargs=0 Dpl call Slf__dpl()
+command! -nargs=0 Dpl call Buf_file__dpl()
 
-command! -nargs=1 Mv call Slf__mv(<q-args>)
+command! -nargs=1 Mv call Buf_file__mv(<q-args>)
 
 command! -range=% -nargs=0 MbCnv <line1>,<line2>call Slctd_line_mb__cnv()
 
@@ -2584,15 +2583,17 @@ endfunc
 
 " dir __ ch slf
 
-func! Slf_dir() abort
+" func! Slf_dir() abort
+func! Buf_file_dir() abort
 
   let l:dir = expand('%:p:h')
   return l:dir
 endfunc
 
-func! Dir__slf() abort
+" func! Dir__slf() abort
+func! Dir__buf_file_dir() abort
 
-  let l:dir = Slf_dir()
+  let l:dir = Buf_file_dir()
   call Dir__(l:dir)
   " call Exe('cd ' . l:dir)
 
@@ -2614,22 +2615,22 @@ func! Dir__parent(lvl) abort
   call Pth()
 endfunc
 
-" file
+" file ( buf file )
 
 func! Save() abort
-  
+
   call Exe('w')
 endfunc
 
-func! Slf__dpl() abort
-  
-  let l:sys_cmd = 'dpl ' . Slf_path()
+func! Buf_file__dpl() abort
+
+  let l:sys_cmd = 'dpl ' . Buf_file_path()
   call Sys_cmd(l:sys_cmd)
 endfunc
 
-func! Slf__mv(file_name_aft) abort
-  
-  let l:file_path_bfr = Slf_path()
+func! Buf_file__mv(file_name_aft) abort
+
+  let l:file_path_bfr = Buf_file_path()
 
   let l:sys_cmd = 'str_mv_f ' . l:file_path_bfr . ' ' . a:file_name_aft
   let l:file_path_aft = Sys_cmd(l:sys_cmd)
@@ -2641,7 +2642,7 @@ func! Slf__mv(file_name_aft) abort
   call Exe(l:cmd)
 endfunc
 
-func! Slf_path() abort
+func! Buf_file_path() abort
   
   let l:path = expand('%:p')
   return l:path
@@ -2818,17 +2819,18 @@ func! Opn_app_by_slctd_str() abort
   call Opn_app(l:path)
 endfunc
 
-func! Opn_app_slf() abort
+func! Opn_app_buf_file() abort
 
-  let l:path = Slf_path()
+  let l:path = Buf_file_path()
   echo l:path
 
   call Opn_app(l:path)
 endfunc
 
-func! Opn_dir_slf() abort
+" func! Opn_dir_slf() abort
+func! Opn_buf_file_dir() abort
 
-  let l:dir = Slf_dir()
+  let l:dir = Buf_file_dir()
   "echo l:path
 
   call Opn_app(l:dir)
@@ -3987,9 +3989,9 @@ func! Cursor__ins_line_emp() abort
   call Cursor__ins_line(l:str)
 endfunc
 
-func! Cursor__ins_line_slf_path() abort
+func! Cursor__ins_line_buf_file_path() abort
 
-  let l:path = Slf_path()
+  let l:path = Buf_file_path()
   call Cursor__ins_line(l:path)
 endfunc
 
@@ -5598,9 +5600,9 @@ func! Ynk__line_all() abort
   call Clipboard__ynk()
 endfunc
 
-func! Ynk__slf_path() abort
+func! Ynk__buf_file_path() abort
   
-  let l:path = Slf_path()
+  let l:path = Buf_file_path()
 
   let @a = l:path
   call Clipboard__ynk()

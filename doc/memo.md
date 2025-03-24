@@ -2,16 +2,7 @@
 # cnf
 
 
-## ofc
-
-cal confirm 04 05
-
-
 ## vim
-
-fnc name re
-- slf > buf
-
 
 indnt __ crct
 - logic mod
@@ -22,6 +13,7 @@ indnt __ crct
 
 gitconfig color
 - m4
+  - ln ?
   - confirm m1
 
 
@@ -35,6 +27,7 @@ music data cp
 
 svr mv, to skr vps
 - at m4 repo > main
+  - dir tidy
 - api url mod
   - confirm
 
@@ -43,7 +36,6 @@ svr mv, to skr vps
 
 tst prj
 - cre
-- 
 
 tutorial
 - see, read
