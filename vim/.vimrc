@@ -137,17 +137,32 @@ set wildmenu " ?
 "set ambiwidth=double
 set autoread
 
-
 "set clipboard+=unnamedplus " ???
 
-set statusline=%m\                 " 変更あり表示
-set statusline+=%F                 " file name 表示
-set statusline+=%=                 " 以降を右寄せ
-"set statusline+=%{&fileencoding}\  " file encoding
-set statusline+=%y\                " file type
-set statusline+=%c\                " column num
-set statusline+=%p%%\              " line num %
-set statusline+=%l/%L              " line num / line num all
+" status line
+
+func! Status_line() abort
+
+  set statusline=
+  " set statusline+=%m\                " 変更あり表示
+  set statusline+=%F                 " file name 表示
+  set statusline+=%=                 " 以降を右寄せ
+
+  let l:file_encoding = v:false
+  if l:file_encoding
+    set statusline+=%{&fileencoding}\  " file encoding
+    if &bomb
+      set statusline+=:bom             " bom
+    endif
+  endif
+
+  set statusline+=%y\                " file type
+  set statusline+=%c\                " column num
+  set statusline+=%p%%\              " line num %
+  set statusline+=%l/%L              " line num / line num all
+endfunc
+call Status_line()
+
 set laststatus=2                   " 0:off  1:on when 2 win  2:on
 set completeopt=menuone,noinsert
 set foldmethod=manual
@@ -1430,7 +1445,7 @@ vnoremap ggl :call Slctd_str_7_opn_ggl_srch()<cr>
 vnoremap gy :call Slctd_str_7_opn_yt()<cr>
 
 " trns
-vnoremap r :call V_trns()<cr>
+vnoremap r :call Slctd_trns()<cr>
 
 " 
 " cmd
@@ -1888,8 +1903,6 @@ command! -nargs=* -complete=file Opn call Opn(<q-args>)
 command! -nargs=* OpnMan call Opn_man(<q-args>)
 
 "command! -nargs=* OpnApp call Opn_app(<f-args>)
-
-command! -nargs=? UrlEncode <line1>,<line2>call V_url_encode(<f-args>)
 
 " cmd def fzf
 
@@ -2672,15 +2685,35 @@ func! File_line_ar(file_path) abort
   return l:file_line_ar
 endfunc
 
-" tmp file
+" load re
 
-func! Tmp_cre() abort " alias
+func! Load_re() abort
 
-  let l:tmp_path = Tmp_cre_sys()
-  return l:tmp_path
+  call Exe('e ')
 endfunc
 
-func! Tmp_cre_sys() abort
+" load re  -  encode sjis
+
+func! Load_re__sjis() abort
+
+  call Exe('e ++enc=sjis')
+endfunc
+
+" encode
+
+func! Buf_file_encode() abort
+
+  call Exe('set enc?')
+endfunc
+
+func! Buf_file_bom() abort
+
+  call Exe('set bomb?')
+endfunc
+
+" file tmp
+
+func! File_tmp__cre() abort " alias
 
   let l:tmp_path = system('mktemp ')
   return l:tmp_path
@@ -2708,7 +2741,7 @@ endfunc
 
 func! Opn_tmp() abort
 
-  let l:path = Tmp_cre()
+  let l:path = File_tmp__cre()
   echo l:path
   call Opn(l:path)
 endfunc
@@ -4001,6 +4034,7 @@ func! Cursor__ins_line_anchor() abort
   let l:str .= 'dev '
   let l:str .= 'anchor'
   call Cursor__ins_line(l:str)
+  call Cursor_line_indnt__crct()
 endfunc
 
 func! Cursor_d__ins_line(str) abort
@@ -4350,11 +4384,11 @@ endfunc
 
 func! Cursor_line_indnt__crct() abort
 
-  let l:col = Cursor_line_indnt__crct_by_c()
+  let l:col = Cursor_line_indnt__crct_with_c()
   return l:col
 endfunc
 
-func! Cursor_line_indnt__crct_by_c() abort
+func! Cursor_line_indnt__crct_with_c() abort
 
   call Cursor_line_indnt__del()
 
@@ -6537,30 +6571,9 @@ func! Mark_del_all() abort
   call Exe('DoShowMarks')
 endfunc
 
-" load re
-
-func! Load_re() abort
-
-  call Exe('e ')
-endfunc
-
-" encode sjis  -  load re
-
-func! Load_re__sjis() abort
-
-  call Exe('e ++enc=sjis')
-endfunc
-
-" encode confirm
-
-func! Encode_confirm() abort
-
-  call Exe('set enc?')
-endfunc
-
 " trns
 
-func! V_trns() range abort
+func! Slctd_trns() range abort
 
   let l:str = Slctd_str()
 
@@ -6581,7 +6594,7 @@ endfunc
 
 " math
 
-func! V_math() range abort
+func! Slctd_math() range abort
 
   let l:str = Slctd_str()
   let l:sys_cmd = 'echo ' . "'" . l:str . "'" . ' | math'
@@ -6592,7 +6605,7 @@ endfunc
 
 " url encdoe
 
-func! V_url_encode() range abort
+func! Slctd_url_encode() range abort
 
   let l:str = Slctd_str()
   let l:sys_cmd = 'url_encode "' . l:str . '"'

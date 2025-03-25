@@ -2,14 +2,13 @@
 # cnf
 
 
+## book
+
+developer advance
+- read
+
+
 ## vim
-
-indnt __ crct
-- logic mod
-
-- cursor __ mv indnt crct col
-  - cre
-
 
 gitconfig color
 - m4
@@ -20,14 +19,13 @@ gitconfig color
 ## m4
 
 music data cp
+- cp lib file
 - upd ( refresh )
 
 
 ## holo song
 
 svr mv, to skr vps
-- at m4 repo > main
-  - dir tidy
 - doc cp fr m1
 - api url mod
   - confirm
