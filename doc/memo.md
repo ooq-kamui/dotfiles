@@ -2,13 +2,26 @@
 # cnf
 
 
-## book
+## keyboard
 
-developer advance
-- read
+logi
+- k l i o p enter ( mending )
+
+
+## ofc
+
+power toys
+- tab > win, `<win` `win>`
+  - try
 
 
 ## vim
+
+encoding view
+- when nvim-qt
+
+indnt __ crct
+- indnt col
 
 gitconfig color
 - m4
@@ -16,11 +29,10 @@ gitconfig color
   - confirm m1
 
 
-## m4
+## book
 
-music data cp
-- cp lib file
-- upd ( refresh )
+developer advance
+- read
 
 
 ## holo song
