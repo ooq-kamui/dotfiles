@@ -1355,11 +1355,8 @@ vnoremap :e :call Slctd_line_indnt__space(2)
 " indnt space > tab
 "vnoremap xx :call Slctd_line_indnt__tab(2)<cr>
 
-" tab > space
-"vnoremap :t :call Slctd_line_tab__rpl_space(12)
-
 " tidy tbl
-vnoremap :t :Tbl 
+vnoremap :t :call Slctd_line__crct_tbl()
 
 " line end ovr, pad __ space
 "vnoremap xx :call Slctd_line_end__pad_space()
@@ -1374,7 +1371,8 @@ vnoremap U Ugv
 "vnoremap xx ugv
 
 " str mb
-vnoremap M :MbCnv <cr>
+vnoremap :m :call Slctd_line_mb__cnv()
+"vnoremap M :call Slctd_line_mb__cnv()
 
 " 
 " srch
@@ -1416,9 +1414,6 @@ vnoremap <c-m> :call Slctd_line_srch_str__rpl_cr()<cr>
 vnoremap <expr> <c-h>
 \ mode() == '<c-v>' ? ':call Slctd_box_edge_r_char__shft_in()<cr>' :
 \                     ''
-
-" cnv markdown tbl header
-vnoremap :m :call Slctd_2_markdown_tbl_header()
 
 " fzf buf
 vnoremap <leader>i :call V_fzf_buf()<cr>
@@ -1522,7 +1517,7 @@ vnoremap I <esc>
 "vnoremap J <esc>
 "vnoremap K <esc>
 "vnoremap L <esc>
-"vnoremap M <esc>
+vnoremap M <esc>
 "vnoremap N <esc>
 "vnoremap O <esc>
 vnoremap P <esc>
@@ -1576,6 +1571,8 @@ vnoremap gt <esc>
 
 "vnoremap :a <esc>
 vnoremap :f <esc>
+" :
+"vnoremap :m <esc>
 " :
 "vnoremap :t <esc>
 " :
@@ -1886,13 +1883,9 @@ command! -nargs=0 Dpl call Buf_file__dpl()
 
 command! -nargs=1 Mv call Buf_file__mv(<q-args>)
 
-command! -range=% -nargs=0 MbCnv <line1>,<line2>call Slctd_line_mb__cnv()
-
 command! -nargs=* SrchOr call Srch_or(<f-args>)
 
 command! -nargs=* InsSysCmd call Cursor__ins_sys_cmd(<q-args>)
-
-command! -range=% -nargs=0 Tbl <line1>,<line2>call Slctd_line__crct_tbl()
 
 command! -range=% -nargs=* Rpl <line1>,<line2>call Slctd_line__rpl(<f-args>)
 
@@ -5421,7 +5414,7 @@ endfunc
 
 " markdown tbl header
 
-func! Slctd_2_markdown_tbl_header() range abort
+func! Slctd_line__cnv_markdown_tbl_header() range abort " ??
 
   '<,'>:call Slctd_line__rpl('[^|]', '-')
   '<,'>:call Slctd_line__rpl( '|.',  '| ')

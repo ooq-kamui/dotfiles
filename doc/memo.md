@@ -2,31 +2,24 @@
 # cnf
 
 
-## keyboard
-
-logi
-- k l i o p enter ( mending )
-
-
-## ofc
-
-power toys
-- tab > win, `<win` `win>`
-  - try
-
-
 ## vim
-
-encoding view
-- when nvim-qt
 
 indnt __ crct
 - indnt col
+
 
 gitconfig color
 - m4
   - ln ?
   - confirm m1
+
+
+## keyboard sticker
+
+logi
+- y ( cut v )
+- m u at
+- f2 ; :
 
 
 ## book
