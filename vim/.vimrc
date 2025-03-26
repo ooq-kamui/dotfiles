@@ -141,15 +141,14 @@ set autoread
 
 " status line
 
-func! Status_line() abort
+func! Status_line(file_encoding) abort
 
   set statusline=
   " set statusline+=%m\                " 変更あり表示
   set statusline+=%F                 " file name 表示
   set statusline+=%=                 " 以降を右寄せ
 
-  let l:file_encoding = v:false
-  if l:file_encoding
+  if a:file_encoding
     set statusline+=%{&fileencoding}\  " file encoding
     if &bomb
       set statusline+=:bom             " bom
@@ -161,7 +160,7 @@ func! Status_line() abort
   set statusline+=%p%%\              " line num %
   set statusline+=%l/%L              " line num / line num all
 endfunc
-call Status_line()
+call Status_line(v:false)
 
 set laststatus=2                   " 0:off  1:on when 2 win  2:on
 set completeopt=menuone,noinsert
@@ -602,7 +601,7 @@ nnoremap ro :call Cursor_line_indnt__shft_r()<cr>
 "nnoremap xx :call Cursor_line_indnt__add(2)<cr>
 
 " indnt crct
-"nnoremap xx :call Cursor_line_indnt__crct()<cr>
+nnoremap re :call Cursor_line_indnt__crct()<cr>
 
 " cursor l char col __ crct
 nnoremap q :call Cursor_f_str_col__crct_by_line_u()<cr>
@@ -768,8 +767,6 @@ nnoremap rn :call Win__splt_v()<cr>
 
 " win ( buf ) nxt
 nnoremap <c-w> :call Win_splt_cursor__mv_nxt()<cr>
-"nnoremap <c-e> :call Win_splt_cursor__mv_nxt()<cr>
-"nnoremap re    :call Win_splt_cursor__mv_nxt()<cr>
 
 " win ( buf ) mv r
 "nnoremap xx <c-w>l
@@ -993,7 +990,7 @@ nnoremap gy <esc>
 
 nnoremap ra <esc>
 "        :
-nnoremap re <esc>
+"nnoremap re <esc>
 "nnoremap rf <esc>
 "        :
 "nnoremap rh <esc>
