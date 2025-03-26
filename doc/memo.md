@@ -2,24 +2,20 @@
 # cnf
 
 
-## vim
-
-indnt __ crct
-- indnt col
-
-
-gitconfig color
-- m4
-  - ln ?
-  - confirm m1
-
-
 ## keyboard sticker
 
 logi
 - y ( cut v )
 - m u at
 - f2 ; :
+
+
+## vim
+
+gitconfig color
+- m4
+  - ln ?
+    - confirm m1
 
 
 ## book
