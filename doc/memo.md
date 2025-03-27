@@ -2,14 +2,6 @@
 # cnf
 
 
-## keyboard sticker
-
-logi
-- y ( cut v )
-- m u at
-- f2 ; :
-
-
 ## vim
 
 gitconfig color
@@ -22,6 +14,13 @@ gitconfig color
 
 developer advance
 - read
+
+
+## keyboard sticker
+
+logi
+- o `_` `9)` `,` `.`
+- y ( cut v )
 
 
 ## holo song

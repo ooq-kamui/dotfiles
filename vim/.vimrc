@@ -604,7 +604,8 @@ nnoremap ro :call Cursor_line_indnt__shft_r()<cr>
 nnoremap re :call Cursor_line_indnt__crct()<cr>
 
 " cursor l char col __ crct
-nnoremap q :call Cursor_f_str_col__crct_by_line_u()<cr>
+nnoremap q :call Cursor_f_str__crct_by_line_u()<cr>
+nnoremap Q :call Cursor_f_str__crct_by_line_d()<cr>
 
 " 
 " srch
@@ -913,7 +914,7 @@ nnoremap G <esc>
 "nnoremap M <esc>
 "nnoremap N <esc>
 "nnoremap O <esc>
-nnoremap Q <esc>
+"nnoremap Q <esc>
 "nnoremap P <esc>
 nnoremap R <esc>
 "nnoremap S <esc>
@@ -3294,6 +3295,19 @@ func! Cursor__mv_d() abort " alias
   call Normal('j')
 endfunc
 
+func! Cursor__mv_v(drct) abort
+
+  if     a:drct == 'u'
+    call Cursor__mv_u()
+
+  elseif a:drct == 'd'
+    call Cursor__mv_d()
+
+  else
+    call Cursor__mv_u()
+  endif
+endfunc
+
 let g:cursor_mv_line_step_dflt = 10
 
 func! Cursor__mv_mlt_u() abort " alias
@@ -4192,7 +4206,17 @@ func! Cursor_line__del() abort
   endif
 endfunc
 
-func! Cursor_f_str_col__crct_by_line_u() abort
+func! Cursor_f_str__crct_by_line_u() abort
+
+  call Cursor_f_str__crct_by_line('u')
+endfunc
+
+func! Cursor_f_str__crct_by_line_d() abort
+
+  call Cursor_f_str__crct_by_line('d')
+endfunc
+
+func! Cursor_f_str__crct_by_line(target_line_drct) abort
 
   let l:cursor_pos = Cursor_pos()
 
@@ -4204,9 +4228,16 @@ func! Cursor_f_str_col__crct_by_line_u() abort
   let l:cursor_r_char =  Str_l_char(l:str)
   " echo l:cursor_r_char
 
-  call Cursor__mv_u()
+  call Cursor__mv_v(a:target_line_drct)
+
   let l:target_line_str = Cursor_line_str_side_r()
-  call Cursor__mv_d()
+
+  if a:target_line_drct == 'u'
+    let l:turn_drct = 'd'
+  else
+    let l:turn_drct = 'u'
+  endif
+  call Cursor__mv_v(l:turn_drct)
 
   let l:crct_len = Str_srch(l:target_line_str, l:cursor_r_char) + 1
   " echo l:crct_len
