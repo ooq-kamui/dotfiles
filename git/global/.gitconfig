@@ -9,7 +9,7 @@
   untracked = yellow
   unmerged  = yellow
 [core]
-pager = less -x2
+  pager = less -x2
   editor = vim
 [pull]
   rebase = false

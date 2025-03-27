@@ -2,25 +2,17 @@
 # cnf
 
 
-## vim
+## keyboard sticker
 
-gitconfig color
-- m4
-  - ln ?
-    - confirm m1
+logi
+- o `_` `9)` `,` `.`
+- y ( cut v )
 
 
 ## book
 
 developer advance
 - read
-
-
-## keyboard sticker
-
-logi
-- o `_` `9)` `,` `.`
-- y ( cut v )
 
 
 ## holo song
