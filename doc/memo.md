@@ -2,11 +2,10 @@
 # cnf
 
 
-## keyboard sticker
+## keyboard stiker
 
 logi
-- o `_` `9)` `,` `.`
-- y ( cut v )
+- `]` `[` q `/` `\`
 
 
 ## book
