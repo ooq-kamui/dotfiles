@@ -108,7 +108,7 @@ function pth {
 }
 
 #Set-Alias ll "Get-ChildItem"
-function ll     { Get-ChildItem -force       }
+function ll     { Get-ChildItem -force $args }
 function oo_ll  { Get-ChildItem -force ..    }
 function ooo_ll { Get-ChildItem -force ..\.. }
 
