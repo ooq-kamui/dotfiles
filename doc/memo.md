@@ -8,6 +8,11 @@ logi
 - `]` `[` q `/` `\`
 
 
+## ofc
+
+spc csv out write
+
+
 ## book
 
 developer advance
