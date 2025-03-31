@@ -2,11 +2,6 @@
 # cnf
 
 
-## github
-
-dotfiles cre
-
-
 ## book
 
 developer advance
@@ -19,11 +14,14 @@ logi
 - `pg ^` `pg v` `enter` `win`
 - `<sh` `sh>`
 
-cut board ch
-- throw away
-
 tape buy x 2
 - card buy charge
+
+
+## cnf
+
+name re
+- dotfiles
 
 
 ## holo song
