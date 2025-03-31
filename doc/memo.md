@@ -2,21 +2,28 @@
 # cnf
 
 
-## keyboard stiker
+## github
 
-logi
-- `]` `[` q `/` `\`
-
-
-## ofc
-
-spc csv out write
+dotfiles cre
 
 
 ## book
 
 developer advance
-- read
+- read at cafe
+
+
+## keyboard stiker
+
+logi
+- `pg ^` `pg v` `enter` `win`
+- `<sh` `sh>`
+
+cut board ch
+- throw away
+
+tape buy x 2
+- card buy charge
 
 
 ## holo song
@@ -25,6 +32,15 @@ svr mv, to skr vps
 - doc cp fr m1
 - api url mod
   - confirm
+
+netlify
+- try
+
+
+## zenn
+
+account cre
+- godot
 
 
 ## godot

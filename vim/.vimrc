@@ -614,7 +614,7 @@ nnoremap Q :call Cursor_f_str__crct_by_line_d()<cr>
 
 " srch hl init
 nnoremap S /<cr>N
-nnoremap / /<cr>N
+"nnoremap / /<cr>N
 "nnoremap xx :call Srch_init()<cr>
 
 " srch char in line - forward
@@ -852,7 +852,7 @@ nnoremap @ <esc>
 "nnoremap _ <esc>
 nnoremap ~ <esc>
 nnoremap ^ <esc>
-"nnoremap / <esc>
+nnoremap / <esc>
 "nnoremap \ <esc>
 "nnoremap | <esc> " ref vvv
 "nnoremap <bar> <esc>
