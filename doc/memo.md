@@ -2,6 +2,24 @@
 # cnf
 
 
+## vim
+
+nvim
+- .vimrc rpl
+
+
+## m4
+
+term
+- wezterm
+- alacritty
+
+
+## face wifi
+
+ggl
+
+
 ## book
 
 developer advance
@@ -13,15 +31,6 @@ developer advance
 logi
 - `pg ^` `pg v` `enter` `win`
 - `<sh` `sh>`
-
-tape buy x 2
-- card buy charge
-
-
-## cnf
-
-name re
-- dotfiles
 
 
 ## holo song
@@ -61,6 +70,13 @@ tutorial
 ## astro
 
 learn
+
+
+## cnf
+
+repository name re
+- `>` dotfiles
+  - at github
 
 
 ## docker

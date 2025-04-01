@@ -147,3 +147,4 @@ endfunction
 function! s:str2bytes(str)
   return map(range(len(a:str)), 'char2nr(a:str[v:val])')
 endfunction
+

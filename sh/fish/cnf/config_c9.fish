@@ -26,10 +26,10 @@ alias clp 'osc52.sh'
 alias ll  'ls -lgohA --time-style=long-iso --color=auto'
 alias lll 'ls -lhA   --time-style=long-iso --color=auto'
 
-alias vim 'vim -p'
-#alias vim 'vim -c / -p'
-#alias vi  'vim -p'
-alias vi  'vim'
+alias vim 'nvim -p'
+alias vi  'nvim -p'
+# alias vim 'vim -p'
+# alias vi  'vim'
 
 alias column '/usr/bin/column'
 

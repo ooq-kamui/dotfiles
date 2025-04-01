@@ -91,7 +91,7 @@ set showcmd
 
 set encoding=utf-8
 set fileencodings=utf-8,sjis
-set termencoding=utf-8
+" set termencoding=utf-8
 
 "set mouse=n
 "map <LeftMouse> <Nop>
@@ -6685,14 +6685,18 @@ func! Vim_plug_path() abort
 
   elseif Is_env__('linux')
 
-    let l:vim_plug_dir_c9 = "/home/ec2-user/.vim"
-    let l:vim_plug_dir_s9 = "/home/centos/.local/share/nvim/site"
+    let l:vim_plug_dir_c9_vim  = "/home/ec2-user/.vim"
+    let l:vim_plug_dir_c9_nvim = "/home/centos/.local/share/nvim/site"
+    let l:vim_plug_dir_s9_nvim = "/home/centos/.local/share/nvim/site"
 
-    if     isdirectory(l:vim_plug_dir_c9)
-      let l:vim_plug_dir = l:vim_plug_dir_c9
+    if     isdirectory(l:vim_plug_dir_c9_nvim)
+      let l:vim_plug_dir = l:vim_plug_dir_c9_nvim
 
-    elseif isdirectory(l:vim_plug_dir_s9)
-      let l:vim_plug_dir = l:vim_plug_dir_s9
+    elseif isdirectory(l:vim_plug_dir_c9_vim)
+      let l:vim_plug_dir = l:vim_plug_dir_c9_vim
+
+    elseif isdirectory(l:vim_plug_dir_s9_nvim)
+      let l:vim_plug_dir = l:vim_plug_dir_s9_nvim
     endif
 
   elseif Is_env__('win32unix')
@@ -6728,9 +6732,19 @@ if Is_vim_plug__installed()
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'mattn/vim-molder'
-  "Plug 'mattn/vim-molder-operations'
-  "Plug 'jacquesbh/vim-showmarks'
+  " Plug 'mattn/vim-molder-operations'
+  " Plug 'jacquesbh/vim-showmarks'
+
+  " nvim
+
+  " Plug 'shellRaining/hlchunk.nvim'
+  " Plug 'sphamba/smear-cursor.nvim'
+  " Plug 'folke/noice.nvim'
+  " Plug 'MunifTanjim/nui.nvim'
   call plug#end()
+
+  " lua require('smear_cursor').enabled = true
+  " lua require("noice").setup()
 endif
 " do :PlugInstall
 " or :PlugUpdate
@@ -6747,7 +6761,6 @@ if     Is_env__('mac')   " mac
   set shell=fish
 
 elseif Is_env__('linux') " c9
-
   "set shell=bash
   set shell=fish
 
@@ -6878,4 +6891,12 @@ au FileType * set fo-=c fo-=r fo-=o
 " when unknown server )
 "   curl https://raw.githubusercontent.com/ooq-kamui/cnf/refs/heads/main/vim/.vimrc > .vimrc
 "   vim -u .vimrc
+
+" coding cheet
+" 
+" oprator
+"   lt  < 
+"   le  <=
+"   gt  > 
+"   ge  >=
 

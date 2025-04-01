@@ -114,8 +114,7 @@ alias rn  'rename'
 alias trash 'trash -F'
 
 alias vim 'nvim -p'
-#alias vim 'nvim -c / -p'
-alias vi  'vim'
+alias vi  'nvim -p'
 
 alias line 'cat_line'
 
