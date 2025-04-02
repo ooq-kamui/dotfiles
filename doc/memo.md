@@ -14,10 +14,12 @@ term
 - wezterm
 - alacritty
 
+browser
+- sidekick
 
-## face wifi
+## cafe wifi
 
-ggl
+err ggl
 
 
 ## book
@@ -29,7 +31,6 @@ developer advance
 ## keyboard stiker
 
 logi
-- `pg ^` `pg v` `enter` `win`
 - `<sh` `sh>`
 
 
@@ -69,7 +70,7 @@ tutorial
 
 ## astro
 
-learn
+tutorial
 
 
 ## cnf

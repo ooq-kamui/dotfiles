@@ -348,8 +348,8 @@ nnoremap <bar> T_h
 "nnoremap <c-\> T_h
 
 " cursor mv word dlm ( camel or _ )  -  forward
-nnoremap <c-m> :call Cursor__mv_word_dlm_f()<cr>
 nnoremap F     :call Cursor__mv_word_dlm_f()<cr>
+"nnoremap <c-m> :call Cursor__mv_word_dlm_f()<cr>
 
 " cursor mv fnc name
 nnoremap <c-f> :call Cursor__mv_fnc_name()<cr>
@@ -575,8 +575,8 @@ nnoremap <c-d> D
 "nnoremap <expr> xx Is_cursor_col__line_end() ? '<esc>' : '"zde'
 
 " del cr ( line join )
-nnoremap M     J
-"nnoremap <c-m> J
+nnoremap <c-m> J
+"nnoremap M     J
 
 " line mv up
 "nnoremap xx "addk"aP
@@ -905,14 +905,14 @@ nnoremap B <esc>
 nnoremap C <esc>
 "nnoremap D <esc>
 "nnoremap E <esc>
-nnoremap F <esc>
+"nnoremap F <esc>
 nnoremap G <esc>
 "nnoremap H <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
 "nnoremap L <esc>
-"nnoremap M <esc>
+nnoremap M <esc>
 "nnoremap N <esc>
 "nnoremap O <esc>
 "nnoremap Q <esc>
