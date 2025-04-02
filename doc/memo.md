@@ -2,24 +2,16 @@
 # cnf
 
 
-## vim
+## keyboard sticker
 
-nvim
-- .vimrc rpl
+logi
+- `<sh` `sh>`
 
 
-## m4
+## zenn
 
-term
-- wezterm
-- alacritty
-
-browser
-- sidekick
-
-## cafe wifi
-
-err ggl
+account cre
+- godot
 
 
 ## book
@@ -28,10 +20,15 @@ developer advance
 - read at cafe
 
 
-## keyboard stiker
+## cafe wifi
 
-logi
-- `<sh` `sh>`
+err ggl
+
+
+## vim
+
+nvim
+- .vimrc rpl
 
 
 ## holo song
@@ -45,10 +42,9 @@ netlify
 - try
 
 
-## zenn
+## astro starlight
 
-account cre
-- godot
+tutorial
 
 
 ## godot
@@ -66,11 +62,6 @@ tutorial
 - alias
   - ll
 - prompto
-
-
-## astro
-
-tutorial
 
 
 ## cnf
