@@ -2,10 +2,38 @@
 # cnf
 
 
+## amplify gen2
+
+try
+
+
+## astro starlight
+
+tutorial
+- side menu
+
+
+## vim
+
+func name clipboard > clp
+
+`.vimrc_c9` merge `.vimrc`
+
+
+## nvim
+
+`.vimrc` rpl
+
+c9 ( linux )
+- clp ( osc52 )
+  - doc write
+
+
 ## keyboard sticker
 
 logi
 - `<sh` `sh>`
+- `o`
 
 
 ## zenn
@@ -22,13 +50,22 @@ developer advance
 
 ## cafe wifi
 
-err ggl
+case err ggl
+
+doc write
 
 
-## vim
+## home
 
-nvim
-- .vimrc rpl
+home m4
+- remote access
+
+
+## cnf
+
+repository name re
+- `>` dotfiles
+  - at github
 
 
 ## holo song
@@ -40,11 +77,6 @@ svr mv, to skr vps
 
 netlify
 - try
-
-
-## astro starlight
-
-tutorial
 
 
 ## godot
@@ -62,13 +94,6 @@ tutorial
 - alias
   - ll
 - prompto
-
-
-## cnf
-
-repository name re
-- `>` dotfiles
-  - at github
 
 
 ## docker

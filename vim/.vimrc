@@ -493,7 +493,7 @@ nnoremap . i.<esc>
 nnoremap , i, <esc>l
 
 " ins comma $, nxt line
-"nnoremap < A,<esc>j
+"nnoremap xx A,<esc>j
 
 " ins hyphen
 nnoremap 0 :call Cursor__ins_hyphen()<cr>
@@ -597,6 +597,8 @@ nnoremap U :call N_char__tgl_swtch02()<cr>
 " indnt shft
 nnoremap ri :call Cursor_line_indnt__shft_l()<cr>
 nnoremap ro :call Cursor_line_indnt__shft_r()<cr>
+nnoremap < :call Cursor_line_indnt__shft_l()<cr>
+nnoremap > :call Cursor_line_indnt__shft_r()<cr>
 
 " indnt add
 "nnoremap xx :call Cursor_line_indnt__add(2)<cr>
@@ -866,8 +868,8 @@ nnoremap # <esc>
 "nnoremap % <esc> " ?
 nnoremap & <esc>
 nnoremap ( <esc>
-nnoremap < <esc>
-nnoremap > <esc>
+"nnoremap < <esc>
+"nnoremap > <esc>
 "nnoremap << <esc>
 "nnoremap >> <esc>
 
@@ -2535,14 +2537,6 @@ func! Cmdline__(str) abort
   call feedkeys(':call ' . a:str)
 endfunc
 
-func! Sys_cmd(sys_cmd) abort
-
-  return system(a:sys_cmd)
-
-  "let l:cmd = '! ' . a:sys_cmd
-  "call Exe(l:cmd)
-endfunc
-
 " undo clr, file ( crnt buf ? )
 
 func! Undo__clr() abort
@@ -2554,6 +2548,14 @@ func! Undo__clr() abort
   exe "normal! a \<BS>\<Esc>"
 
   let &l:undolevels = l:undo_lvl_tmp
+endfunc
+
+func! Sys_cmd(sys_cmd) abort
+
+  return system(a:sys_cmd)
+
+  "let l:cmd = '! ' . a:sys_cmd
+  "call Exe(l:cmd)
 endfunc
 
 " syntax color
