@@ -2,15 +2,26 @@
 # cnf
 
 
-## amplify gen2
+## book read
 
-try
+developer advance
+- read at cafe
 
 
-## astro starlight
+## dotfiles
 
-tutorial
-- side menu
+dir
+- cnf `>` prj-pri/dotfiles
+  - git clone
+
+
+## astro
+
+doc-tech-as
+- starlight
+  - side menu
+
+article-as
 
 
 ## vim
@@ -18,6 +29,20 @@ tutorial
 func name clipboard > clp
 
 `.vimrc_c9` merge `.vimrc`
+
+
+## zsh
+
+.zshrc
+- alias
+  - ll
+  - o
+- prompto
+
+
+## amplify gen2
+
+try
 
 
 ## nvim
@@ -29,43 +54,21 @@ c9 ( linux )
   - doc write
 
 
+## m4 setup
+
+mmv
+- err fix
+
+home m4
+- remote access fr ofc
+  - research
+
+
 ## keyboard sticker
 
 logi
 - `<sh` `sh>`
 - `o`
-
-
-## zenn
-
-account cre
-- godot
-
-
-## book
-
-developer advance
-- read at cafe
-
-
-## cafe wifi
-
-case err ggl
-
-doc write
-
-
-## home
-
-home m4
-- remote access
-
-
-## cnf
-
-repository name re
-- `>` dotfiles
-  - at github
 
 
 ## holo song
@@ -86,14 +89,6 @@ tst prj
 
 tutorial
 - see, read
-
-
-## zsh
-
-.zshrc
-- alias
-  - ll
-- prompto
 
 
 ## docker
