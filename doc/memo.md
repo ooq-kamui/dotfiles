@@ -1,57 +1,35 @@
 
-# cnf
-
-
-## book read
-
-developer advance
-- read at cafe
-
-
-## dotfiles
-
-dir
-- cnf `>` prj-pri/dotfiles
-  - git clone
-
-
-## astro
-
-doc-tech-as
-- starlight
-  - side menu
-
-article-as
+# dotfiles
 
 
 ## vim
+
+### vim
 
 func name clipboard > clp
 
 `.vimrc_c9` merge `.vimrc`
 
 
-## zsh
-
-.zshrc
-- alias
-  - ll
-  - o
-- prompto
-
-
-## amplify gen2
-
-try
-
-
-## nvim
+### nvim
 
 `.vimrc` rpl
 
 c9 ( linux )
 - clp ( osc52 )
   - doc write
+
+
+## doc-tech-as ( starlight )
+
+page add
+
+side menu
+
+
+## ooq-article-as
+
+local cre
 
 
 ## m4 setup
@@ -64,13 +42,6 @@ home m4
   - research
 
 
-## keyboard sticker
-
-logi
-- `<sh` `sh>`
-- `o`
-
-
 ## holo song
 
 svr mv, to skr vps
@@ -78,8 +49,23 @@ svr mv, to skr vps
 - api url mod
   - confirm
 
-netlify
+netlify ?
 - try
+
+
+## zsh
+
+vi
+
+d
+- fnc
+  - zoxide
+
+
+## bash
+
+file name re
+- `my` > ` `
 
 
 ## godot
@@ -89,6 +75,18 @@ tst prj
 
 tutorial
 - see, read
+
+
+## amplify gen2
+
+try
+
+
+## keyboard sticker
+
+logi
+- `<sh` `sh>`
+- `o`
 
 
 ## docker
