@@ -252,17 +252,14 @@ nnoremap <leader>h :FzfFileHstry<cr>
 " opn .vimrc
 nnoremap gh :call Opn_vimrc()<cr>
 
-" opn tmp
-nnoremap gt :call Opn_tmp()<cr>
+" opn tmp file
+"nnoremap xx :call Opn_tmp_file()<cr>
 
 " opn grep work
 "nnoremap xx :call Opn_grep_wk()<cr>
 
-" opn vim key note
-"nnoremap xx :call Opn_vim_key()<cr>
-
 " opn memo
-"nnoremap gm :call Opn_memo()<cr>
+"nnoremap xx :call Opn_memo()<cr>
 
 " opn man
 "nnoremap xx :OpnMan 
@@ -986,7 +983,7 @@ nnoremap gn <esc>
 "nnoremap go <esc>
 nnoremap gp <esc>
 "nnoremap gs <esc>
-"nnoremap gt <esc>
+nnoremap gt <esc>
 nnoremap gu <esc>
 nnoremap gv <esc>
 nnoremap gw <esc>
@@ -2733,7 +2730,7 @@ func! Opn(filename) abort
   call Exe('tab drop ' . a:filename)
 endfunc
 
-func! Opn_tmp() abort
+func! Opn_tmp_file() abort
 
   let l:path = File_tmp__cre()
   echo l:path
@@ -2766,13 +2763,6 @@ func! Opn_man(cmd) abort
   call Exe('only')
 endfunc
 
-func! Opn_vim_key() abort
-
-  let l:path = '~/doc/tech/vim/m.key.default.md'
-  call Opn(l:path)
-endfunc
-
-" let g:opn_memo_path = '../memo.md'
 let g:opn_memo_path = 'doc/memo.md'
 
 func! Opn_memo() abort
@@ -2790,7 +2780,7 @@ func! Opn_grep_wk() abort
 
     call Opn(g:grep_wk_path)
   else
-    call Opn_tmp()
+    call Opn_tmp_file()
   endif
 endfunc
 
@@ -6245,13 +6235,14 @@ func! Fzf_doc_memo_opn() abort
 
   let l:dir = '~'
 
-  let l:fzf_src_ar = [
+  let l:memo_file_list = [
   \   l:dir . '/wrk/cnf/doc/memo.md',
-  \   l:dir . '/wrk/prj-pri-share/doc-tech-ds/doc/memo.md',
-  \   l:dir . '/wrk/prj-pri-share/life/doc/memo.md',
-  \   l:dir . '/wrk/prj-pri-share/wall-paper/doc/memo.md'
+  \   l:dir . '/wrk/prj-pri/doc-tech-ds/doc/memo.md',
+  \   l:dir . '/wrk/prj-pri/life/doc/memo.md',
+  \   l:dir . '/wrk/prj-pri/wall-paper/doc/memo.md'
   \ ]
 
+  let l:fzf_src_ar = l:memo_file_list
   let l:fnc_name    = 'Opn'
   call Fzf_by_ar(l:fzf_src_ar, l:fnc_name)
 endfunc
