@@ -2,9 +2,7 @@
 # dotfiles
 
 
-## vim
-
-### nvim
+## nvim
 
 c9 ( linux )
 - clp ( osc52 )
