@@ -2,6 +2,16 @@
 # dotfiles
 
 
+## doc-tech-as
+
+ul ( rsync )
+
+migration
+- todo
+  - frontmatter
+    - title add
+
+
 ## nvim
 
 c9 ( linux )
@@ -12,30 +22,19 @@ c9 ( linux )
 vimrc.vim to lua
 
 
-## doc-tech-as
-
-rsync
-
-migration
-- todo
-  - frontmatter
-    - title add
-
-
 ## ooq-article-as
 
 local cre
 - astro ( ? )
 
 
-## m4 setup
+## m4
 
 mmv
 - err fix
 
-home m4
-- remote access fr ofc
-  - research
+remote access fr ofc
+- research
 
 music
 - plylst restore
