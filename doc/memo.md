@@ -4,12 +4,12 @@
 
 ## doc-tech-as
 
-ul ( rsync )
-
 migration
 - todo
   - frontmatter
     - title add
+
+ul ( rsync )
 
 
 ## nvim
@@ -51,15 +51,6 @@ netlify ?
 - try
 
 
-## zsh
-
-vi
-
-d
-- fnc
-  - zoxide
-
-
 ## godot
 
 tst prj
@@ -69,16 +60,13 @@ tutorial
 - see, read
 
 
-## amplify gen2
+## zsh
 
-try
+vi
 
-
-## keyboard sticker
-
-logi
-- `<sh` `sh>`
-- `o`
+d
+- fnc
+  - zoxide
 
 
 ## docker
