@@ -223,7 +223,8 @@ nnoremap a :call Save()<cr>
 "nnoremap xx :call Load_re()
 
 " load re vimrc
-nnoremap :v :source ~/wrk/prj-pri/dotfiles/vim/.vimrc
+"nnoremap :v :source ~/wrk/prj-pri/dotfiles/vim/.vimrc
+nnoremap :v :source ~/wrk/prj-pri/dotfiles/vim/vimrc/dflt/.vimrc
 
 " 
 " opn
