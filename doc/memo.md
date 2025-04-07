@@ -4,14 +4,9 @@
 
 ## vim
 
-### vim
-
-func name clipboard > clp
-
-`.vimrc_c9` merge `.vimrc`
-
-
 ### nvim
+
+`.vimrc` > `vimrc.vim`
 
 `.vimrc` rpl
 
@@ -19,12 +14,19 @@ c9 ( linux )
 - clp ( osc52 )
   - doc write
 
+### vim
 
-## doc-tech-as ( starlight )
+is_env refactoring ( 6753 )
 
-page add
 
-side menu
+## doc-tech-as
+
+rsync
+
+migration
+- method
+  - frontmatter
+    - title
 
 
 ## ooq-article-as
@@ -40,6 +42,9 @@ mmv
 home m4
 - remote access fr ofc
   - research
+
+music
+- plylst restore
 
 
 ## holo song
@@ -60,12 +65,6 @@ vi
 d
 - fnc
   - zoxide
-
-
-## bash
-
-file name re
-- `my` > ` `
 
 
 ## godot
