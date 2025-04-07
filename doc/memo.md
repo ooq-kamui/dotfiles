@@ -6,17 +6,12 @@
 
 ### nvim
 
-`.vimrc` > `vimrc.vim`
-
-`.vimrc` rpl
-
 c9 ( linux )
 - clp ( osc52 )
   - doc write
 
-### vim
 
-is_env refactoring ( 6753 )
+vimrc.vim to lua
 
 
 ## doc-tech-as
@@ -24,14 +19,15 @@ is_env refactoring ( 6753 )
 rsync
 
 migration
-- method
+- todo
   - frontmatter
-    - title
+    - title add
 
 
 ## ooq-article-as
 
 local cre
+- astro ( ? )
 
 
 ## m4 setup

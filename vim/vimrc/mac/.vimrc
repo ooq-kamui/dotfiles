@@ -1,4 +1,1 @@
-
-" mac
-
-
+vimrc.vim

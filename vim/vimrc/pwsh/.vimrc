@@ -1,12 +1,1 @@
-
-
-" let g:fzf_rg_opt .= ' -g "\!amplify/#current-cloud-backend/"'
-" let g:fzf_rg_opt .= ' -g "\!amplify/backend/node_modules/"'
-" let g:fzf_rg_opt .= ' -g "\!amplify/backend/awscloudformation/build"'
-
-" docusaurus
-
-" let g:fzf_rg_opt .= ' -g "\!node_modules/"'
-
-
-
+vimrc.vim
