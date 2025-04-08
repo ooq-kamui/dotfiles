@@ -4,25 +4,20 @@
 
 ## doc-tech-as
 
-migration
-- try todo
-  - frontmatter
-    - title add
+tst page ( few page )
+- frontmatter
+  - title add
 
-  - ul ( rsync )
+- ul ( rsync )
+
+all page
+
 
 
 ## ooq-article-as
 
 local cre
 - astro ( blog ? )
-
-
-## music
-
-plylst restore
-- fe
-- zelda
 
 
 ## holo song
@@ -59,6 +54,8 @@ d
 c9 ( linux )
 - clp ( osc52 )
   - doc write
+
+plugin ( lua )
 
 
 ## mac
