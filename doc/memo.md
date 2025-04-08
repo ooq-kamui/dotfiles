@@ -5,39 +5,24 @@
 ## doc-tech-as
 
 migration
-- todo
+- try todo
   - frontmatter
     - title add
 
-ul ( rsync )
-
-
-## nvim
-
-c9 ( linux )
-- clp ( osc52 )
-  - doc write
-
-
-vimrc.vim to lua
+  - ul ( rsync )
 
 
 ## ooq-article-as
 
 local cre
-- astro ( ? )
+- astro ( blog ? )
 
 
-## m4
+## music
 
-mmv
-- err fix
-
-remote access fr ofc
-- research
-
-music
-- plylst restore
+plylst restore
+- fe
+- zelda
 
 
 ## holo song
@@ -67,6 +52,22 @@ vi
 d
 - fnc
   - zoxide
+
+
+## nvim
+
+c9 ( linux )
+- clp ( osc52 )
+  - doc write
+
+
+## mac
+
+remote access fr ofc
+- research
+
+mmv
+- err fix
 
 
 ## docker

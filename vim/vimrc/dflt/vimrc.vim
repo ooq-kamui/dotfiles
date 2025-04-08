@@ -2,6 +2,12 @@
 " load re
 " :source ~/vimrc.vim     " alias :v
 
+" 
+" init.lua
+" 
+lua require('init')
+
+
 set modelines=0  " CVE-2007-2438
 
 " Normally we use vim-extensions. If you want true vi-compatibility
@@ -19,7 +25,7 @@ let skip_defaults_vim=1
 
 filetype on
 
-hi LineNr       ctermfg=141                         cterm=none
+hi LineNr       ctermfg=141                              cterm=none
 augroup InsertHook
   au!
   au InsertLeave * hi LineNr ctermfg=141
@@ -432,7 +438,6 @@ nnoremap v <c-v>
 nnoremap rr :call Slct_re()<cr>
 
 " ynk clr
-         
 nnoremap <c-c> :call Ynk__clr()<cr>
 
 " ynk line
