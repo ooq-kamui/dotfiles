@@ -10,6 +10,10 @@ c9 ( linux )
 
 plugin ( lua )
 
+lazy.nvim
+- setup
+  - https://zenn.dev/siteyo/articles/980b6205e93914
+
 
 ## doc-tech-as
 
