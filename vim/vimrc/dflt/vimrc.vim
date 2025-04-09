@@ -505,7 +505,6 @@ nnoremap 0 :call Cursor__ins_hyphen()<cr>
 " ins bracket
 nnoremap <c-e> :call Cursor__ins_bracket()<cr>
 nnoremap <c-s> :call Cursor__ins_bracket()<cr>
-"nnoremap <c-w> :call Cursor__ins_bracket()<cr>
 
 " ins date
 nnoremap * :call Cursor__ins_da()<cr>
@@ -1227,16 +1226,6 @@ vnoremap <expr> L
 \ mode() == '<c-v>' ? 'I <esc>gv' :
 \ mode() == 'v'     ? '>gv'       :
 \                     ''
-
-" ins date time
-"vnoremap xx x:call Cursor__ins_da()<cr>
-
-" ins day of week
-"vnoremap xx x:call Cursor__ins_week()<cr>
-
-" ins time
-"vnoremap xx c<c-r>=strftime("%H:%M")<cr><esc>
-"vnoremap xx c<c-r>=strftime('%H:%M')<cr><esc>
 
 " line __ ins comment 1
 vnoremap ! :call V_ins_cmnt_1()<cr>
@@ -3569,7 +3558,6 @@ func! Cursor__ins_bracket() abort
 
   call Normal("i' '")
   call Normal('h')
-  "call Cursor__ins('-')
 endfunc
 
 func! Cursor__ins_da() abort

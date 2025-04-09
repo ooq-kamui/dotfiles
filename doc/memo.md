@@ -2,22 +2,27 @@
 # dotfiles
 
 
+## nvim
+
+c9 ( linux )
+- clp ( osc52 )
+  - doc write
+
+plugin ( lua )
+
+
 ## doc-tech-as
 
-tst page ( few page )
-- frontmatter
-  - title add
-
-- ul ( rsync )
-
-all page
-
+del
+- github
+- dir
 
 
 ## ooq-article-as
 
-local cre
-- astro ( blog ? )
+del
+- github
+- dir
 
 
 ## holo song
@@ -49,19 +54,7 @@ d
   - zoxide
 
 
-## nvim
-
-c9 ( linux )
-- clp ( osc52 )
-  - doc write
-
-plugin ( lua )
-
-
 ## mac
-
-remote access fr ofc
-- research
 
 mmv
 - err fix
