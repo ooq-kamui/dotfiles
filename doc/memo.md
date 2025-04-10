@@ -2,34 +2,17 @@
 # dotfiles
 
 
+## nvim
+
+let dotfiles_dir
+
+
 ## holo song
 
 svr mv, to skr vps
 - doc cp fr m1
 - api url mod
   - confirm
-
-netlify ?
-- try
-
-
-## ofc
-
-starlight
-- icn
-
-
-## nvim
-
-plugin ( lua )
-
-lazy.nvim
-- setup
-  - https://zenn.dev/siteyo/articles/980b6205e93914
-
-c9 ( linux )
-- clp ( osc52 )
-  - doc write
 
 
 ## godot

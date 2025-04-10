@@ -2,12 +2,6 @@
 " load re
 " :source ~/vimrc.vim     " alias :v
 
-" 
-" init.lua
-" 
-lua require('init')
-
-
 set modelines=0  " CVE-2007-2438
 
 " Normally we use vim-extensions. If you want true vi-compatibility
@@ -2734,17 +2728,26 @@ func! Opn_tmp_file() abort
   call Opn(l:path)
 endfunc
 
-" let g:vimrc_file_path = '~/wrk/prj-pri/dotfiles/vim/.vimrc'
-let g:vimrc_file_path = '~/wrk/prj-pri/dotfiles/vim/vimrc/dflt/vimrc.vim'
+let g:vimrc_file_path    = '~/wrk/prj-pri/dotfiles/vim/vimrc/dflt/vimrc.vim'
+let g:init_lua_file_path = '~/wrk/prj-pri/dotfiles/vim/vimrc/dflt/init.lua'
 
 func! Opn_vimrc() abort
 
   call Opn(g:vimrc_file_path)
 
-  if Is_env__('win32unix') " gitbash
+  if     Is_env__('linux')     " c9
+
+    let l:vimrc_c9_file_path      = '~/wrk/prj-pri/dotfiles/vim/vimrc/c9/vimrc.vim'
+    call Opn(l:vimrc_c9_file_path)
+
+  elseif Is_env__('win32unix') " gitbash
 
     let l:vimrc_gitbash_file_path = '~/wrk/prj-pri/dotfiles/vim/vimrc/gitbash/vimrc.vim'
     call Opn(l:vimrc_gitbash_file_path)
+  endif
+
+  if has('nvim')
+    call Opn(g:init_lua_file_path)
   endif
 endfunc
 
@@ -6726,6 +6729,7 @@ if Is_vim_plug__installed()
   " Plug 'jacquesbh/vim-showmarks'
 
   " nvim
+  Plug 'ojroques/nvim-osc52'
 
   " Plug 'shellRaining/hlchunk.nvim'
   " Plug 'sphamba/smear-cursor.nvim'
@@ -6839,6 +6843,16 @@ endfunc
 " comment auto off ( final def )
 au FileType * set fo-=c fo-=r fo-=o
 
+
+" 
+" init.lua
+" 
+if has('nvim')
+  " echo 'nvim'
+  lua require('init')
+endif
+
+
 " 
 " ref normal
 " 
@@ -6894,4 +6908,5 @@ au FileType * set fo-=c fo-=r fo-=o
 "   le  <=
 "   gt  > 
 "   ge  >=
+
 

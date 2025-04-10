@@ -11,7 +11,7 @@ let g:fzf_rg_opt .= ' -g "!amplify/#current-cloud-backend/"'
 let g:fzf_rg_opt .= ' -g "!amplify/backend/node_modules/"'
 let g:fzf_rg_opt .= ' -g "!amplify/backend/awscloudformation/build"'
 
-nnoremap P :Pth <cr>
+"nnoremap P :Pth <cr>
 
 " 
 " plg
@@ -19,26 +19,25 @@ nnoremap P :Pth <cr>
 
 " osc52
 
-source ~/wrk/cnf/vim/plg/osc52.vim
+if ! has('nvim')
 
-nnoremap C :call C9clp__ynk()<cr>
+  source ~/wrk/prj-pri/dotfiles/vim/plg/osc52.vim
 
-func! C9clp__ynk() abort
+  nnoremap C :call C9clp__ynk()<cr>
 
-  call SendViaOSC52(@a)
+  func! C9clp__ynk() abort
 
-  " dev todo
-  " call Sys_cmd('echo "aaa" | osc52.sh')
-endfunc
+    call SendViaOSC52( @a )
+  endfunc
 
-func! Ynk__clp() abort
+  func! Ynk__clp() abort
 
-  if Is_env__('linux')
+    if Is_env__('linux')
+      let @a = @+
+    else
+      let @a = @+
+    endif
+  endfunc
+endif
 
-    "call Ynk__c9clp()
-
-  else
-    let @a = @+
-  endif
-endfunc
 
