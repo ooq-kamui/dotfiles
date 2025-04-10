@@ -2,11 +2,6 @@
 # dotfiles
 
 
-## nvim
-
-let dotfiles_dir
-
-
 ## holo song
 
 svr mv, to skr vps

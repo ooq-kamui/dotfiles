@@ -2,6 +2,13 @@
 " load re
 " :source ~/vimrc.vim     " alias :v
 
+let g:dotfiles_dir    = '~/wrk/prj-pri/dotfiles'
+let g:vimrc_dir       = g:dotfiles_dir . '/vim/vimrc'
+let g:vimrc_file_path = g:vimrc_dir . '/dflt/vimrc.vim'
+
+let g:init_lua_file_path = g:vimrc_dir . '/dflt/init.lua'
+
+
 set modelines=0  " CVE-2007-2438
 
 " Normally we use vim-extensions. If you want true vi-compatibility
@@ -223,8 +230,6 @@ nnoremap a :call Save()<cr>
 "nnoremap xx :call Load_re()
 
 " load re vimrc
-"nnoremap :v :source ~/wrk/prj-pri/dotfiles/vim/.vimrc
-"nnoremap :v :source ~/wrk/prj-pri/dotfiles/vim/vimrc/dflt/.vimrc
 nnoremap :v :source ~/wrk/prj-pri/dotfiles/vim/vimrc/dflt/vimrc.vim
 
 " 
@@ -2728,21 +2733,20 @@ func! Opn_tmp_file() abort
   call Opn(l:path)
 endfunc
 
-let g:vimrc_file_path    = '~/wrk/prj-pri/dotfiles/vim/vimrc/dflt/vimrc.vim'
-let g:init_lua_file_path = '~/wrk/prj-pri/dotfiles/vim/vimrc/dflt/init.lua'
-
 func! Opn_vimrc() abort
 
   call Opn(g:vimrc_file_path)
 
-  if     Is_env__('linux')     " c9
+  if     Is_env__('linux')     " c9 s9
 
-    let l:vimrc_c9_file_path      = '~/wrk/prj-pri/dotfiles/vim/vimrc/c9/vimrc.vim'
+    " let l:vimrc_c9_file_path      = '~/wrk/prj-pri/dotfiles/vim/vimrc/c9/vimrc.vim'
+    let l:vimrc_c9_file_path      = g:vimrc_dir . '/c9/vimrc.vim'
     call Opn(l:vimrc_c9_file_path)
 
   elseif Is_env__('win32unix') " gitbash
 
-    let l:vimrc_gitbash_file_path = '~/wrk/prj-pri/dotfiles/vim/vimrc/gitbash/vimrc.vim'
+    " let l:vimrc_gitbash_file_path = '~/wrk/prj-pri/dotfiles/vim/vimrc/gitbash/vimrc.vim'
+    let l:vimrc_gitbash_file_path = g:vimrc_dir . '/gitbash/vimrc.vim'
     call Opn(l:vimrc_gitbash_file_path)
   endif
 

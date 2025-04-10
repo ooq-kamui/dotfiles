@@ -1,9 +1,8 @@
 
--- print('init.lua')
-
 -- 
 -- plugin mng
 -- 
+
 -- lazy.nvim
 
 -- local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -27,6 +26,7 @@
 --     'ojroques/nvim-osc52',
 --   },
 -- })
+
 
 -- 
 -- key map
