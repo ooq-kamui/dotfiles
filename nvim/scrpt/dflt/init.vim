@@ -2,29 +2,24 @@
 " load re
 " :source ~/vimrc.vim     " alias :v
 
+" 
+" val
+" 
+
 let g:dotfiles_dir    = '~/wrk/prj-pri/dotfiles'
-let g:vimrc_dir       = g:dotfiles_dir . '/vim/vimrc'
+let g:vimrc_dir       = g:dotfiles_dir . '/nvim/scrpt'
 let g:vimrc_file_path = g:vimrc_dir . '/dflt/vimrc.vim'
 
 let g:init_lua_file_path = g:vimrc_dir . '/dflt/init.lua'
 
 
-set modelines=0  " CVE-2007-2438
-
-" Normally we use vim-extensions. If you want true vi-compatibility
-" remove change the following statements
-set nocompatible  " Use Vim defaults instead of 100% vi compatibility
-set backspace=2   " more powerful backspacing
-
-" Don't write backup file if vim is being called by "crontab -e"
-au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
-
-" Don't write backup file if vim is being called by "chpass"
-au BufWrite /private/etc/pw.* set nowritebackup nobackup
-
 let skip_defaults_vim=1
 
 filetype on
+
+" 
+" hi
+" 
 
 hi LineNr       ctermfg=141                              cterm=none
 augroup InsertHook
@@ -83,6 +78,27 @@ au BufNewFile,BufRead *.gui_script set filetype=lua
 au BufNewFile,BufRead *.fish       set filetype=fish
 
 syntax on
+
+" 
+" set
+" 
+
+" set org
+
+set modelines=0  " CVE-2007-2438
+
+" Normally we use vim-extensions. If you want true vi-compatibility
+" remove change the following statements
+set nocompatible  " Use Vim defaults instead of 100% vi compatibility
+set backspace=2   " more powerful backspacing
+
+" Don't write backup file if vim is being called by "crontab -e"
+au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
+
+" Don't write backup file if vim is being called by "chpass"
+au BufWrite /private/etc/pw.* set nowritebackup nobackup
+
+" set org end
 
 set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
 set incsearch
@@ -193,6 +209,10 @@ command! -nargs=* Term split | wincmd j | resize 15 | term <args>
 "autocmd TermOpen * startinsert
 
 " 
+" key map
+" 
+
+" 
 " leader
 " 
 let mapleader = "\<esc>"
@@ -204,23 +224,18 @@ let mapleader = "\<esc>"
 
 " quit buffer
 nnoremap w :call Buf__quit_swtch()<cr>
-"nnoremap w :call Buf__quit()<cr>
-"nnoremap w :bd<cr>
 
 " quit buffer force
 nnoremap :q :q!
 
 " quit vim
-nnoremap W     :q<cr>
+nnoremap W :q<cr>
 
 " quit tab other
 "nnoremap xx :tabo<cr>
 
 " background job
 "nnoremap <c-z> <c-z>
-
-" call
-"nnoremap xx :call 
 
 " save
 "nnoremap a :w<cr>
@@ -230,7 +245,7 @@ nnoremap a :call Save()<cr>
 "nnoremap xx :call Load_re()
 
 " load re vimrc
-nnoremap :v :source ~/wrk/prj-pri/dotfiles/vim/vimrc/dflt/vimrc.vim
+nnoremap :v :source ~/wrk/prj-pri/dotfiles/nvim/scrpt/dflt/vimrc.vim
 
 " 
 " opn
@@ -923,7 +938,7 @@ nnoremap M <esc>
 "nnoremap P <esc>
 nnoremap R <esc>
 "nnoremap S <esc>
-nnoremap T <esc>
+"nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap W <esc>
 "nnoremap V <esc>
@@ -1846,7 +1861,12 @@ cnoremap <kPageUp>   9
 " term > normal
 tnoremap <c-_> <c-\><c-n>
 
+" key map end
+
+
+" 
 " etc
+" 
 
 if &term =~ '^screen'
   " tmux will send xterm-style keys when its xterm-keys option is on
@@ -1924,132 +1944,6 @@ command! -bang -nargs=* FzfJmplst call Fzf_jmplst()
 
 " fzf cmd def : mark
 command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)
-
-
-" 
-" fnc tst
-" 
-
-" tst escape
-
-"nnoremap T :call Tst_esacpe()<cr>
-
-func! Tst_esacpe() abort
-
-  let l:str = '().$a'
-  echo l:str
-
-  let l:str = escape(l:str, l:str)
-  echo l:str
-endfunc
-
-" tst escape shell
-
-"nnoremap T :call Tst_esacpe_shell() <cr>
-
-func! Tst_esacpe_shell() abort
-
-  let l:str = '().$a \ / | & b c '
-  echo l:str
-
-  let l:str = shellescape(l:str)
-  echo l:str
-endfunc
-
-" tst arg f
-
-"nnoremap T :TstArgF 
-"nnoremap T :TstArgF aa().a \/|&bbb 'aa().a \/|&bbb'
-
-command! -bang -nargs=* TstArgF call Tst_arg_f(<f-args>)
-
-func! Tst_arg_f(arg01, arg02, arg03, arg04) range abort
-
-  echo a:arg01
-  echo a:arg02
-  echo a:arg03
-  echo a:arg04
-endfunc
-
-" tst arg q
-
-"nnoremap T :TstArgQ aa "bbb ccc" '().\a bbb""' "().\a bbb''"
-
-command! -bang -nargs=* TstArgQ call Tst_arg_q(<q-args>)
-
-func! Tst_arg_q(arg01) range abort
-
-  echo a:arg01
-  " echo a:arg01 . 'end'
-endfunc
-
-" tst is_directory ~
-
-"nnoremap T :call Tst_is_directory()<cr>
-
-func! Tst_is_directory() range abort
-
-  " let l:path = "~/wrk"        " ng
-  let l:path = $HOME . "/wrk" " ok
-  if isdirectory(l:path)
-    echo "true"
-  else
-    echo "false"
-  endif
-endfunc
-
-" tst slctd
-
-"vnoremap T :call Tst()
-
-func! Tst() range abort
-
-  let l:val = Is_slctd_mode__box()
-  echo l:val
-endfunc
-
-" tst slctd __ rpl sys cmd mb
-
-"vnoremap T :TstSlctdRplSysCmdMb <cr>
-
-command! -range=% -nargs=* TstSlctdRplSysCmdMb <line1>,<line2>call Tst_slctd_rpl_sys_cmd_mb()
-
-" dev ? anchor
-func! Tst_slctd_rpl_sys_cmd_mb() range abort
-
-  let l:pth = '~/wrk/prj-pri/dotfiles/doc/tst/tst-in.md'
-  " let l:sys_cmd = 'cat ' . l:pth . ' | column -t | cat'
-  let l:sys_cmd = 'cat ' . l:pth . ' | column -t'
-  " let l:sys_cmd = 'cat ' . l:pth
-
-  '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
-endfunc
-
-" tst cls vim 9
-"   https://vim-jp.org/vimdoc-ja/vim9class.html
-" 
-" class TextPosition
-"   var lnum: number
-"   var col: number
-" 
-"   def new(lnum: number, col: number)
-"      this.lnum = lnum
-"      this.col = col
-"   enddef
-" 
-"   def SetLnum(lnum: number)
-"      this.lnum = lnum
-"   enddef
-" 
-"   def SetCol(col: number)
-"      this.col = col
-"   enddef
-" 
-"   def SetPosition(lnum: number, col: number)
-"      this.lnum = lnum
-"      this.col = col
-"   enddef
-" endclass
 
 
 " 
@@ -2737,21 +2631,20 @@ func! Opn_vimrc() abort
 
   call Opn(g:vimrc_file_path)
 
+  if has('nvim')
+    call Opn(g:init_lua_file_path)
+  endif
+
   if     Is_env__('linux')     " c9 s9
 
-    " let l:vimrc_c9_file_path      = '~/wrk/prj-pri/dotfiles/vim/vimrc/c9/vimrc.vim'
     let l:vimrc_c9_file_path      = g:vimrc_dir . '/c9/vimrc.vim'
-    call Opn(l:vimrc_c9_file_path)
+    " call Opn(l:vimrc_c9_file_path)
 
   elseif Is_env__('win32unix') " gitbash
 
     " let l:vimrc_gitbash_file_path = '~/wrk/prj-pri/dotfiles/vim/vimrc/gitbash/vimrc.vim'
     let l:vimrc_gitbash_file_path = g:vimrc_dir . '/gitbash/vimrc.vim'
     call Opn(l:vimrc_gitbash_file_path)
-  endif
-
-  if has('nvim')
-    call Opn(g:init_lua_file_path)
   endif
 endfunc
 
@@ -6756,35 +6649,26 @@ set shell=fish           " default
 
 if     Is_env__('mac')   " mac
 
-  " set shell=fish
-
-  source ~/wrk/prj-pri/dotfiles/vim/vimrc/mac/vimrc.vim
+  " source ~/wrk/prj-pri/dotfiles/vim/vimrc/mac/vimrc.vim
+  source ~/wrk/prj-pri/dotfiles/nvim/scrpt/mac/vimrc.vim
 
 elseif Is_env__('linux') " c9 s9
-  " set shell=bash
-  " set shell=fish
 
   " source ~/wrk/prj-pri/dotfiles/vim/.vimrc_c9
-  source ~/wrk/prj-pri/dotfiles/vim/vimrc/c9/vimrc.vim
+  " source ~/wrk/prj-pri/dotfiles/vim/vimrc/c9/vimrc.vim
+  source ~/wrk/prj-pri/dotfiles/nvim/scrpt/c9/vimrc.vim
 
 elseif Is_env__('win64') " pwsh ( for fzf )
 
-  " let &shell = Is_env__('win32') ? 'powershell' : 'pwsh'
-  " let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-  " let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-  " let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-  " set shellquote= shellxquote=
-
   " source ~/wrk/prj-pri/dotfiles/vim/.vimrc_pwsh
-  source ~/wrk/prj-pri/dotfiles/vim/vimrc/pwsh/vimrc.vim
+  " source ~/wrk/prj-pri/dotfiles/vim/vimrc/pwsh/vimrc.vim
+  source ~/wrk/prj-pri/dotfiles/nvim/scrpt/pwsh/vimrc.vim
 
 elseif Is_env__('win32unix') " gitbash ( for fzf )
 
-  " echo "gitbash"
-  " set shell=bash
-
   " source ~/wrk/prj-pri/dotfiles/vim/.vimrc_gitbash
-  source ~/wrk/prj-pri/dotfiles/vim/vimrc/gitbash/vimrc.vim
+  " source ~/wrk/prj-pri/dotfiles/vim/vimrc/gitbash/vimrc.vim
+  source ~/wrk/prj-pri/dotfiles/nvim/scrpt/gitbash/vimrc.vim
 
 else
   echo "is env else"
@@ -6846,6 +6730,115 @@ endfunc
 
 " comment auto off ( final def )
 au FileType * set fo-=c fo-=r fo-=o
+
+
+" 
+" fnc tst
+" 
+
+" tst escape
+
+"nnoremap T :call Tst_esacpe()<cr>
+
+func! Tst_esacpe() abort
+
+  let l:str = '().$a'
+  echo l:str
+
+  let l:str = escape(l:str, l:str)
+  echo l:str
+endfunc
+
+" tst escape shell
+
+"nnoremap T :call Tst_esacpe_shell() <cr>
+
+func! Tst_esacpe_shell() abort
+
+  let l:str = '().$a \ / | & b c '
+  echo l:str
+
+  let l:str = shellescape(l:str)
+  echo l:str
+endfunc
+
+" tst arg f
+
+"nnoremap T :TstArgF 
+"nnoremap T :TstArgF aa().a \/|&bbb 'aa().a \/|&bbb'
+
+command! -bang -nargs=* TstArgF call Tst_arg_f(<f-args>)
+
+func! Tst_arg_f(arg01, arg02, arg03, arg04) range abort
+
+  echo a:arg01
+  echo a:arg02
+  echo a:arg03
+  echo a:arg04
+endfunc
+
+" tst arg q
+
+"nnoremap T :TstArgQ aa "bbb ccc" '().\a bbb""' "().\a bbb''"
+
+command! -bang -nargs=* TstArgQ call Tst_arg_q(<q-args>)
+
+func! Tst_arg_q(arg01) range abort
+
+  echo a:arg01
+  " echo a:arg01 . 'end'
+endfunc
+
+" tst is_directory ~
+
+"nnoremap T :call Tst_is_directory()<cr>
+
+func! Tst_is_directory() range abort
+
+  " let l:path = "~/wrk"        " ng
+  let l:path = $HOME . "/wrk" " ok
+  if isdirectory(l:path)
+    echo "true"
+  else
+    echo "false"
+  endif
+endfunc
+
+" tst slctd
+
+"vnoremap T :call Tst()
+
+func! Tst() range abort
+
+  let l:val = Is_slctd_mode__box()
+  echo l:val
+endfunc
+
+" tst slctd __ rpl sys cmd mb
+
+"vnoremap T :TstSlctdRplSysCmdMb <cr>
+
+command! -range=% -nargs=* TstSlctdRplSysCmdMb <line1>,<line2>call Tst_slctd_rpl_sys_cmd_mb()
+
+" dev ? anchor
+func! Tst_slctd_rpl_sys_cmd_mb() range abort
+
+  let l:pth = '~/wrk/prj-pri/dotfiles/doc/tst/tst-in.md'
+  " let l:sys_cmd = 'cat ' . l:pth . ' | column -t | cat'
+  let l:sys_cmd = 'cat ' . l:pth . ' | column -t'
+  " let l:sys_cmd = 'cat ' . l:pth
+
+  '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
+endfunc
+
+" tst fnc call fr lua
+
+func! Tst_fnc_call_fr_lua() range abort
+
+  echo 'abcde'
+endfunc
+
+" fnc tst end
 
 
 " 

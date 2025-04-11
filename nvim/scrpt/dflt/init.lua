@@ -1,4 +1,6 @@
 
+-- print('init.lua')
+
 -- 
 -- plugin mng
 -- 
@@ -34,5 +36,18 @@
 
 -- ojroques/nvim-osc52
 vim.keymap.set('v', 'C', require('osc52').copy_visual)
+
+
+
+
+
+
+-- 
+-- tst
+-- 
+
+-- vim.keymap.set('n', 'T', '<cmd>call Tst_fnc_call_fr_lua()<cr>')
+
+-- vim.fn.Tst_fnc_call_fr_lua()
 
 

@@ -21,7 +21,7 @@ let g:fzf_rg_opt .= ' -g "!amplify/backend/awscloudformation/build"'
 
 if ! has('nvim')
 
-  source ~/wrk/prj-pri/dotfiles/vim/plg/osc52.vim
+  source ~/wrk/prj-pri/dotfiles/nvim/plg/vim/osc52.vim
 
   nnoremap C :call C9clp__ynk()<cr>
 

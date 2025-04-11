@@ -2,6 +2,14 @@
 # dotfiles
 
 
+## nvim
+
+to lua
+- key map
+  - expr
+- lua `_G` ?
+
+
 ## holo song
 
 svr mv, to skr vps
@@ -31,7 +39,7 @@ d
 ## mac
 
 mmv
-- err fix
+- err ? fix
 
 
 ## docker
