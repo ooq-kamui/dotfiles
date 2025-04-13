@@ -4,42 +4,33 @@
 
 ## nvim
 
+fnc name re
+- `Cursor__mv_jmp_v_` > `Cursor__mv_v_`
+
 to lua
 - key map
   - expr
 - lua `_G` ?
 
-
-## holo song
-
-svr mv, to skr vps
-- doc cp fr m1
-- api url mod
-  - confirm
+cursor __ mv to md h, j k
+- nnoremap Rj Rk
 
 
 ## godot
 
+read doc
+
 tst prj
 - cre
-
-tutorial
-- see, read
 
 
 ## zsh
 
-vi
+vi ( nvim )
 
-d
+d ( dir_jmp )
 - fnc
   - zoxide
-
-
-## mac
-
-mmv
-- err ? fix
 
 
 ## docker

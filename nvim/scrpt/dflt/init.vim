@@ -401,20 +401,23 @@ nnoremap gj :call Cursor__mv_file_edge_end()<cr>
 " cursor mv edit latest
 "nnoremap xx `.
 
+" cursor mv jmp
+nnoremap rk        :call Cursor__mv_jmp_v('k')<cr>
+nnoremap rj        :call Cursor__mv_jmp_v('j')<cr>
+nnoremap r<space>k :call Cursor__mv_jmp_v_char('k', 'f')<cr>
+nnoremap r<space>j :call Cursor__mv_jmp_v_char('j', 'f')<cr>
+
+" cursor mv jmp md h
+" dev anchor
+"nnoremap Rk :call Cursor__mv_jmp_v_md_h('k')<cr>
+"nnoremap Rj :call ('j')<cr>
+
 " scroll
 
 nnoremap K      <c-y>
 nnoremap J      <c-e>
 nnoremap <up>   <c-y>
 nnoremap <down> <c-e>
-
-" cursor mv jmp
-nnoremap rk        :call Cursor__mv_jmp_v('k')<cr>
-nnoremap rj        :call Cursor__mv_jmp_v('j')<cr>
-nnoremap r<space>k :call Cursor__mv_jmp_char('k', 'f')<cr>
-nnoremap r<space>j :call Cursor__mv_jmp_char('j', 'f')<cr>
-nnoremap Rk        :call Cursor__mv_jmp_char('k', 'f')<cr>
-nnoremap Rj        :call Cursor__mv_jmp_char('j', 'f')<cr>
 
 " scroll cursor line upper
 "nnoremap xx zt
@@ -3284,7 +3287,7 @@ func! Cursor__mv_file_edge_end() abort " alias
   call Cursor__mv_file_edge('j')
 endfunc
 
-func! Cursor__mv_jmp_char(drct, is_space_through) abort
+func! Cursor__mv_jmp_v_char(drct, is_space_through) abort
 
   "let l:is_space_stop = a:is_space_stop
   let l:is_space_through = a:is_space_through
@@ -3314,6 +3317,11 @@ func! Cursor__mv_jmp_char(drct, is_space_through) abort
     call Normal(l:n_cmd)
     let l:cnt = l:cnt + 1
   endwhile
+endfunc
+
+" dev anchor
+func! Cursor__mv_jmp_v_md_h(drct) abort
+
 endfunc
 
 func! Cursor__mv_jmp_space(drct) abort
@@ -3354,8 +3362,7 @@ func! Cursor__mv_jmp_v(drct) abort
 
   if Is_cursor_c_char__space() || Is_cursor_col__line_end()
 
-    call Cursor__mv_jmp_char(l:n_cmd, 't')
-
+    call Cursor__mv_jmp_v_char(l:n_cmd, 't')
   else
     call Cursor__mv_jmp_space(l:n_cmd)
   endif
