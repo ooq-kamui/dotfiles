@@ -2,21 +2,19 @@
 # dotfiles
 
 
-## godot
-
-doc read
-- read to tutorial pre
-
-tst prj
-- cre
-  - dir cre
-
-
 ## nvim
 
 key map
 - expr
 - cmdline ins, `<cr>` not
+
+
+## pwsh
+
+tidy
+- dir
+- path
+  - rg
 
 
 ## zsh
@@ -31,6 +29,16 @@ c9
 - ll, date format
   - mac ok
   - ref bash c9
+
+
+## godot
+
+doc read
+- read to tutorial pre
+
+tst prj
+- cre
+  - dir cre
 
 
 ## dns migration
