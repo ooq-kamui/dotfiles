@@ -13,8 +13,8 @@ tst prj
 ## nvim
 
 key map
-- cmdline ins, `<cr>` not
 - expr
+- cmdline ins, `<cr>` not
 
 
 ## dns migration
@@ -28,14 +28,14 @@ dns migration
 
 ## zsh
 
-install
-- ggl
-
 vi ( nvim )
 
 d ( dir_jmp )
 - fnc
   - zoxide
+
+c9
+- ll, date format
 
 
 ## docker
