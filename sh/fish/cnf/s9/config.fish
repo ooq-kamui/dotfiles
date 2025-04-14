@@ -20,4 +20,3 @@ alias vim 'nvim -p'
 alias vi  'nvim -p'
 
 
-

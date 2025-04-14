@@ -1,7 +1,8 @@
 
 # at mac
 
-set -x RIPGREP_CONFIG_PATH ~/wrk/cnf/sh/rg/.ripgreprc_mac
+# set -x RIPGREP_CONFIG_PATH ~/wrk/cnf/sh/rg/.ripgreprc_mac
+set -x RIPGREP_CONFIG_PATH ~/wrk/prj-pri/dotfiles/cli/rg/ripgreprc/mac/.ripgreprc
 
 
 # alias

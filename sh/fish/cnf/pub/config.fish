@@ -8,4 +8,3 @@ alias ooq_artcl_ds_rsync         'fish ~/wrk/prj/ssg/sh/rsync.ooq-artcl.ds.fish'
 #alias ooq_artcl_hg_build_7_rsync 'fish ~/dev/ooq-artcl/sh/build.rsync.fish'
 
 
-

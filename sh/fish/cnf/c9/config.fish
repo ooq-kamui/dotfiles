@@ -14,8 +14,9 @@ set fish_color_error          grey
 
 # rg ( ripgrep )
 
-#set -x RIPGREP_CONFIG_PATH ~/wrk/cnf/sh/rg/.ripgreprc
-set -x RIPGREP_CONFIG_PATH ~/wrk/cnf/sh/rg/.ripgreprc_c9
+# set -x RIPGREP_CONFIG_PATH ~/wrk/cnf/sh/rg/.ripgreprc
+# set -x RIPGREP_CONFIG_PATH ~/wrk/cnf/sh/rg/.ripgreprc_c9
+set -x RIPGREP_CONFIG_PATH ~/wrk/prj-pri/dotfiles/cli/rg/ripgreprc/c9/.ripgreprc
 
 
 # alias
