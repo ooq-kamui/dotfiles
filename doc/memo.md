@@ -9,6 +9,7 @@ doc read
 
 tst prj
 - cre
+  - dir cre
 
 
 ## nvim
@@ -18,18 +19,9 @@ key map
 - cmdline ins, `<cr>` not
 
 
-## dns migration
-
-dns migration
-- vps
-  - cre
-- svr
-  - del
-
-
 ## zsh
 
-vi ( nvim )
+fzf
 
 d ( dir_jmp )
 - fnc
@@ -37,6 +29,17 @@ d ( dir_jmp )
 
 c9
 - ll, date format
+  - mac ok
+  - ref bash c9
+
+
+## dns migration
+
+dns migration
+- vps
+  - cre
+- svr
+  - del
 
 
 ## docker

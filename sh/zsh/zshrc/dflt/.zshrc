@@ -37,6 +37,9 @@ alias d='dir_jmp'
 alias ls='ls -a'
 alias ll='ls -lgohAD "%Y-%m-%d %H:%M" --color=auto'
 
+alias vi='nvim -p'
+alias vim='nvim -p'
+
 
 
 export NVM_DIR="$HOME/.nvm"
