@@ -1,6 +1,1 @@
-
-" mac
-
-set shell=fish
-
-
+init.vim

@@ -39,9 +39,6 @@ vim.keymap.set('v', 'C', require('osc52').copy_visual)
 
 
 
-
-
-
 -- 
 -- tst
 -- 

@@ -1,6 +1,6 @@
 " 
 " load re
-" :source ~/vimrc.vim     " alias :v
+" :source ~/init.vim     " alias :v
 
 " 
 " val
@@ -8,7 +8,7 @@
 
 let g:dotfiles_dir    = '~/wrk/prj-pri/dotfiles'
 let g:vimrc_dir       = g:dotfiles_dir . '/nvim/scrpt'
-let g:vimrc_file_path = g:vimrc_dir . '/dflt/vimrc.vim'
+let g:vimrc_file_path = g:vimrc_dir . '/dflt/init.vim'
 
 let g:init_lua_file_path = g:vimrc_dir . '/dflt/init.lua'
 
@@ -245,7 +245,7 @@ nnoremap a :call Save()<cr>
 "nnoremap xx :call Load_re()
 
 " load re vimrc
-nnoremap :v :source ~/wrk/prj-pri/dotfiles/nvim/scrpt/dflt/vimrc.vim
+nnoremap :v :source ~/wrk/prj-pri/dotfiles/nvim/scrpt/dflt/init.vim
 
 " 
 " opn
@@ -316,7 +316,6 @@ nnoremap <Down>  j
 "nnoremap j j
 nnoremap k :call Cursor__mv_u()<cr>
 nnoremap j :call Cursor__mv_d()<cr>
-" dev anchor
 
 " cursor mv line mlt
 "nnoremap <c-k> 10<c-y>
@@ -335,10 +334,6 @@ nnoremap <c-a> 0
 nnoremap <expr> <c-y>
 \ Is_cursor_col__line_end() ? ':call Cursor__ins_markdown_cr()<cr>'     :
 \                             ':call Cursor__mv_line_end()<cr>'
-"\ Is_cursor_col__line_end() ? ':call Cursor__ins_space()<cr>'     :
-"\                         ':call Cursor__mv_line_end()<cr>'
-
-"nnoremap <c-e> :call Cursor__mv_line_end()<cr>
 
 " cursor mv char - forward
 nnoremap l l
@@ -402,15 +397,14 @@ nnoremap gj :call Cursor__mv_file_edge_end()<cr>
 "nnoremap xx `.
 
 " cursor mv jmp
-nnoremap rk        :call Cursor__mv_jmp_v('k')<cr>
-nnoremap rj        :call Cursor__mv_jmp_v('j')<cr>
-nnoremap r<space>k :call Cursor__mv_jmp_v_char('k', 'f')<cr>
-nnoremap r<space>j :call Cursor__mv_jmp_v_char('j', 'f')<cr>
+nnoremap rk        :call Cursor__mv_v_jmp('k')<cr>
+nnoremap rj        :call Cursor__mv_v_jmp('j')<cr>
+nnoremap r<space>k :call Cursor__mv_v_jmp_char('k', 'f')<cr>
+nnoremap r<space>j :call Cursor__mv_v_jmp_char('j', 'f')<cr>
 
 " cursor mv jmp md h
-" dev anchor
-"nnoremap Rk :call Cursor__mv_jmp_v_md_h('k')<cr>
-"nnoremap Rj :call ('j')<cr>
+"nnoremap xx :call Cursor__mv_v_jmp_md_h('k')<cr>
+"nnoremap xx :call Cursor__mv_v_jmp_md_h('j')<cr>
 
 " scroll
 
@@ -483,7 +477,8 @@ nnoremap h     u
 nnoremap <c-h> <c-r>
 
 " undo history clr
-nnoremap H :call Undo__clr()<cr>
+nnoremap :h :call Undo__clr()
+"nnoremap H :call Undo__clr()<cr>
 
 " repeat
 "nnoremap xx .
@@ -520,7 +515,6 @@ nnoremap , i, <esc>l
 nnoremap 0 :call Cursor__ins_hyphen()<cr>
 
 " ins bracket
-nnoremap <c-e> :call Cursor__ins_bracket()<cr>
 nnoremap <c-s> :call Cursor__ins_bracket()<cr>
 
 " ins date
@@ -665,13 +659,16 @@ nnoremap <c-n> :call Cursor__mv_srch('b')<cr>
 "nnoremap @ :call Srch_7_cursor__mv_nxt('f')<cr>
 
 " srch str set
-nnoremap e :call N_srch_str__flt()<cr>
+nnoremap e :call Srch_str__cursor_word()<cr>
 
 " srch str set ( word 1 )
-nnoremap E :call N_srch_str__word1_tgl()<cr>
+nnoremap E :call Srch_str__word1_tgl()<cr>
 
 " srch char bracket forward
 "nnoremap xx :call Srch_char_bracket('f')<cr>
+
+" srch markdown h
+nnoremap H :call Srch_str__markdown_h()<cr>
 
 " srch str history ( fzf )
 nnoremap <leader>f :FzfSrchHstry<cr>
@@ -941,7 +938,7 @@ nnoremap M <esc>
 "nnoremap P <esc>
 nnoremap R <esc>
 "nnoremap S <esc>
-"nnoremap T <esc>
+nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap W <esc>
 "nnoremap V <esc>
@@ -969,7 +966,7 @@ nnoremap <c-]> <esc>
 nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
-"nnoremap <c-e> <esc>
+nnoremap <c-e> <esc>
 "nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
@@ -1033,8 +1030,8 @@ nnoremap rv <esc>
 "        :
 nnoremap rz <esc>
 
-"nnoremap Rj <esc>
-"nnoremap Rk <esc>
+nnoremap Rj <esc>
+nnoremap Rk <esc>
 
 nnoremap xx <esc>
 
@@ -1045,7 +1042,7 @@ nnoremap :d :d
 nnoremap :e :e
 "nnoremap :f :f
 nnoremap :g :g
-nnoremap :h :h
+"nnoremap :h :h
 "          :
 "nnoremap :k :k
 "          :
@@ -1148,8 +1145,8 @@ vnoremap <c-j> 10j
 vnoremap <c-k> 10k
 
 " cursor mv jmp
-vnoremap rk :call Slctd_cursor__mv_jmp_v('k')<cr>
-vnoremap rj :call Slctd_cursor__mv_jmp_v('j')<cr>
+vnoremap rk :call Slctd_cursor__mv_v_jmp('k')<cr>
+vnoremap rj :call Slctd_cursor__mv_v_jmp('j')<cr>
 
 " cursor mv bracket pair
 vnoremap <c-l> %
@@ -1394,17 +1391,17 @@ vnoremap <leader>k "zy/<c-r>z
 "vnoremap <leader>i "zy/<c-r>z
 
 " srch forward ( srch rpl skip )
-vnoremap <c-n> :call V_srch_7_slct('f')<cr>
+vnoremap <c-n> :call Slctd_srch_7_slctd__srch_nxt('f')<cr>
 
 " srch back
-"vnoremap xx    :call V_srch_7_slct('b')<cr>
+"vnoremap xx    :call Slctd_srch_7_slctd__srch_nxt('b')<cr>
 
 " srch str set
 vnoremap n :call Slctd_srch__swtch()<cr>
 "vnoremap e 
 vnoremap <expr> e
 \ mode() == '<c-v>' ? '<esc>' :
-\                     ':call Slctd_srch_str__slctd_str()<cr>'
+\                     ':call Srch_str__slctd_str()<cr>'
 
 " srch rpl one > ynk, nxt
 vnoremap <c-p> :call Slctd__rpl_7_srch_nxt()<cr>
@@ -2640,13 +2637,12 @@ func! Opn_vimrc() abort
 
   if     Is_env__('linux')     " c9 s9
 
-    let l:vimrc_c9_file_path      = g:vimrc_dir . '/c9/vimrc.vim'
+    let l:vimrc_c9_file_path      = g:vimrc_dir . '/c9/init.vim'
     " call Opn(l:vimrc_c9_file_path)
 
   elseif Is_env__('win32unix') " gitbash
 
-    " let l:vimrc_gitbash_file_path = '~/wrk/prj-pri/dotfiles/vim/vimrc/gitbash/vimrc.vim'
-    let l:vimrc_gitbash_file_path = g:vimrc_dir . '/gitbash/vimrc.vim'
+    let l:vimrc_gitbash_file_path = g:vimrc_dir . '/gitbash/init.vim'
     call Opn(l:vimrc_gitbash_file_path)
   endif
 endfunc
@@ -3219,7 +3215,6 @@ func! Cursor__mv_mlt_d() abort " alias
   let l:n_cmd = g:cursor_mv_line_step . "\<c-e>"
   call Normal(l:n_cmd)
 endfunc
-" dev anchor
 
 func! Cursor__mv_u_line_end() abort
 
@@ -3287,7 +3282,7 @@ func! Cursor__mv_file_edge_end() abort " alias
   call Cursor__mv_file_edge('j')
 endfunc
 
-func! Cursor__mv_jmp_v_char(drct, is_space_through) abort
+func! Cursor__mv_v_jmp_char(drct, is_space_through) abort
 
   "let l:is_space_stop = a:is_space_stop
   let l:is_space_through = a:is_space_through
@@ -3319,12 +3314,20 @@ func! Cursor__mv_jmp_v_char(drct, is_space_through) abort
   endwhile
 endfunc
 
-" dev anchor
-func! Cursor__mv_jmp_v_md_h(drct) abort
+func! Cursor__mv_v_jmp_md_h(drct) abort " todo dev
+
+  if a:drct == 'k' || a:drct == 'j'
+
+    let l:n_cmd = a:drct
+  else
+    return
+  endif
+
+  " logic write ..
 
 endfunc
 
-func! Cursor__mv_jmp_space(drct) abort
+func! Cursor__mv_v_jmp_space(drct) abort
 
   if a:drct == 'k' || a:drct == 'j'
 
@@ -3349,7 +3352,7 @@ func! Cursor__mv_jmp_space(drct) abort
   endwhile
 endfunc
 
-func! Cursor__mv_jmp_v(drct) abort
+func! Cursor__mv_v_jmp(drct) abort
 
   if a:drct == 'k' || a:drct == 'j'
 
@@ -3362,9 +3365,9 @@ func! Cursor__mv_jmp_v(drct) abort
 
   if Is_cursor_c_char__space() || Is_cursor_col__line_end()
 
-    call Cursor__mv_jmp_v_char(l:n_cmd, 't')
+    call Cursor__mv_v_jmp_char(l:n_cmd, 't')
   else
-    call Cursor__mv_jmp_space(l:n_cmd)
+    call Cursor__mv_v_jmp_space(l:n_cmd)
   endif
 endfunc
 
@@ -4456,10 +4459,10 @@ func! Slctd_cursor__mv_file_edge(n_cmd) abort
   call Cursor__mv_file_edge(a:n_cmd)
 endfunc
 
-func! Slctd_cursor__mv_jmp_v(drct) range abort
+func! Slctd_cursor__mv_v_jmp(drct) range abort
 
   call Slct_re()
-  call Cursor__mv_jmp_v(a:drct)
+  call Cursor__mv_v_jmp(a:drct)
 endfunc
 
 func! Slctd_cursor__mv_line_end() range abort
@@ -5516,7 +5519,7 @@ func! Slctd_srch__swtch() abort " srch, set or run
 
     call Slctd_str__expnd_srch()
   else
-    call Slctd_srch_str__slctd_str()
+    call Srch_str__slctd_str()
   endif
 endfunc
 
@@ -5670,13 +5673,13 @@ func! Srch_str__(str, op_word1) abort
   call Normal('/' . l:exe_str) " srch hstry add
 endfunc
 
-func! N_srch_str__flt() abort
+func! Srch_str__cursor_word() abort
 
   let l:str = Cursor_word()
   call Srch_str__(l:str, v:false)
 endfunc
 
-func! N_srch_str__word1_tgl() abort
+func! Srch_str__word1_tgl() abort
 
   let l:str = Srch_str_flt()
 
@@ -5714,9 +5717,7 @@ func! Srch_str__prv_tgl() abort
   let @/ = l:srch_str
 endfunc
 
-" refactoring Slctd_srch_str__slctd_str > Srch_str__slctd_str ?
-
-func! Slctd_srch_str__slctd_str() range abort
+func! Srch_str__slctd_str() range abort
 
   if Is_slctd_str__srch_str()
     call Slctd__cancel()
@@ -5740,7 +5741,8 @@ func! Srch_slct(dir) abort
   endif
 endfunc
 
-func! V_srch_7_slct(dir) abort " srch rpl skip
+" dev anchor refactoring fnc name re ?
+func! Slctd_srch_7_slctd__srch_nxt(dir) abort " srch rpl skip
 
   if     a:dir == 'f'
     call Normal('`>lgn')
@@ -5750,6 +5752,7 @@ func! V_srch_7_slct(dir) abort " srch rpl skip
   endif
 endfunc
 
+" dev anchor refactoring fnc name re ?
 func! Srch_7_cursor__mv_nxt(dir) abort
 
   call Srch_slct(a:dir)
@@ -5759,16 +5762,22 @@ func! Srch_7_cursor__mv_nxt(dir) abort
   call Cursor__mv_char_f()
 endfunc
 
-func! Srch_char(dir, char) abort
+func! Srch_char(drct, char) abort
 
   let @/ = '[' . a:char . ']'
-  call Cursor__mv_srch(a:dir)
+  call Cursor__mv_srch(a:drct)
 endfunc
 
-func! Srch_char_bracket(dir) abort
+func! Srch_char_bracket(drct) abort
 
   let l:char_bracket = "'" . '")}\]'
-  call Srch_char(a:dir, l:char_bracket)
+  call Srch_char(a:drct, l:char_bracket)
+endfunc
+
+" dev anchor
+func! Srch_str__markdown_h() range abort
+
+  let @/ = '^#\+ '
 endfunc
 
 " srch cnd
@@ -6068,7 +6077,7 @@ endfunc
 
 func! V_fzf_buf() abort
 
-  call Slctd_srch_str__slctd_str()
+  call Srch_str__slctd_str()
   exe 'FzfBufCrnt ' . escape(@z, '.*~')
 endfunc
 
@@ -6656,27 +6665,19 @@ set shell=fish           " default
 
 if     Is_env__('mac')   " mac
 
-  " source ~/wrk/prj-pri/dotfiles/vim/vimrc/mac/vimrc.vim
-  source ~/wrk/prj-pri/dotfiles/nvim/scrpt/mac/vimrc.vim
+  source ~/wrk/prj-pri/dotfiles/nvim/scrpt/mac/init.vim
 
 elseif Is_env__('linux') " c9 s9
 
-  " source ~/wrk/prj-pri/dotfiles/vim/.vimrc_c9
-  " source ~/wrk/prj-pri/dotfiles/vim/vimrc/c9/vimrc.vim
-  source ~/wrk/prj-pri/dotfiles/nvim/scrpt/c9/vimrc.vim
+  source ~/wrk/prj-pri/dotfiles/nvim/scrpt/c9/init.vim
 
 elseif Is_env__('win64') " pwsh ( for fzf )
 
-  " source ~/wrk/prj-pri/dotfiles/vim/.vimrc_pwsh
-  " source ~/wrk/prj-pri/dotfiles/vim/vimrc/pwsh/vimrc.vim
-  source ~/wrk/prj-pri/dotfiles/nvim/scrpt/pwsh/vimrc.vim
+  source ~/wrk/prj-pri/dotfiles/nvim/scrpt/pwsh/init.vim
 
 elseif Is_env__('win32unix') " gitbash ( for fzf )
 
-  " source ~/wrk/prj-pri/dotfiles/vim/.vimrc_gitbash
-  " source ~/wrk/prj-pri/dotfiles/vim/vimrc/gitbash/vimrc.vim
-  source ~/wrk/prj-pri/dotfiles/nvim/scrpt/gitbash/vimrc.vim
-
+  source ~/wrk/prj-pri/dotfiles/nvim/scrpt/gitbash/init.vim
 else
   echo "is env else"
 endif
@@ -6902,8 +6903,8 @@ endif
 " ref: [url]
 
 " when unknown server )
-"   curl https://raw.githubusercontent.com/ooq-kamui/dotfiles/refs/heads/main/vim/vimrc/dflt/vimrc.vim > vimrc.vim
-"   vim -u vimrc.vim
+"   curl https://raw.githubusercontent.com/ooq-kamui/dotfiles/refs/heads/main/nvim/scrpt/dflt/init.vim > init.vim
+"   vim -u init.vim
 
 " coding cheet
 " 

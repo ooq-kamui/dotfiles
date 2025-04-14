@@ -4,21 +4,25 @@
 
 ## nvim
 
-fnc name re
-- `Cursor__mv_jmp_v_` > `Cursor__mv_v_`
-
 to lua
 - key map
   - expr
 - lua `_G` ?
 
-cursor __ mv to md h, j k
-- nnoremap Rj Rk
+
+## job srch
+
+wip:
+
+
+## dns migration
+
+dns migration
 
 
 ## godot
 
-read doc
+doc read
 
 tst prj
 - cre
