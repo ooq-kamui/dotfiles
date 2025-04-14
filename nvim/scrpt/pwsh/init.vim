@@ -17,4 +17,3 @@ set shellquote= shellxquote=
 " let g:fzf_rg_opt .= ' -g "\!node_modules/"'
 
 
-
