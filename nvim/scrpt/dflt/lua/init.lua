@@ -34,8 +34,8 @@
 -- key map
 -- 
 
--- ojroques/nvim-osc52
-vim.keymap.set('v', 'C', require('osc52').copy_visual)
+require('init-key-map')
+
 
 
 

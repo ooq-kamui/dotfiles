@@ -2,24 +2,6 @@
 # dotfiles
 
 
-## nvim
-
-to lua
-- key map
-  - expr
-- lua `_G` ?
-
-
-## job srch
-
-wip:
-
-
-## dns migration
-
-dns migration
-
-
 ## godot
 
 doc read
@@ -28,7 +10,26 @@ tst prj
 - cre
 
 
+## nvim
+
+key map
+- cmdline ins, `<cr>` not
+- expr
+
+
+## dns migration
+
+dns migration
+- vps
+  - cre
+- svr
+  - del
+
+
 ## zsh
+
+install
+- ggl
 
 vi ( nvim )
 

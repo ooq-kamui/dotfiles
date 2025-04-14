@@ -144,6 +144,7 @@ alias df  'df -h'
 
 alias zip_un 'unzip'
 
+alias pw_gen 'pwgen'
 alias pw_cre 'pwgen'
 
 alias clc 'math'

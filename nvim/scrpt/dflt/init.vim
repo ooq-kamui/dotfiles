@@ -10,7 +10,8 @@ let g:dotfiles_dir    = '~/wrk/prj-pri/dotfiles'
 let g:vimrc_dir       = g:dotfiles_dir . '/nvim/scrpt'
 let g:vimrc_file_path = g:vimrc_dir . '/dflt/init.vim'
 
-let g:init_lua_file_path = g:vimrc_dir . '/dflt/init.lua'
+let g:init_lua_file_path         = g:vimrc_dir . '/dflt/lua/init.lua'
+let g:init_key_map_lua_file_path = g:vimrc_dir . '/dflt/lua/init-key-map.lua'
 
 
 let skip_defaults_vim=1
@@ -2633,6 +2634,7 @@ func! Opn_vimrc() abort
 
   if has('nvim')
     call Opn(g:init_lua_file_path)
+    call Opn(g:init_key_map_lua_file_path)
   endif
 
   if     Is_env__('linux')     " c9 s9
