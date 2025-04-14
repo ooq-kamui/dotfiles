@@ -5,6 +5,7 @@
 ## godot
 
 doc read
+- read to tutorial pre
 
 tst prj
 - cre
