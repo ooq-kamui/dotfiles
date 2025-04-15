@@ -8,13 +8,7 @@ key map
 - expr
 - cmdline ins, `<cr>` not
 
-
-## pwsh
-
-tidy
-- dir
-- path
-  - rg
+`.vimrc` bk
 
 
 ## zsh
@@ -24,11 +18,6 @@ fzf
 d ( dir_jmp )
 - fnc
   - zoxide
-
-c9
-- ll, date format
-  - mac ok
-  - ref bash c9
 
 
 ## godot

@@ -36,6 +36,11 @@ alias d='dir_jmp'
 
 alias ls='ls -a'
 alias ll='ls -lgohAD "%Y-%m-%d %H:%M" --color=auto'
+alias lll='ls -lhAD "%Y-%m-%d %H:%M" --color=auto'
+
+alias lf='lrf'
+alias ld='lrd'
+
 
 alias vi='nvim -p'
 alias vim='nvim -p'
