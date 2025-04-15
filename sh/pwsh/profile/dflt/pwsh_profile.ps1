@@ -50,7 +50,8 @@ Invoke-Expression (& { (zoxide init powershell | Out-String) })
 # rg
 
 # $env:RIPGREP_CONFIG_PATH = "$home\wrk\cnf\sh\rg\.ripgreprc"
-$env:RIPGREP_CONFIG_PATH = "$home\wrk\cnf\sh\rg\.ripgreprc_pwsh"
+# $env:RIPGREP_CONFIG_PATH = "$home\wrk\cnf\sh\rg\.ripgreprc_pwsh"
+$env:RIPGREP_CONFIG_PATH = "$home\wrk\prj-pri\dotfiles\cli\rg\ripgreprc\pwsh\.ripgreprc"
 
 # fzf
 
@@ -261,8 +262,9 @@ $ENV:Path += ";C:\Program Files\PostgreSQL\16\bin"
 
 $wrk               = "$home\wrk"
 # $profile_dir       = "$wrk\cnf\sh\pwsh\ofc"
-$profile_dir       = "$wrk\cnf\sh\pwsh"
-$profile_file_name = "pwsh_profile_my.ps1"
+# $profile_dir       = "$wrk\cnf\sh\pwsh"
+$profile_dir       = "$wrk\prj-pri\dotfiles\sh\pwsh\profile\dflt"
+$profile_file_name = "pwsh_profile.ps1"
 $profile_file_path = "$profile_dir\$profile_file_name"
 
 function cnf {
