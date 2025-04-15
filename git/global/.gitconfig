@@ -5,7 +5,7 @@
   old = magenta
 [color "status"]
   # added     = magenta
-  changed   = yellow
+  changed   = green
   untracked = yellow
   unmerged  = yellow
 [core]

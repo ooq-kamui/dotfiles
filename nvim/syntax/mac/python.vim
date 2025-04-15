@@ -7,4 +7,3 @@ hi pythonComment      ctermfg=green
 hi pythonTripleQuotes ctermfg=green
 
 
-

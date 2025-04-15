@@ -10,4 +10,3 @@ hi ps1Variable      ctermfg=lightgreen
 hi ps1ScopeModifier ctermfg=grey
 
 
-

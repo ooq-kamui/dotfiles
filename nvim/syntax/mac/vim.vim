@@ -6,4 +6,3 @@ hi Special        cterm=none ctermfg=9
 hi Identifier     cterm=none ctermfg=130
 
 
-

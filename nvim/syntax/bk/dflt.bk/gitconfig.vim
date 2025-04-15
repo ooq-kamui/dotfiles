@@ -4,4 +4,3 @@ hi gitconfigComment     ctermfg=green
 hi gitconfigSection     ctermfg=magenta
 
 
-

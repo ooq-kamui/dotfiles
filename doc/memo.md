@@ -2,30 +2,27 @@
 # dotfiles
 
 
+## godot
+
+tst prj
+- cre
+  - dir cre
+
+
 ## nvim
+
+- sed
+  - excld `<expr>`
 
 key map
 - expr
   - ex paste
-
-- sed
-  - excld `<expr>`
 
 
 ## zsh
 
 fzf
 - .zshrc write ggl
-
-
-## godot
-
-doc read
-- read to tutorial pre
-
-tst prj
-- cre
-  - dir cre
 
 
 ## dns migration
