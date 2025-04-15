@@ -2,11 +2,9 @@
 # dotfiles
 
 
-## godot
+## git
 
-tst prj
-- cre
-  - dir cre
+color
 
 
 ## nvim
@@ -23,6 +21,17 @@ key map
 
 fzf
 - .zshrc write ggl
+
+
+## term
+
+wez
+- ofc
+
+
+## godot
+
+step by step
 
 
 ## dns migration
