@@ -32,8 +32,10 @@
   d   = diff
   dw  = diff
   ds  = diff --staged
-  ssl = diff --staged --name-only
-  swl = diff          --name-only
+  # ssl = diff --staged --name-only
+  sl  = diff --staged --name-only
+  # swl = diff          --name-only
+  wl  = diff          --name-only
   mrg = merge
   psh = push
   pll = pull

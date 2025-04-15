@@ -7,12 +7,7 @@ vim.keymap.set('v', 'C', require('osc52').copy_visual)
 
 
 -- 
--- migration
---   fr vim script
--- ex
---   vim.keymap.set('n', 'T', '<cmd>call Tst_fnc_call_fr_lua()<cr>')
---   vim.keymap.set('n', 'T', vim.fn.Tst_fnc_call_fr_lua')
-
+-- migration  fr init.vim
 
 -- 
 -- mode normal
@@ -22,30 +17,33 @@ vim.keymap.set('v', 'C', require('osc52').copy_visual)
 vim.keymap.set('n', 'w',  vim.fn.Buf__quit_swtch)
 
 -- " quit buffer force
--- nnoremap :q :q!
--- vim.keymap.set('n', ':q', '<cmd>q!') -- add <cr>, ## on hold
+vim.keymap.set('n', ':q', ':q!')
 
 -- " quit vim
-vim.keymap.set('n', 'W', '<cmd>q<cr>')
+vim.keymap.set('n', 'W', ':q<cr>')
 
 -- " quit tab other
--- "nnoremap xx :tabo<cr>
+-- vim.keymap.set('n', 'xx', ':tabo<cr>')
 
 -- " background job
--- "nnoremap <c-z> <c-z>
+-- vim.keymap.set('n', '<c-z>', '<c-z>')
 
 -- " save
 -- nnoremap a :call Save()<cr>
+vim.keymap.set('n', 'a', ':call Save()<cr>')
 
 -- " load re slf
--- "nnoremap xx :call Load_re()
+-- vim.keymap.set('n', 'xx', ':call Load_re()')
 
 -- " load re vimrc
--- nnoremap :v :source ~/wrk/prj-pri/dotfiles/nvim/scrpt/dflt/init.vim
+vim.keymap.set('n', ':v', ':source ~/wrk/prj-pri/dotfiles/nvim/scrpt/dflt/init.vim')
 
--- " 
--- " opn
--- " 
+-- 
+-- opn
+-- 
+
+-- dev anchor  start
+
 
 -- " opn tab file
 -- nnoremap :o :Opn 
@@ -55,7 +53,6 @@ vim.keymap.set('n', 'W', '<cmd>q<cr>')
 
 -- " opn file srch  ( fzf )
 -- nnoremap <leader>l :call Fzf_file()<cr>
--- "nnoremap <leader>l :FzfFile <cr>
 
 -- " opn file hstry ( fzf )
 -- nnoremap <leader>h :FzfFileHstry<cr>
@@ -108,14 +105,10 @@ vim.keymap.set('n', 'W', '<cmd>q<cr>')
 -- nnoremap <Down>  j
 
 -- " cursor mv line
--- "nnoremap k k
--- "nnoremap j j
 -- nnoremap k :call Cursor__mv_u()<cr>
 -- nnoremap j :call Cursor__mv_d()<cr>
 
 -- " cursor mv line mlt
--- "nnoremap <c-k> 10<c-y>
--- "nnoremap <c-j> 10<c-e>
 -- nnoremap <c-k> :call Cursor__mv_mlt_u()<cr>
 -- nnoremap <c-j> :call Cursor__mv_mlt_d()<cr>
 
@@ -136,7 +129,6 @@ vim.keymap.set('n', 'W', '<cmd>q<cr>')
 
 -- " cursor mv char - back
 -- nnoremap <c-o> h
--- "nnoremap <c-s> h
 
 -- " cursor mv word - forward
 -- nnoremap f :call Cursor__mv_word_f()<cr>
@@ -149,7 +141,6 @@ vim.keymap.set('n', 'W', '<cmd>q<cr>')
 
 -- " cursor mv word dlm _ forward
 -- nnoremap _ f_l
--- "nnoremap \ f_l
 
 -- " cursor mv word dlm _ back
 -- nnoremap <c-_> hT_
@@ -159,7 +150,6 @@ vim.keymap.set('n', 'W', '<cmd>q<cr>')
 
 -- " cursor mv word dlm ( camel or _ )  -  forward
 -- nnoremap F     :call Cursor__mv_word_dlm_f()<cr>
--- "nnoremap <c-m> :call Cursor__mv_word_dlm_f()<cr>
 
 -- " cursor mv fnc name
 -- nnoremap <c-f> :call Cursor__mv_fnc_name()<cr>
@@ -173,21 +163,14 @@ vim.keymap.set('n', 'W', '<cmd>q<cr>')
 -- " cursor mv bracket fnc back
 -- "nnoremap xx [m
 
--- " cursor mv edited ( jmp list )
--- "nnoremap xx <c-o>
--- "nnoremap xx <c-i>
-
 -- " cursor mv indnt auto
 -- "nnoremap xx :call Cursor__mv_indnt_auto()<cr> " todo dev
--- "nnoremap xx ll
 
 -- " cursor mv file edge bgn
 -- nnoremap gk :call Cursor__mv_file_edge_bgn()<cr>
--- "nnoremap gk :call Cursor__mv_file_edge('k')<cr>
 
 -- " cursor mv file edge end
 -- nnoremap gj :call Cursor__mv_file_edge_end()<cr>
--- "nnoremap gj :call Cursor__mv_file_edge('j')<cr>
 
 -- " cursor mv edit latest
 -- "nnoremap xx `.
@@ -195,12 +178,9 @@ vim.keymap.set('n', 'W', '<cmd>q<cr>')
 -- " cursor mv jmp
 -- nnoremap rk        :call Cursor__mv_v_jmp('k')<cr>
 -- nnoremap rj        :call Cursor__mv_v_jmp('j')<cr>
+
 -- nnoremap r<space>k :call Cursor__mv_v_jmp_char('k', 'f')<cr>
 -- nnoremap r<space>j :call Cursor__mv_v_jmp_char('j', 'f')<cr>
-
--- " cursor mv jmp md h
--- "nnoremap xx :call Cursor__mv_v_jmp_md_h('k')<cr>
--- "nnoremap xx :call Cursor__mv_v_jmp_md_h('j')<cr>
 
 -- " scroll
 
@@ -264,7 +244,6 @@ vim.keymap.set('n', 'W', '<cmd>q<cr>')
 
 -- " paste rgstr history ( fzf )
 -- nnoremap <leader>r :FzfRgstr<cr>
--- "nnoremap R         :FzfRgstr<cr>
 
 -- " undo
 -- nnoremap h     u
@@ -386,7 +365,6 @@ vim.keymap.set('n', 'W', '<cmd>q<cr>')
 
 -- " del cr ( line join )
 -- nnoremap <c-m> J
--- "nnoremap M     J
 
 -- " line mv up
 -- "nnoremap xx "addk"aP
@@ -407,8 +385,6 @@ vim.keymap.set('n', 'W', '<cmd>q<cr>')
 -- " indnt shft
 -- nnoremap ri :call Cursor_line_indnt__shft_l()<cr>
 -- nnoremap ro :call Cursor_line_indnt__shft_r()<cr>
--- nnoremap < :call Cursor_line_indnt__shft_l()<cr>
--- nnoremap > :call Cursor_line_indnt__shft_r()<cr>
 
 -- " indnt add
 -- "nnoremap xx :call Cursor_line_indnt__add(2)<cr>
@@ -498,7 +474,6 @@ vim.keymap.set('n', 'W', '<cmd>q<cr>')
 
 -- " fzf jmplst
 -- nnoremap <leader>e :FzfJmplst<cr>
--- nnoremap <leader>a :FzfJmplst<cr>
 
 -- " fzf pth lst
 -- "nnoremap <leader>xx :FzfTagjmpByFile <cr>
@@ -537,7 +512,6 @@ vim.keymap.set('n', 'W', '<cmd>q<cr>')
 
 -- " fzf doc memo
 -- nnoremap <leader>m :call Fzf_doc_memo_opn()<cr>
--- "nnoremap <leader>M :FzfFile ../memo/
 
 -- " fzf vim fnc call
 -- nnoremap <leader>c :call Fzf_vim_fnc_call()<cr>
@@ -580,7 +554,6 @@ vim.keymap.set('n', 'W', '<cmd>q<cr>')
 
 -- " win ( buf ) splt v
 -- nnoremap rn :call Win__splt_v()<cr>
--- "nnoremap rv :call Win__splt_v()<cr>
 
 -- " win ( buf ) nxt
 -- nnoremap <c-w> :call Win_splt_cursor__mv_nxt()<cr>
@@ -597,29 +570,9 @@ vim.keymap.set('n', 'W', '<cmd>q<cr>')
 
 -- "nnoremap xx :Term 
 
--- " 
--- " mark
--- " 
-
--- " mark lst ( fzf )
--- "nnoremap <leader>xx :FzfMark<cr>
-
--- " mark show tgl
--- "nnoremap <leader>xx :call Mark_show_tgl()<cr>
-
--- " mark add / del tgl
--- "nnoremap <leader>xx :call Mark_tgl()<cr>
-
--- " mark del all
--- "nnoremap <leader>xx :call Mark_del_all()<cr>
-
--- " mark, cursor mv mark forward
--- "nnoremap <leader>xx ]`
-
--- " mark, cursor mv mark back
--- "nnoremap <leader>xx [`
-
--- " setting
+-- 
+-- " setting ( set )
+-- 
 
 -- " setting  -  line view wrap tgl
 -- nnoremap :w :set wrap!
@@ -681,8 +634,8 @@ vim.keymap.set('n', 'W', '<cmd>q<cr>')
 -- "nnoremap % <esc> " ?
 -- nnoremap & <esc>
 -- nnoremap ( <esc>
--- "nnoremap < <esc>
--- "nnoremap > <esc>
+-- nnoremap < <esc>
+-- nnoremap > <esc>
 -- "nnoremap << <esc>
 -- "nnoremap >> <esc>
 
@@ -857,7 +810,7 @@ vim.keymap.set('n', 'W', '<cmd>q<cr>')
 
 -- nnoremap <leader>: <esc>
 
--- "nnoremap <leader>a <esc>
+-- nnoremap <leader>a <esc>
 -- nnoremap <leader>b <esc>
 -- "nnoremap <leader>c <esc>
 -- "nnoremap <leader>d <esc>
@@ -882,6 +835,8 @@ vim.keymap.set('n', 'W', '<cmd>q<cr>')
 -- "nnoremap <leader>L <esc>
 -- nnoremap <leader>M <esc>
 -- "nnoremap <leader>O <esc>
+
+-- dev anchor end
 
 
 -- " 
@@ -1098,7 +1053,7 @@ vim.keymap.set('n', 'W', '<cmd>q<cr>')
 -- " \                     ':call Slctd_str_edge_out_quote__tgl()<cr>'
 
 -- " slctd str edge bracket __ tgl
--- " vnoremap W :call Slctd_str_edge_out_bracket__tgl()<cr>
+-- " vnoremap xx :call Slctd_str_edge_out_bracket__tgl()<cr>
 
 -- " slctd str edge out __ tgl shft
 -- vnoremap W :call Slctd_str_edge_out__tgl_shft()<cr>

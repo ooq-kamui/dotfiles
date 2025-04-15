@@ -6,18 +6,16 @@
 
 key map
 - expr
-- cmdline ins, `<cr>` not
+  - ex paste
 
-`.vimrc` bk
+- sed
+  - excld `<expr>`
 
 
 ## zsh
 
 fzf
-
-d ( dir_jmp )
-- fnc
-  - zoxide
+- .zshrc write ggl
 
 
 ## godot

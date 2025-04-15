@@ -1,0 +1,400 @@
+
+-- nnoremap a :call Save()<cr>
+-- nnoremap :o :Opn 
+-- "nnoremap xx `0
+-- nnoremap <leader>l :call Fzf_file()<cr>
+-- nnoremap <leader>h :FzfFileHstry<cr>
+-- "nnoremap gf :call Opn_fish_cnf()<cr>
+-- nnoremap gh :call Opn_vimrc()<cr>
+-- "nnoremap xx :call Opn_tmp_file()<cr>
+-- "nnoremap xx :call Opn_grep_wk()<cr>
+-- "nnoremap xx :call Opn_memo()<cr>
+-- "nnoremap xx :OpnMan 
+-- nnoremap go :call Opn_app_by_cursor_path()<cr>
+-- "nnoremap xx :call Opn_app_buf_file()<cr>
+-- nnoremap gd :call Opn_buf_file_dir()<cr>
+-- "nnoremap xx :call Opn_brwsr()<cr>
+-- nnoremap ggl :call Opn_ggl_srch('')<cr>
+-- nnoremap <Right> l
+-- nnoremap <Left>  h
+-- nnoremap <Up>    k
+-- nnoremap <Down>  j
+-- nnoremap k :call Cursor__mv_u()<cr>
+-- nnoremap j :call Cursor__mv_d()<cr>
+-- nnoremap <c-k> :call Cursor__mv_mlt_u()<cr>
+-- nnoremap <c-j> :call Cursor__mv_mlt_d()<cr>
+-- nnoremap y :call Cursor__mv_line_top_or_new_line()<cr>
+-- nnoremap <c-a> 0
+-- "nnoremap <c-y> xx
+-- nnoremap <expr> <c-y>
+-- nnoremap l l
+-- nnoremap <c-o> h
+-- nnoremap f :call Cursor__mv_word_f()<cr>
+-- nnoremap o :call Cursor__mv_word_b()<cr>
+-- "nnoremap xx :call Cursor__mv_word_b_pre()<cr>
+-- nnoremap _ f_l
+-- nnoremap <c-_> hT_
+-- nnoremap \     T_h
+-- nnoremap <bar> T_h
+-- "nnoremap <c-\> T_h
+-- nnoremap F     :call Cursor__mv_word_dlm_f()<cr>
+-- nnoremap <c-f> :call Cursor__mv_fnc_name()<cr>
+-- nnoremap <c-l> %
+-- "nnoremap xx [{
+-- "nnoremap xx [m
+-- "nnoremap xx :call Cursor__mv_indnt_auto()<cr> " todo dev
+-- nnoremap gk :call Cursor__mv_file_edge_bgn()<cr>
+-- nnoremap gj :call Cursor__mv_file_edge_end()<cr>
+-- "nnoremap xx `.
+-- nnoremap rk        :call Cursor__mv_v_jmp('k')<cr>
+-- nnoremap rj        :call Cursor__mv_v_jmp('j')<cr>
+-- nnoremap r<space>k :call Cursor__mv_v_jmp_char('k', 'f')<cr>
+-- nnoremap r<space>j :call Cursor__mv_v_jmp_char('j', 'f')<cr>
+-- nnoremap K      <c-y>
+-- nnoremap J      <c-e>
+-- nnoremap <up>   <c-y>
+-- nnoremap <down> <c-e>
+-- "nnoremap xx zt
+-- "nnoremap xx zz
+-- "nnoremap I v
+-- nnoremap i :call Slctd_str__word()<cr>
+-- "nnoremap <c-_> :call Slctd__word_by_under_score()<cr>
+-- " nnoremap <c-_> f_l
+-- nnoremap I ve
+-- nnoremap v <c-v>
+-- "nnoremap xx :call Ynk__line_all()<cr>
+-- nnoremap rr :call Slct_re()<cr>
+-- nnoremap <c-c> :call Ynk__clr()<cr>
+-- nnoremap c :call Ynk__line()<cr>
+-- "nnoremap xx "ayl
+-- nnoremap gs :call Ynk__buf_file_path()<cr>
+-- nnoremap p :call Cursor__ins_ynk()<cr>
+-- nnoremap P :call Cursor__ins_clp()<cr>
+-- nnoremap <leader>r :FzfRgstr<cr>
+-- nnoremap h     u
+-- nnoremap <c-h> <c-r>
+-- nnoremap :h :call Undo__clr()
+-- "nnoremap H :call Undo__clr()<cr>
+-- "nnoremap xx .
+-- nnoremap <space> i
+-- "nnoremap xx R
+-- nnoremap m :call Cursor__ins_cr()<cr>
+-- nnoremap L :call Cursor__ins_space(v:false)<cr>
+-- nnoremap 2 i=<esc>
+-- nnoremap . i.<esc>
+-- nnoremap , i, <esc>l
+-- "nnoremap xx A,<esc>j
+-- nnoremap 0 :call Cursor__ins_hyphen()<cr>
+-- nnoremap <c-s> :call Cursor__ins_bracket()<cr>
+-- nnoremap * :call Cursor__ins_da()<cr>
+-- nnoremap ; :call Cursor__ins_dt()<cr>
+-- "nnoremap xx :call Cursor__ins_week()<cr>
+-- "nnoremap xx :call Cursor__ins_line_buf_file_path()<cr>
+-- nnoremap A :call Cursor__ins_line_anchor()<cr>
+-- nnoremap <c-u> :call Cursor__ins_markdown_code()<cr>
+-- "nnoremap O xx
+-- nnoremap <expr> O
+-- nnoremap ru :call Cursor_line_end__dots_adjst()<cr>
+-- " ref nnoremap y
+-- nnoremap $ :call Cursor__ins_cmnt_mlt()<cr>
+-- "nnoremap ! xx
+-- nnoremap <expr> !
+-- "nnoremap 1 xx
+-- nnoremap <expr> 1
+-- nnoremap V :call Cursor_d__ins_line_space()<cr>
+-- "nnoremap <bar> :call Cursor_char__rpl_underscore()<cr>
+-- "nnoremap xx :call Char_markdown_chk__tgl()<cr>
+-- nnoremap s :call Cursor_c_char__del()<cr>
+-- "nnoremap xx :call Cursor_c_char__del_ynk()<cr>
+-- nnoremap d :call Cursor_line__del()<cr>
+-- nnoremap <c-d> D
+-- "nnoremap xx hvbd
+-- "nnoremap <expr> xx Is_cursor_col__line_end() ? '<esc>' : '"zdw'
+-- "nnoremap <expr> xx Is_cursor_col__line_end() ? '<esc>' : '"zde'
+-- nnoremap <c-m> J
+-- "nnoremap xx "addk"aP
+-- nnoremap D "zyy"zP
+-- "nnoremap xx qy
+-- "nnoremap xx @y
+-- nnoremap u :call N_char__tgl_swtch01()<cr>
+-- nnoremap U :call N_char__tgl_swtch02()<cr>
+-- nnoremap ri :call Cursor_line_indnt__shft_l()<cr>
+-- nnoremap ro :call Cursor_line_indnt__shft_r()<cr>
+-- "nnoremap xx :call Cursor_line_indnt__add(2)<cr>
+-- nnoremap re :call Cursor_line_indnt__crct()<cr>
+-- nnoremap q :call Cursor_f_str__crct_by_line_u()<cr>
+-- nnoremap Q :call Cursor_f_str__crct_by_line_d()<cr>
+-- nnoremap S /<cr>N
+-- "nnoremap / /<cr>N
+-- "nnoremap xx :call Srch_init()<cr>
+-- "nnoremap xx f
+-- "nnoremap xx ;
+-- nnoremap <leader>k /
+-- nnoremap <leader>K /\<\><left><left>
+-- "nnoremap xx Xxx
+-- nnoremap n     :call Cursor__mv_srch('f')<cr>
+-- nnoremap <c-n> :call Cursor__mv_srch('b')<cr>
+-- "nnoremap @ :call Srch_7_cursor__mv_nxt('f')<cr>
+-- nnoremap e :call Srch_str__cursor_word()<cr>
+-- nnoremap E :call Srch_str__word1_tgl()<cr>
+-- "nnoremap xx :call Srch_char_bracket('f')<cr>
+-- nnoremap H :call Srch_str__markdown_h()<cr>
+-- nnoremap <leader>f :FzfSrchHstry<cr>
+-- "nnoremap <leader>n :FzfSrchHstry<cr>
+-- nnoremap N :call Srch_str__prv_tgl()<cr>
+-- nnoremap <c-p> :call Srch_slct('f')<cr>
+-- "nnoremap xx /?ts=<cr>
+-- "nnoremap :s :Rpl 
+-- nnoremap :s :%s///g
+-- " nnoremap <leader>o :call Fzf_rg('')<cr>
+-- nnoremap <leader>o :call Fzf_rg(v:null)<cr>
+-- nnoremap <leader>O :FzfRgExt js
+-- " nnoremap <leader>O :FzfRgWithRun <cr>
+-- nnoremap <leader>i :call N_fzf_buf()<cr>
+-- nnoremap <leader>e :FzfJmplst<cr>
+-- "nnoremap <leader>xx :FzfTagjmpByFile <cr>
+-- nnoremap t :call Tag_jmp_by_cursor_line()<cr>
+-- nnoremap <leader>j :FzfCmdHstry<cr>
+-- nnoremap :! :! 
+-- nnoremap :1 :! 
+-- nnoremap :r :InsSysCmd 
+-- nnoremap :p :Pth <cr>
+-- "nnoremap :d :call Dir__buf_file_dir()
+-- nnoremap :k :K
+-- nnoremap <leader>y :call Fzf_dir()<cr>
+-- nnoremap <leader>d :call Fzf_dir_jmp()<cr>
+-- nnoremap <leader>m :call Fzf_doc_memo_opn()<cr>
+-- nnoremap <leader>c :call Fzf_vim_fnc_call()<cr>
+-- nnoremap <leader>t :call Fzf_doc_tech()<cr>
+-- nnoremap <tab>   gt
+-- nnoremap <s-tab> gT
+-- nnoremap <s-left>  :tabm-1<cr>
+-- nnoremap <s-right> :tabm+1<cr>
+-- "nnoremap :xx :buffers
+-- nnoremap :f :%! jq
+-- "nnoremap :xx :call Buf__fltr()<cr> " use not
+-- "nnoremap rq :call Win_splt__quit()<cr>
+-- nnoremap rh :call Win__splt_h()<cr>
+-- nnoremap rn :call Win__splt_v()<cr>
+-- nnoremap <c-w> :call Win_splt_cursor__mv_nxt()<cr>
+-- "nnoremap xx <c-w>l
+-- "nnoremap xx <c-w>h
+-- "nnoremap xx :Term 
+-- nnoremap :w :set wrap!
+-- nnoremap :N :set number!
+-- nnoremap :n :set relativenumber!
+-- "nnoremap xx ga
+-- nnoremap <kInsert>   0
+-- nnoremap <kEnd>      1
+-- nnoremap <kDown>     2
+-- nnoremap <kPageDown> 3
+-- nnoremap <kLeft>     4
+-- nnoremap <kOrigin>   5
+-- nnoremap <kRight>    6
+-- nnoremap <kHome>     7
+-- nnoremap <kUp>       8
+-- nnoremap <kPageUp>   9
+-- nnoremap <esc>   <esc>
+-- "nnoremap <space> <esc>
+-- nnoremap <s-space> <esc>
+-- "nnoremap <cr>    <esc>
+-- nnoremap <bs>    <esc>
+-- nnoremap - <esc>
+-- nnoremap + <esc>
+-- nnoremap = <esc>
+-- nnoremap @ <esc>
+-- "nnoremap ; <esc>
+-- "nnoremap , <esc>
+-- "nnoremap . <esc>
+-- "nnoremap * <esc>
+-- "nnoremap _ <esc>
+-- nnoremap ~ <esc>
+-- nnoremap ^ <esc>
+-- nnoremap / <esc>
+-- "nnoremap \ <esc>
+-- "nnoremap | <esc> " ref vvv
+-- "nnoremap <bar> <esc>
+-- nnoremap ? <esc>
+-- "nnoremap ! <esc>
+-- nnoremap " <esc>
+-- nnoremap ` <esc>
+-- nnoremap # <esc>
+-- "nnoremap $ <esc>
+-- "nnoremap % <esc> " ?
+-- nnoremap & <esc>
+-- nnoremap ( <esc>
+-- nnoremap < <esc>
+-- nnoremap > <esc>
+-- "nnoremap << <esc>
+-- "nnoremap >> <esc>
+-- "nnoremap [ <esc>
+-- "nnoremap ] <esc>
+-- "nnoremap 0 <esc>
+-- "nnoremap a <esc>
+-- nnoremap b <esc>
+-- "nnoremap c <esc>
+-- "nnoremap d <esc>
+-- "nnoremap e <esc>
+-- "nnoremap f <esc>
+-- "nnoremap g <esc>
+-- "nnoremap h <esc>
+-- "nnoremap i <esc>
+-- "nnoremap j <esc>
+-- "nnoremap k <esc>
+-- "nnoremap l <esc>
+-- "nnoremap m <esc>
+-- "nnoremap n <esc>
+-- "nnoremap o <esc>
+-- "nnoremap q <esc>
+-- nnoremap r <esc>
+-- "nnoremap s <esc>
+-- "nnoremap t <esc>
+-- "nnoremap u <esc>
+-- "nnoremap w <esc>
+-- nnoremap x <esc>
+-- "nnoremap y <esc>
+-- nnoremap z <esc>
+-- "nnoremap A <esc>
+-- nnoremap B <esc>
+-- nnoremap C <esc>
+-- "nnoremap D <esc>
+-- "nnoremap E <esc>
+-- "nnoremap F <esc>
+-- nnoremap G <esc>
+-- "nnoremap H <esc>
+-- "nnoremap I <esc>
+-- "nnoremap J  <esc>
+-- "nnoremap K  <esc>
+-- "nnoremap L <esc>
+-- nnoremap M <esc>
+-- "nnoremap N <esc>
+-- "nnoremap O <esc>
+-- "nnoremap Q <esc>
+-- "nnoremap P <esc>
+-- nnoremap R <esc>
+-- "nnoremap S <esc>
+-- nnoremap T <esc>
+-- "nnoremap U <esc>
+-- "nnoremap W <esc>
+-- "nnoremap V <esc>
+-- nnoremap X <esc>
+-- nnoremap Y <esc>
+-- nnoremap <c-tab> <nop>
+-- nnoremap <c-space> <esc>
+-- nnoremap <c-@> <esc>
+-- "nnoremap <c-^> <esc>
+-- "nnoremap <c--> <esc> " non
+-- "nnoremap <c-*> <esc> " non ?
+-- "nnoremap <c-:> <esc> " non
+-- "nnoremap <c-;> <esc> " non
+-- "nnoremap <c-,> <esc> " non ?
+-- "nnoremap <c-.> <esc> " non ?
+-- "nnoremap <c-/> <esc> " non ?
+-- nnoremap <c-\> <esc>
+-- "nnoremap <c-_> <esc>
+-- "nnoremap <c-[> <esc>
+-- nnoremap <c-]> <esc>
+-- "nnoremap <c-a> <esc>
+-- nnoremap <c-b> <esc>
+-- "nnoremap <c-c> <esc>
+-- "nnoremap <c-d> <esc>
+-- nnoremap <c-e> <esc>
+-- "nnoremap <c-f> <esc>
+-- nnoremap <c-g> <esc>
+-- "nnoremap <c-h> <esc>
+-- "nnoremap <c-i> <esc> " tab
+-- "nnoremap <c-l> <esc>
+-- "nnoremap <c-m> <esc>
+-- "nnoremap <c-n> <esc>
+-- "nnoremap <c-o> <esc>
+-- "nnoremap <c-p> <esc>
+-- nnoremap <c-q> <esc>
+-- nnoremap <c-r> <esc>
+-- "nnoremap <c-s> <esc>
+-- nnoremap <c-t> <esc>
+-- "nnoremap <c-u> <esc>
+-- nnoremap <c-v> <esc>
+-- "nnoremap <c-w> <esc>
+-- nnoremap <c-x> <esc>
+-- "nnoremap <c-y> <esc>
+-- nnoremap <c-z> <esc>
+-- "nnoremap ga <esc>
+-- nnoremap gb <esc>
+-- "nnoremap gd <esc>
+-- "nnoremap ge <esc>
+-- nnoremap gf <esc>
+-- nnoremap gg <esc>
+-- "nnoremap gh <esc>
+-- nnoremap gi <esc>
+-- "nnoremap gj <esc>
+-- "nnoremap gk <esc>
+-- nnoremap gl <esc>
+-- nnoremap gm <esc>
+-- nnoremap gn <esc>
+-- "nnoremap go <esc>
+-- nnoremap gp <esc>
+-- "nnoremap gs <esc>
+-- nnoremap gt <esc>
+-- nnoremap gu <esc>
+-- nnoremap gv <esc>
+-- nnoremap gw <esc>
+-- nnoremap gy <esc>
+-- nnoremap ra <esc>
+-- "nnoremap re <esc>
+-- "nnoremap rf <esc>
+-- "nnoremap rh <esc>
+-- "nnoremap ri <esc>
+-- "nnoremap rj <esc>
+-- "nnoremap rk <esc>
+-- "nnoremap rn <esc>
+-- "nnoremap ro <esc>
+-- nnoremap rp <esc>
+-- nnoremap rq <esc>
+-- "nnoremap rr <esc>
+-- "nnoremap ru <esc>
+-- nnoremap rv <esc>
+-- nnoremap rz <esc>
+-- nnoremap Rj <esc>
+-- nnoremap Rk <esc>
+-- nnoremap xx <esc>
+-- nnoremap :a :a
+-- nnoremap :b :b
+-- nnoremap :c :c
+-- nnoremap :d :d
+-- nnoremap :e :e
+-- "nnoremap :f :f
+-- nnoremap :g :g
+-- "nnoremap :h :h
+-- "nnoremap :k :k
+-- "nnoremap :p :p
+-- "nnoremap :q :q
+-- "nnoremap :r :r
+-- "nnoremap :s :s
+-- "nnoremap :u :u
+-- nnoremap :z :z
+-- nnoremap <leader>: <esc>
+-- nnoremap <leader>a <esc>
+-- nnoremap <leader>b <esc>
+-- "nnoremap <leader>c <esc>
+-- "nnoremap <leader>d <esc>
+-- "nnoremap <leader>e <esc>
+-- "nnoremap <leader>f <esc>
+-- nnoremap <leader>g <esc>
+-- "nnoremap <leader>h <esc>
+-- "nnoremap <leader>j <esc>
+-- "nnoremap <leader>l <esc>
+-- "nnoremap <leader>m <esc>
+-- "nnoremap <leader>n <esc>
+-- "nnoremap <leader>o <esc>
+-- nnoremap <leader>p <esc>
+-- "nnoremap <leader>r <esc>
+-- nnoremap <leader>s <esc>
+-- "nnoremap <leader>t <esc>
+-- nnoremap <leader>u <esc>
+-- nnoremap <leader>v <esc>
+-- nnoremap <leader>w <esc>
+-- "nnoremap <leader>y <esc>
+-- "nnoremap <leader>L <esc>
+-- nnoremap <leader>M <esc>
+-- "nnoremap <leader>O <esc>
+

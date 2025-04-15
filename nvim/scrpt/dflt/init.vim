@@ -341,7 +341,6 @@ nnoremap l l
 
 " cursor mv char - back
 nnoremap <c-o> h
-"nnoremap <c-s> h
 
 " cursor mv word - forward
 nnoremap f :call Cursor__mv_word_f()<cr>
@@ -469,7 +468,6 @@ nnoremap P :call Cursor__ins_clp()<cr>
 
 " paste rgstr history ( fzf )
 nnoremap <leader>r :FzfRgstr<cr>
-"nnoremap R         :FzfRgstr<cr>
 
 " undo
 nnoremap h     u
@@ -673,7 +671,6 @@ nnoremap H :call Srch_str__markdown_h()<cr>
 
 " srch str history ( fzf )
 nnoremap <leader>f :FzfSrchHstry<cr>
-"nnoremap <leader>n :FzfSrchHstry<cr>
 
 " srch str set prv ( tgl )
 nnoremap N :call Srch_str__prv_tgl()<cr>
@@ -703,7 +700,6 @@ nnoremap <leader>i :call N_fzf_buf()<cr>
 
 " fzf jmplst
 nnoremap <leader>e :FzfJmplst<cr>
-nnoremap <leader>a :FzfJmplst<cr>
 
 " fzf pth lst
 "nnoremap <leader>xx :FzfTagjmpByFile <cr>
@@ -757,6 +753,7 @@ nnoremap <leader>t :call Fzf_doc_tech()<cr>
 " tab mv
 nnoremap <tab>   gt
 nnoremap <s-tab> gT
+" <tab> = <c-i>
 
 " tab order
 nnoremap <s-left>  :tabm-1<cr>
@@ -1062,7 +1059,7 @@ nnoremap :z :z
 
 nnoremap <leader>: <esc>
 
-"nnoremap <leader>a <esc>
+nnoremap <leader>a <esc>
 nnoremap <leader>b <esc>
 "nnoremap <leader>c <esc>
 "nnoremap <leader>d <esc>
@@ -1178,7 +1175,8 @@ vnoremap N :call Slctd_str__expnd_srch()<cr>
 vnoremap f :call Slctd_str__expnd_word_f()<cr>
 
 " slctd expnd quote
-vnoremap <c-i> :call Slctd_str__expnd_quote_swtch()<cr>
+vnoremap <tab> :call Slctd_str__expnd_quote_swtch()<cr>
+" <tab> = <c-i>
 
 " slctd expnd quote on
 "vnoremap xx :call Slctd_str__expnd_quote_on_swtch()<cr>
@@ -1649,6 +1647,7 @@ inoremap <c-m> <cr>
 
 " ins tab
 inoremap <tab> <c-v><tab>
+" <tab> = <c-i>
 
 " ins markdown cr
 "inoremap xx <space><space>

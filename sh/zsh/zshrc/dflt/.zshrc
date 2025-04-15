@@ -4,11 +4,20 @@ export PS1="_ "
 PATH=$PATH:~/wrk/prj-pri/dotfiles/sh/bash/cmd
 
 
+# zoxide
+eval "$(zoxide init zsh)"
+
+
 # alias
 
 alias c='clear'
 
 alias o='pth'
+
+alias cd_parent='cd ../; pwd'
+alias k='cd_parent'
+alias kk='k;k'
+alias kkk='k;k;k'
 
 function dir_jmp(){
 
@@ -18,16 +27,17 @@ function dir_jmp(){
   then
     dir=$( cat $z_history_file_path | sed 's/|.*//g' | fzf )
     # echo $dir
-  
+
     if test -z "$dir"
     then
       return
     fi
-  
+
     cd $dir
-  
+
   else
     z "$@"
+    # zoxide query "$@"
   fi
 
   pth

@@ -121,8 +121,9 @@ alias line 'cat_line'
 
 alias ji     'git'
 alias jis    'git s'
-alias jia    'git aa'
-alias ji_ssl 'git ssl' # status staged list
+alias js     'git s'
+# alias jia    'git aa'
+# alias ji_ssl 'git ssl' # status staged list
 
 #alias fzf_ins 'cmdline__fzf'
 #alias f       'cmdline__fzf'
