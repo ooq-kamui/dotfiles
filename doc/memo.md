@@ -2,14 +2,11 @@
 # dotfiles
 
 
-## nvim
-
-key map tmpl > mod
-
-
 ## doc-tech
 
-lua cp fr artcl
+cp fr artcl
+- lua
+- math
 
 
 ## zsh
@@ -17,7 +14,13 @@ lua cp fr artcl
 fzf
 - keybind my
   - `<c-y>`
-  - etc ref fish
+  - etc
+  - ref fish
+
+
+## nvim
+
+key map tmpl > mod
 
 
 ## godot

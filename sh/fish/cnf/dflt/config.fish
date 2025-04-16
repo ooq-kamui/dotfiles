@@ -114,16 +114,15 @@ alias rn  'rename'
 
 alias trash 'trash -F'
 
-alias vim 'nvim -p'
 alias vi  'nvim -p'
+alias vim 'nvim -p'
 
 alias line 'cat_line'
 
-alias ji     'git'
-alias jis    'git s'
-alias js     'git s'
-alias jl     'git s'
-alias ja     'git ao'
+alias ji  'git'
+alias js  'git s'
+alias ja  'git ao'
+alias jp  'git pll origin main'
 # alias ji_ssl 'git ssl' # status staged list
 
 #alias fzf_ins 'cmdline__fzf'

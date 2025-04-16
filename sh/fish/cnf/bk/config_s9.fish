@@ -1,1 +1,0 @@
-s9/config.fish

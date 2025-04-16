@@ -1,13 +1,13 @@
 function cnf
 
-  set cnf_dir ~/wrk/cnf
+  set cnf_dir ~/wrk/prj-pri/dotfiles
 
   set cnf_fish_dir $cnf_dir/sh/fish
 
   set fish_cnf_dir $cnf_fish_dir/cnf
   set fish_fnc_dir $cnf_fish_dir/fnc
 
-  set cnf_my_file $fish_cnf_dir/config_my.fish
+  set cnf_dflt_file $fish_cnf_dir/dflt/config.fish
 
   set cmdsub "$argv[1]"
 
@@ -21,7 +21,7 @@ function cnf
 
   else if test $cmdsub = 'vi'
 
-    vi $cnf_my_file -c ":cd $fish_cnf_dir"
+    vi $cnf_dflt_file -c ":cd $fish_cnf_dir"
 
   else if test $cmdsub = 'slf'
 
