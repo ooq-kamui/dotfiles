@@ -1560,12 +1560,15 @@ vim.keymap.set('v', 'O', 'O')
 
 -- " cursor mv in line end
 -- inoremap <c-e> <c-o>$
+vim.keymap.set('i', '<c-m>', '<cr>')
 
 -- " cursor mv char forward
 -- inoremap <c-l> <c-o>l
+vim.keymap.set('i', '<c-m>', '<cr>')
 
 -- " cursor mv char back
 -- inoremap <c-s> <c-o>h
+vim.keymap.set('i', '<c-m>', '<cr>')
 -- "inoremap <c-o> xx
 -- inoremap <expr> <c-o>
 -- \ pumvisible() ? '<c-y>'  :
@@ -1592,14 +1595,14 @@ vim.keymap.set('i', '<c-m>', '<cr>')
 
 -- " ins tab
 -- inoremap <tab> <c-v><tab>
+vim.keymap.set('i', '<c-m>', '<cr>')
 
 -- " ins markdown cr
 -- "inoremap xx <space><space>
 
--- " ins cmp default
+-- " ins cmplt default
 -- inoremap <leader>f <c-p>
--- inoremap <c-r>     <c-p>
--- inoremap <c-q>     <c-p>
+vim.keymap.set('i', '<c-m>', '<cr>')
 
 -- "inoremap <expr> <c-y>
 -- "\ pumvisible() ? '<c-e>' :
@@ -1621,12 +1624,16 @@ vim.keymap.set('i', '<c-m>', '<cr>')
 
 -- " ins num
 -- inoremap <c-y>     <c-r>=I_num()<cr>
+vim.keymap.set('i', '<c-m>', '<cr>')
 -- "inoremap <leader>k <c-r>=I_num()<cr>
 
 -- " ins symbol
 -- inoremap <c-n> <c-r>=I_symbol01()<cr>
+vim.keymap.set('i', '<c-m>', '<cr>')
 -- inoremap <c-f> <c-r>=I_symbol02()<cr>
+vim.keymap.set('i', '<c-m>', '<cr>')
 -- inoremap <c-p> <c-r>=I_symbol03()<cr>
+vim.keymap.set('i', '<c-m>', '<cr>')
 
 -- " ins markdown
 -- "inoremap <c-u> <c-r>=I_markdown_lnk()<cr>
@@ -1656,12 +1663,15 @@ vim.keymap.set('i', '<c-m>', '<cr>')
 
 -- " del char forward
 -- inoremap <c-d> <c-o>x
+vim.keymap.set('i', '<c-m>', '<cr>')
 
 -- " del char back
 -- inoremap <c-h> <c-h>
+vim.keymap.set('i', '<c-m>', '<cr>')
 
 -- " del word back
 -- inoremap <c-w> <c-w>
+vim.keymap.set('i', '<c-m>', '<cr>')
 
 -- " del word forword
 -- "inoremap <c-k> xx
@@ -1678,6 +1688,7 @@ vim.keymap.set('i', '<c-m>', '<cr>')
 
 -- " paste clp
 -- inoremap <c-v> <c-r><c-o>+
+vim.keymap.set('i', '<c-m>', '<cr>')
 
 -- " clr
 -- "inoremap <expr> <esc> pumvisible() ? '<c-e>'  : ''
@@ -1747,38 +1758,51 @@ vim.keymap.set('i', '<c-m>', '<cr>')
 
 -- " quit
 -- cnoremap <c-q> <c-c>
+vim.keymap.set('c', '<c-q>', '<c-c>')
 
 -- " cursor mv line in
 -- cnoremap <c-a> <c-b>
+vim.keymap.set('c', '<c-q>', '<c-c>')
 -- cnoremap <c-e> <c-e>
+vim.keymap.set('c', '<c-q>', '<c-c>')
 -- "cnoremap <c-a> <home>
 -- "cnoremap <c-e> <end>
 
 -- " cursor mv char
 -- cnoremap <c-s> <Left>
+vim.keymap.set('c', '<c-q>', '<c-c>')
 -- cnoremap <c-l> <Right>
+vim.keymap.set('c', '<c-q>', '<c-c>')
 
 -- " cursor mv word
 -- cnoremap <c-o> <s-left>
+vim.keymap.set('c', '<c-q>', '<c-c>')
 -- cnoremap <c-f> <s-right>
+vim.keymap.set('c', '<c-q>', '<c-c>')
 
 -- " del char
 -- cnoremap <c-h> <bs>
+vim.keymap.set('c', '<c-q>', '<c-c>')
 -- cnoremap <c-d> <del>
+vim.keymap.set('c', '<c-q>', '<c-c>')
 
 -- " del word forward
 -- "cnoremap ?? non ? idea <s-right><c-w>
 -- cnoremap <c-k> <del>
+vim.keymap.set('c', '<c-q>', '<c-c>')
 
 -- " del word back
 -- cnoremap <c-w> <c-w>
+vim.keymap.set('c', '<c-q>', '<c-c>')
 
 -- " del in line back
 -- cnoremap <c-u> <c-u>
+vim.keymap.set('c', '<c-q>', '<c-c>')
 
 -- " paste
 -- "cnoremap <c-v> <c-r>0
 -- cnoremap <c-v> <c-r>a
+vim.keymap.set('c', '<c-q>', '<c-c>')
 
 -- " history
 -- "cnoremap <c-p> <Up>
@@ -1786,6 +1810,7 @@ vim.keymap.set('i', '<c-m>', '<cr>')
 
 -- " cmdline win
 -- cnoremap <c-_> <c-f>
+vim.keymap.set('c', '<c-q>', '<c-c>')
 
 -- " numpad shift
 -- cnoremap <kInsert>   0

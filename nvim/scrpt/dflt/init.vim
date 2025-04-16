@@ -1660,8 +1660,6 @@ inoremap <tab> <c-v><tab>
 
 " ins cmp default
 inoremap <leader>f <c-p>
-inoremap <c-r>     <c-p>
-inoremap <c-q>     <c-p>
 
 "inoremap <expr> <c-y>
 "\ pumvisible() ? '<c-e>' :
@@ -1792,8 +1790,8 @@ inoremap <c-g> <nop>
 "inoremap <c-n> <nop>
 "inoremap <c-o> <nop>
 "inoremap <c-p> <nop>
-"inoremap <c-q> <nop>
-"inoremap <c-r> <nop>
+inoremap <c-q> <nop>
+inoremap <c-r> <nop>
 "inoremap <c-s> <nop>
 "inoremap <c-t> <nop>
 "inoremap <c-u> <nop>

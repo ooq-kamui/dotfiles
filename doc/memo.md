@@ -4,7 +4,7 @@
 
 ## nvim
 
-inoremap cp tmpl
+key map tmpl > mod
 
 
 ## doc-tech
