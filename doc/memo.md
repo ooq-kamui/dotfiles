@@ -2,10 +2,9 @@
 # dotfiles
 
 
-## zsh
+## nvim
 
-fzf
-- .zshrc write ggl
+inoremap cp tmpl
 
 
 ## doc-tech
@@ -13,12 +12,20 @@ fzf
 lua cp fr artcl
 
 
+## zsh
+
+fzf
+- keybind my
+  - `<c-y>`
+  - etc ref fish
+
+
 ## godot
 
 step by step
 
 
-## dns migration
+## ooq dns migration
 
 dns migration
 - vps

@@ -968,15 +968,13 @@ vim.keymap.set('n', ':o', ':Opn ')
 -- nnoremap <leader>M <esc>
 -- "nnoremap <leader>O <esc>
 
--- dev anchor mode normal end
-
-
 -- " 
 -- " mode visual
 -- " 
 
 -- " mode ch line
 -- vnoremap i V
+vim.keymap.set('v', 'i', 'V')
 
 -- " mode ch visual box
 -- "vnoremap v <c-v>
@@ -993,15 +991,18 @@ vim.keymap.set('n', ':o', ':Opn ')
 
 -- " cursor mv slctd edge tgl
 -- vnoremap y :call Cursor__mv_slctd_edge_tgl()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " cursor mv slctd edge tgl, v box line same
--- vnoremap O O
+vim.keymap.set('v', 'O', 'O')
 
 -- " cursor mv char forward
 -- vnoremap l l
+vim.keymap.set('v', 'O', 'O')
 
 -- " cursor mv char back
 -- vnoremap <c-o> h
+vim.keymap.set('v', 'O', 'O')
 
 -- " cursor mv word - back
 -- "vnoremap xx b
@@ -1010,14 +1011,17 @@ vim.keymap.set('n', ':o', ':Opn ')
 
 -- " cursor mv line end
 -- vnoremap <c-y> :call Slctd_cursor__mv_line_end()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " slctd __ reduce dlm _ r
 -- vnoremap _ of_lo
+vim.keymap.set('v', 'O', 'O')
 -- "vnoremap h of_lo
 
 -- " slctd __ reduce dlm _ l
 -- "vnoremap h     F_h
 -- vnoremap h     :call Slctd_str__reduce_dlm_l('_')<cr>
+vim.keymap.set('v', 'O', 'O')
 -- "vnoremap H     F_h
 -- "vnoremap <c-_> F_h
 
@@ -1027,13 +1031,18 @@ vim.keymap.set('n', ':o', ':Opn ')
 -- " cursor mv line
 -- vnoremap <c-j> 10j
 -- vnoremap <c-k> 10k
+vim.keymap.set('v', 'O', 'O')
+vim.keymap.set('v', 'O', 'O')
 
 -- " cursor mv jmp
 -- vnoremap rk :call Slctd_cursor__mv_v_jmp('k')<cr>
 -- vnoremap rj :call Slctd_cursor__mv_v_jmp('j')<cr>
+vim.keymap.set('v', 'O', 'O')
+vim.keymap.set('v', 'O', 'O')
 
 -- " cursor mv bracket pair
 -- vnoremap <c-l> %
+vim.keymap.set('v', 'O', 'O')
 
 -- " cursor mv bracket out back
 -- "vnoremap xx [{
@@ -1043,9 +1052,11 @@ vim.keymap.set('n', ':o', ':Opn ')
 
 -- " cursor mv file edge back    ( file bgn )
 -- vnoremap gk :call Slctd_cursor__mv_file_edge('k')<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " cursor mv file edge forward ( file end   )
 -- vnoremap gj :call Slctd_cursor__mv_file_edge('j')<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " 
 -- " slct / ynk / paste
@@ -1056,12 +1067,15 @@ vim.keymap.set('n', ':o', ':Opn ')
 
 -- " slctd expnd srch
 -- vnoremap N :call Slctd_str__expnd_srch()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " slctd expnd word forward
 -- vnoremap f :call Slctd_str__expnd_word_f()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " slctd expnd quote
 -- vnoremap <c-i> :call Slctd_str__expnd_quote_swtch()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " slctd expnd quote on
 -- "vnoremap xx :call Slctd_str__expnd_quote_on_swtch()<cr>
@@ -1074,9 +1088,11 @@ vim.keymap.set('n', ':o', ':Opn ')
 
 -- " slct all
 -- vnoremap a :call Slctd_str__all()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " ynk slctd
 -- vnoremap o :call Ynk__slctd()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " ynk slctd add
 -- "vnoremap xx :call Ynk__add_slctd()<cr>
@@ -1128,29 +1144,38 @@ vim.keymap.set('n', ':o', ':Opn ')
 -- " line __ ins comment 1
 -- vnoremap ! :call V_ins_cmnt_1()<cr>
 -- vnoremap 1 :call V_ins_cmnt_1()<cr>
+vim.keymap.set('v', 'O', 'O')
+vim.keymap.set('v', 'O', 'O')
 
 -- " line mlt __ ins comment
 -- vnoremap & :call V_ins_cmnt_mlt()<cr>
+vim.keymap.set('v', 'O', 'O')
 -- "vnoremap $ :call V_ins_cmnt_mlt()<cr>
 
 -- " line end __ ins comma
 -- vnoremap , :call Curosr_line_end__ins(',')<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " pad space
 -- vnoremap S :call Slctd__pad_space()<cr>
+vim.keymap.set('v', 'O', 'O')
 -- "vnoremap <c-s> :call Slctd__pad_space()<cr>
 
 -- " pad -
 -- vnoremap - :call Slctd__pad('-')<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " pad |
 -- vnoremap <bar> :call Slctd__pad_bar()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " slctd str space __ under score
 -- vnoremap q :call Slctd_str_space__underscore()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " line __ join per line
 -- vnoremap J :call Slctd_line__join_per_line(3)
+vim.keymap.set('v', 'O', 'O')
 
 -- " del str > ynk
 -- "vnoremap d xx
@@ -1167,15 +1192,18 @@ vim.keymap.set('n', ':o', ':Opn ')
 
 -- " line mlt forward del
 -- vnoremap <c-d> D
+vim.keymap.set('v', 'O', 'O')
 
 -- " slctd line __ del line top space
 -- "vnoremap xx :call Slctd_line_top_space__del()<cr>
 
 -- " slctd line __ del end space
 -- vnoremap m :call Slctd_line_end_space__del()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " slctd box __ del cursor f space
 -- vnoremap K :call Slctd_box_cursor_r_space__crct()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " slctd str edge out quote __ tgl
 -- "vnoremap w     :call Slctd_str_edge_out_quote__tgl()<cr>
@@ -1189,16 +1217,20 @@ vim.keymap.set('n', ':o', ':Opn ')
 
 -- " slctd str edge out __ tgl shft
 -- vnoremap W :call Slctd_str_edge_out__tgl_shft()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " slctd str edge out __ ins space
 -- vnoremap <c-s> :call Slctd_str_edge_out__ins(' ')<cr>
+vim.keymap.set('v', 'O', 'O')
 -- "vnoremap S :call Slctd_str_edge_out__ins(' ')<cr>
 
 -- " slctd str edge out __ ins markdown strikethrough
 -- vnoremap ~ :call Slctd_str_edge_out__ins_markdown_strikethrough()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " slctd str edge out __ ins markdown strikethrough
 -- vnoremap b :call Slctd_str_edge_out__ins_markdown_bold()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " slctd box str mv back
 -- "vnoremap xx :call Slctd_box_str__mv('l')<cr>
@@ -1208,15 +1240,19 @@ vim.keymap.set('n', ':o', ':Opn ')
 
 -- " slctd box space __ del
 -- vnoremap D :call Slctd_box_space__del()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " slctd box mv back
 -- vnoremap <c-w> :call Slctd_box__mv('l')<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " slctd box mv forward
 -- vnoremap <c-e> :call Slctd_box__mv('r')<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " num icl
 -- vnoremap + <c-a>gv
+vim.keymap.set('v', 'O', 'O')
 
 -- " num dcl
 -- "vnoremap - <c-x>gv
@@ -1224,6 +1260,7 @@ vim.keymap.set('n', ':o', ':Opn ')
 -- " num seq
 -- vnoremap * r0gvg<c-a>gv
 -- "          ^^^^^^^^^^^^> r0 gv g<c-a> gv
+vim.keymap.set('v', 'O', 'O')
 -- "vnoremap * g<c-a>
 -- "vnoremap = g<c-a>
 
@@ -1233,6 +1270,8 @@ vim.keymap.set('n', ':o', ':Opn ')
 -- "vnoremap ro :call Slctd_indnt__shft_r()<cr>
 -- vnoremap ri <gv
 -- vnoremap ro >gv
+vim.keymap.set('v', 'O', 'O')
+vim.keymap.set('v', 'O', 'O')
 -- "vnoremap " <gv
 -- "vnoremap # >gv
 -- "vnoremap 2 <gv
@@ -1240,31 +1279,36 @@ vim.keymap.set('n', ':o', ':Opn ')
 
 -- " indnt crct
 -- vnoremap ; =gv
+vim.keymap.set('v', 'O', 'O')
 
 -- " indnt tab   > space
 -- vnoremap :e :call Slctd_line_indnt__space(2)
+vim.keymap.set('v', 'O', 'O')
 
 -- " indnt space > tab
 -- "vnoremap xx :call Slctd_line_indnt__tab(2)<cr>
 
 -- " tidy tbl
 -- vnoremap :t :call Slctd_line__crct_tbl()
+vim.keymap.set('v', 'O', 'O')
 
 -- " line end ovr, pad __ space
 -- "vnoremap xx :call Slctd_line_end__pad_space()
 
 -- " upper / lower tgl
 -- vnoremap u ~gv
+vim.keymap.set('v', 'O', 'O')
 
 -- " upper force
 -- vnoremap U Ugv
+vim.keymap.set('v', 'O', 'O')
 
 -- " lower force
 -- "vnoremap xx ugv
 
 -- " str mb
 -- vnoremap :m :call Slctd_line_mb__cnv()
--- "vnoremap M :call Slctd_line_mb__cnv()
+vim.keymap.set('v', 'O', 'O')
 
 -- " 
 -- " srch
@@ -1272,16 +1316,19 @@ vim.keymap.set('n', ':o', ':Opn ')
 
 -- " srch cmd
 -- vnoremap <leader>k "zy/<c-r>z
+vim.keymap.set('v', 'O', 'O')
 -- "vnoremap <leader>i "zy/<c-r>z
 
 -- " srch forward ( srch rpl skip )
 -- vnoremap <c-n> :call Slctd_srch_7_slctd__srch_nxt('f')<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " srch back
 -- "vnoremap xx    :call Slctd_srch_7_slctd__srch_nxt('b')<cr>
 
 -- " srch str set
 -- vnoremap n :call Slctd_srch__swtch()<cr>
+vim.keymap.set('v', 'O', 'O')
 -- "vnoremap e 
 -- vnoremap <expr> e
 -- \ mode() == '<c-v>' ? '<esc>' :
@@ -1289,6 +1336,7 @@ vim.keymap.set('n', ':o', ':Opn ')
 
 -- " srch rpl one > ynk, nxt
 -- vnoremap <c-p> :call Slctd__rpl_7_srch_nxt()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " rpl ( cmd )
 -- "vnoremap :s 
@@ -1300,6 +1348,7 @@ vim.keymap.set('n', ':o', ':Opn ')
 
 -- " rpl cr ( add cr )
 -- vnoremap <c-m> :call Slctd_line_srch_str__rpl_cr()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " v box edge char shft in
 -- "vnoremap <c-h> 
@@ -1309,30 +1358,37 @@ vim.keymap.set('n', ':o', ':Opn ')
 
 -- " fzf buf
 -- vnoremap <leader>i :call V_fzf_buf()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " fzf rg
 -- vnoremap <leader>o "zy:call Fzf_rg('<c-r>z')<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " fzf rg word1
 -- vnoremap <leader>O "zy:call Fzf_rg_word1('<c-r>z')<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " tag jmp
 -- "vnoremap t :call Tag_jmp_by_slctd_line()<cr>
 
 -- " opn app
 -- vnoremap go :call Slctd_line_7_opn_app()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " opn brwsr
 -- "vnoremap gx <plug>(openbrowser-smart-search)
 
 -- " opn ggl srch
 -- vnoremap ggl :call Slctd_str_7_opn_ggl_srch()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " opn youtube video_id
 -- vnoremap gy :call Slctd_str_7_opn_yt()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " trns
 -- vnoremap r :call Slctd_trns()<cr>
+vim.keymap.set('v', 'O', 'O')
 
 -- " 
 -- " cmd
@@ -1500,6 +1556,8 @@ vim.keymap.set('n', ':o', ':Opn ')
 -- "inoremap <c-a> <c-o>^
 -- "inoremap <c-a> <c-o>0
 
+-- dev anchor  continue
+
 -- " cursor mv in line end
 -- inoremap <c-e> <c-o>$
 
@@ -1530,6 +1588,7 @@ vim.keymap.set('n', ':o', ':Opn ')
 
 -- " ins cr
 -- inoremap <c-m> <cr>
+vim.keymap.set('i', '<c-m>', '<cr>')
 
 -- " ins tab
 -- inoremap <tab> <c-v><tab>

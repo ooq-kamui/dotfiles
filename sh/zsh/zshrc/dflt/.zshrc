@@ -4,6 +4,9 @@ export PS1="_ "
 PATH=$PATH:~/wrk/prj-pri/dotfiles/sh/bash/cmd
 
 
+# fzf
+source <(fzf --zsh)
+
 # zoxide
 eval "$(zoxide init zsh)"
 
