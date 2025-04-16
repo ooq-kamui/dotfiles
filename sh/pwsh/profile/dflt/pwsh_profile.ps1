@@ -49,8 +49,6 @@ Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
 # rg
 
-# $env:RIPGREP_CONFIG_PATH = "$home\wrk\cnf\sh\rg\.ripgreprc"
-# $env:RIPGREP_CONFIG_PATH = "$home\wrk\cnf\sh\rg\.ripgreprc_pwsh"
 $env:RIPGREP_CONFIG_PATH = "$home\wrk\prj-pri\dotfiles\cli\rg\ripgreprc\pwsh\.ripgreprc"
 
 # fzf
@@ -218,8 +216,9 @@ Set-Alias t "ts"
 
 # git
 Set-Alias ji  "git"    -force # alias xxx is read-only or
-# Set-Alias jis "git s"  -force # alias xxx is read-only or
-# Set-Alias jia "git aa" -force # alias xxx is read-only or
+function jis { git s  }
+function js  { git s  }
+function ja  { git ao }
 
 # posh-git
 Import-Module posh-git
@@ -261,8 +260,6 @@ $ENV:Path += ";C:\Program Files\PostgreSQL\16\bin"
 # def
 
 $wrk               = "$home\wrk"
-# $profile_dir       = "$wrk\cnf\sh\pwsh\ofc"
-# $profile_dir       = "$wrk\cnf\sh\pwsh"
 $profile_dir       = "$wrk\prj-pri\dotfiles\sh\pwsh\profile\dflt"
 $profile_file_name = "pwsh_profile.ps1"
 $profile_file_path = "$profile_dir\$profile_file_name"
