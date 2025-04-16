@@ -589,7 +589,6 @@ nnoremap <c-d> D
 
 " del cr ( line join )
 nnoremap <c-m> J
-"nnoremap M     J
 
 " line mv up
 "nnoremap xx "addk"aP
@@ -655,7 +654,7 @@ nnoremap n     :call Cursor__mv_srch('f')<cr>
 nnoremap <c-n> :call Cursor__mv_srch('b')<cr>
 
 " srch, cursor mv nxt char
-"nnoremap @ :call Srch_7_cursor__mv_nxt('f')<cr>
+"nnoremap xx :call Srch_7_cursor__mv_srch_str_end_o()<cr>
 
 " srch str set
 nnoremap e :call Srch_str__cursor_word()<cr>
@@ -667,7 +666,8 @@ nnoremap E :call Srch_str__word1_tgl()<cr>
 "nnoremap xx :call Srch_char_bracket('f')<cr>
 
 " srch markdown h
-nnoremap H :call Srch_str__markdown_h()<cr>
+nnoremap M :call Srch_str__markdown_h()<cr>
+"nnoremap H :call Srch_str__markdown_h()<cr>
 
 " srch str history ( fzf )
 nnoremap <leader>f :FzfSrchHstry<cr>
@@ -794,6 +794,12 @@ nnoremap <c-w> :call Win_splt_cursor__mv_nxt()<cr>
 "nnoremap xx <c-w>h
 
 " 
+" repeat
+" 
+
+nnoremap @ :call Repeat_tmp()<cr>
+
+" 
 " term
 " 
 
@@ -861,7 +867,7 @@ nnoremap <bs>    <esc>
 nnoremap - <esc>
 nnoremap + <esc>
 nnoremap = <esc>
-nnoremap @ <esc>
+"nnoremap @ <esc>
 "nnoremap ; <esc>
 "nnoremap , <esc>
 "nnoremap . <esc>
@@ -924,19 +930,19 @@ nnoremap C <esc>
 "nnoremap E <esc>
 "nnoremap F <esc>
 nnoremap G <esc>
-"nnoremap H <esc>
+nnoremap H <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
 "nnoremap L <esc>
-nnoremap M <esc>
+"nnoremap M <esc>
 "nnoremap N <esc>
 "nnoremap O <esc>
 "nnoremap Q <esc>
 "nnoremap P <esc>
 nnoremap R <esc>
 "nnoremap S <esc>
-nnoremap T <esc>
+"nnoremap T <esc>
 "nnoremap U <esc>
 "nnoremap W <esc>
 "nnoremap V <esc>
@@ -5732,31 +5738,31 @@ func! Srch_str__slctd_str() range abort
   call Slctd__cancel()
 endfunc
 
-func! Srch_slct(dir) abort
+func! Srch_slct(drct) abort
 
-  if     a:dir == 'f'
+  if     a:drct == 'f'
     call Normal('gn')
 
-  elseif a:dir == 'b'
+  elseif a:drct == 'b'
     call Normal('gN')
   endif
 endfunc
 
 " dev anchor refactoring fnc name re ?
-func! Slctd_srch_7_slctd__srch_nxt(dir) abort " srch rpl skip
+func! Slctd_srch_7_slctd__srch_nxt(drct) abort " srch rpl skip
 
-  if     a:dir == 'f'
+  if     a:drct == 'f'
     call Normal('`>lgn')
 
-  elseif a:dir == 'b'
+  elseif a:drct == 'b'
     call Normal('`<hgN')
   endif
 endfunc
 
-" dev anchor refactoring fnc name re ?
-func! Srch_7_cursor__mv_nxt(dir) abort
+func! Srch_7_cursor__mv_srch_str_end_o() abort
 
-  call Srch_slct(a:dir)
+  let l:drct = 'f'
+  call Srch_slct(l:drct)
   call Esc()
   " call Normal("\<esc>")
   call Esc()
@@ -6740,6 +6746,17 @@ endfunc
 " comment auto off ( final def )
 au FileType * set fo-=c fo-=r fo-=o
 
+
+" 
+" fnc repeat tmp
+" 
+
+func! Repeat_tmp() abort
+
+  call Cursor__mv_srch('f')
+  call Cursor__mv_d()
+  call Cursor__ins_ynk()
+endfunc
 
 " 
 " fnc tst

@@ -4,8 +4,8 @@
 [color "diff"]
   old = magenta
 [color "status"]
-  # added     = magenta
-  changed   = green
+  added     = cyan
+  changed   = yellow
   untracked = yellow
   unmerged  = yellow
 [core]

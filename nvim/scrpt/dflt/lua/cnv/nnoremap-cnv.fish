@@ -5,9 +5,11 @@
 
 # excld
 
+cat nnoremap-cnv-tst-space.lua
+
 
 cat nnoremap-cnv-tst-space.lua |\
-sed -E '/nnoremap / s|nnoremap +([^ ]+)|\1|g'
+sed -E '/nnoremap / s|nnoremap +([^ ]+) +(.*)|vim.keymap.set("n", "\1", "\2")|g'
 
 
 

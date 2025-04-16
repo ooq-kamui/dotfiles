@@ -2,31 +2,15 @@
 # dotfiles
 
 
-## git
-
-color
-
-
-## nvim
-
-- sed
-  - excld `<expr>`
-
-key map
-- expr
-  - ex paste
-
-
 ## zsh
 
 fzf
 - .zshrc write ggl
 
 
-## term
+## doc-tech
 
-wez
-- ofc
+lua cp fr artcl
 
 
 ## godot
