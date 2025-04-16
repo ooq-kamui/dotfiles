@@ -190,10 +190,7 @@ function rm_dmy {
 
 function vi  {
 
-  # wildcard cnv dev
-  # nvim -p ( ls -Name $args )
-
-  nvim -p ( echo $args )
+  nvim -p ( Get-ChildItem $args )
 }
 
 function opn {
