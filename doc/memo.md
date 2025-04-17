@@ -2,25 +2,11 @@
 # dotfiles
 
 
-## doc-tech
-
-cp fr artcl
-- lua
-- math
-
-
-## zsh
-
-fzf
-- keybind my
-  - `<c-y>`
-  - etc
-  - ref fish
-
-
 ## nvim
 
 key map tmpl > mod
+
+vimplug_dir_path mod
 
 
 ## godot

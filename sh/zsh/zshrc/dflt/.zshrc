@@ -7,6 +7,9 @@ PATH=$PATH:~/wrk/prj-pri/dotfiles/sh/bash/cmd
 # fzf
 source <(fzf --zsh)
 
+bindkey '^Y' fzf-file-widget
+
+
 # zoxide
 eval "$(zoxide init zsh)"
 

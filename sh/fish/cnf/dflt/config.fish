@@ -209,7 +209,7 @@ bind \cx cmdline_his_del
 
 bind \cy fzf-file-widget
 bind \cr fzf-history-widget
-bind \cu fzf-history-widget
+#bind \cu fzf-history-widget
 
 bind \cg cmdline__fzf_git_ssl
 bind \cq cmdline__fzf_git_ssl
