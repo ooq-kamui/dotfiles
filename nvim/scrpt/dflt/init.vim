@@ -335,6 +335,7 @@ nnoremap <c-a> 0
 nnoremap <expr> <c-y>
 \ Is_cursor_col__line_end() ? ':call Cursor__ins_markdown_cr()<cr>'     :
 \                             ':call Cursor__mv_line_end()<cr>'
+nnoremap <c-e> :call Cursor__mv_line_end()<cr>
 
 " cursor mv char - forward
 nnoremap l l
@@ -970,7 +971,7 @@ nnoremap <c-]> <esc>
 nnoremap <c-b> <esc>
 "nnoremap <c-c> <esc>
 "nnoremap <c-d> <esc>
-nnoremap <c-e> <esc>
+"nnoremap <c-e> <esc>
 "nnoremap <c-f> <esc>
 nnoremap <c-g> <esc>
 "nnoremap <c-h> <esc>
@@ -6596,9 +6597,10 @@ func! Vim_plug_path() abort
 
   elseif Is_env__('linux')
 
-    let l:vim_plug_dir_c9_vim  = "/home/ec2-user/.vim"
-    let l:vim_plug_dir_c9_nvim = "/home/centos/.local/share/nvim/site"
-    let l:vim_plug_dir_s9_nvim = "/home/centos/.local/share/nvim/site"
+    let l:vim_plug_dir_ec2_vim  = "/home/ec2-user/.vim"
+    let l:vim_plug_dir_c9_vim   = "/home/ec2-user/.vim"
+    let l:vim_plug_dir_c9_nvim  = "/home/centos/.local/share/nvim/site"
+    let l:vim_plug_dir_s9_nvim  = "/home/centos/.local/share/nvim/site"
 
     if     isdirectory(l:vim_plug_dir_c9_nvim)
       let l:vim_plug_dir = l:vim_plug_dir_c9_nvim
@@ -6608,6 +6610,8 @@ func! Vim_plug_path() abort
 
     elseif isdirectory(l:vim_plug_dir_s9_nvim)
       let l:vim_plug_dir = l:vim_plug_dir_s9_nvim
+    else
+      let l:vim_plug_dir = l:vim_plug_dir_ec2_vim
     endif
 
   elseif Is_env__('win32unix')

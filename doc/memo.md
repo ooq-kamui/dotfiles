@@ -2,11 +2,47 @@
 # dotfiles
 
 
+## psql
+
+pw
+- ggl
+- doc write
+
+
+## setting
+
+setting script cre
+- bash
+- nvim
+- fish
+
+
+## instl
+
+instl scrpt cre
+- brew
+- git
+- nvim
+- fd
+- rg
+- zoxide
+- fish
+
+
+## pwsh
+
+vi arg wild card
+- case file exist not
+
+rm -i
+
+
 ## nvim
 
 key map tmpl > mod
 
-vimplug_dir_path mod
+vimplug_dir_path
+- mod part 2
 
 
 ## godot

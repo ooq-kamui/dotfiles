@@ -18,28 +18,25 @@
 [merge]
   tool = vimdiff
 [alias]
-  s = status
+  s     = status
   a     = add
-  aa    = add .
   ao    = add .
   ooa   = add ..
   oooa  = add ../..
   ooooa = add ../../..
-  b = branch
-  l = log
-  ch = checkout
-  co = commit
-  d   = diff
-  dw  = diff
-  ds  = diff --staged
-  # ssl = diff --staged --name-only
-  sl  = diff --staged --name-only
-  # swl = diff          --name-only
-  wl  = diff          --name-only
-  mrg = merge
-  psh = push
-  pll = pull
-  cnf = config
+  b     = branch
+  l     = log
+  ch    = checkout
+  co    = commit
+  d     = diff
+  dw    = diff
+  ds    = diff --staged
+  ls    = diff --staged --name-only
+  lw    = diff          --name-only
+  mrg   = merge
+  psh   = push
+  pll   = pull
+  cnf   = config
 [log]
   date = iso-local
 

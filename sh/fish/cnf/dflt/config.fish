@@ -116,14 +116,19 @@ alias trash 'trash -F'
 
 alias vi  'nvim -p'
 alias vim 'nvim -p'
+# alias vi_ji_ls 'vi ( git ls )'
+# alias vi_ji_lw 'vi ( git lw )'
+# alias vi_jls   'vi ( git ls )'
+# alias vi_jlw   'vi ( git lw )'
 
 alias line 'cat_line'
 
-alias ji  'git'
-alias js  'git s'
-alias ja  'git ao'
-alias jp  'git pll origin main'
-# alias ji_ssl 'git ssl' # status staged list
+alias ji 'git'
+alias js 'git s'
+alias ja 'git ao'
+alias jp 'git pll origin main'
+# alias jls 'git ls'
+# alias jlw 'git lw'
 
 #alias fzf_ins 'cmdline__fzf'
 #alias f       'cmdline__fzf'
@@ -211,8 +216,7 @@ bind \cy fzf-file-widget
 bind \cr fzf-history-widget
 #bind \cu fzf-history-widget
 
-bind \cg cmdline__fzf_git_ssl
-bind \cq cmdline__fzf_git_ssl
+bind \cu cmdline__fzf_git_status
 
 # erase
 #bind -e \cu
