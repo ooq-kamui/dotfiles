@@ -216,6 +216,7 @@ Set-Alias ji  "git"    -force # alias xxx is read-only or
 function jis { git s  }
 function js  { git s  }
 function ja  { git ao }
+function jp  { git pll origin main }
 
 # posh-git
 Import-Module posh-git
