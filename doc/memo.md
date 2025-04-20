@@ -2,11 +2,34 @@
 # dotfiles
 
 
-## psql
+## nvim
 
-pw
-- ggl
-- doc write
+key map tmpl > mod
+
+vimplug_dir_path
+- mod part 2
+
+
+## pwsh
+
+vi arg wild card
+- case file exist not
+
+rm -i
+
+
+## godot
+
+step by step
+
+
+## ooq dns migration
+
+dns migration
+- vps
+  - cre
+- svr
+  - del
 
 
 ## setting
@@ -29,34 +52,11 @@ instl scrpt cre
 - fish
 
 
-## pwsh
+## psql
 
-vi arg wild card
-- case file exist not
-
-rm -i
-
-
-## nvim
-
-key map tmpl > mod
-
-vimplug_dir_path
-- mod part 2
-
-
-## godot
-
-step by step
-
-
-## ooq dns migration
-
-dns migration
-- vps
-  - cre
-- svr
-  - del
+pw
+- ggl
+- doc write
 
 
 ## docker
