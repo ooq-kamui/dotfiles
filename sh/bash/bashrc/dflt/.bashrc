@@ -65,6 +65,9 @@ alias to_clr=':>'
 alias vi='nvim -p'
 
 alias ji='git'
+alias js='git s'
+alias ja='git ao'
+alias jp='git pull origin main'
 
 # etc
 
@@ -125,17 +128,16 @@ export FZF_DEFAULT_OPTS='--ansi --bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:
 #   z_history_file_path=~/.z
 # fi
 
-eval "$(zoxide init bash)"
-
 function dir_jmp(){
 
   # echo $z_history_file_path
 
   if test -z "$@"
   then
-    dir=$( cat $z_history_file_path | sed 's/|.*//g' | fzf )
+    # dir=$( cat $z_history_file_path | sed 's/|.*//g' | fzf )
+    dir=$( zoxide query --list | fzf )
     # echo $dir
-  
+
     if test -z "$dir"
     then
       return
@@ -188,5 +190,7 @@ then
   #bind -x '"\C-r": fzf-history-widget'
 fi
 
+
+# eval "$(zoxide init bash)"
 
 

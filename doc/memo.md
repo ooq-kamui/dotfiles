@@ -2,13 +2,6 @@
 # dotfiles
 
 
-## bash
-
-alias
-- ji
-  - ji etc
-
-
 ## linux setting & instl
 
 instl script cre
