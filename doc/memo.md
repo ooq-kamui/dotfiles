@@ -5,6 +5,8 @@
 ## linux setting & instl
 
 instl script cre
+- fzf
+- zoxide
 - fish
 
 
