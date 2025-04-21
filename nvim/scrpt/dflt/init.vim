@@ -514,8 +514,11 @@ nnoremap , i, <esc>l
 " ins hyphen
 nnoremap 0 :call Cursor__ins_hyphen()<cr>
 
-" ins bracket
-nnoremap <c-s> :call Cursor__ins_bracket()<cr>
+" ins tilde
+nnoremap ~ :call Cursor__ins_tilde()<cr>
+
+" ins quote
+nnoremap <c-s> :call Cursor__ins_quote()<cr>
 
 " ins date
 nnoremap * :call Cursor__ins_da()<cr>
@@ -874,7 +877,7 @@ nnoremap = <esc>
 "nnoremap . <esc>
 "nnoremap * <esc>
 "nnoremap _ <esc>
-nnoremap ~ <esc>
+"nnoremap ~ <esc>
 nnoremap ^ <esc>
 nnoremap / <esc>
 "nnoremap \ <esc>
@@ -3470,7 +3473,13 @@ func! Cursor__ins_hyphen() abort
   "call Cursor__ins('-')
 endfunc
 
-func! Cursor__ins_bracket() abort
+func! Cursor__ins_tilde() abort
+
+  call Normal('i~')
+  "call Cursor__ins('-')
+endfunc
+
+func! Cursor__ins_quote() abort
 
   call Normal("i' '")
   call Normal('h')
