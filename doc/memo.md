@@ -2,6 +2,18 @@
 # dotfiles
 
 
+## linux setting & instl
+
+instl script cre
+- fish
+
+
+## psql
+
+instl
+- scrpt
+
+
 ## nvim
 
 key map tmpl > mod
@@ -30,33 +42,6 @@ dns migration
   - cre
 - svr
   - del
-
-
-## setting
-
-setting script cre
-- bash
-- nvim
-- fish
-
-
-## instl
-
-instl scrpt cre
-- brew
-- git
-- nvim
-- fd
-- rg
-- zoxide
-- fish
-
-
-## psql
-
-pw
-- ggl
-- doc write
 
 
 ## docker

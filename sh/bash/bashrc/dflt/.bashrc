@@ -107,7 +107,8 @@ alias fd='fd --hidden -I --exclude .git --follow'
 #alias rg='rg -nS --path-separator "//"'
 
 # export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
-export RIPGREP_CONFIG_PATH=$HOME/wrk/cnf/sh/rg/.ripgreprc
+# export RIPGREP_CONFIG_PATH=$HOME/wrk/cnf/sh/rg/.ripgreprc
+export RIPGREP_CONFIG_PATH=$HOME/wrk/prj-pri/dotfiles/cli/rg/ripgreprc/dflt/.ripgreprc
 
 # fzf
 
@@ -118,11 +119,13 @@ export FZF_DEFAULT_OPTS='--ansi --bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:
 
 # z
 
-if test -f ~/wrk/app/z/z.sh
-then
-  source ~/wrk/app/z/z.sh
-  z_history_file_path=~/.z
-fi
+# if test -f ~/wrk/app/z/z.sh
+# then
+#   source ~/wrk/app/z/z.sh
+#   z_history_file_path=~/.z
+# fi
+
+eval "$(zoxide init bash)"
 
 function dir_jmp(){
 
