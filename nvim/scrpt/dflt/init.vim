@@ -6580,54 +6580,93 @@ func! Is_env__(env) abort " alias
   return l:ret
 endfunc
 
+func! Is_nvim() abort " alias
+
+  let l:ret = has('nvim')
+  return l:ret
+endfunc
+
 " 
 " plugin
 " 
 
 func! Vim_plug_path() abort
 
-  if     Is_env__('mac')
+  if Is_nvim()
+    if     Is_env__('mac')
 
-    let l:vim_plug_dir_mac_nvim = $HOME . '/.local/share/nvim/site'
-    let l:vim_plug_dir_mac_vim  = $HOME . '/.vim'
+      let l:vim_plug_dir_dflt_nvim = "~/.local/share/nvim/site"
+      let l:vim_plug_dir_mac_nvim  = $HOME . '/.local/share/nvim/site'
 
-    if     isdirectory(l:vim_plug_dir_mac_nvim)
-      let l:vim_plug_dir = l:vim_plug_dir_mac_nvim
+      if     isdirectory(l:vim_plug_dir_mac_nvim)
+        let l:vim_plug_dir = l:vim_plug_dir_mac_nvim
+      else
+        let l:vim_plug_dir = l:vim_plug_dir_mac_nvim
+      endif
 
-    elseif isdirectory(l:vim_plug_dir_mac_vim)
-      let l:vim_plug_dir = l:vim_plug_dir_mac_vim
+    elseif Is_env__('linux')
 
+      let l:vim_plug_dir_dflt_nvim = "~/.local/share/nvim/site"
+      let l:vim_plug_dir_ec2_nvim  = "/home/ec2-user/.local/share/nvim/site"
+      let l:vim_plug_dir_c9_nvim   = "/home/ec2-user/.local/share/nvim/site"
+      let l:vim_plug_dir_s9_nvim   = "/home/centos/.local/share/nvim/site"
+
+      if     isdirectory(l:vim_plug_dir_c9_nvim)
+        let l:vim_plug_dir = l:vim_plug_dir_c9_nvim
+
+      elseif isdirectory(l:vim_plug_dir_s9_nvim)
+        let l:vim_plug_dir = l:vim_plug_dir_s9_nvim
+      else
+        let l:vim_plug_dir = l:vim_plug_dir_ec2_nvim
+      endif
+
+    elseif Is_env__('win64')
+
+      let l:vim_plug_dir = '~/appdata/local/nvim-data/site'
+
+    elseif Is_env__('win32unix') " gitbash
+
+      let l:vim_plug_dir = '~/appdata/local/nvim-data/site'
     else
-      let l:vim_plug_dir = l:vim_plug_dir_mac_vim
+      let l:vim_plug_dir = '~/appdata/local/nvim-data/site'
     endif
 
-  elseif Is_env__('win64')
-    let l:vim_plug_dir = '~/appdata/local/nvim-data/site'
+  else " vim
+    if     Is_env__('mac')
 
-  elseif Is_env__('linux')
+      " let l:vim_plug_dir_mac_nvim = $HOME . '/.local/share/nvim/site'
+      let l:vim_plug_dir_mac_vim  = $HOME . '/.vim'
 
-    let l:vim_plug_dir_ec2_vim  = "/home/ec2-user/.vim"
-    let l:vim_plug_dir_c9_vim   = "/home/ec2-user/.vim"
-    let l:vim_plug_dir_c9_nvim  = "/home/ec2-user/.local/share/nvim/site"
-    let l:vim_plug_dir_s9_nvim  = "/home/centos/.local/share/nvim/site"
+      if isdirectory(l:vim_plug_dir_mac_vim)
+        let l:vim_plug_dir = l:vim_plug_dir_mac_vim
 
-    if     isdirectory(l:vim_plug_dir_c9_nvim)
-      let l:vim_plug_dir = l:vim_plug_dir_c9_nvim
+      else
+        let l:vim_plug_dir = l:vim_plug_dir_mac_vim
+      endif
 
-    elseif isdirectory(l:vim_plug_dir_c9_vim)
-      let l:vim_plug_dir = l:vim_plug_dir_c9_vim
+    elseif Is_env__('linux')
 
-    elseif isdirectory(l:vim_plug_dir_s9_nvim)
-      let l:vim_plug_dir = l:vim_plug_dir_s9_nvim
+      let l:vim_plug_dir_ec2_vim  = "/home/ec2-user/.vim"
+      let l:vim_plug_dir_c9_vim   = "/home/ec2-user/.vim"
+      " let l:vim_plug_dir_c9_nvim  = "/home/ec2-user/.local/share/nvim/site"
+      " let l:vim_plug_dir_s9_nvim  = "/home/centos/.local/share/nvim/site"
+
+      if isdirectory(l:vim_plug_dir_c9_vim)
+        let l:vim_plug_dir = l:vim_plug_dir_c9_vim
+
+      else
+        let l:vim_plug_dir = l:vim_plug_dir_ec2_vim
+      endif
+
+    elseif Is_env__('win64')
+      let l:vim_plug_dir = '~/.vim'
+
+    elseif Is_env__('win32unix') " gitbash
+      let l:vim_plug_dir = '~/.vim'
+
     else
-      let l:vim_plug_dir = l:vim_plug_dir_ec2_vim
+      let l:vim_plug_dir = '~/.vim'
     endif
-
-  elseif Is_env__('win32unix')
-    let l:vim_plug_dir = '~/.vim'
-
-  else
-    let l:vim_plug_dir = '~/.vim'
   endif
 
   let l:vim_plug_path = l:vim_plug_dir . '/autoload/plug.vim'

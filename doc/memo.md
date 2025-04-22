@@ -4,21 +4,19 @@
 
 ## nvim
 
-key map tmpl > mod
-
-vimplug_dir_path
-- mod part 2
-
-
-## pwsh
-
-vi arg wild card
+key map
+- n
+- v
+- i
+- c
+- t
 
 
-## keyboard
+## keyboard sticker
 
 ofc
-- win lr
+- f10: win l
+- f11: win r
 
 
 ## ooq dns migration

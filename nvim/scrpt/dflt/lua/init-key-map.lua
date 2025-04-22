@@ -157,39 +157,39 @@ vim.keymap.set('n', '<c-o>', 'h')
 
 -- " cursor mv word - forward
 -- nnoremap f :call Cursor__mv_word_f()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'f', ':call Cursor__mv_word_f()<cr>')
 
 -- " cursor mv word - back
 -- nnoremap o :call Cursor__mv_word_b()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'o', ':call Cursor__mv_word_b()<cr>')
 
 -- " cursor mv word - back pre
 -- "nnoremap xx :call Cursor__mv_word_b_pre()<cr>
 
 -- " cursor mv word dlm _ forward
 -- nnoremap _ f_l
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '_', 'f_l')
 
 -- " cursor mv word dlm _ back
 -- nnoremap <c-_> hT_
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<c-_>', 'hT_')
 -- nnoremap \     T_h
 -- nnoremap <bar> T_h
-vim.keymap.set('n', ':o', ':Opn')
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '\\', 'T_h')
+vim.keymap.set('n', '<bar>', 'T_h')
 -- "nnoremap <c-\> T_h
 
 -- " cursor mv word dlm ( camel or _ )  -  forward
 -- nnoremap F     :call Cursor__mv_word_dlm_f()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'F', ':call Cursor__mv_word_dlm_f()<cr>')
 
 -- " cursor mv fnc name
 -- nnoremap <c-f> :call Cursor__mv_fnc_name()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<c-f>', ':call Cursor__mv_fnc_name()<cr>')
 
 -- " cursor mv bracket pair
 -- nnoremap <c-l> %
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<c-l>', '%')
 
 -- " cursor mv bracket out back
 -- "nnoremap xx [{
@@ -202,11 +202,11 @@ vim.keymap.set('n', ':o', ':Opn')
 
 -- " cursor mv file edge bgn
 -- nnoremap gk :call Cursor__mv_file_edge_bgn()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'gk', ':call Cursor__mv_file_edge_bgn()<cr>')
 
 -- " cursor mv file edge end
 -- nnoremap gj :call Cursor__mv_file_edge_end()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'gj', ':call Cursor__mv_file_edge_end()<cr>')
 
 -- " cursor mv edit latest
 -- "nnoremap xx `.
@@ -214,13 +214,13 @@ vim.keymap.set('n', ':o', ':Opn')
 -- " cursor mv jmp
 -- nnoremap rk        :call Cursor__mv_v_jmp('k')<cr>
 -- nnoremap rj        :call Cursor__mv_v_jmp('j')<cr>
-vim.keymap.set('n', ':o', ':Opn')
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'rk', ':call Cursor__mv_v_jmp("k")<cr>')
+vim.keymap.set('n', 'rj', ':call Cursor__mv_v_jmp("j")<cr>')
 
 -- nnoremap r<space>k :call Cursor__mv_v_jmp_char('k', 'f')<cr>
 -- nnoremap r<space>j :call Cursor__mv_v_jmp_char('j', 'f')<cr>
-vim.keymap.set('n', ':o', ':Opn')
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'r<space>k', ':call Cursor__mv_v_jmp_char("k", "f")<cr>')
+vim.keymap.set('n', 'r<space>j', ':call Cursor__mv_v_jmp_char("j", "f")<cr>')
 
 -- " scroll
 
@@ -228,10 +228,10 @@ vim.keymap.set('n', ':o', ':Opn')
 -- nnoremap J      <c-e>
 -- nnoremap <up>   <c-y>
 -- nnoremap <down> <c-e>
-vim.keymap.set('n', ':o', ':Opn')
-vim.keymap.set('n', ':o', ':Opn')
-vim.keymap.set('n', ':o', ':Opn')
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'K'     , '<c-y>')
+vim.keymap.set('n', 'J'     , '<c-e>')
+vim.keymap.set('n', '<up>'  , '<c-y>')
+vim.keymap.set('n', '<down>', '<c-e>')
 
 -- " scroll cursor line upper
 -- "nnoremap xx zt
@@ -248,7 +248,7 @@ vim.keymap.set('n', ':o', ':Opn')
 
 -- " slctd __ word
 -- nnoremap i :call Slctd_str__word()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'i', ':call Slctd_str__word()<cr>')
 
 -- " slctd __ word by under score
 
@@ -259,57 +259,57 @@ vim.keymap.set('n', ':o', ':Opn')
 
 -- " slctd __ char current - word end
 -- nnoremap I ve
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'I', 've')
 
 -- " slct visual box
 -- nnoremap v <c-v>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'v', '<c-v>')
 
 -- " slct all
 -- "nnoremap xx :call Ynk__line_all()<cr>
 
 -- " slct re
 -- nnoremap rr :call Slct_re()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'rr', ':call Slct_re()<cr>')
 
 -- " ynk clr
 -- nnoremap <c-c> :call Ynk__clr()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<c-c>', ':call Ynk__clr()<cr>')
 
 -- " ynk line
 -- nnoremap c :call Ynk__line()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'c', ':call Ynk__line()<cr>')
 
 -- " ynk char
 -- "nnoremap xx "ayl
 
 -- " ynk slf path
 -- nnoremap gs :call Ynk__buf_file_path()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'gs', ':call Ynk__buf_file_path()<cr>')
 
 -- " paste
 -- nnoremap p :call Cursor__ins_ynk()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'p', ':call Cursor__ins_ynk()<cr>')
 
 -- " paste clp
 -- nnoremap P :call Cursor__ins_clp()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'P', ':call Cursor__ins_clp()<cr>')
 
 -- " paste rgstr history ( fzf )
 -- nnoremap <leader>r :FzfRgstr<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<leader>r', ':FzfRgstr<cr>')
 
 -- " undo
 -- nnoremap h     u
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'h'    , 'u'    )
 
 -- " redo
 -- nnoremap <c-h> <c-r>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<c-h>', '<c-r>')
 
 -- " undo history clr
 -- nnoremap :h :call Undo__clr()
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', ':h', ':call Undo__clr()')
 
 -- " repeat
 -- "nnoremap xx .
@@ -320,49 +320,49 @@ vim.keymap.set('n', ':o', ':Opn')
 
 -- " mode ch ins
 -- nnoremap <space> i
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<space>', 'i')
 
 -- " mode ch ins rpl
 -- "nnoremap xx R
 
 -- " ins cr
 -- nnoremap m :call Cursor__ins_cr()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'm', ':call Cursor__ins_cr()<cr>')
 
 -- " ins space
 -- nnoremap L :call Cursor__ins_space(v:false)<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'L', ':call Cursor__ins_space(v:false)<cr>')
 
 -- " ins equal
 -- nnoremap 2 i=<esc>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '2', 'i=<esc>')
 
 -- " ins period
 -- nnoremap . i.<esc>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '.', 'i.<esc>')
 
 -- " ins comma
 -- nnoremap , i, <esc>l
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', ',', 'i, <esc>l')
 
 -- " ins comma $, nxt line
 -- "nnoremap xx A,<esc>j
 
 -- " ins hyphen
 -- nnoremap 0 :call Cursor__ins_hyphen()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '0', ':call Cursor__ins_hyphen()<cr>')
 
 -- " ins bracket
 -- nnoremap <c-s> :call Cursor__ins_bracket()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<c-s>', ':call Cursor__ins_bracket()<cr>')
 
 -- " ins date
 -- nnoremap * :call Cursor__ins_da()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '*', ':call Cursor__ins_da()<cr>')
 
 -- " ins date time
 -- nnoremap ; :call Cursor__ins_dt()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', ';', ':call Cursor__ins_dt()<cr>')
 
 -- " ins day of week
 -- "nnoremap xx :call Cursor__ins_week()<cr>
@@ -372,11 +372,11 @@ vim.keymap.set('n', ':o', ':Opn')
 
 -- " ins anchor
 -- nnoremap A :call Cursor__ins_line_anchor()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'A', ':call Cursor__ins_line_anchor()<cr>')
 
 -- " ins markdown code
 -- nnoremap <c-u> :call Cursor__ins_markdown_code()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<c-u>', ':call Cursor__ins_markdown_code()<cr>')
 
 -- " ins markdown itm
 -- "nnoremap O xx
@@ -386,14 +386,14 @@ vim.keymap.set('n', ':o', ':Opn')
 
 -- " ins dots ( or crnt )
 -- nnoremap ru :call Cursor_line_end__dots_adjst()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'ru', ':call Cursor_line_end__dots_adjst()<cr>')
 
 -- " ins line emp
 -- " ref nnoremap y
 
 -- " ins comment mlt
 -- nnoremap $ :call Cursor__ins_cmnt_mlt()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '$', ':call Cursor__ins_cmnt_mlt()<cr>')
 
 -- " ins comment 1
 -- "nnoremap ! xx
@@ -407,7 +407,7 @@ vim.keymap.set('n', ':o', ':Opn')
 
 -- " ins __ line indnt space
 -- nnoremap V :call Cursor_d__ins_line_space()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'V', ':call Cursor_d__ins_line_space()<cr>')
 
 -- " cahr rpl, under score
 -- "nnoremap <bar> :call Cursor_char__rpl_underscore()<cr>
@@ -417,18 +417,18 @@ vim.keymap.set('n', ':o', ':Opn')
 
 -- " del char
 -- nnoremap s :call Cursor_c_char__del()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 's', ':call Cursor_c_char__del()<cr>')
 
 -- " del char ynk
 -- "nnoremap xx :call Cursor_c_char__del_ynk()<cr>
 
 -- " line del
 -- nnoremap d :call Cursor_line__del()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'd', ':call Cursor_line__del()<cr>')
 
 -- " line forward del
 -- nnoremap <c-d> D
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<c-d>', 'D')
 
 -- " word back    del
 -- "nnoremap xx hvbd
@@ -439,14 +439,14 @@ vim.keymap.set('n', ':o', ':Opn')
 
 -- " del cr ( line join )
 -- nnoremap <c-m> J
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<c-m>', 'J')
 
 -- " line mv up
 -- "nnoremap xx "addk"aP
 
 -- " line dpl
 -- nnoremap D "zyy"zP
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'D', '"zyy"zP')
 
 -- " repeat memory
 -- "nnoremap xx qy
@@ -454,30 +454,30 @@ vim.keymap.set('n', ':o', ':Opn')
 
 -- " char tgl 01 ( ?? / num icl  )
 -- nnoremap u :call N_char__tgl_swtch01()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'u', ':call N_char__tgl_swtch01()<cr>')
 
 -- " char tgl 02 ( type ch / num dcl )
 -- nnoremap U :call N_char__tgl_swtch02()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'U', ':call N_char__tgl_swtch02()<cr>')
 
 -- " indnt shft
 -- nnoremap ri :call Cursor_line_indnt__shft_l()<cr>
 -- nnoremap ro :call Cursor_line_indnt__shft_r()<cr>
-vim.keymap.set('n', ':o', ':Opn')
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'ri', ':call Cursor_line_indnt__shft_l()<cr>')
+vim.keymap.set('n', 'ro', ':call Cursor_line_indnt__shft_r()<cr>')
 
 -- " indnt add
 -- "nnoremap xx :call Cursor_line_indnt__add(2)<cr>
 
 -- " indnt crct
 -- nnoremap re :call Cursor_line_indnt__crct()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 're', ':call Cursor_line_indnt__crct()<cr>')
 
 -- " cursor l char col __ crct
 -- nnoremap q :call Cursor_f_str__crct_by_line_u()<cr>
 -- nnoremap Q :call Cursor_f_str__crct_by_line_d()<cr>
-vim.keymap.set('n', ':o', ':Opn')
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'q', ':call Cursor_f_str__crct_by_line_u()<cr>')
+vim.keymap.set('n', 'Q', ':call Cursor_f_str__crct_by_line_d()<cr>')
 
 -- " 
 -- " srch
@@ -485,7 +485,7 @@ vim.keymap.set('n', ':o', ':Opn')
 
 -- " srch hl init
 -- nnoremap S /<cr>N
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'S', '/<cr>N')
 -- "nnoremap / /<cr>N
 -- "nnoremap xx :call Srch_init()<cr>
 
@@ -497,54 +497,54 @@ vim.keymap.set('n', ':o', ':Opn')
 
 -- " srch by cmd
 -- nnoremap <leader>k /
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<leader>k', '/')
 
 -- " srch by cmd word
 
 -- nnoremap <leader>K /\<\><left><left>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<leader>K', '/\\<\\><left><left>')
 
 -- " srch word or
 -- "nnoremap xx Xxx
 
 -- " srch forward
 -- nnoremap n     :call Cursor__mv_srch('f')<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'n', ':call Cursor__mv_srch("f")<cr>')
 
 -- " srch back
 -- nnoremap <c-n> :call Cursor__mv_srch('b')<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<c-n>', ':call Cursor__mv_srch("b")<cr>')
 
 -- " srch, cursor mv nxt char
 -- "nnoremap @ :call Srch_7_cursor__mv_nxt('f')<cr>
 
 -- " srch str set
 -- nnoremap e :call Srch_str__cursor_word()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'e', ':call Srch_str__cursor_word()<cr>')
 
 -- " srch str set ( word 1 )
 -- nnoremap E :call Srch_str__word1_tgl()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'E', ':call Srch_str__word1_tgl()<cr>')
 
 -- " srch char bracket forward
 -- "nnoremap xx :call Srch_char_bracket('f')<cr>
 
 -- " srch markdown h
 -- nnoremap H :call Srch_str__markdown_h()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'H', ':call Srch_str__markdown_h()<cr>')
 
 -- " srch str history ( fzf )
 -- nnoremap <leader>f :FzfSrchHstry<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<leader>f', ':FzfSrchHstry<cr>')
 -- "nnoremap <leader>n :FzfSrchHstry<cr>
 
 -- " srch str set prv ( tgl )
 -- nnoremap N :call Srch_str__prv_tgl()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 'N', ':call Srch_str__prv_tgl()<cr>')
 
 -- " srch rpl one > ynk nxt ( only srch )
 -- nnoremap <c-p> :call Srch_slct('f')<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<c-p>', ':call Srch_slct("f")<cr>')
 
 -- " srch ?=ts
 -- "nnoremap xx /?ts=<cr>
@@ -552,34 +552,34 @@ vim.keymap.set('n', ':o', ':Opn')
 -- " rpl ( cmd )
 -- "nnoremap :s :Rpl 
 -- nnoremap :s :%s///g
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', ':s', ':%s///g')
 
 -- " fzf rg
 -- " nnoremap <leader>o :call Fzf_rg('')<cr>
 -- nnoremap <leader>o :call Fzf_rg(v:null)<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<leader>o', ':call Fzf_rg(v:null)<cr>')
 
 -- " fzf rg fltr ext
 -- nnoremap <leader>O :FzfRgExt js
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<leader>O', ':FzfRgExt js')
 
 -- " fzf rg with run
 -- " nnoremap <leader>O :FzfRgWithRun <cr>
 
 -- " fzf buf
 -- nnoremap <leader>i :call N_fzf_buf()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<leader>i', ':call N_fzf_buf()<cr>')
 
 -- " fzf jmplst
 -- nnoremap <leader>e :FzfJmplst<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<leader>e', ':FzfJmplst<cr>')
 
 -- " fzf pth lst
 -- "nnoremap <leader>xx :FzfTagjmpByFile <cr>
 
 -- " tag jmp tab new
 -- nnoremap t :call Tag_jmp_by_cursor_line()<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', 't', ':call Tag_jmp_by_cursor_line()<cr>')
 
 -- " 
 -- " cmd
@@ -587,7 +587,7 @@ vim.keymap.set('n', ':o', ':Opn')
 
 -- " cmd history ( fzf )
 -- nnoremap <leader>j :FzfCmdHstry<cr>
-vim.keymap.set('n', ':o', ':Opn')
+vim.keymap.set('n', '<leader>j', ':FzfCmdHstry<cr>')
 
 -- " sys cmd
 -- nnoremap :! :! 
