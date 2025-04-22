@@ -182,15 +182,50 @@ function touch {
 Set-Alias to "touch"
 
 function rm_dmy {
-  param( $path )
+  echo "rm"
 
-  Remove-Item -Confirm $path
+  Remove-Item -Confirm $args
 }
-# Set-Alias rm "rm_dmy" -Option AllScope # cannot be removed
+Set-Alias rm "rm_dmy" -Option AllScope # cannot be removed
 
-function vi  {
+function vi_s {
 
-  nvim -p ( Get-ChildItem $args )
+  nvim -p $args
+}
+
+function vi {
+
+  $arg_list = wild_card_parse $args
+  # echo $arg_list
+
+  nvim -p $arg_list
+}
+
+function wild_card_parse {
+
+  $args = $args.Split(' ')
+
+  $path_list = @()
+
+  foreach ($arg in $args){
+    # echo "for $arg"
+
+    if ($arg.Contains('*')){ # wild card
+      # echo 'wild card'
+
+      $tmp_list = ( Get-ChildItem $arg -Name )
+
+      if ($tmp_list.Count -gt 0){
+
+        $path_list += $tmp_list
+      }
+    }else {
+      
+      $path_list += $arg
+    }
+  }
+  # echo $path_list
+  return ,$path_list
 }
 
 function opn {
