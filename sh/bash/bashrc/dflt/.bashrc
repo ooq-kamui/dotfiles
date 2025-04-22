@@ -92,8 +92,13 @@ alias srt='sort'
 alias tbl='/usr/bin/column -t'
 alias col="$HOME/wrk/cnf/sh/bash/cmd/col"
 
-alias cal='cal -3'
-alias ca='cal'
+# alias cal='cal -3'
+# alias ca='cal -3'
+# mac ?
+# alias ca='cal -B -1; cal; cal -A 1'
+# c9
+alias ca='cal $( date +"%m %Y" --date "-1 month" ); cal; cal $( date +"%m %Y" --date "+1 month" )'
+
 
 # alias x='xargs'
 

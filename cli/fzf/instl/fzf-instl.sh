@@ -4,3 +4,7 @@
 brew install fzf
 
 
+# .bashrc
+# eval "$(fzf --bash)"
+
+

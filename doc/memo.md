@@ -2,20 +2,6 @@
 # dotfiles
 
 
-## linux setting & instl
-
-instl script cre
-- fzf
-- zoxide
-- fish
-
-
-## psql
-
-instl
-- scrpt
-
-
 ## nvim
 
 key map tmpl > mod
@@ -27,14 +13,12 @@ vimplug_dir_path
 ## pwsh
 
 vi arg wild card
-- case file exist not
-
-rm -i
 
 
-## godot
+## keyboard
 
-step by step
+ofc
+- win lr
 
 
 ## ooq dns migration
@@ -44,6 +28,11 @@ dns migration
   - cre
 - svr
   - del
+
+
+## godot
+
+step by step
 
 
 ## docker
