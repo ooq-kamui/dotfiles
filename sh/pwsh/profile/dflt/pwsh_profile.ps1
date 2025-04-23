@@ -151,17 +151,18 @@ function lr {
 }
 
 function dir_jmp {
-  param( $path )
+  # param( $path )
 
-  if ( $path -eq $null ) {
+  # if ( $path -eq $null ) {
+  if ( $args -eq $null ) {
 
     $dir = ( zoxide query --list | fzf )
     # echo $dir
     cd $dir
 
   }else {
-
-    z $path
+    # z @( $args )
+    z $args[0] $args[1] $args[2]
   }
 
   p
