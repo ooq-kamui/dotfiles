@@ -3,5 +3,3 @@ eval `dircolors ~/.colorrc`
 
 
 
-
-

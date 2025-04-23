@@ -5,18 +5,28 @@
 ## nvim
 
 key map
-- n
-- v
-- i
-- c
-- t
+- enable
+  - c
+  - t
 
-
-## keyboard sticker
-
-ofc
-- f10: win l
-- f11: win r
+- expr
+  - n
+  - v
+  - i
+  - c
+  - t
+- comment
+  - n
+  - v
+  - i
+  - c
+  - t
+- esc
+  - n
+  - v
+  - i
+  - c
+  - t
 
 
 ## ooq dns migration

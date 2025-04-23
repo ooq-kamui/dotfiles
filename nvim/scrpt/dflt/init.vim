@@ -6611,11 +6611,18 @@ func! Vim_plug_path() abort
       let l:vim_plug_dir_c9_nvim   = "/home/ec2-user/.local/share/nvim/site"
       let l:vim_plug_dir_s9_nvim   = "/home/centos/.local/share/nvim/site"
 
-      if     isdirectory(l:vim_plug_dir_c9_nvim)
+      if     isdirectory(l:vim_plug_dir_dflt_nvim)
+        let l:vim_plug_dir = l:vim_plug_dir_dflt_nvim
+
+      elseif isdirectory(l:vim_plug_dir_ec2_nvim)
+        let l:vim_plug_dir = l:vim_plug_dir_ec2_nvim
+
+      elseif isdirectory(l:vim_plug_dir_c9_nvim)
         let l:vim_plug_dir = l:vim_plug_dir_c9_nvim
 
       elseif isdirectory(l:vim_plug_dir_s9_nvim)
         let l:vim_plug_dir = l:vim_plug_dir_s9_nvim
+
       else
         let l:vim_plug_dir = l:vim_plug_dir_ec2_nvim
       endif
