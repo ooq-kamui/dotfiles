@@ -204,7 +204,9 @@ function vi {
 
 function wild_card_parse {
 
-  $args = $args.Split(' ')
+  if ($args -ne $null){
+    $args = $args.Split(' ')
+  }
 
   $path_list = @()
 
