@@ -11,7 +11,8 @@ let g:vimrc_dir       = g:dotfiles_dir . '/nvim/scrpt'
 let g:vimrc_file_path = g:vimrc_dir . '/dflt/init.vim'
 
 let g:init_lua_file_path         = g:vimrc_dir . '/dflt/lua/init.lua'
-let g:init_key_map_lua_file_path = g:vimrc_dir . '/dflt/lua/init-key-map.lua'
+let g:init_lua_key_map_file_path = g:vimrc_dir . '/dflt/lua/init-key-map.lua'
+let g:init_lua_lua_file_path     = g:vimrc_dir . '/dflt/lua/init-hi.lua'
 
 
 let skip_defaults_vim=1
@@ -353,14 +354,10 @@ nnoremap o :call Cursor__mv_word_b()<cr>
 "nnoremap xx :call Cursor__mv_word_b_pre()<cr>
 
 " cursor mv word dlm _ forward
-nnoremap _ f_l
-"nnoremap \ f_l
+nnoremap _     f_l
 
 " cursor mv word dlm _ back
 nnoremap <c-_> hT_
-nnoremap \     T_h
-nnoremap <bar> T_h
-"nnoremap <c-\> T_h
 
 " cursor mv word dlm ( camel or _ )  -  forward
 nnoremap F     :call Cursor__mv_word_dlm_f()<cr>
@@ -478,7 +475,7 @@ nnoremap <c-h> <c-r>
 
 " undo history clr
 nnoremap :h :call Undo__clr()
-"nnoremap H :call Undo__clr()<cr>
+nnoremap H  :call Undo__clr()<cr>
 
 " repeat
 "nnoremap xx .
@@ -516,6 +513,12 @@ nnoremap 0 :call Cursor__ins_hyphen()<cr>
 
 " ins tilde
 nnoremap ~ :call Cursor__ins_tilde()<cr>
+
+" ins slash
+nnoremap / :call Cursor__ins_slash()<cr>
+
+" ins slashback
+nnoremap \ :call Cursor__ins_slashback()<cr>
 
 " ins quote
 nnoremap <c-s> :call Cursor__ins_quote()<cr>
@@ -567,7 +570,7 @@ nnoremap <expr> 1
 nnoremap V :call Cursor_d__ins_line_space()<cr>
 
 " cahr rpl, under score
-"nnoremap <bar> :call Cursor_char__rpl_underscore()<cr>
+"nnoremap xx :call Cursor_char__rpl_underscore()<cr>
 
 " tgl markdown chk
 "nnoremap xx :call Char_markdown_chk__tgl()<cr>
@@ -632,7 +635,6 @@ nnoremap Q :call Cursor_f_str__crct_by_line_d()<cr>
 
 " srch hl init
 nnoremap S /<cr>N
-"nnoremap / /<cr>N
 "nnoremap xx :call Srch_init()<cr>
 
 " srch char in line - forward
@@ -671,7 +673,6 @@ nnoremap E :call Srch_str__word1_tgl()<cr>
 
 " srch markdown h
 nnoremap M :call Srch_str__markdown_h()<cr>
-"nnoremap H :call Srch_str__markdown_h()<cr>
 
 " srch str history ( fzf )
 nnoremap <leader>f :FzfSrchHstry<cr>
@@ -879,10 +880,10 @@ nnoremap = <esc>
 "nnoremap _ <esc>
 "nnoremap ~ <esc>
 nnoremap ^ <esc>
-nnoremap / <esc>
+"nnoremap / <esc>
 "nnoremap \ <esc>
-"nnoremap | <esc> " ref vvv
-"nnoremap <bar> <esc>
+"nnoremap | <esc> " ref vv
+nnoremap <bar> <esc>
 nnoremap ? <esc>
 
 "nnoremap ! <esc>
@@ -934,7 +935,7 @@ nnoremap C <esc>
 "nnoremap E <esc>
 "nnoremap F <esc>
 nnoremap G <esc>
-nnoremap H <esc>
+"nnoremap H <esc>
 "nnoremap I <esc>
 "nnoremap J  <esc>
 "nnoremap K  <esc>
@@ -1263,7 +1264,6 @@ vnoremap , :call Curosr_line_end__ins(',')<cr>
 
 " pad space
 vnoremap S :call Slctd__pad_space()<cr>
-"vnoremap <c-s> :call Slctd__pad_space()<cr>
 
 " pad -
 vnoremap - :call Slctd__pad('-')<cr>
@@ -1316,8 +1316,10 @@ vnoremap <expr> w
 vnoremap W :call Slctd_str_edge_out__tgl_shft()<cr>
 
 " slctd str edge out __ ins space
-vnoremap <c-s> :call Slctd_str_edge_out__ins(' ')<cr>
-"vnoremap S :call Slctd_str_edge_out__ins(' ')<cr>
+"vnoremap <c-s> :call Slctd_str_edge_out__ins(' ')<cr>
+vnoremap <expr> <c-s>
+\ mode() == '<c-v>' ? ':call Slctd_box_edge_r_char__shft_in()<cr>' :
+\                     ':call Slctd_str_edge_out__ins(' ')<cr>'
 
 " slctd str edge out __ ins markdown strikethrough
 vnoremap ~ :call Slctd_str_edge_out__ins_markdown_strikethrough()<cr>
@@ -1431,6 +1433,7 @@ vnoremap <c-m> :call Slctd_line_srch_str__rpl_cr()<cr>
 vnoremap <expr> <c-h>
 \ mode() == '<c-v>' ? ':call Slctd_box_edge_r_char__shft_in()<cr>' :
 \                     ''
+"vnoremap <c-s> 
 
 " fzf buf
 vnoremap <leader>i :call V_fzf_buf()<cr>
@@ -1568,7 +1571,6 @@ vnoremap <c-q> <esc>
 vnoremap <c-r> <esc>
 "vnoremap <c-s> <esc>
 vnoremap <c-u> <esc>
-" v disable ??
 vnoremap <c-v> <esc>
 "vnoremap <c-w> <esc>
 vnoremap <c-x> <esc>
@@ -1774,8 +1776,7 @@ inoremap <c-tab> <nop>
 "inoremap <c-space> <tab> " ?? todo research
 inoremap <c-space> <tab>
 
-"inoremap <c-_> <nop> " non ?
-inoremap <c-_> <nop>
+inoremap <c-_> <nop> " non ?
 inoremap <c-^> <nop>
 inoremap <c-\> <nop>
 inoremap <c--> <nop>
@@ -2640,8 +2641,9 @@ func! Opn_vimrc() abort
   call Opn(g:vimrc_file_path)
 
   if has('nvim')
-    call Opn(g:init_lua_file_path)
-    call Opn(g:init_key_map_lua_file_path)
+    call Opn(g:init_lua_file_path        )
+    call Opn(g:init_lua_key_map_file_path)
+    call Opn(g:init_lua_lua_file_path    )
   endif
 
   if     Is_env__('linux')     " c9 s9
@@ -3476,7 +3478,19 @@ endfunc
 func! Cursor__ins_tilde() abort
 
   call Normal('i~')
-  "call Cursor__ins('-')
+  "call Cursor__ins('~')
+endfunc
+
+func! Cursor__ins_slash() abort
+
+  call Normal('i/')
+  "call Cursor__ins('/')
+endfunc
+
+func! Cursor__ins_slashback() abort
+
+  call Normal('i\')
+  "call Cursor__ins('\')
 endfunc
 
 func! Cursor__ins_quote() abort

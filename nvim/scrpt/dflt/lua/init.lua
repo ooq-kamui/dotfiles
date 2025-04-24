@@ -31,12 +31,11 @@
 
 
 -- 
--- key map
+-- require
 -- 
 
 require('init-key-map')
-
-
+require('init-hi'     )
 
 
 -- 

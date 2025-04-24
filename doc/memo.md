@@ -5,9 +5,8 @@
 ## nvim
 
 key map
-- enable
-  - c
-  - t
+- esc
+  - comment off
 
 - expr
   - n
@@ -15,18 +14,35 @@ key map
   - i
   - c
   - t
+
 - comment
   - n
   - v
   - i
   - c
   - t
-- esc
-  - n
-  - v
-  - i
-  - c
-  - t
+
+hi
+- file cre
+  - cp 
+
+
+setting re
+- v box <c-s> shft_in
+- n H undo clr
+
+
+## vim
+
+v box paste line down
+- case emp: paste skip
+
+
+## keyboard sticker
+
+logi
+- `/` `<>` `\`
+  - mac too
 
 
 ## ooq dns migration
