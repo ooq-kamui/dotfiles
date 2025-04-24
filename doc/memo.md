@@ -2,6 +2,19 @@
 # dotfiles
 
 
+## keyboard sticker
+
+logi
+- `/` `<>` `\`
+  - mac too
+
+
+## git
+
+git log by file
+- alias
+
+
 ## nvim
 
 key map
@@ -23,8 +36,6 @@ key map
   - t
 
 hi
-- file cre
-  - cp 
 
 
 setting re
@@ -34,15 +45,10 @@ setting re
 
 ## vim
 
+nnoremap 2 ?
+
 v box paste line down
 - case emp: paste skip
-
-
-## keyboard sticker
-
-logi
-- `/` `<>` `\`
-  - mac too
 
 
 ## ooq dns migration
