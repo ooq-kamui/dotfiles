@@ -798,11 +798,9 @@ nnoremap <c-w> :call Win_splt_cursor__mv_nxt()<cr>
 " win ( buf ) mv l
 "nnoremap xx <c-w>h
 
-" 
 " repeat
-" 
-
-nnoremap @ :call Repeat_tmp()<cr>
+nnoremap - :call Repeat_tmp()<cr>
+"nnoremap ^ :call Repeat_tmp()<cr>
 
 " 
 " term
@@ -869,7 +867,7 @@ nnoremap <s-space> <esc>
 "nnoremap <cr>    <esc>
 nnoremap <bs>    <esc>
 
-nnoremap - <esc>
+"nnoremap - <esc>
 nnoremap + <esc>
 nnoremap = <esc>
 "nnoremap @ <esc>
@@ -5803,7 +5801,6 @@ func! Srch_char_bracket(drct) abort
   call Srch_char(a:drct, l:char_bracket)
 endfunc
 
-" dev anchor
 func! Srch_str__markdown_h() range abort
 
   let @/ = '^#\+ '

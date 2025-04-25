@@ -1,8 +1,15 @@
-
--- " 
--- " hi
--- " 
 -- 
+-- hi
+-- 
+
+-- ex
+-- vim.api.nvim_set_hl(0, 'LineNr', { fg = '#777777', bg = 'NONE', bold = false })
+-- arg[0] : hl group
+--   0: all    ( default )
+--   1: window
+--   2: buffer
+
+
 -- hi LineNr       ctermfg=141                              cterm=none
 -- augroup InsertHook
 --   au!

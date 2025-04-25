@@ -2,25 +2,9 @@
 # dotfiles
 
 
-## keyboard sticker
-
-logi
-- `/` `<>` `\`
-  - mac too
-
-
-## git
-
-git log by file
-- alias
-
-
 ## nvim
 
 key map
-- esc
-  - comment off
-
 - expr
   - n
   - v
@@ -29,26 +13,29 @@ key map
   - t
 
 - comment
-  - n
-  - v
-  - i
-  - c
-  - t
+  - del org
+
+- esc
+  - comment off
 
 hi
+- mod
 
 
 setting re
 - v box <c-s> shft_in
-- n H undo clr
 
 
 ## vim
 
-nnoremap 2 ?
-
 v box paste line down
 - case emp: paste skip
+
+
+## git
+
+git log only by file
+- alias
 
 
 ## ooq dns migration
@@ -63,6 +50,13 @@ dns migration
 ## godot
 
 step by step
+
+
+## keyboard sticker
+
+`/` `<>` `\`
+- logi
+- mac too
 
 
 ## docker
