@@ -13,13 +13,16 @@ key map
   - t
 
 - comment
-  - del org
+  - org del
 
 - esc
   - comment off
 
 hi
 - mod
+- org del
+
+fnc
 
 
 setting re

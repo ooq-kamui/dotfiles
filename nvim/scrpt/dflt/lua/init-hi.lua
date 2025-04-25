@@ -10,55 +10,83 @@
 --   2: buffer
 
 
--- hi LineNr       ctermfg=141                              cterm=none
+-- hi LineNr       ctermfg=141                              
 -- augroup InsertHook
 --   au!
 --   au InsertLeave * hi LineNr ctermfg=141
 --   au InsertEnter * hi LineNr ctermfg=lightgreen
 -- augroup END
+
+
+--                    " hi Cursor                               ctermbg=gray    
+-- vim.api.nvim_set_hl(0, 'Cursor',         {                     bg = 'gray'})
+--                      hi CursorLineNr    ctermfg=magenta
+-- vim.api.nvim_set_hl(0, 'CursorLineNr',   {fg = 'magenta'})
 -- 
--- " hi Cursor                           ctermbg=gray    guibg=gray
--- hi CursorLineNr ctermfg=magenta
+--                      hi Visual          ctermfg=none         ctermbg=darkmagenta 
+-- vim.api.nvim_set_hl(0, 'VisualLineNr',   {fg = 'none',         bg = 'darkmagenta'})
+--                      hi VisualNOS                            ctermbg=darkmagenta 
+-- vim.api.nvim_set_hl(0, 'VisualNOS',      {                     bg = 'darkmagenta'})
 -- 
--- hi Visual       ctermfg=none         ctermbg=darkmagenta cterm=none
--- hi VisualNOS                         ctermbg=darkmagenta cterm=none
--- 
--- hi Search       ctermfg=lightyellow  ctermbg=36          cterm=none
--- hi CurSearch    ctermfg=lightyellow  ctermbg=36          cterm=none
--- hi IncSearch    ctermfg=lightyellow  ctermbg=34          cterm=none
+--                      hi Search          ctermfg=lightyellow  ctermbg=36          
+-- vim.api.nvim_set_hl(0, 'Search',         {fg = 'lightyellow',  bg = '36'})
+--                      hi CurSearch       ctermfg=lightyellow  ctermbg=36          
+-- vim.api.nvim_set_hl(0, 'CurSearch',      {fg = 'lightyellow',  bg = '36'})
+--                      hi IncSearch       ctermfg=lightyellow  ctermbg=34          
+-- vim.api.nvim_set_hl(0, 'IncSearch',      {fg = 'lightyellow',  bg = '34'})
+
 -- " bracket
--- hi MatchParen   ctermfg=lightmagenta ctermbg=none
+--                      hi MatchParen      ctermfg=lightmagenta ctermbg=none
+-- vim.api.nvim_set_hl(0, 'MatchParen',     {fg = 'lightmagenta', bg = 'none'})
 -- 
--- hi TabLineSel                        ctermbg=magenta     cterm=none
--- hi TabLine      ctermfg=lightblue    ctermbg=none        cterm=none
--- hi TabLineFill                       ctermbg=none        cterm=none
+--                      hi TabLineSel                           ctermbg=magenta     
+-- vim.api.nvim_set_hl(0, 'TabLineSel',     {                     bg = 'magenta'})
+--                      hi TabLine         ctermfg=lightblue    ctermbg=none        
+-- vim.api.nvim_set_hl(0, 'TabLine',        {fg = 'lightblue',    bg = 'none'})
+--                      hi TabLineFill                          ctermbg=none        
+-- vim.api.nvim_set_hl(0, 'TabLineFill',    {                     bg = 'none'})
 -- 
--- hi StatusLine   ctermfg=lightblue    ctermbg=none        cterm=none
--- hi EndOfBuffer  ctermfg=cyan                             cterm=none
+--                      hi StatusLine      ctermfg=lightblue    ctermbg=none        
+-- vim.api.nvim_set_hl(0, 'StatusLine',     {fg = 'lightblue',    bg = 'none'})
+--                      hi EndOfBuffer     ctermfg=cyan                             
+-- vim.api.nvim_set_hl(0, 'EndOfBuffer',    {fg = 'cyan'                     })
 -- 
--- hi Pmenu        ctermfg=lightgreen   ctermbg=darkblue    cterm=none
--- hi PmenuSel     ctermfg=cyan         ctermbg=magenta     cterm=bold
+--                      hi Pmenu           ctermfg=lightgreen   ctermbg=darkblue    
+-- vim.api.nvim_set_hl(0, 'Pmenu',          {fg = 'lightgreen',   bg = 'darkblue'})
+--                      hi PmenuSel        ctermfg=cyan         ctermbg=magenta   cterm=bold
+-- vim.api.nvim_set_hl(0, 'PmenuSel',       {fg = 'cyan',         bg = 'magenta',    bold = true })
 -- 
--- hi ErrorMsg     ctermfg=magenta      ctermbg=none        cterm=none
--- hi WarningMsg   ctermfg=magenta      ctermbg=none        cterm=none
+--                      hi ErrorMsg        ctermfg=magenta      ctermbg=none        
+-- vim.api.nvim_set_hl(0, 'ErrorMsg',       {fg = 'magenta',      bg = 'none'})
+--                      hi WarningMsg      ctermfg=magenta      ctermbg=none        
+-- vim.api.nvim_set_hl(0, 'WarningMsg',     {fg = 'magenta',      bg = 'none'})
 -- 
--- hi NonText      ctermfg=25           ctermbg=none        cterm=none
--- hi SpecialKey   ctermfg=25           ctermbg=none        cterm=none
+--                      hi NonText         ctermfg=25           ctermbg=none        
+-- vim.api.nvim_set_hl(0, 'NonText',        {fg = '25',           bg = 'none'})
+--                      hi SpecialKey      ctermfg=25           ctermbg=none        
+-- vim.api.nvim_set_hl(0, 'SpecialKey',     {fg = '25',           bg = 'none'})
 -- 
--- hi FullWidthSpace                    ctermbg=white
--- match FullWidthSpace /　/
+--                      hi FullWidthSpace                       ctermbg=white
+-- vim.api.nvim_set_hl(0, 'FullWidthSpace', {                     bg = 'white'})
+--                      match FullWidthSpace /　/
+--                      ???
 -- 
 -- " vimdiff
--- hi DiffAdd      ctermfg=10           ctermbg=22          cterm=none
--- hi DiffDelete   ctermfg=52           ctermbg=52          cterm=none
--- hi DiffChange   ctermfg=10           ctermbg=17          cterm=none
--- hi DiffText     ctermfg=10           ctermbg=21          cterm=none
+--                      hi DiffAdd         ctermfg=10           ctermbg=22          
+-- vim.api.nvim_set_hl(0, 'DiffAdd',        {fg = '10',           bg = '22'})
+--                      hi DiffDelete      ctermfg=52           ctermbg=52          
+-- vim.api.nvim_set_hl(0, 'DiffDelete',     {fg = '52',           bg = '52'})
+--                      hi DiffChange      ctermfg=10           ctermbg=17          
+-- vim.api.nvim_set_hl(0, 'DiffChange',     {fg = '10',           bg = '17'})
+--                      hi DiffText        ctermfg=10           ctermbg=21          
+-- vim.api.nvim_set_hl(0, 'DiffText',       {fg = '10',           bg = '21'})
 -- 
 -- " wildmenu
--- " hi wildMenu ??    ctermfg=cyan
+--                    " hi wildMenu ??     ctermfg=cyan
+-- vim.api.nvim_set_hl(0, 'wildMenu',       {fg = 'cyan'                     })
 -- 
 -- " hi dflt
--- 
--- hi Comment      ctermfg=14           ctermbg=none        cterm=none
+--                      hi Comment         ctermfg=14           ctermbg=none        
+-- vim.api.nvim_set_hl(0, 'Comment',        {fg = '14',           bg = 'none'})
 
 
