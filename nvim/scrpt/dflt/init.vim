@@ -127,7 +127,8 @@ set tabstop=2    " 4
 set expandtab " tab > space
 
 filetype indent on
-autocmd FileType lua      setlocal sw=2 sts=2 ts=2 noet " tab
+" autocmd FileType lua      setlocal sw=2 sts=2 ts=2 noet " tab
+autocmd FileType lua      setlocal sw=2 sts=2 ts=2   et " space
 autocmd FileType text     setlocal sw=2 sts=2 ts=2   et " space
 autocmd FileType json     setlocal sw=2 sts=2 ts=2   et " space
 autocmd FileType vim      setlocal sw=2 sts=2 ts=2   et " space

@@ -5,12 +5,13 @@
 ## nvim
 
 key map
-- expr
-  - n
-  - v
+- expr mod
   - i
-  - c
-  - t
+    - esc color
+
+- tst
+  - aaa  bbb  ccc
+  - aaa  bbb  ccc
 
 - comment
   - org del
@@ -35,12 +36,6 @@ v box paste line down
 - case emp: paste skip
 
 
-## git
-
-git log only by file
-- alias
-
-
 ## ooq dns migration
 
 dns migration
@@ -50,16 +45,16 @@ dns migration
   - del
 
 
-## godot
-
-step by step
-
-
 ## keyboard sticker
 
 `/` `<>` `\`
 - logi
-- mac too
+- mac
+
+
+## godot
+
+step by step
 
 
 ## docker
