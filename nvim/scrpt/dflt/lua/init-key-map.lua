@@ -2,9 +2,6 @@
 -- key map
 -- 
 
--- ojroques/nvim-osc52
-   vim.keymap.set('v', 'C', require('osc52').copy_visual)
-
 -- 
 -- mode normal
 -- 
@@ -991,6 +988,8 @@ end, {expr = true})
 
 -- mode visual esc end
 
+-- ojroques/nvim-osc52
+   vim.keymap.set('v', 'C', require('osc52').copy_visual)
 
 -- mode ch line
    vim.keymap.set('v', 'i', 'V')

@@ -1,0 +1,68 @@
+-- " 
+-- " cmd def
+-- " 
+
+-- command! -nargs=0 Pth call Pth()
+-- 
+-- command! -nargs=0 K     call Dir__parent(1)
+-- command! -nargs=0 Kk    call Dir__parent(2)
+-- command! -nargs=0 Kkk   call Dir__parent(3)
+-- 
+-- command! -nargs=0 Dpl call Buf_file__dpl()
+-- 
+-- command! -nargs=1 Mv call Buf_file__mv(<q-args>)
+-- 
+-- command! -nargs=* SrchOr call Srch_or(<f-args>)
+-- 
+-- command! -nargs=* InsSysCmd call Cursor__ins_sys_cmd(<q-args>)
+-- 
+-- command! -range=% -nargs=* Rpl <line1>,<line2>call Slctd_line__rpl(<f-args>)
+-- 
+-- command! -range=% -nargs=* VBoxRpl <line1>,<line2>call Slctd_box__rpl(<f-args>)
+-- 
+-- command! -nargs=* -complete=file Opn call Opn(<q-args>)
+-- 
+-- command! -nargs=* OpnMan call Opn_man(<q-args>)
+-- 
+-- "command! -nargs=* OpnApp call Opn_app(<f-args>)
+-- 
+-- " cmd def fzf
+-- 
+-- command! -bang -nargs=1 FzfRgExt call Fzf_rg_ext(<f-args>)
+-- 
+-- command! -nargs=? FzfRgWithRun call Fzf_rg_with_run(<f-args>)
+-- 
+-- command! -nargs=? FzfTagjmpByFile call Fzf_tag_jmp_by_file(<f-args>)
+-- 
+-- command! -bang -nargs=? FzfBufCrnt
+-- \ call fzf#vim#buffer_lines(
+-- \   <q-args>,
+-- \   {'options': ['--no-sort', '--exact']},
+-- \   <bang>1
+-- \ )
+-- 
+-- " fzf file
+-- command! -bang -nargs=? -complete=dir FzfFile call fzf#vim#files(<q-args>, <bang>1)
+-- 
+-- " fzf file history
+-- command! -bang -nargs=* FzfFileHstry call fzf#vim#history(fzf#vim#with_preview(), <bang>1)
+-- 
+-- " fzf cmd history
+-- command! -bang -nargs=* FzfCmdHstry call fzf#vim#command_history(fzf#vim#with_preview(), <bang>1)
+-- 
+-- " fzf srch history
+-- command! -bang -nargs=* FzfSrchHstry call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)
+-- 
+-- " fzf rgstr
+-- command! -bang -nargs=* FzfRgstr call Fzf_rgstr()
+-- 
+-- command! -bang -nargs=* FzfJmplst call Fzf_jmplst()
+-- 
+-- " fzf cmd def : mark
+-- command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)
+-- 
+-- " term
+-- command! -nargs=* Term split | wincmd j | resize 15 | term <args>
+-- "autocmd TermOpen * startinsert
+
+

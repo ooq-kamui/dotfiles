@@ -10,7 +10,8 @@
 --   2: buffer
 
 
--- hi LineNr       ctermfg=141                              
+-- hi LineNr                           ctermfg=141                              
+vim.api.nvim_set_hl(0, 'LineNr'        , {fg = 141                               })
 -- augroup InsertHook
 --   au!
 --   au InsertLeave * hi LineNr ctermfg=141

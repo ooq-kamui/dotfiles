@@ -17,20 +17,22 @@ hi
 - cr
 - mode i num
 - tab
+- cursor line under
 
-set
-- ggl
+set ( opt )
+- tmpl
 
 fnc
+- tmpl
 
-command
+cmd-usr
 
-aucmd
+cmd-auto
 
 
 key map
-- comment tidy
-  - expr comment tidy
+- comment
+  - expr tidy
     - mod
       - n, v, i, c
     - del

@@ -37,6 +37,11 @@
 require('init-key-map')
 -- require('init-hi'     )
 
+-- require('init-cmd-usr' )
+-- require('init-cmd-auto')
+-- require('init-set'     )
+-- require('init-fnc'     )
+
 
 -- 
 -- tst

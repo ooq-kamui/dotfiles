@@ -17,7 +17,6 @@ let g:init_lua_lua_file_path     = g:vimrc_dir . '/dflt/lua/init-hi.lua'
 
 let skip_defaults_vim=1
 
-filetype on
 
 " 
 " hi
@@ -25,9 +24,9 @@ filetype on
 
 hi LineNr       ctermfg=141                              cterm=none
 augroup InsertHook
-  au!
-  au InsertLeave * hi LineNr ctermfg=141
-  au InsertEnter * hi LineNr ctermfg=lightgreen
+  autocmd!
+  autocmd InsertLeave * hi LineNr ctermfg=141
+  autocmd InsertEnter * hi LineNr ctermfg=lightgreen
 augroup END
 
 " hi Cursor                           ctermbg=gray    guibg=gray
@@ -75,12 +74,6 @@ hi DiffText     ctermfg=10           ctermbg=21          cterm=none
 hi Comment      ctermfg=14           ctermbg=none        cterm=none
 
 
-au BufNewFile,BufRead *.script     set filetype=lua
-au BufNewFile,BufRead *.gui_script set filetype=lua
-au BufNewFile,BufRead *.fish       set filetype=fish
-
-syntax on
-
 " 
 " set
 " 
@@ -95,12 +88,36 @@ set nocompatible  " Use Vim defaults instead of 100% vi compatibility
 set backspace=2   " more powerful backspacing
 
 " Don't write backup file if vim is being called by "crontab -e"
-au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
+autocmd BufWrite /private/tmp/crontab.* set nowritebackup nobackup
 
 " Don't write backup file if vim is being called by "chpass"
-au BufWrite /private/etc/pw.* set nowritebackup nobackup
+autocmd BufWrite /private/etc/pw.* set nowritebackup nobackup
 
 " set org end
+
+
+filetype on
+
+" syntax
+autocmd BufNewFile,BufRead *.script     set filetype=lua
+autocmd BufNewFile,BufRead *.gui_script set filetype=lua
+autocmd BufNewFile,BufRead *.fish       set filetype=fish
+syntax on
+
+filetype indent on
+" autocmd FileType lua      setlocal sw=2 sts=2 ts=2 noet " tab
+autocmd FileType lua      setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType text     setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType json     setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType vim      setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType fish     setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType sh       setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType markdown setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType python   setlocal sw=4 sts=4 ts=4   et " space
+
+" comment auto off
+autocmd FileType * set fo-=c fo-=r fo-=o
+
 
 set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
 set incsearch
@@ -126,20 +143,10 @@ set shiftwidth=2 " 4
 set tabstop=2    " 4
 set expandtab " tab > space
 
-filetype indent on
-" autocmd FileType lua      setlocal sw=2 sts=2 ts=2 noet " tab
-autocmd FileType lua      setlocal sw=2 sts=2 ts=2   et " space
-autocmd FileType text     setlocal sw=2 sts=2 ts=2   et " space
-autocmd FileType json     setlocal sw=2 sts=2 ts=2   et " space
-autocmd FileType vim      setlocal sw=2 sts=2 ts=2   et " space
-autocmd FileType fish     setlocal sw=2 sts=2 ts=2   et " space
-autocmd FileType sh       setlocal sw=2 sts=2 ts=2   et " space
-autocmd FileType markdown setlocal sw=2 sts=2 ts=2   et " space
-autocmd FileType python   setlocal sw=4 sts=4 ts=4   et " space
 
 " file opn, cursor mv last
 augroup vimrcEx
-  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  autocmd BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
   \ exe "normal! g`\"" | endif
 augroup END
 
@@ -160,7 +167,7 @@ set showtabline=2
 set wildmenu " ?
 "set showmatch
 "set visualbell
-"set ambiwidth=double
+"set ambiwidth=double " vim: double, nvim: single
 set autoread
 
 "set clipboard+=unnamedplus " ???
@@ -195,8 +202,8 @@ set shortmess+=I
 "set nrformats+=unsigned " 2022-05-09
 
 " splt
-highlight! link StatusLineNC Comment
-highlight! link VertSplit    Comment
+hi! link StatusLineNC Comment
+hi! link VertSplit    Comment
 
 set noswapfile
 
@@ -206,10 +213,6 @@ if has('persistent_undo')
   set undofile                                                                                                                                   
 endif
 
-" term
-
-command! -nargs=* Term split | wincmd j | resize 15 | term <args>
-"autocmd TermOpen * startinsert
 
 " 
 " key map
@@ -1873,22 +1876,23 @@ tnoremap <c-_> <c-\><c-n>
 
 
 " 
-" etc
+" etc ( legacy ? )
 " 
 
-if &term =~ '^screen'
-  " tmux will send xterm-style keys when its xterm-keys option is on
-  exe "set <xUp>=\e[1;*A"
-  exe "set <xDown>=\e[1;*B"
-  exe "set <xRight>=\e[1;*C"
-  exe "set <xLeft>=\e[1;*D"
-endif
+" if &term =~ '^screen'
+"   " tmux will send xterm-style keys when its xterm-keys option is on
+"   exe "set <xUp>=\e[1;*A"
+"   exe "set <xDown>=\e[1;*B"
+"   exe "set <xRight>=\e[1;*C"
+"   exe "set <xLeft>=\e[1;*D"
+" endif
 
 " quickfix
 
 "packadd Cfilter
 
-autocmd QuickFixCmdPost grep,vimgrep tab cw
+" autocmd QuickFixCmdPost grep,vimgrep tab cw
+
 
 " 
 " cmd def
@@ -1952,6 +1956,10 @@ command! -bang -nargs=* FzfJmplst call Fzf_jmplst()
 
 " fzf cmd def : mark
 command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)
+
+" term
+command! -nargs=* Term split | wincmd j | resize 15 | term <args>
+"autocmd TermOpen * startinsert
 
 
 " 
@@ -6703,6 +6711,9 @@ func! Is_vim_plug__installed() abort
   return l:ret
 endfunc
 
+" fnc end
+
+
 " 
 " init
 " 
@@ -6812,8 +6823,7 @@ func! Srch_init() abort " use not
 endfunc
 "call Srch_init()
 
-" comment auto off ( final def )
-au FileType * set fo-=c fo-=r fo-=o
+" init end
 
 
 " 
