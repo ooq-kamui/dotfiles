@@ -30,14 +30,6 @@ cmd-usr
 cmd-auto
 
 
-key map
-- comment
-  - expr tidy
-    - mod
-      - n, v, i, c
-    - del
-      - n, v, i, c
-
 setting re
 - v box <c-s> shft_in
 

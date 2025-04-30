@@ -341,16 +341,11 @@
    vim.keymap.set('n', '<c-a>', '0')
 
 -- cursor mv line end
--- "nnoremap <c-y> xx
--- nnoremap <expr> <c-y>
--- \ Is_cursor_col__line_end() ? ':call Cursor__ins_markdown_cr()<cr>'     :
--- \                             ':call Cursor__mv_line_end()<cr>'
--- vim.keymap.set('n', '<c-y>', 'xx')
-vim.keymap.set('n', '<c-y>', function()
-  return vim.fn.Is_cursor_col__line_end() and
-    ':call Cursor__ins_markdown_cr()<cr>' or
-    ':call Cursor__mv_line_end()<cr>'
-end, {expr = true})
+   vim.keymap.set('n', '<c-y>', function()
+     return vim.fn.Is_cursor_col__line_end() and
+       ':call Cursor__ins_markdown_cr()<cr>' or
+       ':call Cursor__mv_line_end()<cr>'
+   end, {expr = true})
 
 -- cursor mv char - forward
    vim.keymap.set('n', 'l', 'l')
@@ -537,16 +532,11 @@ end, {expr = true})
    vim.keymap.set('n', '<c-u>', ':call Cursor__ins_markdown_code()<cr>')
 
 -- ins markdown itm
--- "nnoremap O xx
--- nnoremap <expr> O
--- \ Is_file_type__('markdown') ? ':call Cursor__ins_markdown_itm()<cr>'  :
--- \                              ':call Cursor_line_indnt__shft_r()<cr>'
--- vim.keymap.set('n', 'O', 'xx')
-vim.keymap.set('n', 'O', function()
-  return vim.fn.Is_file_type__('markdown') and
-    ':call Cursor__ins_markdown_itm()<cr>' or
-    ':call Cursor_line_indnt__shft_r()<cr>'
-end, {expr = true})
+   vim.keymap.set('n', 'O', function()
+     return vim.fn.Is_file_type__('markdown') and
+       ':call Cursor__ins_markdown_itm()<cr>' or
+       ':call Cursor_line_indnt__shft_r()<cr>'
+   end, {expr = true})
 
 -- ins dots ( or crnt )
    vim.keymap.set('n', 'ru', ':call Cursor_line_end__dots_adjst()<cr>')
@@ -558,26 +548,17 @@ end, {expr = true})
    vim.keymap.set('n', '$', ':call Cursor__ins_cmnt_mlt()<cr>')
 
 -- ins comment 1
--- "nnoremap ! xx
--- nnoremap <expr> !
--- \ Is_file_type__('markdown') ? ':call Cursor__ins_markdown_h()<cr>' :
--- \                              ':call Cursor__ins_cmnt_1("^")<cr>'
--- vim.keymap.set('n', '!', 'xx')
-vim.keymap.set('n', '!', function()
-  return vim.fn.Is_file_type__('markdown') and
-    ':call Cursor__ins_markdown_h()<cr>' or
-    ':call Cursor__ins_cmnt_1("^")<cr>'
-end, {expr = true})
--- "nnoremap 1 xx
--- nnoremap <expr> 1
--- \ Is_file_type__('markdown') ? ':call Cursor__ins_markdown_h()<cr>' :
--- \                              ':call Cursor__ins_cmnt_1("^")<cr>'
--- vim.keymap.set('n', '1', 'xx')
-vim.keymap.set('n', '1', function()
-  return vim.fn.Is_file_type__('markdown') and
-    ':call Cursor__ins_markdown_h()<cr>' or
-    ':call Cursor__ins_cmnt_1("^")<cr>'
-end, {expr = true})
+   vim.keymap.set('n', '!', function()
+     return vim.fn.Is_file_type__('markdown') and
+       ':call Cursor__ins_markdown_h()<cr>' or
+       ':call Cursor__ins_cmnt_1("^")<cr>'
+   end, {expr = true})
+
+   vim.keymap.set('n', '1', function()
+     return vim.fn.Is_file_type__('markdown') and
+       ':call Cursor__ins_markdown_h()<cr>' or
+       ':call Cursor__ins_cmnt_1("^")<cr>'
+   end, {expr = true})
 
 -- ins __ line indnt space
    vim.keymap.set('n', 'V', ':call Cursor_d__ins_line_space()<cr>')
@@ -604,10 +585,18 @@ end, {expr = true})
 -- vim.keymap.set('n', 'xx', 'hvbd')
 
 -- word forward del
--- "nnoremap <expr> xx Is_cursor_col__line_end() ? '<esc>' : '"zdw'
--- "nnoremap <expr> xx Is_cursor_col__line_end() ? '<esc>' : '"zde'
--- vim.keymap.set('n', 'xx', 'XX')
--- vim.keymap.set('n', 'xx', 'XX')
+-- vim.keymap.set('n', 'xx', function()
+--   return vim.fn.Is_cursor_col__line_end() and
+--     '<esc>' or
+--     '"zdw'
+-- end, {expr = true})
+
+-- vim.keymap.set('n', 'xx', function()
+--   return vim.fn.Is_cursor_col__line_end() and
+--     '<esc>' or
+--     '"zde'
+-- end, {expr = true})
+
 
 -- del cr ( line join )
    vim.keymap.set('n', '<c-m>', 'J')
@@ -995,16 +984,11 @@ end, {expr = true})
    vim.keymap.set('v', 'i', 'V')
 
 -- mode ch visual box
--- "vnoremap v <c-v>
--- vnoremap <expr> v
--- \ mode() == '<c-v>' ? ':call Slctd_box_width__1()<cr>' :
--- \                     '<c-v>'
--- vim.keymap.set('v', 'v', 'xx')
-vim.keymap.set('v', 'v', function()
-  return vim.fn.Is_slctd_mode__box() and
-    ':call Slctd_box_width__1()<cr>' or
-    '<c-v>'
-end, {expr = true})
+   vim.keymap.set('v', 'v', function()
+     return vim.fn.Is_slctd_mode__box() and
+       ':call Slctd_box_width__1()<cr>' or
+       '<c-v>'
+   end, {expr = true})
 
 -- file srch ( fzf )
 -- vim.keymap.set('v', '<leader>xx', '"zy:FzfFile <c-r>z')
@@ -1108,18 +1092,11 @@ end, {expr = true})
 
 -- paste
 -- " todo refactoring
--- "vnoremap p xx
--- vnoremap <expr> p
--- \ mode() == '<c-v>' ? ':call Slctd_box_edge_l__ynk_line_1()<cr>' :
--- \ mode() == 'v'     ? ':call Slctd_str__ynk()<cr>'               :
--- \                     ':call Slctd_str__ynk()<cr>'
--- " \ mode() == 'v'     ? '"zd"aP'                  :
--- vim.keymap.set('v', 'p', 'xx')
-vim.keymap.set('v', 'p', function()
-  return vim.fn.Is_slctd_mode__box() and
-    ':call Slctd_box_edge_l__ynk_line_1()<cr>' or
-    ':call Slctd_str__ynk()<cr>'
-end, {expr = true})
+   vim.keymap.set('v', 'p', function()
+     return vim.fn.Is_slctd_mode__box() and
+       ':call Slctd_box_edge_l__ynk_line_1()<cr>' or
+       ':call Slctd_str__ynk()<cr>'
+   end, {expr = true})
 
 -- paste clp
 -- vim.keymap.set('v', 'xx', ':call Slctd_str__clp()<cr>')
@@ -1132,44 +1109,28 @@ end, {expr = true})
 -- 
 
 -- ins | cut & ins
--- "vnoremap <space> xx
--- vnoremap <expr> <space>
--- \ mode() == '<c-v>' ? 'I' :
--- \                     'c'
--- vim.keymap.set('v', '<space>', 'xx')
-vim.keymap.set('v', '<space>', function()
-  return vim.fn.Is_slctd_mode__box() and
-    'I' or
-    'c'
-end, {expr = true})
+   vim.keymap.set('v', '<space>', function()
+     return vim.fn.Is_slctd_mode__box() and
+       'I' or
+       'c'
+   end, {expr = true})
 
 -- cut & ins
 -- vim.keymap.set('v', '<leader><space>', '"zc')
 
 -- ins $
--- "vnoremap Y xx
--- vnoremap <expr> Y
--- \ mode() == '<c-v>' ? '$A'      :
--- \                     '<c-v>$A'
--- vim.keymap.set('v', 'Y', 'xx')
-vim.keymap.set('v', 'Y', function()
-  return vim.fn.Is_slctd_mode__box() and
-    '$A' or
-    '<c-v>$A'
-end, {expr = true})
+   vim.keymap.set('v', 'Y', function()
+     return vim.fn.Is_slctd_mode__box() and
+       '$A' or
+       '<c-v>$A'
+   end, {expr = true})
 
 -- ins space
--- "vnoremap L xx
--- vnoremap <expr> L
--- \ mode() == '<c-v>' ? 'I <esc>gv' :
--- \ mode() == 'v'     ? '>gv'       :
--- \                     ''
--- vim.keymap.set('v', 'L', 'xx')
-vim.keymap.set('v', 'L', function()
-  return vim.fn.Is_slctd_mode__box() and
-    'I <esc>gv' or
-    '>gv'
-end, {expr = true})
+   vim.keymap.set('v', 'L', function()
+     return vim.fn.Is_slctd_mode__box() and
+       'I <esc>gv' or
+       '>gv'
+   end, {expr = true})
 
 -- line __ ins comment 1
    vim.keymap.set('v', '!', ':call V_ins_cmnt_1()<cr>')
@@ -1198,30 +1159,20 @@ end, {expr = true})
    vim.keymap.set('v', 'J', ':call Slctd_line__join_per_line(3)')
 
 -- del str > ynk
--- "vnoremap d xx
--- vnoremap <expr> d
--- \ mode() == '<c-v>' ? '"ad:let @+ = @a<cr>gv' :
--- \                     '"ad:let @+ = @a<cr>'
--- vim.keymap.set('v', 'd', 'xx')
-vim.keymap.set('v', 'd', function()
-  return vim.fn.Is_slctd_mode__box() and
-    '"ad:let @+ = @a<cr>gv' or
-    '"ad:let @+ = @a<cr>'
-end, {expr = true})
+   vim.keymap.set('v', 'd', function()
+     return vim.fn.Is_slctd_mode__box() and
+       '"ad:let @+ = @a<cr>gv' or
+       '"ad:let @+ = @a<cr>'
+   end, {expr = true})
 
 -- vim.keymap.set('v', 'xx', ':call V_slctd__del()<cr>')
 
 -- del str > ynk not
--- "vnoremap s xx
--- vnoremap <expr> s
--- \ mode() == '<c-v>' ? ':call Slctd__del()<cr>' :
--- \                     '"zx'
--- vim.keymap.set('v', 's', 'xx')
-vim.keymap.set('v', 's', function()
-  return vim.fn.Is_slctd_mode__box() and
-    ':call Slctd__del()<cr>' or
-    '"zx'
-end, {expr = true})
+   vim.keymap.set('v', 's', function()
+     return vim.fn.Is_slctd_mode__box() and
+       ':call Slctd__del()<cr>' or
+       '"zx'
+   end, {expr = true})
 
 -- line mlt forward del
    vim.keymap.set('v', '<c-d>', 'D')
@@ -1236,16 +1187,11 @@ end, {expr = true})
    vim.keymap.set('v', 'K', ':call Slctd_box_cursor_r_space__crct()<cr>')
 
 -- slctd str edge out quote __ tgl
--- "vnoremap w     xx
--- vnoremap <expr> w
--- \ mode() == '<c-v>' ? ':call Slctd_box_width__1()<cr>'    :
--- \                     ':call Slctd_str_edge_out_char__tgl()<cr>'
--- vim.keymap.set('v', 'w', 'xx')
-vim.keymap.set('v', 'w', function()
-  return vim.fn.Is_slctd_mode__box() and
-    ':call Slctd_box_width__1()<cr>' or
-    ':call Slctd_str_edge_out_char__tgl()<cr>'
-end, {expr = true})
+   vim.keymap.set('v', 'w', function()
+     return vim.fn.Is_slctd_mode__box() and
+       ':call Slctd_box_width__1()<cr>' or
+       ':call Slctd_str_edge_out_char__tgl()<cr>'
+   end, {expr = true})
 
 -- slctd str edge bracket __ tgl
 -- vim.keymap.set('v', 'xx', ':call Slctd_str_edge_out_bracket__tgl()<cr>')
@@ -1337,50 +1283,33 @@ end, {expr = true})
 
 -- srch str set
    vim.keymap.set('v', 'n', ':call Slctd_srch__swtch()<cr>')
--- "vnoremap e     xx
--- vnoremap <expr> e
--- \ mode() == '<c-v>' ? '<esc>' :
--- \                     ':call Srch_str__slctd_str()<cr>'
--- vim.keymap.set('v', 'e', 'xx')
-vim.keymap.set('v', 'e', function()
-  return vim.fn.Is_slctd_mode__box() and
-    '<esc>' or
-    ':call Srch_str__slctd_str()<cr>'
-end, {expr = true})
+   vim.keymap.set('v', 'e', function()
+     return vim.fn.Is_slctd_mode__box() and
+       '<esc>' or
+       ':call Srch_str__slctd_str()<cr>'
+   end, {expr = true})
 
 -- srch rpl one > ynk, nxt
    vim.keymap.set('v', '<c-p>', ':call Slctd__rpl_7_srch_nxt()<cr>')
 
 -- rpl ( cmd )
--- "vnoremap :s    xx
--- vnoremap <expr> :s
--- \ mode() == '<c-v>' ? ':VBoxRpl ' :
--- \                     ':s///g'
--- "\                     ':sort'
--- "\                     ':Rpl '
--- vim.keymap.set('v', ':s', 'xx')
-vim.keymap.set('v', ':s', function()
-  return vim.fn.Is_slctd_mode__box() and
-    ':VBoxRpl ' or
-    ':s///g'
-    -- ':sort'
-    -- ':Rpl '
-end, {expr = true})
+   vim.keymap.set('v', ':s', function()
+     return vim.fn.Is_slctd_mode__box() and
+       ':VBoxRpl ' or
+       ':s///g'
+       -- ':sort'
+       -- ':Rpl '
+   end, {expr = true})
 
 -- rpl cr ( add cr )
    vim.keymap.set('v', '<c-m>', ':call Slctd_line_srch_str__rpl_cr()<cr>')
 
 -- v box edge char shft in
--- "vnoremap <c-h> xx
--- vnoremap <expr> <c-h>
--- \ mode() == '<c-v>' ? ':call Slctd_box_edge_r_char__shft_in()<cr>' :
--- \                     ''
--- vim.keymap.set('v', '<c-h>', 'xx')
-vim.keymap.set('v', '<c-h>', function()
-  return vim.fn.Is_slctd_mode__box() and
-    ':call Slctd_box_edge_r_char__shft_in()<cr>' or
-    ''
-end, {expr = true})
+   vim.keymap.set('v', '<c-h>', function()
+     return vim.fn.Is_slctd_mode__box() and
+       ':call Slctd_box_edge_r_char__shft_in()<cr>' or
+       ''
+   end, {expr = true})
 
 -- fzf buf
    vim.keymap.set('v', '<leader>i', ':call V_fzf_buf()<cr>')
@@ -1504,7 +1433,6 @@ end, {expr = true})
 
 -- cursor mv char back
    vim.keymap.set('i', '<c-s>', '<c-o>h')
-
    vim.keymap.set('i', '<c-o>', function()
      return vim.fn.pumvisible() == 1 and
        '<c-y>' or
@@ -1515,10 +1443,11 @@ end, {expr = true})
 -- vim.keymap.set('i', 'xx', '<c-o>e<c-o>l')
 
 -- cursor mv word back
--- "inoremap <c-o> xx
--- "inoremap <expr> <c-o>
--- "\ pumvisible() ? '<c-y>'  :
--- "\                '<c-o>b'
+-- vim.keymap.set('i', '<c-o>', function()
+--   return vim.fn.pumvisible() == 1 and
+--     '<c-y>' or
+--     '<c-o>b'
+-- end, {expr = true})
 
 -- cursor mv d
 -- vim.keymap.set('i', '<c-n>', '<c-o>j')
@@ -1534,11 +1463,11 @@ end, {expr = true})
 
 -- ins cmplt default
    vim.keymap.set('i', '<leader>f', '<c-p>')
-
--- "inoremap <c-y> xx
--- "inoremap <expr> <c-y>
--- "\ pumvisible() ? '<c-e>' :
--- "\                '<c-n>'
+-- vim.keymap.set('i', '<c-y>', function()
+--   return vim.fn.pumvisible() == 1 and
+--     '<c-e>' or
+--     '<c-n>'
+-- end, {expr = true})
 
 -- ins bracket
    vim.keymap.set('i', '<c-u>', function()
@@ -1615,10 +1544,17 @@ end, {expr = true})
    vim.keymap.set('i', '<c-v>', '<c-r><c-o>+')
 
 -- clr
--- "inoremap <expr> <esc> pumvisible() ? '<c-e>'  : ''
--- "inoremap <expr> <c-w> pumvisible() ? '<c-e>'  : '<c-w>'
--- vim.keymap.set('i', 'xx', '<c-o>l')
--- vim.keymap.set('i', 'xx', '<c-o>l')
+-- vim.keymap.set('i', '<esc>', function()
+--   return vim.fn.pumvisible() == 1 and
+--     '<c-e>' or
+--     ''
+-- end, {expr = true})
+
+-- vim.keymap.set('i', '<c-w>', function()
+--   return vim.fn.pumvisible() == 1 and
+--     '<c-e>' or
+--     '<c-w>'
+-- end, {expr = true})
 
 -- numpad shift
    vim.keymap.set('i', '<kInsert>'  , '0')
