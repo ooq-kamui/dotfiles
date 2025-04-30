@@ -2,29 +2,39 @@
 # dotfiles
 
 
+## ooq dns migration
+
+dns migration
+- vps
+  - cre
+- svr
+  - del
+
+
 ## nvim
 
-key map
-- expr mod
-  - i
-    - esc color
-
-- tst
-  - aaa  bbb  ccc
-  - aaa  bbb  ccc
-
-- comment
-  - org del
-
-- esc
-  - comment off
-
 hi
-- mod
-- org del
+- cr
+- mode i num
+- tab
+
+set
+- ggl
 
 fnc
 
+command
+
+aucmd
+
+
+key map
+- comment tidy
+  - expr comment tidy
+    - mod
+      - n, v, i, c
+    - del
+      - n, v, i, c
 
 setting re
 - v box <c-s> shft_in
@@ -36,19 +46,9 @@ v box paste line down
 - case emp: paste skip
 
 
-## ooq dns migration
-
-dns migration
-- vps
-  - cre
-- svr
-  - del
-
-
 ## keyboard sticker
 
 `/` `<>` `\`
-- logi
 - mac
 
 

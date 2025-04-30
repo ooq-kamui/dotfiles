@@ -35,7 +35,7 @@
 -- 
 
 require('init-key-map')
-require('init-hi'     )
+-- require('init-hi'     )
 
 
 -- 
