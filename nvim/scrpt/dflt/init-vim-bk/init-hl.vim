@@ -1,0 +1,56 @@
+" 
+" hi
+" 
+
+hi LineNr       ctermfg=141                              cterm=none
+augroup InsertHook
+  autocmd!
+  autocmd InsertLeave * hi LineNr ctermfg=141
+  autocmd InsertEnter * hi LineNr ctermfg=lightgreen
+augroup END
+
+" hi Cursor                           ctermbg=gray    guibg=gray
+hi CursorLineNr ctermfg=magenta
+
+hi Visual       ctermfg=none         ctermbg=darkmagenta cterm=none
+hi VisualNOS                         ctermbg=darkmagenta cterm=none
+
+hi Search       ctermfg=lightyellow  ctermbg=36          cterm=none
+hi CurSearch    ctermfg=lightyellow  ctermbg=36          cterm=none
+hi IncSearch    ctermfg=lightyellow  ctermbg=34          cterm=none
+" bracket
+hi MatchParen   ctermfg=lightmagenta ctermbg=none
+
+hi TabLineSel                        ctermbg=magenta     cterm=none
+hi TabLine      ctermfg=lightblue    ctermbg=none        cterm=none
+hi TabLineFill                       ctermbg=none        cterm=none
+
+hi StatusLine   ctermfg=lightblue    ctermbg=none        cterm=none
+hi EndOfBuffer  ctermfg=cyan                             cterm=none
+
+hi Pmenu        ctermfg=lightgreen   ctermbg=darkblue    cterm=none
+hi PmenuSel     ctermfg=cyan         ctermbg=magenta     cterm=bold
+
+hi ErrorMsg     ctermfg=magenta      ctermbg=none        cterm=none
+hi WarningMsg   ctermfg=magenta      ctermbg=none        cterm=none
+
+hi NonText      ctermfg=25           ctermbg=none        cterm=none
+hi SpecialKey   ctermfg=25           ctermbg=none        cterm=none
+
+hi FullWidthSpace                    ctermbg=white
+match FullWidthSpace /　/
+
+" vimdiff
+hi DiffAdd      ctermfg=10           ctermbg=22          cterm=none
+hi DiffDelete   ctermfg=52           ctermbg=52          cterm=none
+hi DiffChange   ctermfg=10           ctermbg=17          cterm=none
+hi DiffText     ctermfg=10           ctermbg=21          cterm=none
+
+" wildmenu
+" hi wildMenu ??    ctermfg=cyan
+
+" hi dflt
+
+hi Comment      ctermfg=14           ctermbg=none        cterm=none
+
+

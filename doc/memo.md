@@ -2,36 +2,43 @@
 # dotfiles
 
 
-## ooq dns migration
-
-dns migration
-- vps
-  - cre
-- svr
-  - del
-
-
 ## nvim
 
+set ( opt )
+
+cmd-auto
+
+fnc
+- ptn
+  - rpl vim fnc
+    - match() ?
+- local
+- call
+- a:0
+- let
+
+- range
+  - firstline, lastline
+
+
 hi
+- basic
+  - line color
 - cr
 - mode i num
 - tab
 - cursor line under
-
-set ( opt )
-- tmpl
-
-fnc
-- tmpl
+- slctd
 
 cmd-usr
 
-cmd-auto
 
-
-setting re
+key map ( lua )
 - v box <c-s> shft_in
+  - tst
+    - aaa bbb c cc
+    - aaa bbb c cc
+    - aaa bbb c cc
 
 
 ## vim
@@ -40,10 +47,13 @@ v box paste line down
 - case emp: paste skip
 
 
-## keyboard sticker
+## ooq dns migration
 
-`/` `<>` `\`
-- mac
+dns migration
+- vps
+  - cre
+- svr
+  - del
 
 
 ## godot

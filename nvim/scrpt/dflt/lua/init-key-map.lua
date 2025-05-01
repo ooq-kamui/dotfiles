@@ -14,7 +14,9 @@
    vim.keymap.set('n', '<cr>'     , '<esc>')
    vim.keymap.set('n', '<bs>'     , '<esc>')
    vim.keymap.set('n', '<bar>'    , '<esc>') -- |
-   
+   vim.keymap.set('n', '<enter>'  , '<esc>')
+   vim.keymap.set('n', '<tab>'    , '<esc>')
+
    vim.keymap.set('n', '-', '<esc>')
    vim.keymap.set('n', '+', '<esc>')
    vim.keymap.set('n', '=', '<esc>')
@@ -597,14 +599,14 @@
 --     '"zde'
 -- end, {expr = true})
 
-
 -- del cr ( line join )
-   vim.keymap.set('n', '<c-m>', 'J')
+   vim.keymap.set('n', '<c-m>'  , 'J')
+   vim.keymap.set('n', '<enter>', 'J')
 
 -- line mv up
 -- vim.keymap.set('n', 'xx', '"addk"aP')
 
--- line dpl
+-- line dpl  -- todo fnc cre
    vim.keymap.set('n', 'D', '"zyy"zP')
 
 -- repeat memory
@@ -845,6 +847,8 @@
 -- mode visual nop end
 
 -- mode visual esc
+   vim.keymap.set('v', '<tab>', '<esc>')
+   vim.keymap.set('v', '<bar>', '<esc>')
 
    vim.keymap.set('v', '@', '<esc>')
    vim.keymap.set('v', '*', '<esc>')
@@ -870,8 +874,6 @@
 
    vim.keymap.set('v', '\\', '<esc>')
 
-   vim.keymap.set('v', '<bar>', '<esc>')
-   
    vim.keymap.set('v', 'a', '<esc>')
    vim.keymap.set('v', 'b', '<esc>')
    vim.keymap.set('v', 'c', '<esc>')
@@ -1067,6 +1069,7 @@
    vim.keymap.set('v', 'f', ':call Slctd_str__expnd_word_f()<cr>')
 
 -- slctd expnd quote
+   vim.keymap.set('v', '<tab>', ':call Slctd_str__expnd_quote_swtch()<cr>')
    vim.keymap.set('v', '<c-i>', ':call Slctd_str__expnd_quote_swtch()<cr>')
 
 -- slctd expnd quote on
