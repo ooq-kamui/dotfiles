@@ -5217,11 +5217,9 @@ func! Tst_is_directory() range abort
   endif
 endfunc
 
-" tst slctd
+" tst slctd mode
 
-"vnoremap T :call Tst()
-
-func! Tst() range abort
+func! Tst_slctd_mode() range abort
 
   let l:val = Is_slctd_mode__box()
   echo l:val
@@ -5249,6 +5247,21 @@ endfunc
 func! Tst_fnc_call_fr_lua() range abort
 
   echo 'abcde'
+endfunc
+
+" tst regex
+
+func! Tst_regex() range abort
+
+  let l:str = '[]'
+
+  " if l:str =~ '\w'
+  if match(l:str, '\w') != -1
+
+    echo 'true'
+  else
+    echo 'false'
+  endif
 endfunc
 
 " fnc tst end

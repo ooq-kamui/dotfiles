@@ -9,13 +9,31 @@ set ( opt )
 cmd-auto
 
 fnc
-- ptn
-  - rpl vim fnc
-    - match() ?
 - local
 - call
-- a:0
+- l:x
+- arg
+  - a:0
+    - f(...)
+      - arg = {...}
+  - l:str = a:str > x
 - let
+- ope
+  - `!=` > `~=`
+- || > or
+- !  > not
+- ==# > ??
+- rgstr @x
+- g_xx def
+- while ??
+- .= ??
+- &  ??
+- `.=` > `a = a ..`
+  - +
+  - -
+- `a ? b : c`
+  - `a and b or c`
+
 
 - range
   - firstline, lastline
