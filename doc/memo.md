@@ -9,35 +9,36 @@ set ( opt )
 cmd-auto
 
 fnc
-- local
-- call
-- l:x
-- arg
-  - a:0
-    - f(...)
-      - arg = {...}
-  - l:str = a:str > x
-- let
-- ope
-  - `!=` > `~=`
-- || > or
-- !  > not
+- l:xx
+  - s:xx > g_xx
+- a:0
+  - f(...)
+    - arg = {...}
+  - l:str = a:str
 - ==# > ??
-- rgstr @x
-- g_xx def
-- while ??
-- .= ??
-- &  ??
-- `.=` > `a = a ..`
-  - +
-  - -
-- `a ? b : c`
-  - `a and b or c`
+  - ggl or doc ( write )
+- [] > {}
+- {}
+  - key
 
+- rgstr @x
+- &var > ?
+- `->`
+
+- local
+  - setlocal
+- call
+  - buildin
+  - rng call
+- let
 
 - range
   - firstline, lastline
 
+- fnc
+  - = Xxx() > v.
+  - is_match() > v.
+    - def
 
 hi
 - basic

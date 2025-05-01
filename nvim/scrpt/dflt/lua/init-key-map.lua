@@ -49,6 +49,8 @@
    vim.keymap.set('n', '>>', '<esc>')
 
    vim.keymap.set('n', '0', '<esc>')
+   vim.keymap.set('n', '2', '<esc>')
+
    vim.keymap.set('n', 'a', '<esc>')
    vim.keymap.set('n', 'b', '<esc>')
    vim.keymap.set('n', 'c', '<esc>')
