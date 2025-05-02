@@ -296,16 +296,16 @@ end
 function v.Str_cmnt_1()
 
   local cmnt_1_def = {
-    'lua'       : '-- ',
-    'text'      : '# ' ,
-    'vim'       : '" ' ,
-    'fish'      : '# ' ,
-    'sh'        : '# ' ,
-    'css'       : '/* ',
-    'javascript': '// ',
-    'java'      : '// ',
-    'sql'       : '-- ',
-    'dflt'      : '# '
+    'lua'        = '-- ',
+    'text'       = '# ' ,
+    'vim'        = '" ' ,
+    'fish'       = '# ' ,
+    'sh'         = '# ' ,
+    'css'        = '/* ',
+    'javascript' = '// ',
+    'java'       = '// ',
+    'sql'        = '-- ',
+    'dflt'       = '# ' ,
   }
 
   local str = get(cmnt_1_def, &filetype, cmnt_1_def['dflt'])
@@ -524,14 +524,14 @@ function v.Buf_file__mv(file_name_aft)
 
   local file_path_bfr = Buf_file_path()
 
-  local sys_cmd = 'str_mv_f ' .. l:file_path_bfr .. ' ' .. file_name_aft
-  local file_path_aft = Sys_cmd(l:sys_cmd)
+  local sys_cmd = 'str_mv_f ' .. file_path_bfr .. ' ' .. file_name_aft
+  local file_path_aft = Sys_cmd(sys_cmd)
 
-  local sys_cmd = 'mv ' .. l:file_path_bfr .. ' ' .. l:file_path_aft
-  v.Sys_cmd(l:sys_cmd)
+  local sys_cmd = 'mv ' .. file_path_bfr .. ' ' .. file_path_aft
+  v.Sys_cmd(sys_cmd)
 
-  local cmd = 'file ' .. l:file_path_aft -- save file_path ch
-  v.Exe(l:cmd)
+  local cmd = 'file ' .. file_path_aft -- save file_path ch
+  v.Exe(cmd)
 end
 
 function v.Buf_file_path()
@@ -553,7 +553,7 @@ function v.File_txt(file_path)
 
   local cmd = 'cat ' .. file_path
 
-  local pth_lst_txt = Sys_cmd(l:cmd)
+  local pth_lst_txt = Sys_cmd(cmd)
   return pth_lst_txt
 end
 
@@ -621,8 +621,8 @@ end
 function v.Opn_tmp_file()
 
   local path = File_tmp__cre()
-  echo l:path
-  v.Opn(l:path)
+  echo path
+  v.Opn(path)
 end
 
 function v.Opn_vimrc()
@@ -638,19 +638,19 @@ function v.Opn_vimrc()
   if     Is_env__('linux')     then    -- c9 s9
 
     local vimrc_c9_file_path      = g_vimrc_dir .. '/c9/init.vim'
-    -- v.Opn(l:vimrc_c9_file_path)
+    -- v.Opn(vimrc_c9_file_path)
 
   elseif Is_env__('win32unix') then -- gitbash
 
     local vimrc_gitbash_file_path = g_vimrc_dir .. '/gitbash/init.vim'
-    v.Opn(l:vimrc_gitbash_file_path)
+    v.Opn(vimrc_gitbash_file_path)
   end
 end
 
 function v.Opn_fish_cnf()
 
   local path = '~/.config/fish/config.fish'
-  v.Opn(l:path)
+  v.Opn(path)
 end
 
 function v.Opn_man(cmd)
@@ -673,7 +673,7 @@ function v.Opn_grep_wk()
 
   local file_type = getftype(g_grep_wk_path)
 
-  if Is_str__emp(l:file_type) then
+  if Is_str__emp(file_type) then
 
     v.Opn(g_grep_wk_path)
   else
@@ -686,18 +686,19 @@ end
 function v.Opn_app(path)
   
   local path = path
+  local cmd_sys
   
   if     Is_env__('mac') then
 
-    local cmd_sys = 'open'
+    cmd_sys = 'open'
 
   elseif Is_env__('win64') then
 
-    local cmd_sys = 'start'
+    cmd_sys = 'start'
 
   elseif Is_env__('win32unix') then
 
-    local cmd_sys = 'start'
+    cmd_sys = 'start'
 
   else
     return
@@ -705,16 +706,16 @@ function v.Opn_app(path)
 
   if Is_env__('win64') then
 
-    local path = Str_path_unix__cnv_win(l:path)
+    path = Str_path_unix__cnv_win(path)
   end
 
-  local res = system(l:cmd_sys .. " '" .. l:path .. "'")
+  local res = system(cmd_sys .. " '" .. path .. "'")
 end
 
 function v.Opn_app_by_cursor_path()
   
   local path = Cursor_filepath()
-  v.Opn_app(l:path)
+  v.Opn_app(path)
 end
 
 function v.Opn_app_by_line_path(line_num)
@@ -722,50 +723,48 @@ function v.Opn_app_by_line_path(line_num)
   --local path = Line_str_by_line_num(line_num)
   local path = getline(line_num)
 
-  local path = trim(l:path)
-  v.Opn_app(l:path)
+  path = trim(path)
+  v.Opn_app(path)
 end
 
 function v.Opn_app_by_slctd_str()
   
   local path = Slctd_str()
-  local path = trim(l:path)
-  v.Opn_app(l:path)
+  path = trim(path)
+  v.Opn_app(path)
 end
 
 function v.Opn_app_buf_file()
 
   local path = Buf_file_path()
-  echo l:path
+  echo path
 
-  v.Opn_app(l:path)
+  v.Opn_app(path)
 end
 
--- function v.Opn_dir_slf()
 function v.Opn_buf_file_dir()
 
   local dir = Buf_file_dir()
-  --echo l:path
 
-  v.Opn_app(l:dir)
+  v.Opn_app(dir)
 end
 
 function v.Opn_brwsr()
 
   local url = 'https://www.google.com/'
-  v.Opn_app(l:url)
+  v.Opn_app(url)
 end
 
 function v.Opn_ggl_srch(word)
 
   local url = 'https://www.google.com/search?q=' .. word
-  v.Opn_app(l:url)
+  v.Opn_app(url)
 end
 
 function v.Opn_yt(yt_video_id)
 
   local url = 'https://www.youtube.com/watch?v=' .. yt_video_id
-  v.Opn_app(l:url)
+  v.Opn_app(url)
 end
 
 -- tag jmp
@@ -776,29 +775,29 @@ function v.Tag_jmp_by_str(rg_rslt_line)
 
   local rg_rslt_line = trim(rg_rslt_line)
 
-  if Is_str__emp(l:rg_rslt_line) then
+  if Is_str__emp(rg_rslt_line) then
     echo 'empty'
     return
   end
 
-  local rg_rslt_line = matchstr(l:rg_rslt_line, '\\S\\+')
-  -- echo l:rg_rslt_line
+  local rg_rslt_line = matchstr(rg_rslt_line, '\\S\\+')
+  -- echo rg_rslt_line
 
-  local rg_rslt_line_ar = Rg_rslt_line_parse(l:rg_rslt_line)
-  -- echo l:rg_rslt_line_ar
+  local rg_rslt_line_ar = Rg_rslt_line_parse(rg_rslt_line)
+  -- echo rg_rslt_line_ar
 
-  local filename = l:rg_rslt_line_ar[0]
-  local line_num = get(l:rg_rslt_line_ar, 1, 1)
-  -- echo l:line_num
+  local filename = rg_rslt_line_ar[0]
+  local line_num = get(rg_rslt_line_ar, 1, 1)
+  -- echo line_num
   -- return
 
-  if not filereadable(l:filename) then
+  if not filereadable(filename) then
     echo 'file does not exist'
     return
   end
 
-  v.Exe('tab drop ' .. l:filename)
-  v.Normal(l:line_num .. 'G')
+  v.Exe('tab drop ' .. filename)
+  v.Normal(line_num .. 'G')
 end
 
 function v.Tag_jmp_by_cursor_line()
@@ -806,9 +805,9 @@ function v.Tag_jmp_by_cursor_line()
   local base_buf_num = Buf_num()
 
   local str = Cursor_line_str()
-  v.Tag_jmp_by_str(l:str)
+  v.Tag_jmp_by_str(str)
 
-  v.Exe('sbuffer ' .. l:base_buf_num)
+  v.Exe('sbuffer ' .. base_buf_num)
   -- v.Normal('j')
   v.Cursor__mv_d()
 end
@@ -819,9 +818,9 @@ function v.Tag_jmp_by_slctd_line() -- range
 
   for line_num in range(a:firstline, a:lastline)
 
-    local line = getline(l:line_num)
-    v.Tag_jmp_by_str(l:line)
-    v.Exe('sbuffer ' .. l:base_buf_num)
+    local line = getline(line_num)
+    v.Tag_jmp_by_str(line)
+    v.Exe('sbuffer ' .. base_buf_num)
   endfor
 end
 
@@ -830,14 +829,14 @@ end
 function v.Buf__quit()
 
   local cmd = 'bd'
-  v.Exe(l:cmd)
+  v.Exe(cmd)
 end
 
 function v.Buf__quit_swtch()
 
   local win_num = winnr('$')
 
-  if l:win_num > 1 then
+  if win_num > 1 then
     v.Win_splt__quit()
   else
     v.Buf__quit()
@@ -858,25 +857,25 @@ end
 function v.Win__splt_h()
 
   local cmd = 'split'
-  v.Exe(l:cmd)
+  v.Exe(cmd)
 end
 
 function v.Win__splt_v()
 
   local cmd = 'vsplit'
-  v.Exe(l:cmd)
+  v.Exe(cmd)
 end
 
 function v.Win_splt_cursor__mv_nxt()
 
   local n_cmd = "\\<c-w>w"
-  v.Normal(l:n_cmd)
+  v.Normal(n_cmd)
 end
 
 function v.Win_splt__quit()
 
   local n_cmd = "\\<c-w>c"
-  v.Normal(l:n_cmd)
+  v.Normal(n_cmd)
 end
 
 -- 
@@ -895,29 +894,29 @@ end
 
 -- line xx __ ins
 
-let s:line_top_space_ptn = '^[ \\t]*'
+g_line_top_space_ptn = '^[ \\t]*'
 
-let s:line_end_space_ptn = '[ \\t]*$'
+g_line_end_space_ptn = '[ \\t]*$'
 
 function v.Line_end_space__del(line_num)
   
-  local rpl_cmd = line_num .. 's/' .. s:line_end_space_ptn .. '//g'
-  v.Exe(l:rpl_cmd)
+  local rpl_cmd = line_num .. 's/' .. g_line_end_space_ptn .. '//g'
+  v.Exe(rpl_cmd)
 end
 
 function v.Line_end__pad_space(line_num, fil_end_col)
 
   local line_str     = getline(line_num)
-  local line_str_len = Str_len(l:line_str)
-  local space_len    = fil_end_col - l:line_str_len
+  local line_str_len = Str_len(line_str)
+  local space_len    = fil_end_col - line_str_len
 
-  if l:space_len <= 0 then
+  if space_len <= 0 then
     return
   end
 
-  local space_str = Str_space(l:space_len)
-  line_str = line_str .. l:space_str
-  call setline(line_num, l:line_str)
+  local space_str = Str_space(space_len)
+  line_str = line_str .. space_str
+  call setline(line_num, line_str)
 end
 
 g_dots_str     = ' .. '
@@ -933,7 +932,7 @@ end
 function v.Line_num_by_Line_info(line_info)
 
   local line_info = trim(line_info, ' ', 1)
-  local line_num  = split(l:line_info, '\\s\\+')[0]
+  local line_num  = split(line_info, '\\s\\+')[0]
   return line_num
 end
 
@@ -1014,9 +1013,9 @@ function v.Is_cursor_col__line_top1()
   v.Cursor__mv_line_top1()
   local col_s1 = Cursor_col_num()
   
-  call setpos('.', l:pos_c)
+  call setpos('.', pos_c)
   
-  if l:col_c == l:col_s1 then
+  if col_c == col_s1 then
     return true
   else
     return false
@@ -1033,7 +1032,7 @@ function v.Cursor__mv_by_col_num(col_num)
 
   local line_num = Cursor_line_num()
 
-  v.Cursor__mv_by_line_col(l:line_num, col_num)
+  v.Cursor__mv_by_line_col(line_num, col_num)
 end
 
 function v.Cursor__mv_by_line_num(line_num)
@@ -1049,13 +1048,13 @@ function v.Cursor__mv_by_line_col(line_num, col)
 
   local line_num = (line_num == nil) and Cursor_line_num() or line_num
   
-  call cursor(l:line_num, col)
+  call cursor(line_num, col)
 end
 
 function v.Cursor__mv_by_line_info(line_info)
   
   local line_num = Line_num_by_Line_info(line_info)
-  v.Cursor__mv_by_line_num(l:line_num)
+  v.Cursor__mv_by_line_num(line_num)
 end
 
 function v.Cursor__mv_by_pos(pos)
@@ -1117,8 +1116,8 @@ function v.Cursor__mv_word_f()
   local c_char = Cursor_c_char()
   local r_char = Cursor_r_char()
 
-  -- if l:c_char =~ ' ' and l:r_char =~ ' ' then
-  if vim.fn.is_match(l:c_char, ' ') and vim.fn.is_match(l:r_char, ' ') then
+  -- if c_char =~ ' ' and r_char =~ ' ' then
+  if vim.fn.is_match(c_char, ' ') and vim.fn.is_match(r_char, ' ') then
     v.Normal('w')
   else
     v.Normal('el')
@@ -1138,7 +1137,7 @@ function v.Cursor__mv_word_b()
   elseif Is_cursor_col__line_top1() then
     v.Cursor__mv_line_top0()
     
-  elseif Is_char__symbol(l:l_char) then
+  elseif Is_char__symbol(l_char) then
     v.Cursor__mv_char_b()
     
   else
@@ -1153,7 +1152,7 @@ function v.Cursor__mv_word_dlm_f()
 
   local line_num = Cursor_line_num()
 
-  call search(l:ptn, 'zW', l:line_num)
+  call search(ptn, 'zW', line_num)
 end
 
 function v.Cursor__mv_word_b_pre() -- use not
@@ -1161,8 +1160,8 @@ function v.Cursor__mv_word_b_pre() -- use not
   local c_char = Cursor_c_char()
   local l_char = Cursor_r_char()
 
-  -- if l:c_char =~ ' ' and l:l_char !~ ' ' then
-  if vim.fn.is_match(l:c_char, ' ') and not vim.fn.is_match(l:l_char, ' ') then
+  -- if c_char =~ ' ' and l_char !~ ' ' then
+  if vim.fn.is_match(c_char, ' ') and not vim.fn.is_match(l_char, ' ') then
     v.Normal('gegel')
   else
     v.Normal('gel')
@@ -1205,7 +1204,7 @@ function v.Cursor__mv_mlt_u() -- alias
   g_cursor_mv_line_step = g_cursor_mv_line_step_dflt
 
   local n_cmd = g_cursor_mv_line_step .. "\\<c-y>"
-  v.Normal(l:n_cmd)
+  v.Normal(n_cmd)
 end
 
 function v.Cursor__mv_mlt_d() -- alias
@@ -1213,7 +1212,7 @@ function v.Cursor__mv_mlt_d() -- alias
   g_cursor_mv_line_step = g_cursor_mv_line_step_dflt
 
   local n_cmd = g_cursor_mv_line_step .. "\\<c-e>"
-  v.Normal(l:n_cmd)
+  v.Normal(n_cmd)
 end
 
 function v.Cursor__mv_u_line_end()
@@ -1253,7 +1252,7 @@ function v.Cursor__mv_slctd_edge_l() -- range
   v.Cursor__mv_slctd_edge_tgl()
 
   -- local n_cmd = '`<'
-  -- v.Normal(l:n_cmd)
+  -- v.Normal(n_cmd)
 end
 
 function v.Cursor__mv_file_edge(n_cmd)
@@ -1265,10 +1264,10 @@ function v.Cursor__mv_file_edge(n_cmd)
   local cnt = 1
   local cnt_max = 10000
 
-  while ( !Is_cursor_line_num__file_edge() and l:cnt < l:cnt_max ) do
+  while ( !Is_cursor_line_num__file_edge() and cnt < cnt_max ) do
 
     v.Normal(n_cmd)
-    cnt = l:cnt + 1
+    cnt = cnt + 1
   end
 end
 
@@ -1294,23 +1293,23 @@ function v.Cursor__mv_v_jmp_char(drct, is_space_through)
     return
   end
 
-  v.Normal(l:n_cmd)
+  v.Normal(n_cmd)
   local cnt = 1
   local cnt_max = 10000
 
-  while ( !Is_cursor_line_num__file_edge() and l:cnt < l:cnt_max ) do
+  while ( !Is_cursor_line_num__file_edge() and cnt < cnt_max ) do
 
     if not ( Is_cursor_c_char__space() or Is_cursor_col__line_end() ) then
       break
     end
 
-    --if ( l:is_space_stop == 't' and Is_cursor_c_char__space() ) then
-    if ( l:is_space_through == 'f' and Is_cursor_c_char__space() ) then
+    --if ( is_space_stop == 't' and Is_cursor_c_char__space() ) then
+    if ( is_space_through == 'f' and Is_cursor_c_char__space() ) then
       break
     end
 
-    v.Normal(l:n_cmd)
-    cnt = l:cnt + 1
+    v.Normal(n_cmd)
+    cnt = cnt + 1
   end
 end
 
@@ -1336,19 +1335,19 @@ function v.Cursor__mv_v_jmp_space(drct)
     return
   end
 
-  v.Normal(l:n_cmd)
+  v.Normal(n_cmd)
 
   local cnt = 1
   local cnt_max = 10000
 
-  while ( !Is_cursor_line_num__file_edge() and l:cnt < l:cnt_max ) do
+  while ( !Is_cursor_line_num__file_edge() and cnt < cnt_max ) do
 
     if Is_cursor_c_char__space() or Is_cursor_col__line_end() then
       break
     end
 
-    v.Normal(l:n_cmd)
-    cnt = l:cnt + 1
+    v.Normal(n_cmd)
+    cnt = cnt + 1
   end
 end
 
@@ -1361,13 +1360,13 @@ function v.Cursor__mv_v_jmp(drct)
     return
   end
 
-  v.Normal(l:n_cmd)
+  v.Normal(n_cmd)
 
   if Is_cursor_c_char__space() or Is_cursor_col__line_end() then
 
-    v.Cursor__mv_v_jmp_char(l:n_cmd, 't')
+    v.Cursor__mv_v_jmp_char(n_cmd, 't')
   else
-    v.Cursor__mv_v_jmp_space(l:n_cmd)
+    v.Cursor__mv_v_jmp_space(n_cmd)
   end
 end
 
@@ -1380,12 +1379,12 @@ function v.Cursor__mv_srch_ptn(ptn, dir) -- range
   else
     local opt_dir = ''
   end
-  local opt = 'W' .. l:opt_dir
-  -- local opt = 'zW' .. l:opt_dir
+  local opt = 'W' .. opt_dir
+  -- local opt = 'zW' .. opt_dir
 
   local line_num = Cursor_line_num()
 
-  call search(l:ptn, l:opt, l:line_num)
+  call search(ptn, opt, line_num)
 end
 
 function v.Cursor__mv_srch(drct)
@@ -1397,7 +1396,7 @@ function v.Cursor__mv_srch(drct)
   end
 
   local ptn = @/
-  call search(l:ptn, l:op)
+  call search(ptn, op)
 end
 
 -- cursor __ ins
@@ -1405,7 +1404,7 @@ end
 function v.Cursor__ins(str)
 
   local cmd = 'i' .. str
-  v.Normal(l:cmd)
+  v.Normal(cmd)
   v.Cursor__mv_char_f()
 end
 
@@ -1433,7 +1432,7 @@ function v.Cursor__ins_mlt(str, num)
   end
 
   local cmd = num.'i'.str
-  v.Normal(l:cmd)
+  v.Normal(cmd)
 end
 
 function v.Cursor__ins_cr()
@@ -1443,7 +1442,7 @@ function v.Cursor__ins_cr()
   v.Normal("i\\<cr> ")
   v.Normal('x')
 
-  v.Line_end_space__del(l:t_line_num)
+  v.Line_end_space__del(t_line_num)
   v.Cursor__mv_d()
 end
 
@@ -1491,35 +1490,35 @@ end
 function v.Cursor__ins_da()
 
   local da = strftime('%Y-%m-%d')
-  v.Cursor__ins(l:da)
+  v.Cursor__ins(da)
 end
 
 function v.Cursor__ins_tm()
 
   local tm = strftime('%H:%M')
-  v.Cursor__ins(l:tm)
+  v.Cursor__ins(tm)
 end
 
 function v.Cursor__ins_dt()
 
   local dt = strftime('%Y-%m-%d.%H:%M')
-  v.Cursor__ins(l:dt)
+  v.Cursor__ins(dt)
 end
 
 function v.Cursor__ins_ts()
 
   local ts = strftime('%Y-%m-%d.%H:%M:%S')
-  v.Cursor__ins(l:ts)
+  v.Cursor__ins(ts)
 end
 
-g_week_def = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ]
+g_week_def = { 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' }
 
 function v.Cursor__ins_week()
 
-  local week_num = strftime('%w')
-  local week     = g_week_def[l:week_num]
-  v.Cursor__ins(l:week)
-  --v.Cursor__ins(' ' .. l:week)
+  local week_num = strftime('%w') + 1
+  local week     = g_week_def[week_num]
+  v.Cursor__ins(week)
+  --v.Cursor__ins(' ' .. week)
 end
 
 -- cmnt
@@ -1531,7 +1530,7 @@ function v.Cursor__ins_cmnt_1(cmd_cursor__mv_line_top)
   end
 
   local str = Str_cmnt_1()
-  v.Normal('i' .. l:str)
+  v.Normal('i' .. str)
   
   v.Normal('^') -- or '0'
 end
@@ -1544,9 +1543,9 @@ function v.V_ins_cmnt_1() -- range
 
   for line_num in range(firstline, lastline)
 
-    v.Line_end__pad_space(l:line_num, l:col - 1)
+    v.Line_end__pad_space(line_num, col - 1)
 
-    v.Cursor__mv_by_line_col(l:line_num, l:col)
+    v.Cursor__mv_by_line_col(line_num, col)
 
     v.Cursor__ins_cmnt_1(nil)
   endfor
@@ -1554,31 +1553,31 @@ end
 
 function v.Cursor__ins_cmnt_mlt_by_pos(pos)
 
-  local cmnt_mlt_def = #{
-    lua       : ['--[[' , '--]]'],
-    html      : ['<!--' ,  '-->'],
-    css       : ['/*'   ,  ' */'],
-    javascript: ['/*'   ,  ' */'],
-    java      : ['/*'   ,  ' */'],
-    dflt      : ['/*'   ,  ' */']
+  local cmnt_mlt_def = {
+    lua        = {'--[[' , '--]]'},
+    html       = {'<!--' ,  '-->'},
+    css        = {'/*'   ,  ' */'},
+    javascript = {'/*'   ,  ' */'},
+    java       = {'/*'   ,  ' */'},
+    dflt       = {'/*'   ,  ' */'},
   }
 
-  local str = get(l:cmnt_mlt_def, &filetype, l:cmnt_mlt_def['dflt'])
+  local str = get(cmnt_mlt_def, &filetype, cmnt_mlt_def['dflt'])
 
-  --if has_key(l:cmnt_mlt_def, &filetype) then
+  --if has_key(cmnt_mlt_def, &filetype) then
   --  local filetype = &filetype
   --else
   --  local filetype = 'dflt'
   --end
-  --local str = l:cmnt_mlt_def[l:filetype]
+  --local str = cmnt_mlt_def[filetype]
 
   if     pos == 'bgn' then
     v.Normal('O')
-    v.Normal('i' .. l:str[0])
+    v.Normal('i' .. str[0])
 
   elseif pos == 'end' then
     v.Normal('o')
-    v.Normal('i' .. l:str[1])
+    v.Normal('i' .. str[1])
   end
 end
 
@@ -1606,15 +1605,15 @@ function v.Cursor__ins_markdown_h()
 
   local str = '#'
 
-  if l:top0_char ~= l:str then
+  if top0_char ~= str then
     str = str .. ' '
   end
 
-  v.Cursor__ins(l:str)
+  v.Cursor__ins(str)
 
   local ptn = '^#* '
-  local col = Str_srch_end(Cursor_line_str(), l:ptn) + 1
-  v.Cursor__mv_by_line_col(nil, l:col)
+  local col = Str_srch_end(Cursor_line_str(), ptn) + 1
+  v.Cursor__mv_by_line_col(nil, col)
 end
 
 function v.Cursor__ins_markdown_cr()
@@ -1632,14 +1631,14 @@ function v.Cursor__ins_markdown_itm()
   local col = Cursor_line_indnt__crct()
 
   local str = '- '
-  --echo l:str
-  v.Cursor_line_top1__ins(l:str)
+  --echo str
+  v.Cursor_line_top1__ins(str)
 end
 
 function v.Cursor__ins_markdown_code()
 
   local str = '```'
-  v.Cursor__ins_line(l:str)
+  v.Cursor__ins_line(str)
 end
 
 function v.Char_markdown_chk__tgl()
@@ -1650,13 +1649,13 @@ function v.Char_markdown_chk__tgl()
   
   local cursor_char = Cursor_c_char()
   
-  if l:cursor_char == ' ' then
+  if cursor_char == ' ' then
     local rpl_char = 'x'
   else
     local rpl_char = ' '
   end
   
-  v.Cursor_char__rpl(l:rpl_char)
+  v.Cursor_char__rpl(rpl_char)
 end
 
 -- cursor char
@@ -1664,21 +1663,21 @@ end
 function v.Cursor_c_char()
 
   local idx = Cursor_col_idx()
-  local c = getline('.')[l:idx]
+  local c = getline('.')[idx]
   return c
 end
 
 function v.Cursor_l_char()
 
   local idx = Cursor_col_idx() - 1
-  local c = getline('.')[l:idx]
+  local c = getline('.')[idx]
   return c
 end
 
 function v.Cursor_r_char()
 
   local idx = Cursor_col_idx() + 1
-  local c = getline('.')[l:idx]
+  local c = getline('.')[idx]
   return c
 end
 
@@ -1690,7 +1689,7 @@ function v.Cursor_u_char() -- dev doing
 
   local idx = Cursor_col_idx()
   local line_num = Cursor_line_num() - 1
-  local c = getline(l:line_num)[l:idx]
+  local c = getline(line_num)[idx]
   return c
 end
 
@@ -1702,7 +1701,7 @@ function v.Cursor_d_char() -- dev doing
 
   local idx = Cursor_col_idx()
   local line_num = Cursor_line_num() + 1
-  local c = getline(l:line_num)[l:idx]
+  local c = getline(line_num)[idx]
   return c
 end
 
@@ -1726,27 +1725,27 @@ function v.N_char__tgl_swtch01() -- todo fnc name mod
 
   local c = Cursor_c_char()
 
-  if     Is_char__num(l:c) then
+  if     Is_char__num(c) then
 
     v.Cursor_str__icl()
     return
 
-  elseif Is_char__alpha(l:c) then
+  elseif Is_char__alpha(c) then
 
     v.Normal('v~') -- upper / lower
     return
   end
 
-  local rpl = Is_char__tgl_bracket_trn(l:c)
-  if not Is_str__emp(l:rpl) then
-    v.Cursor_char__rpl(l:rpl)
+  local rpl = Is_char__tgl_bracket_trn(c)
+  if not Is_str__emp(rpl) then
+    v.Cursor_char__rpl(rpl)
     return
   end
 
-  local rpl = Is_char__tgl_symbol(l:c)
-  if not Is_str__emp(l:rpl) then
+  local rpl = Is_char__tgl_symbol(c)
+  if not Is_str__emp(rpl) then
 
-    v.Cursor_char__rpl(l:rpl)
+    v.Cursor_char__rpl(rpl)
     return
   end
 end
@@ -1755,13 +1754,13 @@ function v.N_char__tgl_swtch02()
 
   local c = Cursor_c_char()
 
-  if Is_char__num(l:c) then
+  if Is_char__num(c) then
 
     v.Cursor_str__dcl()
     return
   end
 
-  v.Cursor_char__tgl_type_shift(l:c)
+  v.Cursor_char__tgl_type_shift(c)
 end
 
 function v.Cursor_char__tgl_type_shift(c)
@@ -1794,9 +1793,9 @@ function v.Cursor_char__tgl_type_shift(c)
     rpl = ')'
   end
 
-  if not Is_str__emp(l:rpl) then
+  if not Is_str__emp(rpl) then
 
-    v.Cursor_char__rpl(l:rpl)
+    v.Cursor_char__rpl(rpl)
     return
   end
 end
@@ -1804,13 +1803,13 @@ end
 function v.Cursor_c_char__del()
 
   local cmd = '"zx'
-  v.Normal(l:cmd)
+  v.Normal(cmd)
 end
 
 function v.Cursor_c_char__del_ynk()
 
   local cmd = '"ax'
-  v.Normal(l:cmd)
+  v.Normal(cmd)
 end
 
 -- cursor char cnd
@@ -1819,8 +1818,8 @@ function v.Is_cursor_c_char__ptn(ptn)
 
   local c = Cursor_c_char()
 
-  -- if l:c =~ ptn then
-  if vim.fn.is_match(l:c, ptn) then
+  -- if c =~ ptn then
+  if vim.fn.is_match(c, ptn) then
     return true
   else
     return false
@@ -1831,22 +1830,22 @@ function v.Is_cursor_c_char__space()
 
   local c = Cursor_c_char()
 
-  -- if l:c =~ '\\s' then
-  if vim.fn.is_match(l:c, '\\s') then
+  -- if c =~ '\\s' then
+  if vim.fn.is_match(c, '\\s') then
     return true
   else
     return false
   end
 
   -- local ptn = '\\s'
-  -- local ret = Is_cursor_c_char__ptn(l:ptn)
+  -- local ret = Is_cursor_c_char__ptn(ptn)
   -- return ret
 end
 
 function v.Is_cursor_c_char__alph()
 
   local ptn = '\\a'
-  local ret = Is_cursor_c_char__ptn(l:ptn)
+  local ret = Is_cursor_c_char__ptn(ptn)
   return ret
 end
 
@@ -1857,47 +1856,47 @@ end
 function v.Cursor_str__icl()
 
   local n_cmd = "\\<c-a>"
-  v.Normal(l:n_cmd)
+  v.Normal(n_cmd)
 end
 
 function v.Cursor_str__dcl()
 
   local n_cmd = "\\<c-x>"
-  v.Normal(l:n_cmd)
+  v.Normal(n_cmd)
 end
 
 function v.Cursor_str_week__icl()
 
   local week_str = Cursor_word()
-  local week_idx = index(g_week_def, l:week_str)
+  local week_idx = index(g_week_def, week_str)
 
-  if l:week_idx == -1 then
+  if week_idx == -1 then
     return
   end
 
   local week_nxt_idx = Idx__icl(week_idx, len(g_week_def))
-  local week_nxt_str = g_week_def[l:week_nxt_idx]
+  local week_nxt_str = g_week_def[week_nxt_idx]
 
   v.Slctd_str__word()
   v.Normal('"zd')
-  v.Normal('i' .. l:week_nxt_str)
+  v.Normal('i' .. week_nxt_str)
 end
 
 function v.Cursor_str_week__dcl()
 
   local week_str = Cursor_word()
-  local week_idx = index(g_week_def, l:week_str)
+  local week_idx = index(g_week_def, week_str)
 
-  if l:week_idx == -1 then
+  if week_idx == -1 then
     return
   end
 
   local week_nxt_idx = Idx__dcl(week_idx, len(g_week_def))
-  local week_nxt_str = g_week_def[l:week_nxt_idx]
+  local week_nxt_str = g_week_def[week_nxt_idx]
 
   v.Slctd_str__word()
   v.Normal('"zd')
-  v.Normal('i' .. l:week_nxt_str)
+  v.Normal('i' .. week_nxt_str)
 end
 
 -- cursor etc
@@ -1928,7 +1927,7 @@ function v.Cursor_filepath()
     str = Cursor_line_str()
   end
   
-  str = trim(l:str)
+  str = trim(str)
   
   return str
 end
@@ -1938,20 +1937,20 @@ end
 function v.Cursor__ins_line(str)
 
   local line_num = Cursor_line_num() - 1
-  call append(l:line_num, str)
+  call append(line_num, str)
   v.Cursor__mv_u()
 end
 
 function v.Cursor__ins_line_emp()
 
   local str = ''
-  v.Cursor__ins_line(l:str)
+  v.Cursor__ins_line(str)
 end
 
 function v.Cursor__ins_line_buf_file_path()
 
   local path = Buf_file_path()
-  v.Cursor__ins_line(l:path)
+  v.Cursor__ins_line(path)
 end
 
 function v.Cursor__ins_line_anchor()
@@ -1959,21 +1958,21 @@ function v.Cursor__ins_line_anchor()
   local str  = Str_cmnt_1()
   str = str .. 'dev '
   str = str .. 'anchor'
-  v.Cursor__ins_line(l:str)
+  v.Cursor__ins_line(str)
   v.Cursor_line_indnt__crct()
 end
 
 function v.Cursor_d__ins_line(str)
 
   local line_num = Cursor_line_num()
-  v.append(l:line_num, str)
+  v.append(line_num, str)
 end
 
 function v.Cursor_d__ins_line_space() -- range
 
   local space_len = Cursor_col_num() - 1
-  local space_str = Str_space(l:space_len)
-  v.Cursor_d__ins_line(l:space_str)
+  local space_str = Str_space(space_len)
+  v.Cursor_d__ins_line(space_str)
 end
 
 -- cursor line  -  todo refactoring
@@ -2039,9 +2038,9 @@ end
 function v.Cursor_line_end__dots_adjst() -- todo dev, mb_str
 
   local line_str = Cursor_line_str()
-  local idx = Str_srch(l:line_str, escape(g_dots_str, '.'))
+  local idx = Str_srch(line_str, escape(g_dots_str, '.'))
 
-  if l:idx >= 0 then
+  if idx >= 0 then
     v.Cursor_line_end_dots__crct()
   else
     v.Cursor_line_end__ins_dots()
@@ -2051,28 +2050,28 @@ end
 function v.Cursor_line_end_dots__crct()
 
   local line_str = Cursor_line_str()
-  local idx = Str_srch(l:line_str, escape(g_dots_str, '.'))
+  local idx = Str_srch(line_str, escape(g_dots_str, '.'))
 
-  if     l:idx < 0 then
+  if     idx < 0 then
     return
-  elseif l:idx == g_dots_put_col then
+  elseif idx == g_dots_put_col then
     return
   end
 
-  local line_str_0 = strcharpart(l:line_str,     0, l:idx)
-  local line_str_1 = strcharpart(l:line_str, l:idx       )
+  local line_str_0 = strcharpart(line_str,     0, idx)
+  local line_str_1 = strcharpart(line_str, idx       )
 
-  if     l:idx < g_dots_put_col then
+  if     idx < g_dots_put_col then
 
-    local space_str = Str_space(g_dots_put_col - l:idx)
-    line_str = l:line_str_0 .. l:space_str .. l:line_str_1
+    local space_str = Str_space(g_dots_put_col - idx)
+    line_str = line_str_0 .. space_str .. line_str_1
   else
-    line_str_0 = strcharpart(l:line_str_0, 0, g_dots_put_col)
-    line_str = l:line_str_0 .. l:line_str_1
+    line_str_0 = strcharpart(line_str_0, 0, g_dots_put_col)
+    line_str = line_str_0 .. line_str_1
   end
 
   local line_num = Cursor_line_num()
-  call setline(l:line_num, l:line_str)
+  call setline(line_num, line_str)
 end
 
 function v.Cursor_line_end__ins_dots()
@@ -2083,22 +2082,22 @@ function v.Cursor_line_end__ins_dots()
 
   local line_str_len = Cursor_line_str_len()
 
-  local space_len = g_dots_put_col - l:line_str_len
-  if l:space_len < 0 then
+  local space_len = g_dots_put_col - line_str_len
+  if space_len < 0 then
     space_len = 0
   end
 
-  local space_str = Str_space(l:space_len)
+  local space_str = Str_space(space_len)
 
-  line_str = line_str .. l:space_str .. g_dots_str
+  line_str = line_str .. space_str .. g_dots_str
 
-  call setline(l:line_num, l:line_str)
+  call setline(line_num, line_str)
 end
 
 function v.Curosr_line_end__ins(str)
 
   local n_cmd = 'A' .. str
-  v.Normal(l:n_cmd)
+  v.Normal(n_cmd)
 end
 
 -- cursor f
@@ -2107,8 +2106,8 @@ function v.Cursor_f_space__del()
 
   local c = Cursor_c_char()
 
-  -- if l:c =~ '\\s' then
-  if vim.fn.is_match(l:c, '\\s') then
+  -- if c =~ '\\s' then
+  if vim.fn.is_match(c, '\\s') then
     -- echo "del"
     v.Slctd_str__cursor_f_space()
     v.Normal('"zd')
@@ -2144,12 +2143,12 @@ function v.Cursor_f_str__crct_by_line(target_line_drct)
   local cursor_pos = Cursor_pos()
 
   local str = Cursor_line_str_side_r_with_c()
-  local trim_len = Str_srch(l:str, '[^ ]')
-  -- echo l:trim_len
-  local str = trim(l:str)
+  local trim_len = Str_srch(str, '[^ ]')
+  -- echo trim_len
+  local str = trim(str)
 
-  local cursor_r_char =  Str_l_char(l:str)
-  -- echo l:cursor_r_char
+  local cursor_r_char =  Str_l_char(str)
+  -- echo cursor_r_char
 
   v.Cursor__mv_v(target_line_drct)
 
@@ -2160,26 +2159,26 @@ function v.Cursor_f_str__crct_by_line(target_line_drct)
   else
     local turn_drct = 'u'
   end
-  v.Cursor__mv_v(l:turn_drct)
+  v.Cursor__mv_v(turn_drct)
 
-  local crct_len = Str_srch(l:target_line_str, l:cursor_r_char) + 1
-  -- echo l:crct_len
-  if l:crct_len == -1 then
+  local crct_len = Str_srch(target_line_str, cursor_r_char) + 1
+  -- echo crct_len
+  if crct_len == -1 then
     return
   end
 
-  local crct_len = l:crct_len - l:trim_len
-  local space_str = Str_space(l:crct_len)
-  v.Cursor__ins(l:space_str)
+  local crct_len = crct_len - trim_len
+  local space_str = Str_space(crct_len)
+  v.Cursor__ins(space_str)
 
-  v.Cursor__mv_by_pos(l:cursor_pos)
+  v.Cursor__mv_by_pos(cursor_pos)
 end
 
 function v.Cursor__ins_sys_cmd(sys_cmd) -- read
 
   local is_line_num_eq_1 = Is_cursor_line_num__file_edge_bgn()
 
-  if l:is_line_num_eq_1 then
+  if is_line_num_eq_1 then
     v.Normal('O')
   else
     -- v.Normal('k')
@@ -2187,9 +2186,9 @@ function v.Cursor__ins_sys_cmd(sys_cmd) -- read
   end
 
   local cmd = 'read ! ' .. sys_cmd
-  v.Exe(l:cmd)
+  v.Exe(cmd)
 
-  if l:is_line_num_eq_1 then
+  if is_line_num_eq_1 then
     v.Line__del_by_line_num(1)
   end
 end
@@ -2204,7 +2203,7 @@ function v.Is_cursor_line_num__(line_num)
 
   local line_num = Cursor_line_num()
 
-  if l:line_num == line_num then
+  if line_num == line_num then
     ret = true
   end
   return ret
@@ -2213,14 +2212,14 @@ end
 function v.Is_cursor_line_num__file_edge_bgn()
 
   local line_num = 1
-  local ret = Is_cursor_line_num__(l:line_num)
+  local ret = Is_cursor_line_num__(line_num)
   return ret
 end
 
 function v.Is_cursor_line_num__file_edge_end()
 
   local line_num = Line_num_file_edge_end()
-  local ret = Is_cursor_line_num__(l:line_num)
+  local ret = Is_cursor_line_num__(line_num)
   return ret
 end
 
@@ -2231,7 +2230,7 @@ function v.Is_cursor_line_num__file_edge()
   if Is_cursor_line_num__file_edge_bgn() or Is_cursor_line_num__file_edge_end() then
     ret = true
   end
-  --echo l:ret
+  --echo ret
   return ret
 end
 
@@ -2247,21 +2246,21 @@ end
 function v.Is_cursor_line_str__space()
   
   local str = Cursor_line_str()
-  local ret = Is_str__space(l:str)
+  local ret = Is_str__space(str)
   return ret
 end
 
 function v.Is_cursor_line_str_side_l__space()
 
   local str = Cursor_line_str_side_l()
-  local ret = Is_str__space(l:str)
+  local ret = Is_str__space(str)
   return ret
 end
 
 function v.Is_cursor_line_str_side_r__space()
 
   local str = Cursor_line_str_side_r()
-  local ret = Is_str__space(l:str)
+  local ret = Is_str__space(str)
   return ret
 end
 
@@ -2271,7 +2270,7 @@ function v.Is_cursor_line_str__ptn(ptn) -- todo dev
 
   local ret = false
 
-  if Is_str__ptn(l:str, ptn) then
+  if Is_str__ptn(str, ptn) then
     ret = true
   end
   return ret
@@ -2300,7 +2299,7 @@ function v.Cursor_line_indnt__add(col)
     local char = "\\t"
     col = col / 2
   end
-  v.Cursor__ins_mlt(l:char, l:col)
+  v.Cursor__ins_mlt(char, col)
 
   v.Cursor__mv_line_top1()
 end
@@ -2320,7 +2319,7 @@ function v.Cursor_line_indnt__shft_r()
 
   local col = 2
 
-  v.Cursor_line_indnt__add(l:col)
+  v.Cursor_line_indnt__add(col)
 end
 
 function v.Cursor_line_indnt__crct()
@@ -2334,9 +2333,9 @@ function v.Cursor_line_indnt__crct_with_c()
   v.Cursor_line_indnt__del()
 
   local col = Cursor_line_indnt_col_with_c()
-  --echo l:col
+  --echo col
 
-  v.Cursor_line_indnt__add(l:col)
+  v.Cursor_line_indnt__add(col)
   return col
 end
 
@@ -2373,12 +2372,12 @@ function v.Slctd_str__word()
 
   local c = Cursor_c_char()
 
-  -- if     l:c =~ '\\w' then
-  if     vim.fn.is_match(l:c, '\\w') then
+  -- if     c =~ '\\w' then
+  if     vim.fn.is_match(c, '\\w') then
     v.Normal('viw')
 
-  -- elseif l:c =~ '\\s' then
-  elseif vim.fn.is_match(l:c, '\\s') then
+  -- elseif c =~ '\\s' then
+  elseif vim.fn.is_match(c, '\\s') then
     v.Slctd_str__cursor_f_space()
   else
     v.Normal('v')
@@ -2393,11 +2392,11 @@ function v.Slctd_str__cursor_f_space()
 
   local c = Cursor_c_char()
 
-  -- if l:c !~ '\\s' then
-  if not vim.fn.is_match(l:c, '\\s') then
+  -- if c !~ '\\s' then
+  if not vim.fn.is_match(c, '\\s') then
     return
   end
-  --echo l:c
+  --echo c
 
   if Is_cursor_line_str_side_r__space() then
 
@@ -2434,9 +2433,9 @@ function v.Slct_by_line_col(s_line, s_col, e_line, e_col)
   local s_line = (s_line == nil) and Cursor_line_num() or s_line
   local e_line = (e_line == nil) and Cursor_line_num() or e_line
 
-  v.Cursor__mv_by_line_col(l:s_line, s_col)
+  v.Cursor__mv_by_line_col(s_line, s_col)
   v.Normal('v')
-  v.Cursor__mv_by_line_col(l:e_line, e_col)
+  v.Cursor__mv_by_line_col(e_line, e_col)
 end
 
 -- refactoring slct > slctd __ xxx
@@ -2461,7 +2460,7 @@ function v.Slctd_cursor__mv_slctd_edge_r() -- range
   v.Cursor__mv_slctd_edge_tgl()
 
   -- local n_cmd = '`>'
-  -- v.Normal(l:n_cmd)
+  -- v.Normal(n_cmd)
 end
 
 function v.Slctd_cursor_drct__mv_forward() -- range
@@ -2523,26 +2522,26 @@ function v.Is_slctd_cursor_pos__r() -- range
   v.Slct_re()
 
   local cursor_pos1 = Cursor_pos()
-  -- echo l:cursor_pos1
+  -- echo cursor_pos1
 
   v.Cursor__mv_slctd_edge_tgl()
   local cursor_pos2 = Cursor_pos()
-  -- echo l:cursor_pos2
+  -- echo cursor_pos2
 
   v.Cursor__mv_slctd_edge_tgl()
 
 
-  if     l:cursor_pos1[1] >  l:cursor_pos2[1] then -- line
+  if     cursor_pos1[1] >  cursor_pos2[1] then -- line
     ret = true
 
-  elseif l:cursor_pos1[1] == l:cursor_pos2[1] then -- line
+  elseif cursor_pos1[1] == cursor_pos2[1] then -- line
 
-    if   l:cursor_pos1[2] >= l:cursor_pos2[2] then -- col
+    if   cursor_pos1[2] >= cursor_pos2[2] then -- col
       ret = true
     end
   end
 
-  -- echo l:ret
+  -- echo ret
   return ret
 end
 
@@ -2565,22 +2564,22 @@ function v.Slctd_str_len() -- range
   v.Slct_re()
 
   local slctd_str = Slctd_str()
-  local len       = Str_len(l:slctd_str)
+  local len       = Str_len(slctd_str)
   return len
 end
 
 function v.Slctd_str_7_opn_ggl_srch()
 
   local word = Slctd_str()
-  local word = trim(l:word)
-  v.Opn_ggl_srch(l:word)
+  local word = trim(word)
+  v.Opn_ggl_srch(word)
 end
 
 function v.Slctd_str_7_opn_yt()
   
   local yt_video_id = Slctd_str()
-  local yt_video_id = trim(l:yt_video_id)
-  v.Opn_yt(l:yt_video_id)
+  local yt_video_id = trim(yt_video_id)
+  v.Opn_yt(yt_video_id)
 end
 
 -- slctd str __ ( expnd )
@@ -2606,8 +2605,8 @@ function v.Slctd_str__expnd_word_f() -- range
 
     v.Normal('$h')
 
-  -- elseif l:slctd_str =~ '\\s' and l:slctd_r_out_char =~ '\\s' then
-  elseif vim.fn.is_match(l:slctd_str, '\\s') and vim.fn.is_match(l:slctd_r_out_char, '\\s') then
+  -- elseif slctd_str =~ '\\s' and slctd_r_out_char =~ '\\s' then
+  elseif vim.fn.is_match(slctd_str, '\\s') and vim.fn.is_match(slctd_r_out_char, '\\s') then
 
     v.Normal('wh')
   else
@@ -2642,8 +2641,8 @@ function v.Slctd_str__expnd_quote_on_swtch() -- range
 
   local c = Cursor_c_char()
 
-  -- if l:c !~ g_quote_ptn then
-  if not vim.fn.is_match(l:c, g_quote_ptn) then
+  -- if c !~ g_quote_ptn then
+  if not vim.fn.is_match(c, g_quote_ptn) then
     v.Slctd_str__expnd_quote_on_f()
   else
     v.Slctd_str__expnd_quote_on_b()
@@ -2681,8 +2680,8 @@ function v.Slctd_str__expnd_quote_in_swtch() -- range
 
   local c_r = Slctd_str_edge_r_out_char()
 
-  -- if l:c_r !~ g_quote_ptn then
-  if not vim.fn.is_match(l:c_r, g_quote_ptn) then
+  -- if c_r !~ g_quote_ptn then
+  if not vim.fn.is_match(c_r, g_quote_ptn) then
 
     v.Slctd_str__expnd_quote_in_f()
   else
@@ -2714,16 +2713,16 @@ function v.Slctd_str__expnd_bracket_f() -- range -- todo dev
   local s_col = Slctd_str_edge_l_col()
   
   local line_str_r = Slctd_str_edge_r_out_str()
-  local srch_idx = Str_srch(l:line_str_r, l:bracket_ptn, 1)
+  local srch_idx = Str_srch(line_str_r, bracket_ptn, 1)
 
-  if l:srch_idx == -1 then
+  if srch_idx == -1 then
 
     v.Normal('gv')
     return
   end
 
-  local len = l:s_col + Slctd_str_len() + l:srch_idx
-  v.Slctd_str__by_col_len(l:s_col, l:len)
+  local len = s_col + Slctd_str_len() + srch_idx
+  v.Slctd_str__by_col_len(s_col, len)
 end
 
 function v.Slctd_str__reduce_dlm_l(char) -- range
@@ -2733,14 +2732,14 @@ function v.Slctd_str__reduce_dlm_l(char) -- range
   v.Slct_re()
 
   local slctd_str = Slctd_str()
-  local srch_idx = Str_srch(l:slctd_str, l:char)
-  if l:srch_idx == -1 then
+  local srch_idx = Str_srch(slctd_str, char)
+  if srch_idx == -1 then
     v.Slctd__cancel()
     return
   end
 
-  local n_cmd = 'F' .. l:char .. 'h'
-  v.Normal(l:n_cmd)
+  local n_cmd = 'F' .. char .. 'h'
+  v.Normal(n_cmd)
 end
 
 -- slctd str __ ( edit )
@@ -2795,8 +2794,8 @@ function v.Slctd__del() -- range
 
   local rgstr = 'z'
 
-  local cmd = '"' .. l:rgstr .. 'dgv'
-  v.Normal(l:cmd)
+  local cmd = '"' .. rgstr .. 'dgv'
+  v.Normal(cmd)
 end
 
 -- slctd str __ pad
@@ -2805,13 +2804,13 @@ function v.Slctd__pad(char) -- range
 
   local char = char
 
-  if l:char == '|' then
+  if char == '|' then
     local char = "\\<bar>"
   end
 
   v.Slct_re()
 
-  v.Normal('r' .. l:char)
+  v.Normal('r' .. char)
 
   v.Slct_re()
 end
@@ -2957,16 +2956,16 @@ function v.Slctd_str_edge_out__ins(c) -- range
   end
 
   v.Normal('"zx')
-  v.Cursor__ins(l:c_l .. l:c_r)
+  v.Cursor__ins(c_l .. c_r)
 
-  local str_len = Str_len(l:c_l)
-  v.Normal(l:str_len .. 'h')
+  local str_len = Str_len(c_l)
+  v.Normal(str_len .. 'h')
 
   v.Normal('"zP')
   v.Normal('gv')
 
   local cnt = 0
-  while l:cnt < l:str_len do
+  while cnt < str_len do
 
     v.Slctd_box__mv('r')
 
@@ -3001,22 +3000,22 @@ function v.Slctd_str_edge_out_char__tgl_swtch() -- range
   -- char chk
   local c_l = Slctd_str_edge_l_out_char()
   local c_r = Slctd_str_edge_r_out_char()
-  -- echo l:c_l l:c_r
+  -- echo c_l c_r
 
-  if     l:c_l == "'" and l:c_l == l:c_r then
+  if     c_l == "'" and c_l == c_r then
     v.Slctd_str_edge_out_quote__tgl()
-  elseif l:c_l == '"' and l:c_l == l:c_r then
+  elseif c_l == '"' and c_l == c_r then
     v.Slctd_str_edge_out_quote__tgl()
-  elseif l:c_l == '`' and l:c_l == l:c_r then
+  elseif c_l == '`' and c_l == c_r then
     v.Slctd_str_edge_out_quote__tgl()
 
-  elseif l:c_l == '(' and l:c_r == ')' then
+  elseif c_l == '(' and c_r == ')' then
     v.Slctd_str_edge_out_bracket__tgl()
-  elseif l:c_l == '{' and l:c_r == '}' then
+  elseif c_l == '{' and c_r == '}' then
     v.Slctd_str_edge_out_bracket__tgl()
-  elseif l:c_l == '[' and l:c_r == ']' then
+  elseif c_l == '[' and c_r == ']' then
     v.Slctd_str_edge_out_bracket__tgl()
-  elseif l:c_l == '<' and l:c_r == '>' then
+  elseif c_l == '<' and c_r == '>' then
     v.Slctd_str_edge_out_bracket__tgl()
 
   else
@@ -3039,26 +3038,26 @@ function v.Slctd_str_edge_out_quote__tgl() -- range
   -- char chk
   local c_l = Slctd_str_edge_l_out_char()
   local c_r = Slctd_str_edge_r_out_char()
-  -- echo l:c_l l:c_r
+  -- echo c_l c_r
 
-  if     l:c_l == "'" and l:c_l == l:c_r then
+  if     c_l == "'" and c_l == c_r then
 
     v.Slctd_str_edge_out_char__del()
     local c = '"'
-    v.Slctd_str_edge_out__ins(l:c)
+    v.Slctd_str_edge_out__ins(c)
 
-  elseif l:c_l == '"' and l:c_l == l:c_r then
+  elseif c_l == '"' and c_l == c_r then
 
     v.Slctd_str_edge_out_char__del()
     local c = '`'
-    v.Slctd_str_edge_out__ins(l:c)
+    v.Slctd_str_edge_out__ins(c)
 
-  elseif l:c_l == '`' and l:c_l == l:c_r then
+  elseif c_l == '`' and c_l == c_r then
 
     v.Slctd_str_edge_out_char__del()
   else
     local c = "'"
-    v.Slctd_str_edge_out__ins(l:c)
+    v.Slctd_str_edge_out__ins(c)
   end
 end
 
@@ -3077,32 +3076,32 @@ function v.Slctd_str_edge_out_bracket__tgl() -- range
   -- char chk
   local c_l = Slctd_str_edge_l_out_char()
   local c_r = Slctd_str_edge_r_out_char()
-  -- echo l:c_l l:c_r
+  -- echo c_l c_r
 
-  if     l:c_l == '(' and l:c_r == ')' then
+  if     c_l == '(' and c_r == ')' then
 
     v.Slctd_str_edge_out_char__del()
     local c = '{'
-    v.Slctd_str_edge_out__ins(l:c)
+    v.Slctd_str_edge_out__ins(c)
 
-  elseif l:c_l == '{' and l:c_r == '}' then
+  elseif c_l == '{' and c_r == '}' then
 
     v.Slctd_str_edge_out_char__del()
     local c = '['
-    v.Slctd_str_edge_out__ins(l:c)
+    v.Slctd_str_edge_out__ins(c)
 
-  elseif l:c_l == '[' and l:c_r == ']' then
+  elseif c_l == '[' and c_r == ']' then
 
     v.Slctd_str_edge_out_char__del()
     local c = '<'
-    v.Slctd_str_edge_out__ins(l:c)
+    v.Slctd_str_edge_out__ins(c)
 
-  elseif l:c_l == '<' and l:c_r == '>' then
+  elseif c_l == '<' and c_r == '>' then
 
     v.Slctd_str_edge_out_char__del()
   else
     local c = '('
-    v.Slctd_str_edge_out__ins(l:c)
+    v.Slctd_str_edge_out__ins(c)
   end
 end
 
@@ -3121,13 +3120,13 @@ function v.Slctd_str_edge_out__tgl_shft() -- range
   -- char chk
   local c_l = Slctd_str_edge_l_out_char()
   local c_r = Slctd_str_edge_r_out_char()
-  -- echo l:c_l l:c_r
+  -- echo c_l c_r
 
-  if     Is_char_pair__quote(l:c_l, l:c_r) then
+  if     Is_char_pair__quote(c_l, c_r) then
     v.Slctd_str_edge_out_char__del()
     v.Slctd_str_edge_out_bracket__tgl()
 
-  elseif Is_char_pair__bracket(l:c_l, l:c_r) then
+  elseif Is_char_pair__bracket(c_l, c_r) then
     v.Slctd_str_edge_out_char__del()
     v.Slctd_str_edge_out_quote__tgl()
 
@@ -3158,7 +3157,7 @@ function v.Is_slctd_str_edge_char__(ptn)
   local c1 = Slctd_str_edge_l_char()
   local c2 = Slctd_str_edge_r_char()
 
-  local ret = Is_char_pair__(ptn, l:c1, l:c2)
+  local ret = Is_char_pair__(ptn, c1, c2)
   return ret
 end
 
@@ -3173,7 +3172,7 @@ function v.Is_slctd_str_edge_out_char__(ptn)
   local c1 = Slctd_str_edge_l_out_char()
   local c2 = Slctd_str_edge_r_out_char()
 
-  local ret = Is_char_pair__(ptn, l:c1, l:c2)
+  local ret = Is_char_pair__(ptn, c1, c2)
   return ret
 end
 
@@ -3191,11 +3190,11 @@ function v.Is_slctd_str_edge_l_col__line_top() -- range
 
   v.Cursor__mv_slctd_edge_tgl()
   local cursor_l_pos = Cursor_pos()
-  -- echo l:cursor_l_pos
+  -- echo cursor_l_pos
 
   v.Cursor__mv_slctd_edge_tgl()
 
-  if l:cursor_l_pos[2] == 1 then -- col
+  if cursor_l_pos[2] == 1 then -- col
     ret = true
   end
 
@@ -3208,7 +3207,7 @@ function v.Slctd_line_7_opn_app() -- range
 
   for line_num in range(firstline, lastline)
 
-    v.Opn_app_by_line_path(l:line_num)
+    v.Opn_app_by_line_path(line_num)
   endfor
 end
 
@@ -3229,8 +3228,8 @@ end
 function v.Slctd_line__rpl(srch, rpl) -- range
 
   local cmd = g_v_rng .. 's/' .. srch .. '/' .. rpl .. '/g'
-  --echo l:cmd
-  v.Exe(l:cmd)
+  --echo cmd
+  v.Exe(cmd)
 end
 
 function v.Slctd_line__rpl_by_line1_line2() -- range
@@ -3240,23 +3239,23 @@ function v.Slctd_line__rpl_by_line1_line2() -- range
 
   --local rng = '3,$'
   local rng = g_v_rng
-  local cmd = l:rng .. 's/' .. l:srch .. '/' .. l:rpl .. '/g'
-  --echo l:cmd
-  v.Exe(l:cmd)
+  local cmd = rng .. 's/' .. srch .. '/' .. rpl .. '/g'
+  --echo cmd
+  v.Exe(cmd)
 end
 
 function v.Slctd_line__rpl_sys_cmd(sys_cmd) -- range -- read
 
   local cmd = "'<,'>" .. " ! " .. sys_cmd
-  v.Exe(l:cmd)
+  v.Exe(cmd)
 end
 
 function v.Slctd_line_srch_str__rpl_cr() -- range
 
   local srch = @/
 
-  local cmd = g_v_rng .. 's/\\(' .. l:srch .. '\\)/\\1\\r/g'
-  v.Exe(l:cmd)
+  local cmd = g_v_rng .. 's/\\(' .. srch .. '\\)/\\1\\r/g'
+  v.Exe(cmd)
 end
 
 function v.Slctd_line__markdown_strikethrough() -- range -- todo dev
@@ -3266,20 +3265,20 @@ end
 function v.Slctd__sys_cmd(sys_cmd) -- range
 
   local cmd = g_v_rng .. '! ' .. sys_cmd
-  v.Exe(l:cmd)
+  v.Exe(cmd)
 end
 
 function v.Slctd_line_top_space__del() -- refactoring ?
 
-  local rpl_cmd = 's/' .. s:line_top_space_ptn .. '//g'
-  v.Exe(l:rpl_cmd)
+  local rpl_cmd = 's/' .. g_line_top_space_ptn .. '//g'
+  v.Exe(rpl_cmd)
 end
 
 function v.Slctd_line_end_space__del() -- range
 
   for line_num in range(firstline, lastline)
 
-    v.Line_end_space__del(l:line_num)
+    v.Line_end_space__del(line_num)
   endfor
 end
 
@@ -3294,7 +3293,7 @@ function v.Slctd_line_end__pad_space() -- range -- use not
 
   for line_num in range(firstline, lastline)
 
-    v.Line_end__pad_space(l:line_num, l:fil_end_col)
+    v.Line_end__pad_space(line_num, fil_end_col)
   endfor
 end
 
@@ -3304,12 +3303,12 @@ function v.Slctd_line__join_per_line(per_line_num) -- range
 
   local line_num = lastline - firstline + 1
 
-  local exe_num = l:line_num / per_line_num
-  --echo l:exe_num
+  local exe_num = line_num / per_line_num
+  --echo exe_num
 
-  for idx in range(1, l:exe_num)
+  for idx in range(1, exe_num)
 
-    v.Normal(l:n_cmd)
+    v.Normal(n_cmd)
   endfor
 end
 
@@ -3320,7 +3319,7 @@ function v.Slctd_line_indnt__space(indnt_col) -- range
 
   else
     local sys_cmd = '  expand   -t ' .. indnt_col
-    '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
+    '<,'>:call Slctd_line__rpl_sys_cmd(sys_cmd)
   end
 end
 
@@ -3330,7 +3329,7 @@ function v.Slctd_line_indnt__tab(indnt_col) -- range
     v.Nothing()
   else
     local sys_cmd = 'unexpand   -t ' .. indnt_col
-    '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
+    '<,'>:call Slctd_line__rpl_sys_cmd(sys_cmd)
   end
 end
 
@@ -3339,8 +3338,8 @@ end
 function v.Slctd_line_tab__rpl_space(space_col) -- range
 
   local space_str = Str_space(space_col)
-  local cmd = g_v_rng .. 's/\\t/' .. l:space_str .. '/g'
-  v.Exe(l:cmd)
+  local cmd = g_v_rng .. 's/\\t/' .. space_str .. '/g'
+  v.Exe(cmd)
 end
 
 -- slctd line indnt __ shft
@@ -3367,7 +3366,7 @@ function v.Slctd_line__crct_tbl() -- range
     sys_cmd = 'column -t'
   end
 
-  '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
+  '<,'>:call Slctd_line__rpl_sys_cmd(sys_cmd)
 end
 
 -- markdown tbl header
@@ -3384,7 +3383,7 @@ end
 function v.Slctd_line_mb__cnv() -- range
 
   local sys_cmd = 'mb__cnv'
-  '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
+  '<,'>:call Slctd_line__rpl_sys_cmd(sys_cmd)
 end
 
 -- slctd box __ mv
@@ -3394,8 +3393,8 @@ function v.Slctd_box__mv(lr) -- range
   v.Slct_re()
 
   local n_cmd = Char_lr_2_normal_cmd(lr)
-  v.Normal('o' .. l:n_cmd)
-  v.Normal('o' .. l:n_cmd)
+  v.Normal('o' .. n_cmd)
+  v.Normal('o' .. n_cmd)
 end
 
 function v.Slctd_box_width__1() -- range
@@ -3410,7 +3409,7 @@ function v.Slctd_box_width__1() -- range
   local col_num = Cursor_col_num()
 
   v.Normal('o')
-  v.Cursor__mv_by_col_num(l:col_num)
+  v.Cursor__mv_by_col_num(col_num)
 end
 
 function v.Slctd_box_str__mv(lr) -- range
@@ -3419,7 +3418,7 @@ function v.Slctd_box_str__mv(lr) -- range
 
   v.Slct_re()
   v.Normal('"zx')
-  v.Normal(l:n_cmd)
+  v.Normal(n_cmd)
   v.Normal('"zP')
 
   v.Slct_re()
@@ -3457,9 +3456,9 @@ function v.Slctd_box_edge_l__ynk_line_1() -- range
 
     v.Cursor__ins_ynk()
 
-    v.Cursor__mv_by_line_col(l:line_num, l:col_num)
+    v.Cursor__mv_by_line_col(line_num, col_num)
     v.Cursor__mv_d()
-    -- if l:line_num ~= lastline then
+    -- if line_num ~= lastline then
     --   v.Normal('j')
     -- end
   endfor
@@ -3472,8 +3471,8 @@ function v.Slctd_box__rpl(srch, rpl) -- range
   local srch = srch
   local rpl  = rpl
 
-  local cmd = g_v_rng .. 's/' .. '\\%V' .. l:srch .. '/' .. l:rpl .. '/g'
-  v.Exe(l:cmd)
+  local cmd = g_v_rng .. 's/' .. '\\%V' .. srch .. '/' .. rpl .. '/g'
+  v.Exe(cmd)
 end
 
 -- slctd box space __ del
@@ -3491,7 +3490,7 @@ end
 function v.Slctd_box_edge_r_char__shft_in() -- range
 
   local cmd = g_v_rng .. 's/' .. '\\%V\\([ ]\\+\\)\\([^ ]\\)' .. '/' .. '\\2\\1' .. '/g'
-  v.Exe(l:cmd)
+  v.Exe(cmd)
 
   v.Slct_re()
 end
@@ -3500,15 +3499,15 @@ function v.Slctd_box_cursor_r_space__crct() -- range
 
   v.Slct_re()
   local col = Cursor_col_num()
-  -- echo l:col
+  -- echo col
   v.Slctd__cancel()
 
   -- echo firstline .. ' ' .. lastline
-  v.Cursor__mv_by_line_col(firstline, l:col)
+  v.Cursor__mv_by_line_col(firstline, col)
 
   for line_num in range(firstline, lastline)
-    -- echo l:line_num .. ' ' .. l:col
-    -- v.Cursor__mv_by_line_col(l:line_num, l:col)
+    -- echo line_num .. ' ' .. col
+    -- v.Cursor__mv_by_line_col(line_num, col)
 
     v.Cursor_f_space__del()
     -- v.Normal('j')
@@ -3571,8 +3570,8 @@ end
 function v.Ynk__line()
 
   v.Normal('"ayy')
-  --l:line_str = Cursor_line_str()
-  --let @a = l:line_str
+  --line_str = Cursor_line_str()
+  --let @a = line_str
 
   v.Clp__ynk()
 end
@@ -3580,7 +3579,7 @@ end
 function v.Ynk__line_all()
 
   local cmd = '%y' -- todo rgstr a direct
-  v.Exe(l:cmd)
+  v.Exe(cmd)
 
   let @a = @0
   v.Clp__ynk()
@@ -3590,7 +3589,7 @@ function v.Ynk__buf_file_path()
   
   local path = Buf_file_path()
 
-  let @a = l:path
+  let @a = path
   v.Clp__ynk()
 end
 
@@ -3619,8 +3618,8 @@ end
 function v.Ynk__by_rgstr_info(rgstr_info)
   
   local rgstr = Rgstr_info_rgstr(rgstr_info)
-  local scrpt = 'let @a = @' .. l:rgstr
-  execute(l:scrpt)
+  local scrpt = 'let @a = @' .. rgstr
+  execute(scrpt)
 end
 
 -- clp
@@ -3645,9 +3644,9 @@ end
 function v.Srch_or(...)
 
   local str = '\\(' .. join(000, '\\|') .. '\\)'
-  --echo l:str
+  --echo str
 
-  let @/ = l:str
+  let @/ = str
   v.Cursor__mv_srch('f')
 end
 
@@ -3662,9 +3661,9 @@ function v.Srch_str_flt()
   local str = @/
 
   if Is_srch__word1() then
-    str = strcharpart(l:str, 2, strchars(l:str) - 4)
+    str = strcharpart(str, 2, strchars(str) - 4)
   end
-  -- echo l:str
+  -- echo str
 
   return str
 end
@@ -3679,7 +3678,7 @@ function v.Srch_str_word1(str)
     str = str
   end
 
-  str = '\\<' .. l:str .. '\\>'
+  str = '\\<' .. str .. '\\>'
   return str
 end
 
@@ -3689,27 +3688,27 @@ function v.Srch_str__(str, op_word1)
 
   local exe_str = str
 
-  exe_str = escape(l:exe_str, '.*~[]\\^$')
+  exe_str = escape(exe_str, '.*~[]\\^$')
 
-  exe_str = substitute(l:exe_str, '\\n', '\\\\n', 'g')
-  -- echo l:exe_str
+  exe_str = substitute(exe_str, '\\n', '\\\\n', 'g')
+  -- echo exe_str
 
   if op_word1 == true then
-    exe_str = Srch_str_word1(l:exe_str)
+    exe_str = Srch_str_word1(exe_str)
   end
 
-  if "@/" == "l:exe_str" then -- same ltst 01
+  if "@/" == exe_str then -- same ltst 01
     return
   end
 
-  let @/ = l:exe_str -- highlight
-  v.Normal('/' .. l:exe_str) -- srch hstry add
+  let @/ = exe_str -- highlight
+  v.Normal('/' .. exe_str) -- srch hstry add
 end
 
 function v.Srch_str__cursor_word()
 
   local str = Cursor_word()
-  v.Srch_str__(l:str, false)
+  v.Srch_str__(str, false)
 end
 
 function v.Srch_str__word1_tgl()
@@ -3718,9 +3717,9 @@ function v.Srch_str__word1_tgl()
 
   if Is_srch__word1() then
 
-    v.Srch_str__(l:str, false)
+    v.Srch_str__(str, false)
   else
-    v.Srch_str__(l:str, true)
+    v.Srch_str__(str, true)
   end
 end
 
@@ -3749,7 +3748,7 @@ function v.Srch_str__prv_tgl()
     srch_str = Srch_str_ltst(1)
   end
 
-  let @/ = l:srch_str
+  let @/ = srch_str
 end
 
 function v.Srch_str__slctd_str() -- range
@@ -3762,7 +3761,7 @@ function v.Srch_str__slctd_str() -- range
   v.Slct_re()
 
   local str = Slctd_str()
-  v.Srch_str__(l:str, false)
+  v.Srch_str__(str, false)
   v.Slctd__cancel()
 end
 
@@ -3790,7 +3789,7 @@ end
 function v.Srch_7_cursor__mv_srch_str_end_o()
 
   local drct = 'f'
-  v.Srch_slct(l:drct)
+  v.Srch_slct(drct)
   v.Esc()
   -- v.Normal("\\<esc>")
   v.Esc()
@@ -3806,7 +3805,7 @@ end
 function v.Srch_char_bracket(drct)
 
   local char_bracket = "'" .. '")}\\]'
-  v.Srch_char(drct, l:char_bracket)
+  v.Srch_char(drct, char_bracket)
 end
 
 function v.Srch_str__markdown_h() -- range
@@ -3821,10 +3820,10 @@ function v.Is_srch__word1()
   local str = @/
   local ret = false
 
-  local str_l = strcharpart(l:str, 0, 2)
-  local str_r = strcharpart(l:str, strchars(l:str) - 2)
+  local str_l = strcharpart(str, 0, 2)
+  local str_r = strcharpart(str, strchars(str) - 2)
 
-  if l:str_l == '\\<' and l:str_r == '\\>' then
+  if str_l == '\\<' and str_r == '\\>' then
     ret = true
   end
 
@@ -3837,9 +3836,9 @@ function v.Is_line_markdown_itm()
 
   local ptn = '^\\s*- '
   local str = Cursor_line_str()
-  local idx = Str_srch(l:str, l:ptn)
+  local idx = Str_srch(str, ptn)
 
-  if l:idx == -1 then
+  if idx == -1 then
     return false
   else
     return true
@@ -3850,43 +3849,43 @@ end
 
 function v.I_symbol01()
 
-  local lst = [ '$', '@', '#', ';', '%' ]
-  call complete(col('.'), l:lst)
+  local lst = { '$', '@', '#', ';', '%' }
+  call complete(col('.'), lst)
   return ''
 end
 
 function v.I_symbol02()
 
-  local lst = [ '!', '?', '~', '^', '&', '|', '\\', '/' ]
-  call complete(col('.'), l:lst)
+  local lst = { '!', '?', '~', '^', '&', '|', '\\', '/' }
+  call complete(col('.'), lst)
   return ''
 end
 
 function v.I_symbol03()
 
-  local lst = [ '=', '+', '-' ]
-  call complete(col('.'), l:lst)
+  local lst = { '=', '+', '-' }
+  call complete(col('.'), lst)
   return ''
 end
 
 function v.I_bracket()
 
-  local lst = [ '()', '{}', '[]', '<>', '[]()', '[][]', '(){}' ]
-  call complete(col('.'), l:lst)
+  local lst = { '()', '{}', '[]', '<>', '[]()', '[][]', '(){}' }
+  call complete(col('.'), lst)
   return ''
 end
 
 function v.I_quote()
 
-  local lst = [ "''", '""', '``' ]
-  call complete(col('.'), l:lst)
+  local lst = { "''", '""', '``' }
+  call complete(col('.'), lst)
   return ''
 end
 
 function v.I_markdown_lnk()
 
-  local lst = [ '[]()', '[][]', '![]()' ]
-  call complete(col('.'), l:lst)
+  local lst = { '[]()', '[][]', '![]()' }
+  call complete(col('.'), lst)
   return ''
 end
 
@@ -3898,46 +3897,46 @@ end
 
 function v.I_num()
 
-  local lst = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ]
-  call complete(col('.'), l:lst)
+  local lst = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }
+  call complete(col('.'), lst)
   return ''
 end
 
 function v.I_reg()
-  call complete(col('.'), [@0, @1, @2, @3])
+  call complete(col('.'), { @0, @1, @2, @3 } )
   return ''
 end
 
 function v.I_todo_status()
 
-  local lst = [ 'done', 'doing', 'on hold' ]
-  call complete(col('.'), l:lst)
+  local lst = { 'done', 'doing', 'on hold' }
+  call complete(col('.'), lst)
   return ''
 end
 
 function v.I_reserved_lua()
-  call complete(col('.'), [
-    'end',
-    'local',
-    'return',
-    'if elseif else end',
+  call complete(col('.'), {
+    'end'                           ,
+    'local'                         ,
+    'return'                        ,
+    'if elseif else end'            ,
     'for key, val in pairs() do end',
-    'function'
-  ])
+    'function'                      ,
+  })
   return ''
 end
 
 function v.I_ooq()
-  call complete(col('.'), [
-    '_s:',
-    '_s._',
-    'log._("", )',
+  call complete(col('.'), {
+    '_s:'         ,
+    '_s._'        ,
+    'log._("", )' ,
     'log.pp("", )',
-    '-- dbg',
-    '--',
-    '_.f',
-    '_.t'
-  ])
+    '-- dbg'      ,
+    '--'          ,
+    '_.f'         ,
+    '_.t'         ,
+  })
   return ''
 --     'function',
 --     'local',
@@ -3967,7 +3966,7 @@ function v.Fzf_rg(...) -- alias
   local ext   = ( a:0 >= 2 ) and a:2 or nil
   local word1 = ( a:0 >= 3 ) and a:3 or false
 
-  v.Fzf_rg_with_grep(l:ptn, l:ext, l:word1)
+  v.Fzf_rg_with_grep(ptn, ext, word1)
 end
 
 function v.Fzf_rg_with_grep(...)
@@ -3982,11 +3981,11 @@ function v.Fzf_rg_with_grep(...)
   local ext   = ( a:0 >= 2 ) and a:2 or nil
   local word1 = ( a:0 >= 3 ) and a:3 or false
 
-  local rg_cmd = Rg_cmd(l:ptn, l:ext, l:word1, nil)
-  -- echo l:rg_cmd
+  local rg_cmd = Rg_cmd(ptn, ext, word1, nil)
+  -- echo rg_cmd
 
   call fzf#vim#grep(
-        l:rg_cmd,
+        rg_cmd,
         0,
         fzf#vim#with_preview(
           {'options': '--exact --delimiter : --nth 3..'},
@@ -3997,12 +3996,12 @@ function v.Fzf_rg_with_grep(...)
       )
 
   -- ref
-  -- fzf#vim#grep(
-  --   command,
-  --   [has_column bool],
-  --   [spec dict],
-  --   [fullscreen bool]
-  -- )
+  --   fzf#vim#grep(
+  --     command,
+  --     [has_column bool],
+  --     [spec dict],
+  --     [fullscreen bool]
+  --   )
 end
 
 -- fzf rg ext
@@ -4010,7 +4009,7 @@ end
 function v.Fzf_rg_ext(ext)
 
   local ext = ext
-  v.Fzf_rg(nil, l:ext)
+  v.Fzf_rg(nil, ext)
 end
 
 -- rg word1
@@ -4027,31 +4026,31 @@ function v.Fzf_rg_with_run(...)
 
   local ptn = ( a:0 >= 1 ) and a:1 or nil
 
-  if l:ptn == nil then
+  if ptn == nil then
 
     local rg_rslt_cnt = Rg_all_cnt()
 
-    if l:rg_rslt_cnt > g_fzf_line_cnt_max then
-      echo "l:rg_rslt_cnt, end"
+    if rg_rslt_cnt > g_fzf_line_cnt_max then
+      echo "rg_rslt_cnt, end"
       return
     end
 
     local fzf_src_ar = Rg_all_rslt_ar()
 
   else
-    local rg_rslt_cnt = Rg_ptn_cnt(l:ptn, nil)
+    local rg_rslt_cnt = Rg_ptn_cnt(ptn, nil)
 
-    if l:rg_rslt_cnt > g_fzf_line_cnt_max then
-      echo "l:rg_rslt_cnt, end"
+    if rg_rslt_cnt > g_fzf_line_cnt_max then
+      echo "rg_rslt_cnt, end"
       return
     end
 
-    local fzf_src_ar = Rg_ptn_rslt_ar(l:ptn, nil)
+    local fzf_src_ar = Rg_ptn_rslt_ar(ptn, nil)
   end
 
   call fzf#run(
         {
-          'source' : l:fzf_src_ar,
+          'source' : fzf_src_ar,
           'sink'   : funcref('Tag_jmp_by_str'),
           'window' : '-tabnew',
         }
@@ -4065,9 +4064,9 @@ function v.Fzf_by_txt(...)
   local src_txt  = ( a:0 >= 1 ) and a:1 or nil
   local fnc_name = ( a:0 >= 2 ) and a:2 or nil
 
-  local src_ar = Txt_to_ar(l:src_txt)
+  local src_ar = Txt_to_ar(src_txt)
 
-  v.Fzf_by_ar(l:src_ar, fnc_name)
+  v.Fzf_by_ar(src_ar, fnc_name)
 end
 
 function v.Fzf_by_ar(...)
@@ -4075,15 +4074,15 @@ function v.Fzf_by_ar(...)
   local src_ar   = ( a:0 >= 1 ) and a:1 or nil
   local fnc_name = ( a:0 >= 2 ) and a:2 or nil
 
-  if len(l:src_ar) > g_fzf_line_cnt_max then
-    echo "l:fzf src_ar, end"
+  if len(src_ar) > g_fzf_line_cnt_max then
+    echo "fzf src_ar, end"
     return
   end
 
   call fzf#run(
         {
-          'source' : l:src_ar,
-          'sink'   : funcref(l:fnc_name),
+          'source' : src_ar,
+          'sink'   : funcref(fnc_name),
           'window' : '-tabnew',
         }
       )
@@ -4097,7 +4096,7 @@ function v.Fzf_tag_jmp_by_file(...)
 
   local file_path = ( a:0 >= 1 ) and a:1 or 'doc/memo.md'
 
-  local fzf_src_txt = File_txt(l:file_path)
+  local fzf_src_txt = File_txt(file_path)
   local fnc_name    = 'Tag_jmp_by_str'
   v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
@@ -4118,11 +4117,11 @@ end
 function v.Fzf_rgstr()
 
   local rgstr_info = execute(':reg')->split("\\n")
-  call remove(l:rgstr_info, 0)
+  call remove(rgstr_info, 0)
   
   call fzf#run(
     {
-      'source': l:rgstr_info,
+      'source': rgstr_info,
       'sink'  : funcref('Ynk__by_rgstr_info'),
       'window': '-tabnew'
     }
@@ -4150,10 +4149,10 @@ end
 function v.Fzf_file()
 
   local sys_cmd = 'fd --type f'
-  local fzf_src_txt  = Sys_cmd(l:sys_cmd)
+  local fzf_src_txt  = Sys_cmd(sys_cmd)
 
   local fnc_name = 'Opn'
-  v.Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
+  v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
 -- fzf dir
@@ -4161,10 +4160,10 @@ end
 function v.Fzf_dir()
 
   local sys_cmd = 'fd --type d'
-  local fzf_src_txt  = Sys_cmd(l:sys_cmd)
+  local fzf_src_txt  = Sys_cmd(sys_cmd)
 
   local fnc_name = 'Dir__'
-  v.Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
+  v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
 function v.Fzf_dir_jmp()
@@ -4172,42 +4171,42 @@ function v.Fzf_dir_jmp()
   local sys_cmd = 'dir_jmp_lst_with_z'
   -- local sys_cmd = 'dir_jmp_lst_with_zoxide'
 
-  local fzf_src_txt  = Sys_cmd(l:sys_cmd)
+  local fzf_src_txt  = Sys_cmd(sys_cmd)
 
   local fnc_name = 'Dir__'
-  v.Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
+  v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
 function v.Fzf_doc_memo_opn()
 
   local dir = '~'
 
-  local memo_file_list = [
-    l:dir .. '/wrk/prj-pri/dotfiles/doc/memo.md',
-    l:dir .. '/wrk/prj-pri/doc-tech-ds/doc/memo.md',
-    l:dir .. '/wrk/prj-pri/life/doc/memo.md',
-    l:dir .. '/wrk/prj-pri/wall-paper/doc/memo.md'
-  ]
+  local memo_file_list = {
+    dir .. '/wrk/prj-pri/dotfiles/doc/memo.md'   ,
+    dir .. '/wrk/prj-pri/doc-tech-ds/doc/memo.md',
+    dir .. '/wrk/prj-pri/life/doc/memo.md'       ,
+    dir .. '/wrk/prj-pri/wall-paper/doc/memo.md' ,
+  }
 
-  local fzf_src_ar = l:memo_file_list
+  local fzf_src_ar = memo_file_list
   local fnc_name    = 'Opn'
-  v.Fzf_by_ar(l:fzf_src_ar, l:fnc_name)
+  v.Fzf_by_ar(fzf_src_ar, fnc_name)
 end
 
 function v.Fzf_vim_fnc_call()
 
   local rg_ptn = '^function v.[\\w]+\\(.*\\)'
 
-  local sys_cmd_rg = "rg " .. "-No '" .. l:rg_ptn .. "' " .. g_vimrc_file_path
+  local sys_cmd_rg = "rg " .. "-No '" .. rg_ptn .. "' " .. g_vimrc_file_path
 
   local sys_cmd_sed = 'sed "s/function v.//g"'
 
-  local sys_cmd = l:sys_cmd_rg .. ' | ' .. l:sys_cmd_sed
-  local fzf_src_txt  = Sys_cmd(l:sys_cmd)
+  local sys_cmd = sys_cmd_rg .. ' | ' .. sys_cmd_sed
+  local fzf_src_txt  = Sys_cmd(sys_cmd)
 
   local fnc_name = 'Cmdline__'
 
-  v.Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
+  v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
 g_doc_tech_dir_rel = 'wrk/prj-pri/doc-tech-ds/docs/md'
@@ -4218,24 +4217,24 @@ function v.Fzf_doc_tech()
   local opt  = ' -v'
   opt = opt .. ' --no-heading'
   -- opt = opt .. ' --line-number'
-  local sys_cmd_rg = "rg" .. l:opt .. " '" .. l:ptn .. "' ~/" .. g_doc_tech_dir_rel
-  -- echo l:sys_cmd
+  local sys_cmd_rg = "rg" .. opt .. " '" .. ptn .. "' ~/" .. g_doc_tech_dir_rel
+  -- echo sys_cmd
 
   local sys_cmd_sed = 'sed "s|^.*' .. g_doc_tech_dir_rel .. '/||g"'
 
-  local sys_cmd = l:sys_cmd_rg .. ' | ' .. l:sys_cmd_sed
+  local sys_cmd = sys_cmd_rg .. ' | ' .. sys_cmd_sed
 
-  local fzf_src_txt = Sys_cmd(l:sys_cmd)
+  local fzf_src_txt = Sys_cmd(sys_cmd)
 
   local fnc_name = 'Doc_tech_tag_jmp'
-  v.Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
+  v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
 function v.Doc_tech_tag_jmp(str)
 
   local str = $HOME .. '/' .. g_doc_tech_dir_rel .. '/' .. str
-  -- echo l:str
-  v.Tag_jmp_by_str(l:str)
+  -- echo str
+  v.Tag_jmp_by_str(str)
 end
 
 -- rg
@@ -4243,18 +4242,18 @@ end
 function v.Rg_rslt_line_parse(line)
 
   local dlm = ':'
-  local ret = split(line, l:dlm)
-  --echo l:ret
+  local ret = split(line, dlm)
+  --echo ret
 
   local idx = 0
-  while l:idx < len(l:ret) do
+  while idx < len(ret) do
 
-    ret[l:idx] = trim(l:ret[l:idx])
+    ret[idx] = trim(ret[idx])
 
-    idx = l:idx + 1
+    idx = idx + 1
   end
 
-  if ( len(l:ret) > 1 ) and ( not Is_char__num(l:ret[1]) ) then
+  if ( len(ret) > 1 ) and ( not Is_char__num(ret[1]) ) then
     ret[1] = '1'
   end
 
@@ -4297,10 +4296,10 @@ function v.Rg_cmd(ptn, ext, word1, opt)
 
   local rg_cmd = 'rg '
        .. g_fzf_rg_opt
-       .. l:fzf_rg_opt_ext
-       .. l:fzf_rg_opt_word1
-       .. l:opt
-       .. ' -- ' .. '"' .. escape(l:ptn, '().$') .. '"'
+       .. fzf_rg_opt_ext
+       .. fzf_rg_opt_word1
+       .. opt
+       .. ' -- ' .. '"' .. escape(ptn, '().$') .. '"'
 
   return rg_cmd
 end
@@ -4317,8 +4316,8 @@ function v.Rg_ptn_cnt(ptn, opt)
     local opt = opt
   end
 
-  local rg_cmd = "rg " .. l:opt .. " -e '" .. ptn .. "' | count"
-  local rg_rslt_cnt = Sys_cmd(l:rg_cmd)
+  local rg_cmd = "rg " .. opt .. " -e '" .. ptn .. "' | count"
+  local rg_rslt_cnt = Sys_cmd(rg_cmd)
   return rg_rslt_cnt
 end
 
@@ -4327,7 +4326,7 @@ function v.Rg_all_cnt()
   local ptn = g_rg_emp_line_ptn
   local opt = '-v'
 
-  local rg_rslt_cnt = Rg_ptn_cnt(l:ptn, l:opt)
+  local rg_rslt_cnt = Rg_ptn_cnt(ptn, opt)
   return rg_rslt_cnt
 end
 
@@ -4336,28 +4335,28 @@ function v.Rg_all_rslt_ar()
   local ptn = g_rg_emp_line_ptn
   local opt = '-v'
 
-  local rslt_ar = Rg_ptn_rslt_ar(l:ptn, l:opt)
+  local rslt_ar = Rg_ptn_rslt_ar(ptn, opt)
   return rslt_ar
 end
 
 function v.Rg_ptn_rslt_ar(ptn, opt)
 
   local rg_rslt_txt = Rg_ptn_rslt_txt(ptn, opt)
-  local rg_rslt_ar  = split(l:rg_rslt_txt, "\\n")
+  local rg_rslt_ar  = split(rg_rslt_txt, "\\n")
   return rg_rslt_ar
 end
 
 function v.Rg_ptn_rslt_txt(ptn, opt)
   
   local rg_cmd = Rg_cmd(ptn, nil, nil, opt) -- todo dev
-  local r_rslt_txt = Sys_cmd(l:rg_cmd)
+  local r_rslt_txt = Sys_cmd(rg_cmd)
   return r_rslt_txt
 end
 
 function v.Cursor__ins_rgstr_by_rgstr_info(rgstr_info)
   
   local rgstr = Rgstr_info_rgstr(rgstr_info)
-  v.Normal('"' .. l:rgstr .. l:rgstr .. 'P')
+  v.Normal('"' .. rgstr .. rgstr .. 'P')
 end
 
 function v.Rgstr_info_rgstr(rgstr_info)
@@ -4369,29 +4368,29 @@ end
 function v.Jmplst()
 
   local jmplst_tmp = getjumplist()[0]
-  --echo l:jmplst_tmp
+  --echo jmplst_tmp
 
   local buf_num_key_prefix = 'key_'
   local jmplst = {}
-  for _jmplst_tmp in l:jmplst_tmp
+  for _jmplst_tmp in jmplst_tmp
 
-    local _buf_num_key = l:buf_num_key_prefix .. l:_jmplst_tmp['bufnr']
+    local _buf_num_key = buf_num_key_prefix .. _jmplst_tmp['bufnr']
 
-    if not has_key(l:jmplst, l:_buf_num_key) then
-      jmplst[l:_buf_num_key] = []
+    if not has_key(jmplst, _buf_num_key) then
+      jmplst[_buf_num_key] = {}
     end
 
-    call add(l:jmplst[l:_buf_num_key], l:_jmplst_tmp)
+    call add(jmplst[_buf_num_key], _jmplst_tmp)
   endfor
 
-  for _buf_num_key in keys(l:jmplst)
+  for _buf_num_key in keys(jmplst)
 
-    call sort(l:jmplst[l:_buf_num_key], 'Jmplst_cmp')
+    call sort(jmplst[_buf_num_key], 'Jmplst_cmp')
   endfor
 
-  local buf_num_key = l:buf_num_key_prefix .. Buf_num()
-  local r_jmplst    = get(l:jmplst, buf_num_key, [])
-  --echo l:r_jmplst
+  local buf_num_key = buf_num_key_prefix .. Buf_num()
+  local r_jmplst    = get(jmplst, buf_num_key, {})
+  --echo r_jmplst
 
   return r_jmplst
 end
@@ -4400,14 +4399,14 @@ function v.Jmplst_line_info()
 
   local jmplst = Jmplst()
 
-  local jmplst_line_info = []
-  for _jmplst in l:jmplst
+  local jmplst_line_info = {}
+  for _jmplst in jmplst
 
-    local line_num  = l:_jmplst['lnum']
-    local line_info = l:line_num .. ' ' .. getline(l:line_num)
-    call add(l:jmplst_line_info, l:line_info)
+    local line_num  = _jmplst['lnum']
+    local line_info = line_num .. ' ' .. getline(line_num)
+    call add(jmplst_line_info, line_info)
   endfor
-  --echo l:jmplst_line_info
+  --echo jmplst_line_info
 
   return jmplst_line_info
 end
@@ -4429,10 +4428,10 @@ end
 
 -- mark
 
-g_mark_alph_def = [
+g_mark_alph_def = {
   'a','b','c','d','e','f','g','h','i','j','k','l','m','n',
   'o','p','q','r','s','t','u','v','w','x','y','z'
-]
+}
 
 function v.Mark_show_tgl()
   
@@ -4453,18 +4452,18 @@ end
 
 function v.Mark_lst()
   
-  local mark = []
+  local mark = {}
   for _mark in bufname()->getmarklist()
     
-    local _alph = l:_mark['mark'][1]
+    local _alph = _mark['mark'][1]
     
-    if count(g_mark_alph_def, l:_alph) == 0 then
+    if count(g_mark_alph_def, _alph) == 0 then
       continue
     end
     
-    mark = add(l:mark, l:_mark['mark'][1])
+    mark = add(mark, _mark['mark'][1])
   endfor
-  --echo l:mark
+  --echo mark
   return mark
 end
 
@@ -4474,14 +4473,14 @@ function v.Mark_alph_line()
   
   for _mark in bufname()->getmarklist()
     
-    local _alph = l:_mark['mark'][1]
+    local _alph = _mark['mark'][1]
     
-    if count(g_mark_alph_def, l:_alph) == 0 then
+    if count(g_mark_alph_def, _alph) == 0 then
       continue
     end
     
-    if l:_mark['pos'][1] == l:line_c then
-      --echo l:_alph
+    if _mark['pos'][1] == line_c then
+      --echo _alph
       return _alph
     end
   endfor
@@ -4491,13 +4490,13 @@ end
 function v.Mark_tgl()
   
   local alph = Mark_alph_line()
-  --echo 'Mark_tgl ' .. l:alph
+  --echo 'Mark_tgl ' .. alph
   
-  --if l:alph == '' then
-  if Is_str__emp(l:alph) then
+  --if alph == '' then
+  if Is_str__emp(alph) then
     v.Mark_add()
   else
-    v.Mark_del(l:alph)
+    v.Mark_del(alph)
   end
   
   v.Exe('DoShowMarks')
@@ -4506,7 +4505,7 @@ end
 function v.Mark_add()
   
   local alph = Mark_alph_useabl()
-  v.Exe('mark ' .. l:alph)
+  v.Exe('mark ' .. alph)
 end
 
 function v.Mark_alph_useabl()
@@ -4514,7 +4513,7 @@ function v.Mark_alph_useabl()
   local mark = Mark_lst()
   
   for _alph in g_mark_alph_def
-    if count(l:mark, _alph) == 0 then
+    if count(mark, _alph) == 0 then
       --echo _alph
       return _alph
     end
@@ -4541,20 +4540,20 @@ function v.Slctd_trns() -- range
 
   local str = Slctd_str()
 
-  local str = substitute(l:str, "\\n", ' ', 'g')
+  local str = substitute(str, "\\n", ' ', 'g')
 
-  -- if l:str =~ '[^\\x01-\\x7E]' then -- mlt byte
-  if vim.fn.is_match(l:str, '[^\\x01-\\x7E]') then -- mlt byte
+  -- if str =~ '[^\\x01-\\x7E]' then -- mlt byte
+  if vim.fn.is_match(str, '[^\\x01-\\x7E]') then -- mlt byte
     local lang = '{ja=en}'
   else
     local lang = '{en=ja}'
     --local lang = ''
   end
 
-  local str = escape(l:str, "'")
-  local sys_cmd = 'trans -no-ansi ' .. l:lang .. " '" .. l:str .. "'"
-  local rslt = Sys_cmd(l:sys_cmd)
-  echo l:rslt
+  local str = escape(str, "'")
+  local sys_cmd = 'trans -no-ansi ' .. lang .. " '" .. str .. "'"
+  local rslt = Sys_cmd(sys_cmd)
+  echo rslt
 end
 
 -- math
@@ -4562,10 +4561,10 @@ end
 function v.Slctd_math() -- range
 
   local str = Slctd_str()
-  local sys_cmd = 'echo ' .. "'" .. l:str .. "'" .. ' | math'
-  local rslt = Sys_cmd(l:sys_cmd)
-  echo l:rslt
-  let @a = l:rslt
+  local sys_cmd = 'echo ' .. "'" .. str .. "'" .. ' | math'
+  local rslt = Sys_cmd(sys_cmd)
+  echo rslt
+  let @a = rslt
 end
 
 -- url encdoe
@@ -4573,10 +4572,10 @@ end
 function v.Slctd_url_encode() -- range
 
   local str = Slctd_str()
-  local sys_cmd = 'url_encode "' .. l:str .. '"'
-  local rslt = Sys_cmd(l:sys_cmd)
-  --echo l:rslt
-  v.Cursor__ins(l:rslt)
+  local sys_cmd = 'url_encode "' .. str .. '"'
+  local rslt = Sys_cmd(sys_cmd)
+  --echo rslt
+  v.Cursor__ins(rslt)
 end
 
 function v.Defold_err_cnv()
@@ -4595,7 +4594,7 @@ function v.Is_env__(env) -- alias
   local ret = has(env)
 
   if env ~= 'mac' then
-    -- echo env .. ' : ' .. l:ret
+    -- echo env .. ' : ' .. ret
     -- echo hostname()
   end
 
@@ -4620,10 +4619,10 @@ function v.Vim_plug_path()
       local vim_plug_dir_dflt_nvim = "~/.local/share/nvim/site"
       local vim_plug_dir_mac_nvim  = $HOME .. '/.local/share/nvim/site'
 
-      if     isdirectory(l:vim_plug_dir_mac_nvim) then
-        local vim_plug_dir = l:vim_plug_dir_mac_nvim
+      if     isdirectory(vim_plug_dir_mac_nvim) then
+        local vim_plug_dir = vim_plug_dir_mac_nvim
       else
-        local vim_plug_dir = l:vim_plug_dir_mac_nvim
+        local vim_plug_dir = vim_plug_dir_mac_nvim
       end
 
     elseif Is_env__('linux') then
@@ -4633,20 +4632,20 @@ function v.Vim_plug_path()
       local vim_plug_dir_c9_nvim   = "/home/ec2-user/.local/share/nvim/site"
       local vim_plug_dir_s9_nvim   = "/home/centos/.local/share/nvim/site"
 
-      if     isdirectory(l:vim_plug_dir_dflt_nvim) then
-        local vim_plug_dir = l:vim_plug_dir_dflt_nvim
+      if     isdirectory(vim_plug_dir_dflt_nvim) then
+        local vim_plug_dir = vim_plug_dir_dflt_nvim
 
-      elseif isdirectory(l:vim_plug_dir_ec2_nvim) then
-        local vim_plug_dir = l:vim_plug_dir_ec2_nvim
+      elseif isdirectory(vim_plug_dir_ec2_nvim) then
+        local vim_plug_dir = vim_plug_dir_ec2_nvim
 
-      elseif isdirectory(l:vim_plug_dir_c9_nvim) then
-        local vim_plug_dir = l:vim_plug_dir_c9_nvim
+      elseif isdirectory(vim_plug_dir_c9_nvim) then
+        local vim_plug_dir = vim_plug_dir_c9_nvim
 
-      elseif isdirectory(l:vim_plug_dir_s9_nvim) then
-        local vim_plug_dir = l:vim_plug_dir_s9_nvim
+      elseif isdirectory(vim_plug_dir_s9_nvim) then
+        local vim_plug_dir = vim_plug_dir_s9_nvim
 
       else
-        local vim_plug_dir = l:vim_plug_dir_ec2_nvim
+        local vim_plug_dir = vim_plug_dir_ec2_nvim
       end
 
     elseif Is_env__('win64') then
@@ -4666,11 +4665,11 @@ function v.Vim_plug_path()
       -- local vim_plug_dir_mac_nvim = $HOME .. '/.local/share/nvim/site'
       local vim_plug_dir_mac_vim  = $HOME .. '/.vim'
 
-      if isdirectory(l:vim_plug_dir_mac_vim) then
-        local vim_plug_dir = l:vim_plug_dir_mac_vim
+      if isdirectory(vim_plug_dir_mac_vim) then
+        local vim_plug_dir = vim_plug_dir_mac_vim
 
       else
-        local vim_plug_dir = l:vim_plug_dir_mac_vim
+        local vim_plug_dir = vim_plug_dir_mac_vim
       end
 
     elseif Is_env__('linux') then
@@ -4680,11 +4679,11 @@ function v.Vim_plug_path()
       -- local vim_plug_dir_c9_nvim  = "/home/ec2-user/.local/share/nvim/site"
       -- local vim_plug_dir_s9_nvim  = "/home/centos/.local/share/nvim/site"
 
-      if isdirectory(l:vim_plug_dir_c9_vim) then
-        local vim_plug_dir = l:vim_plug_dir_c9_vim
+      if isdirectory(vim_plug_dir_c9_vim) then
+        local vim_plug_dir = vim_plug_dir_c9_vim
 
       else
-        local vim_plug_dir = l:vim_plug_dir_ec2_vim
+        local vim_plug_dir = vim_plug_dir_ec2_vim
       end
 
     elseif Is_env__('win64') then
@@ -4698,17 +4697,17 @@ function v.Vim_plug_path()
     end
   end
 
-  local vim_plug_path = l:vim_plug_dir .. '/autoload/plug.vim'
+  local vim_plug_path = vim_plug_dir .. '/autoload/plug.vim'
   return vim_plug_path
 end
 
 function v.Is_vim_plug__installed()
 
   local vim_plug_path = Vim_plug_path()
-  -- echo l:vim_plug_path
+  -- echo vim_plug_path
 
-  local ret = not empty(glob(l:vim_plug_path))
-  -- echo 'vim_plug installed : ' .. l:ret
+  local ret = not empty(glob(vim_plug_path))
+  -- echo 'vim_plug installed : ' .. ret
 
   return ret
 end
@@ -4773,34 +4772,34 @@ end
 
 -- fzf init
 
-g_fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
+g_fzf_preview_window = {'down:40%:hidden', 'ctrl-/'}
 g_fzf_action = {
-  'ctrl-o': 'tab drop',
+  'ctrl-o' = 'tab drop',
 }
 
---  'ctrl-o': 'enter',
---  'ctrl-i': 'item slct mtl',
---  'ctrl-s': 'backward-char',
+--  'ctrl-o' = 'enter',
+--  'ctrl-i' = 'item slct mtl',
+--  'ctrl-s' = 'backward-char',
 
 g_fzf_colors = {
-  'hl'     : ['fg', 'Statement'  ],
-  'hl+'    : ['fg', 'Statement'  ],
+  'hl'     = {'fg', 'Statement'  },
+  'hl+'    = {'fg', 'Statement'  },
 }
 
---   'bg+'    : ['bg', 'CursorLine' ],
---   'bg+'    : ['bg', 'Normal'     ],
+--   'bg+'     = {'bg', 'CursorLine' },
+--   'bg+'     = {'bg', 'Normal'     },
 
---   'info'   : ['fg', 'Comment'    ],
---   'border' : ['fg', 'Ignore'     ],
---   'prompt' : ['fg', 'Function'   ],
---   'pointer': ['fg', 'Statement'  ],
---   'marker' : ['fg', 'Conditional'],
+--   'info'    = {'fg', 'Comment'    },
+--   'border'  = {'fg', 'Ignore'     },
+--   'prompt'  = {'fg', 'Function'   },
+--   'pointer' = {'fg', 'Statement'  },
+--   'marker'  = {'fg', 'Conditional'},
 
---   'info'   : ['Comment'],
---   'border' : ['Comment'],
---   'prompt' : ['Comment'],
---   'pointer': ['Comment'],
---   'marker' : ['Comment'],
+--   'info'    = {'Comment'},
+--   'border'  = {'Comment'},
+--   'prompt'  = {'Comment'},
+--   'pointer' = {'Comment'},
+--   'marker'  = {'Comment'},
 
 -- use ??
 --g_fzf_buffers_jump = 1
@@ -4821,7 +4820,7 @@ end
 function v.Srch_init() -- use not
 
   local cmd = '/<cr>N'
-  v.Normal(l:cmd)
+  v.Normal(cmd)
 end
 --v.Srch_init()
 

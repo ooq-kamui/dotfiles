@@ -9,31 +9,31 @@ set ( opt )
 cmd-auto
 
 fnc
-- l:xx
-  - s:xx > g_xx
-- a:0
+- a:xx
   - f(...)
     - arg = {...}
   - l:str = a:str
 - ==# > ??
   - ggl or doc ( write )
-- [] > {}
+- ar
+  - [] > {}
+  - idx + 1
+  - [:] > ??
 - {}
-  - key
+  - key quote del
 
 - rgstr @x
 - &var > ?
 - `->`
 
-- local
-  - setlocal
+- setlocal
 - call
   - buildin
   - rng call
 - let
 
 - range
-  - firstline, lastline
+  - a:firstline, a:lastline
 
 - fnc
   - = Xxx() > v.
