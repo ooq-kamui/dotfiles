@@ -264,7 +264,7 @@
 -- load re slf
 -- vim.keymap.set('n', 'xx', ':call Load_re()')
 
--- load re vimrc
+-- load re init vim
    vim.keymap.set('n', ':v', ':source ~/wrk/prj-pri/dotfiles/nvim/scrpt/dflt/init.vim')
 
 -- 
@@ -290,8 +290,9 @@
 -- opn fish cnf
 -- vim.keymap.set('n', 'gf', ':call Opn_fish_cnf()<cr>')
 
--- opn vimrc
-   vim.keymap.set('n', 'gh', ':call Opn_vimrc()<cr>')
+-- opn init vim
+   vim.keymap.set('n', 'gh', ':call Opn_init_vim()<cr>')
+   vim.keymap.set('n', 'gl', ':call Opn_init_vim_l()<cr>')
 
 -- opn tmp file
 -- vim.keymap.set('n', 'xx', ':call Opn_tmp_file()<cr>')

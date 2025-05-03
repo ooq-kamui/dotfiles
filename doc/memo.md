@@ -4,41 +4,28 @@
 
 ## nvim
 
+fnc
+- ar
+  - idx + 1
+- str ar
+  - [:] > ??
+  - str[idx] ( = char ) > ?
+
+- var
+  - &var > ?
+  - `->`
+
+- setlocal
+  - rng call
+- let
+
+- range, firstline, lastline
+
+
 set ( opt )
 
 cmd-auto
 
-fnc
-- a:xx
-  - f(...)
-    - arg = {...}
-  - l:str = a:str
-- ==# > ??
-  - ggl or doc ( write )
-- ar
-  - [] > {}
-  - idx + 1
-  - [:] > ??
-- {}
-  - key quote del
-
-- rgstr @x
-- &var > ?
-- `->`
-
-- setlocal
-- call
-  - buildin
-  - rng call
-- let
-
-- range
-  - a:firstline, a:lastline
-
-- fnc
-  - = Xxx() > v.
-  - is_match() > v.
-    - def
 
 hi
 - basic
@@ -73,6 +60,11 @@ dns migration
   - cre
 - svr
   - del
+
+
+## doc-tech
+
+git reset mod
 
 
 ## godot

@@ -1,71 +1,28 @@
 " 
-" fnc def
+" fnc
 " 
+
+lua require('init-fnc')
+
+source `=g:init_vim_mdl_dir . '/init-fnc-rpl.vim'`
 
 " 
 " primitive
 " 
 
-" char
-
-func! Char_lr_2_normal_cmd(lr) abort
-
-  if     a:lr == 'l'
-    let l:n_cmd = 'h'
-
-  elseif a:lr == 'r'
-    let l:n_cmd = 'l'
-  endif
-
-  return l:n_cmd
-endfunc
-
-" char cnd
-
-func! Is_char__num(char) abort
-
-  let l:ret = v:false
-
-  if a:char =~ '\d'
-    let l:ret = v:true
-  endif
-
-  return l:ret
-endfunc
-
-func! Is_char__alpha(char) abort
-
-  let l:ret = v:false
-
-  if a:char =~ '\a'
-    let l:ret = v:true
-  endif
-
-  return l:ret
-endfunc
-
-func! Is_char__symbol(char) abort
-
-  let l:ret = v:false
-
-  if a:char !~ '\s' && a:char !~ '\w'
-    let l:ret = v:true
-  endif
-
-  return l:ret
-endfunc
-
 " char cnd  -  char pair __
 
 func! Is_char_pair__(ptn, c1, c2)
 
-  let l:ret = v:false
+  return v:lua.v.Is_char_pair__(a:ptn, a:c1, a:c2)
 
-  if a:c1 =~ a:ptn && a:c2 =~ a:ptn
-    let l:ret = v:true
-  endif
-
-  return l:ret
+  " let l:ret = v:false
+  " 
+  " if a:c1 =~ a:ptn && a:c2 =~ a:ptn
+  "   let l:ret = v:true
+  " endif
+  " 
+  " return l:ret
 endfunc
 
 func! Is_char_pair__quote(c1, c2)
@@ -606,23 +563,26 @@ func! Opn_tmp_file() abort
   call Opn(l:path)
 endfunc
 
+let g:init_vim_file_path         = g:init_vim_dir     . '/dflt/init.vim'
+let g:init_vim_fnc_file_path     = g:init_vim_mdl_dir . '/init-fnc.vim'
+let g:init_vim_fnc_rpl_file_path = g:init_vim_mdl_dir . '/init-fnc-rpl.vim'
+
 let g:init_lua_file_path         = g:init_vim_dir . '/dflt/lua/init.lua'
 let g:init_lua_opt_file_path     = g:init_vim_dir . '/dflt/lua/init-opt.lua'
+let g:init_lua_cmd_file_path     = g:init_vim_dir . '/dflt/lua/init-cmd.lua'
 let g:init_lua_hl_file_path      = g:init_vim_dir . '/dflt/lua/init-hl.lua'
 let g:init_lua_key_map_file_path = g:init_vim_dir . '/dflt/lua/init-key-map.lua'
 let g:init_lua_fnc_file_path     = g:init_vim_dir . '/dflt/lua/init-fnc.lua'
 
-func! Opn_vimrc() abort
+func! Opn_init_vim() abort
 
-  call Opn(g:init_vim_file_path)
+  " vim
+  call Opn(g:init_vim_file_path        )
+  call Opn(g:init_vim_fnc_file_path    )
+  call Opn(g:init_vim_fnc_rpl_file_path)
 
-  if has('nvim')
-    call Opn(g:init_lua_file_path        )
-    call Opn(g:init_lua_opt_file_path    )
-    call Opn(g:init_lua_hl_file_path     )
-    call Opn(g:init_lua_key_map_file_path)
-    call Opn(g:init_lua_fnc_file_path    )
-  endif
+  " lua
+  call Opn(g:init_lua_fnc_file_path    )
 
   if     Is_env__('linux')     " c9, s9
 
@@ -634,6 +594,17 @@ func! Opn_vimrc() abort
     let l:vimrc_gitbash_file_path = g:init_vim_dir . '/gitbash/init.vim'
     call Opn(l:vimrc_gitbash_file_path)
   endif
+endfunc
+
+func! Opn_init_vim_l() abort
+
+  call Opn(g:init_lua_opt_file_path    )
+  call Opn(g:init_lua_cmd_file_path    )
+
+  call Opn(g:init_lua_file_path    )
+
+  call Opn(g:init_lua_key_map_file_path)
+  call Opn(g:init_lua_hl_file_path     )
 endfunc
 
 func! Opn_fish_cnf() abort
@@ -4577,9 +4548,7 @@ func! Is_nvim() abort " alias
   return l:ret
 endfunc
 
-" 
 " plugin
-" 
 
 func! Vim_plug_path() abort
 
@@ -4682,7 +4651,14 @@ func! Is_vim_plug__installed() abort
   return l:ret
 endfunc
 
-" fnc def end
+" fnc repeat tmp
+
+func! Repeat_tmp() abort
+
+  call Cursor__mv_srch('f')
+  call Cursor__mv_d()
+  call Cursor__ins_ynk()
+endfunc
 
 
 " 

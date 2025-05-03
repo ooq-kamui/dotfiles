@@ -1,0 +1,143 @@
+" 
+" set
+" 
+
+" set org
+
+set modelines=0  " CVE-2007-2438
+
+" Normally we use vim-extensions. If you want true vi-compatibility
+" remove change the following statements
+set nocompatible  " Use Vim defaults instead of 100 % vi compatibility
+set backspace=2   " more powerful backspacing
+
+" Don't write backup file if vim is being called by "crontab -e"
+autocmd BufWrite /private/tmp/crontab.* set nowritebackup nobackup
+
+" Don't write backup file if vim is being called by "chpass"
+autocmd BufWrite /private/etc/pw.* set nowritebackup nobackup
+
+" set org end
+
+
+filetype on
+
+" syntax
+autocmd BufNewFile,BufRead *.script     set filetype=lua
+autocmd BufNewFile,BufRead *.gui_script set filetype=lua
+autocmd BufNewFile,BufRead *.fish       set filetype=fish
+syntax on
+
+filetype indent on
+" autocmd FileType lua      setlocal sw=2 sts=2 ts=2 noet " tab
+autocmd FileType lua      setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType text     setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType json     setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType vim      setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType fish     setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType sh       setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType markdown setlocal sw=2 sts=2 ts=2   et " space
+autocmd FileType python   setlocal sw=4 sts=4 ts=4   et " space
+
+" comment auto off
+autocmd FileType * set fo-=c fo-=r fo-=o
+
+
+set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
+set incsearch
+set hlsearch
+set ignorecase smartcase
+set number
+"set relativenumber
+set list
+set cursorline
+set splitbelow
+set switchbuf=usetab,newtab
+set showcmd
+
+set encoding=utf-8
+set fileencodings=utf-8,sjis
+" set termencoding=utf-8
+
+"set mouse=n
+"map <LeftMouse> <Nop>
+
+set autoindent
+set shiftwidth=2 " 4
+set tabstop=2    " 4
+set expandtab " tab > space
+
+
+" file opn, cursor mv last
+augroup vimrcEx
+  autocmd BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  \ exe "normal! g`\"" | endif
+augroup END
+
+autocmd BufWinEnter * normal! zz
+
+set nowrap
+set whichwrap=b,s,h,l,<,>,[,]
+set virtualedit=onemore " cursor mv cr
+set virtualedit+=block  " box slct
+"set virtualedit=all
+set scrolloff=5
+set sidescrolloff=4
+set wildmode=list:longest
+"set tabpagemax=30
+set tabpagemax=50
+set nf=""
+set showtabline=2
+set wildmenu " ?
+"set showmatch
+"set visualbell
+"set ambiwidth=double " vim: double, nvim: single
+set autoread
+
+"set clipboard+=unnamedplus " ???
+
+" status line
+
+func! Status_line(file_encoding) abort
+
+  set statusline=
+  " set statusline+=%m\                " 変更あり表示
+  set statusline+=%F                 " file name 表示
+  set statusline+=%=                 " 以降を右寄せ
+
+  if a:file_encoding
+    set statusline+=%{&fileencoding}\  " file encoding
+    if &bomb
+      set statusline+=:bom             " bom
+    endif
+  endif
+
+  set statusline+=%y\                " file type
+  set statusline+=%c\                " column num
+  set statusline+=%p%%\              " line num %
+  set statusline+=%l/%L              " line num / line num all
+endfunc
+call Status_line(v:false)
+
+set laststatus=2                   " 0:off  1:on when 2 win  2:on
+set completeopt=menuone,noinsert
+set foldmethod=manual
+set shortmess+=I
+"set nrformats+=unsigned " 2022-05-09
+
+" splt
+hi! link StatusLineNC Comment
+hi! link VertSplit    Comment
+
+set noswapfile
+
+" undo
+if has('persistent_undo')
+  set undodir=~/.vim-undo
+  set undofile                                                                                                                                   
+endif
+
+" term color
+" set termguicolors
+
+

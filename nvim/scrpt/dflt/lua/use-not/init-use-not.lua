@@ -25,3 +25,12 @@
 -- "nnoremap <leader>xx [`
 
 
+
+-- function v.Defold_err_cnv()
+-- 
+--   exe '%s/^ERROR:SCRIPT:/ERROR:SCRIPT:\\r/g'
+--   exe '%s/\\/assets\\///g'
+--   exe '%s/^ *//g'
+-- end
+
+

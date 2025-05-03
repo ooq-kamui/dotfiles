@@ -139,4 +139,7 @@
 --   set undofile                                                                                                                                   
 -- endif
 
+-- -- shell & .vimrc_env
+-- set shell=fish           -- default
+
 
