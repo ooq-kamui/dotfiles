@@ -23,23 +23,27 @@ autocmd BufWrite /private/etc/pw.* set nowritebackup nobackup
 filetype on
 
 " syntax
+syntax on
+autocmd BufNewFile,BufRead *.fish       set filetype=fish
+" defold
 autocmd BufNewFile,BufRead *.script     set filetype=lua
 autocmd BufNewFile,BufRead *.gui_script set filetype=lua
-autocmd BufNewFile,BufRead *.fish       set filetype=fish
-syntax on
 
+" indnt
 filetype indent on
-" autocmd FileType lua      setlocal sw=2 sts=2 ts=2 noet " tab
-autocmd FileType lua      setlocal sw=2 sts=2 ts=2   et " space
-autocmd FileType text     setlocal sw=2 sts=2 ts=2   et " space
-autocmd FileType json     setlocal sw=2 sts=2 ts=2   et " space
-autocmd FileType vim      setlocal sw=2 sts=2 ts=2   et " space
-autocmd FileType fish     setlocal sw=2 sts=2 ts=2   et " space
-autocmd FileType sh       setlocal sw=2 sts=2 ts=2   et " space
-autocmd FileType markdown setlocal sw=2 sts=2 ts=2   et " space
-autocmd FileType python   setlocal sw=4 sts=4 ts=4   et " space
+" space
+autocmd FileType lua      setlocal sw=2 sts=2 ts=2   et
+autocmd FileType text     setlocal sw=2 sts=2 ts=2   et
+autocmd FileType json     setlocal sw=2 sts=2 ts=2   et
+autocmd FileType vim      setlocal sw=2 sts=2 ts=2   et
+autocmd FileType fish     setlocal sw=2 sts=2 ts=2   et
+autocmd FileType sh       setlocal sw=2 sts=2 ts=2   et
+autocmd FileType markdown setlocal sw=2 sts=2 ts=2   et
+autocmd FileType python   setlocal sw=4 sts=4 ts=4   et
+" tab
+" autocmd FileType lua      setlocal sw=2 sts=2 ts=2 noet
 
-" comment auto off
+" comment auto off ( mv def pos ? )
 autocmd FileType * set fo-=c fo-=r fo-=o
 
 
@@ -139,5 +143,33 @@ endif
 
 " term color
 " set termguicolors
+
+
+" 
+" shell & .vimrc_env
+" 
+
+set shell=fish           " default
+
+let g:env_dir = ''
+
+if     Is_env__('mac')       " mac
+  let g:env_dir = 'mac'
+
+elseif Is_env__('linux')     " c9, s9
+  let g:env_dir = 'c9'
+
+elseif Is_env__('win64')     " pwsh
+  let g:env_dir = 'pwsh'
+
+elseif Is_env__('win32unix') " gitbash
+  let g:env_dir = 'gitbash'
+endif
+
+if g:env_dir != ''
+  source `=g:init_vim_dir . '/' . g:env_dir . '/init.vim'`
+else
+  echo "is env else"
+endif
 
 

@@ -1206,7 +1206,7 @@
    vim.keymap.set('v', 'W', ':call Slctd_str_edge_out__tgl_shft()<cr>')
 
 -- slctd str edge out __ ins space
-   vim.keymap.set('v', '<c-s>', ':call Slctd_str_edge_out__ins(" ")<cr>')
+-- vim.keymap.set('v', '<c-s>', ':call Slctd_str_edge_out__ins(" ")<cr>')
 
 -- slctd str edge out __ ins markdown strikethrough
    vim.keymap.set('v', '~', ':call Slctd_str_edge_out__ins_markdown_strikethrough()<cr>')
@@ -1315,6 +1315,12 @@
      return vim.fn.Is_slctd_mode__box() and
        ':call Slctd_box_edge_r_char__shft_in()<cr>' or
        ''
+   end, {expr = true})
+
+   vim.keymap.set('v', '<c-s>', function()
+     return vim.fn.Is_slctd_mode__box() and
+       ':call Slctd_box_edge_r_char__shft_in()<cr>' or
+       ':call Slctd_str_edge_out__ins(" ")<cr>'
    end, {expr = true})
 
 -- fzf buf

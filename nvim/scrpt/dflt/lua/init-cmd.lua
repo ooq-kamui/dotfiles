@@ -1,6 +1,6 @@
--- " 
--- " cmd def
--- " 
+-- 
+-- cmd
+-- 
 
 -- command! -nargs=0 Pth call Pth()
 -- 
@@ -26,8 +26,11 @@
 -- 
 -- "command! -nargs=* OpnApp call Opn_app(<f-args>)
 -- 
--- " cmd def fzf
+
 -- 
+-- cmd fzf
+-- 
+
 -- command! -bang -nargs=1 FzfRgExt call Fzf_rg_ext(<f-args>)
 -- 
 -- command! -nargs=? FzfRgWithRun call Fzf_rg_with_run(<f-args>)

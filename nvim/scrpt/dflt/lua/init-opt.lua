@@ -3,143 +3,244 @@
 -- 
 
 -- ex
--- vim.opt.hlsearch = true
--- vim.opt_local.xx = true
+-- setlocal xxx
+--   vim.opt.hlsearch = true
+-- set xxx
+--   vim.opt_local.xx = true
+-- augroup vimrcEx
+--   vim.api.nvim_create_augroup( 'vimrcEx', {} )
+-- autocmd xxx
+--   vim.api.nvim_create_autocmd( 'insertenter', {
+--     group = 'vimrcEx',
+--     callback = function() print( 'insert enter') end
+--   })
 
 
 -- " set org
--- 
+
 -- set modelines=0  " CVE-2007-2438
--- 
+   vim.opt.modelines = 0
+
 -- " Normally we use vim-extensions. If you want true vi-compatibility
 -- " remove change the following statements
 -- set nocompatible  " Use Vim defaults instead of 100% vi compatibility
+   vim.opt.nocompatible = true
 -- set backspace=2   " more powerful backspacing
--- 
+   vim.opt.backspace = 2
+
 -- " Don't write backup file if vim is being called by "crontab -e"
 -- autocmd BufWrite /private/tmp/crontab.* set nowritebackup nobackup
--- 
+
 -- " Don't write backup file if vim is being called by "chpass"
 -- autocmd BufWrite /private/etc/pw.* set nowritebackup nobackup
--- 
+
 -- " set org end
+
 -- 
+-- augroup
 -- 
+   vim.api.nvim_create_augroup( 'vimrcEx', {} )
+
+-- filetype
 -- filetype on
--- 
--- " syntax
+
+-- syntax
+-- syntax on
+-- autocmd BufNewFile,BufRead *.fish       set filetype=fish
+-- defold
 -- autocmd BufNewFile,BufRead *.script     set filetype=lua
 -- autocmd BufNewFile,BufRead *.gui_script set filetype=lua
--- autocmd BufNewFile,BufRead *.fish       set filetype=fish
--- syntax on
--- 
+
 -- filetype indent on
--- " autocmd FileType lua      setlocal sw=2 sts=2 ts=2 noet " tab
--- autocmd FileType lua      setlocal sw=2 sts=2 ts=2   et " space
--- autocmd FileType text     setlocal sw=2 sts=2 ts=2   et " space
--- autocmd FileType json     setlocal sw=2 sts=2 ts=2   et " space
--- autocmd FileType vim      setlocal sw=2 sts=2 ts=2   et " space
--- autocmd FileType fish     setlocal sw=2 sts=2 ts=2   et " space
--- autocmd FileType sh       setlocal sw=2 sts=2 ts=2   et " space
--- autocmd FileType markdown setlocal sw=2 sts=2 ts=2   et " space
--- autocmd FileType python   setlocal sw=4 sts=4 ts=4   et " space
--- 
--- 
+-- space
+-- autocmd FileType lua      setlocal sw=2 sts=2 ts=2   et
+-- autocmd FileType text     setlocal sw=2 sts=2 ts=2   et
+-- autocmd FileType json     setlocal sw=2 sts=2 ts=2   et
+-- autocmd FileType vim      setlocal sw=2 sts=2 ts=2   et
+-- autocmd FileType fish     setlocal sw=2 sts=2 ts=2   et
+-- autocmd FileType sh       setlocal sw=2 sts=2 ts=2   et
+-- autocmd FileType markdown setlocal sw=2 sts=2 ts=2   et
+-- autocmd FileType python   setlocal sw=4 sts=4 ts=4   et
+-- tab
+-- " autocmd FileType lua      setlocal sw=2 sts=2 ts=2 noet
+
+
 -- set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
+   vim.opt.listchars = true
 -- set incsearch
+   vim.opt.incsearch = true
 -- set hlsearch
+   vim.opt.hlsearch = true
 -- set ignorecase smartcase
+   vim.opt.ignorecase = true
 -- set number
+   vim.opt.number = true
 -- "set relativenumber
+   vim.opt.relativenumber = true
 -- set list
+   vim.opt.list = true
 -- set cursorline
+   vim.opt.cursorline = true
 -- set splitbelow
+   vim.opt.splitbelow = true
 -- set switchbuf=usetab,newtab
+   vim.opt.switchbuf = true
 -- set showcmd
--- 
+   vim.opt.showcmd = true
+
 -- set encoding=utf-8
+   vim.opt.encoding = true
 -- set fileencodings=utf-8,sjis
+   vim.opt.fileencodings = true
 -- " set termencoding=utf-8
--- 
+   vim.opt.termencoding = true
+
 -- "set mouse=n
--- "map <LeftMouse> <Nop>
--- 
+   vim.opt.mouse = true
+-- "map <LeftMouse> <nop>
+
 -- set autoindent
+   vim.opt.autoindent = true
 -- set shiftwidth=2 " 4
+   vim.opt.shiftwidth = true
 -- set tabstop=2    " 4
+   vim.opt.tabstop = true
 -- set expandtab " tab > space
--- 
--- 
+   vim.opt.expandtab = true
+
+
 -- " file opn, cursor mv last
 -- augroup vimrcEx
 --   autocmd BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
 --   \ exe "normal! g`\"" | endif
 -- augroup END
--- 
+
 -- autocmd BufWinEnter * normal! zz
--- 
+
 -- set nowrap
+   vim.opt.nowrap = true
 -- set whichwrap=b,s,h,l,<,>,[,]
+   vim.opt.whichwrap = true
 -- set virtualedit=onemore " cursor mv cr
+   vim.opt.virtualedit = true
 -- set virtualedit+=block  " box slct
+   vim.opt.virtualedit = true
 -- "set virtualedit=all
+   vim.opt.virtualedit = true
 -- set scrolloff=5
+   vim.opt.scrolloff = true
 -- set sidescrolloff=4
+   vim.opt.sidescrolloff = true
 -- set wildmode=list:longest
+   vim.opt.wildmode = true
 -- "set tabpagemax=30
+   vim.opt.tabpagemax = true
 -- set tabpagemax=50
+   vim.opt.tabpagemax = true
 -- set nf=""
+   vim.opt.nf = true
 -- set showtabline=2
+   vim.opt.showtabline = true
 -- set wildmenu " ?
+   vim.opt.wildmenu = true
 -- "set showmatch
+   vim.opt.showmatch = true
 -- "set visualbell
+   vim.opt.visualbell = true
 -- "set ambiwidth=double
+   vim.opt.ambiwidth = true
 -- set autoread
--- 
+   vim.opt.autoread = true
+
 -- "set clipboard+=unnamedplus " ???
--- 
+   vim.opt.clipboard = true
+
 -- " status line
--- 
+
 -- func! Status_line(file_encoding) abort
 -- 
 --   set statusline=
+     vim.opt.statusline = true
 --   " set statusline+=%m\                " 変更あり表示
---   set statusline+=%F                 " file name 表示
+     vim.opt.statusline = true
+--   set statusline+=%F                 " file name
+     vim.opt.statusline = true
 --   set statusline+=%=                 " 以降を右寄せ
--- 
+     vim.opt.statusline = true
+
 --   if a:file_encoding
 --     set statusline+=%{&fileencoding}\  " file encoding
+       vim.opt.statusline = true
 --     if &bomb
 --       set statusline+=:bom             " bom
+         vim.opt.statusline = true
 --     endif
 --   endif
 -- 
 --   set statusline+=%y\                " file type
+     vim.opt.statusline = true
 --   set statusline+=%c\                " column num
+     vim.opt.statusline = true
 --   set statusline+=%p%%\              " line num %
+     vim.opt.statusline = true
 --   set statusline+=%l/%L              " line num / line num all
+     vim.opt.statusline = true
 -- endfunc
 -- call Status_line(v:false)
--- 
+
 -- set laststatus=2                   " 0:off  1:on when 2 win  2:on
+   vim.opt.laststatus = true
 -- set completeopt=menuone,noinsert
+   vim.opt.completeopt = true
 -- set foldmethod=manual
+   vim.opt.foldmethod = true
 -- set shortmess+=I
+   vim.opt.shortmess = true
 -- "set nrformats+=unsigned " 2022-05-09
--- 
+   vim.opt.nrformats = true
+
 -- " splt
 -- hi! link StatusLineNC Comment
 -- hi! link VertSplit    Comment
 -- 
 -- set noswapfile
--- 
+   vim.opt.noswapfile = true
+
 -- " undo
 -- if has('persistent_undo')
 --   set undodir=~/.vim-undo
+     vim.opt.undodir = true
 --   set undofile                                                                                                                                   
+     vim.opt.undofile = true
 -- endif
 
 -- -- shell & .vimrc_env
 -- set shell=fish           -- default
+   vim.opt.shell = true
+
+-- let g:env_dir = ''
+-- 
+-- if     Is_env__('mac')       " mac
+--   let g:env_dir = 'mac'
+-- 
+-- elseif Is_env__('linux')     " c9, s9
+--   let g:env_dir = 'c9'
+-- 
+-- elseif Is_env__('win64')     " pwsh
+--   let g:env_dir = 'pwsh'
+-- 
+-- elseif Is_env__('win32unix') " gitbash
+--   let g:env_dir = 'gitbash'
+-- endif
+-- 
+-- if g:env_dir != ''
+--   source `=g:init_vim_dir . '/' . g:env_dir . '/init.vim'`
+-- else
+--   echo "is env else"
+-- endif
+
+
+-- comment auto off ( def pos final ? )
+-- autocmd FileType * set fo-=c fo-=r fo-=o
 
 

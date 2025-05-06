@@ -24,9 +24,9 @@ filetype on
 
 hi LineNr       ctermfg=141                              cterm=none
 augroup InsertHook
-  au!
-  au InsertLeave * hi LineNr ctermfg=141
-  au InsertEnter * hi LineNr ctermfg=lightgreen
+  autocmd!
+  autocmd InsertLeave * hi LineNr ctermfg=141
+  autocmd InsertEnter * hi LineNr ctermfg=lightgreen
 augroup END
 
 " hi Cursor                           ctermbg=gray    guibg=gray
@@ -74,9 +74,9 @@ hi DiffText     ctermfg=10           ctermbg=21          cterm=none
 hi Comment      ctermfg=14           ctermbg=none        cterm=none
 
 
-au BufNewFile,BufRead *.script     set filetype=lua
-au BufNewFile,BufRead *.gui_script set filetype=lua
-au BufNewFile,BufRead *.fish       set filetype=fish
+autocmd BufNewFile,BufRead *.script     set filetype=lua
+autocmd BufNewFile,BufRead *.gui_script set filetype=lua
+autocmd BufNewFile,BufRead *.fish       set filetype=fish
 
 syntax on
 
@@ -94,10 +94,10 @@ set nocompatible  " Use Vim defaults instead of 100% vi compatibility
 set backspace=2   " more powerful backspacing
 
 " Don't write backup file if vim is being called by "crontab -e"
-au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
+autocmd BufWrite /private/tmp/crontab.* set nowritebackup nobackup
 
 " Don't write backup file if vim is being called by "chpass"
-au BufWrite /private/etc/pw.* set nowritebackup nobackup
+autocmd BufWrite /private/etc/pw.* set nowritebackup nobackup
 
 " set org end
 
@@ -137,7 +137,7 @@ autocmd FileType python   setlocal sw=4 sts=4 ts=4   et " space
 
 " file opn, cursor mv last
 augroup vimrcEx
-  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  autocmd BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
   \ exe "normal! g`\"" | endif
 augroup END
 
@@ -6739,7 +6739,7 @@ endfunc
 "call Srch_init()
 
 " comment auto off ( final def )
-au FileType * set fo-=c fo-=r fo-=o
+autocmd FileType * set fo-=c fo-=r fo-=o
 
 
 " 

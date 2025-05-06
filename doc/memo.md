@@ -4,6 +4,17 @@
 
 ## nvim
 
+opt
+- var ( global ? )
+- set
+- setlocal
+- cmd-auto
+  - group
+  - cmd-auto
+
+cmd ( usr )
+
+
 fnc
 - ar
   - idx + 1
@@ -22,11 +33,6 @@ fnc
 - range, firstline, lastline
 
 
-set ( opt )
-
-cmd-auto
-
-
 hi
 - basic
   - line color
@@ -35,16 +41,6 @@ hi
 - tab
 - cursor line under
 - slctd
-
-cmd-usr
-
-
-key map ( lua )
-- v box <c-s> shft_in
-  - tst
-    - aaa bbb c cc
-    - aaa bbb c cc
-    - aaa bbb c cc
 
 
 ## vim

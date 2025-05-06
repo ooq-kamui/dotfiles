@@ -30,13 +30,11 @@
 -- })
 
 
--- require('init-opt'     )
--- require('init-cmd-auto')
+-- require('init-opt' )
+-- require('init-cmd' )
+
 require('init-hl'     )
 require('init-key-map')
-
--- require('init-fnc'     )
--- require('init-cmd-usr' )
 
 
 -- 
