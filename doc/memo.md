@@ -7,10 +7,15 @@
 opt
 - var ( global ? )
 - set
+  - set aaa+=bbb
+    - ggl
 - setlocal
 - cmd-auto
   - group
   - cmd-auto
+
+- ref https://riq0h.jp/2023/01/20/210601/
+
 
 cmd ( usr )
 
@@ -56,11 +61,6 @@ dns migration
   - cre
 - svr
   - del
-
-
-## doc-tech
-
-git reset mod
 
 
 ## godot

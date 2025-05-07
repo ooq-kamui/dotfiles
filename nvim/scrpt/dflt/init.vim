@@ -16,9 +16,6 @@ source `=g:init_vim_mdl_dir . '/init-fnc-tst.vim'`
 " opt
 source `=g:init_vim_mdl_dir . '/init-opt.vim'`
 
-" key map leader
-let mapleader = "\<esc>"
-
 " hl
 source `=g:init_vim_mdl_dir . '/init-hl.vim'`
 

@@ -2,6 +2,9 @@
 -- key map
 -- 
 
+-- leader
+   vim.g.mapleader = vim.api.nvim_replace_termcodes('<esc>', false, false, true)
+
 -- 
 -- mode normal
 -- 
@@ -515,8 +518,8 @@
 -- ins hyphen
    vim.keymap.set('n', '0', ':call Cursor__ins_hyphen()<cr>')
 
--- ins bracket
-   vim.keymap.set('n', '<c-s>', ':call Cursor__ins_bracket()<cr>')
+-- ins quote
+   vim.keymap.set('n', '<c-s>', ':call Cursor__ins_quote()<cr>')
 
 -- ins date
    vim.keymap.set('n', '*', ':call Cursor__ins_da()<cr>')

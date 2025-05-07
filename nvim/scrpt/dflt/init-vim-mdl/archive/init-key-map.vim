@@ -5,8 +5,7 @@
 " 
 " leader
 " 
-let mapleader = "\<esc>"
-
+" let mapleader = "\<esc>"
 
 " 
 " mode normal
