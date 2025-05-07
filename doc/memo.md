@@ -15,6 +15,7 @@ opt
   - cmd-auto
 
 - ref https://riq0h.jp/2023/01/20/210601/
+  - doc-tech add
 
 
 cmd ( usr )
@@ -52,6 +53,12 @@ hi
 
 v box paste line down
 - case emp: paste skip
+
+
+## win
+
+win11 instl
+- doc write
 
 
 ## ooq dns migration
