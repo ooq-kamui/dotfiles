@@ -2,33 +2,6 @@
 # dotfiles
 
 
-## ofc
-
-power toys
-- key fn
-
-pwsh
-- scoop path def pos early
-- posh-git
-
-pw
-- doc tidy
-  - file svr : `xxxdom\x-xxx`
-- ch worktime
-
-sticker paste
-- pin
-- ctrl2cap
-
-rg
-fd
-
-nvim
-- ln, syntax
-  - pwsh doc-tech mod
-- ocs52
-
-
 ## nvim
 
 opt
