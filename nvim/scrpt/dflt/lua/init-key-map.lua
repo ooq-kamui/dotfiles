@@ -483,6 +483,7 @@
 
 -- undo history clr
    vim.keymap.set('n', ':h', ':call Undo__clr()')
+   vim.keymap.set('n', 'H' , ':call Undo__clr()')
 
 -- repeat
 -- vim.keymap.set('n', 'xx', '.')
@@ -805,9 +806,8 @@
 -- win ( buf ) mv l
 -- vim.keymap.set('n', 'xx', '<c-w>h')
 
--- 
--- term
--- 
+-- fnc call
+   vim.keymap.set('n', ':c', ':call ')
 
 -- term launch
 -- vim.keymap.set('n', 'xx', ':Term ')
@@ -1523,9 +1523,6 @@
 
 -- ins reserved word lua
 -- vim.keymap.set('i', 'xx', '<c-r>=I_reserved_lua()<cr>')
-
--- ins ooq ( lua )
--- vim.keymap.set('i', 'xx', '<c-r>=I_ooq()<cr>')
 
 -- ins bracket
 -- vim.keymap.set('i', '<', '<><c-o>h')

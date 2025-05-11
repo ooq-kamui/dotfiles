@@ -6,24 +6,21 @@
 
 let g:dotfiles_dir       = '~/wrk/prj-pri/dotfiles'
 let g:init_vim_dir       = g:dotfiles_dir . '/nvim/scrpt'
-let g:init_vim_mdl_dir   = g:init_vim_dir . '/dflt/init-vim-mdl'
+let g:init_vim_mdl_dir   = g:init_vim_dir . '/dflt/vim'
 
 " fnc
 source `=g:init_vim_mdl_dir . '/init-fnc.vim'`
+" fnc tst
 source `=g:init_vim_mdl_dir . '/init-fnc-tst.vim'`
 
-" hl
-" source `=g:init_vim_mdl_dir . '/init-hl.vim'`
-
-" cmd ( usr )
-" source `=g:init_vim_mdl_dir . '/init-cmd-usr.vim'`
-
-" plugin
+" plg
 source `=g:init_vim_mdl_dir . '/init-plg.vim'`
+
+" plg fnc
 source `=g:init_vim_mdl_dir . '/init-plg-fzf.vim'`
 
 
-" init.lua
+" lua
 lua require('init')
 
 

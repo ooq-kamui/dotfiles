@@ -1,5 +1,57 @@
 -- 
--- fzf fnc
+-- fzf
+-- 
+
+-- 
+-- var
+-- 
+
+g_fzf_preview_window = {'down:40%:hidden', 'ctrl-/'}
+g_fzf_action = {
+  'ctrl-o' = 'tab drop',
+}
+
+--  'ctrl-o' = 'enter',
+--  'ctrl-i' = 'item slct mtl',
+--  'ctrl-s' = 'backward-char',
+
+g_fzf_colors = {
+  'hl'     = {'fg', 'Statement'  },
+  'hl+'    = {'fg', 'Statement'  },
+}
+
+--   'bg+'     = {'bg', 'CursorLine' },
+--   'bg+'     = {'bg', 'Normal'     },
+
+--   'info'    = {'fg', 'Comment'    },
+--   'border'  = {'fg', 'Ignore'     },
+--   'prompt'  = {'fg', 'Function'   },
+--   'pointer' = {'fg', 'Statement'  },
+--   'marker'  = {'fg', 'Conditional'},
+
+--   'info'    = {'Comment'},
+--   'border'  = {'Comment'},
+--   'prompt'  = {'Comment'},
+--   'pointer' = {'Comment'},
+--   'marker'  = {'Comment'},
+
+-- use ??
+--g_fzf_buffers_jump = 1
+--fzf#vim#complete#buffer_line([spec])
+
+-- fzf var def ( in plugin ) end
+
+if Is_env__('mac') or Is_env__('linux') or Is_env__('win64') then
+
+  if Is_env__('win64') then
+    g_fzf_rg_opt = g_fzf_rg_opt .. ' -g "!.git/"'
+  else
+    g_fzf_rg_opt = g_fzf_rg_opt .. ' -g "!.git/"'
+  end
+end
+
+-- 
+-- fnc
 -- 
 
 function v.Fzf_rg(...) -- alias
@@ -274,14 +326,9 @@ function v.Fzf_doc_tech()
   v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
-function v.Doc_tech_tag_jmp(str)
-
-  local str = $HOME .. '/' .. g_doc_tech_dir_rel .. '/' .. str
-  -- echo str
-  v.Tag_jmp_by_str(str)
-end
-
+-- 
 -- rg
+-- 
 
 function v.Rg_rslt_line_parse(line)
 
@@ -409,6 +456,10 @@ function v.Rgstr_info_rgstr(rgstr_info)
   return rgstr
 end
 
+-- 
+-- jmplst
+-- 
+
 function v.Jmplst()
 
   local jmplst_tmp = getjumplist()[0]
@@ -470,51 +521,78 @@ function v.Jmplst_cmp(jmplst1, jmplst2)
   return ret
 end
 
+-- 
+-- doc-tech
+-- 
 
--- fzf init
+function v.Doc_tech_tag_jmp(str)
 
-g_fzf_preview_window = {'down:40%:hidden', 'ctrl-/'}
-g_fzf_action = {
-  'ctrl-o' = 'tab drop',
-}
-
---  'ctrl-o' = 'enter',
---  'ctrl-i' = 'item slct mtl',
---  'ctrl-s' = 'backward-char',
-
-g_fzf_colors = {
-  'hl'     = {'fg', 'Statement'  },
-  'hl+'    = {'fg', 'Statement'  },
-}
-
---   'bg+'     = {'bg', 'CursorLine' },
---   'bg+'     = {'bg', 'Normal'     },
-
---   'info'    = {'fg', 'Comment'    },
---   'border'  = {'fg', 'Ignore'     },
---   'prompt'  = {'fg', 'Function'   },
---   'pointer' = {'fg', 'Statement'  },
---   'marker'  = {'fg', 'Conditional'},
-
---   'info'    = {'Comment'},
---   'border'  = {'Comment'},
---   'prompt'  = {'Comment'},
---   'pointer' = {'Comment'},
---   'marker'  = {'Comment'},
-
--- use ??
---g_fzf_buffers_jump = 1
---fzf#vim#complete#buffer_line([spec])
-
--- fzf var def ( in plugin ) end
-
-if Is_env__('mac') or Is_env__('linux') or Is_env__('win64') then
-
-  if Is_env__('win64') then
-    g_fzf_rg_opt = g_fzf_rg_opt .. ' -g "!.git/"'
-  else
-    g_fzf_rg_opt = g_fzf_rg_opt .. ' -g "!.git/"'
-  end
+  local str = $HOME .. '/' .. g_doc_tech_dir_rel .. '/' .. str
+  -- echo str
+  v.Tag_jmp_by_str(str)
 end
+
+-- 
+-- cmd
+-- 
+
+-- command! -bang -nargs=1 FzfRgExt call Fzf_rg_ext(<f-args>)
+   vim.api.nvim_create_user_command('FzfRgExt',
+     function(opts)
+       vim.fn.Fzf_rg_ext(table.unpack(opts.fargs))
+     end,
+     {nargs = 1, bang = true}
+   )
+
+-- command! -nargs=? FzfRgWithRun call Fzf_rg_with_run(<f-args>)
+   vim.api.nvim_create_user_command('FzfRgWithRun',
+     function(opts)
+       vim.fn.Fzf_rg_with_run(table.unpack(opts.fargs))
+     end,
+     {nargs = '?'}
+   )
+
+-- command! -nargs=? FzfTagjmpByFile call Fzf_tag_jmp_by_file(<f-args>)
+   vim.api.nvim_create_user_command('FzfTagjmpByFile',
+     function(opts)
+       vim.fn.Fzf_tag_jmp_by_file(table.unpack(opts.fargs))
+     end,
+     {nargs = '?'}
+   )
+
+-- command! -bang -nargs=? FzfBufCrnt
+-- \ call fzf#vim#buffer_lines(
+-- \   <q-args>,
+-- \   {'options': ['--no-sort', '--exact']},
+-- \   <bang>1
+-- \ )
+   vim.cmd('command! -bang -nargs=? FzfBufCrnt call fzf#vim#buffer_lines(<q-args>, {"options": ["--no-sort", "--exact"]}, <bang>1)')
+
+-- " fzf file
+-- command! -bang -nargs=? -complete=dir FzfFile call fzf#vim#files(<q-args>, <bang>1)
+   vim.cmd('command! -bang -nargs=? -complete=dir FzfFile call fzf#vim#files(<q-args>, <bang>1)')
+
+-- " fzf file history
+-- command! -bang -nargs=* FzfFileHstry call fzf#vim#history(fzf#vim#with_preview(), <bang>1)
+   vim.cmd('command! -bang -nargs=* FzfFileHstry call fzf#vim#history(fzf#vim#with_preview(), <bang>1)')
+
+-- " fzf cmd history
+-- command! -bang -nargs=* FzfCmdHstry call fzf#vim#command_history(fzf#vim#with_preview(), <bang>1)
+   vim.cmd('command! -bang -nargs=* FzfCmdHstry call fzf#vim#command_history(fzf#vim#with_preview(), <bang>1)')
+
+-- " fzf srch history
+-- command! -bang -nargs=* FzfSrchHstry call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)
+   vim.cmd('command! -bang -nargs=* FzfSrchHstry call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)')
+
+-- " fzf rgstr
+-- command! -bang -nargs=* FzfRgstr call Fzf_rgstr()
+   vim.cmd('command! -bang -nargs=* FzfRgstr call Fzf_rgstr()')
+
+-- command! -bang -nargs=* FzfJmplst call Fzf_jmplst()
+   vim.cmd('command! -bang -nargs=* FzfJmplst call Fzf_jmplst()')
+
+-- " fzf cmd def : mark
+-- command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)
+   vim.cmd('command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)')
 
 

@@ -4,28 +4,32 @@
 
 ## nvim
 
-fzf file div
-- fnc
-- cmd
+srch
+- mode v, n e
+  - tst
+
+- smart case
+  - tst Srch
 
 
 fnc
-- ar
-  - idx + 1
+- ar idx + 1
 - str ar
   - [:] > ??
   - str[idx] ( = char ) > ?
 
-- var
-  - &var
+- &var
+  - filetype
+  - etc
 
 - setlocal
+  - vim.opt_local
 
 - range, firstline, lastline
 
 
-plg require order
-- tidy
+- call Fn_lua()
+  - tst
 
 
 hl
@@ -40,6 +44,7 @@ hl
 cmd ( usr )
 - range
   - line1 line2 ?
+  - at fzf ?
 
 
 opn ltst
@@ -54,6 +59,24 @@ env init.lua
 memory
 - `` ` ``
 - `@`
+
+
+init setting
+
+
+## ofc
+
+nvim qt instl
+- by scoop
+
+
+## vim
+
+vimrc mv
+- ln
+  - c9
+- confirm
+  - mmv
 
 
 ## aws

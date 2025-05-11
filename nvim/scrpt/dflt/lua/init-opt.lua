@@ -42,7 +42,7 @@
 --   })
 -- 
 -- &bomb
---   vim.o.bomb
+--   vim.bo.bomb
 -- 
 -- xxx on
 -- vim.cmd('xxx on')
@@ -286,7 +286,7 @@
        vim.opt.statusline:append('%{&fileencoding}\\') -- file encoding
 
 --     if &bomb
-       if vim.o.bomb then
+       if vim.bo.bomb then
 --       set statusline+=:bom
          vim.opt.statusline:append(':bom') -- bom
 --     endif

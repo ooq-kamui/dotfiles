@@ -4,153 +4,73 @@
 
 lua require('init-fnc')
 
-source `=g:init_vim_mdl_dir . '/init-fnc-rpl.vim'`
-
 " 
 " primitive
 " 
 
+" char
+
+func! Char_lr_2_normal_cmd(lr) abort
+
+  return v:lua.v.Char_lr_2_normal_cmd(a:lr)
+endfunc
+
+" char cnd
+
+func! Is_char__num(char) abort
+
+  return v:lua.v.Is_char__num(a:char)
+endfunc
+
+func! Is_char__alpha(char) abort
+
+  return v:lua.v.Is_char__alpha(a:char)
+endfunc
+
+func! Is_char__symbol(char) abort
+
+  return v:lua.v.Is_char__symbol(a:char)
+endfunc
+
 " char cnd  -  char pair __
 
-func! Is_char_pair__(ptn, c1, c2)
+func! Is_char_pair__(ptn, c1, c2) abort
 
   return v:lua.v.Is_char_pair__(a:ptn, a:c1, a:c2)
-
-  " let l:ret = v:false
-  " 
-  " if a:c1 =~ a:ptn && a:c2 =~ a:ptn
-  "   let l:ret = v:true
-  " endif
-  " 
-  " return l:ret
 endfunc
 
-func! Is_char_pair__quote(c1, c2)
+func! Is_char_pair__quote(c1, c2) abort
 
-  let l:ret = v:false
-
-  if     a:c1 == "'" && a:c2 == "'"
-    let l:ret = v:true
-  elseif a:c1 == '"' && a:c2 == '"'
-    let l:ret = v:true
-  elseif a:c1 == '`' && a:c2 == '`'
-    let l:ret = v:true
-  endif
-
-  return l:ret
+  return v:lua.v.Is_char_pair__quote(a:c1, a:c2)
 endfunc
 
-func! Is_char_pair__bracket(c1, c2)
+func! Is_char_pair__bracket(c1, c2) abort
 
-  let l:ret = v:false
-
-  if     a:c1 == '(' && a:c2 == ')'
-    let l:ret = v:true
-  elseif a:c1 == '{' && a:c2 == '}'
-    let l:ret = v:true
-  elseif a:c1 == '[' && a:c2 == ']'
-    let l:ret = v:true
-  elseif a:c1 == '<' && a:c2 == '>'
-    let l:ret = v:true
-  endif
-
-  return l:ret
+  return v:lua.v.Is_char_pair__bracket(a:c1, a:c2)
 endfunc
 
 " char cnd tgl
 
 func! Is_char__tgl_symbol(c) abort
 
-  let l:rpl = ''
-
-  if     a:c == '/'
-    let l:rpl = '|'
-  elseif a:c == '|'
-    let l:rpl = '\'
-  elseif a:c == '\'
-    let l:rpl = '/'
-
-  elseif a:c == "'"
-    let l:rpl = '"'
-  elseif a:c == '"'
-    let l:rpl = '`'
-  elseif a:c == '`'
-    let l:rpl = "'"
-
-  elseif a:c == '-'
-    let l:rpl = '+'
-  elseif a:c == '+'
-    let l:rpl = '='
-  elseif a:c == '='
-    let l:rpl = '*'
-  elseif a:c == '*'
-    let l:rpl = '-'
-
-  elseif a:c == ','
-    let l:rpl = '.'
-  elseif a:c == '.'
-    let l:rpl = ','
-
-  elseif a:c == ';'
-    let l:rpl = ':'
-  elseif a:c == ':'
-    let l:rpl = ';'
-
-  elseif a:c == '?'
-    let l:rpl = '!'
-  elseif a:c == '!'
-    let l:rpl = '?'
-  endif
-
-  return l:rpl
+  return v:lua.v.Is_char__tgl_symbol(a:c)
 endfunc
 
 func! Is_char__tgl_bracket_trn(c) abort
 
-  let l:rpl = ''
-
-  if     a:c == '<'
-    let l:rpl = '>'
-  elseif a:c == '>'
-    let l:rpl = '<'
-
-  elseif a:c == '{'
-    let l:rpl = '}'
-  elseif a:c == '}'
-    let l:rpl = '{'
-
-  elseif a:c == '['
-    let l:rpl = ']'
-  elseif a:c == ']'
-    let l:rpl = '['
-
-  elseif a:c == '('
-    let l:rpl = ')'
-  elseif a:c == ')'
-    let l:rpl = '('
-  endif
-
-  return l:rpl
+  return v:lua.v.Is_char__tgl_bracket_trn(a:c)
 endfunc
 
 func! Is_char__tgl_alpha_trn(c) abort " use not
-  
-  let l:rpl = ''
 
-  if     a:c ==# 'T'
-    let l:rpl = 'f'
-  elseif a:c ==# 'F'
-    let l:rpl = 't'
-  endif
-
-  return l:rpl
+  return v:lua.v.Is_char__tgl_alpha_trn(a:c)
 endfunc
 
 " str
 
 func! Str_len(str) abort " alias
 
-  return strchars(a:str)
+  return v:lua.v.Str_len(a:str)
 endfunc
 
 func! Str_l_char(str) abort
@@ -171,22 +91,12 @@ endfunc
 
 func! Str_sub(str, idx, len) abort " dev doing
 
-  let l:str = a:str
-  return l:str
+  return v:lua.v.Str_sub(a:str, a:idx, a:len)
 endfunc
 
 func! Str_space(len) abort
 
-  let l:space_str = ''
-
-  let l:idx = 0
-  while l:idx < a:len
-
-    let l:space_str .= ' '
-
-    let l:idx += 1
-  endwhile
-  return l:space_str
+  return v:lua.v.Str_space(a:len)
 endfunc
 
 func! Str_srch(...) abort " alias
@@ -195,57 +105,34 @@ func! Str_srch(...) abort " alias
   let l:ptn =                a:2
   let l:idx = ( a:0 >= 3 ) ? a:3 : v:null
 
-  let l:r_idx = match(l:str, l:ptn, l:idx)
-  return l:r_idx " -1 : match not
+  return v:lua.v.Str_srch(l:str, l:ptn, l:idx)
 endfunc
 
 func! Str_srch_end(str, ptn) abort " alias
 
-  let l:idx = matchend(a:str, a:ptn)
-  return l:idx
+  return v:lua.v.Str_srch_end(a:str, a:ptn)
 endfunc
 
 " str __ rpl
 
 func! Str__rpl(str, srch, rpl) abort " alias
 
-  let l:r_str = substitute(a:str, a:srch, a:rpl, 'g')
-  return l:r_str
+  return v:lua.v.Str__rpl(a:str, a:srch, a:rpl)
 endfunc
 
 func! Str_path_unix__cnv_win(path) abort
 
-  let l:path = a:path
-  let l:path = Str__rpl(l:path, '/c/', 'C:/')
-  let l:path = Str__rpl(l:path, '/', '\')
-  return l:path
+  return v:lua.v.Str_path_unix__cnv_win(a:path)
 endfunc
 
 func! Str_path_win__cnv_unix(path) abort
 
-  let l:path = a:path
-  let l:path = Str__rpl(l:path, 'C:', '/c')
-  let l:path = Str__rpl(l:path, '\', '/')
-  return l:path
+  return v:lua.v.Str_path_win__cnv_unix(a:path)
 endfunc
 
 func! Str_cmnt_1() abort
 
-  let l:cmnt_1_def = {
-  \ 'lua'       : '-- ',
-  \ 'text'      : '# ' ,
-  \ 'vim'       : '" ' ,
-  \ 'fish'      : '# ' ,
-  \ 'sh'        : '# ' ,
-  \ 'css'       : '/* ',
-  \ 'javascript': '// ',
-  \ 'java'      : '// ',
-  \ 'sql'       : '-- ',
-  \ 'dflt'      : '# '
-  \ }
-
-  let l:str = get(l:cmnt_1_def, &filetype, l:cmnt_1_def['dflt'])
-  return l:str
+  return v:lua.v.Str_cmnt_1()
 endfunc
 
 " str cnd
@@ -262,42 +149,37 @@ endfunc
 
 func! Is_str__ptn(str, ptn) abort
 
-  let l:ret = v:false
-
-  if a:str =~ a:ptn
-    let l:ret = v:true
-  endif
-  return l:ret
+  return v:lua.v.Is_str__ptn(a:str, a:ptn)
 endfunc
 
 func! Is_str__space(str) abort
 
-  let l:ptn = '^\s\+$'
-  let l:ret = Is_str__ptn(a:str, l:ptn)
-  return l:ret
+  return v:lua.v.Is_str__space(a:str)
 endfunc
 
 func! Is_str__num(str) abort
 
-  let l:ptn = '^\d\+$'
-  let l:ret = Is_str__ptn(a:str, l:ptn)
-  return l:ret
+  return v:lua.v.Is_str__num(a:str)
 endfunc
 
 " num ( idx )
 
 func! Idx__icl(idx, ar_len) abort
 
-  let l:r_idx = a:idx + 1
+  " return v:lua.v.Idx__icl(a:idx, a:ar_len)
 
+  let l:r_idx = a:idx + 1
+  
   if r_idx >= a:ar_len
     let l:r_idx = 0
   endif
-
+  
   return l:r_idx
 endfunc
 
 func! Idx__dcl(idx, ar_len) abort
+
+  " return v:lua.v.Idx__dcl(a:idx, a:ar_len)
 
   let l:r_idx = a:idx - 1
 
@@ -310,8 +192,7 @@ endfunc
 
 func! Int_2_str(num) abort
 
-  let l:num_str = printf('%o', a:num)
-  return l:num_str
+  return v:lua.v.Int_2_str(a:num)
 endfunc
 
 " ar ( list )
@@ -320,8 +201,7 @@ endfunc
 
 func! Txt_to_ar(txt) abort
 
-  let l:line_ar  = split(a:txt, "\n")
-  return l:line_ar
+  return v:lua.v.Txt_to_ar(a:txt)
 endfunc
 
 " vim
@@ -330,71 +210,81 @@ endfunc
 
 func! Nothing() abort " use by tst
 
-  " echo "do nothing.."
+  return v:lua.v.Nothing()
+
+  " " echo "do nothing.."
 endfunc
 
 func! Echo(str) abort " alias
 
-  echo a:str
+  return v:lua.v.Echo(a:str)
+
+  " echo a:str
 endfunc
 
 func! Exe(cmd) abort " alias
 
-  exe a:cmd
+  return v:lua.v.Exe(a:cmd)
+
+  " exe a:cmd
 endfunc
 
 func! Normal(cmd) abort " alias
 
-  call Exe('normal! ' . a:cmd)
+  return v:lua.v.Normal(a:cmd)
+
+  " call Exe('normal! ' . a:cmd)
 endfunc
 
 func! Esc() abort " alias
 
-  call Normal("\<esc>")
+  return v:lua.v.Esc()
+
+  " call Normal("\<esc>")
 endfunc
 
 func! Cmdline__(str) abort
 
-  call Ynk__(a:str)
+  return v:lua.v.Cmdline__(a:str)
 
-  call feedkeys(':call ' . a:str)
+  " call Ynk__(a:str)
+  " 
+  " call feedkeys(':call ' . a:str)
 endfunc
 
 " undo clr, file ( crnt buf ? )
 
 func! Undo__clr() abort
 
-  let l:undo_lvl_tmp = &undolevels
+  return v:lua.v.Undo__clr()
 
-  setlocal undolevels=-1
-
-  exe "normal! a \<BS>\<Esc>"
-
-  let &l:undolevels = l:undo_lvl_tmp
+  " let l:undo_lvl_tmp = &undolevels
+  " 
+  " setlocal undolevels=-1
+  " exe "normal! a \<BS>\<Esc>"
+  " 
+  " let &l:undolevels = l:undo_lvl_tmp
 endfunc
 
 func! Sys_cmd(sys_cmd) abort
 
-  return system(a:sys_cmd)
+  return v:lua.v.Sys_cmd(a:sys_cmd)
 
-  "let l:cmd = '! ' . a:sys_cmd
-  "call Exe(l:cmd)
+  " return system(a:sys_cmd)
 endfunc
 
 " syntax color
 
 func! Hl_grp() abort
 
-  let l:str = synIDattr(synID(line('.'), col('.'), 1), 'name')
-  echo l:str
+  return v:lua.v.Hl_grp()
 endfunc
 " and
 " :hi [grp name]
 
 func! Color_name_lst() abort
 
-  let l:cmd = "so $VIMRUNTIME/syntax/colortest.vim"
-  call Exe(l:cmd)
+  return v:lua.v.Color_name_lst()
 endfunc
 
 " dir
@@ -526,7 +416,9 @@ endfunc
 
 func! Buf_file_bom() abort
 
-  call Exe('set bomb?')
+  return v:lua.v.Buf_file_bom()
+
+  " call Exe('set bomb?')
 endfunc
 
 " file tmp
@@ -1487,14 +1379,7 @@ endfunc
 
 func! Cursor__ins_cmnt_1(cmd_cursor__mv_line_top) abort
 
-  if a:cmd_cursor__mv_line_top != v:null
-    call Normal(a:cmd_cursor__mv_line_top)
-  endif
-
-  let l:str = Str_cmnt_1()
-  call Normal('i' . l:str)
-  
-  call Normal('^') " or '0'
+  return v:lua.v.Cursor__ins_cmnt_1(a:cmd_cursor__mv_line_top)
 endfunc
 
 func! V_ins_cmnt_1() range abort
@@ -2203,7 +2088,7 @@ func! Is_cursor_line_str__emp() abort
 endfunc
 
 func! Is_cursor_line_str__space() abort
-  
+
   let l:str = Cursor_line_str()
   let l:ret = Is_str__space(l:str)
   return l:ret
@@ -3871,309 +3756,9 @@ func! I_reserved_lua() abort
   return ''
 endfunc
 
-func! I_ooq() abort
-  call complete(col('.'), [
-  \   '_s:',
-  \   '_s._',
-  \   'log._("", )',
-  \   'log.pp("", )',
-  \   '-- dbg',
-  \   '--',
-  \   '_.f',
-  \   '_.t'
-  \ ])
-  return ''
-"  \   'function',
-"  \   'local',
-"  \   'return',
-"  \   'if _.t then return end',
-"  \   'if  then',
-"  \   'elseif  then',
-"  \   'else',
-"  \   'then',
-"  \   'then return end',
-"  \   'for key, val in pairs() do end',
-"  \   'not',
-"  \   'or',
-"  \   'and',
-"  \   'end',
-"  \   'nil',
-"  \   'alias',
-endfunc
-
-" fzf fnc
-
-func! Fzf_rg(...) abort " alias
-
-  let l:ptn   = ( a:0 >= 1 ) ? a:1 : ''
-  " let l:ptn   = ( a:0 >= 1 ) ? a:1 : g:rg_some_line_ptn
-  
-  let l:ext   = ( a:0 >= 2 ) ? a:2 : v:null
-  let l:word1 = ( a:0 >= 3 ) ? a:3 : v:false
-
-  call Fzf_rg_with_grep(l:ptn, l:ext, l:word1)
-endfunc
-
-func! Fzf_rg_with_grep(...) abort
-
-  if ! ( Is_env__('mac') || Is_env__('linux') || Is_env__('win64') )
-    return
-  endif
-
-  let l:ptn   = ( a:0 >= 1 ) ? a:1 : ''
-  " let l:ptn   = ( a:0 >= 1 ) ? a:1 : g:rg_some_line_ptn
-
-  let l:ext   = ( a:0 >= 2 ) ? a:2 : v:null
-  let l:word1 = ( a:0 >= 3 ) ? a:3 : v:false
-
-  let l:rg_cmd = Rg_cmd(l:ptn, l:ext, l:word1, v:null)
-  " echo l:rg_cmd
-
-  call fzf#vim#grep(
-  \      l:rg_cmd,
-  \      0,
-  \      fzf#vim#with_preview(
-  \        {'options': '--exact --delimiter : --nth 3..'},
-  \        'up:70%:hidden',
-  \        'ctrl-u'
-  \      ),
-  \      1
-  \    )
-
-  " ref
-  " fzf#vim#grep(
-  "   command,
-  "   [has_column bool],
-  "   [spec dict],
-  "   [fullscreen bool]
-  " )
-endfunc
-
-" fzf rg ext
-
-func! Fzf_rg_ext(ext) abort
-
-  let l:ext = a:ext
-  call Fzf_rg(v:null, l:ext)
-endfunc
-
-" rg word1
-func! Fzf_rg_word1(ptn) abort
-
-  call Fzf_rg(a:ptn, v:null, v:true)
-endfunc
-
-" fzf rg by run
-
-let g:fzf_line_cnt_max = 30000
-
-func! Fzf_rg_with_run(...) abort
-
-  let l:ptn = ( a:0 >= 1 ) ? a:1 : v:null
-
-  if l:ptn == v:null
-
-    let l:rg_rslt_cnt = Rg_all_cnt()
-
-    if l:rg_rslt_cnt > g:fzf_line_cnt_max
-      echo "l:rg_rslt_cnt, end"
-      return
-    endif
-
-    let l:fzf_src_ar = Rg_all_rslt_ar()
-
-  else
-    let l:rg_rslt_cnt = Rg_ptn_cnt(l:ptn, v:null)
-
-    if l:rg_rslt_cnt > g:fzf_line_cnt_max
-      echo "l:rg_rslt_cnt, end"
-      return
-    endif
-
-    let l:fzf_src_ar = Rg_ptn_rslt_ar(l:ptn, v:null)
-  endif
-
-  call fzf#run(
-  \      {
-  \        'source' : l:fzf_src_ar,
-  \        'sink'   : funcref('Tag_jmp_by_str'),
-  \        'window' : '-tabnew',
-  \      }
-  \    )
-  "\     'options': ['--reverse'],
-  "\     'options': ['--no-sort'],
-endfunc
-
-func! Fzf_by_txt(...) abort
-
-  let l:src_txt  = ( a:0 >= 1 ) ? a:1 : v:null
-  let l:fnc_name = ( a:0 >= 2 ) ? a:2 : v:null
-
-  let l:src_ar = Txt_to_ar(l:src_txt)
-
-  call Fzf_by_ar(l:src_ar, fnc_name)
-endfunc
-
-func! Fzf_by_ar(...) abort
-
-  let l:src_ar   = ( a:0 >= 1 ) ? a:1 : v:null
-  let l:fnc_name = ( a:0 >= 2 ) ? a:2 : v:null
-
-  if len(l:src_ar) > g:fzf_line_cnt_max
-    echo "l:fzf src_ar, end"
-    return
-  endif
-
-  call fzf#run(
-  \      {
-  \        'source' : l:src_ar,
-  \        'sink'   : funcref(l:fnc_name),
-  \        'window' : '-tabnew',
-  \      }
-  \    )
-  "\     'options': ['--reverse'],
-  "\     'options': ['--no-sort'],
-endfunc
-
-" fzf tag jmp by file
-
-func! Fzf_tag_jmp_by_file(...) abort
-
-  let l:file_path = ( a:0 >= 1 ) ? a:1 : 'doc/memo.md'
-
-  let l:fzf_src_txt = File_txt(l:file_path)
-  let l:fnc_name    = 'Tag_jmp_by_str'
-  call Fzf_by_txt(fzf_src_txt, fnc_name)
-endfunc
-
-" fzf buf
-
-func! N_fzf_buf() abort
-  
-  exe 'FzfBufCrnt '
-endfunc
-
-func! V_fzf_buf() abort
-
-  call Srch_str__slctd_str()
-  exe 'FzfBufCrnt ' . escape(@z, '.*~')
-endfunc
-
-func! Fzf_rgstr() abort
-  
-  let l:rgstr_info = execute(':reg')->split("\n")
-  call remove(l:rgstr_info, 0)
-  
-  call fzf#run(
-  \   {
-  \     'source': l:rgstr_info,
-  \     'sink'  : funcref('Ynk__by_rgstr_info'),
-  \     'window': '-tabnew'
-  \   }
-  \ )
-  " \     'sink'  : funcref('Cursor__ins_rgstr_by_rgstr_info'),
-endfunc
-
-" fzf jmplst
-
-func! Fzf_jmplst() abort
-  
-  call fzf#run(
-  \   {
-  \     'source' : Jmplst_line_info(),
-  \     'sink'   : funcref('Cursor__mv_by_line_info'),
-  \     'window' : '-tabnew',
-  \     'options': ['--reverse'],
-  \   }
-  \ )
-  "\     'options': ['--no-sort'],
-endfunc
-
-" fzf file
-
-func! Fzf_file() abort
-
-  let l:sys_cmd = 'fd --type f'
-  let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
-
-  let l:fnc_name = 'Opn'
-  call Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
-endfunc
-
-" fzf dir
-
-func! Fzf_dir() abort
-
-  let l:sys_cmd = 'fd --type d'
-  let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
-
-  let l:fnc_name = 'Dir__'
-  call Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
-endfunc
-
-func! Fzf_dir_jmp() abort
-
-  let l:sys_cmd = 'dir_jmp_lst_with_z'
-  " let l:sys_cmd = 'dir_jmp_lst_with_zoxide'
-
-  let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
-
-  let l:fnc_name = 'Dir__'
-  call Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
-endfunc
-
-func! Fzf_doc_memo_opn() abort
-
-  let l:dir = '~'
-
-  let l:memo_file_list = [
-  \   l:dir . '/wrk/prj-pri/dotfiles/doc/memo.md',
-  \   l:dir . '/wrk/prj-pri/doc-tech-ds/doc/memo.md',
-  \   l:dir . '/wrk/prj-pri/life/doc/memo.md',
-  \   l:dir . '/wrk/prj-pri/wall-paper/doc/memo.md'
-  \ ]
-
-  let l:fzf_src_ar = l:memo_file_list
-  let l:fnc_name    = 'Opn'
-  call Fzf_by_ar(l:fzf_src_ar, l:fnc_name)
-endfunc
-
-func! Fzf_vim_fnc_call() abort
-
-  let l:rg_ptn = '^func! [\w]+\(.*\)'
-
-  let l:sys_cmd_rg = "rg " . "-No '" . l:rg_ptn . "' " . g:init_vim_file_path
-
-  let l:sys_cmd_sed = 'sed "s/func! //g"'
-
-  let l:sys_cmd = l:sys_cmd_rg . ' | ' . l:sys_cmd_sed
-  let l:fzf_src_txt  = Sys_cmd(l:sys_cmd)
-
-  let l:fnc_name = 'Cmdline__'
-
-  call Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
-endfunc
+" tag jmp
 
 let g:doc_tech_dir_rel = 'wrk/prj-pri/doc-tech-ds/docs/md'
-
-func! Fzf_doc_tech() abort
-
-  let l:ptn = g:rg_emp_line_ptn
-  let l:opt  = ' -v'
-  let l:opt .= ' --no-heading'
-  " let l:opt .= ' --line-number'
-  let l:sys_cmd_rg = "rg" . l:opt . " '" . l:ptn . "' ~/" . g:doc_tech_dir_rel
-  " echo l:sys_cmd
-
-  let l:sys_cmd_sed = 'sed "s|^.*' . g:doc_tech_dir_rel . '/||g"'
-
-  let l:sys_cmd = l:sys_cmd_rg . ' | ' . l:sys_cmd_sed
-
-  let l:fzf_src_txt = Sys_cmd(l:sys_cmd)
-
-  let l:fnc_name = 'Doc_tech_tag_jmp'
-  call Fzf_by_txt(l:fzf_src_txt, l:fnc_name)
-endfunc
 
 func! Doc_tech_tag_jmp(str) abort
 
@@ -4561,78 +4146,77 @@ endfunc
 
 
 " 
-" index                         line
+" index
 " 
 
-" - primitive                   2080      
-"   - char                      2083      
-"   - str                       2232      
-"     - str cnd                 2315      
-"   - num                       2351      
-"                                         
-" - ar ( list )                       
+" - primitive
+"   - char
+"   - str
+"     - str cnd
+"   - num
+"
+" - ar ( list )
 " - txt
-"                                         
-" - vim                         2382      
-"   - basic                     2384      
-"   - dir                             
-"   - file                      2498      
-"   - opn                       2582      
-"   - tag jmp                   2738      
-"   - buf                       2795      
-"   - win                       2825      
-"                                         
-" - line                        2852      
-"                                         
-" - cursor                      2913      
+"
+" - vim
+"   - basic
+"   - dir
+"   - file
+"   - opn
+"   - tag jmp
+"   - buf
+"   - win
+"
+" - line
+"
+" - cursor
 "   - cursor pos
 "   - cursor col
 "   - cursor col cnd
-"   - cursor __ ( mv )          3014      
-"   - cursor __ ( ins )         3378      
-"     - cursor __ str                     
-"     - cursor __ line                    
-"     - cursor __ sys                     
-"   - cursor char               3378      
-"   - cursor str                3823      
-"   -   cursor str __           3825      
-"   - cursor line                         
-" 
-" - slctd                       4292      
-"   - slctd cursor                        
+"   - cursor __ ( mv )
+"   - cursor __ ( ins )
+"     - cursor __ str
+"     - cursor __ line
+"     - cursor __ sys
+"   - cursor char
+"   - cursor str
+"   -   cursor str __
+"   - cursor line
+"
+" - slctd
+"   - slctd cursor
 "     - slctd cursor __ mv
-"     - slctd cursor cnd        4424
-"   - slctd str                 4456
-"     - slctd __ ( expnd )      4493
+"     - slctd cursor cnd
+"   - slctd str
+"     - slctd __ ( expnd )
 "     - slctd str cnd
-"     - slctd str edge                    
-"       - slctd str edge cnd    4962      
-"   - slctd line                5077      
-"     - slctd line __ ( edit )       
-"     - slctd line indnt        
-"     - slctd line markdown        
-"     - slctd line sys     
-"   - slctd box                 5169      
-"     - slctd box __ ( mv )     
-"     - slctd box __ ( edit )   5189
-"     - slctd box edge                    
-"       - slctd box edge cnd    
-"   - slctd mode                          
-"     - slctd mode cnd                    
-"   - slctd etc                 4962      
-" 
-" - ynk                         5427      
-"   - rgstr                           
-" - srch                        5489      
-"   - srch cnd                  5649      
-" 
-" - complete                    5699      
-" - env                                   
-" - plugin                                
-" - fzf                         5810      
-" - rg                                    
-" - jmplst                                
-" - mark                        6287      
-" 
+"     - slctd str edge
+"       - slctd str edge cnd
+"   - slctd line
+"     - slctd line __ ( edit )
+"     - slctd line indnt
+"     - slctd line markdown
+"     - slctd line sys
+"   - slctd box
+"     - slctd box __ ( mv )
+"     - slctd box __ ( edit )
+"     - slctd box edge
+"       - slctd box edge cnd
+"   - slctd mode
+"     - slctd mode cnd
+"   - slctd etc
+"
+" - ynk
+"   - rgstr
+" - srch
+"   - srch cnd
+"
+" - complete
+" - env
+" - plugin
+" - fzf
+" - rg
+" - jmplst
+" - mark
 
 

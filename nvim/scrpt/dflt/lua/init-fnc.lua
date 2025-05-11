@@ -88,8 +88,6 @@ function v.Is_char_pair__(ptn, c1, c2)
   return ret
 end
 
---[[
-
 function v.Is_char_pair__quote(c1, c2)
 
   local ret = false
@@ -218,6 +216,8 @@ function v.Str_len(str) -- alias
   return f.strchars(str)
 end
 
+--[[
+
 function v.Str_l_char(str)
 
   local l_idx = 0
@@ -234,6 +234,8 @@ function v.Str_r_char(str)
   return str_r
 end
 
+--]]
+
 function v.Str_sub(str, idx, len) -- dev doing
 
   local str = str
@@ -244,8 +246,8 @@ function v.Str_space(len)
 
   local space_str = ''
 
-  local idx = 0
-  while idx < len do
+  local idx = 1
+  while idx <= len do
 
     space_str = space_str .. ' '
 
@@ -260,7 +262,7 @@ function v.Str_srch(...) -- alias
 
   local str = arg[1]
   local ptn = arg[2]
-  local idx = ( #arg >= 3 ) and arg[3] or nil
+  local idx = ( #arg >= 3 ) and arg[3] or vim.v.null
 
   local r_idx = f.match(str, ptn, idx)
   return r_idx -- -1 : match not
@@ -311,7 +313,7 @@ function v.Str_cmnt_1()
     dflt       = '# ' ,
   }
 
-  local str = f.get(cmnt_1_def, &filetype, cmnt_1_def['dflt'])
+  local str = f.get(cmnt_1_def, vim.bo.filetype, cmnt_1_def['dflt'])
   return str
 end
 
@@ -327,8 +329,6 @@ function v.Is_str__emp(str)
   return ret
 end
 
---]]
-
 function v.Is_str__ptn(str, ptn)
 
   local ret
@@ -341,8 +341,6 @@ function v.Is_str__ptn(str, ptn)
 
   return ret
 end
-
---[[
 
 function v.Is_str__space(str)
 
@@ -364,8 +362,8 @@ function v.Idx__icl(idx, ar_len)
 
   local r_idx = idx + 1
 
-  if r_idx >= ar_len then
-    r_idx = 0
+  if r_idx > ar_len then
+    r_idx = 1
   end
 
   return r_idx
@@ -375,8 +373,8 @@ function v.Idx__dcl(idx, ar_len)
 
   local r_idx = idx - 1
 
-  if r_idx < 0 then
-    r_idx = ar_len - 1
+  if r_idx < 1 then
+    r_idx = ar_len
   end
 
   return r_idx
@@ -394,7 +392,7 @@ end
 
 function v.Txt_to_ar(txt)
 
-  local line_ar  = f.split(txt, "\\n")
+  local line_ar  = f.split(txt, '\\n')
   return line_ar
 end
 
@@ -409,22 +407,23 @@ end
 
 function v.Echo(str) -- alias
 
-  print( str )
+  print(str)
 end
 
 function v.Exe(cmd) -- alias
 
-  exe cmd
+  vim.cmd(cmd)
 end
 
 function v.Normal(cmd) -- alias
 
   v.Exe('normal! ' .. cmd)
+  -- vim.cmd('normal! ' .. cmd)
 end
 
 function v.Esc() -- alias
 
-  v.Normal("\\<esc>")
+  v.Normal('\\<esc>')
 end
 
 function v.Cmdline__(str)
@@ -438,18 +437,18 @@ end
 
 function v.Undo__clr()
 
-  local undo_lvl_tmp = &undolevels
+  -- local undo_lvl_tmp = &undolevels
+  local undo_lvl_tmp = vim.bo.undolevels
 
-  setlocal undolevels=-1
+  vim.opt_local.undolevels = -1
+  vim.cmd([[exe "normal! a \<BS>\<Esc>"]])
 
-  exe "normal! a \\<BS>\\<Esc>"
-
-  let &undolevels = undo_lvl_tmp
+  vim.bo.undolevels = undo_lvl_tmp
 end
 
 function v.Sys_cmd(sys_cmd)
 
-  return system(sys_cmd)
+  return f.system(sys_cmd)
 end
 
 -- syntax color
@@ -466,6 +465,8 @@ function v.Color_name_lst()
   local cmd = "so $VIMRUNTIME/syntax/colortest.vim"
   v.Exe(cmd)
 end
+
+--[[
 
 -- dir
 
@@ -595,12 +596,16 @@ function v.Buf_file_encode()
   v.Exe('set enc?')
 end
 
+--]]
+
 function v.Buf_file_bom()
 
   v.Exe('set bomb?')
 end
 
 -- file tmp
+
+--[[
 
 function v.File_tmp__cre() -- alias
 
@@ -694,10 +699,10 @@ end
 -- opn app
 
 function v.Opn_app(path)
-  
+
   local path = path
   local cmd_sys
-  
+
   if     v.Is_env__('mac') then
 
     cmd_sys = 'open'
@@ -1056,7 +1061,7 @@ end
 
 function v.Cursor__mv_by_line_col(line_num, col)
 
-  local line_num = (line_num == nil) and v.Cursor_line_num() or line_num
+  local line_num = (line_num == vim.v.null) and v.Cursor_line_num() or line_num
   
   f.cursor(line_num, col)
 end
@@ -1533,9 +1538,11 @@ end
 
 -- cmnt
 
+--]]
+
 function v.Cursor__ins_cmnt_1(cmd_cursor__mv_line_top)
 
-  if cmd_cursor__mv_line_top ~= nil then
+  if cmd_cursor__mv_line_top ~= vim.v.null then
     v.Normal(cmd_cursor__mv_line_top)
   end
 
@@ -1544,6 +1551,8 @@ function v.Cursor__ins_cmnt_1(cmd_cursor__mv_line_top)
   
   v.Normal('^') -- or '0'
 end
+
+--[[
 
 function v.V_ins_cmnt_1() -- range
 
@@ -1557,7 +1566,7 @@ function v.V_ins_cmnt_1() -- range
 
     v.Cursor__mv_by_line_col(line_num, col)
 
-    v.Cursor__ins_cmnt_1(nil)
+    v.Cursor__ins_cmnt_1(vim.v.null)
   endfor
 end
 
@@ -1623,7 +1632,7 @@ function v.Cursor__ins_markdown_h()
 
   local ptn = '^#* '
   local col = v.Str_srch_end(v.Cursor_line_str(), ptn) + 1
-  v.Cursor__mv_by_line_col(nil, col)
+  v.Cursor__mv_by_line_col(vim.v.null, col)
 end
 
 function v.Cursor__ins_markdown_cr()
@@ -2424,7 +2433,7 @@ function v.Slctd_str__by_col_len(s_col, len)
 
   local e_col = len - 1
 
-  v.Slct_by_line_col(nil, s_col, nil, e_col)
+  v.Slct_by_line_col(vim.v.null, s_col, vim.v.null, e_col)
 end
 
 -- refactoring slct > slctd __ xxx
@@ -2440,8 +2449,8 @@ end
 
 function v.Slct_by_line_col(s_line, s_col, e_line, e_col)
 
-  local s_line = (s_line == nil) and v.Cursor_line_num() or s_line
-  local e_line = (e_line == nil) and v.Cursor_line_num() or e_line
+  local s_line = (s_line == vim.v.null) and v.Cursor_line_num() or s_line
+  local e_line = (e_line == vim.v.null) and v.Cursor_line_num() or e_line
 
   v.Cursor__mv_by_line_col(s_line, s_col)
   v.Normal('v')
@@ -3694,7 +3703,7 @@ function v.Srch_str_word1(str)
 
   -- local str
 
-  if str == nil then
+  if str == vim.v.null then
     str = v.Srch_str_flt()
   else
     str = str
@@ -3955,37 +3964,6 @@ function v.I_reserved_lua()
   })
   return ''
 end
-
-function v.I_ooq()
-  f.complete(f.col('.'), {
-    '_s:'         ,
-    '_s._'        ,
-    'log._("", )' ,
-    'log.pp("", )',
-    '-- dbg'      ,
-    '--'          ,
-    '_.f'         ,
-    '_.t'         ,
-  })
-  return ''
---     'function',
---     'local',
---     'return',
---     'if _.t then return end',
---     'if  then',
---     'elseif  then',
---     'else',
---     'then',
---     'then return end',
---     'for key, val in pairs() do end',
---     'not',
---     'or',
---     'and',
---     'end',
---     'nil',
---     'alias',
-end
-
 
 -- mark
 
