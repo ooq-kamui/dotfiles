@@ -2,8 +2,9 @@
 " function
 hi luaFunction     ctermfg=130
 
-" if then end
-hi luaCond         ctermfg=130
+" if elseif else then end
+" hi luaCond         ctermfg=130
+hi luaCond         ctermfg=cyan
 
 " else
 hi luaElse         ctermfg=130
@@ -24,7 +25,8 @@ hi luaStatement    ctermfg=130
 hi luaConstant     ctermfg=13
 
 " comment
-hi luaComment      ctermfg=29
+" hi luaComment      ctermfg=29
+hi luaComment      ctermfg=green
 
 " string 201 133
 hi luaString       ctermfg=171
@@ -38,7 +40,8 @@ hi luaFunc         ctermfg=130
 
 " table
 hi luaTable        ctermfg=39
-"hi luaTable        ctermfg=121
+" hi luaTable        ctermfg=cyan
+" hi luaTable        ctermfg=121
 
 " err
 hi luaError        ctermfg=yellow ctermbg=magenta

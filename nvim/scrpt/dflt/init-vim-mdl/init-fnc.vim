@@ -385,7 +385,8 @@ endfunc
 
 func! Hl_grp() abort
 
-  echo synIDattr(synID(line('.'), col('.'), 1), 'name')
+  let l:str = synIDattr(synID(line('.'), col('.'), 1), 'name')
+  echo l:str
 endfunc
 " and
 " :hi [grp name]
@@ -3800,7 +3801,7 @@ endfunc
 
 func! I_symbol02() abort
 
-  let l:lst = [ '!', '?', '~', '^', '&', '|', '\', '/' ]
+  let l:lst = [ '?', '!', '~', '^', '&', '|', '\', '/' ]
   call complete(col('.'), l:lst)
   return ''
 endfunc

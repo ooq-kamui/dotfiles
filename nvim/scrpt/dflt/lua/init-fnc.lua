@@ -4,7 +4,8 @@
 
 -- global
 
-g_dotfiles_dir    = '~/wrk/prj-pri/dotfiles'
+g_home_dir        = os.getenv("HOME")
+g_dotfiles_dir    = g_home_dir     .. '/wrk/prj-pri/dotfiles'
 g_vimrc_dir       = g_dotfiles_dir .. '/nvim/scrpt'
 g_vimrc_file_path = g_vimrc_dir    .. '/dflt/init.vim'
 
@@ -3883,7 +3884,7 @@ end
 
 function v.I_symbol02()
 
-  local lst = { '!', '?', '~', '^', '&', '|', '\\', '/' }
+  local lst = { '?', '!', '~', '^', '&', '|', '\\', '/' }
   f.complete(f.col('.'), lst)
   return ''
 end

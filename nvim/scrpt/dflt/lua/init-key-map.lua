@@ -684,6 +684,7 @@
    vim.keymap.set('n', 'M', ':call Srch_str__markdown_h()<cr>')
 
 -- srch str history ( fzf )
+   vim.keymap.set('n', '<leader>n', ':FzfSrchHstry<cr>')
    vim.keymap.set('n', '<leader>f', ':FzfSrchHstry<cr>')
 
 -- srch str set prv ( tgl )
@@ -793,6 +794,7 @@
 
 -- win ( buf ) splt v
    vim.keymap.set('n', 'rn', ':call Win__splt_v()<cr>')
+   vim.keymap.set('n', 'rv', ':call Win__splt_v()<cr>')
 
 -- win ( buf ) nxt
    vim.keymap.set('n', '<c-w>', ':call Win_splt_cursor__mv_nxt()<cr>')
@@ -1427,9 +1429,9 @@
      if     vim.fn.pumvisible() == 1 then
        ret = '<c-e>'
      elseif vim.fn.Is_cursor_col__line_top0() then
-       ret = '<c-c>'
+       ret = '<esc>'
      else
-       ret = '<c-c>l'
+       ret = '<esc>l'
      end
      return ret
    end, {expr = true})

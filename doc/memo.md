@@ -4,21 +4,9 @@
 
 ## nvim
 
-opt
-- var ( global ? )
-- set
-  - set aaa+=bbb
-    - ggl
-- setlocal
-- cmd-auto
-  - group
-  - cmd-auto
-
-- ref https://riq0h.jp/2023/01/20/210601/
-  - doc-tech add
-
-
-cmd ( usr )
+fzf file div
+- fnc
+- cmd
 
 
 fnc
@@ -29,36 +17,63 @@ fnc
   - str[idx] ( = char ) > ?
 
 - var
-  - &var > ?
-  - `->`
+  - &var
 
 - setlocal
-  - rng call
-- let
 
 - range, firstline, lastline
 
 
-hi
-- basic
-  - line color
-- cr
-- mode i num
-- tab
-- cursor line under
-- slctd
+plg require order
+- tidy
+
+
+hl
+- file type def pos
+  - confirm
+    - lua
+      - {}
+      - Hl_grp() ?
+- num > rgb
+
+
+cmd ( usr )
+- range
+  - line1 line2 ?
+
+
+opn ltst
+- fnc cre
+
+
+env init.lua
+- confirm
+  - mac ?
+
+
+memory
+- `` ` ``
+- `@`
+
+
+## aws
+
+confirm
+
+
+## git
+
+merge way 3 off
+- `.gitconfig`
+  - mod
+    - ggl
+- doc write
 
 
 ## vim
 
 v box paste line down
 - case emp: paste skip
-
-
-## win
-
-win11 instl
-- doc write
 
 
 ## ooq dns migration
