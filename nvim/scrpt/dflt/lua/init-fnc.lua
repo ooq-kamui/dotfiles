@@ -4,10 +4,17 @@
 
 -- global
 
-g_home_dir         = os.getenv("HOME")
+g_home_dir         = vim.fn.expand('$HOME')
+
 g_dotfiles_dir     = g_home_dir     .. '/wrk/prj-pri/dotfiles'
 g_init_vim_dir     = g_dotfiles_dir .. '/nvim/scrpt'
 g_init_vim_etc_dir = g_init_vim_dir .. '/dflt/vim'
+
+g_init_lua_file_path         = g_vimrc_dir .. '/dflt/lua/init.lua'
+g_init_lua_opt_file_path     = g_vimrc_dir .. '/dflt/lua/init-opt.lua'
+g_init_lua_hl_file_path      = g_vimrc_dir .. '/dflt/lua/init-hl.lua'
+g_init_lua_key_map_file_path = g_vimrc_dir .. '/dflt/lua/init-key-map.lua'
+g_init_lua_fnc_file_path     = g_vimrc_dir .. '/dflt/lua/init-fnc.lua'
 
 f = vim.fn
 v = {}
