@@ -2,19 +2,20 @@
 -- fnc
 -- 
 
+--[[
+--]]
+
 -- global
 
-g_home_dir         = vim.fn.expand('$HOME')
+g_home_dir     = vim.fn.expand('$HOME')
+g_dotfiles_dir = g_home_dir .. '/wrk/prj-pri/dotfiles'
 
-g_dotfiles_dir     = g_home_dir     .. '/wrk/prj-pri/dotfiles'
-g_init_vim_dir     = g_dotfiles_dir .. '/nvim/scrpt'
-g_init_vim_etc_dir = g_init_vim_dir .. '/dflt/vim'
+g_init_vim_dir     = g_dotfiles_dir .. '/nvim/scrpt/dflt'
+g_init_vim_etc_dir = g_init_vim_dir .. '/vim'
 
-g_init_lua_file_path         = g_vimrc_dir .. '/dflt/lua/init.lua'
-g_init_lua_opt_file_path     = g_vimrc_dir .. '/dflt/lua/init-opt.lua'
-g_init_lua_hl_file_path      = g_vimrc_dir .. '/dflt/lua/init-hl.lua'
-g_init_lua_key_map_file_path = g_vimrc_dir .. '/dflt/lua/init-key-map.lua'
-g_init_lua_fnc_file_path     = g_vimrc_dir .. '/dflt/lua/init-fnc.lua'
+g_init_lua_dir     = g_init_vim_dir .. '/lua'
+g_init_lua_etc_dir = g_init_lua_dir
+
 
 f = vim.fn
 v = {}
@@ -634,15 +635,15 @@ function v.Opn_tmp_file()
   v.Opn(path)
 end
 
-g_init_vim_file_path         = g_init_vim_dir     .. '/dflt/init.vim'
+g_init_vim_file_path         = g_init_vim_dir     .. '/init.vim'
 g_init_vim_fnc_file_path     = g_init_vim_etc_dir .. '/init-fnc.vim'
 
-g_init_lua_file_path         = g_init_vim_dir     .. '/dflt/lua/init.lua'
-g_init_lua_opt_file_path     = g_init_vim_dir     .. '/dflt/lua/init-opt.lua'
-g_init_lua_cmd_file_path     = g_init_vim_dir     .. '/dflt/lua/init-cmd-usr.lua'
-g_init_lua_hl_file_path      = g_init_vim_dir     .. '/dflt/lua/init-hl.lua'
-g_init_lua_key_map_file_path = g_init_vim_dir     .. '/dflt/lua/init-key-map.lua'
-g_init_lua_fnc_file_path     = g_init_vim_dir     .. '/dflt/lua/init-fnc.lua'
+g_init_lua_file_path         = g_init_lua_dir     .. '/init.lua'
+g_init_lua_opt_file_path     = g_init_lua_etc_dir .. '/init-opt.lua'
+g_init_lua_cmd_file_path     = g_init_lua_etc_dir .. '/init-cmd-usr.lua'
+g_init_lua_hl_file_path      = g_init_lua_etc_dir .. '/init-hl.lua'
+g_init_lua_key_map_file_path = g_init_lua_etc_dir .. '/init-key-map.lua'
+g_init_lua_fnc_file_path     = g_init_lua_etc_dir .. '/init-fnc.lua'
 
 function v.Opn_init_vim()
 
@@ -676,8 +677,6 @@ function v.Opn_init_vim_l()
   v.Opn(g_init_lua_hl_file_path     )
 end
 
---[[
-
 function v.Opn_fish_cnf()
 
   local path = '~/.config/fish/config.fish'
@@ -691,16 +690,16 @@ function v.Opn_man(cmd)
   v.Exe('only')
 end
 
-g_opn_memo_path = 'doc/memo.md'
+g_memo_path = 'doc/memo.md'
 
 function v.Opn_memo()
 
-  v.Opn(g_opn_memo_path)
+  v.Opn(g_memo_path)
 end
 
-function v.Opn_grep_wk()
+g_grep_wk_path = '~/wrk/tmp/rg.md'
 
-  g_grep_wk_path = '~/wrk/tmp/rg.md'
+function v.Opn_grep_wk()
 
   local file_type = f.getftype(g_grep_wk_path)
 
@@ -720,15 +719,12 @@ function v.Opn_app(path)
   local cmd_sys
 
   if     v.Is_env__('mac') then
-
     cmd_sys = 'open'
 
   elseif v.Is_env__('win64') then
-
     cmd_sys = 'start'
 
   elseif v.Is_env__('win32unix') then
-
     cmd_sys = 'start'
 
   else
@@ -736,7 +732,6 @@ function v.Opn_app(path)
   end
 
   if v.Is_env__('win64') then
-
     path = v.Str_path_unix__cnv_win(path)
   end
 
@@ -759,7 +754,7 @@ function v.Opn_app_by_line_path(line_num)
 end
 
 function v.Opn_app_by_slctd_str()
-  
+
   local path = v.Slctd_str()
   path = f.trim(path)
   v.Opn_app(path)
@@ -768,15 +763,13 @@ end
 function v.Opn_app_buf_file()
 
   local path = v.Buf_file_path()
-  print( path )
-
+  -- print( path )
   v.Opn_app(path)
 end
 
 function v.Opn_buf_file_dir()
 
   local dir = v.Buf_file_dir()
-
   v.Opn_app(dir)
 end
 
@@ -801,6 +794,8 @@ end
 -- tag jmp
 
 -- tag jmp by str
+
+--[[
 
 function v.Tag_jmp_by_str(rg_rslt_line)
 
@@ -855,13 +850,22 @@ function v.Tag_jmp_by_slctd_line() -- range
   endfor
 end
 
+--]]
+
 -- buf
+
+function v.Buf_num()
+
+  return f.bufnr('%')
+end
 
 function v.Buf__quit()
 
   local cmd = 'bd'
   v.Exe(cmd)
 end
+
+--[[
 
 function v.Buf__quit_swtch()
 
@@ -874,10 +878,7 @@ function v.Buf__quit_swtch()
   end
 end
 
-function v.Buf_num()
-
-  return f.bufnr('%')
-end
+--]]
 
 function v.Buf__fltr() -- use not
 
@@ -902,6 +903,8 @@ function v.Win_splt_cursor__mv_nxt()
   local n_cmd = "\\<c-w>w"
   v.Normal(n_cmd)
 end
+
+--[[
 
 function v.Win_splt__quit()
 
@@ -1942,6 +1945,8 @@ function v.Cursor_word()
   return word
 end
 
+--]]
+
 function v.Cursor_filepath()
 
   local str
@@ -1966,6 +1971,8 @@ function v.Cursor_filepath()
   
   return str
 end
+
+--[[
 
 -- cursor __ ins line
 
@@ -2389,6 +2396,8 @@ end
 
 -- refactoring slct > slctd __ xxx
 
+--]]
+
 function v.Slct_re() -- range
 
   if f.mode() == "\\<c-v>" or f.mode() == "v" then
@@ -2397,6 +2406,8 @@ function v.Slct_re() -- range
 
   v.Normal('gv')
 end
+
+--[[
 
 function v.Slctd_str__all()
 
@@ -2582,6 +2593,8 @@ end
 
 -- slctd str
 
+--]]
+
 function v.Slctd_str() -- range
 
   -- v.Normal('gv"zy')
@@ -2594,6 +2607,8 @@ function v.Slctd_str() -- range
   -- return @z
   return f.getreg('z')
 end
+
+--[[
 
 function v.Slctd_str_len() -- range
 
@@ -4134,10 +4149,217 @@ function v.Slctd_url_encode() -- range
   v.Cursor__ins(rslt)
 end
 
+-- 
+-- rg
+-- 
 
--- env
+function v.Rg_rslt_line_parse(line)
+
+  local dlm = ':'
+  local ret = split(line, dlm)
+  --echo ret
+
+  local idx = 0
+  while idx < len(ret) do
+
+    ret[idx] = trim(ret[idx])
+
+    idx = idx + 1
+  end
+
+  if ( len(ret) > 1 ) and ( not Is_char__num(ret[1]) ) then
+    ret[1] = '1'
+  end
+
+  return ret
+end
+
+g_fzf_rg_opt = ''
+  .. ' --color=always'
+  .. ' --line-number'
+  .. ' --smart-case'
+  .. ' --no-multiline'
+  .. ' --no-heading'
+  .. ' --hidden'
+
+function v.Rg_cmd(ptn, ext, word1, opt)
+
+  if ptn == nil then
+    local ptn = ''
+  else
+    local ptn = ptn
+  end
+
+  if ext == nil then
+    local fzf_rg_opt_ext = ''
+  else
+    local fzf_rg_opt_ext = ' -g "*.' .. ext .. '"'
+  end
+
+  if word1 == true then
+    local fzf_rg_opt_word1 = ' -w'
+  else
+    local fzf_rg_opt_word1 = ''
+  end
+
+  if opt == nil then
+    local opt = ''
+  else
+    local opt = ' ' .. opt
+  end
+
+  local rg_cmd = 'rg '
+       .. g_fzf_rg_opt
+       .. fzf_rg_opt_ext
+       .. fzf_rg_opt_word1
+       .. opt
+       .. ' -- ' .. '"' .. escape(ptn, '().$') .. '"'
+
+  return rg_cmd
+end
+
+g_rg_emp_line_ptn  = '^[ \\t]*$'
+g_rg_some_line_ptn = '^[^ \\t]+$'
+-- g_rg_some_line_ptn = '[^ \\t]'
+
+function v.Rg_ptn_cnt(ptn, opt)
+
+  if opt == nil then
+    local opt = ''
+  else
+    local opt = opt
+  end
+
+  local rg_cmd = "rg " .. opt .. " -e '" .. ptn .. "' | count"
+  local rg_rslt_cnt = Sys_cmd(rg_cmd)
+  return rg_rslt_cnt
+end
+
+function v.Rg_all_cnt()
+
+  local ptn = g_rg_emp_line_ptn
+  local opt = '-v'
+
+  local rg_rslt_cnt = Rg_ptn_cnt(ptn, opt)
+  return rg_rslt_cnt
+end
+
+function v.Rg_all_rslt_ar()
+
+  local ptn = g_rg_emp_line_ptn
+  local opt = '-v'
+
+  local rslt_ar = Rg_ptn_rslt_ar(ptn, opt)
+  return rslt_ar
+end
+
+function v.Rg_ptn_rslt_ar(ptn, opt)
+
+  local rg_rslt_txt = Rg_ptn_rslt_txt(ptn, opt)
+  local rg_rslt_ar  = split(rg_rslt_txt, "\\n")
+  return rg_rslt_ar
+end
+
+function v.Rg_ptn_rslt_txt(ptn, opt)
+  
+  local rg_cmd = Rg_cmd(ptn, nil, nil, opt) -- todo dev
+  local r_rslt_txt = Sys_cmd(rg_cmd)
+  return r_rslt_txt
+end
+
+function v.Cursor__ins_rgstr_by_rgstr_info(rgstr_info)
+  
+  local rgstr = Rgstr_info_rgstr(rgstr_info)
+  v.Normal('"' .. rgstr .. rgstr .. 'P')
+end
+
+function v.Rgstr_info_rgstr(rgstr_info)
+
+  local rgstr = strcharpart(rgstr_info, 6, 1)
+  return rgstr
+end
+
+-- 
+-- jmplst
+-- 
+
+function v.Jmplst()
+
+  local jmplst_tmp = getjumplist()[0]
+  --echo jmplst_tmp
+
+  local buf_num_key_prefix = 'key_'
+  local jmplst = {}
+  for _jmplst_tmp in jmplst_tmp
+
+    local _buf_num_key = buf_num_key_prefix .. _jmplst_tmp['bufnr']
+
+    if not has_key(jmplst, _buf_num_key) then
+      jmplst[_buf_num_key] = {}
+    end
+
+    call add(jmplst[_buf_num_key], _jmplst_tmp)
+  endfor
+
+  for _buf_num_key in keys(jmplst)
+
+    call sort(jmplst[_buf_num_key], 'Jmplst_cmp')
+  endfor
+
+  local buf_num_key = buf_num_key_prefix .. Buf_num()
+  local r_jmplst    = get(jmplst, buf_num_key, {})
+  --echo r_jmplst
+
+  return r_jmplst
+end
+
+function v.Jmplst_line_info()
+
+  local jmplst = Jmplst()
+
+  local jmplst_line_info = {}
+  for _jmplst in jmplst
+
+    local line_num  = _jmplst['lnum']
+    local line_info = line_num .. ' ' .. getline(line_num)
+    call add(jmplst_line_info, line_info)
+  endfor
+  --echo jmplst_line_info
+
+  return jmplst_line_info
+end
+
+function v.Jmplst_cmp(jmplst1, jmplst2)
+
+  local ret
+
+  if     jmplst1['lnum'] >  jmplst2['lnum'] then
+    ret =  1
+  elseif jmplst1['lnum'] == jmplst2['lnum'] then
+    ret =  0
+  else
+    ret = -1
+  end
+
+  return ret
+end
+
+-- 
+-- doc-tech
+-- 
+
+function v.Doc_tech_tag_jmp(str)
+
+  local str = $HOME .. '/' .. g_doc_tech_dir_rel .. '/' .. str
+  -- echo str
+  v.Tag_jmp_by_str(str)
+end
 
 --]]
+
+-- 
+-- env
+-- 
 
 function v.Is_env__(env) -- alias
 
@@ -4153,8 +4375,6 @@ function v.Is_env__(env) -- alias
   return ret
 end
 
---[[
-
 function v.Is_nvim() -- alias
 
   local ret = f.has('nvim')
@@ -4164,6 +4384,8 @@ end
 -- 
 -- plugin
 -- 
+
+--[[
 
 function v.Vim_plug_path()
 
@@ -4307,6 +4529,7 @@ end
 
 -- init end
 
+--]]
 
 -- 
 -- fnc repeat tmp
@@ -4319,8 +4542,7 @@ function v.Repeat_tmp()
   v.Cursor__ins_ynk()
 end
 
---]]
-
+--[[
 
 -- 
 -- ref
@@ -4366,5 +4588,6 @@ end
 -- when unknown server )
 --   curl https://raw.githubusercontent.com/ooq-kamui/dotfiles/refs/heads/main/nvim/scrpt/dflt/init.vim > init.vim
 --   vim -u init.vim
+--]]
 
 

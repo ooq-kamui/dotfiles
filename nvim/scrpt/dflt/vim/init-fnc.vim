@@ -510,123 +510,144 @@ endfunc
 
 func! Opn_fish_cnf() abort
 
-  let l:path = '~/.config/fish/config.fish'
-  call Opn(l:path)
+  return v:lua.v.Opn_fish_cnf()
+
+  " let l:path = '~/.config/fish/config.fish'
+  " call Opn(l:path)
 endfunc
 
 func! Opn_man(cmd) abort
 
-  call Exe('tab new')
-  call Exe('Man ' . a:cmd)
-  call Exe('only')
+  return v:lua.v.Opn_man(a:cmd)
+
+  " call Exe('tab new')
+  " call Exe('Man ' . a:cmd)
+  " call Exe('only')
 endfunc
 
-let g:opn_memo_path = 'doc/memo.md'
+let g:memo_path = 'doc/memo.md'
 
 func! Opn_memo() abort
 
-  call Opn(g:opn_memo_path)
+  return v:lua.v.Opn_memo()
+
+  " call Opn(g:memo_path)
 endfunc
 
 func! Opn_grep_wk() abort
 
-  let g:grep_wk_path = '~/wrk/tmp/rg.md'
+  return v:lua.v.Opn_grep_wk()
 
-  let l:file_type = getftype(g:grep_wk_path)
-
-  if Is_str__emp(l:file_type)
-
-    call Opn(g:grep_wk_path)
-  else
-    call Opn_tmp_file()
-  endif
+  " let g:grep_wk_path = '~/wrk/tmp/rg.md'
+  " 
+  " let l:file_type = getftype(g:grep_wk_path)
+  " 
+  " if Is_str__emp(l:file_type)
+  " 
+  "   call Opn(g:grep_wk_path)
+  " else
+  "   call Opn_tmp_file()
+  " endif
 endfunc
 
 " opn app
 
 func! Opn_app(path) abort
-  
-  let l:path = a:path
-  
-  if     Is_env__('mac')
 
-    let l:cmd_sys = 'open'
+  return v:lua.v.Opn_app(a:path)
 
-  elseif Is_env__('win64')
-
-    let l:cmd_sys = 'start'
-
-  elseif Is_env__('win32unix')
-
-    let l:cmd_sys = 'start'
-
-  else
-    return
-  endif
-
-  if Is_env__('win64')
-
-    let l:path = Str_path_unix__cnv_win(l:path)
-  endif
-
-  let l:res = system(l:cmd_sys . " '" . l:path . "'")
+  " let l:path = a:path
+  " 
+  " if     Is_env__('mac')
+  " 
+  "   let l:cmd_sys = 'open'
+  " 
+  " elseif Is_env__('win64')
+  " 
+  "   let l:cmd_sys = 'start'
+  " 
+  " elseif Is_env__('win32unix')
+  " 
+  "   let l:cmd_sys = 'start'
+  " 
+  " else
+  "   return
+  " endif
+  " 
+  " if Is_env__('win64')
+  " 
+  "   let l:path = Str_path_unix__cnv_win(l:path)
+  " endif
+  " 
+  " let l:res = system(l:cmd_sys . " '" . l:path . "'")
 endfunc
 
 func! Opn_app_by_cursor_path() abort
   
-  let l:path = Cursor_filepath()
-  call Opn_app(l:path)
+  return v:lua.v.Opn_app_by_cursor_path()
+
+  " let l:path = Cursor_filepath()
+  " call Opn_app(l:path)
 endfunc
 
 func! Opn_app_by_line_path(line_num) abort
 
-  "let l:path = Line_str_by_line_num(a:line_num)
-  let l:path = getline(a:line_num)
+  return v:lua.v.Opn_app_by_line_path(a:line_num)
 
-  let l:path = trim(l:path)
-  call Opn_app(l:path)
+  " let l:path = getline(a:line_num)
+  " let l:path = trim(l:path)
+  " call Opn_app(l:path)
 endfunc
 
 func! Opn_app_by_slctd_str() abort
-  
-  let l:path = Slctd_str()
-  let l:path = trim(l:path)
-  call Opn_app(l:path)
+
+  return v:lua.v.Opn_app_by_slctd_str()
+
+  " let l:path = Slctd_str()
+  " let l:path = trim(l:path)
+  " call Opn_app(l:path)
 endfunc
 
 func! Opn_app_buf_file() abort
 
-  let l:path = Buf_file_path()
-  echo l:path
+  return v:lua.v.Opn_app_buf_file()
 
-  call Opn_app(l:path)
+  " let l:path = Buf_file_path()
+  " " echo l:path
+  " call Opn_app(l:path)
 endfunc
 
-" func! Opn_dir_slf() abort
 func! Opn_buf_file_dir() abort
 
-  let l:dir = Buf_file_dir()
-  "echo l:path
+  return v:lua.v.Opn_buf_file_dir()
 
-  call Opn_app(l:dir)
+  " let l:dir = Buf_file_dir()
+  " "echo l:path
+  " call Opn_app(l:dir)
 endfunc
 
 func! Opn_brwsr()
 
-  let l:url = 'https://www.google.com/'
-  call Opn_app(l:url)
+  return v:lua.v.Opn_brwsr()
+
+  " let l:url = 'https://www.google.com/'
+  " call Opn_app(l:url)
 endfunc
 
 func! Opn_ggl_srch(word) abort
 
-  let l:url = 'https://www.google.com/search?q=' . a:word
-  call Opn_app(l:url)
+  return v:lua.v.Opn_ggl_srch(a:word)
+
+  " let l:url = 'https://www.google.com/search?q=' . a:word
+  " call Opn_app(l:url)
 endfunc
 
 func! Opn_yt(yt_video_id)
 
-  let l:url = 'https://www.youtube.com/watch?v=' . a:yt_video_id
-  call Opn_app(l:url)
+  return v:lua.v.Opn_yt(a:yt_video_id)
+
+  " let l:url = 'https://www.youtube.com/watch?v=' . a:yt_video_id
+  " call Opn_app(l:url)
 endfunc
 
 " tag jmp
@@ -688,10 +709,19 @@ endfunc
 
 " buf
 
+func! Buf_num() abort
+
+  return v:lua.v.Buf_num()
+
+  " return bufnr('%')
+endfunc
+
 func! Buf__quit() abort
 
-  let l:cmd = 'bd'
-  call Exe(l:cmd)
+  return v:lua.v.Buf__quit()
+
+  " let l:cmd = 'bd'
+  " call Exe(l:cmd)
 endfunc
 
 func! Buf__quit_swtch() abort
@@ -707,11 +737,6 @@ func! Buf__quit_swtch() abort
   endif
 endfunc
 
-func! Buf_num() abort
-
-  return bufnr('%')
-endfunc
-
 func! Buf__fltr() abort " use not
 
 endfunc
@@ -720,20 +745,26 @@ endfunc
 
 func! Win__splt_h() abort
 
-  let l:cmd = 'split'
-  call Exe(l:cmd)
+  return v:lua.v.Win__splt_h()
+
+  " let l:cmd = 'split'
+  " call Exe(l:cmd)
 endfunc
 
 func! Win__splt_v() abort
 
-  let l:cmd = 'vsplit'
-  call Exe(l:cmd)
+  return v:lua.v.Win__splt_v()
+
+  " let l:cmd = 'vsplit'
+  " call Exe(l:cmd)
 endfunc
 
 func! Win_splt_cursor__mv_nxt() abort
 
-  let l:n_cmd = "\<c-w>w"
-  call Normal(l:n_cmd)
+  return v:lua.v.Win_splt_cursor__mv_nxt()
+
+  " let l:n_cmd = "\<c-w>w"
+  " call Normal(l:n_cmd)
 endfunc
 
 func! Win_splt__quit() abort
@@ -1762,25 +1793,27 @@ endfunc
 
 func! Cursor_filepath() abort
 
-  if     Is_env__('mac')
+  return v:lua.v.Cursor_filepath()
 
-    let l:str = expand('<cfile>')
-
-  elseif Is_env__('win64')
-
-    let l:str = Cursor_line_str()
-
-  elseif Is_env__('win32unix')
-
-    let l:str = Cursor_line_str()
-
-  else
-    let l:str = Cursor_line_str()
-  endif
-  
-  let l:str = trim(l:str)
-  
-  return l:str
+  " if     Is_env__('mac')
+  " 
+  "   let l:str = expand('<cfile>')
+  " 
+  " elseif Is_env__('win64')
+  " 
+  "   let l:str = Cursor_line_str()
+  " 
+  " elseif Is_env__('win32unix')
+  " 
+  "   let l:str = Cursor_line_str()
+  " 
+  " else
+  "   let l:str = Cursor_line_str()
+  " endif
+  " 
+  " let l:str = trim(l:str)
+  " 
+  " return l:str
 endfunc
 
 " cursor __ ins line
@@ -4140,8 +4173,10 @@ endfunc
 
 func! Is_nvim() abort " alias
 
-  let l:ret = has('nvim')
-  return l:ret
+  return v:lua.v.Is_nvim()
+
+  " let l:ret = has('nvim')
+  " return l:ret
 endfunc
 
 
@@ -4149,9 +4184,11 @@ endfunc
 
 func! Repeat_tmp() abort
 
-  call Cursor__mv_srch('f')
-  call Cursor__mv_d()
-  call Cursor__ins_ynk()
+  return v:lua.v.Repeat_tmp()
+
+  " call Cursor__mv_srch('f')
+  " call Cursor__mv_d()
+  " call Cursor__ins_ynk()
 endfunc
 
 

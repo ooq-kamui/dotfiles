@@ -47,7 +47,10 @@
 -- xxx on
 -- vim.cmd('xxx on')
 
+
+-- 
 -- org setting
+-- 
 
 -- set modelines=0  " CVE-2007-2438
    vim.opt.modelines = 0
@@ -268,19 +271,14 @@
 -- vim.opt.clipboard:append {'unnamedplus'}
 
 -- status line
--- func! Status_line(file_encoding) abort
    function Status_line(file_encoding_flg)
 
---   set statusline=
      vim.opt.statusline = ''
 --   "set statusline+=%m\
 --   vim.opt.statusline:append {'%m\'} -- modify sign
---   set statusline+=%F
      vim.opt.statusline:append('%F') -- file name
---   set statusline+=%=
      vim.opt.statusline:append('%=') -- follow right side
 
---   if a:file_encoding
      if file_encoding_flg then
 
 --     set statusline+=%{&fileencoding}\
@@ -290,22 +288,19 @@
        if vim.bo.bomb then
 --       set statusline+=:bom
          vim.opt.statusline:append(':bom') -- bom
---     endif
        end
---   endif
      end
 
 --   set statusline+=%y\
-     vim.opt.statusline:append('%y\\')   -- file type
+     vim.opt.statusline:append('%y ')   -- file type
 --   set statusline+=%c\
-     vim.opt.statusline:append('%c\\')   -- column num
+     vim.opt.statusline:append('%c ')   -- column num
 --   set statusline+=%p%%\
-     vim.opt.statusline:append('%p%%\\') -- line num %
+     vim.opt.statusline:append('%p%% ') -- line num %
 --   set statusline+=%l/%L
      vim.opt.statusline:append('%l/%L')  -- line num / line num all
--- endfunc
    end
--- call Status_line(v:false)
+   -- Status_line(true)
    Status_line(false)
 
 -- set laststatus=2

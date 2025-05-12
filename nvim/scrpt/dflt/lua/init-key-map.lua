@@ -34,6 +34,7 @@
    vim.keymap.set('n', '/', '<esc>')
    vim.keymap.set('n', '?', '<esc>')
    vim.keymap.set('n', '!', '<esc>')
+   vim.keymap.set('n', "'", '<esc>')
    vim.keymap.set('n', '"', '<esc>')
    vim.keymap.set('n', '`', '<esc>')
    vim.keymap.set('n', '#', '<esc>')
@@ -41,6 +42,9 @@
    vim.keymap.set('n', '%', '<esc>')  -- ?
    vim.keymap.set('n', '&', '<esc>')
    vim.keymap.set('n', '(', '<esc>')
+   vim.keymap.set('n', ')', '<esc>')
+   vim.keymap.set('n', '{', '<esc>')
+   vim.keymap.set('n', '}', '<esc>')
    vim.keymap.set('n', '<', '<esc>')
    vim.keymap.set('n', '>', '<esc>')
    vim.keymap.set('n', '[', '<esc>')
@@ -488,13 +492,16 @@
 -- repeat
 -- vim.keymap.set('n', 'xx', '.')
 
--- macro rec start / end
-   vim.keymap.set('n', '`', 'q')
-   -- and press a
-   -- dev anchor
-   --   expr fn.reg_recording()
+-- macro rec
+   -- vim.keymap.set('n', '`', 'q')
+   vim.keymap.set('n', '`', function()
+     return vim.fn.reg_recording() == '' and 'qa'  or 'q'
+   end, {expr = true})
 -- macro ply
-   vim.keymap.set('n', '@', '1@a')
+   -- vim.keymap.set('n', '@', '1@a')
+   vim.keymap.set('n', '@', function()
+     return vim.fn.reg_recording() == '' and '1@a' or 'q'
+   end, {expr = true})
 
 -- 
 -- edit
@@ -1488,6 +1495,7 @@
 
 -- ins cmplt default
    vim.keymap.set('i', '<leader>f', '<c-p>')
+   vim.keymap.set('i', '<c-a>'    , '<c-p>')
 -- vim.keymap.set('i', '<c-y>', function()
 --   return vim.fn.pumvisible() == 1 and
 --     '<c-e>' or

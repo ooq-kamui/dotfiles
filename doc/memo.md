@@ -4,21 +4,6 @@
 
 ## nvim
 
-macro
-- reg start / end
-  - `` ` ``
-  - case reg_recorging()
-- `@`
-  - ply
-- tst
-  - aaa
-  - aaa
-
-status line
-
-
-repeat fnc
-
 fnc
 - ar idx + 1
 - str ar
@@ -61,6 +46,9 @@ opn ltst
 env init.lua
 - confirm
   - mac ?
+
+
+fzf rgstr order num later
 
 
 ## git
