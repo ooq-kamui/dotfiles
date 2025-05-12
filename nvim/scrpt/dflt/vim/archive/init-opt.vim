@@ -50,7 +50,8 @@ autocmd FileType * set fo-=c fo-=r fo-=o
 set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
 set incsearch
 set hlsearch
-set ignorecase smartcase
+set ignorecase
+set smartcase
 set number
 "set relativenumber
 set list

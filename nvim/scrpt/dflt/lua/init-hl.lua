@@ -13,7 +13,7 @@
 
 local hl__ = vim.api.nvim_set_hl
 
-hl__(0, 'LineNr', {ctermfg = 'darkmagenta'})
+hl__(0, 'LineNr', {ctermfg = 'magenta'})
 
 local grp_ins = vim.api.nvim_create_augroup('InsertHook', {})
 vim.api.nvim_clear_autocmds({group = grp_ins})
@@ -28,7 +28,7 @@ vim.api.nvim_create_autocmd('InsertLeave', {
   pattern  = {'*'},
   group    = grp_ins,
   callback = function()
-    hl__(0, 'LineNr', {ctermfg = 'darkmagenta'})
+    hl__(0, 'LineNr', {ctermfg = 'magenta'})
   end,
 })
 

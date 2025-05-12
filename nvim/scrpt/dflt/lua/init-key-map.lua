@@ -488,6 +488,14 @@
 -- repeat
 -- vim.keymap.set('n', 'xx', '.')
 
+-- macro rec start / end
+   vim.keymap.set('n', '`', 'q')
+   -- and press a
+   -- dev anchor
+   --   expr fn.reg_recording()
+-- macro ply
+   vim.keymap.set('n', '@', '1@a')
+
 -- 
 -- edit
 -- 
@@ -670,7 +678,7 @@
    vim.keymap.set('n', '<c-n>', ':call Cursor__mv_srch("b")<cr>')
 
 -- srch, cursor mv nxt char
--- vim.keymap.set('n', '@', ':call Srch_7_cursor__mv_nxt('f')<cr>')
+-- vim.keymap.set('n', 'xx', ':call Srch_7_cursor__mv_nxt('f')<cr>')
 
 -- srch str set
    vim.keymap.set('n', 'e', ':call Srch_str__cursor_word()<cr>')

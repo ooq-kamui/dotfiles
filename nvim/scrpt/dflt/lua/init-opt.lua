@@ -157,7 +157,8 @@
 -- set hlsearch
    vim.opt.hlsearch = true
 -- set ignorecase smartcase
--- vim.opt.ignorecase = 'smartcase'
+   vim.opt.ignorecase = true
+   vim.opt.smartcase  = true
 -- set number
    vim.opt.number = true
 -- "set relativenumber

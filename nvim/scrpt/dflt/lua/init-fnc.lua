@@ -4,16 +4,10 @@
 
 -- global
 
-g_home_dir        = os.getenv("HOME")
-g_dotfiles_dir    = g_home_dir     .. '/wrk/prj-pri/dotfiles'
-g_vimrc_dir       = g_dotfiles_dir .. '/nvim/scrpt'
-g_vimrc_file_path = g_vimrc_dir    .. '/dflt/init.vim'
-
-g_init_lua_file_path         = g_vimrc_dir .. '/dflt/lua/init.lua'
-g_init_lua_opt_file_path     = g_vimrc_dir .. '/dflt/lua/init-opt.lua'
-g_init_lua_hl_file_path      = g_vimrc_dir .. '/dflt/lua/init-hl.lua'
-g_init_lua_key_map_file_path = g_vimrc_dir .. '/dflt/lua/init-key-map.lua'
-g_init_lua_fnc_file_path     = g_vimrc_dir .. '/dflt/lua/init-fnc.lua'
+g_home_dir         = os.getenv("HOME")
+g_dotfiles_dir     = g_home_dir     .. '/wrk/prj-pri/dotfiles'
+g_init_vim_dir     = g_dotfiles_dir .. '/nvim/scrpt'
+g_init_vim_etc_dir = g_init_vim_dir .. '/dflt/vim'
 
 f = vim.fn
 v = {}
@@ -423,7 +417,8 @@ end
 
 function v.Esc() -- alias
 
-  v.Normal('\\<esc>')
+  -- v.Normal('\\<esc>')
+  vim.cmd([[exe "normal! \<esc>"]])
 end
 
 function v.Cmdline__(str)
@@ -441,7 +436,7 @@ function v.Undo__clr()
   local undo_lvl_tmp = vim.bo.undolevels
 
   vim.opt_local.undolevels = -1
-  vim.cmd([[exe "normal! a \<BS>\<Esc>"]])
+  vim.cmd([[exe "normal! a \<bs>\<esc>"]])
 
   vim.bo.undolevels = undo_lvl_tmp
 end
@@ -466,8 +461,6 @@ function v.Color_name_lst()
   v.Exe(cmd)
 end
 
---[[
-
 -- dir
 
 function v.Pth()
@@ -485,20 +478,18 @@ end
 
 -- dir __ ch slf
 
--- function v.Slf_dir()
 function v.Buf_file_dir()
 
   local dir = f.expand('%:p:h')
   return dir
 end
 
--- function v.Dir__slf()
 function v.Dir__buf_file_dir()
 
   local dir = v.Buf_file_dir()
   v.Dir__(dir)
-  -- v.Exe('cd ' .. dir)
 
+  -- v.Exe('cd ' .. dir)
   -- v.Pth()
 end
 
@@ -545,7 +536,7 @@ function v.Buf_file__mv(file_name_aft)
 end
 
 function v.Buf_file_path()
-  
+
   local path = f.expand('%:p')
   return path
 end
@@ -596,16 +587,12 @@ function v.Buf_file_encode()
   v.Exe('set enc?')
 end
 
---]]
-
 function v.Buf_file_bom()
 
   v.Exe('set bomb?')
 end
 
 -- file tmp
-
---[[
 
 function v.File_tmp__cre() -- alias
 
@@ -617,7 +604,7 @@ end
 
 function v.Is_file_type__(type)
 
-  if &filetype == type then
+  if vim.bo.filetype == type then
     return true
   else
     return false
@@ -640,27 +627,49 @@ function v.Opn_tmp_file()
   v.Opn(path)
 end
 
-function v.Opn_vimrc()
+g_init_vim_file_path         = g_init_vim_dir     .. '/dflt/init.vim'
+g_init_vim_fnc_file_path     = g_init_vim_etc_dir .. '/init-fnc.vim'
 
-  v.Opn(g_vimrc_file_path)
+g_init_lua_file_path         = g_init_vim_dir     .. '/dflt/lua/init.lua'
+g_init_lua_opt_file_path     = g_init_vim_dir     .. '/dflt/lua/init-opt.lua'
+g_init_lua_cmd_file_path     = g_init_vim_dir     .. '/dflt/lua/init-cmd-usr.lua'
+g_init_lua_hl_file_path      = g_init_vim_dir     .. '/dflt/lua/init-hl.lua'
+g_init_lua_key_map_file_path = g_init_vim_dir     .. '/dflt/lua/init-key-map.lua'
+g_init_lua_fnc_file_path     = g_init_vim_dir     .. '/dflt/lua/init-fnc.lua'
 
-  if f.has('nvim') then
-    v.Opn(g_init_lua_file_path        )
-    v.Opn(g_init_lua_key_map_file_path)
-    v.Opn(g_init_lua_lua_file_path    )
-  end
+function v.Opn_init_vim()
 
-  if     v.Is_env__('linux')     then    -- c9 s9
+  -- vim
+  v.Opn(g_init_vim_file_path        )
+  v.Opn(g_init_vim_fnc_file_path    )
 
-    local vimrc_c9_file_path      = g_vimrc_dir .. '/c9/init.vim'
+  -- lua
+  v.Opn(g_init_lua_fnc_file_path    )
+
+  if     v.Is_env__('linux')     then -- c9, s9
+
+    local vimrc_c9_file_path      = g_init_vim_dir .. '/c9/init.vim'
     -- v.Opn(vimrc_c9_file_path)
 
   elseif v.Is_env__('win32unix') then -- gitbash
 
-    local vimrc_gitbash_file_path = g_vimrc_dir .. '/gitbash/init.vim'
+    local vimrc_gitbash_file_path = g_init_vim_dir .. '/gitbash/init.vim'
     v.Opn(vimrc_gitbash_file_path)
   end
 end
+
+function v.Opn_init_vim_l()
+
+  v.Opn(g_init_lua_opt_file_path    )
+  v.Opn(g_init_lua_cmd_file_path    )
+
+  v.Opn(g_init_lua_file_path        )
+
+  v.Opn(g_init_lua_key_map_file_path)
+  v.Opn(g_init_lua_hl_file_path     )
+end
+
+--[[
 
 function v.Opn_fish_cnf()
 
@@ -4121,6 +4130,8 @@ end
 
 -- env
 
+--]]
+
 function v.Is_env__(env) -- alias
 
   -- env : 'mac', 'win64', 'win32', 'wsl', 'linux'
@@ -4134,6 +4145,8 @@ function v.Is_env__(env) -- alias
 
   return ret
 end
+
+--[[
 
 function v.Is_nvim() -- alias
 

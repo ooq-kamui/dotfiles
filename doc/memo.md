@@ -4,13 +4,20 @@
 
 ## nvim
 
-srch
-- mode v, n e
-  - tst
+macro
+- reg start / end
+  - `` ` ``
+  - case reg_recorging()
+- `@`
+  - ply
+- tst
+  - aaa
+  - aaa
 
-- smart case
-  - tst Srch
+status line
 
+
+repeat fnc
 
 fnc
 - ar idx + 1
@@ -20,7 +27,7 @@ fnc
 
 - &var
   - filetype
-  - etc
+  - etc wip:
 
 - setlocal
   - vim.opt_local
@@ -56,34 +63,6 @@ env init.lua
   - mac ?
 
 
-memory
-- `` ` ``
-- `@`
-
-
-init setting
-
-
-## ofc
-
-nvim qt instl
-- by scoop
-
-
-## vim
-
-vimrc mv
-- ln
-  - c9
-- confirm
-  - mmv
-
-
-## aws
-
-confirm
-
-
 ## git
 
 merge way 3 off
@@ -97,6 +76,11 @@ merge way 3 off
 
 v box paste line down
 - case emp: paste skip
+
+
+## aws
+
+confirm
 
 
 ## ooq dns migration

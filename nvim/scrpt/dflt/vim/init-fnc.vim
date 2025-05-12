@@ -2,8 +2,6 @@
 " fnc
 " 
 
-lua require('init-fnc')
-
 " 
 " primitive
 " 
@@ -291,127 +289,155 @@ endfunc
 
 func! Pth() abort
 
-  call Exe('pwd')
+  return v:lua.v.Pth()
+
+  " call Exe('pwd')
 endfunc
 
 " dir __ ch
 
 func! Dir__(dir) abort
 
-  call Exe('cd ' . a:dir)
-  call Pth()
+  return v:lua.v.Dir__(a:dir)
+
+  " call Exe('cd ' . a:dir)
+  " call Pth()
 endfunc
 
 " dir __ ch slf
 
-" func! Slf_dir() abort
 func! Buf_file_dir() abort
 
-  let l:dir = expand('%:p:h')
-  return l:dir
+  return v:lua.v.Buf_file_dir()
+
+  " let l:dir = expand('%:p:h')
+  " return l:dir
 endfunc
 
-" func! Dir__slf() abort
 func! Dir__buf_file_dir() abort
 
-  let l:dir = Buf_file_dir()
-  call Dir__(l:dir)
-  " call Exe('cd ' . l:dir)
+  return v:lua.v.Dir__buf_file_dir()
 
-  " call Pth()
+  " let l:dir = Buf_file_dir()
+  " call Dir__(l:dir)
+  " 
+  " " call Exe('cd ' . l:dir)
+  " " call Pth()
 endfunc
 
 " dir __ ch parent
 
 func! Dir__parent(lvl) abort
 
-  let l:cnt = 1
-  while l:cnt <= a:lvl
+  return v:lua.v.Dir__parent(a:lvl)
 
-    call Exe('cd ..')
-
-    let l:cnt += 1
-  endwhile
-
-  call Pth()
+  " let l:cnt = 1
+  " while l:cnt <= a:lvl
+  " 
+  "   call Exe('cd ..')
+  " 
+  "   let l:cnt += 1
+  " endwhile
+  " 
+  " call Pth()
 endfunc
 
 " file ( buf file )
 
 func! Save() abort
 
-  call Exe('w')
+  return v:lua.v.Save()
+
+  " call Exe('w')
 endfunc
 
 func! Buf_file__dpl() abort
 
-  let l:sys_cmd = 'dpl ' . Buf_file_path()
-  call Sys_cmd(l:sys_cmd)
+  return v:lua.v.Buf_file__dpl()
+
+  " let l:sys_cmd = 'dpl ' . Buf_file_path()
+  " call Sys_cmd(l:sys_cmd)
 endfunc
 
 func! Buf_file__mv(file_name_aft) abort
 
-  let l:file_path_bfr = Buf_file_path()
+  return v:lua.v.Buf_file__mv(a:file_name_aft)
 
-  let l:sys_cmd = 'str_mv_f ' . l:file_path_bfr . ' ' . a:file_name_aft
-  let l:file_path_aft = Sys_cmd(l:sys_cmd)
-
-  let l:sys_cmd = 'mv ' . l:file_path_bfr . ' ' . l:file_path_aft
-  call Sys_cmd(l:sys_cmd)
-
-  let l:cmd = 'file ' . l:file_path_aft " save file_path ch
-  call Exe(l:cmd)
+  " let l:file_path_bfr = Buf_file_path()
+  " 
+  " let l:sys_cmd = 'str_mv_f ' . l:file_path_bfr . ' ' . a:file_name_aft
+  " let l:file_path_aft = Sys_cmd(l:sys_cmd)
+  " 
+  " let l:sys_cmd = 'mv ' . l:file_path_bfr . ' ' . l:file_path_aft
+  " call Sys_cmd(l:sys_cmd)
+  " 
+  " let l:cmd = 'file ' . l:file_path_aft " save file_path ch
+  " call Exe(l:cmd)
 endfunc
 
 func! Buf_file_path() abort
-  
-  let l:path = expand('%:p')
-  return l:path
+
+  return v:lua.v.Buf_file_path()
+
+  " let l:path = expand('%:p')
+  " return l:path
 endfunc
 
 func! Rgstr__clr() abort
 
-  let @0 = ''
+  return v:lua.v.Rgstr__clr()
+
+  " let @0 = ''
 endfunc
 
 func! File_txt(file_path) abort
 
-  if ! filereadable(a:file_path)
-    return
-  endif
+  return v:lua.v.File_txt(a:file_path)
 
-  let l:cmd = 'cat ' . a:file_path
-
-  let l:pth_lst_txt = Sys_cmd(l:cmd)
-  return l:pth_lst_txt
+  " if ! filereadable(a:file_path)
+  "   return
+  " endif
+  " 
+  " let l:cmd = 'cat ' . a:file_path
+  " 
+  " let l:pth_lst_txt = Sys_cmd(l:cmd)
+  " return l:pth_lst_txt
 endfunc
 
 func! File_line_ar(file_path) abort
 
-  let l:file_txt = File_txt(a:file_path)
-  let l:file_line_ar = Txt_to_ar(file_txt)
-  return l:file_line_ar
+  return v:lua.v.File_line_ar(a:file_path)
+
+  " let l:file_txt = File_txt(a:file_path)
+  " let l:file_line_ar = Txt_to_ar(file_txt)
+  " return l:file_line_ar
 endfunc
 
 " load re
 
 func! Load_re() abort
 
-  call Exe('e ')
+  return v:lua.v.Load_re()
+
+  " call Exe('e ')
 endfunc
 
 " load re  -  encode sjis
 
 func! Load_re__sjis() abort
 
-  call Exe('e ++enc=sjis')
+  return v:lua.v.Load_re__sjis()
+
+  " call Exe('e ++enc=sjis')
 endfunc
 
 " encode
 
 func! Buf_file_encode() abort
 
-  call Exe('set enc?')
+  return v:lua.v.Buf_file_encode()
+
+  " call Exe('set enc?')
 endfunc
 
 func! Buf_file_bom() abort
@@ -425,19 +451,23 @@ endfunc
 
 func! File_tmp__cre() abort " alias
 
-  let l:tmp_path = system('mktemp ')
-  return l:tmp_path
+  return v:lua.v.File_tmp__cre()
+
+  " let l:tmp_path = system('mktemp ')
+  " return l:tmp_path
 endfunc
 
 " file cnd
 
 func! Is_file_type__(type) abort
 
-  if &filetype == a:type
-    return v:true
-  else
-    return v:false
-  endif
+  return v:lua.v.Is_file_type__(a:type)
+
+  " if &filetype == a:type
+  "   return v:true
+  " else
+  "   return v:false
+  " endif
 endfunc
 
 " opn xxx
@@ -451,53 +481,31 @@ endfunc
 
 func! Opn_tmp_file() abort
 
-  let l:path = File_tmp__cre()
-  echo l:path
-  call Opn(l:path)
+  return v:lua.v.Opn_tmp_file()
+
+  " let l:path = File_tmp__cre()
+  " echo l:path
+  " call Opn(l:path)
 endfunc
 
 let g:init_vim_file_path         = g:init_vim_dir     . '/dflt/init.vim'
-let g:init_vim_fnc_file_path     = g:init_vim_mdl_dir . '/init-fnc.vim'
-let g:init_vim_fnc_rpl_file_path = g:init_vim_mdl_dir . '/init-fnc-rpl.vim'
+let g:init_vim_fnc_file_path     = g:init_vim_etc_dir . '/init-fnc.vim'
 
 let g:init_lua_file_path         = g:init_vim_dir . '/dflt/lua/init.lua'
 let g:init_lua_opt_file_path     = g:init_vim_dir . '/dflt/lua/init-opt.lua'
-let g:init_lua_cmd_file_path     = g:init_vim_dir . '/dflt/lua/init-cmd.lua'
+let g:init_lua_cmd_file_path     = g:init_vim_dir . '/dflt/lua/init-cmd-usr.lua'
 let g:init_lua_hl_file_path      = g:init_vim_dir . '/dflt/lua/init-hl.lua'
 let g:init_lua_key_map_file_path = g:init_vim_dir . '/dflt/lua/init-key-map.lua'
 let g:init_lua_fnc_file_path     = g:init_vim_dir . '/dflt/lua/init-fnc.lua'
 
 func! Opn_init_vim() abort
 
-  " vim
-  call Opn(g:init_vim_file_path        )
-  call Opn(g:init_vim_fnc_file_path    )
-  call Opn(g:init_vim_fnc_rpl_file_path)
-
-  " lua
-  call Opn(g:init_lua_fnc_file_path    )
-
-  if     Is_env__('linux')     " c9, s9
-
-    let l:vimrc_c9_file_path      = g:init_vim_dir . '/c9/init.vim'
-    " call Opn(l:vimrc_c9_file_path)
-
-  elseif Is_env__('win32unix') " gitbash
-
-    let l:vimrc_gitbash_file_path = g:init_vim_dir . '/gitbash/init.vim'
-    call Opn(l:vimrc_gitbash_file_path)
-  endif
+  return v:lua.v.Opn_init_vim()
 endfunc
 
 func! Opn_init_vim_l() abort
 
-  call Opn(g:init_lua_opt_file_path    )
-  call Opn(g:init_lua_cmd_file_path    )
-
-  call Opn(g:init_lua_file_path    )
-
-  call Opn(g:init_lua_key_map_file_path)
-  call Opn(g:init_lua_hl_file_path     )
+  return v:lua.v.Opn_init_vim_l()
 endfunc
 
 func! Opn_fish_cnf() abort
@@ -4116,16 +4124,18 @@ endfunc
 
 func! Is_env__(env) abort " alias
 
-  " a:env : 'mac', 'win64', 'win32', 'wsl', 'linux'
+  return v:lua.v.Is_env__(a:env)
 
-  let l:ret = has(a:env)
-
-  if a:env != 'mac'
-    " echo a:env . ' : ' . l:ret
-    " echo hostname()
-  endif
-
-  return l:ret
+  " " a:env : 'mac', 'win64', 'win32', 'wsl', 'linux'
+  " 
+  " let l:ret = has(a:env)
+  " 
+  " if a:env != 'mac'
+  "   " echo a:env . ' : ' . l:ret
+  "   " echo hostname()
+  " endif
+  " 
+  " return l:ret
 endfunc
 
 func! Is_nvim() abort " alias

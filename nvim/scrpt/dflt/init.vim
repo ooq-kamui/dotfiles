@@ -6,18 +6,20 @@
 
 let g:dotfiles_dir       = '~/wrk/prj-pri/dotfiles'
 let g:init_vim_dir       = g:dotfiles_dir . '/nvim/scrpt'
-let g:init_vim_mdl_dir   = g:init_vim_dir . '/dflt/vim'
+let g:init_vim_etc_dir   = g:init_vim_dir . '/dflt/vim'
 
 " fnc
-source `=g:init_vim_mdl_dir . '/init-fnc.vim'`
+lua require('init-fnc')
+source `=g:init_vim_etc_dir . '/init-fnc.vim'`
+
 " fnc tst
-source `=g:init_vim_mdl_dir . '/init-fnc-tst.vim'`
+source `=g:init_vim_etc_dir . '/init-fnc-tst.vim'`
 
 " plg
-source `=g:init_vim_mdl_dir . '/init-plg.vim'`
+source `=g:init_vim_etc_dir . '/init-plg.vim'`
 
 " plg fnc
-source `=g:init_vim_mdl_dir . '/init-plg-fzf.vim'`
+source `=g:init_vim_etc_dir . '/init-plg-fzf.vim'`
 
 
 " lua
