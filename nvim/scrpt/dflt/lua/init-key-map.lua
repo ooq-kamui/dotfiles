@@ -696,7 +696,7 @@
 -- vim.keymap.set('n', 'xx', ':call Srch_char_bracket('f')<cr>')
 
 -- srch markdown h
-   vim.keymap.set('n', 'M', ':call Srch_str__markdown_h()<cr>')
+   vim.keymap.set('n', 'M', ':call Srch_str__h_swtch()<cr>')
 
 -- srch str history ( fzf )
    vim.keymap.set('n', '<leader>n', ':FzfSrchHstry<cr>')

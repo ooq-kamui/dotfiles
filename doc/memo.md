@@ -12,7 +12,9 @@ fnc
 
 - &var
   - filetype
-  - etc wip:
+    - vim.bo.filetype
+  - expandtab
+    - vim.??.filetype
 
 - setlocal
   - vim.opt_local
@@ -49,7 +51,7 @@ is env init.lua
 
 
 fzf
-- win err
+- fzf rg, case win, err
 - rgstr lst order num later
 
 
@@ -64,8 +66,19 @@ merge way 3 off
 
 ## vim
 
+nnoremap M  case filetype , lua vim func
+
+`<` cursor mv block out
+
+
 v box paste line down
 - case emp: paste skip
+
+
+## etc
+
+mobile monitor
+- research
 
 
 ## aws

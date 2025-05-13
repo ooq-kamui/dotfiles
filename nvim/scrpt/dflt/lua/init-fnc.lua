@@ -989,8 +989,6 @@ end
 
 -- cursor col
 
---[[
-
 function v.Cursor_col_num()
 
   return f.col('.')
@@ -1041,6 +1039,8 @@ function v.Is_cursor_col__line_top0()
     return false
   end
 end
+
+--[[
 
 function v.Is_cursor_col__line_top1()
 
@@ -2028,11 +2028,15 @@ function v.Cursor_line_num() -- alias
   return f.line('.')
 end
 
+--]]
+
 function v.Cursor_line_end_col() -- alias
 
   local col = f.col('$')
   return col
 end
+
+--[[
 
 -- cursor line str
 
@@ -3878,11 +3882,35 @@ function v.Srch_char_bracket(drct)
   v.Srch_char(drct, char_bracket)
 end
 
-function v.Srch_str__markdown_h() -- range
+--]]
+
+function v.Srch_str__h_swtch()
+
+  if     vim.bo.filetype == 'markdown' then
+    v.Srch_str__markdown_h()
+
+  elseif vim.bo.filetype == 'vim' then
+    v.Srch_str__fnc()
+
+  elseif vim.bo.filetype == 'lua' then
+    v.Srch_str__fnc()
+  else
+    v.Srch_str__markdown_h()
+  end
+end
+
+function v.Srch_str__markdown_h()
 
   -- let @/ = '^#\\+ '
   f.setreg('/', '^#\\+ ')
 end
+
+function v.Srch_str__fnc()
+
+  f.setreg('/', '^func')
+end
+
+--[[
 
 -- srch cnd
 

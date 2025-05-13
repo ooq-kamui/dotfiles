@@ -862,53 +862,65 @@ endfunc
 
 func! Cursor_col_num() abort
 
-  return col('.')
+  return v:lua.v.Cursor_col_num()
+
+  " return col('.')
 endfunc
 
 func! Cursor_col_idx() abort
 
-  let l:idx = col('.') - 1
-  return l:idx
+  return v:lua.v.Cursor_col_idx()
+
+  " let l:idx = col('.') - 1
+  " return l:idx
 endfunc
 
 " cursor col cnd
 
 func! Is_cursor_col__line_end() abort
 
-  if Cursor_col_num() == Cursor_line_end_col()
+  return v:lua.v.Is_cursor_col__line_end()
 
-    return v:true
-  else
-    return v:false
-  endif
+  " if Cursor_col_num() == Cursor_line_end_col()
+  " 
+  "   return v:true
+  " else
+  "   return v:false
+  " endif
 endfunc
 
 func! Is_cursor_col__line_end_ovr() range abort
 
-  if Cursor_col_num() >= Cursor_line_end_col()
-    return v:true
-  else
-    return v:false
-  endif
+  return v:lua.v.Is_cursor_col__line_end_ovr()
+
+  " if Cursor_col_num() >= Cursor_line_end_col()
+  "   return v:true
+  " else
+  "   return v:false
+  " endif
 endfunc
 
 func! Is_cursor_col__line_end_inr() abort
 
-  if Cursor_col_num() == Cursor_line_end_col() - 1
+  return v:lua.v.Is_cursor_col__line_end_inr()
 
-    return v:true
-  else
-    return v:false
-  endif
+  " if Cursor_col_num() == Cursor_line_end_col() - 1
+  " 
+  "   return v:true
+  " else
+  "   return v:false
+  " endif
 endfunc
 
 func! Is_cursor_col__line_top0() abort
 
-  if Cursor_col_num() == 1
-    return v:true
-  else
-    return v:false
-  endif
+  return v:lua.v.Is_cursor_col__line_top0()
+
+  " if Cursor_col_num() == 1
+  "   return v:true
+  " else
+  "   return v:false
+  " endif
 endfunc
 
 func! Is_cursor_col__line_top1() abort
@@ -1880,8 +1892,10 @@ endfunc
 
 func! Cursor_line_end_col() abort " alias
 
-  let l:col = col('$')
-  return l:col
+  return v:lua.v.Cursor_line_end_col()
+
+  " let l:col = col('$')
+  " return l:col
 endfunc
 
 " cursor line str
@@ -3691,9 +3705,23 @@ func! Srch_char_bracket(drct) abort
   call Srch_char(a:drct, l:char_bracket)
 endfunc
 
-func! Srch_str__markdown_h() range abort
+func! Srch_str__h_swtch() abort
 
-  let @/ = '^#\+ '
+  return v:lua.v.Srch_str__h_swtch()
+endfunc
+
+func! Srch_str__markdown_h() abort
+
+  return v:lua.v.Srch_str__markdown_h()
+
+  " let @/ = '^#\+ '
+endfunc
+
+func! Srch_str__fnc() abort
+
+  return v:lua.v.Srch_str__fnc()
+
+  " let @/ = '^func'
 endfunc
 
 " srch cnd
