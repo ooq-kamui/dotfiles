@@ -5,19 +5,22 @@
 ## nvim
 
 fnc
-- ar idx + 1
-- str ar
-  - [:] > ??
-  - str[idx] ( = char ) > ?
+- setlocal
+  - vim.opt_local
 
 - &var
   - filetype
     - vim.bo.filetype
   - expandtab
     - vim.??.filetype
+      - ggl
 
-- setlocal
-  - vim.opt_local
+- ar
+  - idx + 1
+
+- str ar idx
+  - [:] > ??
+  - str[idx] ( = char ) > ?
 
 - range, firstline, lastline
 
@@ -51,8 +54,10 @@ is env init.lua
 
 
 fzf
-- fzf rg, case win, err
-- rgstr lst order num later
+- fzf rg,
+  - case win, err
+- rgstr lst
+  - order num later
 
 
 ## git
