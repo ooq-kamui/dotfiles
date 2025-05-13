@@ -958,11 +958,13 @@ endfunc
 
 func! Cursor__mv_by_line_num(line_num) abort
 
-  if ! Is_str__num(a:line_num)
-    return
-  endif
+  return v:lua.v.Cursor__mv_by_line_num(a:line_num)
 
-  call Normal(a:line_num . 'G')
+  " if ! Is_str__num(a:line_num)
+  "   return
+  " endif
+  " 
+  " call Normal(a:line_num . 'G')
 endfunc
 
 func! Cursor__mv_by_line_col(line_num, col) abort
@@ -981,17 +983,21 @@ func! Cursor__mv_by_line_info(line_info) abort
 endfunc
 
 func! Cursor__mv_by_pos(pos) abort
+
+  return v:lua.v.Cursor__mv_by_pos(a:pos)
   
-  call setpos('.', a:pos)
+  " call setpos('.', a:pos)
 endfunc
 
 func! Cursor__mv_line_top0() abort
-  
-  if Is_cursor_line_str__emp()
-    return
-  endif
 
-  call Normal('0')
+  return v:lua.v.Cursor__mv_line_top0()
+
+  " if Is_cursor_line_str__emp()
+  "   return
+  " endif
+  " 
+  " call Normal('0')
 endfunc
 
 func! Cursor__mv_line_top1() abort
@@ -1015,12 +1021,16 @@ endfunc
 
 func! Cursor__mv_char_f() abort
 
-  call Normal('l')
+  return v:lua.v.Cursor__mv_char_f()
+
+  " call Normal('l')
 endfunc
 
 func! Cursor__mv_char_b() abort
 
-  call Normal('h')
+  return v:lua.v.Cursor__mv_char_b()
+
+  " call Normal('h')
 endfunc
 
 func! Cursor__mv_word_f() abort
@@ -1324,9 +1334,11 @@ endfunc
 
 func! Cursor__ins(str) abort
 
-  let l:cmd = 'i' . a:str
-  call Normal(l:cmd)
-  call Cursor__mv_char_f()
+  return v:lua.v.Cursor__ins(a:str)
+
+  " let l:cmd = 'i' . a:str
+  " call Normal(l:cmd)
+  " call Cursor__mv_char_f()
 endfunc
 
 func! Cursor__ins_with_cursor_fix(str) abort " todo dev
@@ -1337,7 +1349,9 @@ endfunc
 
 func! Cursor__ins_ynk() abort
 
-  call Normal('"aP')
+  return v:lua.v.Cursor__ins_ynk()
+
+  " call Normal('"aP')
 endfunc
 
 func! Cursor__ins_clp() abort
@@ -1908,13 +1922,17 @@ endfunc
 
 func! Cursor_line_str() abort
 
-  return getline('.')
+  return v:lua.v.Cursor_line_str()
+
+  " return getline('.')
 endfunc
 
 func! Cursor_line_str_len() abort
 
-  let l:len = Cursor_line_end_col() - 1
-  return l:len
+  return v:lua.v.Cursor_line_str_len()
+
+  " let l:len = Cursor_line_end_col() - 1
+  " return l:len
 endfunc
 
 func! Cursor_line_str_side_l() abort
@@ -2152,12 +2170,14 @@ func! Is_cursor_line_num__file_edge() abort
 endfunc
 
 func! Is_cursor_line_str__emp() abort
-  
-  if Cursor_line_end_col() == 1
-    return v:true
-  else
-    return v:false
-  endif
+
+  return v:lua.v.Is_cursor_line_str__emp()
+
+  " if Cursor_line_end_col() == 1
+  "   return v:true
+  " else
+  "   return v:false
+  " endif
 endfunc
 
 func! Is_cursor_line_str__space() abort
@@ -3466,12 +3486,16 @@ endfunc
 
 func! Ynk__clr() abort
 
-  let @a = ''
+  return v:lua.v.Ynk__clr()
+
+  " let @a = ''
 endfunc
 
 func! Ynk__(str) abort
 
-  let @a = a:str
+  return v:lua.v.Ynk__(a:str)
+
+  " let @a = a:str
 endfunc
 
 func! Ynk__line() abort
@@ -3533,13 +3557,15 @@ endfunc
 
 func! Clp__ynk() abort
 
-  if Is_env__('linux')
+  return v:lua.v.Clp__ynk()
 
-    "call C9clp__ynk() " off
-
-  else
-    let @+ = @a
-  endif
+  " if Is_env__('linux')
+  " 
+  "   "call C9clp__ynk() " off
+  " 
+  " else
+  "   let @+ = @a
+  " endif
 endfunc
 
 " 

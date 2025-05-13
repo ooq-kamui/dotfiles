@@ -2,12 +2,6 @@
 # dotfiles
 
 
-## etc
-
-mobile monitor
-- research
-
-
 ## nvim
 
 fzf
@@ -32,6 +26,9 @@ fnc
   - tst
 
 
+init.vim , source init.vim
+
+
 hl
 - file type def pos
   - confirm
@@ -54,6 +51,9 @@ opn file closed ltst
 is env init.lua
 - confirm
   - mac ?
+
+
+nnoremap S , case srch first
 
 
 ## git

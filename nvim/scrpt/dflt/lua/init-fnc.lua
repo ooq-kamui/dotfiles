@@ -1075,8 +1075,6 @@ function v.Cursor__mv_by_col_num(col_num)
   v.Cursor__mv_by_line_col(line_num, col_num)
 end
 
---[[
-
 function v.Cursor__mv_by_line_num(line_num)
 
   if not v.Is_str__num(line_num) then
@@ -1085,8 +1083,6 @@ function v.Cursor__mv_by_line_num(line_num)
 
   v.Normal(line_num .. 'G')
 end
-
---]]
 
 function v.Cursor__mv_by_line_col(line_num, col)
 
@@ -1103,19 +1099,23 @@ function v.Cursor__mv_by_line_info(line_info)
   v.Cursor__mv_by_line_num(line_num)
 end
 
+--]]
+
 function v.Cursor__mv_by_pos(pos)
   
   f.setpos('.', pos)
 end
 
 function v.Cursor__mv_line_top0()
-  
+
   if v.Is_cursor_line_str__emp() then
     return
   end
 
   v.Normal('0')
 end
+
+--[[
 
 function v.Cursor__mv_line_top1()
 
@@ -1136,6 +1136,8 @@ function v.Cursor__mv_line_end()
   end
 end
 
+--]]
+
 function v.Cursor__mv_char_f()
 
   v.Normal('l')
@@ -1145,6 +1147,8 @@ function v.Cursor__mv_char_b()
 
   v.Normal('h')
 end
+
+--[[
 
 function v.Cursor__mv_word_f()
 
@@ -1447,6 +1451,8 @@ end
 
 -- cursor __ ins
 
+--]]
+
 function v.Cursor__ins(str)
 
   local cmd = 'i' .. str
@@ -1464,6 +1470,8 @@ function v.Cursor__ins_ynk()
 
   v.Normal('"aP')
 end
+
+--[[
 
 function v.Cursor__ins_clp()
 
@@ -2044,8 +2052,6 @@ function v.Cursor_line_end_col() -- alias
   return col
 end
 
---[[
-
 -- cursor line str
 
 function v.Cursor_line_str()
@@ -2058,6 +2064,8 @@ function v.Cursor_line_str_len()
   local len = v.Cursor_line_end_col() - 1
   return len
 end
+
+--[[
 
 function v.Cursor_line_str_side_l()
 
@@ -2077,6 +2085,8 @@ function v.Cursor_line_str_side_r_with_c()
   return line_r
 end
 
+--]]
+
 -- cursor line str end
 
 -- cursor line str __
@@ -2086,6 +2096,8 @@ function v.Cursor_line_top0__ins(str)
   v.Cursor__mv_line_top0()
   v.Cursor__ins(str)
 end
+
+--[[
 
 function v.Cursor_line_top1__ins(str)
 
@@ -2292,14 +2304,18 @@ function v.Is_cursor_line_num__file_edge()
   return ret
 end
 
+--]]
+
 function v.Is_cursor_line_str__emp()
-  
+
   if v.Cursor_line_end_col() == 1 then
     return true
   else
     return false
   end
 end
+
+--[[
 
 function v.Is_cursor_line_str__space()
   
@@ -3626,6 +3642,8 @@ end
 -- ynk
 -- 
 
+--]]
+
 function v.Ynk__clr()
 
   f.setreg('a', '')
@@ -3635,6 +3653,8 @@ function v.Ynk__(str)
 
   f.setreg('a', str)
 end
+
+--[[
 
 function v.Ynk__line()
 
@@ -3696,17 +3716,19 @@ end
 
 -- clp
 
+--]]
+
 function v.Clp__ynk()
 
   if v.Is_env__('linux') then
-
-    --v.C9clp__ynk() -- off
-
+    -- v.C9clp__ynk() -- off
   else
     -- let @+ = @a
     f.setreg('+', f.getreg('a'))
   end
 end
+
+--[[
 
 -- 
 -- srch

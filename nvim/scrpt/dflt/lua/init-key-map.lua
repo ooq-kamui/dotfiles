@@ -587,6 +587,12 @@
        ':call Cursor__ins_cmnt_1("^")<cr>'
    end, {expr = true})
 
+   vim.keymap.set('n', '"', function()
+     return vim.fn.Is_file_type__('markdown') and
+       ':call Cursor__ins_markdown_h()<cr>' or
+       ':call Cursor__ins_cmnt_1("^")<cr>'
+   end, {expr = true})
+
 -- ins __ line indnt space
    vim.keymap.set('n', 'V', ':call Cursor_d__ins_line_space()<cr>')
 
@@ -1160,6 +1166,7 @@
 -- line __ ins comment 1
    vim.keymap.set('v', '!', ':call V_ins_cmnt_1()<cr>')
    vim.keymap.set('v', '1', ':call V_ins_cmnt_1()<cr>')
+   vim.keymap.set('v', '"', ':call V_ins_cmnt_1()<cr>')
 
 -- line mlt __ ins comment
    vim.keymap.set('v', '&', ':call V_ins_cmnt_mlt()<cr>')
