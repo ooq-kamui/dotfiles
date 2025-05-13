@@ -69,7 +69,7 @@
 -- command! -nargs=* InsSysCmd call Cursor__ins_sys_cmd(<q-args>)
    vim.api.nvim_create_user_command('InsSysCmd',
      function(opts)
-       vim.fn.Cursor__ins_sys_cmd(table.unpack(opts.fargs))
+       vim.fn.Cursor__ins_sys_cmd(opts.fargs[1])
      end,
      {nargs = '*'}
    )
@@ -78,7 +78,7 @@
    -- dev anchor
    vim.api.nvim_create_user_command('Rpl',
      function(opts)
-       vim.fn.Slctd_line__rpl(table.unpack(opts.fargs))
+       vim.fn.Slctd_line__rpl(opts.fargs[1], opts.fargs[2])
      end,
      {nargs = '*'}
    )
@@ -87,7 +87,7 @@
    -- dev anchor
    vim.api.nvim_create_user_command('VBoxRpl',
      function(opts)
-       vim.fn.Slctd_box__rpl(table.unpack(opts.fargs))
+       vim.fn.Slctd_box__rpl(opts.fargs[1], opts.fargs[2])
      end,
      {nargs = '*'}
    )
@@ -95,7 +95,8 @@
 -- command! -nargs=* -complete=file Opn call Opn(<q-args>)
    vim.api.nvim_create_user_command('Opn',
      function(opts)
-       vim.fn.Opn(table.unpack(opts.fargs))
+       -- vim.fn.Opn(table.unpack(opts.fargs))
+       vim.fn.Opn(opts.fargs[1])
      end,
      {nargs = '*', complete = 'file'}
    )
@@ -103,7 +104,8 @@
 -- command! -nargs=* OpnMan call Opn_man(<q-args>)
    vim.api.nvim_create_user_command('OpnMan',
      function(opts)
-       vim.fn.Opn_man(table.unpack(opts.fargs))
+       -- vim.fn.Opn_man(table.unpack(opts.fargs))
+       vim.fn.Opn_man(opts.fargs[1])
      end,
      {nargs = '*'}
    )
@@ -111,7 +113,7 @@
 -- "command! -nargs=* OpnApp call Opn_app(<f-args>)
    vim.api.nvim_create_user_command('OpnApp',
      function(opts)
-       vim.fn.Opn_app(table.unpack(opts.fargs))
+       vim.fn.Opn_app(opts.fargs[1])
      end,
      {nargs = '*'}
    )
