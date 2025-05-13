@@ -1060,6 +1060,8 @@ function v.Is_cursor_col__line_top1()
   end
 end
 
+--]]
+
 -- cursor __ mv
 
 function v.Cursor__mv_by_col_num(col_num)
@@ -1073,6 +1075,8 @@ function v.Cursor__mv_by_col_num(col_num)
   v.Cursor__mv_by_line_col(line_num, col_num)
 end
 
+--[[
+
 function v.Cursor__mv_by_line_num(line_num)
 
   if not v.Is_str__num(line_num) then
@@ -1082,12 +1086,16 @@ function v.Cursor__mv_by_line_num(line_num)
   v.Normal(line_num .. 'G')
 end
 
+--]]
+
 function v.Cursor__mv_by_line_col(line_num, col)
 
   local line_num = (line_num == vim.v.null) and v.Cursor_line_num() or line_num
-  
+
   f.cursor(line_num, col)
 end
+
+--[[
 
 function v.Cursor__mv_by_line_info(line_info)
   
@@ -1604,10 +1612,10 @@ function v.Cursor__ins_cmnt_mlt_by_pos(pos)
     dflt       = {'/*'   ,  ' */'},
   }
 
-  local str = f.get(cmnt_mlt_def, &filetype, cmnt_mlt_def['dflt'])
+  local str = f.get(cmnt_mlt_def, vim.bo.filetype, cmnt_mlt_def['dflt'])
 
-  --if f.has_key(cmnt_mlt_def, &filetype) then
-  --  local filetype = &filetype
+  --if f.has_key(cmnt_mlt_def, vim.bo.filetype) then
+  --  local filetype = vim.bo.filetype
   --else
   --  local filetype = 'dflt'
   --end
@@ -2023,12 +2031,12 @@ end
 
 -- cursor line  -  todo refactoring
 
+--]]
+
 function v.Cursor_line_num() -- alias
 
   return f.line('.')
 end
-
---]]
 
 function v.Cursor_line_end_col() -- alias
 
@@ -2342,7 +2350,7 @@ function v.Cursor_line_indnt__add(col)
 
   v.Normal('0')
 
-  if &expandtab then -- 1:'expandtab', 0:'noexpandtab'
+  if vim.bo.expandtab == 1 then -- 1:'expandtab', 0:'noexpandtab'
     local char = ' '
     col = col
   else

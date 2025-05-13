@@ -945,13 +945,15 @@ endfunc
 
 func! Cursor__mv_by_col_num(col_num) abort
 
-  if ! Is_str__num(a:col_num)
-    return
-  endif
+  return v:lua.v.Cursor__mv_by_col_num(a:col_num)
 
-  let l:line_num = Cursor_line_num()
-
-  call Cursor__mv_by_line_col(l:line_num, a:col_num)
+  " if ! Is_str__num(a:col_num)
+  "   return
+  " endif
+  " 
+  " let l:line_num = Cursor_line_num()
+  " 
+  " call Cursor__mv_by_line_col(l:line_num, a:col_num)
 endfunc
 
 func! Cursor__mv_by_line_num(line_num) abort
@@ -965,9 +967,11 @@ endfunc
 
 func! Cursor__mv_by_line_col(line_num, col) abort
 
-  let l:line_num = (a:line_num == v:null) ? Cursor_line_num() : a:line_num
-  
-  call cursor(l:line_num, a:col)
+  return v:lua.v.Cursor__mv_by_line_col(a:line_num, a:col)
+
+  " let l:line_num = (a:line_num == v:null) ? Cursor_line_num() : a:line_num
+  " 
+  " call cursor(l:line_num, a:col)
 endfunc
 
 func! Cursor__mv_by_line_info(line_info) abort
@@ -1887,7 +1891,9 @@ endfunc
 
 func! Cursor_line_num() abort " alias
 
-  return line('.')
+  return v:lua.v.Cursor_line_num()
+
+  " return line('.')
 endfunc
 
 func! Cursor_line_end_col() abort " alias

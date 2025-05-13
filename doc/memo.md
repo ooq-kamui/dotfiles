@@ -2,19 +2,22 @@
 # dotfiles
 
 
+## etc
+
+mobile monitor
+- research
+
+
 ## nvim
 
+fzf
+- fzf rg,
+  - case win, err
+- rgstr lst
+  - order num later
+
+
 fnc
-- setlocal
-  - vim.opt_local
-
-- &var
-  - filetype
-    - vim.bo.filetype
-  - expandtab
-    - vim.??.filetype
-      - ggl
-
 - ar
   - idx + 1
 
@@ -44,20 +47,13 @@ cmd ( usr )
   - at fzf ?
 
 
-opn ltst
+opn file closed ltst
 - fnc cre
 
 
 is env init.lua
 - confirm
   - mac ?
-
-
-fzf
-- fzf rg,
-  - case win, err
-- rgstr lst
-  - order num later
 
 
 ## git
@@ -71,19 +67,11 @@ merge way 3 off
 
 ## vim
 
-nnoremap M  case filetype , lua vim func
-
-`<` cursor mv block out
+nnoremap `<` cursor mv block out ( fnc )
 
 
 v box paste line down
 - case emp: paste skip
-
-
-## etc
-
-mobile monitor
-- research
 
 
 ## aws
