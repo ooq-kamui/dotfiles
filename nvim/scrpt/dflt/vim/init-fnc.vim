@@ -4182,9 +4182,9 @@ endfunc
 
 " fnc repeat tmp
 
-func! Repeat_tmp() abort
+func! Repeat_fnc() abort
 
-  return v:lua.v.Repeat_tmp()
+  return v:lua.v.Repeat_fnc()
 
   " call Cursor__mv_srch('f')
   " call Cursor__mv_d()

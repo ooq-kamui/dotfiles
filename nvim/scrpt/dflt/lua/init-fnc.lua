@@ -4532,14 +4532,18 @@ end
 --]]
 
 -- 
--- fnc repeat tmp
+-- repeat fnc
 -- 
 
-function v.Repeat_tmp()
+function v.Repeat_fnc()
 
-  v.Cursor__mv_srch('f')
-  v.Cursor__mv_d()
-  v.Cursor__ins_ynk()
+  -- v.Cursor__mv_srch('f')
+  -- v.Cursor__mv_d()
+  -- v.Cursor__ins_ynk()
+
+
+  -- print('repeat fnc')
+  -- v.Tst()
 end
 
 --[[

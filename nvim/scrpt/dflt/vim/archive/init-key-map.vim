@@ -586,8 +586,7 @@ nnoremap <c-w> :call Win_splt_cursor__mv_nxt()<cr>
 "nnoremap xx <c-w>h
 
 " repeat
-nnoremap - :call Repeat_tmp()<cr>
-"nnoremap ^ :call Repeat_tmp()<cr>
+nnoremap ^ :call Repeat_fnc()<cr>
 
 " 
 " term
@@ -654,7 +653,7 @@ nnoremap <s-space> <esc>
 "nnoremap <cr>    <esc>
 nnoremap <bs>    <esc>
 
-"nnoremap - <esc>
+nnoremap - <esc>
 nnoremap + <esc>
 nnoremap = <esc>
 "nnoremap @ <esc>
@@ -664,7 +663,7 @@ nnoremap = <esc>
 "nnoremap * <esc>
 "nnoremap _ <esc>
 "nnoremap ~ <esc>
-nnoremap ^ <esc>
+"nnoremap ^ <esc>
 "nnoremap / <esc>
 "nnoremap \ <esc>
 "nnoremap | <esc> " ref vv

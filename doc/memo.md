@@ -4,6 +4,11 @@
 
 ## nvim
 
+fnc tst
+- vim
+- lua
+
+
 fnc
 - ar idx + 1
 - str ar
@@ -20,7 +25,7 @@ fnc
 - range, firstline, lastline
 
 
-- call Fn_lua()
+- :call Fnc_lua()
   - tst
 
 
@@ -30,7 +35,7 @@ hl
     - lua
       - {}
       - Hl_grp() ?
-- num > rgb
+- color num > rgb
 
 
 cmd ( usr )
@@ -43,12 +48,12 @@ opn ltst
 - fnc cre
 
 
-env init.lua
+is env init.lua
 - confirm
   - mac ?
 
 
-fzf rgstr order num later
+fzf rgstr lst order num later
 
 
 ## git

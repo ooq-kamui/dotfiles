@@ -492,6 +492,9 @@
 -- repeat
 -- vim.keymap.set('n', 'xx', '.')
 
+-- repeat fnc
+   vim.keymap.set('n', '^', ':call Repeat_fnc()<cr>')
+
 -- macro rec
    -- vim.keymap.set('n', '`', 'q')
    vim.keymap.set('n', '`', function()
@@ -630,10 +633,6 @@
 
 -- line dpl  -- todo fnc cre
    vim.keymap.set('n', 'D', '"zyy"zP')
-
--- repeat memory
--- vim.keymap.set('n', 'xx', 'qy')
--- vim.keymap.set('n', 'xx', '@y')
 
 -- char tgl 01 ( ?? / num icl  )
    vim.keymap.set('n', 'u', ':call N_char__tgl_swtch01()<cr>')

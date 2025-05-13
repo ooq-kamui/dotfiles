@@ -5,6 +5,8 @@
 -- plugin mng
 -- 
 
+-- require('init-plg' )
+
 -- lazy.nvim
 
 -- local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -30,7 +32,9 @@
 -- })
 
 
--- require('init-fnc' )
+-- require('init-fnc'     )
+
+-- require('init-plg-fzf' )
 
 require('init-opt'     )
 require('init-cmd-usr' )

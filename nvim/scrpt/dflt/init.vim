@@ -18,7 +18,7 @@ source `=g:init_vim_etc_dir . '/init-fnc-tst.vim'`
 " plg
 source `=g:init_vim_etc_dir . '/init-plg.vim'`
 
-" plg fnc
+" plg fzf
 source `=g:init_vim_etc_dir . '/init-plg-fzf.vim'`
 
 
