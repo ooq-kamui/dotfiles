@@ -12,6 +12,8 @@ fzf
 
 
 fnc
+- slctd
+
 - ar
   - idx + 1
 

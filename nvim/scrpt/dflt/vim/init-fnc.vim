@@ -2294,10 +2294,12 @@ endfunc
 
 func! Slct_re() range abort
 
+  " return v:lua.v.Slct_re()
+
   if mode() == "\<c-v>" || mode() == "v"
     return
   endif
-
+  
   call Normal('gv')
 endfunc
 
@@ -2766,14 +2768,18 @@ endfunc
 
 func! Is_slctd_str__srch_str() abort
 
-  if Slctd_str() ==# @/
-    return v:true
-  else
-    return v:false
-  endif
+  return v:lua.v.Is_slctd_str__srch_str()
+
+  " if Slctd_str() ==# @/
+  "   return v:true
+  " else
+  "   return v:false
+  " endif
 endfunc
 
 func! Is_slctd_str__line_mlt() abort
+
+  " return v:lua.v.Is_slctd_str__line_mlt()
 
   if Slctd_str() =~ '\n'
     return v:true
@@ -3472,8 +3478,10 @@ endfunc
 
 func! Slctd_srch__swtch() abort " srch, set or run
 
-  if Is_slctd_str__line_mlt()
+  " return v:lua.v.Slctd_srch__swtch()
 
+  if Is_slctd_str__line_mlt()
+  
     call Slctd_str__expnd_srch()
   else
     call Srch_str__slctd_str()

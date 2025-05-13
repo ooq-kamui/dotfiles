@@ -2428,17 +2428,18 @@ end
 
 -- refactoring slct > slctd __ xxx
 
---]]
-
 function v.Slct_re() -- range
 
-  if f.mode() == "\\<c-v>" or f.mode() == "v" then
+  -- if f.mode() == '\\<c-v>' or f.mode() == 'v' then
+  -- print(f.mode())
+  if f.mode() == '<c-v>' or f.mode() == 'v' then
     return
   end
 
   v.Normal('gv')
 end
 
+--]]
 --[[
 
 function v.Slctd_str__all()
@@ -2916,6 +2917,8 @@ end
 
 -- slctd str cnd
 
+--]]
+
 function v.Is_slctd_str__srch_str()
 
   -- if v.Slctd_str() == @/ then
@@ -2935,6 +2938,8 @@ function v.Is_slctd_str__line_mlt()
     return false
   end
 end
+
+--[[
 
 -- slctd str edge
 
@@ -3638,11 +3643,11 @@ function v.Slctd_srch__swtch() -- srch, set or run
   end
 end
 
+--]]
+
 -- 
 -- ynk
 -- 
-
---]]
 
 function v.Ynk__clr()
 
@@ -3724,7 +3729,8 @@ function v.Clp__ynk()
     -- v.C9clp__ynk() -- off
   else
     -- let @+ = @a
-    f.setreg('+', f.getreg('a'))
+    vim.cmd('let @+ = @a')
+    -- f.setreg('+', f.getreg('a'))
   end
 end
 
