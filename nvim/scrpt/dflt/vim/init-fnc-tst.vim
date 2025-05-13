@@ -2,9 +2,12 @@
 " fnc tst
 " 
 
-" tst escape
+func! Tst() abort
 
-"nnoremap T :call Tst_esacpe()<cr>
+  echo 'tst'
+endfunc
+
+" tst escape
 
 func! Tst_esacpe() abort
 
@@ -17,8 +20,6 @@ endfunc
 
 " tst escape shell
 
-"nnoremap T :call Tst_esacpe_shell() <cr>
-
 func! Tst_esacpe_shell() abort
 
   let l:str = '().$a \ / | & b c '
@@ -28,9 +29,8 @@ func! Tst_esacpe_shell() abort
   echo l:str
 endfunc
 
-" tst arg f
+" tst cmd arg f
 
-"nnoremap T :TstArgF 
 "nnoremap T :TstArgF aa().a \/|&bbb 'aa().a \/|&bbb'
 
 command! -bang -nargs=* TstArgF call Tst_arg_f(<f-args>)
@@ -43,7 +43,7 @@ func! Tst_arg_f(arg01, arg02, arg03, arg04) range abort
   echo a:arg04
 endfunc
 
-" tst arg q
+" tst cmd arg q
 
 "nnoremap T :TstArgQ aa "bbb ccc" '().\a bbb""' "().\a bbb''"
 
@@ -56,8 +56,6 @@ func! Tst_arg_q(arg01) range abort
 endfunc
 
 " tst is_directory ~
-
-"nnoremap T :call Tst_is_directory()<cr>
 
 func! Tst_is_directory() range abort
 
@@ -95,13 +93,6 @@ func! Tst_slctd_rpl_sys_cmd_mb() range abort
   '<,'>:call Slctd_line__rpl_sys_cmd(l:sys_cmd)
 endfunc
 
-" tst fnc call fr lua
-
-func! Tst_fnc_call_fr_lua() range abort
-
-  echo 'abcde'
-endfunc
-
 " tst regex
 
 func! Tst_regex() range abort
@@ -117,6 +108,11 @@ func! Tst_regex() range abort
   endif
 endfunc
 
-" fnc tst end
+" tst fnc call fr lua
+
+func! Tst_fnc_call_fr_lua() range abort
+
+  echo 'abcde'
+endfunc
 
 

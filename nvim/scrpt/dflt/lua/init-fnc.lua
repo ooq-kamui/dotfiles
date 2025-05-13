@@ -417,10 +417,10 @@ function v.Exe(cmd) -- alias
   vim.cmd(cmd)
 end
 
-function v.Normal(cmd) -- alias
+function v.Normal(n_cmd) -- alias
 
-  v.Exe('normal! ' .. cmd)
-  -- vim.cmd('normal! ' .. cmd)
+  v.Exe('normal! ' .. n_cmd)
+  -- vim.cmd('exe "normal! ' .. n_cmd .. '"')
 end
 
 function v.Esc() -- alias
@@ -865,8 +865,6 @@ function v.Buf__quit()
   v.Exe(cmd)
 end
 
---[[
-
 function v.Buf__quit_swtch()
 
   local win_num = f.winnr('$')
@@ -877,8 +875,6 @@ function v.Buf__quit_swtch()
     v.Buf__quit()
   end
 end
-
---]]
 
 function v.Buf__fltr() -- use not
 
@@ -900,16 +896,18 @@ end
 
 function v.Win_splt_cursor__mv_nxt()
 
-  local n_cmd = "\\<c-w>w"
-  v.Normal(n_cmd)
-end
+  -- local n_cmd = "\\<c-w>w"
+  -- v.Normal(n_cmd)
 
---[[
+  vim.cmd([[exe "normal! \<c-w>w>"]])
+end
 
 function v.Win_splt__quit()
 
-  local n_cmd = "\\<c-w>c"
-  v.Normal(n_cmd)
+  -- local n_cmd = "\\<c-w>c"
+  -- v.Normal(n_cmd)
+
+  vim.cmd([[exe "normal! \<c-w>c>"]])
 end
 
 -- 
@@ -933,7 +931,7 @@ g_line_top_space_ptn = '^[ \\t]*'
 g_line_end_space_ptn = '[ \\t]*$'
 
 function v.Line_end_space__del(line_num)
-  
+
   local rpl_cmd = line_num .. 's/' .. g_line_end_space_ptn .. '//g'
   v.Exe(rpl_cmd)
 end
@@ -963,12 +961,16 @@ end
 
 -- line num
 
+--[[
+
 function v.Line_num_by_Line_info(line_info)
 
   local line_info = f.trim(line_info, ' ', 1)
   local line_num  = f.split(line_info, '\\s\\+')[0]
   return line_num
 end
+
+--]]
 
 -- line cnd
 
@@ -986,6 +988,8 @@ function v.Cursor_pos() -- alias
 end
 
 -- cursor col
+
+--[[
 
 function v.Cursor_col_num()
 
@@ -4536,14 +4540,13 @@ end
 -- 
 
 function v.Repeat_fnc()
+  print('repeat fnc')
+
+  v.Tst()
 
   -- v.Cursor__mv_srch('f')
   -- v.Cursor__mv_d()
   -- v.Cursor__ins_ynk()
-
-
-  -- print('repeat fnc')
-  -- v.Tst()
 end
 
 --[[

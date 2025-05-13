@@ -4,11 +4,6 @@
 
 ## nvim
 
-fnc tst
-- vim
-- lua
-
-
 fnc
 - ar idx + 1
 - str ar
@@ -53,7 +48,9 @@ is env init.lua
   - mac ?
 
 
-fzf rgstr lst order num later
+fzf
+- win err
+- rgstr lst order num later
 
 
 ## git

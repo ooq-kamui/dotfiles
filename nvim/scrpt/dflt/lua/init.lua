@@ -33,6 +33,7 @@
 
 
 -- require('init-fnc'     )
+require('init-fnc-tst' )
 
 -- require('init-plg-fzf' )
 
@@ -41,6 +42,7 @@ require('init-cmd-usr' )
 require('init-hl'      )
 require('init-key-map' )
 
+-- env
 
 vim.g.env_dir = ''
 
@@ -64,14 +66,5 @@ if vim.g.env_dir ~= '' then
 else
   print("is env else")
 end
-
-
--- 
--- tst
--- 
-
--- vim.keymap.set('n', 'T', '<cmd>call Tst_fnc_call_fr_lua()<cr>')
-
--- vim.fn.Tst_fnc_call_fr_lua()
 
 

@@ -726,15 +726,15 @@ endfunc
 
 func! Buf__quit_swtch() abort
 
-  let l:win_num = winnr('$')
+  return v:lua.v.Buf__quit_swtch()
 
-  if l:win_num > 1
-    call Win_splt__quit()
-  else
-    call Buf__quit()
-    " let l:cmd = 'bd'
-    " call Exe(l:cmd)
-  endif
+  " let l:win_num = winnr('$')
+  " 
+  " if l:win_num > 1
+  "   call Win_splt__quit()
+  " else
+  "   call Buf__quit()
+  " endif
 endfunc
 
 func! Buf__fltr() abort " use not
@@ -779,12 +779,16 @@ endfunc
 
 func! Line_num_file_edge_bgn() abort
 
-  return line('^')
+  return v:lua.v.Line_num_file_edge_bgn()
+
+  " return line('^')
 endfunc
 
 func! Line_num_file_edge_end() abort " alias
 
-  return line('$')
+  return v:lua.v.Line_num_file_edge_end()
+
+  " return line('$')
 endfunc
 
 " line xx __ ins
@@ -794,24 +798,28 @@ let s:line_top_space_ptn = '^[ \t]*'
 let s:line_end_space_ptn = '[ \t]*$'
 
 func! Line_end_space__del(line_num) abort
-  
-  let l:rpl_cmd = a:line_num . 's/' . s:line_end_space_ptn . '//g'
-  call Exe(l:rpl_cmd)
+
+  return v:lua.v.Line_end_space__del(a:line_num)
+
+  " let l:rpl_cmd = a:line_num . 's/' . s:line_end_space_ptn . '//g'
+  " call Exe(l:rpl_cmd)
 endfunc
 
 func! Line_end__pad_space(line_num, fil_end_col) abort
 
-  let l:line_str     = getline(a:line_num)
-  let l:line_str_len = Str_len(l:line_str)
-  let l:space_len    = a:fil_end_col - l:line_str_len
+  return v:lua.v.Line_end__pad_space(a:line_num, a:fil_end_col)
 
-  if l:space_len <= 0
-    return
-  endif
-
-  let l:space_str = Str_space(l:space_len)
-  let l:line_str .= l:space_str
-  call setline(a:line_num, l:line_str)
+  " let l:line_str     = getline(a:line_num)
+  " let l:line_str_len = Str_len(l:line_str)
+  " let l:space_len    = a:fil_end_col - l:line_str_len
+  " 
+  " if l:space_len <= 0
+  "   return
+  " endif
+  " 
+  " let l:space_str = Str_space(l:space_len)
+  " let l:line_str .= l:space_str
+  " call setline(a:line_num, l:line_str)
 endfunc
 
 let g:dots_str = ' .. '
@@ -819,7 +827,9 @@ let g:dots_put_col = 50
 
 func! Line__del_by_line_num(line_num) abort
 
-  call deletebufline('%', a:line_num)
+  return v:lua.v.Line__del_by_line_num(a:line_num)
+
+  " call deletebufline('%', a:line_num)
 endfunc
 
 " line num
@@ -842,8 +852,10 @@ endfunc
 
 func! Cursor_pos() abort " alias
 
-  let l:pos = getpos('.')
-  return l:pos
+  return v:lua.v.Cursor_pos()
+
+  " let l:pos = getpos('.')
+  " return l:pos
 endfunc
 
 " cursor col
@@ -4185,10 +4197,6 @@ endfunc
 func! Repeat_fnc() abort
 
   return v:lua.v.Repeat_fnc()
-
-  " call Cursor__mv_srch('f')
-  " call Cursor__mv_d()
-  " call Cursor__ins_ynk()
 endfunc
 
 
