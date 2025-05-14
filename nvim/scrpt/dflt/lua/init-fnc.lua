@@ -1083,15 +1083,11 @@ function v.Cursor__mv_by_line_col(line_num, col)
   f.cursor(line_num, col)
 end
 
---[[
-
 function v.Cursor__mv_by_line_info(line_info)
-  
+
   local line_num = v.Line_num_by_Line_info(line_info)
   v.Cursor__mv_by_line_num(line_num)
 end
-
---]]
 
 function v.Cursor__mv_by_pos(pos)
   
@@ -2077,9 +2073,10 @@ end
 
 --[[
 
+-- dev anchor
 function v.Cursor_line_str_side_l()
 
-  local line_l = f.getline('.')[:f.col('.')-2]
+  local line_l = f.getline('.'):sub(1, f.col('.') - 2)
   return line_l
 end
 
@@ -2107,13 +2104,13 @@ function v.Cursor_line_top0__ins(str)
   v.Cursor__ins(str)
 end
 
---[[
-
 function v.Cursor_line_top1__ins(str)
 
   v.Cursor__mv_line_top1()
   v.Cursor__ins(str)
 end
+
+--[[
 
 function v.Cursor_line_end__dots_adjst() -- todo dev, mb_str
 
@@ -2526,12 +2523,16 @@ end
 
 -- refactoring slct > slctd __ xxx
 
+--]]
+
 function v.Slct_by_pos(s_pos, e_pos) -- use not
 
   v.Cursor__mv_by_pos(s_pos)
   v.Normal('v')
   v.Cursor__mv_by_pos(e_pos)
 end
+
+--[[
 
 -- refactoring slct > slctd __ xxx
 

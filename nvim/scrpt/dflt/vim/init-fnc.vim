@@ -1683,8 +1683,10 @@ endfunc
 
 func! Cursor_line_top1__ins(str) abort
 
-  call Cursor__mv_line_top1()
-  call Cursor__ins(a:str)
+  return v:lua.v.Cursor_line_top1__ins(a:str)
+
+  " call Cursor__mv_line_top1()
+  " call Cursor__ins(a:str)
 endfunc
 
 func! Cursor_line_end__dots_adjst() abort " todo dev, mb_str
@@ -2096,9 +2098,11 @@ endfunc
 
 func! Slct_by_pos(s_pos, e_pos) abort " use not
 
-  call Cursor__mv_by_pos(a:s_pos)
-  call Normal('v')
-  call Cursor__mv_by_pos(a:e_pos)
+  return v:lua.v.Slct_by_pos(a:s_pos, a:e_pos)
+
+  " call Cursor__mv_by_pos(a:s_pos)
+  " call Normal('v')
+  " call Cursor__mv_by_pos(a:e_pos)
 endfunc
 
 " refactoring slct > slctd __ xxx
