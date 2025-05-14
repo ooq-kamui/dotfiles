@@ -218,25 +218,25 @@ function v.Str_len(str) -- alias
   return f.strchars(str)
 end
 
---[[
-
 function v.Str_l_char(str)
 
-  local l_idx = 0
-  local str_l = str[l_idx]
-  --print(str_l)
-  return str_l
+  -- local l_idx = 0
+  local l_idx = 1
+  -- local c = str[l_idx]
+  local c = str:sub(l_idx, l_idx)
+  --print(c)
+  return c
 end
 
 function v.Str_r_char(str)
 
-  local r_idx = v.Str_len(str) - 1
-  local str_r = str[r_idx]
-  --print( str_r )
-  return str_r
+  -- local r_idx = v.Str_len(str) - 1
+  local r_idx = v.Str_len(str)
+  -- local c = str[r_idx]
+  local c = str:sub(r_idx, r_idx)
+  --print( c )
+  return c
 end
-
---]]
 
 function v.Str_sub(str, idx, len) -- dev doing
 
@@ -1040,8 +1040,6 @@ function v.Is_cursor_col__line_top0()
   end
 end
 
---[[
-
 function v.Is_cursor_col__line_top1()
 
   local pos_c = v.Cursor_pos()
@@ -1059,8 +1057,6 @@ function v.Is_cursor_col__line_top1()
     return false
   end
 end
-
---]]
 
 -- cursor __ mv
 
@@ -1115,8 +1111,6 @@ function v.Cursor__mv_line_top0()
   v.Normal('0')
 end
 
---[[
-
 function v.Cursor__mv_line_top1()
 
   if     v.Is_cursor_line_str__space() then
@@ -1135,8 +1129,6 @@ function v.Cursor__mv_line_end()
     v.Normal('$l')
   end
 end
-
---]]
 
 function v.Cursor__mv_char_f()
 
@@ -1437,12 +1429,16 @@ function v.Cursor__mv_srch_ptn(ptn, dir) -- range
   f.search(ptn, opt, line_num)
 end
 
+--]]
+
 function v.Cursor__mv_srch(drct)
 
+  local op = ''
+
   if     drct == 'f' then
-    local op = ''
+    op = ''
   elseif drct == 'b' then
-    local op = 'b'
+    op = 'b'
   end
 
   local ptn = f.getreg('/')
@@ -1450,8 +1446,6 @@ function v.Cursor__mv_srch(drct)
 end
 
 -- cursor __ ins
-
---]]
 
 function v.Cursor__ins(str)
 
@@ -1478,6 +1472,10 @@ function v.Cursor__ins_clp()
   v.Ynk__clp()
   v.Cursor__ins_ynk()
 end
+
+--]]
+
+--[[
 
 function v.Cursor__ins_mlt(str, num)
 
@@ -1716,14 +1714,21 @@ function v.Char_markdown_chk__tgl()
   v.Cursor_char__rpl(rpl_char)
 end
 
+--]]
+
 -- cursor char
 
 function v.Cursor_c_char()
 
-  local idx = v.Cursor_col_idx()
-  local c = f.getline('.')[idx]
+  -- local idx = v.Cursor_col_idx()
+  local idx = v.Cursor_col_idx() + 1
+  -- local c = f.getline('.')[idx]
+  local str = f.getline('.')
+  c = str:sub(idx, idx)
   return c
 end
+
+--[[
 
 function v.Cursor_l_char()
 
@@ -2037,9 +2042,9 @@ function v.Cursor_d__ins_line_space() -- range
   v.Cursor_d__ins_line(space_str)
 end
 
--- cursor line  -  todo refactoring
-
 --]]
+
+-- cursor line  -  todo refactoring
 
 function v.Cursor_line_num() -- alias
 
@@ -2164,6 +2169,8 @@ function v.Cursor_line_end__ins_dots()
   f.setline(line_num, line_str)
 end
 
+--]]
+
 function v.Curosr_line_end__ins(str)
 
   local n_cmd = 'A' .. str
@@ -2171,6 +2178,8 @@ function v.Curosr_line_end__ins(str)
 end
 
 -- cursor f
+
+--[[
 
 function v.Cursor_f_space__del()
 
@@ -2263,6 +2272,8 @@ function v.Cursor__ins_sys_cmd(sys_cmd) -- read
   end
 end
 
+--]]
+
 -- cursor line str __ end
 
 -- cursor line cnd
@@ -2271,9 +2282,8 @@ function v.Is_cursor_line_num__(line_num)
 
   local ret = false
 
-  local line_num = v.Cursor_line_num()
-
-  if line_num == line_num then
+  local cursor_line_num = v.Cursor_line_num()
+  if cursor_line_num == line_num then
     ret = true
   end
   return ret
@@ -2304,8 +2314,6 @@ function v.Is_cursor_line_num__file_edge()
   return ret
 end
 
---]]
-
 function v.Is_cursor_line_str__emp()
 
   if v.Cursor_line_end_col() == 1 then
@@ -2315,14 +2323,14 @@ function v.Is_cursor_line_str__emp()
   end
 end
 
---[[
-
 function v.Is_cursor_line_str__space()
-  
+
   local str = v.Cursor_line_str()
   local ret = v.Is_str__space(str)
   return ret
 end
+
+--[[
 
 function v.Is_cursor_line_str_side_l__space()
 
@@ -2350,13 +2358,17 @@ function v.Is_cursor_line_str__ptn(ptn) -- todo dev
   return ret
 end
 
+--]]
+
 -- indnt
 
 function v.Cursor_line_indnt_col_with_c()
 
-  local col = f.cindent(Cursor_line_num())
+  local col = f.cindent(v.Cursor_line_num())
   return col
 end
+
+--[[
 
 function v.Cursor_line_indnt__add(col)
 
@@ -2378,10 +2390,14 @@ function v.Cursor_line_indnt__add(col)
   v.Cursor__mv_line_top1()
 end
 
+--]]
+
 function v.Cursor_line_indnt__del() -- alias
 
   v.Exe('left')
 end
+
+--[[
 
 function v.Cursor_line_indnt__shft_l()
 
@@ -2946,9 +2962,9 @@ function v.Is_slctd_str__line_mlt()
   end
 end
 
---[[
-
 -- slctd str edge
+
+--[[
 
 function v.Slctd_str_edge_l_col()
 
@@ -3741,13 +3757,13 @@ function v.Clp__ynk()
   end
 end
 
---[[
-
 -- 
 -- srch
 -- 
 
 -- srch exe, ref: cursor __ mv srch ptn
+
+--[[
 
 function v.Srch_or(...)
 
@@ -3979,6 +3995,8 @@ end
 
 -- markdown cnd
 
+--]]
+
 function v.Is_line_markdown_itm()
 
   local ptn = '^\\s*- '
@@ -3991,6 +4009,8 @@ function v.Is_line_markdown_itm()
     return true
   end
 end
+
+--[[
 
 -- complete  -  mode insert ins lst
 

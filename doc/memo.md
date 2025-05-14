@@ -4,12 +4,12 @@
 
 ## nvim
 
+- str idx
+  - str[idx:idx2]       > ??
+  - str[idx] ( = char ) > ??
+
 - ar
   - idx + 1
-
-- str ar idx
-  - [:] > ??
-  - str[idx] ( = char ) > ?
 
 - range, firstline, lastline
 
@@ -24,6 +24,8 @@ fzf
 
 - rgstr lst
   - order num later
+
+- clp
 
 
 init.vim , source init.vim
