@@ -13,6 +13,7 @@
 
 - range, firstline, lastline
 
+- clp
 
 - :call Fnc_lua()
   - tst
@@ -24,8 +25,6 @@ fzf
 
 - rgstr lst
   - order num later
-
-- clp
 
 
 init.vim , source init.vim
