@@ -2428,18 +2428,25 @@ end
 
 -- refactoring slct > slctd __ xxx
 
-function v.Slct_re() -- range
+--]]
 
-  -- if f.mode() == '\\<c-v>' or f.mode() == 'v' then
+function v.Slct_re() -- range
   -- print(f.mode())
-  if f.mode() == '<c-v>' or f.mode() == 'v' then
+
+  if f.mode() == vim.api.nvim_replace_termcodes('<c-v>', false, false, true) then
+    -- print('v box')
+    return
+  elseif f.mode() == 'v' then
+    -- print('v')
+    return
+  elseif f.mode() == 'V' then
+    -- print('v line')
     return
   end
 
   v.Normal('gv')
 end
 
---]]
 --[[
 
 function v.Slctd_str__all()
@@ -3754,12 +3761,16 @@ function v.Srch_or(...)
   v.Cursor__mv_srch('f')
 end
 
+--]]
+
 function v.Srch_str()
 
   -- local str = @/
-  str = f.getref('/')
+  local str = f.getref('/')
   return str
 end
+
+--[[
 
 function v.Srch_str_flt()
 

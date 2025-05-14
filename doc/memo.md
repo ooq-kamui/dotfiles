@@ -4,16 +4,6 @@
 
 ## nvim
 
-fzf
-- fzf rg,
-  - case win, err
-- rgstr lst
-  - order num later
-
-
-fnc
-- slctd
-
 - ar
   - idx + 1
 
@@ -26,6 +16,14 @@ fnc
 
 - :call Fnc_lua()
   - tst
+
+
+fzf
+- fzf rg,
+  - case win, err
+
+- rgstr lst
+  - order num later
 
 
 init.vim , source init.vim
@@ -54,8 +52,9 @@ is env init.lua
 - confirm
   - mac ?
 
-
-nnoremap S , case srch first
+srch
+- case srch first
+  - nnoremap S
 
 
 ## git

@@ -2294,13 +2294,13 @@ endfunc
 
 func! Slct_re() range abort
 
-  " return v:lua.v.Slct_re()
+  return v:lua.v.Slct_re()
 
-  if mode() == "\<c-v>" || mode() == "v"
-    return
-  endif
-  
-  call Normal('gv')
+  " if mode() == "\<c-v>" || mode() == "v"
+  "   return
+  " endif
+  " 
+  " call Normal('gv')
 endfunc
 
 func! Slctd_str__all() abort
@@ -3593,8 +3593,10 @@ endfunc
 
 func! Srch_str() abort
 
-  let l:str = @/
-  return l:str
+  return v:lua.v.Srch_str()
+
+  " let l:str = @/
+  " return l:str
 endfunc
 
 func! Srch_str_flt() abort
