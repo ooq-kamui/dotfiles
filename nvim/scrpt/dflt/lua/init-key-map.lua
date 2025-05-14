@@ -82,7 +82,7 @@
    vim.keymap.set('n', 'x', '<esc>')
    vim.keymap.set('n', 'y', '<esc>')
    vim.keymap.set('n', 'z', '<esc>')
-   
+
    vim.keymap.set('n', 'A', '<esc>')
    vim.keymap.set('n', 'B', '<esc>')
    vim.keymap.set('n', 'C', '<esc>')
@@ -111,7 +111,7 @@
 
    vim.keymap.set('n', '<c-tab>'  , '<esc>')
    vim.keymap.set('n', '<c-space>', '<esc>')
-   
+
    vim.keymap.set('n', '<c-@>', '<esc>')
    vim.keymap.set('n', '<c-^>', '<esc>')
    vim.keymap.set('n', '<c-->', '<esc>') -- non
@@ -126,7 +126,7 @@
    vim.keymap.set('n', '<c-]>', '<esc>')
 
    vim.keymap.set('n', '<c-\\>', '<esc>')
-   
+
    vim.keymap.set('n', '<c-a>', '<esc>')
    vim.keymap.set('n', '<c-b>', '<esc>')
    vim.keymap.set('n', '<c-c>', '<esc>')
@@ -244,7 +244,7 @@
    vim.keymap.set('n', '<leader>v', '<esc>')
    vim.keymap.set('n', '<leader>w', '<esc>')
    vim.keymap.set('n', '<leader>y', '<esc>')
-   
+
    vim.keymap.set('n', '<leader>L', '<esc>')
    vim.keymap.set('n', '<leader>M', '<esc>')
    vim.keymap.set('n', '<leader>O', '<esc>')
