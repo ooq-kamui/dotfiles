@@ -211,11 +211,13 @@
    --                    :
    vim.keymap.set('n', ':k', ':k')
    --                    :
+   vim.keymap.set('n', ':n', ':k')
+   vim.keymap.set('n', ':o', ':k')
    vim.keymap.set('n', ':p', ':p')
    vim.keymap.set('n', ':q', ':q')
    vim.keymap.set('n', ':r', ':r')
    vim.keymap.set('n', ':s', ':s')
-   --                    :
+   vim.keymap.set('n', ':t', ':s')
    vim.keymap.set('n', ':u', ':u')
    --                    :
    vim.keymap.set('n', ':z', ':z')
@@ -843,7 +845,8 @@
    vim.keymap.set('n', ':N', ':set number!')
 
 -- setting  -  line num rel tgl
-   vim.keymap.set('n', ':n', ':set relativenumber!')
+   -- vim.keymap.set('n', ':n', ':set relativenumber!')
+   vim.keymap.set('n', ':n', ':normal! ')
 
 -- inf
 
