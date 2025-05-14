@@ -74,21 +74,11 @@ endfunc
 func! Str_l_char(str) abort
 
   return v:lua.v.Str_l_char(a:str)
-
-  " let l:l_idx = 0
-  " let l:str_l = a:str[l:l_idx]
-  " "echo l:str_l
-  " return l:str_l
 endfunc
 
 func! Str_r_char(str) abort
 
   return v:lua.v.Str_r_char(a:str)
-
-  " let l:r_idx = Str_len(a:str) - 1
-  " let l:str_r = a:str[l:r_idx]
-  " "echo l:str_r
-  " return l:str_r
 endfunc
 
 func! Str_sub(str, idx, len) abort " dev doing
@@ -213,45 +203,31 @@ endfunc
 func! Nothing() abort " use by tst
 
   return v:lua.v.Nothing()
-
-  " " echo "do nothing.."
 endfunc
 
 func! Echo(str) abort " alias
 
   return v:lua.v.Echo(a:str)
-
-  " echo a:str
 endfunc
 
 func! Exe(cmd) abort " alias
 
   return v:lua.v.Exe(a:cmd)
-
-  " exe a:cmd
 endfunc
 
 func! Normal(cmd) abort " alias
 
   return v:lua.v.Normal(a:cmd)
-
-  " call Exe('normal! ' . a:cmd)
 endfunc
 
 func! Esc() abort " alias
 
   return v:lua.v.Esc()
-
-  " call Normal("\<esc>")
 endfunc
 
 func! Cmdline__(str) abort
 
   return v:lua.v.Cmdline__(a:str)
-
-  " call Ynk__(a:str)
-  " 
-  " call feedkeys(':call ' . a:str)
 endfunc
 
 " undo clr, file ( crnt buf ? )
@@ -259,20 +235,11 @@ endfunc
 func! Undo__clr() abort
 
   return v:lua.v.Undo__clr()
-
-  " let l:undo_lvl_tmp = &undolevels
-  " 
-  " setlocal undolevels=-1
-  " exe "normal! a \<BS>\<Esc>"
-  " 
-  " let &l:undolevels = l:undo_lvl_tmp
 endfunc
 
 func! Sys_cmd(sys_cmd) abort
 
   return v:lua.v.Sys_cmd(a:sys_cmd)
-
-  " return system(a:sys_cmd)
 endfunc
 
 " syntax color
@@ -294,8 +261,6 @@ endfunc
 func! Pth() abort
 
   return v:lua.v.Pth()
-
-  " call Exe('pwd')
 endfunc
 
 " dir __ ch
@@ -303,9 +268,6 @@ endfunc
 func! Dir__(dir) abort
 
   return v:lua.v.Dir__(a:dir)
-
-  " call Exe('cd ' . a:dir)
-  " call Pth()
 endfunc
 
 " dir __ ch slf
@@ -313,20 +275,11 @@ endfunc
 func! Buf_file_dir() abort
 
   return v:lua.v.Buf_file_dir()
-
-  " let l:dir = expand('%:p:h')
-  " return l:dir
 endfunc
 
 func! Dir__buf_file_dir() abort
 
   return v:lua.v.Dir__buf_file_dir()
-
-  " let l:dir = Buf_file_dir()
-  " call Dir__(l:dir)
-  " 
-  " " call Exe('cd ' . l:dir)
-  " " call Pth()
 endfunc
 
 " dir __ ch parent
@@ -334,16 +287,6 @@ endfunc
 func! Dir__parent(lvl) abort
 
   return v:lua.v.Dir__parent(a:lvl)
-
-  " let l:cnt = 1
-  " while l:cnt <= a:lvl
-  " 
-  "   call Exe('cd ..')
-  " 
-  "   let l:cnt += 1
-  " endwhile
-  " 
-  " call Pth()
 endfunc
 
 " file ( buf file )
@@ -351,70 +294,36 @@ endfunc
 func! Save() abort
 
   return v:lua.v.Save()
-
-  " call Exe('w')
 endfunc
 
 func! Buf_file__dpl() abort
 
   return v:lua.v.Buf_file__dpl()
-
-  " let l:sys_cmd = 'dpl ' . Buf_file_path()
-  " call Sys_cmd(l:sys_cmd)
 endfunc
 
 func! Buf_file__mv(file_name_aft) abort
 
   return v:lua.v.Buf_file__mv(a:file_name_aft)
-
-  " let l:file_path_bfr = Buf_file_path()
-  " 
-  " let l:sys_cmd = 'str_mv_f ' . l:file_path_bfr . ' ' . a:file_name_aft
-  " let l:file_path_aft = Sys_cmd(l:sys_cmd)
-  " 
-  " let l:sys_cmd = 'mv ' . l:file_path_bfr . ' ' . l:file_path_aft
-  " call Sys_cmd(l:sys_cmd)
-  " 
-  " let l:cmd = 'file ' . l:file_path_aft " save file_path ch
-  " call Exe(l:cmd)
 endfunc
 
 func! Buf_file_path() abort
 
   return v:lua.v.Buf_file_path()
-
-  " let l:path = expand('%:p')
-  " return l:path
 endfunc
 
 func! Rgstr__clr() abort
 
   return v:lua.v.Rgstr__clr()
-
-  " let @0 = ''
 endfunc
 
 func! File_txt(file_path) abort
 
   return v:lua.v.File_txt(a:file_path)
-
-  " if ! filereadable(a:file_path)
-  "   return
-  " endif
-  " 
-  " let l:cmd = 'cat ' . a:file_path
-  " 
-  " let l:pth_lst_txt = Sys_cmd(l:cmd)
-  " return l:pth_lst_txt
 endfunc
 
 func! File_line_ar(file_path) abort
 
   return v:lua.v.File_line_ar(a:file_path)
-
-  " let l:file_txt = File_txt(a:file_path)
-  " let l:file_line_ar = Txt_to_ar(file_txt)
-  " return l:file_line_ar
 endfunc
 
 " load re
@@ -422,8 +331,6 @@ endfunc
 func! Load_re() abort
 
   return v:lua.v.Load_re()
-
-  " call Exe('e ')
 endfunc
 
 " load re  -  encode sjis
@@ -431,8 +338,6 @@ endfunc
 func! Load_re__sjis() abort
 
   return v:lua.v.Load_re__sjis()
-
-  " call Exe('e ++enc=sjis')
 endfunc
 
 " encode
@@ -440,15 +345,11 @@ endfunc
 func! Buf_file_encode() abort
 
   return v:lua.v.Buf_file_encode()
-
-  " call Exe('set enc?')
 endfunc
 
 func! Buf_file_bom() abort
 
   return v:lua.v.Buf_file_bom()
-
-  " call Exe('set bomb?')
 endfunc
 
 " file tmp
@@ -456,9 +357,6 @@ endfunc
 func! File_tmp__cre() abort " alias
 
   return v:lua.v.File_tmp__cre()
-
-  " let l:tmp_path = system('mktemp ')
-  " return l:tmp_path
 endfunc
 
 " file cnd
@@ -466,15 +364,9 @@ endfunc
 func! Is_file_type__(type) abort
 
   return v:lua.v.Is_file_type__(a:type)
-
-  " if &filetype == a:type
-  "   return v:true
-  " else
-  "   return v:false
-  " endif
 endfunc
 
-" opn xxx
+" opn
 
 " opn file
 
@@ -486,10 +378,6 @@ endfunc
 func! Opn_tmp_file() abort
 
   return v:lua.v.Opn_tmp_file()
-
-  " let l:path = File_tmp__cre()
-  " echo l:path
-  " call Opn(l:path)
 endfunc
 
 let g:init_vim_file_path         = g:init_vim_dir     . '/dflt/init.vim'
@@ -515,18 +403,11 @@ endfunc
 func! Opn_fish_cnf() abort
 
   return v:lua.v.Opn_fish_cnf()
-
-  " let l:path = '~/.config/fish/config.fish'
-  " call Opn(l:path)
 endfunc
 
 func! Opn_man(cmd) abort
 
   return v:lua.v.Opn_man(a:cmd)
-
-  " call Exe('tab new')
-  " call Exe('Man ' . a:cmd)
-  " call Exe('only')
 endfunc
 
 let g:memo_path = 'doc/memo.md'
@@ -534,24 +415,11 @@ let g:memo_path = 'doc/memo.md'
 func! Opn_memo() abort
 
   return v:lua.v.Opn_memo()
-
-  " call Opn(g:memo_path)
 endfunc
 
 func! Opn_grep_wk() abort
 
   return v:lua.v.Opn_grep_wk()
-
-  " let g:grep_wk_path = '~/wrk/tmp/rg.md'
-  " 
-  " let l:file_type = getftype(g:grep_wk_path)
-  " 
-  " if Is_str__emp(l:file_type)
-  " 
-  "   call Opn(g:grep_wk_path)
-  " else
-  "   call Opn_tmp_file()
-  " endif
 endfunc
 
 " opn app
@@ -559,99 +427,46 @@ endfunc
 func! Opn_app(path) abort
 
   return v:lua.v.Opn_app(a:path)
-
-  " let l:path = a:path
-  " 
-  " if     Is_env__('mac')
-  " 
-  "   let l:cmd_sys = 'open'
-  " 
-  " elseif Is_env__('win64')
-  " 
-  "   let l:cmd_sys = 'start'
-  " 
-  " elseif Is_env__('win32unix')
-  " 
-  "   let l:cmd_sys = 'start'
-  " 
-  " else
-  "   return
-  " endif
-  " 
-  " if Is_env__('win64')
-  " 
-  "   let l:path = Str_path_unix__cnv_win(l:path)
-  " endif
-  " 
-  " let l:res = system(l:cmd_sys . " '" . l:path . "'")
 endfunc
 
 func! Opn_app_by_cursor_path() abort
   
   return v:lua.v.Opn_app_by_cursor_path()
-
-  " let l:path = Cursor_filepath()
-  " call Opn_app(l:path)
 endfunc
 
 func! Opn_app_by_line_path(line_num) abort
 
   return v:lua.v.Opn_app_by_line_path(a:line_num)
-
-  " let l:path = getline(a:line_num)
-  " let l:path = trim(l:path)
-  " call Opn_app(l:path)
 endfunc
 
 func! Opn_app_by_slctd_str() abort
 
   return v:lua.v.Opn_app_by_slctd_str()
-
-  " let l:path = Slctd_str()
-  " let l:path = trim(l:path)
-  " call Opn_app(l:path)
 endfunc
 
 func! Opn_app_buf_file() abort
 
   return v:lua.v.Opn_app_buf_file()
-
-  " let l:path = Buf_file_path()
-  " " echo l:path
-  " call Opn_app(l:path)
 endfunc
 
 func! Opn_buf_file_dir() abort
 
   return v:lua.v.Opn_buf_file_dir()
-
-  " let l:dir = Buf_file_dir()
-  " "echo l:path
-  " call Opn_app(l:dir)
 endfunc
 
 func! Opn_brwsr()
 
   return v:lua.v.Opn_brwsr()
-
-  " let l:url = 'https://www.google.com/'
-  " call Opn_app(l:url)
 endfunc
 
 func! Opn_ggl_srch(word) abort
 
   return v:lua.v.Opn_ggl_srch(a:word)
-
-  " let l:url = 'https://www.google.com/search?q=' . a:word
-  " call Opn_app(l:url)
 endfunc
 
 func! Opn_yt(yt_video_id)
 
   return v:lua.v.Opn_yt(a:yt_video_id)
-
-  " let l:url = 'https://www.youtube.com/watch?v=' . a:yt_video_id
-  " call Opn_app(l:url)
 endfunc
 
 " tag jmp
@@ -716,29 +531,16 @@ endfunc
 func! Buf_num() abort
 
   return v:lua.v.Buf_num()
-
-  " return bufnr('%')
 endfunc
 
 func! Buf__quit() abort
 
   return v:lua.v.Buf__quit()
-
-  " let l:cmd = 'bd'
-  " call Exe(l:cmd)
 endfunc
 
 func! Buf__quit_swtch() abort
 
   return v:lua.v.Buf__quit_swtch()
-
-  " let l:win_num = winnr('$')
-  " 
-  " if l:win_num > 1
-  "   call Win_splt__quit()
-  " else
-  "   call Buf__quit()
-  " endif
 endfunc
 
 func! Buf__fltr() abort " use not
@@ -750,25 +552,16 @@ endfunc
 func! Win__splt_h() abort
 
   return v:lua.v.Win__splt_h()
-
-  " let l:cmd = 'split'
-  " call Exe(l:cmd)
 endfunc
 
 func! Win__splt_v() abort
 
   return v:lua.v.Win__splt_v()
-
-  " let l:cmd = 'vsplit'
-  " call Exe(l:cmd)
 endfunc
 
 func! Win_splt_cursor__mv_nxt() abort
 
   return v:lua.v.Win_splt_cursor__mv_nxt()
-
-  " let l:n_cmd = "\<c-w>w"
-  " call Normal(l:n_cmd)
 endfunc
 
 func! Win_splt__quit() abort
@@ -784,15 +577,11 @@ endfunc
 func! Line_num_file_edge_bgn() abort
 
   return v:lua.v.Line_num_file_edge_bgn()
-
-  " return line('^')
 endfunc
 
 func! Line_num_file_edge_end() abort " alias
 
   return v:lua.v.Line_num_file_edge_end()
-
-  " return line('$')
 endfunc
 
 " line xx __ ins
@@ -804,26 +593,11 @@ let s:line_end_space_ptn = '[ \t]*$'
 func! Line_end_space__del(line_num) abort
 
   return v:lua.v.Line_end_space__del(a:line_num)
-
-  " let l:rpl_cmd = a:line_num . 's/' . s:line_end_space_ptn . '//g'
-  " call Exe(l:rpl_cmd)
 endfunc
 
 func! Line_end__pad_space(line_num, fil_end_col) abort
 
   return v:lua.v.Line_end__pad_space(a:line_num, a:fil_end_col)
-
-  " let l:line_str     = getline(a:line_num)
-  " let l:line_str_len = Str_len(l:line_str)
-  " let l:space_len    = a:fil_end_col - l:line_str_len
-  " 
-  " if l:space_len <= 0
-  "   return
-  " endif
-  " 
-  " let l:space_str = Str_space(l:space_len)
-  " let l:line_str .= l:space_str
-  " call setline(a:line_num, l:line_str)
 endfunc
 
 let g:dots_str = ' .. '
@@ -832,17 +606,17 @@ let g:dots_put_col = 50
 func! Line__del_by_line_num(line_num) abort
 
   return v:lua.v.Line__del_by_line_num(a:line_num)
-
-  " call deletebufline('%', a:line_num)
 endfunc
 
 " line num
 
 func! Line_num_by_Line_info(line_info) abort
 
-  let l:line_info = trim(a:line_info, ' ', 1)
-  let l:line_num  = split(l:line_info, '\s\+')[0]
-  return l:line_num
+  return v:lua.v.Line_num_by_Line_info(a:line_info)
+
+  " let l:line_info = trim(a:line_info, ' ', 1)
+  " let l:line_num  = split(l:line_info, '\s\+')[0]
+  " return l:line_num
 endfunc
 
 " line cnd
@@ -857,9 +631,6 @@ endfunc
 func! Cursor_pos() abort " alias
 
   return v:lua.v.Cursor_pos()
-
-  " let l:pos = getpos('.')
-  " return l:pos
 endfunc
 
 " cursor col
@@ -867,16 +638,11 @@ endfunc
 func! Cursor_col_num() abort
 
   return v:lua.v.Cursor_col_num()
-
-  " return col('.')
 endfunc
 
 func! Cursor_col_idx() abort
 
   return v:lua.v.Cursor_col_idx()
-
-  " let l:idx = col('.') - 1
-  " return l:idx
 endfunc
 
 " cursor col cnd
@@ -884,36 +650,16 @@ endfunc
 func! Is_cursor_col__line_end() abort
 
   return v:lua.v.Is_cursor_col__line_end()
-
-  " if Cursor_col_num() == Cursor_line_end_col()
-  " 
-  "   return v:true
-  " else
-  "   return v:false
-  " endif
 endfunc
 
 func! Is_cursor_col__line_end_ovr() range abort
 
   return v:lua.v.Is_cursor_col__line_end_ovr()
-
-  " if Cursor_col_num() >= Cursor_line_end_col()
-  "   return v:true
-  " else
-  "   return v:false
-  " endif
 endfunc
 
 func! Is_cursor_col__line_end_inr() abort
 
   return v:lua.v.Is_cursor_col__line_end_inr()
-
-  " if Cursor_col_num() == Cursor_line_end_col() - 1
-  " 
-  "   return v:true
-  " else
-  "   return v:false
-  " endif
 endfunc
 
 func! Is_cursor_col__line_top0() abort
@@ -931,34 +677,16 @@ endfunc
 func! Cursor__mv_by_col_num(col_num) abort
 
   return v:lua.v.Cursor__mv_by_col_num(a:col_num)
-
-  " if ! Is_str__num(a:col_num)
-  "   return
-  " endif
-  " 
-  " let l:line_num = Cursor_line_num()
-  " 
-  " call Cursor__mv_by_line_col(l:line_num, a:col_num)
 endfunc
 
 func! Cursor__mv_by_line_num(line_num) abort
 
   return v:lua.v.Cursor__mv_by_line_num(a:line_num)
-
-  " if ! Is_str__num(a:line_num)
-  "   return
-  " endif
-  " 
-  " call Normal(a:line_num . 'G')
 endfunc
 
 func! Cursor__mv_by_line_col(line_num, col) abort
 
   return v:lua.v.Cursor__mv_by_line_col(a:line_num, a:col)
-
-  " let l:line_num = (a:line_num == v:null) ? Cursor_line_num() : a:line_num
-  " 
-  " call cursor(l:line_num, a:col)
 endfunc
 
 func! Cursor__mv_by_line_info(line_info) abort
@@ -970,56 +698,31 @@ endfunc
 func! Cursor__mv_by_pos(pos) abort
 
   return v:lua.v.Cursor__mv_by_pos(a:pos)
-  
-  " call setpos('.', a:pos)
 endfunc
 
 func! Cursor__mv_line_top0() abort
 
   return v:lua.v.Cursor__mv_line_top0()
-
-  " if Is_cursor_line_str__emp()
-  "   return
-  " endif
-  " 
-  " call Normal('0')
 endfunc
 
 func! Cursor__mv_line_top1() abort
 
   return v:lua.v.Cursor__mv_line_top1()
-
-  " if     Is_cursor_line_str__space()
-  "   call Cursor__mv_line_end()
-  " 
-  " elseif Is_line_markdown_itm()
-  "   call Normal('^2l')
-  " else
-  "   call Normal('^')
-  " endif
 endfunc
 
 func! Cursor__mv_line_end() abort
 
   return v:lua.v.Cursor__mv_line_end()
-
-  " if ! Is_cursor_line_str__emp()
-  "   call Normal('$l')
-  " endif
 endfunc
 
 func! Cursor__mv_char_f() abort
 
   return v:lua.v.Cursor__mv_char_f()
-
-  " call Normal('l')
 endfunc
 
 func! Cursor__mv_char_b() abort
 
   return v:lua.v.Cursor__mv_char_b()
-
-  " call Normal('h')
 endfunc
 
 func! Cursor__mv_word_f() abort
@@ -1096,25 +799,31 @@ endfunc
 
 func! Cursor__mv_u() abort " alias
 
-  call Normal('k')
+  return v:lua.v.Cursor__mv_u()
+
+  " call Normal('k')
 endfunc
 
 func! Cursor__mv_d() abort " alias
 
-  call Normal('j')
+  return v:lua.v.Cursor__mv_d()
+
+  " call Normal('j')
 endfunc
 
 func! Cursor__mv_v(drct) abort
 
-  if     a:drct == 'u'
-    call Cursor__mv_u()
+  return v:lua.v.Cursor__mv_v(a:drct)
 
-  elseif a:drct == 'd'
-    call Cursor__mv_d()
-
-  else
-    call Cursor__mv_u()
-  endif
+  " if     a:drct == 'u'
+  "   call Cursor__mv_u()
+  " 
+  " elseif a:drct == 'd'
+  "   call Cursor__mv_d()
+  " 
+  " else
+  "   call Cursor__mv_u()
+  " endif
 endfunc
 
 let g:cursor_mv_line_step_dflt = 10
@@ -1137,8 +846,10 @@ endfunc
 
 func! Cursor__mv_u_line_end() abort
 
-  call Cursor__mv_u()
-  call Cursor__mv_line_end()
+  return v:lua.v.Cursor__mv_u_line_end()
+
+  " call Cursor__mv_u()
+  " call Cursor__mv_line_end()
 endfunc
 
 func! Cursor__mv_line_top_or_new_line() abort
@@ -1292,33 +1003,26 @@ endfunc
 
 func! Cursor__mv_srch_ptn(ptn, dir) range abort
 
-  let l:ptn = a:ptn
+  return v:lua.v.Cursor__mv_srch_ptn(a:ptn, a:dir)
 
-  if a:dir == 'b'
-    let l:opt_dir = 'b'
-  else
-    let l:opt_dir = ''
-  endif
-  let l:opt = 'W' . l:opt_dir
-  " let l:opt = 'zW' . l:opt_dir
-
-  let l:line_num = Cursor_line_num()
-
-  call search(l:ptn, l:opt, l:line_num)
+  " let l:ptn = a:ptn
+  " 
+  " if a:dir == 'b'
+  "   let l:opt_dir = 'b'
+  " else
+  "   let l:opt_dir = ''
+  " endif
+  " let l:opt = 'W' . l:opt_dir
+  " " let l:opt = 'zW' . l:opt_dir
+  " 
+  " let l:line_num = Cursor_line_num()
+  " 
+  " call search(l:ptn, l:opt, l:line_num)
 endfunc
 
 func! Cursor__mv_srch(drct) abort
 
   return v:lua.v.Cursor__mv_srch(a:drct)
-
-  " if     a:drct == 'f'
-  "   let l:op = ''
-  " elseif a:drct == 'b'
-  "   let l:op = 'b'
-  " endif
-  " 
-  " let l:ptn = @/
-  " call search(l:ptn, l:op)
 endfunc
 
 " cursor __ ins
@@ -1326,10 +1030,6 @@ endfunc
 func! Cursor__ins(str) abort
 
   return v:lua.v.Cursor__ins(a:str)
-
-  " let l:cmd = 'i' . a:str
-  " call Normal(l:cmd)
-  " call Cursor__mv_char_f()
 endfunc
 
 func! Cursor__ins_with_cursor_fix(str) abort " todo dev
@@ -1341,8 +1041,6 @@ endfunc
 func! Cursor__ins_ynk() abort
 
   return v:lua.v.Cursor__ins_ynk()
-
-  " call Normal('"aP')
 endfunc
 
 func! Cursor__ins_clp() abort
@@ -1353,12 +1051,14 @@ endfunc
 
 func! Cursor__ins_mlt(str, num) abort
 
-  if a:num == 0
-    return
-  endif
+  return v:lua.v.Cursor__ins_mlt(a:str, a:num)
 
-  let l:cmd = a:num.'i'.a:str
-  call Normal(l:cmd)
+  " if a:num == 0
+  "   return
+  " endif
+  " 
+  " let l:cmd = a:num.'i'.a:str
+  " call Normal(l:cmd)
 endfunc
 
 func! Cursor__ins_cr() abort
@@ -1385,66 +1085,86 @@ endfunc
 
 func! Cursor__ins_hyphen() abort
 
-  call Normal('i-')
-  "call Cursor__ins('-')
+  return v:lua.v.Cursor__ins_hyphen()
+
+  " call Normal('i-')
+  " "call Cursor__ins('-')
 endfunc
 
 func! Cursor__ins_tilde() abort
 
-  call Normal('i~')
-  "call Cursor__ins('~')
+  return v:lua.v.Cursor__ins_tilde()
+
+  " call Normal('i~')
+  " "call Cursor__ins('~')
 endfunc
 
 func! Cursor__ins_slash() abort
 
-  call Normal('i/')
-  "call Cursor__ins('/')
+  return v:lua.v.Cursor__ins_slash()
+
+  " call Normal('i/')
+  " "call Cursor__ins('/')
 endfunc
 
 func! Cursor__ins_slashback() abort
 
-  call Normal('i\')
-  "call Cursor__ins('\')
+  return v:lua.v.Cursor__ins_slashback()
+
+  " call Normal('i\')
+  " "call Cursor__ins('\')
 endfunc
 
 func! Cursor__ins_quote() abort
 
-  call Normal("i' '")
-  call Normal('h')
+  return v:lua.v.Cursor__ins_quote()
+
+  " call Normal("i' '")
+  " call Normal('h')
 endfunc
 
 func! Cursor__ins_da() abort
 
-  let l:da = strftime('%Y-%m-%d')
-  call Cursor__ins(l:da)
+  return v:lua.v.Cursor__ins_da()
+
+  " let l:da = strftime('%Y-%m-%d')
+  " call Cursor__ins(l:da)
 endfunc
 
 func! Cursor__ins_tm() abort
 
-  let l:tm = strftime('%H:%M')
-  call Cursor__ins(l:tm)
+  return v:lua.v.Cursor__ins_tm()
+
+  " let l:tm = strftime('%H:%M')
+  " call Cursor__ins(l:tm)
 endfunc
 
 func! Cursor__ins_dt() abort
 
-  let l:dt = strftime('%Y-%m-%d.%H:%M')
-  call Cursor__ins(l:dt)
+  return v:lua.v.Cursor__ins_dt()
+
+  " let l:dt = strftime('%Y-%m-%d.%H:%M')
+  " call Cursor__ins(l:dt)
 endfunc
 
 func! Cursor__ins_ts() abort
 
-  let l:ts = strftime('%Y-%m-%d.%H:%M:%S')
-  call Cursor__ins(l:ts)
+  return v:lua.v.Cursor__ins_ts()
+
+  " let l:ts = strftime('%Y-%m-%d.%H:%M:%S')
+  " call Cursor__ins(l:ts)
 endfunc
 
 let g:week_def = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ]
 
 func! Cursor__ins_week() abort
 
-  let l:week_num = strftime('%w')
-  let l:week     = g:week_def[l:week_num]
-  call Cursor__ins(l:week)
-  "call Cursor__ins(' ' . l:week)
+  return v:lua.v.Cursor__ins_week()
+
+  " let l:week_num = strftime('%w')
+  " let l:week     = g:week_def[l:week_num]
+  " call Cursor__ins(l:week)
+  " "call Cursor__ins(' ' . l:week)
 endfunc
 
 " cmnt
@@ -1472,38 +1192,35 @@ endfunc
 
 func! Cursor__ins_cmnt_mlt_by_pos(pos) abort
 
-  let l:cmnt_mlt_def = #{
-  \  lua       : ['--[[' , '--]]'],
-  \  html      : ['<!--' ,  '-->'],
-  \  css       : ['/*'   ,  ' */'],
-  \  javascript: ['/*'   ,  ' */'],
-  \  java      : ['/*'   ,  ' */'],
-  \  dflt      : ['/*'   ,  ' */']
-  \ }
+  return v:lua.v.Cursor__ins_cmnt_mlt_by_pos(a:pos)
 
-  let l:str = get(l:cmnt_mlt_def, &filetype, l:cmnt_mlt_def['dflt'])
-
-  "if has_key(l:cmnt_mlt_def, &filetype)
-  "  let l:filetype = &filetype
-  "else
-  "  let l:filetype = 'dflt'
-  "endif
-  "let l:str = l:cmnt_mlt_def[l:filetype]
-
-  if     a:pos == 'bgn'
-    call Normal('O')
-    call Normal('i' . l:str[0])
-
-  elseif a:pos == 'end'
-    call Normal('o')
-    call Normal('i' . l:str[1])
-  endif
+  " let l:cmnt_mlt_def = #{
+  " \  lua       : ['--[[' , '--]]'],
+  " \  html      : ['<!--' ,  '-->'],
+  " \  css       : ['/*'   ,  ' */'],
+  " \  javascript: ['/*'   ,  ' */'],
+  " \  java      : ['/*'   ,  ' */'],
+  " \  dflt      : ['/*'   ,  ' */']
+  " \ }
+  " 
+  " let l:str = get(l:cmnt_mlt_def, &filetype, l:cmnt_mlt_def['dflt'])
+  " 
+  " if     a:pos == 'bgn'
+  "   call Normal('O')
+  "   call Normal('i' . l:str[0])
+  " 
+  " elseif a:pos == 'end'
+  "   call Normal('o')
+  "   call Normal('i' . l:str[1])
+  " endif
 endfunc
 
 func! Cursor__ins_cmnt_mlt() abort
 
-  call Cursor__ins_cmnt_mlt_by_pos('bgn')
-  call Cursor__ins_cmnt_mlt_by_pos('end')
+  return v:lua.v.Cursor__ins_cmnt_mlt()
+
+  " call Cursor__ins_cmnt_mlt_by_pos('bgn')
+  " call Cursor__ins_cmnt_mlt_by_pos('end')
 endfunc
 
 func! V_ins_cmnt_mlt() range abort
@@ -1537,7 +1254,9 @@ endfunc
 
 func! Cursor__ins_markdown_cr() abort
 
-  call Cursor__ins('  ')
+  return v:lua.v.Cursor__ins_markdown_cr()
+
+  " call Cursor__ins('  ')
 endfunc
 
 func! Cursor__ins_markdown_itm() abort
@@ -1855,21 +1574,27 @@ endfunc
 
 func! Cursor__ins_line(str) abort
 
-  let l:line_num = Cursor_line_num() - 1
-  call append(l:line_num, a:str)
-  call Cursor__mv_u()
+  return v:lua.v.Cursor__ins_line(a:str)
+
+  " let l:line_num = Cursor_line_num() - 1
+  " call append(l:line_num, a:str)
+  " call Cursor__mv_u()
 endfunc
 
 func! Cursor__ins_line_emp() abort
 
-  let l:str = ''
-  call Cursor__ins_line(l:str)
+  return v:lua.v.Cursor__ins_line_emp()
+
+  " let l:str = ''
+  " call Cursor__ins_line(l:str)
 endfunc
 
 func! Cursor__ins_line_buf_file_path() abort
 
-  let l:path = Buf_file_path()
-  call Cursor__ins_line(l:path)
+  return v:lua.v.Cursor__ins_line_buf_file_path()
+
+  " let l:path = Buf_file_path()
+  " call Cursor__ins_line(l:path)
 endfunc
 
 func! Cursor__ins_line_anchor() abort
@@ -2296,7 +2021,9 @@ let g:v_rng = "'<,'>"
 
 func! Slctd__cancel() range abort " alias
 
-  call Esc()
+  return v:lua.v.Slctd__cancel()
+
+  " call Esc()
 endfunc
 
 " refactoring slct > slctd __ xxx
@@ -2314,7 +2041,9 @@ endfunc
 
 func! Slctd_str__all() abort
 
-  call Normal('ggVG')
+  return v:lua.v.Slctd_str__all()
+
+  " call Normal('ggVG')
 endfunc
 
 func! Slctd_str__word() abort
@@ -2534,10 +2263,12 @@ func! Slctd_str__expnd() abort " expnd lr, cre re
 
 endfunc
 
-func! Slctd_str__expnd_srch() range abort " todo dev
+func! Slctd_str__expnd_srch() range abort
 
-  call Slct_re()
-  call Cursor__mv_srch("f")
+  return v:lua.v.Slctd_str__expnd_srch()
+
+  " call Slct_re()
+  " call Cursor__mv_srch("f")
 endfunc
 
 func! Slctd_str__expnd_word_f() range abort
@@ -3459,28 +3190,32 @@ endfunc
 
 func! Is_slctd_mode__box() range abort
 
-  " call Slct_re()
+  return v:lua.v.Is_slctd_mode__box()
 
-  let l:ret = v:false
-
-  if mode() == "\<c-v>"
-    " echo "c-v"
-    let l:ret = v:true
-  endif
-  return l:ret
+  " " call Slct_re()
+  " 
+  " let l:ret = v:false
+  " 
+  " if mode() == "\<c-v>"
+  "   " echo "c-v"
+  "   let l:ret = v:true
+  " endif
+  " return l:ret
 endfunc
 
 func! Is_slctd_mode__line() range abort
 
-  " call Slct_re()
+  return v:lua.v.Is_slctd_mode__line()
 
-  let l:ret = v:false
-
-  if mode() == "v"
-    " echo "v"
-    let l:ret = v:true
-  endif
-  return l:ret
+  " " call Slct_re()
+  " 
+  " let l:ret = v:false
+  " 
+  " if mode() == "v"
+  "   " echo "v"
+  "   let l:ret = v:true
+  " endif
+  " return l:ret
 endfunc
 
 " slctd etc
@@ -3543,24 +3278,30 @@ endfunc
 
 func! Ynk__clp() abort
 
-  let @a = @+
+  return v:lua.v.Ynk__clp()
+
+  " let @a = @+
 endfunc
 
 func! Ynk__slctd() abort
 
-  let @e = @d
-  let @d = @c
-  let @c = @b
-  let @b = @a
+  return v:lua.v.Ynk__slctd()
 
-  call Normal('gv"ay')
-  call Clp__ynk()
+  " let @e = @d
+  " let @d = @c
+  " let @c = @b
+  " let @b = @a
+  " 
+  " call Normal('gv"ay')
+  " call Clp__ynk()
 endfunc
 
 func! Ynk__add_slctd() abort
 
-  call Normal('gv"Ay')
-  call Clp__ynk()
+  return v:lua.v.Ynk__add_slctd()
+
+  " call Normal('gv"Ay')
+  " call Clp__ynk()
 endfunc
 
 func! Ynk__by_rgstr_info(rgstr_info) abort
@@ -3779,17 +3520,19 @@ endfunc
 
 func! Is_srch__word1() abort
 
-  let l:str = @/
-  let l:ret = v:false
+  return v:lua.v.Is_srch__word1()
 
-  let l:str_l = strcharpart(l:str, 0, 2)
-  let l:str_r = strcharpart(l:str, strchars(l:str) - 2)
-
-  if l:str_l == '\<' && l:str_r == '\>'
-    let l:ret = v:true
-  endif
-
-  return l:ret
+  " let l:str = @/
+  " let l:ret = v:false
+  " 
+  " let l:str_l = strcharpart(l:str, 0, 2)
+  " let l:str_r = strcharpart(l:str, strchars(l:str) - 2)
+  " 
+  " if l:str_l == '\<' && l:str_r == '\>'
+  "   let l:ret = v:true
+  " endif
+  " 
+  " return l:ret
 endfunc
 
 " markdown cnd
@@ -3813,95 +3556,126 @@ endfunc
 
 func! I_symbol01() abort
 
-  let l:lst = [ '$', '@', '#', ';', '%' ]
-  call complete(col('.'), l:lst)
-  return ''
+  return v:lua.v.I_symbol01()
+
+  " let l:lst = [ '$', '@', '#', ';', '%' ]
+  " call complete(col('.'), l:lst)
+  " return ''
 endfunc
 
 func! I_symbol02() abort
 
-  let l:lst = [ '?', '!', '~', '^', '&', '|', '\', '/' ]
-  call complete(col('.'), l:lst)
-  return ''
+  return v:lua.v.I_symbol02()
+
+  " let l:lst = [ '?', '!', '~', '^', '&', '|', '\', '/' ]
+  " call complete(col('.'), l:lst)
+  " return ''
 endfunc
 
 func! I_symbol03() abort
 
-  let l:lst = [ '=', '+', '-' ]
-  call complete(col('.'), l:lst)
-  return ''
+  return v:lua.v.I_symbol03()
+
+  " let l:lst = [ '=', '+', '-' ]
+  " call complete(col('.'), l:lst)
+  " return ''
 endfunc
 
 func! I_bracket() abort
 
-  let l:lst = [ '()', '{}', '[]', '<>', '[]()', '[][]', '(){}' ]
-  call complete(col('.'), l:lst)
-  return ''
+  return v:lua.v.I_bracket()
+
+  " let l:lst = [ '()', '{}', '[]', '<>', '[]()', '[][]', '(){}' ]
+  " call complete(col('.'), l:lst)
+  " return ''
 endfunc
 
 func! I_quote() abort
 
-  let l:lst = [ "''", '""', '``' ]
-  call complete(col('.'), l:lst)
-  return ''
+  return v:lua.v.I_quote()
+
+  " let l:lst = [ "''", '""', '``' ]
+  " call complete(col('.'), l:lst)
+  " return ''
 endfunc
 
 func! I_markdown_lnk() abort
 
-  let l:lst = [ '[]()', '[][]', '![]()' ]
-  call complete(col('.'), l:lst)
-  return ''
+  return v:lua.v.I_markdown_lnk()
+
+  " let l:lst = [ '[]()', '[][]', '![]()' ]
+  " call complete(col('.'), l:lst)
+  " return ''
 endfunc
 
 func! I_week() abort
 
-  call complete(col('.'), g:week_def)
-  return ''
+  return v:lua.v.I_week()
+
+  " call complete(col('.'), g:week_def)
+  " return ''
 endfunc
 
 func! I_num() abort
 
-  let l:lst = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ]
-  call complete(col('.'), l:lst)
-  return ''
+  return v:lua.v.I_num()
+
+  " let l:lst = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ]
+  " call complete(col('.'), l:lst)
+  " return ''
 endfunc
 
 func! I_reg() abort
-  call complete(col('.'), [@0, @1, @2, @3])
-  return ''
+
+  return v:lua.v.I_reg()
+
+  " call complete(col('.'), [@0, @1, @2, @3])
+  " return ''
 endfunc
 
 func! I_todo_status() abort
 
-  let l:lst = [ 'done', 'doing', 'on hold' ]
-  call complete(col('.'), l:lst)
-  return ''
+  return v:lua.v.I_todo_status()
+
+  " let l:lst = [ 'done', 'doing', 'on hold' ]
+  " call complete(col('.'), l:lst)
+  " return ''
 endfunc
 
 func! I_reserved_lua() abort
-  call complete(col('.'), [
-  \   'end',
-  \   'local',
-  \   'return',
-  \   'if elseif else end',
-  \   'for key, val in pairs() do end',
-  \   'function'
-  \ ])
-  return ''
+
+  return v:lua.v.I_reserved_lua()
+
+  " call complete(col('.'), [
+  " \   'end',
+  " \   'local',
+  " \   'return',
+  " \   'if elseif else end',
+  " \   'for key, val in pairs() do end',
+  " \   'function'
+  " \ ])
+  " return ''
 endfunc
 
-" tag jmp
+func! Cursor__ins_rgstr_by_rgstr_info(rgstr_info) abort
 
-let g:doc_tech_dir_rel = 'wrk/prj-pri/doc-tech-ds/docs/md'
+  return v:lua.v.Cursor__ins_rgstr_by_rgstr_info(a:rgstr_info)
 
-func! Doc_tech_tag_jmp(str) abort
-
-  let l:str = $HOME . '/' . g:doc_tech_dir_rel . '/' . a:str
-  " echo l:str
-  call Tag_jmp_by_str(l:str)
+  " let l:rgstr = Rgstr_info_rgstr(a:rgstr_info)
+  " call Normal('"' . l:rgstr . l:rgstr . 'P')
 endfunc
 
+func! Rgstr_info_rgstr(rgstr_info) abort
+
+  return v:lua.v.Rgstr_info_rgstr(a:rgstr_info)
+
+  " let l:rgstr = strcharpart(a:rgstr_info, 6, 1)
+  " return l:rgstr
+endfunc
+
+" 
 " rg
+" 
 
 func! Rg_rslt_line_parse(line) abort
 
@@ -4017,18 +3791,6 @@ func! Rg_ptn_rslt_txt(ptn, opt) abort
   return l:r_rslt_txt
 endfunc
 
-func! Cursor__ins_rgstr_by_rgstr_info(rgstr_info) abort
-  
-  let l:rgstr = Rgstr_info_rgstr(a:rgstr_info)
-  call Normal('"' . l:rgstr . l:rgstr . 'P')
-endfunc
-
-func! Rgstr_info_rgstr(rgstr_info) abort
-
-  let l:rgstr = strcharpart(a:rgstr_info, 6, 1)
-  return l:rgstr
-endfunc
-
 func! Jmplst() abort
 
   let l:jmplst_tmp = getjumplist()[0]
@@ -4086,6 +3848,19 @@ func! Jmplst_cmp(jmplst1, jmplst2) abort
   endif
 
   return l:ret
+endfunc
+
+" 
+" doc-tech
+" 
+
+let g:doc_tech_dir_rel = 'wrk/prj-pri/doc-tech-ds/docs/md'
+
+func! Doc_tech_tag_jmp(str) abort
+
+  let l:str = $HOME . '/' . g:doc_tech_dir_rel . '/' . a:str
+  " echo l:str
+  call Tag_jmp_by_str(l:str)
 endfunc
 
 " mark

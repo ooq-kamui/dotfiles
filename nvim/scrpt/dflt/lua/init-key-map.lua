@@ -686,7 +686,7 @@
 -- vim.keymap.set('n', 'xx', 'Xxx')
 
 -- srch forward
-   vim.keymap.set('n', 'n', ':call Cursor__mv_srch("f")<cr>')
+   vim.keymap.set('n', 'n'    , ':call Cursor__mv_srch("f")<cr>')
 
 -- srch back
    vim.keymap.set('n', '<c-n>', ':call Cursor__mv_srch("b")<cr>')

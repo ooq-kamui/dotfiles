@@ -4,6 +4,10 @@
 
 ## nvim
 
+plg file lua div
+
+
+fnc
 - str idx
   - str[idx:idx2]       > ??
   - str[idx] ( = char ) > ??
@@ -52,10 +56,6 @@ opn file closed ltst
 is env init.lua
 - confirm
   - mac ?
-
-srch
-- case srch first
-  - nnoremap S
 
 
 ## git

@@ -961,16 +961,12 @@ end
 
 -- line num
 
---[[
-
 function v.Line_num_by_Line_info(line_info)
 
   local line_info = f.trim(line_info, ' ', 1)
-  local line_num  = f.split(line_info, '\\s\\+')[0]
+  local line_num  = f.split(line_info, '\\s\\+')[1]
   return line_num
 end
-
---]]
 
 -- line cnd
 
@@ -1216,6 +1212,8 @@ function v.Cursor__mv_fnc_name() -- use not
   v.Cursor__mv_word_b()
 end
 
+--]]
+
 function v.Cursor__mv_u() -- alias
 
   v.Normal('k')
@@ -1239,6 +1237,8 @@ function v.Cursor__mv_v(drct)
   end
 end
 
+--[[
+
 g_cursor_mv_line_step_dflt = 10
 
 function v.Cursor__mv_mlt_u() -- alias
@@ -1257,11 +1257,15 @@ function v.Cursor__mv_mlt_d() -- alias
   v.Normal(n_cmd)
 end
 
+--]]
+
 function v.Cursor__mv_u_line_end()
 
   v.Cursor__mv_u()
   v.Cursor__mv_line_end()
 end
+
+--[[
 
 function v.Cursor__mv_line_top_or_new_line()
 
@@ -1412,15 +1416,16 @@ function v.Cursor__mv_v_jmp(drct)
   end
 end
 
+--]]
+
 function v.Cursor__mv_srch_ptn(ptn, dir) -- range
 
-  local ptn = ptn
+  local opt_dir = ''
 
   if dir == 'b' then
-    local opt_dir = 'b'
-  else
-    local opt_dir = ''
+    opt_dir = 'b'
   end
+
   local opt = 'W' .. opt_dir
   -- local opt = 'zW' .. opt_dir
 
@@ -1428,8 +1433,6 @@ function v.Cursor__mv_srch_ptn(ptn, dir) -- range
 
   f.search(ptn, opt, line_num)
 end
-
---]]
 
 function v.Cursor__mv_srch(drct)
 
@@ -1475,18 +1478,19 @@ end
 
 --]]
 
---[[
-
 function v.Cursor__ins_mlt(str, num)
 
   if num == 0 then
     return
   end
 
-  local cmd = num.'i'.str
+  local cmd = num .. 'i' .. str
   v.Normal(cmd)
 end
 
+--[[
+
+-- dev anchor
 function v.Cursor__ins_cr()
 
   local t_line_num = f.line('.')
@@ -1508,6 +1512,8 @@ function v.Cursor__ins_space(is_cursor_mv)
     -- v.Normal('l')
   end
 end
+
+--]]
 
 function v.Cursor__ins_hyphen()
 
@@ -1567,15 +1573,13 @@ g_week_def = { 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' }
 
 function v.Cursor__ins_week()
 
-  local week_num = f.strftime('%w') + 1
-  local week     = g_week_def[week_num]
+  local idx = f.strftime('%w') + 1
+  local week     = g_week_def[idx]
   v.Cursor__ins(week)
   -- v.Cursor__ins(' ' .. week)
 end
 
 -- cmnt
-
---]]
 
 function v.Cursor__ins_cmnt_1(cmd_cursor__mv_line_top)
 
@@ -1607,33 +1611,28 @@ function v.V_ins_cmnt_1() -- range
   endfor
 end
 
+--]]
+
 function v.Cursor__ins_cmnt_mlt_by_pos(pos)
 
   local cmnt_mlt_def = {
-    lua        = {'--[[' , '-- ** '},
-    html       = {'<!--' ,  '-->'},
-    css        = {'/*'   ,  ' */'},
-    javascript = {'/*'   ,  ' */'},
-    java       = {'/*'   ,  ' */'},
-    dflt       = {'/*'   ,  ' */'},
+    lua        = {[[--[[]] , '--]]'},
+    html       = {'<!--'   ,  '-->'},
+    css        = {'/*'     ,  ' */'},
+    javascript = {'/*'     ,  ' */'},
+    java       = {'/*'     ,  ' */'},
+    dflt       = {'/*'     ,  ' */'},
   }
 
   local str = f.get(cmnt_mlt_def, vim.bo.filetype, cmnt_mlt_def['dflt'])
 
-  --if f.has_key(cmnt_mlt_def, vim.bo.filetype) then
-  --  local filetype = vim.bo.filetype
-  --else
-  --  local filetype = 'dflt'
-  --end
-  --local str = cmnt_mlt_def[filetype]
-
   if     pos == 'bgn' then
     v.Normal('O')
-    v.Normal('i' .. str[0])
+    v.Normal('i' .. str[1])
 
   elseif pos == 'end' then
     v.Normal('o')
-    v.Normal('i' .. str[1])
+    v.Normal('i' .. str[2])
   end
 end
 
@@ -1642,6 +1641,8 @@ function v.Cursor__ins_cmnt_mlt()
   v.Cursor__ins_cmnt_mlt_by_pos('bgn')
   v.Cursor__ins_cmnt_mlt_by_pos('end')
 end
+
+--[[
 
 function v.V_ins_cmnt_mlt() -- range
 
@@ -1672,10 +1673,14 @@ function v.Cursor__ins_markdown_h()
   v.Cursor__mv_by_line_col(vim.v.null, col)
 end
 
+--]]
+
 function v.Cursor__ins_markdown_cr()
 
   v.Cursor__ins('  ')
 end
+
+--[[
 
 function v.Cursor__ins_markdown_itm()
 
@@ -1997,8 +2002,6 @@ function v.Cursor_filepath()
   return str
 end
 
---[[
-
 -- cursor __ ins line
 
 function v.Cursor__ins_line(str)
@@ -2019,6 +2022,8 @@ function v.Cursor__ins_line_buf_file_path()
   local path = v.Buf_file_path()
   v.Cursor__ins_line(path)
 end
+
+--[[
 
 function v.Cursor__ins_line_anchor()
 
@@ -2437,14 +2442,14 @@ g_v_rng = "'<,'>"
 
 -- slctd __ ( slct )
 
+--]]
+
 function v.Slctd__cancel() -- range -- alias
 
   v.Esc()
 end
 
 -- refactoring slct > slctd __ xxx
-
---]]
 
 function v.Slct_re() -- range
   -- print(f.mode())
@@ -2463,12 +2468,12 @@ function v.Slct_re() -- range
   v.Normal('gv')
 end
 
---[[
-
 function v.Slctd_str__all()
 
   v.Normal('ggVG')
 end
+
+--[[
 
 function v.Slctd_str__word()
 
@@ -2695,11 +2700,15 @@ function v.Slctd_str__expnd() -- expnd lr, cre re
 
 end
 
-function v.Slctd_str__expnd_srch() -- range -- todo dev
+--]]
+
+function v.Slctd_str__expnd_srch() -- range
 
   v.Slct_re()
-  v.Cursor__mv_srch("f")
+  v.Cursor__mv_srch('f')
 end
+
+--[[
 
 function v.Slctd_str__expnd_word_f() -- range
 
@@ -3628,13 +3637,15 @@ function v.Slctd_box_cursor_r_space__crct() -- range
   endfor
 end
 
+--]]
+
 function v.Is_slctd_mode__box() -- range
 
   -- v.Slct_re()
 
   local ret = false
 
-  if f.mode() == "\\<c-v>" then
+  if f.mode() == vim.api.nvim_replace_termcodes('<c-v>', false, false, true) then
     -- print( "c-v" )
     ret = true
   end
@@ -3647,7 +3658,10 @@ function v.Is_slctd_mode__line() -- range
 
   local ret = false
 
-  if f.mode() == "v" then
+  if     f.mode() == 'v' then
+    -- print( "v" )
+    ret = true
+  elseif f.mode() == 'V' then
     -- print( "v" )
     ret = true
   end
@@ -3655,6 +3669,8 @@ function v.Is_slctd_mode__line() -- range
 end
 
 -- slctd etc
+
+--[[
 
 function v.Slctd_srch__swtch() -- srch, set or run
 
@@ -3712,10 +3728,12 @@ function v.Ynk__buf_file_path()
   v.Clp__ynk()
 end
 
+--]]
+
 function v.Ynk__clp()
 
   -- let @a = @+
-  f.setreg('a', getreg('+'))
+  f.setreg('a', f.getreg('+'))
 end
 
 function v.Ynk__slctd()
@@ -3735,16 +3753,18 @@ function v.Ynk__add_slctd()
   v.Clp__ynk()
 end
 
+--[[
+
 function v.Ynk__by_rgstr_info(rgstr_info)
-  
+
   local rgstr = v.Rgstr_info_rgstr(rgstr_info)
   local scrpt = 'let @a = @' .. rgstr
   f.execute(scrpt) -- refactoring ?
 end
 
--- clp
-
 --]]
+
+-- clp
 
 function v.Clp__ynk()
 
@@ -3973,8 +3993,6 @@ function v.Srch_str__fnc()
   f.setreg('/', '^func')
 end
 
---[[
-
 -- srch cnd
 
 function v.Is_srch__word1()
@@ -3995,8 +4013,6 @@ end
 
 -- markdown cnd
 
---]]
-
 function v.Is_line_markdown_itm()
 
   local ptn = '^\\s*- '
@@ -4009,8 +4025,6 @@ function v.Is_line_markdown_itm()
     return true
   end
 end
-
---[[
 
 -- complete  -  mode insert ins lst
 
@@ -4070,6 +4084,7 @@ function v.I_num()
 end
 
 function v.I_reg()
+
   -- local lst = { @0, @1, @2, @3 }
   local lst = { f.getreg('0'), f.getreg('1'), f.getreg('2'), f.getreg('3') }
   f.complete(f.col('.'), lst )
@@ -4084,124 +4099,20 @@ function v.I_todo_status()
 end
 
 function v.I_reserved_lua()
-  f.complete(f.col('.'), {
+
+  local lst = {
     'end'                           ,
     'local'                         ,
     'return'                        ,
     'if elseif else end'            ,
     'for key, val in pairs() do end',
     'function'                      ,
-  })
+  }
+  f.complete(f.col('.'), lst)
   return ''
 end
 
--- mark
-
-g_mark_alph_def = {
-  'a','b','c','d','e','f','g','h','i','j','k','l','m','n',
-  'o','p','q','r','s','t','u','v','w','x','y','z'
-}
-
-function v.Mark_show_tgl()
-  
-  if f.exists('g_mark_show_flg') == 0 then
-    
-    g_mark_show_flg = false
-  end
-  
-  if not g_mark_show_flg then
-    
-    exe 'DoShowMarks'
-    g_mark_show_flg = true
-  else
-    exe 'NoShowMarks'
-    g_mark_show_flg = false
-  end
-end
-
-function v.Mark_lst()
-  
-  local mark = {}
-  for _mark in f.bufname()->getmarklist()
-    
-    local _alph = _mark['mark'][1]
-    
-    if f.count(g_mark_alph_def, _alph) == 0 then
-      continue
-    end
-    
-    mark = f.add(mark, _mark['mark'][1])
-  endfor
-  --print( mark )
-  return mark
-end
-
-function v.Mark_alph_line()
-  
-  local line_c = f.line('.')
-  
-  for _mark in f.bufname()->getmarklist()
-    
-    local _alph = _mark['mark'][1]
-    
-    if f.count(g_mark_alph_def, _alph) == 0 then
-      continue
-    end
-    
-    if _mark['pos'][1] == line_c then
-      --print( _alph )
-      return _alph
-    end
-  endfor
-  return ''
-end
-
-function v.Mark_tgl()
-  
-  local alph = v.Mark_alph_line()
-  --print( 'Mark_tgl ' .. alph )
-  
-  --if alph == '' then
-  if v.Is_str__emp(alph) then
-    v.Mark_add()
-  else
-    v.Mark_del(alph)
-  end
-  
-  v.Exe('DoShowMarks')
-end
-  
-function v.Mark_add()
-  
-  local alph = v.Mark_alph_useabl()
-  v.Exe('mark ' .. alph)
-end
-
-function v.Mark_alph_useabl()
-  
-  local mark = v.Mark_lst()
-  
-  for _alph in g_mark_alph_def
-    if f.count(mark, _alph) == 0 then
-      --print( _alph )
-      return _alph
-    end
-  endfor
-  
-  print( 'use alph all' )
-  return ''
-end
-
-function v.Mark_del(alph)
-  
-  v.Exe('delmark ' .. alph)
-end
-
-function v.Mark_del_all()
-  
-  v.Exe('delmark!')
-  v.Exe('DoShowMarks')
-end
+--[[
 
 -- trns
 
@@ -4247,6 +4158,22 @@ function v.Slctd_url_encode() -- range
   --print( rslt )
   v.Cursor__ins(rslt)
 end
+
+--]]
+
+function v.Cursor__ins_rgstr_by_rgstr_info(rgstr_info)
+  
+  local rgstr = v.Rgstr_info_rgstr(rgstr_info)
+  v.Normal('"' .. rgstr .. rgstr .. 'P')
+end
+
+function v.Rgstr_info_rgstr(rgstr_info)
+
+  local rgstr = f.strcharpart(rgstr_info, 6, 1)
+  return rgstr
+end
+
+--[[
 
 -- 
 -- rg
@@ -4364,18 +4291,6 @@ function v.Rg_ptn_rslt_txt(ptn, opt)
   local rg_cmd = Rg_cmd(ptn, nil, nil, opt) -- todo dev
   local r_rslt_txt = Sys_cmd(rg_cmd)
   return r_rslt_txt
-end
-
-function v.Cursor__ins_rgstr_by_rgstr_info(rgstr_info)
-  
-  local rgstr = Rgstr_info_rgstr(rgstr_info)
-  v.Normal('"' .. rgstr .. rgstr .. 'P')
-end
-
-function v.Rgstr_info_rgstr(rgstr_info)
-
-  local rgstr = strcharpart(rgstr_info, 6, 1)
-  return rgstr
 end
 
 -- 
@@ -4644,6 +4559,117 @@ function v.Repeat_fnc()
   -- v.Cursor__ins_ynk()
 end
 
+--[[
+
+-- mark
+
+g_mark_alph_def = {
+  'a','b','c','d','e','f','g','h','i','j','k','l','m','n',
+  'o','p','q','r','s','t','u','v','w','x','y','z'
+}
+
+function v.Mark_show_tgl()
+  
+  if f.exists('g_mark_show_flg') == 0 then
+    
+    g_mark_show_flg = false
+  end
+  
+  if not g_mark_show_flg then
+    
+    exe 'DoShowMarks'
+    g_mark_show_flg = true
+  else
+    exe 'NoShowMarks'
+    g_mark_show_flg = false
+  end
+end
+
+function v.Mark_lst()
+  
+  local mark = {}
+  for _mark in f.bufname()->getmarklist()
+    
+    local _alph = _mark['mark'][1]
+    
+    if f.count(g_mark_alph_def, _alph) == 0 then
+      continue
+    end
+    
+    mark = f.add(mark, _mark['mark'][1])
+  endfor
+  --print( mark )
+  return mark
+end
+
+function v.Mark_alph_line()
+  
+  local line_c = f.line('.')
+  
+  for _mark in f.bufname()->getmarklist()
+    
+    local _alph = _mark['mark'][1]
+    
+    if f.count(g_mark_alph_def, _alph) == 0 then
+      continue
+    end
+    
+    if _mark['pos'][1] == line_c then
+      --print( _alph )
+      return _alph
+    end
+  endfor
+  return ''
+end
+
+function v.Mark_tgl()
+  
+  local alph = v.Mark_alph_line()
+  --print( 'Mark_tgl ' .. alph )
+  
+  --if alph == '' then
+  if v.Is_str__emp(alph) then
+    v.Mark_add()
+  else
+    v.Mark_del(alph)
+  end
+  
+  v.Exe('DoShowMarks')
+end
+  
+function v.Mark_add()
+  
+  local alph = v.Mark_alph_useabl()
+  v.Exe('mark ' .. alph)
+end
+
+function v.Mark_alph_useabl()
+  
+  local mark = v.Mark_lst()
+  
+  for _alph in g_mark_alph_def
+    if f.count(mark, _alph) == 0 then
+      --print( _alph )
+      return _alph
+    end
+  endfor
+  
+  print( 'use alph all' )
+  return ''
+end
+
+function v.Mark_del(alph)
+  
+  v.Exe('delmark ' .. alph)
+end
+
+function v.Mark_del_all()
+  
+  v.Exe('delmark!')
+  v.Exe('DoShowMarks')
+end
+
+--]]
 --[[
 
 -- 
