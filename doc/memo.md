@@ -4,10 +4,9 @@
 
 ## nvim
 
-plg file lua div
-
-
 fnc
+- Cursor_l_char()
+
 - str idx
   - str[idx:idx2]       > ??
   - str[idx] ( = char ) > ??
@@ -21,6 +20,9 @@ fnc
 
 - :call Fnc_lua()
   - tst
+
+env
+- at opt ?
 
 
 fzf
@@ -58,6 +60,22 @@ is env init.lua
   - mac ?
 
 
+## vim
+osc52 clp __ ynk
+
+nnoremap `<` cursor mv block out ( fnc )
+
+
+v box paste line down
+- case emp: paste skip
+
+
+```
+`<    最後に選択されていた選択範囲の先頭に移動
+`>    最後に選択されていた選択範囲の末尾に移動
+```
+
+
 ## git
 
 merge way 3 off
@@ -67,18 +85,9 @@ merge way 3 off
 - doc write
 
 
-## vim
-
-nnoremap `<` cursor mv block out ( fnc )
-
-
-v box paste line down
-- case emp: paste skip
-
-
 ## aws
 
-confirm
+price confirm
 
 
 ## ooq dns migration

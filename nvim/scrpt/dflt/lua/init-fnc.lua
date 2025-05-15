@@ -1179,6 +1179,8 @@ function v.Cursor__mv_word_b()
   end
 end
 
+--]]
+
 function v.Cursor__mv_word_dlm_f()
 
   local ptn = '[_ABCDEFGHIJKLMNOPQRSTUVWXYZ]'
@@ -1202,7 +1204,9 @@ function v.Cursor__mv_word_b_pre() -- use not
   end
 end
 
-function v.Cursor__mv_fnc_name() -- use not
+--[[
+
+function v.Cursor__mv_fnc_name()
 
   v.Cursor__mv_srch_ptn('(', 'f')
   v.Cursor__mv_word_b()
@@ -1731,6 +1735,7 @@ end
 
 --[[
 
+-- dev anchor
 function v.Cursor_l_char()
 
   local idx = v.Cursor_col_idx() - 1
@@ -4396,119 +4401,14 @@ function v.Is_nvim() -- alias
   return ret
 end
 
--- 
--- plugin
--- 
-
---[[
-
-function v.Vim_plug_path()
-
-  if v.Is_nvim() then
-    if     v.Is_env__('mac') then
-
-      local vim_plug_dir_dflt_nvim = "~/.local/share/nvim/site"
-      local vim_plug_dir_mac_nvim  = $HOME .. '/.local/share/nvim/site'
-
-      if     f.isdirectory(vim_plug_dir_mac_nvim) then
-        local vim_plug_dir = vim_plug_dir_mac_nvim
-      else
-        local vim_plug_dir = vim_plug_dir_mac_nvim
-      end
-
-    elseif v.Is_env__('linux') then
-
-      local vim_plug_dir_dflt_nvim = "~/.local/share/nvim/site"
-      local vim_plug_dir_ec2_nvim  = "/home/ec2-user/.local/share/nvim/site"
-      local vim_plug_dir_c9_nvim   = "/home/ec2-user/.local/share/nvim/site"
-      local vim_plug_dir_s9_nvim   = "/home/centos/.local/share/nvim/site"
-
-      if     f.isdirectory(vim_plug_dir_dflt_nvim) then
-        local vim_plug_dir = vim_plug_dir_dflt_nvim
-
-      elseif f.isdirectory(vim_plug_dir_ec2_nvim) then
-        local vim_plug_dir = vim_plug_dir_ec2_nvim
-
-      elseif f.isdirectory(vim_plug_dir_c9_nvim) then
-        local vim_plug_dir = vim_plug_dir_c9_nvim
-
-      elseif f.isdirectory(vim_plug_dir_s9_nvim) then
-        local vim_plug_dir = vim_plug_dir_s9_nvim
-
-      else
-        local vim_plug_dir = vim_plug_dir_ec2_nvim
-      end
-
-    elseif v.Is_env__('win64') then
-
-      local vim_plug_dir = '~/appdata/local/nvim-data/site'
-
-    elseif v.Is_env__('win32unix') then -- gitbash
-
-      local vim_plug_dir = '~/appdata/local/nvim-data/site'
-    else
-      local vim_plug_dir = '~/appdata/local/nvim-data/site'
-    end
-
-  else -- vim
-    if     v.Is_env__('mac') then
-
-      -- local vim_plug_dir_mac_nvim = $HOME .. '/.local/share/nvim/site'
-      local vim_plug_dir_mac_vim  = $HOME .. '/.vim'
-
-      if f.isdirectory(vim_plug_dir_mac_vim) then
-        local vim_plug_dir = vim_plug_dir_mac_vim
-
-      else
-        local vim_plug_dir = vim_plug_dir_mac_vim
-      end
-
-    elseif v.Is_env__('linux') then
-
-      local vim_plug_dir_ec2_vim  = "/home/ec2-user/.vim"
-      local vim_plug_dir_c9_vim   = "/home/ec2-user/.vim"
-      -- local vim_plug_dir_c9_nvim  = "/home/ec2-user/.local/share/nvim/site"
-      -- local vim_plug_dir_s9_nvim  = "/home/centos/.local/share/nvim/site"
-
-      if f.isdirectory(vim_plug_dir_c9_vim) then
-        local vim_plug_dir = vim_plug_dir_c9_vim
-
-      else
-        local vim_plug_dir = vim_plug_dir_ec2_vim
-      end
-
-    elseif v.Is_env__('win64') then
-      local vim_plug_dir = '~/.vim'
-
-    elseif v.Is_env__('win32unix') then -- gitbash
-      local vim_plug_dir = '~/.vim'
-
-    else
-      local vim_plug_dir = '~/.vim'
-    end
-  end
-
-  local vim_plug_path = vim_plug_dir .. '/autoload/plug.vim'
-  return vim_plug_path
-end
-
-function v.Is_vim_plug__installed()
-
-  local vim_plug_path = v.Vim_plug_path()
-  -- print( vim_plug_path )
-
-  local ret = not f.empty(f.glob(vim_plug_path))
-  -- print( 'vim_plug installed : ' .. ret )
-
-  return ret
-end
-
 -- fnc end
 
 
 -- 
 -- init
 -- 
+
+--[[
 
 -- ynk init
 v.Ynk__clp()
@@ -4542,9 +4442,9 @@ function v.Srch_init() -- use not
 end
 --v.Srch_init()
 
--- init end
-
 --]]
+
+-- init end
 
 -- 
 -- repeat fnc

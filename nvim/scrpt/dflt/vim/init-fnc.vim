@@ -610,6 +610,7 @@ endfunc
 
 " line num
 
+" dev anchor : cmnt del doing
 func! Line_num_by_Line_info(line_info) abort
 
   return v:lua.v.Line_num_by_Line_info(a:line_info)
@@ -771,27 +772,31 @@ endfunc
 
 func! Cursor__mv_word_dlm_f() abort
 
-  let l:ptn = '[_ABCDEFGHIJKLMNOPQRSTUVWXYZ]'
-  " let l:ptn = '[_\u]'
+  return v:lua.v.Cursor__mv_word_dlm_f()
 
-  let l:line_num = Cursor_line_num()
-
-  call search(l:ptn, 'zW', l:line_num)
+  " let l:ptn = '[_ABCDEFGHIJKLMNOPQRSTUVWXYZ]'
+  " " let l:ptn = '[_\u]'
+  " 
+  " let l:line_num = Cursor_line_num()
+  " 
+  " call search(l:ptn, 'zW', l:line_num)
 endfunc
 
 func! Cursor__mv_word_b_pre() abort " use not
 
-  let l:c_char = Cursor_c_char()
-  let l:l_char = Cursor_r_char()
+  return v:lua.v.Cursor__mv_word_b_pre()
 
-  if l:c_char =~ ' ' && l:l_char !~ ' '
-    call Normal('gegel')
-  else
-    call Normal('gel')
-  endif
+  " let l:c_char = Cursor_c_char()
+  " let l:l_char = Cursor_r_char()
+  " 
+  " if l:c_char =~ ' ' && l:l_char !~ ' '
+  "   call Normal('gegel')
+  " else
+  "   call Normal('gel')
+  " endif
 endfunc
 
-func! Cursor__mv_fnc_name() abort " use not
+func! Cursor__mv_fnc_name() abort
 
   call Cursor__mv_srch_ptn('(', 'f')
   call Cursor__mv_word_b()

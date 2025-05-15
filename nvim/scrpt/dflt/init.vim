@@ -11,14 +11,12 @@ let g:init_vim_etc_dir   = g:init_vim_dir . '/dflt/vim'
 " fnc
 lua require('init-fnc')
 source `=g:init_vim_etc_dir . '/init-fnc.vim'`
-
-" fnc tst
+lua require('init-fnc-tst' )
 source `=g:init_vim_etc_dir . '/init-fnc-tst.vim'`
 
 " plg
-source `=g:init_vim_etc_dir . '/init-plg.vim'`
-
-" plg fzf
+lua require('init-plg-mng')
+source `=g:init_vim_etc_dir . '/init-plg-mng.vim'`
 source `=g:init_vim_etc_dir . '/init-plg-fzf.vim'`
 
 

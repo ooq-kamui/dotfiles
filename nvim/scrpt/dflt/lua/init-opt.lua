@@ -328,14 +328,6 @@
 -- endif
    end
 
--- 
--- shell & .vimrc_env
--- 
-
--- set shell=fish -- default
-   vim.opt.shell = 'fish'
-
-
 -- comment auto off ( def pos final ? )
 -- autocmd FileType * set fo-=c fo-=r fo-=o
    vim.api.nvim_create_autocmd('FileType', {
@@ -346,5 +338,13 @@
        vim.opt.fo:remove {'o'}
      end,
    })
+
+
+-- 
+-- shell & .vimrc_env
+-- 
+
+-- set shell=fish -- default
+   vim.opt.shell = 'fish'
 
 
