@@ -859,16 +859,18 @@ endfunc
 
 func! Cursor__mv_line_top_or_new_line() abort
 
-  if     Is_cursor_col__line_top0()
+  return v:lua.v.Cursor__mv_line_top_or_new_line()
 
-    call Cursor__ins_line_emp()
-
-  elseif Is_cursor_col__line_top1()
-
-    call Cursor__mv_line_top0()
-  else
-    call Cursor__mv_line_top1()
-  endif
+  " if     Is_cursor_col__line_top0()
+  " 
+  "   call Cursor__ins_line_emp()
+  " 
+  " elseif Is_cursor_col__line_top1()
+  " 
+  "   call Cursor__mv_line_top0()
+  " else
+  "   call Cursor__mv_line_top1()
+  " endif
 endfunc
 
 func! Cursor__mv_slctd_edge_tgl() range abort
@@ -1314,56 +1316,68 @@ endfunc
 
 func! Cursor_l_char() abort
 
-  let l:idx = Cursor_col_idx() - 1
-  let l:c = getline('.')[l:idx]
-  return l:c
+  return v:lua.v.Cursor_l_char()
+
+  " let l:idx = Cursor_col_idx() - 1
+  " let l:c = getline('.')[l:idx]
+  " return l:c
 endfunc
 
 func! Cursor_r_char() abort
 
-  let l:idx = Cursor_col_idx() + 1
-  let l:c = getline('.')[l:idx]
-  return l:c
+  return v:lua.v.Cursor_r_char()
+
+  " let l:idx = Cursor_col_idx() + 1
+  " let l:c = getline('.')[l:idx]
+  " return l:c
 endfunc
 
-func! Cursor_u_char() abort " dev doing
+func! Cursor_u_char() abort
 
-  if Is_cursor_line_num__file_edge_bgn()
-    return ''
-  endif
+  return v:lua.v.Cursor_u_char()
 
-  let l:idx = Cursor_col_idx()
-  let l:line_num = Cursor_line_num() - 1
-  let l:c = getline(l:line_num)[l:idx]
-  return l:c
+  " if Is_cursor_line_num__file_edge_bgn()
+  "   return ''
+  " endif
+  " 
+  " let l:idx = Cursor_col_idx()
+  " let l:line_num = Cursor_line_num() - 1
+  " let l:c = getline(l:line_num)[l:idx]
+  " return l:c
 endfunc
 
-func! Cursor_d_char() abort " dev doing
+func! Cursor_d_char() abort
 
-  if Is_cursor_line_num__file_edge_end()
-    return ''
-  endif
+  return v:lua.v.Cursor_d_char()
 
-  let l:idx = Cursor_col_idx()
-  let l:line_num = Cursor_line_num() + 1
-  let l:c = getline(l:line_num)[l:idx]
-  return l:c
+  " if Is_cursor_line_num__file_edge_end()
+  "   return ''
+  " endif
+  " 
+  " let l:idx = Cursor_col_idx()
+  " let l:line_num = Cursor_line_num() + 1
+  " let l:c = getline(l:line_num)[l:idx]
+  " return l:c
 endfunc
 
 " cursor char __
 
 func! Cursor_char__rpl(rpl) abort
 
-  call Normal('r' . a:rpl)
+  return v:lua.v.Cursor_char__rpl(a:rpl)
+
+  " call Normal('r' . a:rpl)
 endfunc
 
 func! Cursor_char__rpl_underscore() abort " alias
 
-  " todo, case: line end
+  return v:lua.v.Cursor_char__rpl_underscore()
 
-  call Cursor_char__rpl('_')
-  call Normal('l')
-  " call Cursor__mv_char_forward() " todo, fnc cre
+  " " todo, case: line end
+  " 
+  " call Cursor_char__rpl('_')
+  " call Normal('l')
+  " " call Cursor__mv_char_forward() " todo, fnc cre
 endfunc
 
 func! N_char__tgl_swtch01() abort " todo fnc name mod
@@ -1397,99 +1411,113 @@ endfunc
 
 func! N_char__tgl_swtch02() abort
 
-  let l:c = Cursor_c_char()
+  return v:lua.v.N_char__tgl_swtch02()
 
-  if Is_char__num(l:c)
-
-    call Cursor_str__dcl()
-    return
-  endif
-
-  call Cursor_char__tgl_type_shift(l:c)
+  " let l:c = Cursor_c_char()
+  " 
+  " if Is_char__num(l:c)
+  " 
+  "   call Cursor_str__dcl()
+  "   return
+  " endif
+  " 
+  " call Cursor_char__tgl_type_shift(l:c)
 endfunc
 
 func! Cursor_char__tgl_type_shift(c) abort
 
-  let l:rpl = ''
+  return v:lua.v.Cursor_char__tgl_type_shift(a:c)
 
-  if     a:c == "'"
-    let l:rpl = '"'
-  elseif a:c == '"'
-    let l:rpl = '`'
-  elseif a:c == '`'
-    let l:rpl = "'"
-
-  elseif a:c == "("
-    let l:rpl = '['
-  elseif a:c == "["
-    let l:rpl = '{'
-  elseif a:c == "{"
-    let l:rpl = '<'
-  elseif a:c == "<"
-    let l:rpl = '('
-
-  elseif a:c == ")"
-    let l:rpl = ']'
-  elseif a:c == "]"
-    let l:rpl = '}'
-  elseif a:c == "}"
-    let l:rpl = '>'
-  elseif a:c == ">"
-    let l:rpl = ')'
-  endif
-
-  if ! Is_str__emp(l:rpl)
-
-    call Cursor_char__rpl(l:rpl)
-    return
-  endif
+  " let l:rpl = ''
+  " 
+  " if     a:c == "'"
+  "   let l:rpl = '"'
+  " elseif a:c == '"'
+  "   let l:rpl = '`'
+  " elseif a:c == '`'
+  "   let l:rpl = "'"
+  " 
+  " elseif a:c == "("
+  "   let l:rpl = '['
+  " elseif a:c == "["
+  "   let l:rpl = '{'
+  " elseif a:c == "{"
+  "   let l:rpl = '<'
+  " elseif a:c == "<"
+  "   let l:rpl = '('
+  " 
+  " elseif a:c == ")"
+  "   let l:rpl = ']'
+  " elseif a:c == "]"
+  "   let l:rpl = '}'
+  " elseif a:c == "}"
+  "   let l:rpl = '>'
+  " elseif a:c == ">"
+  "   let l:rpl = ')'
+  " endif
+  " 
+  " if ! Is_str__emp(l:rpl)
+  " 
+  "   call Cursor_char__rpl(l:rpl)
+  "   return
+  " endif
 endfunc
 
 func! Cursor_c_char__del() abort
 
-  let l:cmd = '"zx'
-  call Normal(l:cmd)
+  return v:lua.v.Cursor_c_char__del()
+
+  " let l:cmd = '"zx'
+  " call Normal(l:cmd)
 endfunc
 
 func! Cursor_c_char__del_ynk() abort
 
-  let l:cmd = '"ax'
-  call Normal(l:cmd)
+  return v:lua.v.Cursor_c_char__del_ynk()
+
+  " let l:cmd = '"ax'
+  " call Normal(l:cmd)
 endfunc
 
 " cursor char cnd
 
 func! Is_cursor_c_char__ptn(ptn) abort
 
-  let l:c = Cursor_c_char()
+  return v:lua.v.Is_cursor_c_char__ptn(a:ptn)
 
-  if l:c =~ a:ptn
-    return v:true
-  else
-    return v:false
-  endif
+  " let l:c = Cursor_c_char()
+  " 
+  " if l:c =~ a:ptn
+  "   return v:true
+  " else
+  "   return v:false
+  " endif
 endfunc
 
 func! Is_cursor_c_char__space() abort
 
-  let l:c = Cursor_c_char()
+  return v:lua.v.Is_cursor_c_char__space()
 
-  if l:c =~ '\s'
-    return v:true
-  else
-    return v:false
-  endif
-
-  " let l:ptn = '\s'
-  " let l:ret = Is_cursor_c_char__ptn(l:ptn)
-  " return l:ret
+  " let l:c = Cursor_c_char()
+  " 
+  " if l:c =~ '\s'
+  "   return v:true
+  " else
+  "   return v:false
+  " endif
+  " 
+  " " let l:ptn = '\s'
+  " " let l:ret = Is_cursor_c_char__ptn(l:ptn)
+  " " return l:ret
 endfunc
 
 func! Is_cursor_c_char__alph() abort
 
-  let l:ptn = '\a'
-  let l:ret = Is_cursor_c_char__ptn(l:ptn)
-  return l:ret
+  return v:lua.v.Is_cursor_c_char__alph()
+
+  " let l:ptn = '\a'
+  " let l:ret = Is_cursor_c_char__ptn(l:ptn)
+  " return l:ret
 endfunc
 
 " cursor str
@@ -1498,14 +1526,18 @@ endfunc
 
 func! Cursor_str__icl() abort
 
-  let l:n_cmd = "\<c-a>"
-  call Normal(l:n_cmd)
+  return v:lua.v.Cursor_str__icl()
+
+  " let l:n_cmd = "\<c-a>"
+  " call Normal(l:n_cmd)
 endfunc
 
 func! Cursor_str__dcl() abort
 
-  let l:n_cmd = "\<c-x>"
-  call Normal(l:n_cmd)
+  return v:lua.v.Cursor_str__dcl()
+
+  " let l:n_cmd = "\<c-x>"
+  " call Normal(l:n_cmd)
 endfunc
 
 func! Cursor_str_week__icl() abort
@@ -1604,24 +1636,30 @@ endfunc
 
 func! Cursor__ins_line_anchor() abort
 
-  let l:str  = Str_cmnt_1()
-  let l:str .= 'dev '
-  let l:str .= 'anchor'
-  call Cursor__ins_line(l:str)
-  call Cursor_line_indnt__crct()
+  return v:lua.v.Cursor__ins_line_anchor()
+
+  " let l:str  = Str_cmnt_1()
+  " let l:str .= 'dev '
+  " let l:str .= 'anchor'
+  " call Cursor__ins_line(l:str)
+  " call Cursor_line_indnt__crct()
 endfunc
 
 func! Cursor_d__ins_line(str) abort
 
-  let l:line_num = Cursor_line_num()
-  call append(l:line_num, a:str)
+  return v:lua.v.Cursor_d__ins_line(a:str)
+
+  " let l:line_num = Cursor_line_num()
+  " call append(l:line_num, a:str)
 endfunc
 
 func! Cursor_d__ins_line_space() range abort
 
-  let l:space_len = Cursor_col_num() - 1
-  let l:space_str = Str_space(l:space_len)
-  call Cursor_d__ins_line(l:space_str)
+  return v:lua.v.Cursor_d__ins_line_space()
+
+  " let l:space_len = Cursor_col_num() - 1
+  " let l:space_str = Str_space(l:space_len)
+  " call Cursor_d__ins_line(l:space_str)
 endfunc
 
 " cursor line  -  todo refactoring
@@ -1963,22 +2001,24 @@ endfunc
 
 func! Cursor_line_indnt__add(col) abort
 
-  if a:col == 0
-    return
-  endif
+  return v:lua.v.Cursor_line_indnt__add(a:col)
 
-  call Normal('0')
-
-  if &expandtab " 1:'expandtab', 0:'noexpandtab'
-    let l:char = ' '
-    let l:col = a:col
-  else
-    let l:char = "\t"
-    let l:col = a:col / 2
-  endif
-  call Cursor__ins_mlt(l:char, l:col)
-
-  call Cursor__mv_line_top1()
+  " if a:col == 0
+  "   return
+  " endif
+  " 
+  " call Normal('0')
+  " 
+  " if &expandtab " 1:'expandtab', 0:'noexpandtab'
+  "   let l:char = ' '
+  "   let l:col = a:col
+  " else
+  "   let l:char = "\t"
+  "   let l:col = a:col / 2
+  " endif
+  " call Cursor__ins_mlt(l:char, l:col)
+  " 
+  " call Cursor__mv_line_top1()
 endfunc
 
 func! Cursor_line_indnt__del() abort " alias
@@ -1990,32 +2030,39 @@ endfunc
 
 func! Cursor_line_indnt__shft_l() abort
 
-  call Normal('<<')
-  call Cursor__mv_line_top1()
+  return v:lua.v.Cursor_line_indnt__shft_l()
+
+  " call Normal('<<')
+  " call Cursor__mv_line_top1()
 endfunc
 
 func! Cursor_line_indnt__shft_r() abort
 
-  let l:col = 2
+  return v:lua.v.Cursor_line_indnt__shft_r()
 
-  call Cursor_line_indnt__add(l:col)
+  " let l:col = 2
+  " call Cursor_line_indnt__add(l:col)
 endfunc
 
 func! Cursor_line_indnt__crct() abort
 
-  let l:col = Cursor_line_indnt__crct_with_c()
-  return l:col
+  return v:lua.v.Cursor_line_indnt__crct()
+
+  " let l:col = Cursor_line_indnt__crct_with_c()
+  " return l:col
 endfunc
 
 func! Cursor_line_indnt__crct_with_c() abort
 
-  call Cursor_line_indnt__del()
+  return v:lua.v.Cursor_line_indnt__crct_with_c()
 
-  let l:col = Cursor_line_indnt_col_with_c()
-  "echo l:col
-
-  call Cursor_line_indnt__add(l:col)
-  return l:col
+  " call Cursor_line_indnt__del()
+  " 
+  " let l:col = Cursor_line_indnt_col_with_c()
+  " "echo l:col
+  " 
+  " call Cursor_line_indnt__add(l:col)
+  " return l:col
 endfunc
 
 let g:v_rng = "'<,'>"

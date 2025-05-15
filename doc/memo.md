@@ -5,24 +5,19 @@
 ## nvim
 
 fnc
-- Cursor_l_char()
-
-- str idx
-  - str[idx:idx2]       > ??
-  - str[idx] ( = char ) > ??
-
 - ar
   - idx + 1
 
 - range, firstline, lastline
 
 - clp
+  - mac, win
 
 - :call Fnc_lua()
   - tst
 
 env
-- at opt ?
+- def at opt ?
 
 
 fzf

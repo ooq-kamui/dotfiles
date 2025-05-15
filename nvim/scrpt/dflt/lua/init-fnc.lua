@@ -426,7 +426,8 @@ end
 function v.Esc() -- alias
 
   -- v.Normal('\\<esc>')
-  vim.cmd([[exe "normal! \<esc>"]])
+  -- vim.cmd([[exe "normal! \<esc>"]])
+  vim.cmd('exe "normal! \\<esc>"')
 end
 
 function v.Cmdline__(str)
@@ -899,7 +900,8 @@ function v.Win_splt_cursor__mv_nxt()
   -- local n_cmd = "\\<c-w>w"
   -- v.Normal(n_cmd)
 
-  vim.cmd([[exe "normal! \<c-w>w>"]])
+  -- vim.cmd([[exe "normal! \<c-w>w>"]])
+  vim.cmd('exe "normal! \\<c-w>w>"')
 end
 
 function v.Win_splt__quit()
@@ -907,7 +909,8 @@ function v.Win_splt__quit()
   -- local n_cmd = "\\<c-w>c"
   -- v.Normal(n_cmd)
 
-  vim.cmd([[exe "normal! \<c-w>c>"]])
+  -- vim.cmd([[exe "normal! \<c-w>c>"]])
+  vim.cmd('exe "normal! \\<c-w>c>"')
 end
 
 -- 
@@ -1265,8 +1268,6 @@ function v.Cursor__mv_u_line_end()
   v.Cursor__mv_line_end()
 end
 
---[[
-
 function v.Cursor__mv_line_top_or_new_line()
 
   if     v.Is_cursor_col__line_top0() then
@@ -1280,6 +1281,8 @@ function v.Cursor__mv_line_top_or_new_line()
     v.Cursor__mv_line_top1()
   end
 end
+
+--[[
 
 function v.Cursor__mv_slctd_edge_tgl() -- range
 
@@ -1733,44 +1736,45 @@ function v.Cursor_c_char()
   return c
 end
 
---[[
-
--- dev anchor
 function v.Cursor_l_char()
 
-  local idx = v.Cursor_col_idx() - 1
-  local c = f.getline('.')[idx]
+  -- local idx = v.Cursor_col_idx() - 1
+  local idx = v.Cursor_col_idx()
+  -- local c = f.getline('.')[idx]
+  local c = f.getline('.'):sub(idx, idx)
   return c
 end
 
 function v.Cursor_r_char()
 
-  local idx = v.Cursor_col_idx() + 1
-  local c = f.getline('.')[idx]
+  -- local idx = v.Cursor_col_idx() + 1
+  local idx = v.Cursor_col_idx() + 2
+  -- local c = f.getline('.')[idx]
+  local c = f.getline('.'):sub(idx, idx)
   return c
 end
 
-function v.Cursor_u_char() -- dev doing
+function v.Cursor_u_char()
 
   if v.Is_cursor_line_num__file_edge_bgn() then
     return ''
   end
 
-  local idx = v.Cursor_col_idx()
+  local idx = v.Cursor_col_idx() + 1
   local line_num = v.Cursor_line_num() - 1
-  local c = f.getline(line_num)[idx]
+  local c = f.getline(line_num):sub(idx, idx)
   return c
 end
 
-function v.Cursor_d_char() -- dev doing
+function v.Cursor_d_char()
 
   if v.Is_cursor_line_num__file_edge_end() then
     return ''
   end
 
-  local idx = v.Cursor_col_idx()
+  local idx = v.Cursor_col_idx() + 1
   local line_num = v.Cursor_line_num() + 1
-  local c = f.getline(line_num)[idx]
+  local c = f.getline(line_num):sub(idx, idx)
   return c
 end
 
@@ -1789,6 +1793,8 @@ function v.Cursor_char__rpl_underscore() -- alias
   v.Normal('l')
   -- v.Cursor__mv_char_forward() -- todo, fnc cre
 end
+
+--[[
 
 function v.N_char__tgl_swtch01() -- todo fnc name mod
 
@@ -1818,6 +1824,8 @@ function v.N_char__tgl_swtch01() -- todo fnc name mod
     return
   end
 end
+
+--]]
 
 function v.N_char__tgl_swtch02()
 
@@ -1897,18 +1905,17 @@ end
 
 function v.Is_cursor_c_char__space()
 
-  local c = v.Cursor_c_char()
+  local ptn = '\\s'
+  local ret = v.Is_cursor_c_char__ptn(ptn)
+  return ret
 
-  -- if c =~ '\\s' then
-  if v.Is_str__ptn(c, '\\s') then
-    return true
-  else
-    return false
-  end
-
-  -- local ptn = '\\s'
-  -- local ret = v.Is_cursor_c_char__ptn(ptn)
-  -- return ret
+  -- local c = v.Cursor_c_char()
+  -- 
+  -- if v.Is_str__ptn(c, '\\s') then
+  --   return true
+  -- else
+  --   return false
+  -- end
 end
 
 function v.Is_cursor_c_char__alph()
@@ -1924,15 +1931,19 @@ end
 
 function v.Cursor_str__icl()
 
-  local n_cmd = "\\<c-a>"
-  v.Normal(n_cmd)
+  -- local n_cmd = "\\<c-a>"
+  -- v.Normal(n_cmd)
+  vim.cmd('exe "normal! \\<c-a>"')
 end
 
 function v.Cursor_str__dcl()
 
-  local n_cmd = "\\<c-x>"
-  v.Normal(n_cmd)
+  -- local n_cmd = "\\<c-x>"
+  -- v.Normal(n_cmd)
+  vim.cmd('exe "normal! \\<c-x>"')
 end
+
+--[[
 
 function v.Cursor_str_week__icl()
 
@@ -2024,13 +2035,10 @@ function v.Cursor__ins_line_buf_file_path()
   v.Cursor__ins_line(path)
 end
 
---[[
-
 function v.Cursor__ins_line_anchor()
 
   local str  = v.Str_cmnt_1()
-  str = str .. 'dev '
-  str = str .. 'anchor'
+  str = str .. 'dev anchor'
   v.Cursor__ins_line(str)
   v.Cursor_line_indnt__crct()
 end
@@ -2047,8 +2055,6 @@ function v.Cursor_d__ins_line_space() -- range
   local space_str = v.Str_space(space_len)
   v.Cursor_d__ins_line(space_str)
 end
-
---]]
 
 -- cursor line  -  todo refactoring
 
@@ -2375,8 +2381,6 @@ function v.Cursor_line_indnt_col_with_c()
   return col
 end
 
---[[
-
 function v.Cursor_line_indnt__add(col)
 
   if col == 0 then
@@ -2385,11 +2389,15 @@ function v.Cursor_line_indnt__add(col)
 
   v.Normal('0')
 
-  if vim.bo.expandtab == 1 then -- 1:'expandtab', 0:'noexpandtab'
-    local char = ' '
+  local char = ' '
+  -- print(vim.bo.expandtab)
+  if not vim.bo.expandtab then
+    char = ' '
     col = col
   else
-    local char = "\\t"
+    -- dev anchor : todo dev
+    char = '\t'
+    -- char = vim.api.nvim_replace_termcodes('\t', false, false, true)
     col = col / 2
   end
   v.Cursor__ins_mlt(char, col)
@@ -2397,14 +2405,10 @@ function v.Cursor_line_indnt__add(col)
   v.Cursor__mv_line_top1()
 end
 
---]]
-
 function v.Cursor_line_indnt__del() -- alias
 
   v.Exe('left')
 end
-
---[[
 
 function v.Cursor_line_indnt__shft_l()
 
@@ -2415,9 +2419,9 @@ end
 function v.Cursor_line_indnt__shft_r()
 
   local col = 2
-
   v.Cursor_line_indnt__add(col)
 end
+
 
 function v.Cursor_line_indnt__crct()
 
@@ -2443,8 +2447,6 @@ g_v_rng = "'<,'>"
 -- 
 
 -- slctd __ ( slct )
-
---]]
 
 function v.Slctd__cancel() -- range -- alias
 
