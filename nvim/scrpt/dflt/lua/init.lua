@@ -33,6 +33,10 @@ elseif f.Is_env__('win32unix') then -- gitbash
   vim.opt.shell = 'bash'
 end
 
+-- vim.g.env_dir = ''
+-- v.Env_dir__()
+
+
 if vim.g.env_dir ~= '' then
   -- dev anchor
   print("env dir : " .. vim.g.env_dir)

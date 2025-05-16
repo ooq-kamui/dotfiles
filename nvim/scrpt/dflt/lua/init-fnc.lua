@@ -1164,28 +1164,28 @@ function v.Cursor__mv_word_f()
   end
 end
 
+--]]
+
 function v.Cursor__mv_word_b()
-  
+
   local l_char = v.Cursor_l_char()
 
   if     v.Is_cursor_col__line_top0() then
     v.Cursor__mv_u_line_end()
-    
+
   elseif v.Is_cursor_line_str_side_l__space() then
     v.Cursor__mv_line_top0()
-    
+
   elseif v.Is_cursor_col__line_top1() then
     v.Cursor__mv_line_top0()
-    
+
   elseif v.Is_char__symbol(l_char) then
     v.Cursor__mv_char_b()
-    
+
   else
     v.Normal('b')
   end
 end
-
---]]
 
 function v.Cursor__mv_word_dlm_f()
 
@@ -1210,15 +1210,11 @@ function v.Cursor__mv_word_b_pre() -- use not
   end
 end
 
---[[
-
 function v.Cursor__mv_fnc_name()
 
   v.Cursor__mv_srch_ptn('(', 'f')
   v.Cursor__mv_word_b()
 end
-
---]]
 
 function v.Cursor__mv_u() -- alias
 
@@ -1251,7 +1247,7 @@ function v.Cursor__mv_mlt_u() -- alias
 
   g_cursor_mv_line_step = g_cursor_mv_line_step_dflt
 
-  local n_cmd = g_cursor_mv_line_step .. "\\<c-y>"
+  local n_cmd = g_cursor_mv_line_step .. '\\<c-y>'
   v.Normal(n_cmd)
 end
 
@@ -1259,7 +1255,7 @@ function v.Cursor__mv_mlt_d() -- alias
 
   g_cursor_mv_line_step = g_cursor_mv_line_step_dflt
 
-  local n_cmd = g_cursor_mv_line_step .. "\\<c-e>"
+  local n_cmd = g_cursor_mv_line_step .. '\\<c-e>'
   v.Normal(n_cmd)
 end
 
@@ -1285,13 +1281,13 @@ function v.Cursor__mv_line_top_or_new_line()
   end
 end
 
---[[
-
 function v.Cursor__mv_slctd_edge_tgl() -- range
 
   v.Slct_re()
   v.Normal('o')
 end
+
+--[[
 
 function v.Cursor__mv_slctd_edge_l() -- range
 
@@ -2085,28 +2081,24 @@ function v.Cursor_line_str_len()
   return len
 end
 
---[[
-
--- dev anchor
 function v.Cursor_line_str_side_l()
 
-  local line_l = f.getline('.'):sub(1, f.col('.') - 2)
+  local line_l = f.getline('.'):sub(1             , f.col('.') - 1)
   return line_l
 end
 
 function v.Cursor_line_str_side_r()
 
-  local line_r = f.getline('.')[f.col('.'):]
+  local line_r = f.getline('.'):sub(f.col('.') + 1)
   return line_r
 end
 
+-- todo refactoring Cursor_line_str_side_r() + opt arg
 function v.Cursor_line_str_side_r_with_c()
 
-  local line_r = f.getline('.')[f.col('.') - 1:]
+  local line_r = f.getline('.'):sub(f.col('.'))
   return line_r
 end
-
---]]
 
 -- cursor line str end
 
@@ -2123,8 +2115,6 @@ function v.Cursor_line_top1__ins(str)
   v.Cursor__mv_line_top1()
   v.Cursor__ins(str)
 end
-
---[[
 
 function v.Cursor_line_end__dots_adjst() -- todo dev, mb_str
 
@@ -2184,8 +2174,6 @@ function v.Cursor_line_end__ins_dots()
 
   f.setline(line_num, line_str)
 end
-
---]]
 
 function v.Curosr_line_end__ins(str)
 
@@ -2346,8 +2334,6 @@ function v.Is_cursor_line_str__space()
   return ret
 end
 
---[[
-
 function v.Is_cursor_line_str_side_l__space()
 
   local str = v.Cursor_line_str_side_l()
@@ -2373,8 +2359,6 @@ function v.Is_cursor_line_str__ptn(ptn) -- todo dev
   end
   return ret
 end
-
---]]
 
 -- indnt
 
@@ -3346,6 +3330,8 @@ end
 
 -- slctd line __ ( edit )
 
+--]]
+
 function v.Slctd_line__del() -- use not, todo dev
 
   v.Normal('gvj')
@@ -3357,6 +3343,8 @@ end
 -- todo refactoring, fnc name mod, v > slctd
 
 -- slctd line __ rpl
+
+--[[
 
 function v.Slctd_line__rpl(srch, rpl) -- range
 
@@ -3392,9 +3380,13 @@ function v.Slctd_line_srch_str__rpl_cr() -- range
   v.Exe(cmd)
 end
 
+--]]
+
 function v.Slctd_line__markdown_strikethrough() -- range -- todo dev
 
 end
+
+--[[
 
 function v.Slctd__sys_cmd(sys_cmd) -- range
 
@@ -3848,6 +3840,7 @@ end
 
 -- srch str __
 
+-- dev anchor
 function v.Srch_str__(str, op_word1)
 
   local exe_str = str
@@ -3918,6 +3911,7 @@ function v.Srch_str__prv_tgl()
   f.setreg('/', srch_str)
 end
 
+-- dev anchor
 function v.Srch_str__slctd_str() -- range
 
   if v.Is_slctd_str__srch_str() then
@@ -4405,6 +4399,43 @@ function v.Is_nvim() -- alias
   return ret
 end
 
+function v.Env_dir()
+
+  local env_dir
+
+  if     f.Is_env__('mac')       then -- mac
+    env_dir = 'mac'
+
+  elseif f.Is_env__('linux')     then -- c9, s9
+    env_dir = 'c9'
+
+  elseif f.Is_env__('win64')     then -- pwsh
+    env_dir = 'pwsh'
+
+  elseif f.Is_env__('win32unix') then -- gitbash
+    env_dir = 'gitbash'
+  end
+
+  return env_dir
+end
+
+function v.Env_dir__()
+
+  vim.g.env_dir = v.Env_dir()
+end
+
+-- repeat fnc
+
+function v.Repeat_fnc()
+  print('repeat fnc')
+
+  v.Tst()
+
+  -- v.Cursor__mv_srch('f')
+  -- v.Cursor__mv_d()
+  -- v.Cursor__ins_ynk()
+end
+
 -- fnc end
 
 
@@ -4412,31 +4443,10 @@ end
 -- init
 -- 
 
---[[
-
 -- ynk init
 v.Ynk__clp()
 
-
-if     v.Is_env__('mac')   then -- mac
-
-  source ~/wrk/prj-pri/dotfiles/nvim/scrpt/mac/init.vim
-
-elseif v.Is_env__('linux') then -- c9 s9
-
-  source ~/wrk/prj-pri/dotfiles/nvim/scrpt/c9/init.vim
-
-elseif v.Is_env__('win64') then -- pwsh ( for fzf )
-
-  source ~/wrk/prj-pri/dotfiles/nvim/scrpt/pwsh/init.vim
-
-elseif v.Is_env__('win32unix') then -- gitbash ( for fzf )
-
-  source ~/wrk/prj-pri/dotfiles/nvim/scrpt/gitbash/init.vim
-else
-  print( "is env else" )
-end
-
+--[[
 
 -- srch init
 function v.Srch_init() -- use not
@@ -4450,21 +4460,9 @@ end
 
 -- init end
 
--- 
--- repeat fnc
--- 
-
-function v.Repeat_fnc()
-  print('repeat fnc')
-
-  v.Tst()
-
-  -- v.Cursor__mv_srch('f')
-  -- v.Cursor__mv_d()
-  -- v.Cursor__ins_ynk()
-end
-
 --[[
+
+-- priority l
 
 -- mark
 
@@ -4575,7 +4573,7 @@ function v.Mark_del_all()
 end
 
 --]]
---[[
+
 
 -- 
 -- ref
@@ -4621,6 +4619,5 @@ end
 -- when unknown server )
 --   curl https://raw.githubusercontent.com/ooq-kamui/dotfiles/refs/heads/main/nvim/scrpt/dflt/init.vim > init.vim
 --   vim -u init.vim
---]]
 
 

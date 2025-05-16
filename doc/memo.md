@@ -5,12 +5,21 @@
 ## nvim
 
 fnc
-- has() bool ch
+- Cursor__mv_mlt_u() `_d()`
+- call Cursor_pos()
+  - ref [idx]
+- Cursor__mv_mlt_u()
+
 
 - ar
   - idx + 1
 
 - range, firstline, lastline
+
+- srch
+
+- slctd
+
 
 - clp
   - mac, win
@@ -18,10 +27,14 @@ fnc
 - :call Fnc_lua()
   - tst
 
-env
-- env_dir fnc cre
-- def at opt ?
-  - think
+- rg
+
+- `f.getline('.')` > cursor_line_str()
+
+
+Env
+- def at ?
+  - fin
 
 - rgstr lst
   - order num later
