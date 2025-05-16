@@ -19,6 +19,29 @@ lua require('init-plg-mng')
 source `=g:init_vim_etc_dir . '/init-plg-mng.vim'`
 source `=g:init_vim_etc_dir . '/init-plg-fzf.vim'`
 
+" env dir
+
+let g:env_dir = ''
+
+if     Is_env__('mac')       " mac
+  let g:env_dir = 'mac'
+
+elseif Is_env__('linux')     " c9, s9
+  let g:env_dir = 'c9'
+
+elseif Is_env__('win64')     " pwsh
+  let g:env_dir = 'pwsh'
+
+elseif Is_env__('win32unix') " gitbash
+  let g:env_dir = 'gitbash'
+endif
+
+if g:env_dir != ''
+  source `=g:init_vim_dir . '/' . g:env_dir . '/init.vim'`
+else
+  echo "is env else"
+endif
+
 
 " lua
 lua require('init')
