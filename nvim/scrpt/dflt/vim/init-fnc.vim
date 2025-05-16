@@ -239,7 +239,8 @@ endfunc
 
 func! Sys_cmd(sys_cmd) abort
 
-  return v:lua.v.Sys_cmd(a:sys_cmd)
+  let l:ret = v:lua.v.Sys_cmd(a:sys_cmd)
+  return l:ret
 endfunc
 
 " syntax color

@@ -18,15 +18,19 @@ vim.g.env_dir = ''
 
 if     f.Is_env__('mac')       then -- mac
   vim.g.env_dir = 'mac'
+  vim.opt.shell = 'fish'
 
 elseif f.Is_env__('linux')     then -- c9, s9
   vim.g.env_dir = 'c9'
+  vim.opt.shell = 'fish'
 
 elseif f.Is_env__('win64')     then -- pwsh
   vim.g.env_dir = 'pwsh'
+  vim.opt.shell = 'pwsh'
 
 elseif f.Is_env__('win32unix') then -- gitbash
   vim.g.env_dir = 'gitbash'
+  vim.opt.shell = 'bash'
 end
 
 if vim.g.env_dir ~= '' then

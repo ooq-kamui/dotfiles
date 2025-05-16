@@ -7,6 +7,7 @@ let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 set shellquote= shellxquote=
 
+" echo 'require pwsh init.vim'
 
 " let g:fzf_rg_opt .= ' -g "\!amplify/#current-cloud-backend/"'
 " let g:fzf_rg_opt .= ' -g "\!amplify/backend/node_modules/"'

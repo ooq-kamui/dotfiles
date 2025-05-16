@@ -23,11 +23,6 @@ env
 - def at opt ?
   - think
 
-
-fzf
-- fzf rg,
-  - case win, err
-
 - rgstr lst
   - order num later
 

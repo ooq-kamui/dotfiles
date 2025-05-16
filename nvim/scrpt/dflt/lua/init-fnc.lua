@@ -452,7 +452,10 @@ end
 
 function v.Sys_cmd(sys_cmd)
 
-  return f.system(sys_cmd)
+  -- print(sys_cmd)
+  local ret = f.system(sys_cmd)
+  -- print(ret)
+  return ret
 end
 
 -- syntax color
