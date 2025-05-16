@@ -4387,19 +4387,18 @@ function v.Is_env__(env) -- alias
 
   -- env : 'mac', 'win64', 'win32', 'wsl', 'linux'
 
-  local ret = f.has(env)
+  local ret = ( f.has(env) == 1 )
 
-  if env ~= 'mac' then
-    -- print( env .. ' : ' .. ret )
-    -- print( hostname() )
-  end
+  -- print( env .. ' : ', ret )
+  -- print( 'hostname : ' .. f.hostname() )
 
   return ret
 end
 
 function v.Is_nvim() -- alias
 
-  local ret = f.has('nvim')
+  local ret = ( f.has('nvim') == 1 )
+  print('nvim : ', ret)
   return ret
 end
 

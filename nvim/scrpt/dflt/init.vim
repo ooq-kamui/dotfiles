@@ -19,6 +19,7 @@ lua require('init-plg-mng')
 source `=g:init_vim_etc_dir . '/init-plg-mng.vim'`
 source `=g:init_vim_etc_dir . '/init-plg-fzf.vim'`
 
+
 " env dir
 
 let g:env_dir = ''

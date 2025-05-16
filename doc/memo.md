@@ -5,6 +5,8 @@
 ## nvim
 
 fnc
+- has() bool ch
+
 - ar
   - idx + 1
 
@@ -17,7 +19,9 @@ fnc
   - tst
 
 env
+- env_dir fnc cre
 - def at opt ?
+  - think
 
 
 fzf

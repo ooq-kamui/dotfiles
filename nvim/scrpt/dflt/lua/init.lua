@@ -31,8 +31,8 @@ end
 
 if vim.g.env_dir ~= '' then
   -- dev anchor
+  print("env dir : " .. vim.g.env_dir)
   -- require(vim.g.init_vim_dir .. '/' .. vim.g.env_dir .. '/init.lua')
-  print("env : " .. vim.g.env_dir)
 else
   print("is env else")
 end

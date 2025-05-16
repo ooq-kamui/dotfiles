@@ -10,7 +10,8 @@ function v.Vim_plg_path()
 
   local vim_plg_dir_linux = g_home_dir .. '/.local/share/nvim/site'
   local vim_plg_dir_mac   = vim_plg_dir_linux
-  local vim_plg_dir_win   = g_home_dir .. '/appdata/local/nvim-data/site'
+  -- local vim_plg_dir_win   = g_home_dir .. '/appdata/local/nvim-data/site'
+  local vim_plg_dir_win   = g_home_dir .. '/AppData/Local/nvim-data/site'
 
   local vim_plg_dir = vim_plg_dir_linux -- dflt
 
