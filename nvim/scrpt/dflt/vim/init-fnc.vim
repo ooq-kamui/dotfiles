@@ -729,25 +729,27 @@ endfunc
 
 func! Cursor__mv_word_f() abort
 
-  if     Is_cursor_col__line_end() || Is_cursor_col__line_end_inr()
+  return v:lua.v.Cursor__mv_word_f()
 
-    call Cursor__mv_char_f()
-    return
-
-  elseif Is_cursor_line_str_side_r__space()
-
-    call Cursor__mv_line_end()
-    return
-  endif
-
-  let l:c_char = Cursor_c_char()
-  let l:r_char = Cursor_r_char()
-
-  if l:c_char =~ ' ' && l:r_char =~ ' '
-    call Normal('w')
-  else
-    call Normal('el')
-  endif
+  " if     Is_cursor_col__line_end() || Is_cursor_col__line_end_inr()
+  " 
+  "   call Cursor__mv_char_f()
+  "   return
+  " 
+  " elseif Is_cursor_line_str_side_r__space()
+  " 
+  "   call Cursor__mv_line_end()
+  "   return
+  " endif
+  " 
+  " let l:c_char = Cursor_c_char()
+  " let l:r_char = Cursor_r_char()
+  " 
+  " if l:c_char =~ ' ' && l:r_char =~ ' '
+  "   call Normal('w')
+  " else
+  "   call Normal('el')
+  " endif
 endfunc
 
 func! Cursor__mv_word_b() abort
@@ -840,18 +842,22 @@ let g:cursor_mv_line_step_dflt = 10
 
 func! Cursor__mv_mlt_u() abort " alias
 
-  let g:cursor_mv_line_step = g:cursor_mv_line_step_dflt
+  return v:lua.v.Cursor__mv_mlt_u()
 
-  let l:n_cmd = g:cursor_mv_line_step . "\<c-y>"
-  call Normal(l:n_cmd)
+  " let g:cursor_mv_line_step = g:cursor_mv_line_step_dflt
+  " 
+  " let l:n_cmd = g:cursor_mv_line_step . "\<c-y>"
+  " call Normal(l:n_cmd)
 endfunc
 
 func! Cursor__mv_mlt_d() abort " alias
 
-  let g:cursor_mv_line_step = g:cursor_mv_line_step_dflt
+  return v:lua.v.Cursor__mv_mlt_d()
 
-  let l:n_cmd = g:cursor_mv_line_step . "\<c-e>"
-  call Normal(l:n_cmd)
+  " let g:cursor_mv_line_step = g:cursor_mv_line_step_dflt
+  " 
+  " let l:n_cmd = g:cursor_mv_line_step . "\<c-e>"
+  " call Normal(l:n_cmd)
 endfunc
 
 func! Cursor__mv_u_line_end() abort
@@ -888,131 +894,145 @@ endfunc
 
 func! Cursor__mv_slctd_edge_l() range abort
 
-  call Slct_re()
+  return v:lua.v.Cursor__mv_slctd_edge_l()
 
-  if ! Is_slctd_cursor_pos__r()
-    return
-  endif
-
-  call Cursor__mv_slctd_edge_tgl()
-
-  " let l:n_cmd = '`<'
-  " call Normal(l:n_cmd)
+  " call Slct_re()
+  " 
+  " if ! Is_slctd_cursor_pos__r()
+  "   return
+  " endif
+  " 
+  " call Cursor__mv_slctd_edge_tgl()
+  " 
+  " " let l:n_cmd = '`<'
+  " " call Normal(l:n_cmd)
 endfunc
 
 func! Cursor__mv_file_edge(n_cmd) abort
 
-  if Is_cursor_line_num__file_edge()
-    call Normal(a:n_cmd)
-  endif
+  return v:lua.v.Cursor__mv_file_edge(a:n_cmd)
 
-  let l:cnt = 1
-  let l:cnt_max = 10000
-
-  while ( !Is_cursor_line_num__file_edge() && l:cnt < l:cnt_max )
-
-    call Normal(a:n_cmd)
-    let l:cnt = l:cnt + 1
-  endwhile
+  " if Is_cursor_line_num__file_edge()
+  "   call Normal(a:n_cmd)
+  " endif
+  " 
+  " let l:cnt = 1
+  " let l:cnt_max = 10000
+  " 
+  " while ( !Is_cursor_line_num__file_edge() && l:cnt < l:cnt_max )
+  " 
+  "   call Normal(a:n_cmd)
+  "   let l:cnt = l:cnt + 1
+  " endwhile
 endfunc
 
 func! Cursor__mv_file_edge_bgn() abort " alias
 
-  call Cursor__mv_file_edge('k')
+  return v:lua.v.Cursor__mv_file_edge_bgn()
+
+  " call Cursor__mv_file_edge('k')
 endfunc
 
 func! Cursor__mv_file_edge_end() abort " alias
 
-  call Cursor__mv_file_edge('j')
+  return v:lua.v.Cursor__mv_file_edge_end()
+
+  " call Cursor__mv_file_edge('j')
 endfunc
 
 func! Cursor__mv_v_jmp_char(drct, is_space_through) abort
 
-  "let l:is_space_stop = a:is_space_stop
-  let l:is_space_through = a:is_space_through
+  return v:lua.v.Cursor__mv_v_jmp_char(a:drct, a:is_space_through)
 
-  if a:drct == 'k' || a:drct == 'j'
-
-    let l:n_cmd = a:drct
-  else
-    return
-  endif
-
-  call Normal(l:n_cmd)
-  let l:cnt = 1
-  let l:cnt_max = 10000
-
-  while ( !Is_cursor_line_num__file_edge() && l:cnt < l:cnt_max )
-
-    if ! ( Is_cursor_c_char__space() || Is_cursor_col__line_end() )
-      break
-    endif
-
-    "if ( l:is_space_stop == 't' && Is_cursor_c_char__space() )
-    if ( l:is_space_through == 'f' && Is_cursor_c_char__space() )
-      break
-    endif
-
-    call Normal(l:n_cmd)
-    let l:cnt = l:cnt + 1
-  endwhile
+  " let l:is_space_through = a:is_space_through
+  " 
+  " if a:drct == 'k' || a:drct == 'j'
+  " 
+  "   let l:n_cmd = a:drct
+  " else
+  "   return
+  " endif
+  " 
+  " call Normal(l:n_cmd)
+  " let l:cnt = 1
+  " let l:cnt_max = 10000
+  " 
+  " while ( !Is_cursor_line_num__file_edge() && l:cnt < l:cnt_max )
+  " 
+  "   if ! ( Is_cursor_c_char__space() || Is_cursor_col__line_end() )
+  "     break
+  "   endif
+  " 
+  "   if ( l:is_space_through == 'f' && Is_cursor_c_char__space() )
+  "     break
+  "   endif
+  " 
+  "   call Normal(l:n_cmd)
+  "   let l:cnt = l:cnt + 1
+  " endwhile
 endfunc
 
 func! Cursor__mv_v_jmp_md_h(drct) abort " todo dev
 
-  if a:drct == 'k' || a:drct == 'j'
+  return v:lua.v.Cursor__mv_v_jmp_md_h(a:drct)
 
-    let l:n_cmd = a:drct
-  else
-    return
-  endif
-
-  " logic write ..
-
+  " if a:drct == 'k' || a:drct == 'j'
+  " 
+  "   let l:n_cmd = a:drct
+  " else
+  "   return
+  " endif
+  " 
+  " " logic write ..
+  " 
 endfunc
 
 func! Cursor__mv_v_jmp_space(drct) abort
 
-  if a:drct == 'k' || a:drct == 'j'
+  return v:lua.v.Cursor__mv_v_jmp_space(a:drct)
 
-    let l:n_cmd = a:drct
-  else
-    return
-  endif
-
-  call Normal(l:n_cmd)
-
-  let l:cnt = 1
-  let l:cnt_max = 10000
-
-  while ( !Is_cursor_line_num__file_edge() && l:cnt < l:cnt_max )
-
-    if Is_cursor_c_char__space() || Is_cursor_col__line_end()
-      break
-    endif
-
-    call Normal(l:n_cmd)
-    let l:cnt = l:cnt + 1
-  endwhile
+  " if a:drct == 'k' || a:drct == 'j'
+  " 
+  "   let l:n_cmd = a:drct
+  " else
+  "   return
+  " endif
+  " 
+  " call Normal(l:n_cmd)
+  " 
+  " let l:cnt = 1
+  " let l:cnt_max = 10000
+  " 
+  " while ( !Is_cursor_line_num__file_edge() && l:cnt < l:cnt_max )
+  " 
+  "   if Is_cursor_c_char__space() || Is_cursor_col__line_end()
+  "     break
+  "   endif
+  " 
+  "   call Normal(l:n_cmd)
+  "   let l:cnt = l:cnt + 1
+  " endwhile
 endfunc
 
 func! Cursor__mv_v_jmp(drct) abort
 
-  if a:drct == 'k' || a:drct == 'j'
+  return v:lua.v.Cursor__mv_v_jmp(a:drct)
 
-    let l:n_cmd = a:drct
-  else
-    return
-  endif
-
-  call Normal(l:n_cmd)
-
-  if Is_cursor_c_char__space() || Is_cursor_col__line_end()
-
-    call Cursor__mv_v_jmp_char(l:n_cmd, 't')
-  else
-    call Cursor__mv_v_jmp_space(l:n_cmd)
-  endif
+  " if a:drct == 'k' || a:drct == 'j'
+  " 
+  "   let l:n_cmd = a:drct
+  " else
+  "   return
+  " endif
+  " 
+  " call Normal(l:n_cmd)
+  " 
+  " if Is_cursor_c_char__space() || Is_cursor_col__line_end()
+  " 
+  "   call Cursor__mv_v_jmp_char(l:n_cmd, 't')
+  " else
+  "   call Cursor__mv_v_jmp_space(l:n_cmd)
+  " endif
 endfunc
 
 func! Cursor__mv_srch_ptn(ptn, dir) range abort
@@ -1059,8 +1079,10 @@ endfunc
 
 func! Cursor__ins_clp() abort
 
-  call Ynk__clp()
-  call Cursor__ins_ynk()
+  return v:lua.v.Cursor__ins_clp()
+
+  " call Ynk__clp()
+  " call Cursor__ins_ynk()
 endfunc
 
 func! Cursor__ins_mlt(str, num) abort
@@ -1077,24 +1099,28 @@ endfunc
 
 func! Cursor__ins_cr() abort
 
-  let l:t_line_num = line('.')
+  return v:lua.v.Cursor__ins_cr()
 
-  call Normal("i\<cr> ")
-  call Normal('x')
-
-  call Line_end_space__del(l:t_line_num)
-  call Cursor__mv_d()
+  " let l:t_line_num = line('.')
+  " 
+  " call Normal("i\<cr> ")
+  " call Normal('x')
+  " 
+  " call Line_end_space__del(l:t_line_num)
+  " call Cursor__mv_d()
 endfunc
 
 func! Cursor__ins_space(is_cursor_mv) abort
 
-  if a:is_cursor_mv
-    call Cursor__ins(' ')
+  return v:lua.v.Cursor__ins_space(a:is_cursor_mv)
 
-  else
-    call Normal('i ')
-    ""call Normal('l')
-  endif
+  " if a:is_cursor_mv
+  "   call Cursor__ins(' ')
+  " 
+  " else
+  "   call Normal('i ')
+  "   ""call Normal('l')
+  " endif
 endfunc
 
 func! Cursor__ins_hyphen() abort
@@ -1239,31 +1265,35 @@ endfunc
 
 func! V_ins_cmnt_mlt() range abort
 
-  call Normal(a:lastline  . 'G')
-  call Cursor__ins_cmnt_mlt_by_pos('end')
+  return v:lua.v.V_ins_cmnt_mlt()
 
-  call Normal(a:firstline . 'G')
-  call Cursor__ins_cmnt_mlt_by_pos('bgn')
+  " call Normal(a:lastline  . 'G')
+  " call Cursor__ins_cmnt_mlt_by_pos('end')
+  " 
+  " call Normal(a:firstline . 'G')
+  " call Cursor__ins_cmnt_mlt_by_pos('bgn')
 endfunc
 
 " markdown
 
 func! Cursor__ins_markdown_h() abort
 
-  call Cursor__mv_line_top0()
-  let l:top0_char = Cursor_c_char()
+  return v:lua.v.Cursor__ins_markdown_h()
 
-  let l:str = '#'
-
-  if l:top0_char != l:str
-    let l:str .= ' '
-  endif
-
-  call Cursor__ins(l:str)
-
-  let l:ptn = '^#* '
-  let l:col = Str_srch_end(Cursor_line_str(), l:ptn) + 1
-  call Cursor__mv_by_line_col(v:null, l:col)
+  " call Cursor__mv_line_top0()
+  " let l:top0_char = Cursor_c_char()
+  " 
+  " let l:str = '#'
+  " 
+  " if l:top0_char != l:str
+  "   let l:str .= ' '
+  " endif
+  " 
+  " call Cursor__ins(l:str)
+  " 
+  " let l:ptn = '^#* '
+  " let l:col = Str_srch_end(Cursor_line_str(), l:ptn) + 1
+  " call Cursor__mv_by_line_col(v:null, l:col)
 endfunc
 
 func! Cursor__ins_markdown_cr() abort
@@ -1275,39 +1305,45 @@ endfunc
 
 func! Cursor__ins_markdown_itm() abort
 
-  if Is_line_markdown_itm()
-    call Cursor_line_indnt__shft_r()
-    return
-  endif
+  return v:lua.v.Cursor__ins_markdown_itm()
 
-  let l:col = Cursor_line_indnt__crct()
-
-  let l:str = '- '
-  "echo l:str
-  call Cursor_line_top1__ins(l:str)
+  " if Is_line_markdown_itm()
+  "   call Cursor_line_indnt__shft_r()
+  "   return
+  " endif
+  " 
+  " let l:col = Cursor_line_indnt__crct()
+  " 
+  " let l:str = '- '
+  " "echo l:str
+  " call Cursor_line_top1__ins(l:str)
 endfunc
 
 func! Cursor__ins_markdown_code() abort
 
-  let l:str = '```'
-  call Cursor__ins_line(l:str)
+  return v:lua.v.Cursor__ins_markdown_code()
+
+  " let l:str = '```'
+  " call Cursor__ins_line(l:str)
 endfunc
 
 func! Char_markdown_chk__tgl() abort
-  
-  if Cursor_l_char() != '[' || Cursor_r_char() != ']'
-    return
-  endif
-  
-  let l:cursor_char = Cursor_c_char()
-  
-  if l:cursor_char == ' '
-    let l:rpl_char = 'x'
-  else
-    let l:rpl_char = ' '
-  endif
-  
-  call Cursor_char__rpl(l:rpl_char)
+
+  return v:lua.v.Char_markdown_chk__tgl()
+
+  " if Cursor_l_char() != '[' || Cursor_r_char() != ']'
+  "   return
+  " endif
+  " 
+  " let l:cursor_char = Cursor_c_char()
+  " 
+  " if l:cursor_char == ' '
+  "   let l:rpl_char = 'x'
+  " else
+  "   let l:rpl_char = ' '
+  " endif
+  " 
+  " call Cursor_char__rpl(l:rpl_char)
 endfunc
 
 " cursor char
@@ -1585,8 +1621,10 @@ endfunc
 
 func! Cursor_word() abort
 
-  let l:word = expand('<cword>')
-  return l:word
+  return v:lua.v.Cursor_word()
+
+  " let l:word = expand('<cword>')
+  " return l:word
 endfunc
 
 func! Cursor_filepath() abort
@@ -1822,92 +1860,104 @@ endfunc
 
 func! Cursor_f_space__del() abort
 
-  let l:c = Cursor_c_char()
+  return v:lua.v.Cursor_f_space__del()
 
-  if l:c =~ '\s'
-    " echo "del"
-    call Slctd_str__cursor_f_space()
-    call Normal('"zd')
-  else
-    call Nothing()
-  endif
+  " let l:c = Cursor_c_char()
+  " 
+  " if l:c =~ '\s'
+  "   " echo "del"
+  "   call Slctd_str__cursor_f_space()
+  "   call Normal('"zd')
+  " else
+  "   call Nothing()
+  " endif
 endfunc
 
 " cursor __ ins line
 
 func! Cursor_line__del() abort
 
-  if Is_cursor_line_str__emp() || Is_cursor_line_str__space()
-    call Normal('"_dd') " rgstr del
-  else
-    call Normal('"add')
-    call Clp__ynk()
-  endif
+  return v:lua.v.Cursor_line__del()
+
+  " if Is_cursor_line_str__emp() || Is_cursor_line_str__space()
+  "   call Normal('"_dd') " rgstr del
+  " else
+  "   call Normal('"add')
+  "   call Clp__ynk()
+  " endif
 endfunc
 
 func! Cursor_f_str__crct_by_line_u() abort
 
-  call Cursor_f_str__crct_by_line('u')
+  return v:lua.v.Cursor_f_str__crct_by_line_u()
+
+  " call Cursor_f_str__crct_by_line('u')
 endfunc
 
 func! Cursor_f_str__crct_by_line_d() abort
 
-  call Cursor_f_str__crct_by_line('d')
+  return v:lua.v.Cursor_f_str__crct_by_line_d()
+
+  " call Cursor_f_str__crct_by_line('d')
 endfunc
 
 func! Cursor_f_str__crct_by_line(target_line_drct) abort
 
-  let l:cursor_pos = Cursor_pos()
+  return v:lua.v.Cursor_f_str__crct_by_line(a:target_line_drct)
 
-  let l:str = Cursor_line_str_side_r_with_c()
-  let l:trim_len = Str_srch(l:str, '[^ ]')
-  " echo l:trim_len
-  let l:str = trim(l:str)
-
-  let l:cursor_r_char =  Str_l_char(l:str)
-  " echo l:cursor_r_char
-
-  call Cursor__mv_v(a:target_line_drct)
-
-  let l:target_line_str = Cursor_line_str_side_r()
-
-  if a:target_line_drct == 'u'
-    let l:turn_drct = 'd'
-  else
-    let l:turn_drct = 'u'
-  endif
-  call Cursor__mv_v(l:turn_drct)
-
-  let l:crct_len = Str_srch(l:target_line_str, l:cursor_r_char) + 1
-  " echo l:crct_len
-  if l:crct_len == -1
-    return
-  endif
-
-  let l:crct_len = l:crct_len - l:trim_len
-  let l:space_str = Str_space(l:crct_len)
-  call Cursor__ins(l:space_str)
-
-  call Cursor__mv_by_pos(l:cursor_pos)
+  " let l:cursor_pos = Cursor_pos()
+  " 
+  " let l:str = Cursor_line_str_side_r_with_c()
+  " let l:trim_len = Str_srch(l:str, '[^ ]')
+  " " echo l:trim_len
+  " let l:str = trim(l:str)
+  " 
+  " let l:cursor_r_char =  Str_l_char(l:str)
+  " " echo l:cursor_r_char
+  " 
+  " call Cursor__mv_v(a:target_line_drct)
+  " 
+  " let l:target_line_str = Cursor_line_str_side_r()
+  " 
+  " if a:target_line_drct == 'u'
+  "   let l:turn_drct = 'd'
+  " else
+  "   let l:turn_drct = 'u'
+  " endif
+  " call Cursor__mv_v(l:turn_drct)
+  " 
+  " let l:crct_len = Str_srch(l:target_line_str, l:cursor_r_char) + 1
+  " " echo l:crct_len
+  " if l:crct_len == -1
+  "   return
+  " endif
+  " 
+  " let l:crct_len = l:crct_len - l:trim_len
+  " let l:space_str = Str_space(l:crct_len)
+  " call Cursor__ins(l:space_str)
+  " 
+  " call Cursor__mv_by_pos(l:cursor_pos)
 endfunc
 
 func! Cursor__ins_sys_cmd(sys_cmd) abort " read
 
-  let l:is_line_num_eq_1 = Is_cursor_line_num__file_edge_bgn()
+  return v:lua.v.Cursor__ins_sys_cmd(a:sys_cmd)
 
-  if l:is_line_num_eq_1
-    call Normal('O')
-  else
-    " call Normal('k')
-    call Cursor__mv_u()
-  endif
-
-  let l:cmd = 'read ! ' . a:sys_cmd
-  call Exe(l:cmd)
-
-  if l:is_line_num_eq_1
-    call Line__del_by_line_num(1)
-  endif
+  " let l:is_line_num_eq_1 = Is_cursor_line_num__file_edge_bgn()
+  " 
+  " if l:is_line_num_eq_1
+  "   call Normal('O')
+  " else
+  "   " call Normal('k')
+  "   call Cursor__mv_u()
+  " endif
+  " 
+  " let l:cmd = 'read ! ' . a:sys_cmd
+  " call Exe(l:cmd)
+  " 
+  " if l:is_line_num_eq_1
+  "   call Line__del_by_line_num(1)
+  " endif
 endfunc
 
 " cursor line str __ end
@@ -2127,48 +2177,55 @@ endfunc
 
 func! Slctd_str__word() abort
 
-  let l:c = Cursor_c_char()
+  return v:lua.v.Slctd_str__word()
 
-  if     l:c =~ '\w'
-    call Normal('viw')
-
-  elseif l:c =~ '\s'
-    call Slctd_str__cursor_f_space()
-  else
-    call Normal('v')
-  endif
+  " let l:c = Cursor_c_char()
+  " 
+  " if     l:c =~ '\w'
+  "   call Normal('viw')
+  " 
+  " elseif l:c =~ '\s'
+  "   call Slctd_str__cursor_f_space()
+  " else
+  "   call Normal('v')
+  " endif
 endfunc
 
 func! Slctd__word_by_under_score() abort
 
+  return v:lua.v.Slctd__word_by_under_score()
 endfunc
 
 func! Slctd_str__cursor_f_space() abort
 
-  let l:c = Cursor_c_char()
+  return v:lua.v.Slctd_str__cursor_f_space()
 
-  if l:c !~ '\s'
-    return
-  endif
-  "echo l:c
-
-  if Is_cursor_line_str_side_r__space()
-
-    call Normal('v')
-    call Normal('$h')
-    "call Cursor__mv_word_f()
-    "call Normal('h')
-
-  else
-    call Normal('vwh')
-  endif
+  " let l:c = Cursor_c_char()
+  " 
+  " if l:c !~ '\s'
+  "   return
+  " endif
+  " "echo l:c
+  " 
+  " if Is_cursor_line_str_side_r__space()
+  " 
+  "   call Normal('v')
+  "   call Normal('$h')
+  "   "call Cursor__mv_word_f()
+  "   "call Normal('h')
+  " 
+  " else
+  "   call Normal('vwh')
+  " endif
 endfunc
 
 func! Slctd_str__by_col_len(s_col, len) abort
 
-  let l:e_col = a:len - 1
+  return v:lua.v.Slctd_str__by_col_len(a:s_col, a:len)
 
-  call Slct_by_line_col(v:null, a:s_col, v:null, e_col)
+  " let l:e_col = a:len - 1
+  " 
+  " call Slct_by_line_col(v:null, a:s_col, v:null, e_col)
 endfunc
 
 " refactoring slct > slctd __ xxx
@@ -2186,119 +2243,121 @@ endfunc
 
 func! Slct_by_line_col(s_line, s_col, e_line, e_col) abort
 
-  let l:s_line = (a:s_line == v:null) ? Cursor_line_num() : a:s_line
-  let l:e_line = (a:e_line == v:null) ? Cursor_line_num() : a:e_line
+  return v:lua.v.Slct_by_line_col(a:s_line, a:s_col, a:e_line, a:e_col)
 
-  call Cursor__mv_by_line_col(l:s_line, a:s_col)
-  call Normal('v')
-  call Cursor__mv_by_line_col(l:e_line, a:e_col)
+  " let l:s_line = (a:s_line == v:null) ? Cursor_line_num() : a:s_line
+  " let l:e_line = (a:e_line == v:null) ? Cursor_line_num() : a:e_line
+  " 
+  " call Cursor__mv_by_line_col(l:s_line, a:s_col)
+  " call Normal('v')
+  " call Cursor__mv_by_line_col(l:e_line, a:e_col)
 endfunc
 
 " refactoring slct > slctd __ xxx
 
 func! Slct_by_line_rng(line_num_fr, line_num_to) abort
-  
-  call Cursor__mv_by_line_num(a:line_num_fr)
-  call Normal('V')
-  call Cursor__mv_by_line_num(a:line_num_to)
+
+  return v:lua.v.Slct_by_line_rng(a:line_num_fr, a:line_num_to)
+
+  " call Cursor__mv_by_line_num(a:line_num_fr)
+  " call Normal('V')
+  " call Cursor__mv_by_line_num(a:line_num_to)
 endfunc
 
 " slctd cursor __ mv
 
 func! Slctd_cursor__mv_slctd_edge_r() range abort
-  
-  call Slct_re()
 
-  if   Is_slctd_cursor_pos__r()
-    return
-  endif
+  return v:lua.v.Slctd_cursor__mv_slctd_edge_r()
 
-  call Cursor__mv_slctd_edge_tgl()
-
-  " let l:n_cmd = '`>'
-  " call Normal(l:n_cmd)
-endfunc
-
-func! Slctd_cursor_drct__mv_forward() range abort
-
-  call Slct_re()
-
-  if Is_slctd_cursor_pos__r()
-    return
-  endif
-
-  call Cursor__mv_slctd_edge_tgl()
+  " call Slct_re()
+  " 
+  " if   Is_slctd_cursor_pos__r()
+  "   return
+  " endif
+  " 
+  " call Cursor__mv_slctd_edge_tgl()
+  " 
+  " " let l:n_cmd = '`>'
+  " " call Normal(l:n_cmd)
 endfunc
 
 func! Slctd_cursor__mv_file_edge(n_cmd) abort
 
-  call Slct_re()
+  return v:lua.v.Slctd_cursor__mv_file_edge(a:n_cmd)
 
-  call Cursor__mv_file_edge(a:n_cmd)
+  " call Slct_re()
+  " 
+  " call Cursor__mv_file_edge(a:n_cmd)
 endfunc
 
 func! Slctd_cursor__mv_v_jmp(drct) range abort
 
-  call Slct_re()
-  call Cursor__mv_v_jmp(a:drct)
+  return v:lua.v.Slctd_cursor__mv_v_jmp(a:drct)
+
+  " call Slct_re()
+  " call Cursor__mv_v_jmp(a:drct)
 endfunc
 
 func! Slctd_cursor__mv_line_end() range abort
 
-  call Slct_re()
+  return v:lua.v.Slctd_cursor__mv_line_end()
 
-  if     Is_slctd_mode__box()
-
-    if Is_cursor_col__line_end_ovr()
-      return
-    endif
-
-    call Normal('$h')
-    "call Normal('g_')
-
-  elseif Is_slctd_mode__line()
-
-    if Is_cursor_line_str__emp()
-      return
-    endif
-
-    call Normal('$h')
-    "call Normal('g_')
-  else
-    echo "v mode else"
-  endif
+  " call Slct_re()
+  " 
+  " if     Is_slctd_mode__box()
+  " 
+  "   if Is_cursor_col__line_end_ovr()
+  "     return
+  "   endif
+  " 
+  "   call Normal('$h')
+  "   "call Normal('g_')
+  " 
+  " elseif Is_slctd_mode__line()
+  " 
+  "   if Is_cursor_line_str__emp()
+  "     return
+  "   endif
+  " 
+  "   call Normal('$h')
+  "   "call Normal('g_')
+  " else
+  "   echo "v mode else"
+  " endif
 endfunc
 
 " slctd cursor cnd
 
 func! Is_slctd_cursor_pos__r() range abort
 
-  let l:ret = v:false
+  return v:lua.v.Is_slctd_cursor_pos__r()
 
-  call Slct_re()
-
-  let l:cursor_pos1 = Cursor_pos()
-  " echo l:cursor_pos1
-
-  call Cursor__mv_slctd_edge_tgl()
-  let l:cursor_pos2 = Cursor_pos()
-  " echo l:cursor_pos2
-
-  call Cursor__mv_slctd_edge_tgl()
-
-
-  if     l:cursor_pos1[1] >  l:cursor_pos2[1] " line
-    let l:ret = v:true
-
-  elseif l:cursor_pos1[1] == l:cursor_pos2[1] " line
-
-    if   l:cursor_pos1[2] >= l:cursor_pos2[2] " col
-      let l:ret = v:true
-    endif
-  endif
-
-  " echo l:ret
-  return l:ret
+  " let l:ret = v:false
+  " 
+  " call Slct_re()
+  " 
+  " let l:cursor_pos1 = Cursor_pos()
+  " " echo l:cursor_pos1
+  " 
+  " call Cursor__mv_slctd_edge_tgl()
+  " let l:cursor_pos2 = Cursor_pos()
+  " " echo l:cursor_pos2
+  " 
+  " call Cursor__mv_slctd_edge_tgl()
+  " 
+  " 
+  " if     l:cursor_pos1[1] >  l:cursor_pos2[1] " line
+  "   let l:ret = v:true
+  " 
+  " elseif l:cursor_pos1[1] == l:cursor_pos2[1] " line
+  " 
+  "   if   l:cursor_pos1[2] >= l:cursor_pos2[2] " col
+  "     let l:ret = v:true
+  "   endif
+  " endif
+  " 
+  " return l:ret
 endfunc
 
 " slctd str
@@ -2317,31 +2376,38 @@ endfunc
 
 func! Slctd_str_len() range abort
 
-  call Slct_re()
+  return v:lua.v.Slctd_str_len()
 
-  let l:slctd_str = Slctd_str()
-  let l:len       = Str_len(l:slctd_str)
-  return l:len
+  " call Slct_re()
+  " 
+  " let l:slctd_str = Slctd_str()
+  " let l:len       = Str_len(l:slctd_str)
+  " return l:len
 endfunc
 
 func! Slctd_str_7_opn_ggl_srch() abort
 
-  let l:word = Slctd_str()
-  let l:word = trim(l:word)
-  call Opn_ggl_srch(l:word)
+  return v:lua.v.Slctd_str_7_opn_ggl_srch()
+
+  " let l:word = Slctd_str()
+  " let l:word = trim(l:word)
+  " call Opn_ggl_srch(l:word)
 endfunc
 
 func! Slctd_str_7_opn_yt() abort
-  
-  let l:yt_video_id = Slctd_str()
-  let l:yt_video_id = trim(l:yt_video_id)
-  call Opn_yt(l:yt_video_id)
+
+  return v:lua.v.Slctd_str_7_opn_yt()
+
+  " let l:yt_video_id = Slctd_str()
+  " let l:yt_video_id = trim(l:yt_video_id)
+  " call Opn_yt(l:yt_video_id)
 endfunc
 
 " slctd str __ ( expnd )
 
 func! Slctd_str__expnd() abort " expnd lr, cre re
 
+  return v:lua.v.Slctd_str__expnd()
 endfunc
 
 func! Slctd_str__expnd_srch() range abort
@@ -2377,53 +2443,65 @@ let g:quote_ptn = '[' . "'" . '"' . '`' . ']'
 
 func! Slctd_str__expnd_quote_on_f() range abort
 
-  call Slct_re()
-  call Cursor__mv_srch_ptn(g:quote_ptn, 'f')
+  return v:lua.v.Slctd_str__expnd_quote_on_f()
+
+  " call Slct_re()
+  " call Cursor__mv_srch_ptn(g:quote_ptn, 'f')
 endfunc
 
 func! Slctd_str__expnd_quote_on_b() range abort
 
-  call Slct_re()
+  return v:lua.v.Slctd_str__expnd_quote_on_b()
 
-  call Cursor__mv_slctd_edge_tgl()
-  call Cursor__mv_srch_ptn(g:quote_ptn, 'b')
-  " call Cursor__mv_slctd_edge_tgl ()
+  " call Slct_re()
+  " 
+  " call Cursor__mv_slctd_edge_tgl()
+  " call Cursor__mv_srch_ptn(g:quote_ptn, 'b')
+  " " call Cursor__mv_slctd_edge_tgl ()
 endfunc
 
 func! Slctd_str__expnd_quote_on_swtch() range abort
 
-  " Is_cursor_line_str__ptn() " todo dev ?
+  return v:lua.v.Slctd_str__expnd_quote_on_swtch()
 
-  call Slct_re()
-
-  let l:c = Cursor_c_char()
-
-  if l:c !~ g:quote_ptn
-    call Slctd_str__expnd_quote_on_f()
-  else
-    call Slctd_str__expnd_quote_on_b()
-  endif
+  " " Is_cursor_line_str__ptn() " todo dev ?
+  " 
+  " call Slct_re()
+  " 
+  " let l:c = Cursor_c_char()
+  " 
+  " if l:c !~ g:quote_ptn
+  "   call Slctd_str__expnd_quote_on_f()
+  " else
+  "   call Slctd_str__expnd_quote_on_b()
+  " endif
 endfunc
 
 func! Slctd_str__expnd_quote_on() range abort
 
-  call Slct_re()
+  return v:lua.v.Slctd_str__expnd_quote_on()
 
-  call Slctd_str__expnd_quote_on_f()
-  call Slctd_str__expnd_quote_on_b()
+  " call Slct_re()
+  " 
+  " call Slctd_str__expnd_quote_on_f()
+  " call Slctd_str__expnd_quote_on_b()
 endfunc
 
 func! Slctd_str__expnd_quote_in_f() range abort
 
-  call Slctd_str__expnd_quote_on_f()
-  call Normal('h')
+  return v:lua.v.Slctd_str__expnd_quote_in_f()
+
+  " call Slctd_str__expnd_quote_on_f()
+  " call Normal('h')
 endfunc
 
 func! Slctd_str__expnd_quote_in_b() range abort
 
-  call Slctd_str__expnd_quote_on_b()
-  call Normal('l')
-  " call Cursor__mv_slctd_edge_tgl()
+  return v:lua.v.Slctd_str__expnd_quote_in_b()
+
+  " call Slctd_str__expnd_quote_on_b()
+  " call Normal('l')
+  " " call Cursor__mv_slctd_edge_tgl()
 endfunc
 
 func! Slctd_str__expnd_quote_in_swtch() range abort
@@ -2613,80 +2691,100 @@ endfunc
 
 func! Slctd_str_edge_l_col() abort
 
-  call Cursor__mv_slctd_edge_l()
-  
-  let l:col = Cursor_col_num()
-  return l:col
+  return v:lua.v.Slctd_str_edge_l_col()
+
+  " call Cursor__mv_slctd_edge_l()
+  " 
+  " let l:col = Cursor_col_num()
+  " return l:col
 endfunc
 
 func! Slctd_str_edge_r_col() abort
 
-  call Slctd_cursor__mv_slctd_edge_r()
-  
-  let l:col = Cursor_col_num()
-  return l:col
+  return v:lua.v.Slctd_str_edge_r_col()
+
+  " call Slctd_cursor__mv_slctd_edge_r()
+  " 
+  " let l:col = Cursor_col_num()
+  " return l:col
 endfunc
 
 func! Slctd_str_edge_l_pos() abort
 
-  call Cursor__mv_slctd_edge_l()
-  let l:pos = Cursor_pos()
-  return l:pos
+  return v:lua.v.Slctd_str_edge_l_pos()
+
+  " call Cursor__mv_slctd_edge_l()
+  " let l:pos = Cursor_pos()
+  " return l:pos
 endfunc
 
 func! Slctd_str_edge_r_pos() abort
 
-  call Slctd_cursor__mv_slctd_edge_r()
-  let l:pos = Cursor_pos()
-  return l:pos
+  return v:lua.v.Slctd_str_edge_r_pos()
+
+  " call Slctd_cursor__mv_slctd_edge_r()
+  " let l:pos = Cursor_pos()
+  " return l:pos
 endfunc
 
 func! Slctd_str_edge_l_char() abort
 
-  call Cursor__mv_slctd_edge_l()
+  return v:lua.v.Slctd_str_edge_l_char()
 
-  let l:c_char = Cursor_c_char()
-  return l:c_char
+  " call Cursor__mv_slctd_edge_l()
+  " 
+  " let l:c_char = Cursor_c_char()
+  " return l:c_char
 endfunc
 
 func! Slctd_str_edge_r_char() abort
 
-  call Slctd_cursor__mv_slctd_edge_r()
+  return v:lua.v.Slctd_str_edge_r_char()
 
-  let l:c_char = Cursor_c_char()
-  return l:c_char
+  " call Slctd_cursor__mv_slctd_edge_r()
+  " 
+  " let l:c_char = Cursor_c_char()
+  " return l:c_char
 endfunc
 
 func! Slctd_str_edge_l_out_char() abort
 
-  call Cursor__mv_slctd_edge_l()
+  return v:lua.v.Slctd_str_edge_l_out_char()
 
-  let l:l_char = Cursor_l_char()
-  return l:l_char
+  " call Cursor__mv_slctd_edge_l()
+  " 
+  " let l:l_char = Cursor_l_char()
+  " return l:l_char
 endfunc
 
 func! Slctd_str_edge_r_out_char() abort
 
-  call Slctd_cursor__mv_slctd_edge_r()
+  return v:lua.v.Slctd_str_edge_r_out_char()
 
-  let l:r_char = Cursor_r_char()
-  return l:r_char
+  " call Slctd_cursor__mv_slctd_edge_r()
+  " 
+  " let l:r_char = Cursor_r_char()
+  " return l:r_char
 endfunc
 
 func! Slctd_str_edge_l_out_str() abort
 
-  call Cursor__mv_slctd_edge_l()
+  return v:lua.v.Slctd_str_edge_l_out_str()
 
-  let l:str = Cursor_line_str_side_l()
-  return l:str
+  " call Cursor__mv_slctd_edge_l()
+  " 
+  " let l:str = Cursor_line_str_side_l()
+  " return l:str
 endfunc
 
 func! Slctd_str_edge_r_out_str() abort
 
-  call Slctd_cursor__mv_slctd_edge_r()
+  return v:lua.v.Slctd_str_edge_r_out_str()
 
-  let l:str = Cursor_line_str_side_r()
-  return l:str
+  " call Slctd_cursor__mv_slctd_edge_r()
+  " 
+  " let l:str = Cursor_line_str_side_r()
+  " return l:str
 endfunc
 
 " slctd str edge __ ( edit )
@@ -2941,21 +3039,23 @@ endfunc
 
 func! Is_slctd_str_edge_l_col__line_top() range abort
 
-  let l:ret = v:false
+  return v:lua.v.Is_slctd_str_edge_l_col__line_top()
 
-  call Slct_re()
-
-  call Cursor__mv_slctd_edge_tgl()
-  let l:cursor_l_pos = Cursor_pos()
-  " echo l:cursor_l_pos
-
-  call Cursor__mv_slctd_edge_tgl()
-
-  if l:cursor_l_pos[2] == 1 " col
-    let l:ret = v:true
-  endif
-
-  return l:ret
+  " let l:ret = v:false
+  " 
+  " call Slct_re()
+  " 
+  " call Cursor__mv_slctd_edge_tgl()
+  " let l:cursor_l_pos = Cursor_pos()
+  " " echo l:cursor_l_pos
+  " 
+  " call Cursor__mv_slctd_edge_tgl()
+  " 
+  " if l:cursor_l_pos[2] == 1 " col
+  "   let l:ret = v:true
+  " endif
+  " 
+  " return l:ret
 endfunc
 
 " slctd line
@@ -3106,10 +3206,12 @@ endfunc
 
 func! Slctd_indnt__shft_l() abort " todo
 
+  return v:lua.v.Slctd_indnt__shft_l()
 endfunc
 
 func! Slctd_indnt__shft_r() abort " todo
 
+  return v:lua.v.Slctd_indnt__shft_r()
 endfunc
 
 " slctd line __ crct tbl
@@ -3148,39 +3250,45 @@ endfunc
 
 func! Slctd_box__mv(lr) range abort
 
-  call Slct_re()
+  return v:lua.v.Slctd_box__mv(a:lr)
 
-  let l:n_cmd = Char_lr_2_normal_cmd(a:lr)
-  call Normal('o' . l:n_cmd)
-  call Normal('o' . l:n_cmd)
+  " call Slct_re()
+  " 
+  " let l:n_cmd = Char_lr_2_normal_cmd(a:lr)
+  " call Normal('o' . l:n_cmd)
+  " call Normal('o' . l:n_cmd)
 endfunc
 
 func! Slctd_box_width__1() range abort
 
-  call Slct_re()
+  return v:lua.v.Slctd_box_width__1()
 
-  if ! Is_slctd_mode__box()
-    return
-  endif
-
-  call Normal('o')
-  let l:col_num = Cursor_col_num()
-
-  call Normal('o')
-  call Cursor__mv_by_col_num(l:col_num)
+  " call Slct_re()
+  " 
+  " if ! Is_slctd_mode__box()
+  "   return
+  " endif
+  " 
+  " call Normal('o')
+  " let l:col_num = Cursor_col_num()
+  " 
+  " call Normal('o')
+  " call Cursor__mv_by_col_num(l:col_num)
 endfunc
 
 func! Slctd_box_str__mv(lr) range abort
 
-  let l:n_cmd = Char_lr_2_normal_cmd(a:lr)
+  return v:lua.v.Slctd_box_str__mv(lr)
 
-  call Slct_re()
-  call Normal('"zx')
-  call Normal(l:n_cmd)
-  call Normal('"zP')
-
-  call Slct_re()
-  call Slctd_box__mv(a:lr)
+  " let l:n_cmd = Char_lr_2_normal_cmd(a:lr)
+  " 
+  " call Slct_re()
+  " call Normal('"zx')
+  " call Normal(l:n_cmd)
+  " call Normal('"zP')
+  " 
+  " call Slct_re()
+  " call Slctd_box__mv(a:lr)
 endfunc
 
 " slctd box __ ( edit )
@@ -3336,28 +3444,34 @@ endfunc
 
 func! Ynk__line() abort
 
-  call Normal('"ayy')
-  "l:line_str = Cursor_line_str()
-  "let @a = l:line_str
+  return v:lua.v.Ynk__line()
 
-  call Clp__ynk()
+  " call Normal('"ayy')
+  " "l:line_str = Cursor_line_str()
+  " "let @a = l:line_str
+  " 
+  " call Clp__ynk()
 endfunc
 
 func! Ynk__line_all() abort
 
-  let l:cmd = '%y' " todo rgstr a direct
-  call Exe(l:cmd)
+  return v:lua.v.Ynk__line_all()
 
-  let @a = @0
-  call Clp__ynk()
+  " let l:cmd = '%y' " todo rgstr a direct
+  " call Exe(l:cmd)
+  " 
+  " let @a = @0
+  " call Clp__ynk()
 endfunc
 
 func! Ynk__buf_file_path() abort
-  
-  let l:path = Buf_file_path()
 
-  let @a = l:path
-  call Clp__ynk()
+  return v:lua.v.Ynk__buf_file_path()
+
+  " let l:path = Buf_file_path()
+  " 
+  " let @a = l:path
+  " call Clp__ynk()
 endfunc
 
 func! Ynk__clp() abort
@@ -3389,10 +3503,12 @@ func! Ynk__add_slctd() abort
 endfunc
 
 func! Ynk__by_rgstr_info(rgstr_info) abort
-  
-  let l:rgstr = Rgstr_info_rgstr(a:rgstr_info)
-  let l:scrpt = 'let @a = @' . l:rgstr
-  execute(l:scrpt)
+
+  return v:lua.v.Ynk__by_rgstr_info(a:rgstr_info)
+
+  " let l:rgstr = Rgstr_info_rgstr(a:rgstr_info)
+  " let l:scrpt = 'let @a = @' . l:rgstr
+  " execute(l:scrpt)
 endfunc
 
 " clp
@@ -3435,55 +3551,63 @@ endfunc
 
 func! Srch_str_flt() abort
 
-  let l:str = @/
+  return v:lua.v.Srch_str_flt()
 
-  if Is_srch__word1()
-    let l:str = strcharpart(l:str, 2, strchars(l:str) - 4)
-  endif
-  " echo l:str
-
-  return l:str
+  " let l:str = @/
+  " 
+  " if Is_srch__word1()
+  "   let l:str = strcharpart(l:str, 2, strchars(l:str) - 4)
+  " endif
+  " " echo l:str
+  " 
+  " return l:str
 endfunc
 
 func! Srch_str_word1(str) abort
 
-  if a:str == v:null
-    let l:str = Srch_str_flt()
-  else
-    let l:str = a:str
-  endif
+  return v:lua.v.Srch_str_word1(a:str)
 
-  let l:str = '\<' . l:str . '\>'
-  return l:str
+  " if a:str == v:null
+  "   let l:str = Srch_str_flt()
+  " else
+  "   let l:str = a:str
+  " endif
+  " 
+  " let l:str = '\<' . l:str . '\>'
+  " return l:str
 endfunc
 
 " srch str __
 
 func! Srch_str__(str, op_word1) abort
 
-  let l:exe_str = a:str
+  return v:lua.v.Srch_str__(a:str, a:op_word1)
 
-  let l:exe_str = escape(l:exe_str, '.*~[]\^$')
-
-  let l:exe_str = substitute(l:exe_str, '\n', '\\n', 'g')
-  " echo l:exe_str
-
-  if a:op_word1 == v:true
-    let l:exe_str = Srch_str_word1(l:exe_str)
-  endif
-
-  if "@/" == "l:exe_str" " same ltst 01
-    return
-  endif
-
-  let @/ = l:exe_str " highlight
-  call Normal('/' . l:exe_str) " srch hstry add
+  " let l:exe_str = a:str
+  " 
+  " let l:exe_str = escape(l:exe_str, '.*~[]\^$')
+  " 
+  " let l:exe_str = substitute(l:exe_str, '\n', '\\n', 'g')
+  " " echo l:exe_str
+  " 
+  " if a:op_word1 == v:true
+  "   let l:exe_str = Srch_str_word1(l:exe_str)
+  " endif
+  " 
+  " if "@/" == "l:exe_str" " same ltst 01
+  "   return
+  " endif
+  " 
+  " let @/ = l:exe_str " highlight
+  " call Normal('/' . l:exe_str) " srch hstry add
 endfunc
 
 func! Srch_str__cursor_word() abort
 
-  let l:str = Cursor_word()
-  call Srch_str__(l:str, v:false)
+  return v:lua.v.Srch_str__cursor_word()
+
+  " let l:str = Cursor_word()
+  " call Srch_str__(l:str, v:false)
 endfunc
 
 func! Srch_str__word1_tgl() abort
@@ -3500,28 +3624,32 @@ endfunc
 
 func! Srch_str_ltst(idx) abort
 
-  let l:str = histget('/', - a:idx)
-  return l:str
+  return v:lua.v.Srch_str_ltst(a:idx)
+
+  " let l:str = histget('/', - a:idx)
+  " return l:str
 endfunc
 
 func! Srch_str__prv_tgl() abort
 
-  if @/ == Srch_str_ltst(1)
+  return v:lua.v.Srch_str__prv_tgl()
 
-    if            Srch_str_ltst(1)        == '\<' . Srch_str_ltst(2) . '\>'
-      let l:srch_str = Srch_str_ltst(3)
-
-    elseif '\<' . Srch_str_ltst(1) . '\>' ==        Srch_str_ltst(2)
-
-      let l:srch_str = Srch_str_ltst(3)
-    else
-      let l:srch_str = Srch_str_ltst(2)
-    endif
-  else
-    let l:srch_str = Srch_str_ltst(1)
-  endif
-
-  let @/ = l:srch_str
+  " if @/ == Srch_str_ltst(1)
+  " 
+  "   if            Srch_str_ltst(1)        == '\<' . Srch_str_ltst(2) . '\>'
+  "     let l:srch_str = Srch_str_ltst(3)
+  " 
+  "   elseif '\<' . Srch_str_ltst(1) . '\>' ==        Srch_str_ltst(2)
+  " 
+  "     let l:srch_str = Srch_str_ltst(3)
+  "   else
+  "     let l:srch_str = Srch_str_ltst(2)
+  "   endif
+  " else
+  "   let l:srch_str = Srch_str_ltst(1)
+  " endif
+  " 
+  " let @/ = l:srch_str
 endfunc
 
 func! Srch_str__slctd_str() range abort

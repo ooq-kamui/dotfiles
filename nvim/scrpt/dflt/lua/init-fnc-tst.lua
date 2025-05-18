@@ -3,9 +3,11 @@
 -- 
 
 function v.Tst()
-  print('tst')
+  -- print('tst')
 
   -- v.Slct_re()
+
+  v.Cursor__ins('return v:lua.v.')
 end
 
 

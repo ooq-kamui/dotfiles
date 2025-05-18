@@ -5,27 +5,22 @@
 ## nvim
 
 fnc
-- Cursor__mv_mlt_u() `_d()`
 - call Cursor_pos()
   - ref [idx]
-- Cursor__mv_mlt_u()
 
+- clp
+  - win
+    - confirm
+
+
+- srch
 
 - ar
   - idx + 1
 
-- range, firstline, lastline
-
-- srch
-
 - slctd
-
-
-- clp
-  - mac, win
-
-- :call Fnc_lua()
-  - tst
+  - rng call
+    - a:firstline, a:lastline
 
 - rg
 
