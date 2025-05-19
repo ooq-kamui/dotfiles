@@ -4,9 +4,6 @@
 
 ## nvim
 
-init.vim , source init.vim
-
-
 fnc
 - srch
 
@@ -20,10 +17,6 @@ fnc
 
 - call Cursor_pos()
   - ref [idx]
-
-- clp
-  - win
-    - confirm
 
 - ar
   - idx + 1
