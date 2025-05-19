@@ -4,7 +4,20 @@
 
 ## nvim
 
+init.vim , source init.vim
+
+
 fnc
+- srch
+
+- slctd
+  - slctd_str()
+
+  - rng call
+    - a:firstline, a:lastline
+
+- `f.getline('.')` > cursor_line_str()
+
 - call Cursor_pos()
   - ref [idx]
 
@@ -12,30 +25,18 @@ fnc
   - win
     - confirm
 
-
-- srch
-
 - ar
   - idx + 1
 
-- slctd
-  - rng call
-    - a:firstline, a:lastline
-
 - rg
 
-- `f.getline('.')` > cursor_line_str()
 
-
-Env
+env
 - def at ?
   - fin
 
 - rgstr lst
   - order num later
-
-
-init.vim , source init.vim
 
 
 hl
