@@ -1158,7 +1158,7 @@ endfunc
 func! Cursor_filepath() abort
 
   return v:lua.v.Cursor_filepath()
-
+endfunc
 
 " cursor __ ins line
 
@@ -2877,7 +2877,7 @@ func! Mark_lst() abort
 endfunc
 
 func! Mark_alph_line() abort
-  
+
   let l:line_c = line('.')
   
   for _mark in bufname()->getmarklist()
