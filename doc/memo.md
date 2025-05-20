@@ -74,6 +74,11 @@ is env init.lua
   - mac ?
 
 
+lualine memo
+
+fzf-lua
+
+
 ## vim
 osc52 clp __ ynk
 
@@ -110,6 +115,11 @@ dns migration
 ## godot
 
 step by step
+
+
+## mac
+
+sd install
 
 
 ## docker
