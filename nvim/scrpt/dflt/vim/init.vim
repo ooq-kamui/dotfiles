@@ -48,6 +48,6 @@ func! Srch_init() abort " use not
   let l:cmd = '\<cr>N'
   call Normal(l:cmd)
 endfunc
-"call Srch_init()
+" call Srch_init()
 
 

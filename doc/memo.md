@@ -5,23 +5,28 @@
 ## nvim
 
 fnc
-- srch
-
 - slctd
-  - slctd_str()
+  - a:firstline, a:lastline
+  - `'<,'>call`
 
-  - rng call
-    - a:firstline, a:lastline
+  - `getpos("'<")`
+    - `nvim_buf_get_mark(0, '<')`
+      - slctd_line_num_bgn()
+  - `getpos("'>")`
 
-- `f.getline('.')` > cursor_line_str()
 
-- call Cursor_pos()
-  - ref [idx]
-
-- ar
-  - idx + 1
+- tag jmp
 
 - rg
+
+- doc-tech
+
+- trns
+
+- mark
+
+
+- `f.getline('.')` > cursor_line_str()
 
 
 env

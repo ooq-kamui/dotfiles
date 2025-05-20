@@ -365,6 +365,7 @@ function v.Idx__icl(idx, ar_len)
   local r_idx = idx + 1
 
   if r_idx > ar_len then
+    -- r_idx = 0
     r_idx = 1
   end
 
@@ -375,7 +376,9 @@ function v.Idx__dcl(idx, ar_len)
 
   local r_idx = idx - 1
 
-  if r_idx < 1 then
+  -- if r_idx < 0 then
+  if r_idx <= 0 then
+    -- r_idx = ar_len - 1
     r_idx = ar_len
   end
 
@@ -1771,8 +1774,6 @@ function v.Cursor_char__rpl_underscore() -- alias
   -- v.Cursor__mv_char_forward() -- todo, fnc cre
 end
 
---[[
-
 function v.N_char__tgl_swtch01() -- todo fnc name mod
 
   local c = v.Cursor_c_char()
@@ -1801,8 +1802,6 @@ function v.N_char__tgl_swtch01() -- todo fnc name mod
     return
   end
 end
-
---]]
 
 function v.N_char__tgl_swtch02()
 
@@ -1920,8 +1919,6 @@ function v.Cursor_str__dcl()
   vim.cmd('exe "normal! \\<c-x>"')
 end
 
---[[
-
 function v.Cursor_str_week__icl()
 
   local week_str = v.Cursor_word()
@@ -1955,8 +1952,6 @@ function v.Cursor_str_week__dcl()
   v.Normal('"zd')
   v.Normal('i' .. week_nxt_str)
 end
-
---]]
 
 -- cursor etc
 
@@ -2656,8 +2651,6 @@ function v.Slctd_str__expnd_srch() -- range
   v.Cursor__mv_srch('f')
 end
 
---[[
-
 function v.Slctd_str__expnd_word_f() -- range
 
   local slctd_str = v.Slctd_str()
@@ -2669,7 +2662,6 @@ function v.Slctd_str__expnd_word_f() -- range
 
     v.Normal('$h')
 
-  -- elseif slctd_str =~ '\\s' and slctd_r_out_char =~ '\\s' then
   elseif v.Is_str__ptn(slctd_str, '\\s') and v.Is_str__ptn(slctd_r_out_char, '\\s') then
 
     v.Normal('wh')
@@ -2677,8 +2669,6 @@ function v.Slctd_str__expnd_word_f() -- range
     v.Normal('e')
   end
 end
-
---]]
 
 -- slctd __ expnd quote
 
@@ -2736,8 +2726,6 @@ function v.Slctd_str__expnd_quote_in_b() -- range
   -- v.Cursor__mv_slctd_edge_tgl()
 end
 
---[[
-
 function v.Slctd_str__expnd_quote_in_swtch() -- range
 
   v.Slct_re()
@@ -2755,6 +2743,8 @@ function v.Slctd_str__expnd_quote_in_swtch() -- range
     v.Slctd_str__expnd_quote_in_b()
   end
 end
+
+--[[
 
 function v.Slctd_str__expnd_quote_swtch() -- range
 
@@ -3223,6 +3213,8 @@ function v.Slctd_str_edge_out_char__del() -- range
   v.Slctd_box__mv('l')
 end
 
+--]]
+
 -- slctd str edge cnd
 
 function v.Is_slctd_str_edge_char__(ptn)
@@ -3255,7 +3247,6 @@ function v.Is_slctd_str_edge_out_char__quote()
   return ret
 end
 
--- dev anchor
 function v.Is_slctd_str_edge_l_col__line_top() -- range
 
   local ret = false
@@ -3268,7 +3259,8 @@ function v.Is_slctd_str_edge_l_col__line_top() -- range
 
   v.Cursor__mv_slctd_edge_tgl()
 
-  if cursor_l_pos[2] == 1 then -- col
+  -- if cursor_l_pos[2] == 1 then -- col
+  if cursor_l_pos[3] == 1 then -- col
     ret = true
   end
 
@@ -3276,6 +3268,8 @@ function v.Is_slctd_str_edge_l_col__line_top() -- range
 end
 
 -- slctd line
+
+--[[
 
 function v.Slctd_line_7_opn_app() -- range
 
@@ -3285,9 +3279,9 @@ function v.Slctd_line_7_opn_app() -- range
   endfor
 end
 
--- slctd line __ ( edit )
-
 --]]
+
+-- slctd line __ ( edit )
 
 function v.Slctd_line__del() -- use not, todo dev
 
@@ -3638,9 +3632,6 @@ end
 
 -- slctd etc
 
---[[
-
--- dev anchor
 function v.Slctd_srch__swtch() -- srch, set or run
 
   if v.Is_slctd_str__line_mlt() then
@@ -3650,8 +3641,6 @@ function v.Slctd_srch__swtch() -- srch, set or run
     v.Srch_str__slctd_str()
   end
 end
-
---]]
 
 -- 
 -- ynk
@@ -3868,9 +3857,6 @@ function v.Srch_str__prv_tgl()
   f.setreg('/', srch_str)
 end
 
---[[
-
--- dev anchor
 function v.Srch_str__slctd_str() -- range
 
   if v.Is_slctd_str__srch_str() then
@@ -3928,8 +3914,6 @@ function v.Srch_char_bracket(drct)
   local char_bracket = "'" .. '")}\\]'
   v.Srch_char(drct, char_bracket)
 end
-
---]]
 
 function v.Srch_str__h_swtch()
 
@@ -4076,9 +4060,9 @@ function v.I_reserved_lua()
   return ''
 end
 
---[[
-
 -- trns
+
+--[[
 
 function v.Slctd_trns() -- range
 
@@ -4099,6 +4083,8 @@ function v.Slctd_trns() -- range
   local rslt = v.Sys_cmd(sys_cmd)
   print( rslt )
 end
+
+--]]
 
 -- math
 
@@ -4122,8 +4108,6 @@ function v.Slctd_url_encode() -- range
   --print( rslt )
   v.Cursor__ins(rslt)
 end
-
---]]
 
 function v.Cursor__ins_rgstr_by_rgstr_info(rgstr_info)
   
@@ -4405,21 +4389,15 @@ end
 -- ynk init
 v.Ynk__clp()
 
---[[
-
 -- srch init
 function v.Srch_init() -- use not
 
-  local cmd = '/<cr>N'
-  v.Normal(cmd)
+  local n_cmd = '/<cr>N'
+  v.Normal(n_cmd)
 end
 --v.Srch_init()
 
---]]
-
 -- init end
-
---[[
 
 -- priority l
 
@@ -4429,6 +4407,8 @@ g_mark_alph_def = {
   'a','b','c','d','e','f','g','h','i','j','k','l','m','n',
   'o','p','q','r','s','t','u','v','w','x','y','z'
 }
+
+--[[
 
 function v.Mark_show_tgl()
   

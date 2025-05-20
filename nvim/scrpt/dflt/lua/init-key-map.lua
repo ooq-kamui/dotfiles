@@ -496,6 +496,7 @@
 
 -- repeat fnc
    vim.keymap.set('n', '^', ':call Repeat_fnc()<cr>')
+   vim.keymap.set('n', '-', ':call Repeat_fnc()<cr>')
 
 -- macro rec
    -- vim.keymap.set('n', '`', 'q')

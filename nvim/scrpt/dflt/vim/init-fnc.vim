@@ -1036,31 +1036,33 @@ endfunc
 
 func! N_char__tgl_swtch01() abort " todo fnc name mod
 
-  let l:c = Cursor_c_char()
+  return v:lua.v.N_char__tgl_swtch01()
 
-  if     Is_char__num(l:c)
-
-    call Cursor_str__icl()
-    return
-
-  elseif Is_char__alpha(l:c)
-
-    call Normal('v~') " upper / lower
-    return
-  endif
-
-  let l:rpl = Is_char__tgl_bracket_trn(l:c)
-  if ! Is_str__emp(l:rpl)
-    call Cursor_char__rpl(l:rpl)
-    return
-  endif
-
-  let l:rpl = Is_char__tgl_symbol(l:c)
-  if ! Is_str__emp(l:rpl)
-
-    call Cursor_char__rpl(l:rpl)
-    return
-  endif
+  " let l:c = Cursor_c_char()
+  " 
+  " if     Is_char__num(l:c)
+  " 
+  "   call Cursor_str__icl()
+  "   return
+  " 
+  " elseif Is_char__alpha(l:c)
+  " 
+  "   call Normal('v~') " upper / lower
+  "   return
+  " endif
+  " 
+  " let l:rpl = Is_char__tgl_bracket_trn(l:c)
+  " if ! Is_str__emp(l:rpl)
+  "   call Cursor_char__rpl(l:rpl)
+  "   return
+  " endif
+  " 
+  " let l:rpl = Is_char__tgl_symbol(l:c)
+  " if ! Is_str__emp(l:rpl)
+  " 
+  "   call Cursor_char__rpl(l:rpl)
+  "   return
+  " endif
 endfunc
 
 func! N_char__tgl_swtch02() abort
@@ -1116,36 +1118,40 @@ endfunc
 
 func! Cursor_str_week__icl() abort
 
-  let l:week_str = Cursor_word()
-  let l:week_idx = index(g:week_def, l:week_str)
+  return v:lua.v.Cursor_str_week__icl()
 
-  if l:week_idx == -1
-    return
-  endif
-
-  let l:week_nxt_idx = Idx__icl(week_idx, len(g:week_def))
-  let l:week_nxt_str = g:week_def[l:week_nxt_idx]
-
-  call Slctd_str__word()
-  call Normal('"zd')
-  call Normal('i' . l:week_nxt_str)
+  " let l:week_str = Cursor_word()
+  " let l:week_idx = index(g:week_def, l:week_str)
+  " 
+  " if l:week_idx == -1
+  "   return
+  " endif
+  " 
+  " let l:week_nxt_idx = Idx__icl(week_idx, len(g:week_def))
+  " let l:week_nxt_str = g:week_def[l:week_nxt_idx]
+  " 
+  " call Slctd_str__word()
+  " call Normal('"zd')
+  " call Normal('i' . l:week_nxt_str)
 endfunc
 
 func! Cursor_str_week__dcl() abort
 
-  let l:week_str = Cursor_word()
-  let l:week_idx = index(g:week_def, l:week_str)
+  return v:lua.v.Cursor_str_week__dcl()
 
-  if l:week_idx == -1
-    return
-  endif
-
-  let l:week_nxt_idx = Idx__dcl(week_idx, len(g:week_def))
-  let l:week_nxt_str = g:week_def[l:week_nxt_idx]
-
-  call Slctd_str__word()
-  call Normal('"zd')
-  call Normal('i' . l:week_nxt_str)
+  " let l:week_str = Cursor_word()
+  " let l:week_idx = index(g:week_def, l:week_str)
+  " 
+  " if l:week_idx == -1
+  "   return
+  " endif
+  " 
+  " let l:week_nxt_idx = Idx__dcl(week_idx, len(g:week_def))
+  " let l:week_nxt_str = g:week_def[l:week_nxt_idx]
+  " 
+  " call Slctd_str__word()
+  " call Normal('"zd')
+  " call Normal('i' . l:week_nxt_str)
 endfunc
 
 " cursor etc
@@ -1485,14 +1491,16 @@ endfunc
 
 func! Slctd_str() range abort
 
-  " call Normal('gv"zy')
+  return v:lua.v.Slctd_str()
 
-  call Slct_re()
-  call Normal('"zy')
-
-  call Slct_re()
-
-  return @z
+  " " call Normal('gv"zy')
+  " 
+  " call Slct_re()
+  " call Normal('"zy')
+  " 
+  " call Slct_re()
+  " 
+  " return @z
 endfunc
 
 func! Slctd_str_len() range abort
@@ -1524,21 +1532,23 @@ endfunc
 
 func! Slctd_str__expnd_word_f() range abort
 
-  let l:slctd_str = Slctd_str()
-  let l:slctd_r_out_char = Slctd_str_edge_r_out_char()
+  return v:lua.v.Slctd_str__expnd_word_f()
 
-  call Slct_re()
-
-  if     Is_cursor_line_str_side_r__space()
-
-    call Normal('$h')
-
-  elseif l:slctd_str =~ '\s' && l:slctd_r_out_char =~ '\s'
-
-    call Normal('wh')
-  else
-    call Normal('e')
-  endif
+  " let l:slctd_str = Slctd_str()
+  " let l:slctd_r_out_char = Slctd_str_edge_r_out_char()
+  " 
+  " call Slct_re()
+  " 
+  " if     Is_cursor_line_str_side_r__space()
+  " 
+  "   call Normal('$h')
+  " 
+  " elseif l:slctd_str =~ '\s' && l:slctd_r_out_char =~ '\s'
+  " 
+  "   call Normal('wh')
+  " else
+  "   call Normal('e')
+  " endif
 endfunc
 
 " slctd __ expnd quote
@@ -1577,20 +1587,22 @@ endfunc
 
 func! Slctd_str__expnd_quote_in_swtch() range abort
 
-  call Slct_re()
+  return v:lua.v.Slctd_str__expnd_quote_in_swtch()
 
-  if ! Is_cursor_line_str__ptn(g:quote_ptn)
-    return
-  endif
-
-  let l:c_r = Slctd_str_edge_r_out_char()
-
-  if l:c_r !~ g:quote_ptn
-
-    call Slctd_str__expnd_quote_in_f()
-  else
-    call Slctd_str__expnd_quote_in_b()
-  endif
+  " call Slct_re()
+  " 
+  " if ! Is_cursor_line_str__ptn(g:quote_ptn)
+  "   return
+  " endif
+  " 
+  " let l:c_r = Slctd_str_edge_r_out_char()
+  " 
+  " if l:c_r !~ g:quote_ptn
+  " 
+  "   call Slctd_str__expnd_quote_in_f()
+  " else
+  "   call Slctd_str__expnd_quote_in_b()
+  " endif
 endfunc
 
 func! Slctd_str__expnd_quote_swtch() range abort
@@ -2026,32 +2038,40 @@ endfunc
 
 func! Is_slctd_str_edge_char__(ptn)
 
-  let l:c1 = Slctd_str_edge_l_char()
-  let l:c2 = Slctd_str_edge_r_char()
+  return v:lua.v.Is_slctd_str_edge_char__(a:ptn)
 
-  let l:ret = Is_char_pair__(a:ptn, l:c1, l:c2)
-  return l:ret
+  " let l:c1 = Slctd_str_edge_l_char()
+  " let l:c2 = Slctd_str_edge_r_char()
+  " 
+  " let l:ret = Is_char_pair__(a:ptn, l:c1, l:c2)
+  " return l:ret
 endfunc
 
 func! Is_slctd_str_edge_char__quote() abort
 
-  let l:ret = Is_slctd_str_edge_char__(g:quote_ptn)
-  return l:ret
+  return v:lua.v.Is_slctd_str_edge_char__quote()
+
+  " let l:ret = Is_slctd_str_edge_char__(g:quote_ptn)
+  " return l:ret
 endfunc
 
 func! Is_slctd_str_edge_out_char__(ptn)
 
-  let l:c1 = Slctd_str_edge_l_out_char()
-  let l:c2 = Slctd_str_edge_r_out_char()
+  return v:lua.v.Is_slctd_str_edge_out_char__(a:ptn)
 
-  let l:ret = Is_char_pair__(a:ptn, l:c1, l:c2)
-  return l:ret
+  " let l:c1 = Slctd_str_edge_l_out_char()
+  " let l:c2 = Slctd_str_edge_r_out_char()
+  " 
+  " let l:ret = Is_char_pair__(a:ptn, l:c1, l:c2)
+  " return l:ret
 endfunc
 
 func! Is_slctd_str_edge_out_char__quote() abort
 
-  let l:ret = Is_slctd_str_edge_out_char__(g:quote_ptn)
-  return l:ret
+  return v:lua.v.Is_slctd_str_edge_out_char__quote()
+
+  " let l:ret = Is_slctd_str_edge_out_char__(g:quote_ptn)
+  " return l:ret
 endfunc
 
 func! Is_slctd_str_edge_l_col__line_top() range abort
@@ -2362,14 +2382,14 @@ endfunc
 
 func! Slctd_srch__swtch() abort " srch, set or run
 
-  " return v:lua.v.Slctd_srch__swtch()
+  return v:lua.v.Slctd_srch__swtch()
 
-  if Is_slctd_str__line_mlt()
-  
-    call Slctd_str__expnd_srch()
-  else
-    call Srch_str__slctd_str()
-  endif
+  " if Is_slctd_str__line_mlt()
+  " 
+  "   call Slctd_str__expnd_srch()
+  " else
+  "   call Srch_str__slctd_str()
+  " endif
 endfunc
 
 " 
@@ -2494,59 +2514,71 @@ endfunc
 
 func! Srch_str__slctd_str() range abort
 
-  if Is_slctd_str__srch_str()
-    call Slctd__cancel()
-    return
-  endif
+  return v:lua.v.Srch_str__slctd_str()
 
-  call Slct_re()
-
-  let l:str = Slctd_str()
-  call Srch_str__(l:str, v:false)
-  call Slctd__cancel()
+  " if Is_slctd_str__srch_str()
+  "   call Slctd__cancel()
+  "   return
+  " endif
+  " 
+  " call Slct_re()
+  " 
+  " let l:str = Slctd_str()
+  " call Srch_str__(l:str, v:false)
+  " call Slctd__cancel()
 endfunc
 
 func! Srch_slct(drct) abort
 
-  if     a:drct == 'f'
-    call Normal('gn')
+  return v:lua.v.Srch_slct(a:drct)
 
-  elseif a:drct == 'b'
-    call Normal('gN')
-  endif
+  " if     a:drct == 'f'
+  "   call Normal('gn')
+  " 
+  " elseif a:drct == 'b'
+  "   call Normal('gN')
+  " endif
 endfunc
 
 " dev anchor refactoring fnc name re ?
 func! Slctd_srch_7_slctd__srch_nxt(drct) abort " srch rpl skip
 
-  if     a:drct == 'f'
-    call Normal('`>lgn')
+  return v:lua.v.Slctd_srch_7_slctd__srch_nxt(a:drct)
 
-  elseif a:drct == 'b'
-    call Normal('`<hgN')
-  endif
+  " if     a:drct == 'f'
+  "   call Normal('`>lgn')
+  " 
+  " elseif a:drct == 'b'
+  "   call Normal('`<hgN')
+  " endif
 endfunc
 
 func! Srch_7_cursor__mv_srch_str_end_o() abort
 
-  let l:drct = 'f'
-  call Srch_slct(l:drct)
-  call Esc()
-  " call Normal("\<esc>")
-  call Esc()
-  call Cursor__mv_char_f()
+  return v:lua.v.Srch_7_cursor__mv_srch_str_end_o()
+
+  " let l:drct = 'f'
+  " call Srch_slct(l:drct)
+  " call Esc()
+  " " call Normal("\<esc>")
+  " call Esc()
+  " call Cursor__mv_char_f()
 endfunc
 
 func! Srch_char(drct, char) abort
 
-  let @/ = '[' . a:char . ']'
-  call Cursor__mv_srch(a:drct)
+  return v:lua.v.Srch_char(a:drct, a:char)
+
+  " let @/ = '[' . a:char . ']'
+  " call Cursor__mv_srch(a:drct)
 endfunc
 
 func! Srch_char_bracket(drct) abort
 
-  let l:char_bracket = "'" . '")}\]'
-  call Srch_char(a:drct, l:char_bracket)
+  return v:lua.v.Srch_char_bracket(a:drct)
+
+  " let l:char_bracket = "'" . '")}\]'
+  " call Srch_char(a:drct, l:char_bracket)
 endfunc
 
 func! Srch_str__h_swtch() abort
@@ -2968,22 +3000,26 @@ endfunc
 
 func! Slctd_math() range abort
 
-  let l:str = Slctd_str()
-  let l:sys_cmd = 'echo ' . "'" . l:str . "'" . ' | math'
-  let l:rslt = Sys_cmd(l:sys_cmd)
-  echo l:rslt
-  let @a = l:rslt
+  return v:lua.v.Slctd_math()
+
+  " let l:str = Slctd_str()
+  " let l:sys_cmd = 'echo ' . "'" . l:str . "'" . ' | math'
+  " let l:rslt = Sys_cmd(l:sys_cmd)
+  " echo l:rslt
+  " let @a = l:rslt
 endfunc
 
 " url encdoe
 
 func! Slctd_url_encode() range abort
 
-  let l:str = Slctd_str()
-  let l:sys_cmd = 'url_encode "' . l:str . '"'
-  let l:rslt = Sys_cmd(l:sys_cmd)
-  "echo l:rslt
-  call Cursor__ins(l:rslt)
+  return v:lua.v.Slctd_url_encode()
+
+  " let l:str = Slctd_str()
+  " let l:sys_cmd = 'url_encode "' . l:str . '"'
+  " let l:rslt = Sys_cmd(l:sys_cmd)
+  " "echo l:rslt
+  " call Cursor__ins(l:rslt)
 endfunc
 
 func! Defold_err_cnv() abort
