@@ -546,6 +546,7 @@ endfunc
 
 func! Buf__fltr() abort " use not
 
+  return v:lua.v.Buf__fltr()
 endfunc
 
 " win splt
@@ -567,8 +568,10 @@ endfunc
 
 func! Win_splt__quit() abort
 
-  let l:n_cmd = "\<c-w>c"
-  call Normal(l:n_cmd)
+  return v:lua.v.Win_splt__quit()
+
+  " let l:n_cmd = "\<c-w>c"
+  " call Normal(l:n_cmd)
 endfunc
 
 " 
@@ -1607,19 +1610,21 @@ endfunc
 
 func! Slctd_str__expnd_quote_swtch() range abort
 
-  call Slct_re()
+  return v:lua.v.Slctd_str__expnd_quote_swtch()
 
-  if Is_slctd_str_edge_char__quote()
-    " call Esc()
-    return
-  endif
-
-  if Is_slctd_str_edge_out_char__quote()
-
-    call Slctd_str__expnd_quote_on()
-  else
-    call Slctd_str__expnd_quote_in_swtch()
-  endif
+  " call Slct_re()
+  " 
+  " if Is_slctd_str_edge_char__quote()
+  "   " call Esc()
+  "   return
+  " endif
+  " 
+  " if Is_slctd_str_edge_out_char__quote()
+  " 
+  "   call Slctd_str__expnd_quote_on()
+  " else
+  "   call Slctd_str__expnd_quote_in_swtch()
+  " endif
 endfunc
 
 func! Slctd_str__expnd_bracket_f() range abort " todo dev
@@ -1643,34 +1648,40 @@ endfunc
 
 func! Slctd_str__reduce_dlm_l(char) range abort
 
-  let l:char = a:char
+  return v:lua.v.Slctd_str__reduce_dlm_l(a:char)
 
-  call Slct_re()
-
-  let l:slctd_str = Slctd_str()
-  let l:srch_idx = Str_srch(l:slctd_str, l:char)
-  if l:srch_idx == -1
-    call Slctd__cancel()
-    return
-  endif
-
-  let l:n_cmd = 'F' . l:char . 'h'
-  call Normal(l:n_cmd)
+  " let l:char = a:char
+  " 
+  " call Slct_re()
+  " 
+  " let l:slctd_str = Slctd_str()
+  " let l:srch_idx = Str_srch(l:slctd_str, l:char)
+  " if l:srch_idx == -1
+  "   call Slctd__cancel()
+  "   return
+  " endif
+  " 
+  " let l:n_cmd = 'F' . l:char . 'h'
+  " call Normal(l:n_cmd)
 endfunc
 
 " slctd str __ ( edit )
 
 func! Slctd_str__ynk() range abort
 
-  call Slct_re()
-  call Normal('"zd')
-  call Cursor__ins_ynk()
+  return v:lua.v.Slctd_str__ynk()
+
+  " call Slct_re()
+  " call Normal('"zd')
+  " call Cursor__ins_ynk()
 endfunc
 
 func! Slctd_str__clp() range abort
 
-  call Ynk__clp()
-  call Slctd_str__ynk()
+  return v:lua.v.Slctd_str__clp()
+
+  " call Ynk__clp()
+  " call Slctd_str__ynk()
 endfunc
 
 " slctd str __ rpl
@@ -2492,14 +2503,16 @@ endfunc
 
 func! Srch_str__word1_tgl() abort
 
-  let l:str = Srch_str_flt()
+  return v:lua.v.Srch_str__word1_tgl()
 
-  if Is_srch__word1()
-
-    call Srch_str__(l:str, v:false)
-  else
-    call Srch_str__(l:str, v:true)
-  endif
+  " let l:str = Srch_str_flt()
+  " 
+  " if Is_srch__word1()
+  " 
+  "   call Srch_str__(l:str, v:false)
+  " else
+  "   call Srch_str__(l:str, v:true)
+  " endif
 endfunc
 
 func! Srch_str_ltst(idx) abort

@@ -5,28 +5,41 @@
 ## nvim
 
 fnc
+- Slctd_str__expnd_bracket_f()
+- Slctd__pad(char)
+- Slctd__pad_xxx()
+- Slctd__del()
+- Slctd_box__rpl(srch, rpl)
+
 - slctd
   - a:firstline, a:lastline
+    - `getpos("'<")`
+      - `nvim_buf_get_mark(0, '<')`
+        - slctd_line_num_bgn() `return row, col`
+    - `getpos("'>")`
+
   - `'<,'>call`
 
-  - `getpos("'<")`
-    - `nvim_buf_get_mark(0, '<')`
-      - slctd_line_num_bgn()
-  - `getpos("'>")`
 
+- feat
+  - tag jmp
+  - rg
 
-- tag jmp
-
-- rg
-
-- doc-tech
-
-- trns
-
-- mark
+  - doc-tech
+  - trns
+  - mark
 
 
 - `f.getline('.')` > cursor_line_str()
+
+- str_srch() > str_srch_ind()
+
+
+key map
+- call Xxx()
+  - call v:lua.v.Xxx()
+  - lua v.Xxx()
+- vim.fn.pumvisible()
 
 
 env
@@ -69,12 +82,6 @@ nnoremap `<` cursor mv block out ( fnc )
 
 v box paste line down
 - case emp: paste skip
-
-
-```
-`<    最後に選択されていた選択範囲の先頭に移動
-`>    最後に選択されていた選択範囲の末尾に移動
-```
 
 
 ## git

@@ -2744,8 +2744,6 @@ function v.Slctd_str__expnd_quote_in_swtch() -- range
   end
 end
 
---[[
-
 function v.Slctd_str__expnd_quote_swtch() -- range
 
   v.Slct_re()
@@ -2763,6 +2761,8 @@ function v.Slctd_str__expnd_quote_swtch() -- range
   end
 end
 
+--[[
+
 function v.Slctd_str__expnd_bracket_f() -- range -- todo dev
 
   local bracket_ptn = '[' .. "'" .. '"`)}\\]' .. ']'
@@ -2773,7 +2773,6 @@ function v.Slctd_str__expnd_bracket_f() -- range -- todo dev
   local srch_idx = v.Str_srch(line_str_r, bracket_ptn, 1)
 
   if srch_idx == -1 then
-
     v.Normal('gv')
     return
   end
@@ -2781,6 +2780,8 @@ function v.Slctd_str__expnd_bracket_f() -- range -- todo dev
   local len = s_col + v.Slctd_str_len() + srch_idx
   v.Slctd_str__by_col_len(s_col, len)
 end
+
+--]]
 
 function v.Slctd_str__reduce_dlm_l(char) -- range
 
@@ -2815,6 +2816,8 @@ function v.Slctd_str__clp() -- range
 end
 
 -- slctd str __ rpl
+
+--[[
 
 function v.Slctd_str__rpl(srch, rpl) -- range
 
@@ -2888,9 +2891,9 @@ function v.Slctd_str_space__underscore() -- range
   v.Slctd_str__rpl(' ', '_')
 end
 
--- slctd str cnd
-
 --]]
+
+-- slctd str cnd
 
 function v.Is_slctd_str__srch_str()
 
@@ -3822,8 +3825,6 @@ function v.Srch_str__word1_tgl()
     v.Srch_str__(str, true)
   end
 end
-
---]]
 
 function v.Srch_str_ltst(idx)
 
