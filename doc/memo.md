@@ -5,18 +5,15 @@
 ## nvim
 
 fnc
-- Slctd_str__expnd_bracket_f()
-- Slctd__pad(char)
-- Slctd__pad_xxx()
-- Slctd__del()
-- Slctd_box__rpl(srch, rpl)
-
 - slctd
   - a:firstline, a:lastline
     - `getpos("'<")`
       - `nvim_buf_get_mark(0, '<')`
         - slctd_line_num_bgn() `return row, col`
     - `getpos("'>")`
+
+    - try
+      - `V_ins_cmnt_1()`
 
   - `'<,'>call`
 
@@ -40,6 +37,10 @@ key map
   - call v:lua.v.Xxx()
   - lua v.Xxx()
 - vim.fn.pumvisible()
+
+
+nnoremap m ins_cr
+- err
 
 
 env
@@ -77,6 +78,9 @@ is env init.lua
 lualine memo
 
 fzf-lua
+
+filetype
+- fish
 
 
 ## vim

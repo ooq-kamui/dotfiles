@@ -1629,21 +1629,23 @@ endfunc
 
 func! Slctd_str__expnd_bracket_f() range abort " todo dev
 
-  let l:bracket_ptn = '[' . "'" . '"`)}\]' . ']'
-  
-  let l:s_col = Slctd_str_edge_l_col()
-  
-  let l:line_str_r = Slctd_str_edge_r_out_str()
-  let l:srch_idx = Str_srch(l:line_str_r, l:bracket_ptn, 1)
+  return v:lua.v.Slctd_str__expnd_bracket_f()
 
-  if l:srch_idx == -1
-
-    call Normal('gv')
-    return
-  endif
-
-  let l:len = l:s_col + Slctd_str_len() + l:srch_idx
-  call Slctd_str__by_col_len(l:s_col, l:len)
+  " let l:bracket_ptn = '[' . "'" . '"`)}\]' . ']'
+  " 
+  " let l:s_col = Slctd_str_edge_l_col()
+  " 
+  " let l:line_str_r = Slctd_str_edge_r_out_str()
+  " let l:srch_idx = Str_srch(l:line_str_r, l:bracket_ptn, 1)
+  " 
+  " if l:srch_idx == -1
+  " 
+  "   call Normal('gv')
+  "   return
+  " endif
+  " 
+  " let l:len = l:s_col + Slctd_str_len() + l:srch_idx
+  " call Slctd_str__by_col_len(l:s_col, l:len)
 endfunc
 
 func! Slctd_str__reduce_dlm_l(char) range abort
@@ -1688,7 +1690,9 @@ endfunc
 
 func! Slctd_str__rpl(srch, rpl) range abort
 
-  call Slctd_box__rpl(a:srch, a:rpl)
+  return v:lua.v.Slctd_str__rpl(a:srch, a:rpl)
+
+  " call Slctd_box__rpl(a:srch, a:rpl)
 endfunc
 
 " slctd str __ ( rpl )
@@ -1717,44 +1721,54 @@ endfunc
 
 func! Slctd__del() range abort
 
-  call Slct_re()
+  return v:lua.v.Slctd__del()
 
-  let l:rgstr = 'z'
-
-  let l:cmd = '"' . l:rgstr . 'dgv'
-  call Normal(l:cmd)
+  " call Slct_re()
+  " 
+  " let l:rgstr = 'z'
+  " 
+  " let l:cmd = '"' . l:rgstr . 'dgv'
+  " call Normal(l:cmd)
 endfunc
 
 " slctd str __ pad
 
 func! Slctd__pad(char) range abort
 
-  let l:char = a:char
+  return v:lua.v.Slctd__pad(a:char)
 
-  if l:char == '|'
-    let l:char = "\<bar>"
-  endif
-
-  call Slct_re()
-
-  call Normal('r' . l:char)
-
-  call Slct_re()
+  " let l:char = a:char
+  " 
+  " if l:char == '|'
+  "   let l:char = "\<bar>"
+  " endif
+  " 
+  " call Slct_re()
+  " 
+  " call Normal('r' . l:char)
+  " 
+  " call Slct_re()
 endfunc
 
 func! Slctd__pad_space() range abort
 
-  call Slctd__pad(' ')
+  return v:lua.v.Slctd__pad_space()
+
+  " call Slctd__pad(' ')
 endfunc
 
 func! Slctd__pad_bar() range abort
 
-  call Slctd__pad('|')
+  return v:lua.v.Slctd__pad_bar()
+
+  " call Slctd__pad('|')
 endfunc
 
 func! Slctd_str_space__underscore() range abort
 
-  call Slctd_str__rpl(' ', '_')
+  return v:lua.v.Slctd_str_space__underscore()
+
+  " call Slctd_str__rpl(' ', '_')
 endfunc
 
 " slctd str cnd
@@ -2332,11 +2346,13 @@ endfunc
 
 func! Slctd_box__rpl(srch, rpl) range abort
 
-  let l:srch = a:srch
-  let l:rpl  = a:rpl
+  return v:lua.v.Slctd_box__rpl(a:srch, a:rpl)
 
-  let l:cmd = g:v_rng . 's/' . '\%V' . l:srch . '/' . l:rpl . '/g'
-  call Exe(l:cmd)
+  " let l:srch = a:srch
+  " let l:rpl  = a:rpl
+  " 
+  " let l:cmd = g:v_rng . 's/' . '\%V' . l:srch . '/' . l:rpl . '/g'
+  " call Exe(l:cmd)
 endfunc
 
 " slctd box space __ del

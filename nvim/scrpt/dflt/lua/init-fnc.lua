@@ -849,12 +849,12 @@ function v.Tag_jmp_by_slctd_line() -- range
 
   local base_buf_num = v.Buf_num()
 
-  for line_num in f.range(a_firstline, a_lastline)
+  for line_num in f.range(a_firstline, a_lastline) do
 
     local line = f.getline(line_num)
     v.Tag_jmp_by_str(line)
     v.Exe('sbuffer ' .. base_buf_num)
-  endfor
+  end
 end
 
 --]]
@@ -1586,18 +1586,21 @@ end
 
 function v.V_ins_cmnt_1() -- range
 
+  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')
+  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')
+
   v.Normal(a_firstline .. 'G')
   v.Normal('^')
   local col = v.Cursor_col_num()
 
-  for line_num in f.range(a_firstline, a_lastline)
+  for line_num in f.range(a_firstline, a_lastline) do
 
     v.Line_end__pad_space(line_num, col - 1)
 
     v.Cursor__mv_by_line_col(line_num, col)
 
     v.Cursor__ins_cmnt_1(vim.v.null)
-  endfor
+  end
 end
 
 --]]
@@ -2761,8 +2764,6 @@ function v.Slctd_str__expnd_quote_swtch() -- range
   end
 end
 
---[[
-
 function v.Slctd_str__expnd_bracket_f() -- range -- todo dev
 
   local bracket_ptn = '[' .. "'" .. '"`)}\\]' .. ']'
@@ -2780,8 +2781,6 @@ function v.Slctd_str__expnd_bracket_f() -- range -- todo dev
   local len = s_col + v.Slctd_str_len() + srch_idx
   v.Slctd_str__by_col_len(s_col, len)
 end
-
---]]
 
 function v.Slctd_str__reduce_dlm_l(char) -- range
 
@@ -2817,14 +2816,14 @@ end
 
 -- slctd str __ rpl
 
---[[
-
 function v.Slctd_str__rpl(srch, rpl) -- range
 
   v.Slctd_box__rpl(srch, rpl)
 end
 
 -- slctd str __ ( rpl )
+
+--[[
 
 function v.Slctd_str__(str) -- range -- todo dev
 
@@ -2849,6 +2848,8 @@ function v.V_slctd__del() -- dev doing, can
   f.getreg('+', f.getreg('a'))
 end
 
+--]]
+
 function v.Slctd__del() -- range
 
   v.Slct_re()
@@ -2871,7 +2872,9 @@ function v.Slctd__pad(char) -- range
 
   v.Slct_re()
 
-  v.Normal('r' .. char)
+  -- v.Normal('r' .. char)
+  local n_cmd = 'r' .. char
+  vim.cmd('exe "normal! ' .. n_cmd .. '"')
 
   v.Slct_re()
 end
@@ -2886,12 +2889,11 @@ function v.Slctd__pad_bar() -- range
   v.Slctd__pad('|')
 end
 
+
 function v.Slctd_str_space__underscore() -- range
 
   v.Slctd_str__rpl(' ', '_')
 end
-
---]]
 
 -- slctd str cnd
 
@@ -3276,10 +3278,10 @@ end
 
 function v.Slctd_line_7_opn_app() -- range
 
-  for line_num in f.range(a_firstline, a_lastline)
+  for line_num in f.range(a_firstline, a_lastline) do
 
     v.Opn_app_by_line_path(line_num)
-  endfor
+  end
 end
 
 --]]
@@ -3356,10 +3358,10 @@ end
 
 function v.Slctd_line_end_space__del() -- range
 
-  for line_num in f.range(a_firstline, a_lastline)
+  for line_num in f.range(a_firstline, a_lastline) do
 
     v.Line_end_space__del(line_num)
-  endfor
+  end
 end
 
 function v.Slctd_line_end__pad_space() -- range -- use not
@@ -3371,10 +3373,10 @@ function v.Slctd_line_end__pad_space() -- range -- use not
 
   local fil_end_col = v.Cursor_col_num() - 1
 
-  for line_num in f.range(a_firstline, a_lastline)
+  for line_num in f.range(a_firstline, a_lastline) do
 
     v.Line_end__pad_space(line_num, fil_end_col)
-  endfor
+  end
 end
 
 function v.Slctd_line__join_per_line(per_line_num) -- range
@@ -3386,10 +3388,10 @@ function v.Slctd_line__join_per_line(per_line_num) -- range
   local exe_num = line_num / per_line_num
   --print( exe_num )
 
-  for idx in f.range(1, exe_num)
+  for idx in f.range(1, exe_num) do
 
     v.Normal(n_cmd)
-  endfor
+  end
 end
 
 function v.Slctd_line_indnt__space(indnt_col) -- range
@@ -3537,7 +3539,7 @@ function v.Slctd_box_edge_l__ynk_line_1() -- range
 
   -- local col_num = v.Cursor_col_num()
 
-  for line_num in f.range(a_firstline, a_lastline)
+  for line_num in f.range(a_firstline, a_lastline) do
 
     local col_num = v.Cursor_col_num()
 
@@ -3548,8 +3550,10 @@ function v.Slctd_box_edge_l__ynk_line_1() -- range
     -- if line_num ~= a_lastline then
     --   v.Normal('j')
     -- end
-  endfor
+  end
 end
+
+--]]
 
 -- slctd box __ rpl
 
@@ -3563,6 +3567,8 @@ function v.Slctd_box__rpl(srch, rpl) -- range
 end
 
 -- slctd box space __ del
+
+--[[
 
 function v.Slctd_box_space__del() -- range
 
@@ -3592,14 +3598,14 @@ function v.Slctd_box_cursor_r_space__crct() -- range
   -- print( a_firstline .. ' ' .. a_lastline )
   v.Cursor__mv_by_line_col(a_firstline, col)
 
-  for line_num in f.range(a_firstline, a_lastline)
+  for line_num in f.range(a_firstline, a_lastline) do
     -- print( line_num .. ' ' .. col )
     -- v.Cursor__mv_by_line_col(line_num, col)
 
     v.Cursor_f_space__del()
     -- v.Normal('j')
     v.Cursor__mv_d()
-  endfor
+  end
 end
 
 --]]
@@ -4253,7 +4259,7 @@ function v.Jmplst()
 
   local buf_num_key_prefix = 'key_'
   local jmplst = {}
-  for _jmplst_tmp in jmplst_tmp
+  for _jmplst_tmp in jmplst_tmp do
 
     local _buf_num_key = buf_num_key_prefix .. _jmplst_tmp['bufnr']
 
@@ -4262,12 +4268,12 @@ function v.Jmplst()
     end
 
     call add(jmplst[_buf_num_key], _jmplst_tmp)
-  endfor
+  end
 
-  for _buf_num_key in keys(jmplst)
+  for _buf_num_key in keys(jmplst) do
 
     call sort(jmplst[_buf_num_key], 'Jmplst_cmp')
-  endfor
+  end
 
   local buf_num_key = buf_num_key_prefix .. Buf_num()
   local r_jmplst    = get(jmplst, buf_num_key, {})
@@ -4281,12 +4287,12 @@ function v.Jmplst_line_info()
   local jmplst = Jmplst()
 
   local jmplst_line_info = {}
-  for _jmplst in jmplst
+  for _jmplst in jmplst do
 
     local line_num  = _jmplst['lnum']
     local line_info = line_num .. ' ' .. getline(line_num)
     call add(jmplst_line_info, line_info)
-  endfor
+  end
   --echo jmplst_line_info
 
   return jmplst_line_info
@@ -4431,7 +4437,7 @@ end
 function v.Mark_lst()
   
   local mark = {}
-  for _mark in f.bufname()->getmarklist()
+  for _mark in f.bufname()->getmarklist() do
     
     local _alph = _mark['mark'][1]
     
@@ -4440,7 +4446,7 @@ function v.Mark_lst()
     end
     
     mark = f.add(mark, _mark['mark'][1])
-  endfor
+  end
   --print( mark )
   return mark
 end
@@ -4449,7 +4455,7 @@ function v.Mark_alph_line()
   
   local line_c = f.line('.')
   
-  for _mark in f.bufname()->getmarklist()
+  for _mark in f.bufname()->getmarklist() do
     
     local _alph = _mark['mark'][1]
     
@@ -4461,7 +4467,7 @@ function v.Mark_alph_line()
       --print( _alph )
       return _alph
     end
-  endfor
+  end
   return ''
 end
 
@@ -4490,12 +4496,12 @@ function v.Mark_alph_useabl()
   
   local mark = v.Mark_lst()
   
-  for _alph in g_mark_alph_def
+  for _alph in g_mark_alph_def do
     if f.count(mark, _alph) == 0 then
       --print( _alph )
       return _alph
     end
-  endfor
+  end
   
   print( 'use alph all' )
   return ''
