@@ -12,7 +12,7 @@ fnc
         - slctd_line_num_bgn() `return row, col`
     - `getpos("'>")`
 
-    - try
+    - try tst
       - `V_ins_cmnt_1()`
 
   - `'<,'>call`
@@ -29,7 +29,7 @@ fnc
 
 - `f.getline('.')` > cursor_line_str()
 
-- str_srch() > str_srch_ind()
+- str_srch() > str_srch_idx()
 
 
 key map
