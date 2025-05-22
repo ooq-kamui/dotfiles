@@ -2,7 +2,16 @@
 # dotfiles
 
 
+## setup
+
+alm
+- 8.10
+
+
 ## nvim
+
+nnoremap m ins_cr
+- err
 
 fnc
 - Slctd_line__join_per_line(per_line_num)
@@ -35,10 +44,6 @@ key map
   - call v:lua.v.Xxx()
   - lua v.Xxx()
 - vim.fn.pumvisible()
-
-
-nnoremap m ins_cr
-- err
 
 
 env
