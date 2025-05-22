@@ -5,18 +5,18 @@
 ## nvim
 
 fnc
+- Slctd_line__join_per_line(per_line_num)
+  - ceil or floor ??
+
+- Slctd_box_edge_l__ynk_line_1()
+  - call fnc chk
+
+- Srch_or(...)
+
+
 - slctd
-  - a:firstline, a:lastline
-    - `getpos("'<")`
-      - `nvim_buf_get_mark(0, '<')`
-        - slctd_line_num_bgn() `return row, col`
-    - `getpos("'>")`
-
-    - try tst
-      - `V_ins_cmnt_1()`
-
   - `'<,'>call`
-
+  - `rng call`
 
 - feat
   - tag jmp
@@ -28,8 +28,6 @@ fnc
 
 
 - `f.getline('.')` > cursor_line_str()
-
-- str_srch() > str_srch_idx()
 
 
 key map

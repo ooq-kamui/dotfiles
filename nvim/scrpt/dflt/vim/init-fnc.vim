@@ -91,13 +91,13 @@ func! Str_space(len) abort
   return v:lua.v.Str_space(a:len)
 endfunc
 
-func! Str_srch(...) abort " alias
+func! Str_srch_idx(...) abort " alias
 
   let l:str =                a:1
   let l:ptn =                a:2
   let l:idx = ( a:0 >= 3 ) ? a:3 : v:null
 
-  return v:lua.v.Str_srch(l:str, l:ptn, l:idx)
+  return v:lua.v.Str_srch_idx(l:str, l:ptn, l:idx)
 endfunc
 
 func! Str_srch_end(str, ptn) abort " alias
@@ -942,18 +942,20 @@ endfunc
 
 func! V_ins_cmnt_1() range abort
 
-  call Normal(a:firstline . 'G')
-  call Normal('^')
-  let l:col = Cursor_col_num()
+  return v:lua.v.V_ins_cmnt_1()
 
-  for line_num in range(a:firstline, a:lastline)
-
-    call Line_end__pad_space(l:line_num, l:col - 1)
-
-    call Cursor__mv_by_line_col(l:line_num, l:col)
-
-    call Cursor__ins_cmnt_1(v:null)
-  endfor
+  " call Normal(a:firstline . 'G')
+  " call Normal('^')
+  " let l:col = Cursor_col_num()
+  " 
+  " for line_num in range(a:firstline, a:lastline)
+  " 
+  "   call Line_end__pad_space(l:line_num, l:col - 1)
+  " 
+  "   call Cursor__mv_by_line_col(l:line_num, l:col)
+  " 
+  "   call Cursor__ins_cmnt_1(v:null)
+  " endfor
 endfunc
 
 func! Cursor__ins_cmnt_mlt_by_pos(pos) abort
@@ -1636,7 +1638,7 @@ func! Slctd_str__expnd_bracket_f() range abort " todo dev
   " let l:s_col = Slctd_str_edge_l_col()
   " 
   " let l:line_str_r = Slctd_str_edge_r_out_str()
-  " let l:srch_idx = Str_srch(l:line_str_r, l:bracket_ptn, 1)
+  " let l:srch_idx = Str_srch_idx(l:line_str_r, l:bracket_ptn, 1)
   " 
   " if l:srch_idx == -1
   " 
@@ -1657,7 +1659,7 @@ func! Slctd_str__reduce_dlm_l(char) range abort
   " call Slct_re()
   " 
   " let l:slctd_str = Slctd_str()
-  " let l:srch_idx = Str_srch(l:slctd_str, l:char)
+  " let l:srch_idx = Str_srch_idx(l:slctd_str, l:char)
   " if l:srch_idx == -1
   "   call Slctd__cancel()
   "   return
@@ -1699,24 +1701,29 @@ endfunc
 
 func! Slctd_str__(str) range abort " todo dev
 
+  return v:lua.v.Slctd_str__(a:str)
 endfunc
 
 " slctd str __ rpl, srch nxt slctd
 
 func! Slctd__rpl_7_srch_nxt() abort " dir forward only
 
-  call Slct_re()
-  call Normal('"zd"aPlgn')
+  return v:lua.v.Slctd__rpl_7_srch_nxt()
+
+  " call Slct_re()
+  " call Normal('"zd"aPlgn')
 endfunc
 
 " slctd str __ del
 
 func! V_slctd__del() abort " dev doing, can
 
-  call Slct_re()
+  return v:lua.v.V_slctd__del()
 
-  call Normal('"ad')
-  let @+ = @a
+  " call Slct_re()
+  " 
+  " call Normal('"ad')
+  " let @+ = @a
 endfunc
 
 func! Slctd__del() range abort
@@ -1845,58 +1852,64 @@ endfunc
 
 func! Slctd_str_edge_out__ins(c) range abort
 
-  call Slct_re()
+  return v:lua.v.Slctd_str_edge_out__ins(a:c)
 
-  if a:firstline != a:lastline
-    call Slctd__cancel()
-    return
-  endif
-
-  let l:c_l = a:c
-
-  let l:c_r = a:c
-  if     a:c == '('
-    let l:c_r = ')'
-  elseif a:c == '{'
-    let l:c_r = '}'
-  elseif a:c == '['
-    let l:c_r = ']'
-  elseif a:c == '<'
-    let l:c_r = '>'
-  endif
-
-  call Normal('"zx')
-  call Cursor__ins(l:c_l . l:c_r)
-
-  let l:str_len = Str_len(l:c_l)
-  call Normal(l:str_len . 'h')
-
-  call Normal('"zP')
-  call Normal('gv')
-
-  let l:cnt = 0
-  while l:cnt < l:str_len
-    call Slctd_box__mv('r')
-
-    let l:cnt += 1
-  endwhile
+  " call Slct_re()
+  " 
+  " if a:firstline != a:lastline
+  "   call Slctd__cancel()
+  "   return
+  " endif
+  " 
+  " let l:c_l = a:c
+  " 
+  " let l:c_r = a:c
+  " if     a:c == '('
+  "   let l:c_r = ')'
+  " elseif a:c == '{'
+  "   let l:c_r = '}'
+  " elseif a:c == '['
+  "   let l:c_r = ']'
+  " elseif a:c == '<'
+  "   let l:c_r = '>'
+  " endif
+  " 
+  " call Normal('"zx')
+  " call Cursor__ins(l:c_l . l:c_r)
+  " 
+  " let l:str_len = Str_len(l:c_l)
+  " call Normal(l:str_len . 'h')
+  " 
+  " call Normal('"zP')
+  " call Normal('gv')
+  " 
+  " let l:cnt = 0
+  " while l:cnt < l:str_len
+  "   call Slctd_box__mv('r')
+  " 
+  "   let l:cnt += 1
+  " endwhile
 endfunc
 
 func! Slctd_str_edge_out__ins_markdown_strikethrough()
 
-  call Slct_re()
+  return v:lua.v.Slctd_str_edge_out__ins_markdown_strikethrough()
 
-  if a:firstline != a:lastline
-    call Slctd__cancel()
-    return
-  endif
-
-  call Slctd_str_edge_out__ins('~~')
+  " call Slct_re()
+  " 
+  " if a:firstline != a:lastline
+  "   call Slctd__cancel()
+  "   return
+  " endif
+  " 
+  " call Slctd_str_edge_out__ins('~~')
 endfunc
 
 func! Slctd_str_edge_out__ins_markdown_bold()
 
-  call Slctd_str_edge_out__ins('**')
+  return v:lua.v.Slctd_str_edge_out__ins_markdown_bold()
+
+  " call Slctd_str_edge_out__ins('**')
 endfunc
 
 func! Slctd_str_edge_out_char__tgl() range abort
@@ -2046,17 +2059,19 @@ endfunc
 
 func! Slctd_str_edge_out_char__del() range abort
 
-  call Slct_re()
+  return v:lua.v.Slctd_str_edge_out_char__del()
 
-  if Is_slctd_str_edge_l_col__line_top()
-    return
-  endif
-
-  call Normal('"zx')
-  call Normal('xhx')
-  call Normal('"zP')
-  call Normal('gv')
-  call Slctd_box__mv('l')
+  " call Slct_re()
+  " 
+  " if Is_slctd_str_edge_l_col__line_top()
+  "   return
+  " endif
+  " 
+  " call Normal('"zx')
+  " call Normal('xhx')
+  " call Normal('"zP')
+  " call Normal('gv')
+  " call Slctd_box__mv('l')
 endfunc
 
 " slctd str edge cnd
@@ -2108,10 +2123,12 @@ endfunc
 
 func! Slctd_line_7_opn_app() range abort
 
-  for line_num in range(a:firstline, a:lastline)
+  return v:lua.v.Slctd_line_7_opn_app()
 
-    call Opn_app_by_line_path(l:line_num)
-  endfor
+  " for line_num in range(a:firstline, a:lastline)
+  " 
+  "   call Opn_app_by_line_path(l:line_num)
+  " endfor
 endfunc
 
 " slctd line __ ( edit )
@@ -2185,17 +2202,19 @@ endfunc
 
 func! Slctd_line_end__pad_space() range abort " use not
 
-  " use recommend "aygvr gv
+  return v:lua.v.Slctd_line_end__pad_space()
 
-  call Slct_re()
-  call Normal('o')
-
-  let l:fil_end_col = Cursor_col_num() - 1
-
-  for line_num in range(a:firstline, a:lastline)
-
-    call Line_end__pad_space(l:line_num, l:fil_end_col)
-  endfor
+  " " use recommend "aygvr gv
+  " 
+  " call Slct_re()
+  " call Normal('o')
+  " 
+  " let l:fil_end_col = Cursor_col_num() - 1
+  " 
+  " for line_num in range(a:firstline, a:lastline)
+  " 
+  "   call Line_end__pad_space(l:line_num, l:fil_end_col)
+  " endfor
 endfunc
 
 func! Slctd_line__join_per_line(per_line_num) range abort

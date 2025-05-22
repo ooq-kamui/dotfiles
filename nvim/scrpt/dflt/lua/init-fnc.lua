@@ -2,9 +2,6 @@
 -- fnc
 -- 
 
---[[
---]]
-
 -- global
 
 g_home_dir     = vim.fn.expand('$HOME')
@@ -258,7 +255,7 @@ function v.Str_space(len)
   return space_str
 end
 
-function v.Str_srch(...) -- alias
+function v.Str_srch_idx(...) -- alias
 
   local arg = {...}
 
@@ -849,7 +846,10 @@ function v.Tag_jmp_by_slctd_line() -- range
 
   local base_buf_num = v.Buf_num()
 
-  for line_num in f.range(a_firstline, a_lastline) do
+  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
+  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
+
+  for idx, line_num in pairs(f.range(a_firstline, a_lastline)) do
 
     local line = f.getline(line_num)
     v.Tag_jmp_by_str(line)
@@ -1582,18 +1582,16 @@ function v.Cursor__ins_cmnt_1(cmd_cursor__mv_line_top)
   v.Normal('^') -- or '0'
 end
 
---[[
-
 function v.V_ins_cmnt_1() -- range
 
-  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')
-  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')
+  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
+  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
 
   v.Normal(a_firstline .. 'G')
   v.Normal('^')
   local col = v.Cursor_col_num()
 
-  for line_num in f.range(a_firstline, a_lastline) do
+  for idx, line_num in pairs(f.range(a_firstline, a_lastline)) do
 
     v.Line_end__pad_space(line_num, col - 1)
 
@@ -1602,8 +1600,6 @@ function v.V_ins_cmnt_1() -- range
     v.Cursor__ins_cmnt_1(vim.v.null)
   end
 end
-
---]]
 
 function v.Cursor__ins_cmnt_mlt_by_pos(pos)
 
@@ -1635,6 +1631,9 @@ function v.Cursor__ins_cmnt_mlt()
 end
 
 function v.V_ins_cmnt_mlt() -- range
+
+  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
+  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
 
   v.Normal(a_lastline  .. 'G')
   v.Cursor__ins_cmnt_mlt_by_pos('end')
@@ -2095,7 +2094,7 @@ end
 function v.Cursor_line_end__dots_adjst() -- todo dev, mb_str
 
   local line_str = v.Cursor_line_str()
-  local idx = v.Str_srch(line_str, f.escape(g_dots_str, '.'))
+  local idx = v.Str_srch_idx(line_str, f.escape(g_dots_str, '.'))
 
   if idx >= 0 then
     v.Cursor_line_end_dots__crct()
@@ -2107,7 +2106,7 @@ end
 function v.Cursor_line_end_dots__crct()
 
   local line_str = v.Cursor_line_str()
-  local idx = v.Str_srch(line_str, f.escape(g_dots_str, '.'))
+  local idx = v.Str_srch_idx(line_str, f.escape(g_dots_str, '.'))
 
   if     idx < 0 then
     return
@@ -2200,7 +2199,7 @@ function v.Cursor_f_str__crct_by_line(target_line_drct)
   local cursor_pos = v.Cursor_pos()
 
   local str = v.Cursor_line_str_side_r_with_c()
-  local trim_len = v.Str_srch(str, '[^ ]')
+  local trim_len = v.Str_srch_idx(str, '[^ ]')
   -- print( trim_len )
   local str = f.trim(str)
 
@@ -2220,7 +2219,7 @@ function v.Cursor_f_str__crct_by_line(target_line_drct)
   end
   v.Cursor__mv_v(turn_drct)
 
-  local char_idx = v.Str_srch(target_line_str, cursor_r_char)
+  local char_idx = v.Str_srch_idx(target_line_str, cursor_r_char)
   if char_idx == -1 then
     return
   end
@@ -2771,7 +2770,7 @@ function v.Slctd_str__expnd_bracket_f() -- range -- todo dev
   local s_col = v.Slctd_str_edge_l_col()
   
   local line_str_r = v.Slctd_str_edge_r_out_str()
-  local srch_idx = v.Str_srch(line_str_r, bracket_ptn, 1)
+  local srch_idx = v.Str_srch_idx(line_str_r, bracket_ptn, 1)
 
   if srch_idx == -1 then
     v.Normal('gv')
@@ -2789,7 +2788,7 @@ function v.Slctd_str__reduce_dlm_l(char) -- range
   v.Slct_re()
 
   local slctd_str = v.Slctd_str()
-  local srch_idx = v.Str_srch(slctd_str, char)
+  local srch_idx = v.Str_srch_idx(slctd_str, char)
   if srch_idx == -1 then
     v.Slctd__cancel()
     return
@@ -2823,8 +2822,6 @@ end
 
 -- slctd str __ ( rpl )
 
---[[
-
 function v.Slctd_str__(str) -- range -- todo dev
 
 end
@@ -2847,8 +2844,6 @@ function v.V_slctd__del() -- dev doing, can
   -- let @+ = @a
   f.getreg('+', f.getreg('a'))
 end
-
---]]
 
 function v.Slctd__del() -- range
 
@@ -2999,11 +2994,12 @@ end
 
 -- slctd str edge __ ( edit )
 
---[[
-
 function v.Slctd_str_edge_out__ins(c) -- range
 
   v.Slct_re()
+
+  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
+  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
 
   if a_firstline ~= a_lastline then
     v.Slctd__cancel()
@@ -3045,6 +3041,9 @@ function v.Slctd_str_edge_out__ins_markdown_strikethrough()
 
   v.Slct_re()
 
+  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
+  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
+
   if a_firstline ~= a_lastline then
     v.Slctd__cancel()
     return
@@ -3057,6 +3056,8 @@ function v.Slctd_str_edge_out__ins_markdown_bold()
 
   v.Slctd_str_edge_out__ins('**')
 end
+
+--[[
 
 function v.Slctd_str_edge_out_char__tgl() -- range
 
@@ -3095,6 +3096,9 @@ function v.Slctd_str_edge_out_quote__tgl() -- range
 
   v.Slct_re()
 
+  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
+  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
+
   if a_firstline ~= a_lastline then
     return
   end
@@ -3132,6 +3136,9 @@ end
 function v.Slctd_str_edge_out_bracket__tgl() -- range
 
   v.Slct_re()
+
+  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
+  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
 
   if a_firstline ~= a_lastline then
     return
@@ -3177,6 +3184,9 @@ function v.Slctd_str_edge_out__tgl_shft() -- range
 
   v.Slct_re()
 
+  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
+  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
+
   if a_firstline ~= a_lastline then
     return
   end
@@ -3203,6 +3213,8 @@ function v.Slctd_str_edge_out__tgl_shft() -- range
   end
 end
 
+--]]
+
 function v.Slctd_str_edge_out_char__del() -- range
 
   v.Slct_re()
@@ -3217,8 +3229,6 @@ function v.Slctd_str_edge_out_char__del() -- range
   v.Normal('gv')
   v.Slctd_box__mv('l')
 end
-
---]]
 
 -- slctd str edge cnd
 
@@ -3274,17 +3284,16 @@ end
 
 -- slctd line
 
---[[
-
 function v.Slctd_line_7_opn_app() -- range
 
-  for line_num in f.range(a_firstline, a_lastline) do
+  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
+  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
+
+  for idx, line_num in pairs(f.range(a_firstline, a_lastline)) do
 
     v.Opn_app_by_line_path(line_num)
   end
 end
-
---]]
 
 -- slctd line __ ( edit )
 
@@ -3358,11 +3367,16 @@ end
 
 function v.Slctd_line_end_space__del() -- range
 
-  for line_num in f.range(a_firstline, a_lastline) do
+  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
+  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
+
+  for idx, line_num in pairs(f.range(a_firstline, a_lastline)) do
 
     v.Line_end_space__del(line_num)
   end
 end
+
+--]]
 
 function v.Slctd_line_end__pad_space() -- range -- use not
 
@@ -3373,22 +3387,30 @@ function v.Slctd_line_end__pad_space() -- range -- use not
 
   local fil_end_col = v.Cursor_col_num() - 1
 
-  for line_num in f.range(a_firstline, a_lastline) do
+  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
+  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
+
+  for idx, line_num in pairs(f.range(a_firstline, a_lastline)) do
 
     v.Line_end__pad_space(line_num, fil_end_col)
   end
 end
 
+--[[
+
 function v.Slctd_line__join_per_line(per_line_num) -- range
 
   local n_cmd = per_line_num .. 'Jj'
+
+  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
+  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
 
   local line_num = a_lastline - a_firstline + 1
 
   local exe_num = line_num / per_line_num
   --print( exe_num )
 
-  for idx in f.range(1, exe_num) do
+  for _idx, idx in pairs(f.range(1, exe_num)) do
 
     v.Normal(n_cmd)
   end
@@ -3539,7 +3561,10 @@ function v.Slctd_box_edge_l__ynk_line_1() -- range
 
   -- local col_num = v.Cursor_col_num()
 
-  for line_num in f.range(a_firstline, a_lastline) do
+  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
+  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
+
+  for idx, line_num in pairs(f.range(a_firstline, a_lastline)) do
 
     local col_num = v.Cursor_col_num()
 
@@ -3595,10 +3620,13 @@ function v.Slctd_box_cursor_r_space__crct() -- range
   -- print( col )
   v.Slctd__cancel()
 
+  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
+  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
+
   -- print( a_firstline .. ' ' .. a_lastline )
   v.Cursor__mv_by_line_col(a_firstline, col)
 
-  for line_num in f.range(a_firstline, a_lastline) do
+  for idx, line_num in pairs(f.range(a_firstline, a_lastline)) do
     -- print( line_num .. ' ' .. col )
     -- v.Cursor__mv_by_line_col(line_num, col)
 
@@ -3972,7 +4000,7 @@ function v.Is_line_markdown_itm()
 
   local ptn = '^\\s*- '
   local str = v.Cursor_line_str()
-  local idx = v.Str_srch(str, ptn)
+  local idx = v.Str_srch_idx(str, ptn)
 
   if idx == -1 then
     return false
