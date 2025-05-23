@@ -10,22 +10,23 @@ alm
 
 ## nvim
 
-nnoremap m ins_cr
-- err
-
 fnc
-- Slctd_line__join_per_line(per_line_num)
-  - ceil or floor ??
-
 - Slctd_box_edge_l__ynk_line_1()
   - call fnc chk
 
+- Slctd_str_edge_out_bracket__tgl()
+- Slctd_str_edge_out_quote__tgl()
+
 - Srch_or(...)
 
-
 - slctd
-  - `'<,'>call`
-  - `rng call`
+  - `'<,'>:call`
+  - `rng .. s///`
+
+- Slctd_str_edge_out_char__tgl()
+  - > Slctd_str_edge_out_char__tgl_swtch()
+    - keymap
+
 
 - feat
   - tag jmp

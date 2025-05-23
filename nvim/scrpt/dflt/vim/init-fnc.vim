@@ -2194,10 +2194,12 @@ endfunc
 
 func! Slctd_line_end_space__del() range abort
 
-  for line_num in range(a:firstline, a:lastline)
+  return v:lua.v.Slctd_line_end_space__del()
 
-    call Line_end_space__del(l:line_num)
-  endfor
+  " for line_num in range(a:firstline, a:lastline)
+  " 
+  "   call Line_end_space__del(l:line_num)
+  " endfor
 endfunc
 
 func! Slctd_line_end__pad_space() range abort " use not
@@ -2219,17 +2221,19 @@ endfunc
 
 func! Slctd_line__join_per_line(per_line_num) range abort
 
-  let l:n_cmd = a:per_line_num . 'Jj'
+  return v:lua.v.Slctd_line__join_per_line(per_line_num)
 
-  let l:line_num = a:lastline - a:firstline + 1
-
-  let l:exe_num = l:line_num / a:per_line_num
-  "echo l:exe_num
-
-  for idx in range(1, l:exe_num)
-
-    call Normal(l:n_cmd)
-  endfor
+  " let l:n_cmd = a:per_line_num . 'Jj'
+  " 
+  " let l:line_num = a:lastline - a:firstline + 1
+  " 
+  " let l:exe_num = l:line_num / a:per_line_num
+  " "echo l:exe_num
+  " 
+  " for idx in range(1, l:exe_num)
+  " 
+  "   call Normal(l:n_cmd)
+  " endfor
 endfunc
 
 func! Slctd_line_indnt__space(indnt_col) range abort

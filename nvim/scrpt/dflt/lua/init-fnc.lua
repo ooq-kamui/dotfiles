@@ -935,14 +935,19 @@ end
 
 -- line xx __ ins
 
-g_line_top_space_ptn = '^[ \\t]*'
-
+-- g_line_end_space_ptn = '[ \\t]\\+$'
 g_line_end_space_ptn = '[ \\t]*$'
 
 function v.Line_end_space__del(line_num)
 
+  local ptn_tmp = f.getreg('/')
+
   local rpl_cmd = line_num .. 's/' .. g_line_end_space_ptn .. '//g'
+  -- print(rpl_cmd)
+
   v.Exe(rpl_cmd)
+
+  f.setreg('/', ptn_tmp)
 end
 
 function v.Line_end__pad_space(line_num, fil_end_col)
@@ -1484,13 +1489,13 @@ end
 function v.Cursor__ins_cr()
 
   -- local t_line_num = f.line('.')
-  local t_line_num = v.Cursor_line_num()
+  local line_num = v.Cursor_line_num()
 
-  -- v.Normal("i\\<cr> ")
+  -- v.Normal('i\\<cr> ')
   vim.cmd('exe "normal! i\\<cr> "')
   v.Normal('x')
 
-  v.Line_end_space__del(t_line_num)
+  v.Line_end_space__del(line_num)
   v.Cursor__mv_d()
 end
 
@@ -3064,6 +3069,10 @@ function v.Slctd_str_edge_out_char__tgl() -- range
   v.Slctd_str_edge_out_char__tgl_swtch()
 end
 
+--]]
+
+--[[
+
 function v.Slctd_str_edge_out_char__tgl_swtch() -- range
 
   -- char chk
@@ -3091,6 +3100,9 @@ function v.Slctd_str_edge_out_char__tgl_swtch() -- range
     v.Slctd_str_edge_out_quote__tgl()
   end
 end
+
+--]]
+--[[
 
 function v.Slctd_str_edge_out_quote__tgl() -- range
 
@@ -3132,6 +3144,9 @@ function v.Slctd_str_edge_out_quote__tgl() -- range
     v.Slctd_str_edge_out__ins(c)
   end
 end
+
+--]]
+--[[
 
 function v.Slctd_str_edge_out_bracket__tgl() -- range
 
@@ -3365,6 +3380,8 @@ function v.Slctd_line_top_space__del() -- refactoring ?
   v.Exe(rpl_cmd)
 end
 
+--]]
+
 function v.Slctd_line_end_space__del() -- range
 
   local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
@@ -3375,8 +3392,6 @@ function v.Slctd_line_end_space__del() -- range
     v.Line_end_space__del(line_num)
   end
 end
-
---]]
 
 function v.Slctd_line_end__pad_space() -- range -- use not
 
@@ -3396,8 +3411,6 @@ function v.Slctd_line_end__pad_space() -- range -- use not
   end
 end
 
---[[
-
 function v.Slctd_line__join_per_line(per_line_num) -- range
 
   local n_cmd = per_line_num .. 'Jj'
@@ -3407,7 +3420,8 @@ function v.Slctd_line__join_per_line(per_line_num) -- range
 
   local line_num = a_lastline - a_firstline + 1
 
-  local exe_num = line_num / per_line_num
+  -- local exe_num = line_num / per_line_num
+  local exe_num = math.floor(line_num / per_line_num)
   --print( exe_num )
 
   for _idx, idx in pairs(f.range(1, exe_num)) do
@@ -3415,6 +3429,8 @@ function v.Slctd_line__join_per_line(per_line_num) -- range
     v.Normal(n_cmd)
   end
 end
+
+--[[
 
 function v.Slctd_line_indnt__space(indnt_col) -- range
 
