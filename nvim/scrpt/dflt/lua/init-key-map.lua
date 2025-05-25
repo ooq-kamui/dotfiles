@@ -758,7 +758,7 @@
    vim.keymap.set('n', ':1', ':!')
 
 -- ins sys cmd ( read )
-   vim.keymap.set('n', ':r', ':InsSysCmd')
+   vim.keymap.set('n', ':r', ':InsSysCmd ')
 
 -- pth
    vim.keymap.set('n', ':p', ':Pth <cr>')
@@ -1119,6 +1119,7 @@
 
 -- ynk slctd
    vim.keymap.set('v', 'o', ':call v:lua.v.Ynk__slctd()<cr>')
+   vim.keymap.set('v', 'c', ':call v:lua.v.Ynk__slctd()<cr>')
 
 -- ynk slctd add
 -- vim.keymap.set('v', 'xx', ':call v:lua.v.Ynk__add_slctd()<cr>')

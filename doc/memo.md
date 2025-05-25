@@ -2,49 +2,43 @@
 # dotfiles
 
 
-## setup
-
-alm
-- 8.10
-
-
 ## nvim
 
 fnc
-- Slctd_box_edge_l__ynk_line_1()
-  - call fnc chk
-
-- Slctd_str_edge_out_bracket__tgl()
-- Slctd_str_edge_out_quote__tgl()
-
-- Srch_or(...)
-
-- slctd
-  - `'<,'>:call`
-  - `rng .. s///`
-
-- Slctd_str_edge_out_char__tgl()
-  - > Slctd_str_edge_out_char__tgl_swtch()
-    - keymap
+- idx__icl, dcl
 
 
-- feat
-  - tag jmp
+- fzf-lua
+
+  - fzf
+
   - rg
-
-  - doc-tech
-  - trns
-  - mark
+  - jmplst
 
 
-- `f.getline('.')` > cursor_line_str()
+- `f.getline('.')`
+  - Cursor_line_str()
+
+  - f.getline(line_num)
+    - Line_str_by_line_num()
+
+
+- lua Exe() del
+
+- trns
 
 
 key map
 - call Xxx()
   - call v:lua.v.Xxx()
   - lua v.Xxx()
+
 - vim.fn.pumvisible()
+
+
+cmd
+- call
+  - vim > lua
 
 
 env
@@ -79,12 +73,17 @@ is env init.lua
   - mac ?
 
 
-lualine memo
-
-fzf-lua
-
 filetype
 - fish
+
+color
+- mac, lua, cmnt: lightgreen
+
+plg ? lualine memo
+
+
+nnoremap c-f
+- case match not, back not
 
 
 ## vim

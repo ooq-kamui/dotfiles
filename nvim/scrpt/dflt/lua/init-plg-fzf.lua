@@ -326,6 +326,13 @@ function v.Fzf_doc_tech()
   v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
+function v.Doc_tech_tag_jmp(str)
+
+  local str = $HOME .. '/' .. g_doc_tech_dir_rel .. '/' .. str
+  -- echo str
+  v.Tag_jmp_by_str(str)
+end
+
 -- 
 -- cmd
 -- 
