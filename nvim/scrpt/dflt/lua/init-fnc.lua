@@ -4316,11 +4316,16 @@ function v.Jmplst()
   return r_jmplst
 end
 
+--]]
+
+--[[
+
 function v.Jmplst_line_info()
 
-  local jmplst = Jmplst()
+  local jmplst = v.Jmplst()
 
   local jmplst_line_info = {}
+
   for _jmplst in jmplst do
 
     local line_num  = _jmplst['lnum']
@@ -4331,6 +4336,10 @@ function v.Jmplst_line_info()
 
   return jmplst_line_info
 end
+
+--]]
+
+--[[
 
 function v.Jmplst_cmp(jmplst1, jmplst2)
 

@@ -210,24 +210,28 @@ func! V_fzf_buf() abort
 endfunc
 
 func! Fzf_rgstr() abort
-  
-  let l:rgstr_info = execute(':reg')->split("\n")
-  call remove(l:rgstr_info, 0)
-  
-  call fzf#run(
-  \   {
-  \     'source': l:rgstr_info,
-  \     'sink'  : funcref('Ynk__by_rgstr_info'),
-  \     'window': '-tabnew'
-  \   }
-  \ )
-  " \     'sink'  : funcref('Cursor__ins_rgstr_by_rgstr_info'),
+
+  return v:lua.v.Fzf_rgstr()
+
+  " let l:rgstr_info = execute(':reg')->split("\n")
+  " call remove(l:rgstr_info, 0)
+  " 
+  " call fzf#run(
+  " \   {
+  " \     'source': l:rgstr_info,
+  " \     'sink'  : funcref('Ynk__by_rgstr_info'),
+  " \     'window': '-tabnew'
+  " \   }
+  " \ )
+  " " \     'sink'  : funcref('Cursor__ins_rgstr_by_rgstr_info'),
 endfunc
 
 " fzf jmplst
 
 func! Fzf_jmplst() abort
-  
+
+  " return v:lua.v.Fzf_jmplst()
+
   call fzf#run(
   \   {
   \     'source' : Jmplst_line_info(),
@@ -324,40 +328,40 @@ func! Fzf_doc_tech() abort
 endfunc
 
 " 
-" cmd
+" cmd usr
 " 
 
-command! -bang -nargs=1 FzfRgExt call Fzf_rg_ext(<f-args>)
-
-command! -nargs=? FzfRgWithRun call Fzf_rg_with_run(<f-args>)
-
-command! -nargs=? FzfTagjmpByFile call Fzf_tag_jmp_by_file(<f-args>)
-
-command! -bang -nargs=? FzfBufCrnt
-\ call fzf#vim#buffer_lines(
-\   <q-args>,
-\   {'options': ['--no-sort', '--exact']},
-\   <bang>1
-\ )
-
-" fzf file
-command! -bang -nargs=? -complete=dir FzfFile call fzf#vim#files(<q-args>, <bang>1)
-
-" fzf file history
-command! -bang -nargs=* FzfFileHstry call fzf#vim#history(fzf#vim#with_preview(), <bang>1)
-
-" fzf cmd history
-command! -bang -nargs=* FzfCmdHstry call fzf#vim#command_history(fzf#vim#with_preview(), <bang>1)
-
-" fzf srch history
-command! -bang -nargs=* FzfSrchHstry call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)
-
-" fzf rgstr
-command! -bang -nargs=* FzfRgstr call Fzf_rgstr()
-
-command! -bang -nargs=* FzfJmplst call Fzf_jmplst()
-
-" fzf cmd def : mark
-command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)
+" command! -bang -nargs=1 FzfRgExt call Fzf_rg_ext(<f-args>)
+" 
+" command! -nargs=? FzfRgWithRun call Fzf_rg_with_run(<f-args>)
+" 
+" command! -nargs=? FzfTagjmpByFile call Fzf_tag_jmp_by_file(<f-args>)
+" 
+" command! -bang -nargs=? FzfBufCrnt
+" \ call fzf#vim#buffer_lines(
+" \   <q-args>,
+" \   {'options': ['--no-sort', '--exact']},
+" \   <bang>1
+" \ )
+" 
+" " fzf file
+" command! -bang -nargs=? -complete=dir FzfFile call fzf#vim#files(<q-args>, <bang>1)
+" 
+" " fzf file history
+" command! -bang -nargs=* FzfFileHstry call fzf#vim#history(fzf#vim#with_preview(), <bang>1)
+" 
+" " fzf cmd history
+" command! -bang -nargs=* FzfCmdHstry call fzf#vim#command_history(fzf#vim#with_preview(), <bang>1)
+" 
+" " fzf srch history
+" command! -bang -nargs=* FzfSrchHstry call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)
+" 
+" " fzf rgstr
+" command! -bang -nargs=* FzfRgstr call Fzf_rgstr()
+" 
+" command! -bang -nargs=* FzfJmplst call Fzf_jmplst()
+" 
+" " fzf cmd def : mark
+" command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)
 
 

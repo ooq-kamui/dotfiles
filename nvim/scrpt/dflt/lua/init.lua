@@ -7,7 +7,7 @@
 -- require('init-plg-mng' )
 
 -- dev anchor
--- require('init-plg-fzf' )
+require('init-plg-fzf' )
 
 require('init-opt'     )
 require('init-cmd-usr' )

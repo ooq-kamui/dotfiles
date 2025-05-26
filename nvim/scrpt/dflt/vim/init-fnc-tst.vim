@@ -115,4 +115,12 @@ func! Tst_fnc_call_fr_lua() range abort
   echo 'abcde'
 endfunc
 
+" tst fnc name #
+
+" can not
+" func! Tst_fnc#aa() abort
+" 
+"   echo 'Tst_fnc#aa()'
+" endfunc
+
 

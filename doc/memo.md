@@ -9,27 +9,14 @@ fnc
 - fzf-lua
 
   - fzf
-    - echo > print()
-
-    - a:xx > arg
-    - v.Xxx()
-    - f.fncbuilt()
-    - exe > vim.cmd()
-    - call fnc()
-
-    - tbl
-      - { x : a } { x = a}
-      - { 'x' : a } ?? { x = a}
-        - confirm
-
-    - call fzf#xxx() ( plg )
-      - ??
-    - nil ??
-
     - cmd ( usr )
 
   - rg
+
   - jmplst
+
+  - ynk __ rgst
+    - rgstr > rgst
 
 
 - `f.getline('.')`
@@ -87,6 +74,10 @@ opn file closed ltst
 is env init.lua
 - confirm
   - mac ?
+
+
+global val
+- g_xx > g.xx
 
 
 filetype
