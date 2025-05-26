@@ -5,6 +5,8 @@
 -- require('init-fnc-tst' )
 
 -- require('init-plg-mng' )
+
+-- dev anchor
 -- require('init-plg-fzf' )
 
 require('init-opt'     )

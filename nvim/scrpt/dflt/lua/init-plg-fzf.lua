@@ -41,9 +41,9 @@ g_fzf_colors = {
 
 -- fzf var def ( in plugin ) end
 
-if Is_env__('mac') or Is_env__('linux') or Is_env__('win64') then
+if v.Is_env__('mac') or v.Is_env__('linux') or v.Is_env__('win64') then
 
-  if Is_env__('win64') then
+  if v.Is_env__('win64') then
     g_fzf_rg_opt = g_fzf_rg_opt .. ' -g "!.git/"'
   else
     g_fzf_rg_opt = g_fzf_rg_opt .. ' -g "!.git/"'
@@ -67,7 +67,7 @@ end
 
 function v.Fzf_rg_with_grep(...)
 
-  if not ( Is_env__('mac') or Is_env__('linux') or Is_env__('win64') ) then
+  if not ( v.Is_env__('mac') or v.Is_env__('linux') or v.Is_env__('win64') ) then
     return
   end
 
@@ -77,12 +77,16 @@ function v.Fzf_rg_with_grep(...)
   local ext   = ( a:0 >= 2 ) and a:2 or nil
   local word1 = ( a:0 >= 3 ) and a:3 or false
 
-  local rg_cmd = Rg_cmd(ptn, ext, word1, nil)
+  local rg_cmd = v.Rg_cmd(ptn, ext, word1, nil)
   -- echo rg_cmd
 
+  -- dev anchor
+  -- call fzf#vim#grep(
   call fzf#vim#grep(
         rg_cmd,
         0,
+        -- dev anchor
+        -- fzf#vim#with_preview(
         fzf#vim#with_preview(
           {'options': '--exact --delimiter : --nth 3..'},
           'up:70%:hidden',
@@ -144,6 +148,8 @@ function v.Fzf_rg_with_run(...)
     local fzf_src_ar = Rg_ptn_rslt_ar(ptn, nil)
   end
 
+  -- dev anchor
+  -- call fzf#run(
   call fzf#run(
         {
           'source' : fzf_src_ar,
@@ -214,7 +220,7 @@ function v.Fzf_rgstr()
 
   local rgstr_info = execute(':reg')->split("\\n")
   call remove(rgstr_info, 0)
-  
+
   call fzf#run(
     {
       'source': rgstr_info,

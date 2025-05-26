@@ -158,28 +158,28 @@ endfunc
 
 func! Idx__icl(idx, ar_len) abort
 
-  " return v:lua.v.Idx__icl(a:idx, a:ar_len)
+  return v:lua.v.Idx__icl(a:idx, a:ar_len)
 
-  let l:r_idx = a:idx + 1
-  
-  if r_idx >= a:ar_len
-    let l:r_idx = 0
-  endif
-  
-  return l:r_idx
+  " let l:r_idx = a:idx + 1
+  " 
+  " if r_idx >= a:ar_len
+  "   let l:r_idx = 0
+  " endif
+  " 
+  " return l:r_idx
 endfunc
 
 func! Idx__dcl(idx, ar_len) abort
 
-  " return v:lua.v.Idx__dcl(a:idx, a:ar_len)
+  return v:lua.v.Idx__dcl(a:idx, a:ar_len)
 
-  let l:r_idx = a:idx - 1
-
-  if r_idx < 0
-    let l:r_idx = a:ar_len - 1
-  endif
-
-  return l:r_idx
+  " let l:r_idx = a:idx - 1
+  " 
+  " if r_idx < 0
+  "   let l:r_idx = a:ar_len - 1
+  " endif
+  " 
+  " return l:r_idx
 endfunc
 
 func! Int_2_str(num) abort

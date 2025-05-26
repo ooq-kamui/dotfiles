@@ -645,7 +645,8 @@ function v.Opn_tmp_file()
   v.Opn(path)
 end
 
-g_init_vim_file_path         = g_init_vim_dir     .. '/init.vim'
+-- g_init_vim_file_path         = g_init_vim_dir     .. '/init.vim'
+g_init_vim_file_path         = g_init_vim_etc_dir .. '/init.vim'
 g_init_vim_fnc_file_path     = g_init_vim_etc_dir .. '/init-fnc.vim'
 
 g_init_lua_file_path         = g_init_lua_dir     .. '/init.lua'

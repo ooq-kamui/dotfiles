@@ -5,12 +5,28 @@
 ## nvim
 
 fnc
-- idx__icl, dcl
-
 
 - fzf-lua
 
   - fzf
+    - echo > print()
+
+    - a:xx > arg
+    - v.Xxx()
+    - f.fncbuilt()
+    - exe > vim.cmd()
+    - call fnc()
+
+    - tbl
+      - { x : a } { x = a}
+      - { 'x' : a } ?? { x = a}
+        - confirm
+
+    - call fzf#xxx() ( plg )
+      - ??
+    - nil ??
+
+    - cmd ( usr )
 
   - rg
   - jmplst
