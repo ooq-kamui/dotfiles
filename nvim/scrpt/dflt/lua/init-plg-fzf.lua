@@ -85,16 +85,6 @@ function v.Fzf_rg_with_grep(...)
   local rg_cmd = v.Rg_cmd(ptn, ext, word1, nil)
   -- print(rg_cmd)
 
-  -- call fzf#vim#grep(
-  --       rg_cmd,
-  --       0,
-  --       fzf#vim#with_preview(
-  --         {'options': '--exact --delimiter : --nth 3..'},
-  --         'up:70%:hidden',
-  --         'ctrl-u'
-  --       ),
-  --       1
-  --     )
   vim.fn['fzf#vim#grep'](
         rg_cmd,
         0,
@@ -163,13 +153,6 @@ function v.Fzf_rg_with_run(...)
     fzf_src_ar = v.Rg_ptn_rslt_ar(ptn, nil)
   end
 
-  -- call fzf#run(
-  --       {
-  --         'source' : fzf_src_ar,
-  --         'sink'   : funcref('Tag_jmp_by_str'),
-  --         'window' : '-tabnew',
-  --       }
-  --     )
   vim.fn['fzf#run'](
     {
       source = fzf_src_ar,
@@ -205,13 +188,6 @@ function v.Fzf_by_ar(...)
     return
   end
 
-  -- call fzf#run(
-  --   {
-  --     'source' : src_ar,
-  --     'sink'   : f.funcref(fnc_name),
-  --     'window' : '-tabnew',
-  --   }
-  -- )
   vim.fn['fzf#run'](
     {
       source = src_ar,
@@ -255,13 +231,6 @@ function v.Fzf_rgstr()
   local rgstr_info = f.split(rgstr_info_str, '\\n')
   f.remove(rgstr_info, 0)
 
-  -- call fzf#run(
-  --   {
-  --     'source': rgstr_info,
-  --     'sink'  : f.funcref('Ynk__by_rgstr_info'),
-  --     'window': '-tabnew'
-  --   }
-  -- )
   vim.fn['fzf#run'](
     {
       source = rgstr_info,
@@ -276,14 +245,6 @@ end
 
 function v.Fzf_jmplst()
 
-  -- call fzf#run(
-  --   {
-  --     'source' : v.Jmplst_line_info(),
-  --     'sink'   : f.funcref('Cursor__mv_by_line_info'),
-  --     'window' : '-tabnew',
-  --     'options': ['--reverse'],
-  --   }
-  -- )
   vim.fn['fzf#run'](
     {
       source  = v.Jmplst_line_info(),

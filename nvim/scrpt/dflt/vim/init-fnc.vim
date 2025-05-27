@@ -2179,31 +2179,33 @@ endfunc
 
 func! Jmplst() abort
 
+  " return v:lua.v.Jmplst()
+
   let l:jmplst_tmp = getjumplist()[0]
   "echo l:jmplst_tmp
-
+  
   let l:buf_num_key_prefix = 'key_'
   let l:jmplst = {}
   for _jmplst_tmp in l:jmplst_tmp
-
+  
     let l:_buf_num_key = l:buf_num_key_prefix . l:_jmplst_tmp['bufnr']
-
+  
     if ! has_key(l:jmplst, l:_buf_num_key)
       let l:jmplst[l:_buf_num_key] = []
     endif
-
+  
     call add(l:jmplst[l:_buf_num_key], l:_jmplst_tmp)
   endfor
-
+  
   for _buf_num_key in keys(l:jmplst)
-
+  
     call sort(l:jmplst[l:_buf_num_key], 'Jmplst_cmp')
   endfor
-
+  
   let l:buf_num_key = l:buf_num_key_prefix . Buf_num()
   let l:r_jmplst    = get(l:jmplst, buf_num_key, [])
   "echo l:r_jmplst
-
+  
   return l:r_jmplst
 endfunc
 

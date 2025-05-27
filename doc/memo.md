@@ -8,12 +8,16 @@ fnc
 
 - fzf-lua
 
-  - fzf
-    - cmd ( usr )
+  - v.Log_tbl()
+
+  - jmplst
+    - chk bgn Fzf_xxx()
 
   - rg
 
-  - jmplst
+  - fzf
+    - cmd ( usr )
+
 
   - ynk __ rgst
     - rgstr > rgst
@@ -91,6 +95,9 @@ plg ? lualine memo
 
 nnoremap c-f
 - case match not, back not
+
+
+cls nize
 
 
 ## vim

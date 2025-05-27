@@ -4285,40 +4285,38 @@ end
 -- 
 
 --[[
-
+-- dev anchor
 function v.Jmplst()
 
-  local jmplst_tmp = getjumplist()[0]
-  --echo jmplst_tmp
+  local jmplst_tmp = f.getjumplist()[1]
+  -- print(vim.inspect(jmplst_tmp))
 
   local buf_num_key_prefix = 'key_'
   local jmplst = {}
-  for _jmplst_tmp in jmplst_tmp do
+  local _buf_num_key
 
-    local _buf_num_key = buf_num_key_prefix .. _jmplst_tmp['bufnr']
+  for idx, _jmplst_tmp in pairs(jmplst_tmp) do
 
-    if not has_key(jmplst, _buf_num_key) then
+    _buf_num_key = buf_num_key_prefix .. _jmplst_tmp['bufnr']
+
+    if not f.has_key(jmplst, _buf_num_key) then
       jmplst[_buf_num_key] = {}
     end
 
-    call add(jmplst[_buf_num_key], _jmplst_tmp)
+    f.add(jmplst[_buf_num_key], _jmplst_tmp)
   end
 
-  for _buf_num_key in keys(jmplst) do
+  for _buf_num_key in pairs(f.keys(jmplst)) do
 
-    call sort(jmplst[_buf_num_key], 'Jmplst_cmp')
+    f.sort(jmplst[_buf_num_key], 'Jmplst_cmp')
   end
 
-  local buf_num_key = buf_num_key_prefix .. Buf_num()
-  local r_jmplst    = get(jmplst, buf_num_key, {})
+  local buf_num_key = buf_num_key_prefix .. v.Buf_num()
+  local r_jmplst    = f.get(jmplst, buf_num_key, {})
   --echo r_jmplst
 
   return r_jmplst
 end
-
---]]
-
---[[
 
 function v.Jmplst_line_info()
 
@@ -4326,7 +4324,7 @@ function v.Jmplst_line_info()
 
   local jmplst_line_info = {}
 
-  for _jmplst in jmplst do
+  for _jmplst in pairs(jmplst) do
 
     local line_num  = _jmplst['lnum']
     local line_info = line_num .. ' ' .. getline(line_num)
@@ -4488,7 +4486,7 @@ function v.Mark_alph_line()
 
   local line_num = v.Cursor_line_num()
 
-  for _mark in f.bufname():getmarklist() do
+  for _mark in pairs(f.bufname():getmarklist()) do
 
     local _alph = _mark['mark'][2]
 
@@ -4528,7 +4526,7 @@ function v.Mark_alph_useabl()
 
   local mark = v.Mark_lst()
 
-  for _alph in g_mark_alph_def do
+  for _alph in pairs(g_mark_alph_def) do
     if f.count(mark, _alph) == 0 then
       --print( _alph )
       return _alph
