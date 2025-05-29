@@ -100,7 +100,13 @@ nnoremap c-f
 cls nize
 
 
+## podman
+
+install at mac
+
+
 ## vim
+
 osc52 clp __ ynk
 
 nnoremap `<` cursor mv block out ( fnc )

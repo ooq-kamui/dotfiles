@@ -127,6 +127,9 @@ alias jlw 'git lw'
 alias jds 'git ds'
 alias jdw 'git dw'
 
+alias po 'podman'
+alias pd 'podman'
+
 alias line 'cat_line'
 
 #alias fzf_ins 'cmdline__fzf'
@@ -142,9 +145,9 @@ alias t       'ts'
 
 alias ca 'cal'
 
-alias du  'du -h'
-alias du1 'du -hd1'
-alias df  'df -h'
+alias du   'du -h'
+alias du_1 'du -hd1'
+alias df   'df -h'
 
 # alias x 'xargs'
 
