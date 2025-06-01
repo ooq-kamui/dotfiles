@@ -4,21 +4,32 @@
 
 ## nvim
 
+v box
+- s ( cut )
+
+nnoremap gh
+- file lst add
+
+rg opn at tab
+
+v line
+- cmnt mlt
+  - err
+
 fnc
-- utl
-  - u.tbl.xx()
-    - u.tbl.srt()
-    - u.tbl.add()
-  - u.log.xx()
-    - u.log.val()
-    - u.log.tbl()
-
-
 - `f.getline('.')`
   - Cursor_line_str()
 
   - f.getline(line_num)
     - Line_str_by_line_num()
+
+- utl
+  - u.tbl.xx()
+    - u.tbl.srt()
+      - call rpl
+    - u.tbl.add()
+      - call rpl
+
 
 - fzf-lua
   - cmd-usr
@@ -28,8 +39,6 @@ fnc
 
 
 key map
-- vim.fn.pumvisible()
-
 - call Xxx()
   - lua v.Xxx()
 
@@ -45,6 +54,8 @@ env
 
 - rgstr lst
   - order num later
+
+- env / init.vim
 
 
 hl

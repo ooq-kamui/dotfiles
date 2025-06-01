@@ -634,7 +634,6 @@ function v.Opn_tmp_file()
   v.Opn(path)
 end
 
--- g_init_vim_file_path         = g_init_vim_dir     .. '/init.vim'
 g_init_vim_file_path         = g_init_vim_etc_dir .. '/init.vim'
 g_init_vim_fnc_file_path     = g_init_vim_etc_dir .. '/init-fnc.vim'
 
@@ -648,20 +647,23 @@ g_init_lua_fnc_file_path     = g_init_lua_etc_dir .. '/init-fnc.lua'
 function v.Opn_init_vim()
 
   -- vim
-  v.Opn(g_init_vim_file_path        )
-  v.Opn(g_init_vim_fnc_file_path    )
+  -- v.Opn(g_init_vim_file_path        )
+  -- v.Opn(g_init_vim_fnc_file_path    )
 
   -- lua
   v.Opn(g_init_lua_fnc_file_path    )
 
+  local vimrc_c9_file_path
+  local vimrc_gitbash_file_path
+
   if     v.Is_env__('linux')     then -- c9, s9
 
-    local vimrc_c9_file_path      = g_init_vim_dir .. '/c9/init.vim'
+    vimrc_c9_file_path      = g_init_vim_dir .. '/c9/init.vim'
     -- v.Opn(vimrc_c9_file_path)
 
   elseif v.Is_env__('win32unix') then -- gitbash
 
-    local vimrc_gitbash_file_path = g_init_vim_dir .. '/gitbash/init.vim'
+    vimrc_gitbash_file_path = g_init_vim_dir .. '/gitbash/init.vim'
     v.Opn(vimrc_gitbash_file_path)
   end
 end
@@ -972,7 +974,7 @@ function v.Line_num_by_Line_info(line_info)
 
   local line_info = f.trim(line_info, ' ', 1)
   local line_num  = f.split(line_info, '\\s\\+')[1]
-  v.Log(line_num)
+  u.Log.val(line_num)
 
   return line_num
 end
@@ -4000,6 +4002,10 @@ function v.Is_line_markdown_itm()
   end
 end
 
+-- 
+-- mode ins
+-- 
+
 -- complete  -  mode insert ins lst
 
 function v.I_symbol01()
@@ -4084,6 +4090,17 @@ function v.I_reserved_lua()
   }
   f.complete(f.col('.'), lst)
   return ''
+end
+
+function v.Is_ins_mode__menu()
+
+  local ret = false
+
+  if vim.fn.pumvisible() == 1 then
+    ret = true
+  end
+
+  return ret
 end
 
 -- trns
@@ -4276,7 +4293,7 @@ end
 function v.Jmplst()
 
   local jmplst_tmp = f.getjumplist()[1]
-  -- v.Log_tbl(jmplst_tmp)
+  -- u.Log.tbl(jmplst_tmp)
 
   local buf_num_key_prefix = 'key_'
   local jmplst = {}
@@ -4288,27 +4305,27 @@ function v.Jmplst()
 
     -- if not f.has_key(jmplst, _buf_num_key) then
     if jmplst[_buf_num_key] == nil then
-      -- v.Log(_buf_num_key)
+      -- u.Log.val(_buf_num_key)
       jmplst[_buf_num_key] = {}
     end
 
     -- f.add(jmplst[_buf_num_key], _jmplst_tmp)
     table.insert(jmplst[_buf_num_key], _jmplst_tmp)
   end
-  -- v.Log_tbl(jmplst)
+  -- u.Log.tbl(jmplst)
 
   for idx, _buf_num_key in pairs(f.keys(jmplst)) do
 
     -- f.sort(jmplst[_buf_num_key], 'Jmplst_cmp')
     table.sort(jmplst[_buf_num_key], v.Jmplst_cmp)
   end
-  -- v.Log_tbl(jmplst)
+  -- u.Log.tbl(jmplst)
 
   local buf_num_key = buf_num_key_prefix .. v.Buf_num()
-  -- v.Log(buf_num_key)
+  -- u.Log.val(buf_num_key)
 
   local r_jmplst    = f.get(jmplst, buf_num_key, {})
-  -- v.Log_tbl(r_jmplst)
+  -- u.Log.tbl(r_jmplst)
 
   return r_jmplst
 end
@@ -4327,7 +4344,7 @@ function v.Jmplst_line_info()
     -- f.add(jmplst_line_info, line_info)
     table.insert(jmplst_line_info, line_info)
   end
-  -- v.Log_tbl(jmplst_line_info)
+  -- u.Log.tbl(jmplst_line_info)
 
   return jmplst_line_info
 end
@@ -4399,18 +4416,35 @@ function v.Repeat_fnc()
   -- v.Cursor__ins_ynk()
 end
 
--- log
+-- 
+-- utl
+-- 
 
-function v.Log(val)
+u = {}
+
+u.Log = {}
+
+function u.Log.val(val)
 
   print(val)
 end
 
-function v.Log_tbl(tbl)
+function u.Log.tbl(tbl)
 
   print(vim.inspect(tbl))
 end
 
+u.Tbl = {}
+
+function u.Tbl.srt(tbl, cmp_fnc)
+
+  return table.sort(tbl, cmp_fnc)
+end
+
+function u.Tbl.add(tbl, val)
+
+  return table.insert(tbl, val)
+end
 
 -- priority l
 

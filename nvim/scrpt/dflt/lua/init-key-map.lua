@@ -726,7 +726,6 @@
 -- vim.keymap.set('n', ':s', ':Rpl ')
 
 -- fzf rg
-   -- vim.keymap.set('n', '<leader>o', ':call Fzf_rg(v:null)<cr>')
    vim.keymap.set('n', '<leader>o', ':lua v.Fzf_rg(nil)<cr>')
 
 -- fzf rg fltr ext
@@ -1360,11 +1359,9 @@
    vim.keymap.set('v', '<leader>i', ':call v:lua.v.V_fzf_buf()<cr>')
 
 -- fzf rg
-   -- vim.keymap.set('v', '<leader>o', '"zy:call v:lua.v.Fzf_rg("<c-r>z")<cr>')
    vim.keymap.set('v', '<leader>o', '"zy:call v:lua.v.Fzf_rg("<c-r>z")<cr>')
 
 -- fzf rg word1
-   -- vim.keymap.set('v', '<leader>O', '"zy:call v:lua.v.Fzf_rg_word1("<c-r>z")<cr>')
    vim.keymap.set('v', '<leader>O', '"zy:call v:lua.v.Fzf_rg_word1("<c-r>z")<cr>')
 
 -- tag jmp
@@ -1444,7 +1441,7 @@
 -- quit, esc
    vim.keymap.set('i', '<esc>', function()
      local ret
-     if     vim.fn.pumvisible() == 1 then
+     if     v.Is_ins_mode__menu() then
        ret = '<c-e>'
      elseif v.Is_cursor_col__line_top0() then
        ret = '<esc>'
@@ -1456,7 +1453,7 @@
 
    vim.keymap.set('i', '<c-c>', function()
      local ret
-     if     vim.fn.pumvisible() == 1 then
+     if     v.Is_ins_mode__menu() then
        ret = '<c-e>'
      elseif v.Is_cursor_col__line_top0() then
        ret = '<esc>'
@@ -1481,7 +1478,7 @@
 -- cursor mv char back
    vim.keymap.set('i', '<c-s>', '<c-o>h')
    vim.keymap.set('i', '<c-o>', function()
-     return vim.fn.pumvisible() == 1 and
+     return v.Is_ins_mode__menu() and
        '<c-y>' or
        '<c-o>h'
    end, {expr = true})
@@ -1491,7 +1488,7 @@
 
 -- cursor mv word back
 -- vim.keymap.set('i', '<c-o>', function()
---   return vim.fn.pumvisible() == 1 and
+--   return v.Is_ins_mode__menu() and
 --     '<c-y>' or
 --     '<c-o>b'
 -- end, {expr = true})
@@ -1512,48 +1509,47 @@
    vim.keymap.set('i', '<leader>f', '<c-p>')
    vim.keymap.set('i', '<c-a>'    , '<c-p>')
 -- vim.keymap.set('i', '<c-y>', function()
---   return vim.fn.pumvisible() == 1 and
+--   return v.Is_ins_mode__menu() and
 --     '<c-e>' or
 --     '<c-n>'
 -- end, {expr = true})
 
 -- ins bracket
    vim.keymap.set('i', '<c-u>', function()
-     return vim.fn.pumvisible() == 1 and
+     return v.Is_ins_mode__menu() and
        '<c-n>' or
-       '<c-r>=I_quote()<cr>'
+       '<c-r>=v:lua.v.I_quote()<cr>'
    end, {expr = true})
 
 -- ins quote
    vim.keymap.set('i', '<c-j>', function()
-     return vim.fn.pumvisible() == 1 and
+     return v.Is_ins_mode__menu() and
        '<c-n>' or
-       '<c-r>=I_bracket()<cr>'
+       '<c-r>=v:lua.v.I_bracket()<cr>'
    end, {expr = true})
 
 -- ins num
-   vim.keymap.set('i', '<c-y>', '<c-r>=I_num()<cr>')
--- vim.keymap.set('i', '<leader>k', '<c-r>=I_num()<cr>')
+   vim.keymap.set('i', '<c-y>', '<c-r>=v:lua.v.I_num()<cr>')
 
 -- ins symbol
-   vim.keymap.set('i', '<c-n>', '<c-r>=I_symbol01()<cr>')
-   vim.keymap.set('i', '<c-f>', '<c-r>=I_symbol02()<cr>')
-   vim.keymap.set('i', '<c-p>', '<c-r>=I_symbol03()<cr>')
+   vim.keymap.set('i', '<c-n>', '<c-r>=v:lua.v.I_symbol01()<cr>')
+   vim.keymap.set('i', '<c-f>', '<c-r>=v:lua.v.I_symbol02()<cr>')
+   vim.keymap.set('i', '<c-p>', '<c-r>=v:lua.v.I_symbol03()<cr>')
 
 -- ins markdown
--- vim.keymap.set('i', '<c-u>', '<c-r>=I_markdown_lnk()<cr>')
+-- vim.keymap.set('i', '<c-u>', '<c-r>=v:lua.v.I_markdown_lnk()<cr>')
 
 -- ins todo status
--- vim.keymap.set('i', 'xx', '<c-r>=I_todo_status()<cr>')
+-- vim.keymap.set('i', 'xx', '<c-r>=v:lua.v.I_todo_status()<cr>')
 
 -- ins week
--- vim.keymap.set('i', 'xx', '<c-r>=I_week()<cr>')
+-- vim.keymap.set('i', 'xx', '<c-r>=v:lua.v.I_week()<cr>')
 
 -- ins register
--- vim.keymap.set('i', 'xx', '<c-r>=I_reg()<cr>')
+-- vim.keymap.set('i', 'xx', '<c-r>=v:lua.v.I_reg()<cr>')
 
 -- ins reserved word lua
--- vim.keymap.set('i', 'xx', '<c-r>=I_reserved_lua()<cr>')
+-- vim.keymap.set('i', 'xx', '<c-r>=v:lua.v.I_reserved_lua()<cr>')
 
 -- ins bracket
 -- vim.keymap.set('i', '<', '<><c-o>h')
@@ -1574,7 +1570,7 @@
 
 -- del word forword
    vim.keymap.set('i', '<c-k>', function()
-     return vim.fn.pumvisible() == 1 and
+     return v.Is_ins_mode__menu() and
        '<c-p>' or
        '<c-o>dw'
    end, {expr = true})
@@ -1590,13 +1586,13 @@
 
 -- clr
 -- vim.keymap.set('i', '<esc>', function()
---   return vim.fn.pumvisible() == 1 and
+--   return v.Is_ins_mode__menu() and
 --     '<c-e>' or
 --     ''
 -- end, {expr = true})
 
 -- vim.keymap.set('i', '<c-w>', function()
---   return vim.fn.pumvisible() == 1 and
+--   return v.Is_ins_mode__menu() and
 --     '<c-e>' or
 --     '<c-w>'
 -- end, {expr = true})

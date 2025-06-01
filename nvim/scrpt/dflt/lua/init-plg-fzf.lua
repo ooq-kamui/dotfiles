@@ -60,8 +60,6 @@ function v.Fzf_rg(...) -- alias
   local arg = {...}
 
   local ptn   = arg[1] or ''
-  -- local ptn   = arg[1] or g_rg_some_line_ptn
-
   local ext   = arg[2] or nil
   local word1 = arg[3] or false
 
@@ -86,23 +84,40 @@ function v.Fzf_rg_with_grep(...)
   -- print(rg_cmd)
 
   vim.fn['fzf#vim#grep'](
-        rg_cmd,
-        0,
-        vim.fn['fzf#vim#with_preview'](
-          {options = '--exact --delimiter : --nth 3..'},
-          'up:70%:hidden',
-          'ctrl-u'
-        ),
-        1
-      )
+    rg_cmd,
+    {
+      options = '--exact --delimiter : --nth 3..',
+      -- window  = '-tabnew',
+    },
+    1
+  )
+
+  -- vim.fn['fzf#vim#grep'](
+  --   rg_cmd,
+  --   vim.fn['fzf#vim#with_preview'](
+  --     {
+  --       options = '--exact --delimiter : --nth 3..',
+  --     },
+  --     'up:70%:hidden',
+  --     'ctrl-u'
+  --   ),
+  --   1
+  -- )
 
   -- hlp
   --   fzf#vim#grep(
   --     command,
-  --     [has_column bool],
   --     [spec dict],
   --     [fullscreen bool]
   --   )
+  -- 
+  --   old
+  --     fzf#vim#grep(
+  --       command,
+  --       [has_column bool],
+  --       [spec dict],
+  --       [fullscreen bool]
+  --     )
 end
 
 -- fzf rg ext
