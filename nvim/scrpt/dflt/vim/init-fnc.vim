@@ -131,12 +131,14 @@ endfunc
 
 func! Is_str__emp(str) abort
 
-  let l:ret = v:false
+  return v:lua.v.Is_str__emp(a:str)
 
-  if a:str == ''
-    let l:ret = v:true
-  endif
-  return l:ret
+  " let l:ret = v:false
+  " 
+  " if a:str == ''
+  "   let l:ret = v:true
+  " endif
+  " return l:ret
 endfunc
 
 func! Is_str__ptn(str, ptn) abort
@@ -239,8 +241,10 @@ endfunc
 
 func! Sys_cmd(sys_cmd) abort
 
-  let l:ret = v:lua.v.Sys_cmd(a:sys_cmd)
-  return l:ret
+  return v:lua.v.Sys_cmd(a:sys_cmd)
+
+  " let l:ret = v:lua.v.Sys_cmd(a:sys_cmd)
+  " return l:ret
 endfunc
 
 " syntax color
@@ -373,7 +377,9 @@ endfunc
 
 func! Opn(filename) abort
 
-  call Exe('tab drop ' . a:filename)
+  return v:lua.v.Opn(a:filename)
+
+  " call Exe('tab drop ' . a:filename)
 endfunc
 
 func! Opn_tmp_file() abort
@@ -572,7 +578,6 @@ endfunc
 
 " line num
 
-" dev anchor : cmnt del doing
 func! Line_num_by_Line_info(line_info) abort
 
   return v:lua.v.Line_num_by_Line_info(a:line_info)
@@ -649,9 +654,8 @@ func! Cursor__mv_by_line_col(line_num, col) abort
 endfunc
 
 func! Cursor__mv_by_line_info(line_info) abort
-  
-  let l:line_num = Line_num_by_Line_info(a:line_info)
-  call Cursor__mv_by_line_num(l:line_num)
+
+  return v:lua.v.Cursor__mv_by_line_info(a:line_info)
 endfunc
 
 func! Cursor__mv_by_pos(pos) abort
@@ -1140,8 +1144,10 @@ endfunc
 
 func! Cursor_line_top0__ins(str) abort
 
-  call Cursor__mv_line_top0()
-  call Cursor__ins(a:str)
+  return v:lua.v.Cursor_line_top0__ins(a:str)
+
+  " call Cursor__mv_line_top0()
+  " call Cursor__ins(a:str)
 endfunc
 
 func! Cursor_line_top1__ins(str) abort
@@ -2132,110 +2138,72 @@ let g:rg_some_line_ptn = '^[^ \t]+$'
 
 func! Rg_ptn_cnt(ptn, opt) abort
 
-  " return v:lua.v.Rg_ptn_cnt(a:ptn, a:opt)
+  return v:lua.v.Rg_ptn_cnt(a:ptn, a:opt)
 
-  if a:opt == v:null
-    let l:opt = ''
-  else
-    let l:opt = a:opt
-  endif
-  
-  let l:rg_cmd = "rg " . l:opt . " -e '" . a:ptn . "' | count"
-  let l:rg_rslt_cnt = Sys_cmd(l:rg_cmd)
-  return l:rg_rslt_cnt
+  " if a:opt == v:null
+  "   let l:opt = ''
+  " else
+  "   let l:opt = a:opt
+  " endif
+  " 
+  " let l:rg_cmd = "rg " . l:opt . " -e '" . a:ptn . "' | count"
+  " let l:rg_rslt_cnt = Sys_cmd(l:rg_cmd)
+  " return l:rg_rslt_cnt
 endfunc
 
 func! Rg_all_cnt() abort
 
-  let l:ptn = g:rg_emp_line_ptn
-  let l:opt = '-v'
+  return v:lua.v.Rg_all_cnt()
 
-  let l:rg_rslt_cnt = Rg_ptn_cnt(l:ptn, l:opt)
-  return l:rg_rslt_cnt
+  " let l:ptn = g:rg_emp_line_ptn
+  " let l:opt = '-v'
+  " 
+  " let l:rg_rslt_cnt = Rg_ptn_cnt(l:ptn, l:opt)
+  " return l:rg_rslt_cnt
 endfunc
 
 func! Rg_all_rslt_ar() abort
 
-  let l:ptn = g:rg_emp_line_ptn
-  let l:opt = '-v'
+  return v:lua.v.Rg_all_rslt_ar()
 
-  let l:rslt_ar = Rg_ptn_rslt_ar(l:ptn, l:opt)
-  return l:rslt_ar
+  " let l:ptn = g:rg_emp_line_ptn
+  " let l:opt = '-v'
+  " 
+  " let l:rslt_ar = Rg_ptn_rslt_ar(l:ptn, l:opt)
+  " return l:rslt_ar
 endfunc
 
 func! Rg_ptn_rslt_ar(ptn, opt) abort
 
-  let l:rg_rslt_txt = Rg_ptn_rslt_txt(a:ptn, a:opt)
-  let l:rg_rslt_ar  = split(l:rg_rslt_txt, "\n")
-  return l:rg_rslt_ar
+  return v:lua.v.Rg_ptn_rslt_ar(a:ptn, a:opt)
+
+  " let l:rg_rslt_txt = Rg_ptn_rslt_txt(a:ptn, a:opt)
+  " let l:rg_rslt_ar  = split(l:rg_rslt_txt, "\n")
+  " return l:rg_rslt_ar
 endfunc
 
 func! Rg_ptn_rslt_txt(ptn, opt) abort
-  
-  let l:rg_cmd = Rg_cmd(a:ptn, v:null, v:null, a:opt) " todo dev
-  let l:r_rslt_txt = Sys_cmd(l:rg_cmd)
-  return l:r_rslt_txt
+
+  return v:lua.v.Rg_ptn_rslt_txt(a:ptn, a:opt)
+
+  " let l:rg_cmd = Rg_cmd(a:ptn, v:null, v:null, a:opt) " todo dev
+  " let l:r_rslt_txt = Sys_cmd(l:rg_cmd)
+  " return l:r_rslt_txt
 endfunc
 
 func! Jmplst() abort
 
-  " return v:lua.v.Jmplst()
-
-  let l:jmplst_tmp = getjumplist()[0]
-  "echo l:jmplst_tmp
-  
-  let l:buf_num_key_prefix = 'key_'
-  let l:jmplst = {}
-  for _jmplst_tmp in l:jmplst_tmp
-  
-    let l:_buf_num_key = l:buf_num_key_prefix . l:_jmplst_tmp['bufnr']
-  
-    if ! has_key(l:jmplst, l:_buf_num_key)
-      let l:jmplst[l:_buf_num_key] = []
-    endif
-  
-    call add(l:jmplst[l:_buf_num_key], l:_jmplst_tmp)
-  endfor
-  
-  for _buf_num_key in keys(l:jmplst)
-  
-    call sort(l:jmplst[l:_buf_num_key], 'Jmplst_cmp')
-  endfor
-  
-  let l:buf_num_key = l:buf_num_key_prefix . Buf_num()
-  let l:r_jmplst    = get(l:jmplst, buf_num_key, [])
-  "echo l:r_jmplst
-  
-  return l:r_jmplst
+  return v:lua.v.Jmplst()
 endfunc
 
 func! Jmplst_line_info() abort
 
-  let l:jmplst = Jmplst()
-
-  let l:jmplst_line_info = []
-  for _jmplst in l:jmplst
-
-    let l:line_num  = l:_jmplst['lnum']
-    let l:line_info = l:line_num . ' ' . getline(l:line_num)
-    call add(l:jmplst_line_info, l:line_info)
-  endfor
-  "echo l:jmplst_line_info
-
-  return l:jmplst_line_info
+  return v:lua.v.Jmplst_line_info()
 endfunc
 
 func! Jmplst_cmp(jmplst1, jmplst2) abort
 
-  if     a:jmplst1['lnum'] >  a:jmplst2['lnum']
-    let l:ret =  1
-  elseif a:jmplst1['lnum'] == a:jmplst2['lnum']
-    let l:ret =  0
-  else
-    let l:ret = -1
-  endif
-
-  return l:ret
+  return v:lua.v.Jmplst_cmp(a:jmplst1, a:jmplst2)
 endfunc
 
 " 
@@ -2246,9 +2214,11 @@ let g:doc_tech_dir_rel = 'wrk/prj-pri/doc-tech-ds/docs/md'
 
 func! Doc_tech_tag_jmp(str) abort
 
-  let l:str = $HOME . '/' . g:doc_tech_dir_rel . '/' . a:str
-  " echo l:str
-  call Tag_jmp_by_str(l:str)
+  return v:lua.v.Doc_tech_tag_jmp(a:str)
+
+  " let l:str = $HOME . '/' . g:doc_tech_dir_rel . '/' . a:str
+  " " echo l:str
+  " call Tag_jmp_by_str(l:str)
 endfunc
 
 " mark
@@ -2302,21 +2272,23 @@ endfunc
 
 func! Slctd_trns() range abort
 
-  let l:str = Slctd_str()
+  return v:lua.v.Slctd_trns()
 
-  let l:str = substitute(l:str, "\n", ' ', 'g')
-
-  if l:str =~ '[^\x01-\x7E]' " mlt byte
-    let l:lang = '{ja=en}'
-  else
-    let l:lang = '{en=ja}'
-    "let l:lang = ''
-  endif
-
-  let l:str = escape(l:str, "'")
-  let l:sys_cmd = 'trans -no-ansi ' . l:lang . " '" . l:str . "'"
-  let l:rslt = Sys_cmd(l:sys_cmd)
-  echo l:rslt
+  " let l:str = Slctd_str()
+  " 
+  " let l:str = substitute(l:str, "\n", ' ', 'g')
+  " 
+  " if l:str =~ '[^\x01-\x7E]' " mlt byte
+  "   let l:lang = '{ja=en}'
+  " else
+  "   let l:lang = '{en=ja}'
+  "   "let l:lang = ''
+  " endif
+  " 
+  " let l:str = escape(l:str, "'")
+  " let l:sys_cmd = 'trans -no-ansi ' . l:lang . " '" . l:str . "'"
+  " let l:rslt = Sys_cmd(l:sys_cmd)
+  " echo l:rslt
 endfunc
 
 " math
@@ -2335,9 +2307,11 @@ endfunc
 
 func! Defold_err_cnv() abort
 
-  exe '%s/^ERROR:SCRIPT:/ERROR:SCRIPT:\r/g'
-  exe '%s/\/assets\///g'
-  exe '%s/^ *//g'
+  return v:lua.v.Defold_err_cnv()
+
+  " exe '%s/^ERROR:SCRIPT:/ERROR:SCRIPT:\r/g'
+  " exe '%s/\/assets\///g'
+  " exe '%s/^ *//g'
 endfunc
 
 " env

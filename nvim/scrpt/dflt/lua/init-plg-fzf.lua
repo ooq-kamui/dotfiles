@@ -59,11 +59,11 @@ function v.Fzf_rg(...) -- alias
 
   local arg = {...}
 
-  local ptn   = ( #arg >= 1 ) and arg[1] or ''
-  -- local ptn   = ( #arg >= 1 ) and arg[1] or g_rg_some_line_ptn
+  local ptn   = arg[1] or ''
+  -- local ptn   = arg[1] or g_rg_some_line_ptn
 
-  local ext   = ( #arg >= 2 ) and arg[2] or nil
-  local word1 = ( #arg >= 3 ) and arg[3] or false
+  local ext   = arg[2] or nil
+  local word1 = arg[3] or false
 
   v.Fzf_rg_with_grep(ptn, ext, word1)
 end
@@ -76,11 +76,11 @@ function v.Fzf_rg_with_grep(...)
     return
   end
 
-  local ptn   = ( #arg >= 1 ) and arg[1] or ''
-  -- local ptn   = ( #arg >= 1 ) and arg[1] or g_rg_some_line_ptn
+  local ptn   = arg[1] or ''
+  -- local ptn   = arg[1] or g_rg_some_line_ptn
 
-  local ext   = ( #arg >= 2 ) and arg[2] or nil
-  local word1 = ( #arg >= 3 ) and arg[3] or false
+  local ext   = arg[2] or nil
+  local word1 = arg[3] or false
 
   local rg_cmd = v.Rg_cmd(ptn, ext, word1, nil)
   -- print(rg_cmd)
@@ -127,7 +127,7 @@ function v.Fzf_rg_with_run(...)
 
   local arg = {...}
 
-  local ptn = ( #arg >= 1 ) and arg[1] or nil
+  local ptn = arg[1] or nil
 
   local rg_rslt_cnt, fzf_src_ar
 
@@ -156,7 +156,8 @@ function v.Fzf_rg_with_run(...)
   vim.fn['fzf#run'](
     {
       source = fzf_src_ar,
-      sink   = f.funcref('Tag_jmp_by_str'),
+      -- sink   = f.funcref('Tag_jmp_by_str'),
+      sink   = v.Tag_jmp_by_str,
       window = '-tabnew',
     }
   )
@@ -168,8 +169,8 @@ function v.Fzf_by_txt(...)
 
   local arg = {...}
 
-  local src_txt  = ( #arg >= 1 ) and arg[1] or nil
-  local fnc_name = ( #arg >= 2 ) and arg[2] or nil
+  local src_txt  = arg[1] or nil
+  local fnc_name = arg[2] or nil
 
   local src_ar = v.Txt_to_ar(src_txt)
 
@@ -180,8 +181,8 @@ function v.Fzf_by_ar(...)
 
   local arg = {...}
 
-  local src_ar   = ( #arg >= 1 ) and arg[1] or nil
-  local fnc_name = ( #arg >= 2 ) and arg[2] or nil
+  local src_ar   = arg[1] or nil
+  local fnc_name = arg[2] or nil
 
   if f.len(src_ar) > g_fzf_line_cnt_max then
     print("fzf src_ar, end")
@@ -191,7 +192,8 @@ function v.Fzf_by_ar(...)
   vim.fn['fzf#run'](
     {
       source = src_ar,
-      sink   = f.funcref(fnc_name),
+      -- sink   = f.funcref(fnc_name),
+      sink   = fnc_name,
       window = '-tabnew',
     }
   )
@@ -234,11 +236,12 @@ function v.Fzf_rgstr()
   vim.fn['fzf#run'](
     {
       source = rgstr_info,
-      sink   = f.funcref('Ynk__by_rgstr_info'),
-      window = '-tabnew'
+      -- sink   = f.funcref('Ynk__by_rgstr_info'),
+      sink   = v.Ynk__by_rgstr_info,
+      window = '-tabnew',
     }
   )
-  --      'sink'  : f.funcref('Cursor__ins_rgstr_by_rgstr_info'),
+  --      'sink'  : Cursor__ins_rgstr_by_rgstr_info
 end
 
 -- fzf jmplst
@@ -248,7 +251,8 @@ function v.Fzf_jmplst()
   vim.fn['fzf#run'](
     {
       source  = v.Jmplst_line_info(),
-      sink    = f.funcref('Cursor__mv_by_line_info'),
+      -- sink    = f.funcref('Cursor__mv_by_line_info'),
+      sink    = v.Cursor__mv_by_line_info,
       window  = '-tabnew',
       options = {'--reverse'},
     }

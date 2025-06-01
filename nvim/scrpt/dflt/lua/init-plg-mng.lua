@@ -46,6 +46,40 @@ function v.Is_vim_plg__installed()
   return ret
 end
 
+-- 
+-- init
+-- 
+
+g_plg_mng_cmd = [[
+  call plug#begin()
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  Plug 'mattn/vim-molder'
+  " Plug 'mattn/vim-molder-operations'
+  " Plug 'jacquesbh/vim-showmarks'
+
+  " nvim
+  Plug 'ojroques/nvim-osc52'
+
+  " Plug 'shellRaining/hlchunk.nvim'
+  " Plug 'sphamba/smear-cursor.nvim'
+  " Plug 'folke/noice.nvim'
+  " Plug 'MunifTanjim/nui.nvim'
+  call plug#end()
+
+  " lua require('smear_cursor').enabled = true
+  " lua require("noice").setup()
+]]
+
+if v.Is_vim_plg__installed() then
+  -- print('plug#begin')
+
+  vim.cmd(g_plg_mng_cmd)
+end
+-- do :PlugInstall
+-- or :PlugUpdate
+-- or :PlugClean
+
 
 -- 
 -- lazy

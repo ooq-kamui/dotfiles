@@ -14,11 +14,6 @@ g_init_lua_dir     = g_init_vim_dir .. '/lua'
 g_init_lua_etc_dir = g_init_lua_dir
 
 
-f = vim.fn
-v = {}
-
-_G.v = v
-
 -- 
 -- primitive
 -- 
@@ -983,6 +978,8 @@ function v.Line_num_by_Line_info(line_info)
 
   local line_info = f.trim(line_info, ' ', 1)
   local line_num  = f.split(line_info, '\\s\\+')[1]
+  v.Log(line_num)
+
   return line_num
 end
 
@@ -1102,6 +1099,8 @@ function v.Cursor__mv_by_line_col(line_num, col)
 end
 
 function v.Cursor__mv_by_line_info(line_info)
+
+  v.log = line_info
 
   local line_num = v.Line_num_by_Line_info(line_info)
   v.Cursor__mv_by_line_num(line_num)
@@ -4199,7 +4198,8 @@ function v.Rg_cmd(ptn, ext, word1, opt)
 
   local fzf_rg_opt_ext
 
-  if ext == vim.v.null then
+  -- if ext == vim.v.null then
+  if ext == nil then
     fzf_rg_opt_ext = ''
   else
     fzf_rg_opt_ext = ' -g "*.' .. ext .. '"'
@@ -4211,7 +4211,8 @@ function v.Rg_cmd(ptn, ext, word1, opt)
     fzf_rg_opt_word1 = ' -w'
   end
 
-  if opt == vim.v.null then
+  -- if opt == vim.v.null then
+  if opt == nil then
     opt = ''
   else
     opt = ' ' .. opt
@@ -4231,18 +4232,19 @@ g_rg_emp_line_ptn  = '^[ \\t]*$'
 g_rg_some_line_ptn = '^[^ \\t]+$'
 -- g_rg_some_line_ptn = '[^ \\t]'
 
---[[
-
 function v.Rg_ptn_cnt(ptn, opt)
 
+  local opt
+
   if opt == nil then
-    local opt = ''
+    opt = ''
   else
-    local opt = opt
+    opt = opt
   end
 
   local rg_cmd = "rg " .. opt .. " -e '" .. ptn .. "' | count"
-  local rg_rslt_cnt = Sys_cmd(rg_cmd)
+  local rg_rslt_cnt = v.Sys_cmd(rg_cmd)
+  rg_rslt_cnt = tonumber(rg_rslt_cnt)
   return rg_rslt_cnt
 end
 
@@ -4251,7 +4253,7 @@ function v.Rg_all_cnt()
   local ptn = g_rg_emp_line_ptn
   local opt = '-v'
 
-  local rg_rslt_cnt = Rg_ptn_cnt(ptn, opt)
+  local rg_rslt_cnt = v.Rg_ptn_cnt(ptn, opt)
   return rg_rslt_cnt
 end
 
@@ -4260,36 +4262,32 @@ function v.Rg_all_rslt_ar()
   local ptn = g_rg_emp_line_ptn
   local opt = '-v'
 
-  local rslt_ar = Rg_ptn_rslt_ar(ptn, opt)
+  local rslt_ar = v.Rg_ptn_rslt_ar(ptn, opt)
   return rslt_ar
 end
 
 function v.Rg_ptn_rslt_ar(ptn, opt)
 
-  local rg_rslt_txt = Rg_ptn_rslt_txt(ptn, opt)
+  local rg_rslt_txt = v.Rg_ptn_rslt_txt(ptn, opt)
   local rg_rslt_ar  = f.split(rg_rslt_txt, "\\n")
   return rg_rslt_ar
 end
 
 function v.Rg_ptn_rslt_txt(ptn, opt)
   
-  local rg_cmd = Rg_cmd(ptn, nil, nil, opt) -- todo dev
-  local r_rslt_txt = Sys_cmd(rg_cmd)
+  local rg_cmd = v.Rg_cmd(ptn, nil, nil, opt) -- todo dev
+  local r_rslt_txt = v.Sys_cmd(rg_cmd)
   return r_rslt_txt
 end
-
---]]
 
 -- 
 -- jmplst
 -- 
 
---[[
--- dev anchor
 function v.Jmplst()
 
   local jmplst_tmp = f.getjumplist()[1]
-  -- print(vim.inspect(jmplst_tmp))
+  -- v.Log_tbl(jmplst_tmp)
 
   local buf_num_key_prefix = 'key_'
   local jmplst = {}
@@ -4299,21 +4297,29 @@ function v.Jmplst()
 
     _buf_num_key = buf_num_key_prefix .. _jmplst_tmp['bufnr']
 
-    if not f.has_key(jmplst, _buf_num_key) then
+    -- if not f.has_key(jmplst, _buf_num_key) then
+    if jmplst[_buf_num_key] == nil then
+      -- v.Log(_buf_num_key)
       jmplst[_buf_num_key] = {}
     end
 
-    f.add(jmplst[_buf_num_key], _jmplst_tmp)
+    -- f.add(jmplst[_buf_num_key], _jmplst_tmp)
+    table.insert(jmplst[_buf_num_key], _jmplst_tmp)
   end
+  -- v.Log_tbl(jmplst)
 
-  for _buf_num_key in pairs(f.keys(jmplst)) do
+  for idx, _buf_num_key in pairs(f.keys(jmplst)) do
 
-    f.sort(jmplst[_buf_num_key], 'Jmplst_cmp')
+    -- f.sort(jmplst[_buf_num_key], 'Jmplst_cmp')
+    table.sort(jmplst[_buf_num_key], v.Jmplst_cmp)
   end
+  -- v.Log_tbl(jmplst)
 
   local buf_num_key = buf_num_key_prefix .. v.Buf_num()
+  -- v.Log(buf_num_key)
+
   local r_jmplst    = f.get(jmplst, buf_num_key, {})
-  --echo r_jmplst
+  -- v.Log_tbl(r_jmplst)
 
   return r_jmplst
 end
@@ -4324,37 +4330,25 @@ function v.Jmplst_line_info()
 
   local jmplst_line_info = {}
 
-  for _jmplst in pairs(jmplst) do
+  local line_num
+  for idx, _jmplst in pairs(jmplst) do
 
-    local line_num  = _jmplst['lnum']
-    local line_info = line_num .. ' ' .. getline(line_num)
-    call add(jmplst_line_info, line_info)
+    line_num  = _jmplst['lnum']
+    line_info = line_num .. ' ' .. f.getline(line_num)
+    -- f.add(jmplst_line_info, line_info)
+    table.insert(jmplst_line_info, line_info)
   end
-  --echo jmplst_line_info
+  -- v.Log_tbl(jmplst_line_info)
 
   return jmplst_line_info
 end
-
---]]
-
---[[
 
 function v.Jmplst_cmp(jmplst1, jmplst2)
 
   local ret
 
-  if     jmplst1['lnum'] >  jmplst2['lnum'] then
-    ret =  1
-  elseif jmplst1['lnum'] == jmplst2['lnum'] then
-    ret =  0
-  else
-    ret = -1
-  end
-
-  return ret
+  return jmplst1['lnum'] <  jmplst2['lnum']
 end
-
---]]
 
 -- 
 -- env
@@ -4383,16 +4377,16 @@ function v.Env_dir()
 
   local env_dir
 
-  if     f.Is_env__('mac')       then -- mac
+  if     v.Is_env__('mac')       then -- mac
     env_dir = 'mac'
 
-  elseif f.Is_env__('linux')     then -- c9, s9
+  elseif v.Is_env__('linux')     then -- c9, s9
     env_dir = 'c9'
 
-  elseif f.Is_env__('win64')     then -- pwsh
+  elseif v.Is_env__('win64')     then -- pwsh
     env_dir = 'pwsh'
 
-  elseif f.Is_env__('win32unix') then -- gitbash
+  elseif v.Is_env__('win32unix') then -- gitbash
     env_dir = 'gitbash'
   end
 
@@ -4416,29 +4410,24 @@ function v.Repeat_fnc()
   -- v.Cursor__ins_ynk()
 end
 
--- fnc end
+-- log
 
+function v.Log(val)
 
--- 
--- init
--- 
-
--- ynk init
-v.Ynk__clp()
-
--- srch init
-function v.Srch_init() -- use not
-
-  local n_cmd = '/<cr>N'
-  v.Normal(n_cmd)
+  print(val)
 end
---v.Srch_init()
 
--- init end
+function v.Log_tbl(tbl)
+
+  print(vim.inspect(tbl))
+end
+
 
 -- priority l
 
+-- 
 -- mark
+-- 
 
 g_mark_alph_def = {
   'a','b','c','d','e','f','g','h','i','j','k','l','m','n',
@@ -4467,14 +4456,15 @@ end
 function v.Mark_lst()
 
   local mark = {}
-  for _mark in pairs(f.bufname():getmarklist()) do
+  for idx, _mark in pairs(f.bufname():getmarklist()) do
 
     local _alph = _mark['mark'][2]
 
     if f.count(g_mark_alph_def, _alph) == 0 then
       -- continue
     else
-      mark = f.add(mark, _mark['mark'][2])
+      -- mark = f.add(mark, _mark['mark'][2])
+      mark = table.insert(mark, _mark['mark'][2])
     end
   end
 
@@ -4486,7 +4476,7 @@ function v.Mark_alph_line()
 
   local line_num = v.Cursor_line_num()
 
-  for _mark in pairs(f.bufname():getmarklist()) do
+  for idx, _mark in pairs(f.bufname():getmarklist()) do
 
     local _alph = _mark['mark'][2]
 
@@ -4526,7 +4516,7 @@ function v.Mark_alph_useabl()
 
   local mark = v.Mark_lst()
 
-  for _alph in pairs(g_mark_alph_def) do
+  for idx, _alph in pairs(g_mark_alph_def) do
     if f.count(mark, _alph) == 0 then
       --print( _alph )
       return _alph
@@ -4547,6 +4537,8 @@ function v.Mark_del_all()
   v.Cmd('delmark!')
   v.Cmd('DoShowMarks')
 end
+
+-- fnc end
 
 
 -- 

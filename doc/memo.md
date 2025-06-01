@@ -2,25 +2,26 @@
 # dotfiles
 
 
+## music
+
+iphone
+- dl
+
+
 ## nvim
 
 fnc
+- lua Exe() del
 
-- fzf-lua
+- trns
 
-  - v.Log_tbl()
-
-  - jmplst
-    - chk bgn Fzf_xxx()
-
-  - rg
-
-  - fzf
-    - cmd ( usr )
-
-
-  - ynk __ rgst
-    - rgstr > rgst
+- utl
+  - u.tbl.xx()
+    - u.tbl.srt()
+    - u.tbl.add()
+  - u.log.xx()
+    - u.log.val()
+    - u.log.tbl()
 
 
 - `f.getline('.')`
@@ -29,10 +30,10 @@ fnc
   - f.getline(line_num)
     - Line_str_by_line_num()
 
+- fzf-lua
+  - cmd-usr
 
-- lua Exe() del
-
-- trns
+  - etc
 
 
 key map
@@ -100,11 +101,6 @@ nnoremap c-f
 cls nize
 
 
-## podman
-
-install at mac
-
-
 ## vim
 
 osc52 clp __ ynk
@@ -147,12 +143,6 @@ step by step
 ## mac
 
 sd install
-
-
-## docker
-
-learn
-- read book
 
 
 ## skr-vps
