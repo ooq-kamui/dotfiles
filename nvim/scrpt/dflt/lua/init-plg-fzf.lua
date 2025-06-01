@@ -210,7 +210,7 @@ function v.Fzf_tag_jmp_by_file(...)
   local file_path = ( #arg >= 1 ) and arg[1] or 'doc/memo.md'
 
   local fzf_src_txt = v.File_txt(file_path)
-  local fnc_name    = 'Tag_jmp_by_str'
+  local fnc_name    = v.Tag_jmp_by_str
   v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
@@ -267,7 +267,8 @@ function v.Fzf_file()
   local sys_cmd = 'fd --type f'
   local fzf_src_txt  = v.Sys_cmd(sys_cmd)
 
-  local fnc_name = 'Opn'
+  -- local fnc_name = 'Opn'
+  local fnc_name = v.Opn
   v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
@@ -278,7 +279,8 @@ function v.Fzf_dir()
   local sys_cmd = 'fd --type d'
   local fzf_src_txt  = v.Sys_cmd(sys_cmd)
 
-  local fnc_name = 'Dir__'
+  -- local fnc_name = 'Dir__'
+  local fnc_name = v.Dir__
   v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
@@ -289,7 +291,8 @@ function v.Fzf_dir_jmp()
 
   local fzf_src_txt  = v.Sys_cmd(sys_cmd)
 
-  local fnc_name = 'Dir__'
+  -- local fnc_name = 'Dir__'
+  local fnc_name = v.Dir__
   v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
@@ -305,7 +308,8 @@ function v.Fzf_doc_memo_opn()
   }
 
   local fzf_src_ar = memo_file_list
-  local fnc_name    = 'Opn'
+  -- local fnc_name    = 'Opn'
+  local fnc_name    = v.Opn
   v.Fzf_by_ar(fzf_src_ar, fnc_name)
 end
 
@@ -320,8 +324,8 @@ function v.Fzf_vim_fnc_call()
   local sys_cmd = sys_cmd_rg .. ' | ' .. sys_cmd_sed
   local fzf_src_txt  = v.Sys_cmd(sys_cmd)
 
-  local fnc_name = 'Cmdline__'
-
+  -- local fnc_name = 'Cmdline__'
+  local fnc_name = v.Cmdline__
   v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
@@ -342,7 +346,8 @@ function v.Fzf_doc_tech()
 
   local fzf_src_txt = v.Sys_cmd(sys_cmd)
 
-  local fnc_name = 'Doc_tech_tag_jmp'
+  -- local fnc_name = 'Doc_tech_tag_jmp'
+  local fnc_name = v.Doc_tech_tag_jmp
   v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 

@@ -2,19 +2,9 @@
 # dotfiles
 
 
-## music
-
-iphone
-- dl
-
-
 ## nvim
 
 fnc
-- lua Exe() del
-
-- trns
-
 - utl
   - u.tbl.xx()
     - u.tbl.srt()
@@ -33,15 +23,15 @@ fnc
 - fzf-lua
   - cmd-usr
 
-  - etc
+  - tst
+    - etc
 
 
 key map
-- call Xxx()
-  - call v:lua.v.Xxx()
-  - lua v.Xxx()
-
 - vim.fn.pumvisible()
+
+- call Xxx()
+  - lua v.Xxx()
 
 
 cmd

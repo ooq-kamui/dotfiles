@@ -407,12 +407,6 @@ function v.Echo(str) -- alias
   print(str)
 end
 
-function v.Exe(cmd) -- alias
-
-  -- vim.cmd(cmd)
-  v.Cmd(cmd)
-end
-
 function v.Cmd(cmd) -- alias
 
   vim.cmd(cmd)
@@ -4094,29 +4088,24 @@ end
 
 -- trns
 
---[[
-
 function v.Slctd_trns() -- range
 
   local str = v.Slctd_str()
+  str = f.substitute(str, "\\n", ' ', 'g')
 
-  local str = f.substitute(str, "\\n", ' ', 'g')
-
+  local lang
   -- if str =~ '[^\\x01-\\x7E]' then -- mlt byte
   if v.Is_str__ptn(str, '[^\\x01-\\x7E]') then -- mlt byte
-    local lang = '{ja=en}'
+    lang = '{ja=en}'
   else
-    local lang = '{en=ja}'
-    --local lang = ''
+    lang = '{en=ja}'
   end
 
-  local str = f.escape(str, "'")
+  str = f.escape(str, "'")
   local sys_cmd = 'trans -no-ansi ' .. lang .. " '" .. str .. "'"
   local rslt = v.Sys_cmd(sys_cmd)
   print( rslt )
 end
-
---]]
 
 -- math
 
