@@ -43,8 +43,7 @@ vim.g.env_dir = ''
 v.Env_dir__()
 
 if vim.g.env_dir ~= '' then
-  -- dev anchor
-  print("env dir : " .. vim.g.env_dir)
+  print("env : " .. vim.g.env_dir)
   -- require(vim.g.init_vim_dir .. '/' .. vim.g.env_dir .. '/init.lua')
 else
   print("is env else")
@@ -56,7 +55,10 @@ end
 -- 
 
 -- ynk init
-v.Ynk__clp()
+
+if vim.g.env_dir ~= 'c9' then -- c9, s9
+  v.Ynk__clp()
+end
 
 -- srch init
 function v.Srch_init() -- use not

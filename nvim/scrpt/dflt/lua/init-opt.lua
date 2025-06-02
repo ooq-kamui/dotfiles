@@ -55,8 +55,8 @@
 -- set modelines=0  " CVE-2007-2438
    vim.opt.modelines = 0
 
--- " Normally we use vim-extensions. If you want true vi-compatibility
--- " remove change the following statements
+-- Normally we use vim-extensions. If you want true vi-compatibility
+-- remove change the following statements
 -- set nocompatible
    vim.opt.compatible = false -- Use Vim defaults instead of 100% vi compatibility
 -- set backspace=2
@@ -150,7 +150,7 @@
      end,
    })
 -- - tab
--- " autocmd FileType lua      setlocal sw=2 sts=2 ts=2 noet
+-- autocmd FileType lua      setlocal sw=2 sts=2 ts=2 noet
 
 
 -- set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
@@ -164,7 +164,7 @@
    vim.opt.smartcase  = true
 -- set number
    vim.opt.number = true
--- "set relativenumber
+-- set relativenumber
 -- vim.opt.relativenumber = true
 -- set list
    vim.opt.list = true
@@ -181,13 +181,14 @@
    vim.opt.encoding = 'utf-8'
 -- set fileencodings=utf-8,sjis
    vim.opt.fileencodings = {'utf-8', 'sjis'}
--- "set termencoding=utf-8
+-- set termencoding=utf-8
 -- vim.opt.termencoding = 'utf-8'
 
--- "set mouse=n
+-- set mouse=n
 -- vim.opt.mouse = 'n'
-   -- dev anchor
--- "map <LeftMouse> <nop>
+
+-- dev anchor
+-- map <LeftMouse> <nop>
 -- ???  <nop> ??
 
 -- set autoindent
@@ -242,7 +243,7 @@
    vim.opt.virtualedit = 'onemore' -- cursor mv cr
 -- set virtualedit+=block
    vim.opt.virtualedit:append {'block'} -- box slct
--- "set virtualedit=all
+-- set virtualedit=all
 -- vim.opt.virtualedit = 'all'
 
 -- set scrolloff=5
@@ -259,15 +260,15 @@
    vim.opt.showtabline = 2
 -- set wildmenu " ?
    vim.opt.wildmenu = true
--- "set showmatch
+-- set showmatch
 -- vim.opt.showmatch = true
--- "set visualbell
+-- set visualbell
 -- vim.opt.visualbell = true
--- "set ambiwidth=double
+-- set ambiwidth=double
 -- vim.opt.ambiwidth = 'double'
 -- set autoread
    vim.opt.autoread = true
--- "set clipboard+=unnamedplus
+-- set clipboard+=unnamedplus
 -- vim.opt.clipboard:append {'unnamedplus'}
 
 -- status line
@@ -311,13 +312,13 @@
    vim.opt.foldmethod = 'manual'
 -- set shortmess+=I
    vim.opt.shortmess:append('I')
--- "set nrformats+=unsigned " 2022-05-09
+-- set nrformats+=unsigned " 2022-05-09
 -- vim.opt.nrformats:append {'unsigned'}
 
 -- set noswapfile
    vim.opt.swapfile = false
 
--- " undo
+-- undo
 -- if has('persistent_undo')
    if vim.fn.has('persistent_undo') == 1 then
 

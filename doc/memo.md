@@ -4,17 +4,21 @@
 
 ## nvim
 
-v box
-- s ( cut )
-
 nnoremap gh
 - file lst add
 
-rg opn at tab
 
-v line
-- cmnt mlt
-  - err
+v box
+- s ( cut )
+
+
+v range err
+- line
+  - cmnt mlt
+
+- box
+  - paste
+
 
 fnc
 - `f.getline('.')`
@@ -77,17 +81,13 @@ opn file closed ltst
 - fnc cre
 
 
-is env init.lua
-- confirm
-  - mac ?
-
-
 global val
 - g_xx > g.xx
 
 
 filetype
 - fish
+
 
 color
 - mac, lua, cmnt: lightgreen

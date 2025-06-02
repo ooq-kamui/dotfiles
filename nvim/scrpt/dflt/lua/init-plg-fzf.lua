@@ -6,20 +6,20 @@
 -- var
 -- 
 
-g_fzf_preview_window = {
+vim.g.fzf_preview_window = {
   'down:40%:hidden',
   'ctrl-/',
 }
-g_fzf_action = {}
-g_fzf_action['ctrl-o'] = 'tab drop'
+-- vim.g.fzf_action = {}
+-- vim.g.fzf_action['ctrl-o'] = 'tab drop'
 
 --  'ctrl-o' = 'enter',
 --  'ctrl-i' = 'item slct mtl',
 --  'ctrl-s' = 'backward-char',
 
-g_fzf_colors = {}
-g_fzf_colors['hl' ] = {'fg', 'Statement'}
-g_fzf_colors['hl+'] = {'fg', 'Statement'}
+vim.g.fzf_colors = {}
+vim.g.fzf_colors['hl' ] = {'fg', 'Statement'}
+vim.g.fzf_colors['hl+'] = {'fg', 'Statement'}
 
 --   'bg+'     = {'bg', 'CursorLine' },
 --   'bg+'     = {'bg', 'Normal'     },
@@ -81,28 +81,28 @@ function v.Fzf_rg_with_grep(...)
   local word1 = arg[3] or false
 
   local rg_cmd = v.Rg_cmd(ptn, ext, word1, nil)
-  -- print(rg_cmd)
-
-  vim.fn['fzf#vim#grep'](
-    rg_cmd,
-    {
-      options = '--exact --delimiter : --nth 3..',
-      -- window  = '-tabnew',
-    },
-    1
-  )
+  -- u.Log.val(rg_cmd)
 
   -- vim.fn['fzf#vim#grep'](
   --   rg_cmd,
-  --   vim.fn['fzf#vim#with_preview'](
-  --     {
-  --       options = '--exact --delimiter : --nth 3..',
-  --     },
-  --     'up:70%:hidden',
-  --     'ctrl-u'
-  --   ),
+  --   {
+  --     options = '--exact --delimiter : --nth 3..',
+  --     -- window  = '-tabnew',
+  --   },
   --   1
   -- )
+
+  vim.fn['fzf#vim#grep'](
+    rg_cmd,
+    vim.fn['fzf#vim#with_preview'](
+      {
+        options = '--exact --delimiter : --nth 3..',
+      },
+      'up:70%:hidden',
+      'ctrl-u'
+    ),
+    1
+  )
 
   -- hlp
   --   fzf#vim#grep(
