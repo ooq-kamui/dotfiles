@@ -417,10 +417,10 @@ end
    vim.cmd('command! -bang -nargs=* FzfSrchHstry call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)')
 
 -- fzf rgstr
-   vim.cmd('command! -bang -nargs=* FzfRgstr call Fzf_rgstr()')
+   vim.cmd('command! -bang -nargs=* FzfRgstr call v:lua.v.Fzf_rgstr()')
 
 -- fzf jmplst
-   vim.cmd('command! -bang -nargs=* FzfJmplst call Fzf_jmplst()')
+   vim.cmd('command! -bang -nargs=* FzfJmplst call v:lua.v.Fzf_jmplst()')
 
 -- fzf cmd def : mark
    vim.cmd('command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)')

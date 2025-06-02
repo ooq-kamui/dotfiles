@@ -634,24 +634,20 @@ function v.Opn_tmp_file()
   v.Opn(path)
 end
 
-g_init_vim_file_path         = g_init_vim_etc_dir .. '/init.vim'
-g_init_vim_fnc_file_path     = g_init_vim_etc_dir .. '/init-fnc.vim'
-
 g_init_lua_file_path         = g_init_lua_dir     .. '/init.lua'
 g_init_lua_opt_file_path     = g_init_lua_etc_dir .. '/init-opt.lua'
 g_init_lua_cmd_file_path     = g_init_lua_etc_dir .. '/init-cmd-usr.lua'
 g_init_lua_hl_file_path      = g_init_lua_etc_dir .. '/init-hl.lua'
 g_init_lua_key_map_file_path = g_init_lua_etc_dir .. '/init-key-map.lua'
+
 g_init_lua_fnc_file_path     = g_init_lua_etc_dir .. '/init-fnc.lua'
+g_init_lua_plg_fzf_file_path = g_init_lua_etc_dir .. '/init-plg-fzf.lua'
 
 function v.Opn_init_vim()
 
-  -- vim
-  -- v.Opn(g_init_vim_file_path        )
-  -- v.Opn(g_init_vim_fnc_file_path    )
-
   -- lua
   v.Opn(g_init_lua_fnc_file_path    )
+  v.Opn(g_init_lua_plg_fzf_file_path)
 
   local vimrc_c9_file_path
   local vimrc_gitbash_file_path
@@ -4303,21 +4299,18 @@ function v.Jmplst()
 
     _buf_num_key = buf_num_key_prefix .. _jmplst_tmp['bufnr']
 
-    -- if not f.has_key(jmplst, _buf_num_key) then
     if jmplst[_buf_num_key] == nil then
       -- u.Log.val(_buf_num_key)
       jmplst[_buf_num_key] = {}
     end
 
-    -- f.add(jmplst[_buf_num_key], _jmplst_tmp)
-    table.insert(jmplst[_buf_num_key], _jmplst_tmp)
+    u.Tbl.add(jmplst[_buf_num_key], _jmplst_tmp)
   end
   -- u.Log.tbl(jmplst)
 
   for idx, _buf_num_key in pairs(f.keys(jmplst)) do
 
-    -- f.sort(jmplst[_buf_num_key], 'Jmplst_cmp')
-    table.sort(jmplst[_buf_num_key], v.Jmplst_cmp)
+    u.Tbl.srt(jmplst[_buf_num_key], v.Jmplst_cmp)
   end
   -- u.Log.tbl(jmplst)
 
@@ -4341,8 +4334,7 @@ function v.Jmplst_line_info()
 
     line_num  = _jmplst['lnum']
     line_info = line_num .. ' ' .. f.getline(line_num)
-    -- f.add(jmplst_line_info, line_info)
-    table.insert(jmplst_line_info, line_info)
+    u.Tbl.add(jmplst_line_info, line_info)
   end
   -- u.Log.tbl(jmplst_line_info)
 
@@ -4486,8 +4478,7 @@ function v.Mark_lst()
     if f.count(g_mark_alph_def, _alph) == 0 then
       -- continue
     else
-      -- mark = f.add(mark, _mark['mark'][2])
-      mark = table.insert(mark, _mark['mark'][2])
+      mark = u.Tbl.add(mark, _mark['mark'][2])
     end
   end
 

@@ -4,13 +4,16 @@
 
 ## nvim
 
-nnoremap gh
-- file lst add
+fnc
+- `f.getline('.')`
+  - Cursor_line_str()
+
+  - f.getline(line_num)
+    - Line_str_by_line_num()
 
 
 v box
 - s ( cut )
-
 
 v range err
 - line
@@ -21,20 +24,6 @@ v range err
 
 
 fnc
-- `f.getline('.')`
-  - Cursor_line_str()
-
-  - f.getline(line_num)
-    - Line_str_by_line_num()
-
-- utl
-  - u.tbl.xx()
-    - u.tbl.srt()
-      - call rpl
-    - u.tbl.add()
-      - call rpl
-
-
 - fzf-lua
   - cmd-usr
 
