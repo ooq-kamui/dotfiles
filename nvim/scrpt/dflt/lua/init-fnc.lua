@@ -744,8 +744,8 @@ end
 
 function v.Opn_app_by_line_path(line_num)
 
-  --local path = v.Line_str_by_line_num(line_num)
-  local path = f.getline(line_num)
+  -- local path = f.getline(line_num)
+  local path = v.Line_str_by_line_num(line_num)
 
   path = f.trim(path)
   v.Opn_app(path)
@@ -841,10 +841,14 @@ function v.Tag_jmp_by_slctd_line() -- range
   local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
   local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
 
+  local line_str
+
   for idx, line_num in pairs(f.range(a_firstline, a_lastline)) do
 
-    local line = f.getline(line_num)
-    v.Tag_jmp_by_str(line)
+    -- line_str = f.getline(line_num)
+    line_str = v.Line_str_by_line_num(line_num)
+
+    v.Tag_jmp_by_str(line_str)
     v.Cmd('sbuffer ' .. base_buf_num)
   end
 end
@@ -923,6 +927,11 @@ function v.Line_num_file_edge_end() -- alias
   return f.line('$')
 end
 
+function v.Line_str_by_line_num(line_num) -- alias
+
+  return f.getline(line_num)
+end
+
 -- line xx __ ins
 
 g_line_top_space_ptn = '^[ \\t]*'
@@ -943,7 +952,10 @@ end
 
 function v.Line_end__pad_space(line_num, fil_end_col)
 
-  local line_str     = f.getline(line_num)
+
+  -- local line_str     = f.getline(line_num)
+  local line_str     = v.Line_str_by_line_num(line_num)
+
   local line_str_len = v.Str_len(line_str)
   local space_len    = fil_end_col - line_str_len
 
@@ -1712,8 +1724,8 @@ function v.Cursor_c_char()
 
   -- local idx = v.Cursor_col_idx()
   local idx = v.Cursor_col_idx() + 1
-  -- local c = f.getline('.')[idx]
-  local str = f.getline('.')
+  -- local c = v.Cursor_line_str()[idx]
+  local str = v.Cursor_line_str()
   c = str:sub(idx, idx)
   return c
 end
@@ -1722,8 +1734,8 @@ function v.Cursor_l_char()
 
   -- local idx = v.Cursor_col_idx() - 1
   local idx = v.Cursor_col_idx()
-  -- local c = f.getline('.')[idx]
-  local c = f.getline('.'):sub(idx, idx)
+  -- local c = v.Cursor_line_str()[idx]
+  local c = v.Cursor_line_str():sub(idx, idx)
   return c
 end
 
@@ -1731,8 +1743,8 @@ function v.Cursor_r_char()
 
   -- local idx = v.Cursor_col_idx() + 1
   local idx = v.Cursor_col_idx() + 2
-  -- local c = f.getline('.')[idx]
-  local c = f.getline('.'):sub(idx, idx)
+  -- local c = v.Cursor_line_str()[idx]
+  local c = v.Cursor_line_str():sub(idx, idx)
   return c
 end
 
@@ -1744,7 +1756,9 @@ function v.Cursor_u_char()
 
   local idx = v.Cursor_col_idx() + 1
   local line_num = v.Cursor_line_num() - 1
-  local c = f.getline(line_num):sub(idx, idx)
+
+  -- local c = f.getline(line_num):sub(idx, idx)
+  local c = v.Line_str_by_line_num(line_num):sub(idx, idx)
   return c
 end
 
@@ -1756,7 +1770,8 @@ function v.Cursor_d_char()
 
   local idx = v.Cursor_col_idx() + 1
   local line_num = v.Cursor_line_num() + 1
-  local c = f.getline(line_num):sub(idx, idx)
+  -- local c = f.getline(line_num):sub(idx, idx)
+  local c = v.Line_str_by_line_num(line_num):sub(idx, idx)
   return c
 end
 
@@ -2030,7 +2045,7 @@ function v.Cursor_d__ins_line_space() -- range
   v.Cursor_d__ins_line(space_str)
 end
 
--- cursor line  -  todo refactoring
+-- cursor line
 
 function v.Cursor_line_num() -- alias
 
@@ -2058,24 +2073,22 @@ end
 
 function v.Cursor_line_str_side_l()
 
-  local line_l = f.getline('.'):sub(1             , f.col('.') - 1)
+  local line_l = v.Cursor_line_str():sub(1             , f.col('.') - 1)
   return line_l
 end
 
 function v.Cursor_line_str_side_r()
 
-  local line_r = f.getline('.'):sub(f.col('.') + 1)
+  local line_r = v.Cursor_line_str():sub(f.col('.') + 1)
   return line_r
 end
 
 -- todo refactoring Cursor_line_str_side_r() + opt arg
 function v.Cursor_line_str_side_r_with_c()
 
-  local line_r = f.getline('.'):sub(f.col('.'))
+  local line_r = v.Cursor_line_str():sub(f.col('.'))
   return line_r
 end
-
--- cursor line str end
 
 -- cursor line str __
 
@@ -2252,8 +2265,6 @@ function v.Cursor__ins_sys_cmd(sys_cmd) -- read
     v.Line__del_by_line_num(1)
   end
 end
-
--- cursor line str __ end
 
 -- cursor line cnd
 
@@ -3317,8 +3328,10 @@ end
 
 function v.Slctd_line__rpl_by_line1_line2() -- range
 
-  local srch = f.getline(1)
-  local rpl  = f.getline(2)
+  -- local srch = f.getline(1)
+  local srch = v.Line_str_by_line_num(1)
+  -- local rpl  = f.getline(2)
+  local rpl  = v.Line_str_by_line_num(2)
 
   local rng = g_v_rng_dflt
   local cmd = rng .. 's/' .. srch .. '/' .. rpl .. '/eg'
@@ -4333,7 +4346,10 @@ function v.Jmplst_line_info()
   for idx, _jmplst in pairs(jmplst) do
 
     line_num  = _jmplst['lnum']
-    line_info = line_num .. ' ' .. f.getline(line_num)
+
+    -- line_info = line_num .. ' ' .. f.getline(line_num)
+    line_info = line_num .. ' ' .. v.Line_str_by_line_num(line_num)
+
     u.Tbl.add(jmplst_line_info, line_info)
   end
   -- u.Log.tbl(jmplst_line_info)

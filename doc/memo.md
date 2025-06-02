@@ -4,14 +4,6 @@
 
 ## nvim
 
-fnc
-- `f.getline('.')`
-  - Cursor_line_str()
-
-  - f.getline(line_num)
-    - Line_str_by_line_num()
-
-
 v box
 - s ( cut )
 
