@@ -16,6 +16,9 @@ v range err
 
 
 fnc
+- opn memo
+
+
 - fzf-lua
   - cmd-usr
 
