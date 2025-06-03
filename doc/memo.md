@@ -4,6 +4,9 @@
 
 ## nvim
 
+srch file end loop view
+
+
 utl
 - str cre
   - sub
@@ -16,33 +19,32 @@ fzf
 
 
 hl
-- file type def pos
-  - confirm
-    - lua
-      - {}
-      - Hl_grp() ?
+- Hl_grp() ?
+  - by lua
+
+- lua
+  - {}
+  - mac
+    - cmnt : lightgreen
+
 - color num > rgb
-
-
-opn file closed ltst
-- fnc cre
 
 
 filetype
 - fish
 
 
-color
-- mac, lua, cmnt: lightgreen
+opn file closed ltst
+- fnc cre
 
-plg ? lualine memo
+
+plg
+- lualine
+  - ggl
 
 
 nnoremap c-f
 - case match not, back not
-
-
-srch file end loop view
 
 
 cls nize
