@@ -4026,7 +4026,7 @@ end
 
 function v.I_symbol02()
 
-  local lst = { '?', '!', '~', '^', '&', '|', '\\', '/' }
+  local lst = { '?', '!', '&', '~', '^', '|', '\\', '/' }
   f.complete(f.col('.'), lst)
   return ''
 end
