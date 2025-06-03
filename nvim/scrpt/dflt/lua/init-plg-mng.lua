@@ -8,9 +8,9 @@
 
 function v.Vim_plg_path()
 
-  local vim_plg_dir_linux = g_home_dir .. '/.local/share/nvim/site'
+  local vim_plg_dir_linux = g.home_dir .. '/.local/share/nvim/site'
   local vim_plg_dir_mac   = vim_plg_dir_linux
-  local vim_plg_dir_win   = g_home_dir .. '/AppData/Local/nvim-data/site'
+  local vim_plg_dir_win   = g.home_dir .. '/AppData/Local/nvim-data/site'
 
   local vim_plg_dir = vim_plg_dir_linux -- dflt
 
@@ -49,7 +49,7 @@ end
 -- init
 -- 
 
-g_plg_mng_cmd = [[
+g.plg_mng_cmd = [[
   call plug#begin()
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
@@ -73,7 +73,7 @@ g_plg_mng_cmd = [[
 if v.Is_vim_plg__installed() then
   -- print('plug#begin')
 
-  vim.cmd(g_plg_mng_cmd)
+  vim.cmd(g.plg_mng_cmd)
 end
 -- do :PlugInstall
 -- or :PlugUpdate

@@ -4,14 +4,14 @@
 
 ## nvim
 
-global val
-- g_xx > g.xx
+utl
+- str cre
+  - sub
+  - srch ptn
+- file div
 
 
 fzf
-- rgstr lst
-  - order num later
-
 - cmd-usr ?
 
 

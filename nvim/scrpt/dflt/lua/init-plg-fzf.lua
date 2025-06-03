@@ -6,10 +6,27 @@
 -- var
 -- 
 
-vim.g.fzf_preview_window = {
-  'down:40%:hidden',
-  'ctrl-/',
-}
+vim_cmd = [[
+let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
+let g:fzf_action = {
+\  'ctrl-o': 'tab drop',
+\ }
+
+"\  'ctrl-o': 'enter',
+"\  'ctrl-i': 'item slct mtl',
+"\  'ctrl-s': 'backward-char',
+
+let g:fzf_colors = {
+\   'hl'     : ['fg', 'Statement'  ],
+\   'hl+'    : ['fg', 'Statement'  ],
+\ }
+]]
+vim.cmd(vim_cmd)
+
+-- vim.g.fzf_preview_window = {
+--   'down:40%:hidden',
+--   'ctrl-/',
+-- }
 -- vim.g.fzf_action = {}
 -- vim.g.fzf_action['ctrl-o'] = 'tab drop'
 
@@ -17,9 +34,9 @@ vim.g.fzf_preview_window = {
 --  'ctrl-i' = 'item slct mtl',
 --  'ctrl-s' = 'backward-char',
 
-vim.g.fzf_colors = {}
-vim.g.fzf_colors['hl' ] = {'fg', 'Statement'}
-vim.g.fzf_colors['hl+'] = {'fg', 'Statement'}
+-- vim.g.fzf_colors = {}
+-- vim.g.fzf_colors['hl' ] = {'fg', 'Statement'}
+-- vim.g.fzf_colors['hl+'] = {'fg', 'Statement'}
 
 --   'bg+'     = {'bg', 'CursorLine' },
 --   'bg+'     = {'bg', 'Normal'     },
@@ -37,7 +54,7 @@ vim.g.fzf_colors['hl+'] = {'fg', 'Statement'}
 --   'marker'  = {'Comment'},
 
 -- use ??
--- g_fzf_buffers_jump = 1
+-- g.fzf_buffers_jump = 1
 -- fzf#vim#complete#buffer_line([spec])
 
 -- fzf var def ( in plugin ) end
@@ -45,9 +62,9 @@ vim.g.fzf_colors['hl+'] = {'fg', 'Statement'}
 if v.Is_env__('mac') or v.Is_env__('linux') or v.Is_env__('win64') then
 
   if v.Is_env__('win64') then
-    g_fzf_rg_opt = g_fzf_rg_opt .. ' -g "!.git/"'
+    g.fzf_rg_opt = g.fzf_rg_opt .. ' -g "!.git/"'
   else
-    g_fzf_rg_opt = g_fzf_rg_opt .. ' -g "!.git/"'
+    g.fzf_rg_opt = g.fzf_rg_opt .. ' -g "!.git/"'
   end
 end
 
@@ -75,7 +92,7 @@ function v.Fzf_rg_with_grep(...)
   end
 
   local ptn   = arg[1] or ''
-  -- local ptn   = arg[1] or g_rg_some_line_ptn
+  -- local ptn   = arg[1] or g.rg_some_line_ptn
 
   local ext   = arg[2] or nil
   local word1 = arg[3] or false
@@ -136,7 +153,7 @@ end
 
 -- fzf rg by run
 
-g_fzf_line_cnt_max = 30000
+g.fzf_line_cnt_max = 30000
 
 function v.Fzf_rg_with_run(...)
 
@@ -150,7 +167,7 @@ function v.Fzf_rg_with_run(...)
 
     rg_rslt_cnt = v.Rg_all_cnt()
 
-    if rg_rslt_cnt > g_fzf_line_cnt_max then
+    if rg_rslt_cnt > g.fzf_line_cnt_max then
       print("rg_rslt_cnt, end")
       return
     end
@@ -160,7 +177,7 @@ function v.Fzf_rg_with_run(...)
   else
     rg_rslt_cnt = v.Rg_ptn_cnt(ptn, nil)
 
-    if rg_rslt_cnt > g_fzf_line_cnt_max then
+    if rg_rslt_cnt > g.fzf_line_cnt_max then
       print("rg_rslt_cnt, end")
       return
     end
@@ -171,7 +188,6 @@ function v.Fzf_rg_with_run(...)
   vim.fn['fzf#run'](
     {
       source = fzf_src_ar,
-      -- sink   = f.funcref('Tag_jmp_by_str'),
       sink   = v.Tag_jmp_by_str,
       window = '-tabnew',
     }
@@ -199,7 +215,7 @@ function v.Fzf_by_ar(...)
   local src_ar   = arg[1] or nil
   local fnc_name = arg[2] or nil
 
-  if f.len(src_ar) > g_fzf_line_cnt_max then
+  if f.len(src_ar) > g.fzf_line_cnt_max then
     print("fzf src_ar, end")
     return
   end
@@ -207,7 +223,6 @@ function v.Fzf_by_ar(...)
   vim.fn['fzf#run'](
     {
       source = src_ar,
-      -- sink   = f.funcref(fnc_name),
       sink   = fnc_name,
       window = '-tabnew',
     }
@@ -245,13 +260,27 @@ end
 function v.Fzf_rgstr()
 
   local rgstr_info_str = f.execute(':reg')
-  local rgstr_info = f.split(rgstr_info_str, '\\n')
-  f.remove(rgstr_info, 0)
+  local rgstr_info_ar = f.split(rgstr_info_str, '\\n')
+  u.Tbl.del(rgstr_info_ar, 1)
+  -- u.Log.tbl(rgstr_info_ar)
+
+  -- exclude num
+  local tmp_ar = {}
+  local rgstr
+  for idx, rgstr_info in pairs(rgstr_info_ar) do
+
+    rgstr = v.Rgstr_info_rgstr(rgstr_info)
+    if string.find(rgstr, '[0-9]+') then
+     --  continue
+    else
+      u.Tbl.add(tmp_ar, rgstr_info)
+    end
+  end
+  rgstr_info_ar = tmp_ar
 
   vim.fn['fzf#run'](
     {
-      source = rgstr_info,
-      -- sink   = f.funcref('Ynk__by_rgstr_info'),
+      source = rgstr_info_ar,
       sink   = v.Ynk__by_rgstr_info,
       window = '-tabnew',
     }
@@ -266,7 +295,6 @@ function v.Fzf_jmplst()
   vim.fn['fzf#run'](
     {
       source  = v.Jmplst_line_info(),
-      -- sink    = f.funcref('Cursor__mv_by_line_info'),
       sink    = v.Cursor__mv_by_line_info,
       window  = '-tabnew',
       options = {'--reverse'},
@@ -332,7 +360,7 @@ function v.Fzf_vim_fnc_call()
 
   local rg_ptn = '^function v.[\\w]+\\(.*\\)'
 
-  local sys_cmd_rg = "rg " .. "-No '" .. rg_ptn .. "' " .. g_vimrc_file_path
+  local sys_cmd_rg = "rg " .. "-No '" .. rg_ptn .. "' " .. g.vimrc_file_path
 
   local sys_cmd_sed = 'sed "s/function v.//g"'
 
@@ -344,18 +372,18 @@ function v.Fzf_vim_fnc_call()
   v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
-g_doc_tech_dir_rel = 'wrk/prj-pri/doc-tech-ds/docs/md'
+g.doc_tech_dir_rel = 'wrk/prj-pri/doc-tech-ds/docs/md'
 
 function v.Fzf_doc_tech()
 
-  local ptn = g_rg_emp_line_ptn
+  local ptn = g.rg_emp_line_ptn
   local opt  = ' -v'
   opt = opt .. ' --no-heading'
   -- opt = opt .. ' --line-number'
-  local sys_cmd_rg = "rg" .. opt .. " '" .. ptn .. "' ~/" .. g_doc_tech_dir_rel
+  local sys_cmd_rg = "rg" .. opt .. " '" .. ptn .. "' ~/" .. g.doc_tech_dir_rel
   -- print(sys_cmd)
 
-  local sys_cmd_sed = 'sed "s|^.*' .. g_doc_tech_dir_rel .. '/||g"'
+  local sys_cmd_sed = 'sed "s|^.*' .. g.doc_tech_dir_rel .. '/||g"'
 
   local sys_cmd = sys_cmd_rg .. ' | ' .. sys_cmd_sed
 
@@ -368,7 +396,7 @@ end
 
 function v.Doc_tech_tag_jmp(str)
 
-  local str = g_home_dir .. '/' .. g_doc_tech_dir_rel .. '/' .. str
+  local str = g.home_dir .. '/' .. g.doc_tech_dir_rel .. '/' .. str
   -- print(str)
   v.Tag_jmp_by_str(str)
 end

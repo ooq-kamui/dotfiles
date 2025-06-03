@@ -6,6 +6,8 @@ v = {}
 
 _G.v = v
 
+g = {}
+
 require('init-fnc'     )
 require('init-fnc-tst' )
 

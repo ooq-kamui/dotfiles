@@ -323,7 +323,7 @@
    if vim.fn.has('persistent_undo') == 1 then
 
 --   set undodir=~/.vim-undo
-     vim.opt.undodir = g_home_dir .. '/.vim-undo'
+     vim.opt.undodir = g.home_dir .. '/.vim-undo'
 --   set undofile
      vim.opt.undofile = true
 -- endif
