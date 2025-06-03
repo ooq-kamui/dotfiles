@@ -4,46 +4,15 @@
 
 ## nvim
 
-v box
-- s ( cut )
-
-v range err
-- line
-  - cmnt mlt
-
-- box
-  - paste
+global val
+- g_xx > g.xx
 
 
-fnc
-- opn memo
-
-
-- fzf-lua
-  - cmd-usr
-
-  - tst
-    - etc
-
-
-key map
-- call Xxx()
-  - lua v.Xxx()
-
-
-cmd
-- call
-  - vim > lua
-
-
-env
-- def at ?
-  - fin
-
+fzf
 - rgstr lst
   - order num later
 
-- env / init.vim
+- cmd-usr ?
 
 
 hl
@@ -55,18 +24,8 @@ hl
 - color num > rgb
 
 
-cmd ( usr )
-- range
-  - line1 line2 ?
-  - at fzf ?
-
-
 opn file closed ltst
 - fnc cre
-
-
-global val
-- g_xx > g.xx
 
 
 filetype
@@ -81,6 +40,9 @@ plg ? lualine memo
 
 nnoremap c-f
 - case match not, back not
+
+
+srch file end loop view
 
 
 cls nize
