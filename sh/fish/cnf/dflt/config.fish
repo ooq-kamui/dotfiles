@@ -119,7 +119,7 @@ alias vim 'nvim -p'
 
 alias ji  'git'
 alias js  'git s'
-alias ja  'git ao'
+alias ja  'git ao; git s'
 alias jp  'git pll origin main'
 
 alias jls 'git ls'

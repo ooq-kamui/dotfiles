@@ -4,6 +4,12 @@
 
 ## nvim
 
+fzf at pwsh
+- err
+  - fzf rg
+  - fzf file
+
+
 srch file end loop view
 
 
