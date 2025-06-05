@@ -67,6 +67,13 @@ v box paste line down
 - case emp: paste skip
 
 
+## pwsh
+
+d
+- case: arg nil
+  - err
+
+
 ## git
 
 merge way 3 off
