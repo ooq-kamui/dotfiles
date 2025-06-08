@@ -457,7 +457,10 @@ end
 
 function v.Hl_grp()
 
-  print( f.synIDattr(f.synID(f.line('.'), f.col('.'), 1), 'name') )
+  -- print( f.synIDattr(f.synID(f.line('.'), f.col('.'), 1), 'name') )
+  local cmd = "echo synIDattr(synID(line('.'), col('.'), 1), 'name')"
+  v.Cmd(cmd)
+  -- print(  )
 end
 -- and
 -- :hi [grp name]

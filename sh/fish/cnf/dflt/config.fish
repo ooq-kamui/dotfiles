@@ -74,7 +74,9 @@ alias kk        'k;k'
 alias kkk       'k;k;k'
 
 #alias d 'dir_jmp_with_z'
-alias d 'dir_jmp_with_zoxide'
+alias d  'dir_jmp_with_zoxide'
+alias dd 'd dotfiles'
+alias do 'd dotfiles'
 
 alias lr_oo  'lr_d2'
 alias lr_ooo 'lr_d3'
@@ -105,20 +107,24 @@ alias ooo_lf  'lf ../../'
 alias to_clr ':>'
 alias to_add_line_emp 'echo "" >>'
 
-alias mv 'mv -i'
-alias cp 'cp -ip'
-alias rm 'rm -i'
-
+alias mv  'mv -i'
 alias mve 'mv_excld'
+
 alias rn  'rename'
 
+alias cp 'cp -ip'
+
+alias rm    'rm -i'
+alias rm_bk 'rm -rf bk'
 alias trash 'trash -F'
 
 alias vi  'nvim -p'
 alias vim 'nvim -p'
+alias vid 'nvim -p doc/memo.md'
 
 alias ji  'git'
 alias js  'git s'
+alias jj  'git s'
 alias ja  'git ao; git s'
 alias jp  'git pll origin main'
 

@@ -4,13 +4,12 @@
 
 ## nvim
 
-fzf at pwsh
-- err
-  - fzf rg
-  - fzf file
-
-
-srch file end loop view
+opt
+- ex
+  - write doc-tech
+  - del
+- wrapscan
+  - def on
 
 
 utl
@@ -20,13 +19,20 @@ utl
 - file div
 
 
-fzf
-- cmd-usr ?
+filetype
+- fish
+- by lua ? ggl
+
+
+fzf at pwsh
+- err
+  - fzf rg
+  - fzf file
 
 
 hl
 - Hl_grp() ?
-  - by lua
+  - by lua, ggl
 
 - lua
   - {}
@@ -36,8 +42,12 @@ hl
 - color num > rgb
 
 
-filetype
-- fish
+nnoremap c-f
+- case match not, back not, line
+
+
+cursor line emp  del(drct)
+- cre
 
 
 opn file closed ltst
@@ -46,11 +56,6 @@ opn file closed ltst
 
 plg
 - lualine
-  - ggl
-
-
-nnoremap c-f
-- case match not, back not
 
 
 cls nize
@@ -83,6 +88,11 @@ merge way 3 off
 - doc write
 
 
+## bsky
+
+elise header img ch
+
+
 ## aws
 
 price confirm
@@ -100,11 +110,6 @@ dns migration
 ## godot
 
 step by step
-
-
-## mac
-
-sd install
 
 
 ## skr-vps

@@ -100,15 +100,6 @@ function v.Fzf_rg_with_grep(...)
   local rg_cmd = v.Rg_cmd(ptn, ext, word1, nil)
   -- u.Log.val(rg_cmd)
 
-  -- vim.fn['fzf#vim#grep'](
-  --   rg_cmd,
-  --   {
-  --     options = '--exact --delimiter : --nth 3..',
-  --     -- window  = '-tabnew',
-  --   },
-  --   1
-  -- )
-
   vim.fn['fzf#vim#grep'](
     rg_cmd,
     vim.fn['fzf#vim#with_preview'](
@@ -406,51 +397,51 @@ end
 -- 
 
 -- command! -bang -nargs=1 FzfRgExt call Fzf_rg_ext(<f-args>)
-   vim.api.nvim_create_user_command('FzfRgExt',
-     function(opts)
-       v.Fzf_rg_ext(table.unpack(opts.fargs))
-     end,
-     {nargs = 1, bang = true}
-   )
+vim.api.nvim_create_user_command('FzfRgExt',
+  function(opts)
+    v.Fzf_rg_ext(table.unpack(opts.fargs))
+  end,
+  {nargs = 1, bang = true}
+)
 
 -- command! -nargs=? FzfRgWithRun call Fzf_rg_with_run(<f-args>)
-   vim.api.nvim_create_user_command('FzfRgWithRun',
-     function(opts)
-       v.Fzf_rg_with_run(table.unpack(opts.fargs))
-     end,
-     {nargs = '?'}
-   )
+vim.api.nvim_create_user_command('FzfRgWithRun',
+  function(opts)
+    v.Fzf_rg_with_run(table.unpack(opts.fargs))
+  end,
+  {nargs = '?'}
+)
 
 -- command! -nargs=? FzfTagjmpByFile call Fzf_tag_jmp_by_file(<f-args>)
-   vim.api.nvim_create_user_command('FzfTagjmpByFile',
-     function(opts)
-       v.Fzf_tag_jmp_by_file(table.unpack(opts.fargs))
-     end,
-     {nargs = '?'}
-   )
+vim.api.nvim_create_user_command('FzfTagjmpByFile',
+  function(opts)
+    v.Fzf_tag_jmp_by_file(table.unpack(opts.fargs))
+  end,
+  {nargs = '?'}
+)
 
 -- fzf buf crnt
-   vim.cmd('command! -bang -nargs=? FzfBufCrnt call fzf#vim#buffer_lines(<q-args>, {"options": ["--no-sort", "--exact"]}, <bang>1)')
+vim.cmd('command! -bang -nargs=? FzfBufCrnt call fzf#vim#buffer_lines(<q-args>, {"options": ["--no-sort", "--exact"]}, <bang>1)')
 
 -- fzf file
-   vim.cmd('command! -bang -nargs=? -complete=dir FzfFile call fzf#vim#files(<q-args>, <bang>1)')
+vim.cmd('command! -bang -nargs=? -complete=dir FzfFile call fzf#vim#files(<q-args>, <bang>1)')
 
 -- fzf file history
-   vim.cmd('command! -bang -nargs=* FzfFileHstry call fzf#vim#history(fzf#vim#with_preview(), <bang>1)')
+vim.cmd('command! -bang -nargs=* FzfFileHstry call fzf#vim#history(fzf#vim#with_preview(), <bang>1)')
 
 -- fzf cmd history
-   vim.cmd('command! -bang -nargs=* FzfCmdHstry call fzf#vim#command_history(fzf#vim#with_preview(), <bang>1)')
+vim.cmd('command! -bang -nargs=* FzfCmdHstry call fzf#vim#command_history(fzf#vim#with_preview(), <bang>1)')
 
 -- fzf srch history
-   vim.cmd('command! -bang -nargs=* FzfSrchHstry call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)')
+vim.cmd('command! -bang -nargs=* FzfSrchHstry call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)')
 
 -- fzf rgstr
-   vim.cmd('command! -bang -nargs=* FzfRgstr call v:lua.v.Fzf_rgstr()')
+vim.cmd('command! -bang -nargs=* FzfRgstr call v:lua.v.Fzf_rgstr()')
 
 -- fzf jmplst
-   vim.cmd('command! -bang -nargs=* FzfJmplst call v:lua.v.Fzf_jmplst()')
+vim.cmd('command! -bang -nargs=* FzfJmplst call v:lua.v.Fzf_jmplst()')
 
 -- fzf cmd def : mark
-   vim.cmd('command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)')
+vim.cmd('command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)')
 
 

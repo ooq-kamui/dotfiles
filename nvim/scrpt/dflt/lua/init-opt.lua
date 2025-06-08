@@ -80,17 +80,16 @@
 -- org setting end
 
 
--- filetype on
-   vim.cmd('filetype on')
+vim.cmd('filetype on')
 
--- syntax on
-   vim.cmd('syntax on')
+vim.cmd('syntax on')
 
 -- autocmd BufNewFile,BufRead *.fish       set filetype=fish
-   vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
-     pattern  = {'*.fish'},
-     callback = function() vim.opt.filetype = fish end,
-   })
+-- dev anchor
+vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
+  pattern  = {'*.fish'},
+  callback = function() vim.opt.filetype = fish end,
+})
 
 -- defold
 -- autocmd BufNewFile,BufRead *.script     set filetype=lua
@@ -98,47 +97,55 @@
 
 -- indent
 -- - space
-   indnt_fnc_space = function()
-     vim.opt_local.sw  = 2
-     vim.opt_local.sts = 2
-     vim.opt_local.ts  = 2
-     vim.opt_local.et  = true
-   end
+indnt_fnc_space = function()
+  vim.opt_local.sw  = 2
+  vim.opt_local.sts = 2
+  vim.opt_local.ts  = 2
+  vim.opt_local.et  = true
+end
+
 -- autocmd FileType lua      setlocal sw=2 sts=2 ts=2   et
    vim.api.nvim_create_autocmd({'FileType'}, {
      pattern  = {'lua'},
      callback = indnt_fnc_space,
    })
+
 -- autocmd FileType text     setlocal sw=2 sts=2 ts=2   et
    vim.api.nvim_create_autocmd({'FileType'}, {
      pattern  = {'text'},
      callback = indnt_fnc_space,
    })
+
 -- autocmd FileType json     setlocal sw=2 sts=2 ts=2   et
    vim.api.nvim_create_autocmd({'FileType'}, {
      pattern  = {'json'},
      callback = indnt_fnc_space,
    })
+
 -- autocmd FileType vim      setlocal sw=2 sts=2 ts=2   et
    vim.api.nvim_create_autocmd({'FileType'}, {
      pattern  = {'vim'},
      callback = indnt_fnc_space,
    })
+
 -- autocmd FileType fish     setlocal sw=2 sts=2 ts=2   et
    vim.api.nvim_create_autocmd({'FileType'}, {
      pattern  = {'fish'},
      callback = indnt_fnc_space,
    })
+
 -- autocmd FileType sh       setlocal sw=2 sts=2 ts=2   et
    vim.api.nvim_create_autocmd({'FileType'}, {
      pattern  = {'sh'},
      callback = indnt_fnc_space,
    })
+
 -- autocmd FileType markdown setlocal sw=2 sts=2 ts=2   et
    vim.api.nvim_create_autocmd({'FileType'}, {
      pattern  = {'markdown'},
      callback = indnt_fnc_space,
    })
+
 -- autocmd FileType python   setlocal sw=4 sts=4 ts=4   et
    vim.api.nvim_create_autocmd({'FileType'}, {
      pattern  = {'python'},
@@ -206,146 +213,112 @@
 --   autocmd BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
 --   \ exe "normal! g`\"" | endif
 -- augroup END
-   vim.api.nvim_create_autocmd('BufRead', {
-     group    = vim.api.nvim_create_augroup( 'vimrcEx', {} ),
-     pattern  = {'*'},
-     callback = function()
-       local cursor_last_line = vim.fn.line([['"]])
-       local cursor_end_line  = vim.fn.line("$")
+vim.api.nvim_create_autocmd('BufRead', {
+  group    = vim.api.nvim_create_augroup( 'vimrcEx', {} ),
+  pattern  = {'*'},
+  callback = function()
+    local cursor_last_line = vim.fn.line([['"]])
+    local cursor_end_line  = vim.fn.line("$")
 
-       if cursor_last_line > 0 and cursor_last_line <= cursor_end_line then
-         vim.cmd('normal! g`"')
-       end
-     end,
-   })
+    if cursor_last_line > 0 and cursor_last_line <= cursor_end_line then
+      vim.cmd('normal! g`"')
+    end
+  end,
+})
 
 -- autocmd BufWinEnter * normal! zz
-   vim.api.nvim_create_autocmd({'BufWinEnter'}, {
-     pattern  = {'*'},
-     callback = function()
-       vim.cmd('normal! zz')
-     end,
-   })
+vim.api.nvim_create_autocmd({'BufWinEnter'}, {
+  pattern  = {'*'},
+  callback = function()
+    vim.cmd('normal! zz')
+  end,
+})
 
 -- set nowrap
-   vim.opt.wrap = false
--- set whichwrap=b,s,h,l,<,>,[,]
-   vim.opt.whichwrap:append('b')
-   vim.opt.whichwrap:append('s')
-   vim.opt.whichwrap:append('h')
-   vim.opt.whichwrap:append('l')
-   vim.opt.whichwrap:append('<')
-   vim.opt.whichwrap:append('>')
-   vim.opt.whichwrap:append('[')
-   vim.opt.whichwrap:append(']')
+vim.opt.wrap = false
+vim.opt.whichwrap:append('b')
+vim.opt.whichwrap:append('s')
+vim.opt.whichwrap:append('h')
+vim.opt.whichwrap:append('l')
+vim.opt.whichwrap:append('<')
+vim.opt.whichwrap:append('>')
+vim.opt.whichwrap:append('[')
+vim.opt.whichwrap:append(']')
 
--- set virtualedit=onemore
-   vim.opt.virtualedit = 'onemore' -- cursor mv cr
--- set virtualedit+=block
-   vim.opt.virtualedit:append {'block'} -- box slct
--- set virtualedit=all
+vim.opt.virtualedit = 'onemore' -- cursor mv cr
+vim.opt.virtualedit:append {'block'} -- box slct
 -- vim.opt.virtualedit = 'all'
 
--- set scrolloff=5
-   vim.opt.scrolloff = 5
--- set sidescrolloff=4
-   vim.opt.sidescrolloff = 4
--- set wildmode=list:longest
-   vim.opt.wildmode = {list = 'longest'}
--- set tabpagemax=50
-   vim.opt.tabpagemax = 50
--- set nf=""
-   vim.opt.nf = ''
--- set showtabline=2
-   vim.opt.showtabline = 2
--- set wildmenu " ?
-   vim.opt.wildmenu = true
--- set showmatch
+vim.opt.scrolloff = 5
+vim.opt.sidescrolloff = 4
+vim.opt.wildmode = {list = 'longest'}
+vim.opt.tabpagemax = 50
+vim.opt.nf = ''
+vim.opt.showtabline = 2
+vim.opt.wildmenu = true -- ?
 -- vim.opt.showmatch = true
--- set visualbell
 -- vim.opt.visualbell = true
--- set ambiwidth=double
 -- vim.opt.ambiwidth = 'double'
--- set autoread
-   vim.opt.autoread = true
--- set clipboard+=unnamedplus
+vim.opt.autoread = true
 -- vim.opt.clipboard:append {'unnamedplus'}
 
 -- status line
-   function Status_line(file_encoding_flg)
+function Status_line(file_encoding_flg)
 
-     vim.opt.statusline = ''
---   "set statusline+=%m\
---   vim.opt.statusline:append {'%m\'} -- modify sign
-     vim.opt.statusline:append('%F') -- file name
-     vim.opt.statusline:append('%=') -- follow right side
+  vim.opt.statusline = ''
+  -- vim.opt.statusline:append {'%m\'} -- modify sign
+  vim.opt.statusline:append('%F') -- file name
+  vim.opt.statusline:append('%=') -- follow right side
 
-     if file_encoding_flg then
+  if file_encoding_flg then
 
---     set statusline+=%{&fileencoding}\
-       vim.opt.statusline:append('%{&fileencoding}\\') -- file encoding
+    vim.opt.statusline:append('%{&fileencoding}\\') -- file encoding
 
---     if &bomb
-       if vim.bo.bomb then
---       set statusline+=:bom
-         vim.opt.statusline:append(':bom') -- bom
-       end
-     end
+    if vim.bo.bomb then
+      vim.opt.statusline:append(':bom') -- bom
+    end
+  end
 
---   set statusline+=%y\
-     vim.opt.statusline:append('%y ')   -- file type
---   set statusline+=%c\
-     vim.opt.statusline:append('%c ')   -- column num
---   set statusline+=%p%%\
-     vim.opt.statusline:append('%p%% ') -- line num %
---   set statusline+=%l/%L
-     vim.opt.statusline:append('%l/%L')  -- line num / line num all
-   end
-   -- Status_line(true)
-   Status_line(false)
+  vim.opt.statusline:append('%y ')   -- file type
+  vim.opt.statusline:append('%c ')   -- column num
+  vim.opt.statusline:append('%p%% ') -- line num %
+  vim.opt.statusline:append('%l/%L')  -- line num / line num all
+end
 
--- set laststatus=2
-   vim.opt.laststatus = 2 -- 0:off  1:on when 2 win  2:on
--- set completeopt=menuone,noinsert
-   vim.opt.completeopt = {'menuone', 'noinsert'}
--- set foldmethod=manual
-   vim.opt.foldmethod = 'manual'
--- set shortmess+=I
-   vim.opt.shortmess:append('I')
--- set nrformats+=unsigned " 2022-05-09
--- vim.opt.nrformats:append {'unsigned'}
+-- Status_line(true)
+Status_line(false)
 
--- set noswapfile
+vim.opt.laststatus = 2 -- 0:off  1:on when 2 win  2:on
+vim.opt.completeopt = {'menuone', 'noinsert'}
+vim.opt.foldmethod = 'manual'
+vim.opt.shortmess:append('I')
+-- vim.opt.nrformats:append {'unsigned'} -- 2022-05-09
+
    vim.opt.swapfile = false
 
 -- undo
--- if has('persistent_undo')
-   if vim.fn.has('persistent_undo') == 1 then
+if vim.fn.has('persistent_undo') == 1 then
 
---   set undodir=~/.vim-undo
-     vim.opt.undodir = g.home_dir .. '/.vim-undo'
---   set undofile
-     vim.opt.undofile = true
--- endif
-   end
+  vim.opt.undodir = g.home_dir .. '/.vim-undo'
+  vim.opt.undofile = true
+end
 
 -- comment auto off ( def pos final ? )
 -- autocmd FileType * set fo-=c fo-=r fo-=o
-   vim.api.nvim_create_autocmd('FileType', {
-     pattern  = {'*'},
-     callback = function()
-       vim.opt.fo:remove {'c'}
-       vim.opt.fo:remove {'r'}
-       vim.opt.fo:remove {'o'}
-     end,
-   })
+vim.api.nvim_create_autocmd('FileType', {
+  pattern  = {'*'},
+  callback = function()
+    vim.opt.fo:remove {'c'}
+    vim.opt.fo:remove {'r'}
+    vim.opt.fo:remove {'o'}
+  end,
+})
 
 
 -- 
 -- shell & .vimrc_env
 -- 
 
--- set shell=fish -- default
-   vim.opt.shell = 'fish'
+vim.opt.shell = 'fish'  -- default
 
 
