@@ -168,7 +168,10 @@ function dir_jmp {
   p
 }
 # Set-Alias dir "dir_jmp" -Option AllScope # cannot be removed
-Set-Alias d "dir_jmp"
+Set-Alias d   "dir_jmp"
+function dd  { dir_jmp dotfiles }
+function ddo { dir_jmp dotfiles }
+# function do { dir_jmp dotfiles }
 
 function k   { Set-Location -Path .. ; p }
 function kk  { k;k   }
@@ -252,6 +255,8 @@ Set-Alias t "ts"
 # git
 Set-Alias ji  "git"    -force # alias xxx is read-only or
 function js  { git s  }
+function jj  { git s  }
+function j   { git s  }
 # function jis { git s  }
 function ja  { git ao; git s }
 function jp  { git pll origin main }
