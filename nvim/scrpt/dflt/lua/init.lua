@@ -13,6 +13,7 @@ require('init-fnc-tst' )
 
 require('init-plg-mng' )
 require('init-plg-fzf' )
+osc52 = require('osc52')
 
 require('init-opt'     )
 require('init-cmd-usr' )

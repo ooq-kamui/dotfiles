@@ -2,6 +2,8 @@
 -- fnc
 -- 
 
+require('utl')
+
 -- global
 
 g.home_dir     = vim.fn.expand('$HOME')
@@ -1294,13 +1296,13 @@ end
 
 function v.Cursor__mv_slctd_edge_tgl() -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
   v.Normal('o')
 end
 
 function v.Cursor__mv_slctd_edge_l() -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   if not v.Is_slctd_cursor_pos__r() then
     return
@@ -2429,19 +2431,14 @@ function v.Slctd__cancel() -- range -- alias
   v.Esc()
 end
 
--- refactoring slct > slctd __ xxx
-
-function v.Slct_re() -- range
+function v.Slctd__ltst() -- range
   -- print(f.mode())
 
   if f.mode() == vim.api.nvim_replace_termcodes('<c-v>', false, false, true) then
-    -- print('v box')
     return
   elseif f.mode() == 'v' then
-    -- print('v')
     return
   elseif f.mode() == 'V' then
-    -- print('v line')
     return
   end
 
@@ -2534,7 +2531,7 @@ end
 
 function v.Slctd_cursor__mv_slctd_edge_r() -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   if v.Is_slctd_cursor_pos__r() then
     return
@@ -2548,20 +2545,20 @@ end
 
 function v.Slctd_cursor__mv_file_edge(n_cmd)
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   v.Cursor__mv_file_edge(n_cmd)
 end
 
 function v.Slctd_cursor__mv_v_jmp(drct) -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
   v.Cursor__mv_v_jmp(drct)
 end
 
 function v.Slctd_cursor__mv_line_end() -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   if     v.Is_slctd_mode__box() then
 
@@ -2591,7 +2588,7 @@ function v.Is_slctd_cursor_pos__r() -- range
 
   local ret = false
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   local cursor_pos1 = v.Cursor_pos()
   -- print( cursor_pos1 )
@@ -2622,10 +2619,10 @@ function v.Slctd_str() -- range
 
   -- v.Normal('gv"zy')
 
-  v.Slct_re()
+  v.Slctd__ltst()
   v.Normal('"zy')
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   -- return @z
   return f.getreg('z')
@@ -2633,7 +2630,7 @@ end
 
 function v.Slctd_str_len() -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   local slctd_str = v.Slctd_str()
 
@@ -2663,7 +2660,7 @@ end
 
 function v.Slctd_str__expnd_srch() -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
   v.Cursor__mv_srch('f')
 end
 
@@ -2672,7 +2669,7 @@ function v.Slctd_str__expnd_word_f() -- range
   local slctd_str = v.Slctd_str()
   local slctd_r_out_char = v.Slctd_str_edge_r_out_char()
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   if     v.Is_cursor_line_str_side_r__space() then
 
@@ -2692,13 +2689,13 @@ g.quote_ptn = '[' .. "'" .. '"' .. '`' .. ']'
 
 function v.Slctd_str__expnd_quote_on_f() -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
   v.Cursor__mv_srch_ptn(g.quote_ptn, 'f')
 end
 
 function v.Slctd_str__expnd_quote_on_b() -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   v.Cursor__mv_slctd_edge_tgl()
   v.Cursor__mv_srch_ptn(g.quote_ptn, 'b')
@@ -2709,7 +2706,7 @@ function v.Slctd_str__expnd_quote_on_swtch() -- range
 
   -- v.Is_cursor_line_str__ptn() -- todo dev ?
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   local c = v.Cursor_c_char()
 
@@ -2723,7 +2720,7 @@ end
 
 function v.Slctd_str__expnd_quote_on() -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   v.Slctd_str__expnd_quote_on_f()
   v.Slctd_str__expnd_quote_on_b()
@@ -2744,7 +2741,7 @@ end
 
 function v.Slctd_str__expnd_quote_in_swtch() -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   if not v.Is_cursor_line_str__ptn(g.quote_ptn) then
     return
@@ -2762,7 +2759,7 @@ end
 
 function v.Slctd_str__expnd_quote_swtch() -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   if v.Is_slctd_str_edge_char__quote() then
     -- v.Esc()
@@ -2799,7 +2796,7 @@ function v.Slctd_str__reduce_dlm_l(char) -- range
 
   local char = char
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   local slctd_str = v.Slctd_str()
   local srch_idx = v.Str_srch_idx(slctd_str, char)
@@ -2816,7 +2813,7 @@ end
 
 function v.Slctd_str__ynk() -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
   v.Normal('"zd')
   v.Cursor__ins_ynk()
 end
@@ -2844,7 +2841,7 @@ end
 
 function v.Slctd__rpl_7_srch_nxt() -- dir forward only
 
-  v.Slct_re()
+  v.Slctd__ltst()
   v.Normal('"zd"aPlgn')
 end
 
@@ -2852,7 +2849,7 @@ end
 
 function v.V_slctd__del() -- dev doing, can
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   v.Normal('"ad')
   -- let @+ = @a
@@ -2861,7 +2858,7 @@ end
 
 function v.Slctd__del() -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   local rgstr = 'z'
 
@@ -2879,13 +2876,13 @@ function v.Slctd__pad(char) -- range
     local char = "\\<bar>"
   end
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   -- v.Normal('r' .. char)
   local n_cmd = 'r' .. char
   vim.cmd('exe "normal! ' .. n_cmd .. '"')
 
-  v.Slct_re()
+  v.Slctd__ltst()
 end
 
 function v.Slctd__pad_space() -- range
@@ -3012,7 +3009,7 @@ end
 
 function v.Slctd_str_edge_out__ins(c) -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
   local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
@@ -3055,7 +3052,7 @@ end
 
 function v.Slctd_str_edge_out__ins_markdown_strikethrough()
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
   local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
@@ -3108,7 +3105,7 @@ end
 
 function v.Slctd_str_edge_out_quote__tgl() -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
   local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
@@ -3149,7 +3146,7 @@ end
 
 function v.Slctd_str_edge_out_bracket__tgl() -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
   local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
@@ -3196,7 +3193,7 @@ end
 
 function v.Slctd_str_edge_out__tgl_shft() -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
   local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
@@ -3229,7 +3226,7 @@ end
 
 function v.Slctd_str_edge_out_char__del() -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   if v.Is_slctd_str_edge_l_col__line_top() then
     return
@@ -3278,7 +3275,7 @@ function v.Is_slctd_str_edge_l_col__line_top() -- range
 
   local ret = false
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   v.Cursor__mv_slctd_edge_tgl()
   local cursor_l_pos = v.Cursor_pos()
@@ -3392,7 +3389,7 @@ function v.Slctd_line_end__pad_space() -- range -- use not
 
   -- use recommend "aygvr gv
 
-  v.Slct_re()
+  v.Slctd__ltst()
   v.Normal('o')
 
   local fil_end_col = v.Cursor_col_num() - 1
@@ -3515,7 +3512,7 @@ end
 
 function v.Slctd_box__mv(lr) -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   local n_cmd = v.Char_lr_2_normal_cmd(lr)
   v.Normal('o' .. n_cmd)
@@ -3524,7 +3521,7 @@ end
 
 function v.Slctd_box_width__1() -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   if not v.Is_slctd_mode__box() then
     return
@@ -3541,12 +3538,12 @@ function v.Slctd_box_str__mv(lr) -- range
 
   local n_cmd = v.Char_lr_2_normal_cmd(lr)
 
-  v.Slct_re()
+  v.Slctd__ltst()
   v.Normal('"zx')
   v.Normal(n_cmd)
   v.Normal('"zP')
 
-  v.Slct_re()
+  v.Slctd__ltst()
   v.Slctd_box__mv(lr)
 end
 
@@ -3559,7 +3556,7 @@ function v.Slctd_box_edge_l__ynk_line_1() -- range
     return
   end
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   if v.Is_cursor_col__line_end() then
     v.Slctd__pad_space()
@@ -3622,12 +3619,12 @@ function v.Slctd_box_edge_r_char__shft_in() -- range
   local cmd = rng .. 's/' .. '\\%V\\([ ]\\+\\)\\([^ ]\\)' .. '/' .. '\\2\\1' .. '/eg'
   v.Cmd(cmd)
 
-  v.Slct_re()
+  v.Slctd__ltst()
 end
 
 function v.Slctd_box_cursor_r_space__crct() -- range
 
-  v.Slct_re()
+  v.Slctd__ltst()
   local col = v.Cursor_col_num()
   -- print( col )
   v.Slctd__cancel()
@@ -3650,7 +3647,7 @@ end
 
 function v.Is_slctd_mode__box() -- range
 
-  -- v.Slct_re()
+  -- v.Slctd__ltst()
 
   local ret = false
 
@@ -3663,7 +3660,7 @@ end
 
 function v.Is_slctd_mode__line() -- range
 
-  -- v.Slct_re()
+  -- v.Slctd__ltst()
 
   local ret = false
 
@@ -3904,7 +3901,7 @@ function v.Srch_str__slctd_str() -- range
     return
   end
 
-  v.Slct_re()
+  v.Slctd__ltst()
 
   local str = v.Slctd_str()
   v.Srch_str__(str, false)
@@ -4010,9 +4007,8 @@ end
 
 function v.Rgstr_info_rgstr(rgstr_info)
 
-  -- local rgstr = f.strcharpart(rgstr_info, 6, 1)
-  local rgstr = string.sub(rgstr_info, 7, 7)
-
+  -- local rgstr = string.sub(rgstr_info, 7, 7)
+  local rgstr = u.Str.sub(rgstr_info, 7, 7)
   return rgstr
 end
 
@@ -4430,41 +4426,6 @@ function v.Repeat_fnc()
   -- v.Cursor__mv_srch('f')
   -- v.Cursor__mv_d()
   -- v.Cursor__ins_ynk()
-end
-
--- 
--- utl
--- 
-
-u = {}
-
-u.Log = {}
-
-function u.Log.val(val)
-
-  print(val)
-end
-
-function u.Log.tbl(tbl)
-
-  print(vim.inspect(tbl))
-end
-
-u.Tbl = {}
-
-function u.Tbl.srt(tbl, cmp_fnc)
-
-  return table.sort(tbl, cmp_fnc)
-end
-
-function u.Tbl.add(tbl, val)
-
-  return table.insert(tbl, val)
-end
-
-function u.Tbl.del(tbl, idx)
-
-  return table.remove(tbl, idx)
 end
 
 -- priority l

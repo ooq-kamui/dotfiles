@@ -3,62 +3,17 @@
 -- 
 -- ref https://neovim.io/doc/user/lua.html
 
--- ex
--- 
--- set xxx
---   vim.opt.xxx = true
--- 
--- set noxxx
---   vim.opt.xxx = false
--- 
--- set xxx=1
---   vim.opt.xxx = 1
--- 
--- set xxx=aaa
---   vim.opt.xxx = 'aaa'
--- 
--- set xxx+=aaa
---   vim.opt.xxx:append {'aaa'}
--- 
--- set xxx-=aaa
---   vim.opt.xxx:remove {'aaa'}
--- 
--- set xxx=aaa,bbb
---   vim.opt.xxx = {'aaa', 'bbb'}
--- 
--- set xxx=aa:bb,cc:dd
---   vim.opt.xxx = {aa = 'bb', cc = 'dd'}
--- 
--- setlocal xxx
---   vim.opt_local.xxx = true
--- 
--- autocmd xxx
---   vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
---     group    = vim.api.nvim_create_augroup('grp_name', {}),
---     pattern  = {'*.c', '*.h'},
---     callback = function()
---       print('yyy')
---     end,
---   })
--- 
--- &bomb
---   vim.bo.bomb
--- 
--- xxx on
--- vim.cmd('xxx on')
-
-
 -- 
 -- org setting
 -- 
 
 -- set modelines=0  " CVE-2007-2438
-   vim.opt.modelines = 0
+vim.opt.modelines = 0
 
 -- Normally we use vim-extensions. If you want true vi-compatibility
 -- remove change the following statements
 -- set nocompatible
-   vim.opt.compatible = false -- Use Vim defaults instead of 100% vi compatibility
+vim.opt.compatible = false -- Use Vim defaults instead of 100% vi compatibility
 -- set backspace=2
 -- vim.opt.backspace = 2 -- more powerful backspacing
 
@@ -67,16 +22,16 @@
 --   chpass
 -- autocmd BufWrite /private/tmp/crontab.* set nowritebackup nobackup
 -- autocmd BufWrite /private/etc/pw.     * set nowritebackup nobackup
-   vim.api.nvim_create_autocmd({'BufWrite'}, {
-     pattern  = {
-       '/private/tmp/crontab.*',
-       '/private/etc/pw.*',
-     },
-     callback = function()
-       vim.opt.writebackup = false
-       vim.opt.backup      = false
-     end,
-   })
+vim.api.nvim_create_autocmd({'BufWrite'}, {
+  pattern  = {
+    '/private/tmp/crontab.*',
+    '/private/etc/pw.*',
+  },
+  callback = function()
+    vim.opt.writebackup = false
+    vim.opt.backup      = false
+  end,
+})
 -- org setting end
 
 
@@ -84,13 +39,11 @@ vim.cmd('filetype on')
 
 vim.cmd('syntax on')
 
--- autocmd BufNewFile,BufRead *.fish       set filetype=fish
--- dev anchor
-vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
-  pattern  = {'*.fish'},
-  callback = function() vim.opt.filetype = fish end,
-})
-
+-- vim.filetype.add({
+--   pattern = {
+--     ['*.fish'] = 'fish',
+--   },
+-- })
 -- defold
 -- autocmd BufNewFile,BufRead *.script     set filetype=lua
 -- autocmd BufNewFile,BufRead *.gui_script set filetype=lua
@@ -105,107 +58,90 @@ indnt_fnc_space = function()
 end
 
 -- autocmd FileType lua      setlocal sw=2 sts=2 ts=2   et
-   vim.api.nvim_create_autocmd({'FileType'}, {
-     pattern  = {'lua'},
-     callback = indnt_fnc_space,
-   })
+vim.api.nvim_create_autocmd({'FileType'}, {
+  pattern  = {'lua'},
+  callback = indnt_fnc_space,
+})
 
 -- autocmd FileType text     setlocal sw=2 sts=2 ts=2   et
-   vim.api.nvim_create_autocmd({'FileType'}, {
-     pattern  = {'text'},
-     callback = indnt_fnc_space,
-   })
+vim.api.nvim_create_autocmd({'FileType'}, {
+  pattern  = {'text'},
+  callback = indnt_fnc_space,
+})
 
 -- autocmd FileType json     setlocal sw=2 sts=2 ts=2   et
-   vim.api.nvim_create_autocmd({'FileType'}, {
-     pattern  = {'json'},
-     callback = indnt_fnc_space,
-   })
+vim.api.nvim_create_autocmd({'FileType'}, {
+  pattern  = {'json'},
+  callback = indnt_fnc_space,
+})
 
 -- autocmd FileType vim      setlocal sw=2 sts=2 ts=2   et
-   vim.api.nvim_create_autocmd({'FileType'}, {
-     pattern  = {'vim'},
-     callback = indnt_fnc_space,
-   })
+vim.api.nvim_create_autocmd({'FileType'}, {
+  pattern  = {'vim'},
+  callback = indnt_fnc_space,
+})
 
 -- autocmd FileType fish     setlocal sw=2 sts=2 ts=2   et
-   vim.api.nvim_create_autocmd({'FileType'}, {
-     pattern  = {'fish'},
-     callback = indnt_fnc_space,
-   })
+vim.api.nvim_create_autocmd({'FileType'}, {
+  pattern  = {'fish'},
+  callback = indnt_fnc_space,
+})
 
 -- autocmd FileType sh       setlocal sw=2 sts=2 ts=2   et
-   vim.api.nvim_create_autocmd({'FileType'}, {
-     pattern  = {'sh'},
-     callback = indnt_fnc_space,
-   })
+vim.api.nvim_create_autocmd({'FileType'}, {
+  pattern  = {'sh'},
+  callback = indnt_fnc_space,
+})
 
 -- autocmd FileType markdown setlocal sw=2 sts=2 ts=2   et
-   vim.api.nvim_create_autocmd({'FileType'}, {
-     pattern  = {'markdown'},
-     callback = indnt_fnc_space,
-   })
+vim.api.nvim_create_autocmd({'FileType'}, {
+  pattern  = {'markdown'},
+  callback = indnt_fnc_space,
+})
 
 -- autocmd FileType python   setlocal sw=4 sts=4 ts=4   et
-   vim.api.nvim_create_autocmd({'FileType'}, {
-     pattern  = {'python'},
-     callback = function()
-       vim.opt_local.sw  = 2
-       vim.opt_local.sts = 2
-       vim.opt_local.ts  = 4
-       vim.opt_local.et  = true
-     end,
-   })
+vim.api.nvim_create_autocmd({'FileType'}, {
+  pattern  = {'python'},
+  callback = function()
+    vim.opt_local.sw  = 2
+    vim.opt_local.sts = 2
+    vim.opt_local.ts  = 4
+    vim.opt_local.et  = true
+  end,
+})
 -- - tab
 -- autocmd FileType lua      setlocal sw=2 sts=2 ts=2 noet
 
 
--- set listchars=tab:»_,eol:«,extends:»,precedes:«,nbsp:%
-   vim.opt.listchars = {tab = '»_', eol = '«', extends = '»', precedes = '«', nbsp = '%'}
--- set incsearch
-   vim.opt.incsearch = true
--- set hlsearch
-   vim.opt.hlsearch = true
--- set ignorecase smartcase
-   vim.opt.ignorecase = true
-   vim.opt.smartcase  = true
--- set number
-   vim.opt.number = true
--- set relativenumber
+vim.opt.listchars = {tab = '»_', eol = '«', extends = '»', precedes = '«', nbsp = '%'}
+vim.opt.incsearch = true
+vim.opt.hlsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase  = true
+vim.opt.number = true
 -- vim.opt.relativenumber = true
--- set list
-   vim.opt.list = true
--- set cursorline
-   vim.opt.cursorline = true
--- set splitbelow
-   vim.opt.splitbelow = true
--- set switchbuf=usetab,newtab
-   vim.opt.switchbuf = {'usetab', 'newtab'}
--- set showcmd
-   vim.opt.showcmd = true
+vim.opt.list = true
+vim.opt.cursorline = true
+vim.opt.splitbelow = true
+vim.opt.switchbuf = {'usetab', 'newtab'}
+vim.opt.showcmd = true
 
--- set encoding=utf-8
-   vim.opt.encoding = 'utf-8'
--- set fileencodings=utf-8,sjis
-   vim.opt.fileencodings = {'utf-8', 'sjis'}
--- set termencoding=utf-8
+vim.opt.wrapscan = true  -- srch file end loop
+
+vim.opt.encoding = 'utf-8'
+vim.opt.fileencodings = {'utf-8', 'sjis'}
 -- vim.opt.termencoding = 'utf-8'
 
--- set mouse=n
 -- vim.opt.mouse = 'n'
 
 -- dev anchor
 -- map <LeftMouse> <nop>
 -- ???  <nop> ??
 
--- set autoindent
-   vim.opt.autoindent = true
--- set shiftwidth=2 " 4
-   vim.opt.shiftwidth = 2
--- set tabstop=2    " 4
-   vim.opt.tabstop = 2
--- set expandtab " tab > space
-   vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.shiftwidth = 2  -- 4
+vim.opt.tabstop    = 2  -- 4
+vim.opt.expandtab = true  -- tab > space
 
 
 -- file opn, cursor mv last

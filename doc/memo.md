@@ -4,54 +4,31 @@
 
 ## nvim
 
-opt
-- ex
-  - write doc-tech
-  - del
-- wrapscan
-  - def on
+hl lua
+- Hl_grp(), nil ? ggl
 
-
-utl
-- str cre
-  - sub
-  - srch ptn
-- file div
-
-
-filetype
-- fish
-- by lua ? ggl
-
-
-fzf at pwsh
-- err
-  - fzf rg
-  - fzf file
-
-
-hl
-- Hl_grp() ?
-  - by lua, ggl
-
-- lua
+- color mod
   - {}
   - mac
     - cmnt : lightgreen
 
-- color num > rgb
+
+v box paste line down
+- case emp: paste skip
+
+
+slctd __ cursor line emp ( drct )
 
 
 nnoremap c-f
 - case match not, back not, line
 
 
-cursor line emp  del(drct)
-- cre
-
-
 opn file closed ltst
 - fnc cre
+
+
+nnoremap `<` cursor mv block out ( fnc )
 
 
 plg
@@ -59,24 +36,6 @@ plg
 
 
 cls nize
-
-
-## vim
-
-osc52 clp __ ynk
-
-nnoremap `<` cursor mv block out ( fnc )
-
-
-v box paste line down
-- case emp: paste skip
-
-
-## pwsh
-
-d
-- case: arg nil
-  - err
 
 
 ## git
