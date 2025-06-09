@@ -2,7 +2,29 @@
 # dotfiles
 
 
+## bsky
+
+elise header img ch
+
+
+## git
+
+merge way 3 off
+- `.gitconfig`
+  - mod
+    - ggl
+
+- doc write
+
+
 ## nvim
+
+v box paste line down
+- case emp: paste skip
+
+
+nnoremap `<` cursor mv block out ( fnc )
+
 
 hl lua
 - Hl_grp(), nil ? ggl
@@ -11,10 +33,6 @@ hl lua
   - {}
   - mac
     - cmnt : lightgreen
-
-
-v box paste line down
-- case emp: paste skip
 
 
 slctd __ cursor line emp ( drct )
@@ -28,9 +46,6 @@ opn file closed ltst
 - fnc cre
 
 
-nnoremap `<` cursor mv block out ( fnc )
-
-
 plg
 - lualine
 
@@ -38,28 +53,14 @@ plg
 cls nize
 
 
-## git
-
-merge way 3 off
-- `.gitconfig`
-  - mod
-    - ggl
-- doc write
-
-
-## bsky
-
-elise header img ch
-
-
 ## aws
 
 price confirm
 
 
-## ooq dns migration
+## ooq dns
 
-dns migration
+dns mgrtn
 - vps
   - cre
 - svr
