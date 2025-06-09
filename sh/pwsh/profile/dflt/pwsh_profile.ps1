@@ -151,10 +151,9 @@ function lr {
 }
 
 function dir_jmp {
-  # param( $path )
+  # param( $key )
 
-  # if ( $path -eq $null ) {
-  if ( $args -eq $null ) {
+  if ( [string]::IsNullOrEmpty( $args ) ) {
 
     $dir = ( zoxide query --list | fzf )
     # echo $dir
