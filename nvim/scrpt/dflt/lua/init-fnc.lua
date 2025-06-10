@@ -843,14 +843,10 @@ function v.Tag_jmp_by_slctd_line() -- range
 
   local base_buf_num = v.Buf_num()
 
-  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
-  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
-
   local line_str
 
-  for idx, line_num in pairs(f.range(a_firstline, a_lastline)) do
+  for idx, line_num in pairs(v.Slctd_line_num_seq()) do
 
-    -- line_str = f.getline(line_num)
     line_str = v.Line_str_by_line_num(line_num)
 
     v.Tag_jmp_by_str(line_str)
@@ -905,7 +901,6 @@ function v.Win_splt_cursor__mv_nxt()
   -- local n_cmd = "\\<c-w>w"
   -- v.Normal(n_cmd)
 
-  -- vim.cmd([[exe "normal! \<c-w>w>"]])
   vim.cmd('exe "normal! \\<c-w>w>"')
 end
 
@@ -914,7 +909,6 @@ function v.Win_splt__quit()
   -- local n_cmd = "\\<c-w>c"
   -- v.Normal(n_cmd)
 
-  -- vim.cmd([[exe "normal! \<c-w>c>"]])
   vim.cmd('exe "normal! \\<c-w>c>"')
 end
 
@@ -1600,14 +1594,12 @@ end
 
 function v.V_ins_cmnt_1() -- range
 
-  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
-  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
-
+  local a_firstline = v.Slctd_line_s_num()
   v.Normal(a_firstline .. 'G')
   v.Normal('^')
   local col = v.Cursor_col_num()
 
-  for idx, line_num in pairs(f.range(a_firstline, a_lastline)) do
+  for idx, line_num in pairs(v.Slctd_line_num_seq()) do
 
     v.Line_end__pad_space(line_num, col - 1)
 
@@ -1648,8 +1640,8 @@ end
 
 function v.V_ins_cmnt_mlt() -- range
 
-  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
-  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
+  local a_firstline = v.Slctd_line_s_num()
+  local a_lastline  = v.Slctd_line_e_num()
 
   v.Normal(a_lastline  .. 'G')
   v.Cursor__ins_cmnt_mlt_by_pos('end')
@@ -3010,8 +3002,8 @@ function v.Slctd_str_edge_out__ins(c) -- range
 
   v.Slctd__ltst()
 
-  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
-  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
+  local a_firstline = v.Slctd_line_s_num()
+  local a_lastline  = v.Slctd_line_e_num()
 
   if a_firstline ~= a_lastline then
     v.Slctd__cancel()
@@ -3019,8 +3011,8 @@ function v.Slctd_str_edge_out__ins(c) -- range
   end
 
   local c_l = c
-
   local c_r = c
+
   if     c == '(' then
     c_r = ')'
   elseif c == '{' then
@@ -3053,8 +3045,8 @@ function v.Slctd_str_edge_out__ins_markdown_strikethrough()
 
   v.Slctd__ltst()
 
-  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
-  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
+  local a_firstline = v.Slctd_line_s_num()
+  local a_lastline  = v.Slctd_line_e_num()
 
   if a_firstline ~= a_lastline then
     v.Slctd__cancel()
@@ -3106,8 +3098,8 @@ function v.Slctd_str_edge_out_quote__tgl() -- range
 
   v.Slctd__ltst()
 
-  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
-  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
+  local a_firstline = v.Slctd_line_s_num()
+  local a_lastline  = v.Slctd_line_e_num()
 
   if a_firstline ~= a_lastline then
     return
@@ -3147,8 +3139,8 @@ function v.Slctd_str_edge_out_bracket__tgl() -- range
 
   v.Slctd__ltst()
 
-  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
-  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
+  local a_firstline = v.Slctd_line_s_num()
+  local a_lastline  = v.Slctd_line_e_num()
 
   if a_firstline ~= a_lastline then
     return
@@ -3194,8 +3186,8 @@ function v.Slctd_str_edge_out__tgl_shft() -- range
 
   v.Slctd__ltst()
 
-  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
-  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
+  local a_firstline = v.Slctd_line_s_num()
+  local a_lastline  = v.Slctd_line_e_num()
 
   if a_firstline ~= a_lastline then
     return
@@ -3313,10 +3305,7 @@ end
 
 function v.Slctd_line_7_opn_app() -- range
 
-  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
-  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
-
-  for idx, line_num in pairs(f.range(a_firstline, a_lastline)) do
+  for idx, line_num in pairs(v.Slctd_line_num_seq()) do
 
     v.Opn_app_by_line_path(line_num)
   end
@@ -3394,10 +3383,7 @@ end
 
 function v.Slctd_line_end_space__del() -- range
 
-  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
-  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
-
-  for idx, line_num in pairs(f.range(a_firstline, a_lastline)) do
+  for idx, line_num in pairs(v.Slctd_line_num_seq()) do
 
     v.Line_end_space__del(line_num)
   end
@@ -3412,10 +3398,7 @@ function v.Slctd_line_end__pad_space() -- range -- use not
 
   local fil_end_col = v.Cursor_col_num() - 1
 
-  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
-  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
-
-  for idx, line_num in pairs(f.range(a_firstline, a_lastline)) do
+  for idx, line_num in pairs(v.Slctd_line_num_seq()) do
 
     v.Line_end__pad_space(line_num, fil_end_col)
   end
@@ -3425,8 +3408,8 @@ function v.Slctd_line__join_per_line(per_line_num) -- range
 
   local n_cmd = per_line_num .. 'Jj'
 
-  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
-  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
+  local a_firstline = v.Slctd_line_s_num()
+  local a_lastline  = v.Slctd_line_e_num()
 
   local line_num = a_lastline - a_firstline + 1
 
@@ -3626,23 +3609,14 @@ end
 
 function v.Slctd_box_cursor_r_space__crct() -- range
 
-  v.Slctd__ltst()
   local col = v.Cursor_col_num()
-  -- print( col )
-  v.Slctd__cancel()
+  local a_firstline = v.Slctd_line_s_num()
 
-  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
-  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
-
-  -- print( a_firstline .. ' ' .. a_lastline )
   v.Cursor__mv_by_line_col(a_firstline, col)
 
-  for idx, line_num in pairs(f.range(a_firstline, a_lastline)) do
-    -- print( line_num .. ' ' .. col )
-    -- v.Cursor__mv_by_line_col(line_num, col)
+  for idx, line_num in pairs(v.Slctd_line_num_seq()) do
 
     v.Cursor_f_space__del()
-    -- v.Normal('j')
     v.Cursor__mv_d()
   end
 end
@@ -4590,5 +4564,4 @@ end
 -- when unknown server )
 --   curl https://raw.githubusercontent.com/ooq-kamui/dotfiles/refs/heads/main/nvim/scrpt/dflt/init.vim > init.vim
 --   vim -u init.vim
-
 

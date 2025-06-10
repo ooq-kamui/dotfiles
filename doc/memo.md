@@ -14,11 +14,18 @@ merge way 3 off
 
 ## nvim
 
+is_mode__xx()
+- cre
+
+a_firstline
+- if a_firstline ~= a_lastline then
+
+lua nomal exe ? ( api )
+
+vimrc del
+
+
 nnoremap `<` cursor mv block out ( fnc )
-
-
-f.range() > for line_num = xxx, xxx
-- v.Slctd_line_num_seq()
 
 
 hl lua
@@ -48,6 +55,7 @@ cls nize
 
 
 plg
+- oil
 - lualine
 
 

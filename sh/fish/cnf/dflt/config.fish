@@ -128,6 +128,7 @@ alias ji  'git'
 alias js  'git s'
 alias j   'git s'
 alias ja  'git ao; git s'
+alias jo  'git ao; git s'
 alias jjj 'git ao; git s'
 alias jp  'git pll origin main'
 
