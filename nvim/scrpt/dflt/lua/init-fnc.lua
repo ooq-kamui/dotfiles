@@ -1025,7 +1025,6 @@ end
 function v.Is_cursor_col__line_end()
 
   if v.Cursor_col_num() == v.Cursor_line_end_col() then
-
     return true
   else
     return false
@@ -2032,7 +2031,7 @@ end
 function v.Cursor__ins_line_anchor()
 
   local str  = v.Str_cmnt_1()
-  str = str .. 'dev anchor'
+  str = str .. 'dev anchor' -- del not
   v.Cursor__ins_line(str)
   v.Cursor_line_indnt__crct()
 end
@@ -3293,6 +3292,25 @@ end
 
 -- slctd line
 
+function v.Slctd_line_s_num()
+
+  return vim.api.nvim_buf_get_mark(0, '<')[1]
+end
+
+function v.Slctd_line_e_num()
+
+  return vim.api.nvim_buf_get_mark(0, '>')[1]
+end
+
+function v.Slctd_line_num_seq()
+
+  local line_s_num = v.Slctd_line_s_num()
+  local line_e_num = v.Slctd_line_e_num()
+
+  local tbl = u.Num.seq(line_s_num, line_e_num)
+  return tbl
+end
+
 function v.Slctd_line_7_opn_app() -- range
 
   local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
@@ -3556,35 +3574,19 @@ function v.Slctd_box_edge_l__ynk_line_1() -- range
     return
   end
 
-  v.Slctd__ltst()
+  local col_num = v.Cursor_col_num()
+  -- u.Log.val(col_num)
 
-  if v.Is_cursor_col__line_end() then
-    v.Slctd__pad_space()
-
-    v.Slctd__del()
-    -- v.Normal('"zdgv') -- see
-  end
-
-  v.Cursor__mv_slctd_edge_l()
-  v.Esc()
-  -- v.Normal("\\<esc>")
-
-  -- local col_num = v.Cursor_col_num()
-
-  local a_firstline = vim.api.nvim_buf_get_mark(0, '<')[1]
-  local a_lastline  = vim.api.nvim_buf_get_mark(0, '>')[1]
-
-  for idx, line_num in pairs(f.range(a_firstline, a_lastline)) do
-
-    local col_num = v.Cursor_col_num()
-
-    v.Cursor__ins_ynk()
+  for idx, line_num in pairs(v.Slctd_line_num_seq()) do
 
     v.Cursor__mv_by_line_col(line_num, col_num)
-    v.Cursor__mv_d()
-    -- if line_num ~= a_lastline then
-    --   v.Normal('j')
-    -- end
+
+    if v.Cursor_col_num() < col_num then
+      -- continue
+    else
+      v.Cursor__ins_ynk()
+      v.Cursor__mv_d()
+    end
   end
 end
 
@@ -4178,7 +4180,6 @@ end
 
 -- dev anchor
 function v.Rg_rslt_line_parse(line)
-
 
   local dlm = ':'
   local ret = f.split(line, dlm)

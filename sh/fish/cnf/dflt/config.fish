@@ -117,6 +117,7 @@ alias cp 'cp -ip'
 
 alias rm    'rm -i'
 alias rm_bk 'rm -rf bk'
+alias rmbk  'rm -rf bk'
 alias trash 'trash -F'
 
 alias vi  'nvim -p'
@@ -127,7 +128,7 @@ alias ji  'git'
 alias js  'git s'
 alias j   'git s'
 alias ja  'git ao; git s'
-alias jj  'git ao; git s'
+alias jjj 'git ao; git s'
 alias jp  'git pll origin main'
 
 alias jls 'git ls'

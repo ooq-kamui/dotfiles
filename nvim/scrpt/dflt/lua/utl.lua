@@ -48,4 +48,15 @@ function u.Str.srch(str, ptn)
   return ret
 end
 
+u.Num = {}
+
+function u.Num.seq(s_num, e_num)
+
+  local tbl = {}
+  for num = s_num, e_num do
+    u.Tbl.add(tbl, num)
+  end
+  return tbl
+end
+
 

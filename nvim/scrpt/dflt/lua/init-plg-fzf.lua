@@ -300,7 +300,7 @@ function v.Fzf_file()
 
   local sys_cmd = 'fd --type f'
   local fzf_src_txt  = v.Sys_cmd(sys_cmd)
-  u.Log.val(fzf_src_txt)
+  -- u.Log.val(fzf_src_txt)
 
   -- local fnc_name = 'Opn'
   local fnc_name = v.Opn

@@ -2,11 +2,6 @@
 # dotfiles
 
 
-## bsky
-
-elise header img ch
-
-
 ## git
 
 merge way 3 off
@@ -19,11 +14,11 @@ merge way 3 off
 
 ## nvim
 
-v box paste line down
-- case emp: paste skip
-
-
 nnoremap `<` cursor mv block out ( fnc )
+
+
+f.range() > for line_num = xxx, xxx
+- v.Slctd_line_num_seq()
 
 
 hl lua
@@ -36,7 +31,8 @@ hl lua
 
 
 slctd __ cursor line emp ( drct )
-
+- v line J
+- v line K
 
 nnoremap c-f
 - case match not, back not, line
@@ -46,11 +42,13 @@ opn file closed ltst
 - fnc cre
 
 
+cls nize
+- Slctd
+- Line
+
+
 plg
 - lualine
-
-
-cls nize
 
 
 ## aws
