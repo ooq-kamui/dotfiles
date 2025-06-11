@@ -423,7 +423,6 @@ end
 function v.Esc() -- alias
 
   -- v.Normal('\\<esc>')
-  -- vim.cmd([[exe "normal! \<esc>"]])
   vim.cmd('exe "normal! \\<esc>"')
 end
 
@@ -2511,11 +2510,11 @@ end
 
 -- refactoring slct > slctd __ xxx
 
-function v.Slct_by_line_rng(line_num_fr, line_num_to)
+function v.Slct_by_line_rng(line_s_num, line_e_num)
 
-  v.Cursor__mv_by_line_num(line_num_fr)
+  v.Cursor__mv_by_line_num(line_s_num)
   v.Normal('V')
-  v.Cursor__mv_by_line_num(line_num_to)
+  v.Cursor__mv_by_line_num(line_e_num)
 end
 
 -- slctd cursor __ mv

@@ -1,6 +1,0 @@
-
-" mac
-
-set shell=fish
-
-

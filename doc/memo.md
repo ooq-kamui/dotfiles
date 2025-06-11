@@ -14,15 +14,19 @@ merge way 3 off
 
 ## nvim
 
-is_mode__xx()
+Is_mode__xx()
 - cre
 
 a_firstline
 - if a_firstline ~= a_lastline then
+  - Is_slctd_line__mlt()
 
 lua nomal exe ? ( api )
 
 vimrc del
+
+normal line_num .. 'G'
+- Cursor__mv_by_line_num()
 
 
 nnoremap `<` cursor mv block out ( fnc )
