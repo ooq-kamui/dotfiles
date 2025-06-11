@@ -192,19 +192,6 @@ function v.Is_char__tgl_bracket_trn(c)
   return rpl
 end
 
-function v.Is_char__tgl_alpha_trn(c) -- use not
-  
-  local rpl = ''
-
-  if     c == 'T' then
-    rpl = 'f'
-  elseif c == 'F' then
-    rpl = 't'
-  end
-
-  return rpl
-end
-
 -- str
 
 function v.Str_len(str) -- alias
@@ -232,6 +219,7 @@ function v.Str_r_char(str)
   return c
 end
 
+-- dev anchor
 function v.Str_sub(str, idx, len) -- dev doing
 
   local str = str
@@ -309,6 +297,7 @@ function v.Str_cmnt_1()
     dflt       = '# ' ,
   }
 
+  -- dev anchor
   local str = f.get(cmnt_1_def, vim.bo.filetype, cmnt_1_def['dflt'])
   return str
 end
@@ -352,7 +341,7 @@ function v.Is_str__num(str)
   return ret
 end
 
--- num ( idx )
+-- idx
 
 function v.Idx__icl(idx, ar_len)
 
@@ -379,6 +368,8 @@ function v.Idx__dcl(idx, ar_len)
   return r_idx
 end
 
+-- int
+
 function v.Int_2_str(num)
 
   local num_str = f.printf('%o', num)
@@ -395,19 +386,19 @@ function v.Txt_to_ar(txt)
   return line_ar
 end
 
--- vim
-
--- vim basic
-
 function v.Nothing() -- use by tst
 
   -- print( "do nothing.." )
 end
 
-function v.Echo(str) -- alias
+-- function v.Echo(str) -- alias -- old -- del
+-- 
+--   print(str)
+-- end
 
-  print(str)
-end
+-- vim
+
+-- vim basic
 
 function v.Cmd(cmd) -- alias
 
@@ -499,9 +490,6 @@ function v.Dir__buf_file_dir()
 
   local dir = v.Buf_file_dir()
   v.Dir__(dir)
-
-  -- v.Cmd('cd ' .. dir)
-  -- v.Pth()
 end
 
 -- dir __ ch parent
@@ -2497,7 +2485,7 @@ function v.Slct_by_pos(s_pos, e_pos) -- use not
 end
 
 -- refactoring slct > slctd __ xxx
-
+-- dev anchor
 function v.Slct_by_line_col(s_line, s_col, e_line, e_col)
 
   s_line = (s_line == vim.v.null) and v.Cursor_line_num() or s_line
@@ -2509,7 +2497,7 @@ function v.Slct_by_line_col(s_line, s_col, e_line, e_col)
 end
 
 -- refactoring slct > slctd __ xxx
-
+-- dev anchor
 function v.Slct_by_line_rng(line_s_num, line_e_num)
 
   v.Cursor__mv_by_line_num(line_s_num)

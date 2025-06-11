@@ -17,16 +17,20 @@ merge way 3 off
 Is_mode__xx()
 - cre
 
+
 a_firstline
 - if a_firstline ~= a_lastline then
   - Is_slctd_line__mlt()
 
-lua nomal exe ? ( api )
-
-vimrc del
 
 normal line_num .. 'G'
 - Cursor__mv_by_line_num()
+
+
+vim.v.null > nil
+
+
+slct_xx() > slctd__xx()
 
 
 nnoremap `<` cursor mv block out ( fnc )
