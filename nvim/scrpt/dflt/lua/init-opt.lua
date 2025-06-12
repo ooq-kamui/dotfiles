@@ -194,9 +194,11 @@ vim.opt.showtabline = 2
 vim.opt.wildmenu = true -- ?
 -- vim.opt.showmatch = true
 -- vim.opt.visualbell = true
--- vim.opt.ambiwidth = 'double'
 vim.opt.autoread = true
 -- vim.opt.clipboard:append {'unnamedplus'}
+
+-- vim.opt.ambiwidth = 'double'
+-- vim.opt.ambiwidth = 'single'
 
 -- status line
 function Status_line(file_encoding_flg)
