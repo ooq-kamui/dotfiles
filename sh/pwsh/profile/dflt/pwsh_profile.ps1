@@ -12,37 +12,42 @@ function prompt {
   }
 }
 
-# bell sound
-
-Set-PSReadlineOption -BellStyle None
-
-# color
-
-# $PSStyle.FileInfo.Directory = $PSStyle.Foreground.BrightGreen
-$PSStyle.FileInfo.Directory = $PSStyle.Foreground.BrightCyan
-
-Set-PSReadLineOption -Colors @{ InlinePrediction = $PSStyle.Foreground.Cyan    }
-Set-PSReadLineOption -Colors @{ Command          = $PSStyle.Foreground.BrightCyan  }
-Set-PSReadLineOption -Colors @{ Parameter        = $PSStyle.Foreground.BrightYellow  }
-Set-PSReadLineOption -Colors @{ Variable         = $PSStyle.Foreground.BrightCyan    }
-Set-PSReadLineOption -Colors @{ String           = $PSStyle.Foreground.BrightGreen   }
-
 Import-Module PSReadline
+
+# auto complete
+
+# key bind
+
 Set-PSReadLineOption -EditMode Emacs
 
 Set-PSReadLineKeyHandler -Key Ctrl+j -Function AcceptLine
-
 Set-PSReadLineKeyHandler -Key Ctrl+o -Function BackwardWord
 Set-PSReadLineKeyHandler -Key Ctrl+f -Function ForwardWord
 Set-PSReadLineKeyHandler -Key Ctrl+s -Function BackwardChar
 Set-PSReadLineKeyHandler -Key Ctrl+l -Function ForwardChar
 Set-PSReadLineKeyHandler -Key Ctrl+k -Function DeleteEndOfWord
-Set-PSReadLineKeyHandler -Key Ctrl+i -Function Complete
+
+# Set-PSReadLineKeyHandler -Key Ctrl+i -Function TabCompleteNext
+Set-PSReadLineKeyHandler -Key Ctrl+i -Function MenuComplete
+Set-PSReadLineKeyHandler -Key Ctrl+u -Function Complete
 
 # read line list view
-# Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 # Set-PSReadLineOption -PredictionViewStyle ListView
-# Set-PSReadLineOption -Colors @{ InLinePrediction = [ConsoleColor]::Cyan }
+# Set-PSReadLineOption -PredictionSource HistoryAndPlugin
+
+# color
+
+$PSStyle.FileInfo.Directory = $PSStyle.Foreground.BrightCyan
+
+Set-PSReadLineOption -Colors @{ InlinePrediction = $PSStyle.Foreground.Cyan         }
+Set-PSReadLineOption -Colors @{ Command          = $PSStyle.Foreground.BrightCyan   }
+Set-PSReadLineOption -Colors @{ Parameter        = $PSStyle.Foreground.BrightYellow }
+Set-PSReadLineOption -Colors @{ Variable         = $PSStyle.Foreground.BrightCyan   }
+Set-PSReadLineOption -Colors @{ String           = $PSStyle.Foreground.BrightGreen  }
+Set-PSReadLineOption -Colors @{ Selection        = $PSStyle.Foreground.BrightCyan   }
+
+# bell sound
+Set-PSReadlineOption -BellStyle None
 
 # zoxide ( z )
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
@@ -334,33 +339,6 @@ function cnf {
 
   }else {
     echo $subcmd' ?'
-  }
-}
-
-$prj_dir      = "$wrk/prj"
-$doc_tech_dir = "$wrk/doc-tech"
-
-function memo {
-  param( $subcmd, $ptn, $opt )
-
-  if      ( $subcmd -eq 'fd'  ){
-
-    fd "$ptn" $prj_dir/
-
-  }elseif ( $subcmd -eq 'rg'  ){
-
-    rg -N -A 0 $opt -g '*.md' "$ptn" $prj_dir/
-
-  }elseif ( $subcmd -eq 'pw'  ){
-
-    rg -N -B 2 -w -g '*.md' 'pw' $prj_dir/
-
-  }elseif ( $subcmd -eq 'slf' ){
-
-    vi -p $profile_file_path
-
-  }else{
-
   }
 }
 
