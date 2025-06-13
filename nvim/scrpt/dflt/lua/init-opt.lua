@@ -42,6 +42,7 @@ vim.cmd('syntax on')
 -- vim.filetype.add({
 --   pattern = {
 --     ['*.fish'] = 'fish',
+--     ['*.mdx'] = 'markdown',
 --   },
 -- })
 -- defold
