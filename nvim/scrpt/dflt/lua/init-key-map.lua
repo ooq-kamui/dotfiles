@@ -1044,7 +1044,7 @@ vim.keymap.set('v', 'i', 'V')
 
 -- mode ch visual box
 vim.keymap.set('v', 'v', function()
-  if v.Is_slctd_mode__box() then
+  if v.Mode.is__box() then
     return ':lua v.Slctd_box_width__1()<cr>'
   else
     return '<c-v>'
@@ -1156,7 +1156,7 @@ vim.keymap.set('v', 'c', ':lua v.Ynk__slctd()<cr>')
 -- paste
 -- " todo refactoring
 vim.keymap.set('v', 'p', function()
-  if v.Is_slctd_mode__box() then
+  if v.Mode.is__box() then
     return ':lua v.Slctd_box_edge_l__ynk_line_1()<cr>'
   else
     return ':lua v.Slctd_str__ynk()<cr>'
@@ -1175,7 +1175,7 @@ end, {expr = true})
 
 -- ins | cut & ins
 vim.keymap.set('v', '<space>', function()
-  if v.Is_slctd_mode__box() then
+  if v.Mode.is__box() then
     return 'I'
   else
     return 'c'
@@ -1187,7 +1187,7 @@ end, {expr = true})
 
 -- ins $
 vim.keymap.set('v', 'Y', function()
-  if v.Is_slctd_mode__box() then
+  if v.Mode.is__box() then
     return '$A'
   else
     return '<c-v>$A'
@@ -1196,7 +1196,7 @@ end, {expr = true})
 
 -- ins space
 vim.keymap.set('v', 'L', function()
-  if v.Is_slctd_mode__box() then
+  if v.Mode.is__box() then
     return 'I <esc>gv'
   else
     return '>gv'
@@ -1232,7 +1232,7 @@ vim.keymap.set('v', 'J', ':lua v.Slctd_line__join_per_line(3)')
 
 -- del str > ynk
 vim.keymap.set('v', 'd', function()
-  if v.Is_slctd_mode__box() then
+  if v.Mode.is__box() then
     return '"ad:let @+ = @a<cr>gv'
   else
     return '"ad:let @+ = @a<cr>'
@@ -1243,7 +1243,7 @@ end, {expr = true})
 
 -- del str > ynk not
 vim.keymap.set('v', 's', function()
-  if v.Is_slctd_mode__box() then
+  if v.Mode.is__box() then
     return ':lua v.Slctd__del()<cr>'
   else
     return '"zx'
@@ -1264,7 +1264,7 @@ vim.keymap.set('v', 'K', ':lua v.Slctd_box_cursor_r_space__crct()<cr>')
 
 -- slctd str edge out quote __ tgl
 vim.keymap.set('v', 'w', function()
-  if v.Is_slctd_mode__box() then
+  if v.Mode.is__box() then
     return ':lua v.Slctd_box_width__1()<cr>'
   else
     return ':lua v.Slctd_str_edge_out_char__tgl()<cr>'
@@ -1313,8 +1313,8 @@ vim.keymap.set('v', '*', 'r0gvg<c-a>gv')
 
 -- indnt shft
 --   slctd indnt __ shft l, r  -  todo dev,
--- vim.keymap.set('v', 'ri', ':lua v.Slctd_indnt__shft_l()<cr>')
--- vim.keymap.set('v', 'ro', ':lua v.Slctd_indnt__shft_r()<cr>')
+-- vim.keymap.set('v', 'ri', ':lua v.Slctd_line_indnt__shft_l()<cr>')
+-- vim.keymap.set('v', 'ro', ':lua v.Slctd_line_indnt__shft_r()<cr>')
 vim.keymap.set('v', 'ri', '<gv')
 vim.keymap.set('v', 'ro', '>gv')
 
@@ -1362,7 +1362,7 @@ vim.keymap.set('v', '<c-n>', ':lua v.Slctd_srch_7_slctd__srch_nxt("f")<cr>')
 -- srch str set
 vim.keymap.set('v', 'n', ':lua v.Slctd_srch__swtch()<cr>')
 vim.keymap.set('v', 'e', function()
-  if v.Is_slctd_mode__box() then
+  if v.Mode.is__box() then
     return '<esc>'
   else
     return ':lua v.Srch_str__slctd_str()<cr>'
@@ -1374,7 +1374,7 @@ vim.keymap.set('v', '<c-p>', ':lua v.Slctd__rpl_7_srch_nxt()<cr>')
 
 -- rpl ( cmd )
 vim.keymap.set('v', ':s', function()
-  if v.Is_slctd_mode__box() then
+  if v.Mode.is__box() then
     return ':VBoxRpl '
   else
     return ':s///g'
@@ -1388,7 +1388,7 @@ vim.keymap.set('v', '<c-m>', ':lua v.Slctd_line_srch_str__rpl_cr()<cr>')
 
 -- v box edge char shft in
 vim.keymap.set('v', '<c-h>', function()
-  if v.Is_slctd_mode__box() then
+  if v.Mode.is__box() then
     return ':lua v.Slctd_box_edge_r_char__shft_in()<cr>'
   else
     return ''
@@ -1396,7 +1396,7 @@ vim.keymap.set('v', '<c-h>', function()
 end, {expr = true})
 
 vim.keymap.set('v', '<c-s>', function()
-  if v.Is_slctd_mode__box() then
+  if v.Mode.is__box() then
     return ':lua v.Slctd_box_edge_r_char__shft_in()<cr>'
   else
     return ':lua v.Slctd_str_edge_out__ins(" ")<cr>'

@@ -411,10 +411,12 @@ function v.Normal(n_cmd) -- alias
   -- vim.cmd('exe "normal! ' .. n_cmd .. '"')
 end
 
-function v.Esc() -- alias
+function v.Sys_cmd(sys_cmd)
 
-  -- v.Normal('\\<esc>')
-  vim.cmd('exe "normal! \\<esc>"')
+  -- print(sys_cmd)
+  local ret = f.system(sys_cmd)
+  -- print(ret)
+  return ret
 end
 
 function v.Cmdline__(str)
@@ -422,6 +424,12 @@ function v.Cmdline__(str)
   -- v.Ynk__(str)
 
   f.feedkeys(':call ' .. str)
+end
+
+function v.Esc() -- alias
+
+  -- v.Normal('\\<esc>')
+  vim.cmd('exe "normal! \\<esc>"')
 end
 
 -- undo clr, file ( crnt buf ? )
@@ -437,11 +445,39 @@ function v.Undo__clr()
   vim.bo.undolevels = undo_lvl_tmp
 end
 
-function v.Sys_cmd(sys_cmd)
+-- mode
 
-  -- print(sys_cmd)
-  local ret = f.system(sys_cmd)
-  -- print(ret)
+-- function v.Is_slctd_mode__box() -- old
+-- 
+--   return v.Mode.is__box()
+-- end
+-- 
+-- function v.Is_slctd_mode__line() -- old
+-- 
+--   return v.Mode.is__line()
+-- end
+
+v.Mode = {}
+
+function v.Mode.is__box()
+
+  local ret = false
+
+  if f.mode() == vim.api.nvim_replace_termcodes('<c-v>', false, false, true) then
+    ret = true
+  end
+  return ret
+end
+
+function v.Mode.is__line()
+
+  local ret = false
+
+  if     f.mode() == 'v' then
+    ret = true
+  elseif f.mode() == 'V' then
+    ret = true
+  end
   return ret
 end
 
@@ -2538,7 +2574,7 @@ function v.Slctd_cursor__mv_line_end() -- range
 
   v.Slctd__ltst()
 
-  if     v.Is_slctd_mode__box() then
+  if     v.Mode.is__box() then
 
     if v.Is_cursor_col__line_end_ovr() then
       return
@@ -2547,7 +2583,7 @@ function v.Slctd_cursor__mv_line_end() -- range
     v.Normal('$h')
     --v.Normal('g_')
 
-  elseif v.Is_slctd_mode__line() then
+  elseif v.Mode.is__line() then
 
     if v.Is_cursor_line_str__emp() then
       return
@@ -3322,9 +3358,7 @@ end
 
 function v.Slctd_line__rpl_by_line1_line2() -- range
 
-  -- local srch = f.getline(1)
   local srch = v.Line_str_by_line_num(1)
-  -- local rpl  = f.getline(2)
   local rpl  = v.Line_str_by_line_num(2)
 
   local rng = g.v_rng_dflt
@@ -3418,7 +3452,6 @@ function v.Slctd_line_indnt__space(indnt_col) -- range
 
   else
     local sys_cmd = '  expand   -t ' .. indnt_col
-    -- '<,'>:call v.Slctd_line__rpl_sys_cmd(sys_cmd)
     v.Slctd_line__rpl_sys_cmd(sys_cmd)
   end
 end
@@ -3429,7 +3462,6 @@ function v.Slctd_line_indnt__tab(indnt_col) -- range
     v.Nothing()
   else
     local sys_cmd = 'unexpand   -t ' .. indnt_col
-    -- '<,'>:call v.Slctd_line__rpl_sys_cmd(sys_cmd)
     v.Slctd_line__rpl_sys_cmd(sys_cmd)
   end
 end
@@ -3446,11 +3478,11 @@ end
 
 -- slctd line indnt __ shft
 
-function v.Slctd_indnt__shft_l() -- todo
+function v.Slctd_line_indnt__shft_l() -- todo
 
 end
 
-function v.Slctd_indnt__shft_r() -- todo
+function v.Slctd_line_indnt__shft_r() -- todo
 
 end
 
@@ -3468,7 +3500,6 @@ function v.Slctd_line__crct_tbl() -- range
     sys_cmd = 'column -t'
   end
 
-  -- '<,'>:call v.Slctd_line__rpl_sys_cmd(sys_cmd)
   v.Slctd_line__rpl_sys_cmd(sys_cmd)
 end
 
@@ -3476,14 +3507,9 @@ end
 
 function v.Slctd_line__cnv_markdown_tbl_header() -- range -- ??
 
-  -- '<,'>:call v.Slctd_line__rpl('[^|]', '-')
-  v.Slctd_line__rpl('[^|]', '-')
-
-  -- '<,'>:call v.Slctd_line__rpl( '|.',  '| ')
-  v.Slctd_line__rpl( '|.',  '| ')
-
-  -- '<,'>:call v.Slctd_line__rpl('.|' , ' |' )
-  v.Slctd_line__rpl('.|' , ' |' )
+  v.Slctd_line__rpl('[^|]', '-'  )
+  v.Slctd_line__rpl( '|.' , '| ' )
+  v.Slctd_line__rpl('.|'  , ' |' )
 end
 
 -- slctd line mb
@@ -3492,8 +3518,21 @@ function v.Slctd_line_mb__cnv() -- range
 
   local sys_cmd = 'mb__cnv'
 
-  -- '<,'>:call v.Slctd_line__rpl_sys_cmd(sys_cmd)
   v.Slctd_line__rpl_sys_cmd(sys_cmd)
+end
+
+function v.Is_slctd_line__mlt()
+
+  local ret = false
+
+  local a_firstline = v.Slctd_line_s_num()
+  local a_lastline  = v.Slctd_line_e_num()
+
+  if a_firstline ~= a_lastline then
+    ret = true
+  end
+
+  return ret
 end
 
 -- slctd box __ mv
@@ -3511,7 +3550,7 @@ function v.Slctd_box_width__1() -- range
 
   v.Slctd__ltst()
 
-  if not v.Is_slctd_mode__box() then
+  if not v.Mode.is__box() then
     return
   end
 
@@ -3606,35 +3645,6 @@ function v.Slctd_box_cursor_r_space__crct() -- range
     v.Cursor_f_space__del()
     v.Cursor__mv_d()
   end
-end
-
-function v.Is_slctd_mode__box() -- range
-
-  -- v.Slctd__ltst()
-
-  local ret = false
-
-  if f.mode() == vim.api.nvim_replace_termcodes('<c-v>', false, false, true) then
-    -- print( "c-v" )
-    ret = true
-  end
-  return ret
-end
-
-function v.Is_slctd_mode__line() -- range
-
-  -- v.Slctd__ltst()
-
-  local ret = false
-
-  if     f.mode() == 'v' then
-    -- print( "v" )
-    ret = true
-  elseif f.mode() == 'V' then
-    -- print( "v" )
-    ret = true
-  end
-  return ret
 end
 
 -- slctd etc

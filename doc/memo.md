@@ -2,25 +2,15 @@
 # dotfiles
 
 
-## git
-
-merge way 3 off
-- `.gitconfig`
-  - mod
-    - ggl
-
-- doc write
-
-
 ## nvim
-
-Is_mode__xx()
-- cre
-
 
 a_firstline
 - if a_firstline ~= a_lastline then
   - Is_slctd_line__mlt()
+
+
+- var a_firstline > slctd_line_s_num
+  - e too
 
 
 normal line_num .. 'G'
@@ -65,6 +55,14 @@ cls nize
 plg
 - oil
 - lualine
+
+
+## git
+
+merge way 3 off
+- `.gitconfig`
+  - mod
+    - ggl
 
 
 ## aws
