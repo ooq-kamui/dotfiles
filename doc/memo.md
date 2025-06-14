@@ -2,28 +2,44 @@
 # dotfiles
 
 
+## keyboard sticker
+
+- ctrl ^
+
+
+## pwsh
+
+fzf file
+- excld ( gitignore )
+- confirm at mac
+
+
+hyper-v
+- confirm
+
+
+## git
+
+merge way 3 off
+- `.gitconfig`
+  - mod
+    - ggl
+
+
 ## nvim
-
-a_firstline
-- if a_firstline ~= a_lastline then
-  - Is_slctd_line__mlt()
-
-
-- var a_firstline > slctd_line_s_num
-  - e too
-
-
-normal line_num .. 'G'
-- Cursor__mv_by_line_num()
-
 
 vim.v.null > nil
 
 
-slct_xx() > slctd__xx()
+cls nize
+- Rgstr
+- Slctd
+- Line
 
 
-nnoremap `<` cursor mv block out ( fnc )
+opn file closed ltst
+- fnc cre
+  - ggl
 
 
 hl lua
@@ -35,34 +51,9 @@ hl lua
     - cmnt : lightgreen
 
 
-slctd __ cursor line emp ( drct )
-- v line J
-- v line K
-
-nnoremap c-f
-- case match not, back not, line
-
-
-opn file closed ltst
-- fnc cre
-
-
-cls nize
-- Slctd
-- Line
-
-
 plg
 - oil
 - lualine
-
-
-## git
-
-merge way 3 off
-- `.gitconfig`
-  - mod
-    - ggl
 
 
 ## aws

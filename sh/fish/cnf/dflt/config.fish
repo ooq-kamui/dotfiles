@@ -72,12 +72,13 @@ alias cd_parent 'cd ../; pwd'
 alias k         'cd_parent'
 alias kk        'k;k'
 alias kkk       'k;k;k'
+alias kkkk      'k;k;k;k'
 
 # alias d   'dir_jmp_with_z'
 alias d   'dir_jmp_with_zoxide'
 alias dd  'd dotfiles'
-alias ddo 'd dotfiles'
-alias do  'd dotfiles'
+# alias ddo 'd dotfiles'
+# alias do  'd dotfiles'
 
 alias lr_oo  'lr_d2'
 alias lr_ooo 'lr_d3'
@@ -110,34 +111,30 @@ alias to_add_line_emp 'echo "" >>'
 
 alias mv  'mv -i'
 alias mve 'mv_excld'
-
 alias rn  'rename'
 
 alias cp 'cp -ip'
 
 alias rm    'rm -i'
-alias rm_bk 'rm -rf bk'
-alias rmbk  'rm -rf bk'
+# alias rm_bk 'rm -rf bk'
+# alias rmbk  'rm -rf bk'
 alias trash 'trash -F'
 
 alias vi  'nvim -p'
 alias vim 'nvim -p'
-alias vid 'nvim -p doc/memo.md'
+# alias vid 'nvim -p doc/memo.md'
 
 alias ji  'git'
-alias js  'git s'
-alias j   'git s'
-alias ja  'git ao; git s'
-alias jj  'git ao; git s'
+alias j   'git status'
+alias jj  'git add .; git status'
 alias jp  'git pll origin main'
 
-alias jls 'git ls'
-alias jlw 'git lw'
-alias jds 'git ds'
-alias jdw 'git dw'
+alias jsl 'git sl'
+alias jsd 'git sd'
+alias jwl 'git wl'
+alias jwd 'git wd'
 
 alias po 'podman'
-alias pd 'podman'
 
 alias line 'cat_line'
 

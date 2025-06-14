@@ -393,14 +393,14 @@ vim.keymap.set('n', 'F', ':lua v.Cursor__mv_word_dlm_f()<cr>')
 -- cursor mv fnc name
 vim.keymap.set('n', '<c-f>', ':lua v.Cursor__mv_fnc_name()<cr>')
 
+-- cursor mv fnc out back
+-- vim.keymap.set('n', '<', '[m')
+
 -- cursor mv bracket pair
 vim.keymap.set('n', '<c-l>', '%')
 
 -- cursor mv bracket out back
--- vim.keymap.set('n', 'xx', '[{')
-
--- cursor mv bracket fnc back
--- vim.keymap.set('n', 'xx', '[m')
+vim.keymap.set('n', '<', '[{')
 
 -- cursor mv indnt auto
 -- vim.keymap.set('n', 'xx', ':lua v.Cursor__mv_indnt_auto()<cr>') -- todo dev
@@ -442,13 +442,6 @@ vim.keymap.set('n', '<down>', '<c-e>')
 
 -- slctd __ word
 vim.keymap.set('n', 'i', ':lua v.Slctd_str__word()<cr>')
-
--- slctd __ word by under score
-
--- todo dev ??
--- vim.keymap.set('n', '<c-_>', ':lua v.Slctd__word_by_under_score()<cr>')
--- " nnoremap <c-_> f_l
--- " hT_  ???
 
 -- slctd __ char current - word end
 vim.keymap.set('n', 'I', 've')
@@ -1079,8 +1072,8 @@ vim.keymap.set('v', '<c-o>', 'h')
 vim.keymap.set('v', '<c-y>', ':lua v.Slctd_cursor__mv_line_end()<cr>')
 
 -- slctd __ reduce dlm _ r
-vim.keymap.set('v', '_', 'of_lo')
--- vim.keymap.set('v', 'h', 'of_lo')
+-- vim.keymap.set('v', '_'    , 'of_lo')
+-- vim.keymap.set('v', '<c-h>', 'of_lo')
 
 -- slctd __ reduce dlm _ l
 -- vim.keymap.set('v', 'h', 'F_h')
@@ -1125,7 +1118,7 @@ vim.keymap.set('v', 'gj', ':lua v.Slctd_cursor__mv_file_edge("j")<cr>')
 vim.keymap.set('v', 'N', ':lua v.Slctd_str__expnd_srch()<cr>')
 
 -- slctd expnd word forward
-vim.keymap.set('v', 'f', ':lua v.Slctd_str__expnd_word_f()<cr>')
+vim.keymap.set('v', 'f', ':lua v.Slctd_str__expnd_f()<cr>')
 
 -- slctd expnd quote
 vim.keymap.set('v', '<tab>', ':lua v.Slctd_str__expnd_quote_swtch()<cr>')
@@ -1204,13 +1197,9 @@ vim.keymap.set('v', 'L', function()
 end, {expr = true})
 
 -- line __ ins comment 1
-vim.keymap.set('v', '!', ':lua v.V_ins_cmnt_1()<cr>')
-vim.keymap.set('v', '1', ':lua v.V_ins_cmnt_1()<cr>')
-vim.keymap.set('v', '"', ':lua v.V_ins_cmnt_1()<cr>')
-
--- line mlt __ ins comment
-vim.keymap.set('v', '&', ':lua v.V_ins_cmnt_mlt()<cr>')
--- vim.keymap.set('v', '$', ':lua v.V_ins_cmnt_mlt()<cr>')
+vim.keymap.set('v', '!', ':lua v.Slctd_line__ins_cmnt_1()<cr>')
+vim.keymap.set('v', '1', ':lua v.Slctd_line__ins_cmnt_1()<cr>')
+vim.keymap.set('v', '"', ':lua v.Slctd_line__ins_cmnt_1()<cr>')
 
 -- line end __ ins comma
 vim.keymap.set('v', ',', ':lua v.Curosr_line_end__ins(",")<cr>')
@@ -1309,14 +1298,11 @@ vim.keymap.set('v', '+', '<c-a>gv')
 
 -- num seq
 vim.keymap.set('v', '*', 'r0gvg<c-a>gv')
-   --                        ^^^^^^^^^^^^> r0 gv g<c-a> gv
+--                        ^^^^^^^^^^^^> r0 gv g<c-a> gv
 
 -- indnt shft
---   slctd indnt __ shft l, r  -  todo dev,
--- vim.keymap.set('v', 'ri', ':lua v.Slctd_line_indnt__shft_l()<cr>')
--- vim.keymap.set('v', 'ro', ':lua v.Slctd_line_indnt__shft_r()<cr>')
-vim.keymap.set('v', 'ri', '<gv')
-vim.keymap.set('v', 'ro', '>gv')
+vim.keymap.set('v', 'ri', ':lua v.Slctd_line_indnt__shft_l()<cr>')
+vim.keymap.set('v', 'ro', ':lua v.Slctd_line_indnt__shft_r()<cr>')
 
 -- indnt crct
 vim.keymap.set('v', ';', '=gv')
@@ -1391,7 +1377,7 @@ vim.keymap.set('v', '<c-h>', function()
   if v.Mode.is__box() then
     return ':lua v.Slctd_box_edge_r_char__shft_in()<cr>'
   else
-    return ''
+    return 'of_lo'
   end
 end, {expr = true})
 
@@ -1593,17 +1579,11 @@ vim.keymap.set('i', '<c-p>', '<c-r>=v:lua.v.I_symbol03()<cr>')
 -- ins markdown
 -- vim.keymap.set('i', '<c-u>', '<c-r>=v:lua.v.I_markdown_lnk()<cr>')
 
--- ins todo status
--- vim.keymap.set('i', 'xx', '<c-r>=v:lua.v.I_todo_status()<cr>')
-
 -- ins week
 -- vim.keymap.set('i', 'xx', '<c-r>=v:lua.v.I_week()<cr>')
 
 -- ins register
 -- vim.keymap.set('i', 'xx', '<c-r>=v:lua.v.I_reg()<cr>')
-
--- ins reserved word lua
--- vim.keymap.set('i', 'xx', '<c-r>=v:lua.v.I_reserved_lua()<cr>')
 
 -- ins bracket
 -- vim.keymap.set('i', '<', '<><c-o>h')
