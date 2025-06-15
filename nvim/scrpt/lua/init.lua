@@ -37,7 +37,7 @@ elseif v.Is_env__('win64')     then -- pwsh
   vim.opt.shell = 'pwsh'
   -- vim.opt.shell = 'powershell'
 
-  require('init_env_pwsh')
+  require('env/env-pwsh')
 
 elseif v.Is_env__('win32unix') then -- gitbash
   vim.g.env_dir = 'gitbash'

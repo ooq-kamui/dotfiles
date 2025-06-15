@@ -258,14 +258,14 @@ Set-Alias t "ts"
 
 # git
 Set-Alias ji  "git"    -force # alias xxx is read-only or
-function js  { git s  }
 function j   { git s  }
-# function jis { git s  }
-function ja  { git ao; git s }
-function jo  { git ao; git s }
-function jj  { git ao; git s }
-# function jjj { git ao; git s }
+function jj  { git a .; git s }
 function jp  { git pll origin main }
+
+function jsl { git sl }
+function jsd { git sd }
+function jwl { git wl }
+function jwd { git wd }
 
 # posh-git
 Import-Module posh-git

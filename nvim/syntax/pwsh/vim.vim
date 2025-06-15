@@ -7,6 +7,7 @@ hi vimVar         ctermfg=yellow
 hi vimFuncVar     ctermfg=yellow
 " hi vimFunction    ctermfg=cyan
 hi vimFunction    ctermfg=lightblue
+hi vimHiGroup     ctermfg=lightblue
 
 hi vimParenSep    ctermfg=lightmagenta
 hi vimContinue    ctermfg=lightmagenta
