@@ -2,31 +2,6 @@
 # dotfiles
 
 
-## keyboard sticker
-
-- ctrl ^
-
-
-## pwsh
-
-fzf file
-- excld ( gitignore )
-- confirm at mac
-
-- in nvim ?
-
-hyper-v
-- confirm
-
-
-## git
-
-merge way 3 off
-- `.gitconfig`
-  - mod
-    - ggl
-
-
 ## nvim
 
 cls
@@ -34,6 +9,22 @@ cls
 - slctd
 - line
 
+
+## pwsh
+
+fzf file
+- excld ( gitignore )
+
+- in nvim ?
+
+
+## win vm
+
+mltpss
+hypr-v
+
+
+## nvim
 
 hl lua
 - Hl_grp(), nil ? ggl
@@ -48,6 +39,21 @@ plg
 - lualine
 
 opn file closed ltst
+
+
+## git
+
+rebase learn
+- pull opt rebase
+- doc write
+
+
+merge way 3 off
+- `.gitconfig`
+  - mod
+    - ggl
+
+- ref https://it-infomation.com/git-merge-ff-no-ff-squash/
 
 
 ## aws
