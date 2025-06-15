@@ -2,7 +2,11 @@
 -- fnc
 -- 
 
-require('utl')
+require('fnc/fnc-utl'  )
+require('fnc/fnc-rgstr')
+require('fnc/fnc-line' )
+require('fnc/fnc-slctd')
+require('fnc/fnc-tst'  )
 
 -- global
 
@@ -246,7 +250,7 @@ function v.Str_srch_idx(...) -- alias
 
   local str = arg[1]
   local ptn = arg[2]
-  local idx = ( #arg >= 3 ) and arg[3] or vim.v.null
+  local idx = ( #arg >= 3 ) and arg[3] or nil
 
   local r_idx = f.match(str, ptn, idx)
   return r_idx -- -1 : match not
@@ -978,7 +982,7 @@ function v.Line_end_space__del(line_num)
 
   v.Cmd(rpl_cmd)
 
-  f.setreg('/', ptn_tmp)
+  v.Rgstr__('/', ptn_tmp)
 end
 
 function v.Line_end__pad_space(line_num, fil_end_col)
@@ -1128,7 +1132,7 @@ end
 
 function v.Cursor__mv_by_line_col(line_num, col)
 
-  local line_num = (line_num == vim.v.null) and v.Cursor_line_num() or line_num
+  local line_num = (line_num == nil) and v.Cursor_line_num() or line_num
 
   f.cursor(line_num, col)
 end
@@ -1635,7 +1639,8 @@ end
 
 function v.Cursor__ins_cmnt_1(cmd_cursor__mv_line_top)
 
-  if cmd_cursor__mv_line_top ~= vim.v.null then
+  -- if cmd_cursor__mv_line_top ~= nil then
+  if cmd_cursor__mv_line_top then
     v.Normal(cmd_cursor__mv_line_top)
   end
 
@@ -1698,7 +1703,7 @@ function v.Cursor__ins_markdown_h()
 
   local ptn = '^#* '
   local col = v.Str_srch_end(v.Cursor_line_str(), ptn) + 1
-  v.Cursor__mv_by_line_col(vim.v.null, col)
+  v.Cursor__mv_by_line_col(nil, col)
 end
 
 function v.Cursor__ins_markdown_cr()
@@ -2555,7 +2560,7 @@ function v.Slctd_str__by_col_len(s_col, len)
 
   local e_col = len - 1
 
-  v.Slctd__by_line_col(vim.v.null, s_col, vim.v.null, e_col)
+  v.Slctd__by_line_col(nil, s_col, nil, e_col)
 end
 
 -- slctd __
@@ -2570,11 +2575,10 @@ end
 
 function v.Slctd__by_line_col(s_line, s_col, e_line, e_col)
 
-  s_line = (s_line == vim.v.null) and v.Cursor_line_num() or s_line
-  e_line = (e_line == vim.v.null) and v.Cursor_line_num() or e_line
+  s_line = (s_line == nil) and v.Cursor_line_num() or s_line
+  e_line = (e_line == nil) and v.Cursor_line_num() or e_line
 
   v.Cursor__mv_by_line_col(s_line, s_col)
-  -- v.Normal('v')
   v.Slctd_str__cursor_c_char()
   v.Cursor__mv_by_line_col(e_line, e_col)
 end
@@ -2885,7 +2889,7 @@ function v.V_slctd__del() -- dev doing, can
 
   v.Normal('"ad')
 
-  f.setreg('+', v.Rgstr_get('a'))
+  v.Rgstr__('+', v.Rgstr_get('a'))
 end
 
 function v.Slctd__del() -- range
@@ -3522,7 +3526,7 @@ function v.Slctd_line__ins_cmnt_1() -- range
 
     v.Cursor__mv_by_line_col(line_num, col)
 
-    v.Cursor__ins_cmnt_1(vim.v.null)
+    v.Cursor__ins_cmnt_1(nil)
   end
 end
 
@@ -3705,7 +3709,7 @@ end
 
 function v.Ynk__clr()
 
-  f.setreg('a', '')
+  v.Rgstr__('a', '')
 end
 
 function v.Ynk__(str)
@@ -3717,7 +3721,7 @@ function v.Ynk__(str)
   end
 
   v.Rgstr__shft()
-  f.setreg('a', str)
+  v.Rgstr__('a', str)
 end
 
 function v.Ynk__line()
@@ -3734,7 +3738,7 @@ function v.Ynk__line_all()
   local cmd = '%y' -- todo rgstr a direct
   v.Cmd(cmd)
 
-  f.setreg('a', v.Rgstr_get('0'))
+  v.Rgstr__('a', v.Rgstr_get('0'))
   v.Clp__ynk()
 end
 
@@ -3742,13 +3746,13 @@ function v.Ynk__buf_file_path()
 
   local path = v.Buf_file_path()
 
-  f.setreg('a', path)
+  v.Rgstr__('a', path)
   v.Clp__ynk()
 end
 
 function v.Ynk__clp()
 
-  f.setreg('a', v.Rgstr_get('+'))
+  v.Rgstr__('a', v.Rgstr_get('+'))
 end
 
 function v.Ynk__slctd()
@@ -3782,7 +3786,7 @@ function v.Clp__ynk()
     -- v.C9clp__ynk() -- off
   else
     vim.cmd('let @+ = @a')
-    -- f.setreg('+', v.Rgstr_get('a'))
+    -- v.Rgstr__('+', v.Rgstr_get('a'))
   end
 end
 
@@ -3799,8 +3803,7 @@ function v.Srch_or(...)
   local str = '\\(' .. f.join(arg, '\\|') .. '\\)'
   --print( str )
 
-  -- let @/ = str
-  f.setreg('/', str)
+  v.Rgstr__('/', str)
   v.Cursor__mv_srch('f')
 end
 
@@ -3826,7 +3829,7 @@ end
 
 function v.Srch_str_word1(str)
 
-  if str == vim.v.null then
+  if str == nil then
     str = v.Srch_str_flt()
   end
 
@@ -3849,13 +3852,11 @@ function v.Srch_str__(str, op_word1)
     exe_str = v.Srch_str_word1(exe_str)
   end
 
-  -- if "@/" == exe_str then -- same ltst 01
   if v.Rgstr_get('/') == exe_str then -- same ltst 01
     return
   end
 
-  -- let @/ = exe_str -- highlight
-  f.setreg('/', exe_str) -- highlight
+  v.Rgstr__('/', exe_str) -- highlight
   v.Normal('/' .. exe_str) -- srch hstry add
 end
 
@@ -3905,8 +3906,7 @@ function v.Srch_str__prv_tgl()
     srch_str = v.Srch_str_ltst(1)
   end
 
-  -- let @/ = srch_str
-  f.setreg('/', srch_str)
+  v.Rgstr__('/', srch_str)
 end
 
 function v.Srch_str__slctd_str() -- range
@@ -3956,8 +3956,7 @@ end
 
 function v.Srch_char(drct, char)
 
-  -- let @/ = '[' .. char .. ']'
-  f.setreg('/', '[' .. char .. ']')
+  v.Rgstr__('/', '[' .. char .. ']')
   v.Cursor__mv_srch(drct)
 end
 
@@ -3984,13 +3983,12 @@ end
 
 function v.Srch_str__markdown_h()
 
-  -- let @/ = '^#\\+ '
-  f.setreg('/', '^#\\+ ')
+  v.Rgstr__('/', '^#\\+ ')
 end
 
 function v.Srch_str__fnc()
 
-  f.setreg('/', '^func')
+  v.Rgstr__('/', '^func')
 end
 
 -- srch cnd
@@ -4024,11 +4022,14 @@ function v.Rgstr_info_rgstr(rgstr_info)
   return rgstr
 end
 
+function v.Rgstr__(rgstr_name, val)
+
+  f.setreg(rgstr_name, val)
+end
+
 function v.Rgstr__clr()
 
-  -- let @0 = ''
-  -- f.setreg('0', '')
-  f.setreg('a', '')
+  v.Rgstr__('a', '')
 end
 
 function v.Rgstr__shft()
@@ -4040,14 +4041,14 @@ function v.Rgstr__shft()
     return
   end
 
-  f.setreg('h', v.Rgstr_get('g'))
-  f.setreg('g', v.Rgstr_get('f'))
-  f.setreg('f', v.Rgstr_get('e'))
+  v.Rgstr__('h', v.Rgstr_get('g'))
+  v.Rgstr__('g', v.Rgstr_get('f'))
+  v.Rgstr__('f', v.Rgstr_get('e'))
 
-  f.setreg('e', v.Rgstr_get('d'))
-  f.setreg('d', v.Rgstr_get('c'))
-  f.setreg('c', b            )
-  f.setreg('b', a            )
+  v.Rgstr__('e', v.Rgstr_get('d'))
+  v.Rgstr__('d', v.Rgstr_get('c'))
+  v.Rgstr__('c', b            )
+  v.Rgstr__('b', a            )
 end
 
 -- markdown cnd
@@ -4178,8 +4179,7 @@ function v.Slctd_math() -- range
   local sys_cmd = 'echo ' .. "'" .. str .. "'" .. ' | math'
   local rslt = v.Sys_cmd(sys_cmd)
   print( rslt )
-  -- let @a = rslt
-  f.setreg('a', rslt)
+  v.Rgstr__('a', rslt)
 end
 
 -- url encdoe
@@ -4229,7 +4229,7 @@ g.fzf_rg_opt = ''
 
 function v.Rg_cmd(ptn, ext, word1, opt)
 
-  if ptn == vim.v.null then
+  if ptn == nil then
     ptn = ''
   else
     ptn = ptn
@@ -4237,7 +4237,6 @@ function v.Rg_cmd(ptn, ext, word1, opt)
 
   local fzf_rg_opt_ext
 
-  -- if ext == vim.v.null then
   if ext == nil then
     fzf_rg_opt_ext = ''
   else
@@ -4250,7 +4249,6 @@ function v.Rg_cmd(ptn, ext, word1, opt)
     fzf_rg_opt_word1 = ' -w'
   end
 
-  -- if opt == vim.v.null then
   if opt == nil then
     opt = ''
   else

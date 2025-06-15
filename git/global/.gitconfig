@@ -19,6 +19,7 @@
   tool = vimdiff
 [alias]
   l     = log
+  ls    = ls-files
   s     = status
   d     = diff
   sl    = diff --staged --name-only

@@ -13,6 +13,7 @@ fzf file
 - excld ( gitignore )
 - confirm at mac
 
+- in nvim ?
 
 hyper-v
 - confirm
@@ -28,18 +29,10 @@ merge way 3 off
 
 ## nvim
 
-vim.v.null > nil
-
-
-cls nize
-- Rgstr
-- Slctd
-- Line
-
-
-opn file closed ltst
-- fnc cre
-  - ggl
+cls
+- rgstr
+- slctd
+- line
 
 
 hl lua
@@ -50,10 +43,11 @@ hl lua
   - mac
     - cmnt : lightgreen
 
-
 plg
 - oil
 - lualine
+
+opn file closed ltst
 
 
 ## aws
@@ -63,7 +57,7 @@ price confirm
 
 ## ooq dns
 
-dns mgrtn
+dns mgr
 - vps
   - cre
 - svr

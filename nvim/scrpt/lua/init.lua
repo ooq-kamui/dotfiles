@@ -8,8 +8,7 @@ _G.v = v
 
 g = {}
 
-require('init-fnc'     )
-require('init-fnc-tst' )
+require('fnc/fnc-basic')
 
 require('init-plg-mng' )
 require('init-plg-fzf' )
