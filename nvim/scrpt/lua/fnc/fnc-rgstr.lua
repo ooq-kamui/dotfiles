@@ -1,6 +1,9 @@
 
 -- rgstr
 
+v.Rgstr = {}
+
+
 function v.Rgstr_get(rgstr_name)
 
   return f.getreg(rgstr_name)

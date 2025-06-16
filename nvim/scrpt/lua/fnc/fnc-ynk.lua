@@ -1,6 +1,9 @@
 
 -- ynk
 
+v.Ynk = {}
+
+
 function v.Ynk__clr()
 
   v.Rgstr__('a', '')

@@ -1,6 +1,9 @@
 
 -- line
 
+v.Line = {}
+
+
 function v.Line_num_file_edge_bgn()
 
   return f.line('^')

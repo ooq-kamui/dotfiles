@@ -3,21 +3,19 @@
 
 f = vim.fn
 v = {}
-
-_G.v = v
-
 g = {}
+-- _G.v = v
 
 require('fnc/fnc-basic')
 
-require('init-plg-mng' )
-require('init-plg-fzf' )
+require('plg-mng' )
+require('plg-fzf' )
 osc52 = require('osc52')
 
-require('init-opt'     )
-require('init-cmd-usr' )
-require('init-hl'      )
-require('init-key-map' )
+require('opt'     )
+require('cmd-usr' )
+require('hl'      )
+require('key-map' )
 
 -- env
 

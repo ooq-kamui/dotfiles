@@ -4,6 +4,9 @@
 
 ## git
 
+git co-ls co-id
+
+
 rebase learn
 - pull opt rebase
 - doc write
@@ -19,20 +22,17 @@ merge way 3 off
 
 ## nvim
 
-hl lua
-- Hl_grp(), nil ? ggl
-
-- color mod
-  - {}
-  - mac
-    - cmnt : lightgreen
+opn close final
+```
+:tab drop #
+```
 
 plg
 - oil
+- nvim-treesitter
 - lualine
 
-
-opn close final
+cls
 
 
 ## ooq dns

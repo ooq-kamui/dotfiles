@@ -81,7 +81,7 @@ vim.api.nvim_create_user_command('VBoxRpl',
 
 vim.api.nvim_create_user_command('Opn',
   function(opts)
-    v.Opn(opts.fargs[1])
+    v.Opn.opn(opts.fargs[1])
   end,
   {nargs = '*', complete = 'file'}
 )

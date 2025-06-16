@@ -1,6 +1,9 @@
 
 -- cursor
 
+v.Cursor = {}
+
+
 -- cursor pos
 
 function v.Cursor_pos() -- alias

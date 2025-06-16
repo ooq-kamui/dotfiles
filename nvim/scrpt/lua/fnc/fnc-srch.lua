@@ -1,6 +1,9 @@
 
 -- srch
 
+v.Srch = {}
+
+
 -- srch exe, ref: cursor __ mv srch ptn
 
 function v.Srch_or(...)

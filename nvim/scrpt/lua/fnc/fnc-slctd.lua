@@ -1,6 +1,9 @@
 
 -- slctd
 
+v.Slctd = {}
+
+
 g.v_rng_dflt = "'<,'>"
 
 -- slctd __ ( slct )

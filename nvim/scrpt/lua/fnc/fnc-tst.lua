@@ -1,8 +1,10 @@
--- 
--- fnc tst
--- 
 
-function v.Tst()
+-- fnc tst
+
+v.Tst = {}
+
+
+function v.Tst.tst()
   -- print('tst')
 
   -- v.Slct_re()
