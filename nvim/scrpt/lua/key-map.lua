@@ -274,17 +274,15 @@ vim.keymap.set('n', 'a', ':lua v.Save()<cr>')
 -- vim.keymap.set('n', 'xx', ':lua v.Load_re()')
 
 -- load re init vim
-vim.keymap.set('n', ':v', ':source ~/wrk/prj-pri/dotfiles/nvim/scrpt/dflt/init.vim')
+-- vim.keymap.set('n', ':v', ':source ~/wrk/prj-pri/dotfiles/nvim/scrpt/init.vim')
 
--- 
 -- opn
--- 
 
--- opn tab file
+-- opn file
 vim.keymap.set('n', ':o', ':Opn ')
 
--- opn latest
--- vim.keymap.set('n', 'xx', '`0')
+-- opn view ltst
+vim.keymap.set('n', 'gu', ':lua v.Opn.opn_view_ltst()<cr>')
 
 -- opn file srch  ( fzf )
 vim.keymap.set('n', '<leader>l', ':lua v.Fzf_file()<cr>')
@@ -297,7 +295,7 @@ vim.keymap.set('n', '<leader>h', ':FzfFileHstry<cr>')
 -- 
 
 -- opn fish cnf
--- vim.keymap.set('n', 'gf', ':lua v.Opn_fish_cnf()<cr>')
+-- vim.keymap.set('n', 'xx', ':lua v.Opn_fish_cnf()<cr>')
 
 -- opn init vim
 vim.keymap.set('n', 'gh', ':lua v.Opn_init_vim()<cr>')
@@ -306,28 +304,27 @@ vim.keymap.set('n', 'gl', ':lua v.Opn_init_vim_l()<cr>')
 -- opn tmp file
 -- vim.keymap.set('n', 'xx', ':lua v.Opn_tmp_file()<cr>')
 
--- opn grep work
--- vim.keymap.set('n', 'xx', ':lua v.Opn_grep_wk()<cr>')
-
 -- opn memo
 -- vim.keymap.set('n', 'xx', ':lua v.Opn_memo()<cr>')
 
 -- opn man
 -- vim.keymap.set('n', 'xx', ':OpnMan ')
 
--- opn app
+-- sys opn
+
+-- sys opn app
 vim.keymap.set('n', 'go', ':lua v.Opn_app_by_cursor_path()<cr>')
 
--- opn app slf
+-- sys opn app slf
 -- vim.keymap.set('n', 'xx', ':lua v.Opn_app_buf_file()<cr>')
 
--- opn dir slf
+-- sys opn dir slf
 vim.keymap.set('n', 'gd', ':lua v.Opn_buf_file_dir()<cr>')
 
--- opn brwsr
+-- sys opn brwsr
 -- vim.keymap.set('n', 'xx', ':lua v.Opn_brwsr()<cr>')
 
--- opn ggl srch
+-- sys opn ggl srch
 vim.keymap.set('n', 'ggl', ':lua v.Opn_ggl_srch("")<cr>')
 
 -- 

@@ -4,9 +4,6 @@
 
 ## git
 
-git co-ls co-id
-
-
 rebase learn
 - pull opt rebase
 - doc write
@@ -22,17 +19,17 @@ merge way 3 off
 
 ## nvim
 
-opn close final
-```
-:tab drop #
-```
-
 plg
 - oil
 - nvim-treesitter
 - lualine
 
 cls
+- opn
+  - buf.opn
+  - buf.save `<` save
+  - buf.close
+  - sys.opn
 
 
 ## ooq dns
@@ -46,7 +43,7 @@ dns mgr
 
 ## aws
 
-price confirm
+payment confirm
 
 
 ## godot

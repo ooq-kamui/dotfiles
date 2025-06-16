@@ -3,14 +3,25 @@
 
 v.Opn = {}
 
+g.nvim_lua_init_file_path      = g.nvim_lua_dir     .. '/init.lua'
+g.nvim_lua_opt_file_path       = g.nvim_lua_etc_dir .. '/opt.lua'
+g.nvim_lua_cmd_file_path       = g.nvim_lua_etc_dir .. '/cmd-usr.lua'
+g.nvim_lua_hl_file_path        = g.nvim_lua_etc_dir .. '/hl.lua'
+g.nvim_lua_key_map_file_path   = g.nvim_lua_etc_dir .. '/key-map.lua'
 
--- opn xxx
+g.nvim_lua_fnc_basic_file_path = g.nvim_lua_fnc_dir .. '/fnc-basic.lua'
+g.nvim_lua_plg_fzf_file_path   = g.nvim_lua_etc_dir .. '/plg-fzf.lua'
 
 -- opn file
 
 function v.Opn.opn(filename)
 
   v.Cmd('tab drop ' .. filename)
+end
+
+function v.Opn.opn_view_ltst()
+
+  v.Cmd('tab drop #')
 end
 
 function v.Opn_tmp_file()
@@ -20,20 +31,11 @@ function v.Opn_tmp_file()
   v.Opn.opn(path)
 end
 
-g.init_lua_file_path         = g.init_lua_dir     .. '/init.lua'
-g.init_lua_opt_file_path     = g.init_lua_etc_dir .. '/init-opt.lua'
-g.init_lua_cmd_file_path     = g.init_lua_etc_dir .. '/init-cmd-usr.lua'
-g.init_lua_hl_file_path      = g.init_lua_etc_dir .. '/init-hl.lua'
-g.init_lua_key_map_file_path = g.init_lua_etc_dir .. '/init-key-map.lua'
-
-g.init_lua_fnc_file_path     = g.init_lua_etc_dir .. '/init-fnc.lua'
-g.init_lua_plg_fzf_file_path = g.init_lua_etc_dir .. '/init-plg-fzf.lua'
-
 function v.Opn_init_vim()
 
   -- lua
-  v.Opn.opn(g.init_lua_fnc_file_path    )
-  v.Opn.opn(g.init_lua_plg_fzf_file_path)
+  v.Opn.opn(g.nvim_lua_fnc_basic_file_path)
+  v.Opn.opn(g.nvim_lua_plg_fzf_file_path  )
 
   local vimrc_c9_file_path
   local vimrc_gitbash_file_path
@@ -52,13 +54,13 @@ end
 
 function v.Opn_init_vim_l()
 
-  v.Opn.opn(g.init_lua_opt_file_path    )
-  v.Opn.opn(g.init_lua_cmd_file_path    )
+  v.Opn.opn(g.nvim_lua_opt_file_path    )
+  v.Opn.opn(g.nvim_lua_cmd_file_path    )
 
-  v.Opn.opn(g.init_lua_file_path        )
+  v.Opn.opn(g.nvim_lua_init_file_path   )
 
-  v.Opn.opn(g.init_lua_key_map_file_path)
-  v.Opn.opn(g.init_lua_hl_file_path     )
+  v.Opn.opn(g.nvim_lua_key_map_file_path)
+  v.Opn.opn(g.nvim_lua_hl_file_path     )
 end
 
 function v.Opn_fish_cnf()
@@ -79,20 +81,6 @@ g.memo_path = 'doc/memo.md'
 function v.Opn_memo()
 
   v.Opn.opn(g.memo_path)
-end
-
-g.grep_wk_path = '~/wrk/tmp/rg.md'
-
-function v.Opn_grep_wk()
-
-  local file_type = f.getftype(g.grep_wk_path)
-
-  if v.Is_str__emp(file_type) then
-
-    v.Opn.opn(g.grep_wk_path)
-  else
-    v.Opn_tmp_file()
-  end
 end
 
 -- opn app

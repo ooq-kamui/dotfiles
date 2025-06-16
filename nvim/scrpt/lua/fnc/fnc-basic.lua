@@ -7,12 +7,11 @@ require('fnc/fnc-utl'   )
 
 g.home_dir         = vim.fn.expand('$HOME')
 g.dotfiles_dir     = g.home_dir .. '/wrk/prj-pri/dotfiles'
+g.nvim_init_dir    = g.dotfiles_dir .. '/nvim/scrpt'
 
-g.init_vim_dir     = g.dotfiles_dir .. '/nvim/scrpt/dflt'
-g.init_vim_etc_dir = g.init_vim_dir .. '/vim'
-
-g.init_lua_dir     = g.init_vim_dir .. '/lua'
-g.init_lua_etc_dir = g.init_lua_dir
+g.nvim_lua_dir     = g.nvim_init_dir .. '/lua'
+g.nvim_lua_fnc_dir = g.nvim_lua_dir  .. '/fnc'
+g.nvim_lua_etc_dir = g.nvim_lua_dir  .. ''
 
 require('fnc/fnc-line'  )
 require('fnc/fnc-rgstr' )

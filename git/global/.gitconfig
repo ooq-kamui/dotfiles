@@ -18,7 +18,9 @@
 [merge]
   tool = vimdiff
 [alias]
-  l   = log
+  l     = log
+  co-ls = show --name-only
+  ls-co = show --name-only
   ls  = ls-files
   s   = status
   d   = diff
