@@ -19,9 +19,6 @@ merge way 3 off
 
 ## nvim
 
-opn file closed ltst
-
-
 hl lua
 - Hl_grp(), nil ? ggl
 
@@ -35,9 +32,7 @@ plg
 - lualine
 
 
-## aws
-
-price confirm
+opn close final
 
 
 ## ooq dns
@@ -47,6 +42,11 @@ dns mgr
   - cre
 - svr
   - del
+
+
+## aws
+
+price confirm
 
 
 ## godot
