@@ -59,7 +59,8 @@ $env:RIPGREP_CONFIG_PATH = "$home\wrk\prj-pri\dotfiles\cli\rg\ripgreprc\pwsh\.ri
 # fzf
 
 $env:FZF_DEFAULT_OPTS    = '--ansi --bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
-$env:FZF_DEFAULT_COMMAND = 'fd --hidden -I --exclude .git --follow --color=always'
+# $env:FZF_DEFAULT_COMMAND = 'fd --hidden -I --exclude .git --follow --color=always'
+$env:FZF_DEFAULT_COMMAND = 'fd --hidden    --exclude .git --follow --color=always'
 $env:FZF_CTRL_T_COMMAND  = "$env:FZF_DEFAULT_COMMAND"
 
 # psfzf
