@@ -44,7 +44,7 @@ Set-PSReadLineOption -Colors @{ Command          = $PSStyle.Foreground.BrightCya
 Set-PSReadLineOption -Colors @{ Parameter        = $PSStyle.Foreground.BrightYellow }
 Set-PSReadLineOption -Colors @{ Variable         = $PSStyle.Foreground.BrightCyan   }
 Set-PSReadLineOption -Colors @{ String           = $PSStyle.Foreground.BrightGreen  }
-Set-PSReadLineOption -Colors @{ Selection        = $PSStyle.Foreground.BrightCyan   }
+Set-PSReadLineOption -Colors @{ Selection        = $PSStyle.Foreground.BrightGreen  }
 
 # bell sound
 Set-PSReadlineOption -BellStyle None
