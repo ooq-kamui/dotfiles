@@ -1,0 +1,76 @@
+
+-- line
+
+function v.Line_num_file_edge_bgn()
+
+  return f.line('^')
+end
+
+function v.Line_num_file_edge_end() -- alias
+
+  return f.line('$')
+end
+
+function v.Line_str_by_line_num(line_num) -- alias
+
+  return f.getline(line_num)
+end
+
+-- line xx __ ins
+
+g.line_top_space_ptn = '^[ \\t]*'
+-- g.line_end_space_ptn = '[ \\t]\\+$'
+g.line_end_space_ptn = '[ \\t]*$'
+
+function v.Line_end_space__del(line_num)
+
+  local ptn_tmp = v.Rgstr_get('/')
+
+  local rpl_cmd = line_num .. 's/' .. g.line_end_space_ptn .. '//g'
+  -- print(rpl_cmd)
+
+  v.Cmd(rpl_cmd)
+
+  v.Rgstr__('/', ptn_tmp)
+end
+
+function v.Line_end__pad_space(line_num, fil_end_col)
+
+
+  -- local line_str     = f.getline(line_num)
+  local line_str     = v.Line_str_by_line_num(line_num)
+
+  local line_str_len = v.Str_len(line_str)
+  local space_len    = fil_end_col - line_str_len
+
+  if space_len <= 0 then
+    return
+  end
+
+  local space_str = v.Str_space(space_len)
+  line_str = line_str .. space_str
+  f.setline(line_num, line_str)
+end
+
+g.dots_str     = ' .. '
+g.dots_put_col = 50
+
+function v.Line__del_by_line_num(line_num)
+
+  f.deletebufline('%', line_num)
+end
+
+-- line num
+
+function v.Line_num_by_Line_info(line_info)
+
+  local line_info = f.trim(line_info, ' ', 1)
+  local line_num  = f.split(line_info, '\\s\\+')[1]
+  u.Log.val(line_num)
+
+  return line_num
+end
+
+-- line cnd
+
+

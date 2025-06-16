@@ -1,0 +1,1260 @@
+
+-- slctd
+
+g.v_rng_dflt = "'<,'>"
+
+-- slctd __ ( slct )
+
+function v.Slctd__cancel() -- range -- alias
+
+  v.Esc()
+end
+
+function v.Slctd__ltst() -- range
+  -- print(f.mode())
+
+  if v.Mode.is__box() then
+    return
+  elseif f.mode() == 'v' then
+    return
+  elseif f.mode() == 'V' then
+    return
+  end
+
+  v.Normal('gv')
+end
+
+-- slctd str
+
+function v.Slctd_str() -- range
+
+  v.Slctd__ltst()
+
+  v.Normal('"zy')
+
+  v.Slctd__ltst()
+
+  return v.Rgstr_get('z')
+end
+
+function v.Slctd_str_len() -- range
+
+  v.Slctd__ltst()
+
+  local slctd_str = v.Slctd_str()
+
+  local len = v.Str_len(slctd_str)
+  return len
+end
+
+function v.Slctd_str_7_opn_ggl_srch()
+
+  local word = v.Slctd_str()
+  local word = f.trim(word)
+  v.Opn_ggl_srch(word)
+end
+
+function v.Slctd_str_7_opn_yt()
+
+  local yt_video_id = v.Slctd_str()
+  local yt_video_id = f.trim(yt_video_id)
+  v.Opn_yt(yt_video_id)
+end
+
+-- slctd str __
+
+function v.Slctd_str__all()
+
+  v.Normal('ggVG')
+end
+
+function v.Slctd_str__cursor_c_char()
+
+  v.Normal('v')
+end
+
+function v.Slctd_str__word()
+
+  local c = v.Cursor_c_char()
+
+  if     v.Is_str__ptn(c, '\\w') then
+    v.Normal('viw')
+
+  elseif v.Is_str__ptn(c, '\\s') then
+    v.Slctd_str__cursor_f_space()
+
+  else
+    -- v.Normal('v')
+    v.Slctd_str__cursor_c_char()
+  end
+end
+
+function v.Slctd_str__cursor_f_space()
+
+  local c = v.Cursor_c_char()
+
+  if not v.Is_str__ptn(c, '\\s') then
+    return
+  end
+
+  if v.Is_cursor_line_str_side_r__space() then
+
+    -- v.Normal('v')
+    v.Slctd_str__cursor_c_char()
+    v.Cursor__mv_line_end_in()
+
+  else
+    -- v.Normal('v')
+    v.Slctd_str__cursor_c_char()
+    v.Normal('wh')
+  end
+end
+
+function v.Slctd_str__by_col_len(s_col, len)
+
+  local e_col = len - 1
+
+  v.Slctd__by_line_col(nil, s_col, nil, e_col)
+end
+
+-- slctd __
+
+function v.Slctd__by_pos(s_pos, e_pos) -- use not
+
+  v.Cursor__mv_by_pos(s_pos)
+  -- v.Normal('v')
+  v.Slctd_str__cursor_c_char()
+  v.Cursor__mv_by_pos(e_pos)
+end
+
+function v.Slctd__by_line_col(s_line, s_col, e_line, e_col)
+
+  s_line = (s_line == nil) and v.Cursor_line_num() or s_line
+  e_line = (e_line == nil) and v.Cursor_line_num() or e_line
+
+  v.Cursor__mv_by_line_col(s_line, s_col)
+  v.Slctd_str__cursor_c_char()
+  v.Cursor__mv_by_line_col(e_line, e_col)
+end
+
+-- slctd cursor __ mv
+
+function v.Slctd_cursor__mv_slctd_edge_r() -- range
+
+  v.Slctd__ltst()
+
+  if v.Is_slctd_cursor_pos__r() then
+    return
+  end
+
+  v.Cursor__mv_slctd_edge_tgl()
+end
+
+function v.Slctd_cursor__mv_file_edge(n_cmd)
+
+  v.Slctd__ltst()
+
+  v.Cursor__mv_file_edge(n_cmd)
+end
+
+function v.Slctd_cursor__mv_v_jmp(drct) -- range
+
+  v.Slctd__ltst()
+  v.Cursor__mv_v_jmp(drct)
+end
+
+function v.Slctd_cursor__mv_line_end() -- range
+
+  v.Slctd__ltst()
+
+  if     v.Mode.is__box() then
+
+    if v.Is_cursor_col__line_end_ovr() then
+      return
+    end
+
+    v.Cursor__mv_line_end_in()
+
+  elseif v.Mode.is__str() or v.Mode.is__line() then
+
+    if v.Is_cursor_line_str__emp() then
+      return
+    end
+
+    v.Cursor__mv_line_end_in()
+  end
+end
+
+-- slctd cursor cnd
+
+function v.Is_slctd_cursor_pos__r() -- range
+
+  local ret = false
+
+  v.Slctd__ltst()
+
+  local cursor_pos1 = v.Cursor_pos()
+  -- print( cursor_pos1 )
+
+  v.Cursor__mv_slctd_edge_tgl()
+  local cursor_pos2 = v.Cursor_pos()
+  -- print( cursor_pos2 )
+
+  v.Cursor__mv_slctd_edge_tgl()
+
+
+  if     cursor_pos1[2] >  cursor_pos2[2] then -- line
+    ret = true
+
+  elseif cursor_pos1[2] == cursor_pos2[2] then -- line
+
+    if   cursor_pos1[3] >= cursor_pos2[3] then -- col
+      ret = true
+    end
+  end
+
+  return ret
+end
+
+-- slctd str __ ( expnd )
+
+function v.Slctd_str__expnd() -- expnd lr, cre re
+
+end
+
+function v.Slctd_str__expnd_srch() -- range
+
+  v.Slctd__ltst()
+  v.Cursor__mv_srch('f')
+end
+
+function v.Slctd_str__expnd_word_f() -- range
+
+  v.Slctd__ltst()
+
+  v.Normal('e')
+end
+
+function v.Slctd_str__expnd_space_f() -- range
+
+  v.Slctd__ltst()
+
+  v.Normal('wh')
+end
+
+-- dev anchor
+function v.Slctd_str__expnd_f() -- range
+
+  v.Slctd__ltst()
+
+  if     v.Is_cursor_line_str_side_r__space() then
+
+    v.Cursor__mv_line_end()
+
+  elseif v.Is_slctd_str_edge_r_out_char__space() then
+
+    v.Slctd_str__expnd_space_f()
+
+  else
+    v.Slctd_str__expnd_word_f()
+  end
+end
+
+function  v.Is_slctd_str_edge_r_out_char__space()
+
+  local ret = false
+
+  local slctd_r_out_char = v.Slctd_str_edge_r_out_char()
+
+  if v.Is_str__ptn(slctd_r_out_char, '\\s') then
+
+    ret = true
+  end
+
+  return ret
+end
+
+-- slctd __ expnd quote
+
+g.quote_ptn = '[' .. "'" .. '"' .. '`' .. ']'
+
+function v.Slctd_str__expnd_quote_on_f() -- range
+
+  v.Slctd__ltst()
+  v.Cursor__mv_srch_ptn(g.quote_ptn, 'f')
+end
+
+function v.Slctd_str__expnd_quote_on_b() -- range
+
+  v.Slctd__ltst()
+
+  v.Cursor__mv_slctd_edge_tgl()
+  v.Cursor__mv_srch_ptn(g.quote_ptn, 'b')
+  -- v.Cursor__mv_slctd_edge_tgl ()
+end
+
+function v.Slctd_str__expnd_quote_on_swtch() -- range
+
+  -- v.Is_cursor_line_str__ptn() -- todo dev ?
+
+  v.Slctd__ltst()
+
+  local c = v.Cursor_c_char()
+
+  -- if c !~ g.quote_ptn then
+  if not v.Is_str__ptn(c, g.quote_ptn) then
+    v.Slctd_str__expnd_quote_on_f()
+  else
+    v.Slctd_str__expnd_quote_on_b()
+  end
+end
+
+function v.Slctd_str__expnd_quote_on() -- range
+
+  v.Slctd__ltst()
+
+  v.Slctd_str__expnd_quote_on_f()
+  v.Slctd_str__expnd_quote_on_b()
+end
+
+function v.Slctd_str__expnd_quote_in_f() -- range
+
+  v.Slctd_str__expnd_quote_on_f()
+  v.Normal('h')
+end
+
+function v.Slctd_str__expnd_quote_in_b() -- range
+
+  v.Slctd_str__expnd_quote_on_b()
+  v.Normal('l')
+  -- v.Cursor__mv_slctd_edge_tgl()
+end
+
+function v.Slctd_str__expnd_quote_in_swtch() -- range
+
+  v.Slctd__ltst()
+
+  if not v.Is_cursor_line_str__ptn(g.quote_ptn) then
+    return
+  end
+
+  local c_r = v.Slctd_str_edge_r_out_char()
+
+  if not v.Is_str__ptn(c_r, g.quote_ptn) then
+
+    v.Slctd_str__expnd_quote_in_f()
+  else
+    v.Slctd_str__expnd_quote_in_b()
+  end
+end
+
+function v.Slctd_str__expnd_quote_swtch() -- range
+
+  v.Slctd__ltst()
+
+  if v.Is_slctd_str_edge_char__quote() then
+    -- v.Esc()
+    return
+  end
+
+  if v.Is_slctd_str_edge_out_char__quote() then
+
+    v.Slctd_str__expnd_quote_on()
+  else
+    v.Slctd_str__expnd_quote_in_swtch()
+  end
+end
+
+function v.Slctd_str__expnd_bracket_f() -- range -- todo dev
+
+  local bracket_ptn = '[' .. "'" .. '"`)}\\]' .. ']'
+  
+  local s_col = v.Slctd_str_edge_l_col()
+  
+  local line_str_r = v.Slctd_str_edge_r_out_str()
+  local srch_idx = v.Str_srch_idx(line_str_r, bracket_ptn, 1)
+
+  if srch_idx == -1 then
+    v.Normal('gv')
+    return
+  end
+
+  local len = s_col + v.Slctd_str_len() + srch_idx
+  v.Slctd_str__by_col_len(s_col, len)
+end
+
+function v.Slctd_str__reduce_dlm_l(char) -- range
+
+  v.Slctd__ltst()
+
+  local slctd_str = v.Slctd_str()
+  local srch_idx = v.Str_srch_idx(slctd_str, char)
+  if srch_idx == -1 then
+    v.Slctd__cancel()
+    return
+  end
+
+  local n_cmd = 'F' .. char .. 'h'
+  v.Normal(n_cmd)
+end
+
+-- slctd str __ ( edit )
+
+function v.Slctd_str__ynk() -- range
+
+  v.Slctd__ltst()
+  v.Normal('"zd')
+  v.Cursor__ins_ynk()
+end
+
+function v.Slctd_str__clp() -- range
+
+  v.Ynk__clp()
+  v.Slctd_str__ynk()
+end
+
+-- slctd str __ rpl
+
+function v.Slctd_str__rpl(srch, rpl) -- range
+
+  v.Slctd_box__rpl(srch, rpl)
+end
+
+-- slctd str __ ( rpl )
+
+function v.Slctd_str__(str) -- range -- todo dev
+
+end
+
+-- slctd str __ rpl, srch nxt slctd
+
+function v.Slctd__rpl_7_srch_nxt() -- dir forward only
+
+  v.Slctd__ltst()
+  v.Normal('"zd"aPlgn')
+end
+
+-- slctd str __ del
+
+-- dev anchor
+function v.V_slctd__del() -- dev doing, can
+
+  v.Slctd__ltst()
+
+  v.Normal('"ad')
+
+  v.Rgstr__('+', v.Rgstr_get('a'))
+end
+
+function v.Slctd__del() -- range
+
+  v.Slctd__ltst()
+
+  local rgstr = 'z'
+
+  local cmd = '"' .. rgstr .. 'dgv'
+  v.Normal(cmd)
+end
+
+-- slctd str __ pad
+
+function v.Slctd__pad(char) -- range
+
+  local char = char
+
+  if char == '|' then
+    local char = "\\<bar>"
+  end
+
+  v.Slctd__ltst()
+
+  local n_cmd = 'r' .. char
+  vim.cmd('exe "normal! ' .. n_cmd .. '"')
+
+  v.Slctd__ltst()
+end
+
+function v.Slctd__pad_space() -- range
+
+  v.Slctd__pad(' ')
+end
+
+function v.Slctd__pad_bar() -- range
+
+  v.Slctd__pad('|')
+end
+
+
+function v.Slctd_str_space__underscore() -- range
+
+  v.Slctd_str__rpl(' ', '_')
+end
+
+-- slctd str cnd
+
+function v.Is_slctd_str__srch_str()
+
+  if v.Slctd_str() == v.Rgstr_get('/') then
+    return true
+  else
+    return false
+  end
+end
+
+function v.Is_slctd_str__line_mlt()
+
+  if v.Is_str__ptn(v.Slctd_str(), '\\n') then
+    return true
+  else
+    return false
+  end
+end
+
+-- slctd str edge
+
+function v.Slctd_str_edge_l_col()
+
+  v.Cursor__mv_slctd_edge_l()
+
+  local col = v.Cursor_col_num()
+  return col
+end
+
+function v.Slctd_str_edge_r_col()
+
+  v.Slctd_cursor__mv_slctd_edge_r()
+  
+  local col = v.Cursor_col_num()
+  return col
+end
+
+function v.Slctd_str_edge_l_pos()
+
+  v.Cursor__mv_slctd_edge_l()
+  local pos = v.Cursor_pos()
+  return pos
+end
+
+function v.Slctd_str_edge_r_pos()
+
+  v.Slctd_cursor__mv_slctd_edge_r()
+  local pos = v.Cursor_pos()
+  return pos
+end
+
+function v.Slctd_str_edge_l_char()
+
+  v.Cursor__mv_slctd_edge_l()
+
+  local c_char = v.Cursor_c_char()
+  return c_char
+end
+
+function v.Slctd_str_edge_r_char()
+
+  v.Slctd_cursor__mv_slctd_edge_r()
+
+  local c_char = v.Cursor_c_char()
+  return c_char
+end
+
+function v.Slctd_str_edge_l_out_char()
+
+  v.Cursor__mv_slctd_edge_l()
+
+  local l_char = v.Cursor_l_char()
+  return l_char
+end
+
+function v.Slctd_str_edge_r_out_char()
+
+  v.Slctd_cursor__mv_slctd_edge_r()
+
+  local r_char = v.Cursor_r_char()
+  return r_char
+end
+
+function v.Slctd_str_edge_l_out_str()
+
+  v.Cursor__mv_slctd_edge_l()
+
+  local str = v.Cursor_line_str_side_l()
+  return str
+end
+
+function v.Slctd_str_edge_r_out_str()
+
+  v.Slctd_cursor__mv_slctd_edge_r()
+
+  local str = v.Cursor_line_str_side_r()
+  return str
+end
+
+-- slctd str edge __ ( edit )
+
+function v.Slctd_str_edge_out__ins(c) -- range
+
+  v.Slctd__ltst()
+
+  if v.Is_slctd_line__mlt() then
+    v.Slctd__cancel()
+    return
+  end
+
+  local c_l = c
+  local c_r = c
+
+  if     c == '(' then
+    c_r = ')'
+  elseif c == '{' then
+    c_r = '}'
+  elseif c == '[' then
+    c_r = ']'
+  elseif c == '<' then
+    c_r = '>'
+  end
+
+  v.Normal('"zx')
+  v.Cursor__ins(c_l .. c_r)
+
+  local str_len = v.Str_len(c_l)
+  v.Normal(str_len .. 'h')
+
+  v.Normal('"zP')
+  v.Normal('gv')
+
+  local cnt = 0
+  while cnt < str_len do
+
+    v.Slctd_box__mv('r')
+
+    cnt = cnt + 1
+  end
+end
+
+function v.Slctd_str_edge_out__ins_markdown_strikethrough()
+
+  v.Slctd__ltst()
+
+  if v.Is_slctd_line__mlt() then
+    v.Slctd__cancel()
+    return
+  end
+
+  v.Slctd_str_edge_out__ins('~~')
+end
+
+function v.Slctd_str_edge_out__ins_markdown_bold()
+
+  v.Slctd_str_edge_out__ins('**')
+end
+
+function v.Slctd_str_edge_out_char__tgl() -- range
+
+  v.Slctd_str_edge_out_char__tgl_swtch()
+end
+
+function v.Slctd_str_edge_out_char__tgl_swtch() -- range
+
+  -- char chk
+  local c_l = v.Slctd_str_edge_l_out_char()
+  local c_r = v.Slctd_str_edge_r_out_char()
+  -- print( c_l c_r )
+
+  if     c_l == "'" and c_l == c_r then
+    v.Slctd_str_edge_out_quote__tgl()
+  elseif c_l == '"' and c_l == c_r then
+    v.Slctd_str_edge_out_quote__tgl()
+  elseif c_l == '`' and c_l == c_r then
+    v.Slctd_str_edge_out_quote__tgl()
+
+  elseif c_l == '(' and c_r == ')' then
+    v.Slctd_str_edge_out_bracket__tgl()
+  elseif c_l == '{' and c_r == '}' then
+    v.Slctd_str_edge_out_bracket__tgl()
+  elseif c_l == '[' and c_r == ']' then
+    v.Slctd_str_edge_out_bracket__tgl()
+  elseif c_l == '<' and c_r == '>' then
+    v.Slctd_str_edge_out_bracket__tgl()
+
+  else
+    v.Slctd_str_edge_out_quote__tgl()
+  end
+end
+
+function v.Slctd_str_edge_out_quote__tgl() -- range
+
+  v.Slctd__ltst()
+
+  if v.Is_slctd_line__mlt() then
+    return
+  end
+
+  if v.Is_cursor_col__line_end() then
+    return
+  end
+
+  -- char chk
+  local c_l = v.Slctd_str_edge_l_out_char()
+  local c_r = v.Slctd_str_edge_r_out_char()
+  -- print( c_l c_r )
+
+  if     c_l == "'" and c_l == c_r then
+
+    v.Slctd_str_edge_out_char__del()
+    local c = '"'
+    v.Slctd_str_edge_out__ins(c)
+
+  elseif c_l == '"' and c_l == c_r then
+
+    v.Slctd_str_edge_out_char__del()
+    local c = '`'
+    v.Slctd_str_edge_out__ins(c)
+
+  elseif c_l == '`' and c_l == c_r then
+
+    v.Slctd_str_edge_out_char__del()
+  else
+    local c = "'"
+    v.Slctd_str_edge_out__ins(c)
+  end
+end
+
+function v.Slctd_str_edge_out_bracket__tgl() -- range
+
+  v.Slctd__ltst()
+
+  if v.Is_slctd_line__mlt() then
+    return
+  end
+
+  if v.Is_cursor_col__line_end() then
+    return
+  end
+
+  -- char chk
+  local c_l = v.Slctd_str_edge_l_out_char()
+  local c_r = v.Slctd_str_edge_r_out_char()
+  -- print( c_l c_r )
+
+  if     c_l == '(' and c_r == ')' then
+
+    v.Slctd_str_edge_out_char__del()
+    local c = '{'
+    v.Slctd_str_edge_out__ins(c)
+
+  elseif c_l == '{' and c_r == '}' then
+
+    v.Slctd_str_edge_out_char__del()
+    local c = '['
+    v.Slctd_str_edge_out__ins(c)
+
+  elseif c_l == '[' and c_r == ']' then
+
+    v.Slctd_str_edge_out_char__del()
+    local c = '<'
+    v.Slctd_str_edge_out__ins(c)
+
+  elseif c_l == '<' and c_r == '>' then
+
+    v.Slctd_str_edge_out_char__del()
+  else
+    local c = '('
+    v.Slctd_str_edge_out__ins(c)
+  end
+end
+
+function v.Slctd_str_edge_out__tgl_shft() -- range
+
+  v.Slctd__ltst()
+
+  if v.Is_slctd_line__mlt() then
+    return
+  end
+
+  if v.Is_cursor_col__line_end() then
+    return
+  end
+
+  -- char chk
+  local c_l = v.Slctd_str_edge_l_out_char()
+  local c_r = v.Slctd_str_edge_r_out_char()
+  -- print( c_l c_r )
+
+  if     v.Is_char_pair__quote(c_l, c_r) then
+    v.Slctd_str_edge_out_char__del()
+    v.Slctd_str_edge_out_bracket__tgl()
+
+  elseif v.Is_char_pair__bracket(c_l, c_r) then
+    v.Slctd_str_edge_out_char__del()
+    v.Slctd_str_edge_out_quote__tgl()
+
+  else
+    v.Slctd_str_edge_out_bracket__tgl()
+  end
+end
+
+function v.Slctd_str_edge_out_char__del() -- range
+
+  v.Slctd__ltst()
+
+  if v.Is_slctd_str_edge_l_col__line_top() then
+    return
+  end
+
+  v.Normal('"zx')
+  v.Normal('xhx')
+  v.Normal('"zP')
+  v.Normal('gv')
+  v.Slctd_box__mv('l')
+end
+
+-- slctd str edge cnd
+
+function v.Is_slctd_str_edge_char__(ptn)
+
+  local c1 = v.Slctd_str_edge_l_char()
+  local c2 = v.Slctd_str_edge_r_char()
+
+  local ret = v.Is_char_pair__(ptn, c1, c2)
+  return ret
+end
+
+function v.Is_slctd_str_edge_char__quote()
+
+  local ret = v.Is_slctd_str_edge_char__(g.quote_ptn)
+  return ret
+end
+
+function v.Is_slctd_str_edge_out_char__(ptn)
+
+  local c1 = v.Slctd_str_edge_l_out_char()
+  local c2 = v.Slctd_str_edge_r_out_char()
+
+  local ret = v.Is_char_pair__(ptn, c1, c2)
+  return ret
+end
+
+function v.Is_slctd_str_edge_out_char__quote()
+
+  local ret = v.Is_slctd_str_edge_out_char__(g.quote_ptn)
+  return ret
+end
+
+function v.Is_slctd_str_edge_l_col__line_top() -- range
+
+  local ret = false
+
+  v.Slctd__ltst()
+
+  v.Cursor__mv_slctd_edge_tgl()
+  local cursor_l_pos = v.Cursor_pos()
+  -- print( cursor_l_pos )
+
+  v.Cursor__mv_slctd_edge_tgl()
+
+  -- if cursor_l_pos[2] == 1 then -- col
+  if cursor_l_pos[3] == 1 then -- col
+    ret = true
+  end
+
+  return ret
+end
+
+-- slctd line
+
+function v.Slctd_line_s_num()
+
+  return vim.api.nvim_buf_get_mark(0, '<')[1]
+end
+
+function v.Slctd_line_e_num()
+
+  return vim.api.nvim_buf_get_mark(0, '>')[1]
+end
+
+function v.Slctd_line_num_seq()
+
+  local line_s_num = v.Slctd_line_s_num()
+  local line_e_num = v.Slctd_line_e_num()
+
+  local tbl = u.Num.seq(line_s_num, line_e_num)
+  return tbl
+end
+
+function v.Slctd_line_7_opn_app() -- range
+
+  for idx, line_num in pairs(v.Slctd_line_num_seq()) do
+
+    v.Opn_app_by_line_path(line_num)
+  end
+end
+
+-- slctd line __ ( edit )
+
+function v.Slctd_line__del() -- use not, todo dev
+
+  v.Normal('gvj')
+  --v.Normal('"ad')
+
+  v.Clp__ynk()
+end
+
+function v.Slctd_line__cursor_line()
+
+  v.Normal('V')
+end
+
+function v.Slctd_line__by_line_rng(line_s_num, line_e_num)
+
+  v.Cursor__mv_by_line_num(line_s_num)
+  -- v.Normal('V')
+  v.Slctd_line__cursor_line()
+  v.Cursor__mv_by_line_num(line_e_num)
+end
+
+-- todo refactoring, fnc name mod, v > slctd
+
+-- slctd line __ rpl
+
+function v.Slctd_line__rpl(srch, rpl) -- range
+
+  local rng = g.v_rng_dflt
+  local cmd = rng .. 's/' .. srch .. '/' .. rpl .. '/eg'
+  --print( cmd )
+  v.Cmd(cmd)
+end
+
+function v.Slctd_line__rpl_by_line1_line2() -- range
+
+  local srch = v.Line_str_by_line_num(1)
+  local rpl  = v.Line_str_by_line_num(2)
+
+  local rng = g.v_rng_dflt
+  local cmd = rng .. 's/' .. srch .. '/' .. rpl .. '/eg'
+  --print( cmd )
+  v.Cmd(cmd)
+end
+
+function v.Slctd_line__rpl_sys_cmd(sys_cmd) -- range -- read
+
+  local rng = g.v_rng_dflt
+  local cmd = rng .. ' ! ' .. sys_cmd
+  v.Cmd(cmd)
+end
+
+function v.Slctd_line_srch_str__rpl_cr() -- range
+
+  local srch = v.Rgstr_get('/')
+
+  local rng = g.v_rng_dflt
+  local cmd = rng .. 's/\\(' .. srch .. '\\)/\\1\\r/eg'
+  v.Cmd(cmd)
+end
+
+function v.Slctd_line__markdown_strikethrough() -- range -- todo dev
+
+end
+
+function v.Slctd__sys_cmd(sys_cmd) -- range
+
+  local rng = g.v_rng_dflt
+  local cmd = rng .. '! ' .. sys_cmd
+  v.Cmd(cmd)
+end
+
+function v.Slctd_line_top_space__del()
+
+  local rng = g.v_rng_dflt
+  local rpl_cmd = rng .. 's/' .. g.line_top_space_ptn .. '//eg'
+  v.Cmd(rpl_cmd)
+end
+
+function v.Slctd_line_end_space__del() -- range
+
+  for idx, line_num in pairs(v.Slctd_line_num_seq()) do
+
+    v.Line_end_space__del(line_num)
+  end
+end
+
+function v.Slctd_line_end__pad_space() -- range -- use not
+
+  -- use recommend "aygvr gv
+
+  v.Slctd__ltst()
+  v.Normal('o')
+
+  local fil_end_col = v.Cursor_col_num() - 1
+
+  for idx, line_num in pairs(v.Slctd_line_num_seq()) do
+
+    v.Line_end__pad_space(line_num, fil_end_col)
+  end
+end
+
+function v.Slctd_line__join_per_line(per_line_num) -- range
+
+  local n_cmd = per_line_num .. 'Jj'
+
+  local slctd_line_s_num = v.Slctd_line_s_num()
+  local slctd_line_e_num  = v.Slctd_line_e_num()
+
+  local line_num = slctd_line_e_num - slctd_line_s_num + 1
+
+  -- local exe_num = line_num / per_line_num
+  local exe_num = math.floor(line_num / per_line_num)
+  --print( exe_num )
+
+  for _idx, idx in pairs(f.range(1, exe_num)) do
+
+    v.Normal(n_cmd)
+  end
+end
+
+function v.Slctd_line_indnt__space(indnt_col) -- range
+
+  if v.Is_env__('win64') then
+    -- '<,'>:call v.Slctd_line_tab__rpl_space(indnt_col)
+    v.Slctd_line_tab__rpl_space(indnt_col)
+
+  else
+    local sys_cmd = '  expand   -t ' .. indnt_col
+    v.Slctd_line__rpl_sys_cmd(sys_cmd)
+  end
+end
+
+function v.Slctd_line_indnt__tab(indnt_col) -- range
+
+  if v.Is_env__('win64') then
+    v.Nothing()
+  else
+    local sys_cmd = 'unexpand   -t ' .. indnt_col
+    v.Slctd_line__rpl_sys_cmd(sys_cmd)
+  end
+end
+
+-- slctd line indnt __ shft
+
+function v.Slctd_line_indnt__shft_l()
+
+  v.Slctd__ltst()
+
+  local n_cmd = '<gv'
+  v.Normal(n_cmd)
+end
+
+function v.Slctd_line_indnt__shft_r()
+
+  v.Slctd__ltst()
+
+  local n_cmd = '>gv'
+  v.Normal(n_cmd)
+end
+
+-- slctd line tab
+
+function v.Slctd_line_tab__rpl_space(space_col) -- range
+
+  local space_str = v.Str_space(space_col)
+  local rng = g.v_rng_dflt
+  local cmd = rng .. 's/\\t/' .. space_str .. '/eg'
+  v.Cmd(cmd)
+end
+
+-- slctd line __ cmnt
+
+function v.Slctd_line__ins_cmnt_1() -- range
+
+  local slctd_line_s_num = v.Slctd_line_s_num()
+  -- u.Log.val(slctd_line_s_num)
+
+  v.Cursor__mv_by_line_num(slctd_line_s_num)
+  -- dev anchor
+  v.Normal('^')
+  local col = v.Cursor_col_num()
+
+  for idx, line_num in pairs(v.Slctd_line_num_seq()) do
+
+    v.Line_end__pad_space(line_num, col - 1)
+
+    v.Cursor__mv_by_line_col(line_num, col)
+
+    v.Cursor__ins_cmnt_1(nil)
+  end
+end
+
+-- slctd line __ crct tbl
+
+function v.Slctd_line__crct_tbl() -- range
+
+  local sys_cmd
+
+  if     v.Is_env__('linux') then
+    sys_cmd = '/usr/bin/column -t'
+  elseif v.Is_env__('mac')   then
+    sys_cmd = 'column -t'
+  else
+    sys_cmd = 'column -t'
+  end
+
+  v.Slctd_line__rpl_sys_cmd(sys_cmd)
+end
+
+-- markdown tbl header
+
+function v.Slctd_line__cnv_markdown_tbl_header() -- range -- ??
+
+  v.Slctd_line__rpl('[^|]', '-'  )
+  v.Slctd_line__rpl( '|.' , '| ' )
+  v.Slctd_line__rpl('.|'  , ' |' )
+end
+
+-- slctd line mb
+
+function v.Slctd_line_mb__cnv() -- range
+
+  local sys_cmd = 'mb__cnv'
+
+  v.Slctd_line__rpl_sys_cmd(sys_cmd)
+end
+
+function v.Is_slctd_line__mlt()
+
+  local ret = false
+
+  local slctd_line_s_num = v.Slctd_line_s_num()
+  local slctd_line_e_num = v.Slctd_line_e_num()
+
+  if slctd_line_s_num ~= slctd_line_e_num then
+    ret = true
+  end
+
+  return ret
+end
+
+-- slctd box __ mv
+
+function v.Slctd_box__mv(lr) -- range
+
+  v.Slctd__ltst()
+
+  local n_cmd = v.Char_lr_2_normal_cmd(lr)
+  v.Normal('o' .. n_cmd)
+  v.Normal('o' .. n_cmd)
+end
+
+function v.Slctd_box_width__1() -- range
+
+  v.Slctd__ltst()
+
+  if not v.Mode.is__box() then
+    return
+  end
+
+  v.Normal('o')
+  local col_num = v.Cursor_col_num()
+
+  v.Normal('o')
+  v.Cursor__mv_by_col_num(col_num)
+end
+
+function v.Slctd_box_str__mv(lr) -- range
+
+  local n_cmd = v.Char_lr_2_normal_cmd(lr)
+
+  v.Slctd__ltst()
+  v.Normal('"zx')
+  v.Normal(n_cmd)
+  v.Normal('"zP')
+
+  v.Slctd__ltst()
+  v.Slctd_box__mv(lr)
+end
+
+-- slctd box __ ( edit )
+
+function v.Slctd_box_edge_l__ynk_line_1() -- range
+
+  if v.Is_str__ptn(v.Rgstr_get('a'), '\\n') then
+    print( 'yank is include cr' )
+    return
+  end
+
+  local col_num = v.Cursor_col_num()
+  -- u.Log.val(col_num)
+
+  for idx, line_num in pairs(v.Slctd_line_num_seq()) do
+
+    v.Cursor__mv_by_line_col(line_num, col_num)
+
+    if v.Cursor_col_num() < col_num then
+      -- continue
+    else
+      v.Cursor__ins_ynk()
+      v.Cursor__mv_d()
+    end
+  end
+end
+
+-- slctd box __ rpl
+
+function v.Slctd_box__rpl(srch, rpl) -- range
+
+  local srch = srch
+  local rpl  = rpl
+
+  local rng = g.v_rng_dflt
+  local cmd = rng .. 's/' .. '\\%V' .. srch .. '/' .. rpl .. '/g'
+  v.Cmd(cmd)
+end
+
+-- slctd box space __ del
+
+function v.Slctd_box_space__del() -- range
+
+  local srch = ' '
+  local rpl  = ''
+
+  -- '<,'>:call v.Slctd_str__rpl(srch, rpl)
+  v.Slctd_str__rpl(srch, rpl)
+end
+
+-- slctd box char __ shft
+
+function v.Slctd_box_edge_r_char__shft_in() -- range
+
+  local rng = g.v_rng_dflt
+  local cmd = rng .. 's/' .. '\\%V\\([ ]\\+\\)\\([^ ]\\)' .. '/' .. '\\2\\1' .. '/eg'
+  v.Cmd(cmd)
+
+  v.Slctd__ltst()
+end
+
+function v.Slctd_box_cursor_r_space__crct() -- range
+
+  local col              = v.Cursor_col_num()
+  local slctd_line_s_num = v.Slctd_line_s_num()
+
+  v.Cursor__mv_by_line_col(slctd_line_s_num, col)
+
+  for idx, line_num in pairs(v.Slctd_line_num_seq()) do
+
+    v.Cursor_f_space__del()
+    v.Cursor__mv_d()
+  end
+end
+
+-- slctd etc
+
+function v.Slctd_srch__swtch() -- srch, set or run
+
+  if v.Is_slctd_str__line_mlt() then
+
+    v.Slctd_str__expnd_srch()
+  else
+    v.Srch_str__slctd_str()
+  end
+end
+
+
