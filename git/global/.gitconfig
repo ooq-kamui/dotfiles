@@ -10,7 +10,7 @@
   unmerged  = yellow
 [core]
   pager = less -x2
-  editor = vim
+  editor = nvim -f
 [pull]
   rebase = false
 [init]

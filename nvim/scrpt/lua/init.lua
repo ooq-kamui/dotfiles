@@ -7,10 +7,8 @@ g = {}
 -- _G.v = v
 
 require('fnc/fnc-basic')
-
+require('fnc/fnc-plg-fzf') -- todo refactoring
 require('plg-mng' )
-require('plg-fzf' )
-osc52 = require('osc52')
 
 require('opt'     )
 require('cmd-usr' )

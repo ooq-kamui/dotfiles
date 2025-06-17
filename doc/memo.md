@@ -2,19 +2,13 @@
 # dotfiles
 
 
-## git
+## ooq dns
 
-rebase learn
-- pull opt rebase
-- doc write
-
-
-merge way 3 off
-- `.gitconfig`
-  - mod
-    - ggl
-
-- ref https://it-infomation.com/git-merge-ff-no-ff-squash/
+dns mgr
+- vps
+  - cre
+- svr
+  - del
 
 
 ## nvim
@@ -25,20 +19,18 @@ plg
 - lualine
 
 cls
-- opn
+- buf
   - buf.opn
-  - buf.save `<` save
+  - buf.save
   - buf.close
-  - sys.opn
+- sys.opn
+
+v M cursor __ mv mrkdwn h
 
 
-## ooq dns
+## touchpad
 
-dns mgr
-- vps
-  - cre
-- svr
-  - del
+name memo
 
 
 ## aws

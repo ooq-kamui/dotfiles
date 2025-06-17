@@ -6,24 +6,25 @@ require('fnc/fnc-utl'   )
 -- global
 
 g.home_dir         = vim.fn.expand('$HOME')
-g.dotfiles_dir     = g.home_dir .. '/wrk/prj-pri/dotfiles'
-g.nvim_init_dir    = g.dotfiles_dir .. '/nvim/scrpt'
+g.dotfiles_dir     = g.home_dir      .. '/wrk/prj-pri/dotfiles'
+g.nvim_init_dir    = g.dotfiles_dir  .. '/nvim/scrpt'
 
 g.nvim_lua_dir     = g.nvim_init_dir .. '/lua'
 g.nvim_lua_fnc_dir = g.nvim_lua_dir  .. '/fnc'
 g.nvim_lua_etc_dir = g.nvim_lua_dir  .. ''
 
-require('fnc/fnc-line'  )
-require('fnc/fnc-rgstr' )
-require('fnc/fnc-ynk'   )
-require('fnc/fnc-cursor')
-require('fnc/fnc-slctd' )
-require('fnc/fnc-srch'  )
-require('fnc/fnc-etc'   )
+require('fnc/fnc-line'   )
+require('fnc/fnc-rgstr'  )
+require('fnc/fnc-ynk'    )
+require('fnc/fnc-cursor' )
+require('fnc/fnc-slctd'  )
+require('fnc/fnc-srch'   )
+require('fnc/fnc-etc'    )
 
-require('fnc/fnc-opn'   )
+require('fnc/fnc-buf'    )
+require('fnc/fnc-sys'    )
 
-require('fnc/fnc-tst'   )
+require('fnc/fnc-tst'    )
 
 -- 
 -- primitive
@@ -1048,6 +1049,47 @@ end
 function v.Env_dir__()
 
   vim.g.env_dir = v.Env_dir()
+end
+
+-- plg
+
+function v.Vim_plg_path()
+
+  local vim_plg_dir_linux = g.home_dir .. '/.local/share/nvim/site'
+  local vim_plg_dir_mac   = vim_plg_dir_linux
+  local vim_plg_dir_win   = g.home_dir .. '/AppData/Local/nvim-data/site'
+
+  local vim_plg_dir = vim_plg_dir_linux -- dflt
+
+  if     v.Is_env__('mac') then
+
+    vim_plg_dir = vim_plg_dir_mac
+
+  elseif v.Is_env__('linux') then
+
+    vim_plg_dir = vim_plg_dir_linux
+
+  elseif v.Is_env__('win64') then
+
+    vim_plg_dir = vim_plg_dir_win
+
+  elseif v.Is_env__('win32unix') then -- gitbash
+
+    vim_plg_dir = vim_plg_dir_win
+  end
+
+  local vim_plg_path = vim_plg_dir .. '/autoload/plug.vim'
+  return vim_plg_path
+end
+
+function v.Is_vim_plg__installed()
+
+  local vim_plg_path = v.Vim_plg_path()
+  -- print( vim_plg_path )
+
+  local ret = f.empty(f.glob(vim_plg_path)) == 0
+  -- print( 'vim-plug installed : ', ret)
+  return ret
 end
 
 -- repeat fnc

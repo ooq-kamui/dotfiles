@@ -1,76 +1,7 @@
--- 
+
 -- fzf
--- 
 
--- 
--- setting
--- 
-
-vim_cmd = [[
-let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
-let g:fzf_action = {
-\  'ctrl-o': 'tab drop',
-\ }
-
-"\  'ctrl-o': 'enter',
-"\  'ctrl-i': 'item slct mtl',
-"\  'ctrl-s': 'backward-char',
-
-let g:fzf_colors = {
-\   'hl'     : ['fg', 'Statement'  ],
-\   'hl+'    : ['fg', 'Statement'  ],
-\ }
-]]
-vim.cmd(vim_cmd)
-
--- vim.g.fzf_preview_window = {
---   'down:40%:hidden',
---   'ctrl-/',
--- }
--- vim.g.fzf_action = {}
--- vim.g.fzf_action['ctrl-o'] = 'tab drop'
-
---  'ctrl-o' = 'enter',
---  'ctrl-i' = 'item slct mtl',
---  'ctrl-s' = 'backward-char',
-
--- vim.g.fzf_colors = {}
--- vim.g.fzf_colors['hl' ] = {'fg', 'Statement'}
--- vim.g.fzf_colors['hl+'] = {'fg', 'Statement'}
-
---   'bg+'     = {'bg', 'CursorLine' },
---   'bg+'     = {'bg', 'Normal'     },
-
---   'info'    = {'fg', 'Comment'    },
---   'border'  = {'fg', 'Ignore'     },
---   'prompt'  = {'fg', 'Function'   },
---   'pointer' = {'fg', 'Statement'  },
---   'marker'  = {'fg', 'Conditional'},
-
---   'info'    = {'Comment'},
---   'border'  = {'Comment'},
---   'prompt'  = {'Comment'},
---   'pointer' = {'Comment'},
---   'marker'  = {'Comment'},
-
--- use ??
--- g.fzf_buffers_jump = 1
--- fzf#vim#complete#buffer_line([spec])
-
--- fzf var def ( in plugin ) end
-
-if v.Is_env__('mac') or v.Is_env__('linux') or v.Is_env__('win64') then
-
-  if v.Is_env__('win64') then
-    g.fzf_rg_opt = g.fzf_rg_opt .. ' -g "!.git/"'
-  else
-    g.fzf_rg_opt = g.fzf_rg_opt .. ' -g "!.git/"'
-  end
-end
-
--- 
 -- fnc
--- 
 
 function v.Fzf_rg(...) -- alias
 
@@ -393,9 +324,71 @@ function v.Doc_tech_tag_jmp(str)
   v.Tag_jmp_by_str(str)
 end
 
--- 
+-- setting
+
+vim_cmd = [[
+let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
+let g:fzf_action = {
+\  'ctrl-o': 'tab drop',
+\ }
+
+"\  'ctrl-o': 'enter',
+"\  'ctrl-i': 'item slct mtl',
+"\  'ctrl-s': 'backward-char',
+
+let g:fzf_colors = {
+\   'hl'     : ['fg', 'Statement'  ],
+\   'hl+'    : ['fg', 'Statement'  ],
+\ }
+]]
+vim.cmd(vim_cmd)
+
+-- vim.g.fzf_preview_window = {
+--   'down:40%:hidden',
+--   'ctrl-/',
+-- }
+-- vim.g.fzf_action = {}
+-- vim.g.fzf_action['ctrl-o'] = 'tab drop'
+
+--  'ctrl-o' = 'enter',
+--  'ctrl-i' = 'item slct mtl',
+--  'ctrl-s' = 'backward-char',
+
+-- vim.g.fzf_colors = {}
+-- vim.g.fzf_colors['hl' ] = {'fg', 'Statement'}
+-- vim.g.fzf_colors['hl+'] = {'fg', 'Statement'}
+
+--   'bg+'     = {'bg', 'CursorLine' },
+--   'bg+'     = {'bg', 'Normal'     },
+
+--   'info'    = {'fg', 'Comment'    },
+--   'border'  = {'fg', 'Ignore'     },
+--   'prompt'  = {'fg', 'Function'   },
+--   'pointer' = {'fg', 'Statement'  },
+--   'marker'  = {'fg', 'Conditional'},
+
+--   'info'    = {'Comment'},
+--   'border'  = {'Comment'},
+--   'prompt'  = {'Comment'},
+--   'pointer' = {'Comment'},
+--   'marker'  = {'Comment'},
+
+-- use ??
+-- g.fzf_buffers_jump = 1
+-- fzf#vim#complete#buffer_line([spec])
+
+-- fzf var def ( in plugin ) end
+
+if v.Is_env__('mac') or v.Is_env__('linux') or v.Is_env__('win64') then
+
+  if v.Is_env__('win64') then
+    g.fzf_rg_opt = g.fzf_rg_opt .. ' -g "!.git/"'
+  else
+    g.fzf_rg_opt = g.fzf_rg_opt .. ' -g "!.git/"'
+  end
+end
+
 -- cmd usr
--- 
 
 -- command! -bang -nargs=1 FzfRgExt call Fzf_rg_ext(<f-args>)
 vim.api.nvim_create_user_command('FzfRgExt',

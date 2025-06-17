@@ -1355,6 +1355,9 @@ end, {expr = true})
 -- srch rpl one > ynk, nxt
 vim.keymap.set('v', '<c-p>', ':lua v.Slctd__rpl_7_srch_nxt()<cr>')
 
+-- srch markdown h
+vim.keymap.set('v', 'M', ':lua v.Srch_str__h_swtch()<cr>')
+
 -- rpl ( cmd )
 vim.keymap.set('v', ':s', function()
   if v.Mode.is__box() then

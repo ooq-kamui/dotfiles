@@ -1,53 +1,7 @@
--- 
+
 -- plg
--- 
 
--- 
 -- vim-plug
--- 
-
-function v.Vim_plg_path()
-
-  local vim_plg_dir_linux = g.home_dir .. '/.local/share/nvim/site'
-  local vim_plg_dir_mac   = vim_plg_dir_linux
-  local vim_plg_dir_win   = g.home_dir .. '/AppData/Local/nvim-data/site'
-
-  local vim_plg_dir = vim_plg_dir_linux -- dflt
-
-  if     v.Is_env__('mac') then
-
-    vim_plg_dir = vim_plg_dir_mac
-
-  elseif v.Is_env__('linux') then
-
-    vim_plg_dir = vim_plg_dir_linux
-
-  elseif v.Is_env__('win64') then
-
-    vim_plg_dir = vim_plg_dir_win
-
-  elseif v.Is_env__('win32unix') then -- gitbash
-
-    vim_plg_dir = vim_plg_dir_win
-  end
-
-  local vim_plg_path = vim_plg_dir .. '/autoload/plug.vim'
-  return vim_plg_path
-end
-
-function v.Is_vim_plg__installed()
-
-  local vim_plg_path = v.Vim_plg_path()
-  -- print( vim_plg_path )
-
-  local ret = f.empty(f.glob(vim_plg_path)) == 0
-  -- print( 'vim-plug installed : ', ret)
-  return ret
-end
-
--- 
--- init
--- 
 
 g.plg_mng_cmd = [[
   call plug#begin()
@@ -71,18 +25,18 @@ g.plg_mng_cmd = [[
 ]]
 
 if v.Is_vim_plg__installed() then
-  -- print('plug#begin')
 
+  -- print('plug#begin')
   vim.cmd(g.plg_mng_cmd)
 end
 -- do :PlugInstall
 -- or :PlugUpdate
 -- or :PlugClean
 
+osc52 = require('osc52')
 
--- 
+
 -- lazy
--- 
 
 -- require('init-plg' )
 

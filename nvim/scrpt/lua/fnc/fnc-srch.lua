@@ -181,11 +181,12 @@ function v.Srch_str__h_swtch()
   if     vim.bo.filetype == 'markdown' then
     v.Srch_str__markdown_h()
 
+  elseif vim.bo.filetype == 'lua' then
+    v.Srch_str__fnc()
+
   elseif vim.bo.filetype == 'vim' then
     v.Srch_str__fnc()
 
-  elseif vim.bo.filetype == 'lua' then
-    v.Srch_str__fnc()
   else
     v.Srch_str__markdown_h()
   end

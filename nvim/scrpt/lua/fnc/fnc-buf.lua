@@ -1,7 +1,8 @@
 
--- opn
+-- buf
 
-v.Opn = {}
+v.Buf = {}
+v.Opn = v.Buf -- old
 
 g.nvim_lua_init_file_path      = g.nvim_lua_dir     .. '/init.lua'
 g.nvim_lua_opt_file_path       = g.nvim_lua_etc_dir .. '/opt.lua'
