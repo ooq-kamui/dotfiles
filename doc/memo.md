@@ -2,6 +2,30 @@
 # dotfiles
 
 
+## nvim
+
+cls
+- buf
+  - buf.opn
+  - buf.save
+  - buf.close
+- sys
+  - opn
+  - cmd
+
+v M cursor __ mv mrkdwn h
+
+plg
+- oil
+- nvim-treesitter
+- lualine
+
+
+## touchpad
+
+MA-PB521GM
+
+
 ## ooq dns
 
 dns mgr
@@ -9,28 +33,6 @@ dns mgr
   - cre
 - svr
   - del
-
-
-## nvim
-
-plg
-- oil
-- nvim-treesitter
-- lualine
-
-cls
-- buf
-  - buf.opn
-  - buf.save
-  - buf.close
-- sys.opn
-
-v M cursor __ mv mrkdwn h
-
-
-## touchpad
-
-name memo
 
 
 ## aws
