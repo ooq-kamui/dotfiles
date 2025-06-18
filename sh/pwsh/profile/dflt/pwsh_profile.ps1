@@ -198,10 +198,10 @@ function rm_dmy {
 }
 Set-Alias rm "rm_dmy" -Option AllScope # cannot be removed
 
-function vi_s {
-
-  nvim -p $args
-}
+# function vi_s {
+# 
+#   nvim -p $args
+# }
 
 function vi {
 
@@ -209,6 +209,11 @@ function vi {
   # echo $arg_list
 
   nvim -p $arg_list
+}
+
+function vi_lf {
+
+  nvim -p ( lf )
 }
 
 function wild_card_parse {
