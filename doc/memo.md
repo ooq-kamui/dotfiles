@@ -19,6 +19,9 @@ mvm
 sys run __ slctd
 - `:.w !$SHELL<Return>`
 
+win split slide ( reduce )
+- `<c-w>-`
+
 
 ## pwsh
 
