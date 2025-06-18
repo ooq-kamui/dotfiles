@@ -444,8 +444,11 @@ vim.keymap.set('n', 'i', ':lua v.Slctd_str__word()<cr>')
 -- slctd __ char current - word end
 vim.keymap.set('n', 'I', 've')
 
+-- slct visual
+vim.keymap.set('n', 'v', 'v')
+
 -- slct visual box
-vim.keymap.set('n', 'v', '<c-v>')
+-- vim.keymap.set('n', 'v', '<c-v>')
 
 -- slct all
 -- vim.keymap.set('n', 'xx', ':lua v.Ynk__line_all()<cr>')

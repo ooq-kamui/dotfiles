@@ -683,6 +683,7 @@ end
 
 -- math
 
+-- dev anchor
 function v.Slctd_math() -- range
 
   local str = v.Slctd_str()

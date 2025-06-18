@@ -123,6 +123,7 @@ alias trash 'trash -F'
 alias vi  'nvim -p'
 alias vim 'nvim -p'
 # alias vid 'nvim -p doc/memo.md'
+alias vi_lf 'nvim -p ( lf )'
 
 alias ji  'git'
 alias j   'git status'

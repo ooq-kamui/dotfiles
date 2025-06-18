@@ -2,26 +2,9 @@
 # dotfiles
 
 
-## nvim
+## touchpad
 
-plg
-- oil
-- nvim-treesitter
-- lualine
-
-mvm
-- cre
-
-sys run __ slctd
-- `:.w !$SHELL<Return>`
-
-win split slide ( reduce )
-- `<c-w>-`
-
-
-## pwsh
-
-c-w word pre del
+box half cre
 
 
 ## ooq dns
@@ -33,14 +16,32 @@ dns mgr
   - del
 
 
-## aws
+## nvim
 
-payment confirm
+plg
+- oil
+- nvim-treesitter
+- lualine
+
+mode mvm
+- cre
+
+slctd line 2 sys cmd
+- sys cmd ()
+- ref: math
+
+win split slide ( reduce )
+- `<c-w>-`
 
 
 ## godot
 
 step by step
+
+
+## aws
+
+payment confirm
 
 
 ## skr-vps
