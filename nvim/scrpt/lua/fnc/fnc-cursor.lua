@@ -508,6 +508,11 @@ function v.Cursor__ins_ynk()
   v.Normal('"aP')
 end
 
+function v.Cursor__ins_ynk_box()
+
+  v.Normal('""P')
+end
+
 function v.Cursor__ins_clp()
 
   v.Ynk__clp()

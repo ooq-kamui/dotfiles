@@ -15,7 +15,7 @@ g.nvim_lua_etc_dir = g.nvim_lua_dir  .. ''
 
 require('fnc/fnc-line'   )
 require('fnc/fnc-rgstr'  )
-require('fnc/fnc-ynk'    )
+-- require('fnc/fnc-ynk'    )
 require('fnc/fnc-cursor' )
 require('fnc/fnc-slctd'  )
 require('fnc/fnc-srch'   )

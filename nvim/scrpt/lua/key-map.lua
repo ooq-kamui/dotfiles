@@ -73,6 +73,7 @@ vim.keymap.set('n', 'l', '<esc>')
 vim.keymap.set('n', 'm', '<esc>')
 vim.keymap.set('n', 'n', '<esc>')
 vim.keymap.set('n', 'o', '<esc>')
+vim.keymap.set('n', 'p', '<esc>')
 vim.keymap.set('n', 'q', '<esc>')
 vim.keymap.set('n', 'r', '<esc>')
 vim.keymap.set('n', 's', '<esc>')
@@ -465,11 +466,13 @@ vim.keymap.set('n', 'c', ':lua v.Ynk__line()<cr>')
 vim.keymap.set('n', 'gs', ':lua v.Ynk__buf_file_path()<cr>')
 
 -- ojroques/nvim-osc52
--- vim.keymap.set('v', 'C', osc52.copy_visual)
 vim.keymap.set('n', 'C', ':lua osc52.copy_register("a")<cr>')
 
 -- paste
 vim.keymap.set('n', 'p', ':lua v.Cursor__ins_ynk()<cr>')
+
+-- paste box
+vim.keymap.set('n', 'rp', ':lua v.Cursor__ins_ynk_box()<cr>')
 
 -- paste clp
 vim.keymap.set('n', 'P', ':lua v.Cursor__ins_clp()<cr>')
@@ -726,7 +729,6 @@ vim.keymap.set('n', 'E', ':lua v.Srch_str__word1_tgl()<cr>')
 vim.keymap.set('n', 'M', ':lua v.Srch_str__h_swtch()<cr>')
 
 -- srch str history ( fzf )
-vim.keymap.set('n', '<leader>n', ':FzfSrchHstry<cr>')
 vim.keymap.set('n', '<leader>f', ':FzfSrchHstry<cr>')
 
 -- srch str set prv ( tgl )
@@ -1135,7 +1137,6 @@ vim.keymap.set('v', 'a', ':lua v.Slctd_str__all()<cr>')
 
 -- ynk slctd
 vim.keymap.set('v', 'o', ':lua v.Ynk__slctd()<cr>')
-vim.keymap.set('v', 'c', ':lua v.Ynk__slctd()<cr>')
 
 -- ynk slctd add
 -- vim.keymap.set('v', 'xx', ':lua v.Ynk__add_slctd()<cr>')

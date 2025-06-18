@@ -2,11 +2,13 @@
 # dotfiles
 
 
+## git
+
+psh commit conflict
+- try confirm
+
+
 ## nvim
-
-v box paste
-
-v M cursor __ mv mrkdwn h
 
 plg
 - oil
