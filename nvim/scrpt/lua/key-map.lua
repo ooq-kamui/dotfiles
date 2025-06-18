@@ -280,7 +280,8 @@ vim.keymap.set('n', 'a', ':lua v.Save()<cr>')
 -- opn
 
 -- opn file
-vim.keymap.set('n', ':o', ':Opn ')
+-- vim.keymap.set('n', ':o', ':Opn ')
+vim.keymap.set('n', ':o', ':Oil ')
 
 -- opn view ltst
 vim.keymap.set('n', 'gu', ':lua v.Buf.opn_view_ltst()<cr>')
@@ -291,9 +292,7 @@ vim.keymap.set('n', '<leader>l', ':lua v.Fzf_file()<cr>')
 -- opn file hstry ( fzf )
 vim.keymap.set('n', '<leader>h', ':FzfFileHstry<cr>')
 
--- 
 -- opn etc
--- 
 
 -- opn fish cnf
 -- vim.keymap.set('n', 'xx', ':lua v.Opn_fish_cnf()<cr>')
@@ -328,9 +327,7 @@ vim.keymap.set('n', 'gd', ':lua v.Opn_buf_file_dir()<cr>')
 -- sys opn ggl srch
 vim.keymap.set('n', 'ggl', ':lua v.Opn_ggl_srch("")<cr>')
 
--- 
 -- cursor mv
--- 
 
 -- cursor mv drct
 vim.keymap.set('n', '<Right>', 'l')
@@ -381,9 +378,8 @@ vim.keymap.set('n', '_', 'f_l')
 
 -- cursor mv word dlm _ back
 vim.keymap.set('n', '<c-_>', 'hT_')
-vim.keymap.set('n', '\\', 'T_h')
+vim.keymap.set('n', '\\'   , 'T_h')
 vim.keymap.set('n', '<bar>', 'T_h')
--- vim.keymap.set('n', '<c-\\>', 'T_h')
 
 -- cursor mv word dlm ( camel or _ )  -  forward
 vim.keymap.set('n', 'F', ':lua v.Cursor__mv_word_dlm_f()<cr>')
@@ -1049,9 +1045,7 @@ end, {expr = true})
 -- file srch ( fzf )
 -- vim.keymap.set('v', '<leader>xx', '"zy:FzfFile <c-r>z')
 
--- 
 -- cursor mv
--- 
 
 -- cursor mv slctd edge tgl
 vim.keymap.set('v', 'y', ':lua v.Cursor__mv_slctd_edge_tgl()<cr>')
@@ -1065,7 +1059,7 @@ vim.keymap.set('v', 'l', 'l')
 -- cursor mv char back
 vim.keymap.set('v', '<c-o>', 'h')
 
--- cursor mv word - back
+-- cursor mv word back
 -- vim.keymap.set('v', 'xx', 'b')
 -- vim.keymap.set('v', 'xx', 'bh')
 -- vim.keymap.set('v', 'xx', 'Bh')
@@ -1074,16 +1068,16 @@ vim.keymap.set('v', '<c-o>', 'h')
 vim.keymap.set('v', '<c-y>', ':lua v.Slctd_cursor__mv_line_end()<cr>')
 
 -- slctd __ reduce dlm _ r
--- vim.keymap.set('v', '_'    , 'of_lo')
 -- vim.keymap.set('v', '<c-h>', 'of_lo')
+-- vim.keymap.set('v', '_'    , 'of_lo')
 
 -- slctd __ reduce dlm _ l
--- vim.keymap.set('v', 'h', 'F_h')
 vim.keymap.set('v', 'h', ':lua v.Slctd_str__reduce_dlm_l("_")<cr>')
+-- vim.keymap.set('v', 'h', 'F_h')
 -- vim.keymap.set('v', 'H'    , 'F_h')
 -- vim.keymap.set('v', '<c-_>', 'F_h')
 
--- cursor mv space - forward ( word pre )
+-- cursor mv space forward ( word pre )
 -- vim.keymap.set('v', 'xx', 'wh')
 
 -- cursor mv line
@@ -1106,12 +1100,10 @@ vim.keymap.set('v', '<c-l>', '%')
 -- cursor mv file edge back    ( file bgn )
 vim.keymap.set('v', 'gk', ':lua v.Slctd_cursor__mv_file_edge("k")<cr>')
 
--- cursor mv file edge forward ( file end   )
+-- cursor mv file edge forward ( file end )
 vim.keymap.set('v', 'gj', ':lua v.Slctd_cursor__mv_file_edge("j")<cr>')
 
--- 
 -- slct / ynk / paste
--- 
 
 -- slctd expnd
 -- vim.keymap.set('v', 'xx', ':lua v.Slctd_str__expnd()')
@@ -1653,9 +1645,7 @@ vim.keymap.set('i', '<kHome>'    , '7')
 vim.keymap.set('i', '<kUp>'      , '8')
 vim.keymap.set('i', '<kPageUp>'  , '9')
 
--- 
 -- mode cmd
--- 
 
 -- quit
 vim.keymap.set('c', '<c-q>', '<c-c>')

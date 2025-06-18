@@ -5,14 +5,15 @@
 
 g.plg_mng_cmd = [[
   call plug#begin()
+
+  " vim
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
-  Plug 'mattn/vim-molder'
-  " Plug 'mattn/vim-molder-operations'
-  " Plug 'jacquesbh/vim-showmarks'
+  " Plug 'mattn/vim-molder'
 
   " nvim
   Plug 'ojroques/nvim-osc52'
+  Plug 'stevearc/oil.nvim'
 
   " Plug 'shellRaining/hlchunk.nvim'
   " Plug 'sphamba/smear-cursor.nvim'
@@ -34,7 +35,7 @@ end
 -- or :PlugClean
 
 osc52 = require('osc52')
-
+require("oil").setup()
 
 -- lazy
 

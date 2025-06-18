@@ -2,9 +2,12 @@
 # dotfiles
 
 
-## touchpad
+## ofc
 
-box half cre
+clock
+
+touchpad
+- box half cre
 
 
 ## ooq dns
@@ -18,20 +21,18 @@ dns mgr
 
 ## nvim
 
-plg
-- oil
-- nvim-treesitter
-- lualine
+line dpl fnc
 
-mode mvm
-- cre
-
-slctd line 2 sys cmd
-- sys cmd ()
+sys cmd by slctd ()
 - ref: math
 
-win split slide ( reduce )
+win split slide
 - `<c-w>-`
+  - reduce
+
+plg
+- nvim-treesitter
+- lualine
 
 
 ## godot
