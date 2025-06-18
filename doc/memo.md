@@ -6,9 +6,6 @@
 
 clock
 
-touchpad
-- box half cre
-
 
 ## ooq dns
 

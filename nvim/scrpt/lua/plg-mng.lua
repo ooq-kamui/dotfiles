@@ -35,13 +35,13 @@ end
 -- or :PlugClean
 
 osc52 = require('osc52')
-require("oil").setup()
+require("oil").setup({
+  keymaps = {
+    ["<c-j>"] = { "actions.select", opts = { tab = true } },
+  },
+})
 
 -- lazy
-
--- require('init-plg' )
-
--- lazy.nvim
 
 -- local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 -- if not (vim.uv or vim.loop).fs_stat(lazypath) then

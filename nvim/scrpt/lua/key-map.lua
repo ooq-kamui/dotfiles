@@ -79,6 +79,7 @@ vim.keymap.set('n', 'r', '<esc>')
 vim.keymap.set('n', 's', '<esc>')
 vim.keymap.set('n', 't', '<esc>')
 vim.keymap.set('n', 'u', '<esc>')
+vim.keymap.set('n', 'v', '<esc>')
 vim.keymap.set('n', 'w', '<esc>')
 vim.keymap.set('n', 'x', '<esc>')
 vim.keymap.set('n', 'y', '<esc>')
@@ -441,10 +442,10 @@ vim.keymap.set('n', 'i', ':lua v.Slctd_str__word()<cr>')
 vim.keymap.set('n', 'I', 've')
 
 -- slct visual
-vim.keymap.set('n', 'v', 'v')
+vim.keymap.set('n', '<c-v>', 'v')
 
 -- slct visual box
--- vim.keymap.set('n', 'v', '<c-v>')
+vim.keymap.set('n', 'v', '<c-v>')
 
 -- slct all
 -- vim.keymap.set('n', 'xx', ':lua v.Ynk__line_all()<cr>')
