@@ -282,7 +282,7 @@ vim.keymap.set('n', 'a', ':lua v.Save()<cr>')
 vim.keymap.set('n', ':o', ':Opn ')
 
 -- opn view ltst
-vim.keymap.set('n', 'gu', ':lua v.Opn.opn_view_ltst()<cr>')
+vim.keymap.set('n', 'gu', ':lua v.Buf.opn_view_ltst()<cr>')
 
 -- opn file srch  ( fzf )
 vim.keymap.set('n', '<leader>l', ':lua v.Fzf_file()<cr>')

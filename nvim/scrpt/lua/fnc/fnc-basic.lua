@@ -421,14 +421,6 @@ function v.Normal(n_cmd) -- alias
   -- vim.cmd('exe "normal! ' .. n_cmd .. '"')
 end
 
-function v.Sys_cmd(sys_cmd)
-
-  -- print(sys_cmd)
-  local ret = f.system(sys_cmd)
-  -- print(ret)
-  return ret
-end
-
 function v.Cmdline__(str)
 
   -- v.Ynk__(str)
@@ -571,103 +563,6 @@ function v.Dir__parent(lvl)
   v.Pth()
 end
 
--- file ( buf file )
-
-function v.Save()
-
-  v.Cmd('w')
-end
-
-function v.Buf_file__dpl()
-
-  local sys_cmd = 'dpl ' .. v.Buf_file_path()
-  v.Sys_cmd(sys_cmd)
-end
-
-function v.Buf_file__mv(file_name_aft)
-
-  local file_path_bfr = v.Buf_file_path()
-
-  local sys_cmd = 'str_mv_f ' .. file_path_bfr .. ' ' .. file_name_aft
-  local file_path_aft = v.Sys_cmd(sys_cmd)
-
-  local sys_cmd = 'mv ' .. file_path_bfr .. ' ' .. file_path_aft
-  v.Sys_cmd(sys_cmd)
-
-  local cmd = 'file ' .. file_path_aft -- save file_path ch
-  v.Cmd(cmd)
-end
-
-function v.Buf_file_path()
-
-  local path = f.expand('%:p')
-  return path
-end
-
-function v.File_txt(file_path)
-
-  if not f.filereadable(file_path) then
-    return
-  end
-
-  local cmd = 'cat ' .. file_path
-
-  local pth_lst_txt = v.Sys_cmd(cmd)
-  return pth_lst_txt
-end
-
-function v.File_line_ar(file_path)
-
-  local file_txt = v.File_txt(file_path)
-  local file_line_ar = v.Txt_to_ar(file_txt)
-  return file_line_ar
-end
-
--- load re
-
-function v.Load_re()
-
-  v.Cmd('e ')
-end
-
--- load re  -  encode sjis
-
-function v.Load_re__sjis()
-
-  v.Cmd('e ++enc=sjis')
-end
-
--- encode
-
-function v.Buf_file_encode()
-
-  v.Cmd('set enc?')
-end
-
-function v.Buf_file_bom()
-
-  v.Cmd('set bomb?')
-end
-
--- file tmp
-
-function v.File_tmp__cre() -- alias
-
-  local tmp_path = f.system('mktemp ')
-  return tmp_path
-end
-
--- file cnd
-
-function v.Is_file_type__(type)
-
-  if vim.bo.filetype == type then
-    return true
-  else
-    return false
-  end
-end
-
 -- markdown cnd
 
 function v.Is_line_markdown_itm()
@@ -683,9 +578,7 @@ function v.Is_line_markdown_itm()
   end
 end
 
--- 
 -- mode ins
--- 
 
 -- complete  -  mode insert ins lst
 
@@ -810,9 +703,7 @@ function v.Slctd_url_encode() -- range
   v.Cursor__ins(rslt)
 end
 
--- 
 -- rg
--- 
 
 -- dev anchor
 function v.Rg_rslt_line_parse(line)
@@ -1003,9 +894,7 @@ function v.Jmplst_cmp(jmplst1, jmplst2)
   return jmplst1['lnum'] <  jmplst2['lnum']
 end
 
--- 
 -- env
--- 
 
 function v.Is_env__(env) -- alias
 

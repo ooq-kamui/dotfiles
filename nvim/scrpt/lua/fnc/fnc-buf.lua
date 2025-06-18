@@ -15,12 +15,12 @@ g.nvim_lua_plg_fzf_file_path   = g.nvim_lua_etc_dir .. '/plg-fzf.lua'
 
 -- opn file
 
-function v.Opn.opn(filename)
+function v.Buf.opn(filename)
 
   v.Cmd('tab drop ' .. filename)
 end
 
-function v.Opn.opn_view_ltst()
+function v.Buf.opn_view_ltst()
 
   v.Cmd('tab drop #')
 end
@@ -29,14 +29,14 @@ function v.Opn_tmp_file()
 
   local path = v.File_tmp__cre()
   print( path )
-  v.Opn.opn(path)
+  v.Buf.opn(path)
 end
 
 function v.Opn_init_vim()
 
   -- lua
-  v.Opn.opn(g.nvim_lua_fnc_basic_file_path)
-  v.Opn.opn(g.nvim_lua_plg_fzf_file_path  )
+  v.Buf.opn(g.nvim_lua_fnc_basic_file_path)
+  v.Buf.opn(g.nvim_lua_plg_fzf_file_path  )
 
   local vimrc_c9_file_path
   local vimrc_gitbash_file_path
@@ -44,30 +44,30 @@ function v.Opn_init_vim()
   if     v.Is_env__('linux')     then -- c9, s9
 
     vimrc_c9_file_path      = g.init_vim_dir .. '/c9/init.vim'
-    -- v.Opn.opn(vimrc_c9_file_path)
+    -- v.Buf.opn(vimrc_c9_file_path)
 
   elseif v.Is_env__('win32unix') then -- gitbash
 
     vimrc_gitbash_file_path = g.init_vim_dir .. '/gitbash/init.vim'
-    v.Opn.opn(vimrc_gitbash_file_path)
+    v.Buf.opn(vimrc_gitbash_file_path)
   end
 end
 
 function v.Opn_init_vim_l()
 
-  v.Opn.opn(g.nvim_lua_opt_file_path    )
-  v.Opn.opn(g.nvim_lua_cmd_file_path    )
+  v.Buf.opn(g.nvim_lua_opt_file_path    )
+  v.Buf.opn(g.nvim_lua_cmd_file_path    )
 
-  v.Opn.opn(g.nvim_lua_init_file_path   )
+  v.Buf.opn(g.nvim_lua_init_file_path   )
 
-  v.Opn.opn(g.nvim_lua_key_map_file_path)
-  v.Opn.opn(g.nvim_lua_hl_file_path     )
+  v.Buf.opn(g.nvim_lua_key_map_file_path)
+  v.Buf.opn(g.nvim_lua_hl_file_path     )
 end
 
 function v.Opn_fish_cnf()
 
   local path = '~/.config/fish/config.fish'
-  v.Opn.opn(path)
+  v.Buf.opn(path)
 end
 
 function v.Opn_man(cmd)
@@ -81,87 +81,7 @@ g.memo_path = 'doc/memo.md'
 
 function v.Opn_memo()
 
-  v.Opn.opn(g.memo_path)
-end
-
--- opn app
-
-function v.Opn_app(path)
-
-  local path = path
-  local cmd_sys
-
-  if     v.Is_env__('mac') then
-    cmd_sys = 'open'
-
-  elseif v.Is_env__('win64') then
-    cmd_sys = 'start'
-
-  elseif v.Is_env__('win32unix') then
-    cmd_sys = 'start'
-
-  else
-    return
-  end
-
-  if v.Is_env__('win64') then
-    path = v.Str_path_unix__cnv_win(path)
-  end
-
-  local res = f.system(cmd_sys .. " '" .. path .. "'")
-end
-
-function v.Opn_app_by_cursor_path()
-  
-  local path = v.Cursor_filepath()
-  v.Opn_app(path)
-end
-
-function v.Opn_app_by_line_path(line_num)
-
-  -- local path = f.getline(line_num)
-  local path = v.Line_str_by_line_num(line_num)
-
-  path = f.trim(path)
-  v.Opn_app(path)
-end
-
-function v.Opn_app_by_slctd_str()
-
-  local path = v.Slctd_str()
-  path = f.trim(path)
-  v.Opn_app(path)
-end
-
-function v.Opn_app_buf_file()
-
-  local path = v.Buf_file_path()
-  -- print( path )
-  v.Opn_app(path)
-end
-
-function v.Opn_buf_file_dir()
-
-  local dir = v.Buf_file_dir()
-  v.Opn_app(dir)
-end
-
-function v.Opn_brwsr()
-
-  local url = 'https://www.google.com/'
-  v.Opn_app(url)
-end
-
-function v.Opn_ggl_srch(word)
-
-  local url = 'https://www.google.com/search?q=' .. word
-  v.Opn_app(url)
-end
-
-function v.Opn_yt(yt_video_id)
-
-  local url = 'https://www.youtube.com/watch?v=' .. yt_video_id
-  v.Opn_app(url)
+  v.Buf.opn(g.memo_path)
 end
 
 -- tag jmp
@@ -279,5 +199,100 @@ function v.Win_splt__quit()
   vim.cmd('exe "normal! \\<c-w>c>"')
 end
 
+-- file ( buf file )
 
+function v.Save()
+
+  v.Cmd('w')
+end
+
+function v.Buf_file__dpl()
+
+  local sys_cmd = 'dpl ' .. v.Buf_file_path()
+  v.Sys_cmd(sys_cmd)
+end
+
+function v.Buf_file__mv(file_name_aft)
+
+  local file_path_bfr = v.Buf_file_path()
+
+  local sys_cmd = 'str_mv_f ' .. file_path_bfr .. ' ' .. file_name_aft
+  local file_path_aft = v.Sys_cmd(sys_cmd)
+
+  local sys_cmd = 'mv ' .. file_path_bfr .. ' ' .. file_path_aft
+  v.Sys_cmd(sys_cmd)
+
+  local cmd = 'file ' .. file_path_aft -- save file_path ch
+  v.Cmd(cmd)
+end
+
+function v.Buf_file_path()
+
+  local path = f.expand('%:p')
+  return path
+end
+
+function v.File_txt(file_path)
+
+  if not f.filereadable(file_path) then
+    return
+  end
+
+  local cmd = 'cat ' .. file_path
+
+  local pth_lst_txt = v.Sys_cmd(cmd)
+  return pth_lst_txt
+end
+
+function v.File_line_ar(file_path)
+
+  local file_txt = v.File_txt(file_path)
+  local file_line_ar = v.Txt_to_ar(file_txt)
+  return file_line_ar
+end
+
+-- load re
+
+function v.Load_re()
+
+  v.Cmd('e ')
+end
+
+-- load re  -  encode sjis
+
+function v.Load_re__sjis()
+
+  v.Cmd('e ++enc=sjis')
+end
+
+-- encode
+
+function v.Buf_file_encode()
+
+  v.Cmd('set enc?')
+end
+
+function v.Buf_file_bom()
+
+  v.Cmd('set bomb?')
+end
+
+-- file tmp
+
+function v.File_tmp__cre() -- alias
+
+  local tmp_path = f.system('mktemp ')
+  return tmp_path
+end
+
+-- file cnd
+
+function v.Is_file_type__(type)
+
+  if vim.bo.filetype == type then
+    return true
+  else
+    return false
+  end
+end
 

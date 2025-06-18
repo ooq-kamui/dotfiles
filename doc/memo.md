@@ -4,14 +4,7 @@
 
 ## nvim
 
-cls
-- buf
-  - buf.opn
-  - buf.save
-  - buf.close
-- sys
-  - opn
-  - cmd
+v box paste
 
 v M cursor __ mv mrkdwn h
 
@@ -20,10 +13,16 @@ plg
 - nvim-treesitter
 - lualine
 
+mvm
+- cre
 
-## touchpad
+sys run __ slctd
+- `:.w !$SHELL<Return>`
 
-MA-PB521GM
+
+## pwsh
+
+c-w word pre del
 
 
 ## ooq dns

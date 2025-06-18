@@ -234,7 +234,7 @@ function v.Fzf_file()
   -- u.Log.val(fzf_src_txt)
 
   -- local fnc_name = 'Opn'
-  local fnc_name = v.Opn.opn
+  local fnc_name = v.Buf.opn
   v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
@@ -275,7 +275,7 @@ function v.Fzf_doc_memo_opn()
 
   local fzf_src_ar = memo_file_list
   -- local fnc_name    = 'Opn'
-  local fnc_name    = v.Opn.opn
+  local fnc_name    = v.Buf.opn
   v.Fzf_by_ar(fzf_src_ar, fnc_name)
 end
 
