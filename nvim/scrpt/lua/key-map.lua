@@ -662,7 +662,8 @@ vim.keymap.set('n', '<enter>', 'J')
 -- vim.keymap.set('n', 'xx', '"addk"aP')
 
 -- line dpl  -- todo fnc cre
-vim.keymap.set('n', 'D', '"zyy"zP')
+-- vim.keymap.set('n', 'D', '"zyy"zP')
+vim.keymap.set('n', 'D', ':lua v.Line__dpl()<cr>')
 
 -- char tgl 01 ( ?? / num icl  )
 vim.keymap.set('n', 'u', ':lua v.N_char__tgl_swtch01()<cr>')
@@ -815,9 +816,7 @@ vim.keymap.set('n', '<s-tab>', 'gT')
 vim.keymap.set('n', '<s-left>' , ':tabm-1<cr>')
 vim.keymap.set('n', '<s-right>', ':tabm+1<cr>')
 
--- 
 -- buf
--- 
 
 -- buf list
 -- vim.keymap.set('n', ':xx', ':buffers')
@@ -826,9 +825,7 @@ vim.keymap.set('n', '<s-right>', ':tabm+1<cr>')
 vim.keymap.set('n', ':f', ':%! jq')
 -- vim.keymap.set('n', 'xx', ':lua v.Buf__fltr()<cr>') -- use not
 
--- 
 -- win ( buf )
--- 
 
 -- win ( buf ) splt quit
 -- vim.keymap.set('n', 'rq', ':lua v.Win_splt__quit()<cr>')
@@ -839,6 +836,9 @@ vim.keymap.set('n', 'rh', ':lua v.Win__splt_h()<cr>')
 -- win ( buf ) splt v
 vim.keymap.set('n', 'rn', ':lua v.Win__splt_v()<cr>')
 vim.keymap.set('n', 'rv', ':lua v.Win__splt_v()<cr>')
+
+-- win ( buf ) size w __ +
+vim.keymap.set('n', '{', '<c-w>>')
 
 -- win ( buf ) nxt
 vim.keymap.set('n', '<c-w>', ':lua v.Win_splt_cursor__mv_nxt()<cr>')
@@ -1032,7 +1032,8 @@ vim.keymap.set('v', '<leader>y', '<esc>')
 -- mode visual esc end
 
 -- mode ch line
-vim.keymap.set('v', 'i', 'V')
+vim.keymap.set('v', 'i', ':lua v.Slctd_mode__tgl()<cr>')
+-- vim.keymap.set('v', 'i', 'V')
 
 -- mode ch visual box
 vim.keymap.set('v', 'v', function()
@@ -1411,7 +1412,7 @@ vim.keymap.set('v', 'ggl', ':lua v.Slctd_str_7_opn_ggl_srch()<cr>')
 vim.keymap.set('v', 'gy', ':lua v.Slctd_str_7_opn_yt()<cr>')
 
 -- trns
-vim.keymap.set('v', 'r', ':lua v.Slctd_trns()<cr>')
+vim.keymap.set('v', 'r', ':lua v.Slctd_str_trns()<cr>')
 
 -- 
 -- cmd
@@ -1581,14 +1582,6 @@ vim.keymap.set('i', '<c-p>', '<c-r>=v:lua.v.I_symbol03()<cr>')
 
 -- ins register
 -- vim.keymap.set('i', 'xx', '<c-r>=v:lua.v.I_reg()<cr>')
-
--- ins bracket
--- vim.keymap.set('i', '<', '<><c-o>h')
--- vim.keymap.set('i', '(', '()<c-o>h')
--- vim.keymap.set('i', '{', '{}<c-o>h')
--- vim.keymap.set('i', '[', '[]<c-o>h')
--- vim.keymap.set('i', '"', '""<c-o>h')
--- vim.keymap.set('i', "'", "''<c-o>h")
 
 -- del char forward
 vim.keymap.set('i', '<c-d>', '<c-o>x')

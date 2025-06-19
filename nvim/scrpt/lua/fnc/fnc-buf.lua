@@ -173,32 +173,6 @@ function v.Buf__fltr() -- use not
 
 end
 
--- win splt
-
-function v.Win__splt_h()
-
-  local cmd = 'split'
-  v.Cmd(cmd)
-end
-
-function v.Win__splt_v()
-
-  local cmd = 'vsplit'
-  v.Cmd(cmd)
-
-  v.Win_splt_cursor__mv_nxt()
-end
-
-function v.Win_splt_cursor__mv_nxt()
-
-  vim.cmd('exe "normal! \\<c-w>w>"')
-end
-
-function v.Win_splt__quit()
-
-  vim.cmd('exe "normal! \\<c-w>c>"')
-end
-
 -- file ( buf file )
 
 function v.Save()
@@ -209,7 +183,7 @@ end
 function v.Buf_file__dpl()
 
   local sys_cmd = 'dpl ' .. v.Buf_file_path()
-  v.Sys_cmd(sys_cmd)
+  v.Sys.cmd(sys_cmd)
 end
 
 function v.Buf_file__mv(file_name_aft)
@@ -217,10 +191,10 @@ function v.Buf_file__mv(file_name_aft)
   local file_path_bfr = v.Buf_file_path()
 
   local sys_cmd = 'str_mv_f ' .. file_path_bfr .. ' ' .. file_name_aft
-  local file_path_aft = v.Sys_cmd(sys_cmd)
+  local file_path_aft = v.Sys.cmd(sys_cmd)
 
   local sys_cmd = 'mv ' .. file_path_bfr .. ' ' .. file_path_aft
-  v.Sys_cmd(sys_cmd)
+  v.Sys.cmd(sys_cmd)
 
   local cmd = 'file ' .. file_path_aft -- save file_path ch
   v.Cmd(cmd)
@@ -240,7 +214,7 @@ function v.File_txt(file_path)
 
   local cmd = 'cat ' .. file_path
 
-  local pth_lst_txt = v.Sys_cmd(cmd)
+  local pth_lst_txt = v.Sys.cmd(cmd)
   return pth_lst_txt
 end
 
@@ -294,5 +268,33 @@ function v.Is_file_type__(type)
   else
     return false
   end
+end
+
+-- win
+
+-- win splt
+
+function v.Win__splt_h()
+
+  local cmd = 'split'
+  v.Cmd(cmd)
+end
+
+function v.Win__splt_v()
+
+  local cmd = 'vsplit'
+  v.Cmd(cmd)
+
+  v.Win_splt_cursor__mv_nxt()
+end
+
+function v.Win_splt_cursor__mv_nxt()
+
+  vim.cmd('exe "normal! \\<c-w>w>"')
+end
+
+function v.Win_splt__quit()
+
+  vim.cmd('exe "normal! \\<c-w>c>"')
 end
 

@@ -2,11 +2,6 @@
 # dotfiles
 
 
-## ofc
-
-clock
-
-
 ## ooq dns
 
 dns mgr
@@ -16,16 +11,16 @@ dns mgr
   - del
 
 
+## podman
+
+podman desktop
+- install at mac
+
+
 ## nvim
 
-line dpl fnc
-
-sys cmd by slctd ()
-- ref: math
-
-win split slide
-- `<c-w>-`
-  - reduce
+sys cmd etc
+- refactoring
 
 plg
 - nvim-treesitter

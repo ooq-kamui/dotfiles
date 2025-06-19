@@ -3,7 +3,6 @@
 
 v.Line = {}
 
-
 function v.Line_num_file_edge_bgn()
 
   return f.line('^')
@@ -61,6 +60,11 @@ g.dots_put_col = 50
 function v.Line__del_by_line_num(line_num)
 
   f.deletebufline('%', line_num)
+end
+
+function v.Line__dpl()
+
+  v.Normal('"zyy"zP')
 end
 
 -- line num

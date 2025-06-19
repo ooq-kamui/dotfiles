@@ -27,6 +27,19 @@ function v.Slctd__ltst() -- range
   v.Normal('gv')
 end
 
+function v.Slctd_mode__tgl()
+
+  v.Slctd__ltst()
+
+  if v.Mode.is__box() then
+
+    v.Normal('\\<esc>')
+    v.Normal('v')
+  else
+    v.Normal('V')
+  end
+end
+
 -- slctd str
 
 function v.Slctd_str() -- range
@@ -466,7 +479,7 @@ function v.Slctd__pad(char) -- range
   local char = char
 
   if char == '|' then
-    local char = "\\<bar>"
+    char = '\\<bar>'
   end
 
   v.Slctd__ltst()

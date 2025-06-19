@@ -14,6 +14,7 @@ g.nvim_lua_fnc_dir = g.nvim_lua_dir  .. '/fnc'
 g.nvim_lua_etc_dir = g.nvim_lua_dir  .. ''
 
 require('fnc/fnc-line'   )
+require('fnc/fnc-mode'   )
 require('fnc/fnc-rgstr'  )
 -- require('fnc/fnc-ynk'    )
 require('fnc/fnc-cursor' )
@@ -447,60 +448,6 @@ function v.Undo__clr()
   vim.bo.undolevels = undo_lvl_tmp
 end
 
--- mode
-
-v.Mode = {}
-
-function v.Mode.is__normal()
-
-  local ret = false
-
-  if f.mode() == 'n' then
-    ret = true
-  end
-  return ret
-end
-
-function v.Mode.is__visual()
-
-  local ret = false
-
-  if v.Mode.is__str() or v.Mode.is__line() or v.Mode.is__box() then
-    ret = true
-  end
-  return ret
-end
-
-function v.Mode.is__str()
-
-  local ret = false
-
-  if f.mode() == 'v' then
-    ret = true
-  end
-  return ret
-end
-
-function v.Mode.is__line()
-
-  local ret = false
-
-  if f.mode() == 'V' then
-    ret = true
-  end
-  return ret
-end
-
-function v.Mode.is__box()
-
-  local ret = false
-
-  if f.mode() == vim.api.nvim_replace_termcodes('<c-v>', false, false, true) then
-    ret = true
-  end
-  return ret
-end
-
 -- syntax color
 
 function v.Hl_grp()
@@ -649,61 +596,6 @@ function v.I_reg()
   return ''
 end
 
-function v.Is_ins_mode__menu()
-
-  local ret = false
-
-  if vim.fn.pumvisible() == 1 then
-    ret = true
-  end
-
-  return ret
-end
-
--- trns
-
-function v.Slctd_trns() -- range
-
-  local str = v.Slctd_str()
-  str = f.substitute(str, "\\n", ' ', 'g')
-
-  local lang
-  -- if str =~ '[^\\x01-\\x7E]' then -- mlt byte
-  if v.Is_str__ptn(str, '[^\\x01-\\x7E]') then -- mlt byte
-    lang = '{ja=en}'
-  else
-    lang = '{en=ja}'
-  end
-
-  str = f.escape(str, "'")
-  local sys_cmd = 'trans -no-ansi ' .. lang .. " '" .. str .. "'"
-  local rslt = v.Sys_cmd(sys_cmd)
-  print( rslt )
-end
-
--- math
-
--- dev anchor
-function v.Slctd_math() -- range
-
-  local str = v.Slctd_str()
-  local sys_cmd = 'echo ' .. "'" .. str .. "'" .. ' | math'
-  local rslt = v.Sys_cmd(sys_cmd)
-  print( rslt )
-  v.Rgstr__('a', rslt)
-end
-
--- url encdoe
-
-function v.Slctd_url_encode() -- range
-
-  local str = v.Slctd_str()
-  local sys_cmd = 'url_encode "' .. str .. '"'
-  local rslt = v.Sys_cmd(sys_cmd)
-  --print( rslt )
-  v.Cursor__ins(rslt)
-end
-
 -- rg
 
 -- dev anchor
@@ -789,7 +681,7 @@ function v.Rg_ptn_cnt(ptn, opt)
   end
 
   local rg_cmd = "rg " .. opt .. " -e '" .. ptn .. "' | count"
-  local rg_rslt_cnt = v.Sys_cmd(rg_cmd)
+  local rg_rslt_cnt = v.Sys.cmd(rg_cmd)
   rg_rslt_cnt = tonumber(rg_rslt_cnt)
   return rg_rslt_cnt
 end
@@ -822,7 +714,7 @@ end
 function v.Rg_ptn_rslt_txt(ptn, opt)
   
   local rg_cmd = v.Rg_cmd(ptn, nil, nil, opt) -- todo dev
-  local r_rslt_txt = v.Sys_cmd(rg_cmd)
+  local r_rslt_txt = v.Sys.cmd(rg_cmd)
   return r_rslt_txt
 end
 

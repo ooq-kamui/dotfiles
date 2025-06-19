@@ -230,7 +230,7 @@ end
 function v.Fzf_file()
 
   local sys_cmd = 'fd --type f'
-  local fzf_src_txt  = v.Sys_cmd(sys_cmd)
+  local fzf_src_txt  = v.Sys.cmd(sys_cmd)
   -- u.Log.val(fzf_src_txt)
 
   -- local fnc_name = 'Opn'
@@ -243,7 +243,7 @@ end
 function v.Fzf_dir()
 
   local sys_cmd = 'fd --type d'
-  local fzf_src_txt  = v.Sys_cmd(sys_cmd)
+  local fzf_src_txt  = v.Sys.cmd(sys_cmd)
 
   -- local fnc_name = 'Dir__'
   local fnc_name = v.Dir__
@@ -255,7 +255,7 @@ function v.Fzf_dir_jmp()
   local sys_cmd = 'dir_jmp_lst_with_z'
   -- local sys_cmd = 'dir_jmp_lst_with_zoxide'
 
-  local fzf_src_txt  = v.Sys_cmd(sys_cmd)
+  local fzf_src_txt  = v.Sys.cmd(sys_cmd)
 
   -- local fnc_name = 'Dir__'
   local fnc_name = v.Dir__
@@ -288,7 +288,7 @@ function v.Fzf_vim_fnc_call()
   local sys_cmd_sed = 'sed "s/function v.//g"'
 
   local sys_cmd = sys_cmd_rg .. ' | ' .. sys_cmd_sed
-  local fzf_src_txt  = v.Sys_cmd(sys_cmd)
+  local fzf_src_txt  = v.Sys.cmd(sys_cmd)
 
   -- local fnc_name = 'Cmdline__'
   local fnc_name = v.Cmdline__
@@ -310,7 +310,7 @@ function v.Fzf_doc_tech()
 
   local sys_cmd = sys_cmd_rg .. ' | ' .. sys_cmd_sed
 
-  local fzf_src_txt = v.Sys_cmd(sys_cmd)
+  local fzf_src_txt = v.Sys.cmd(sys_cmd)
 
   -- local fnc_name = 'Doc_tech_tag_jmp'
   local fnc_name = v.Doc_tech_tag_jmp

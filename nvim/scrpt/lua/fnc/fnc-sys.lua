@@ -1,12 +1,65 @@
 
-Sys = {}
+v.Sys = {}
 
-function v.Sys_cmd(sys_cmd)
+function v.Sys.cmd(sys_cmd)
 
   -- print(sys_cmd)
   local ret = f.system(sys_cmd)
   -- print(ret)
   return ret
+end
+
+-- trns
+-- dev anchor
+function v.Slctd_str_trns() -- range
+
+  local str = v.Slctd_str()
+  str = f.substitute(str, "\\n", ' ', 'g')
+
+  local lang
+  -- if str =~ '[^\\x01-\\x7E]' then -- mlt byte
+  if v.Is_str__ptn(str, '[^\\x01-\\x7E]') then -- mlt byte
+    lang = '{ja=en}'
+  else
+    lang = '{en=ja}'
+  end
+
+  str = f.escape(str, "'")
+  local sys_cmd = 'trans -no-ansi ' .. lang .. " '" .. str .. "'"
+  local rslt = v.Sys.cmd(sys_cmd)
+  print( rslt )
+end
+
+function v.Sys.cmd_by_slctd_line()
+
+  local str = v.Slctd_str()
+  local sys_cmd = 'echo ' .. "'" .. str .. "'" .. ' | sh'
+  local rslt = v.Sys.cmd(sys_cmd)
+  print( rslt )
+  v.Rgstr__('a', rslt)
+end
+
+-- math
+
+-- dev anchor
+function v.Slctd_line_sys_cmd_math() -- range
+
+  local str = v.Slctd_str()
+  local sys_cmd = 'echo ' .. "'" .. str .. "'" .. ' | math'
+  local rslt = v.Sys.cmd(sys_cmd)
+  print( rslt )
+  v.Rgstr__('a', rslt)
+end
+
+-- url encdoe
+
+function v.Slctd_url_encode() -- range
+
+  local str = v.Slctd_str()
+  local sys_cmd = 'url_encode "' .. str .. '"'
+  local rslt = v.Sys.cmd(sys_cmd)
+  --print( rslt )
+  v.Cursor__ins(rslt)
 end
 
 -- opn app
