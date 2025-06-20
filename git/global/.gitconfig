@@ -13,6 +13,7 @@
   editor = nvim -f
 [pull]
   rebase = false
+  ff = only
 [init]
   defaultBranch = main
 [merge]
