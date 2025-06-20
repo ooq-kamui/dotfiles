@@ -99,11 +99,18 @@ alias o 'pth'
 alias oo      'pwd ../       ; l  ../      '
 alias ooo     'pwd ../../    ; l  ../../   '
 alias oooo    'pwd ../../../ ; l  ../../../'
+
 alias oo_ll   'pwd ../       ; ll ../      '
 alias ooo_ll  'pwd ../../    ; ll ../../   '
 alias oooo_ll 'pwd ../../../ ; ll ../../../'
 alias oo_lf   'lf ../'
 alias ooo_lf  'lf ../../'
+
+alias ooll   'pwd ../       ; ll ../      '
+alias oooll  'pwd ../../    ; ll ../../   '
+alias ooooll 'pwd ../../../ ; ll ../../../'
+alias oolf   'lf ../'
+alias ooolf  'lf ../../'
 
 #alias to     'touch'
 alias to_clr ':>'
