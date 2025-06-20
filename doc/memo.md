@@ -2,6 +2,16 @@
 # dotfiles
 
 
+## nvim
+
+sys cmd etc
+- refactoring
+
+plg
+- nvim-treesitter
+- lualine
+
+
 ## ooq dns
 
 dns mgr
@@ -11,20 +21,9 @@ dns mgr
   - del
 
 
-## podman
+## wsl
 
-podman desktop
-- install at mac
-
-
-## nvim
-
-sys cmd etc
-- refactoring
-
-plg
-- nvim-treesitter
-- lualine
+astro
 
 
 ## godot
