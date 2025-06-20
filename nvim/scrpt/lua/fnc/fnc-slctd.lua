@@ -32,9 +32,12 @@ function v.Slctd_mode__tgl()
   v.Slctd__ltst()
 
   if v.Mode.is__box() then
-
-    v.Normal('\\<esc>')
-    v.Normal('v')
+    if v.Is_slctd_line__mlt() then
+      v.Normal('V')
+    else
+      v.Normal('\\<esc>')
+      v.Normal('v')
+    end
   else
     v.Normal('V')
   end

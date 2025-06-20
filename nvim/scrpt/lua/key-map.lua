@@ -1,6 +1,5 @@
--- 
+
 -- key map
--- 
 
 -- leader
 vim.g.mapleader = vim.api.nvim_replace_termcodes('<esc>', false, false, true)
@@ -1040,7 +1039,7 @@ vim.keymap.set('v', 'v', function()
   if v.Mode.is__box() then
     return ':lua v.Slctd_box_width__1()<cr>'
   else
-    return '<c-v>'
+    return '<c-v>' -- v box
   end
 end, {expr = true})
 

@@ -2,16 +2,6 @@
 # dotfiles
 
 
-## nvim
-
-sys cmd etc
-- refactoring
-
-plg
-- nvim-treesitter
-- lualine
-
-
 ## ooq dns
 
 dns mgr
@@ -24,6 +14,20 @@ dns mgr
 ## wsl
 
 astro
+
+
+## nvim
+
+v v __ tgl, fnc
+- case v box
+- else
+
+sys cmd etc
+- refactoring
+
+plg
+- nvim-treesitter
+- lualine
 
 
 ## godot
