@@ -37,6 +37,7 @@
   mrg = merge
   b   = branch
   ch  = checkout
+  sw  = switch
   cnf = config
 [log]
   date = iso-local

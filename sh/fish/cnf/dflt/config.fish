@@ -57,14 +57,14 @@ alias fi 'fish'
 alias tmx      'tmux'
 #alias tmx_init 'fi ~/sh/tmux/tmux-win-init.fish'
 
+alias clr 'clear; pwd'
+alias c   'clr'
+
 alias src         "source"
 alias src_fsh_cfg "source ~/.config/fish/config.fish"
 
 alias his     'history'
 alias his_del 'history delete'
-
-alias clr 'clear; pwd'
-alias c   'clr'
 
 #alias clp 'pbcopy'
 
@@ -80,37 +80,48 @@ alias dd  'd dotfiles'
 # alias ddo 'd dotfiles'
 # alias do  'd dotfiles'
 
-alias lr_oo  'lr_d2'
-alias lr_ooo 'lr_d3'
+alias mkdir 'mkdir -p'
+alias mkd   'mkdir -p'
 
-alias lf     'lrf'
-alias lf_oo  'lrf_d2'
-alias lf_ooo 'lrf_d3'
+alias lroo  'lr_d2'
+alias lrooo 'lr_d3'
+# alias lr_oo  'lr_d2'
+# alias lr_ooo 'lr_d3'
+
+alias lf    'lrf'
+alias lfoo  'lrf_d2'
+alias lfooo 'lrf_d3'
+# alias lf_oo  'lrf_d2'
+# alias lf_ooo 'lrf_d3'
 alias lf_ext 'lrf_ext'
 
-alias ld     'lrd'
-alias ld_oo  'lrd_d2'
-alias ld_ooo 'lrd_d3'
+alias ld    'lrd'
+alias ldoo  'lrd_d2'
+alias ldooo 'lrd_d3'
+# alias ld_oo  'lrd_d2'
+# alias ld_ooo 'lrd_d3'
 
 alias fd 'fd --hidden --follow -I --exclude .git'
 
-#alias p 'pth'
 alias o 'pth'
-alias oo      'pwd ../       ; l  ../      '
-alias ooo     'pwd ../../    ; l  ../../   '
-alias oooo    'pwd ../../../ ; l  ../../../'
 
-alias oo_ll   'pwd ../       ; ll ../      '
-alias ooo_ll  'pwd ../../    ; ll ../../   '
-alias oooo_ll 'pwd ../../../ ; ll ../../../'
-alias oo_lf   'lf ../'
-alias ooo_lf  'lf ../../'
+alias ool    'pwd ../      ; l  ../      '
+alias oool   'pwd ../../   ; l  ../../   '
+alias ooool  'pwd ../../../; l  ../../../'
 
-alias ooll   'pwd ../       ; ll ../      '
-alias oooll  'pwd ../../    ; ll ../../   '
-alias ooooll 'pwd ../../../ ; ll ../../../'
-alias oolf   'lf ../'
-alias ooolf  'lf ../../'
+alias ooll   'pwd ../      ; ll ../      '
+alias oooll  'pwd ../../   ; ll ../../   '
+alias ooooll 'pwd ../../../; ll ../../../'
+
+alias oolf   'pwd ../      ; lf ../'
+alias ooolf  'pwd ../../   ; lf ../../'
+alias oooolf 'pwd ../../../; lf ../../../'
+
+# alias oo_ll   'pwd ../       ; ll ../      '
+# alias ooo_ll  'pwd ../../    ; ll ../../   '
+# alias oooo_ll 'pwd ../../../ ; ll ../../../'
+# alias oo_lf   'lf ../'
+# alias ooo_lf  'lf ../../'
 
 #alias to     'touch'
 alias to_clr ':>'
@@ -123,9 +134,8 @@ alias rn  'rename'
 alias cp 'cp -ip'
 
 alias rm    'rm -i'
-# alias rm_bk 'rm -rf bk'
-# alias rmbk  'rm -rf bk'
 alias trash 'trash -F'
+alias gm    'trash -F'
 
 alias vi  'nvim -p'
 alias vim 'nvim -p'
@@ -134,6 +144,7 @@ alias vi_lf 'nvim -p ( lf )'
 
 alias ji  'git'
 alias j   'git status'
+alias jl  'git log'
 alias jj  'git add .; git status'
 alias jp  'git pll origin main'
 
@@ -244,10 +255,12 @@ bind \cu cmdline__fzf_git_status
 # color
 export GREP_COLOR="1;33"
 
-# set fish_color_autosuggestion cyan
-set fish_color_autosuggestion yellow
-set fish_color_search_match   --background=brmagenta
-set fish_color_command        brmagenta
+# set fish_color_autosuggestion yellow
+set fish_color_autosuggestion brmagenta
+# set fish_color_search_match   --background=brmagenta
+set fish_color_search_match   --background=yellow
+# set fish_color_command        brmagenta
+set fish_color_command        brgreen
 
 
 # git prompt

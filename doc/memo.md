@@ -2,6 +2,11 @@
 # dotfiles
 
 
+## wsl
+
+astro
+
+
 ## ooq dns
 
 dns mgr
@@ -9,11 +14,6 @@ dns mgr
   - cre
 - svr
   - del
-
-
-## wsl
-
-astro
 
 
 ## nvim
