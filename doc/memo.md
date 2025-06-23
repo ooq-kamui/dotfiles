@@ -2,11 +2,6 @@
 # dotfiles
 
 
-## wsl
-
-astro
-
-
 ## ooq dns
 
 dns mgr
@@ -16,18 +11,14 @@ dns mgr
   - del
 
 
-## nvim
+## wsl
 
-v v __ tgl, fnc
-- case v box
-- else
+astro
 
-sys cmd etc
-- refactoring
 
-plg
-- nvim-treesitter
-- lualine
+## aws
+
+payment confirm
 
 
 ## godot
@@ -35,9 +26,11 @@ plg
 step by step
 
 
-## aws
+## nvim
 
-payment confirm
+plg
+- nvim-treesitter
+- lualine
 
 
 ## skr-vps

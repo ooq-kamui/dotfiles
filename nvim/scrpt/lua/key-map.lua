@@ -310,22 +310,22 @@ vim.keymap.set('n', 'gl', ':lua v.Opn_init_vim_l()<cr>')
 -- opn man
 -- vim.keymap.set('n', 'xx', ':OpnMan ')
 
--- sys opn
+-- sys cmd opn
 
--- sys opn app
-vim.keymap.set('n', 'go', ':lua v.Opn_app_by_cursor_path()<cr>')
+-- sys cmd opn app
+vim.keymap.set('n', 'go', ':lua v.Sys.cmd_opn_app_by_cursor_path()<cr>')
 
--- sys opn app slf
--- vim.keymap.set('n', 'xx', ':lua v.Opn_app_buf_file()<cr>')
+-- sys cmd opn app slf
+-- vim.keymap.set('n', 'xx', ':lua v.Sys.cmd_opn_app_buf_file()<cr>')
 
--- sys opn dir slf
-vim.keymap.set('n', 'gd', ':lua v.Opn_buf_file_dir()<cr>')
+-- sys cmd opn dir slf
+vim.keymap.set('n', 'gd', ':lua v.Sys.cmd_opn_buf_file_dir()<cr>')
 
--- sys opn brwsr
--- vim.keymap.set('n', 'xx', ':lua v.Opn_brwsr()<cr>')
+-- sys cmd opn brwsr
+-- vim.keymap.set('n', 'xx', ':lua v.Sys.cmd_opn_brwsr()<cr>')
 
--- sys opn ggl srch
-vim.keymap.set('n', 'ggl', ':lua v.Opn_ggl_srch("")<cr>')
+-- sys cmd opn ggl srch
+vim.keymap.set('n', 'ggl', ':lua v.Sys.cmd_opn_ggl_srch("")<cr>')
 
 -- cursor mv
 
@@ -1032,16 +1032,9 @@ vim.keymap.set('v', '<leader>y', '<esc>')
 
 -- mode ch line
 vim.keymap.set('v', 'i', ':lua v.Slctd_mode__tgl()<cr>')
--- vim.keymap.set('v', 'i', 'V')
 
 -- mode ch visual box
-vim.keymap.set('v', 'v', function()
-  if v.Mode.is__box() then
-    return ':lua v.Slctd_box_width__1()<cr>'
-  else
-    return '<c-v>' -- v box
-  end
-end, {expr = true})
+vim.keymap.set('v', 'v', ':lua v.Slctd__swtch()<cr>')
 
 -- file srch ( fzf )
 -- vim.keymap.set('v', '<leader>xx', '"zy:FzfFile <c-r>z')
@@ -1398,24 +1391,21 @@ vim.keymap.set('v', '<leader>O', '"zy:lua v.Fzf_rg_word1("<c-r>z")<cr>')
 -- tag jmp
 -- vim.keymap.set('v', 't', ':lua v.Tag_jmp_by_slctd_line()<cr>')
 
--- opn app
-vim.keymap.set('v', 'go', ':lua v.Slctd_line_7_opn_app()<cr>')
+-- sys cmd opn
 
--- opn brwsr
--- vim.keymap.set('v', 'gx', '<plug>(openbrowser-smart-search)')
+-- sys cmd opn app
+vim.keymap.set('v', 'go', ':lua v.Sys.cmd_opn_app_by_slctd_line()<cr>')
 
--- opn ggl srch
-vim.keymap.set('v', 'ggl', ':lua v.Slctd_str_7_opn_ggl_srch()<cr>')
+-- sys cmd opn ggl srch
+vim.keymap.set('v', 'ggl', ':lua v.Sys.cmd_opn_ggl_srch_by_slctd_str()<cr>')
 
--- opn youtube video_id
-vim.keymap.set('v', 'gy', ':lua v.Slctd_str_7_opn_yt()<cr>')
+-- sys cmd opn youtube video_id
+vim.keymap.set('v', 'gy', ':lua v.Sys.cmd_opn_yt_by_slctd_str()<cr>')
 
 -- trns
-vim.keymap.set('v', 'r', ':lua v.Slctd_str_trns()<cr>')
+vim.keymap.set('v', 'r', ':lua v.Sys.cmd_trns_by_slctd_str()<cr>')
 
--- 
 -- cmd
--- 
 
 -- cmd history ( fzf )
 -- vim.keymap.set('v', '<leader>xx', ':FzfCmdHstry<cr>')

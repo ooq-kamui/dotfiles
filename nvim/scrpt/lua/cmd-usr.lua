@@ -93,13 +93,6 @@ vim.api.nvim_create_user_command('OpnMan',
   {nargs = '*'}
 )
 
-vim.api.nvim_create_user_command('OpnApp',
-  function(opts)
-    v.Opn_app(opts.fargs[1])
-  end,
-  {nargs = '*'}
-)
-
 
 -- " term
    vim.cmd('command! -nargs=* Term split | wincmd j | resize 15 | term <args>')

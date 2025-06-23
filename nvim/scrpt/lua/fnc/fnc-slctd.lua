@@ -3,7 +3,6 @@
 
 v.Slctd = {}
 
-
 g.v_rng_dflt = "'<,'>"
 
 -- slctd __ ( slct )
@@ -43,6 +42,17 @@ function v.Slctd_mode__tgl()
   end
 end
 
+function v.Slctd__swtch()
+
+  v.Slctd__ltst()
+
+  if v.Mode.is__box() then
+    v.Slctd_box_width__1()
+  else
+    vim.cmd('exe "normal! \\<c-v>"')
+  end
+end
+
 -- slctd str
 
 function v.Slctd_str() -- range
@@ -64,20 +74,6 @@ function v.Slctd_str_len() -- range
 
   local len = v.Str_len(slctd_str)
   return len
-end
-
-function v.Slctd_str_7_opn_ggl_srch()
-
-  local word = v.Slctd_str()
-  local word = f.trim(word)
-  v.Opn_ggl_srch(word)
-end
-
-function v.Slctd_str_7_opn_yt()
-
-  local yt_video_id = v.Slctd_str()
-  local yt_video_id = f.trim(yt_video_id)
-  v.Opn_yt(yt_video_id)
 end
 
 -- slctd str __
@@ -899,14 +895,6 @@ function v.Slctd_line_num_seq()
 
   local tbl = u.Num.seq(line_s_num, line_e_num)
   return tbl
-end
-
-function v.Slctd_line_7_opn_app() -- range
-
-  for idx, line_num in pairs(v.Slctd_line_num_seq()) do
-
-    v.Opn_app_by_line_path(line_num)
-  end
 end
 
 -- slctd line __ ( edit )
