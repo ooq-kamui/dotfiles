@@ -265,9 +265,10 @@ Set-Alias t "ts"
 
 # git
 Set-Alias ji  "git"    -force # alias xxx is read-only or
-function j   { git s  }
-function jj  { git a .; git s }
-function jp  { git pll origin main }
+function j   { git status }
+function jl  { git log }
+function jj  { git add .; git status }
+function jp  { git pull origin main }
 
 function jsl { git sl }
 function jsd { git sd }
