@@ -2,14 +2,15 @@
 # dotfiles
 
 
-## aws
+## vm
 
-payment confirm
+hypr-v
+- tidy
 
-
-## wsl
-
-astro
+wsl
+- zscaler crt
+  - confirm
+  - doc write
 
 
 ## ooq dns mgr
@@ -36,6 +37,13 @@ plg
 ## git
 
 learn
+
+
+## aws
+
+payment confirm
+- learn
+  - default vpc ?
 
 
 ## skr-vps
