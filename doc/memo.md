@@ -2,13 +2,9 @@
 # dotfiles
 
 
-## ooq dns
+## aws
 
-dns mgr
-- vps
-  - cre
-- svr
-  - del
+payment confirm
 
 
 ## wsl
@@ -16,9 +12,13 @@ dns mgr
 astro
 
 
-## aws
+## ooq dns mgr
 
-payment confirm
+vps
+- cre
+
+svr
+- del
 
 
 ## godot
@@ -31,6 +31,11 @@ step by step
 plg
 - nvim-treesitter
 - lualine
+
+
+## git
+
+learn
 
 
 ## skr-vps
