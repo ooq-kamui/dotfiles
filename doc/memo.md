@@ -2,15 +2,9 @@
 # dotfiles
 
 
-## vm
+## etc
 
-hypr-v
-- tidy
-
-wsl
-- zscaler crt
-  - confirm
-  - doc write
+hhkb pro2
 
 
 ## ooq dns mgr
@@ -27,23 +21,16 @@ svr
 step by step
 
 
-## nvim
-
-plg
-- nvim-treesitter
-- lualine
-
-
 ## git
 
 learn
 
 
-## aws
+## nvim
 
-payment confirm
-- learn
-  - default vpc ?
+plg
+- nvim-treesitter
+- lualine
 
 
 ## skr-vps
