@@ -2,11 +2,6 @@
 # dotfiles
 
 
-## etc
-
-hhkb pro2
-
-
 ## ooq dns mgr
 
 vps
@@ -24,6 +19,10 @@ step by step
 ## git
 
 learn
+- git reset
+- git rebase するなら, reset + stash + merge --ff のほうが無難では ?
+  - の検証
+  - というより, rebase はこれの短縮 command と考えるのが妥当
 
 
 ## nvim

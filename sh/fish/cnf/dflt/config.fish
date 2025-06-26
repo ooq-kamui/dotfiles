@@ -148,6 +148,7 @@ alias jl  'git log'
 alias jj  'git add .; git status'
 # alias jp  'git pll origin main'
 alias jp  'git pll'
+alias jd  'git diff --staged'
 
 alias jsl 'git sl'
 alias jsd 'git sd'
