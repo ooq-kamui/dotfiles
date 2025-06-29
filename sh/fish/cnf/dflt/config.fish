@@ -201,6 +201,10 @@ alias ba 'battery'
 
 alias amp 'amplify'
 
+# nginx
+alias nx-vi-cnf   'vi /etc/nginx/nginx.conf'
+alias nx-start-re 'sudo nginx -s reload'
+
 #alias rf 'ruff'
 
 # alias cmd path

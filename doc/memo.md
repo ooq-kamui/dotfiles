@@ -2,13 +2,24 @@
 # dotfiles
 
 
-## ooq dns mgr
+## nvim
 
-vps
-- cre
+n gh
+- fzf path mod
 
-svr
-- del
+
+n :s
+- ins srch_str
+
+
+plg
+- nvim-treesitter
+- lualine
+
+
+## git
+
+doc-tech write
 
 
 ## godot
@@ -16,20 +27,12 @@ svr
 step by step
 
 
-## git
+## ooq dns mgr
 
-learn
-- git reset
-- git rebase するなら, reset + stash + merge --ff のほうが無難では ?
-  - の検証
-  - というより, rebase はこれの短縮 command と考えるのが妥当
-
-
-## nvim
-
-plg
-- nvim-treesitter
-- lualine
+svr
+- del
+  - rpl index.html > emp ( tst )
+  - 2025-07-01 tue
 
 
 ## skr-vps
