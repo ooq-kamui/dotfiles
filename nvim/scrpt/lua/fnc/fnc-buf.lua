@@ -11,7 +11,7 @@ g.nvim_lua_hl_file_path        = g.nvim_lua_etc_dir .. '/hl.lua'
 g.nvim_lua_key_map_file_path   = g.nvim_lua_etc_dir .. '/key-map.lua'
 
 g.nvim_lua_fnc_basic_file_path = g.nvim_lua_fnc_dir .. '/fnc-basic.lua'
-g.nvim_lua_plg_fzf_file_path   = g.nvim_lua_etc_dir .. '/plg-fzf.lua'
+g.nvim_lua_plg_fzf_file_path   = g.nvim_lua_fnc_dir .. '/fnc-plg-fzf.lua'
 
 -- opn file
 
@@ -36,32 +36,33 @@ function v.Opn_init_vim()
 
   -- lua
   v.Buf.opn(g.nvim_lua_fnc_basic_file_path)
-  v.Buf.opn(g.nvim_lua_plg_fzf_file_path  )
+  v.Buf.opn(g.nvim_lua_key_map_file_path)
 
-  local vimrc_c9_file_path
-  local vimrc_gitbash_file_path
+  -- env
+  local init_vim_env_file_path
 
   if     v.Is_env__('linux')     then -- c9, s9
 
-    vimrc_c9_file_path      = g.init_vim_dir .. '/c9/init.vim'
-    -- v.Buf.opn(vimrc_c9_file_path)
+    init_vim_env_file_path = g.nvim_lua_env_dir .. '/env-c9.vim'
+    -- v.Buf.opn(init_vim_env_file_path)
 
   elseif v.Is_env__('win32unix') then -- gitbash
 
-    vimrc_gitbash_file_path = g.init_vim_dir .. '/gitbash/init.vim'
-    v.Buf.opn(vimrc_gitbash_file_path)
+    init_vim_env_file_path = g.nvim_lua_env_dir .. '/env-gitbash.vim'
+    -- v.Buf.opn(init_vim_env_file_path)
   end
 end
 
 function v.Opn_init_vim_l()
 
-  v.Buf.opn(g.nvim_lua_opt_file_path    )
-  v.Buf.opn(g.nvim_lua_cmd_file_path    )
+  v.Buf.opn(g.nvim_lua_opt_file_path     )
+  v.Buf.opn(g.nvim_lua_cmd_file_path     )
 
-  v.Buf.opn(g.nvim_lua_init_file_path   )
+  v.Buf.opn(g.nvim_lua_init_file_path    )
 
-  v.Buf.opn(g.nvim_lua_key_map_file_path)
-  v.Buf.opn(g.nvim_lua_hl_file_path     )
+  v.Buf.opn(g.nvim_lua_hl_file_path      )
+
+  v.Buf.opn(g.nvim_lua_plg_fzf_file_path )
 end
 
 function v.Opn_fish_cnf()

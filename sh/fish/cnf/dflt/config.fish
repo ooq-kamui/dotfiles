@@ -287,4 +287,3 @@ set __fish_git_prompt_char_upstream_ahead  '+'
 set __fish_git_prompt_char_upstream_behind '-'
 
 
-

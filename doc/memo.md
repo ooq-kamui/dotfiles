@@ -2,22 +2,16 @@
 # dotfiles
 
 
-## nvim
+## fish
 
-n gh
-- fzf path mod
-
-
-n :s
-- ins srch_str
-
-
-plg
-- nvim-treesitter
-- lualine
+cmdline fzf jsl
+- c-u
 
 
 ## git
+
+fork install
+  - mac buy
 
 doc-tech write
 
@@ -32,7 +26,16 @@ step by step
 svr
 - del
   - rpl index.html > emp ( tst )
-  - 2025-07-01 tue
+  - 2025-06-30 mon
+
+
+## nvim
+
+v box L, case line top, line emp
+
+plg
+- nvim-treesitter
+- lualine
 
 
 ## skr-vps

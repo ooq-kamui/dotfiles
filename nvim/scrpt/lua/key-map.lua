@@ -741,7 +741,8 @@ vim.keymap.set('n', '<c-p>', ':lua v.Srch_slct("f")<cr>')
 -- vim.keymap.set('n', 'xx', '/?ts=<cr>')
 
 -- rpl ( cmd )
-vim.keymap.set('n', ':s', ':%s///g')
+vim.keymap.set('n', ':s', ':%s/<c-r>//xxx/g')
+-- vim.keymap.set('n', ':s', ':%s///g')
 -- vim.keymap.set('n', ':s', ':Rpl ')
 
 -- fzf rg

@@ -13,6 +13,8 @@ g.nvim_lua_dir     = g.nvim_init_dir .. '/lua'
 g.nvim_lua_fnc_dir = g.nvim_lua_dir  .. '/fnc'
 g.nvim_lua_etc_dir = g.nvim_lua_dir  .. ''
 
+g.nvim_lua_env_dir = g.nvim_lua_dir  .. '/env'
+
 require('fnc/fnc-line'   )
 require('fnc/fnc-mode'   )
 require('fnc/fnc-rgstr'  )
