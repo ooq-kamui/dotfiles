@@ -233,15 +233,15 @@ bind \c_ 'clear; commandline -f repaint'
 #bind \cc cmdline_pbcopy
 bind \cc cmdline_clp
 
-bind \cb cmdline_bracket
+bind \cb cmdline__bracket
 
-#bind \c? cmdline_quote
+#bind \c? cmdline__quote
 
-#bind \ct cmdline_date
-bind \ct cmdline_ts
+#bind \ct cmdline__date
+bind \ct cmdline__ts
 
-bind \cx cmdline_his_del
-#bind \cx 'cmdline_his_del;'
+bind \cx cmd_his__del
+#bind \cx 'cmd_his__del;'
 
 # fzf
 
