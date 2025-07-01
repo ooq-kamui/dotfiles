@@ -1,11 +1,12 @@
 
 # dotfiles
 
+
 ## nvim
 
-v box L, case line top, line emp
-
 ynk str v box, paste
+
+v box L, case line top, line emp
 
 plg
 - nvim-treesitter
@@ -21,11 +22,6 @@ step by step
 
 confirm
 - https://qiita.com/wa-chan222/items/37053aaf6a96fcc92d83
-
-
-## sqlite
-
-learn
 
 
 ## skr-vps
