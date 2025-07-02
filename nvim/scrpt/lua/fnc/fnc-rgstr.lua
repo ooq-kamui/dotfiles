@@ -66,6 +66,11 @@ function v.Ynk__(str)
   v.Rgstr__('a', str)
 end
 
+function v.Ynk__rgstr()
+
+  
+end
+
 function v.Ynk__line()
 
   v.Normal('"ayy')
@@ -99,12 +104,23 @@ end
 
 function v.Ynk__slctd()
 
-  local str
-
+  local str, n_cmd
   str = v.Slctd_str()
-  v.Ynk__(str)
+
+  if v.Mode.is__box() then
+
+    -- dev anchor
+    -- n_cmd = ''
+    -- v.Normal(n_cmd)
+
+    v.Ynk__(str)
+
+  else
+    v.Ynk__(str)
+  end
 
   v.Clp__ynk()
+
   v.Slctd__cancel()
 end
 
