@@ -2,26 +2,24 @@
 # dotfiles
 
 
-## movie
+## keyboard
 
-ticket
-
-
-## sqlite
-
-install at mac
+logi
+- sticker: i
 
 
 ## nvim
+
+cmd normal, etc
+- basic > cmd
+- cmd.cmd
+- nml
 
 ynk str v box, paste
 - rp > use not
 - ynk, case : box, to rgstr a
 
 v box L, case line top, line emp
-
-cmd normal, etc
-- basic > cmd
 
 plg
 - nvim-treesitter
@@ -37,12 +35,6 @@ step by step
 
 confirm
 - https://qiita.com/wa-chan222/items/37053aaf6a96fcc92d83
-
-
-## keyboard
-
-logi
-- sticker: i
 
 
 ## skr-vps
