@@ -2,6 +2,11 @@
 # dotfiles
 
 
+## movie
+
+ticket
+
+
 ## sqlite
 
 install at mac
