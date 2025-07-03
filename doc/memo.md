@@ -2,6 +2,11 @@
 # dotfiles
 
 
+## csv
+
+install
+
+
 ## keyboard
 
 logi - sticker: l
@@ -9,12 +14,12 @@ logi - sticker: l
 
 ## nvim
 
-:cd crnt-buf-file-dir
-
 cmd normal, etc
 - basic > cmd
 - cmd.cmd
 - nml
+
+:cd crnt-buf-file-dir
 
 ynk str v box, paste
 - rp > use not
