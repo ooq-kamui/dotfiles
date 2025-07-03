@@ -9,7 +9,6 @@ g.plg_mng_cmd = [[
   " vim
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
-  " Plug 'mattn/vim-molder'
 
   " nvim
   Plug 'ojroques/nvim-osc52'

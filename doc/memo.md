@@ -4,11 +4,12 @@
 
 ## keyboard
 
-logi
-- sticker: i
+logi - sticker: l
 
 
 ## nvim
+
+:cd crnt-buf-file-dir
 
 cmd normal, etc
 - basic > cmd
@@ -24,6 +25,7 @@ v box L, case line top, line emp
 plg
 - nvim-treesitter
 - lualine
+- lazy
 
 
 ## godot
