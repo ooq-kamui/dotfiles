@@ -40,8 +40,8 @@ alias c='clr; pwd'
 
 alias src='source'
 
-# alias p='pth'
 alias o='pth'
+# alias p='pth'
 
 alias ls='ls -a'
 alias ll='ls -lgohA --time-style=long-iso --color=auto'

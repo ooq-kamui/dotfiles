@@ -15,6 +15,7 @@ g.nvim_lua_etc_dir = g.nvim_lua_dir  .. ''
 
 g.nvim_lua_env_dir = g.nvim_lua_dir  .. '/env'
 
+require('fnc/fnc-cmd'    )
 require('fnc/fnc-line'   )
 require('fnc/fnc-mode'   )
 require('fnc/fnc-rgstr'  )
@@ -413,27 +414,9 @@ end
 
 -- vim basic
 
-function v.Cmd(cmd) -- alias
-
-  vim.cmd(cmd)
-end
-
-function v.Normal(n_cmd) -- alias
-
-  v.Cmd('normal! ' .. n_cmd)
-  -- vim.cmd('exe "normal! ' .. n_cmd .. '"')
-end
-
-function v.Cmdline__(str)
-
-  -- v.Ynk__(str)
-
-  f.feedkeys(':call ' .. str)
-end
-
 function v.Esc() -- alias
 
-  -- v.Normal('\\<esc>')
+  -- v.Cmd.nml('\\<esc>')
   vim.cmd('exe "normal! \\<esc>"')
 end
 
@@ -456,7 +439,7 @@ function v.Hl_grp()
 
   -- print( f.synIDattr(f.synID(f.line('.'), f.col('.'), 1), 'name') )
   local cmd = "echo synIDattr(synID(line('.'), col('.'), 1), 'name')"
-  v.Cmd(cmd)
+  v.Cmd.cmd(cmd)
   -- print(  )
 end
 -- and
@@ -465,21 +448,21 @@ end
 function v.Color_name_lst()
 
   local cmd = "so $VIMRUNTIME/syntax/colortest.vim"
-  v.Cmd(cmd)
+  v.Cmd.cmd(cmd)
 end
 
 -- dir
 
 function v.Pth()
 
-  v.Cmd('pwd')
+  v.Cmd.cmd('pwd')
 end
 
 -- dir __ ch
 
 function v.Dir__(dir)
 
-  v.Cmd('cd ' .. dir)
+  v.Cmd.cmd('cd ' .. dir)
   v.Pth()
 end
 
@@ -504,7 +487,7 @@ function v.Dir__parent(lvl)
   local cnt = 1
   while cnt <= lvl do
 
-    v.Cmd('cd ..')
+    v.Cmd.cmd('cd ..')
 
     cnt = cnt + 1
   end
@@ -967,13 +950,13 @@ function v.Mark_tgl()
     v.Mark_del(alph)
   end
 
-  v.Cmd('DoShowMarks')
+  v.Cmd.cmd('DoShowMarks')
 end
 
 function v.Mark_add()
 
   local alph = v.Mark_alph_useabl()
-  v.Cmd('mark ' .. alph)
+  v.Cmd.cmd('mark ' .. alph)
 end
 
 function v.Mark_alph_useabl()
@@ -993,13 +976,13 @@ end
 
 function v.Mark_del(alph)
 
-  v.Cmd('delmark ' .. alph)
+  v.Cmd.cmd('delmark ' .. alph)
 end
 
 function v.Mark_del_all()
 
-  v.Cmd('delmark!')
-  v.Cmd('DoShowMarks')
+  v.Cmd.cmd('delmark!')
+  v.Cmd.cmd('DoShowMarks')
 end
 
 -- fnc end

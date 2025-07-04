@@ -290,8 +290,8 @@ function v.Fzf_vim_fnc_call()
   local sys_cmd = sys_cmd_rg .. ' | ' .. sys_cmd_sed
   local fzf_src_txt  = v.Sys.cmd(sys_cmd)
 
-  -- local fnc_name = 'Cmdline__'
-  local fnc_name = v.Cmdline__
+  -- local fnc_name = v.Cmdline__
+  local fnc_name = v.Cmd.cmdline__
   v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 

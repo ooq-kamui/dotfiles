@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# alias
-pth "$1"
-
-
-

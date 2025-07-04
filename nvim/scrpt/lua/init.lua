@@ -66,7 +66,7 @@ end
 function v.Srch_init() -- use not
 
   local n_cmd = '/<cr>N'
-  v.Normal(n_cmd)
+  v.Cmd.nml(n_cmd)
 end
 --v.Srch_init()
 

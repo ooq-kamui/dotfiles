@@ -17,12 +17,12 @@ g.nvim_lua_plg_fzf_file_path   = g.nvim_lua_fnc_dir .. '/fnc-plg-fzf.lua'
 
 function v.Buf.opn(filename)
 
-  v.Cmd('tab drop ' .. filename)
+  v.Cmd.cmd('tab drop ' .. filename)
 end
 
 function v.Buf.opn_view_ltst()
 
-  v.Cmd('tab drop #')
+  v.Cmd.cmd('tab drop #')
 end
 
 function v.Opn_tmp_file()
@@ -73,9 +73,9 @@ end
 
 function v.Opn_man(cmd)
 
-  v.Cmd('tab new')
-  v.Cmd('Man ' .. cmd)
-  v.Cmd('only')
+  v.Cmd.cmd('tab new')
+  v.Cmd.cmd('Man ' .. cmd)
+  v.Cmd.cmd('only')
 end
 
 g.memo_path = 'doc/memo.md'
@@ -114,8 +114,8 @@ function v.Tag_jmp_by_str(rg_rslt_line)
     return
   end
 
-  v.Cmd('tab drop ' .. filename)
-  -- v.Normal(line_num .. 'G')
+  v.Cmd.cmd('tab drop ' .. filename)
+  -- v.Cmd.nml(line_num .. 'G')
   v.Cursor__mv_by_line_num(line_num)
 end
 
@@ -126,8 +126,8 @@ function v.Tag_jmp_by_cursor_line()
   local str = v.Cursor_line_str()
   v.Tag_jmp_by_str(str)
 
-  v.Cmd('sbuffer ' .. base_buf_num)
-  -- v.Normal('j')
+  v.Cmd.cmd('sbuffer ' .. base_buf_num)
+  -- v.Cmd.nml('j')
   v.Cursor__mv_d()
 end
 
@@ -142,7 +142,7 @@ function v.Tag_jmp_by_slctd_line() -- range
     line_str = v.Line_str_by_line_num(line_num)
 
     v.Tag_jmp_by_str(line_str)
-    v.Cmd('sbuffer ' .. base_buf_num)
+    v.Cmd.cmd('sbuffer ' .. base_buf_num)
   end
 end
 
@@ -156,7 +156,7 @@ end
 function v.Buf__quit()
 
   local cmd = 'bd'
-  v.Cmd(cmd)
+  v.Cmd.cmd(cmd)
 end
 
 function v.Buf__quit_swtch()
@@ -178,7 +178,7 @@ end
 
 function v.Save()
 
-  v.Cmd('w')
+  v.Cmd.cmd('w')
 end
 
 function v.Buf_file__dpl()
@@ -198,7 +198,7 @@ function v.Buf_file__mv(file_name_aft)
   v.Sys.cmd(sys_cmd)
 
   local cmd = 'file ' .. file_path_aft -- save file_path ch
-  v.Cmd(cmd)
+  v.Cmd.cmd(cmd)
 end
 
 function v.Buf_file_path()
@@ -230,26 +230,26 @@ end
 
 function v.Load_re()
 
-  v.Cmd('e ')
+  v.Cmd.cmd('e ')
 end
 
 -- load re  -  encode sjis
 
 function v.Load_re__sjis()
 
-  v.Cmd('e ++enc=sjis')
+  v.Cmd.cmd('e ++enc=sjis')
 end
 
 -- encode
 
 function v.Buf_file_encode()
 
-  v.Cmd('set enc?')
+  v.Cmd.cmd('set enc?')
 end
 
 function v.Buf_file_bom()
 
-  v.Cmd('set bomb?')
+  v.Cmd.cmd('set bomb?')
 end
 
 -- file tmp
@@ -278,13 +278,13 @@ end
 function v.Win__splt_h()
 
   local cmd = 'split'
-  v.Cmd(cmd)
+  v.Cmd.cmd(cmd)
 end
 
 function v.Win__splt_v()
 
   local cmd = 'vsplit'
-  v.Cmd(cmd)
+  v.Cmd.cmd(cmd)
 
   v.Win_splt_cursor__mv_nxt()
 end

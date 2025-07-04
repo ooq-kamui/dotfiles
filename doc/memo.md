@@ -2,22 +2,7 @@
 # dotfiles
 
 
-## csv
-
-install
-
-
-## keyboard
-
-logi - sticker: l
-
-
 ## nvim
-
-cmd normal, etc
-- basic > cmd
-- cmd.cmd
-- nml
 
 :cd crnt-buf-file-dir
 
@@ -42,6 +27,11 @@ step by step
 
 confirm
 - https://qiita.com/wa-chan222/items/37053aaf6a96fcc92d83
+
+
+## keyboard
+
+logi - sticker: p
 
 
 ## skr-vps

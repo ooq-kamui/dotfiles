@@ -102,7 +102,7 @@ function v.Cursor__mv_by_line_num(line_num)
   end
 
   -- dev anchor
-  v.Normal(line_num .. 'G')
+  v.Cmd.nml(line_num .. 'G')
 end
 
 function v.Cursor__mv_by_line_col(line_num, col)
@@ -131,7 +131,7 @@ function v.Cursor__mv_line_top0()
     return
   end
 
-  v.Normal('0')
+  v.Cmd.nml('0')
 end
 
 function v.Cursor__mv_line_top1()
@@ -140,9 +140,9 @@ function v.Cursor__mv_line_top1()
     v.Cursor__mv_line_end()
 
   elseif v.Is_line_markdown_itm() then
-    v.Normal('^2l')
+    v.Cmd.nml('^2l')
   else
-    v.Normal('^')
+    v.Cmd.nml('^')
   end
 end
 
@@ -153,29 +153,29 @@ function v.Cursor__mv_line_end()
   end
 
   if v.Mode.is__normal() then
-    v.Normal('$l')
+    v.Cmd.nml('$l')
   else
-    v.Normal('$')
+    v.Cmd.nml('$')
   end
 end
 
 function v.Cursor__mv_line_end_in()
 
   if v.Mode.is__normal() then
-    v.Normal('$')
+    v.Cmd.nml('$')
   else
-    v.Normal('$h')
+    v.Cmd.nml('$h')
   end
 end
 
 function v.Cursor__mv_char_f()
 
-  v.Normal('l')
+  v.Cmd.nml('l')
 end
 
 function v.Cursor__mv_char_b()
 
-  v.Normal('h')
+  v.Cmd.nml('h')
 end
 
 function v.Cursor__mv_word_f()
@@ -195,9 +195,9 @@ function v.Cursor__mv_word_f()
   local r_char = v.Cursor_r_char()
 
   if v.Is_str__ptn(c_char, ' ') and v.Is_str__ptn(r_char, ' ') then
-    v.Normal('w')
+    v.Cmd.nml('w')
   else
-    v.Normal('el')
+    v.Cmd.nml('el')
   end
 end
 
@@ -218,7 +218,7 @@ function v.Cursor__mv_word_b()
     v.Cursor__mv_char_b()
 
   else
-    v.Normal('b')
+    v.Cmd.nml('b')
   end
 end
 
@@ -237,9 +237,9 @@ function v.Cursor__mv_word_b_pre() -- use not
   local l_char = v.Cursor_r_char()
 
   if v.Is_str__ptn(c_char, ' ') and not v.Is_str__ptn(l_char, ' ') then
-    v.Normal('gegel')
+    v.Cmd.nml('gegel')
   else
-    v.Normal('gel')
+    v.Cmd.nml('gel')
   end
 end
 
@@ -255,12 +255,12 @@ end
 
 function v.Cursor__mv_u() -- alias
 
-  v.Normal('k')
+  v.Cmd.nml('k')
 end
 
 function v.Cursor__mv_d() -- alias
 
-  v.Normal('j')
+  v.Cmd.nml('j')
 end
 
 function v.Cursor__mv_v(drct)
@@ -283,7 +283,7 @@ function v.Cursor__mv_mlt_u() -- alias
   g.cursor_mv_line_step = g.cursor_mv_line_step_dflt
 
   -- local n_cmd = g.cursor_mv_line_step .. '\\<c-y>'
-  -- v.Normal(n_cmd)
+  -- v.Cmd.nml(n_cmd)
   vim.cmd('exe "normal! ' .. g.cursor_mv_line_step .. '\\<c-y>"')
 end
 
@@ -292,7 +292,7 @@ function v.Cursor__mv_mlt_d() -- alias
   g.cursor_mv_line_step = g.cursor_mv_line_step_dflt
 
   -- local n_cmd = g.cursor_mv_line_step .. '\\<c-e>'
-  -- v.Normal(n_cmd)
+  -- v.Cmd.nml(n_cmd)
   vim.cmd('exe "normal! ' .. g.cursor_mv_line_step .. '\\<c-e>"')
 end
 
@@ -319,7 +319,7 @@ end
 function v.Cursor__mv_slctd_edge_tgl() -- range
 
   v.Slctd__ltst()
-  v.Normal('o')
+  v.Cmd.nml('o')
 end
 
 function v.Cursor__mv_slctd_edge_l() -- range
@@ -333,13 +333,13 @@ function v.Cursor__mv_slctd_edge_l() -- range
   v.Cursor__mv_slctd_edge_tgl()
 
   -- local n_cmd = '`<'
-  -- v.Normal(n_cmd)
+  -- v.Cmd.nml(n_cmd)
 end
 
 function v.Cursor__mv_file_edge(n_cmd)
 
   if v.Is_cursor_line_num__file_edge() then
-    v.Normal(n_cmd)
+    v.Cmd.nml(n_cmd)
   end
 
   local cnt = 1
@@ -347,7 +347,7 @@ function v.Cursor__mv_file_edge(n_cmd)
 
   while ( not v.Is_cursor_line_num__file_edge() and cnt < cnt_max ) do
 
-    v.Normal(n_cmd)
+    v.Cmd.nml(n_cmd)
     cnt = cnt + 1
   end
 end
@@ -375,7 +375,7 @@ function v.Cursor__mv_v_jmp_char(drct, is_space_through)
     return
   end
 
-  v.Normal(n_cmd)
+  v.Cmd.nml(n_cmd)
   local cnt = 1
   local cnt_max = 10000
 
@@ -389,7 +389,7 @@ function v.Cursor__mv_v_jmp_char(drct, is_space_through)
       break
     end
 
-    v.Normal(n_cmd)
+    v.Cmd.nml(n_cmd)
     cnt = cnt + 1
   end
 end
@@ -418,7 +418,7 @@ function v.Cursor__mv_v_jmp_space(drct)
     return
   end
 
-  v.Normal(n_cmd)
+  v.Cmd.nml(n_cmd)
 
   local cnt = 1
   local cnt_max = 10000
@@ -429,7 +429,7 @@ function v.Cursor__mv_v_jmp_space(drct)
       break
     end
 
-    v.Normal(n_cmd)
+    v.Cmd.nml(n_cmd)
     cnt = cnt + 1
   end
 end
@@ -444,7 +444,7 @@ function v.Cursor__mv_v_jmp(drct)
     return
   end
 
-  v.Normal(n_cmd)
+  v.Cmd.nml(n_cmd)
 
   if v.Is_cursor_c_char__space() or v.Is_cursor_col__line_end() then
 
@@ -493,7 +493,7 @@ end
 function v.Cursor__ins(str)
 
   local cmd = 'i' .. str
-  v.Normal(cmd)
+  v.Cmd.nml(cmd)
   v.Cursor__mv_char_f()
 end
 
@@ -505,12 +505,12 @@ end
 
 function v.Cursor__ins_ynk()
 
-  v.Normal('"aP')
+  v.Cmd.nml('"aP')
 end
 
 function v.Cursor__ins_ynk_box()
 
-  v.Normal('""P')
+  v.Cmd.nml('""P')
 end
 
 function v.Cursor__ins_clp()
@@ -526,7 +526,7 @@ function v.Cursor__ins_mlt(str, num)
   end
 
   local cmd = num .. 'i' .. str
-  v.Normal(cmd)
+  v.Cmd.nml(cmd)
 end
 
 function v.Cursor__ins_cr()
@@ -534,9 +534,9 @@ function v.Cursor__ins_cr()
   -- local t_line_num = f.line('.')
   local line_num = v.Cursor_line_num()
 
-  -- v.Normal('i\\<cr> ')
+  -- v.Cmd.nml('i\\<cr> ')
   vim.cmd('exe "normal! i\\<cr> "')
-  v.Normal('x')
+  v.Cmd.nml('x')
 
   v.Line_end_space__del(line_num)
   v.Cursor__mv_d()
@@ -547,39 +547,39 @@ function v.Cursor__ins_space(is_cursor_mv)
   if is_cursor_mv then
     v.Cursor__ins(' ')
   else
-    v.Normal('i ')
-    -- v.Normal('l')
+    v.Cmd.nml('i ')
+    -- v.Cmd.nml('l')
   end
 end
 
 function v.Cursor__ins_hyphen()
 
-  v.Normal('i-')
+  v.Cmd.nml('i-')
   -- v.Cursor__ins('-')
 end
 
 function v.Cursor__ins_tilde()
 
-  v.Normal('i~')
+  v.Cmd.nml('i~')
   -- v.Cursor__ins('~')
 end
 
 function v.Cursor__ins_slash()
 
-  v.Normal('i/')
+  v.Cmd.nml('i/')
   -- v.Cursor__ins('/')
 end
 
 function v.Cursor__ins_slashback()
 
-  v.Normal('i\\')
+  v.Cmd.nml('i\\')
   -- v.Cursor__ins('\\')
 end
 
 function v.Cursor__ins_quote()
 
-  v.Normal("i' '")
-  v.Normal('h')
+  v.Cmd.nml("i' '")
+  v.Cmd.nml('h')
 end
 
 function v.Cursor__ins_da()
@@ -621,20 +621,20 @@ function v.Cursor__ins_cmnt_1(cmd_cursor__mv_line_top)
 
   -- if cmd_cursor__mv_line_top ~= nil then
   if cmd_cursor__mv_line_top then
-    v.Normal(cmd_cursor__mv_line_top)
+    v.Cmd.nml(cmd_cursor__mv_line_top)
   end
 
   local str = v.Str_cmnt_1()
-  v.Normal('i' .. str)
+  v.Cmd.nml('i' .. str)
   
-  v.Normal('^') -- or '0'
+  v.Cmd.nml('^') -- or '0'
 end
 
 function v.Cursor__ins_rgstr_by_rgstr_info(rgstr_info)
 
   local rgstr = v.Rgstr_info_rgstr(rgstr_info)
-  -- v.Normal('"' .. rgstr .. rgstr .. 'P')
-  v.Normal('"' .. rgstr .. 'P')
+  -- v.Cmd.nml('"' .. rgstr .. rgstr .. 'P')
+  v.Cmd.nml('"' .. rgstr .. 'P')
 end
 
 function v.Cursor__ins_cmnt_mlt(pos_key) -- call when mode normal
@@ -657,12 +657,12 @@ function v.Cursor__ins_cmnt_mlt_by_pos_key(pos_key)
   local str = f.get(cmnt_mlt_def, vim.bo.filetype, cmnt_mlt_def['dflt'])
 
   if     pos_key == 'bgn' then
-    v.Normal('O')
-    v.Normal('i' .. str[1])
+    v.Cmd.nml('O')
+    v.Cmd.nml('i' .. str[1])
 
   elseif pos_key == 'end' then
-    v.Normal('o')
-    v.Normal('i' .. str[2])
+    v.Cmd.nml('o')
+    v.Cmd.nml('i' .. str[2])
   end
 end
 
@@ -791,7 +791,7 @@ end
 
 function v.Cursor_char__rpl(rpl)
 
-  v.Normal('r' .. rpl)
+  v.Cmd.nml('r' .. rpl)
 end
 
 function v.Cursor_char__rpl_underscore() -- alias
@@ -814,7 +814,7 @@ function v.N_char__tgl_swtch01() -- todo fnc name mod
 
   elseif v.Is_char__alpha(c) then
 
-    v.Normal('v~') -- upper / lower
+    v.Cmd.nml('v~') -- upper / lower
     return
   end
 
@@ -885,13 +885,13 @@ end
 function v.Cursor_c_char__del()
 
   local cmd = '"zx'
-  v.Normal(cmd)
+  v.Cmd.nml(cmd)
 end
 
 function v.Cursor_c_char__del_ynk()
 
   local cmd = '"ax'
-  v.Normal(cmd)
+  v.Cmd.nml(cmd)
 end
 
 -- cursor char cnd
@@ -937,14 +937,14 @@ end
 function v.Cursor_str__icl()
 
   -- local n_cmd = "\\<c-a>"
-  -- v.Normal(n_cmd)
+  -- v.Cmd.nml(n_cmd)
   vim.cmd('exe "normal! \\<c-a>"')
 end
 
 function v.Cursor_str__dcl()
 
   -- local n_cmd = "\\<c-x>"
-  -- v.Normal(n_cmd)
+  -- v.Cmd.nml(n_cmd)
   vim.cmd('exe "normal! \\<c-x>"')
 end
 
@@ -961,8 +961,8 @@ function v.Cursor_str_week__icl()
   local week_nxt_str = g.week_def[week_nxt_idx]
 
   v.Slctd_str__word()
-  v.Normal('"zd')
-  v.Normal('i' .. week_nxt_str)
+  v.Cmd.nml('"zd')
+  v.Cmd.nml('i' .. week_nxt_str)
 end
 
 function v.Cursor_str_week__dcl()
@@ -978,8 +978,8 @@ function v.Cursor_str_week__dcl()
   local week_nxt_str = g.week_def[week_nxt_idx]
 
   v.Slctd_str__word()
-  v.Normal('"zd')
-  v.Normal('i' .. week_nxt_str)
+  v.Cmd.nml('"zd')
+  v.Cmd.nml('i' .. week_nxt_str)
 end
 
 -- cursor etc
@@ -1178,7 +1178,7 @@ end
 function v.Curosr_line_end__ins(str)
 
   local n_cmd = 'A' .. str
-  v.Normal(n_cmd)
+  v.Cmd.nml(n_cmd)
 end
 
 -- cursor f
@@ -1191,7 +1191,7 @@ function v.Cursor_f_space__del()
   if v.Is_str__ptn(c, '\\s') then
     -- print( "del" )
     v.Slctd_str__cursor_f_space()
-    v.Normal('"zd')
+    v.Cmd.nml('"zd')
   else
     v.Nothing()
   end
@@ -1202,9 +1202,9 @@ end
 function v.Cursor_line__del()
 
   if v.Is_cursor_line_str__emp() or v.Is_cursor_line_str__space() then
-    v.Normal('"_dd') -- rgstr del
+    v.Cmd.nml('"_dd') -- rgstr del
   else
-    v.Normal('"add')
+    v.Cmd.nml('"add')
     v.Clp__ynk()
   end
 end
@@ -1264,14 +1264,14 @@ function v.Cursor__ins_sys_cmd(sys_cmd) -- read
   local is_line_num_eq_1 = v.Is_cursor_line_num__file_edge_bgn()
 
   if is_line_num_eq_1 then
-    v.Normal('O')
+    v.Cmd.nml('O')
   else
-    -- v.Normal('k')
+    -- v.Cmd.nml('k')
     v.Cursor__mv_u()
   end
 
   local cmd = 'read ! ' .. sys_cmd
-  v.Cmd(cmd)
+  v.Cmd.cmd(cmd)
 
   if is_line_num_eq_1 then
     v.Line__del_by_line_num(1)
@@ -1372,7 +1372,7 @@ function v.Cursor_line_indnt__add(col)
     return
   end
 
-  v.Normal('0')
+  v.Cmd.nml('0')
 
   local char = ' '
   -- print(vim.bo.expandtab)
@@ -1392,12 +1392,12 @@ end
 
 function v.Cursor_line_indnt__del() -- alias
 
-  v.Cmd('left')
+  v.Cmd.cmd('left')
 end
 
 function v.Cursor_line_indnt__shft_l()
 
-  v.Normal('<<')
+  v.Cmd.nml('<<')
   v.Cursor__mv_line_top1()
 end
 

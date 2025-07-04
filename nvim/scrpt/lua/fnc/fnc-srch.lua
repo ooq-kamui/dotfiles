@@ -67,7 +67,7 @@ function v.Srch_str__(str, op_word1)
   end
 
   v.Rgstr__('/', exe_str) -- highlight
-  v.Normal('/' .. exe_str) -- srch hstry add
+  v.Cmd.nml('/' .. exe_str) -- srch hstry add
 end
 
 function v.Srch_str__cursor_word()
@@ -136,10 +136,10 @@ end
 function v.Srch_slct(drct)
 
   if     drct == 'f' then
-    v.Normal('gn')
+    v.Cmd.nml('gn')
 
   elseif drct == 'b' then
-    v.Normal('gN')
+    v.Cmd.nml('gN')
   end
 end
 
@@ -147,10 +147,10 @@ end
 function v.Slctd_srch_7_slctd__srch_nxt(drct) -- srch rpl skip
 
   if     drct == 'f' then
-    v.Normal('`>lgn')
+    v.Cmd.nml('`>lgn')
 
   elseif drct == 'b' then
-    v.Normal('`<hgN')
+    v.Cmd.nml('`<hgN')
   end
 end
 
@@ -159,7 +159,7 @@ function v.Srch_7_cursor__mv_srch_str_end_o()
   local drct = 'f'
   v.Srch_slct(drct)
   v.Esc()
-  -- v.Normal("\\<esc>")
+  -- v.Cmd.nml("\\<esc>")
   v.Esc()
   v.Cursor__mv_char_f()
 end

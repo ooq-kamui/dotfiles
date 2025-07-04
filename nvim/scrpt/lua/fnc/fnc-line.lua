@@ -31,7 +31,7 @@ function v.Line_end_space__del(line_num)
   local rpl_cmd = line_num .. 's/' .. g.line_end_space_ptn .. '//g'
   -- print(rpl_cmd)
 
-  v.Cmd(rpl_cmd)
+  v.Cmd.cmd(rpl_cmd)
 
   v.Rgstr__('/', ptn_tmp)
 end
@@ -64,7 +64,7 @@ end
 
 function v.Line__dpl()
 
-  v.Normal('"zyy"zP')
+  v.Cmd.nml('"zyy"zP')
 end
 
 -- line num

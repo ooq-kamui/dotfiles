@@ -73,7 +73,7 @@ end
 
 function v.Ynk__line()
 
-  v.Normal('"ayy')
+  v.Cmd.nml('"ayy')
   -- line_str = Cursor_line_str()
   -- let @a = line_str
 
@@ -83,7 +83,7 @@ end
 function v.Ynk__line_all()
 
   local cmd = '%y' -- todo rgstr a direct
-  v.Cmd(cmd)
+  v.Cmd.cmd(cmd)
 
   v.Rgstr__('a', v.Rgstr_get('0'))
   v.Clp__ynk()
@@ -111,7 +111,7 @@ function v.Ynk__slctd()
 
     -- dev anchor
     -- n_cmd = ''
-    -- v.Normal(n_cmd)
+    -- v.Cmd.nml(n_cmd)
 
     v.Ynk__(str)
 
@@ -126,7 +126,7 @@ end
 
 function v.Ynk__add_slctd()
 
-  v.Normal('gv"Ay')
+  v.Cmd.nml('gv"Ay')
   v.Clp__ynk()
 end
 

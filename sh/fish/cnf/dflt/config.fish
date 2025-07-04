@@ -155,8 +155,12 @@ alias jsd 'git sd'
 alias jwl 'git wl'
 alias jwd 'git wd'
 
-alias pd 'podman'
-alias po 'podman'
+alias pd   'podman'
+alias pdcl 'podman container ls -a'
+alias pl   'podman container ls -a'
+alias pdil 'podman image ls'
+
+# alias po   'podman'
 
 alias line 'cat_line'
 
