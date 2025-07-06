@@ -2,13 +2,27 @@
 # dotfiles
 
 
+## keyboard
+
+logi - sticker: p
+
+
+## podman
+
+network
+- tomcat
+- psql
+
+
 ## nvim
 
-:cd crnt-buf-file-dir
+:cd buf-crnt-dir
 
 ynk str v box, paste
 - rp > use not
 - ynk, case : box, to rgstr a
+
+slctd space __ del
 
 v box L, case line top, line emp
 
@@ -27,11 +41,6 @@ step by step
 
 confirm
 - https://qiita.com/wa-chan222/items/37053aaf6a96fcc92d83
-
-
-## keyboard
-
-logi - sticker: p
 
 
 ## skr-vps

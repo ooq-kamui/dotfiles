@@ -156,9 +156,11 @@ alias jwl 'git wl'
 alias jwd 'git wd'
 
 alias pd   'podman'
-alias pdcl 'podman container ls -a'
 alias pl   'podman container ls -a'
-alias pdil 'podman image ls'
+alias pil  'podman image ls'
+alias pnl  'podman network ls'
+# alias pdcl 'podman container ls -a'
+# alias pdil 'podman image ls'
 
 # alias po   'podman'
 
