@@ -175,13 +175,12 @@ function dir_jmp {
 }
 # Set-Alias dir "dir_jmp" -Option AllScope # cannot be removed
 Set-Alias d   "dir_jmp"
-function dd  { dir_jmp dotfiles }
-function ddo { dir_jmp dotfiles }
 # function do { dir_jmp dotfiles }
 
-function k   { Set-Location -Path .. ; p }
-function kk  { k;k   }
-function kkk { k;k;k }
+function k    { Set-Location -Path .. ; p }
+function kk   { k;k     }
+function kkk  { k;k;k   }
+function kkkk { k;k;k;k }
 
 function touch {
   param( $path )
