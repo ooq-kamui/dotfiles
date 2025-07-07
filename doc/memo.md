@@ -8,11 +8,12 @@ opn > buf.opn
 
 save > buf.save
 
+v box L, case line top, line emp
+- confirm
+
 ynk str v box, paste
 - rp > use not
 - ynk, case : box, to rgstr a
-
-v box L, case line top, line emp
 
 plg
 - nvim-treesitter
