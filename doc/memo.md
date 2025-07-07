@@ -4,13 +4,13 @@
 
 ## nvim
 
-:cd buf-crnt-dir
+opn > buf.opn
+
+save > buf.save
 
 ynk str v box, paste
 - rp > use not
 - ynk, case : box, to rgstr a
-
-slctd space __ del
 
 v box L, case line top, line emp
 
@@ -18,13 +18,6 @@ plg
 - nvim-treesitter
 - lualine
 - lazy
-
-
-## podman
-
-network
-- tomcat
-- psql
 
 
 ## aws

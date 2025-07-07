@@ -153,6 +153,12 @@ function v.Buf_num()
   return f.bufnr('%')
 end
 
+function v.Buf_file_dir()
+
+  local dir = f.expand('%:p:h')
+  return dir
+end
+
 function v.Buf__quit()
 
   local cmd = 'bd'

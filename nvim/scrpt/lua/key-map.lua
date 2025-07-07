@@ -784,16 +784,16 @@ vim.keymap.set('n', ':r', ':InsSysCmd ')
 vim.keymap.set('n', ':p', ':Pth <cr>')
 
 -- cd slf
--- vim.keymap.set('n', ':d', ':lua v.Dir__buf_file_dir()')
+vim.keymap.set('n', ':d', ':lua v.Dir__buf_file_dir()')
 
 -- cd parent
 vim.keymap.set('n', ':k', ':K')
 
 -- fzf cd
-vim.keymap.set('n', '<leader>y', ':lua v.Fzf_dir()<cr>')
+vim.keymap.set('n', '<leader>d', ':lua v.Fzf_dir()<cr>')
 
 -- fzf cd ( dir jmp )
-vim.keymap.set('n', '<leader>d', ':lua v.Fzf_dir_jmp()<cr>')
+vim.keymap.set('n', '<leader>y', ':lua v.Fzf_dir_jmp()<cr>')
 
 -- fzf doc memo
 vim.keymap.set('n', '<leader>m', ':lua v.Fzf_doc_memo_opn()<cr>')

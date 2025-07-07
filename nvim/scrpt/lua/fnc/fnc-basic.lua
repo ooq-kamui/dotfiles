@@ -468,12 +468,6 @@ end
 
 -- dir __ ch slf
 
-function v.Buf_file_dir()
-
-  local dir = f.expand('%:p:h')
-  return dir
-end
-
 function v.Dir__buf_file_dir()
 
   local dir = v.Buf_file_dir()

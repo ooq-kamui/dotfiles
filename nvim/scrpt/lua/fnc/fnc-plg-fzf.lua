@@ -245,19 +245,17 @@ function v.Fzf_dir()
   local sys_cmd = 'fd --type d'
   local fzf_src_txt  = v.Sys.cmd(sys_cmd)
 
-  -- local fnc_name = 'Dir__'
   local fnc_name = v.Dir__
   v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
 function v.Fzf_dir_jmp()
 
-  local sys_cmd = 'dir_jmp_lst_with_z'
-  -- local sys_cmd = 'dir_jmp_lst_with_zoxide'
+  -- local sys_cmd = 'fd --type d'
+  local sys_cmd = 'dir_jmp_lst_with_zoxide'
 
   local fzf_src_txt  = v.Sys.cmd(sys_cmd)
 
-  -- local fnc_name = 'Dir__'
   local fnc_name = v.Dir__
   v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
