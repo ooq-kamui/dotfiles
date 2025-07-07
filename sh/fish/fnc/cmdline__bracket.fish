@@ -1,4 +1,4 @@
-function cmdline_bracket
+function cmdline__bracket
 
   #commandline ( echo "ll (" ( commandline ) ")" )
   commandline ( echo "vi (" ( commandline ) ")" )

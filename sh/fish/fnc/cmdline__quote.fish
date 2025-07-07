@@ -1,4 +1,4 @@
-function cmdline_quote
+function cmdline__quote
 
   commandline (echo ' "'(commandline)'"')
 end

@@ -2,18 +2,6 @@
 # dotfiles
 
 
-## keyboard
-
-logi - sticker: p
-
-
-## podman
-
-network
-- tomcat
-- psql
-
-
 ## nvim
 
 :cd buf-crnt-dir
@@ -32,15 +20,22 @@ plg
 - lazy
 
 
-## godot
+## podman
 
-step by step
+network
+- tomcat
+- psql
 
 
 ## aws
 
 confirm
 - https://qiita.com/wa-chan222/items/37053aaf6a96fcc92d83
+
+
+## godot
+
+step by step
 
 
 ## skr-vps
