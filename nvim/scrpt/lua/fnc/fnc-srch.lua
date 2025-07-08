@@ -13,7 +13,9 @@ function v.Srch_or(...)
   local str = '\\(' .. f.join(arg, '\\|') .. '\\)'
   --print( str )
 
-  v.Rgstr__('/', str)
+  -- v.Rgstr__('/', str)
+  v.Srch_str__ptn(str)
+
   v.Cursor__mv_srch('f')
 end
 
@@ -67,7 +69,13 @@ function v.Srch_str__(str, op_word1)
   end
 
   v.Rgstr__('/', exe_str) -- highlight
+
   v.Cmd.nml('/' .. exe_str) -- srch hstry add
+end
+
+function v.Srch_str__ptn(ptn)
+
+  v.Rgstr__('/', ptn)
 end
 
 function v.Srch_str__cursor_word()
@@ -166,7 +174,9 @@ end
 
 function v.Srch_char(drct, char)
 
-  v.Rgstr__('/', '[' .. char .. ']')
+  -- v.Rgstr__('/', '[' .. char .. ']')
+  v.Srch_str__ptn('[' .. char .. ']')
+
   v.Cursor__mv_srch(drct)
 end
 
@@ -182,10 +192,10 @@ function v.Srch_str__h_swtch()
     v.Srch_str__markdown_h()
 
   elseif vim.bo.filetype == 'lua' then
-    v.Srch_str__fnc()
+    v.Srch_str__fnc_def()
 
   elseif vim.bo.filetype == 'vim' then
-    v.Srch_str__fnc()
+    v.Srch_str__fnc_def()
 
   else
     v.Srch_str__markdown_h()
@@ -194,12 +204,17 @@ end
 
 function v.Srch_str__markdown_h()
 
-  v.Rgstr__('/', '^#\\+ ')
+  v.Srch_str__ptn('^#\\+ ')
 end
 
-function v.Srch_str__fnc()
+function v.Srch_str__markdown_itm()
 
-  v.Rgstr__('/', '^func')
+  v.Srch_str__ptn('^ *- ')
+end
+
+function v.Srch_str__fnc_def()
+
+  v.Srch_str__ptn('^func')
 end
 
 -- srch cnd

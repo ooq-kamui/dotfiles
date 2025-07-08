@@ -33,11 +33,10 @@ function v.Line_end_space__del(line_num)
 
   v.Cmd.cmd(rpl_cmd)
 
-  v.Rgstr__('/', ptn_tmp)
+  v.Srch_str__ptn(ptn_tmp)
 end
 
 function v.Line_end__pad_space(line_num, fil_end_col)
-
 
   -- local line_str     = f.getline(line_num)
   local line_str     = v.Line_str_by_line_num(line_num)

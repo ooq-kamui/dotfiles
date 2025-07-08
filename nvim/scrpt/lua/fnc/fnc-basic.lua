@@ -470,7 +470,7 @@ end
 
 function v.Dir__buf_file_dir()
 
-  local dir = v.Buf_file_dir()
+  local dir = v.Buf.file_dir()
   v.Dir__(dir)
 end
 
@@ -729,7 +729,7 @@ function v.Jmplst()
   end
   -- u.Log.tbl(jmplst)
 
-  local buf_num_key = buf_num_key_prefix .. v.Buf_num()
+  local buf_num_key = buf_num_key_prefix .. v.Buf.num()
   -- u.Log.val(buf_num_key)
 
   local r_jmplst    = f.get(jmplst, buf_num_key, {})

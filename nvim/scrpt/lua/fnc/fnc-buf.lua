@@ -2,7 +2,7 @@
 -- buf
 
 v.Buf = {}
-v.Opn = v.Buf -- old
+-- v.Opn = v.Buf -- old
 
 g.nvim_lua_init_file_path      = g.nvim_lua_dir     .. '/init.lua'
 g.nvim_lua_opt_file_path       = g.nvim_lua_etc_dir .. '/opt.lua'
@@ -13,7 +13,20 @@ g.nvim_lua_key_map_file_path   = g.nvim_lua_etc_dir .. '/key-map.lua'
 g.nvim_lua_fnc_basic_file_path = g.nvim_lua_fnc_dir .. '/fnc-basic.lua'
 g.nvim_lua_plg_fzf_file_path   = g.nvim_lua_fnc_dir .. '/fnc-plg-fzf.lua'
 
--- opn file
+-- buf opn
+
+function v.Buf.num()
+
+  return f.bufnr('%')
+end
+
+function v.Buf.file_dir()
+
+  local dir = f.expand('%:p:h')
+  return dir
+end
+
+-- buf opn
 
 function v.Buf.opn(filename)
 
@@ -25,14 +38,14 @@ function v.Buf.opn_view_ltst()
   v.Cmd.cmd('tab drop #')
 end
 
-function v.Opn_tmp_file()
+function v.Buf.opn_tmp_file()
 
   local path = v.File_tmp__cre()
   print( path )
   v.Buf.opn(path)
 end
 
-function v.Opn_init_vim()
+function v.Buf.Opn_init_vim()
 
   -- lua
   v.Buf.opn(g.nvim_lua_fnc_basic_file_path)
@@ -53,7 +66,7 @@ function v.Opn_init_vim()
   end
 end
 
-function v.Opn_init_vim_l()
+function v.Buf.opn_init_vim_l()
 
   v.Buf.opn(g.nvim_lua_opt_file_path     )
   v.Buf.opn(g.nvim_lua_cmd_file_path     )
@@ -65,13 +78,13 @@ function v.Opn_init_vim_l()
   v.Buf.opn(g.nvim_lua_plg_fzf_file_path )
 end
 
-function v.Opn_fish_cnf()
+function v.Buf.opn_fish_cnf()
 
   local path = '~/.config/fish/config.fish'
   v.Buf.opn(path)
 end
 
-function v.Opn_man(cmd)
+function v.Buf.opn_man(cmd)
 
   v.Cmd.cmd('tab new')
   v.Cmd.cmd('Man ' .. cmd)
@@ -80,7 +93,7 @@ end
 
 g.memo_path = 'doc/memo.md'
 
-function v.Opn_memo()
+function v.Buf.opn_memo()
 
   v.Buf.opn(g.memo_path)
 end
@@ -121,7 +134,7 @@ end
 
 function v.Tag_jmp_by_cursor_line()
 
-  local base_buf_num = v.Buf_num()
+  local base_buf_num = v.Buf.num()
 
   local str = v.Cursor_line_str()
   v.Tag_jmp_by_str(str)
@@ -133,7 +146,7 @@ end
 
 function v.Tag_jmp_by_slctd_line() -- range
 
-  local base_buf_num = v.Buf_num()
+  local base_buf_num = v.Buf.num()
 
   local line_str
 
@@ -147,17 +160,6 @@ function v.Tag_jmp_by_slctd_line() -- range
 end
 
 -- buf
-
-function v.Buf_num()
-
-  return f.bufnr('%')
-end
-
-function v.Buf_file_dir()
-
-  local dir = f.expand('%:p:h')
-  return dir
-end
 
 function v.Buf__quit()
 
@@ -182,7 +184,7 @@ end
 
 -- file ( buf file )
 
-function v.Save()
+function v.Buf.save()
 
   v.Cmd.cmd('w')
 end

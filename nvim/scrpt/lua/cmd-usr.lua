@@ -88,7 +88,7 @@ vim.api.nvim_create_user_command('Opn',
 
 vim.api.nvim_create_user_command('OpnMan',
   function(opts)
-    v.Opn_man(opts.fargs[1])
+    v.Buf.opn_man(opts.fargs[1])
   end,
   {nargs = '*'}
 )

@@ -4,12 +4,8 @@
 
 ## nvim
 
-opn > buf.opn
-
-save > buf.save
-
 v box L, case line top, line emp
-- confirm
+- `I <esc>gv`
 
 ynk str v box, paste
 - rp > use not
@@ -19,6 +15,9 @@ plg
 - nvim-treesitter
 - lualine
 - lazy
+
+
+tag_jmp > Buf.opn_cursor_path()
 
 
 ## aws

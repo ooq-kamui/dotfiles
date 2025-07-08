@@ -269,7 +269,7 @@ vim.keymap.set('n', 'W', ':q<cr>')
 -- vim.keymap.set('n', '<c-z>', '<c-z>')
 
 -- save
-vim.keymap.set('n', 'a', ':lua v.Save()<cr>')
+vim.keymap.set('n', 'a', ':lua v.Buf.save()<cr>')
 
 -- load re slf
 -- vim.keymap.set('n', 'xx', ':lua v.Load_re()')
@@ -295,17 +295,17 @@ vim.keymap.set('n', '<leader>h', ':FzfFileHstry<cr>')
 -- opn etc
 
 -- opn fish cnf
--- vim.keymap.set('n', 'xx', ':lua v.Opn_fish_cnf()<cr>')
+-- vim.keymap.set('n', 'xx', ':lua v.Buf.opn_fish_cnf()<cr>')
 
 -- opn init vim
-vim.keymap.set('n', 'gh', ':lua v.Opn_init_vim()<cr>')
-vim.keymap.set('n', 'gl', ':lua v.Opn_init_vim_l()<cr>')
+vim.keymap.set('n', 'gh', ':lua v.Buf.opn_init_vim()<cr>')
+vim.keymap.set('n', 'gl', ':lua v.Buf.opn_init_vim_l()<cr>')
 
 -- opn tmp file
--- vim.keymap.set('n', 'xx', ':lua v.Opn_tmp_file()<cr>')
+-- vim.keymap.set('n', 'xx', ':lua v.Buf.opn_tmp_file()<cr>')
 
 -- opn memo
--- vim.keymap.set('n', 'xx', ':lua v.Opn_memo()<cr>')
+-- vim.keymap.set('n', 'xx', ':lua v.Buf.opn_memo()<cr>')
 
 -- opn man
 -- vim.keymap.set('n', 'xx', ':OpnMan ')
@@ -727,6 +727,9 @@ vim.keymap.set('n', 'E', ':lua v.Srch_str__word1_tgl()<cr>')
 
 -- srch markdown h
 vim.keymap.set('n', 'M', ':lua v.Srch_str__h_swtch()<cr>')
+
+-- srch markdown itm
+vim.keymap.set('n', ':i', ':lua v.Srch_str__markdown_itm()<cr>')
 
 -- srch str history ( fzf )
 vim.keymap.set('n', '<leader>f', ':FzfSrchHstry<cr>')
@@ -1180,7 +1183,8 @@ vim.keymap.set('v', 'L', function()
   if v.Mode.is__box() then
     return 'I <esc>gv'
   else
-    return '>gv'
+    return ':lua v.Slctd_line_indnt__shft_r()<cr>'
+    -- return '>gv'
   end
 end, {expr = true})
 
@@ -1347,7 +1351,7 @@ end, {expr = true})
 vim.keymap.set('v', '<c-p>', ':lua v.Slctd__rpl_7_srch_nxt()<cr>')
 
 -- srch markdown h
-vim.keymap.set('v', 'M', ':lua v.Srch_str__h_swtch()<cr>')
+-- vim.keymap.set('v', 'M', ':lua v.Srch_str__h_swtch()<cr>')
 
 -- rpl ( cmd )
 vim.keymap.set('v', ':s', function()

@@ -83,7 +83,7 @@ end
 
 function v.Sys.cmd_opn_buf_file_dir()
 
-  local dir = v.Buf_file_dir()
+  local dir = v.Buf.file_dir()
   v.Sys.cmd_opn_app(dir)
 end
 
