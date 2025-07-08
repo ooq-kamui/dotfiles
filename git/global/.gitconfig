@@ -11,11 +11,11 @@
 [core]
   pager = less -x2
   editor = nvim -f
+[init]
+  defaultBranch = main
 [pull]
   rebase = false
   ff = only
-[init]
-  defaultBranch = main
 [merge]
   tool = vimdiff
 [alias]
