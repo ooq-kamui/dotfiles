@@ -4,20 +4,19 @@
 
 ## nvim
 
-v box L, case line top, line emp
-- `I <esc>gv`
+tag_jmp > Buf.opn_cursor_path()
 
 ynk str v box, paste
 - rp > use not
 - ynk, case : box, to rgstr a
 
+v box L, case line top, line emp
+- `I <esc>gv`
+
 plg
 - nvim-treesitter
 - lualine
 - lazy
-
-
-tag_jmp > Buf.opn_cursor_path()
 
 
 ## aws
