@@ -362,7 +362,8 @@ end, {expr = true})
 vim.keymap.set('n', 'l', 'l')
 
 -- cursor mv char - back
-vim.keymap.set('n', '<c-o>', 'h')
+vim.keymap.set('n', '<c-s>', 'h')
+-- vim.keymap.set('n', '<c-o>', 'h')
 
 -- cursor mv word - forward
 vim.keymap.set('n', 'f', ':lua v.Cursor__mv_word_f()<cr>')
@@ -377,6 +378,8 @@ vim.keymap.set('n', 'o', ':lua v.Cursor__mv_word_b()<cr>')
 vim.keymap.set('n', '_', 'f_l')
 
 -- cursor mv word dlm _ back
+vim.keymap.set('n', '<c-o>', 'hT_')
+-- vim.keymap.set('n', '<c-s>', 'hT_')
 vim.keymap.set('n', '<c-_>', 'hT_')
 vim.keymap.set('n', '\\'   , 'T_h')
 vim.keymap.set('n', '<bar>', 'T_h')
@@ -549,7 +552,7 @@ vim.keymap.set('n', ',', 'i, <esc>l')
 vim.keymap.set('n', '0', ':lua v.Cursor__ins_hyphen()<cr>')
 
 -- ins quote
-vim.keymap.set('n', '<c-s>', ':lua v.Cursor__ins_quote()<cr>')
+-- vim.keymap.set('n', 'xx', ':lua v.Cursor__ins_quote()<cr>')
 
 -- ins date
 vim.keymap.set('n', '*', ':lua v.Cursor__ins_da()<cr>')
