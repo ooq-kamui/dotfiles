@@ -385,10 +385,12 @@ vim.keymap.set('n', '\\'   , 'T_h')
 vim.keymap.set('n', '<bar>', 'T_h')
 
 -- cursor mv word dlm ( camel or _ )  -  forward
-vim.keymap.set('n', 'F', ':lua v.Cursor__mv_word_dlm_f()<cr>')
+vim.keymap.set('n', '<c-f>', ':lua v.Cursor__mv_word_dlm_f()<cr>')
+-- vim.keymap.set('n', 'F', ':lua v.Cursor__mv_word_dlm_f()<cr>')
 
 -- cursor mv fnc name
-vim.keymap.set('n', '<c-f>', ':lua v.Cursor__mv_fnc_name()<cr>')
+vim.keymap.set('n', 'F', ':lua v.Cursor__mv_fnc_name()<cr>')
+-- vim.keymap.set('n', '<c-f>', ':lua v.Cursor__mv_fnc_name()<cr>')
 
 -- cursor mv fnc out back
 -- vim.keymap.set('n', '<', '[m')
