@@ -1186,7 +1186,8 @@ end, {expr = true})
 -- ins space
 vim.keymap.set('v', 'L', function()
   if v.Mode.is__box() then
-    return 'I <esc>gv'
+    return ':lua v.Slctd_box_edge_l__ins_space()<cr>'
+    -- return 'I <esc>gv'
   else
     return ':lua v.Slctd_line_indnt__shft_r()<cr>'
     -- return '>gv'

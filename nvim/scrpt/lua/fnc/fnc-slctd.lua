@@ -1171,6 +1171,7 @@ function v.Slctd_box_str__mv(lr) -- range
   local n_cmd = v.Char_lr_2_normal_cmd(lr)
 
   v.Slctd__ltst()
+
   v.Cmd.nml('"zx')
   v.Cmd.nml(n_cmd)
   v.Cmd.nml('"zP')
@@ -1180,6 +1181,18 @@ function v.Slctd_box_str__mv(lr) -- range
 end
 
 -- slctd box __ ( edit )
+
+function v.Slctd_box_edge_l__ins_space()
+
+  v.Slctd__ltst()
+
+  v.Cmd.nml('I ')
+
+  v.Slctd__ltst()
+
+  -- v.Slctd_box__rpl('^ $', '')
+  -- v.Slctd__ltst()
+end
 
 function v.Slctd_box_edge_l__ynk_line_1() -- range
 

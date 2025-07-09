@@ -10,9 +10,6 @@ ynk str v box, paste
 - rp > use not
 - ynk, case : box, to rgstr a
 
-v box L, case line top, line emp
-- `I <esc>gv`
-
 plg
 - nvim-treesitter
 - lualine
