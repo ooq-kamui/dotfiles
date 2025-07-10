@@ -10,6 +10,8 @@ n: `c-f`
 - Cursor__mv_word_dlm_f()
   - case `_` : `l`
 
+cls slctd
+
 ynk str v box, paste
 - rp > use not
 - ynk, case : box, to rgstr a
