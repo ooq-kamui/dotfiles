@@ -102,7 +102,8 @@ end
 
 -- tag jmp by str ( refactoring path )
 
-function v.Tag_jmp_by_str(rg_rslt_line)
+-- function v.Tag_jmp_by_str(rg_rslt_line)
+function v.Buf.opn_by_path(rg_rslt_line)
 
   local rg_rslt_line = f.trim(rg_rslt_line)
 
@@ -132,19 +133,21 @@ function v.Tag_jmp_by_str(rg_rslt_line)
   v.Cursor__mv_by_line_num(line_num)
 end
 
-function v.Tag_jmp_by_cursor_line()
+-- function v.Tag_jmp_by_cursor_line()
+function v.Buf.opn_by_cursor_line()
 
   local base_buf_num = v.Buf.num()
 
   local str = v.Cursor_line_str()
-  v.Tag_jmp_by_str(str)
+  v.Buf.opn_by_path(str)
 
   v.Cmd.cmd('sbuffer ' .. base_buf_num)
   -- v.Cmd.nml('j')
   v.Cursor__mv_d()
 end
 
-function v.Tag_jmp_by_slctd_line() -- range
+-- function v.Tag_jmp_by_slctd_line() -- range
+function v.Buf.opn_by_slctd_line() -- range
 
   local base_buf_num = v.Buf.num()
 
@@ -154,7 +157,7 @@ function v.Tag_jmp_by_slctd_line() -- range
 
     line_str = v.Line_str_by_line_num(line_num)
 
-    v.Tag_jmp_by_str(line_str)
+    v.Buf.opn_by_path(line_str)
     v.Cmd.cmd('sbuffer ' .. base_buf_num)
   end
 end

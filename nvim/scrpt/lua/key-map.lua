@@ -375,7 +375,8 @@ vim.keymap.set('n', 'o', ':lua v.Cursor__mv_word_b()<cr>')
 -- vim.keymap.set('n', 'xx', ':lua v.Cursor__mv_word_b_pre()<cr>')
 
 -- cursor mv word dlm _ forward
-vim.keymap.set('n', '_', 'f_l')
+vim.keymap.set('n', '_', 'f_')
+-- vim.keymap.set('n', '_', 'f_l')
 
 -- cursor mv word dlm _ back
 vim.keymap.set('n', '<c-o>', 'hT_')
@@ -386,11 +387,9 @@ vim.keymap.set('n', '<bar>', 'T_h')
 
 -- cursor mv word dlm ( camel or _ )  -  forward
 vim.keymap.set('n', '<c-f>', ':lua v.Cursor__mv_word_dlm_f()<cr>')
--- vim.keymap.set('n', 'F', ':lua v.Cursor__mv_word_dlm_f()<cr>')
 
 -- cursor mv fnc name
 vim.keymap.set('n', 'F', ':lua v.Cursor__mv_fnc_name()<cr>')
--- vim.keymap.set('n', '<c-f>', ':lua v.Cursor__mv_fnc_name()<cr>')
 
 -- cursor mv fnc out back
 -- vim.keymap.set('n', '<', '[m')
@@ -772,7 +771,7 @@ vim.keymap.set('n', '<leader>e', ':FzfJmplst<cr>')
 -- vim.keymap.set('n', '<leader>xx', ':FzfTagjmpByFile <cr>')
 
 -- tag jmp tab new
-vim.keymap.set('n', 't', ':lua v.Tag_jmp_by_cursor_line()<cr>')
+vim.keymap.set('n', 't', ':lua v.Buf.opn_by_cursor_line()<cr>')
 
 -- 
 -- cmd
@@ -1070,15 +1069,16 @@ vim.keymap.set('v', '<c-o>', 'h')
 -- cursor mv line end
 vim.keymap.set('v', '<c-y>', ':lua v.Slctd_cursor__mv_line_end()<cr>')
 
--- slctd __ reduce dlm _ r
+-- slctd str r __ reduce dlm
+vim.keymap.set('v', 'h', ':lua v.Slctd_str_r__reduce_dlm("_")<cr>')
 -- vim.keymap.set('v', '<c-h>', 'of_lo')
 -- vim.keymap.set('v', '_'    , 'of_lo')
 
--- slctd __ reduce dlm _ l
-vim.keymap.set('v', 'h', ':lua v.Slctd_str__reduce_dlm_l("_")<cr>')
+-- slctd str l __ reduce dlm
+vim.keymap.set('v', '<c-h>'    , ':lua v.Slctd_str_l__reduce_dlm("_")<cr>')
+-- vim.keymap.set('v', '<c-_>', 'F_h')
 -- vim.keymap.set('v', 'h', 'F_h')
 -- vim.keymap.set('v', 'H'    , 'F_h')
--- vim.keymap.set('v', '<c-_>', 'F_h')
 
 -- cursor mv space forward ( word pre )
 -- vim.keymap.set('v', 'xx', 'wh')
@@ -1378,7 +1378,7 @@ vim.keymap.set('v', '<c-h>', function()
   if v.Mode.is__box() then
     return ':lua v.Slctd_box_edge_r_char__shft_in()<cr>'
   else
-    return 'of_lo'
+    return ':lua v.Slctd_str_l__reduce_dlm("_")<cr>'
   end
 end, {expr = true})
 
@@ -1400,7 +1400,7 @@ vim.keymap.set('v', '<leader>o', '"zy:lua v.Fzf_rg("<c-r>z")<cr>')
 vim.keymap.set('v', '<leader>O', '"zy:lua v.Fzf_rg_word1("<c-r>z")<cr>')
 
 -- tag jmp
--- vim.keymap.set('v', 't', ':lua v.Tag_jmp_by_slctd_line()<cr>')
+-- vim.keymap.set('v', 't', ':lua v.Buf.opn_by_slctd_line()<cr>')
 
 -- sys cmd opn
 

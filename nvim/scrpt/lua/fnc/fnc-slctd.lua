@@ -398,7 +398,15 @@ function v.Slctd_str__expnd_bracket_f() -- range -- todo dev
   v.Slctd_str__by_col_len(s_col, len)
 end
 
-function v.Slctd_str__reduce_dlm_l(char) -- range
+function v.Slctd_str_r__reduce_dlm(char) -- range
+
+  v.Slctd__ltst()
+
+  local cmd_nml = 'of' .. char .. 'lo'
+  v.Cmd.nml(cmd_nml)
+end
+
+function v.Slctd_str_l__reduce_dlm(char) -- range
 
   v.Slctd__ltst()
 

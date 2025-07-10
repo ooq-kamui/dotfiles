@@ -110,7 +110,7 @@ function v.Fzf_rg_with_run(...)
   vim.fn['fzf#run'](
     {
       source = fzf_src_ar,
-      sink   = v.Tag_jmp_by_str,
+      sink   = v.Buf.opn_by_path,
       window = '-tabnew',
     }
   )
@@ -162,7 +162,7 @@ function v.Fzf_tag_jmp_by_file(...)
   local file_path = ( #arg >= 1 ) and arg[1] or 'doc/memo.md'
 
   local fzf_src_txt = v.File_txt(file_path)
-  local fnc_name    = v.Tag_jmp_by_str
+  local fnc_name    = v.Buf.opn_by_path
   v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
@@ -319,7 +319,7 @@ function v.Doc_tech_tag_jmp(str)
 
   local str = g.home_dir .. '/' .. g.doc_tech_dir_rel .. '/' .. str
   -- print(str)
-  v.Tag_jmp_by_str(str)
+  v.Buf.opn_by_path(str)
 end
 
 -- setting

@@ -4,7 +4,11 @@
 
 ## nvim
 
-tag_jmp > Buf.opn_cursor_path()
+v str quote, first char, case file type
+
+n: `c-f`
+- Cursor__mv_word_dlm_f()
+  - case `_` : `l`
 
 ynk str v box, paste
 - rp > use not
