@@ -454,13 +454,13 @@ vim.keymap.set('n', 'v', '<c-v>')
 -- vim.keymap.set('n', 'xx', ':lua v.Ynk__line_all()<cr>')
 
 -- slct re
-vim.keymap.set('n', 'rr', ':lua v.Slctd__ltst()<cr>')
+vim.keymap.set('n', 'rr', ':lua v.Slctd.__ltst()<cr>')
 
 -- ynk clr
 vim.keymap.set('n', '<c-c>', ':lua v.Ynk__clr()<cr>')
 
 -- ynk line
-vim.keymap.set('n', 'c', ':lua v.Ynk__line()<cr>')
+vim.keymap.set('n', 'c', ':lua v.Ynk__cursor_line()<cr>')
 
 -- ynk char
 -- vim.keymap.set('n', 'xx', '"ayl')
@@ -575,7 +575,7 @@ vim.keymap.set('n', '<c-u>', ':lua v.Cursor__ins_markdown_code()<cr>')
 
 -- ins markdown itm
 vim.keymap.set('n', 'O', function()
-  if v.Is_file_type__('markdown') then
+  if v.Buf.is_file_type__('markdown') then
     return ':lua v.Cursor__ins_markdown_itm()<cr>'
   else
     return ':lua v.Cursor_line_indnt__shft_r()<cr>'
@@ -593,7 +593,7 @@ vim.keymap.set('n', '$', ':lua v.Cursor__ins_cmnt_mlt()<cr>')
 
 -- ins comment 1
 vim.keymap.set('n', '!', function()
-  if v.Is_file_type__('markdown') then
+  if v.Buf.is_file_type__('markdown') then
     return ':lua v.Cursor__ins_markdown_h()<cr>'
   else
     return ':lua v.Cursor__ins_cmnt_1("^")<cr>'
@@ -601,7 +601,7 @@ vim.keymap.set('n', '!', function()
 end, {expr = true})
 
 vim.keymap.set('n', '1', function()
-  if v.Is_file_type__('markdown') then
+  if v.Buf.is_file_type__('markdown') then
     return ':lua v.Cursor__ins_markdown_h()<cr>'
   else
     return ':lua v.Cursor__ins_cmnt_1("^")<cr>'
@@ -609,7 +609,7 @@ vim.keymap.set('n', '1', function()
 end, {expr = true})
 
 vim.keymap.set('n', '"', function()
-  if v.Is_file_type__('markdown') then
+  if v.Buf.is_file_type__('markdown') then
     return ':lua v.Cursor__ins_markdown_h()<cr>'
   else
     return ':lua v.Cursor__ins_cmnt_1("^")<cr>'
@@ -1158,9 +1158,7 @@ end, {expr = true})
 -- paste visual box
 -- vim.keymap.set('v', 'xx', 'I<c-r>0<esc>')
 
--- 
 -- edit
--- 
 
 -- ins | cut & ins
 vim.keymap.set('v', '<space>', function()
@@ -1245,6 +1243,8 @@ vim.keymap.set('v', '<c-d>', 'D')
 
 -- slctd line __ del end space
 vim.keymap.set('v', 'm', ':lua v.Slctd_line_end_space__del()<cr>')
+
+-- slctd box
 
 -- slctd box __ del cursor f space
 vim.keymap.set('v', 'K', ':lua v.Slctd_box_cursor_r_space__crct()<cr>')

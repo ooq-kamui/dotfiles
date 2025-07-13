@@ -130,15 +130,15 @@ end
 function v.Srch_str__slctd_str() -- range
 
   if v.Is_slctd_str__srch_str() then
-    v.Slctd__cancel()
+    v.Slctd.__cancel()
     return
   end
 
-  v.Slctd__ltst()
+  v.Slctd.__ltst()
 
   local str = v.Slctd_str()
   v.Srch_str__(str, false)
-  v.Slctd__cancel()
+  v.Slctd.__cancel()
 end
 
 function v.Srch_slct(drct)

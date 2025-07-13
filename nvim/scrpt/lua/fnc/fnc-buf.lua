@@ -273,7 +273,7 @@ end
 
 -- file cnd
 
-function v.Is_file_type__(type)
+function v.Buf.is_file_type__(type)
 
   if vim.bo.filetype == type then
     return true

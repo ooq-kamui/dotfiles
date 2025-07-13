@@ -2,26 +2,6 @@
 # dotfiles
 
 
-## nvim
-
-v str quote, first char, case file type
-
-n: `c-f`
-- Cursor__mv_word_dlm_f()
-  - case `_` : `l`
-
-cls slctd
-
-ynk str v box, paste
-- rp > use not
-- ynk, case : box, to rgstr a
-
-plg
-- nvim-treesitter
-- lualine
-- lazy
-
-
 ## aws
 
 confirm
@@ -31,6 +11,18 @@ confirm
 ## godot
 
 step by step
+
+
+## nvim
+
+n_cmd > cmd_nml
+
+cls slctd
+
+plg
+- nvim-treesitter
+- lualine
+- lazy
 
 
 ## skr-vps

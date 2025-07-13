@@ -318,13 +318,13 @@ end
 
 function v.Cursor__mv_slctd_edge_tgl() -- range
 
-  v.Slctd__ltst()
+  v.Slctd.__ltst()
   v.Cmd.nml('o')
 end
 
 function v.Cursor__mv_slctd_edge_l() -- range
 
-  v.Slctd__ltst()
+  v.Slctd.__ltst()
 
   if not v.Is_slctd_cursor_pos__r() then
     return

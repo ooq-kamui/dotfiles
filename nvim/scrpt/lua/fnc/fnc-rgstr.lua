@@ -68,10 +68,11 @@ end
 
 function v.Ynk__rgstr()
 
-  
+-- todo dev
+
 end
 
-function v.Ynk__line()
+function v.Ynk__cursor_line()
 
   v.Cmd.nml('"ayy')
   -- line_str = Cursor_line_str()
@@ -104,24 +105,26 @@ end
 
 function v.Ynk__slctd()
 
-  local str, n_cmd
-  str = v.Slctd_str()
+  v.Slctd.__ltst()
+
+  local str, cmd_nml
 
   if v.Mode.is__box() then
 
     -- dev anchor
-    -- n_cmd = ''
-    -- v.Cmd.nml(n_cmd)
+    cmd_nml = '"ay'
+    v.Cmd.nml(cmd_nml)
 
-    v.Ynk__(str)
+    -- v.Ynk__(str)
 
   else
+    str = v.Slctd_str()
     v.Ynk__(str)
   end
 
   v.Clp__ynk()
 
-  v.Slctd__cancel()
+  v.Slctd.__cancel()
 end
 
 function v.Ynk__add_slctd()
