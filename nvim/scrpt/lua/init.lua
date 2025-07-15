@@ -65,8 +65,8 @@ end
 -- srch init
 function v.Srch_init() -- use not
 
-  local n_cmd = '/<cr>N'
-  v.Cmd.nml(n_cmd)
+  local cmd_nml = '/<cr>N'
+  v.Cmd.nml(cmd_nml)
 end
 --v.Srch_init()
 

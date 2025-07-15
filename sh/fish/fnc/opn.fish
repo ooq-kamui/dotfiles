@@ -6,6 +6,12 @@ function opn
     set path $argv
   end
 
-  open $path
+  set st ( uname -a | grep -o 'WSL2' )
+
+  if test "$st" = "WSL2"
+    explorer.exe $path
+  else
+    open $path
+  end
 end
 

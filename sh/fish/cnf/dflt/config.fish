@@ -271,7 +271,7 @@ bind \cu cmdline__fzf_git_status
 
 
 # color
-export GREP_COLOR="1;33"
+export GREP_COLOR=" 1;33"
 
 # set fish_color_autosuggestion yellow
 set fish_color_autosuggestion brmagenta

@@ -282,8 +282,8 @@ function v.Cursor__mv_mlt_u() -- alias
 
   g.cursor_mv_line_step = g.cursor_mv_line_step_dflt
 
-  -- local n_cmd = g.cursor_mv_line_step .. '\\<c-y>'
-  -- v.Cmd.nml(n_cmd)
+  -- local cmd_nml = g.cursor_mv_line_step .. '\\<c-y>'
+  -- v.Cmd.nml(cmd_nml)
   vim.cmd('exe "normal! ' .. g.cursor_mv_line_step .. '\\<c-y>"')
 end
 
@@ -291,8 +291,8 @@ function v.Cursor__mv_mlt_d() -- alias
 
   g.cursor_mv_line_step = g.cursor_mv_line_step_dflt
 
-  -- local n_cmd = g.cursor_mv_line_step .. '\\<c-e>'
-  -- v.Cmd.nml(n_cmd)
+  -- local cmd_nml = g.cursor_mv_line_step .. '\\<c-e>'
+  -- v.Cmd.nml(cmd_nml)
   vim.cmd('exe "normal! ' .. g.cursor_mv_line_step .. '\\<c-e>"')
 end
 
@@ -332,14 +332,14 @@ function v.Cursor__mv_slctd_edge_l() -- range
 
   v.Cursor__mv_slctd_edge_tgl()
 
-  -- local n_cmd = '`<'
-  -- v.Cmd.nml(n_cmd)
+  -- local cmd_nml = '`<'
+  -- v.Cmd.nml(cmd_nml)
 end
 
-function v.Cursor__mv_file_edge(n_cmd)
+function v.Cursor__mv_file_edge(cmd_nml)
 
   if v.Is_cursor_line_num__file_edge() then
-    v.Cmd.nml(n_cmd)
+    v.Cmd.nml(cmd_nml)
   end
 
   local cnt = 1
@@ -347,7 +347,7 @@ function v.Cursor__mv_file_edge(n_cmd)
 
   while ( not v.Is_cursor_line_num__file_edge() and cnt < cnt_max ) do
 
-    v.Cmd.nml(n_cmd)
+    v.Cmd.nml(cmd_nml)
     cnt = cnt + 1
   end
 end
@@ -366,16 +366,16 @@ function v.Cursor__mv_v_jmp_char(drct, is_space_through)
 
   local is_space_through = is_space_through
 
-  local n_cmd = drct
+  local cmd_nml = drct
 
   if drct == 'k' or drct == 'j' then
 
-    n_cmd = drct
+    cmd_nml = drct
   else
     return
   end
 
-  v.Cmd.nml(n_cmd)
+  v.Cmd.nml(cmd_nml)
   local cnt = 1
   local cnt_max = 10000
 
@@ -389,17 +389,17 @@ function v.Cursor__mv_v_jmp_char(drct, is_space_through)
       break
     end
 
-    v.Cmd.nml(n_cmd)
+    v.Cmd.nml(cmd_nml)
     cnt = cnt + 1
   end
 end
 
 function v.Cursor__mv_v_jmp_md_h(drct) -- todo dev
 
-  local n_cmd
+  local cmd_nml
 
   if drct == 'k' or drct == 'j' then
-    n_cmd = drct
+    cmd_nml = drct
   else
     return
   end
@@ -410,15 +410,15 @@ end
 
 function v.Cursor__mv_v_jmp_space(drct)
 
-  local n_cmd
+  local cmd_nml
 
   if drct == 'k' or drct == 'j' then
-     n_cmd = drct
+     cmd_nml = drct
   else
     return
   end
 
-  v.Cmd.nml(n_cmd)
+  v.Cmd.nml(cmd_nml)
 
   local cnt = 1
   local cnt_max = 10000
@@ -429,28 +429,28 @@ function v.Cursor__mv_v_jmp_space(drct)
       break
     end
 
-    v.Cmd.nml(n_cmd)
+    v.Cmd.nml(cmd_nml)
     cnt = cnt + 1
   end
 end
 
 function v.Cursor__mv_v_jmp(drct)
 
-  local n_cmd
+  local cmd_nml
 
   if drct == 'k' or drct == 'j' then
-    n_cmd = drct
+    cmd_nml = drct
   else
     return
   end
 
-  v.Cmd.nml(n_cmd)
+  v.Cmd.nml(cmd_nml)
 
   if v.Is_cursor_c_char__space() or v.Is_cursor_col__line_end() then
 
-    v.Cursor__mv_v_jmp_char(n_cmd, 't')
+    v.Cursor__mv_v_jmp_char(cmd_nml, 't')
   else
-    v.Cursor__mv_v_jmp_space(n_cmd)
+    v.Cursor__mv_v_jmp_space(cmd_nml)
   end
 end
 
@@ -936,15 +936,15 @@ end
 
 function v.Cursor_str__icl()
 
-  -- local n_cmd = "\\<c-a>"
-  -- v.Cmd.nml(n_cmd)
+  -- local cmd_nml = "\\<c-a>"
+  -- v.Cmd.nml(cmd_nml)
   vim.cmd('exe "normal! \\<c-a>"')
 end
 
 function v.Cursor_str__dcl()
 
-  -- local n_cmd = "\\<c-x>"
-  -- v.Cmd.nml(n_cmd)
+  -- local cmd_nml = "\\<c-x>"
+  -- v.Cmd.nml(cmd_nml)
   vim.cmd('exe "normal! \\<c-x>"')
 end
 
@@ -1177,8 +1177,8 @@ end
 
 function v.Curosr_line_end__ins(str)
 
-  local n_cmd = 'A' .. str
-  v.Cmd.nml(n_cmd)
+  local cmd_nml = 'A' .. str
+  v.Cmd.nml(cmd_nml)
 end
 
 -- cursor f

@@ -166,11 +166,11 @@ function v.Slctd_cursor__mv_slctd_edge_r() -- range
   v.Cursor__mv_slctd_edge_tgl()
 end
 
-function v.Slctd_cursor__mv_file_edge(n_cmd)
+function v.Slctd_cursor__mv_file_edge(cmd_nml)
 
   v.Slctd.__ltst()
 
-  v.Cursor__mv_file_edge(n_cmd)
+  v.Cursor__mv_file_edge(cmd_nml)
 end
 
 function v.Slctd_cursor__mv_v_jmp(drct) -- range
@@ -418,8 +418,8 @@ function v.Slctd_str_l__reduce_dlm(char) -- range
     return
   end
 
-  local n_cmd = 'F' .. char .. 'h'
-  v.Cmd.nml(n_cmd)
+  local cmd_nml = 'F' .. char .. 'h'
+  v.Cmd.nml(cmd_nml)
 end
 
 -- slctd str __ ( edit )
@@ -492,8 +492,8 @@ function v.Slctd__pad(char) -- range
 
   v.Slctd.__ltst()
 
-  local n_cmd = 'r' .. char
-  vim.cmd('exe "normal! ' .. n_cmd .. '"')
+  local cmd_nml = 'r' .. char
+  vim.cmd('exe "normal! ' .. cmd_nml .. '"')
 
   v.Slctd.__ltst()
 end
@@ -1021,7 +1021,7 @@ end
 
 function v.Slctd_line__join_per_line(per_line_num) -- range
 
-  local n_cmd = per_line_num .. 'Jj'
+  local cmd_nml = per_line_num .. 'Jj'
 
   local slctd_line_s_num = v.Slctd_line_s_num()
   local slctd_line_e_num  = v.Slctd_line_e_num()
@@ -1034,7 +1034,7 @@ function v.Slctd_line__join_per_line(per_line_num) -- range
 
   for _idx, idx in pairs(f.range(1, exe_num)) do
 
-    v.Cmd.nml(n_cmd)
+    v.Cmd.nml(cmd_nml)
   end
 end
 
@@ -1066,16 +1066,16 @@ function v.Slctd_line_indnt__shft_l()
 
   v.Slctd.__ltst()
 
-  local n_cmd = '<gv'
-  v.Cmd.nml(n_cmd)
+  local cmd_nml = '<gv'
+  v.Cmd.nml(cmd_nml)
 end
 
 function v.Slctd_line_indnt__shft_r()
 
   v.Slctd.__ltst()
 
-  local n_cmd = '>gv'
-  v.Cmd.nml(n_cmd)
+  local cmd_nml = '>gv'
+  v.Cmd.nml(cmd_nml)
 end
 
 -- slctd line tab
@@ -1165,9 +1165,9 @@ function v.Slctd_box__mv(lr) -- range
 
   v.Slctd.__ltst()
 
-  local n_cmd = v.Char_lr_2_normal_cmd(lr)
-  v.Cmd.nml('o' .. n_cmd)
-  v.Cmd.nml('o' .. n_cmd)
+  local cmd_nml = v.Char_lr_2_normal_cmd(lr)
+  v.Cmd.nml('o' .. cmd_nml)
+  v.Cmd.nml('o' .. cmd_nml)
 end
 
 function v.Slctd_box_width__1() -- range
@@ -1187,12 +1187,12 @@ end
 
 function v.Slctd_box_str__mv(lr) -- range
 
-  local n_cmd = v.Char_lr_2_normal_cmd(lr)
+  local cmd_nml = v.Char_lr_2_normal_cmd(lr)
 
   v.Slctd.__ltst()
 
   v.Cmd.nml('"zx')
-  v.Cmd.nml(n_cmd)
+  v.Cmd.nml(cmd_nml)
   v.Cmd.nml('"zP')
 
   v.Slctd.__ltst()

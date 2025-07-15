@@ -38,16 +38,16 @@ require('fnc/fnc-tst'    )
 
 function v.Char_lr_2_normal_cmd(lr)
 
-  local n_cmd
+  local cmd_nml
 
   if     lr == 'l' then
-    n_cmd = 'h'
+    cmd_nml = 'h'
 
   elseif lr == 'r' then
-    n_cmd = 'l'
+    cmd_nml = 'l'
   end
 
-  return n_cmd
+  return cmd_nml
 end
 
 -- char cnd

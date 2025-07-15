@@ -2,6 +2,12 @@
 # dotfiles
 
 
+## wsl
+
+opn
+- explorer.exe
+
+
 ## keyboad sticker
 
 logi
@@ -14,8 +20,6 @@ step by step
 
 
 ## nvim
-
-n_cmd > cmd_nml
 
 cls slctd
 
