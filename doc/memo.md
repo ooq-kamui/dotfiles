@@ -2,16 +2,10 @@
 # dotfiles
 
 
-## wsl
-
-opn
-- explorer.exe
-
-
 ## keyboad sticker
 
 logi
-- u
+- u p
 
 
 ## godot
