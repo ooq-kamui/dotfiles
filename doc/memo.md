@@ -2,16 +2,6 @@
 # dotfiles
 
 
-## bash
-
-d ( zoxide )
-
-
-## nvim
-
-cls slctd
-
-
 ## keyboad sticker
 
 logi
@@ -24,6 +14,8 @@ step by step
 
 
 ## nvim
+
+cls slctd
 
 plg
 - nvim-treesitter
