@@ -8,14 +8,17 @@ logi
 - u p
 
 
+## nvim
+
+cls slctd
+
+
 ## godot
 
 step by step
 
 
 ## nvim
-
-cls slctd
 
 plg
 - nvim-treesitter
