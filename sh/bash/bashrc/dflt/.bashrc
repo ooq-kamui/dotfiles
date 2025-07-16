@@ -148,11 +148,12 @@ function dir_jmp(){
     then
       return
     fi
-  
+
     cd $dir
-  
+
   else
     z "$@"
+    # zoxide "$@"
   fi
 
   pth
@@ -197,6 +198,6 @@ then
 fi
 
 
-# eval "$(zoxide init bash)"
+# eval "$( zoxide init bash )"
 
 
