@@ -2,12 +2,6 @@
 # dotfiles
 
 
-## keyboad sticker
-
-logi
-- u p
-
-
 ## nvim
 
 cls slctd
