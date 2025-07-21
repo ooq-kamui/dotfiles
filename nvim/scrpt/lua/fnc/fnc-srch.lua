@@ -136,7 +136,7 @@ function v.Srch_str__slctd_str() -- range
 
   v.Slctd.__ltst()
 
-  local str = v.Slctd_str()
+  local str = v.Slctd.str()
   v.Srch_str__(str, false)
   v.Slctd.__cancel()
 end

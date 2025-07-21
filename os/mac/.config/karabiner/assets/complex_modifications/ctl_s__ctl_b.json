@@ -29,7 +29,8 @@
                 "^com\\.apple\\.iCal$",
                 "^com\\.google\\.Chrome$",
                 "^jp\\.naver\\.line\\.mac$",
-                "^com\\.pixelmatorteam\\.pixelmator\\.x$"
+                "^com\\.pixelmatorteam\\.pixelmator\\.x$",
+                "^org\\.godotengine\\.godot$"
               ]
             }
           ]
@@ -59,7 +60,8 @@
                 "^com\\.apple\\.iCal$",
                 "^com\\.google\\.Chrome$",
                 "^jp\\.naver\\.line\\.mac$",
-                "^com\\.pixelmatorteam\\.pixelmator\\.x$"
+                "^com\\.pixelmatorteam\\.pixelmator\\.x$",
+                "^org\\.godotengine\\.godot$"
               ]
             }
           ]

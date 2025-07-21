@@ -41,14 +41,14 @@ function v.Line_end__pad_space(line_num, fil_end_col)
   -- local line_str     = f.getline(line_num)
   local line_str     = v.Line_str_by_line_num(line_num)
 
-  local line_str_len = v.Str_len(line_str)
+  local line_str_len = v.Str.len(line_str)
   local space_len    = fil_end_col - line_str_len
 
   if space_len <= 0 then
     return
   end
 
-  local space_str = v.Str_space(space_len)
+  local space_str = v.Str.space(space_len)
   line_str = line_str .. space_str
   f.setline(line_num, line_str)
 end

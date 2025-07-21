@@ -960,7 +960,7 @@ function v.Cursor_str_week__icl()
   local week_nxt_idx = v.Idx__icl(week_idx, f.len(g.week_def))
   local week_nxt_str = g.week_def[week_nxt_idx]
 
-  v.Slctd_str__word()
+  v.Slctd.str__word()
   v.Cmd.nml('"zd')
   v.Cmd.nml('i' .. week_nxt_str)
 end
@@ -977,7 +977,7 @@ function v.Cursor_str_week__dcl()
   local week_nxt_idx = v.Idx__dcl(week_idx, f.len(g.week_def))
   local week_nxt_str = g.week_def[week_nxt_idx]
 
-  v.Slctd_str__word()
+  v.Slctd.str__word()
   v.Cmd.nml('"zd')
   v.Cmd.nml('i' .. week_nxt_str)
 end
@@ -1053,7 +1053,7 @@ end
 function v.Cursor_d__ins_line_space() -- range
 
   local space_len = v.Cursor_col_num() - 1
-  local space_str = v.Str_space(space_len)
+  local space_str = v.Str.space(space_len)
   v.Cursor_d__ins_line(space_str)
 end
 
@@ -1119,7 +1119,7 @@ end
 function v.Cursor_line_end__dots_adjst() -- todo dev, mb_str
 
   local line_str = v.Cursor_line_str()
-  local idx = v.Str_srch_idx(line_str, f.escape(g.dots_str, '.'))
+  local idx = v.Str.srch_idx(line_str, f.escape(g.dots_str, '.'))
 
   if idx >= 0 then
     v.Cursor_line_end_dots__crct()
@@ -1131,7 +1131,7 @@ end
 function v.Cursor_line_end_dots__crct()
 
   local line_str = v.Cursor_line_str()
-  local idx = v.Str_srch_idx(line_str, f.escape(g.dots_str, '.'))
+  local idx = v.Str.srch_idx(line_str, f.escape(g.dots_str, '.'))
 
   if     idx < 0 then
     return
@@ -1144,7 +1144,7 @@ function v.Cursor_line_end_dots__crct()
 
   if     idx < g.dots_put_col then
 
-    local space_str = v.Str_space(g.dots_put_col - idx)
+    local space_str = v.Str.space(g.dots_put_col - idx)
     line_str = line_str_0 .. space_str .. line_str_1
   else
     line_str_0 = f.strcharpart(line_str_0, 0, g.dots_put_col)
@@ -1168,7 +1168,7 @@ function v.Cursor_line_end__ins_dots()
     space_len = 0
   end
 
-  local space_str = v.Str_space(space_len)
+  local space_str = v.Str.space(space_len)
 
   line_str = line_str .. space_str .. g.dots_str
 
@@ -1190,7 +1190,7 @@ function v.Cursor_f_space__del()
   -- if c =~ '\\s' then
   if v.Is_str__ptn(c, '\\s') then
     -- print( "del" )
-    v.Slctd_str__cursor_f_space()
+    v.Slctd.str__cursor_f_space()
     v.Cmd.nml('"zd')
   else
     v.Nothing()
@@ -1224,11 +1224,11 @@ function v.Cursor_f_str__crct_by_line(target_line_drct)
   local cursor_pos = v.Cursor_pos()
 
   local str = v.Cursor_line_str_side_r_with_c()
-  local trim_len = v.Str_srch_idx(str, '[^ ]')
+  local trim_len = v.Str.srch_idx(str, '[^ ]')
   -- print( trim_len )
   local str = f.trim(str)
 
-  local cursor_r_char =  v.Str_l_char(str)
+  local cursor_r_char =  v.Str.l_char(str)
   -- print( cursor_r_char )
 
   -- todo refactoring, cursor u/d line str
@@ -1244,7 +1244,7 @@ function v.Cursor_f_str__crct_by_line(target_line_drct)
   end
   v.Cursor__mv_v(turn_drct)
 
-  local char_idx = v.Str_srch_idx(target_line_str, cursor_r_char)
+  local char_idx = v.Str.srch_idx(target_line_str, cursor_r_char)
   if char_idx == -1 then
     return
   end
@@ -1253,7 +1253,7 @@ function v.Cursor_f_str__crct_by_line(target_line_drct)
   -- print( space_len )
 
   space_len = space_len - trim_len
-  local space_str = v.Str_space(space_len)
+  local space_str = v.Str.space(space_len)
   v.Cursor__ins(space_str)
 
   v.Cursor__mv_by_pos(cursor_pos)

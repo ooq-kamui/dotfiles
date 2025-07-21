@@ -27,7 +27,7 @@ function v.Slctd.__ltst() -- range
   v.Cmd.nml('gv')
 end
 
-function v.Slctd_mode__tgl()
+function v.Slctd.mode__tgl()
 
   v.Slctd.__ltst()
 
@@ -43,7 +43,7 @@ function v.Slctd_mode__tgl()
   end
 end
 
-function v.Slctd__swtch()
+function v.Slctd.state__swtch()
 
   v.Slctd.__ltst()
 
@@ -56,7 +56,7 @@ end
 
 -- slctd str
 
-function v.Slctd_str() -- range
+function v.Slctd.str() -- range
 
   v.Slctd.__ltst()
 
@@ -67,29 +67,29 @@ function v.Slctd_str() -- range
   return v.Rgstr_get('z')
 end
 
-function v.Slctd_str_len() -- range
+function v.Slctd.str_len() -- range
 
   v.Slctd.__ltst()
 
-  local slctd_str = v.Slctd_str()
+  local slctd_str = v.Slctd.str()
 
-  local len = v.Str_len(slctd_str)
+  local len = v.Str.len(slctd_str)
   return len
 end
 
 -- slctd str __
 
-function v.Slctd_str__all()
+function v.Slctd.str__all()
 
   v.Cmd.nml('ggVG')
 end
 
-function v.Slctd_str__cursor_c_char()
+function v.Slctd.str__cursor_c_char()
 
   v.Cmd.nml('v')
 end
 
-function v.Slctd_str__word()
+function v.Slctd.str__word()
 
   local c = v.Cursor_c_char()
 
@@ -97,15 +97,15 @@ function v.Slctd_str__word()
     v.Cmd.nml('viw')
 
   elseif v.Is_str__ptn(c, '\\s') then
-    v.Slctd_str__cursor_f_space()
+    v.Slctd.str__cursor_f_space()
 
   else
     -- v.Cmd.nml('v')
-    v.Slctd_str__cursor_c_char()
+    v.Slctd.str__cursor_c_char()
   end
 end
 
-function v.Slctd_str__cursor_f_space()
+function v.Slctd.str__cursor_f_space()
 
   local c = v.Cursor_c_char()
 
@@ -116,17 +116,17 @@ function v.Slctd_str__cursor_f_space()
   if v.Is_cursor_line_str_side_r__space() then
 
     -- v.Cmd.nml('v')
-    v.Slctd_str__cursor_c_char()
+    v.Slctd.str__cursor_c_char()
     v.Cursor__mv_line_end_in()
 
   else
     -- v.Cmd.nml('v')
-    v.Slctd_str__cursor_c_char()
+    v.Slctd.str__cursor_c_char()
     v.Cmd.nml('wh')
   end
 end
 
-function v.Slctd_str__by_col_len(s_col, len)
+function v.Slctd.str__by_col_len(s_col, len)
 
   local e_col = len - 1
 
@@ -139,7 +139,7 @@ function v.Slctd__by_pos(s_pos, e_pos) -- use not
 
   v.Cursor__mv_by_pos(s_pos)
   -- v.Cmd.nml('v')
-  v.Slctd_str__cursor_c_char()
+  v.Slctd.str__cursor_c_char()
   v.Cursor__mv_by_pos(e_pos)
 end
 
@@ -149,7 +149,7 @@ function v.Slctd__by_line_col(s_line, s_col, e_line, e_col)
   e_line = (e_line == nil) and v.Cursor_line_num() or e_line
 
   v.Cursor__mv_by_line_col(s_line, s_col)
-  v.Slctd_str__cursor_c_char()
+  v.Slctd.str__cursor_c_char()
   v.Cursor__mv_by_line_col(e_line, e_col)
 end
 
@@ -388,15 +388,15 @@ function v.Slctd_str__expnd_bracket_f() -- range -- todo dev
   local s_col = v.Slctd_str_edge_l_col()
   
   local line_str_r = v.Slctd_str_edge_r_out_str()
-  local srch_idx = v.Str_srch_idx(line_str_r, bracket_ptn, 1)
+  local srch_idx = v.Str.srch_idx(line_str_r, bracket_ptn, 1)
 
   if srch_idx == -1 then
     v.Cmd.nml('gv')
     return
   end
 
-  local len = s_col + v.Slctd_str_len() + srch_idx
-  v.Slctd_str__by_col_len(s_col, len)
+  local len = s_col + v.Slctd.str_len() + srch_idx
+  v.Slctd.str__by_col_len(s_col, len)
 end
 
 function v.Slctd_str_r__reduce_dlm(char) -- range
@@ -411,8 +411,8 @@ function v.Slctd_str_l__reduce_dlm(char) -- range
 
   v.Slctd.__ltst()
 
-  local slctd_str = v.Slctd_str()
-  local srch_idx = v.Str_srch_idx(slctd_str, char)
+  local slctd_str = v.Slctd.str()
+  local srch_idx = v.Str.srch_idx(slctd_str, char)
   if srch_idx == -1 then
     v.Slctd.__cancel()
     return
@@ -518,7 +518,7 @@ end
 
 function v.Is_slctd_str__srch_str()
 
-  if v.Slctd_str() == v.Rgstr_get('/') then
+  if v.Slctd.str() == v.Rgstr_get('/') then
     return true
   else
     return false
@@ -527,7 +527,7 @@ end
 
 function v.Is_slctd_str__line_mlt()
 
-  if v.Is_str__ptn(v.Slctd_str(), '\\n') then
+  if v.Is_str__ptn(v.Slctd.str(), '\\n') then
     return true
   else
     return false
@@ -641,7 +641,7 @@ function v.Slctd_str_edge_out__ins(c) -- range
   v.Cmd.nml('"zx')
   v.Cursor__ins(c_l .. c_r)
 
-  local str_len = v.Str_len(c_l)
+  local str_len = v.Str.len(c_l)
   v.Cmd.nml(str_len .. 'h')
 
   v.Cmd.nml('"zP')

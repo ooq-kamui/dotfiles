@@ -118,7 +118,7 @@ function v.Ynk__slctd()
     -- v.Ynk__(str)
 
   else
-    str = v.Slctd_str()
+    str = v.Slctd.str()
     v.Ynk__(str)
   end
 

@@ -6,6 +6,7 @@ v = {}
 g = {}
 -- _G.v = v
 
+require('fnc/fnc-prmtv')
 require('fnc/fnc-basic')
 require('fnc/fnc-plg-fzf') -- todo refactoring
 require('plg-mng' )

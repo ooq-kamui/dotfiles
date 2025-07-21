@@ -2,14 +2,32 @@
 # dotfiles
 
 
+## podman
+
+mac
+- launch off
+
+
 ## nvim
 
-cls slctd
+cls
+- str
+- slctd
+
+args (...) > (x, y, z)
+
+lua
+- prm , case nil
+  - tst
 
 
 ## godot
 
-step by step
+manual read
+
+map
+
+save
 
 
 ## nvim

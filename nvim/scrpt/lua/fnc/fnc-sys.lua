@@ -11,7 +11,7 @@ end
 
 function v.Sys.cmd_by_slctd_line()
 
-  local str = v.Slctd_str()
+  local str = v.Slctd.str()
   local sys_cmd = 'echo ' .. "'" .. str .. "'" .. ' | sh'
   local rslt = v.Sys.cmd(sys_cmd)
   print( rslt )
@@ -61,7 +61,7 @@ end
 
 function v.Sys.cmd_opn_app_by_slctd_str()
 
-  local path = v.Slctd_str()
+  local path = v.Slctd.str()
   path = f.trim(path)
   v.Sys.cmd_opn_app(path)
 end
@@ -89,7 +89,7 @@ end
 
 function v.Sys.cmd_opn_yt_by_slctd_str()
 
-  local yt_video_id = v.Slctd_str()
+  local yt_video_id = v.Slctd.str()
   local yt_video_id = f.trim(yt_video_id)
   v.Sys.cmd_opn_yt(yt_video_id)
 end
@@ -108,7 +108,7 @@ end
 
 function v.Sys.cmd_opn_ggl_srch_by_slctd_str()
 
-  local word = v.Slctd_str()
+  local word = v.Slctd.str()
   local word = f.trim(word)
   v.Sys.cmd_opn_ggl_srch(word)
 end
@@ -122,7 +122,7 @@ end
 
 function v.Sys.cmd_trns_by_slctd_str() -- range
 
-  local str = v.Slctd_str()
+  local str = v.Slctd.str()
   str = f.substitute(str, "\\n", ' ', 'g')
 
   local lang
@@ -143,7 +143,7 @@ end
 
 function v.Sys.cmd_math_by_slctd_line() -- range
 
-  local str = v.Slctd_str()
+  local str = v.Slctd.str()
   local sys_cmd = 'echo ' .. "'" .. str .. "'" .. ' | math'
   local rslt = v.Sys.cmd(sys_cmd)
   print( rslt )
@@ -154,7 +154,7 @@ end
 
 function v.Sys.cmd_url_encode_by_slctd_str() -- range
 
-  local str = v.Slctd_str()
+  local str = v.Slctd.str()
   local sys_cmd = 'url_encode "' .. str .. '"'
   local rslt = v.Sys.cmd(sys_cmd)
   --print( rslt )

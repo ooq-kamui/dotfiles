@@ -439,7 +439,7 @@ vim.keymap.set('n', '<down>', '<c-e>')
 -- vim.keymap.set('n', 'I', 'v')
 
 -- slctd __ word
-vim.keymap.set('n', 'i', ':lua v.Slctd_str__word()<cr>')
+vim.keymap.set('n', 'i', ':lua v.Slctd.str__word()<cr>')
 
 -- slctd __ char current - word end
 vim.keymap.set('n', 'I', 've')
@@ -1039,10 +1039,10 @@ vim.keymap.set('v', '<leader>y', '<esc>')
 -- mode visual esc end
 
 -- mode ch line
-vim.keymap.set('v', 'i', ':lua v.Slctd_mode__tgl()<cr>')
+vim.keymap.set('v', 'i', ':lua v.Slctd.mode__tgl()<cr>')
 
 -- mode ch visual box
-vim.keymap.set('v', 'v', ':lua v.Slctd__swtch()<cr>')
+vim.keymap.set('v', 'v', ':lua v.Slctd.state__swtch()<cr>')
 
 -- file srch ( fzf )
 -- vim.keymap.set('v', '<leader>xx', '"zy:FzfFile <c-r>z')
@@ -1131,7 +1131,7 @@ vim.keymap.set('v', '<c-i>', ':lua v.Slctd_str__expnd_quote_swtch()<cr>')
 -- vim.keymap.set('v', 'xx', ':lua v.Slctd_str__expnd_bracket_f()<cr>')
 
 -- slct all
-vim.keymap.set('v', 'a', ':lua v.Slctd_str__all()<cr>')
+vim.keymap.set('v', 'a', ':lua v.Slctd.str__all()<cr>')
 
 -- ynk slctd
 vim.keymap.set('v', 'o', ':lua v.Ynk__slctd()<cr>')
