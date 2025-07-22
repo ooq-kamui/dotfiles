@@ -2,6 +2,15 @@
 # dotfiles
 
 
+## mac
+
+music
+- zelda ply-lst
+
+sound small
+- case: volume mod
+
+
 ## nvim
 
 cls
@@ -11,19 +20,11 @@ cls
 args (...) > (x, y, z)
 
 
-## podman
-
-mac
-- launch off
-
-
 ## godot
 
 manual read
-
-map
-
-save
+- map
+- save
 
 
 ## nvim
