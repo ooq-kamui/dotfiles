@@ -2,12 +2,6 @@
 # dotfiles
 
 
-## podman
-
-mac
-- launch off
-
-
 ## nvim
 
 cls
@@ -16,9 +10,11 @@ cls
 
 args (...) > (x, y, z)
 
-lua
-- prm , case nil
-  - tst
+
+## podman
+
+mac
+- launch off
 
 
 ## godot
