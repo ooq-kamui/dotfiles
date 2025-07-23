@@ -25,6 +25,11 @@ manual read
 - map
 - save
 
+game cre
+- prj cre
+- map cre
+- chara cre
+
 
 ## mac
 
