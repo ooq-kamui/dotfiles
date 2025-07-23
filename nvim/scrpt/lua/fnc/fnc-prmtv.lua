@@ -275,6 +275,7 @@ function v.Str_cmnt_1()
     sh         = '# ' ,
     css        = '/* ',
     javascript = '// ',
+    typescript = '// ',
     java       = '// ',
     sql        = '-- ',
     dflt       = '# ' ,

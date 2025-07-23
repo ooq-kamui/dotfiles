@@ -650,6 +650,7 @@ function v.Cursor__ins_cmnt_mlt_by_pos_key(pos_key)
     html       = {'<!--'   ,  '-->'},
     css        = {'/*'     ,  ' */'},
     javascript = {'/*'     ,  ' */'},
+    typescript = {'/*'     ,  ' */'},
     java       = {'/*'     ,  ' */'},
     dflt       = {'/*'     ,  ' */'},
   }

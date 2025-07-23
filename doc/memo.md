@@ -2,22 +2,21 @@
 # dotfiles
 
 
-## mac
-
-music
-- zelda ply-lst
-
-sound small
-- case: volume mod
-
-
 ## nvim
 
 cls
 - str
+  - is_xxx()
 - slctd
 
 args (...) > (x, y, z)
+
+vbox rpl
+
+
+## pwsh
+
+mkd
 
 
 ## godot
@@ -25,6 +24,15 @@ args (...) > (x, y, z)
 manual read
 - map
 - save
+
+
+## mac
+
+music
+- zelda ply-lst
+
+sound small
+- case: volume mod
 
 
 ## nvim
