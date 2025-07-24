@@ -87,7 +87,7 @@ Set-Alias c   "clr"
 Set-Alias clp "clip"  -force # alias xxx is read-only or
 
 
-function p {
+function pth {
 
   $dir = ( pwd )
   if ( Test-Path $dir ) {
@@ -97,10 +97,10 @@ function p {
     echo "not exist, run k"
   }
 }
-Set-Alias o "p"
+Set-Alias o "pth"
 
 # dev doing
-function pth {
+function pth2 {
   param( $path )
 
   if      ( $path -eq $null ) {
@@ -157,6 +157,13 @@ function lr {
   fd          '' $path
 }
 
+function mkd {
+
+  mkdir $args
+
+  # ll
+}
+
 function dir_jmp {
   # param( $key )
 
@@ -171,13 +178,13 @@ function dir_jmp {
     z $args[0] $args[1] $args[2]
   }
 
-  p
+  pth
 }
 # Set-Alias dir "dir_jmp" -Option AllScope # cannot be removed
 Set-Alias d   "dir_jmp"
 # function do { dir_jmp dotfiles }
 
-function k    { Set-Location -Path .. ; p }
+function k    { Set-Location -Path .. ; pth }
 function kk   { k;k     }
 function kkk  { k;k;k   }
 function kkkk { k;k;k;k }
