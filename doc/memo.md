@@ -5,18 +5,24 @@
 ## nvim
 
 cls
-- str
-  - is_xxx()
 - slctd
 
-args (...) > (x, y, z)
-
 vbox rpl
+
+v `,` ?
+- confirm
+
+v W, bracket lst refactoring
+
+
+## fish
+
+cmd_his__del , err ?
 
 
 ## pwsh
 
-mkd
+pth2 ?
 
 
 ## godot

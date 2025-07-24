@@ -125,7 +125,7 @@ function v.Fzf_by_txt(...)
   local src_txt  = arg[1] or nil
   local fnc_name = arg[2] or nil
 
-  local src_ar = v.Txt_to_ar(src_txt)
+  local src_ar = v.Txt._to_ar(src_txt)
 
   v.Fzf_by_ar(src_ar, fnc_name)
 end

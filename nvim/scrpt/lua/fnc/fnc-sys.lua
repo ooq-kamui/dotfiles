@@ -39,7 +39,7 @@ function v.Sys.cmd_opn_app(path)
   end
 
   if v.Is_env__('win64') then
-    path = v.Str_path_unix__cnv_win(path)
+    path = v.Str.path_unix__cnv_win(path)
   end
 
   local res = f.system(cmd_sys .. " '" .. path .. "'")
@@ -127,7 +127,7 @@ function v.Sys.cmd_trns_by_slctd_str() -- range
 
   local lang
   -- if str =~ '[^\\x01-\\x7E]' then -- mlt byte
-  if v.Is_str__ptn(str, '[^\\x01-\\x7E]') then -- mlt byte
+  if v.Str.is__ptn(str, '[^\\x01-\\x7E]') then -- mlt byte
     lang = '{ja=en}'
   else
     lang = '{en=ja}'

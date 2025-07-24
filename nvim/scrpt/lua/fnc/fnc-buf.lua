@@ -233,7 +233,7 @@ end
 function v.File_line_ar(file_path)
 
   local file_txt = v.File_txt(file_path)
-  local file_line_ar = v.Txt_to_ar(file_txt)
+  local file_line_ar = v.Txt._to_ar(file_txt)
   return file_line_ar
 end
 

@@ -86,7 +86,7 @@ end
 
 function v.Cursor__mv_by_col_num(col_num)
 
-  if not v.Is_str__num(col_num) then
+  if not v.Str.is__num(col_num) then
     return
   end
 
@@ -97,7 +97,7 @@ end
 
 function v.Cursor__mv_by_line_num(line_num)
 
-  if not v.Is_str__num(line_num) then
+  if not v.Str.is__num(line_num) then
     return
   end
 
@@ -194,7 +194,7 @@ function v.Cursor__mv_word_f()
   local c_char = v.Cursor_c_char()
   local r_char = v.Cursor_r_char()
 
-  if v.Is_str__ptn(c_char, ' ') and v.Is_str__ptn(r_char, ' ') then
+  if v.Str.is__ptn(c_char, ' ') and v.Str.is__ptn(r_char, ' ') then
     v.Cmd.nml('w')
   else
     v.Cmd.nml('el')
@@ -214,7 +214,7 @@ function v.Cursor__mv_word_b()
   elseif v.Is_cursor_col__line_top1() then
     v.Cursor__mv_line_top0()
 
-  elseif v.Is_char__symbol(l_char) then
+  elseif v.Char.is__symbol(l_char) then
     v.Cursor__mv_char_b()
 
   else
@@ -236,7 +236,7 @@ function v.Cursor__mv_word_b_pre() -- use not
   local c_char = v.Cursor_c_char()
   local l_char = v.Cursor_r_char()
 
-  if v.Is_str__ptn(c_char, ' ') and not v.Is_str__ptn(l_char, ' ') then
+  if v.Str.is__ptn(c_char, ' ') and not v.Str.is__ptn(l_char, ' ') then
     v.Cmd.nml('gegel')
   else
     v.Cmd.nml('gel')
@@ -326,7 +326,7 @@ function v.Cursor__mv_slctd_edge_l() -- range
 
   v.Slctd.__ltst()
 
-  if not v.Is_slctd_cursor_pos__r() then
+  if not v.Slctd.is_cursor_pos__r() then
     return
   end
 
@@ -624,7 +624,7 @@ function v.Cursor__ins_cmnt_1(cmd_cursor__mv_line_top)
     v.Cmd.nml(cmd_cursor__mv_line_top)
   end
 
-  local str = v.Str_cmnt_1()
+  local str = v.Str.cmnt_1()
   v.Cmd.nml('i' .. str)
   
   v.Cmd.nml('^') -- or '0'
@@ -683,7 +683,7 @@ function v.Cursor__ins_markdown_h()
   v.Cursor__ins(str)
 
   local ptn = '^#* '
-  local col = v.Str_srch_end(v.Cursor_line_str(), ptn) + 1
+  local col = v.Str.srch_end(v.Cursor_line_str(), ptn) + 1
   v.Cursor__mv_by_line_col(nil, col)
 end
 
@@ -808,25 +808,25 @@ function v.N_char__tgl_swtch01() -- todo fnc name mod
 
   local c = v.Cursor_c_char()
 
-  if     v.Is_char__num(c) then
+  if     v.Char.is__num(c) then
 
     v.Cursor_str__icl()
     return
 
-  elseif v.Is_char__alpha(c) then
+  elseif v.Char.is__alpha(c) then
 
     v.Cmd.nml('v~') -- upper / lower
     return
   end
 
-  local rpl = v.Is_char__tgl_bracket_trn(c)
-  if not v.Is_str__emp(rpl) then
+  local rpl = v.Char.is__tgl_bracket_trn(c)
+  if not v.Str.is__emp(rpl) then
     v.Cursor_char__rpl(rpl)
     return
   end
 
-  local rpl = v.Is_char__tgl_symbol(c)
-  if not v.Is_str__emp(rpl) then
+  local rpl = v.Char.is__tgl_symbol(c)
+  if not v.Str.is__emp(rpl) then
 
     v.Cursor_char__rpl(rpl)
     return
@@ -837,7 +837,7 @@ function v.N_char__tgl_swtch02()
 
   local c = v.Cursor_c_char()
 
-  if v.Is_char__num(c) then
+  if v.Char.is__num(c) then
 
     v.Cursor_str__dcl()
     return
@@ -876,7 +876,7 @@ function v.Cursor_char__tgl_type_shift(c)
     rpl = ')'
   end
 
-  if not v.Is_str__emp(rpl) then
+  if not v.Str.is__emp(rpl) then
 
     v.Cursor_char__rpl(rpl)
     return
@@ -902,7 +902,7 @@ function v.Is_cursor_c_char__ptn(ptn)
   local c = v.Cursor_c_char()
 
   -- if c =~ ptn then
-  if v.Is_str__ptn(c, ptn) then
+  if v.Str.is__ptn(c, ptn) then
     return true
   else
     return false
@@ -917,7 +917,7 @@ function v.Is_cursor_c_char__space()
 
   -- local c = v.Cursor_c_char()
   -- 
-  -- if v.Is_str__ptn(c, '\\s') then
+  -- if v.Str.is__ptn(c, '\\s') then
   --   return true
   -- else
   --   return false
@@ -958,7 +958,7 @@ function v.Cursor_str_week__icl()
     return
   end
 
-  local week_nxt_idx = v.Idx__icl(week_idx, f.len(g.week_def))
+  local week_nxt_idx = v.Idx.__icl(week_idx, f.len(g.week_def))
   local week_nxt_str = g.week_def[week_nxt_idx]
 
   v.Slctd.str__word()
@@ -975,7 +975,7 @@ function v.Cursor_str_week__dcl()
     return
   end
 
-  local week_nxt_idx = v.Idx__dcl(week_idx, f.len(g.week_def))
+  local week_nxt_idx = v.Idx.__dcl(week_idx, f.len(g.week_def))
   local week_nxt_str = g.week_def[week_nxt_idx]
 
   v.Slctd.str__word()
@@ -1039,7 +1039,7 @@ end
 
 function v.Cursor__ins_line_anchor()
 
-  local str  = v.Str_cmnt_1()
+  local str  = v.Str.cmnt_1()
   str = str .. 'dev anchor' -- del not
   v.Cursor__ins_line(str)
   v.Cursor_line_indnt__crct()
@@ -1189,12 +1189,12 @@ function v.Cursor_f_space__del()
   local c = v.Cursor_c_char()
 
   -- if c =~ '\\s' then
-  if v.Is_str__ptn(c, '\\s') then
+  if v.Str.is__ptn(c, '\\s') then
     -- print( "del" )
     v.Slctd.str__cursor_f_space()
     v.Cmd.nml('"zd')
   else
-    v.Nothing()
+    v.Do.nothing()
   end
 end
 
@@ -1329,21 +1329,21 @@ end
 function v.Is_cursor_line_str__space()
 
   local str = v.Cursor_line_str()
-  local ret = v.Is_str__space(str)
+  local ret = v.Str.is__space(str)
   return ret
 end
 
 function v.Is_cursor_line_str_side_l__space()
 
   local str = v.Cursor_line_str_side_l()
-  local ret = v.Is_str__space(str)
+  local ret = v.Str.is__space(str)
   return ret
 end
 
 function v.Is_cursor_line_str_side_r__space()
 
   local str = v.Cursor_line_str_side_r()
-  local ret = v.Is_str__space(str)
+  local ret = v.Str.is__space(str)
   return ret
 end
 
@@ -1353,7 +1353,7 @@ function v.Is_cursor_line_str__ptn(ptn) -- todo dev
 
   local ret = false
 
-  if v.Is_str__ptn(str, ptn) then
+  if v.Str.is__ptn(str, ptn) then
     ret = true
   end
   return ret

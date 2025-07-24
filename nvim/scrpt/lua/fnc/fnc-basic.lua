@@ -157,7 +157,8 @@ end
 
 function v.I_bracket()
 
-  local lst = { '()', '{}', '[]', '<>', '[]()', '[][]', '(){}' }
+  -- local lst = { '()', '{}', '[]', '<>', '[]()', '[][]', '(){}' }
+  local lst = { '()', '{}', '[]', '<>' }
   f.complete(f.col('.'), lst)
   return ''
 end
@@ -218,7 +219,7 @@ function v.Rg_rslt_line_parse(line)
     idx = idx + 1
   end
 
-  if ( f.len(ret) > 1 ) and ( not v.Is_char__num(ret[2]) ) then
+  if ( f.len(ret) > 1 ) and ( not v.Char.is__num(ret[2]) ) then
     ret[2] = '1'
   end
 

@@ -214,7 +214,15 @@ end
 
 function v.Srch_str__fnc_def()
 
-  v.Srch_str__ptn('^func')
+  if     vim.bo.filetype == 'lua'    then
+    v.Srch_str__ptn('^function')
+
+  elseif vim.bo.filetype == 'python' then
+    v.Srch_str__ptn('^def')
+
+  else
+    v.Srch_str__ptn('^function')
+  end
 end
 
 -- srch cnd

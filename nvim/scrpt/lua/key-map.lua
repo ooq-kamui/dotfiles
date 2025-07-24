@@ -1067,15 +1067,15 @@ vim.keymap.set('v', '<c-o>', 'h')
 -- vim.keymap.set('v', 'xx', 'Bh')
 
 -- cursor mv line end
-vim.keymap.set('v', '<c-y>', ':lua v.Slctd_cursor__mv_line_end()<cr>')
+vim.keymap.set('v', '<c-y>', ':lua v.Slctd.cursor__mv_line_end()<cr>')
 
 -- slctd str r __ reduce dlm
-vim.keymap.set('v', 'h', ':lua v.Slctd_str_r__reduce_dlm("_")<cr>')
+vim.keymap.set('v', 'h', ':lua v.Slctd.str_r__reduce_dlm("_")<cr>')
 -- vim.keymap.set('v', '<c-h>', 'of_lo')
 -- vim.keymap.set('v', '_'    , 'of_lo')
 
 -- slctd str l __ reduce dlm
-vim.keymap.set('v', '<c-h>'    , ':lua v.Slctd_str_l__reduce_dlm("_")<cr>')
+vim.keymap.set('v', '<c-h>'    , ':lua v.Slctd.str_l__reduce_dlm("_")<cr>')
 -- vim.keymap.set('v', '<c-_>', 'F_h')
 -- vim.keymap.set('v', 'h', 'F_h')
 -- vim.keymap.set('v', 'H'    , 'F_h')
@@ -1088,8 +1088,8 @@ vim.keymap.set('v', '<c-j>', '10j')
 vim.keymap.set('v', '<c-k>', '10k')
 
 -- cursor mv jmp
-vim.keymap.set('v', 'rk', ':lua v.Slctd_cursor__mv_v_jmp("k")<cr>')
-vim.keymap.set('v', 'rj', ':lua v.Slctd_cursor__mv_v_jmp("j")<cr>')
+vim.keymap.set('v', 'rk', ':lua v.Slctd.cursor__mv_v_jmp("k")<cr>')
+vim.keymap.set('v', 'rj', ':lua v.Slctd.cursor__mv_v_jmp("j")<cr>')
 
 -- cursor mv bracket pair
 vim.keymap.set('v', '<c-l>', '%')
@@ -1101,34 +1101,34 @@ vim.keymap.set('v', '<c-l>', '%')
 -- vim.keymap.set('v', 'xx', '[m')
 
 -- cursor mv file edge back    ( file bgn )
-vim.keymap.set('v', 'gk', ':lua v.Slctd_cursor__mv_file_edge("k")<cr>')
+vim.keymap.set('v', 'gk', ':lua v.Slctd.cursor__mv_file_edge("k")<cr>')
 
 -- cursor mv file edge forward ( file end )
-vim.keymap.set('v', 'gj', ':lua v.Slctd_cursor__mv_file_edge("j")<cr>')
+vim.keymap.set('v', 'gj', ':lua v.Slctd.cursor__mv_file_edge("j")<cr>')
 
 -- slct / ynk / paste
 
 -- slctd expnd
--- vim.keymap.set('v', 'xx', ':lua v.Slctd_str__expnd()')
+-- vim.keymap.set('v', 'xx', ':lua v.Slctd.str__expnd()')
 
 -- slctd expnd srch
-vim.keymap.set('v', 'N', ':lua v.Slctd_str__expnd_srch()<cr>')
+vim.keymap.set('v', 'N', ':lua v.Slctd.str__expnd_srch()<cr>')
 
 -- slctd expnd word forward
-vim.keymap.set('v', 'f', ':lua v.Slctd_str__expnd_f()<cr>')
+vim.keymap.set('v', 'f', ':lua v.Slctd.str__expnd_f()<cr>')
 
 -- slctd expnd quote
-vim.keymap.set('v', '<tab>', ':lua v.Slctd_str__expnd_quote_swtch()<cr>')
-vim.keymap.set('v', '<c-i>', ':lua v.Slctd_str__expnd_quote_swtch()<cr>')
+vim.keymap.set('v', '<tab>', ':lua v.Slctd.str__expnd_quote_swtch()<cr>')
+vim.keymap.set('v', '<c-i>', ':lua v.Slctd.str__expnd_quote_swtch()<cr>')
 
 -- slctd expnd quote on
--- vim.keymap.set('v', 'xx', ':lua v.Slctd_str__expnd_quote_on_swtch()<cr>')
+-- vim.keymap.set('v', 'xx', ':lua v.Slctd.str__expnd_quote_on_swtch()<cr>')
 
 -- slctd expnd quote in
--- vim.keymap.set('v', 'xx', ':lua v.Slctd_str__expnd_quote_in_swtch()<cr>')
+-- vim.keymap.set('v', 'xx', ':lua v.Slctd.str__expnd_quote_in_swtch()<cr>')
 
 -- slctd expnd bracket forward
--- vim.keymap.set('v', 'xx', ':lua v.Slctd_str__expnd_bracket_f()<cr>')
+-- vim.keymap.set('v', 'xx', ':lua v.Slctd.str__expnd_bracket_f()<cr>')
 
 -- slct all
 vim.keymap.set('v', 'a', ':lua v.Slctd.str__all()<cr>')
@@ -1148,12 +1148,12 @@ vim.keymap.set('v', 'p', function()
   if v.Mode.is__box() then
     return ':lua v.Slctd_box_edge_l__ynk_line_1()<cr>'
   else
-    return ':lua v.Slctd_str__ynk()<cr>'
+    return ':lua v.Slctd.str__ynk()<cr>'
   end
 end, {expr = true})
 
 -- paste clp
--- vim.keymap.set('v', 'xx', ':lua v.Slctd_str__clp()<cr>')
+-- vim.keymap.set('v', 'xx', ':lua v.Slctd.str__clp()<cr>')
 
 -- paste visual box
 -- vim.keymap.set('v', 'xx', 'I<c-r>0<esc>')
@@ -1201,16 +1201,16 @@ vim.keymap.set('v', '"', ':lua v.Slctd_line__ins_cmnt_1()<cr>')
 vim.keymap.set('v', ',', ':lua v.Curosr_line_end__ins(",")<cr>')
 
 -- pad space
-vim.keymap.set('v', 'S', ':lua v.Slctd__pad_space()<cr>')
+vim.keymap.set('v', 'S', ':lua v.Slctd.__pad_space()<cr>')
 
 -- pad -
-vim.keymap.set('v', '-', ':lua v.Slctd__pad("-")<cr>')
+vim.keymap.set('v', '-', ':lua v.Slctd.__pad("-")<cr>')
 
 -- pad |
-vim.keymap.set('v', '<bar>', ':lua v.Slctd__pad_bar()<cr>')
+vim.keymap.set('v', '<bar>', ':lua v.Slctd.__pad_bar()<cr>')
 
 -- slctd str space __ under score
-vim.keymap.set('v', 'q', ':lua v.Slctd_str_space__underscore()<cr>')
+vim.keymap.set('v', 'q', ':lua v.Slctd.str_space__underscore()<cr>')
 
 -- line __ join per line
 vim.keymap.set('v', 'J', ':lua v.Slctd_line__join_per_line(3)')
@@ -1224,12 +1224,12 @@ vim.keymap.set('v', 'd', function()
   end
 end, {expr = true})
 
--- vim.keymap.set('v', 'xx', ':lua v.V_slctd__del()<cr>')
+-- vim.keymap.set('v', 'xx', ':lua v.Slctd.v__del()<cr>')
 
 -- del str > ynk not
 vim.keymap.set('v', 's', function()
   if v.Mode.is__box() then
-    return ':lua v.Slctd__del()<cr>'
+    return ':lua v.Slctd.__del()<cr>'
   else
     return '"zx'
   end
@@ -1354,7 +1354,7 @@ vim.keymap.set('v', 'e', function()
 end, {expr = true})
 
 -- srch rpl one > ynk, nxt
-vim.keymap.set('v', '<c-p>', ':lua v.Slctd__rpl_7_srch_nxt()<cr>')
+vim.keymap.set('v', '<c-p>', ':lua v.Slctd.__rpl_7_srch_nxt()<cr>')
 
 -- srch markdown h
 -- vim.keymap.set('v', 'M', ':lua v.Srch_str__h_swtch()<cr>')
@@ -1378,7 +1378,7 @@ vim.keymap.set('v', '<c-h>', function()
   if v.Mode.is__box() then
     return ':lua v.Slctd_box_edge_r_char__shft_in()<cr>'
   else
-    return ':lua v.Slctd_str_l__reduce_dlm("_")<cr>'
+    return ':lua v.Slctd.str_l__reduce_dlm("_")<cr>'
   end
 end, {expr = true})
 
