@@ -7,17 +7,15 @@
 cls
 - slctd
 
+n, indnt add by line up
+- fnc
+
 vbox rpl
 
 v `,` ?
 - confirm
 
 v W, bracket lst refactoring
-
-
-## fish
-
-cmd_his__del , err ?
 
 
 ## pwsh
