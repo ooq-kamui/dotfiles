@@ -2,9 +2,14 @@
 # dotfiles
 
 
-## nvim
+## linux
 
-vbox rpl
+login sh ch, fish
+- wsl
+- c9
+
+
+## nvim
 
 n, indnt add by line up
 - fnc
@@ -27,11 +32,6 @@ game cre
 - prj cre
 - map cre
 - chara cre
-
-
-## sh ofc linux
-
-login sh ch, fish
 
 
 ## nvim

@@ -4,7 +4,7 @@
 v.Slctd = {}
 
 v.Slctd.rng_dflt = "'<,'>"
-g.v_rng_dflt = v.Slctd.rng_dflt
+-- g.v_rng_dflt = v.Slctd.rng_dflt
 
 -- slctd __ ( slct )
 
@@ -946,7 +946,7 @@ end
 
 function v.Slctd.line__rpl(srch, rpl) -- range
 
-  local rng = g.v.Slctd.rng_dflt
+  local rng = v.Slctd.rng_dflt
   local cmd = rng .. 's/' .. srch .. '/' .. rpl .. '/eg'
   --print( cmd )
   v.Cmd.cmd(cmd)
@@ -957,7 +957,7 @@ function v.Slctd.line__rpl_by_line1_line2() -- range
   local srch = v.Line.str_by_line_num(1)
   local rpl  = v.Line.str_by_line_num(2)
 
-  local rng = g.v.Slctd.rng_dflt
+  local rng = v.Slctd.rng_dflt
   local cmd = rng .. 's/' .. srch .. '/' .. rpl .. '/eg'
   --print( cmd )
   v.Cmd.cmd(cmd)
@@ -965,7 +965,7 @@ end
 
 function v.Slctd.line__rpl_sys_cmd(sys_cmd) -- range -- read
 
-  local rng = g.v.Slctd.rng_dflt
+  local rng = v.Slctd.rng_dflt
   local cmd = rng .. ' ! ' .. sys_cmd
   v.Cmd.cmd(cmd)
 end
@@ -974,7 +974,7 @@ function v.Slctd.line_srch_str__rpl_cr() -- range
 
   local srch = v.Rgstr_get('/')
 
-  local rng = g.v.Slctd.rng_dflt
+  local rng = v.Slctd.rng_dflt
   local cmd = rng .. 's/\\(' .. srch .. '\\)/\\1\\r/eg'
   v.Cmd.cmd(cmd)
 end
@@ -985,7 +985,7 @@ end
 
 function v.Slctd.__sys_cmd(sys_cmd) -- range
 
-  local rng = g.v.Slctd.rng_dflt
+  local rng = v.Slctd.rng_dflt
   local cmd = rng .. '! ' .. sys_cmd
   v.Cmd.cmd(cmd)
 end
@@ -994,7 +994,7 @@ function v.Slctd.line_top_space__del()
 
   -- dev anchor
   -- refactoring, line num seq ?
-  local rng = g.v.Slctd.rng_dflt
+  local rng = v.Slctd.rng_dflt
   local rpl_cmd = rng .. 's/' .. g.line_top_space_ptn .. '//eg'
   v.Cmd.cmd(rpl_cmd)
 end
@@ -1094,7 +1094,7 @@ end
 function v.Slctd.line_tab__rpl_space(space_col) -- range
 
   local space_str = v.Str_space(space_col)
-  local rng = g.v.Slctd.rng_dflt
+  local rng = v.Slctd.rng_dflt
   local cmd = rng .. 's/\\t/' .. space_str .. '/eg'
   v.Cmd.cmd(cmd)
 end
@@ -1251,10 +1251,9 @@ end
 
 function v.Slctd.box__rpl(srch, rpl) -- range
 
-  local srch = srch
-  local rpl  = rpl
+  -- v.Slctd.__ltst()
 
-  local rng = g.v.Slctd.rng_dflt
+  local rng = v.Slctd.rng_dflt
   local cmd = rng .. 's/' .. '\\%V' .. srch .. '/' .. rpl .. '/g'
   v.Cmd.cmd(cmd)
 end
@@ -1273,7 +1272,7 @@ end
 
 function v.Slctd.box_edge_r_char__shft_in() -- range
 
-  local rng = g.v.Slctd.rng_dflt
+  local rng = v.Slctd.rng_dflt
   local cmd = rng .. 's/' .. '\\%V\\([ ]\\+\\)\\([^ ]\\)' .. '/' .. '\\2\\1' .. '/eg'
   v.Cmd.cmd(cmd)
 

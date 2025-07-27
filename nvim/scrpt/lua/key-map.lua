@@ -1365,8 +1365,10 @@ vim.keymap.set('v', ':s', function()
   else
     return ':s///g'
   end
-    -- ':sort'
-    -- ':Rpl '
+
+  -- ':sort'
+  -- ':Rpl '
+
 end, {expr = true})
 
 -- rpl cr ( add cr )
