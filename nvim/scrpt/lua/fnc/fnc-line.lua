@@ -3,17 +3,17 @@
 
 v.Line = {}
 
-function v.Line_num_file_edge_bgn()
+function v.Line.num_file_edge_bgn()
 
   return f.line('^')
 end
 
-function v.Line_num_file_edge_end() -- alias
+function v.Line.num_file_edge_end() -- alias
 
   return f.line('$')
 end
 
-function v.Line_str_by_line_num(line_num) -- alias
+function v.Line.str_by_line_num(line_num) -- alias
 
   return f.getline(line_num)
 end
@@ -24,7 +24,7 @@ g.line_top_space_ptn = '^[ \\t]*'
 -- g.line_end_space_ptn = '[ \\t]\\+$'
 g.line_end_space_ptn = '[ \\t]*$'
 
-function v.Line_end_space__del(line_num)
+function v.Line.end_space__del(line_num)
 
   local ptn_tmp = v.Rgstr_get('/')
 
@@ -33,13 +33,13 @@ function v.Line_end_space__del(line_num)
 
   v.Cmd.cmd(rpl_cmd)
 
-  v.Srch_str__ptn(ptn_tmp)
+  v.Srch.str__ptn(ptn_tmp)
 end
 
-function v.Line_end__pad_space(line_num, fil_end_col)
+function v.Line.end__pad_space(line_num, fil_end_col)
 
   -- local line_str     = f.getline(line_num)
-  local line_str     = v.Line_str_by_line_num(line_num)
+  local line_str     = v.Line.str_by_line_num(line_num)
 
   local line_str_len = v.Str.len(line_str)
   local space_len    = fil_end_col - line_str_len
@@ -56,19 +56,19 @@ end
 g.dots_str     = ' .. '
 g.dots_put_col = 50
 
-function v.Line__del_by_line_num(line_num)
+function v.Line.__del_by_line_num(line_num)
 
   f.deletebufline('%', line_num)
 end
 
-function v.Line__dpl()
+function v.Line.__dpl()
 
   v.Cmd.nml('"zyy"zP')
 end
 
 -- line num
 
-function v.Line_num_by_Line_info(line_info)
+function v.Line.num_by_Line_info(line_info)
 
   local line_info = f.trim(line_info, ' ', 1)
   local line_num  = f.split(line_info, '\\s\\+')[1]
@@ -78,5 +78,4 @@ function v.Line_num_by_Line_info(line_info)
 end
 
 -- line cnd
-
 

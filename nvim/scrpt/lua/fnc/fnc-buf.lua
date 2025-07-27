@@ -129,8 +129,7 @@ function v.Buf.opn_by_path(rg_rslt_line)
   end
 
   v.Cmd.cmd('tab drop ' .. filename)
-  -- v.Cmd.nml(line_num .. 'G')
-  v.Cursor__mv_by_line_num(line_num)
+  v.Cursor.__mv_by_line_num(line_num)
 end
 
 -- function v.Tag_jmp_by_cursor_line()
@@ -138,7 +137,7 @@ function v.Buf.opn_by_cursor_line()
 
   local base_buf_num = v.Buf.num()
 
-  local str = v.Cursor_line_str()
+  local str = v.Cursor.line_str()
   v.Buf.opn_by_path(str)
 
   v.Cmd.cmd('sbuffer ' .. base_buf_num)
@@ -155,7 +154,7 @@ function v.Buf.opn_by_slctd_line() -- range
 
   for idx, line_num in pairs(v.Slctd_line_num_seq()) do
 
-    line_str = v.Line_str_by_line_num(line_num)
+    line_str = v.Line.str_by_line_num(line_num)
 
     v.Buf.opn_by_path(line_str)
     v.Cmd.cmd('sbuffer ' .. base_buf_num)

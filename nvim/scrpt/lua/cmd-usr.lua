@@ -53,28 +53,28 @@ vim.api.nvim_create_user_command('Mv',
 
 vim.api.nvim_create_user_command('SrchOr',
   function(opts)
-    v.Srch_or(table.unpack(opts.fargs))
+    v.Srch._or(table.unpack(opts.fargs))
   end,
   {nargs = '*'}
 )
 
 vim.api.nvim_create_user_command('InsSysCmd',
   function(opts)
-    v.Cursor__ins_sys_cmd(opts.fargs[1])
+    v.Cursor.__ins_sys_cmd(opts.fargs[1])
   end,
   {nargs = '*'}
 )
 
 vim.api.nvim_create_user_command('Rpl',
   function(opts)
-    v.Slctd_line__rpl(opts.fargs[1], opts.fargs[2])
+    v.Slctd.line__rpl(opts.fargs[1], opts.fargs[2])
   end,
   {nargs = '*'}
 )
 
 vim.api.nvim_create_user_command('VBoxRpl',
   function(opts)
-    v.Slctd_box__rpl(opts.fargs[1], opts.fargs[2])
+    v.Slctd.box__rpl(opts.fargs[1], opts.fargs[2])
   end,
   {nargs = '*'}
 )

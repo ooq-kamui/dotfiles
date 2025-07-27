@@ -175,7 +175,7 @@ end
 
 function v.V_fzf_buf()
 
-  v.Srch_str__slctd_str()
+  v.Srch.str__slctd_str()
   vim.cmd('FzfBufCrnt ' .. f.escape(f.getreg('z'), '.*~'))
 end
 
@@ -207,7 +207,7 @@ function v.Fzf_rgstr()
       window = '-tabnew',
     }
   )
-  --      'sink'  : Cursor__ins_rgstr_by_rgstr_info
+  --      'sink'  : Cursor.__ins_rgstr_by_rgstr_info
 end
 
 -- fzf jmplst
@@ -217,7 +217,7 @@ function v.Fzf_jmplst()
   vim.fn['fzf#run'](
     {
       source  = v.Jmplst_line_info(),
-      sink    = v.Cursor__mv_by_line_info,
+      sink    = v.Cursor.__mv_by_line_info,
       window  = '-tabnew',
       options = {'--reverse'},
     }

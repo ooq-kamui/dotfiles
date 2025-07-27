@@ -47,7 +47,7 @@ end
 
 function v.Sys.cmd_opn_app_by_cursor_path()
 
-  local path = v.Cursor_filepath()
+  local path = v.Cursor.filepath()
   v.Sys.cmd_opn_app(path)
 end
 
@@ -158,6 +158,6 @@ function v.Sys.cmd_url_encode_by_slctd_str() -- range
   local sys_cmd = 'url_encode "' .. str .. '"'
   local rslt = v.Sys.cmd(sys_cmd)
   --print( rslt )
-  v.Cursor__ins(rslt)
+  v.Cursor.__ins(rslt)
 end
 

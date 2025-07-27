@@ -4,16 +4,10 @@
 
 ## nvim
 
-cls
-- slctd
+vbox rpl
 
 n, indnt add by line up
 - fnc
-
-vbox rpl
-
-v `,` ?
-- confirm
 
 v W, bracket lst refactoring
 
@@ -35,13 +29,9 @@ game cre
 - chara cre
 
 
-## mac
+## sh ofc linux
 
-music
-- zelda ply-lst
-
-sound small
-- case: volume mod
+login sh ch, fish
 
 
 ## nvim

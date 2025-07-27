@@ -120,7 +120,7 @@ end
 function v.Is_line_markdown_itm()
 
   local ptn = '^\\s*- '
-  local str = v.Cursor_line_str()
+  local str = v.Cursor.line_str()
   local idx = v.Str.srch_idx(str, ptn)
 
   if idx == -1 then
@@ -377,7 +377,7 @@ function v.Jmplst_line_info()
     line_num  = _jmplst['lnum']
 
     -- line_info = line_num .. ' ' .. f.getline(line_num)
-    line_info = line_num .. ' ' .. v.Line_str_by_line_num(line_num)
+    line_info = line_num .. ' ' .. v.Line.str_by_line_num(line_num)
 
     u.Tbl.add(jmplst_line_info, line_info)
   end
@@ -487,9 +487,9 @@ function v.Repeat_fnc()
 
   v.Tst.tst()
 
-  -- v.Cursor__mv_srch('f')
-  -- v.Cursor__mv_d()
-  -- v.Cursor__ins_ynk()
+  -- v.Cursor.__mv_srch('f')
+  -- v.Cursor.__mv_d()
+  -- v.Cursor.__ins_ynk()
 end
 
 -- priority l
@@ -542,7 +542,7 @@ end
 
 function v.Mark_alph_line()
 
-  local line_num = v.Cursor_line_num()
+  local line_num = v.Cursor.line_num()
 
   for idx, _mark in pairs(f.bufname():getmarklist()) do
 

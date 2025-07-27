@@ -75,7 +75,7 @@ end
 function v.Ynk__cursor_line()
 
   v.Cmd.nml('"ayy')
-  -- line_str = Cursor_line_str()
+  -- line_str = Cursor.line_str()
   -- let @a = line_str
 
   v.Clp__ynk()
