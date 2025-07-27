@@ -15,20 +15,20 @@ g.nvim_lua_etc_dir = g.nvim_lua_dir  .. ''
 
 g.nvim_lua_env_dir = g.nvim_lua_dir  .. '/env'
 
-require('fnc/fnc-cmd'    )
-require('fnc/fnc-line'   )
-require('fnc/fnc-mode'   )
-require('fnc/fnc-rgstr'  )
--- require('fnc/fnc-ynk'    )
-require('fnc/fnc-cursor' )
-require('fnc/fnc-slctd'  )
-require('fnc/fnc-srch'   )
-require('fnc/fnc-etc'    )
+require('fnc/fnc-cmd'   )
+require('fnc/fnc-line'  )
+require('fnc/fnc-mode'  )
+require('fnc/fnc-rgstr' )
+require('fnc/fnc-ynk'   )
+require('fnc/fnc-cursor')
+require('fnc/fnc-slctd' )
+require('fnc/fnc-srch'  )
+require('fnc/fnc-etc'   )
 
-require('fnc/fnc-buf'    )
-require('fnc/fnc-sys'    )
+require('fnc/fnc-buf'   )
+require('fnc/fnc-sys'   )
 
-require('fnc/fnc-tst'    )
+require('fnc/fnc-tst'   )
 
 
 -- function v.Echo(str) -- alias -- old -- del

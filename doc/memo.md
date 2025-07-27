@@ -16,6 +16,11 @@ n, indnt add by line up
 
 v W, bracket lst refactoring
 
+cls
+- rgstr
+  - ynk > rgstr.__ynk()
+  - clp > rgstr.clp
+
 
 ## pwsh
 
