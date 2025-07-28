@@ -87,31 +87,29 @@ Set-Alias c   "clr"
 Set-Alias clp "clip"  -force # alias xxx is read-only or
 
 
+# function pth_pwd {
+# 
+#   $dir = ( pwd )
+# 
+#   if ( Test-Path $dir ) {
+#     Convert-Path $dir
+#   }else {
+#     # echo $dir
+#     echo "not exist, run k"
+#   }
+# }
+
 function pth {
-
-  $dir = ( pwd )
-  if ( Test-Path $dir ) {
-    Convert-Path $dir
-  }else {
-    # echo $dir
-    echo "not exist, run k"
-  }
-}
-Set-Alias o "pth"
-
-# dev doing
-function pth2 {
   param( $path )
 
-  if      ( $path -eq $null ) {
-
+  if ( $path -eq $null ) {
     pwd | Convert-Path
 
   }else {
-
-    pwd $path | Convert-Path
+    Convert-Path $path
   }
 }
+Set-Alias o "pth"
 
 #Set-Alias ll "Get-ChildItem"
 function ll     { Get-ChildItem -force $args }
