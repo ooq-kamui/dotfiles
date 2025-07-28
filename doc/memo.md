@@ -2,27 +2,15 @@
 # dotfiles
 
 
-## skr
-
-vps prt 2
-- alm 10
-
-
 ## psql
 
 doc-tech
-- write
-  - sql-basic
-    - ins
-    - upd
-    - del
-- instl
-  - alm
+- sql-basic upd
 
 
 ## nvim
 
-v W, bracket lst refactoring
+v W, bracket lst def refactoring
 
 n, indnt add by line up
 - fnc
