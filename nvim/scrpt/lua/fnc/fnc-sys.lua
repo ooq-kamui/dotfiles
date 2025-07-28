@@ -15,7 +15,7 @@ function v.Sys.cmd_by_slctd_line()
   local sys_cmd = 'echo ' .. "'" .. str .. "'" .. ' | sh'
   local rslt = v.Sys.cmd(sys_cmd)
   print( rslt )
-  v.Rgstr__('a', rslt)
+  v.Rgstr.__('a', rslt)
 end
 
 -- opn app
@@ -147,7 +147,7 @@ function v.Sys.cmd_math_by_slctd_line() -- range
   local sys_cmd = 'echo ' .. "'" .. str .. "'" .. ' | math'
   local rslt = v.Sys.cmd(sys_cmd)
   print( rslt )
-  v.Rgstr__('a', rslt)
+  v.Rgstr.__('a', rslt)
 end
 
 -- url encdoe

@@ -12,7 +12,7 @@ function v.Srch._or(...)
   local str = '\\(' .. f.join(arg, '\\|') .. '\\)'
   --print( str )
 
-  -- v.Rgstr__('/', str)
+  -- v.Rgstr.__('/', str)
   v.Srch.str__ptn(str)
 
   v.Cursor.__mv_srch('f')
@@ -28,7 +28,7 @@ end
 function v.Srch.str_flt()
 
   -- local str = @/
-  local str = v.Rgstr_get('/')
+  local str = v.Rgstr.get('/')
 
   if v.Srch.is__word1() then
     str = f.strcharpart(str, 2, f.strchars(str) - 4)
@@ -63,18 +63,18 @@ function v.Srch.str__(str, op_word1)
     exe_str = v.Srch.str_word1(exe_str)
   end
 
-  if v.Rgstr_get('/') == exe_str then -- same ltst 01
+  if v.Rgstr.get('/') == exe_str then -- same ltst 01
     return
   end
 
-  v.Rgstr__('/', exe_str) -- highlight
+  v.Rgstr.__('/', exe_str) -- highlight
 
   v.Cmd.nml('/' .. exe_str) -- srch hstry add
 end
 
 function v.Srch.str__ptn(ptn)
 
-  v.Rgstr__('/', ptn)
+  v.Rgstr.__('/', ptn)
 end
 
 function v.Srch.str__cursor_word()
@@ -106,7 +106,7 @@ function v.Srch.str__prv_tgl()
   local srch_str
 
   -- if @/ == v.Srch.str_ltst(1) then
-  if v.Rgstr_get('/') == v.Srch.str_ltst(1) then
+  if v.Rgstr.get('/') == v.Srch.str_ltst(1) then
 
     if              v.Srch.str_ltst(1)          == '\\<' .. v.Srch.str_ltst(2) .. '\\>' then
 
@@ -123,7 +123,7 @@ function v.Srch.str__prv_tgl()
     srch_str = v.Srch.str_ltst(1)
   end
 
-  v.Rgstr__('/', srch_str)
+  v.Rgstr.__('/', srch_str)
 end
 
 function v.Srch.str__slctd_str() -- range
@@ -173,7 +173,7 @@ end
 
 function v.Srch.char(drct, char)
 
-  -- v.Rgstr__('/', '[' .. char .. ']')
+  -- v.Rgstr.__('/', '[' .. char .. ']')
   v.Srch.str__ptn('[' .. char .. ']')
 
   v.Cursor.__mv_srch(drct)
@@ -229,7 +229,7 @@ end
 function v.Srch.is__word1()
 
   -- local str = @/
-  local str = v.Rgstr_get('/')
+  local str = v.Rgstr.get('/')
   local ret = false
 
   local str_l = f.strcharpart(str, 0, 2)

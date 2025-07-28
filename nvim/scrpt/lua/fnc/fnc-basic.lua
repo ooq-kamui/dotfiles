@@ -19,7 +19,6 @@ require('fnc/fnc-cmd'   )
 require('fnc/fnc-line'  )
 require('fnc/fnc-mode'  )
 require('fnc/fnc-rgstr' )
-require('fnc/fnc-ynk'   )
 require('fnc/fnc-cursor')
 require('fnc/fnc-slctd' )
 require('fnc/fnc-srch'  )
@@ -193,10 +192,10 @@ end
 function v.I_reg()
 
   local lst = {
-    v.Rgstr_get('0'),
-    v.Rgstr_get('1'),
-    v.Rgstr_get('2'),
-    v.Rgstr_get('3')
+    v.Rgstr.get('0'),
+    v.Rgstr.get('1'),
+    v.Rgstr.get('2'),
+    v.Rgstr.get('3')
   }
   f.complete(f.col('.'), lst )
   return ''

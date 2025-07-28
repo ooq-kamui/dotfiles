@@ -16,7 +16,7 @@ end
 -- function v.Cmdline__(str)
 function v.Cmd.cmdline__(str)
 
-  -- v.Ynk__(str)
+  -- v.Rgstr.ynk__(str)
 
   f.feedkeys(':call ' .. str)
 end

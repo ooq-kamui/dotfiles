@@ -60,7 +60,7 @@ end
 -- ynk init
 
 if vim.g.env_dir ~= 'c9' then -- c9, s9
-  v.Ynk__clp()
+  v.Rgstr.ynk__clp()
 end
 
 -- srch init

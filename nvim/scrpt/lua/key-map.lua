@@ -451,22 +451,22 @@ vim.keymap.set('n', '<c-v>', 'v')
 vim.keymap.set('n', 'v', '<c-v>')
 
 -- slct all
--- vim.keymap.set('n', 'xx', ':lua v.Ynk__line_all()<cr>')
+-- vim.keymap.set('n', 'xx', ':lua v.Rgstr.ynk__line_all()<cr>')
 
 -- slct re
 vim.keymap.set('n', 'rr', ':lua v.Slctd.__ltst()<cr>')
 
 -- ynk clr
-vim.keymap.set('n', '<c-c>', ':lua v.Ynk__clr()<cr>')
+vim.keymap.set('n', '<c-c>', ':lua v.Rgstr.ynk__clr()<cr>')
 
 -- ynk line
-vim.keymap.set('n', 'c', ':lua v.Ynk__cursor_line()<cr>')
+vim.keymap.set('n', 'c', ':lua v.Rgstr.ynk__cursor_line()<cr>')
 
 -- ynk char
 -- vim.keymap.set('n', 'xx', '"ayl')
 
 -- ynk slf path
-vim.keymap.set('n', 'gs', ':lua v.Ynk__buf_file_path()<cr>')
+vim.keymap.set('n', 'gs', ':lua v.Rgstr.ynk__buf_file_path()<cr>')
 
 -- ojroques/nvim-osc52
 vim.keymap.set('n', 'C', ':lua osc52.copy_register("a")<cr>')
@@ -1134,10 +1134,10 @@ vim.keymap.set('v', '<c-i>', ':lua v.Slctd.str__expnd_quote_swtch()<cr>')
 vim.keymap.set('v', 'a', ':lua v.Slctd.str__all()<cr>')
 
 -- ynk slctd
-vim.keymap.set('v', 'o', ':lua v.Ynk__slctd()<cr>')
+vim.keymap.set('v', 'o', ':lua v.Rgstr.ynk__slctd()<cr>')
 
 -- ynk slctd add
--- vim.keymap.set('v', 'xx', ':lua v.Ynk__add_slctd()<cr>')
+-- vim.keymap.set('v', 'xx', ':lua v.Rgstr.ynk__add_slctd()<cr>')
 
 -- clp slctd
 -- vim.keymap.set('v', 'xx', '"+y')

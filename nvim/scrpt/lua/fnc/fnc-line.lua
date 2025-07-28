@@ -26,7 +26,7 @@ g.line_end_space_ptn = '[ \\t]*$'
 
 function v.Line.end_space__del(line_num)
 
-  local ptn_tmp = v.Rgstr_get('/')
+  local ptn_tmp = v.Rgstr.get('/')
 
   local rpl_cmd = line_num .. 's/' .. g.line_end_space_ptn .. '//g'
   -- print(rpl_cmd)

@@ -64,7 +64,7 @@ function v.Slctd.str() -- range
 
   v.Slctd.__ltst()
 
-  return v.Rgstr_get('z')
+  return v.Rgstr.get('z')
 end
 
 function v.Slctd.str_len() -- range
@@ -432,7 +432,7 @@ end
 
 function v.Slctd.str__clp() -- range
 
-  v.Ynk__clp()
+  v.Rgstr.ynk__clp()
   v.Slctd.str__ynk()
 end
 
@@ -466,7 +466,7 @@ function v.Slctd.v__del() -- dev doing, can
 
   v.Cmd.nml('"ad')
 
-  v.Rgstr__('+', v.Rgstr_get('a'))
+  v.Rgstr.__('+', v.Rgstr.get('a'))
 end
 
 function v.Slctd.__del() -- range
@@ -516,7 +516,7 @@ end
 
 function v.Slctd.is_str__srch_str()
 
-  if v.Slctd.str() == v.Rgstr_get('/') then
+  if v.Slctd.str() == v.Rgstr.get('/') then
     return true
   else
     return false
@@ -924,7 +924,7 @@ function v.Slctd.line__del() -- use not, todo dev
   v.Cmd.nml('gvj')
   --v.Cmd.nml('"ad')
 
-  v.Clp__ynk()
+  v.Rgstr.clp__ynk()
 end
 
 function v.Slctd.line__cursor_line()
@@ -972,7 +972,7 @@ end
 
 function v.Slctd.line_srch_str__rpl_cr() -- range
 
-  local srch = v.Rgstr_get('/')
+  local srch = v.Rgstr.get('/')
 
   local rng = v.Slctd.rng_dflt
   local cmd = rng .. 's/\\(' .. srch .. '\\)/\\1\\r/eg'
@@ -1226,7 +1226,7 @@ end
 
 function v.Slctd.box_edge_l__ynk_line_1() -- range
 
-  if v.Str.is__ptn(v.Rgstr_get('a'), '\\n') then
+  if v.Str.is__ptn(v.Rgstr.get('a'), '\\n') then
     print( 'yank is include cr' )
     return
   end

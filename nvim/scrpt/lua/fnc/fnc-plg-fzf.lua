@@ -191,7 +191,7 @@ function v.Fzf_rgstr()
   local rgstr
   for idx, rgstr_info in pairs(rgstr_info_ar) do
 
-    rgstr = v.Rgstr_info_rgstr(rgstr_info)
+    rgstr = v.Rgstr.info_rgstr(rgstr_info)
     if string.find(rgstr, '[0-9]+') then
      --  continue
     else
@@ -203,7 +203,7 @@ function v.Fzf_rgstr()
   vim.fn['fzf#run'](
     {
       source = rgstr_info_ar,
-      sink   = v.Ynk__by_rgstr_info,
+      sink   = v.Rgstr.ynk__by_rgstr_info,
       window = '-tabnew',
     }
   )

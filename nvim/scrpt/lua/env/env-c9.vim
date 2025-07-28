@@ -30,7 +30,7 @@ if ! has('nvim')
     call SendViaOSC52( @a )
   endfunc
 
-  func! Ynk__clp() abort
+  func! v.Rgstr.ynk__clp() abort
 
     if Is_env__('linux')
       let @a = @+

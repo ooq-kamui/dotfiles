@@ -2,13 +2,6 @@
 # dotfiles
 
 
-## linux
-
-login sh ch, fish
-- wsl
-- c9
-
-
 ## nvim
 
 n, indnt add by line up
@@ -16,21 +9,13 @@ n, indnt add by line up
 
 v W, bracket lst refactoring
 
-cls
-- rgstr
-  - ynk > rgstr.__ynk()
-  - clp > rgstr.clp
-
-
-## pwsh
-
-pth2 ?
-
 
 ## godot
 
-manual read
+manual
 - map
+  - read
+  - cre try
 - save
 
 game cre

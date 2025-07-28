@@ -483,7 +483,7 @@ function v.Cursor.__mv_srch(drct)
     opt = 'b'
   end
 
-  local ptn = v.Rgstr_get('/')
+  local ptn = v.Rgstr.get('/')
   f.search(ptn, opt)
 end
 
@@ -514,7 +514,7 @@ end
 
 function v.Cursor.__ins_clp()
 
-  v.Ynk__clp()
+  v.Rgstr.ynk__clp()
   v.Cursor.__ins_ynk()
 end
 
@@ -633,7 +633,7 @@ end
 
 function v.Cursor.__ins_rgstr_by_rgstr_info(rgstr_info)
 
-  local rgstr = v.Rgstr_info_rgstr(rgstr_info)
+  local rgstr = v.Rgstr.info_rgstr(rgstr_info)
   -- v.Cmd.nml('"' .. rgstr .. rgstr .. 'P')
   v.Cmd.nml('"' .. rgstr .. 'P')
 end
@@ -1207,7 +1207,7 @@ function v.Cursor.line__del()
     v.Cmd.nml('"_dd') -- rgstr del
   else
     v.Cmd.nml('"add')
-    v.Clp__ynk()
+    v.Rgstr.clp__ynk()
   end
 end
 
