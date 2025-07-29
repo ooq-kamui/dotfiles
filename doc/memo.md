@@ -2,18 +2,11 @@
 # dotfiles
 
 
-## psql
-
-doc-tech
-- sql-basic upd
-
-
 ## nvim
 
 v W, bracket lst def refactoring
 
-n, indnt add by line up
-- fnc
+cls mode
 
 
 ## godot
@@ -31,6 +24,9 @@ game cre
 
 
 ## nvim
+
+n, indnt add by line up
+- fnc
 
 plg
 - nvim-treesitter

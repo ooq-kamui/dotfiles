@@ -43,6 +43,23 @@ function u.Tbl.idx(tbl, val)
   return nil
 end
 
+function u.Tbl.is_in(tbl, val)
+
+  local idx = u.Tbl.idx(tbl, val)
+
+  if idx then
+    return true
+  else
+    return false
+  end
+end
+
+function u.Tbl.last(tbl)
+
+  local len = u.Tbl.len(tbl)
+  return tbl[len]
+end
+
 function u.Tbl.srt(tbl, cmp_fnc)
 
   return table.sort(tbl, cmp_fnc)
@@ -74,4 +91,26 @@ function u.Num.seq(s_num, e_num)
   return tbl
 end
 
+u.Char = {}
+
+function u.Char.bracket_r(bracket_l)
+
+  local bracket_lst = {
+    {'(', ')'},
+    {'[', ']'},
+    {'{', '}'},
+    {'<', '>'},
+  }
+
+  local bracket_r
+
+  for idx, bracket_pair in pairs(bracket_lst) do
+
+    if bracket_l == bracket_pair[1] then
+      bracket_r = bracket_pair[2]
+    end
+  end
+
+  return bracket_r
+end
 
