@@ -4,9 +4,9 @@
 
 ## nvim
 
-v W, bracket lst def refactoring
-
-cls mode
+n, indnt add by line up
+- map: n q
+- fnc
 
 
 ## godot
@@ -24,9 +24,6 @@ game cre
 
 
 ## nvim
-
-n, indnt add by line up
-- fnc
 
 plg
 - nvim-treesitter

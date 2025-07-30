@@ -60,6 +60,15 @@ function u.Tbl.last(tbl)
   return tbl[len]
 end
 
+function u.Tbl.is_last(tbl, val)
+
+  if val == u.Tbl.last(tbl) then
+    return true
+  else
+    return false
+  end
+end
+
 function u.Tbl.srt(tbl, cmp_fnc)
 
   return table.sort(tbl, cmp_fnc)

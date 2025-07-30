@@ -1473,7 +1473,7 @@ vim.keymap.set('i', '<leader>i', '<nop>')
 
 -- quit, esc
 vim.keymap.set('i', '<esc>', function()
-  if     v.Is_ins_mode__menu() then
+  if     v.Mode.is__ins_menu() then
     return '<c-e>'
   elseif v.Cursor.is_col__line_top0() then
     return '<esc>'
@@ -1483,7 +1483,7 @@ vim.keymap.set('i', '<esc>', function()
 end, {expr = true})
 
 vim.keymap.set('i', '<c-c>', function()
-  if     v.Is_ins_mode__menu() then
+  if     v.Mode.is__ins_menu() then
     return '<c-e>'
   elseif v.Cursor.is_col__line_top0() then
     return '<esc>'
@@ -1507,7 +1507,7 @@ vim.keymap.set('i', '<c-l>', '<c-o>l')
 -- cursor mv char back
 vim.keymap.set('i', '<c-s>', '<c-o>h')
 vim.keymap.set('i', '<c-o>', function()
-  if v.Is_ins_mode__menu() then
+  if v.Mode.is__ins_menu() then
     return '<c-y>'
   else
     return '<c-o>h'
@@ -1519,7 +1519,7 @@ end, {expr = true})
 
 -- cursor mv word back
 -- vim.keymap.set('i', '<c-o>', function()
---   if v.Is_ins_mode__menu() then
+--   if v.Mode.is__ins_menu() then
 --     return '<c-y>'
 --   else
 --     return '<c-o>b'
@@ -1542,7 +1542,7 @@ vim.keymap.set('i', '<tab>', '<c-v><tab>')
 vim.keymap.set('i', '<leader>f', '<c-p>')
 vim.keymap.set('i', '<c-a>'    , '<c-p>')
 -- vim.keymap.set('i', '<c-y>', function()
---   if v.Is_ins_mode__menu() then
+--   if v.Mode.is__ins_menu() then
 --     return '<c-e>'
 --   else
 --     return '<c-n>'
@@ -1551,7 +1551,7 @@ vim.keymap.set('i', '<c-a>'    , '<c-p>')
 
 -- ins bracket
 vim.keymap.set('i', '<c-u>', function()
-  if v.Is_ins_mode__menu() then
+  if v.Mode.is__ins_menu() then
     return '<c-n>'
   else
     return '<c-r>=v:lua.v.I_quote()<cr>'
@@ -1560,7 +1560,7 @@ end, {expr = true})
 
 -- ins quote
 vim.keymap.set('i', '<c-j>', function()
-  if v.Is_ins_mode__menu() then
+  if v.Mode.is__ins_menu() then
     return '<c-n>'
   else
     return '<c-r>=v:lua.v.I_bracket()<cr>'
@@ -1595,7 +1595,7 @@ vim.keymap.set('i', '<c-w>', '<c-w>')
 
 -- del word forword
 vim.keymap.set('i', '<c-k>', function()
-  if v.Is_ins_mode__menu() then
+  if v.Mode.is__ins_menu() then
     return '<c-p>'
   else
     return '<c-o>dw'
@@ -1613,7 +1613,7 @@ vim.keymap.set('i', '<c-v>', '<c-r><c-o>+')
 
 -- clr
 -- vim.keymap.set('i', '<esc>', function()
---   if v.Is_ins_mode__menu() then
+--   if v.Mode.is__ins_menu() then
 --     return '<c-e>'
 --   else
 --     return ''
@@ -1621,7 +1621,7 @@ vim.keymap.set('i', '<c-v>', '<c-r><c-o>+')
 -- end, {expr = true})
 
 -- vim.keymap.set('i', '<c-w>', function()
---   if v.Is_ins_mode__menu() then
+--   if v.Mode.is__ins_menu() then
 --     return '<c-e>'
 --   else
 --     return '<c-w>'

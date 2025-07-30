@@ -767,48 +767,24 @@ function v.Slctd.str_edge_out_bracket__tgl() -- range
   -- char chk
   local c_l = v.Slctd.str_edge_l_out_char()
   local c_r = v.Slctd.str_edge_r_out_char()
-  -- print( c_l c_r )
 
-  -- dev anchor  -  refactoring
   local c
   local bracket_lst = {'(', '[', '{', '<'}
 
   local idx = u.Tbl.idx(bracket_lst, c_l)
-  -- if u.Tbl.is_in(bracket_lst, c_l) then
-  --   
-  --   if c_l == u.Tbl.last(bracket_lst) then
-  --   
-  --   else
-  --   
-  --   end
-  -- 
-  -- else
-  --   
-  -- end
 
-  if     c_l == '(' and c_r == ')' then
+  if idx then
 
     v.Slctd.str_edge_out_char__del()
-    c = '['
-    v.Slctd.str_edge_out__ins(c)
 
-  elseif c_l == '[' and c_r == ']' then
-
-    v.Slctd.str_edge_out_char__del()
-    c = '{'
-    v.Slctd.str_edge_out__ins(c)
-
-  elseif c_l == '{' and c_r == '}' then
-
-    v.Slctd.str_edge_out_char__del()
-    c = '<'
-    v.Slctd.str_edge_out__ins(c)
-
-  elseif c_l == '<' and c_r == '>' then -- last
-
-    v.Slctd.str_edge_out_char__del()
+    if c_l == u.Tbl.last(bracket_lst) then
+      -- nothing
+    else
+      c = bracket_lst[idx + 1]
+      v.Slctd.str_edge_out__ins(c)
+    end
   else
-    c = '('
+    c = bracket_lst[1]
     v.Slctd.str_edge_out__ins(c)
   end
 end

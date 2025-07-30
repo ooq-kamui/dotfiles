@@ -59,7 +59,7 @@ end
 
 -- ins
 
-function v.Is_ins_mode__menu()
+function v.Mode.is__ins_menu()
 
   local ret = false
 
