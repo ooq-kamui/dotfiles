@@ -5,7 +5,6 @@
 ## nvim
 
 n, indnt add by line up
-- map : n q
 - fnc : f_str__crct_by_line()
 
 
