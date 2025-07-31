@@ -8,6 +8,11 @@ n, indnt add by line up
 - fnc : f_str__crct_by_line()
 
 
+## reddit
+
+reg
+
+
 ## godot
 
 manual

@@ -26,7 +26,6 @@ g.plg_mng_cmd = [[
 
 if v.Is_vim_plg__installed() then
 
-  -- print('plug#begin')
   vim.cmd(g.plg_mng_cmd)
 end
 -- do :PlugInstall
