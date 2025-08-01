@@ -277,6 +277,7 @@ function v.Str.cmnt_1()
     css        = '/* ',
     javascript = '// ',
     typescript = '// ',
+    typescriptreact = '// ',
     java       = '// ',
     sql        = '-- ',
     dflt       = '# ' ,

@@ -188,7 +188,10 @@ end
 function v.Srch.str__h_swtch()
 
   -- dev anchor
-  local fnc_def_lang_lst = {'lua', 'vim', 'python'}
+  local fnc_def_lang_lst = {
+    'lua', 'vim', 'python', 'javascript',
+    'typescript', 'typescriptreact',
+  }
 
   if     vim.bo.filetype == 'markdown' then
     v.Srch.str__markdown_h()
