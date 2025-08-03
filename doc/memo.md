@@ -4,6 +4,8 @@
 
 ## ofc
 
+github setting
+
 doc
 - amplify_output.json
 
@@ -20,6 +22,12 @@ branch personal cre
 
 ## nvim
 
+`:d` include `:p`
+
+n, indnt add by line up
+- fnc : f_str__crct_by_line()
+
+
 :d include :p
 - dir_start
 
@@ -35,12 +43,6 @@ fzf file
 alm
 - login
 - setting
-
-
-## nvim
-
-n, indnt add by line up
-- fnc : f_str__crct_by_line()
 
 
 ## godot
@@ -63,6 +65,7 @@ plg
 - nvim-treesitter
 - lualine
 - lazy
+- coc
 
 
 ## skr-vps
