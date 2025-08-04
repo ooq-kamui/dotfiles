@@ -2,10 +2,27 @@
 # dotfiles
 
 
+## nvim
+
+oil
+- :o oil .
+
+bracket list by file tyep
+- ins menu
+
+fzf file
+- err
+  - at node root
+    - at mac
+
+n, indnt add by line up
+- fnc : f_str__crct_by_line()
+
+
 ## skr-vps
 
 alm
-- login, setting
+- setting
 
 
 ## godot
@@ -23,16 +40,6 @@ game cre
 
 
 ## nvim
-
-bracket list by file tyep
-- ins menu
-
-fzf file
-- at amplify root
-  - at mac
-
-n, indnt add by line up
-- fnc : f_str__crct_by_line()
 
 dir ch
 - `:d, :p`
