@@ -195,7 +195,7 @@ vim.opt.showtabline = 2
 vim.opt.wildmenu = true -- ?
 -- vim.opt.showmatch = true
 -- vim.opt.visualbell = true
-vim.opt.autoread = true
+vim.opt.autoread = true -- enable not ? at wsl, c9
 -- vim.opt.clipboard:append {'unnamedplus'}
 
 -- vim.opt.ambiwidth = 'double'
