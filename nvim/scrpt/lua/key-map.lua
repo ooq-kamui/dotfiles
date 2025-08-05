@@ -281,7 +281,7 @@ vim.keymap.set('n', 'a', ':lua v.Buf.save()<cr>')
 
 -- opn file
 -- vim.keymap.set('n', ':o', ':Opn ')
-vim.keymap.set('n', ':o', ':Oil ')
+vim.keymap.set('n', ':o', ':Oil . ')
 
 -- opn view ltst
 vim.keymap.set('n', 'gu', ':lua v.Buf.opn_view_ltst()<cr>')
@@ -785,13 +785,15 @@ vim.keymap.set('n', ':!', ':!')
 vim.keymap.set('n', ':1', ':!')
 
 -- ins sys cmd ( read )
-vim.keymap.set('n', ':r', ':InsSysCmd ')
+-- vim.keymap.set('n', ':r', ':InsSysCmd ')
 
 -- pth
 vim.keymap.set('n', ':p', ':Pth <cr>')
 
 -- cd slf
 vim.keymap.set('n', ':d', ':lua v.Dir__buf_file_dir()')
+-- dev anchor
+-- vim.keymap.set('n', ':d', ':lua v.Dir__nvim_start()')
 
 -- cd parent
 vim.keymap.set('n', ':k', ':K')

@@ -114,6 +114,15 @@ function v.Dir__parent(lvl)
   v.Pth()
 end
 
+-- dev anchor
+g.nvim_start_dir = ''
+
+function v.Dir__nvim_start()
+
+  local dir = g.nvim_start_dir
+  v.Dir__(dir)
+end
+
 -- markdown cnd
 
 function v.Is_line_markdown_itm()

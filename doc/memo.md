@@ -10,13 +10,20 @@ oil
 bracket list by file tyep
 - ins menu
 
+n, indnt add by line up
+- fnc : f_str__crct_by_line()
+
+prmtv, utl
+- tidy
+
+cls
+- dir
+  - crnt dir, cre
+
 fzf file
 - err
   - at node root
     - at mac
-
-n, indnt add by line up
-- fnc : f_str__crct_by_line()
 
 
 ## skr-vps
