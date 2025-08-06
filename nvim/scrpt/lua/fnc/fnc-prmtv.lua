@@ -284,7 +284,8 @@ function v.Str.cmnt_1()
   }
 
   -- dev anchor
-  local str = f.get(cmnt_1_def, vim.bo.filetype, cmnt_1_def['dflt'])
+  -- local str = f.get(cmnt_1_def, vim.bo.filetype, cmnt_1_def['dflt'])
+  local str = cmnt_1_def[vim.bo.filetype] or cmnt_1_def['dflt']
   return str
 end
 

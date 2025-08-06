@@ -244,6 +244,7 @@ vim.keymap.set('n', '<leader>t', '<esc>')
 vim.keymap.set('n', '<leader>u', '<esc>')
 vim.keymap.set('n', '<leader>v', '<esc>')
 vim.keymap.set('n', '<leader>w', '<esc>')
+vim.keymap.set('n', '<leader>x', '<esc>')
 vim.keymap.set('n', '<leader>y', '<esc>')
 
 vim.keymap.set('n', '<leader>L', '<esc>')
@@ -802,7 +803,8 @@ vim.keymap.set('n', ':k', ':K')
 vim.keymap.set('n', '<leader>d', ':lua v.Fzf_dir()<cr>')
 
 -- fzf cd ( dir jmp )
-vim.keymap.set('n', '<leader>y', ':lua v.Fzf_dir_jmp()<cr>')
+vim.keymap.set('n', '<leader>x', ':lua v.Fzf_dir_jmp()<cr>')
+-- vim.keymap.set('n', '<leader>y', ':lua v.Fzf_dir_jmp()<cr>')
 
 -- fzf doc memo
 vim.keymap.set('n', '<leader>m', ':lua v.Fzf_doc_memo_opn()<cr>')

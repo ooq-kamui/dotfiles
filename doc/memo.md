@@ -4,21 +4,15 @@
 
 ## nvim
 
-oil
-- :o oil .
-
-bracket list by file tyep
-- ins menu
-
-n, indnt add by line up
-- fnc : f_str__crct_by_line()
+cls
+- dir
+  - crnt dir, cre
 
 prmtv, utl
 - tidy
 
-cls
-- dir
-  - crnt dir, cre
+n, indnt add by line up
+- fnc : f_str__crct_by_line()
 
 fzf file
 - err

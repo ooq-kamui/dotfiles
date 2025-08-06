@@ -173,7 +173,13 @@ end
 
 function v.I_quote()
 
-  local lst = { "''", '""', '``' }
+  local quote_lst = {
+    markdown = { '``', "''", '""' },
+    dflt     = { "''", '""', '``' },
+  }
+
+  local lst = quote_lst[vim.bo.filetype] or quote_lst['dflt']
+
   f.complete(f.col('.'), lst)
   return ''
 end
