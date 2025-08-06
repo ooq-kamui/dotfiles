@@ -4,6 +4,8 @@
 
 ## nvim
 
+esc t, err
+
 cls
 - dir
   - crnt dir, cre
