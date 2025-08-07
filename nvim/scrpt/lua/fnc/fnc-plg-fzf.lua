@@ -137,10 +137,10 @@ function v.Fzf_by_ar(...)
   local src_ar   = arg[1] or nil
   local fnc_name = arg[2] or nil
 
-  if f.len(src_ar) > g.fzf_line_cnt_max then
-    print("fzf src_ar, end")
-    return
-  end
+  -- if f.len(src_ar) > g.fzf_line_cnt_max then
+  --   print("fzf src_ar, end")
+  --   return
+  -- end
 
   vim.fn['fzf#run'](
     {
@@ -229,11 +229,12 @@ end
 
 function v.Fzf_file()
 
-  local sys_cmd = 'fd --type f'
+  -- local sys_cmd = 'fd --type f'
+  local sys_cmd = 'fd --type f --ignore'
+  -- u.Log.val(sys_cmd)
   local fzf_src_txt  = v.Sys.cmd(sys_cmd)
   -- u.Log.val(fzf_src_txt)
 
-  -- local fnc_name = 'Opn'
   local fnc_name = v.Buf.opn
   v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end

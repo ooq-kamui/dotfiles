@@ -28,11 +28,6 @@ esc t err
 
 Fzf_vim_fnc_call() err
 
-fzf file
-- err
-  - at node root
-    - at mac
-
 file type java
 - cmnt
 - syntax color
