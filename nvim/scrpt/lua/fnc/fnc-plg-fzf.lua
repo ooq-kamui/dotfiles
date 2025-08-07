@@ -183,7 +183,7 @@ function v.Fzf_rgstr()
 
   local rgstr_info_str = f.execute(':reg')
   local rgstr_info_ar = f.split(rgstr_info_str, '\\n')
-  u.Tbl.del(rgstr_info_ar, 1)
+  v.Tbl.del(rgstr_info_ar, 1)
   -- u.Log.tbl(rgstr_info_ar)
 
   -- exclude num
@@ -195,7 +195,7 @@ function v.Fzf_rgstr()
     if string.find(rgstr, '[0-9]+') then
      --  continue
     else
-      u.Tbl.add(tmp_ar, rgstr_info)
+      v.Tbl.add(tmp_ar, rgstr_info)
     end
   end
   rgstr_info_ar = tmp_ar
@@ -266,7 +266,7 @@ function v.Fzf_doc_memo_opn()
 
   local memo_file_list = {
     dir .. '/wrk/prj-pri/dotfiles/doc/memo.md'   ,
-    dir .. '/wrk/prj-pri/doc-tech-ds/doc/memo.md',
+    dir .. '/wrk/prj-pri/doc-tech/doc/memo.md',
     dir .. '/wrk/prj-pri/life/doc/memo.md'       ,
     dir .. '/wrk/prj-pri/wall-paper/doc/memo.md' ,
   }
@@ -293,7 +293,7 @@ function v.Fzf_vim_fnc_call()
   v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
-g.doc_tech_dir_rel = 'wrk/prj-pri/doc-tech-ds/docs/md'
+g.doc_tech_md_dir = 'wrk/prj-pri/doc-tech/docs/md'
 
 function v.Fzf_doc_tech()
 
@@ -301,10 +301,10 @@ function v.Fzf_doc_tech()
   local opt  = ' -v'
   opt = opt .. ' --no-heading'
   -- opt = opt .. ' --line-number'
-  local sys_cmd_rg = "rg" .. opt .. " '" .. ptn .. "' ~/" .. g.doc_tech_dir_rel
+  local sys_cmd_rg = "rg" .. opt .. " '" .. ptn .. "' ~/" .. g.doc_tech_md_dir
   -- print(sys_cmd)
 
-  local sys_cmd_sed = 'sed "s|^.*' .. g.doc_tech_dir_rel .. '/||g"'
+  local sys_cmd_sed = 'sed "s|^.*' .. g.doc_tech_md_dir .. '/||g"'
 
   local sys_cmd = sys_cmd_rg .. ' | ' .. sys_cmd_sed
 
@@ -317,7 +317,7 @@ end
 
 function v.Doc_tech_tag_jmp(str)
 
-  local str = g.home_dir .. '/' .. g.doc_tech_dir_rel .. '/' .. str
+  local str = g.home_dir .. '/' .. g.doc_tech_md_dir .. '/' .. str
   -- print(str)
   v.Buf.opn_by_path(str)
 end

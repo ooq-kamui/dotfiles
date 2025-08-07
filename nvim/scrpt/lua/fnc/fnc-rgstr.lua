@@ -10,7 +10,8 @@ end
 
 function v.Rgstr.info_rgstr(rgstr_info)
 
-  local rgstr = u.Str.sub(rgstr_info, 7, 7)
+  local rgstr = v.Str.sub(rgstr_info, 7, 7)
+  -- print(rgstr)
   return rgstr
 end
 

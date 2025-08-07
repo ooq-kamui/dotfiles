@@ -2,26 +2,6 @@
 # dotfiles
 
 
-## nvim
-
-esc t, err
-
-cls
-- dir
-  - crnt dir, cre
-
-prmtv, utl
-- tidy
-
-n, indnt add by line up
-- fnc : f_str__crct_by_line()
-
-fzf file
-- err
-  - at node root
-    - at mac
-
-
 ## skr-vps
 
 alm
@@ -43,6 +23,22 @@ game cre
 
 
 ## nvim
+
+esc t err
+
+Fzf_vim_fnc_call() err
+
+fzf file
+- err
+  - at node root
+    - at mac
+
+file type java
+- cmnt
+- syntax color
+
+n, indnt add by line up
+- fnc : f_str__crct_by_line()
 
 dir ch
 - `:d, :p`

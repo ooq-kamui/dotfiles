@@ -175,6 +175,27 @@ function v.Char.is__tgl_bracket_trn(c)
   return rpl
 end
 
+function v.Char.bracket_r(bracket_l)
+
+  local bracket_lst = {
+    {'(', ')'},
+    {'[', ']'},
+    {'{', '}'},
+    {'<', '>'},
+  }
+
+  local bracket_r
+
+  for idx, bracket_pair in pairs(bracket_lst) do
+
+    if bracket_l == bracket_pair[1] then
+      bracket_r = bracket_pair[2]
+    end
+  end
+
+  return bracket_r
+end
+
 -- str
 
 v.Str = {}
@@ -204,8 +225,15 @@ function v.Str.r_char(str)
   return c
 end
 
+-- dev anchor ?
+function v.Str.sub(str, idx_s, idx_e)  -- alias
+
+  local r_str = string.sub(str, idx_s, idx_e)
+  return r_str
+end
+
 -- dev anchor
-function v.Str.sub(str, idx, len) -- dev doing
+function v.Str.sub_by_len(str, idx, len) -- todo dev
 
   local str = str
   return str
@@ -223,6 +251,12 @@ function v.Str.space(len)
     idx = idx + 1
   end
   return space_str
+end
+
+function v.Str.srch(str, ptn)
+
+  local ret = string.match(str, ptn)
+  return ret
 end
 
 function v.Str.srch_idx(str, ptn, idx) -- alias
@@ -388,5 +422,77 @@ v.Do = {}
 function v.Do.nothing() -- use by tst
 
   -- print( "do nothing.." )
+end
+
+-- fr utl
+
+v.Tbl = {}
+
+function v.Tbl.add(tbl, val)
+
+  return table.insert(tbl, val)
+end
+
+function v.Tbl.del(tbl, idx)
+
+  return table.remove(tbl, idx)
+end
+
+function v.Tbl.len(tbl)
+
+  return #tbl
+end
+
+function v.Tbl.idx(tbl, val)
+
+  for _idx, _val in pairs(tbl) do
+
+    if _val == val then
+      return _idx
+    end
+  end
+  return nil
+end
+
+function v.Tbl.is_in(tbl, val)
+
+  local idx = v.Tbl.idx(tbl, val)
+
+  if idx then
+    return true
+  else
+    return false
+  end
+end
+
+function v.Tbl.last(tbl)
+
+  local len = v.Tbl.len(tbl)
+  return tbl[len]
+end
+
+function v.Tbl.is_last(tbl, val)
+
+  if val == v.Tbl.last(tbl) then
+    return true
+  else
+    return false
+  end
+end
+
+function v.Tbl.srt(tbl, cmp_fnc)
+
+  return table.sort(tbl, cmp_fnc)
+end
+
+v.Num = {}
+
+function v.Num.seq(s_num, e_num)
+
+  local tbl = {}
+  for num = s_num, e_num do
+    v.Tbl.add(tbl, num)
+  end
+  return tbl
 end
 

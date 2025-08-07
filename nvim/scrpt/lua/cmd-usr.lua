@@ -13,26 +13,26 @@
 
 vim.api.nvim_create_user_command('Pth',
   function(opts)
-    v.Pth()
+    v.Dir.pth()
   end,
   {nargs = 0}
 )
 
 vim.api.nvim_create_user_command('K',
   function(opts)
-    v.Dir__parent(1)
+    v.Dir.__parent(1)
   end,
   {nargs = 0}
 )
 vim.api.nvim_create_user_command('Kk',
   function(opts)
-    v.Dir__parent(2)
+    v.Dir.__parent(2)
   end,
   {nargs = 0}
 )
 vim.api.nvim_create_user_command('Kkk',
   function(opts)
-    v.Dir__parent(3)
+    v.Dir.__parent(3)
   end,
   {nargs = 0}
 )

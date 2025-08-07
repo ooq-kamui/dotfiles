@@ -276,7 +276,7 @@ vim.keymap.set('n', 'a', ':lua v.Buf.save()<cr>')
 -- vim.keymap.set('n', 'xx', ':lua v.Load_re()')
 
 -- load re init vim
--- vim.keymap.set('n', ':v', ':source ~/wrk/prj-pri/dotfiles/nvim/scrpt/init.vim')
+-- vim.keymap.set('n', 'xx', ':source ~/wrk/prj-pri/dotfiles/nvim/scrpt/init.vim')
 
 -- opn
 
@@ -291,7 +291,8 @@ vim.keymap.set('n', 'gu', ':lua v.Buf.opn_view_ltst()<cr>')
 vim.keymap.set('n', '<leader>l', ':lua v.Fzf_file()<cr>')
 
 -- opn file hstry ( fzf )
-vim.keymap.set('n', '<leader>h', ':FzfFileHstry<cr>')
+vim.keymap.set('n', '<leader>y', ':FzfFileHstry<cr>')
+-- vim.keymap.set('n', '<leader>h', ':FzfFileHstry<cr>')
 
 -- opn etc
 
@@ -482,7 +483,8 @@ vim.keymap.set('n', 'rp', ':lua v.Cursor.__ins_ynk_box()<cr>')
 vim.keymap.set('n', 'P', ':lua v.Cursor.__ins_clp()<cr>')
 
 -- paste rgstr history ( fzf )
-vim.keymap.set('n', '<leader>r', ':FzfRgstr<cr>')
+vim.keymap.set('n', '<leader>v', ':FzfRgstr<cr>')
+-- vim.keymap.set('n', '<leader>r', ':FzfRgstr<cr>')
 
 -- undo
 vim.keymap.set('n', 'h'    , 'u'    )
@@ -779,7 +781,8 @@ vim.keymap.set('n', 't', ':lua v.Buf.opn_by_cursor_line()<cr>')
 -- 
 
 -- cmd history ( fzf )
-vim.keymap.set('n', '<leader>j', ':FzfCmdHstry<cr>')
+vim.keymap.set('n', '<leader>r', ':FzfCmdHstry<cr>')
+-- vim.keymap.set('n', '<leader>j', ':FzfCmdHstry<cr>')
 
 -- sys cmd
 vim.keymap.set('n', ':!', ':!')
@@ -792,9 +795,9 @@ vim.keymap.set('n', ':1', ':!')
 vim.keymap.set('n', ':p', ':Pth <cr>')
 
 -- cd slf
-vim.keymap.set('n', ':d', ':lua v.Dir__buf_file_dir()')
+vim.keymap.set('n', ':d', ':lua v.Dir.__buf_file_dir()')
 -- dev anchor
--- vim.keymap.set('n', ':d', ':lua v.Dir__nvim_start()')
+-- vim.keymap.set('n', ':d', ':lua v.Dir.__nvim_start()')
 
 -- cd parent
 vim.keymap.set('n', ':k', ':K')

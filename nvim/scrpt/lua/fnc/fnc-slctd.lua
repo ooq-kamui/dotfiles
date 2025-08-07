@@ -732,7 +732,7 @@ function v.Slctd.str_edge_out_quote__tgl() -- range
   local c, idx
 
   if c_l == c_r then
-    idx = u.Tbl.idx(c_lst, c_l)
+    idx = v.Tbl.idx(c_lst, c_l)
   end
 
   if idx == nil then
@@ -740,7 +740,7 @@ function v.Slctd.str_edge_out_quote__tgl() -- range
     c = c_lst[1]
     v.Slctd.str_edge_out__ins(c)
 
-  elseif idx == u.Tbl.len(c_lst) then
+  elseif idx == v.Tbl.len(c_lst) then
 
     v.Slctd.str_edge_out_char__del()
 
@@ -771,13 +771,13 @@ function v.Slctd.str_edge_out_bracket__tgl() -- range
   local c
   local bracket_lst = {'(', '[', '{', '<'}
 
-  local idx = u.Tbl.idx(bracket_lst, c_l)
+  local idx = v.Tbl.idx(bracket_lst, c_l)
 
   if idx then
 
     v.Slctd.str_edge_out_char__del()
 
-    if c_l == u.Tbl.last(bracket_lst) then
+    if c_l == v.Tbl.last(bracket_lst) then
       -- nothing
     else
       c = bracket_lst[idx + 1]
@@ -903,7 +903,7 @@ function v.Slctd.line_num_seq()
   local line_s_num = v.Slctd.line_s_num()
   local line_e_num = v.Slctd.line_e_num()
 
-  local tbl = u.Num.seq(line_s_num, line_e_num)
+  local tbl = v.Num.seq(line_s_num, line_e_num)
   return tbl
 end
 

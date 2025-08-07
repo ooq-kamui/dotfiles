@@ -196,7 +196,7 @@ function v.Srch.str__h_swtch()
   if     vim.bo.filetype == 'markdown' then
     v.Srch.str__markdown_h()
 
-  elseif u.Tbl.is_in(fnc_def_lang_lst, vim.bo.filetype) then
+  elseif v.Tbl.is_in(fnc_def_lang_lst, vim.bo.filetype) then
     v.Srch.str__fnc_def()
 
   else

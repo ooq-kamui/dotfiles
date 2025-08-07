@@ -16,6 +16,7 @@ g.nvim_lua_etc_dir = g.nvim_lua_dir  .. ''
 g.nvim_lua_env_dir = g.nvim_lua_dir  .. '/env'
 
 require('fnc/fnc-cmd'   )
+require('fnc/fnc-dir'   )
 require('fnc/fnc-line'  )
 require('fnc/fnc-mode'  )
 require('fnc/fnc-rgstr' )
@@ -74,53 +75,6 @@ function v.Color_name_lst()
 
   local cmd = "so $VIMRUNTIME/syntax/colortest.vim"
   v.Cmd.cmd(cmd)
-end
-
--- dir
-
-function v.Pth()
-
-  v.Cmd.cmd('pwd')
-end
-
--- dir __ ch
-
-function v.Dir__(dir)
-
-  v.Cmd.cmd('cd ' .. dir)
-  v.Pth()
-end
-
--- dir __ ch slf
-
-function v.Dir__buf_file_dir()
-
-  local dir = v.Buf.file_dir()
-  v.Dir__(dir)
-end
-
--- dir __ ch parent
-
-function v.Dir__parent(lvl)
-
-  local cnt = 1
-  while cnt <= lvl do
-
-    v.Cmd.cmd('cd ..')
-
-    cnt = cnt + 1
-  end
-
-  v.Pth()
-end
-
--- dev anchor
-g.nvim_start_dir = ''
-
-function v.Dir__nvim_start()
-
-  local dir = g.nvim_start_dir
-  v.Dir__(dir)
 end
 
 -- markdown cnd
@@ -360,13 +314,13 @@ function v.Jmplst()
       jmplst[_buf_num_key] = {}
     end
 
-    u.Tbl.add(jmplst[_buf_num_key], _jmplst_tmp)
+    v.Tbl.add(jmplst[_buf_num_key], _jmplst_tmp)
   end
   -- u.Log.tbl(jmplst)
 
   for idx, _buf_num_key in pairs(f.keys(jmplst)) do
 
-    u.Tbl.srt(jmplst[_buf_num_key], v.Jmplst_cmp)
+    v.Tbl.srt(jmplst[_buf_num_key], v.Jmplst_cmp)
   end
   -- u.Log.tbl(jmplst)
 
@@ -393,7 +347,7 @@ function v.Jmplst_line_info()
     -- line_info = line_num .. ' ' .. f.getline(line_num)
     line_info = line_num .. ' ' .. v.Line.str_by_line_num(line_num)
 
-    u.Tbl.add(jmplst_line_info, line_info)
+    v.Tbl.add(jmplst_line_info, line_info)
   end
   -- u.Log.tbl(jmplst_line_info)
 
@@ -546,7 +500,7 @@ function v.Mark_lst()
     if f.count(g.mark_alph_def, _alph) == 0 then
       -- continue
     else
-      mark = u.Tbl.add(mark, _mark['mark'][2])
+      mark = v.Tbl.add(mark, _mark['mark'][2])
     end
   end
 

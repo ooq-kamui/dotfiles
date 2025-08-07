@@ -3,8 +3,8 @@
 
 f = vim.fn
 v = {}
+u = {}
 g = {}
--- _G.v = v
 
 require('fnc/fnc-prmtv')
 require('fnc/fnc-basic')
