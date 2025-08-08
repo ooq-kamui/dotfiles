@@ -221,7 +221,11 @@ alias nx-start-re 'sudo nginx -s reload'
 
 # alias cmd path
 
-alias uconv '/opt/homebrew/Cellar/icu4c/73.2/bin/uconv'
+# uconv
+# alias uconv '/opt/homebrew/Cellar/icu4c/73.2/bin/uconv'
+alias uconv '/home/linuxbrew/.linuxbrew/Cellar/icu4c@77/77.1/bin/uconv'
+alias ucnv  'uconv'
+
 
 # 
 # bind

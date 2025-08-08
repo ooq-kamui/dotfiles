@@ -37,6 +37,9 @@ require("oil").setup({
   keymaps = {
     ["<c-j>"] = { "actions.select", opts = { tab = true } },
   },
+  -- view_options = {
+  --   new_tab = true,
+  -- },
 })
 
 -- lazy

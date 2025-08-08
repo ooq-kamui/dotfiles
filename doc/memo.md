@@ -2,9 +2,14 @@
 # dotfiles
 
 
-## js
+## nvim
 
-tyu dai try
+esc t err
+
+Fzf_vim_fnc_call() err
+
+plg
+- nvim-treesitter
 
 
 ## skr-vps
@@ -29,10 +34,6 @@ game cre
 
 ## nvim
 
-esc t err
-
-Fzf_vim_fnc_call() err
-
 file type java
 - cmnt
 - syntax color
@@ -46,7 +47,6 @@ dir ch
 - dir_buf
 
 plg
-- nvim-treesitter
 - lualine
 - lazy
 - coc
