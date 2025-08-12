@@ -196,47 +196,52 @@ function v.Char.bracket_r(bracket_l)
   return bracket_r
 end
 
+function v.Char.is_space(char)
+
+  local ret = false
+
+  if char == ' ' or char == '\t' then
+    ret = true
+  end
+
+  return ret
+end
+
 -- str
 
 v.Str = {}
 
 function v.Str.len(str) -- alias
 
-  return f.strchars(str)
+  return vf.strchars(str)
+end
+
+function v.Str.trim(str)
+
+  str = vim.fn.trim(str)
+  return str
 end
 
 function v.Str.l_char(str)
 
-  -- local l_idx = 0
   local l_idx = 1
-  -- local c = str[l_idx]
-  local c = str:sub(l_idx, l_idx)
-  --print(c)
-  return c
+  local char = str:sub(l_idx, l_idx)
+  --print(char)
+  return char
 end
 
 function v.Str.r_char(str)
 
-  -- local r_idx = v.Str.len(str) - 1
   local r_idx = v.Str.len(str)
-  -- local c = str[r_idx]
-  local c = str:sub(r_idx, r_idx)
-  --print( c )
-  return c
+  local char = str:sub(r_idx, r_idx)
+  --print( char )
+  return char
 end
 
--- dev anchor ?
 function v.Str.sub(str, idx_s, idx_e)  -- alias
 
   local r_str = string.sub(str, idx_s, idx_e)
   return r_str
-end
-
--- dev anchor
-function v.Str.sub_by_len(str, idx, len) -- todo dev
-
-  local str = str
-  return str
 end
 
 function v.Str.space(len)
@@ -255,32 +260,66 @@ end
 
 function v.Str.srch(str, ptn)
 
-  local ret = string.match(str, ptn)
-  return ret
+  local match_str = string.match(str, ptn)
+  return match_str
+end
+
+function v.Str.srch_idx_by_lua(str, ptn, srch_s_idx)
+  -- print(str, ptn, srch_s_idx)
+
+  local s_idx, e_idx = string.find(str, ptn, srch_s_idx)
+  -- print(s_idx, e_idx)
+  return s_idx, e_idx
+end
+
+-- dev anchor, rpl
+function v.Str.srch_idx_by_vim(str, ptn, idx) -- alias
+
+  local r_idx = vim.fn.match(str, ptn, idx)
+  return r_idx -- -1 : match not
 end
 
 function v.Str.srch_idx(str, ptn, idx) -- alias
 
-  -- local arg = {...}
-  -- local str = arg[1]
-  -- local ptn = arg[2]
-  -- local idx = ( #arg >= 3 ) and arg[3] or nil
-
-  local r_idx = f.match(str, ptn, idx)
-  return r_idx -- -1 : match not
+  return v.Str.srch_idx_by_vim(str, ptn, idx)
 end
 
 function v.Str.srch_end(str, ptn) -- alias
 
-  local idx = f.matchend(str, ptn)
+  local idx = vf.matchend(str, ptn)
   return idx
+end
+
+function v.Str.col_idx_lst(str)
+
+  local col_idx_lst = {}
+  local char
+
+  local is_space = true
+
+  for idx = 1, #str do
+
+    char = str:sub(idx, idx)
+
+    if v.Char.is_space(char) then
+      is_space = true
+
+    else
+      if is_space then
+        table.insert(col_idx_lst, idx)
+      end
+      is_space = false
+    end
+  end
+
+  return col_idx_lst
 end
 
 -- str __ rpl
 
 function v.Str.__rpl(str, srch, rpl) -- alias
 
-  local r_str = f.substitute(str, srch, rpl, 'g')
+  local r_str = vf.substitute(str, srch, rpl, 'g')
   return r_str
 end
 
@@ -318,7 +357,7 @@ function v.Str.cmnt_1()
   }
 
   -- dev anchor
-  -- local str = f.get(cmnt_1_def, vim.bo.filetype, cmnt_1_def['dflt'])
+  -- local str = vf.get(cmnt_1_def, vim.bo.filetype, cmnt_1_def['dflt'])
   local str = cmnt_1_def[vim.bo.filetype] or cmnt_1_def['dflt']
   return str
 end
@@ -339,7 +378,7 @@ function v.Str.is__ptn(str, ptn)
 
   local ret
 
-  if f.match(str, ptn) == -1 then
+  if vf.match(str, ptn) == -1 then
     ret = false
   else
     ret = true
@@ -397,7 +436,7 @@ v.Int = {}
 
 function v.Int._2_str(num)
 
-  local num_str = f.printf('%o', num)
+  local num_str = vf.printf('%o', num)
   return num_str
 end
 
@@ -411,7 +450,7 @@ v.Txt = {}
 
 function v.Txt._to_ar(txt)
 
-  local line_ar  = f.split(txt, '\\n')
+  local line_ar  = vf.split(txt, '\\n')
   return line_ar
 end
 

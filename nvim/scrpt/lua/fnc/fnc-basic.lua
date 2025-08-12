@@ -63,7 +63,7 @@ end
 
 function v.Hl_grp()
 
-  -- print( f.synIDattr(f.synID(f.line('.'), f.col('.'), 1), 'name') )
+  -- print( vf.synIDattr(vf.synID(vf.line('.'), vf.col('.'), 1), 'name') )
   local cmd = "echo synIDattr(synID(line('.'), col('.'), 1), 'name')"
   v.Cmd.cmd(cmd)
   -- print(  )
@@ -83,7 +83,7 @@ function v.Is_line_markdown_itm()
 
   local ptn = '^\\s*- '
   local str = v.Cursor.line_str()
-  local idx = v.Str.srch_idx(str, ptn)
+  local idx = v.Str.srch_idx_by_vim(str, ptn)
 
   if idx == -1 then
     return false
@@ -99,21 +99,21 @@ end
 function v.I_symbol01()
 
   local lst = { '$', '@', '#', ';', '%' }
-  f.complete(f.col('.'), lst)
+  vf.complete(vf.col('.'), lst)
   return ''
 end
 
 function v.I_symbol02()
 
   local lst = { '?', '!', '&', '~', '^', '|', '\\', '/' }
-  f.complete(f.col('.'), lst)
+  vf.complete(vf.col('.'), lst)
   return ''
 end
 
 function v.I_symbol03()
 
   local lst = { '=', '+', '-' }
-  f.complete(f.col('.'), lst)
+  vf.complete(vf.col('.'), lst)
   return ''
 end
 
@@ -121,7 +121,7 @@ function v.I_bracket()
 
   -- local lst = { '()', '{}', '[]', '<>', '[]()', '[][]', '(){}' }
   local lst = { '()', '{}', '[]', '<>' }
-  f.complete(f.col('.'), lst)
+  vf.complete(vf.col('.'), lst)
   return ''
 end
 
@@ -134,27 +134,27 @@ function v.I_quote()
 
   local lst = quote_lst[vim.bo.filetype] or quote_lst['dflt']
 
-  f.complete(f.col('.'), lst)
+  vf.complete(vf.col('.'), lst)
   return ''
 end
 
 function v.I_markdown_lnk()
 
   local lst = { '[]()', '[][]', '![]()' }
-  f.complete(f.col('.'), lst)
+  vf.complete(vf.col('.'), lst)
   return ''
 end
 
 function v.I_week()
 
-  f.complete(f.col('.'), g.week_def)
+  vf.complete(vf.col('.'), g.week_def)
   return ''
 end
 
 function v.I_num()
 
   local lst = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }
-  f.complete(f.col('.'), lst)
+  vf.complete(vf.col('.'), lst)
   return ''
 end
 
@@ -166,7 +166,7 @@ function v.I_reg()
     v.Rgstr.get('2'),
     v.Rgstr.get('3')
   }
-  f.complete(f.col('.'), lst )
+  vf.complete(vf.col('.'), lst )
   return ''
 end
 
@@ -176,18 +176,18 @@ end
 function v.Rg_rslt_line_parse(line)
 
   local dlm = ':'
-  local ret = f.split(line, dlm)
+  local ret = vf.split(line, dlm)
   --echo ret
 
   local idx = 1
-  while idx <= f.len(ret) do
+  while idx <= vf.len(ret) do
 
-    ret[idx] = f.trim(ret[idx])
+    ret[idx] = vf.trim(ret[idx])
 
     idx = idx + 1
   end
 
-  if ( f.len(ret) > 1 ) and ( not v.Char.is__num(ret[2]) ) then
+  if ( vf.len(ret) > 1 ) and ( not v.Char.is__num(ret[2]) ) then
     ret[2] = '1'
   end
 
@@ -235,7 +235,7 @@ function v.Rg_cmd(ptn, ext, word1, opt)
           .. fzf_rg_opt_ext
           .. fzf_rg_opt_word1
           .. opt
-          .. ' -- ' .. '"' .. f.escape(ptn, '().$') .. '"'
+          .. ' -- ' .. '"' .. vf.escape(ptn, '().$') .. '"'
 
   return rg_cmd
 end
@@ -281,7 +281,7 @@ end
 function v.Rg_ptn_rslt_ar(ptn, opt)
 
   local rg_rslt_txt = v.Rg_ptn_rslt_txt(ptn, opt)
-  local rg_rslt_ar  = f.split(rg_rslt_txt, "\\n")
+  local rg_rslt_ar  = vf.split(rg_rslt_txt, "\\n")
   return rg_rslt_ar
 end
 
@@ -298,7 +298,7 @@ end
 
 function v.Jmplst()
 
-  local jmplst_tmp = f.getjumplist()[1]
+  local jmplst_tmp = vf.getjumplist()[1]
   -- u.Log.tbl(jmplst_tmp)
 
   local buf_num_key_prefix = 'key_'
@@ -318,7 +318,7 @@ function v.Jmplst()
   end
   -- u.Log.tbl(jmplst)
 
-  for idx, _buf_num_key in pairs(f.keys(jmplst)) do
+  for idx, _buf_num_key in pairs(vf.keys(jmplst)) do
 
     v.Tbl.srt(jmplst[_buf_num_key], v.Jmplst_cmp)
   end
@@ -327,7 +327,7 @@ function v.Jmplst()
   local buf_num_key = buf_num_key_prefix .. v.Buf.num()
   -- u.Log.val(buf_num_key)
 
-  local r_jmplst    = f.get(jmplst, buf_num_key, {})
+  local r_jmplst    = vf.get(jmplst, buf_num_key, {})
   -- u.Log.tbl(r_jmplst)
 
   return r_jmplst
@@ -344,7 +344,7 @@ function v.Jmplst_line_info()
 
     line_num  = _jmplst['lnum']
 
-    -- line_info = line_num .. ' ' .. f.getline(line_num)
+    -- line_info = line_num .. ' ' .. vf.getline(line_num)
     line_info = line_num .. ' ' .. v.Line.str_by_line_num(line_num)
 
     v.Tbl.add(jmplst_line_info, line_info)
@@ -367,17 +367,17 @@ function v.Is_env__(env) -- alias
 
   -- env : 'mac', 'win64', 'win32', 'wsl', 'linux'
 
-  local ret = ( f.has(env) == 1 )
+  local ret = ( vf.has(env) == 1 )
 
   -- print( env .. ' : ', ret )
-  -- print( 'hostname : ' .. f.hostname() )
+  -- print( 'hostname : ' .. vf.hostname() )
 
   return ret
 end
 
 function v.Is_nvim() -- alias
 
-  local ret = ( f.has('nvim') == 1 )
+  local ret = ( vf.has('nvim') == 1 )
   print('nvim : ', ret)
   return ret
 end
@@ -443,7 +443,7 @@ function v.Is_vim_plg__installed()
   local vim_plg_path = v.Vim_plg_path()
   -- print( vim_plg_path )
 
-  local ret = f.empty(f.glob(vim_plg_path)) == 0
+  local ret = vf.empty(vf.glob(vim_plg_path)) == 0
   -- print( 'vim-plug installed : ', ret)
   return ret
 end
@@ -473,7 +473,7 @@ g.mark_alph_def = {
 
 function v.Mark_show_tgl()
 
-  if f.exists('g.mark_show_flg') == 0 then
+  if vf.exists('g.mark_show_flg') == 0 then
 
     g.mark_show_flg = false
   end
@@ -493,11 +493,11 @@ end
 function v.Mark_lst()
 
   local mark = {}
-  for idx, _mark in pairs(f.bufname():getmarklist()) do
+  for idx, _mark in pairs(vf.bufname():getmarklist()) do
 
     local _alph = _mark['mark'][2]
 
-    if f.count(g.mark_alph_def, _alph) == 0 then
+    if vf.count(g.mark_alph_def, _alph) == 0 then
       -- continue
     else
       mark = v.Tbl.add(mark, _mark['mark'][2])
@@ -512,11 +512,11 @@ function v.Mark_alph_line()
 
   local line_num = v.Cursor.line_num()
 
-  for idx, _mark in pairs(f.bufname():getmarklist()) do
+  for idx, _mark in pairs(vf.bufname():getmarklist()) do
 
     local _alph = _mark['mark'][2]
 
-    if f.count(g.mark_alph_def, _alph) == 0 then
+    if vf.count(g.mark_alph_def, _alph) == 0 then
       -- continue
     else
       if _mark['pos'][2] == line_num then
@@ -553,7 +553,7 @@ function v.Mark_alph_useabl()
   local mark = v.Mark_lst()
 
   for idx, _alph in pairs(g.mark_alph_def) do
-    if f.count(mark, _alph) == 0 then
+    if vf.count(mark, _alph) == 0 then
       --print( _alph )
       return _alph
     end

@@ -4,7 +4,7 @@ v.Sys = {}
 function v.Sys.cmd(sys_cmd)
 
   -- print(sys_cmd)
-  local ret = f.system(sys_cmd)
+  local ret = vf.system(sys_cmd)
   -- print(ret)
   return ret
 end
@@ -42,7 +42,7 @@ function v.Sys.cmd_opn_app(path)
     path = v.Str.path_unix__cnv_win(path)
   end
 
-  local res = f.system(cmd_sys .. " '" .. path .. "'")
+  local res = vf.system(cmd_sys .. " '" .. path .. "'")
 end
 
 function v.Sys.cmd_opn_app_by_cursor_path()
@@ -53,16 +53,16 @@ end
 
 function v.Sys.cmd_opn_app_by_line_path(line_num)
 
-  local path = v.Line_str_by_line_num(line_num)
+  local path = v.Line.str_by_line_num(line_num)
 
-  path = f.trim(path)
+  path = vf.trim(path)
   v.Sys.cmd_opn_app(path)
 end
 
 function v.Sys.cmd_opn_app_by_slctd_str()
 
   local path = v.Slctd.str()
-  path = f.trim(path)
+  path = vf.trim(path)
   v.Sys.cmd_opn_app(path)
 end
 
@@ -90,7 +90,7 @@ end
 function v.Sys.cmd_opn_yt_by_slctd_str()
 
   local yt_video_id = v.Slctd.str()
-  local yt_video_id = f.trim(yt_video_id)
+  local yt_video_id = vf.trim(yt_video_id)
   v.Sys.cmd_opn_yt(yt_video_id)
 end
 
@@ -109,7 +109,7 @@ end
 function v.Sys.cmd_opn_ggl_srch_by_slctd_str()
 
   local word = v.Slctd.str()
-  local word = f.trim(word)
+  local word = vf.trim(word)
   v.Sys.cmd_opn_ggl_srch(word)
 end
 
@@ -123,7 +123,7 @@ end
 function v.Sys.cmd_trns_by_slctd_str() -- range
 
   local str = v.Slctd.str()
-  str = f.substitute(str, "\\n", ' ', 'g')
+  str = vf.substitute(str, "\\n", ' ', 'g')
 
   local lang
   -- if str =~ '[^\\x01-\\x7E]' then -- mlt byte
@@ -133,7 +133,7 @@ function v.Sys.cmd_trns_by_slctd_str() -- range
     lang = '{en=ja}'
   end
 
-  str = f.escape(str, "'")
+  str = vf.escape(str, "'")
   local sys_cmd = 'trans -no-ansi ' .. lang .. " '" .. str .. "'"
   local rslt = v.Sys.cmd(sys_cmd)
   print( rslt )

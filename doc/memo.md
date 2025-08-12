@@ -4,18 +4,17 @@
 
 ## nvim
 
-esc t err
-
-Fzf_vim_fnc_call() err
+srch_idx_by_vim() > srch_idx_by_lua(, , s_idx + 1) - 1
 
 plg
 - nvim-treesitter
 
 
-## skr-vps
+## aws
 
-alm
-- setting
+gen2 try
+
+rds del
 
 
 ## godot
@@ -32,14 +31,16 @@ game cre
 - chara cre
 
 
+## skr-vps
+
+alm setting
+
+
 ## nvim
 
 file type java
 - cmnt
 - syntax color
-
-n, indnt add by line up
-- fnc : f_str__crct_by_line()
 
 dir ch
 - `:d, :p`
@@ -54,7 +55,8 @@ plg
 
 ## skr-vps
 
-setting at skr console
+centos setting at skr console
 - firewall
+  - url
 
 

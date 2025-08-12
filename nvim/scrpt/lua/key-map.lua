@@ -218,9 +218,12 @@ vim.keymap.set('n', ':p', ':p')
 vim.keymap.set('n', ':q', ':q')
 vim.keymap.set('n', ':r', ':r')
 vim.keymap.set('n', ':s', ':s')
-vim.keymap.set('n', ':t', ':s')
+vim.keymap.set('n', ':t', ':t')
 vim.keymap.set('n', ':u', ':u')
---                    :
+vim.keymap.set('n', ':v', ':v')
+vim.keymap.set('n', ':w', ':w')
+vim.keymap.set('n', ':x', ':x')
+vim.keymap.set('n', ':y', ':y')
 vim.keymap.set('n', ':z', ':z')
 
 vim.keymap.set('n', '<leader>:', '<esc>')
@@ -694,6 +697,9 @@ vim.keymap.set('n', 're', ':lua v.Cursor.line_indnt__crct()<cr>')
 vim.keymap.set('n', 'q', ':lua v.Cursor.f_str__crct_by_line_u()<cr>')
 vim.keymap.set('n', 'Q', ':lua v.Cursor.f_str__crct_by_line_d()<cr>')
 
+-- dev anchor
+vim.keymap.set('n', 'q', ':lua v.Cursor.f_str__space_crct("u")<cr>')
+
 -- 
 -- srch
 -- 
@@ -746,9 +752,6 @@ vim.keymap.set('n', 'N', ':lua v.Srch.str__prv_tgl()<cr>')
 
 -- srch rpl one > ynk nxt ( only srch )
 vim.keymap.set('n', '<c-p>', ':lua v.Srch.slct("f")<cr>')
-
--- srch ?=ts
--- vim.keymap.set('n', 'xx', '/?ts=<cr>')
 
 -- rpl ( cmd )
 vim.keymap.set('n', ':s', ':%s/<c-r>//xxx/g')
@@ -811,9 +814,6 @@ vim.keymap.set('n', '<leader>x', ':lua v.Fzf_dir_jmp()<cr>')
 
 -- fzf doc memo
 vim.keymap.set('n', '<leader>m', ':lua v.Fzf_doc_memo_opn()<cr>')
-
--- fzf vim fnc call
-vim.keymap.set('n', '<leader>c', ':lua v.Fzf_vim_fnc_call()<cr>')
 
 -- fzf doc tech
 vim.keymap.set('n', '<leader>t', ':lua v.Fzf_doc_tech()<cr>')
@@ -899,6 +899,10 @@ vim.keymap.set('n', '<kRight>'   , '6')
 vim.keymap.set('n', '<kHome>'    , '7')
 vim.keymap.set('n', '<kUp>'      , '8')
 vim.keymap.set('n', '<kPageUp>'  , '9')
+
+-- tst
+
+vim.keymap.set('n', ':t', ':lua v.Tst.tst()<cr>')
 
 -- mode normal end
 
@@ -1216,7 +1220,8 @@ vim.keymap.set('v', '-', ':lua v.Slctd.__pad("-")<cr>')
 vim.keymap.set('v', '<bar>', ':lua v.Slctd.__pad_bar()<cr>')
 
 -- slctd str space __ under score
-vim.keymap.set('v', 'q', ':lua v.Slctd.str_space__underscore()<cr>')
+vim.keymap.set('v', '_', ':lua v.Slctd.str_space__underscore()<cr>')
+-- vim.keymap.set('v', 'q', ':lua v.Slctd.str_space__underscore()<cr>')
 
 -- line __ join per line
 vim.keymap.set('v', 'J', ':lua v.Slctd.line__join_per_line(3)')

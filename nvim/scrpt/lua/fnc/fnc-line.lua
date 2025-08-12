@@ -5,17 +5,17 @@ v.Line = {}
 
 function v.Line.num_file_edge_bgn()
 
-  return f.line('^')
+  return vim.fn.line('^')
 end
 
 function v.Line.num_file_edge_end() -- alias
 
-  return f.line('$')
+  return vim.fn.line('$')
 end
 
 function v.Line.str_by_line_num(line_num) -- alias
 
-  return f.getline(line_num)
+  return vim.fn.getline(line_num)
 end
 
 -- line xx __ ins
@@ -38,7 +38,7 @@ end
 
 function v.Line.end__pad_space(line_num, fil_end_col)
 
-  -- local line_str     = f.getline(line_num)
+  -- local line_str     = vim.fn.getline(line_num)
   local line_str     = v.Line.str_by_line_num(line_num)
 
   local line_str_len = v.Str.len(line_str)
@@ -50,7 +50,7 @@ function v.Line.end__pad_space(line_num, fil_end_col)
 
   local space_str = v.Str.space(space_len)
   line_str = line_str .. space_str
-  f.setline(line_num, line_str)
+  vim.fn.setline(line_num, line_str)
 end
 
 g.dots_str     = ' .. '
@@ -58,7 +58,7 @@ g.dots_put_col = 50
 
 function v.Line.__del_by_line_num(line_num)
 
-  f.deletebufline('%', line_num)
+  vim.fn.deletebufline('%', line_num)
 end
 
 function v.Line.__dpl()
@@ -70,8 +70,8 @@ end
 
 function v.Line.num_by_Line_info(line_info)
 
-  local line_info = f.trim(line_info, ' ', 1)
-  local line_num  = f.split(line_info, '\\s\\+')[1]
+  local line_info = vim.fn.trim(line_info, ' ', 1)
+  local line_num  = vim.fn.split(line_info, '\\s\\+')[1]
   u.Log.val(line_num)
 
   return line_num

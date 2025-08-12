@@ -17,12 +17,12 @@ g.nvim_lua_plg_fzf_file_path   = g.nvim_lua_fnc_dir .. '/fnc-plg-fzf.lua'
 
 function v.Buf.num()
 
-  return f.bufnr('%')
+  return vf.bufnr('%')
 end
 
 function v.Buf.file_dir()
 
-  local dir = f.expand('%:p:h')
+  local dir = vf.expand('%:p:h')
   return dir
 end
 
@@ -102,28 +102,28 @@ end
 
 -- tag jmp by str ( refactoring path )
 
--- function v.Tag_jmp_by_str(rg_rslt_line)
 function v.Buf.opn_by_path(rg_rslt_line)
 
-  local rg_rslt_line = f.trim(rg_rslt_line)
+  local rg_rslt_line = vf.trim(rg_rslt_line)
 
   if v.Is_str__emp(rg_rslt_line) then
     print( 'empty' )
     return
   end
 
-  local rg_rslt_line = f.matchstr(rg_rslt_line, '\\S\\+')
+  local rg_rslt_line = vf.matchstr(rg_rslt_line, '\\S\\+')
   -- print( rg_rslt_line )
 
   local rg_rslt_line_ar = v.Rg_rslt_line_parse(rg_rslt_line)
   -- print( rg_rslt_line_ar )
 
   local filename = rg_rslt_line_ar[1]
-  local line_num = f.get(rg_rslt_line_ar, 1, 1)
+  local line_num = vf.get(rg_rslt_line_ar, 1, 1)
   -- print( line_num )
   -- return
 
-  if not f.filereadable(filename) then
+  -- dev anchor
+  if not vf.filereadable(filename) then
     print( 'file does not exist' )
     return
   end
@@ -171,7 +171,7 @@ end
 
 function v.Buf__quit_swtch()
 
-  local win_num = f.winnr('$')
+  local win_num = vf.winnr('$')
 
   if win_num > 1 then
     v.Win_splt__quit()
@@ -213,13 +213,13 @@ end
 
 function v.Buf_file_path()
 
-  local path = f.expand('%:p')
+  local path = vf.expand('%:p')
   return path
 end
 
 function v.File_txt(file_path)
 
-  if not f.filereadable(file_path) then
+  if not vf.filereadable(file_path) then
     return
   end
 
@@ -266,7 +266,7 @@ end
 
 function v.File_tmp__cre() -- alias
 
-  local tmp_path = f.system('mktemp ')
+  local tmp_path = vf.system('mktemp ')
   return tmp_path
 end
 

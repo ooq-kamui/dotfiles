@@ -9,7 +9,7 @@ function v.Mode.is__normal()
 
   local ret = false
 
-  if f.mode() == 'n' then
+  if vf.mode() == 'n' then
     ret = true
   end
   return ret
@@ -31,7 +31,7 @@ function v.Mode.is__str()
 
   local ret = false
 
-  if f.mode() == 'v' then
+  if vf.mode() == 'v' then
     ret = true
   end
   return ret
@@ -41,7 +41,7 @@ function v.Mode.is__line()
 
   local ret = false
 
-  if f.mode() == 'V' then
+  if vf.mode() == 'V' then
     ret = true
   end
   return ret
@@ -51,7 +51,7 @@ function v.Mode.is__box()
 
   local ret = false
 
-  if f.mode() == vim.api.nvim_replace_termcodes('<c-v>', false, false, true) then
+  if vf.mode() == vim.api.nvim_replace_termcodes('<c-v>', false, false, true) then
     ret = true
   end
   return ret

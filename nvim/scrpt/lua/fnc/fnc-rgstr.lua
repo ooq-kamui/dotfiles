@@ -5,7 +5,7 @@ v.Rgstr = {}
 
 function v.Rgstr.get(rgstr_name) -- alias
 
-  return f.getreg(rgstr_name)
+  return vf.getreg(rgstr_name)
 end
 
 function v.Rgstr.info_rgstr(rgstr_info)
@@ -17,7 +17,7 @@ end
 
 function v.Rgstr.__(rgstr_name, val)
 
-  f.setreg(rgstr_name, val)
+  vf.setreg(rgstr_name, val)
 end
 
 function v.Rgstr.__clr()
@@ -136,7 +136,7 @@ function v.Rgstr.ynk__by_rgstr_info(rgstr_info)
 
   local rgstr = v.Rgstr.info_rgstr(rgstr_info)
   local scrpt = 'let @a = @' .. rgstr
-  f.execute(scrpt) -- refactoring ?
+  vf.execute(scrpt) -- refactoring ?
 end
 
 -- clp

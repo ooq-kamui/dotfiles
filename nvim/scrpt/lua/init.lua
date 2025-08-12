@@ -1,7 +1,9 @@
 
 -- print('init.lua')
 
-f = vim.fn
+vf = vim.fn
+-- f  = vim.fn
+
 v = {}
 u = {}
 g = {}

@@ -3,13 +3,17 @@
 
 v.Tst = {}
 
-
 function v.Tst.tst()
-  -- print('tst')
 
-  -- v.Slct_re()
+  local str = 'abcdefg'
+  local ptn = 'b'
+  local idx = '2'
+  -- local idx = '2'
+  -- local idx = nil
 
-  v.Cursor.__ins('v:lua.v.')
+  local s_idx, e_idx = v.Str.srch_idx_by_vim(str, ptn, idx)
+  print(s_idx)
+
 end
 
 

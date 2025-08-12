@@ -9,7 +9,7 @@ function v.Srch._or(...)
 
   local arg = {...}
 
-  local str = '\\(' .. f.join(arg, '\\|') .. '\\)'
+  local str = '\\(' .. vf.join(arg, '\\|') .. '\\)'
   --print( str )
 
   -- v.Rgstr.__('/', str)
@@ -21,7 +21,7 @@ end
 function v.Srch.str()
 
   -- local str = @/
-  local str = f.getref('/')
+  local str = vf.getref('/')
   return str
 end
 
@@ -31,7 +31,7 @@ function v.Srch.str_flt()
   local str = v.Rgstr.get('/')
 
   if v.Srch.is__word1() then
-    str = f.strcharpart(str, 2, f.strchars(str) - 4)
+    str = vf.strcharpart(str, 2, vf.strchars(str) - 4)
   end
   -- print( str )
 
@@ -54,9 +54,9 @@ function v.Srch.str__(str, op_word1)
 
   local exe_str = str
 
-  exe_str = f.escape(exe_str, '.*~[]\\^$')
+  exe_str = vf.escape(exe_str, '.*~[]\\^$')
 
-  exe_str = f.substitute(exe_str, '\\n', '\\\\n', 'g')
+  exe_str = vf.substitute(exe_str, '\\n', '\\\\n', 'g')
   -- print( exe_str )
 
   if op_word1 == true then
@@ -97,7 +97,7 @@ end
 
 function v.Srch.str_ltst(idx)
 
-  local str = f.histget('/', - idx)
+  local str = vf.histget('/', - idx)
   return str
 end
 
@@ -235,8 +235,8 @@ function v.Srch.is__word1()
   local str = v.Rgstr.get('/')
   local ret = false
 
-  local str_l = f.strcharpart(str, 0, 2)
-  local str_r = f.strcharpart(str, f.strchars(str) - 2)
+  local str_l = vf.strcharpart(str, 0, 2)
+  local str_r = vf.strcharpart(str, vf.strchars(str) - 2)
 
   if str_l == '\\<' and str_r == '\\>' then
     ret = true

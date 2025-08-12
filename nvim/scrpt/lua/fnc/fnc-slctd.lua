@@ -14,13 +14,13 @@ function v.Slctd.__cancel() -- range -- alias
 end
 
 function v.Slctd.__ltst() -- range
-  -- print(f.mode())
+  -- print(vf.mode())
 
   if v.Mode.is__box() then
     return
-  elseif f.mode() == 'v' then
+  elseif vf.mode() == 'v' then
     return
-  elseif f.mode() == 'V' then
+  elseif vf.mode() == 'V' then
     return
   end
 
@@ -387,7 +387,7 @@ function v.Slctd.str__expnd_bracket_f() -- range -- todo dev
   local s_col = v.Slctd.str_edge_l_col()
   
   local line_str_r = v.Slctd.str_edge_r_out_str()
-  local srch_idx = v.Str.srch_idx(line_str_r, bracket_ptn, 1)
+  local srch_idx = v.Str.srch_idx_by_vim(line_str_r, bracket_ptn, 1)
 
   if srch_idx == -1 then
     v.Cmd.nml('gv')
@@ -411,7 +411,7 @@ function v.Slctd.str_l__reduce_dlm(char) -- range
   v.Slctd.__ltst()
 
   local slctd_str = v.Slctd.str()
-  local srch_idx = v.Str.srch_idx(slctd_str, char)
+  local srch_idx = v.Str.srch_idx_by_vim(slctd_str, char)
   if srch_idx == -1 then
     v.Slctd.__cancel()
     return
@@ -1034,7 +1034,7 @@ function v.Slctd.line__join_per_line(per_line_num) -- range
   local exe_num = math.floor(line_num / per_line_num)
   --print( exe_num )
 
-  for _idx, idx in pairs(f.range(1, exe_num)) do
+  for _idx, idx in pairs(vf.range(1, exe_num)) do
 
     v.Cmd.nml(cmd_nml)
   end

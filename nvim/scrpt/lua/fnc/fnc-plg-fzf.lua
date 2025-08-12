@@ -137,7 +137,7 @@ function v.Fzf_by_ar(...)
   local src_ar   = arg[1] or nil
   local fnc_name = arg[2] or nil
 
-  -- if f.len(src_ar) > g.fzf_line_cnt_max then
+  -- if vf.len(src_ar) > g.fzf_line_cnt_max then
   --   print("fzf src_ar, end")
   --   return
   -- end
@@ -176,13 +176,13 @@ end
 function v.V_fzf_buf()
 
   v.Srch.str__slctd_str()
-  vim.cmd('FzfBufCrnt ' .. f.escape(f.getreg('z'), '.*~'))
+  vim.cmd('FzfBufCrnt ' .. vf.escape(vf.getreg('z'), '.*~'))
 end
 
 function v.Fzf_rgstr()
 
-  local rgstr_info_str = f.execute(':reg')
-  local rgstr_info_ar = f.split(rgstr_info_str, '\\n')
+  local rgstr_info_str = vf.execute(':reg')
+  local rgstr_info_ar = vf.split(rgstr_info_str, '\\n')
   v.Tbl.del(rgstr_info_ar, 1)
   -- u.Log.tbl(rgstr_info_ar)
 
@@ -276,22 +276,6 @@ function v.Fzf_doc_memo_opn()
   -- local fnc_name    = 'Opn'
   local fnc_name    = v.Buf.opn
   v.Fzf_by_ar(fzf_src_ar, fnc_name)
-end
-
-function v.Fzf_vim_fnc_call()
-
-  local rg_ptn = '^function v.[\\w]+\\(.*\\)'
-
-  local sys_cmd_rg = "rg " .. "-No '" .. rg_ptn .. "' " .. g.vimrc_file_path
-
-  local sys_cmd_sed = 'sed "s/function v.//g"'
-
-  local sys_cmd = sys_cmd_rg .. ' | ' .. sys_cmd_sed
-  local fzf_src_txt  = v.Sys.cmd(sys_cmd)
-
-  -- local fnc_name = v.Cmdline__
-  local fnc_name = v.Cmd.cmdline__
-  v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
 g.doc_tech_md_dir = 'wrk/prj-pri/doc-tech/docs/md'
