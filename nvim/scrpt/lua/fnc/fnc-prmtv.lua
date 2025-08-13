@@ -281,7 +281,8 @@ end
 
 function v.Str.srch_idx(str, ptn, idx) -- alias
 
-  return v.Str.srch_idx_by_vim(str, ptn, idx)
+  -- return v.Str.srch_idx_by_vim(str, ptn, idx)
+  return v.Str.srch_idx_by_lua(str, ptn, idx)
 end
 
 function v.Str.srch_end(str, ptn) -- alias

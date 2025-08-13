@@ -387,14 +387,14 @@ function v.Slctd.str__expnd_bracket_f() -- range -- todo dev
   local s_col = v.Slctd.str_edge_l_col()
   
   local line_str_r = v.Slctd.str_edge_r_out_str()
-  local srch_idx = v.Str.srch_idx_by_vim(line_str_r, bracket_ptn, 1)
+  local srch_idx = v.Str.srch_idx_by_lua(line_str_r, bracket_ptn, 2)
 
-  if srch_idx == -1 then
+  if not srch_idx then
     v.Cmd.nml('gv')
     return
   end
 
-  local len = s_col + v.Slctd.str_len() + srch_idx
+  local len = s_col + v.Slctd.str_len() + srch_idx - 1
   v.Slctd.str__by_col_len(s_col, len)
 end
 
@@ -411,8 +411,9 @@ function v.Slctd.str_l__reduce_dlm(char) -- range
   v.Slctd.__ltst()
 
   local slctd_str = v.Slctd.str()
-  local srch_idx = v.Str.srch_idx_by_vim(slctd_str, char)
-  if srch_idx == -1 then
+  local srch_idx = v.Str.srch_idx_by_lua(slctd_str, char)
+
+  if not srch_idx then
     v.Slctd.__cancel()
     return
   end

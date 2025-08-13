@@ -1122,9 +1122,9 @@ end
 function v.Cursor.line_end__dots_adjst() -- todo dev, mb_str
 
   local line_str = v.Cursor.line_str()
-  local idx = v.Str.srch_idx_by_vim(line_str, vim.fn.escape(g.dots_str, '.'))
+  local idx = v.Str.srch_idx_by_lua(line_str, vim.fn.escape(g.dots_str, '.'))
 
-  if idx >= 0 then
+  if idx >= 1 then
     v.Cursor.line_end_dots__crct()
   else
     v.Cursor.line_end__ins_dots()
@@ -1134,11 +1134,15 @@ end
 function v.Cursor.line_end_dots__crct()
 
   local line_str = v.Cursor.line_str()
-  local idx = v.Str.srch_idx_by_vim(line_str, vim.fn.escape(g.dots_str, '.'))
+  local idx = v.Str.srch_idx_by_lua(line_str, vim.fn.escape(g.dots_str, '.'))
 
-  if     idx < 0 then
+  if not idx then
     return
-  elseif idx == g.dots_put_col then
+  end
+
+  idx = idx - 1 -- to idx 0 start
+
+  if idx == g.dots_put_col then
     return
   end
 
@@ -1228,7 +1232,7 @@ function v.Cursor.f_str__crct_by_line(target_line_drct)
 
   local str = v.Cursor.line_str_side_r_with_c()
 
-  local trim_len = v.Str.srch_idx_by_vim(str, '[^ ]')
+  local trim_len = v.Str.srch_idx_by_lua(str, '[^ ]') - 1
   -- print( trim_len )
   local str = vim.fn.trim(str)
 
@@ -1248,12 +1252,12 @@ function v.Cursor.f_str__crct_by_line(target_line_drct)
   end
   v.Cursor.__mv_v(turn_drct)
 
-  local char_idx = v.Str.srch_idx_by_vim(target_line_str, cursor_r_char)
-  if char_idx == -1 then
+  local char_idx = v.Str.srch_idx_by_lua(target_line_str, cursor_r_char)
+  if not char_idx then
     return
   end
 
-  local space_len = char_idx + 1
+  local space_len = char_idx
   -- print( space_len )
 
   space_len = space_len - trim_len

@@ -2,21 +2,6 @@
 # dotfiles
 
 
-## nvim
-
-srch_idx_by_vim() > srch_idx_by_lua(, , s_idx + 1) - 1
-
-plg
-- nvim-treesitter
-
-
-## aws
-
-gen2 try
-
-rds del
-
-
 ## godot
 
 manual
@@ -31,12 +16,22 @@ game cre
 - chara cre
 
 
+## aws
+
+gen2 try
+
+rds del
+
+
 ## skr-vps
 
 alm setting
 
 
 ## nvim
+
+plg
+- nvim-treesitter
 
 file type java
 - cmnt

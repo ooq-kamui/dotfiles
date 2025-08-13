@@ -83,9 +83,9 @@ function v.Is_line_markdown_itm()
 
   local ptn = '^\\s*- '
   local str = v.Cursor.line_str()
-  local idx = v.Str.srch_idx_by_vim(str, ptn)
+  local idx = v.Str.srch_idx_by_lua(str, ptn)
 
-  if idx == -1 then
+  if not idx then
     return false
   else
     return true

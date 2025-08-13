@@ -291,11 +291,11 @@ vim.keymap.set('n', ':o', ':Oil . ')
 vim.keymap.set('n', 'gu', ':lua v.Buf.opn_view_ltst()<cr>')
 
 -- opn file srch  ( fzf )
-vim.keymap.set('n', '<leader>l', ':lua v.Fzf_file()<cr>')
+vim.keymap.set('n', '<leader>y', ':lua v.Fzf_file()<cr>')
+-- vim.keymap.set('n', '<leader>l', ':lua v.Fzf_file()<cr>')
 
 -- opn file hstry ( fzf )
-vim.keymap.set('n', '<leader>y', ':FzfFileHstry<cr>')
--- vim.keymap.set('n', '<leader>h', ':FzfFileHstry<cr>')
+vim.keymap.set('n', '<leader>l', ':FzfFileHstry<cr>')
 
 -- opn etc
 
@@ -486,8 +486,8 @@ vim.keymap.set('n', 'rp', ':lua v.Cursor.__ins_ynk_box()<cr>')
 vim.keymap.set('n', 'P', ':lua v.Cursor.__ins_clp()<cr>')
 
 -- paste rgstr history ( fzf )
+vim.keymap.set('n', '<leader>c', ':FzfRgstr<cr>')
 vim.keymap.set('n', '<leader>v', ':FzfRgstr<cr>')
--- vim.keymap.set('n', '<leader>r', ':FzfRgstr<cr>')
 
 -- undo
 vim.keymap.set('n', 'h'    , 'u'    )
@@ -785,7 +785,6 @@ vim.keymap.set('n', 't', ':lua v.Buf.opn_by_cursor_line()<cr>')
 
 -- cmd history ( fzf )
 vim.keymap.set('n', '<leader>r', ':FzfCmdHstry<cr>')
--- vim.keymap.set('n', '<leader>j', ':FzfCmdHstry<cr>')
 
 -- sys cmd
 vim.keymap.set('n', ':!', ':!')
