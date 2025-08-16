@@ -385,8 +385,8 @@ vim.keymap.set('n', '_', 'f_')
 
 -- cursor mv word dlm _ back
 vim.keymap.set('n', '<c-o>', 'hT_')
--- vim.keymap.set('n', '<c-s>', 'hT_')
 vim.keymap.set('n', '<c-_>', 'hT_')
+
 vim.keymap.set('n', '\\'   , 'T_h')
 vim.keymap.set('n', '<bar>', 'T_h')
 
@@ -582,10 +582,15 @@ vim.keymap.set('n', 'A', ':lua v.Cursor.__ins_line_anchor()<cr>')
 -- ins markdown code
 vim.keymap.set('n', '<c-u>', ':lua v.Cursor.__ins_markdown_code()<cr>')
 
+-- dev anchor
 -- ins markdown itm
 vim.keymap.set('n', 'O', function()
   if v.Buf.is_file_type__('markdown') then
-    return ':lua v.Cursor.__ins_markdown_itm()<cr>'
+    if v.Cursor.is_line__markdown_itm() then
+      return ':lua v.Cursor.line_indnt__shft_r()<cr>'
+    else
+      return ':lua v.Cursor.__ins_markdown_itm()<cr>'
+    end
   else
     return ':lua v.Cursor.line_indnt__shft_r()<cr>'
   end
@@ -785,6 +790,8 @@ vim.keymap.set('n', 't', ':lua v.Buf.opn_by_cursor_line()<cr>')
 
 -- cmd history ( fzf )
 vim.keymap.set('n', '<leader>r', ':FzfCmdHstry<cr>')
+vim.keymap.set('n', '<leader>h', ':FzfCmdHstry<cr>')
+vim.keymap.set('n', '<leader>:', ':FzfCmdHstry<cr>')
 
 -- sys cmd
 vim.keymap.set('n', ':!', ':!')
@@ -1052,7 +1059,7 @@ vim.keymap.set('v', '<leader>y', '<esc>')
 vim.keymap.set('v', 'i', ':lua v.Slctd.mode__tgl()<cr>')
 
 -- mode ch visual box
-vim.keymap.set('v', 'v', ':lua v.Slctd.state__swtch()<cr>')
+vim.keymap.set('v', 'v', ':lua v.Slctd.mode_state__swtch()<cr>')
 
 -- file srch ( fzf )
 -- vim.keymap.set('v', '<leader>xx', '"zy:FzfFile <c-r>z')
@@ -1069,6 +1076,7 @@ vim.keymap.set('v', 'O', 'O')
 vim.keymap.set('v', 'l', 'l')
 
 -- cursor mv char back
+vim.keymap.set('v', '<c-s>', 'h')
 vim.keymap.set('v', '<c-o>', 'h')
 
 -- cursor mv word back
@@ -1275,7 +1283,7 @@ end, {expr = true})
 vim.keymap.set('v', 'W', ':lua v.Slctd.str_edge_out__tgl_shft()<cr>')
 
 -- slctd str edge out __ ins space
--- vim.keymap.set('v', '<c-s>', ':lua v.Slctd_str_edge_out__ins(" ")<cr>')
+-- vim.keymap.set('v', 'xx', ':lua v.Slctd_str_edge_out__ins(" ")<cr>')
 
 -- slctd str edge out __ ins markdown strikethrough
 vim.keymap.set('v', '~', ':lua v.Slctd.str_edge_out__ins_markdown_strikethrough()<cr>')
@@ -1394,7 +1402,7 @@ vim.keymap.set('v', '<c-h>', function()
   end
 end, {expr = true})
 
-vim.keymap.set('v', '<c-s>', function()
+vim.keymap.set('v', '<c-u>', function()
   if v.Mode.is__box() then
     return ':lua v.Slctd.box_edge_r_char__shft_in()<cr>'
   else

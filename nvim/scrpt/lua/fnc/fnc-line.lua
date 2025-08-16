@@ -53,9 +53,6 @@ function v.Line.end__pad_space(line_num, fil_end_col)
   vim.fn.setline(line_num, line_str)
 end
 
-g.dots_str     = ' .. '
-g.dots_put_col = 50
-
 function v.Line.__del_by_line_num(line_num)
 
   vim.fn.deletebufline('%', line_num)

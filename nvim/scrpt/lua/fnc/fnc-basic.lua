@@ -5,6 +5,10 @@ require('fnc/fnc-utl'   )
 
 -- global
 
+g.dots_str     = ' .. '
+g.dots_str_ptn = ' %.%. '
+g.dots_put_col = 50
+
 g.home_dir         = vim.fn.expand('$HOME')
 g.dotfiles_dir     = g.home_dir      .. '/wrk/prj-pri/dotfiles'
 g.nvim_init_dir    = g.dotfiles_dir  .. '/nvim/scrpt'
@@ -75,21 +79,6 @@ function v.Color_name_lst()
 
   local cmd = "so $VIMRUNTIME/syntax/colortest.vim"
   v.Cmd.cmd(cmd)
-end
-
--- markdown cnd
-
-function v.Is_line_markdown_itm()
-
-  local ptn = '^\\s*- '
-  local str = v.Cursor.line_str()
-  local idx = v.Str.srch_idx_by_lua(str, ptn)
-
-  if not idx then
-    return false
-  else
-    return true
-  end
 end
 
 -- mode ins

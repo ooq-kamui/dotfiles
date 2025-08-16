@@ -43,7 +43,7 @@ function v.Slctd.mode__tgl()
   end
 end
 
-function v.Slctd.state__swtch()
+function v.Slctd.mode_state__swtch()
 
   v.Slctd.__ltst()
 
@@ -382,7 +382,8 @@ end
 
 function v.Slctd.str__expnd_bracket_f() -- range -- todo dev
 
-  local bracket_ptn = '[' .. "'" .. '"`)}\\]' .. ']'
+  -- local bracket_ptn = '[' .. "'" .. '"`)}\\]' .. ']'
+  local bracket_ptn = '[' .. "'" .. '"`)}%]' .. ']'
   
   local s_col = v.Slctd.str_edge_l_col()
   

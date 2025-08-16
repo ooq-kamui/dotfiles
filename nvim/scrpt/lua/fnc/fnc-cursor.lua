@@ -139,7 +139,7 @@ function v.Cursor.__mv_line_top1()
   if     v.Cursor.is_line_str__space() then
     v.Cursor.__mv_line_end()
 
-  elseif v.Is_line_markdown_itm() then
+  elseif v.Cursor.is_line__markdown_itm() then
     v.Cmd.nml('^2l')
   else
     v.Cmd.nml('^')
@@ -695,9 +695,9 @@ function v.Cursor.__ins_markdown_cr()
 end
 
 function v.Cursor.__ins_markdown_itm()
+  -- print('Cursor.__ins_markdown_itm')
 
-  if v.Is_line_markdown_itm() then
-    v.Cursor.line_indnt__shft_r()
+  if v.Cursor.is_line__markdown_itm() then
     return
   end
 
@@ -706,7 +706,28 @@ function v.Cursor.__ins_markdown_itm()
   local str = '- '
   --print( str )
   v.Cursor.line_top1__ins(str)
+
+  -- print('ret')
 end
+
+-- cnd line  markdown
+
+function v.Cursor.is_line__markdown_itm()
+  -- print('Cursor.is_line__markdown_itm')
+
+  local ptn = '^%s*- '
+  local str = v.Cursor.line_str()
+  -- print(str, ptn)
+  local idx = v.Str.srch_idx_by_lua(str, ptn)
+  -- print(idx)
+
+  if not idx then
+    return false
+  else
+    return true
+  end
+end
+
 
 function v.Cursor.__ins_markdown_code()
 
@@ -1122,19 +1143,23 @@ end
 function v.Cursor.line_end__dots_adjst() -- todo dev, mb_str
 
   local line_str = v.Cursor.line_str()
-  local idx = v.Str.srch_idx_by_lua(line_str, vim.fn.escape(g.dots_str, '.'))
 
-  if idx >= 1 then
-    v.Cursor.line_end_dots__crct()
-  else
+  -- local ptn = vim.fn.escape(g.dots_str, '.')
+  local idx = v.Str.srch_idx_by_lua(line_str, g.dots_str_ptn)
+
+  if not idx then
     v.Cursor.line_end__ins_dots()
+
+  else -- idx >= 1
+    v.Cursor.line_end_dots__crct()
   end
 end
 
 function v.Cursor.line_end_dots__crct()
 
   local line_str = v.Cursor.line_str()
-  local idx = v.Str.srch_idx_by_lua(line_str, vim.fn.escape(g.dots_str, '.'))
+  -- local ptn = vim.fn.escape(g.dots_str, '.')
+  local idx = v.Str.srch_idx_by_lua(line_str, g.dots_str_ptn)
 
   if not idx then
     return
@@ -1232,6 +1257,7 @@ function v.Cursor.f_str__crct_by_line(target_line_drct)
 
   local str = v.Cursor.line_str_side_r_with_c()
 
+  -- dev anchor, confirm
   local trim_len = v.Str.srch_idx_by_lua(str, '[^ ]') - 1
   -- print( trim_len )
   local str = vim.fn.trim(str)

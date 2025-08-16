@@ -16,16 +16,18 @@ game cre
 - chara cre
 
 
+## skr-vps
+
+alm setting
+- ssh
+- dotfiles
+
+
 ## aws
 
 gen2 try
 
 rds del
-
-
-## skr-vps
-
-alm setting
 
 
 ## nvim
