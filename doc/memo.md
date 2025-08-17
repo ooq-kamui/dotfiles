@@ -4,11 +4,8 @@
 
 ## godot
 
-manual
-- map
-  - read
-  - cre try
-- save
+platformer
+- tutorial
 
 game cre
 - prj cre
