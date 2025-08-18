@@ -5,7 +5,7 @@
 ## skr-vps
 
 alm setting
-- ssh, account@host
+- ssh key cre
 - dotfiles inst
 
 
