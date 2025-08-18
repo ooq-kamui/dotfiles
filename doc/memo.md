@@ -2,6 +2,20 @@
 # dotfiles
 
 
+## skr-vps
+
+alm setting
+- ssh, account@host
+- dotfiles inst
+
+
+## aws
+
+gen2 try
+
+rds del
+
+
 ## godot
 
 platformer
@@ -11,20 +25,6 @@ game cre
 - prj cre
 - map cre
 - chara cre
-
-
-## skr-vps
-
-alm setting
-- ssh
-- dotfiles
-
-
-## aws
-
-gen2 try
-
-rds del
 
 
 ## nvim
