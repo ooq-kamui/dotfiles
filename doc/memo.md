@@ -2,18 +2,17 @@
 # dotfiles
 
 
-## skr-vps
-
-alm setting
-- ssh key cre
-- dotfiles inst
-
-
 ## aws
 
 gen2 try
 
 rds del
+
+
+## skr-vps
+
+alm
+- ssh key cre
 
 
 ## godot
@@ -28,6 +27,8 @@ game cre
 
 
 ## nvim
+
+v `<?` all del
 
 plg
 - nvim-treesitter
