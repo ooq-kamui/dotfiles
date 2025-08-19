@@ -8,6 +8,12 @@ alm
 - ssh key cre
 
 
+## nvim
+
+n `<?` all del
+- research
+
+
 ## aws
 
 gen2 try
@@ -27,8 +33,6 @@ game cre
 
 
 ## nvim
-
-v `<?` all del
 
 plg
 - nvim-treesitter
