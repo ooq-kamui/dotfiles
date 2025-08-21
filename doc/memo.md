@@ -18,8 +18,6 @@ n `<?` all del
 
 gen2 try
 
-rds del
-
 
 ## godot
 
