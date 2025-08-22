@@ -4,8 +4,10 @@
 v.Tst = {}
 
 function v.Tst.tst()
+  print('tst')
 
-  vim.fn.screencol()
+  local val = vim.fn.screencol()
+  print(val)
 
   -- local str = 'abcdefg'
   -- local ptn = 'b'

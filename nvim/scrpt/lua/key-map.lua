@@ -388,7 +388,7 @@ vim.keymap.set('n', '<c-o>', 'hT_')
 vim.keymap.set('n', '<c-_>', 'hT_')
 
 vim.keymap.set('n', '\\'   , 'T_h')
-vim.keymap.set('n', '<bar>', 'T_h')
+-- vim.keymap.set('n', '<bar>', 'T_h')
 
 -- cursor mv word dlm ( camel or _ )  -  forward
 vim.keymap.set('n', '<c-f>', ':lua v.Cursor.__mv_word_dlm_f()<cr>')
@@ -403,7 +403,8 @@ vim.keymap.set('n', 'F', ':lua v.Cursor.__mv_fnc_name()<cr>')
 vim.keymap.set('n', '<c-l>', '%')
 
 -- cursor mv bracket out back
-vim.keymap.set('n', '<', '[{')
+vim.keymap.set('n', '<bar>', '[{')
+-- vim.keymap.set('n', '<', '[{')
 
 -- cursor mv indnt auto
 -- vim.keymap.set('n', 'xx', ':lua v.Cursor__mv_indnt_auto()<cr>') -- todo dev
@@ -634,7 +635,7 @@ end, {expr = true})
 vim.keymap.set('n', 'V', ':lua v.Cursor.d__ins_line_space()<cr>')
 
 -- cahr rpl, under score
--- vim.keymap.set('n', '<bar>', ':lua v.Cursor.char__rpl_underscore()<cr>')
+-- vim.keymap.set('n', 'xx', ':lua v.Cursor.char__rpl_underscore()<cr>')
 
 -- tgl markdown chk
 -- vim.keymap.set('n', 'xx', ':lua v.Char_markdown_chk__tgl()<cr>')
