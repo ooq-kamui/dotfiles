@@ -10,8 +10,16 @@ alm
 
 ## nvim
 
-n `<?` all del
-- research
+mb tidy
+- call Cursor.__mv_by_line_col, in for
+  - use ?
+    - vim.fn.strdisplaywidth()
+    - vim.fn.screenpos()
+- tst
+    aaa   bbb    ccc
+    aaa   bbb    ccc    ddd
+    あいうえお     aaa   bbb    ccc
+    あいうえお     aaa   bbb    ccc
 
 
 ## aws

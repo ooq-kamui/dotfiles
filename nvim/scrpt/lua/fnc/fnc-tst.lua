@@ -5,14 +5,16 @@ v.Tst = {}
 
 function v.Tst.tst()
 
-  local str = 'abcdefg'
-  local ptn = 'b'
-  local idx = '2'
-  -- local idx = '2'
-  -- local idx = nil
+  vim.fn.screencol()
 
-  local s_idx, e_idx = v.Str.srch_idx_by_vim(str, ptn, idx)
-  print(s_idx)
+  -- local str = 'abcdefg'
+  -- local ptn = 'b'
+  -- local idx = '2'
+  -- -- local idx = '2'
+  -- -- local idx = nil
+  -- 
+  -- local s_idx, e_idx = v.Str.srch_idx_by_vim(str, ptn, idx)
+  -- print(s_idx)
 
 end
 
