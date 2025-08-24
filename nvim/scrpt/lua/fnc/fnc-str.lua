@@ -28,9 +28,27 @@ function v.Str.r_char(str)
   return char
 end
 
-function v.Str.sub(str, idx_s, idx_e)  -- alias
+-- dev anchor
+function v.Str.sub_by_byte(str, byte_s, byte_e) -- col : 1 start
 
-  local r_str = string.sub(str, idx_s, idx_e)
+  local r_str = string.sub(str, byte_s, byte_e)
+  return r_str
+end
+
+-- dev anchor
+function v.Str.sub_by_col(str, col_s, col_e) -- col : 1 start
+
+  local len    = col_e - col_s + 1
+  local byte_s = col_s - 1
+
+  local r_str = vim.fn.strpart(str, byte_s, len)
+  return r_str
+end
+
+function v.Str.sub_by_char_idx(str, char_idx_s, char_idx_e) -- char_idx : 1 start
+
+  local len = char_idx_e - char_idx_s + 1
+  local r_str = vim.fn.strcharpart(str, char_idx_s - 1, len)
   return r_str
 end
 
@@ -104,6 +122,12 @@ function v.Str.col_idx_lst(str)
   end
 
   return col_idx_lst
+end
+
+function v.Str.ruler_num(str)
+
+  local ruler_num = vim.fn.strdisplaywidth(str)
+  return ruler_num
 end
 
 -- str __ rpl

@@ -291,11 +291,12 @@ vim.keymap.set('n', ':o', ':Oil . ')
 vim.keymap.set('n', 'gu', ':lua v.Buf.opn_view_ltst()<cr>')
 
 -- opn file srch  ( fzf )
-vim.keymap.set('n', '<leader>y', ':lua v.Fzf_file()<cr>')
--- vim.keymap.set('n', '<leader>l', ':lua v.Fzf_file()<cr>')
+vim.keymap.set('n', '<leader>l', ':lua v.Fzf_file()<cr>')
+-- vim.keymap.set('n', '<leader>y', ':lua v.Fzf_file()<cr>')
 
 -- opn file hstry ( fzf )
-vim.keymap.set('n', '<leader>l', ':FzfFileHstry<cr>')
+vim.keymap.set('n', '<leader>L', ':FzfFileHstry<cr>')
+-- vim.keymap.set('n', '<leader>l', ':FzfFileHstry<cr>')
 
 -- opn etc
 
@@ -745,7 +746,7 @@ vim.keymap.set('n', 'E', ':lua v.Srch.str__word1_tgl()<cr>')
 -- vim.keymap.set('n', 'xx', ':lua v.Srch.char_bracket('f')<cr>')
 
 -- srch markdown h
-vim.keymap.set('n', 'M', ':lua v.Srch.str__h_swtch();v.Cursor.__mv_srch("f")<cr>')
+vim.keymap.set('n', 'M', ':lua v.Srch.str__h_swtch(); v.Cursor.__mv_srch("f")<cr>')
 
 -- srch markdown itm
 vim.keymap.set('n', ':i', ':lua v.Srch.str__markdown_itm()<cr>')
@@ -815,9 +816,9 @@ vim.keymap.set('n', ':k', ':K')
 -- fzf cd
 vim.keymap.set('n', '<leader>d', ':lua v.Fzf_dir()<cr>')
 
--- fzf cd ( dir jmp )
+-- fzf cd ( dir jmp , zoxide )
+vim.keymap.set('n', '<leader>D', ':lua v.Fzf_dir_jmp()<cr>')
 vim.keymap.set('n', '<leader>x', ':lua v.Fzf_dir_jmp()<cr>')
--- vim.keymap.set('n', '<leader>y', ':lua v.Fzf_dir_jmp()<cr>')
 
 -- fzf doc memo
 vim.keymap.set('n', '<leader>m', ':lua v.Fzf_doc_memo_opn()<cr>')

@@ -25,6 +25,24 @@ function v.Cursor.col_idx() -- alias
   return col_idx
 end
 
+function v.Cursor.ruler_num()
+
+  local str = v.Cursor.line_str_side_l()
+
+  local ruler_num = v.Str.ruler_num(str) + 1
+  u.Log.val(ruler_num)
+
+  return ruler_num
+end
+
+function v.Cursor.__mv_by_line_ruler(line_num, ruler_num)
+
+  local col_num
+  col_num = v.Line.col_num_by_ruler_num(line_num, ruler_num)
+
+  v.Cursor.__mv_by_line_col(line_num, col_num)
+end
+
 -- cursor col cnd
 
 function v.Cursor.is_col__line_end()
@@ -105,11 +123,11 @@ function v.Cursor.__mv_by_line_num(line_num)
   v.Cmd.nml(line_num .. 'G')
 end
 
-function v.Cursor.__mv_by_line_col(line_num, col)
+function v.Cursor.__mv_by_line_col(line_num, col_num)
 
   local line_num = (line_num == nil) and v.Cursor.line_num() or line_num
 
-  vim.fn.cursor(line_num, col)
+  vim.fn.cursor(line_num, col_num)
 end
 
 function v.Cursor.__mv_by_line_info(line_info)

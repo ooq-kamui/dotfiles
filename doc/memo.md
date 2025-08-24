@@ -2,46 +2,38 @@
 # dotfiles
 
 
-## nvim
-
-mb tidy
-- call Cursor.__mv_by_line_col, in for
-  - use ?
-    - vim.fn.strdisplaywidth()
-    - vim.fn.screenpos()
-- tst
-    aaa   bbb    ccc
-    aaa   bbb    ccc    ddd
-    あいうえお     aaa   bbb    ccc
-    あいうえお     aaa   bbb    ccc
-
-```
-local function move_to_display_col(col)
-  local line = vim.api.nvim_get_current_line()
-  local byte_col = vim.fn.byteidx(line, col - 1)
-  if byte_col == -1 then
-    byte_col = #line
-  end
-  vim.api.nvim_win_set_cursor(0, {vim.fn.line('.'), byte_col})
-end
-```
-
-```
--- 表示上の10列目に移動
-move_to_display_col(10)
-
--- キーマップに設定
-vim.keymap.set('n', '<leader>g', function()
-  local col = vim.fn.input('Column: ')
-  move_to_display_col(tonumber(col))
-end)
-```
-
-
 ## skr-vps
 
 alm
 - ssh key cre
+  - ssh type research
+
+
+## nvim
+
+mb tidy
+- call Cursor.__mv_by_line_col, in for
+- tst
+          1         2
+012345678901234567890
+         1         2
+12345678901234567890
+  aaa   bbb    ccc    ddd
+  あいaうえお     aaa   bbb    ccc
+
+
+slctd から :lua で 選択行が差し変わらないのはなぜ?
+```
+:lua
+と
+:!lua
+の違い
+
+read research, write doc-tech
+```
+
+:m fzf key-map
+- fnc cre
 
 
 ## aws

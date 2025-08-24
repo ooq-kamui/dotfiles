@@ -76,3 +76,35 @@ end
 
 -- line cnd
 
+
+-- line col
+
+function v.Line.col_num_by_ruler_num(line_num, ruler_num)
+
+  local line_str = v.Line.str_by_line_num(line_num)
+
+  local t_col_num   = ruler_num
+
+  local str         = v.Str.sub_by_char_idx(line_str, 1, t_col_num)
+  local t_ruler_num = v.Str.ruler_num(str)
+
+  while t_ruler_num < ruler_num do
+
+    print('while')
+
+    str         = v.Str.sub_by_char_idx(line_str, 1, t_col_num)
+    print(str)
+
+    t_ruler_num = v.Str.ruler_num(str)
+    print(t_ruler_num, '>', ruler_num)
+
+    if t_ruler_num > ruler_num then
+      break
+    end
+
+    t_col_num = t_col_num + 1
+  end
+
+  return t_col_num
+end
+
