@@ -2,12 +2,6 @@
 # dotfiles
 
 
-## nvim
-
-:m fzf key-map
-- fnc cre
-
-
 ## skr-vps
 
 alm ssh set at mac
@@ -35,17 +29,14 @@ game cre
 
 ## nvim
 
+dir__launch()
+
 plg
 - nvim-treesitter
 
 file type java
 - cmnt
 - syntax color
-
-dir ch
-- `:d, :p`
-- dir_start
-- dir_buf
 
 plg
 - lualine

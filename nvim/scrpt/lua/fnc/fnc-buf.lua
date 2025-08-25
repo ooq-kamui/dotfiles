@@ -45,25 +45,10 @@ function v.Buf.opn_tmp_file()
   v.Buf.opn(path)
 end
 
-function v.Buf.Opn_init_vim()
+function v.Buf.opn_init_vim()
 
-  -- lua
-  v.Buf.opn(g.nvim_lua_fnc_basic_file_path)
+  -- v.Buf.opn(g.nvim_lua_fnc_basic_file_path)
   v.Buf.opn(g.nvim_lua_key_map_file_path)
-
-  -- env
-  local init_vim_env_file_path
-
-  if     v.Is_env__('linux')     then -- c9, s9
-
-    init_vim_env_file_path = g.nvim_lua_env_dir .. '/env-c9.vim'
-    -- v.Buf.opn(init_vim_env_file_path)
-
-  elseif v.Is_env__('win32unix') then -- gitbash
-
-    init_vim_env_file_path = g.nvim_lua_env_dir .. '/env-gitbash.vim'
-    -- v.Buf.opn(init_vim_env_file_path)
-  end
 end
 
 function v.Buf.opn_init_vim_l()

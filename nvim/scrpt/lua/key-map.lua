@@ -209,11 +209,13 @@ vim.keymap.set('n', ':e', ':e')
 vim.keymap.set('n', ':f', ':f')
 vim.keymap.set('n', ':g', ':g')
 vim.keymap.set('n', ':h', ':h')
---                    :
+vim.keymap.set('n', ':i', ':i')
+vim.keymap.set('n', ':j', ':j')
 vim.keymap.set('n', ':k', ':k')
---                    :
-vim.keymap.set('n', ':n', ':k')
-vim.keymap.set('n', ':o', ':k')
+vim.keymap.set('n', ':l', ':l')
+vim.keymap.set('n', ':m', ':m')
+vim.keymap.set('n', ':n', ':n')
+vim.keymap.set('n', ':o', ':o')
 vim.keymap.set('n', ':p', ':p')
 vim.keymap.set('n', ':q', ':q')
 vim.keymap.set('n', ':r', ':r')
@@ -305,7 +307,7 @@ vim.keymap.set('n', '<leader>L', ':FzfFileHstry<cr>')
 
 -- opn init vim
 vim.keymap.set('n', 'gh', ':lua v.Buf.opn_init_vim()<cr>')
-vim.keymap.set('n', 'gl', ':lua v.Buf.opn_init_vim_l()<cr>')
+-- vim.keymap.set('n', 'gl', ':lua v.Buf.opn_init_vim_l()<cr>')
 
 -- opn tmp file
 -- vim.keymap.set('n', 'xx', ':lua v.Buf.opn_tmp_file()<cr>')
@@ -713,7 +715,10 @@ vim.keymap.set('n', 'q', ':lua v.Cursor.f_str__space_crct("u")<cr>')
 
 -- srch hl init
 vim.keymap.set('n', 'S', '/<cr>N')
--- vim.keymap.set('n', 'xx', ':lua v.Srch_init()<cr>')
+-- vim.keymap.set('n', 'S', ':lua v.Srch.init()<cr>')
+-- vim.cmd('/^$')
+-- print('aaaaa' .. v.Rgstr.get('/') .. 'bbb' )
+-- print('aaaaa' .. vim.fn.histget('/', -1) .. 'bbb' )
 
 -- srch char in line - forward
 -- vim.keymap.set('n', 'xx', 'f')
@@ -821,7 +826,7 @@ vim.keymap.set('n', '<leader>D', ':lua v.Fzf_dir_jmp()<cr>')
 vim.keymap.set('n', '<leader>x', ':lua v.Fzf_dir_jmp()<cr>')
 
 -- fzf doc memo
-vim.keymap.set('n', '<leader>m', ':lua v.Fzf_doc_memo_opn()<cr>')
+-- vim.keymap.set('n', '<leader>m', ':lua v.Fzf_doc_memo_opn()<cr>')
 
 -- fzf doc tech
 vim.keymap.set('n', '<leader>t', ':lua v.Fzf_doc_tech()<cr>')
@@ -1214,7 +1219,6 @@ end, {expr = true})
 -- line __ ins comment 1
 vim.keymap.set('v', '!', ':lua v.Slctd.line__ins_cmnt_1()<cr>')
 vim.keymap.set('v', '1', ':lua v.Slctd.line__ins_cmnt_1()<cr>')
-vim.keymap.set('v', '"', ':lua v.Slctd.line__ins_cmnt_1()<cr>')
 
 -- line end __ ins comma
 vim.keymap.set('v', ',', ':lua v.Slctd.line_end__ins(",")<cr>')
@@ -1285,7 +1289,7 @@ end, {expr = true})
 vim.keymap.set('v', 'W', ':lua v.Slctd.str_edge_out__tgl_shft()<cr>')
 
 -- slctd str edge out __ ins space
--- vim.keymap.set('v', 'xx', ':lua v.Slctd_str_edge_out__ins(" ")<cr>')
+vim.keymap.set('v', '<c-f>', ':lua v.Slctd.str_edge_out__ins_space()<cr>')
 
 -- slctd str edge out __ ins markdown strikethrough
 vim.keymap.set('v', '~', ':lua v.Slctd.str_edge_out__ins_markdown_strikethrough()<cr>')

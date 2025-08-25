@@ -656,6 +656,11 @@ function v.Slctd.str_edge_out__ins(c) -- range
   end
 end
 
+function v.Slctd.str_edge_out__ins_space()
+
+  v.Slctd.str_edge_out__ins(" ")
+end
+
 function v.Slctd.str_edge_out__ins_markdown_strikethrough()
 
   v.Slctd.__ltst()
@@ -1099,16 +1104,15 @@ function v.Slctd.line__ins_cmnt_1() -- range
   -- u.Log.val(slctd_line_s_num)
 
   v.Cursor.__mv_by_line_num(slctd_line_s_num)
-  -- dev anchor
   v.Cmd.nml('^')
+
   local col = v.Cursor.col_num()
 
   for idx, line_num in pairs(v.Slctd.line_num_seq()) do
 
     v.Line.end__pad_space(line_num, col - 1)
 
-    -- v.Cursor.__mv_by_line_col(line_num, col)
-    v.Cursor.__mv_by_line_ruler(line_num, col)
+    v.Cursor.__mv_by_line_col(line_num, col)
 
     v.Cursor.__ins_cmnt_1(nil)
   end

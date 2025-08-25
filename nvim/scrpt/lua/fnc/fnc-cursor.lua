@@ -657,7 +657,7 @@ function v.Cursor.__ins_rgstr_by_rgstr_info(rgstr_info)
   v.Cmd.nml('"' .. rgstr .. 'P')
 end
 
-function v.Cursor.__ins_cmnt_mlt(pos_key) -- call when mode normal
+function v.Cursor.__ins_cmnt_mlt() -- call when mode normal
 
   v.Cursor.__ins_cmnt_mlt_by_pos_key('end')
   v.Cursor.__ins_cmnt_mlt_by_pos_key('bgn')

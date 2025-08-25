@@ -105,7 +105,6 @@ function v.Srch.str__prv_tgl()
 
   local srch_str
 
-  -- if @/ == v.Srch.str_ltst(1) then
   if v.Rgstr.get('/') == v.Srch.str_ltst(1) then
 
     if              v.Srch.str_ltst(1)          == '\\<' .. v.Srch.str_ltst(2) .. '\\>' then
@@ -243,5 +242,14 @@ function v.Srch.is__word1()
   end
 
   return ret
+end
+
+-- srch init
+
+-- srch init
+function v.Srch.init() -- use not
+
+  local cmd_nml = '/<cr>N'
+  v.Cmd.nml(cmd_nml)
 end
 
