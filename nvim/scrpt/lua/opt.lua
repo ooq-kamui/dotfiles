@@ -154,8 +154,8 @@ vim.api.nvim_create_autocmd('BufRead', {
   group    = vim.api.nvim_create_augroup( 'vimrcEx', {} ),
   pattern  = {'*'},
   callback = function()
-    local cursor_last_line = vim.fn.line([['"]])
-    local cursor_end_line  = vim.fn.line("$")
+    local cursor_last_line = vf.line([['"]])
+    local cursor_end_line  = vf.line("$")
 
     if cursor_last_line > 0 and cursor_last_line <= cursor_end_line then
       vim.cmd('normal! g`"')
@@ -236,7 +236,7 @@ vim.opt.shortmess:append('I')
    vim.opt.swapfile = false
 
 -- undo
-if vim.fn.has('persistent_undo') == 1 then
+if vf.has('persistent_undo') == 1 then
 
   vim.opt.undodir = g.home_dir .. '/.vim-undo'
   vim.opt.undofile = true

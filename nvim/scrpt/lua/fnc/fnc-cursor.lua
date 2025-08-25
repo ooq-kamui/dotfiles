@@ -7,7 +7,7 @@ v.Cursor = {}
 
 function v.Cursor.pos() -- alias
 
-  local pos = vim.fn.getpos('.')
+  local pos = vf.getpos('.')
   return pos
 end
 
@@ -15,7 +15,7 @@ end
 
 function v.Cursor.col_num()
 
-  local col_num = vim.fn.col('.')
+  local col_num = vf.col('.')
   return col_num
 end
 
@@ -91,7 +91,7 @@ function v.Cursor.is_col__line_top1()
   v.Cursor.__mv_line_top1()
   local col_s1 = v.Cursor.col_num()
   
-  vim.fn.setpos('.', pos_c)
+  vf.setpos('.', pos_c)
   
   if col_c == col_s1 then
     return true
@@ -127,7 +127,7 @@ function v.Cursor.__mv_by_line_col(line_num, col_num)
 
   local line_num = (line_num == nil) and v.Cursor.line_num() or line_num
 
-  vim.fn.cursor(line_num, col_num)
+  vf.cursor(line_num, col_num)
 end
 
 function v.Cursor.__mv_by_line_info(line_info)
@@ -140,7 +140,7 @@ end
 
 function v.Cursor.__mv_by_pos(pos)
   
-  vim.fn.setpos('.', pos)
+  vf.setpos('.', pos)
 end
 
 function v.Cursor.__mv_line_top0()
@@ -246,7 +246,7 @@ function v.Cursor.__mv_word_dlm_f()
 
   local line_num = v.Cursor.line_num()
 
-  vim.fn.search(ptn, 'zW', line_num)
+  vf.search(ptn, 'zW', line_num)
 end
 
 function v.Cursor.__mv_word_b_pre() -- use not
@@ -488,7 +488,7 @@ function v.Cursor.__mv_srch_ptn(ptn, drct) -- range
   local line_num = v.Cursor.line_num()
 
   local col
-  col = vim.fn.search(ptn, opt, line_num)
+  col = vf.search(ptn, opt, line_num)
   return col
 end
 
@@ -503,7 +503,7 @@ function v.Cursor.__mv_srch(drct)
   end
 
   local ptn = v.Rgstr.get('/')
-  vim.fn.search(ptn, opt)
+  vf.search(ptn, opt)
 end
 
 -- cursor __ ins
@@ -549,7 +549,7 @@ end
 
 function v.Cursor.__ins_cr()
 
-  -- local t_line_num = vim.fn.line('.')
+  -- local t_line_num = vf.line('.')
   local line_num = v.Cursor.line_num()
 
   -- v.Cmd.nml('i\\<cr> ')
@@ -602,7 +602,7 @@ end
 
 function v.Cursor.__ins_da()
 
-  local da = vim.fn.strftime('%Y-%m-%d')
+  local da = vf.strftime('%Y-%m-%d')
   v.Cursor.__ins(da)
 end
 
@@ -610,19 +610,19 @@ function v.Cursor.__ins_tm()
 
   v.Cursor.__ins('.')
 
-  local tm = vim.fn.strftime('%H:%M')
+  local tm = vf.strftime('%H:%M')
   v.Cursor.__ins(tm)
 end
 
 function v.Cursor.__ins_dt()
 
-  local dt = vim.fn.strftime('%Y-%m-%d.%H:%M')
+  local dt = vf.strftime('%Y-%m-%d.%H:%M')
   v.Cursor.__ins(dt)
 end
 
 function v.Cursor.__ins_ts()
 
-  local ts = vim.fn.strftime('%Y-%m-%d.%H:%M:%S')
+  local ts = vf.strftime('%Y-%m-%d.%H:%M:%S')
   v.Cursor.__ins(ts)
 end
 
@@ -630,7 +630,7 @@ g.week_def = { 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' }
 
 function v.Cursor.__ins_week()
 
-  local idx  = vim.fn.strftime('%w') + 1
+  local idx  = vf.strftime('%w') + 1
   local week = g.week_def[idx]
   v.Cursor.__ins(week)
 end
@@ -675,7 +675,7 @@ function v.Cursor.__ins_cmnt_mlt_by_pos_key(pos_key)
     dflt       = {'/*'     ,  ' */'},
   }
 
-  local str = vim.fn.get(cmnt_mlt_def, vim.bo.filetype, cmnt_mlt_def['dflt'])
+  local str = vf.get(cmnt_mlt_def, vim.bo.filetype, cmnt_mlt_def['dflt'])
 
   if     pos_key == 'bgn' then
     v.Cmd.nml('O')
@@ -807,7 +807,7 @@ function v.Cursor.u_char()
   local idx = v.Cursor.col_num()
   local line_num = v.Cursor.line_num() - 1
 
-  -- local c = vim.fn.getline(line_num):sub(idx, idx)
+  -- local c = vf.getline(line_num):sub(idx, idx)
   local c = v.Line.str_by_line_num(line_num):sub(idx, idx)
   return c
 end
@@ -820,7 +820,7 @@ function v.Cursor.d_char()
 
   local idx = v.Cursor.col_num()
   local line_num = v.Cursor.line_num() + 1
-  -- local c = vim.fn.getline(line_num):sub(idx, idx)
+  -- local c = vf.getline(line_num):sub(idx, idx)
   local c = v.Line.str_by_line_num(line_num):sub(idx, idx)
   return c
 end
@@ -993,13 +993,13 @@ end
 function v.Cursor.str_week__icl()
 
   local week_str = v.Cursor.word()
-  local week_idx = vim.fn.index(g.week_def, week_str)
+  local week_idx = vf.index(g.week_def, week_str)
 
   if week_idx == -1 then
     return
   end
 
-  local week_nxt_idx = v.Idx.__icl(week_idx, vim.fn.len(g.week_def))
+  local week_nxt_idx = v.Idx.__icl(week_idx, vf.len(g.week_def))
   local week_nxt_str = g.week_def[week_nxt_idx]
 
   v.Slctd.str__word()
@@ -1010,13 +1010,13 @@ end
 function v.Cursor.str_week__dcl()
 
   local week_str = v.Cursor.word()
-  local week_idx = vim.fn.index(g.week_def, week_str)
+  local week_idx = vf.index(g.week_def, week_str)
 
   if week_idx == -1 then
     return
   end
 
-  local week_nxt_idx = v.Idx.__dcl(week_idx, vim.fn.len(g.week_def))
+  local week_nxt_idx = v.Idx.__dcl(week_idx, vf.len(g.week_def))
   local week_nxt_str = g.week_def[week_nxt_idx]
 
   v.Slctd.str__word()
@@ -1028,7 +1028,7 @@ end
 
 function v.Cursor.word()
 
-  local word = vim.fn.expand('<cword>')
+  local word = vf.expand('<cword>')
   return word
 end
 
@@ -1038,7 +1038,7 @@ function v.Cursor.filepath()
 
   if     v.Is_env__('mac') then
 
-    str = vim.fn.expand('<cfile>')
+    str = vf.expand('<cfile>')
 
   elseif v.Is_env__('win64') then
 
@@ -1052,7 +1052,7 @@ function v.Cursor.filepath()
     str = v.Cursor.line_str()
   end
   
-  str = vim.fn.trim(str)
+  str = vf.trim(str)
   
   return str
 end
@@ -1062,7 +1062,7 @@ end
 function v.Cursor.__ins_line(str)
 
   local line_num = v.Cursor.line_num() - 1
-  vim.fn.append(line_num, str)
+  vf.append(line_num, str)
   v.Cursor.__mv_u()
 end
 
@@ -1089,7 +1089,7 @@ end
 function v.Cursor.d__ins_line(str)
 
   local line_num = v.Cursor.line_num()
-  vim.fn.append(line_num, str)
+  vf.append(line_num, str)
 end
 
 function v.Cursor.d__ins_line_space() -- range
@@ -1103,12 +1103,12 @@ end
 
 function v.Cursor.line_num() -- alias
 
-  return vim.fn.line('.')
+  return vf.line('.')
 end
 
 function v.Cursor.line_end_col() -- alias
 
-  local col = vim.fn.col('$')
+  local col = vf.col('$')
   return col
 end
 
@@ -1116,7 +1116,7 @@ end
 
 function v.Cursor.line_str()
 
-  return vim.fn.getline('.')
+  return vf.getline('.')
 end
 
 function v.Cursor.line_str_len()
@@ -1127,20 +1127,20 @@ end
 
 function v.Cursor.line_str_side_l()
 
-  local line_l = v.Cursor.line_str():sub(1             , vim.fn.col('.') - 1)
+  local line_l = v.Cursor.line_str():sub(1             , vf.col('.') - 1)
   return line_l
 end
 
 function v.Cursor.line_str_side_r()
 
-  local line_r = v.Cursor.line_str():sub(vim.fn.col('.') + 1)
+  local line_r = v.Cursor.line_str():sub(vf.col('.') + 1)
   return line_r
 end
 
 -- todo refactoring Cursor.line_str_side_r() + opt arg
 function v.Cursor.line_str_side_r_with_c()
 
-  local line_r = v.Cursor.line_str():sub(vim.fn.col('.'))
+  local line_r = v.Cursor.line_str():sub(vf.col('.'))
   return line_r
 end
 
@@ -1162,7 +1162,7 @@ function v.Cursor.line_end__dots_adjst() -- todo dev, mb_str
 
   local line_str = v.Cursor.line_str()
 
-  -- local ptn = vim.fn.escape(g.dots_str, '.')
+  -- local ptn = vf.escape(g.dots_str, '.')
   local idx = v.Str.srch_idx_by_lua(line_str, g.dots_str_ptn)
 
   if not idx then
@@ -1176,7 +1176,7 @@ end
 function v.Cursor.line_end_dots__crct()
 
   local line_str = v.Cursor.line_str()
-  -- local ptn = vim.fn.escape(g.dots_str, '.')
+  -- local ptn = vf.escape(g.dots_str, '.')
   local idx = v.Str.srch_idx_by_lua(line_str, g.dots_str_ptn)
 
   if not idx then
@@ -1189,20 +1189,20 @@ function v.Cursor.line_end_dots__crct()
     return
   end
 
-  local line_str_0 = vim.fn.strcharpart(line_str,     0, idx)
-  local line_str_1 = vim.fn.strcharpart(line_str, idx       )
+  local line_str_0 = vf.strcharpart(line_str,     0, idx)
+  local line_str_1 = vf.strcharpart(line_str, idx       )
 
   if     idx < g.dots_put_col then
 
     local space_str = v.Str.space(g.dots_put_col - idx)
     line_str = line_str_0 .. space_str .. line_str_1
   else
-    line_str_0 = vim.fn.strcharpart(line_str_0, 0, g.dots_put_col)
+    line_str_0 = vf.strcharpart(line_str_0, 0, g.dots_put_col)
     line_str = line_str_0 .. line_str_1
   end
 
   local line_num = v.Cursor.line_num()
-  vim.fn.setline(line_num, line_str)
+  vf.setline(line_num, line_str)
 end
 
 function v.Cursor.line_end__ins_dots()
@@ -1222,7 +1222,7 @@ function v.Cursor.line_end__ins_dots()
 
   line_str = line_str .. space_str .. g.dots_str
 
-  vim.fn.setline(line_num, line_str)
+  vf.setline(line_num, line_str)
 end
 
 function v.Cursor.line_end__ins(str)
@@ -1278,7 +1278,7 @@ function v.Cursor.f_str__crct_by_line(target_line_drct)
   -- dev anchor, confirm
   local trim_len = v.Str.srch_idx_by_lua(str, '[^ ]') - 1
   -- print( trim_len )
-  local str = vim.fn.trim(str)
+  local str = vf.trim(str)
 
   local cursor_r_char =  v.Str.l_char(str)
   -- print( cursor_r_char )
@@ -1477,7 +1477,7 @@ end
 
 function v.Cursor.line_indnt_col_with_c()
 
-  local col = vim.fn.cindent(v.Cursor.line_num())
+  local col = vf.cindent(v.Cursor.line_num())
   return col
 end
 

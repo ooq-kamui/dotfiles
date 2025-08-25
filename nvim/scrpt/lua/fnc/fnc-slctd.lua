@@ -1107,7 +1107,8 @@ function v.Slctd.line__ins_cmnt_1() -- range
 
     v.Line.end__pad_space(line_num, col - 1)
 
-    v.Cursor.__mv_by_line_col(line_num, col)
+    -- v.Cursor.__mv_by_line_col(line_num, col)
+    v.Cursor.__mv_by_line_ruler(line_num, col)
 
     v.Cursor.__ins_cmnt_1(nil)
   end
@@ -1228,7 +1229,8 @@ function v.Slctd.box_edge_l__ynk_line_1() -- range
 
   for idx, line_num in pairs(v.Slctd.line_num_seq()) do
 
-    v.Cursor.__mv_by_line_col(line_num, col_num)
+    -- v.Cursor.__mv_by_line_col(line_num, col_num)
+    v.Cursor.__mv_by_line_ruler(line_num, col_num)
 
     if v.Cursor.col_num() < col_num then
       -- continue

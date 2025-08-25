@@ -9,7 +9,7 @@ g.dots_str     = ' .. '
 g.dots_str_ptn = ' %.%. '
 g.dots_put_col = 50
 
-g.home_dir         = vim.fn.expand('$HOME')
+g.home_dir         = vf.expand('$HOME')
 g.dotfiles_dir     = g.home_dir      .. '/wrk/prj-pri/dotfiles'
 g.nvim_init_dir    = g.dotfiles_dir  .. '/nvim/scrpt'
 

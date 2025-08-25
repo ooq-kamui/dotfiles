@@ -63,7 +63,7 @@ function v.Mode.is__ins_menu()
 
   local ret = false
 
-  if vim.fn.pumvisible() == 1 then
+  if vf.pumvisible() == 1 then
     ret = true
   end
 

@@ -512,7 +512,7 @@ vim.keymap.set('n', '/', ':lua v.Repeat_fnc()<cr>')
 -- macro rec
 -- vim.keymap.set('n', '`', 'q')
 vim.keymap.set('n', '`', function()
-  if vim.fn.reg_recording() == '' then
+  if vf.reg_recording() == '' then
     return 'qa'
   else
     return 'q'
@@ -522,7 +522,7 @@ end, {expr = true})
 -- macro ply
 -- vim.keymap.set('n', '@', '1@a')
 vim.keymap.set('n', '@', function()
-  if vim.fn.reg_recording() == '' then
+  if vf.reg_recording() == '' then
     return '1@a'
   else
     return 'q'

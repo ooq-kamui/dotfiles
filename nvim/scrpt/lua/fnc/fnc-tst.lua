@@ -6,7 +6,7 @@ v.Tst = {}
 function v.Tst.tst()
   print('tst')
 
-  local val = vim.fn.screencol()
+  local val = vf.screencol()
   print(val)
 
   -- local str = 'abcdefg'

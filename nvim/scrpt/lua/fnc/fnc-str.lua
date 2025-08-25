@@ -3,12 +3,22 @@ v.Str = {}
 
 function v.Str.len(str) -- alias
 
-  return vf.strchars(str)
+  return vf.strchars(str) -- by char
+end
+
+function v.Str.len_byte(str) -- alias
+
+  return vf.strlen(str) -- by byte
+end
+
+function v.Str.len_char(str) -- alias
+
+  return vf.strcharlen(str) -- by char
 end
 
 function v.Str.trim(str)
 
-  str = vim.fn.trim(str)
+  str = vf.trim(str)
   return str
 end
 
@@ -41,14 +51,14 @@ function v.Str.sub_by_col(str, col_s, col_e) -- col : 1 start
   local len    = col_e - col_s + 1
   local byte_s = col_s - 1
 
-  local r_str = vim.fn.strpart(str, byte_s, len)
+  local r_str = vf.strpart(str, byte_s, len)
   return r_str
 end
 
 function v.Str.sub_by_char_idx(str, char_idx_s, char_idx_e) -- char_idx : 1 start
 
   local len = char_idx_e - char_idx_s + 1
-  local r_str = vim.fn.strcharpart(str, char_idx_s - 1, len)
+  local r_str = vf.strcharpart(str, char_idx_s - 1, len)
   return r_str
 end
 
@@ -65,6 +75,14 @@ function v.Str.space(len)
   end
   return space_str
 end
+
+function v.Str.ruler_num(str)
+
+  local ruler_num = vf.strdisplaywidth(str)
+  return ruler_num
+end
+
+-- str srch
 
 function v.Str.srch(str, ptn)
 
@@ -83,7 +101,7 @@ end
 -- dev anchor, rpl
 function v.Str.srch_idx_by_vim(str, ptn, idx) -- alias
 
-  local r_idx = vim.fn.match(str, ptn, idx)
+  local r_idx = vf.match(str, ptn, idx)
   return r_idx -- -1 : match not
 end
 
@@ -122,12 +140,6 @@ function v.Str.col_idx_lst(str)
   end
 
   return col_idx_lst
-end
-
-function v.Str.ruler_num(str)
-
-  local ruler_num = vim.fn.strdisplaywidth(str)
-  return ruler_num
 end
 
 -- str __ rpl

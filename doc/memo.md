@@ -2,38 +2,15 @@
 # dotfiles
 
 
-## skr-vps
-
-alm
-- ssh key cre
-  - ssh type research
-
-
 ## nvim
-
-mb tidy
-- call Cursor.__mv_by_line_col, in for
-- tst
-          1         2
-012345678901234567890
-         1         2
-12345678901234567890
-  aaa   bbb    ccc    ddd
-  あいaうえお     aaa   bbb    ccc
-
-
-slctd から :lua で 選択行が差し変わらないのはなぜ?
-```
-:lua
-と
-:!lua
-の違い
-
-read research, write doc-tech
-```
 
 :m fzf key-map
 - fnc cre
+
+
+## skr-vps
+
+alm ssh set at mac
 
 
 ## aws

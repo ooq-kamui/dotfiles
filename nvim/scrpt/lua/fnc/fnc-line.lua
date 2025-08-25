@@ -5,17 +5,17 @@ v.Line = {}
 
 function v.Line.num_file_edge_bgn()
 
-  return vim.fn.line('^')
+  return vf.line('^')
 end
 
 function v.Line.num_file_edge_end() -- alias
 
-  return vim.fn.line('$')
+  return vf.line('$')
 end
 
 function v.Line.str_by_line_num(line_num) -- alias
 
-  return vim.fn.getline(line_num)
+  return vf.getline(line_num)
 end
 
 -- line xx __ ins
@@ -38,7 +38,7 @@ end
 
 function v.Line.end__pad_space(line_num, fil_end_col)
 
-  -- local line_str     = vim.fn.getline(line_num)
+  -- local line_str     = vf.getline(line_num)
   local line_str     = v.Line.str_by_line_num(line_num)
 
   local line_str_len = v.Str.len(line_str)
@@ -50,12 +50,12 @@ function v.Line.end__pad_space(line_num, fil_end_col)
 
   local space_str = v.Str.space(space_len)
   line_str = line_str .. space_str
-  vim.fn.setline(line_num, line_str)
+  vf.setline(line_num, line_str)
 end
 
 function v.Line.__del_by_line_num(line_num)
 
-  vim.fn.deletebufline('%', line_num)
+  vf.deletebufline('%', line_num)
 end
 
 function v.Line.__dpl()
@@ -67,8 +67,8 @@ end
 
 function v.Line.num_by_Line_info(line_info)
 
-  local line_info = vim.fn.trim(line_info, ' ', 1)
-  local line_num  = vim.fn.split(line_info, '\\s\\+')[1]
+  local line_info = vf.trim(line_info, ' ', 1)
+  local line_num  = vf.split(line_info, '\\s\\+')[1]
   u.Log.val(line_num)
 
   return line_num
@@ -79,32 +79,31 @@ end
 
 -- line col
 
-function v.Line.col_num_by_ruler_num(line_num, ruler_num)
+function v.Line.col_num_by_ruler_num(line_num, p_ruler_num)
 
   local line_str = v.Line.str_by_line_num(line_num)
 
-  local t_col_num   = ruler_num
+  local line_str_len_char = v.Str.len_char(line_str)
 
-  local str         = v.Str.sub_by_char_idx(line_str, 1, t_col_num)
-  local t_ruler_num = v.Str.ruler_num(str)
+  local t_ruler_num = p_ruler_num - 1
+  local _ruler_num
 
-  while t_ruler_num < ruler_num do
+  for char_idx = 1, line_str_len_char do
 
-    print('while')
+    str = v.Str.sub_by_char_idx(line_str, 1, char_idx)
+    -- print(str)
 
-    str         = v.Str.sub_by_char_idx(line_str, 1, t_col_num)
-    print(str)
+    _ruler_num = v.Str.ruler_num(str)
+    -- print(_ruler_num, '>', t_ruler_num)
 
-    t_ruler_num = v.Str.ruler_num(str)
-    print(t_ruler_num, '>', ruler_num)
-
-    if t_ruler_num > ruler_num then
+    if _ruler_num >= t_ruler_num then
       break
     end
-
-    t_col_num = t_col_num + 1
   end
 
+  -- print('end')
+  -- print(str)
+  local t_col_num = v.Str.len_byte(str) + 1
   return t_col_num
 end
 
