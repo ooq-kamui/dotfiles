@@ -246,10 +246,11 @@ end
 
 -- srch init
 
--- srch init
-function v.Srch.init() -- use not
+function v.Srch.init()
 
-  local cmd_nml = '/<cr>N'
-  v.Cmd.nml(cmd_nml)
+  vim.cmd('silent! /dmy')
+  vim.defer_fn(function()
+    v.Srch.str__prv_tgl()
+  end, 100)
 end
 

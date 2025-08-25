@@ -171,6 +171,13 @@ vim.api.nvim_create_autocmd({'BufWinEnter'}, {
   end,
 })
 
+-- vim.api.nvim_create_autocmd({'BufRead'}, {
+--   pattern  = {'*'},
+--   callback = function()
+--     vim.cmd('normal! /dmy')
+--   end,
+-- })
+
 -- set nowrap
 vim.opt.wrap = false
 vim.opt.whichwrap:append('b')

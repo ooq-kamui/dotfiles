@@ -714,11 +714,8 @@ vim.keymap.set('n', 'q', ':lua v.Cursor.f_str__space_crct("u")<cr>')
 -- 
 
 -- srch hl init
-vim.keymap.set('n', 'S', '/<cr>N')
--- vim.keymap.set('n', 'S', ':lua v.Srch.init()<cr>')
--- vim.cmd('/^$')
--- print('aaaaa' .. v.Rgstr.get('/') .. 'bbb' )
--- print('aaaaa' .. vim.fn.histget('/', -1) .. 'bbb' )
+-- vim.keymap.set('n', 'xx', '/<cr>N')
+-- vim.keymap.set('n', 'xx', ':lua v.Srch.init()<cr>')
 
 -- srch char in line - forward
 -- vim.keymap.set('n', 'xx', 'f')
@@ -812,8 +809,9 @@ vim.keymap.set('n', ':p', ':Pth <cr>')
 
 -- cd slf
 vim.keymap.set('n', ':d', ':lua v.Dir.__buf_file_dir()')
+
 -- dev anchor
--- vim.keymap.set('n', ':d', ':lua v.Dir.__nvim_start()')
+vim.keymap.set('n', ':D', ':lua v.Dir.__nvim_launch()')
 
 -- cd parent
 vim.keymap.set('n', ':k', ':K')

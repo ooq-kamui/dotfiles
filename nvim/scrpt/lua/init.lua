@@ -65,12 +65,9 @@ if vim.g.env_dir ~= 'c9' then -- c9, s9
   v.Rgstr.ynk__clp()
 end
 
---v.Srch_init()
--- print('aaaaa' .. vim.fn.histget('/', -1) .. 'bbb' )
--- vim.defer_fn(function()
---   local srch_str = vim.fn.histget('/', -1)
---   print('cccc' .. srch_str)
--- end, 1500)
+-- srch init
+
+v.Srch.init()
 
 -- init end
 

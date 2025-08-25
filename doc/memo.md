@@ -29,8 +29,6 @@ game cre
 
 ## nvim
 
-dir__launch()
-
 plg
 - nvim-treesitter
 

@@ -42,12 +42,11 @@ function v.Dir.__parent(lvl)
   v.Dir.pth()
 end
 
--- dev anchor
-g.nvim_start_dir = ''
+g.nvim_launch_dir = vf.system('pwd') -- v.Sys.cmd('pwd')
 
-function v.Dir.__nvim_start()
+function v.Dir.__nvim_launch()
 
-  local dir = g.nvim_start_dir
+  local dir = g.nvim_launch_dir
   v.Dir.__(dir)
 end
 
