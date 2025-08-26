@@ -29,7 +29,7 @@ function v.Cursor.ruler_num()
 
   local str = v.Cursor.line_str_side_l()
 
-  local ruler_num = v.Str.ruler_num(str) + 1
+  local ruler_num = v.Str.ruler_len(str) + 1
   u.Log.val(ruler_num)
 
   return ruler_num

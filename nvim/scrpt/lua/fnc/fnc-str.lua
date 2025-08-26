@@ -76,7 +76,7 @@ function v.Str.space(len)
   return space_str
 end
 
-function v.Str.ruler_num(str)
+function v.Str.ruler_len(str)
 
   local ruler_num = vf.strdisplaywidth(str)
   return ruler_num

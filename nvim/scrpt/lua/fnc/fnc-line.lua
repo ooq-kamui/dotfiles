@@ -76,33 +76,33 @@ end
 
 -- line cnd
 
-
 -- line col
 
 function v.Line.col_num_by_ruler_num(line_num, p_ruler_num)
 
-  local line_str = v.Line.str_by_line_num(line_num)
-
+  local line_str          = v.Line.str_by_line_num(line_num)
   local line_str_len_char = v.Str.len_char(line_str)
 
   local t_ruler_num = p_ruler_num - 1
-  local _ruler_num
+  local char_idx = math.min(t_ruler_num, line_str_len_char)
+  local str, _ruler_len
 
-  for char_idx = 1, line_str_len_char do
+  while char_idx > 0 do
 
     str = v.Str.sub_by_char_idx(line_str, 1, char_idx)
-    -- print(str)
+    -- u.Log.val(str)
 
-    _ruler_num = v.Str.ruler_num(str)
-    -- print(_ruler_num, '>', t_ruler_num)
+    _ruler_len = v.Str.ruler_len(str)
+    -- u.Log.val(_ruler_len, '>', t_ruler_num)
 
-    if _ruler_num >= t_ruler_num then
+    if _ruler_len <= t_ruler_num then
       break
     end
+
+    char_idx = char_idx - 1
   end
 
-  -- print('end')
-  -- print(str)
+  -- u.Log.val(str)
   local t_col_num = v.Str.len_byte(str) + 1
   return t_col_num
 end
