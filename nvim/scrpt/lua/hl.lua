@@ -32,9 +32,20 @@ vim.api.nvim_create_autocmd('InsertLeave', {
   end,
 })
 
-hl__(0, 'Cursor'        , {                          ctermbg = 'gray'       })
-hl__(0, 'CursorLineNr'  , {ctermfg = 'magenta'                              })
+-- vim.opt.guicursor = "n-v-i-c:block"
+vim.opt.guicursor = "n-v-i-c:ver45"
+-- vim.opt.guicursor = "n-v-i-c:hor45"
+-- vim.opt.guicursor = "n-v-i-c:hor20-blinkwait700-blinkon400"
+
+-- hl__(0, 'Cursor'        , {ctermfg = 'black'        , ctermbg = 'none'       })
+-- hl__(0, 'Cursor'        , {ctermfg = 'blue'        , ctermbg = 'none'       })
+-- hl__(0, 'Cursor'        , {                          ctermbg = 'gray'       })
+-- hl__(0, 'Cursor'        , {reverse = true                                   })
+-- hl__(0, 'Cursor'        , {fg      = 'none'        , bg      = 'gray'       , reverse = true})
+hl__(0, 'Cursor'        , {fg      = 'none'        , bg      = 'gray'       , reverse = true})
+
 hl__(0, 'CursorLine'    , {underline = true})
+hl__(0, 'CursorLineNr'  , {ctermfg = 'magenta'                              })
 
 hl__(0, 'Visual'        , {ctermfg = 'none'        , ctermbg = 'darkmagenta'})
 hl__(0, 'VisualNOS'     , {                          ctermbg = 'darkmagenta'})

@@ -4,7 +4,7 @@
 v.Tst = {}
 
 function v.Tst.tst()
-  print('tst')
+  print('fnc tst')
 
   local val = vf.screencol()
   print(val)

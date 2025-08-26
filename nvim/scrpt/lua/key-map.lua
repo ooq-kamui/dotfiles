@@ -313,7 +313,7 @@ vim.keymap.set('n', 'gh', ':lua v.Buf.opn_init_vim()<cr>')
 -- vim.keymap.set('n', 'xx', ':lua v.Buf.opn_tmp_file()<cr>')
 
 -- opn memo
--- vim.keymap.set('n', 'xx', ':lua v.Buf.opn_memo()<cr>')
+vim.keymap.set('n', 'gm', ':lua v.Buf.opn_memo()<cr>')
 
 -- opn man
 -- vim.keymap.set('n', 'xx', ':OpnMan ')
@@ -508,11 +508,10 @@ vim.keymap.set('n', 'H' , ':lua v.Undo__clr()')
 
 -- repeat fnc
 vim.keymap.set('n', '^', ':lua v.Repeat_fnc()<cr>')
-vim.keymap.set('n', '-', ':lua v.Repeat_fnc()<cr>')
-vim.keymap.set('n', '/', ':lua v.Repeat_fnc()<cr>')
+-- vim.keymap.set('n', '~', ':lua v.Repeat_fnc()<cr>')
 
+-- macro
 -- macro rec
--- vim.keymap.set('n', '`', 'q')
 vim.keymap.set('n', '`', function()
   if vf.reg_recording() == '' then
     return 'qa'
@@ -522,7 +521,6 @@ vim.keymap.set('n', '`', function()
 end, {expr = true})
 
 -- macro ply
--- vim.keymap.set('n', '@', '1@a')
 vim.keymap.set('n', '@', function()
   if vf.reg_recording() == '' then
     return '1@a'
@@ -565,13 +563,13 @@ vim.keymap.set('n', '0', ':lua v.Cursor.__ins_hyphen()<cr>')
 -- ins quote
 -- vim.keymap.set('n', 'xx', ':lua v.Cursor.__ins_quote()<cr>')
 
--- ins date
-vim.keymap.set('n', '*', ':lua v.Cursor.__ins_da()<cr>')
+-- ins date ( da )
+vim.keymap.set('n', '*'    , ':lua v.Cursor.__ins_da()<cr>')
 
--- ins time
-vim.keymap.set('n', 'Y', ':lua v.Cursor.__ins_tm()<cr>')
+-- ins time ( tm )
+vim.keymap.set('n', '<c-t>', ':lua v.Cursor.__ins_tm()<cr>')
 
--- ins date time
+-- ins date time ( dt )
 -- vim.keymap.set('n', 'x', ':lua v.Cursor.__ins_dt()<cr>')
 
 -- ins day of week
@@ -768,10 +766,16 @@ vim.keymap.set('n', ':s', ':%s/<c-r>//xxx/g')
 -- vim.keymap.set('n', ':s', ':Rpl ')
 
 -- fzf rg
-vim.keymap.set('n', '<leader>o', ':lua v.Fzf_rg(nil)<cr>')
+vim.keymap.set('n', '<leader>o'    , ':lua v.Fzf_rg(nil)<cr>')
+
+-- fzf rg srch str
+vim.keymap.set('n', '<leader><c-o>', ':lua v.Fzf_rg("<c-r>/")<cr>')
+
+-- fzf rg srch str word1
+vim.keymap.set('n', '<leader>O'    , ':lua v.Fzf_rg_word1("<c-r>/")<cr>')
 
 -- fzf rg fltr ext
-vim.keymap.set('n', '<leader>O', ':FzfRgExt js')
+-- vim.keymap.set('n', '<leader>O', ':FzfRgExt js')
 
 -- fzf rg with run
 -- vim.keymap.set('n', '<leader>O', ':FzfRgWithRun <cr>')

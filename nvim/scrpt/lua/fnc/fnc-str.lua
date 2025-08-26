@@ -16,7 +16,7 @@ function v.Str.len_char(str) -- alias
   return vf.strcharlen(str) -- by char
 end
 
-function v.Str.trim(str)
+function v.Str.trim(str) -- alias
 
   str = vf.trim(str)
   return str

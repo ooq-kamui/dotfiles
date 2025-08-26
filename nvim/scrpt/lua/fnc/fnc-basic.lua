@@ -440,9 +440,9 @@ end
 -- repeat fnc
 
 function v.Repeat_fnc()
-  print('repeat fnc')
+  print('fnc repeat')
 
-  v.Tst.tst()
+  -- v.Tst.tst()
 
   -- v.Cursor.__mv_srch('f')
   -- v.Cursor.__mv_d()
@@ -522,7 +522,7 @@ function v.Mark_tgl()
   local alph = v.Mark_alph_line()
   --print( 'Mark_tgl ' .. alph )
 
-  if v.Is_str__emp(alph) then
+  if v.Str.is__emp(alph) then
     v.Mark_add()
   else
     v.Mark_del(alph)

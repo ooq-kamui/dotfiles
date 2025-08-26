@@ -608,7 +608,7 @@ end
 
 function v.Cursor.__ins_tm()
 
-  v.Cursor.__ins('.')
+  -- v.Cursor.__ins('.')
 
   local tm = vf.strftime('%H:%M')
   v.Cursor.__ins(tm)

@@ -80,7 +80,15 @@ g.memo_path = 'doc/memo.md'
 
 function v.Buf.opn_memo()
 
-  v.Buf.opn(g.memo_path)
+  local sys_cmd      = 'git rev-parse --show-cdup'
+  local git_root_dir = v.Sys.cmd(sys_cmd)
+  git_root_dir = v.Str.trim(git_root_dir)
+  -- print(git_root_dir)
+
+  local file_path    = git_root_dir .. g.memo_path
+  -- print(file_path)
+
+  v.Buf.opn(file_path)
 end
 
 -- tag jmp
@@ -91,7 +99,7 @@ function v.Buf.opn_by_path(rg_rslt_line)
 
   local rg_rslt_line = vf.trim(rg_rslt_line)
 
-  if v.Is_str__emp(rg_rslt_line) then
+  if v.Str.is__emp(rg_rslt_line) then
     print( 'empty' )
     return
   end

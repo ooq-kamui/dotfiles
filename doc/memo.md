@@ -29,6 +29,8 @@ game cre
 
 ## nvim
 
+cursor style, tidy
+
 plg
 - nvim-treesitter
 
