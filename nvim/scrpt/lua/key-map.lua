@@ -1262,9 +1262,6 @@ vim.keymap.set('v', 's', function()
   end
 end, {expr = true})
 
--- line mlt forward del
-vim.keymap.set('v', '<c-d>', 'D')
-
 -- slctd line __ del line top space
 -- vim.keymap.set('v', 'xx', ':lua v.Slctd.line_top_space__del()<cr>')
 
@@ -1272,6 +1269,9 @@ vim.keymap.set('v', '<c-d>', 'D')
 vim.keymap.set('v', 'm', ':lua v.Slctd.line_end_space__del()<cr>')
 
 -- slctd box
+
+-- slctd box __ forward del
+-- vim.keymap.set('v', '<c-d>', 'D')
 
 -- slctd box __ del cursor f space
 vim.keymap.set('v', 'K', ':lua v.Slctd.box_cursor_r_space__crct()<cr>')
@@ -1292,6 +1292,7 @@ end, {expr = true})
 vim.keymap.set('v', 'W', ':lua v.Slctd.str_edge_out__tgl_shft()<cr>')
 
 -- slctd str edge out __ ins space
+vim.keymap.set('v', '.'    , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
 vim.keymap.set('v', '<c-f>', ':lua v.Slctd.str_edge_out__ins_space()<cr>')
 
 -- slctd str edge out __ ins markdown strikethrough

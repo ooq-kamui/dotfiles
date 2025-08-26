@@ -2,6 +2,13 @@
 # dotfiles
 
 
+## nvim
+
+opn memo
+- err
+- not git dir
+
+
 ## skr-vps
 
 alm ssh set at mac

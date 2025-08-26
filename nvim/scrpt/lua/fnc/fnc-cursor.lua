@@ -370,10 +370,11 @@ function v.Cursor.__mv_file_edge(cmd_nml)
   end
 
   if not v.Cursor.is_line_num__file_edge() then
-    if     cmd_nml == 'K' then
+    if     cmd_nml == 'k' then
       v.Cmd.nml('gg')
-    elseif cmd_nml == 'J' then
+    elseif cmd_nml == 'j' then
       v.Cmd.nml('G' )
+    end
   end
 end
 
