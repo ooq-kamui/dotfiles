@@ -361,12 +361,19 @@ function v.Cursor.__mv_file_edge(cmd_nml)
   end
 
   local cnt = 1
-  local cnt_max = 10000
+  local cnt_max = 50000
 
   while ( not v.Cursor.is_line_num__file_edge() and cnt < cnt_max ) do
 
     v.Cmd.nml(cmd_nml)
     cnt = cnt + 1
+  end
+
+  if not v.Cursor.is_line_num__file_edge() then
+    if     cmd_nml == 'K' then
+      v.Cmd.nml('gg')
+    elseif cmd_nml == 'J' then
+      v.Cmd.nml('G' )
   end
 end
 

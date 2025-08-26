@@ -406,7 +406,8 @@ vim.keymap.set('n', 'F', ':lua v.Cursor.__mv_fnc_name()<cr>')
 vim.keymap.set('n', '<c-l>', '%')
 
 -- cursor mv bracket out back
-vim.keymap.set('n', '<bar>', '[{')
+vim.keymap.set('n', '\\', '[{')
+-- vim.keymap.set('n', '<bar>', '[{')
 -- vim.keymap.set('n', '<', '[{')
 
 -- cursor mv indnt auto
