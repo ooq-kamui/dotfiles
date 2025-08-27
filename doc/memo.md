@@ -41,6 +41,8 @@ game cre
 srch init bug ?
 - g.line_end_space_ptn ?
   - `[ \t]*` ??
+    - ptn confirm
+    - case : ptn : ptn rpl
 
 opn_view_ltst()
 - err case ?

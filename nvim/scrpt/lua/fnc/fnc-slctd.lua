@@ -292,9 +292,32 @@ end
 
 -- slctd __ expnd quote
 
--- dev anchor vvvvvvvvvvvvvvv
-
 g.quote_ptn = '[' .. "'" .. '"' .. '`' .. ']'
+
+function v.Slctd.str__expnd_quote_swtch() -- range
+
+  v.Slctd.__ltst()
+
+  if v.Slctd.is_str_edge_char__quote() then
+    -- v.Esc()
+    return
+  end
+
+  if v.Slctd.is_str_edge_out_char__quote() then
+
+    v.Slctd.str__expnd_quote_on()
+  else
+    v.Slctd.str__expnd_quote_in_swtch()
+  end
+end
+
+function v.Slctd.str__expnd_quote_on() -- range
+
+  v.Slctd.__ltst()
+
+  v.Slctd.str__expnd_quote_on_f()
+  v.Slctd.str__expnd_quote_on_b()
+end
 
 function v.Slctd.str__expnd_quote_on_f() -- range
 
@@ -308,26 +331,6 @@ function v.Slctd.str__expnd_quote_on_b() -- range
 
   v.Cursor.__mv_slctd_edge_tgl()
   v.Cursor.__mv_srch_ptn(g.quote_ptn, 'b')
-end
-
-function v.Slctd.str__expnd_quote_on() -- range
-
-  v.Slctd.__ltst()
-
-  v.Slctd.str__expnd_quote_on_f()
-  v.Slctd.str__expnd_quote_on_b()
-end
-
-function v.Slctd.str__expnd_quote_in_f() -- range
-
-  v.Slctd.str__expnd_quote_on_f()
-  v.Cmd.nml('h')
-end
-
-function v.Slctd.str__expnd_quote_in_b() -- range
-
-  v.Slctd.str__expnd_quote_on_b()
-  v.Cmd.nml('l')
 end
 
 function v.Slctd.str__expnd_quote_in_swtch() -- range
@@ -348,47 +351,101 @@ function v.Slctd.str__expnd_quote_in_swtch() -- range
   end
 end
 
-function v.Slctd.str__expnd_quote_swtch() -- range
+function v.Slctd.str__expnd_quote_in_f() -- range
+
+  v.Slctd.str__expnd_quote_on_f()
+  v.Cmd.nml('h')
+end
+
+function v.Slctd.str__expnd_quote_in_b() -- range
+
+  v.Slctd.str__expnd_quote_on_b()
+  v.Cmd.nml('l')
+end
+
+
+
+-- dev anchor vvvvvvvvvvvvvvv
+
+g.char_pair_lst_r = {')', '}'}
+g.char_pair_lst_l = {'(', '{'}
+
+g.char_pair_ptn = '[' .. "'" .. '"' .. '`' .. ']'
+
+function v.Slctd.str__expnd_char_pair_swtch() -- range
 
   v.Slctd.__ltst()
 
-  if v.Slctd.is_str_edge_char__quote() then
+  if v.Slctd.is_str_edge_char__char_pair() then
     -- v.Esc()
     return
   end
 
-  if v.Slctd.is_str_edge_out_char__quote() then
+  if v.Slctd.is_str_edge_out_char__char_pair() then
 
-    v.Slctd.str__expnd_quote_on()
+    v.Slctd.str__expnd_char_pair_on()
   else
-    v.Slctd.str__expnd_quote_in_swtch()
+    v.Slctd.str__expnd_char_pair_in_swtch()
   end
 end
 
--- dev anchor ^^^^^^^^^^^^^^^^^
+function v.Slctd.str__expnd_char_pair_on() -- range
 
+  v.Slctd.__ltst()
 
--- dev anchor
-function v.Slctd.str__expnd_bracket_in_f() -- range
+  v.Slctd.str__expnd_char_pair_on_f()
+  v.Slctd.str__expnd_char_pair_on_b()
+end
 
-  v.Slctd.str__expnd_bracket_on_f()
+function v.Slctd.str__expnd_char_pair_on_f() -- range
+
+  v.Slctd.__ltst()
+  v.Cursor.__mv_srch_ptn(g.char_pair_ptn, 'f')
+end
+
+function v.Slctd.str__expnd_char_pair_on_b() -- range
+
+  v.Slctd.__ltst()
+
+  v.Cursor.__mv_slctd_edge_tgl()
+  v.Cursor.__mv_srch_ptn(g.char_pair_ptn, 'b')
+end
+
+function v.Slctd.str__expnd_char_pair_in_swtch() -- range
+
+  v.Slctd.__ltst()
+
+  if not v.Cursor.is_line_str__ptn(g.char_pair_ptn) then
+    return
+  end
+
+  local c_r = v.Slctd.str_edge_r_out_char()
+
+  if not v.Str.is__ptn(c_r, g.char_pair_ptn) then
+
+    v.Slctd.str__expnd_char_pair_in_f()
+  else
+    v.Slctd.str__expnd_char_pair_in_b()
+  end
+end
+
+function v.Slctd.str__expnd_char_pair_in_f() -- range
+
+  v.Slctd.str__expnd_char_pair_on_f()
   v.Cmd.nml('h')
 end
 
--- dev anchor
-function v.Slctd.str__expnd_bracket_in_b() -- range
+function v.Slctd.str__expnd_char_pair_in_b() -- range
 
-  v.Slctd.str__expnd_bracket_on_b()
+  v.Slctd.str__expnd_char_pair_on_b()
   v.Cmd.nml('l')
 end
 
--- dev anchor
-function v.Slctd.str__expnd_bracket_in_swtch() -- range
+-- dev anchor ^^^^^^^^^^^^^^^
 
-  
-end
 
--- dev anchor
+
+-- dev anchor, del ????
 function v.Slctd.str__expnd_bracket_f() -- range -- todo dev
 
   -- local bracket_ptn = '[' .. "'" .. '"`)}\\]' .. ']'
