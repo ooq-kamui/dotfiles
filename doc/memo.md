@@ -4,9 +4,11 @@
 
 ## nvim
 
-opn memo
-- err
-- not git dir
+str__expnd_bracket_in_swtch()
+- logic generalize
+- str__expnd_bracket_swtch() ??
+
+str__expnd_char_pair_swtch()
 
 
 ## skr-vps
@@ -36,7 +38,18 @@ game cre
 
 ## nvim
 
+srch init bug ?
+- g.line_end_space_ptn ?
+  - `[ \t]*` ??
+
+opn_view_ltst()
+- err case ?
+
 cursor style, tidy
+- reserch
+
+fzf fnc call
+- :lua v.Xxx.xxx(prm01, prm02)
 
 plg
 - nvim-treesitter

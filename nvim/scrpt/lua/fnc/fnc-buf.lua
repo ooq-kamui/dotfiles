@@ -85,7 +85,15 @@ function v.Buf.opn_memo()
   git_root_dir = v.Str.trim(git_root_dir)
   -- print(git_root_dir)
 
-  local file_path    = git_root_dir .. g.memo_path
+  local srch_idx = v.Str.srch_idx(git_root_dir, 'fatal:')
+  -- print(srch_idx)
+  if srch_idx == 1 then
+    git_root_dir = g.dotfiles_dir .. '/'
+  end
+  -- print(git_root_dir)
+
+  local file_path
+  file_path = git_root_dir .. g.memo_path
   -- print(file_path)
 
   v.Buf.opn(file_path)
@@ -238,7 +246,7 @@ end
 
 -- load re  -  encode sjis
 
-function v.Load_re__sjis()
+function v.Buf.re__sjis()
 
   v.Cmd.cmd('e ++enc=sjis')
 end

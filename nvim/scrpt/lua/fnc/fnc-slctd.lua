@@ -258,7 +258,7 @@ function v.Slctd.str__expnd_space_f() -- range
   v.Cmd.nml('wh')
 end
 
--- dev anchor
+-- dev anchor ?
 function v.Slctd.str__expnd_f() -- range
 
   v.Slctd.__ltst()
@@ -292,6 +292,8 @@ end
 
 -- slctd __ expnd quote
 
+-- dev anchor vvvvvvvvvvvvvvv
+
 g.quote_ptn = '[' .. "'" .. '"' .. '`' .. ']'
 
 function v.Slctd.str__expnd_quote_on_f() -- range
@@ -306,22 +308,6 @@ function v.Slctd.str__expnd_quote_on_b() -- range
 
   v.Cursor.__mv_slctd_edge_tgl()
   v.Cursor.__mv_srch_ptn(g.quote_ptn, 'b')
-end
-
-function v.Slctd.str__expnd_quote_on_swtch() -- range
-
-  -- v.Cursor.is_line_str__ptn() -- todo dev ?
-
-  v.Slctd.__ltst()
-
-  local c = v.Cursor.c_char()
-
-  -- if c !~ g.quote_ptn then
-  if not v.Str.is__ptn(c, g.quote_ptn) then
-    v.Slctd.str__expnd_quote_on_f()
-  else
-    v.Slctd.str__expnd_quote_on_b()
-  end
 end
 
 function v.Slctd.str__expnd_quote_on() -- range
@@ -342,7 +328,6 @@ function v.Slctd.str__expnd_quote_in_b() -- range
 
   v.Slctd.str__expnd_quote_on_b()
   v.Cmd.nml('l')
-  -- v.Cursor.__mv_slctd_edge_tgl()
 end
 
 function v.Slctd.str__expnd_quote_in_swtch() -- range
@@ -380,6 +365,30 @@ function v.Slctd.str__expnd_quote_swtch() -- range
   end
 end
 
+-- dev anchor ^^^^^^^^^^^^^^^^^
+
+
+-- dev anchor
+function v.Slctd.str__expnd_bracket_in_f() -- range
+
+  v.Slctd.str__expnd_bracket_on_f()
+  v.Cmd.nml('h')
+end
+
+-- dev anchor
+function v.Slctd.str__expnd_bracket_in_b() -- range
+
+  v.Slctd.str__expnd_bracket_on_b()
+  v.Cmd.nml('l')
+end
+
+-- dev anchor
+function v.Slctd.str__expnd_bracket_in_swtch() -- range
+
+  
+end
+
+-- dev anchor
 function v.Slctd.str__expnd_bracket_f() -- range -- todo dev
 
   -- local bracket_ptn = '[' .. "'" .. '"`)}\\]' .. ']'
@@ -481,9 +490,9 @@ function v.Slctd.__del() -- range
   v.Cmd.nml(cmd)
 end
 
--- slctd str __ pad
+-- slctd str __ fil
 
-function v.Slctd.__pad(char) -- range
+function v.Slctd.__fil(char) -- range
 
   local char = char
 
@@ -499,14 +508,14 @@ function v.Slctd.__pad(char) -- range
   v.Slctd.__ltst()
 end
 
-function v.Slctd.__pad_space() -- range
+function v.Slctd.__fil_space() -- range
 
-  v.Slctd.__pad(' ')
+  v.Slctd.__fil(' ')
 end
 
-function v.Slctd.__pad_bar() -- range
+function v.Slctd.__fil_bar() -- range
 
-  v.Slctd.__pad('|')
+  v.Slctd.__fil('|')
 end
 
 function v.Slctd.str_space__underscore() -- range

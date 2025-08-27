@@ -13,7 +13,6 @@ function v.Cmd.nml(cmd_nml) -- alias
   -- vim.cmd('exe "normal! ' .. cmd_nml .. '"')
 end
 
--- function v.Cmdline__(str)
 function v.Cmd.cmdline__(str)
 
   -- v.Rgstr.ynk__(str)

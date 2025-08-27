@@ -121,6 +121,7 @@ function v.Srch.str__prv_tgl()
   else
     srch_str = v.Srch.str_ltst(1)
   end
+  u.Log.val(srch_str)
 
   v.Rgstr.__('/', srch_str)
 end

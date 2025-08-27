@@ -318,6 +318,9 @@ vim.keymap.set('n', 'gm', ':lua v.Buf.opn_memo()<cr>')
 -- opn man
 -- vim.keymap.set('n', 'xx', ':OpnMan ')
 
+-- opn re sjis
+vim.keymap.set('n', ':S', ':Sjis ')
+
 -- sys cmd opn
 
 -- sys cmd opn app
@@ -1080,7 +1083,8 @@ vim.keymap.set('v', 'v', ':lua v.Slctd.mode_state__swtch()<cr>')
 vim.keymap.set('v', 'y', ':lua v.Cursor.__mv_slctd_edge_tgl()<cr>')
 
 -- cursor mv slctd edge tgl, v box line same
-vim.keymap.set('v', 'O', 'O')
+vim.keymap.set('v', '.', 'O')
+-- vim.keymap.set('v', 'O', 'O')
 
 -- cursor mv char forward
 vim.keymap.set('v', 'l', 'l')
@@ -1146,20 +1150,15 @@ vim.keymap.set('v', 'N', ':lua v.Slctd.str__expnd_srch()<cr>')
 vim.keymap.set('v', 'f', ':lua v.Slctd.str__expnd_f()<cr>')
 
 -- slctd expnd quote
-vim.keymap.set('v', '<tab>', ':lua v.Slctd.str__expnd_quote_swtch()<cr>')
 vim.keymap.set('v', '<c-i>', ':lua v.Slctd.str__expnd_quote_swtch()<cr>')
-
--- slctd expnd quote on
--- vim.keymap.set('v', 'xx', ':lua v.Slctd.str__expnd_quote_on_swtch()<cr>')
-
--- slctd expnd quote in
--- vim.keymap.set('v', 'xx', ':lua v.Slctd.str__expnd_quote_in_swtch()<cr>')
+-- vim.keymap.set('v', '<tab>', ':lua v.Slctd.str__expnd_quote_swtch()<cr>')
 
 -- slctd expnd bracket forward
--- vim.keymap.set('v', 'xx', ':lua v.Slctd.str__expnd_bracket_f()<cr>')
+-- vim.keymap.set('v', 'xx', ':lua v.Slctd.str__expnd_bracket_swtch()<cr>')
 
 -- slct all
-vim.keymap.set('v', 'a', ':lua v.Slctd.str__all()<cr>')
+vim.keymap.set('v', 'gg', ':lua v.Slctd.str__all()<cr>')
+-- vim.keymap.set('v', 'a', ':lua v.Slctd.str__all()<cr>')
 
 -- ynk slctd
 vim.keymap.set('v', 'o', ':lua v.Rgstr.ynk__slctd()<cr>')
@@ -1226,14 +1225,14 @@ vim.keymap.set('v', '1', ':lua v.Slctd.line__ins_cmnt_1()<cr>')
 -- line end __ ins comma
 vim.keymap.set('v', ',', ':lua v.Slctd.line_end__ins(",")<cr>')
 
--- pad space
-vim.keymap.set('v', 'S', ':lua v.Slctd.__pad_space()<cr>')
+-- fil space
+vim.keymap.set('v', 'S'    , ':lua v.Slctd.__fil_space()<cr>')
 
--- pad -
-vim.keymap.set('v', '-', ':lua v.Slctd.__pad("-")<cr>')
+-- fil -
+vim.keymap.set('v', '-'    , ':lua v.Slctd.__fil("-")<cr>')
 
--- pad |
-vim.keymap.set('v', '<bar>', ':lua v.Slctd.__pad_bar()<cr>')
+-- fil |
+vim.keymap.set('v', '<bar>', ':lua v.Slctd.__fil_bar()<cr>')
 
 -- slctd str space __ under score
 vim.keymap.set('v', '_', ':lua v.Slctd.str_space__underscore()<cr>')
@@ -1292,8 +1291,9 @@ end, {expr = true})
 vim.keymap.set('v', 'W', ':lua v.Slctd.str_edge_out__tgl_shft()<cr>')
 
 -- slctd str edge out __ ins space
-vim.keymap.set('v', '.'    , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
-vim.keymap.set('v', '<c-f>', ':lua v.Slctd.str_edge_out__ins_space()<cr>')
+vim.keymap.set('v', 'O'    , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
+-- vim.keymap.set('v', '<c-f>', ':lua v.Slctd.str_edge_out__ins_space()<cr>')
+-- vim.keymap.set('v', '.'    , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
 
 -- slctd str edge out __ ins markdown strikethrough
 vim.keymap.set('v', '~', ':lua v.Slctd.str_edge_out__ins_markdown_strikethrough()<cr>')

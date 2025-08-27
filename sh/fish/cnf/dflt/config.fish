@@ -93,7 +93,9 @@ alias lfoo  'lrf_d2'
 alias lfooo 'lrf_d3'
 # alias lf_oo  'lrf_d2'
 # alias lf_ooo 'lrf_d3'
-alias lf_ext 'lrf_ext'
+
+alias lf_ext  'lrf_ext'
+alias ext_lst 'lrf_ext'
 
 alias ld    'lrd'
 alias ldoo  'lrd_d2'

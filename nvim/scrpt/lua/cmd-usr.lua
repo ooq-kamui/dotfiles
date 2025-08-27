@@ -93,6 +93,12 @@ vim.api.nvim_create_user_command('OpnMan',
   {nargs = '*'}
 )
 
+vim.api.nvim_create_user_command('Sjis',
+  function(opts)
+    v.Buf.re__sjis()
+  end,
+  {nargs = 0}
+)
 
 -- " term
    vim.cmd('command! -nargs=* Term split | wincmd j | resize 15 | term <args>')

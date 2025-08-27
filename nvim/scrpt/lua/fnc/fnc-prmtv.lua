@@ -118,7 +118,9 @@ function v.Char.is__tgl_symbol(c)
   elseif c == "'" then
     rpl = '"'
   elseif c == '"' then
-    rpl = '`'
+    rpl = "'"
+    -- rpl = '`'
+
   elseif c == '`' then
     rpl = "'"
 

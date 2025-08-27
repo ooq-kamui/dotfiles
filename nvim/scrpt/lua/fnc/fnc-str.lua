@@ -105,10 +105,10 @@ function v.Str.srch_idx_by_vim(str, ptn, idx) -- alias
   return r_idx -- -1 : match not
 end
 
-function v.Str.srch_idx(str, ptn, idx) -- alias
+function v.Str.srch_idx(str, ptn, srch_s_idx) -- alias
 
-  -- return v.Str.srch_idx_by_vim(str, ptn, idx)
-  return v.Str.srch_idx_by_lua(str, ptn, idx)
+  -- return v.Str.srch_idx_by_vim(str, ptn, srch_s_idx)
+  return v.Str.srch_idx_by_lua(str, ptn, srch_s_idx)
 end
 
 function v.Str.srch_end(str, ptn) -- alias
