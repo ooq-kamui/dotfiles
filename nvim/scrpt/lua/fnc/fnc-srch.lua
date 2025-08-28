@@ -101,29 +101,44 @@ function v.Srch.str_ltst(idx)
   return str
 end
 
-function v.Srch.str__prv_tgl()
+function v.Srch.prv_tgl_str()
 
-  local srch_str
+  local prv_tgl_str
 
   if v.Rgstr.get('/') == v.Srch.str_ltst(1) then
 
     if              v.Srch.str_ltst(1)          == '\\<' .. v.Srch.str_ltst(2) .. '\\>' then
 
-      srch_str = v.Srch.str_ltst(3)
+      prv_tgl_str = v.Srch.str_ltst(3)
 
     elseif '\\<' .. v.Srch.str_ltst(1) .. '\\>' ==          v.Srch.str_ltst(2)          then
 
-      srch_str = v.Srch.str_ltst(3)
-    else
+      prv_tgl_str = v.Srch.str_ltst(3)
 
-      srch_str = v.Srch.str_ltst(2)
+    else -- default
+      prv_tgl_str = v.Srch.str_ltst(2)
     end
-  else
-    srch_str = v.Srch.str_ltst(1)
-  end
-  u.Log.val(srch_str)
 
-  v.Rgstr.__('/', srch_str)
+  else -- default
+    prv_tgl_str = v.Srch.str_ltst(1)
+  end
+  -- u.Log.val(prv_tgl_str)
+
+  -- dev anchor
+  -- if prv_tgl_str == '[ \t]*$' then skip ?
+
+  return prv_tgl_str
+end
+
+function v.Srch.str__prv_tgl()
+
+  local prv_tgl_str = v.Srch.prv_tgl_str()
+
+  if prv_tgl_str == '[ \\t]*$' then
+    return
+  end
+
+  v.Rgstr.__('/', prv_tgl_str)
 end
 
 function v.Srch.str__slctd_str() -- range
@@ -189,8 +204,12 @@ function v.Srch.str__h_swtch()
 
   -- dev anchor
   local fnc_def_lang_lst = {
-    'lua', 'vim', 'python', 'javascript',
-    'typescript', 'typescriptreact',
+    'lua',
+    'vim',
+    'python',
+    'javascript',
+    'typescript',
+    'typescriptreact',
   }
 
   if     vim.bo.filetype == 'markdown' then

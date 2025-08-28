@@ -31,6 +31,7 @@ require('fnc/fnc-etc'   )
 
 require('fnc/fnc-buf'   )
 require('fnc/fnc-sys'   )
+require('fnc/fnc-mcr'   )
 
 require('fnc/fnc-tst'   )
 
@@ -281,9 +282,7 @@ function v.Rg_ptn_rslt_txt(ptn, opt)
   return r_rslt_txt
 end
 
--- 
 -- jmplst
--- 
 
 function v.Jmplst()
 

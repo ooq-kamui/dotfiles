@@ -4,11 +4,15 @@
 
 ## nvim
 
-str__expnd_bracket_in_swtch()
-- logic generalize
-- str__expnd_bracket_swtch() ??
-
 str__expnd_char_pair_swtch()
+
+- str__expnd_bracket_in_swtch()
+  - logic generalize
+  - str__expnd_bracket_swtch() ??
+
+- tst
+  'aaa  bbb  ccc'
+  ( aaa  bbb  ccc )
 
 
 ## skr-vps
@@ -38,20 +42,19 @@ game cre
 
 ## nvim
 
-srch init bug ?
-- g.line_end_space_ptn ?
-  - `[ \t]*` ??
-    - ptn confirm
-    - case : ptn : ptn rpl
+cls tidy
+- fnc-basic
+- fnc-etc
+
+fzf fnc call
+- :lua v.Xxx.xxx(prm01, prm02)
 
 opn_view_ltst()
 - err case ?
 
+
 cursor style, tidy
 - reserch
-
-fzf fnc call
-- :lua v.Xxx.xxx(prm01, prm02)
 
 plg
 - nvim-treesitter

@@ -514,24 +514,14 @@ vim.keymap.set('n', 'H' , ':lua v.Undo__clr()')
 vim.keymap.set('n', '^', ':lua v.Repeat_fnc()<cr>')
 -- vim.keymap.set('n', '~', ':lua v.Repeat_fnc()<cr>')
 
--- macro
 -- macro rec
-vim.keymap.set('n', '`', function()
-  if vf.reg_recording() == '' then
-    return 'qa'
-  else
-    return 'q'
-  end
-end, {expr = true})
+vim.keymap.set('n', '#', v.Mcr.rec, {expr = true})
+-- vim.keymap.set('n', '`', v.Mcr.rec, {expr = true})
 
 -- macro ply
-vim.keymap.set('n', '@', function()
-  if vf.reg_recording() == '' then
-    return '1@a'
-  else
-    return 'q'
-  end
-end, {expr = true})
+vim.keymap.set('n', '3', v.Mcr.ply, {expr = true})
+vim.keymap.set('n', '$', v.Mcr.ply, {expr = true})
+-- vim.keymap.set('n', '@', v.Mcr.ply, {expr = true})
 
 -- 
 -- edit
@@ -609,7 +599,7 @@ vim.keymap.set('n', 'ru', ':lua v.Cursor.line_end__dots_adjst()<cr>')
 -- " ref nnoremap y
 
 -- ins comment mlt
-vim.keymap.set('n', '$', ':lua v.Cursor.__ins_cmnt_mlt()<cr>')
+-- vim.keymap.set('n', 'xx', ':lua v.Cursor.__ins_cmnt_mlt()<cr>')
 
 -- ins comment 1
 vim.keymap.set('n', '!', function()
@@ -1151,7 +1141,7 @@ vim.keymap.set('v', 'f', ':lua v.Slctd.str__expnd_f()<cr>')
 
 -- slctd expnd quote
 vim.keymap.set('v', '<c-i>', ':lua v.Slctd.str__expnd_quote_swtch()<cr>')
--- vim.keymap.set('v', '<tab>', ':lua v.Slctd.str__expnd_quote_swtch()<cr>')
+vim.keymap.set('v', '<tab>', ':lua v.Slctd.str__expnd_quote_swtch()<cr>') -- del not
 
 -- slctd expnd bracket forward
 -- vim.keymap.set('v', 'xx', ':lua v.Slctd.str__expnd_bracket_swtch()<cr>')
