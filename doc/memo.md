@@ -4,6 +4,10 @@
 
 ## nvim
 
+cls tidy
+- fnc-basic
+- fnc-etc del ?
+
 str__expnd_char_pair_swtch()
 
 - str__expnd_bracket_in_swtch()
@@ -41,10 +45,6 @@ game cre
 
 
 ## nvim
-
-cls tidy
-- fnc-basic
-- fnc-etc
 
 fzf fnc call
 - :lua v.Xxx.xxx(prm01, prm02)
