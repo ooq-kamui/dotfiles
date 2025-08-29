@@ -24,6 +24,11 @@ str__expnd_char_pair_swtch()
 alm ssh set at mac
 
 
+## zed
+
+install
+
+
 ## aws
 
 q dev try
@@ -45,6 +50,10 @@ game cre
 
 
 ## nvim
+
+cursor `|` , cmdline
+
+v box mb str paste err
 
 fzf fnc call
 - :lua v.Xxx.xxx(prm01, prm02)
