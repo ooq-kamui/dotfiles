@@ -4,6 +4,10 @@
 
 ## nvim
 
+cursor `|` , cmdline
+
+v box mb str paste err
+
 cls tidy
 - fnc-basic
 - fnc-etc del ?
@@ -17,16 +21,6 @@ str__expnd_char_pair_swtch()
 - tst
   'aaa  bbb  ccc'
   ( aaa  bbb  ccc )
-
-
-## skr-vps
-
-alm ssh set at mac
-
-
-## zed
-
-install
 
 
 ## aws
@@ -50,10 +44,6 @@ game cre
 
 
 ## nvim
-
-cursor `|` , cmdline
-
-v box mb str paste err
 
 fzf fnc call
 - :lua v.Xxx.xxx(prm01, prm02)
