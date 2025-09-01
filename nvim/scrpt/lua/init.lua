@@ -5,7 +5,7 @@ vf = vim.fn
 -- f  = vim.fn
 
 v = {}
-u = {}
+-- u = {}
 g = {}
 
 require('fnc/fnc-prmtv')

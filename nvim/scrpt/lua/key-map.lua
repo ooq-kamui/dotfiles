@@ -1573,7 +1573,7 @@ vim.keymap.set('i', '<c-u>', function()
   if v.Mode.is__ins_menu() then
     return '<c-n>'
   else
-    return '<c-r>=v:lua.v.I_quote()<cr>'
+    return '<c-r>=v:lua.v.Ins.quote()<cr>'
   end
 end, {expr = true})
 
@@ -1582,26 +1582,26 @@ vim.keymap.set('i', '<c-j>', function()
   if v.Mode.is__ins_menu() then
     return '<c-n>'
   else
-    return '<c-r>=v:lua.v.I_bracket()<cr>'
+    return '<c-r>=v:lua.v.Ins.bracket()<cr>'
   end
 end, {expr = true})
 
 -- ins num
-vim.keymap.set('i', '<c-y>', '<c-r>=v:lua.v.I_num()<cr>')
+vim.keymap.set('i', '<c-y>', '<c-r>=v:lua.v.Ins.num()<cr>')
 
 -- ins symbol
-vim.keymap.set('i', '<c-n>', '<c-r>=v:lua.v.I_symbol01()<cr>')
-vim.keymap.set('i', '<c-f>', '<c-r>=v:lua.v.I_symbol02()<cr>')
-vim.keymap.set('i', '<c-p>', '<c-r>=v:lua.v.I_symbol03()<cr>')
+vim.keymap.set('i', '<c-n>', '<c-r>=v:lua.v.Ins.symbol01()<cr>')
+vim.keymap.set('i', '<c-f>', '<c-r>=v:lua.v.Ins.symbol02()<cr>')
+vim.keymap.set('i', '<c-p>', '<c-r>=v:lua.v.Ins.symbol03()<cr>')
 
 -- ins markdown
--- vim.keymap.set('i', '<c-u>', '<c-r>=v:lua.v.I_markdown_lnk()<cr>')
+-- vim.keymap.set('i', '<c-u>', '<c-r>=v:lua.v.Ins.markdown_lnk()<cr>')
 
 -- ins week
--- vim.keymap.set('i', 'xx', '<c-r>=v:lua.v.I_week()<cr>')
+-- vim.keymap.set('i', 'xx', '<c-r>=v:lua.v.Ins.week()<cr>')
 
 -- ins register
--- vim.keymap.set('i', 'xx', '<c-r>=v:lua.v.I_reg()<cr>')
+-- vim.keymap.set('i', 'xx', '<c-r>=v:lua.v.Ins.reg()<cr>')
 
 -- del char forward
 vim.keymap.set('i', '<c-d>', '<c-o>x')

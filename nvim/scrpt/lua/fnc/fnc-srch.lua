@@ -122,7 +122,7 @@ function v.Srch.prv_tgl_str()
   else -- default
     prv_tgl_str = v.Srch.str_ltst(1)
   end
-  -- u.Log.val(prv_tgl_str)
+  -- v.Log.val(prv_tgl_str)
 
   -- dev anchor
   -- if prv_tgl_str == '[ \t]*$' then skip ?

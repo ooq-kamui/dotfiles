@@ -69,7 +69,7 @@ function v.Line.num_by_Line_info(line_info)
 
   local line_info = vf.trim(line_info, ' ', 1)
   local line_num  = vf.split(line_info, '\\s\\+')[1]
-  u.Log.val(line_num)
+  v.Log.val(line_num)
 
   return line_num
 end
@@ -90,10 +90,10 @@ function v.Line.col_num_by_ruler_num(line_num, p_ruler_num)
   while char_idx > 0 do
 
     str = v.Str.sub_by_char_idx(line_str, 1, char_idx)
-    -- u.Log.val(str)
+    -- v.Log.val(str)
 
     _ruler_len = v.Str.ruler_len(str)
-    -- u.Log.val(_ruler_len, '>', t_ruler_num)
+    -- v.Log.val(_ruler_len, '>', t_ruler_num)
 
     if _ruler_len <= t_ruler_num then
       break
@@ -102,7 +102,7 @@ function v.Line.col_num_by_ruler_num(line_num, p_ruler_num)
     char_idx = char_idx - 1
   end
 
-  -- u.Log.val(str)
+  -- v.Log.val(str)
   local t_col_num = v.Str.len_byte(str) + 1
   return t_col_num
 end

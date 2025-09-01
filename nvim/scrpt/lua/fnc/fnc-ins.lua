@@ -1,0 +1,81 @@
+
+-- mode ins
+
+v.Ins = {}
+
+-- complete  -  mode insert ins lst
+
+function v.Ins.symbol01()
+
+  local lst = { '$', '@', '#', ';', '%' }
+  vf.complete(vf.col('.'), lst)
+  return ''
+end
+
+function v.Ins.symbol02()
+
+  local lst = { '?', '!', '&', '~', '^', '|', '\\', '/' }
+  vf.complete(vf.col('.'), lst)
+  return ''
+end
+
+function v.Ins.symbol03()
+
+  local lst = { '=', '+', '-' }
+  vf.complete(vf.col('.'), lst)
+  return ''
+end
+
+function v.Ins.bracket()
+
+  -- local lst = { '()', '{}', '[]', '<>', '[]()', '[][]', '(){}' }
+  local lst = { '()', '{}', '[]', '<>' }
+  vf.complete(vf.col('.'), lst)
+  return ''
+end
+
+function v.Ins.quote()
+
+  local quote_lst = {
+    markdown = { '``', "''", '""' },
+    dflt     = { "''", '""', '``' },
+  }
+
+  local lst = quote_lst[vim.bo.filetype] or quote_lst['dflt']
+
+  vf.complete(vf.col('.'), lst)
+  return ''
+end
+
+function v.Ins.markdown_lnk()
+
+  local lst = { '[]()', '[][]', '![]()' }
+  vf.complete(vf.col('.'), lst)
+  return ''
+end
+
+function v.Ins.week()
+
+  vf.complete(vf.col('.'), g.week_def)
+  return ''
+end
+
+function v.Ins.num()
+
+  local lst = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }
+  vf.complete(vf.col('.'), lst)
+  return ''
+end
+
+function v.Ins.reg()
+
+  local lst = {
+    v.Rgstr.get('0'),
+    v.Rgstr.get('1'),
+    v.Rgstr.get('2'),
+    v.Rgstr.get('3')
+  }
+  vf.complete(vf.col('.'), lst )
+  return ''
+end
+

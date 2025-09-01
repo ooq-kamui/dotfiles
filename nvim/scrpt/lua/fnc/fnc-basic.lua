@@ -1,7 +1,7 @@
 
 -- fnc
 
-require('fnc/fnc-utl'   )
+require('fnc/fnc-log'   )
 
 -- global
 
@@ -27,7 +27,7 @@ require('fnc/fnc-rgstr' )
 require('fnc/fnc-cursor')
 require('fnc/fnc-slctd' )
 require('fnc/fnc-srch'  )
-require('fnc/fnc-etc'   )
+require('fnc/fnc-ins'   )
 
 require('fnc/fnc-buf'   )
 require('fnc/fnc-sys'   )
@@ -80,84 +80,6 @@ function v.Color_name_lst()
 
   local cmd = "so $VIMRUNTIME/syntax/colortest.vim"
   v.Cmd.cmd(cmd)
-end
-
--- mode ins
-
--- complete  -  mode insert ins lst
-
-function v.I_symbol01()
-
-  local lst = { '$', '@', '#', ';', '%' }
-  vf.complete(vf.col('.'), lst)
-  return ''
-end
-
-function v.I_symbol02()
-
-  local lst = { '?', '!', '&', '~', '^', '|', '\\', '/' }
-  vf.complete(vf.col('.'), lst)
-  return ''
-end
-
-function v.I_symbol03()
-
-  local lst = { '=', '+', '-' }
-  vf.complete(vf.col('.'), lst)
-  return ''
-end
-
-function v.I_bracket()
-
-  -- local lst = { '()', '{}', '[]', '<>', '[]()', '[][]', '(){}' }
-  local lst = { '()', '{}', '[]', '<>' }
-  vf.complete(vf.col('.'), lst)
-  return ''
-end
-
-function v.I_quote()
-
-  local quote_lst = {
-    markdown = { '``', "''", '""' },
-    dflt     = { "''", '""', '``' },
-  }
-
-  local lst = quote_lst[vim.bo.filetype] or quote_lst['dflt']
-
-  vf.complete(vf.col('.'), lst)
-  return ''
-end
-
-function v.I_markdown_lnk()
-
-  local lst = { '[]()', '[][]', '![]()' }
-  vf.complete(vf.col('.'), lst)
-  return ''
-end
-
-function v.I_week()
-
-  vf.complete(vf.col('.'), g.week_def)
-  return ''
-end
-
-function v.I_num()
-
-  local lst = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }
-  vf.complete(vf.col('.'), lst)
-  return ''
-end
-
-function v.I_reg()
-
-  local lst = {
-    v.Rgstr.get('0'),
-    v.Rgstr.get('1'),
-    v.Rgstr.get('2'),
-    v.Rgstr.get('3')
-  }
-  vf.complete(vf.col('.'), lst )
-  return ''
 end
 
 -- rg
@@ -287,7 +209,7 @@ end
 function v.Jmplst()
 
   local jmplst_tmp = vf.getjumplist()[1]
-  -- u.Log.tbl(jmplst_tmp)
+  -- v.Log.tbl(jmplst_tmp)
 
   local buf_num_key_prefix = 'key_'
   local jmplst = {}
@@ -298,25 +220,25 @@ function v.Jmplst()
     _buf_num_key = buf_num_key_prefix .. _jmplst_tmp['bufnr']
 
     if jmplst[_buf_num_key] == nil then
-      -- u.Log.val(_buf_num_key)
+      -- v.Log.val(_buf_num_key)
       jmplst[_buf_num_key] = {}
     end
 
     v.Tbl.add(jmplst[_buf_num_key], _jmplst_tmp)
   end
-  -- u.Log.tbl(jmplst)
+  -- v.Log.tbl(jmplst)
 
   for idx, _buf_num_key in pairs(vf.keys(jmplst)) do
 
     v.Tbl.srt(jmplst[_buf_num_key], v.Jmplst_cmp)
   end
-  -- u.Log.tbl(jmplst)
+  -- v.Log.tbl(jmplst)
 
   local buf_num_key = buf_num_key_prefix .. v.Buf.num()
-  -- u.Log.val(buf_num_key)
+  -- v.Log.val(buf_num_key)
 
   local r_jmplst    = vf.get(jmplst, buf_num_key, {})
-  -- u.Log.tbl(r_jmplst)
+  -- v.Log.tbl(r_jmplst)
 
   return r_jmplst
 end
@@ -337,7 +259,7 @@ function v.Jmplst_line_info()
 
     v.Tbl.add(jmplst_line_info, line_info)
   end
-  -- u.Log.tbl(jmplst_line_info)
+  -- v.Log.tbl(jmplst_line_info)
 
   return jmplst_line_info
 end

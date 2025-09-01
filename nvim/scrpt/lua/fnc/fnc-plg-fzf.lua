@@ -29,7 +29,7 @@ function v.Fzf_rg_with_grep(...)
   local word1 = arg[3] or false
 
   local rg_cmd = v.Rg_cmd(ptn, ext, word1, nil)
-  -- u.Log.val(rg_cmd)
+  -- v.Log.val(rg_cmd)
 
   vim.fn['fzf#vim#grep'](
     rg_cmd,
@@ -184,7 +184,7 @@ function v.Fzf_rgstr()
   local rgstr_info_str = vf.execute(':reg')
   local rgstr_info_ar = vf.split(rgstr_info_str, '\\n')
   v.Tbl.del(rgstr_info_ar, 1)
-  -- u.Log.tbl(rgstr_info_ar)
+  -- v.Log.tbl(rgstr_info_ar)
 
   -- exclude num
   local tmp_ar = {}
@@ -231,9 +231,9 @@ function v.Fzf_file()
 
   -- local sys_cmd = 'fd --type f'
   local sys_cmd = 'fd --type f --ignore'
-  -- u.Log.val(sys_cmd)
+  -- v.Log.val(sys_cmd)
   local fzf_src_txt  = v.Sys.cmd(sys_cmd)
-  -- u.Log.val(fzf_src_txt)
+  -- v.Log.val(fzf_src_txt)
 
   local fnc_name = v.Buf.opn
   v.Fzf_by_txt(fzf_src_txt, fnc_name)

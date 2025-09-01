@@ -2,15 +2,20 @@
 # dotfiles
 
 
+## fish
+
+ld-oo `<` ldoo
+
+
 ## nvim
 
-cursor `|` , cmdline
-
 v box mb str paste err
+- tst
+  あいうえお かき       さしすせそ
+  あいうえ   かきく     さしすせそ
+  あいう     かきくけ   さしすせそ
+  あいうえお かきくけこ さしすせそ
 
-cls tidy
-- fnc-basic
-- fnc-etc del ?
 
 str__expnd_char_pair_swtch()
 
@@ -44,6 +49,8 @@ game cre
 
 
 ## nvim
+
+cursor `|` , cmdline
 
 fzf fnc call
 - :lua v.Xxx.xxx(prm01, prm02)

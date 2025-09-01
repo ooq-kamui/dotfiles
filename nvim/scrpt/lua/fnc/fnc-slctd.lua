@@ -1167,7 +1167,7 @@ end
 function v.Slctd.line__ins_cmnt_1() -- range
 
   local slctd_line_s_num = v.Slctd.line_s_num()
-  -- u.Log.val(slctd_line_s_num)
+  -- v.Log.val(slctd_line_s_num)
 
   v.Cursor.__mv_by_line_num(slctd_line_s_num)
   v.Cmd.nml('^')
@@ -1295,7 +1295,7 @@ function v.Slctd.box_edge_l__ynk_line_1() -- range
   end
 
   local col_num = v.Cursor.col_num()
-  -- u.Log.val(col_num)
+  -- v.Log.val(col_num)
 
   for idx, line_num in pairs(v.Slctd.line_num_seq()) do
 
