@@ -2,11 +2,6 @@
 # dotfiles
 
 
-## fish
-
-ld-oo `<` ldoo
-
-
 ## nvim
 
 v box mb str paste err
