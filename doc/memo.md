@@ -4,14 +4,6 @@
 
 ## nvim
 
-v box mb str paste err
-- tst
-  あいうえお かき       さしすせそ
-  あいうえ   かきく     さしすせそ
-  あいう     かきくけ   さしすせそ
-  あいうえお かきくけこ さしすせそ
-
-
 str__expnd_char_pair_swtch()
 
 - str__expnd_bracket_in_swtch()
@@ -45,17 +37,14 @@ game cre
 
 ## nvim
 
-cursor `|` , cmdline
+opn_view_ltst() - err ?
 
 fzf fnc call
 - :lua v.Xxx.xxx(prm01, prm02)
 
-opn_view_ltst()
-- err case ?
-
-
 cursor style, tidy
 - reserch
+- cmdline err
 
 plg
 - nvim-treesitter

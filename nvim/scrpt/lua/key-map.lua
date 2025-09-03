@@ -515,13 +515,12 @@ vim.keymap.set('n', '^', ':lua v.Repeat_fnc()<cr>')
 -- vim.keymap.set('n', '~', ':lua v.Repeat_fnc()<cr>')
 
 -- macro rec
-vim.keymap.set('n', '#', v.Mcr.rec, {expr = true})
--- vim.keymap.set('n', '`', v.Mcr.rec, {expr = true})
+vim.keymap.set('n', '$', v.Mcr.rec, {expr = true})
+vim.keymap.set('n', '4', v.Mcr.rec, {expr = true})
 
 -- macro ply
+vim.keymap.set('n', '#', v.Mcr.ply, {expr = true})
 vim.keymap.set('n', '3', v.Mcr.ply, {expr = true})
-vim.keymap.set('n', '$', v.Mcr.ply, {expr = true})
--- vim.keymap.set('n', '@', v.Mcr.ply, {expr = true})
 
 -- 
 -- edit
@@ -1160,7 +1159,7 @@ vim.keymap.set('v', 'o', ':lua v.Rgstr.ynk__slctd()<cr>')
 -- vim.keymap.set('v', 'xx', '"+y')
 
 -- paste
--- " todo refactoring
+-- todo refactoring ?
 vim.keymap.set('v', 'p', function()
   if v.Mode.is__box() then
     return ':lua v.Slctd.box_edge_l__ynk_line_1()<cr>'
