@@ -210,6 +210,7 @@ function v.Srch.str__h_swtch()
     'javascript',
     'typescript',
     'typescriptreact',
+    'ps1',
   }
 
   if     vim.bo.filetype == 'markdown' then

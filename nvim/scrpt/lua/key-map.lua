@@ -739,7 +739,8 @@ vim.keymap.set('n', 'E', ':lua v.Srch.str__word1_tgl()<cr>')
 -- vim.keymap.set('n', 'xx', ':lua v.Srch.char_bracket('f')<cr>')
 
 -- srch markdown h
-vim.keymap.set('n', 'M', ':lua v.Srch.str__h_swtch(); v.Cursor.__mv_srch("f")<cr>')
+vim.keymap.set('n', 'M', ':lua v.Srch.str__h_swtch()<cr>')
+-- vim.keymap.set('n', 'M', ':lua v.Srch.str__h_swtch(); v.Cursor.__mv_srch("f")<cr>')
 
 -- srch markdown itm
 vim.keymap.set('n', ':i', ':lua v.Srch.str__markdown_itm()<cr>')

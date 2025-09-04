@@ -2,6 +2,11 @@
 # dotfiles
 
 
+## fish
+
+lf -l, confirm
+
+
 ## nvim
 
 str__expnd_char_pair_swtch()
@@ -13,6 +18,20 @@ str__expnd_char_pair_swtch()
 - tst
   'aaa  bbb  ccc'
   ( aaa  bbb  ccc )
+
+ins_str_prv, upr
+
+
+## keyboard
+
+pad mod
+- block 1, cut harf
+
+
+## redmine
+
+install
+- at aws ?
 
 
 ## aws
