@@ -2,12 +2,11 @@
 # dotfiles
 
 
-## fish
-
-lf -l, confirm
-
-
 ## nvim
+
+v Y
+- fnc
+  - slctd line end __ ins ()
 
 str__expnd_char_pair_swtch()
 
@@ -25,7 +24,13 @@ ins_str_prv, upr
 ## keyboard
 
 pad mod
+- palm rest back r, mod
 - block 1, cut harf
+
+
+## fish
+
+lf -l, confirm
 
 
 ## redmine

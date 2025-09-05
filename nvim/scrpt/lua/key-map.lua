@@ -393,9 +393,6 @@ vim.keymap.set('n', '_', 'f_')
 vim.keymap.set('n', '<c-o>', 'hT_')
 vim.keymap.set('n', '<c-_>', 'hT_')
 
-vim.keymap.set('n', '\\'   , 'T_h')
--- vim.keymap.set('n', '<bar>', 'T_h')
-
 -- cursor mv word dlm ( camel or _ )  -  forward
 vim.keymap.set('n', '<c-f>', ':lua v.Cursor.__mv_word_dlm_f()<cr>')
 
@@ -575,7 +572,14 @@ vim.keymap.set('n', '<c-t>', ':lua v.Cursor.__ins_tm()<cr>')
 vim.keymap.set('n', 'A', ':lua v.Cursor.__ins_line_anchor()<cr>')
 
 -- ins markdown code
-vim.keymap.set('n', '<c-u>', ':lua v.Cursor.__ins_markdown_code()<cr>')
+-- vim.keymap.set('n', '<c-u>', ':lua v.Cursor.__ins_markdown_code()<cr>')
+vim.keymap.set('n', '<c-u>', function()
+  if v.Buf.is_file_type__('markdown') then
+    return ':lua v.Cursor.__ins_markdown_code()<cr>'
+  else
+    return '[{'
+  end
+end, {expr = true})
 
 -- dev anchor
 -- ins markdown itm
