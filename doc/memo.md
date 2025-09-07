@@ -31,6 +31,7 @@ pad mod
 ## fish
 
 lf -l, confirm
+- fnc name
 
 
 ## redmine
