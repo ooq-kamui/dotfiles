@@ -1193,14 +1193,15 @@ end, {expr = true})
 -- cut & ins
 -- vim.keymap.set('v', '<leader><space>', '"zc')
 
--- ins $
+-- ins line $
 vim.keymap.set('v', 'Y', function()
   if v.Mode.is__box() then
-    return '$A'
+    return '<esc>'
   else
     return '<c-v>$A'
   end
 end, {expr = true})
+-- vim.keymap.set('v', 'Y', ':lua v.Slctd.line_end__ins_input()<cr>')
 
 -- ins space
 vim.keymap.set('v', 'L', function()

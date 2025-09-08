@@ -4,10 +4,6 @@
 
 ## nvim
 
-v Y
-- fnc
-  - slctd line end __ ins ()
-
 str__expnd_char_pair_swtch()
 
 - str__expnd_bracket_in_swtch()
@@ -17,8 +13,6 @@ str__expnd_char_pair_swtch()
 - tst
   'aaa  bbb  ccc'
   ( aaa  bbb  ccc )
-
-ins_str_prv, upr
 
 
 ## keyboard

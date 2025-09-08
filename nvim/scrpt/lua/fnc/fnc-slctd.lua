@@ -1079,6 +1079,19 @@ function v.Slctd.line_end__ins(str) -- range
   end
 end
 
+function v.Slctd.line_end__ins_input() -- range -- use not
+
+  v.Slctd.__ltst()
+
+  if v.Mode.is__box() then
+    v.Esc()
+  else
+    -- vim.cmd('exe "normal! \\<c-v>$A"')
+    -- v.Cmd.nml('<c-v>$A')
+    -- v.Cmd.nml('\\<c-v>$A')
+  end
+end
+
 function v.Slctd.line_end__pad_space() -- range -- use not
 
   -- use recommend "aygvr gv
