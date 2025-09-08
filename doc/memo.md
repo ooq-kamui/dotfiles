@@ -15,25 +15,6 @@ str__expnd_char_pair_swtch()
   ( aaa  bbb  ccc )
 
 
-## keyboard
-
-pad mod
-- palm rest back r, mod
-- block 1, cut harf
-
-
-## fish
-
-lf -l, confirm
-- fnc name
-
-
-## redmine
-
-install
-- at aws ?
-
-
 ## aws
 
 q dev try
