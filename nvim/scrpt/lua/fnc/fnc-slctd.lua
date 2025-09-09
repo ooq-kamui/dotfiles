@@ -842,7 +842,7 @@ function v.Slctd.str_edge_out_bracket__tgl() -- range
   local c_r = v.Slctd.str_edge_r_out_char()
 
   local c
-  local bracket_lst = {'(', '[', '{', '<'}
+  local bracket_lst = {'(', '[', '<', '{' }
 
   local idx = v.Tbl.idx(bracket_lst, c_l)
 

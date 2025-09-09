@@ -172,9 +172,9 @@ alias jsd 'git sd'
 alias jwl 'git wl'
 alias jwd 'git wd'
 
-alias git_root_pth 'git rev-parse --show-cdup'
-alias jro 'git_root_pth'
-# alias jr  'cd ( jro ); pth'
+alias git_root_pth_rel 'git rev-parse --show-cdup'
+alias jrpr 'git_root_pth_rel'
+# alias jr  'cd ( jrpr ); pth'
 alias jr  'cd_git_root'
 
 alias pd   'podman'

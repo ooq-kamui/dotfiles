@@ -4,6 +4,11 @@
 
 ## nvim
 
+fzf dir, err ?
+
+v line end __ ins ()
+- use rgstr .
+
 str__expnd_char_pair_swtch()
 
 - str__expnd_bracket_in_swtch()
