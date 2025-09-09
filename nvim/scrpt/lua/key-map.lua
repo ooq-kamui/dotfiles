@@ -1201,6 +1201,7 @@ vim.keymap.set('v', 'Y', function()
     return '<c-v>$A'
   end
 end, {expr = true})
+-- dev anchor
 -- vim.keymap.set('v', 'Y', ':lua v.Slctd.line_end__ins_input()<cr>')
 
 -- ins space

@@ -1079,7 +1079,9 @@ function v.Slctd.line_end__ins(str) -- range
   end
 end
 
-function v.Slctd.line_end__ins_input() -- range -- use not
+-- dev anchor
+--   use rgstr .
+function v.Slctd.line_end__ins_input() -- range
 
   v.Slctd.__ltst()
 

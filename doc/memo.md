@@ -4,9 +4,7 @@
 
 ## nvim
 
-fzf dir, err ?
-
-v line end __ ins ()
+slctd line end __ ins input ()
 - use rgstr .
 
 str__expnd_char_pair_swtch()

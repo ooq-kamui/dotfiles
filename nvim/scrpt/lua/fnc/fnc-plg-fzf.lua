@@ -246,7 +246,7 @@ function v.Fzf_dir()
   local sys_cmd = 'fd --type d'
   local fzf_src_txt  = v.Sys.cmd(sys_cmd)
 
-  local fnc_name = v.Dir__
+  local fnc_name = v.Dir.__
   v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
@@ -257,7 +257,7 @@ function v.Fzf_dir_jmp()
 
   local fzf_src_txt  = v.Sys.cmd(sys_cmd)
 
-  local fnc_name = v.Dir__
+  local fnc_name = v.Dir.__
   v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
