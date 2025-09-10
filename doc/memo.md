@@ -4,9 +4,6 @@
 
 ## nvim
 
-slctd line end __ ins input ()
-- use rgstr .
-
 str__expnd_char_pair_swtch()
 
 - str__expnd_bracket_in_swtch()

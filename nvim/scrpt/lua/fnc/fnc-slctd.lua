@@ -46,12 +46,13 @@ end
 function v.Slctd.mode_state__swtch()
 
   v.Slctd.__ltst()
+  vim.cmd('exe "normal! \\<c-v>"')
 
-  if v.Mode.is__box() then
-    v.Slctd.box_width__1()
-  else
-    vim.cmd('exe "normal! \\<c-v>"')
-  end
+  -- if v.Mode.is__box() then
+  --   v.Slctd.box_width__1()
+  -- else
+  --   vim.cmd('exe "normal! \\<c-v>"')
+  -- end
 end
 
 -- slctd str
@@ -1079,19 +1080,33 @@ function v.Slctd.line_end__ins(str) -- range
   end
 end
 
--- dev anchor
---   use rgstr .
 function v.Slctd.line_end__ins_input() -- range
 
-  v.Slctd.__ltst()
+  -- if v.Mode.is__box() then
+  --   v.Esc()
+  -- end
 
-  if v.Mode.is__box() then
-    v.Esc()
-  else
-    -- vim.cmd('exe "normal! \\<c-v>$A"')
-    -- v.Cmd.nml('<c-v>$A')
-    -- v.Cmd.nml('\\<c-v>$A')
-  end
+  local line_s_num = v.Slctd.line_s_num()
+  local line_e_num = v.Slctd.line_e_num()
+
+  v.Cursor.__mv_by_line_num(line_s_num)
+  v.Cursor.__mv_line_end()
+
+  v.Mode.__ins()
+
+  vim.api.nvim_create_autocmd('InsertLeave', {
+    once = true,
+    callback = function()
+
+      local ins_str = v.Rgstr.get('.')
+
+      for line_num = line_s_num + 1, line_e_num do
+
+        v.Cursor.__mv_by_line_num(line_num)
+        v.Cursor.line_end__ins(ins_str)
+      end
+    end
+  })
 end
 
 function v.Slctd.line_end__pad_space() -- range -- use not

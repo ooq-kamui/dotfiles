@@ -3,6 +3,16 @@
 
 v.Mode = {}
 
+-- mode ch
+
+function v.Mode.__ins() -- use not
+
+  v.Cmd.cmd('startinsert')
+  -- v.Cmd.nml('i')
+end
+
+-- cnd
+
 -- normal
 
 function v.Mode.is__normal()

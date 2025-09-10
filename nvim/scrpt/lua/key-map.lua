@@ -524,7 +524,8 @@ vim.keymap.set('n', '3', v.Mcr.ply, {expr = true})
 -- 
 
 -- mode ch ins
-vim.keymap.set('n', '<space>', 'i')
+vim.keymap.set('n', '<space>', ':lua v.Mode.__ins()<cr>')
+-- vim.keymap.set('n', '<space>', 'i')
 
 -- mode ch ins rpl
 -- vim.keymap.set('n', 'xx', 'R')
@@ -1194,15 +1195,15 @@ end, {expr = true})
 -- vim.keymap.set('v', '<leader><space>', '"zc')
 
 -- ins line $
-vim.keymap.set('v', 'Y', function()
-  if v.Mode.is__box() then
-    return '<esc>'
-  else
-    return '<c-v>$A'
-  end
-end, {expr = true})
+-- vim.keymap.set('v', 'Y', function()
+--   if v.Mode.is__box() then
+--     return '<esc>'
+--   else
+--     return '<c-v>$A'
+--   end
+-- end, {expr = true})
 -- dev anchor
--- vim.keymap.set('v', 'Y', ':lua v.Slctd.line_end__ins_input()<cr>')
+vim.keymap.set('v', 'Y', ':lua v.Slctd.line_end__ins_input()<cr>')
 
 -- ins space
 vim.keymap.set('v', 'L', function()

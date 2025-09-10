@@ -1,7 +1,6 @@
 
 v.Cmd = {}
 
--- function v.Cmd(cmd) -- alias
 function v.Cmd.cmd(cmd) -- alias
 
   vim.cmd(cmd)
