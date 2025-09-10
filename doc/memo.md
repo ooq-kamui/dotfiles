@@ -2,9 +2,15 @@
 # dotfiles
 
 
+## fish
+
+c-u, fzf git s, refactoring
+
+
 ## nvim
 
 str__expnd_char_pair_swtch()
+  - is xx __ char pair ()
 
 - str__expnd_bracket_in_swtch()
   - logic generalize
@@ -13,6 +19,18 @@ str__expnd_char_pair_swtch()
 - tst
   'aaa  bbb  ccc'
   ( aaa  bbb  ccc )
+
+
+## difftastic
+
+instl
+- mac
+
+
+## ghostty
+
+instl
+- mac
 
 
 ## aws

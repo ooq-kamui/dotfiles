@@ -365,8 +365,7 @@ function v.Slctd.str__expnd_quote_in_b() -- range
 end
 
 
-
--- dev anchor vvvvvvvvvvvvvvv
+-- dev anchor
 
 g.char_pair_lst_r = {')', '}'}
 g.char_pair_lst_l = {'(', '{'}
@@ -441,9 +440,6 @@ function v.Slctd.str__expnd_char_pair_in_b() -- range
   v.Slctd.str__expnd_char_pair_on_b()
   v.Cmd.nml('l')
 end
-
--- dev anchor ^^^^^^^^^^^^^^^
-
 
 
 -- dev anchor, del ????
