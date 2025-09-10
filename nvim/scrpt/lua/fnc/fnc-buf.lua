@@ -33,7 +33,7 @@ function v.Buf.opn(filename)
   v.Cmd.cmd('tab drop ' .. filename)
 end
 
-function v.Buf.opn_view_ltst()
+function v.Buf.opn_tab_prv()
 
   v.Cmd.cmd('tab drop #')
 end

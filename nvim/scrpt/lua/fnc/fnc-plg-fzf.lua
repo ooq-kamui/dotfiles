@@ -1,7 +1,59 @@
 
 -- fzf
 
--- fnc
+v.Fzf = {}
+
+
+function v.Fzf_by_txt(...)
+
+  local arg = {...}
+
+  local src_txt  = arg[1] or nil
+  local fnc_name = arg[2] or nil
+
+  local src_ar = v.Txt._to_ar(src_txt)
+
+  v.Fzf_by_ar(src_ar, fnc_name)
+end
+
+function v.Fzf_by_ar(...)
+
+  local arg = {...}
+
+  local src_ar   = arg[1] or nil
+  local fnc_name = arg[2] or nil
+
+  -- if vf.len(src_ar) > g.fzf_line_cnt_max then
+  --   print("fzf src_ar, end")
+  --   return
+  -- end
+
+  vim.fn['fzf#run'](
+    {
+      source = src_ar,
+      sink   = fnc_name,
+      window = '-tabnew',
+    }
+  )
+  --     'options': ['--reverse'],
+  --     'options': ['--no-sort'],
+end
+
+-- fzf file
+
+function v.Fzf_file()
+
+  -- local sys_cmd = 'fd --type f'
+  local sys_cmd = 'fd --type f --ignore'
+  -- v.Log.val(sys_cmd)
+  local fzf_src_txt  = v.Sys.cmd(sys_cmd)
+  -- v.Log.val(fzf_src_txt)
+
+  local fnc_name = v.Buf.opn
+  v.Fzf_by_txt(fzf_src_txt, fnc_name)
+end
+
+-- fzf rg
 
 function v.Fzf_rg(...) -- alias
 
@@ -118,41 +170,6 @@ function v.Fzf_rg_with_run(...)
   --     'options': ['--no-sort'],
 end
 
-function v.Fzf_by_txt(...)
-
-  local arg = {...}
-
-  local src_txt  = arg[1] or nil
-  local fnc_name = arg[2] or nil
-
-  local src_ar = v.Txt._to_ar(src_txt)
-
-  v.Fzf_by_ar(src_ar, fnc_name)
-end
-
-function v.Fzf_by_ar(...)
-
-  local arg = {...}
-
-  local src_ar   = arg[1] or nil
-  local fnc_name = arg[2] or nil
-
-  -- if vf.len(src_ar) > g.fzf_line_cnt_max then
-  --   print("fzf src_ar, end")
-  --   return
-  -- end
-
-  vim.fn['fzf#run'](
-    {
-      source = src_ar,
-      sink   = fnc_name,
-      window = '-tabnew',
-    }
-  )
-  --     'options': ['--reverse'],
-  --     'options': ['--no-sort'],
-end
-
 -- fzf tag jmp by file
 
 function v.Fzf_tag_jmp_by_file(...)
@@ -178,6 +195,8 @@ function v.V_fzf_buf()
   v.Srch.str__slctd_str()
   vim.cmd('FzfBufCrnt ' .. vf.escape(vf.getreg('z'), '.*~'))
 end
+
+-- fzf rgstr
 
 function v.Fzf_rgstr()
 
@@ -210,7 +229,7 @@ function v.Fzf_rgstr()
   --      'sink'  : Cursor.__ins_rgstr_by_rgstr_info
 end
 
--- fzf jmplst
+-- fzf jmplst ( edit line )
 
 function v.Fzf_jmplst()
 
@@ -223,20 +242,6 @@ function v.Fzf_jmplst()
     }
   )
   --     'options': ['--no-sort'],
-end
-
--- fzf file
-
-function v.Fzf_file()
-
-  -- local sys_cmd = 'fd --type f'
-  local sys_cmd = 'fd --type f --ignore'
-  -- v.Log.val(sys_cmd)
-  local fzf_src_txt  = v.Sys.cmd(sys_cmd)
-  -- v.Log.val(fzf_src_txt)
-
-  local fnc_name = v.Buf.opn
-  v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
 -- fzf dir
@@ -261,22 +266,11 @@ function v.Fzf_dir_jmp()
   v.Fzf_by_txt(fzf_src_txt, fnc_name)
 end
 
-function v.Fzf_doc_memo_opn()
+-- fzf fnc call
 
-  local dir = '~'
 
-  local memo_file_list = {
-    dir .. '/wrk/prj-pri/dotfiles/doc/memo.md'   ,
-    dir .. '/wrk/prj-pri/doc-tech/doc/memo.md',
-    dir .. '/wrk/prj-pri/life/doc/memo.md'       ,
-    dir .. '/wrk/prj-pri/wall-paper/doc/memo.md' ,
-  }
 
-  local fzf_src_ar = memo_file_list
-  -- local fnc_name    = 'Opn'
-  local fnc_name    = v.Buf.opn
-  v.Fzf_by_ar(fzf_src_ar, fnc_name)
-end
+-- fzf doc-tech
 
 g.doc_tech_md_dir = 'wrk/prj-pri/doc-tech/docs/md'
 
@@ -305,6 +299,25 @@ function v.Doc_tech_tag_jmp(str)
   local str = g.home_dir .. '/' .. g.doc_tech_md_dir .. '/' .. str
   -- print(str)
   v.Buf.opn_by_path(str)
+end
+
+-- fzf doc-memo
+
+function v.Fzf_doc_memo_opn()
+
+  local dir = '~'
+
+  local memo_file_list = {
+    dir .. '/wrk/prj-pri/dotfiles/doc/memo.md'   ,
+    dir .. '/wrk/prj-pri/doc-tech/doc/memo.md',
+    dir .. '/wrk/prj-pri/life/doc/memo.md'       ,
+    dir .. '/wrk/prj-pri/wall-paper/doc/memo.md' ,
+  }
+
+  local fzf_src_ar = memo_file_list
+  -- local fnc_name    = 'Opn'
+  local fnc_name    = v.Buf.opn
+  v.Fzf_by_ar(fzf_src_ar, fnc_name)
 end
 
 -- setting

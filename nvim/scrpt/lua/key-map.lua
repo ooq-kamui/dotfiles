@@ -237,12 +237,15 @@ vim.keymap.set('n', '<leader>e', '<esc>')
 vim.keymap.set('n', '<leader>f', '<esc>')
 vim.keymap.set('n', '<leader>g', '<esc>')
 vim.keymap.set('n', '<leader>h', '<esc>')
+vim.keymap.set('n', '<leader>i', '<esc>')
 vim.keymap.set('n', '<leader>j', '<esc>')
+vim.keymap.set('n', '<leader>k', '<esc>')
 vim.keymap.set('n', '<leader>l', '<esc>')
 vim.keymap.set('n', '<leader>m', '<esc>')
 vim.keymap.set('n', '<leader>n', '<esc>')
 vim.keymap.set('n', '<leader>o', '<esc>')
 vim.keymap.set('n', '<leader>p', '<esc>')
+vim.keymap.set('n', '<leader>q', '<esc>')
 vim.keymap.set('n', '<leader>r', '<esc>')
 vim.keymap.set('n', '<leader>s', '<esc>')
 vim.keymap.set('n', '<leader>t', '<esc>')
@@ -251,10 +254,17 @@ vim.keymap.set('n', '<leader>v', '<esc>')
 vim.keymap.set('n', '<leader>w', '<esc>')
 vim.keymap.set('n', '<leader>x', '<esc>')
 vim.keymap.set('n', '<leader>y', '<esc>')
+vim.keymap.set('n', '<leader>z', '<esc>')
 
+--                           :
+vim.keymap.set('n', '<leader>I', '<esc>')
+--                           :
+vim.keymap.set('n', '<leader>K', '<esc>')
 vim.keymap.set('n', '<leader>L', '<esc>')
 vim.keymap.set('n', '<leader>M', '<esc>')
+--                           :
 vim.keymap.set('n', '<leader>O', '<esc>')
+--                           :
 
 -- mode normal esc end
 
@@ -290,7 +300,8 @@ vim.keymap.set('n', 'a', ':lua v.Buf.save()<cr>')
 vim.keymap.set('n', ':o', ':Oil . ')
 
 -- opn view ltst
-vim.keymap.set('n', 'gu', ':lua v.Buf.opn_view_ltst()<cr>')
+vim.keymap.set('n', 'gi', ':lua v.Buf.opn_tab_prv()<cr>')
+-- vim.keymap.set('n', 'gu', ':lua v.Buf.opn_tab_prv()<cr>')
 
 -- opn file srch  ( fzf )
 vim.keymap.set('n', '<leader>l', ':lua v.Fzf_file()<cr>')
@@ -561,7 +572,7 @@ vim.keymap.set('n', '*'    , ':lua v.Cursor.__ins_da()<cr>')
 vim.keymap.set('n', '<c-t>', ':lua v.Cursor.__ins_tm()<cr>')
 
 -- ins date time ( dt )
--- vim.keymap.set('n', 'x', ':lua v.Cursor.__ins_dt()<cr>')
+-- vim.keymap.set('n', 'xx', ':lua v.Cursor.__ins_dt()<cr>')
 
 -- ins day of week
 -- vim.keymap.set('n', 'xx', ':lua v.Cursor.__ins_week()<cr>')
@@ -723,7 +734,7 @@ vim.keymap.set('n', 'q', ':lua v.Cursor.f_str__space_crct("u")<cr>')
 vim.keymap.set('n', '<leader>k', '/')
 
 -- srch by cmd word
-vim.keymap.set('n', '<leader>K', '/\\<\\><left><left>')
+-- vim.keymap.set('n', '<leader>K', '/\\<\\><left><left>')
 
 -- srch word or
 -- vim.keymap.set('n', 'xx', 'Xxx')
@@ -780,6 +791,7 @@ vim.keymap.set('n', '<leader>O'    , ':lua v.Fzf_rg_word1("<c-r>/")<cr>')
 -- vim.keymap.set('n', '<leader>O', ':FzfRgWithRun <cr>')
 
 -- fzf buf
+vim.keymap.set('n', '<leader>K', ':lua v.N_fzf_buf()<cr>')
 vim.keymap.set('n', '<leader>i', ':lua v.N_fzf_buf()<cr>')
 
 -- fzf jmplst
@@ -827,7 +839,7 @@ vim.keymap.set('n', '<leader>D', ':lua v.Fzf_dir_jmp()<cr>')
 vim.keymap.set('n', '<leader>x', ':lua v.Fzf_dir_jmp()<cr>')
 
 -- fzf doc memo
--- vim.keymap.set('n', '<leader>m', ':lua v.Fzf_doc_memo_opn()<cr>')
+-- vim.keymap.set('n', '<leader>xx', ':lua v.Fzf_doc_memo_opn()<cr>')
 
 -- fzf doc tech
 vim.keymap.set('n', '<leader>t', ':lua v.Fzf_doc_tech()<cr>')
