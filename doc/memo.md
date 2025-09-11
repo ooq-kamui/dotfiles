@@ -4,9 +4,10 @@
 
 ## fish
 
-to_da.fish ??  tidy
+file tmp cre, name mod
 
-kirby ascii
+tm, etc, name tidy
+- date .. etc ..
 
 
 ## nvim

@@ -140,9 +140,11 @@ alias oooo-lf 'pwd ../../../; lf ../../../'
 # alias oo_lf   'lf ../'
 # alias ooo_lf  'lf ../../'
 
-#alias to     'touch'
+alias to     'touch'
 alias to_clr ':>'
 alias to_add_line_emp 'echo "" >>'
+
+alias tmp 'tmp_file_cre'
 
 alias mv  'mv -i'
 alias mve 'mv_excld'

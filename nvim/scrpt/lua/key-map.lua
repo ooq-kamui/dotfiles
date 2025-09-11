@@ -441,6 +441,9 @@ vim.keymap.set('n', 'gj', ':lua v.Cursor.__mv_file_edge_end()<cr>')
 vim.keymap.set('n', 'rk', ':lua v.Cursor.__mv_v_jmp("k")<cr>')
 vim.keymap.set('n', 'rj', ':lua v.Cursor.__mv_v_jmp("j")<cr>')
 
+-- cursor mv jmp - space stop
+vim.keymap.set('n', 'rrk', ':lua v.Cursor.__mv_v_jmp_char("k", "f")<cr>')
+vim.keymap.set('n', 'rrj', ':lua v.Cursor.__mv_v_jmp_char("j", "f")<cr>')
 vim.keymap.set('n', 'r<space>k', ':lua v.Cursor.__mv_v_jmp_char("k", "f")<cr>')
 vim.keymap.set('n', 'r<space>j', ':lua v.Cursor.__mv_v_jmp_char("j", "f")<cr>')
 
@@ -479,7 +482,8 @@ vim.keymap.set('n', 'v', '<c-v>')
 -- vim.keymap.set('n', 'xx', ':lua v.Rgstr.ynk__line_all()<cr>')
 
 -- slct re
-vim.keymap.set('n', 'rr', ':lua v.Slctd.__ltst()<cr>')
+vim.keymap.set('n', 'S', ':lua v.Slctd.__ltst()<cr>')
+-- vim.keymap.set('n', 'rr', ':lua v.Slctd.__ltst()<cr>')
 
 -- ynk clr
 vim.keymap.set('n', '<c-c>', ':lua v.Rgstr.ynk__clr()<cr>')
@@ -796,7 +800,7 @@ vim.keymap.set('n', '<leader>O'    , ':lua v.Fzf.rg_word1("<c-r>/")<cr>')
 
 -- fzf buf
 vim.keymap.set('n', '<leader>K', ':lua v.N_fzf_buf()<cr>')
-vim.keymap.set('n', '<leader>i', ':lua v.N_fzf_buf()<cr>')
+-- vim.keymap.set('n', '<leader>i', ':lua v.N_fzf_buf()<cr>')
 
 -- fzf jmplst
 vim.keymap.set('n', '<leader>e', ':FzfJmplst<cr>')
