@@ -6,7 +6,7 @@
 
 to_da.fish ??  tidy
 
-kirby
+kirby ascii
 
 
 ## nvim
