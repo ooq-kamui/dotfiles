@@ -14,8 +14,12 @@ end
 
 function v.Cmd.cmdline__(str)
 
-  -- v.Rgstr.ynk__(str)
+  vf.feedkeys(str)
+end
 
-  vf.feedkeys(':call ' .. str)
+function v.Cmd.cmdline__fnc_call(fnc_name)
+
+  -- vf.feedkeys(':call ' .. fnc_name)
+  vf.feedkeys(':lua ' .. fnc_name)
 end
 

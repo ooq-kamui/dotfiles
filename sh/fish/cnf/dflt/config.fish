@@ -282,7 +282,7 @@ bind \cy fzf-file-widget
 bind \cr fzf-history-widget
 #bind \cu fzf-history-widget
 
-bind \cu cmdline__fzf_git_status
+bind \cu cmdline__fzf_git_st_file_lst
 
 # erase
 #bind -e \cu

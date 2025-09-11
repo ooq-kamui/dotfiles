@@ -257,6 +257,8 @@ vim.keymap.set('n', '<leader>y', '<esc>')
 vim.keymap.set('n', '<leader>z', '<esc>')
 
 --                           :
+vim.keymap.set('n', '<leader>D', '<esc>')
+--                           :
 vim.keymap.set('n', '<leader>I', '<esc>')
 --                           :
 vim.keymap.set('n', '<leader>K', '<esc>')
@@ -264,6 +266,8 @@ vim.keymap.set('n', '<leader>L', '<esc>')
 vim.keymap.set('n', '<leader>M', '<esc>')
 --                           :
 vim.keymap.set('n', '<leader>O', '<esc>')
+--                           :
+vim.keymap.set('n', '<leader>R', '<esc>')
 --                           :
 
 -- mode normal esc end
@@ -304,8 +308,8 @@ vim.keymap.set('n', 'gi', ':lua v.Buf.opn_tab_prv()<cr>')
 -- vim.keymap.set('n', 'gu', ':lua v.Buf.opn_tab_prv()<cr>')
 
 -- opn file srch  ( fzf )
-vim.keymap.set('n', '<leader>l', ':lua v.Fzf_file()<cr>')
--- vim.keymap.set('n', '<leader>y', ':lua v.Fzf_file()<cr>')
+vim.keymap.set('n', '<leader>l', ':lua v.Fzf.file()<cr>')
+-- vim.keymap.set('n', '<leader>y', ':lua v.Fzf.file()<cr>')
 
 -- opn file hstry ( fzf )
 vim.keymap.set('n', '<leader>L', ':FzfFileHstry<cr>')
@@ -776,13 +780,13 @@ vim.keymap.set('n', ':s', ':%s/<c-r>//xxx/g')
 -- vim.keymap.set('n', ':s', ':Rpl ')
 
 -- fzf rg
-vim.keymap.set('n', '<leader>o'    , ':lua v.Fzf_rg(nil)<cr>')
+vim.keymap.set('n', '<leader>o'    , ':lua v.Fzf.rg(nil)<cr>')
 
 -- fzf rg srch str
-vim.keymap.set('n', '<leader><c-o>', ':lua v.Fzf_rg("<c-r>/")<cr>')
+vim.keymap.set('n', '<leader><c-o>', ':lua v.Fzf.rg("<c-r>/")<cr>')
 
 -- fzf rg srch str word1
-vim.keymap.set('n', '<leader>O'    , ':lua v.Fzf_rg_word1("<c-r>/")<cr>')
+vim.keymap.set('n', '<leader>O'    , ':lua v.Fzf.rg_word1("<c-r>/")<cr>')
 
 -- fzf rg fltr ext
 -- vim.keymap.set('n', '<leader>O', ':FzfRgExt js')
@@ -832,17 +836,19 @@ vim.keymap.set('n', ':D', ':lua v.Dir.__nvim_launch()')
 vim.keymap.set('n', ':k', ':K')
 
 -- fzf cd
-vim.keymap.set('n', '<leader>d', ':lua v.Fzf_dir()<cr>')
+vim.keymap.set('n', '<leader>d', ':lua v.Fzf.dir()<cr>')
 
 -- fzf cd ( dir jmp , zoxide )
-vim.keymap.set('n', '<leader>D', ':lua v.Fzf_dir_jmp()<cr>')
-vim.keymap.set('n', '<leader>x', ':lua v.Fzf_dir_jmp()<cr>')
+vim.keymap.set('n', '<leader>D', ':lua v.Fzf.dir_jmp()<cr>')
 
--- fzf doc memo
--- vim.keymap.set('n', '<leader>xx', ':lua v.Fzf_doc_memo_opn()<cr>')
+-- fzf fnc call
+vim.keymap.set('n', '<leader>R', ':lua v.Fzf.fnc_call()<cr>')
 
 -- fzf doc tech
-vim.keymap.set('n', '<leader>t', ':lua v.Fzf_doc_tech()<cr>')
+vim.keymap.set('n', '<leader>t', ':lua v.Fzf.doc_tech()<cr>')
+
+-- fzf doc memo
+-- vim.keymap.set('n', '<leader>xx', ':lua v.Fzf.doc_memo_opn()<cr>')
 
 -- 
 -- tab
@@ -1433,10 +1439,10 @@ end, {expr = true})
 vim.keymap.set('v', '<leader>i', ':lua v.V_fzf_buf()<cr>')
 
 -- fzf rg
-vim.keymap.set('v', '<leader>o', '"zy:lua v.Fzf_rg("<c-r>z")<cr>')
+vim.keymap.set('v', '<leader>o', '"zy:lua v.Fzf.rg("<c-r>z")<cr>')
 
 -- fzf rg word1
-vim.keymap.set('v', '<leader>O', '"zy:lua v.Fzf_rg_word1("<c-r>z")<cr>')
+vim.keymap.set('v', '<leader>O', '"zy:lua v.Fzf.rg_word1("<c-r>z")<cr>')
 
 -- tag jmp
 -- vim.keymap.set('v', 't', ':lua v.Buf.opn_by_slctd_line()<cr>')

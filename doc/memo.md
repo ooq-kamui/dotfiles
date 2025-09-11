@@ -2,28 +2,7 @@
 # dotfiles
 
 
-## clndr
-
-cre 10
-- 10-29  emp, apply
-
-
-## fish
-
-c-u, fzf git s, refactoring
-
-
 ## nvim
-
-cls fzf, refactoring
-
-
-fzf fnc call
-- v.Fzf.xxx()
-- :lua v.Xxx.xxx(prm01, prm02)
-- rg ??
-- leader R
-
 
 str__expnd_char_pair_swtch()
 - is xx __ char pair ()

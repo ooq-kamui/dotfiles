@@ -3,8 +3,7 @@
 
 v.Fzf = {}
 
-
-function v.Fzf_by_txt(...)
+function v.Fzf.by_txt(...)
 
   local arg = {...}
 
@@ -13,10 +12,10 @@ function v.Fzf_by_txt(...)
 
   local src_ar = v.Txt._to_ar(src_txt)
 
-  v.Fzf_by_ar(src_ar, fnc_name)
+  v.Fzf.by_ar(src_ar, fnc_name)
 end
 
-function v.Fzf_by_ar(...)
+function v.Fzf.by_ar(...)
 
   local arg = {...}
 
@@ -41,7 +40,7 @@ end
 
 -- fzf file
 
-function v.Fzf_file()
+function v.Fzf.file()
 
   -- local sys_cmd = 'fd --type f'
   local sys_cmd = 'fd --type f --ignore'
@@ -50,12 +49,12 @@ function v.Fzf_file()
   -- v.Log.val(fzf_src_txt)
 
   local fnc_name = v.Buf.opn
-  v.Fzf_by_txt(fzf_src_txt, fnc_name)
+  v.Fzf.by_txt(fzf_src_txt, fnc_name)
 end
 
 -- fzf rg
 
-function v.Fzf_rg(...) -- alias
+function v.Fzf.rg(...) -- alias
 
   local arg = {...}
 
@@ -63,10 +62,10 @@ function v.Fzf_rg(...) -- alias
   local ext   = arg[2] or nil
   local word1 = arg[3] or false
 
-  v.Fzf_rg_with_grep(ptn, ext, word1)
+  v.Fzf.rg_with_grep(ptn, ext, word1)
 end
 
-function v.Fzf_rg_with_grep(...)
+function v.Fzf.rg_with_grep(...)
 
   local arg = {...}
 
@@ -113,23 +112,23 @@ end
 
 -- fzf rg ext
 
-function v.Fzf_rg_ext(ext)
+function v.Fzf.rg_ext(ext)
 
   local ext = ext
-  v.Fzf_rg(nil, ext)
+  v.Fzf.rg(nil, ext)
 end
 
 -- rg word1
-function v.Fzf_rg_word1(ptn)
+function v.Fzf.rg_word1(ptn)
 
-  v.Fzf_rg(ptn, nil, true)
+  v.Fzf.rg(ptn, nil, true)
 end
 
 -- fzf rg by run
 
 g.fzf_line_cnt_max = 30000
 
-function v.Fzf_rg_with_run(...)
+function v.Fzf.rg_with_run(...)
 
   local arg = {...}
 
@@ -172,7 +171,7 @@ end
 
 -- fzf tag jmp by file
 
-function v.Fzf_tag_jmp_by_file(...)
+function v.Fzf.tag_jmp_by_file(...)
 
   local arg = {...}
 
@@ -180,7 +179,7 @@ function v.Fzf_tag_jmp_by_file(...)
 
   local fzf_src_txt = v.File_txt(file_path)
   local fnc_name    = v.Buf.opn_by_path
-  v.Fzf_by_txt(fzf_src_txt, fnc_name)
+  v.Fzf.by_txt(fzf_src_txt, fnc_name)
 end
 
 -- fzf buf
@@ -198,7 +197,7 @@ end
 
 -- fzf rgstr
 
-function v.Fzf_rgstr()
+function v.Fzf.rgstr()
 
   local rgstr_info_str = vf.execute(':reg')
   local rgstr_info_ar = vf.split(rgstr_info_str, '\\n')
@@ -231,7 +230,7 @@ end
 
 -- fzf jmplst ( edit line )
 
-function v.Fzf_jmplst()
+function v.Fzf.jmplst()
 
   vim.fn['fzf#run'](
     {
@@ -246,35 +245,40 @@ end
 
 -- fzf dir
 
-function v.Fzf_dir()
+function v.Fzf.dir()
 
   local sys_cmd = 'fd --type d'
   local fzf_src_txt  = v.Sys.cmd(sys_cmd)
 
   local fnc_name = v.Dir.__
-  v.Fzf_by_txt(fzf_src_txt, fnc_name)
+  v.Fzf.by_txt(fzf_src_txt, fnc_name)
 end
 
-function v.Fzf_dir_jmp()
+function v.Fzf.dir_jmp()
 
-  -- local sys_cmd = 'fd --type d'
   local sys_cmd = 'dir_jmp_lst_with_zoxide'
-
   local fzf_src_txt  = v.Sys.cmd(sys_cmd)
 
   local fnc_name = v.Dir.__
-  v.Fzf_by_txt(fzf_src_txt, fnc_name)
+  v.Fzf.by_txt(fzf_src_txt, fnc_name)
 end
 
 -- fzf fnc call
 
+function v.Fzf.fnc_call()
 
+  local sys_cmd = 'rg --no-heading --no-filename --no-line-number "^function " --replace= ' .. g.nvim_lua_fnc_dir
+  local fzf_src_txt  = v.Sys.cmd(sys_cmd)
+
+  local fnc_name = v.Cmd.cmdline__fnc_call
+  v.Fzf.by_txt(fzf_src_txt, fnc_name)
+end
 
 -- fzf doc-tech
 
 g.doc_tech_md_dir = 'wrk/prj-pri/doc-tech/docs/md'
 
-function v.Fzf_doc_tech()
+function v.Fzf.doc_tech()
 
   local ptn = g.rg_emp_line_ptn
   local opt  = ' -v'
@@ -291,7 +295,7 @@ function v.Fzf_doc_tech()
 
   -- local fnc_name = 'Doc_tech_tag_jmp'
   local fnc_name = v.Doc_tech_tag_jmp
-  v.Fzf_by_txt(fzf_src_txt, fnc_name)
+  v.Fzf.by_txt(fzf_src_txt, fnc_name)
 end
 
 function v.Doc_tech_tag_jmp(str)
@@ -303,7 +307,7 @@ end
 
 -- fzf doc-memo
 
-function v.Fzf_doc_memo_opn()
+function v.Fzf.doc_memo_opn()
 
   local dir = '~'
 
@@ -317,7 +321,7 @@ function v.Fzf_doc_memo_opn()
   local fzf_src_ar = memo_file_list
   -- local fnc_name    = 'Opn'
   local fnc_name    = v.Buf.opn
-  v.Fzf_by_ar(fzf_src_ar, fnc_name)
+  v.Fzf.by_ar(fzf_src_ar, fnc_name)
 end
 
 -- setting
@@ -389,7 +393,7 @@ end
 -- command! -bang -nargs=1 FzfRgExt call Fzf_rg_ext(<f-args>)
 vim.api.nvim_create_user_command('FzfRgExt',
   function(opts)
-    v.Fzf_rg_ext(table.unpack(opts.fargs))
+    v.Fzf.rg_ext(table.unpack(opts.fargs))
   end,
   {nargs = 1, bang = true}
 )
@@ -397,7 +401,7 @@ vim.api.nvim_create_user_command('FzfRgExt',
 -- command! -nargs=? FzfRgWithRun call Fzf_rg_with_run(<f-args>)
 vim.api.nvim_create_user_command('FzfRgWithRun',
   function(opts)
-    v.Fzf_rg_with_run(table.unpack(opts.fargs))
+    v.Fzf.rg_with_run(table.unpack(opts.fargs))
   end,
   {nargs = '?'}
 )
@@ -405,7 +409,7 @@ vim.api.nvim_create_user_command('FzfRgWithRun',
 -- command! -nargs=? FzfTagjmpByFile call Fzf_tag_jmp_by_file(<f-args>)
 vim.api.nvim_create_user_command('FzfTagjmpByFile',
   function(opts)
-    v.Fzf_tag_jmp_by_file(table.unpack(opts.fargs))
+    v.Fzf.tag_jmp_by_file(table.unpack(opts.fargs))
   end,
   {nargs = '?'}
 )
@@ -426,10 +430,10 @@ vim.cmd('command! -bang -nargs=* FzfCmdHstry call fzf#vim#command_history(fzf#vi
 vim.cmd('command! -bang -nargs=* FzfSrchHstry call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)')
 
 -- fzf rgstr
-vim.cmd('command! -bang -nargs=* FzfRgstr call v:lua.v.Fzf_rgstr()')
+vim.cmd('command! -bang -nargs=* FzfRgstr call v:lua.v.Fzf.rgstr()')
 
 -- fzf jmplst
-vim.cmd('command! -bang -nargs=* FzfJmplst call v:lua.v.Fzf_jmplst()')
+vim.cmd('command! -bang -nargs=* FzfJmplst call v:lua.v.Fzf.jmplst()')
 
 -- fzf cmd def : mark
 vim.cmd('command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)')
