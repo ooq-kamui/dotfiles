@@ -2,6 +2,13 @@
 # dotfiles
 
 
+## fish
+
+to_da.fish ??  tidy
+
+kirby
+
+
 ## nvim
 
 str__expnd_char_pair_swtch()
@@ -14,6 +21,10 @@ str__expnd_char_pair_swtch()
 - tst
   'aaa  bbb  ccc'
   ( aaa  bbb  ccc )
+
+plg
+- nvim-treesitter
+  - instl
 
 
 ## aws
@@ -41,9 +52,6 @@ game cre
 cursor style, tidy
 - reserch
 - cmdline err
-
-plg
-- nvim-treesitter
 
 file type java
 - cmnt

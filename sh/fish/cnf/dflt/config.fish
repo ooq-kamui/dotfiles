@@ -199,6 +199,9 @@ alias date_y1 "date_y 1"
 alias date_y2 "date_y 2"
 alias t       'ts'
 
+alias date-utc 'date_utc_fr_jst'
+alias utc      'date_utc_fr_jst'
+
 alias ca 'cal'
 
 alias du   'du -h'
@@ -226,7 +229,8 @@ alias trns_e2j 'trans {en=ja}'
 alias trns_je  'trans {ja=en}'
 alias trns_ej  'trans {en=ja}'
 
-alias ba 'battery'
+alias ba      'battery'
+alias weather 'wttr'
 
 alias amp 'amplify'
 
