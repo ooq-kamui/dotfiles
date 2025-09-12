@@ -1,4 +1,4 @@
-function sjis
+function ucnv_sjis
 
   set i_file_path $argv[1]
 
