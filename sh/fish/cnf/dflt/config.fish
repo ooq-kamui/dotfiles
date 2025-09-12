@@ -231,8 +231,8 @@ alias trns_e2j 'trans {en=ja}'
 alias trns_je  'trans {ja=en}'
 alias trns_ej  'trans {en=ja}'
 
-alias ba      'battery'
-alias weather 'wttr'
+alias ba   'battery'
+alias wthr 'weather'
 
 alias amp 'amplify'
 

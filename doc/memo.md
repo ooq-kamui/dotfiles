@@ -4,6 +4,11 @@
 
 ## nvim
 
+v Y, case : cancel
+
+n F, cursor mv __ line u col
+- ref : n q
+
 str__expnd_char_pair_swtch()
 - is xx __ char pair ()
 

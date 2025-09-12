@@ -1,4 +1,4 @@
-function wttr
+function weather
 
   curl "wttr.in/$argv"
 end
