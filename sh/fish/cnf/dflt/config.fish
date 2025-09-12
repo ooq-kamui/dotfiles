@@ -76,8 +76,8 @@ alias kkkk      'k;k;k;k'
 
 # alias d   'dir_jmp_with_z'
 alias d   'dir_jmp_with_zoxide'
-alias dd  'd dotfiles'
 alias do  'd dotfiles'
+# alias dd  'd dotfiles'
 # alias ddo 'd dotfiles'
 
 alias mkdir 'mkdir -p'
@@ -144,13 +144,14 @@ alias to     'touch'
 alias to_clr ':>'
 alias to_add_line_emp 'echo "" >>'
 
-alias tmp 'tmp_file_cre'
+alias tmp 'file_tmp'
 
 alias mv  'mv -i'
 alias mve 'mv_excld'
 alias rn  'rename'
 
-alias cp 'cp -ip'
+alias cp  'cp -ip'
+alias dpl 'file_dpl'
 
 alias rm    'rm -i'
 alias trash 'trash -F'
@@ -199,7 +200,6 @@ alias da_y1   "date_y 1"
 alias da_y2   "date_y 2"
 alias date_y1 "date_y 1"
 alias date_y2 "date_y 2"
-alias t       'ts'
 
 alias date-utc 'date_utc_fr_jst'
 alias utc      'date_utc_fr_jst'

@@ -2,14 +2,6 @@
 # dotfiles
 
 
-## fish
-
-file tmp cre, name mod
-
-tm, etc, name tidy
-- date .. etc ..
-
-
 ## nvim
 
 str__expnd_char_pair_swtch()
@@ -22,6 +14,7 @@ str__expnd_char_pair_swtch()
 - tst
   'aaa  bbb  ccc'
   ( aaa  bbb  ccc )
+
 
 plg
 - nvim-treesitter

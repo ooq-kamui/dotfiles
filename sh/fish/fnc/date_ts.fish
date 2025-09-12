@@ -1,4 +1,4 @@
-function ts
+function date_ts
 
   date_ymdhms
 end
