@@ -2,11 +2,12 @@
 -- print('init.lua')
 
 vf = vim.fn
--- f  = vim.fn
-
 v = {}
--- u = {}
 g = {}
+c = {
+  t = true,
+  f = false,
+}
 
 require('fnc/fnc-prmtv')
 require('fnc/fnc-basic')

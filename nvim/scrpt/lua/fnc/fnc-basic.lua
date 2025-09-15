@@ -33,6 +33,8 @@ require('fnc/fnc-buf'   )
 require('fnc/fnc-sys'   )
 require('fnc/fnc-mcr'   )
 
+require('fnc/fnc-mark'  )
+
 require('fnc/fnc-tst'   )
 
 
@@ -132,7 +134,7 @@ function v.Rg_cmd(ptn, ext, word1, opt)
 
   local fzf_rg_opt_word1 = ''
 
-  if word1 == true then
+  if word1 == c.t then
     fzf_rg_opt_word1 = ' -w'
   end
 
@@ -368,120 +370,6 @@ function v.Repeat_fnc()
   -- v.Cursor.__mv_srch('f')
   -- v.Cursor.__mv_d()
   -- v.Cursor.__ins_ynk()
-end
-
--- priority l
-
--- 
--- mark
--- 
-
-g.mark_alph_def = {
-  'a','b','c','d','e','f','g','h','i','j','k','l','m','n',
-  'o','p','q','r','s','t','u','v','w','x','y','z'
-}
-
-function v.Mark_show_tgl()
-
-  if vf.exists('g.mark_show_flg') == 0 then
-
-    g.mark_show_flg = false
-  end
-
-  if not g.mark_show_flg then
-
-    -- exe 'DoShowMarks'
-    vim.cmd('DoShowMarks')
-    g.mark_show_flg = true
-  else
-    -- exe 'NoShowMarks'
-    vim.cmd('NoShowMarks')
-    g.mark_show_flg = false
-  end
-end
-
-function v.Mark_lst()
-
-  local mark = {}
-  for idx, _mark in pairs(vf.bufname():getmarklist()) do
-
-    local _alph = _mark['mark'][2]
-
-    if vf.count(g.mark_alph_def, _alph) == 0 then
-      -- continue
-    else
-      mark = v.Tbl.add(mark, _mark['mark'][2])
-    end
-  end
-
-  --print( mark )
-  return mark
-end
-
-function v.Mark_alph_line()
-
-  local line_num = v.Cursor.line_num()
-
-  for idx, _mark in pairs(vf.bufname():getmarklist()) do
-
-    local _alph = _mark['mark'][2]
-
-    if vf.count(g.mark_alph_def, _alph) == 0 then
-      -- continue
-    else
-      if _mark['pos'][2] == line_num then
-        --print( _alph )
-        return _alph
-      end
-    end
-  end
-  return ''
-end
-
-function v.Mark_tgl()
-
-  local alph = v.Mark_alph_line()
-  --print( 'Mark_tgl ' .. alph )
-
-  if v.Str.is__emp(alph) then
-    v.Mark_add()
-  else
-    v.Mark_del(alph)
-  end
-
-  v.Cmd.cmd('DoShowMarks')
-end
-
-function v.Mark_add()
-
-  local alph = v.Mark_alph_useabl()
-  v.Cmd.cmd('mark ' .. alph)
-end
-
-function v.Mark_alph_useabl()
-
-  local mark = v.Mark_lst()
-
-  for idx, _alph in pairs(g.mark_alph_def) do
-    if vf.count(mark, _alph) == 0 then
-      --print( _alph )
-      return _alph
-    end
-  end
-
-  print( 'use alph all' )
-  return ''
-end
-
-function v.Mark_del(alph)
-
-  v.Cmd.cmd('delmark ' .. alph)
-end
-
-function v.Mark_del_all()
-
-  v.Cmd.cmd('delmark!')
-  v.Cmd.cmd('DoShowMarks')
 end
 
 -- fnc end

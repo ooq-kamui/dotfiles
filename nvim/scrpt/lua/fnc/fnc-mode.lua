@@ -17,10 +17,10 @@ end
 
 function v.Mode.is__normal()
 
-  local ret = false
+  local ret = c.f
 
   if vf.mode() == 'n' then
-    ret = true
+    ret = c.t
   end
   return ret
 end
@@ -29,40 +29,40 @@ end
 
 function v.Mode.is__visual()
 
-  local ret = false
+  local ret = c.f
 
   if v.Mode.is__str() or v.Mode.is__line() or v.Mode.is__box() then
-    ret = true
+    ret = c.t
   end
   return ret
 end
 
 function v.Mode.is__str()
 
-  local ret = false
+  local ret = c.f
 
   if vf.mode() == 'v' then
-    ret = true
+    ret = c.t
   end
   return ret
 end
 
 function v.Mode.is__line()
 
-  local ret = false
+  local ret = c.f
 
   if vf.mode() == 'V' then
-    ret = true
+    ret = c.t
   end
   return ret
 end
 
 function v.Mode.is__box()
 
-  local ret = false
+  local ret = c.f
 
-  if vf.mode() == vim.api.nvim_replace_termcodes('<c-v>', false, false, true) then
-    ret = true
+  if vf.mode() == vim.api.nvim_replace_termcodes('<c-v>', c.f, c.f, c.t) then
+    ret = c.t
   end
   return ret
 end
@@ -71,10 +71,10 @@ end
 
 function v.Mode.is__ins_menu()
 
-  local ret = false
+  local ret = c.f
 
   if vf.pumvisible() == 1 then
-    ret = true
+    ret = c.t
   end
 
   return ret

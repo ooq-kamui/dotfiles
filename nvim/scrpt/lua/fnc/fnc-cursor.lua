@@ -48,18 +48,18 @@ end
 function v.Cursor.is_col__line_end()
 
   if v.Cursor.col_num() == v.Cursor.line_end_col() then
-    return true
+    return c.t
   else
-    return false
+    return c.f
   end
 end
 
 function v.Cursor.is_col__line_end_ovr() -- range
 
   if v.Cursor.col_num() >= v.Cursor.line_end_col() then
-    return true
+    return c.t
   else
-    return false
+    return c.f
   end
 end
 
@@ -67,18 +67,18 @@ function v.Cursor.is_col__line_end_inr()
 
   if v.Cursor.col_num() == v.Cursor.line_end_col() - 1 then
 
-    return true
+    return c.t
   else
-    return false
+    return c.f
   end
 end
 
 function v.Cursor.is_col__line_top0()
 
   if v.Cursor.col_num() == 1 then
-    return true
+    return c.t
   else
-    return false
+    return c.f
   end
 end
 
@@ -94,9 +94,9 @@ function v.Cursor.is_col__line_top1()
   vf.setpos('.', pos_c)
   
   if col_c == col_s1 then
-    return true
+    return c.t
   else
-    return false
+    return c.f
   end
 end
 
@@ -514,6 +514,33 @@ function v.Cursor.__mv_srch(drct)
   vf.search(ptn, opt)
 end
 
+function v.Cursor.__mv_block_out()
+
+  local bracket_type_list = {
+    'javascript',
+    'java',
+  }
+
+  -- if v.Buf.is_file_type__in(bracket_type_list) then
+  if c.t then
+    v.Cursor.__mv_bracket_out()
+  else
+    v.Cursor.__mv_fnc_out()
+  end
+end
+
+function v.Cursor.__mv_bracket_out()
+
+  local cmd_nml = '[{'
+  v.Cmd.nml(cmd_nml)
+end
+
+function v.Cursor.__mv_fnc_out()
+
+  local cmd_nml = '[m'
+  v.Cmd.nml(cmd_nml)
+end
+
 -- cursor __ ins
 
 function v.Cursor.__ins(str)
@@ -748,9 +775,9 @@ function v.Cursor.is_line__markdown_itm()
   -- print(idx)
 
   if not idx then
-    return false
+    return c.f
   else
-    return true
+    return c.t
   end
 end
 
@@ -952,9 +979,9 @@ function v.Cursor.is_c_char__ptn(ptn)
 
   -- if c =~ ptn then
   if v.Str.is__ptn(c, ptn) then
-    return true
+    return c.t
   else
-    return false
+    return c.f
   end
 end
 
@@ -967,9 +994,9 @@ function v.Cursor.is_c_char__space()
   -- local c = v.Cursor.c_char()
   -- 
   -- if v.Str.is__ptn(c, '\\s') then
-  --   return true
+  --   return c.t
   -- else
-  --   return false
+  --   return c.f
   -- end
 end
 
@@ -1405,11 +1432,11 @@ end
 
 function v.Cursor.is_line_num__(line_num)
 
-  local ret = false
+  local ret = c.f
 
   local cursor_line_num = v.Cursor.line_num()
   if cursor_line_num == line_num then
-    ret = true
+    ret = c.t
   end
   return ret
 end
@@ -1430,10 +1457,10 @@ end
 
 function v.Cursor.is_line_num__file_edge()
 
-  local ret = false
+  local ret = c.f
 
   if v.Cursor.is_line_num__file_edge_bgn() or v.Cursor.is_line_num__file_edge_end() then
-    ret = true
+    ret = c.t
   end
   --print( ret )
   return ret
@@ -1442,9 +1469,9 @@ end
 function v.Cursor.is_line_str__emp()
 
   if v.Cursor.line_end_col() == 1 then
-    return true
+    return c.t
   else
-    return false
+    return c.f
   end
 end
 
@@ -1473,10 +1500,10 @@ function v.Cursor.is_line_str__ptn(ptn) -- todo dev
 
   local str = v.Cursor.line_str_side_r()
 
-  local ret = false
+  local ret = c.f
 
   if v.Str.is__ptn(str, ptn) then
-    ret = true
+    ret = c.t
   end
   return ret
 end
@@ -1505,7 +1532,7 @@ function v.Cursor.line_indnt__add(col)
   else
     -- dev anchor : todo dev
     char = '\t'
-    -- char = vim.api.nvim_replace_termcodes('\t', false, false, true)
+    -- char = vim.api.nvim_replace_termcodes('\t', c.f, c.f, c.t)
     col = col / 2
   end
   v.Cursor.__ins_mlt(char, col)

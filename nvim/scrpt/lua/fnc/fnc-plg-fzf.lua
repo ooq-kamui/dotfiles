@@ -54,30 +54,32 @@ end
 
 -- fzf rg
 
-function v.Fzf.rg(...) -- alias
+function v.Fzf.rg(ptn, ext, word1) -- alias
 
-  local arg = {...}
-
-  local ptn   = arg[1] or ''
-  local ext   = arg[2] or nil
-  local word1 = arg[3] or false
+  ptn   = ptn   or ''
+  ext   = ext   or nil
+  word1 = word1 or c.f
 
   v.Fzf.rg_with_grep(ptn, ext, word1)
 end
 
-function v.Fzf.rg_with_grep(...)
+function v.Fzf.rg_with_grep(ptn, ext, word1)
 
-  local arg = {...}
+  -- local arg = {...}
 
   if not ( v.Is_env__('mac') or v.Is_env__('linux') or v.Is_env__('win64') ) then
     return
   end
 
-  local ptn   = arg[1] or ''
-  -- local ptn   = arg[1] or g.rg_some_line_ptn
+  -- local ptn   = arg[1] or ''
+  -- -- local ptn   = arg[1] or g.rg_some_line_ptn
+  -- local ext   = arg[2] or nil
+  -- local word1 = arg[3] or c.f
 
-  local ext   = arg[2] or nil
-  local word1 = arg[3] or false
+  ptn   = ptn   or ''
+  -- ptn   = ptn   or g.rg_some_line_ptn
+  ext   = ext   or nil
+  word1 = word1 or c.f
 
   local rg_cmd = v.Rg_cmd(ptn, ext, word1, nil)
   -- v.Log.val(rg_cmd)
@@ -121,7 +123,7 @@ end
 -- rg word1
 function v.Fzf.rg_word1(ptn)
 
-  v.Fzf.rg(ptn, nil, true)
+  v.Fzf.rg(ptn, nil, c.t)
 end
 
 -- fzf rg by run
@@ -184,12 +186,12 @@ end
 
 -- fzf buf
 
-function v.N_fzf_buf()
+function v.Fzf.buf()
   
   vim.cmd('FzfBufCrnt ')
 end
 
-function v.V_fzf_buf()
+function v.Fzf.buf_by_slctd_str()
 
   v.Srch.str__slctd_str()
   vim.cmd('FzfBufCrnt ' .. vf.escape(vf.getreg('z'), '.*~'))
@@ -311,14 +313,14 @@ function v.Fzf.doc_memo_opn()
 
   local dir = '~'
 
-  local memo_file_list = {
+  local memo_file_lst = {
     dir .. '/wrk/prj-pri/dotfiles/doc/memo.md'   ,
     dir .. '/wrk/prj-pri/doc-tech/doc/memo.md',
     dir .. '/wrk/prj-pri/life/doc/memo.md'       ,
     dir .. '/wrk/prj-pri/wall-paper/doc/memo.md' ,
   }
 
-  local fzf_src_ar = memo_file_list
+  local fzf_src_ar = memo_file_lst
   -- local fnc_name    = 'Opn'
   local fnc_name    = v.Buf.opn
   v.Fzf.by_ar(fzf_src_ar, fnc_name)
@@ -395,7 +397,7 @@ vim.api.nvim_create_user_command('FzfRgExt',
   function(opts)
     v.Fzf.rg_ext(table.unpack(opts.fargs))
   end,
-  {nargs = 1, bang = true}
+  {nargs = 1, bang = c.t}
 )
 
 -- command! -nargs=? FzfRgWithRun call Fzf_rg_with_run(<f-args>)

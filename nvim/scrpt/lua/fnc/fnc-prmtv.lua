@@ -26,10 +26,10 @@ end
 
 function v.Char.is__num(char)
 
-  local ret = false
+  local ret = c.f
 
   if v.Str.is__ptn(char, '\\d') then
-    ret = true
+    ret = c.t
   end
 
   return ret
@@ -37,10 +37,10 @@ end
 
 function v.Char.is__alpha(char)
 
-  local ret = false
+  local ret = c.f
 
   if v.Str.is__ptn(char, '\\a') then
-    ret = true
+    ret = c.t
   end
 
   return ret
@@ -48,10 +48,10 @@ end
 
 function v.Char.is__symbol(char)
 
-  local ret = false
+  local ret = c.f
 
   if not v.Str.is__ptn(char, '\\s') and not v.Str.is__ptn(char, '\\w') then
-    ret = true
+    ret = c.t
   end
 
   return ret
@@ -61,10 +61,10 @@ end
 
 function v.Char.is_pair__(ptn, c1, c2)
 
-  local ret = false
+  local ret = c.f
 
   if v.Str.is__ptn(c1, ptn) and v.Str.is__ptn(c2, ptn) then
-    ret = true
+    ret = c.t
   end
 
   return ret
@@ -72,14 +72,14 @@ end
 
 function v.Char.is_pair__quote(c1, c2)
 
-  local ret = false
+  local ret = c.f
 
   if     c1 == "'" and c2 == "'" then
-    ret = true
+    ret = c.t
   elseif c1 == '"' and c2 == '"' then
-    ret = true
+    ret = c.t
   elseif c1 == '`' and c2 == '`' then
-    ret = true
+    ret = c.t
   end
 
   return ret
@@ -87,16 +87,16 @@ end
 
 function v.Char.is_pair__bracket(c1, c2)
 
-  local ret = false
+  local ret = c.f
 
   if     c1 == '(' and c2 == ')' then
-    ret = true
+    ret = c.t
   elseif c1 == '{' and c2 == '}' then
-    ret = true
+    ret = c.t
   elseif c1 == '[' and c2 == ']' then
-    ret = true
+    ret = c.t
   elseif c1 == '<' and c2 == '>' then
-    ret = true
+    ret = c.t
   end
 
   return ret
@@ -203,10 +203,10 @@ end
 
 function v.Char.is_space(char)
 
-  local ret = false
+  local ret = c.f
 
   if char == ' ' or char == '\t' then
-    ret = true
+    ret = c.t
   end
 
   return ret
@@ -309,9 +309,9 @@ function v.Tbl.is_in(tbl, val)
   local idx = v.Tbl.idx(tbl, val)
 
   if idx then
-    return true
+    return c.t
   else
-    return false
+    return c.f
   end
 end
 
@@ -324,9 +324,9 @@ end
 function v.Tbl.is_last(tbl, val)
 
   if val == v.Tbl.last(tbl) then
-    return true
+    return c.t
   else
-    return false
+    return c.f
   end
 end
 

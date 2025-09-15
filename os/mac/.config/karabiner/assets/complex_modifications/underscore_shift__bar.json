@@ -1,0 +1,26 @@
+{
+  "title": "underscore shift __ bar [ @kamui ]",
+  "rules": [
+    {
+      "description": "underscore shift __ bar",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "international1",
+            "modifiers": {
+              "mandatory": [ "shift" ]
+            }
+          },
+          "to": [
+            {
+              "modifiers": ["shift"],
+              "key_code": "international3"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

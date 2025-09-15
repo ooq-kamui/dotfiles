@@ -122,20 +122,20 @@ function v.Str.col_idx_lst(str)
   local col_idx_lst = {}
   local char
 
-  local is_space = true
+  local is_space = c.t
 
   for idx = 1, #str do
 
     char = str:sub(idx, idx)
 
     if v.Char.is_space(char) then
-      is_space = true
+      is_space = c.t
 
     else
       if is_space then
         table.insert(col_idx_lst, idx)
       end
-      is_space = false
+      is_space = c.f
     end
   end
 
@@ -193,10 +193,14 @@ end
 
 function v.Str.is__emp(str)
 
-  local ret = false
+  local ret = c.f
+
+  if str == nil then
+    ret = c.t
+  end
 
   if str == '' then
-    ret = true
+    ret = c.t
   end
   return ret
 end
@@ -206,9 +210,9 @@ function v.Str.is__ptn(str, ptn)
   local ret
 
   if vf.match(str, ptn) == -1 then
-    ret = false
+    ret = c.f
   else
-    ret = true
+    ret = c.t
   end
 
   return ret

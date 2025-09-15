@@ -175,7 +175,7 @@ function v.Buf__quit_swtch()
   local win_num = vf.winnr('$')
 
   if win_num > 1 then
-    v.Win_splt__quit()
+    v.Win.splt__quit()
   else
     v.Buf__quit()
   end
@@ -276,36 +276,44 @@ end
 function v.Buf.is_file_type__(type)
 
   if vim.bo.filetype == type then
-    return true
+    return c.t
   else
-    return false
+    return c.f
   end
+end
+
+function v.Buf.is_file_type__in(type_lst)
+
+  local ret = v.Tbl.is_in(type_lst, vim.bo.filetype)
+  return ret
 end
 
 -- win
 
 -- win splt
 
-function v.Win__splt_h()
+v.Win = {}
+
+function v.Win.__splt_h()
 
   local cmd = 'split'
   v.Cmd.cmd(cmd)
 end
 
-function v.Win__splt_v()
+function v.Win.__splt_v()
 
   local cmd = 'vsplit'
   v.Cmd.cmd(cmd)
 
-  v.Win_splt_cursor__mv_nxt()
+  v.Win.splt_cursor__mv_nxt()
 end
 
-function v.Win_splt_cursor__mv_nxt()
+function v.Win.splt_cursor__mv_nxt()
 
   vim.cmd('exe "normal! \\<c-w>w>"')
 end
 
-function v.Win_splt__quit()
+function v.Win.splt__quit()
 
   vim.cmd('exe "normal! \\<c-w>c>"')
 end

@@ -206,7 +206,7 @@ end
 
 function v.Slctd.is_cursor_pos__r() -- range
 
-  local ret = false
+  local ret = c.f
 
   v.Slctd.__ltst()
 
@@ -221,12 +221,12 @@ function v.Slctd.is_cursor_pos__r() -- range
 
 
   if     cursor_pos1[2] >  cursor_pos2[2] then -- line
-    ret = true
+    ret = c.t
 
   elseif cursor_pos1[2] == cursor_pos2[2] then -- line
 
     if   cursor_pos1[3] >= cursor_pos2[3] then -- col
-      ret = true
+      ret = c.t
     end
   end
 
@@ -279,13 +279,13 @@ end
 
 function  v.Slctd.is_str_edge_r_out_char__space()
 
-  local ret = false
+  local ret = c.f
 
   local slctd_r_out_char = v.Slctd.str_edge_r_out_char()
 
   if v.Str.is__ptn(slctd_r_out_char, '\\s') then
 
-    ret = true
+    ret = c.t
   end
 
   return ret
@@ -582,18 +582,18 @@ end
 function v.Slctd.is_str__srch_str()
 
   if v.Slctd.str() == v.Rgstr.get('/') then
-    return true
+    return c.t
   else
-    return false
+    return c.f
   end
 end
 
 function v.Slctd.is_str__line_mlt()
 
   if v.Str.is__ptn(v.Slctd.str(), '\\n') then
-    return true
+    return c.t
   else
-    return false
+    return c.f
   end
 end
 
@@ -938,7 +938,7 @@ end
 
 function v.Slctd.is_str_edge_l_col__line_top() -- range
 
-  local ret = false
+  local ret = c.f
 
   v.Slctd.__ltst()
 
@@ -950,7 +950,7 @@ function v.Slctd.is_str_edge_l_col__line_top() -- range
 
   -- if cursor_l_pos[2] == 1 then -- col
   if cursor_l_pos[3] == 1 then -- col
-    ret = true
+    ret = c.t
   end
 
   return ret
@@ -1088,21 +1088,23 @@ function v.Slctd.line_end__ins_input() -- range
   v.Cursor.__mv_by_line_num(line_s_num)
   v.Cursor.__mv_line_end()
 
-  v.Mode.__ins()
-
   vim.api.nvim_create_autocmd('InsertLeave', {
-    once = true,
+    once = c.t,
     callback = function()
-
       local ins_str = v.Rgstr.get('.')
 
-      for line_num = line_s_num + 1, line_e_num do
+      -- if v.Str.is__emp(ins_str) then
+      --   return
+      -- end
 
+      for line_num = line_s_num + 1, line_e_num do
         v.Cursor.__mv_by_line_num(line_num)
         v.Cursor.line_end__ins(ins_str)
       end
     end
   })
+
+  v.Mode.__ins()
 end
 
 function v.Slctd.line_end__pad_space() -- range -- use not
@@ -1247,13 +1249,13 @@ end
 
 function v.Slctd.is_line__mlt()
 
-  local ret = false
+  local ret = c.f
 
   local slctd_line_s_num = v.Slctd.line_s_num()
   local slctd_line_e_num = v.Slctd.line_e_num()
 
   if slctd_line_s_num ~= slctd_line_e_num then
-    ret = true
+    ret = c.t
   end
 
   return ret

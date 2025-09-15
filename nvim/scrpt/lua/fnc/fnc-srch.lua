@@ -59,7 +59,7 @@ function v.Srch.str__(str, op_word1)
   exe_str = vf.substitute(exe_str, '\\n', '\\\\n', 'g')
   -- print( exe_str )
 
-  if op_word1 == true then
+  if op_word1 == c.t then
     exe_str = v.Srch.str_word1(exe_str)
   end
 
@@ -80,7 +80,7 @@ end
 function v.Srch.str__cursor_word()
 
   local str = v.Cursor.word()
-  v.Srch.str__(str, false)
+  v.Srch.str__(str, c.f)
 end
 
 function v.Srch.str__word1_tgl()
@@ -89,9 +89,9 @@ function v.Srch.str__word1_tgl()
 
   if v.Srch.is__word1() then
 
-    v.Srch.str__(str, false)
+    v.Srch.str__(str, c.f)
   else
-    v.Srch.str__(str, true)
+    v.Srch.str__(str, c.t)
   end
 end
 
@@ -151,7 +151,7 @@ function v.Srch.str__slctd_str() -- range
   v.Slctd.__ltst()
 
   local str = v.Slctd.str()
-  v.Srch.str__(str, false)
+  v.Srch.str__(str, c.f)
   v.Slctd.__cancel()
 end
 
@@ -253,13 +253,13 @@ function v.Srch.is__word1()
 
   -- local str = @/
   local str = v.Rgstr.get('/')
-  local ret = false
+  local ret = c.f
 
   local str_l = vf.strcharpart(str, 0, 2)
   local str_r = vf.strcharpart(str, vf.strchars(str) - 2)
 
   if str_l == '\\<' and str_r == '\\>' then
-    ret = true
+    ret = c.t
   end
 
   return ret

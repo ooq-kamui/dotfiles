@@ -4,7 +4,7 @@
 
 -- ex
 -- 
--- vim.api.nvim_set_hl(0, 'LineNr', { ctermfg = '#777777', ctermbg = 'NONE', bold = false })
+-- vim.api.nvim_set_hl(0, 'LineNr', { ctermfg = '#777777', ctermbg = 'NONE', bold = c.f })
 -- arg[0] : hl group
 --   0: all    ( default )
 --   1: window
@@ -40,11 +40,11 @@ vim.opt.guicursor = "n-v-i-c:ver45"
 -- hl__(0, 'Cursor'        , {ctermfg = 'black'        , ctermbg = 'none'       })
 -- hl__(0, 'Cursor'        , {ctermfg = 'blue'        , ctermbg = 'none'       })
 -- hl__(0, 'Cursor'        , {                          ctermbg = 'gray'       })
--- hl__(0, 'Cursor'        , {reverse = true                                   })
--- hl__(0, 'Cursor'        , {fg      = 'none'        , bg      = 'gray'       , reverse = true})
-hl__(0, 'Cursor'        , {fg      = 'none'        , bg      = 'gray'       , reverse = true})
+-- hl__(0, 'Cursor'        , {reverse = c.t                                   })
+-- hl__(0, 'Cursor'        , {fg      = 'none'        , bg      = 'gray'       , reverse = c.t})
+hl__(0, 'Cursor'        , {fg      = 'none'        , bg      = 'gray'       , reverse = c.t})
 
-hl__(0, 'CursorLine'    , {underline = true})
+hl__(0, 'CursorLine'    , {underline = c.t})
 hl__(0, 'CursorLineNr'  , {ctermfg = 'magenta'                              })
 
 hl__(0, 'Visual'        , {ctermfg = 'none'        , ctermbg = 'darkmagenta'})
@@ -65,7 +65,7 @@ hl__(0, 'StatusLine'    , {ctermfg = 'lightblue'   , ctermbg = 'none'       })
 hl__(0, 'EndOfBuffer'   , {ctermfg = 'cyan'                                 })
 
 hl__(0, 'Pmenu'         , {ctermfg = 'lightgreen'  , ctermbg = 'darkblue'   })
-hl__(0, 'PmenuSel'      , {ctermfg = 'cyan'        , ctermbg = 'magenta'    , bold = true })
+hl__(0, 'PmenuSel'      , {ctermfg = 'cyan'        , ctermbg = 'magenta'    , bold = c.t })
 
 hl__(0, 'ErrorMsg'      , {ctermfg = 'magenta'     , ctermbg = 'none'       })
 hl__(0, 'WarningMsg'    , {ctermfg = 'magenta'     , ctermbg = 'none'       })

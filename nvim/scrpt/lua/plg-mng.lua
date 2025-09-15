@@ -35,10 +35,10 @@ end
 osc52 = require('osc52')
 require("oil").setup({
   keymaps = {
-    ["<c-j>"] = { "actions.select", opts = { tab = true } },
+    ["<c-j>"] = { "actions.select", opts = { tab = c.t } },
   },
   -- view_options = {
-  --   new_tab = true,
+  --   new_tab = c.t,
   -- },
 })
 
@@ -53,7 +53,7 @@ require("oil").setup({
 --       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
 --       { out, "WarningMsg" },
 --       { "\nPress any key to exit..." },
---     }, true, {})
+--     }, c.t, {})
 --     vf.getchar()
 --     os.exit(1)
 --   end

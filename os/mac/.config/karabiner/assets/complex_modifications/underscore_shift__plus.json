@@ -1,8 +1,8 @@
 {
-  "title": "shift underscore __ tatebou [ @kamui ]",
+  "title": "underscore shift __ plus [ @kamui ]",
   "rules": [
     {
-      "description": "shift underscore __ tatebou",
+      "description": "underscore shift __ plus",
       "manipulators": [
         {
           "type": "basic",
@@ -15,7 +15,7 @@
           "to": [
             {
               "modifiers": ["shift"],
-              "key_code": "international3"
+              "key_code": "semicolon"
             }
           ]
         }

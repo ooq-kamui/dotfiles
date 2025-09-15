@@ -76,7 +76,7 @@ vim.api.nvim_create_user_command('VBoxRpl',
   function(opts)
     v.Slctd.box__rpl(opts.fargs[1], opts.fargs[2])
   end,
-  {nargs = '*', range = true}
+  {nargs = '*', range = c.t}
 )
 
 vim.api.nvim_create_user_command('Opn',
