@@ -4,6 +4,9 @@
 
 ## nvim
 
+refactoring
+- key
+
 str__expnd_char_pair_swtch()
 - is xx __ char pair ()
 
@@ -25,11 +28,9 @@ n F, cursor mv __ line u col
 - ref : n q
 
 
-## bg
+## artcl
 
-ssg
-- repository ?
-  - wallpaper ?
+img bg
 
 
 ## aws
@@ -57,10 +58,6 @@ game cre
 cursor style, tidy
 - reserch
 - cmdline err
-
-file type java
-- cmnt
-- syntax color
 
 plg
 - lualine
