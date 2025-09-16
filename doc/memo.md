@@ -2,6 +2,17 @@
 # dotfiles
 
 
+## nvim
+
+n c-w
+- block_out_swtch
+  - case markdown
+
+v cmnt mlt, err
+- slctd s line num, err ?
+- confirm log
+
+
 ## ssg artcl
 
 artcl ( page ) cre
@@ -30,22 +41,14 @@ game cre
 
 ## nvim
 
-v cmnt mlt, err
-- slctd s line num, err ?
-
-
 plg
 - nvim-treesitter
   - instl
-
 
 n F, cursor mv __ line u col
 - ref : n q
   - err ?
     - case line u, tmp
-
-
-## nvim
 
 cursor style, tidy
 - reserch
