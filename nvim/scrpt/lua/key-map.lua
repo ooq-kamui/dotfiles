@@ -272,6 +272,8 @@ vim.keymap.set('n', '<leader>R', '<esc>')
 
 -- mode normal esc end
 
+-- log
+vim.keymap.set('n', ':m', ':message <cr>')
 
 -- quit buffer
 vim.keymap.set('n', 'w',  v.Buf__quit_swtch)
@@ -1226,10 +1228,10 @@ vim.keymap.set('v', 'L', function()
 end, {expr = c.t})
 
 -- line __ ins comment 1
--- vim.keymap.set('v', '!', v.Slctd.line__ins_cmnt_1)
--- vim.keymap.set('v', '1', v.Slctd.line__ins_cmnt_1)
-vim.keymap.set('v', '!', ':lua v.Slctd.line__ins_cmnt_1()<cr>')
-vim.keymap.set('v', '1', ':lua v.Slctd.line__ins_cmnt_1()<cr>')
+vim.keymap.set('v', '!', v.Slctd.line__ins_cmnt_1)
+vim.keymap.set('v', '1', v.Slctd.line__ins_cmnt_1)
+-- vim.keymap.set('v', '!', ':lua v.Slctd.line__ins_cmnt_1()<cr>')
+-- vim.keymap.set('v', '1', ':lua v.Slctd.line__ins_cmnt_1()<cr>')
 
 -- line end __ ins comma
 vim.keymap.set('v', ',', ':lua v.Slctd.line_end__ins(",")<cr>')

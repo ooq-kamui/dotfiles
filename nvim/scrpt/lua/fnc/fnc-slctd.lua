@@ -1244,8 +1244,11 @@ end
 -- dev anchor
 function v.Slctd.line__ins_cmnt_1() -- range
 
+  -- dev anchor
+  -- v.Slctd.__ltst() -- ??
+
   local slctd_line_s_num = v.Slctd.line_s_num()
-  -- v.Log.val(slctd_line_s_num)
+  v.Log.val(slctd_line_s_num)
 
   v.Cursor.__mv_by_line_num(slctd_line_s_num)
   v.Cmd.nml('^')

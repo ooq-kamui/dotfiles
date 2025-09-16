@@ -2,23 +2,6 @@
 # dotfiles
 
 
-## nvim
-
-v cmnt mlt, err
-- log sys mod ( cre )
-
-
-plg
-- nvim-treesitter
-  - instl
-
-
-n F, cursor mv __ line u col
-- ref : n q
-  - err ?
-    - case line u, tmp
-
-
 ## ssg artcl
 
 artcl ( page ) cre
@@ -43,6 +26,23 @@ game cre
 - prj cre
 - map cre
 - chara cre
+
+
+## nvim
+
+v cmnt mlt, err
+- slctd s line num, err ?
+
+
+plg
+- nvim-treesitter
+  - instl
+
+
+n F, cursor mv __ line u col
+- ref : n q
+  - err ?
+    - case line u, tmp
 
 
 ## nvim
