@@ -367,79 +367,45 @@ end
 
 -- dev anchor
 
-g.char_pair_lst_r = {')', '}'}
-g.char_pair_lst_l = {'(', '{'}
+v.Slctd.str_expnd_char_lst = {
+  {'(', ')'},
+  {'{', '}'},
+  -- {"'", "'"},
+  -- {'"', '"'},
+  -- {'`', '`'},
+}
 
-g.char_pair_ptn = '[' .. "'" .. '"' .. '`' .. ']'
+v.Slctd.str_expnd_char_lst_l = {}
+v.Slctd.str_expnd_char_lst_r = {}
+
+function v.Slctd.str_expnd__init()
+
+  for _idx, _pari in pairs(v.Slctd.str_expnd_char_lst) do
+
+    v.Tbl.add(v.Slctd.str_expnd_char_lst_l, _pari[1])
+    v.Tbl.add(v.Slctd.str_expnd_char_lst_r, _pari[2])
+  end
+end
+v.Slctd.str_expnd__init()
 
 function v.Slctd.str__expnd_char_pair_swtch() -- range
 
   v.Slctd.__ltst()
 
-  if v.Slctd.is_str_edge_char__char_pair() then
-    -- v.Esc()
-    return
-  end
+  -- dev anchor
+  local char_l_i = v.Slctd.str_edge_l_char()
+  local char_r_i = v.Slctd.str_edge_r_char()
+  local char_l_o = v.Slctd.str_edge_l_out_char()
+  local char_r_o = v.Slctd.str_edge_r_out_char()
 
-  if v.Slctd.is_str_edge_out_char__char_pair() then
+  local char_r_i_match_idx = v.Tbl.is_in(v.Slctd.str_expnd_char_lst_r, char_r_i)
 
-    v.Slctd.str__expnd_char_pair_on()
-  else
-    v.Slctd.str__expnd_char_pair_in_swtch()
-  end
+
+
+
+
 end
 
-function v.Slctd.str__expnd_char_pair_on() -- range
-
-  v.Slctd.__ltst()
-
-  v.Slctd.str__expnd_char_pair_on_f()
-  v.Slctd.str__expnd_char_pair_on_b()
-end
-
-function v.Slctd.str__expnd_char_pair_on_f() -- range
-
-  v.Slctd.__ltst()
-  v.Cursor.__mv_srch_ptn(g.char_pair_ptn, 'f')
-end
-
-function v.Slctd.str__expnd_char_pair_on_b() -- range
-
-  v.Slctd.__ltst()
-
-  v.Cursor.__mv_slctd_edge_tgl()
-  v.Cursor.__mv_srch_ptn(g.char_pair_ptn, 'b')
-end
-
-function v.Slctd.str__expnd_char_pair_in_swtch() -- range
-
-  v.Slctd.__ltst()
-
-  if not v.Cursor.is_line_str__ptn(g.char_pair_ptn) then
-    return
-  end
-
-  local c_r = v.Slctd.str_edge_r_out_char()
-
-  if not v.Str.is__ptn(c_r, g.char_pair_ptn) then
-
-    v.Slctd.str__expnd_char_pair_in_f()
-  else
-    v.Slctd.str__expnd_char_pair_in_b()
-  end
-end
-
-function v.Slctd.str__expnd_char_pair_in_f() -- range
-
-  v.Slctd.str__expnd_char_pair_on_f()
-  v.Cmd.nml('h')
-end
-
-function v.Slctd.str__expnd_char_pair_in_b() -- range
-
-  v.Slctd.str__expnd_char_pair_on_b()
-  v.Cmd.nml('l')
-end
 
 
 -- dev anchor, del ????
@@ -908,10 +874,10 @@ end
 
 function v.Slctd.is_str_edge_char__(ptn)
 
-  local c1 = v.Slctd.str_edge_l_char()
-  local c2 = v.Slctd.str_edge_r_char()
+  local edge_l_char = v.Slctd.str_edge_l_char()
+  local edge_r_char = v.Slctd.str_edge_r_char()
 
-  local ret = v.Char.is_pair__(ptn, c1, c2)
+  local ret = v.Char.is_pair__ptn(edge_l_char, edge_r_char, ptn)
   return ret
 end
 
@@ -921,12 +887,24 @@ function v.Slctd.is_str_edge_char__quote()
   return ret
 end
 
+function v.Slctd.is_str_edge_char__pair(char_l, char_r)
+
+  local edge_l_char = v.Slctd.str_edge_l_char()
+  local edge_r_char = v.Slctd.str_edge_r_char()
+
+  if ( edge_l_char == char_l ) and ( edge_r_char == char_r ) then
+    return c.t
+  else
+    return c.f
+  end
+end
+
 function v.Slctd.is_str_edge_out_char__(ptn)
 
-  local c1 = v.Slctd.str_edge_l_out_char()
-  local c2 = v.Slctd.str_edge_r_out_char()
+  local char_l = v.Slctd.str_edge_l_out_char()
+  local char_r = v.Slctd.str_edge_r_out_char()
 
-  local ret = v.Char.is_pair__(ptn, c1, c2)
+  local ret = v.Char.is_pair__ptn(char_l, char_r, ptn)
   return ret
 end
 
@@ -934,6 +912,18 @@ function v.Slctd.is_str_edge_out_char__quote()
 
   local ret = v.Slctd.is_str_edge_out_char__(g.quote_ptn)
   return ret
+end
+
+function v.Slctd.is_str_edge_out_char__pair(char_l, char_r)
+
+  local edge_l_char = v.Slctd.str_edge_l_out_char()
+  local edge_r_char = v.Slctd.str_edge_r_out_char()
+
+  if ( edge_l_char == char_l ) and ( edge_r_char == char_r ) then
+    return c.t
+  else
+    return c.f
+  end
 end
 
 function v.Slctd.is_str_edge_l_col__line_top() -- range

@@ -371,16 +371,16 @@ vim.keymap.set('n', '<c-j>', v.Cursor.__mv_mlt_d)
 vim.keymap.set('n', 'y', v.Cursor.__mv_line_top_or_new_line)
 
 -- cursor mv line top
-vim.keymap.set('n', '<c-a>', '0')
+-- vim.keymap.set('n', '<c-a>', v.Cursor.__mv_line_top0)
 
 -- cursor mv line end
 vim.keymap.set('n', '<c-y>', function()
   if v.Cursor.is_col__line_end() then
     return ':lua v.Cursor.__ins_markdown_cr()<cr>'
-    -- v.Cursor.__ins_markdown_cr()
+    -- return v.Cursor.__ins_markdown_cr
   else
     return ':lua v.Cursor.__mv_line_end()<cr>'
-    -- v.Cursor.__mv_line_end()
+    -- return v.Cursor.__mv_line_end
   end
 end, {expr = c.t})
 
@@ -1222,8 +1222,8 @@ vim.keymap.set('v', 'L', function()
 end, {expr = c.t})
 
 -- line __ ins comment 1
-vim.keymap.set('v', '!', v.Slctd.line__ins_cmnt_1)
-vim.keymap.set('v', '1', v.Slctd.line__ins_cmnt_1)
+vim.keymap.set('v', '!', ':lua v.Slctd.line__ins_cmnt_1()<cr>')
+vim.keymap.set('v', '1', ':lua v.Slctd.line__ins_cmnt_1()<cr>')
 
 -- line end __ ins comma
 vim.keymap.set('v', ',', ':lua v.Slctd.line_end__ins(",")<cr>')

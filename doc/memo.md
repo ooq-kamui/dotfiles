@@ -4,14 +4,6 @@
 
 ## nvim
 
-refactoring
-- key
-  - case: v, arg no, cr
-  - arg ??
-
-- cursor mv line top ()
-
-
 str__expnd_char_pair_swtch()
 - is xx __ char pair ()
 
@@ -24,6 +16,10 @@ str__expnd_char_pair_swtch()
   ( aaa  bbb  ccc )
 
 
+v cmnt mlt
+- fnc mlt cre
+
+
 plg
 - nvim-treesitter
   - instl
@@ -31,11 +27,14 @@ plg
 
 n F, cursor mv __ line u col
 - ref : n q
+  - err ?
+    - case line u, tmp
 
 
-## artcl
+## ssg artcl
 
-img bg
+artcl ( page ) cre
+- img bg
 
 
 ## aws

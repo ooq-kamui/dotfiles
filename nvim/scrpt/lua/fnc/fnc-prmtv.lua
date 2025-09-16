@@ -59,7 +59,7 @@ end
 
 -- char cnd  -  char pair __
 
-function v.Char.is_pair__(ptn, c1, c2)
+function v.Char.is_pair__ptn(c1, c2, ptn)
 
   local ret = c.f
 
