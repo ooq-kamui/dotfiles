@@ -115,11 +115,16 @@ end
 
 function v.Cursor.__mv_by_line_num(line_num)
 
-  if not v.Str.is__num(line_num) then
+  -- dev anchor, refactoring
+  if not line_num then
+    return
+  elseif line_num == '' then
+    return
+  elseif not v.Str.is__num(line_num) then
     return
   end
 
-  -- dev anchor
+  -- dev anchor, refactoring
   v.Cmd.nml(line_num .. 'G')
 end
 
@@ -332,26 +337,6 @@ function v.Cursor.__mv_line_top_or_new_line()
   else
     v.Cursor.__mv_line_top1()
   end
-end
-
-function v.Cursor.__mv_slctd_edge_tgl() -- range
-
-  v.Slctd.__ltst()
-  v.Cmd.nml('o')
-end
-
-function v.Cursor.__mv_slctd_edge_l() -- range
-
-  v.Slctd.__ltst()
-
-  if not v.Slctd.is_cursor_pos__r() then
-    return
-  end
-
-  v.Cursor.__mv_slctd_edge_tgl()
-
-  -- local cmd_nml = '`<'
-  -- v.Cmd.nml(cmd_nml)
 end
 
 function v.Cursor.__mv_file_edge(cmd_nml)

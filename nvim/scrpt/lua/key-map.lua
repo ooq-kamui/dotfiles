@@ -1087,7 +1087,7 @@ vim.keymap.set('v', 'v', v.Slctd.mode_state__swtch)
 -- cursor mv
 
 -- cursor mv slctd edge tgl
-vim.keymap.set('v', 'y', v.Cursor.__mv_slctd_edge_tgl)
+vim.keymap.set('v', 'y', v.Slctd.cursor__mv_edge_tgl)
 
 -- cursor mv slctd edge tgl, v box line same
 vim.keymap.set('v', '.', 'O')
@@ -1108,10 +1108,10 @@ vim.keymap.set('v', '<c-o>', 'h')
 vim.keymap.set('v', '<c-y>', v.Slctd.cursor__mv_line_end)
 
 -- slctd str r __ reduce dlm
-vim.keymap.set('v', 'h', ':lua v.Slctd.str_r__reduce_dlm("_")<cr>')
+vim.keymap.set('v', 'h', ':lua v.Slctd.str__reduce_dlm_r("_")<cr>')
 
 -- slctd str l __ reduce dlm
-vim.keymap.set('v', '<c-h>'    , ':lua v.Slctd.str_l__reduce_dlm("_")<cr>')
+vim.keymap.set('v', '<c-h>'    , ':lua v.Slctd.str__reduce_dlm_l("_")<cr>')
 
 -- cursor mv space forward ( word pre )
 -- vim.keymap.set('v', 'xx', 'wh')
@@ -1150,9 +1150,13 @@ vim.keymap.set('v', 'N', v.Slctd.str__expnd_srch)
 -- slctd expnd word forward
 vim.keymap.set('v', 'f', v.Slctd.str__expnd_f)
 
+-- slctd expnd char pair
+vim.keymap.set('v', '<c-i>', v.Slctd.str__expnd_char_pair)
+vim.keymap.set('v', '<tab>', v.Slctd.str__expnd_char_pair) -- del not
+
 -- slctd expnd quote
-vim.keymap.set('v', '<c-i>', v.Slctd.str__expnd_quote_swtch)
-vim.keymap.set('v', '<tab>', v.Slctd.str__expnd_quote_swtch) -- del not
+-- vim.keymap.set('v', '<c-i>', v.Slctd.str__expnd_quote_swtch)
+-- vim.keymap.set('v', '<tab>', v.Slctd.str__expnd_quote_swtch) -- del not
 
 -- slctd expnd bracket forward
 -- vim.keymap.set('v', 'xx', v.Slctd.str__expnd_bracket_swtch)
@@ -1222,6 +1226,8 @@ vim.keymap.set('v', 'L', function()
 end, {expr = c.t})
 
 -- line __ ins comment 1
+-- vim.keymap.set('v', '!', v.Slctd.line__ins_cmnt_1)
+-- vim.keymap.set('v', '1', v.Slctd.line__ins_cmnt_1)
 vim.keymap.set('v', '!', ':lua v.Slctd.line__ins_cmnt_1()<cr>')
 vim.keymap.set('v', '1', ':lua v.Slctd.line__ins_cmnt_1()<cr>')
 
@@ -1409,7 +1415,7 @@ vim.keymap.set('v', '<c-h>', function()
   if v.Mode.is__box() then
     return ':lua v.Slctd.box_edge_r_char__shft_in()<cr>'
   else
-    return ':lua v.Slctd.str_l__reduce_dlm("_")<cr>'
+    return ':lua v.Slctd.str__reduce_dlm_l("_")<cr>'
   end
 end, {expr = c.t})
 

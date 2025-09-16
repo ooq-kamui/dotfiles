@@ -4,20 +4,8 @@
 
 ## nvim
 
-str__expnd_char_pair_swtch()
-- is xx __ char pair ()
-
-- str__expnd_bracket_in_swtch()
-  - logic generalize
-  - str__expnd_bracket_swtch() ??
-
-- tst
-  'aaa  bbb  ccc'
-  ( aaa  bbb  ccc )
-
-
-v cmnt mlt
-- fnc mlt cre
+v cmnt mlt, err
+- log sys mod ( cre )
 
 
 plg

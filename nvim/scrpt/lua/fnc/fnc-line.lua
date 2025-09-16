@@ -69,7 +69,7 @@ function v.Line.num_by_Line_info(line_info)
 
   local line_info = vf.trim(line_info, ' ', 1)
   local line_num  = vf.split(line_info, '\\s\\+')[1]
-  v.Log.val(line_num)
+  -- v.Log.val(line_num)
 
   return line_num
 end

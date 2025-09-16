@@ -156,7 +156,13 @@ end
 
 -- slctd cursor __ mv
 
-function v.Slctd.cursor__mv_slctd_edge_r() -- range
+function v.Slctd.cursor__mv_edge_tgl() -- range
+
+  v.Slctd.__ltst()
+  v.Cmd.nml('o')
+end
+
+function v.Slctd.cursor__mv_edge_r() -- range
 
   v.Slctd.__ltst()
 
@@ -164,7 +170,18 @@ function v.Slctd.cursor__mv_slctd_edge_r() -- range
     return
   end
 
-  v.Cursor.__mv_slctd_edge_tgl()
+  v.Slctd.cursor__mv_edge_tgl()
+end
+
+function v.Slctd.cursor__mv_edge_l() -- range
+
+  v.Slctd.__ltst()
+
+  if v.Slctd.is_cursor_pos__l() then
+    return
+  end
+
+  v.Slctd.cursor__mv_edge_tgl()
 end
 
 function v.Slctd.cursor__mv_file_edge(cmd_nml)
@@ -213,11 +230,11 @@ function v.Slctd.is_cursor_pos__r() -- range
   local cursor_pos1 = v.Cursor.pos()
   -- print( cursor_pos1 )
 
-  v.Cursor.__mv_slctd_edge_tgl()
+  v.Slctd.cursor__mv_edge_tgl()
   local cursor_pos2 = v.Cursor.pos()
   -- print( cursor_pos2 )
 
-  v.Cursor.__mv_slctd_edge_tgl()
+  v.Slctd.cursor__mv_edge_tgl()
 
 
   if     cursor_pos1[2] >  cursor_pos2[2] then -- line
@@ -233,33 +250,16 @@ function v.Slctd.is_cursor_pos__r() -- range
   return ret
 end
 
--- slctd str __ ( expnd )
+function v.Slctd.is_cursor_pos__l() -- range
 
-function v.Slctd.str__expnd() -- expnd lr, cre re
-
+  local ret = not v.Slctd.is_cursor_pos__r()
+  return ret
 end
 
-function v.Slctd.str__expnd_srch() -- range
+-- slctd str __
 
-  v.Slctd.__ltst()
-  v.Cursor.__mv_srch('f')
-end
+-- slctd str __ expnd
 
-function v.Slctd.str__expnd_word_f() -- range
-
-  v.Slctd.__ltst()
-
-  v.Cmd.nml('e')
-end
-
-function v.Slctd.str__expnd_space_f() -- range
-
-  v.Slctd.__ltst()
-
-  v.Cmd.nml('wh')
-end
-
--- dev anchor ?
 function v.Slctd.str__expnd_f() -- range
 
   v.Slctd.__ltst()
@@ -277,18 +277,53 @@ function v.Slctd.str__expnd_f() -- range
   end
 end
 
-function  v.Slctd.is_str_edge_r_out_char__space()
+function v.Slctd.str__expnd_word_f() -- range
 
-  local ret = c.f
+  v.Slctd.__ltst()
 
-  local slctd_r_out_char = v.Slctd.str_edge_r_out_char()
+  v.Cmd.nml('e')
+end
 
-  if v.Str.is__ptn(slctd_r_out_char, '\\s') then
+function v.Slctd.str__expnd_space_f() -- range
 
-    ret = c.t
-  end
+  v.Slctd.__ltst()
 
-  return ret
+  v.Cmd.nml('wh')
+end
+
+function v.Slctd.str__expnd_srch() -- range
+
+  v.Slctd.__ltst()
+  v.Cursor.__mv_srch('f')
+end
+
+function v.Slctd.str__expnd_ptn_f(ptn) -- range
+
+  v.Slctd.__ltst()
+  v.Slctd.cursor__mv_edge_r()
+  v.Cursor.__mv_srch_ptn(ptn, 'f')
+end
+
+function v.Slctd.str__expnd_ptn_b(ptn) -- range
+
+  v.Slctd.__ltst()
+  v.Slctd.cursor__mv_edge_l()
+  v.Cursor.__mv_srch_ptn(ptn, 'b')
+end
+
+function v.Slctd.str__expnd_edge_out() -- range
+  -- v.Log.val('str__expnd_edge_out')
+
+  v.Slctd.__ltst()
+
+  v.Slctd.cursor__mv_edge_r()
+  v.Cmd.nml('l')
+
+  -- v.Slctd.cursor__mv_edge_tgl()
+  v.Slctd.cursor__mv_edge_l()
+  v.Cmd.nml('h')
+
+  v.Slctd.cursor__mv_edge_tgl()
 end
 
 -- slctd __ expnd quote
@@ -330,7 +365,7 @@ function v.Slctd.str__expnd_quote_on_b() -- range
 
   v.Slctd.__ltst()
 
-  v.Cursor.__mv_slctd_edge_tgl()
+  v.Slctd.cursor__mv_edge_tgl()
   v.Cursor.__mv_srch_ptn(g.quote_ptn, 'b')
 end
 
@@ -364,71 +399,81 @@ function v.Slctd.str__expnd_quote_in_b() -- range
   v.Cmd.nml('l')
 end
 
+-- slctd __ expnd char set lst
 
 -- dev anchor
 
 v.Slctd.str_expnd_char_lst = {
   {'(', ')'},
   {'{', '}'},
-  -- {"'", "'"},
-  -- {'"', '"'},
-  -- {'`', '`'},
+  {"'", "'"},
+  {'"', '"'},
+  {'`', '`'},
 }
 
-v.Slctd.str_expnd_char_lst_l = {}
-v.Slctd.str_expnd_char_lst_r = {}
-
 function v.Slctd.str_expnd__init()
+
+  v.Slctd.str_expnd_char_lst_l = {}
+  v.Slctd.str_expnd_char_lst_r = {}
 
   for _idx, _pari in pairs(v.Slctd.str_expnd_char_lst) do
 
     v.Tbl.add(v.Slctd.str_expnd_char_lst_l, _pari[1])
     v.Tbl.add(v.Slctd.str_expnd_char_lst_r, _pari[2])
   end
+
+  v.Slctd.str_expnd_char_ptn_l = '[' .. v.Tbl.join(v.Slctd.str_expnd_char_lst_l) .. ']'
+  v.Slctd.str_expnd_char_ptn_r = '[' .. v.Tbl.join(v.Slctd.str_expnd_char_lst_r) .. ']'
+  -- v.Log.val(v.Slctd.str_expnd_char_ptn_l)
+  -- v.Log.val(v.Slctd.str_expnd_char_ptn_r)
 end
 v.Slctd.str_expnd__init()
 
-function v.Slctd.str__expnd_char_pair_swtch() -- range
+function v.Slctd.str__expnd_char_pair() -- range
 
   v.Slctd.__ltst()
 
-  -- dev anchor
-  local char_l_i = v.Slctd.str_edge_l_char()
   local char_r_i = v.Slctd.str_edge_r_char()
-  local char_l_o = v.Slctd.str_edge_l_out_char()
+  local char_l_i = v.Slctd.str_edge_l_char()
   local char_r_o = v.Slctd.str_edge_r_out_char()
+  local char_l_o = v.Slctd.str_edge_l_out_char()
 
-  local char_r_i_match_idx = v.Tbl.is_in(v.Slctd.str_expnd_char_lst_r, char_r_i)
-
-
-
-
-
-end
-
-
-
--- dev anchor, del ????
-function v.Slctd.str__expnd_bracket_f() -- range -- todo dev
-
-  -- local bracket_ptn = '[' .. "'" .. '"`)}\\]' .. ']'
-  local bracket_ptn = '[' .. "'" .. '"`)}%]' .. ']'
-  
-  local s_col = v.Slctd.str_edge_l_col()
-  
-  local line_str_r = v.Slctd.str_edge_r_out_str()
-  local srch_idx = v.Str.srch_idx_by_lua(line_str_r, bracket_ptn, 2)
-
-  if not srch_idx then
-    v.Cmd.nml('gv')
-    return
+  -- chk slctd lr on, already
+  local expnd_char_idx
+  expnd_char_idx = v.Tbl.idx(v.Slctd.str_expnd_char_lst_r, char_r_i)
+  if expnd_char_idx then
+    if char_l_i == v.Slctd.str_expnd_char_lst_l[expnd_char_idx] then
+      return
+    end
   end
 
-  local len = s_col + v.Slctd.str_len() + srch_idx - 1
-  v.Slctd.str__by_col_len(s_col, len)
+  -- chk slctd r in ( out match )
+  expnd_char_idx = v.Tbl.idx(v.Slctd.str_expnd_char_lst_r, char_r_o)
+
+  if expnd_char_idx then
+
+    -- chk slctd l in ( out match )
+    if char_l_o == v.Slctd.str_expnd_char_lst_l[expnd_char_idx] then
+      -- expnd on ( expnd lr out char )
+      v.Slctd.str__expnd_edge_out()
+      return
+    else
+      -- expnd l in
+      v.Slctd.str__expnd_ptn_b(v.Slctd.str_expnd_char_ptn_l)
+      v.Cmd.nml('l')
+      return
+    end
+  end
+
+  -- expnd r in
+  v.Slctd.str__expnd_ptn_f(v.Slctd.str_expnd_char_ptn_r)
+  v.Cmd.nml('h')
 end
 
-function v.Slctd.str_r__reduce_dlm(char) -- range
+
+-- slctd str __ reduce
+
+function v.Slctd.str__reduce_dlm_r(char) -- range
 
   v.Slctd.__ltst()
 
@@ -436,7 +481,7 @@ function v.Slctd.str_r__reduce_dlm(char) -- range
   v.Cmd.nml(cmd_nml)
 end
 
-function v.Slctd.str_l__reduce_dlm(char) -- range
+function v.Slctd.str__reduce_dlm_l(char) -- range
 
   v.Slctd.__ltst()
 
@@ -543,31 +588,11 @@ function v.Slctd.str_space__underscore() -- range
   v.Slctd.str__rpl(' ', '_')
 end
 
--- slctd str cnd
-
-function v.Slctd.is_str__srch_str()
-
-  if v.Slctd.str() == v.Rgstr.get('/') then
-    return c.t
-  else
-    return c.f
-  end
-end
-
-function v.Slctd.is_str__line_mlt()
-
-  if v.Str.is__ptn(v.Slctd.str(), '\\n') then
-    return c.t
-  else
-    return c.f
-  end
-end
-
 -- slctd str edge
 
 function v.Slctd.str_edge_l_col()
 
-  v.Cursor.__mv_slctd_edge_l()
+  v.Slctd.cursor__mv_edge_l()
 
   local col = v.Cursor.col_num()
   return col
@@ -575,7 +600,7 @@ end
 
 function v.Slctd.str_edge_r_col()
 
-  v.Slctd.cursor__mv_slctd_edge_r()
+  v.Slctd.cursor__mv_edge_r()
   
   local col = v.Cursor.col_num()
   return col
@@ -583,21 +608,21 @@ end
 
 function v.Slctd.str_edge_l_pos()
 
-  v.Cursor.__mv_slctd_edge_l()
+  v.Slctd.cursor__mv_edge_l()
   local pos = v.Cursor.pos()
   return pos
 end
 
 function v.Slctd.str_edge_r_pos()
 
-  v.Slctd.cursor__mv_slctd_edge_r()
+  v.Slctd.cursor__mv_edge_r()
   local pos = v.Cursor.pos()
   return pos
 end
 
 function v.Slctd.str_edge_l_char()
 
-  v.Cursor.__mv_slctd_edge_l()
+  v.Slctd.cursor__mv_edge_l()
 
   local c_char = v.Cursor.c_char()
   return c_char
@@ -605,7 +630,7 @@ end
 
 function v.Slctd.str_edge_r_char()
 
-  v.Slctd.cursor__mv_slctd_edge_r()
+  v.Slctd.cursor__mv_edge_r()
 
   local c_char = v.Cursor.c_char()
   return c_char
@@ -613,7 +638,7 @@ end
 
 function v.Slctd.str_edge_l_out_char()
 
-  v.Cursor.__mv_slctd_edge_l()
+  v.Slctd.cursor__mv_edge_l()
 
   local l_char = v.Cursor.l_char()
   return l_char
@@ -621,7 +646,7 @@ end
 
 function v.Slctd.str_edge_r_out_char()
 
-  v.Slctd.cursor__mv_slctd_edge_r()
+  v.Slctd.cursor__mv_edge_r()
 
   local r_char = v.Cursor.r_char()
   return r_char
@@ -629,7 +654,7 @@ end
 
 function v.Slctd.str_edge_l_out_str()
 
-  v.Cursor.__mv_slctd_edge_l()
+  v.Slctd.cursor__mv_edge_l()
 
   local str = v.Cursor.line_str_side_l()
   return str
@@ -637,7 +662,7 @@ end
 
 function v.Slctd.str_edge_r_out_str()
 
-  v.Slctd.cursor__mv_slctd_edge_r()
+  v.Slctd.cursor__mv_edge_r()
 
   local str = v.Cursor.line_str_side_r()
   return str
@@ -870,6 +895,40 @@ function v.Slctd.str_edge_out_char__del() -- range
   v.Slctd.box__mv('l')
 end
 
+-- slctd str cnd
+
+function v.Slctd.is_str__srch_str()
+
+  if v.Slctd.str() == v.Rgstr.get('/') then
+    return c.t
+  else
+    return c.f
+  end
+end
+
+function v.Slctd.is_str__line_mlt()
+
+  if v.Str.is__ptn(v.Slctd.str(), '\\n') then
+    return c.t
+  else
+    return c.f
+  end
+end
+
+function  v.Slctd.is_str_edge_r_out_char__space()
+
+  local ret = c.f
+
+  local slctd_r_out_char = v.Slctd.str_edge_r_out_char()
+
+  if v.Str.is__ptn(slctd_r_out_char, '\\s') then
+
+    ret = c.t
+  end
+
+  return ret
+end
+
 -- slctd str edge cnd
 
 function v.Slctd.is_str_edge_char__(ptn)
@@ -932,11 +991,11 @@ function v.Slctd.is_str_edge_l_col__line_top() -- range
 
   v.Slctd.__ltst()
 
-  v.Cursor.__mv_slctd_edge_tgl()
+  v.Slctd.cursor__mv_edge_tgl()
   local cursor_l_pos = v.Cursor.pos()
   -- print( cursor_l_pos )
 
-  v.Cursor.__mv_slctd_edge_tgl()
+  v.Slctd.cursor__mv_edge_tgl()
 
   -- if cursor_l_pos[2] == 1 then -- col
   if cursor_l_pos[3] == 1 then -- col
@@ -1182,6 +1241,7 @@ end
 
 -- slctd line __ cmnt
 
+-- dev anchor
 function v.Slctd.line__ins_cmnt_1() -- range
 
   local slctd_line_s_num = v.Slctd.line_s_num()
@@ -1193,6 +1253,7 @@ function v.Slctd.line__ins_cmnt_1() -- range
   local col = v.Cursor.col_num()
 
   for idx, line_num in pairs(v.Slctd.line_num_seq()) do
+    -- v.Log.val(line_num)
 
     v.Line.end__pad_space(line_num, col - 1)
 

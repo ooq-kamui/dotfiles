@@ -2,6 +2,7 @@
 -- prmtv
 
 require('fnc/fnc-str')
+require('fnc/fnc-tbl')
 
 
 -- char
@@ -275,65 +276,6 @@ function v.Do.nothing() -- use by tst
 end
 
 -- fr utl
-
-v.Tbl = {}
-
-function v.Tbl.add(tbl, val)
-
-  return table.insert(tbl, val)
-end
-
-function v.Tbl.del(tbl, idx)
-
-  return table.remove(tbl, idx)
-end
-
-function v.Tbl.len(tbl)
-
-  return #tbl
-end
-
-function v.Tbl.idx(tbl, val)
-
-  for _idx, _val in pairs(tbl) do
-
-    if _val == val then
-      return _idx
-    end
-  end
-  return nil
-end
-
-function v.Tbl.is_in(tbl, val)
-
-  local idx = v.Tbl.idx(tbl, val)
-
-  if idx then
-    return c.t
-  else
-    return c.f
-  end
-end
-
-function v.Tbl.last(tbl)
-
-  local len = v.Tbl.len(tbl)
-  return tbl[len]
-end
-
-function v.Tbl.is_last(tbl, val)
-
-  if val == v.Tbl.last(tbl) then
-    return c.t
-  else
-    return c.f
-  end
-end
-
-function v.Tbl.srt(tbl, cmp_fnc)
-
-  return table.sort(tbl, cmp_fnc)
-end
 
 v.Num = {}
 
