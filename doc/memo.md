@@ -6,6 +6,11 @@
 
 refactoring
 - key
+  - case: v, arg no, cr
+  - arg ??
+
+- cursor mv line top ()
+
 
 str__expnd_char_pair_swtch()
 - is xx __ char pair ()

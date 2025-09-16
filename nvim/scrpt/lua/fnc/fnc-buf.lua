@@ -181,6 +181,7 @@ function v.Buf__quit_swtch()
   end
 end
 
+-- dev anchor
 function v.Buf__fltr() -- use not
 
 end

@@ -34,6 +34,8 @@ function v.Sys.cmd_opn_app(path)
   elseif v.Is_env__('win32unix') then
     cmd_sys = 'start'
 
+  elseif v.Is_env__('wsl') then
+    return
   else
     return
   end
