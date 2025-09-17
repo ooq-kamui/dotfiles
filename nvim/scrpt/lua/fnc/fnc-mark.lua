@@ -111,9 +111,12 @@ end
 
 -- key bind
 
+-- mark
+-- vim.keymap.set('n', 'K', 'mz')
+
 -- mark, cursor mv mark forward
--- "nnoremap <leader>xx ]`
+-- vim.keymap.set('n', 'xx', ']`')
 
 -- mark, cursor mv mark back
--- "nnoremap <leader>xx [`
+-- vim.keymap.set('n', 'xx', '[`')
 

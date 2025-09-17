@@ -28,18 +28,11 @@ game cre
 - chara cre
 
 
-## fish
-
-c-u, case : cancel, err
-
-
 ## nvim
 
-mark fnc cre re
-- srch start pos back
+mark lst
+- fnc cre
 
-
-## nvim
 
 v cmnt mlt, err
 - slctd s line num, err ?

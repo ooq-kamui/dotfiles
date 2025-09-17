@@ -165,7 +165,7 @@ alias jwd 'git wd'
 alias git_root_pth_rel 'git rev-parse --show-cdup'
 alias jf  'cd_git_root'
 alias jfp 'git_root_pth_rel'
-alias jr  'cd_git_root'
+# alias jr  'cd_git_root'
 
 alias pd   'podman'
 alias pl   'podman container ls -a'

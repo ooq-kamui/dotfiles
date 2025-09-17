@@ -451,8 +451,8 @@ vim.keymap.set('n', 'r<space>k', ':lua v.Cursor.__mv_v_jmp_char("k", "f")<cr>')
 vim.keymap.set('n', 'r<space>j', ':lua v.Cursor.__mv_v_jmp_char("j", "f")<cr>')
 
 -- scroll
-vim.keymap.set('n', 'K'     , '<c-y>')
-vim.keymap.set('n', 'J'     , '<c-e>')
+-- vim.keymap.set('n', 'K'     , '<c-y>')
+-- vim.keymap.set('n', 'J'     , '<c-e>')
 vim.keymap.set('n', '<up>'  , '<c-y>')
 vim.keymap.set('n', '<down>', '<c-e>')
 
@@ -896,10 +896,13 @@ vim.keymap.set('n', 'rn', v.Win.splt_cursor__mv_nxt)
 -- vim.keymap.set('n', 'xx', '<c-w>h')
 
 -- fnc call
-vim.keymap.set('n', ':c', ':call ')
+-- vim.keymap.set('n', ':c', ':call ')
 
 -- term launch
 -- vim.keymap.set('n', 'xx', ':Term ')
+
+-- mark
+vim.keymap.set('n', 'K', 'mz')
 
 -- 
 -- setting ( set )
@@ -912,7 +915,8 @@ vim.keymap.set('n', ':w', ':set wrap!')
 vim.keymap.set('n', ':N', ':set number!')
 
 -- setting  -  line num rel tgl
-   -- vim.keymap.set('n', ':n', ':set relativenumber!')
+-- vim.keymap.set('n', ':n', ':set relativenumber!')
+
 vim.keymap.set('n', ':n', ':normal! ')
 
 -- inf
@@ -1146,7 +1150,8 @@ vim.keymap.set('v', 'gk', ':lua v.Slctd.cursor__mv_file_edge("k")<cr>')
 vim.keymap.set('v', 'gj', ':lua v.Slctd.cursor__mv_file_edge("j")<cr>')
 
 -- cursor mv return srch start
-vim.keymap.set('n', 'H', '`z')
+-- vim.keymap.set('n', 'H', '`z')
+vim.keymap.set('n', 'H', '``')
 
 -- slct / ynk / paste
 
