@@ -2,6 +2,25 @@
 # dotfiles
 
 
+## nvim
+
+cls
+- jmplst
+- rg
+
+rk, logic mod
+
+mark lst
+- fnc cre
+
+v m, err ?
+- line end space del
+
+v cmnt mlt, err
+- slctd s line num, err ?
+- confirm log
+
+
 ## ssg artcl
 
 artcl ( page ) cre
@@ -29,23 +48,6 @@ game cre
 
 
 ## nvim
-
-leader e, log off
-
-v m, err ?
-- line end space del
-
-rk, err ?
-
-
-mark lst
-- fnc cre
-
-
-v cmnt mlt, err
-- slctd s line num, err ?
-- confirm log
-
 
 plg
 - nvim-treesitter
