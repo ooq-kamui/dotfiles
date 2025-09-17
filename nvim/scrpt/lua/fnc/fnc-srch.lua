@@ -3,6 +3,9 @@
 
 v.Srch = {}
 
+v.Srch.ptn = {}
+v.Srch.ptn.quote = '[' .. "'" .. '"' .. '`' .. ']'
+
 -- srch exe, ref: cursor __ mv srch ptn
 
 function v.Srch._or(...)
@@ -12,9 +15,7 @@ function v.Srch._or(...)
   local str = '\\(' .. vf.join(arg, '\\|') .. '\\)'
   --print( str )
 
-  -- v.Rgstr.__('/', str)
   v.Srch.str__ptn(str)
-
   v.Cursor.__mv_srch('f')
 end
 
@@ -224,14 +225,20 @@ function v.Srch.str__h_swtch()
   end
 end
 
+v.Srch.ptn.markdown_h = '^#\\+ '
+
 function v.Srch.str__markdown_h()
 
-  v.Srch.str__ptn('^#\\+ ')
+  -- v.Srch.str__ptn('^#\\+ ')
+  v.Srch.str__ptn(v.Srch.ptn.markdown_h)
 end
+
+v.Srch.ptn.markdown_itm = '^ *- '
 
 function v.Srch.str__markdown_itm()
 
-  v.Srch.str__ptn('^ *- ')
+  -- v.Srch.str__ptn('^ *- ')
+  v.Srch.str__ptn(v.Srch.ptn.markdown_itm)
 end
 
 function v.Srch.str__fnc_def()

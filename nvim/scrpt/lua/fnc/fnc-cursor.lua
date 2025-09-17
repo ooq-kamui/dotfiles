@@ -465,7 +465,7 @@ function v.Cursor.__mv_v_jmp(drct)
   end
 end
 
-function v.Cursor.__mv_srch_ptn(ptn, drct) -- range
+function v.Cursor.__mv_srch_ptn(ptn, drct) -- range, on 1 line
 
   local opt_drct = ''
 
@@ -501,16 +501,26 @@ end
 
 function v.Cursor.__mv_block_out()
 
-  local bracket_type_list = {
+  local bracket_file_type_list = {
     'javascript',
     'java',
   }
 
-  -- if v.Buf.is_file_type__in(bracket_type_list) then
-  if c.t then
+  if v.Buf.is_file_type__in({'markdown'}) then
+
+    -- v.Cursor.__mv_srch_ptn(v.Srch.ptn.markdown_h, 'b')
+    v.Srch.str__ptn(v.Srch.ptn.markdown_h)
+    v.Cursor.__mv_srch('b')
+
+  -- elseif c.t then
+  elseif v.Buf.is_file_type__in(bracket_file_type_list) then
     v.Cursor.__mv_bracket_out()
+
   else
-    v.Cursor.__mv_fnc_out()
+    v.Srch.str__fnc_def()
+    v.Cursor.__mv_srch('b')
+
+    -- v.Cursor.__mv_fnc_out()
   end
 end
 
@@ -524,6 +534,11 @@ function v.Cursor.__mv_fnc_out()
 
   local cmd_nml = '[m'
   v.Cmd.nml(cmd_nml)
+end
+
+function v.Cursor.__mv_markdown_h_out()
+
+  
 end
 
 -- cursor __ ins

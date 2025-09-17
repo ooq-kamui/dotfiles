@@ -1154,11 +1154,7 @@ vim.keymap.set('v', 'f', v.Slctd.str__expnd_f)
 
 -- slctd expnd char pair
 vim.keymap.set('v', '<c-i>', v.Slctd.str__expnd_char_pair)
-vim.keymap.set('v', '<tab>', v.Slctd.str__expnd_char_pair) -- del not
-
--- slctd expnd quote
--- vim.keymap.set('v', '<c-i>', v.Slctd.str__expnd_quote_swtch)
--- vim.keymap.set('v', '<tab>', v.Slctd.str__expnd_quote_swtch) -- del not
+vim.keymap.set('v', '<tab>', v.Slctd.str__expnd_char_pair) -- tab : del not
 
 -- slctd expnd bracket forward
 -- vim.keymap.set('v', 'xx', v.Slctd.str__expnd_bracket_swtch)

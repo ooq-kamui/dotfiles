@@ -326,79 +326,6 @@ function v.Slctd.str__expnd_edge_out() -- range
   v.Slctd.cursor__mv_edge_tgl()
 end
 
--- slctd __ expnd quote
-
-g.quote_ptn = '[' .. "'" .. '"' .. '`' .. ']'
-
-function v.Slctd.str__expnd_quote_swtch() -- range
-
-  v.Slctd.__ltst()
-
-  if v.Slctd.is_str_edge_char__quote() then
-    -- v.Esc()
-    return
-  end
-
-  if v.Slctd.is_str_edge_out_char__quote() then
-
-    v.Slctd.str__expnd_quote_on()
-  else
-    v.Slctd.str__expnd_quote_in_swtch()
-  end
-end
-
-function v.Slctd.str__expnd_quote_on() -- range
-
-  v.Slctd.__ltst()
-
-  v.Slctd.str__expnd_quote_on_f()
-  v.Slctd.str__expnd_quote_on_b()
-end
-
-function v.Slctd.str__expnd_quote_on_f() -- range
-
-  v.Slctd.__ltst()
-  v.Cursor.__mv_srch_ptn(g.quote_ptn, 'f')
-end
-
-function v.Slctd.str__expnd_quote_on_b() -- range
-
-  v.Slctd.__ltst()
-
-  v.Slctd.cursor__mv_edge_tgl()
-  v.Cursor.__mv_srch_ptn(g.quote_ptn, 'b')
-end
-
-function v.Slctd.str__expnd_quote_in_swtch() -- range
-
-  v.Slctd.__ltst()
-
-  if not v.Cursor.is_line_str__ptn(g.quote_ptn) then
-    return
-  end
-
-  local c_r = v.Slctd.str_edge_r_out_char()
-
-  if not v.Str.is__ptn(c_r, g.quote_ptn) then
-
-    v.Slctd.str__expnd_quote_in_f()
-  else
-    v.Slctd.str__expnd_quote_in_b()
-  end
-end
-
-function v.Slctd.str__expnd_quote_in_f() -- range
-
-  v.Slctd.str__expnd_quote_on_f()
-  v.Cmd.nml('h')
-end
-
-function v.Slctd.str__expnd_quote_in_b() -- range
-
-  v.Slctd.str__expnd_quote_on_b()
-  v.Cmd.nml('l')
-end
-
 -- slctd __ expnd char set lst
 
 -- dev anchor
@@ -942,7 +869,7 @@ end
 
 function v.Slctd.is_str_edge_char__quote()
 
-  local ret = v.Slctd.is_str_edge_char__(g.quote_ptn)
+  local ret = v.Slctd.is_str_edge_char__(v.Srch.ptn.quote)
   return ret
 end
 
@@ -969,7 +896,7 @@ end
 
 function v.Slctd.is_str_edge_out_char__quote()
 
-  local ret = v.Slctd.is_str_edge_out_char__(g.quote_ptn)
+  local ret = v.Slctd.is_str_edge_out_char__(v.Srch.ptn.quote)
   return ret
 end
 
