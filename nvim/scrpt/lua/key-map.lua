@@ -1373,7 +1373,7 @@ vim.keymap.set('v', 'U', 'Ugv')
 -- vim.keymap.set('v', 'xx', 'ugv')
 
 -- str mb
-vim.keymap.set('v', ':m', v.Slctd.line_mb__cnv)
+-- vim.keymap.set('v', 'xx', v.Slctd.line_mb__cnv)
 
 -- 
 -- srch
@@ -1409,7 +1409,7 @@ vim.keymap.set('v', ':s', function()
   if v.Mode.is__box() then
     return ':VBoxRpl '
   else
-    return ':s///g'
+    return ':s/<c-r>//xxx/g'
   end
 
   -- ':sort'
@@ -1419,6 +1419,7 @@ end, {expr = c.t})
 
 -- rpl cr ( add cr )
 vim.keymap.set('v', '<c-m>', v.Slctd.line_srch_str__rpl_cr)
+vim.keymap.set('v', ':m'   , ':s/\\(<c-r>/\\)/\\1\\r/eg' )
 
 -- v box edge char shft in
 vim.keymap.set('v', '<c-h>', function()

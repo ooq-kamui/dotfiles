@@ -30,6 +30,14 @@ game cre
 
 ## nvim
 
+leader e, log off
+
+v m, err ?
+- line end space del
+
+rk, err ?
+
+
 mark lst
 - fnc cre
 
