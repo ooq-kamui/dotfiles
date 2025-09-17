@@ -10,20 +10,18 @@ v.Mark.alph_def = {
 
 function v.Mark.show_tgl()
 
-  if vf.exists('g.mark_show_flg') == 0 then
+  if vf.exists('v.Mark.show_flg') == 0 then
 
-    g.mark_show_flg = c.f
+    v.Mark.show_flg = c.f
   end
 
-  if not g.mark_show_flg then
+  if not v.Mark.show_flg then
 
-    -- exe 'DoShowMarks'
     vim.cmd('DoShowMarks')
-    g.mark_show_flg = c.t
+    v.Mark.show_flg = c.t
   else
-    -- exe 'NoShowMarks'
     vim.cmd('NoShowMarks')
-    g.mark_show_flg = c.f
+    v.Mark.show_flg = c.f
   end
 end
 
@@ -111,7 +109,11 @@ function v.Mark.del_all()
   v.Cmd.cmd('DoShowMarks')
 end
 
+-- key bind
 
+-- mark, cursor mv mark forward
+-- "nnoremap <leader>xx ]`
 
-
+-- mark, cursor mv mark back
+-- "nnoremap <leader>xx [`
 

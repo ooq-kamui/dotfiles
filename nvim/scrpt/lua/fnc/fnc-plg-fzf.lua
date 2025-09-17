@@ -1,6 +1,4 @@
 
--- fzf
-
 v.Fzf = {}
 
 function v.Fzf.by_txt(...)
@@ -314,10 +312,10 @@ function v.Fzf.doc_memo_opn()
   local dir = '~'
 
   local memo_file_lst = {
-    dir .. '/wrk/prj-pri/dotfiles/doc/memo.md'   ,
-    dir .. '/wrk/prj-pri/doc-tech/doc/memo.md',
-    dir .. '/wrk/prj-pri/life/doc/memo.md'       ,
-    dir .. '/wrk/prj-pri/wall-paper/doc/memo.md' ,
+    dir .. '/wrk/prj-pri/dotfiles/doc/memo.md'  ,
+    dir .. '/wrk/prj-pri/doc-tech/doc/memo.md'  ,
+    dir .. '/wrk/prj-pri/life/doc/memo.md'      ,
+    dir .. '/wrk/prj-pri/wall-paper/doc/memo.md',
   }
 
   local fzf_src_ar = memo_file_lst
@@ -392,7 +390,6 @@ end
 
 -- cmd usr
 
--- command! -bang -nargs=1 FzfRgExt call Fzf_rg_ext(<f-args>)
 vim.api.nvim_create_user_command('FzfRgExt',
   function(opts)
     v.Fzf.rg_ext(table.unpack(opts.fargs))
@@ -400,7 +397,6 @@ vim.api.nvim_create_user_command('FzfRgExt',
   {nargs = 1, bang = c.t}
 )
 
--- command! -nargs=? FzfRgWithRun call Fzf_rg_with_run(<f-args>)
 vim.api.nvim_create_user_command('FzfRgWithRun',
   function(opts)
     v.Fzf.rg_with_run(table.unpack(opts.fargs))
@@ -408,7 +404,6 @@ vim.api.nvim_create_user_command('FzfRgWithRun',
   {nargs = '?'}
 )
 
--- command! -nargs=? FzfTagjmpByFile call Fzf_tag_jmp_by_file(<f-args>)
 vim.api.nvim_create_user_command('FzfTagjmpByFile',
   function(opts)
     v.Fzf.tag_jmp_by_file(table.unpack(opts.fargs))
@@ -430,12 +425,6 @@ vim.cmd('command! -bang -nargs=* FzfCmdHstry call fzf#vim#command_history(fzf#vi
 
 -- fzf srch history
 vim.cmd('command! -bang -nargs=* FzfSrchHstry call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)')
-
--- fzf rgstr
-vim.cmd('command! -bang -nargs=* FzfRgstr call v:lua.v.Fzf.rgstr()')
-
--- fzf jmplst
-vim.cmd('command! -bang -nargs=* FzfJmplst call v:lua.v.Fzf.jmplst()')
 
 -- fzf cmd def : mark
 vim.cmd('command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)')

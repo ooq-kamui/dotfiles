@@ -211,7 +211,7 @@ end
 function v.Jmplst()
 
   local jmplst_tmp = vf.getjumplist()[1]
-  -- v.Log.tbl(jmplst_tmp)
+  v.Log.tbl(jmplst_tmp)
 
   local buf_num_key_prefix = 'key_'
   local jmplst = {}

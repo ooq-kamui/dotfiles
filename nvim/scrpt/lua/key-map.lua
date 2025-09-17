@@ -512,8 +512,7 @@ vim.keymap.set('n', 'rp', v.Cursor.__ins_ynk_box)
 vim.keymap.set('n', 'P', v.Cursor.__ins_clp)
 
 -- paste rgstr history ( fzf )
-vim.keymap.set('n', '<leader>c', ':FzfRgstr<cr>')
-vim.keymap.set('n', '<leader>v', ':FzfRgstr<cr>')
+vim.keymap.set('n', '<leader>c', v.Fzf.rgstr)
 
 -- undo
 vim.keymap.set('n', 'h'    , 'u'    )
@@ -736,8 +735,13 @@ vim.keymap.set('n', 'q', ':lua v.Cursor.f_str__space_crct("u")<cr>')
 -- srch char in line repeat
 -- vim.keymap.set('n', 'xx', ';')
 
--- srch by cmd
-vim.keymap.set('n', '<leader>k', '/')
+-- srch by cmd forward
+-- vim.keymap.set('n', '<leader>k', '/')
+vim.keymap.set('n', '<leader>k', 'mz/')
+
+-- srch by cmd back
+-- vim.keymap.set('n', '<leader>i', '?')
+vim.keymap.set('n', '<leader>i', 'mz?')
 
 -- srch by cmd word
 -- vim.keymap.set('n', '<leader>K', '/\\<\\><left><left>')
@@ -800,7 +804,7 @@ vim.keymap.set('n', '<leader>O'    , ':lua v.Fzf.rg_word1("<c-r>/")<cr>')
 vim.keymap.set('n', '<leader>K', ':lua v.Fzf.buf()<cr>')
 
 -- fzf jmplst
-vim.keymap.set('n', '<leader>e', ':FzfJmplst<cr>')
+vim.keymap.set('n', '<leader>e', v.Fzf.jmplst)
 
 -- fzf pth lst
 -- vim.keymap.set('n', '<leader>xx', ':FzfTagjmpByFile <cr>')
@@ -1140,6 +1144,9 @@ vim.keymap.set('v', 'gk', ':lua v.Slctd.cursor__mv_file_edge("k")<cr>')
 
 -- cursor mv file edge forward ( file end )
 vim.keymap.set('v', 'gj', ':lua v.Slctd.cursor__mv_file_edge("j")<cr>')
+
+-- cursor mv return srch start
+vim.keymap.set('n', 'H', '`z')
 
 -- slct / ynk / paste
 
