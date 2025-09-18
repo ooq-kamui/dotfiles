@@ -4,6 +4,8 @@
 
 ## nvim
 
+c-w + ?  esc
+
 rk, logic mod
 
 v m, err ?
@@ -12,6 +14,8 @@ v m, err ?
 v cmnt mlt, err
 - slctd s line num, err ?
 - confirm log
+
+v line, Y, err, line end ins
 
 mark lst
 - fnc cre
