@@ -79,7 +79,7 @@ function v.Fzf.rg_with_grep(ptn, ext, word1)
   ext   = ext   or nil
   word1 = word1 or c.f
 
-  local rg_cmd = v.Rg_cmd(ptn, ext, word1, nil)
+  local rg_cmd = v.Rg.cmd(ptn, ext, word1, nil)
   -- v.Log.val(rg_cmd)
 
   vim.fn['fzf#vim#grep'](
@@ -138,24 +138,24 @@ function v.Fzf.rg_with_run(...)
 
   if ptn == nil then
 
-    rg_rslt_cnt = v.Rg_all_cnt()
+    rg_rslt_cnt = v.Rg.all_cnt()
 
     if rg_rslt_cnt > g.fzf_line_cnt_max then
       print("rg_rslt_cnt, end")
       return
     end
 
-    fzf_src_ar = v.Rg_all_rslt_ar()
+    fzf_src_ar = v.Rg.all_rslt_ar()
 
   else
-    rg_rslt_cnt = v.Rg_ptn_cnt(ptn, nil)
+    rg_rslt_cnt = v.Rg.ptn_cnt(ptn, nil)
 
     if rg_rslt_cnt > g.fzf_line_cnt_max then
       print("rg_rslt_cnt, end")
       return
     end
 
-    fzf_src_ar = v.Rg_ptn_rslt_ar(ptn, nil)
+    fzf_src_ar = v.Rg.ptn_rslt_ar(ptn, nil)
   end
 
   vim.fn['fzf#run'](
@@ -234,7 +234,7 @@ function v.Fzf.jmplst()
 
   vim.fn['fzf#run'](
     {
-      source  = v.Jmplst_line_info(),
+      source  = v.Jmplst.line_info(),
       sink    = v.Cursor.__mv_by_line_info,
       window  = '-tabnew',
       options = {'--reverse'},

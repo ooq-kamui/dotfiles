@@ -4,14 +4,7 @@
 
 ## nvim
 
-cls
-- jmplst
-- rg
-
 rk, logic mod
-
-mark lst
-- fnc cre
 
 v m, err ?
 - line end space del
@@ -19,6 +12,9 @@ v m, err ?
 v cmnt mlt, err
 - slctd s line num, err ?
 - confirm log
+
+mark lst
+- fnc cre
 
 
 ## ssg artcl
@@ -45,6 +41,13 @@ game cre
 - prj cre
 - map cre
 - chara cre
+
+
+## fish
+
+config.fish, env tidy
+- linux-svr
+  - osc52.sh
 
 
 ## nvim

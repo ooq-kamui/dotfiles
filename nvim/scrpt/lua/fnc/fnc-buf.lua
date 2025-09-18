@@ -115,7 +115,7 @@ function v.Buf.opn_by_path(rg_rslt_line)
   local rg_rslt_line = vf.matchstr(rg_rslt_line, '\\S\\+')
   -- print( rg_rslt_line )
 
-  local rg_rslt_line_ar = v.Rg_rslt_line_parse(rg_rslt_line)
+  local rg_rslt_line_ar = v.Rg.rslt_line_parse(rg_rslt_line)
   -- print( rg_rslt_line_ar )
 
   local filename = rg_rslt_line_ar[1]

@@ -35,4 +35,3 @@ alias vi  'nvim -p'
 alias column '/usr/bin/column'
 
 
-
