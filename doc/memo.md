@@ -2,6 +2,11 @@
 # dotfiles
 
 
+## doc-tech
+
+web confirm
+
+
 ## nvim
 
 c-w + ?  esc
