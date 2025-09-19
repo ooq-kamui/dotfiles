@@ -575,7 +575,7 @@ vim.keymap.set('n', '0', v.Cursor.__ins_hyphen)
 vim.keymap.set('n', '*'    , v.Cursor.__ins_da)
 
 -- ins time ( tm )
-vim.keymap.set('n', '<c-t>', v.Cursor.__ins_tm)
+vim.keymap.set('n', 't', v.Cursor.__ins_tm)
 
 -- ins date time ( dt )
 -- vim.keymap.set('n', 'xx', v.Cursor.__ins_dt)
@@ -810,7 +810,7 @@ vim.keymap.set('n', '<leader>e', v.Fzf.jmplst)
 -- vim.keymap.set('n', '<leader>xx', ':FzfTagjmpByFile <cr>')
 
 -- tag jmp tab new
-vim.keymap.set('n', 't', v.Buf.opn_by_cursor_line)
+vim.keymap.set('n', 'xx', v.Buf.opn_by_cursor_line_pth)
 
 -- cmd
 

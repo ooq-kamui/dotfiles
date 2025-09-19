@@ -133,8 +133,7 @@ function v.Buf.opn_by_path(rg_rslt_line)
   v.Cursor.__mv_by_line_num(line_num)
 end
 
--- function v.Tag_jmp_by_cursor_line()
-function v.Buf.opn_by_cursor_line()
+function v.Buf.opn_by_cursor_line_pth()
 
   local base_buf_num = v.Buf.num()
 
