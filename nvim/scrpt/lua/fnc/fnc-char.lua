@@ -19,10 +19,10 @@ end
 
 function v.Char.is__num(char)
 
-  local ret = c.f
+  local ret = bl.f
 
   if v.Str.is__ptn(char, '\\d') then
-    ret = c.t
+    ret = bl.t
   end
 
   return ret
@@ -30,10 +30,10 @@ end
 
 function v.Char.is__alpha(char)
 
-  local ret = c.f
+  local ret = bl.f
 
   if v.Str.is__ptn(char, '\\a') then
-    ret = c.t
+    ret = bl.t
   end
 
   return ret
@@ -41,10 +41,10 @@ end
 
 function v.Char.is__symbol(char)
 
-  local ret = c.f
+  local ret = bl.f
 
   if not v.Str.is__ptn(char, '\\s') and not v.Str.is__ptn(char, '\\w') then
-    ret = c.t
+    ret = bl.t
   end
 
   return ret
@@ -54,10 +54,10 @@ end
 
 function v.Char.is_pair__ptn(c1, c2, ptn)
 
-  local ret = c.f
+  local ret = bl.f
 
   if v.Str.is__ptn(c1, ptn) and v.Str.is__ptn(c2, ptn) then
-    ret = c.t
+    ret = bl.t
   end
 
   return ret
@@ -65,14 +65,14 @@ end
 
 function v.Char.is_pair__quote(c1, c2)
 
-  local ret = c.f
+  local ret = bl.f
 
   if     c1 == "'" and c2 == "'" then
-    ret = c.t
+    ret = bl.t
   elseif c1 == '"' and c2 == '"' then
-    ret = c.t
+    ret = bl.t
   elseif c1 == '`' and c2 == '`' then
-    ret = c.t
+    ret = bl.t
   end
 
   return ret
@@ -80,16 +80,16 @@ end
 
 function v.Char.is_pair__bracket(c1, c2)
 
-  local ret = c.f
+  local ret = bl.f
 
   if     c1 == '(' and c2 == ')' then
-    ret = c.t
+    ret = bl.t
   elseif c1 == '{' and c2 == '}' then
-    ret = c.t
+    ret = bl.t
   elseif c1 == '[' and c2 == ']' then
-    ret = c.t
+    ret = bl.t
   elseif c1 == '<' and c2 == '>' then
-    ret = c.t
+    ret = bl.t
   end
 
   return ret
@@ -196,10 +196,10 @@ end
 
 function v.Char.is_space(char)
 
-  local ret = c.f
+  local ret = bl.f
 
   if char == ' ' or char == '\t' then
-    ret = c.t
+    ret = bl.t
   end
 
   return ret

@@ -4,10 +4,11 @@
 vf = vim.fn
 v = {}
 g = {}
-c = {
+bool = {
   t = true,
   f = false,
 }
+bl = bool -- alias
 
 require('fnc/fnc-prmtv')
 require('fnc/fnc-basic')

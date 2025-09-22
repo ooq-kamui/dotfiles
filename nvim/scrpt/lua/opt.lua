@@ -13,7 +13,7 @@ vim.opt.modelines = 0
 -- Normally we use vim-extensions. If you want true vi-compatibility
 -- remove change the following statements
 -- set nocompatible
-vim.opt.compatible = c.f -- Use Vim defaults instead of 100% vi compatibility
+vim.opt.compatible = bl.f -- Use Vim defaults instead of 100% vi compatibility
 -- set backspace=2
 -- vim.opt.backspace = 2 -- more powerful backspacing
 
@@ -28,8 +28,8 @@ vim.api.nvim_create_autocmd({'BufWrite'}, {
     '/private/etc/pw.*',
   },
   callback = function()
-    vim.opt.writebackup = c.f
-    vim.opt.backup      = c.f
+    vim.opt.writebackup = bl.f
+    vim.opt.backup      = bl.f
   end,
 })
 -- org setting end
@@ -55,7 +55,7 @@ indnt_fnc_space = function()
   vim.opt_local.sw  = 2
   vim.opt_local.sts = 2
   vim.opt_local.ts  = 2
-  vim.opt_local.et  = c.t
+  vim.opt_local.et  = bl.t
 end
 
 -- autocmd FileType lua      setlocal sw=2 sts=2 ts=2   et
@@ -107,7 +107,7 @@ vim.api.nvim_create_autocmd({'FileType'}, {
     vim.opt_local.sw  = 2
     vim.opt_local.sts = 2
     vim.opt_local.ts  = 4
-    vim.opt_local.et  = c.t
+    vim.opt_local.et  = bl.t
   end,
 })
 -- - tab
@@ -115,19 +115,19 @@ vim.api.nvim_create_autocmd({'FileType'}, {
 
 
 vim.opt.listchars = {tab = '»_', eol = '«', extends = '»', precedes = '«', nbsp = '%'}
-vim.opt.incsearch = c.t
-vim.opt.hlsearch = c.t
-vim.opt.ignorecase = c.t
-vim.opt.smartcase  = c.t
-vim.opt.number = c.t
--- vim.opt.relativenumber = c.t
-vim.opt.list = c.t
-vim.opt.cursorline = c.t
-vim.opt.splitbelow = c.t
+vim.opt.incsearch = bl.t
+vim.opt.hlsearch = bl.t
+vim.opt.ignorecase = bl.t
+vim.opt.smartcase  = bl.t
+vim.opt.number = bl.t
+-- vim.opt.relativenumber = bl.t
+vim.opt.list = bl.t
+vim.opt.cursorline = bl.t
+vim.opt.splitbelow = bl.t
 vim.opt.switchbuf = {'usetab', 'newtab'}
-vim.opt.showcmd = c.t
+vim.opt.showcmd = bl.t
 
-vim.opt.wrapscan = c.t  -- srch file end loop
+vim.opt.wrapscan = bl.t  -- srch file end loop
 
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencodings = {'utf-8', 'sjis'}
@@ -139,10 +139,10 @@ vim.opt.fileencodings = {'utf-8', 'sjis'}
 -- map <LeftMouse> <nop>
 -- ???  <nop> ??
 
-vim.opt.autoindent = c.t
+vim.opt.autoindent = bl.t
 vim.opt.shiftwidth = 2  -- 4
 vim.opt.tabstop    = 2  -- 4
-vim.opt.expandtab = c.t  -- tab > space
+vim.opt.expandtab = bl.t  -- tab > space
 
 
 -- file opn, cursor mv last
@@ -179,7 +179,7 @@ vim.api.nvim_create_autocmd({'BufWinEnter'}, {
 -- })
 
 -- set nowrap
-vim.opt.wrap = c.f
+vim.opt.wrap = bl.f
 vim.opt.whichwrap:append('b')
 vim.opt.whichwrap:append('s')
 vim.opt.whichwrap:append('h')
@@ -199,10 +199,10 @@ vim.opt.wildmode = {list = 'longest'}
 vim.opt.tabpagemax = 50
 vim.opt.nf = ''
 vim.opt.showtabline = 2
-vim.opt.wildmenu = c.t -- ?
--- vim.opt.showmatch = c.t
--- vim.opt.visualbell = c.t
-vim.opt.autoread = c.t -- enable not ? at wsl, c9
+vim.opt.wildmenu = bl.t -- ?
+-- vim.opt.showmatch = bl.t
+-- vim.opt.visualbell = bl.t
+vim.opt.autoread = bl.t -- enable not ? at wsl, c9
 -- vim.opt.clipboard:append {'unnamedplus'}
 
 -- vim.opt.ambiwidth = 'double'
@@ -231,8 +231,8 @@ function Status_line(file_encoding_flg)
   vim.opt.statusline:append('%l/%L')  -- line num / line num all
 end
 
--- Status_line(c.t)
-Status_line(c.f)
+-- Status_line(bl.t)
+Status_line(bl.f)
 
 vim.opt.laststatus = 2 -- 0:off  1:on when 2 win  2:on
 vim.opt.completeopt = {'menuone', 'noinsert'}
@@ -240,13 +240,13 @@ vim.opt.foldmethod = 'manual'
 vim.opt.shortmess:append('I')
 -- vim.opt.nrformats:append {'unsigned'} -- 2022-05-09
 
-vim.opt.swapfile = c.f
+vim.opt.swapfile = bl.f
 
 -- undo
 if vf.has('persistent_undo') == 1 then
 
   vim.opt.undodir = g.home_dir .. '/.vim-undo'
-  vim.opt.undofile = c.t
+  vim.opt.undofile = bl.t
 end
 
 -- comment auto off ( def pos final ? )

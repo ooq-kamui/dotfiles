@@ -13,6 +13,7 @@ g.plg_mng_cmd = [[
   " nvim
   Plug 'ojroques/nvim-osc52'
   Plug 'stevearc/oil.nvim'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
   " Plug 'shellRaining/hlchunk.nvim'
   " Plug 'sphamba/smear-cursor.nvim'
@@ -33,37 +34,50 @@ end
 -- or :PlugClean
 
 osc52 = require('osc52')
+
 require("oil").setup({
   keymaps = {
-    ["<c-j>"] = { "actions.select", opts = { tab = c.t } },
+    ["<c-j>"] = { "actions.select", opts = { tab = bl.t } },
   },
   -- view_options = {
-  --   new_tab = c.t,
+  --   new_tab = bl.t,
   -- },
 })
 
 -- lazy
 
--- local lazypath = vf.stdpath("data") .. "/lazy/lazy.nvim"
+-- local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 -- if not (vim.uv or vim.loop).fs_stat(lazypath) then
---   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
---   local out = vf.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
---   if vim.v.shell_error ~= 0 then
---     vim.api.nvim_echo({
---       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
---       { out, "WarningMsg" },
---       { "\nPress any key to exit..." },
---     }, c.t, {})
---     vf.getchar()
---     os.exit(1)
---   end
+--   vim.fn.system({
+--     "git",
+--     "clone",
+--     "--filter=blob:none",
+--     "https://github.com/folke/lazy.nvim.git",
+--     "--branch=stable", -- latest stable release
+--     lazypath,
+--   })
 -- end
 -- vim.opt.rtp:prepend(lazypath)
 -- 
 -- require("lazy").setup({
---   spec = {
---     'ojroques/nvim-osc52',
+--   {
+--     "nvim-treesitter/nvim-treesitter",
+--     build = ":TSUpdate",
 --   },
 -- })
+
+require("nvim-treesitter.configs").setup({
+  ensure_installed = {
+    "markdown",
+    "markdown_inline",
+    -- "lua",
+    -- "javascript"
+  },
+  sync_install = false,
+  highlight = { enable = true },
+  -- indent = { enable = true },
+})
+-- ex
+-- :TSInstall lua
 
 

@@ -1,12 +1,9 @@
 
--- slctd
-
 v.Slctd = {}
 
 v.Slctd.rng_dflt = "'<,'>"
--- g.v_rng_dflt = v.Slctd.rng_dflt
 
--- slctd __ ( slct )
+-- slctd __
 
 function v.Slctd.__cancel() -- range -- alias
 
@@ -223,7 +220,7 @@ end
 
 function v.Slctd.is_cursor_pos__r() -- range
 
-  local ret = c.f
+  local ret = bl.f
 
   v.Slctd.__ltst()
 
@@ -238,12 +235,12 @@ function v.Slctd.is_cursor_pos__r() -- range
 
 
   if     cursor_pos1[2] >  cursor_pos2[2] then -- line
-    ret = c.t
+    ret = bl.t
 
   elseif cursor_pos1[2] == cursor_pos2[2] then -- line
 
     if   cursor_pos1[3] >= cursor_pos2[3] then -- col
-      ret = c.t
+      ret = bl.t
     end
   end
 
@@ -827,30 +824,30 @@ end
 function v.Slctd.is_str__srch_str()
 
   if v.Slctd.str() == v.Rgstr.get('/') then
-    return c.t
+    return bl.t
   else
-    return c.f
+    return bl.f
   end
 end
 
 function v.Slctd.is_str__line_mlt()
 
   if v.Str.is__ptn(v.Slctd.str(), '\\n') then
-    return c.t
+    return bl.t
   else
-    return c.f
+    return bl.f
   end
 end
 
 function  v.Slctd.is_str_edge_r_out_char__space()
 
-  local ret = c.f
+  local ret = bl.f
 
   local slctd_r_out_char = v.Slctd.str_edge_r_out_char()
 
   if v.Str.is__ptn(slctd_r_out_char, '\\s') then
 
-    ret = c.t
+    ret = bl.t
   end
 
   return ret
@@ -879,9 +876,9 @@ function v.Slctd.is_str_edge_char__pair(char_l, char_r)
   local edge_r_char = v.Slctd.str_edge_r_char()
 
   if ( edge_l_char == char_l ) and ( edge_r_char == char_r ) then
-    return c.t
+    return bl.t
   else
-    return c.f
+    return bl.f
   end
 end
 
@@ -906,15 +903,15 @@ function v.Slctd.is_str_edge_out_char__pair(char_l, char_r)
   local edge_r_char = v.Slctd.str_edge_r_out_char()
 
   if ( edge_l_char == char_l ) and ( edge_r_char == char_r ) then
-    return c.t
+    return bl.t
   else
-    return c.f
+    return bl.f
   end
 end
 
 function v.Slctd.is_str_edge_l_col__line_top() -- range
 
-  local ret = c.f
+  local ret = bl.f
 
   v.Slctd.__ltst()
 
@@ -926,7 +923,7 @@ function v.Slctd.is_str_edge_l_col__line_top() -- range
 
   -- if cursor_l_pos[2] == 1 then -- col
   if cursor_l_pos[3] == 1 then -- col
-    ret = c.t
+    ret = bl.t
   end
 
   return ret
@@ -1065,7 +1062,7 @@ function v.Slctd.line_end__ins_input() -- range
   v.Cursor.__mv_line_end()
 
   vim.api.nvim_create_autocmd('InsertLeave', {
-    once = c.t,
+    once = bl.t,
     callback = function()
       local ins_str = v.Rgstr.get('.')
 
@@ -1230,13 +1227,13 @@ end
 
 function v.Slctd.is_line__mlt()
 
-  local ret = c.f
+  local ret = bl.f
 
   local slctd_line_s_num = v.Slctd.line_s_num()
   local slctd_line_e_num = v.Slctd.line_e_num()
 
   if slctd_line_s_num ~= slctd_line_e_num then
-    ret = c.t
+    ret = bl.t
   end
 
   return ret

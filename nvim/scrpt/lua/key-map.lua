@@ -2,7 +2,7 @@
 -- key map
 
 -- leader
-vim.g.mapleader = vim.api.nvim_replace_termcodes('<esc>', c.f, c.f, c.t)
+vim.g.mapleader = vim.api.nvim_replace_termcodes('<esc>', bl.f, bl.f, bl.t)
 
 -- 
 -- mode normal
@@ -152,6 +152,21 @@ vim.keymap.set('n', '<c-w>', '<esc>')
 vim.keymap.set('n', '<c-x>', '<esc>')
 vim.keymap.set('n', '<c-y>', '<esc>')
 vim.keymap.set('n', '<c-z>', '<esc>')
+
+vim.keymap.set('n', '<c-w>c', '<esc>')
+vim.keymap.set('n', '<c-w>h', '<esc>')
+vim.keymap.set('n', '<c-w>j', '<esc>')
+vim.keymap.set('n', '<c-w>k', '<esc>')
+vim.keymap.set('n', '<c-w>l', '<esc>')
+vim.keymap.set('n', '<c-w>q', '<esc>')
+vim.keymap.set('n', '<c-w>s', '<esc>')
+vim.keymap.set('n', '<c-w>t', '<esc>')
+vim.keymap.set('n', '<c-w>v', '<esc>')
+vim.keymap.set('n', '<c-w>w', '<esc>')
+vim.keymap.set('n', '<c-w>z', '<esc>')
+vim.keymap.set('n', '<c-w>=', '<esc>')
+vim.keymap.set('n', '<c-w>_', '<esc>')
+vim.keymap.set('n', '<c-w><bar>', '<esc>')
 
 vim.keymap.set('n', 'ga', '<esc>')
 vim.keymap.set('n', 'gb', '<esc>')
@@ -384,7 +399,7 @@ vim.keymap.set('n', '<c-y>', function()
     return ':lua v.Cursor.__mv_line_end()<cr>'
     -- return v.Cursor.__mv_line_end
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 -- cursor mv char - forward
 vim.keymap.set('n', 'l', 'l')
@@ -420,7 +435,7 @@ vim.keymap.set('n', 'F', v.Cursor.__mv_fnc_name)
 vim.keymap.set('n', '<c-l>', '%')
 
 -- cursor mv block out
-vim.keymap.set('n', '<c-w>', v.Cursor.__mv_block_out)
+vim.keymap.set('n', '<c-w>', v.Cursor.__mv_block_out_swtch)
 
 -- cursor mv fnc out back
 -- vim.keymap.set('n', 'xx', '[m')
@@ -441,18 +456,16 @@ vim.keymap.set('n', 'gj', v.Cursor.__mv_file_edge_end)
 -- vim.keymap.set('n', 'xx', '`.')
 
 -- cursor mv jmp
-vim.keymap.set('n', 'rk', ':lua v.Cursor.__mv_v_jmp("k")<cr>')
-vim.keymap.set('n', 'rj', ':lua v.Cursor.__mv_v_jmp("j")<cr>')
+vim.keymap.set('n', 'rk', v.Cursor.__mv_v_jmp_u)
+vim.keymap.set('n', 'rj', v.Cursor.__mv_v_jmp_d)
 
 -- cursor mv jmp - space stop
-vim.keymap.set('n', 'rrk', ':lua v.Cursor.__mv_v_jmp_char("k", "f")<cr>')
-vim.keymap.set('n', 'rrj', ':lua v.Cursor.__mv_v_jmp_char("j", "f")<cr>')
-vim.keymap.set('n', 'r<space>k', ':lua v.Cursor.__mv_v_jmp_char("k", "f")<cr>')
-vim.keymap.set('n', 'r<space>j', ':lua v.Cursor.__mv_v_jmp_char("j", "f")<cr>')
+vim.keymap.set('n', 'rrk', function () v.Cursor.__mv_v_jmp_to_char('k', bl.t) end)
+vim.keymap.set('n', 'rrj', function () v.Cursor.__mv_v_jmp_to_char('j', bl.t) end)
 
 -- scroll
--- vim.keymap.set('n', 'K'     , '<c-y>')
--- vim.keymap.set('n', 'J'     , '<c-e>')
+vim.keymap.set('n', 'K'     , '<c-y>')
+vim.keymap.set('n', 'J'     , '<c-e>')
 vim.keymap.set('n', '<up>'  , '<c-y>')
 vim.keymap.set('n', '<down>', '<c-e>')
 
@@ -531,12 +544,12 @@ vim.keymap.set('n', '^', v.Repeat_fnc)
 -- vim.keymap.set('n', '~', v.Repeat_fnc)
 
 -- macro rec
-vim.keymap.set('n', '$', v.Mcr.rec, {expr = c.t})
-vim.keymap.set('n', '4', v.Mcr.rec, {expr = c.t})
+vim.keymap.set('n', '$', v.Mcr.rec, {expr = bl.t})
+vim.keymap.set('n', '4', v.Mcr.rec, {expr = bl.t})
 
 -- macro ply
-vim.keymap.set('n', '#', v.Mcr.ply, {expr = c.t})
-vim.keymap.set('n', '3', v.Mcr.ply, {expr = c.t})
+vim.keymap.set('n', '#', v.Mcr.ply, {expr = bl.t})
+vim.keymap.set('n', '3', v.Mcr.ply, {expr = bl.t})
 
 -- edit
 
@@ -551,7 +564,8 @@ vim.keymap.set('n', '<space>', v.Mode.__ins)
 vim.keymap.set('n', 'm', v.Cursor.__ins_cr)
 
 -- ins space
-vim.keymap.set('n', 'L', ':lua v.Cursor.__ins_space(c.f)<cr>')
+-- vim.keymap.set('n', 'L', ':lua v.Cursor.__ins_space(bl.f)<cr>')
+vim.keymap.set('n', 'L', v.Cursor.__ins_space)
 
 -- ins equal
 vim.keymap.set('n', '2', 'i=<esc>')
@@ -597,7 +611,7 @@ vim.keymap.set('n', '<c-u>', function()
   else
     return '[{'
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 -- dev anchor
 -- ins markdown itm
@@ -611,7 +625,7 @@ vim.keymap.set('n', 'O', function()
   else
     return ':lua v.Cursor.line_indnt__shft_r()<cr>'
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 -- ins dots ( or crnt )
 vim.keymap.set('n', 'ru', v.Cursor.line_end__dots_adjst)
@@ -629,7 +643,7 @@ vim.keymap.set('n', '!', function()
   else
     return ':lua v.Cursor.__ins_cmnt_1("^")<cr>'
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 vim.keymap.set('n', '1', function()
   if v.Buf.is_file_type__('markdown') then
@@ -637,7 +651,7 @@ vim.keymap.set('n', '1', function()
   else
     return ':lua v.Cursor.__ins_cmnt_1("^")<cr>'
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 vim.keymap.set('n', '"', function()
   if v.Buf.is_file_type__('markdown') then
@@ -645,7 +659,7 @@ vim.keymap.set('n', '"', function()
   else
     return ':lua v.Cursor.__ins_cmnt_1("^")<cr>'
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 -- ins __ line indnt space
 vim.keymap.set('n', 'V', v.Cursor.d__ins_line_space)
@@ -678,7 +692,7 @@ vim.keymap.set('n', '<c-d>', 'D')
 --   else
 --     return '"zdw'
 --   end
--- end, {expr = c.t})
+-- end, {expr = bl.t})
 
 -- vim.keymap.set('n', 'xx', function()
 --   if v.Cursor.is_col__line_end() then
@@ -686,7 +700,7 @@ vim.keymap.set('n', '<c-d>', 'D')
 --   else
 --     return '"zde'
 --   end
--- end, {expr = c.t})
+-- end, {expr = bl.t})
 
 -- del cr ( line join )
 vim.keymap.set('n', '<c-m>'  , 'J')
@@ -902,7 +916,7 @@ vim.keymap.set('n', 'rn', v.Win.splt_cursor__mv_nxt)
 -- vim.keymap.set('n', 'xx', ':Term ')
 
 -- mark
-vim.keymap.set('n', 'K', 'mz')
+vim.keymap.set('n', 'x', 'mz')
 
 -- 
 -- setting ( set )
@@ -1192,7 +1206,7 @@ vim.keymap.set('v', 'p', function()
   else
     return ':lua v.Slctd.str__ynk()<cr>'
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 -- paste clp
 -- vim.keymap.set('v', 'xx', v.Slctd.str__clp)
@@ -1209,7 +1223,7 @@ vim.keymap.set('v', '<space>', function()
   else
     return 'c'
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 -- cut & ins
 -- vim.keymap.set('v', '<leader><space>', '"zc')
@@ -1221,7 +1235,7 @@ end, {expr = c.t})
 --   else
 --     return '<c-v>$A'
 --   end
--- end, {expr = c.t})
+-- end, {expr = bl.t})
 -- dev anchor
 vim.keymap.set('v', 'Y', v.Slctd.line_end__ins_input)
 
@@ -1233,7 +1247,7 @@ vim.keymap.set('v', 'L', function()
   else
     return ':lua v.Slctd.line_indnt__shft_r()<cr>'
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 -- line __ ins comment 1
 vim.keymap.set('v', '!', v.Slctd.line__ins_cmnt_1)
@@ -1266,7 +1280,7 @@ vim.keymap.set('v', 'd', function()
   else
     return '"ad:let @+ = @a<cr>'
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 -- vim.keymap.set('v', 'xx', v.Slctd.v__del)
 
@@ -1277,7 +1291,7 @@ vim.keymap.set('v', 's', function()
   else
     return '"zx'
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 -- slctd line __ del line top space
 -- vim.keymap.set('v', 'xx', v.Slctd.line_top_space__del)
@@ -1300,7 +1314,7 @@ vim.keymap.set('v', 'w', function()
   else
     return ':lua v.Slctd.str_edge_out_char__tgl()<cr>'
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 -- slctd str edge bracket __ tgl
 -- vim.keymap.set('v', 'xx', v.Slctd.str_edge_out_bracket__tgl)
@@ -1396,7 +1410,7 @@ vim.keymap.set('v', 'e', function()
   else
     return ':lua v.Srch.str__slctd_str()<cr>'
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 -- srch rpl one > ynk, nxt
 vim.keymap.set('v', '<c-p>', v.Slctd.__rpl_7_srch_nxt)
@@ -1415,7 +1429,7 @@ vim.keymap.set('v', ':s', function()
   -- ':sort'
   -- ':Rpl '
 
-end, {expr = c.t})
+end, {expr = bl.t})
 
 -- rpl cr ( add cr )
 vim.keymap.set('v', '<c-m>', v.Slctd.line_srch_str__rpl_cr)
@@ -1428,7 +1442,7 @@ vim.keymap.set('v', '<c-h>', function()
   else
     return ':lua v.Slctd.str__reduce_dlm_l("_")<cr>'
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 vim.keymap.set('v', '<c-u>', function()
   if v.Mode.is__box() then
@@ -1436,7 +1450,7 @@ vim.keymap.set('v', '<c-u>', function()
   else
     return ':lua v.Slctd_str_edge_out__ins(" ")<cr>'
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 -- fzf buf
 vim.keymap.set('v', '<leader>i', v.Fzf.buf_by_slctd_str)
@@ -1534,7 +1548,7 @@ vim.keymap.set('i', '<esc>', function()
   else
     return '<esc>l'
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 vim.keymap.set('i', '<c-c>', function()
   if     v.Mode.is__ins_menu() then
@@ -1544,7 +1558,7 @@ vim.keymap.set('i', '<c-c>', function()
   else
     return '<esc>l'
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 -- cursor mv in line top
 -- vim.keymap.set('i', '<c-a>', '<c-o>^')
@@ -1566,7 +1580,7 @@ vim.keymap.set('i', '<c-o>', function()
   else
     return '<c-o>h'
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 -- cursor mv word forward
 -- vim.keymap.set('i', 'xx', '<c-o>e<c-o>l')
@@ -1578,7 +1592,7 @@ end, {expr = c.t})
 --   else
 --     return '<c-o>b'
 --   end
--- end, {expr = c.t})
+-- end, {expr = bl.t})
 
 -- cursor mv d
 -- vim.keymap.set('i', '<c-n>', '<c-o>j')
@@ -1601,7 +1615,7 @@ vim.keymap.set('i', '<c-a>'    , '<c-p>')
 --   else
 --     return '<c-n>'
 --   end
--- end, {expr = c.t})
+-- end, {expr = bl.t})
 
 -- ins bracket
 vim.keymap.set('i', '<c-u>', function()
@@ -1610,7 +1624,7 @@ vim.keymap.set('i', '<c-u>', function()
   else
     return '<c-r>=v:lua.v.Ins.quote()<cr>'
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 -- ins quote
 vim.keymap.set('i', '<c-j>', function()
@@ -1619,7 +1633,7 @@ vim.keymap.set('i', '<c-j>', function()
   else
     return '<c-r>=v:lua.v.Ins.bracket()<cr>'
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 -- ins num
 vim.keymap.set('i', '<c-y>', '<c-r>=v:lua.v.Ins.num()<cr>')
@@ -1654,7 +1668,7 @@ vim.keymap.set('i', '<c-k>', function()
   else
     return '<c-o>dw'
   end
-end, {expr = c.t})
+end, {expr = bl.t})
 
 -- del line
 -- " non
@@ -1672,7 +1686,7 @@ vim.keymap.set('i', '<c-v>', '<c-r><c-o>+')
 --   else
 --     return ''
 --   end
--- end, {expr = c.t})
+-- end, {expr = bl.t})
 
 -- vim.keymap.set('i', '<c-w>', function()
 --   if v.Mode.is__ins_menu() then
@@ -1680,7 +1694,7 @@ vim.keymap.set('i', '<c-v>', '<c-r><c-o>+')
 --   else
 --     return '<c-w>'
 --   end
--- end, {expr = c.t})
+-- end, {expr = bl.t})
 
 -- numpad shift
 vim.keymap.set('i', '<kInsert>'  , '0')

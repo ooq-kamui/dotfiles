@@ -56,7 +56,7 @@ function v.Fzf.rg(ptn, ext, word1) -- alias
 
   ptn   = ptn   or ''
   ext   = ext   or nil
-  word1 = word1 or c.f
+  word1 = word1 or bl.f
 
   v.Fzf.rg_with_grep(ptn, ext, word1)
 end
@@ -72,12 +72,12 @@ function v.Fzf.rg_with_grep(ptn, ext, word1)
   -- local ptn   = arg[1] or ''
   -- -- local ptn   = arg[1] or g.rg_some_line_ptn
   -- local ext   = arg[2] or nil
-  -- local word1 = arg[3] or c.f
+  -- local word1 = arg[3] or bl.f
 
   ptn   = ptn   or ''
   -- ptn   = ptn   or g.rg_some_line_ptn
   ext   = ext   or nil
-  word1 = word1 or c.f
+  word1 = word1 or bl.f
 
   local rg_cmd = v.Rg.cmd(ptn, ext, word1, nil)
   -- v.Log.val(rg_cmd)
@@ -104,9 +104,9 @@ function v.Fzf.rg_with_grep(ptn, ext, word1)
   --   old
   --     fzf#vim#grep(
   --       command,
-  --       [has_column bool],
+  --       [has_column bl],
   --       [spec dict],
-  --       [fullscreen bool]
+  --       [fullscreen bl]
   --     )
 end
 
@@ -121,7 +121,7 @@ end
 -- rg word1
 function v.Fzf.rg_word1(ptn)
 
-  v.Fzf.rg(ptn, nil, c.t)
+  v.Fzf.rg(ptn, nil, bl.t)
 end
 
 -- fzf rg by run
@@ -394,7 +394,7 @@ vim.api.nvim_create_user_command('FzfRgExt',
   function(opts)
     v.Fzf.rg_ext(table.unpack(opts.fargs))
   end,
-  {nargs = 1, bang = c.t}
+  {nargs = 1, bang = bl.t}
 )
 
 vim.api.nvim_create_user_command('FzfRgWithRun',

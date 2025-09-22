@@ -12,16 +12,16 @@ function v.Mark.show_tgl()
 
   if vf.exists('v.Mark.show_flg') == 0 then
 
-    v.Mark.show_flg = c.f
+    v.Mark.show_flg = bl.f
   end
 
   if not v.Mark.show_flg then
 
     vim.cmd('DoShowMarks')
-    v.Mark.show_flg = c.t
+    v.Mark.show_flg = bl.t
   else
     vim.cmd('NoShowMarks')
-    v.Mark.show_flg = c.f
+    v.Mark.show_flg = bl.f
   end
 end
 

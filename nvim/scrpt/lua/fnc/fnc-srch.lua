@@ -60,7 +60,7 @@ function v.Srch.str__(str, op_word1)
   exe_str = vf.substitute(exe_str, '\\n', '\\\\n', 'g')
   -- print( exe_str )
 
-  if op_word1 == c.t then
+  if op_word1 == bl.t then
     exe_str = v.Srch.str_word1(exe_str)
   end
 
@@ -81,7 +81,7 @@ end
 function v.Srch.str__cursor_word()
 
   local str = v.Cursor.word()
-  v.Srch.str__(str, c.f)
+  v.Srch.str__(str, bl.f)
 end
 
 function v.Srch.str__word1_tgl()
@@ -90,9 +90,9 @@ function v.Srch.str__word1_tgl()
 
   if v.Srch.is__word1() then
 
-    v.Srch.str__(str, c.f)
+    v.Srch.str__(str, bl.f)
   else
-    v.Srch.str__(str, c.t)
+    v.Srch.str__(str, bl.t)
   end
 end
 
@@ -152,7 +152,7 @@ function v.Srch.str__slctd_str() -- range
   v.Slctd.__ltst()
 
   local str = v.Slctd.str()
-  v.Srch.str__(str, c.f)
+  v.Srch.str__(str, bl.f)
   v.Slctd.__cancel()
 end
 
@@ -217,7 +217,7 @@ function v.Srch.str__h_swtch()
   if     vim.bo.filetype == 'markdown' then
     v.Srch.str__markdown_h()
 
-  elseif v.Tbl.is_in(fnc_def_lang_lst, vim.bo.filetype) then
+  elseif v.Tbl.is_in(vim.bo.filetype, fnc_def_lang_lst) then
     v.Srch.str__fnc_def()
 
   else
@@ -260,13 +260,13 @@ function v.Srch.is__word1()
 
   -- local str = @/
   local str = v.Rgstr.get('/')
-  local ret = c.f
+  local ret = bl.f
 
   local str_l = vf.strcharpart(str, 0, 2)
   local str_r = vf.strcharpart(str, vf.strchars(str) - 2)
 
   if str_l == '\\<' and str_r == '\\>' then
-    ret = c.t
+    ret = bl.t
   end
 
   return ret

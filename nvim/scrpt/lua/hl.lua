@@ -4,14 +4,22 @@
 
 -- ex
 -- 
--- vim.api.nvim_set_hl(0, 'LineNr', { fg = '#777777', bg = 'NONE', bold = c.f })
+-- vim.api.nvim_set_hl(0, 'LineNr', { fg = '#777777', bg = 'NONE', bold = bl.f })
 -- arg[0] : hl group
 --   0: all    ( default )
 --   1: window
 --   2: buffer
 
-
 local hl__ = vim.api.nvim_set_hl
+
+-- vim.opt.termguicolors = true
+-- vim.opt.winblend = 0
+-- vim.opt.pumblend = 0
+
+hl__(0, 'Normal'  , {bg = 'none'})
+-- hl__(0, 'NormalNC', {bg = 'none'})
+-- hl__(0, 'NormalSB', {bg = 'none'})
+
 
 hl__(0, 'LineNr', {fg = 'magenta'})
 
@@ -32,19 +40,14 @@ vim.api.nvim_create_autocmd('InsertLeave', {
   end,
 })
 
--- vim.opt.guicursor = "n-v-i-c:block"
-vim.opt.guicursor = "n-v-i-c:ver45"
+vim.opt.guicursor = "n-v-i-c:block" -- mac
+-- vim.opt.guicursor = "n-v-i-c:ver45" -- win
 -- vim.opt.guicursor = "n-v-i-c:hor45"
 -- vim.opt.guicursor = "n-v-i-c:hor20-blinkwait700-blinkon400"
 
--- hl__(0, 'Cursor'        , {fg = 'black'          , bg = 'none'    })
--- hl__(0, 'Cursor'        , {fg = 'blue'           , bg = 'none'    })
--- hl__(0, 'Cursor'        , {                        bg = 'gray'    })
--- hl__(0, 'Cursor'        , {reverse = c.t                          })
--- hl__(0, 'Cursor'        , {fg      = 'none'      , bg = 'gray'    , reverse = c.t})
-hl__(0, 'Cursor'        , {fg      = 'none'      , bg = 'gray'    , reverse = c.t})
+hl__(0, 'Cursor'        , {fg      = 'none'   , bg = 'none'       , reverse = bl.t})
 
-hl__(0, 'CursorLine'    , {underline = c.t})
+hl__(0, 'CursorLine'    , {underline = bl.t})
 hl__(0, 'CursorLineNr'  , {fg = 'magenta'                         })
 
 hl__(0, 'Visual'        , {fg = 'none'        , bg = 'darkmagenta'})
@@ -65,7 +68,7 @@ hl__(0, 'StatusLine'    , {fg = 'lightblue'   , bg = 'none'       })
 hl__(0, 'EndOfBuffer'   , {fg = 'cyan'                            })
 
 hl__(0, 'Pmenu'         , {fg = 'lightgreen'  , bg = 'darkblue'   })
-hl__(0, 'PmenuSel'      , {fg = 'cyan'        , bg = 'magenta'    , bold = c.t })
+hl__(0, 'PmenuSel'      , {fg = 'cyan'        , bg = 'magenta'    , bold = bl.t })
 
 hl__(0, 'ErrorMsg'      , {fg = 'magenta'     , bg = 'none'       })
 hl__(0, 'WarningMsg'    , {fg = 'magenta'     , bg = 'none'       })
@@ -73,9 +76,8 @@ hl__(0, 'WarningMsg'    , {fg = 'magenta'     , bg = 'none'       })
 hl__(0, 'NonText'       , {fg = '#005faf'     , bg = 'none'       })
 hl__(0, 'SpecialKey'    , {fg = '#005faf'     , bg = 'none'       })
 
-hl__(0, 'FullWidthSpace', {                     bg = 'white'      })
--- match FullWidthSpace /　/
---   ???
+hl__(0, 'SpaceMb'       , {fg = '#005faf'     , bg = 'white'      })
+vim.cmd([[syntax match SpaceMb /　/]]) -- todo dev
 
 -- vimdiff
 hl__(0, 'DiffAdd'       , {fg = '#00ff00'     , bg = '#005f00'    })
@@ -87,10 +89,9 @@ hl__(0, 'DiffText'      , {fg = '#00ff00'     , bg = '#0000ff'    })
 hl__(0, 'wildMenu'      , {fg = 'cyan'                            })
 
 -- hi dflt
-hl__(0, 'Comment'       , {fg = '#00ffff'     , bg = 'none'       })
+hl__(0, 'Comment'       , {fg = '#00ffff'     , bg = 'None'       })
 
 -- win ( buf ) splt
-vim.api.nvim_set_hl(0, 'StatusLineNC', {link = 'Comment'})
-vim.api.nvim_set_hl(0, 'VertSplit'   , {link = 'Comment'})
-
+hl__(0, 'StatusLineNC'  , {link = 'Comment'})
+hl__(0, 'VertSplit'     , {link = 'Comment'})
 

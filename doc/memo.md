@@ -2,28 +2,55 @@
 # dotfiles
 
 
-## doc-tech
-
-web confirm
-
-
 ## nvim
 
-c-w + ?  esc
+n leader O, err ?
+- confirm
 
-rk, logic mod
 
 v m, err ?
 - line end space del
+
 
 v cmnt mlt, err
 - slctd s line num, err ?
 - confirm log
 
+
 v line, Y, err, line end ins
+
 
 mark lst
 - fnc cre
+- leader m
+
+
+fnc cre
+```
+v.Cursor.__mv_v_jmp('k')
+v.Cursor.__mv_v_jmp_char('k', 'f')
+```
+
+
+tab color
+
+
+vim.cmd() > v.Cmd.cmd() ?  
+
+
+tree-sitter, color mod
+
+match SpaceMb
+
+
+tree-sitter, doc-tech
+
+
+## fish
+
+config.fish, env tidy
+- linux-svr
+  - osc52.sh
 
 
 ## ssg artcl
@@ -52,18 +79,7 @@ game cre
 - chara cre
 
 
-## fish
-
-config.fish, env tidy
-- linux-svr
-  - osc52.sh
-
-
 ## nvim
-
-plg
-- nvim-treesitter
-  - instl
 
 n F, cursor mv __ line u col
 - ref : n q

@@ -27,14 +27,14 @@ function v.Tbl.idx(tbl, val)
   return nil
 end
 
-function v.Tbl.is_in(tbl, val)
+function v.Tbl.is_in(val, lst)
 
-  local idx = v.Tbl.idx(tbl, val)
+  local idx = v.Tbl.idx(lst, val)
 
   if idx then
-    return c.t
+    return bl.t
   else
-    return c.f
+    return bl.f
   end
 end
 
@@ -47,9 +47,9 @@ end
 function v.Tbl.is_last(tbl, val)
 
   if val == v.Tbl.last(tbl) then
-    return c.t
+    return bl.t
   else
-    return c.f
+    return bl.f
   end
 end
 

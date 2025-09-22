@@ -49,7 +49,7 @@ function v.Rg.cmd(ptn, ext, word1, opt)
 
   local fzf_rg_opt_word1 = ''
 
-  if word1 == c.t then
+  if word1 == bl.t then
     fzf_rg_opt_word1 = ' -w'
   end
 

@@ -276,15 +276,15 @@ end
 function v.Buf.is_file_type__(type)
 
   if vim.bo.filetype == type then
-    return c.t
+    return bl.t
   else
-    return c.f
+    return bl.f
   end
 end
 
 function v.Buf.is_file_type__in(type_lst)
 
-  local ret = v.Tbl.is_in(type_lst, vim.bo.filetype)
+  local ret = v.Tbl.is_in(vim.bo.filetype, type_lst)
   return ret
 end
 
