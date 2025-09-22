@@ -9,7 +9,7 @@ end
 function v.Cmd.nml(cmd_nml) -- alias
 
   v.Cmd.cmd('normal! ' .. cmd_nml)
-  -- vim.cmd('exe "normal! ' .. cmd_nml .. '"')
+  -- v.Cmd.cmd('exe "normal! ' .. cmd_nml .. '"')
 end
 
 function v.Cmd.cmdline__(str)

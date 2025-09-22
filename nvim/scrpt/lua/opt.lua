@@ -35,9 +35,9 @@ vim.api.nvim_create_autocmd({'BufWrite'}, {
 -- org setting end
 
 
-vim.cmd('filetype on')
+v.Cmd.cmd('filetype on')
 
-vim.cmd('syntax on')
+v.Cmd.cmd('syntax on')
 
 -- vim.filetype.add({
 --   pattern = {
@@ -158,7 +158,7 @@ vim.api.nvim_create_autocmd('BufRead', {
     local cursor_end_line  = vf.line("$")
 
     if cursor_last_line > 0 and cursor_last_line <= cursor_end_line then
-      vim.cmd('normal! g`"')
+      v.Cmd.cmd('normal! g`"')
     end
   end,
 })
@@ -167,14 +167,14 @@ vim.api.nvim_create_autocmd('BufRead', {
 vim.api.nvim_create_autocmd({'BufWinEnter'}, {
   pattern  = {'*'},
   callback = function()
-    vim.cmd('normal! zz')
+    v.Cmd.cmd('normal! zz')
   end,
 })
 
 -- vim.api.nvim_create_autocmd({'BufRead'}, {
 --   pattern  = {'*'},
 --   callback = function()
---     vim.cmd('normal! /dmy')
+--     v.Cmd.cmd('normal! /dmy')
 --   end,
 -- })
 

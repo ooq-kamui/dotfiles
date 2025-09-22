@@ -1,14 +1,14 @@
--- 
--- hl ( hi )
--- 
 
+-- vim.api.nvim_set_hl(target, hl_grp_name, params)
+--   target
+--     0: all    ( default )
+--     1: window
+--     2: buffer
+--   hl_group_name
+--   params
+--
 -- ex
--- 
--- vim.api.nvim_set_hl(0, 'LineNr', { fg = '#777777', bg = 'NONE', bold = bl.f })
--- arg[0] : hl group
---   0: all    ( default )
---   1: window
---   2: buffer
+--   vim.api.nvim_set_hl(0, 'LineNr', { fg = '#777777', bg = 'none', bold = bl.f })
 
 local hl__ = vim.api.nvim_set_hl
 
@@ -19,7 +19,6 @@ local hl__ = vim.api.nvim_set_hl
 hl__(0, 'Normal'  , {bg = 'none'})
 -- hl__(0, 'NormalNC', {bg = 'none'})
 -- hl__(0, 'NormalSB', {bg = 'none'})
-
 
 hl__(0, 'LineNr', {fg = 'magenta'})
 
@@ -77,7 +76,7 @@ hl__(0, 'NonText'       , {fg = '#005faf'     , bg = 'none'       })
 hl__(0, 'SpecialKey'    , {fg = '#005faf'     , bg = 'none'       })
 
 hl__(0, 'SpaceMb'       , {fg = '#005faf'     , bg = 'white'      })
-vim.cmd([[syntax match SpaceMb /　/]]) -- todo dev
+v.Cmd.cmd([[syntax match SpaceMb /　/]]) -- todo dev
 
 -- vimdiff
 hl__(0, 'DiffAdd'       , {fg = '#00ff00'     , bg = '#005f00'    })
@@ -89,7 +88,7 @@ hl__(0, 'DiffText'      , {fg = '#00ff00'     , bg = '#0000ff'    })
 hl__(0, 'wildMenu'      , {fg = 'cyan'                            })
 
 -- hi dflt
-hl__(0, 'Comment'       , {fg = '#00ffff'     , bg = 'None'       })
+hl__(0, 'Comment'       , {fg = '#00ffff'     , bg = 'none'       })
 
 -- win ( buf ) splt
 hl__(0, 'StatusLineNC'  , {link = 'Comment'})

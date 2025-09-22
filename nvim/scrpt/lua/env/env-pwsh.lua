@@ -7,7 +7,7 @@ let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 set shellquote= shellxquote=
 ]]
-vim.cmd(cmd)
+v.Cmd.cmd(cmd)
 
 
 -- fzf rg opt

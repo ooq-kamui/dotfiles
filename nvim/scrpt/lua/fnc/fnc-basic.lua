@@ -53,18 +53,17 @@ require('fnc/fnc-tst'   )
 function v.Esc() -- alias
 
   -- v.Cmd.nml('\\<esc>')
-  vim.cmd('exe "normal! \\<esc>"')
+  v.Cmd.cmd('exe "normal! \\<esc>"')
 end
 
 -- undo clr, file ( crnt buf ? )
 
 function v.Undo__clr()
 
-  -- local undo_lvl_tmp = &undolevels
   local undo_lvl_tmp = vim.bo.undolevels
 
   vim.opt_local.undolevels = -1
-  vim.cmd([[exe "normal! a \<bs>\<esc>"]])
+  v.Cmd.cmd([[exe "normal! a \<bs>\<esc>"]])
 
   vim.bo.undolevels = undo_lvl_tmp
 end

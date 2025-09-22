@@ -17,10 +17,10 @@ function v.Mark.show_tgl()
 
   if not v.Mark.show_flg then
 
-    vim.cmd('DoShowMarks')
+    v.Cmd.cmd('DoShowMarks')
     v.Mark.show_flg = bl.t
   else
-    vim.cmd('NoShowMarks')
+    v.Cmd.cmd('NoShowMarks')
     v.Mark.show_flg = bl.f
   end
 end

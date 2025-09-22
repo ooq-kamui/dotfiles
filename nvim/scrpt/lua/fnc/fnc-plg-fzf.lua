@@ -20,11 +20,6 @@ function v.Fzf.by_ar(...)
   local src_ar   = arg[1] or nil
   local fnc_name = arg[2] or nil
 
-  -- if vf.len(src_ar) > g.fzf_line_cnt_max then
-  --   print("fzf src_ar, end")
-  --   return
-  -- end
-
   vim.fn['fzf#run'](
     {
       source = src_ar,
@@ -61,18 +56,17 @@ function v.Fzf.rg(ptn, ext, word1) -- alias
   v.Fzf.rg_with_grep(ptn, ext, word1)
 end
 
-function v.Fzf.rg_with_grep(ptn, ext, word1)
+function v.Fzf.rg_by_srch_str()
 
-  -- local arg = {...}
+  local srch_str = v.Srch.str()
+  v.Fzf.rg(srch_str)
+end
+
+function v.Fzf.rg_with_grep(ptn, ext, word1)
 
   if not ( v.Is_env__('mac') or v.Is_env__('linux') or v.Is_env__('win64') ) then
     return
   end
-
-  -- local ptn   = arg[1] or ''
-  -- -- local ptn   = arg[1] or g.rg_some_line_ptn
-  -- local ext   = arg[2] or nil
-  -- local word1 = arg[3] or bl.f
 
   ptn   = ptn   or ''
   -- ptn   = ptn   or g.rg_some_line_ptn
@@ -104,9 +98,9 @@ function v.Fzf.rg_with_grep(ptn, ext, word1)
   --   old
   --     fzf#vim#grep(
   --       command,
-  --       [has_column bl],
+  --       [has_column bool],
   --       [spec dict],
-  --       [fullscreen bl]
+  --       [fullscreen bool]
   --     )
 end
 
@@ -121,6 +115,12 @@ end
 -- rg word1
 function v.Fzf.rg_word1(ptn)
 
+  v.Fzf.rg(ptn, nil, bl.t)
+end
+
+function v.Fzf.rg_word1_by_srch_str()
+
+  local ptn = v.Srch.str()
   v.Fzf.rg(ptn, nil, bl.t)
 end
 
@@ -186,13 +186,13 @@ end
 
 function v.Fzf.buf()
   
-  vim.cmd('FzfBufCrnt ')
+  v.Cmd.cmd('FzfBufCrnt ')
 end
 
 function v.Fzf.buf_by_slctd_str()
 
   v.Srch.str__slctd_str()
-  vim.cmd('FzfBufCrnt ' .. vf.escape(vf.getreg('z'), '.*~'))
+  v.Cmd.cmd('FzfBufCrnt ' .. vf.escape(vf.getreg('z'), '.*~'))
 end
 
 -- fzf rgstr
@@ -341,7 +341,7 @@ let g:fzf_colors = {
 \   'hl+'    : ['fg', 'Statement'  ],
 \ }
 ]]
-vim.cmd(vim_cmd)
+v.Cmd.cmd(vim_cmd)
 
 -- vim.g.fzf_preview_window = {
 --   'down:40%:hidden',
@@ -412,21 +412,21 @@ vim.api.nvim_create_user_command('FzfTagjmpByFile',
 )
 
 -- fzf buf crnt
-vim.cmd('command! -bang -nargs=? FzfBufCrnt call fzf#vim#buffer_lines(<q-args>, {"options": ["--no-sort", "--exact"]}, <bang>1)')
+v.Cmd.cmd('command! -bang -nargs=? FzfBufCrnt call fzf#vim#buffer_lines(<q-args>, {"options": ["--no-sort", "--exact"]}, <bang>1)')
 
 -- fzf file
-vim.cmd('command! -bang -nargs=? -complete=dir FzfFile call fzf#vim#files(<q-args>, <bang>1)')
+v.Cmd.cmd('command! -bang -nargs=? -complete=dir FzfFile call fzf#vim#files(<q-args>, <bang>1)')
 
 -- fzf file history
-vim.cmd('command! -bang -nargs=* FzfFileHstry call fzf#vim#history(fzf#vim#with_preview(), <bang>1)')
+v.Cmd.cmd('command! -bang -nargs=* FzfFileHstry call fzf#vim#history(fzf#vim#with_preview(), <bang>1)')
 
 -- fzf cmd history
-vim.cmd('command! -bang -nargs=* FzfCmdHstry call fzf#vim#command_history(fzf#vim#with_preview(), <bang>1)')
+v.Cmd.cmd('command! -bang -nargs=* FzfCmdHstry call fzf#vim#command_history(fzf#vim#with_preview(), <bang>1)')
 
 -- fzf srch history
-vim.cmd('command! -bang -nargs=* FzfSrchHstry call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)')
+v.Cmd.cmd('command! -bang -nargs=* FzfSrchHstry call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)')
 
 -- fzf cmd def : mark
-vim.cmd('command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)')
+v.Cmd.cmd('command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)')
 
 

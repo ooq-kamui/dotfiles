@@ -146,7 +146,7 @@ function v.Rgstr.clp__ynk()
   if v.Is_env__('linux') then
     -- v.C9clp__ynk() -- off
   else
-    vim.cmd('let @+ = @a')
+    v.Cmd.cmd('let @+ = @a')
     -- v.Rgstr.__('+', v.Rgstr.get('a'))
   end
 end

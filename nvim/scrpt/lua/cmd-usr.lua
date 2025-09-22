@@ -101,7 +101,7 @@ vim.api.nvim_create_user_command('Sjis',
 )
 
 -- " term
-   vim.cmd('command! -nargs=* Term split | wincmd j | resize 15 | term <args>')
+v.Cmd.cmd('command! -nargs=* Term split | wincmd j | resize 15 | term <args>')
 
 -- "autocmd TermOpen * startinsert
 

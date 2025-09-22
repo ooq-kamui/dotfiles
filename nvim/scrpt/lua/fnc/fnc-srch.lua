@@ -22,7 +22,8 @@ end
 function v.Srch.str()
 
   -- local str = @/
-  local str = vf.getref('/')
+  -- local str = vf.getreg('/')
+  local str = v.Rgstr.get('/')
   return str
 end
 
@@ -276,7 +277,7 @@ end
 
 function v.Srch.init()
 
-  vim.cmd('silent! /dmy')
+  v.Cmd.cmd('silent! /dmy')
   vim.defer_fn(function()
     v.Srch.str__prv_tgl()
   end, 100)

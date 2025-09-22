@@ -310,11 +310,11 @@ end
 
 function v.Win.splt_cursor__mv_nxt()
 
-  vim.cmd('exe "normal! \\<c-w>w>"')
+  v.Cmd.cmd('exe "normal! \\<c-w>w>"')
 end
 
 function v.Win.splt__quit()
 
-  vim.cmd('exe "normal! \\<c-w>c>"')
+  v.Cmd.cmd('exe "normal! \\<c-w>c>"')
 end
 

@@ -27,7 +27,7 @@ g.plg_mng_cmd = [[
 
 if v.Is_vim_plg__installed() then
 
-  vim.cmd(g.plg_mng_cmd)
+  v.Cmd.cmd(g.plg_mng_cmd)
 end
 -- do :PlugInstall
 -- or :PlugUpdate

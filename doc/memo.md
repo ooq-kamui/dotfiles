@@ -4,46 +4,27 @@
 
 ## nvim
 
-n leader O, err ?
-- confirm
-
-
-v m, err ?
-- line end space del
-
-
-v cmnt mlt, err
-- slctd s line num, err ?
-- confirm log
-
-
-v line, Y, err, line end ins
-
+match SpaceMb
 
 mark lst
 - fnc cre
 - leader m
 
 
-fnc cre
-```
-v.Cursor.__mv_v_jmp('k')
-v.Cursor.__mv_v_jmp_char('k', 'f')
-```
-
-
-tab color
-
-
-vim.cmd() > v.Cmd.cmd() ?  
-
-
 tree-sitter, color mod
-
-match SpaceMb
+- confirm
+  - method
+  - off
 
 
 tree-sitter, doc-tech
+
+
+## ssg artcl
+
+img bg
+- artcl cre
+- tst up
 
 
 ## fish
@@ -51,12 +32,6 @@ tree-sitter, doc-tech
 config.fish, env tidy
 - linux-svr
   - osc52.sh
-
-
-## ssg artcl
-
-artcl ( page ) cre
-- img bg
 
 
 ## aws

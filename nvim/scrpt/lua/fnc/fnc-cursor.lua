@@ -307,7 +307,7 @@ function v.Cursor.__mv_mlt_u() -- alias
 
   -- local cmd_nml = g.cursor_mv_line_step .. '\\<c-y>'
   -- v.Cmd.nml(cmd_nml)
-  vim.cmd('exe "normal! ' .. g.cursor_mv_line_step .. '\\<c-y>"')
+  v.Cmd.cmd('exe "normal! ' .. g.cursor_mv_line_step .. '\\<c-y>"')
 end
 
 function v.Cursor.__mv_mlt_d() -- alias
@@ -316,7 +316,7 @@ function v.Cursor.__mv_mlt_d() -- alias
 
   -- local cmd_nml = g.cursor_mv_line_step .. '\\<c-e>'
   -- v.Cmd.nml(cmd_nml)
-  vim.cmd('exe "normal! ' .. g.cursor_mv_line_step .. '\\<c-e>"')
+  v.Cmd.cmd('exe "normal! ' .. g.cursor_mv_line_step .. '\\<c-e>"')
 end
 
 function v.Cursor.__mv_u_line_end()
@@ -396,6 +396,16 @@ function v.Cursor.__mv_v_jmp_to_char(drct_cmd_nml, is_space_stop)
     v.Cmd.nml(drct_cmd_nml)
     cnt = cnt + 1
   end
+end
+
+function v.Cursor.__mv_v_jmp_u_also_space() -- alias
+
+  v.Cursor.__mv_v_jmp_to_char('k', bl.t)
+end
+
+function v.Cursor.__mv_v_jmp_d_also_space() -- alias
+
+  v.Cursor.__mv_v_jmp_to_char('j', bl.t)
 end
 
 function v.Cursor.__mv_v_jmp_to_space(drct_cmd_nml)
@@ -573,11 +583,9 @@ end
 
 function v.Cursor.__ins_cr()
 
-  -- local t_line_num = vf.line('.')
   local line_num = v.Cursor.line_num()
 
-  -- v.Cmd.nml('i\\<cr> ')
-  vim.cmd('exe "normal! i\\<cr> "')
+  v.Cmd.cmd('exe "normal! i\\<cr> "')
   v.Cmd.nml('x')
 
   v.Line.end_space__del(line_num)
@@ -1000,14 +1008,14 @@ function v.Cursor.str__icl()
 
   -- local cmd_nml = "\\<c-a>"
   -- v.Cmd.nml(cmd_nml)
-  vim.cmd('exe "normal! \\<c-a>"')
+  v.Cmd.cmd('exe "normal! \\<c-a>"')
 end
 
 function v.Cursor.str__dcl()
 
   -- local cmd_nml = "\\<c-x>"
   -- v.Cmd.nml(cmd_nml)
-  vim.cmd('exe "normal! \\<c-x>"')
+  v.Cmd.cmd('exe "normal! \\<c-x>"')
 end
 
 function v.Cursor.str_week__icl()

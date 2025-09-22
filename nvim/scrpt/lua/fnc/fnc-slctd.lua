@@ -43,13 +43,7 @@ end
 function v.Slctd.mode_state__swtch()
 
   v.Slctd.__ltst()
-  vim.cmd('exe "normal! \\<c-v>"')
-
-  -- if v.Mode.is__box() then
-  --   v.Slctd.box_width__1()
-  -- else
-  --   vim.cmd('exe "normal! \\<c-v>"')
-  -- end
+  v.Cmd.cmd('exe "normal! \\<c-v>"')
 end
 
 -- slctd str
@@ -492,7 +486,7 @@ function v.Slctd.__fil(char) -- range
   v.Slctd.__ltst()
 
   local cmd_nml = 'r' .. char
-  vim.cmd('exe "normal! ' .. cmd_nml .. '"')
+  v.Cmd.cmd('exe "normal! ' .. cmd_nml .. '"')
 
   v.Slctd.__ltst()
 end
@@ -1033,6 +1027,11 @@ function v.Slctd.line_top_space__del()
 end
 
 function v.Slctd.line_end_space__del() -- range
+
+  -- v.Slctd.__ltst()
+
+  -- print(vim.api.nvim_buf_get_mark(0, '<')[1])
+  -- print(vim.api.nvim_buf_get_mark(0, '>')[1])
 
   for idx, line_num in pairs(v.Slctd.line_num_seq()) do
 
