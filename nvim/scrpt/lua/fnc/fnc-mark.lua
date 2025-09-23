@@ -3,7 +3,7 @@
 
 v.Mark = {}
 
-v.Mark.alph_def = {
+v.Mark.key_def = {
   'a','b','c','d','e','f','g','h','i','j','k','l','m','n',
   'o','p','q','r','s','t','u','v','w','x','y','z'
 }
@@ -17,30 +17,31 @@ function v.Mark.show_tgl()
 
   if not v.Mark.show_flg then
 
-    v.Cmd.cmd('DoShowMarks')
+    -- v.Cmd.cmd('DoShowMarks')
     v.Mark.show_flg = bl.t
   else
-    v.Cmd.cmd('NoShowMarks')
+    -- v.Cmd.cmd('NoShowMarks')
     v.Mark.show_flg = bl.f
   end
 end
 
 function v.Mark.lst()
 
-  local mark = {}
+  local mark_lst = {}
   for idx, _mark in pairs(vf.bufname():getmarklist()) do
 
     local _alph = _mark['mark'][2]
 
-    if vf.count(v.Mark.alph_def, _alph) == 0 then
+    if vf.count(v.Mark.key_def, _alph) == 0 then
       -- continue
     else
-      mark = v.Tbl.add(mark, _mark['mark'][2])
+      -- mark_lst = v.Tbl.add(mark_lst, _mark['mark'][2])
+      v.Tbl.add(mark_lst, _mark['mark'][2])
     end
   end
 
-  --print( mark )
-  return mark
+  --print( mark_lst )
+  return mark_lst
 end
 
 function v.Mark.alph_line()
@@ -51,7 +52,7 @@ function v.Mark.alph_line()
 
     local _alph = _mark['mark'][2]
 
-    if vf.count(v.Mark.alph_def, _alph) == 0 then
+    if vf.count(v.Mark.key_def, _alph) == 0 then
       -- continue
     else
       if _mark['pos'][2] == line_num then
@@ -74,7 +75,7 @@ function v.Mark.tgl()
     v.Mark.del(alph)
   end
 
-  v.Cmd.cmd('DoShowMarks')
+  -- v.Cmd.cmd('DoShowMarks')
 end
 
 function v.Mark.add()
@@ -87,7 +88,7 @@ function v.Mark.alph_useabl()
 
   local mark = v.Mark.lst()
 
-  for idx, _alph in pairs(v.Mark.alph_def) do
+  for idx, _alph in pairs(v.Mark.key_def) do
     if vf.count(mark, _alph) == 0 then
       --print( _alph )
       return _alph
@@ -98,21 +99,18 @@ function v.Mark.alph_useabl()
   return ''
 end
 
-function v.Mark.del(alph)
+function v.Mark.del(key)
 
-  v.Cmd.cmd('delmark ' .. alph)
+  v.Cmd.cmd('delmark ' .. key)
 end
 
 function v.Mark.del_all()
 
   v.Cmd.cmd('delmark!')
-  v.Cmd.cmd('DoShowMarks')
+  -- v.Cmd.cmd('DoShowMarks')
 end
 
 -- key bind
-
--- mark
--- vim.keymap.set('n', 'K', 'mz')
 
 -- mark, cursor mv mark forward
 -- vim.keymap.set('n', 'xx', ']`')

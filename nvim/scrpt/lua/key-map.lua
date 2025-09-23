@@ -912,6 +912,12 @@ keymap__('n', 'rn', v.Win.splt_cursor__mv_nxt)
 -- mark
 keymap__('n', 'x', 'mz')
 
+-- mark  -  cursor mv
+keymap__('n', 'H', '``')
+-- keymap__('n', 'H', '`z')
+
+keymap__('n', '<leader>m', ':FzfMark<cr>')
+
 -- 
 -- setting ( set )
 -- 
@@ -1150,10 +1156,6 @@ keymap__('x', 'gk', ':lua v.Slctd.cursor__mv_file_edge("k")<cr>')
 
 -- cursor mv file edge forward ( file end )
 keymap__('x', 'gj', ':lua v.Slctd.cursor__mv_file_edge("j")<cr>')
-
--- cursor mv return srch start
--- keymap__('n', 'H', '`z')
-keymap__('n', 'H', '``')
 
 -- slct / ynk / paste
 

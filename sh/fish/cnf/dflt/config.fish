@@ -75,7 +75,7 @@ alias kkk       'k;k;k'
 alias kkkk      'k;k;k;k'
 
 alias f  'dir_jmp_with_zoxide'
-alias fo 'dir_jmp_with_zoxide dotfiles'
+# alias fo 'dir_jmp_with_zoxide dotfiles'
 # alias d  'dir_jmp_with_zoxide'
 # alias do 'dir_jmp_with_zoxide dotfiles'
 

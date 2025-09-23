@@ -11,6 +11,7 @@
 --   vim.api.nvim_set_hl(0, 'LineNr', { fg = '#777777', bg = 'none', bold = bl.f })
 
 local hl__ = vim.api.nvim_set_hl
+local match_id
 
 -- vim.opt.termguicolors = true
 -- vim.opt.winblend = 0
@@ -75,8 +76,9 @@ hl__(0, 'WarningMsg'    , {fg = 'magenta'     , bg = 'none'       })
 hl__(0, 'NonText'       , {fg = '#005faf'     , bg = 'none'       })
 hl__(0, 'SpecialKey'    , {fg = '#005faf'     , bg = 'none'       })
 
-hl__(0, 'SpaceMb'       , {fg = '#005faf'     , bg = 'white'      })
-v.Cmd.cmd([[syntax match SpaceMb /　/]]) -- todo dev
+hl__(0, 'SpaceMb'       , {fg = 'magenta'     , bg = 'lightyellow'})
+match_id = vim.fn.matchadd('SpaceMb', '\\%u3000', 10) -- /　/
+-- vim.fn.matchdelete(match_id)
 
 -- vimdiff
 hl__(0, 'DiffAdd'       , {fg = '#00ff00'     , bg = '#005f00'    })
