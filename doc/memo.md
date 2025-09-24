@@ -2,30 +2,27 @@
 # dotfiles
 
 
-## nvim
-
-hl `*.vim`, del
-
-hl markdown cr
-
-tree-sitter, color mod
-- confirm
-  - color mod method
-  - color off method
-
-
-## pwsh
-
-jf
-
-nvim, tree-sitter, cc
-
-
 ## fish
 
 config.fish, env tidy
 - linux-svr
   - osc52.sh
+
+
+## nvim
+
+tree-sitter, color mod
+- method
+  - research
+
+
+## pwsh
+
+jf
+- cd_git_root
+- str_git_root_rel
+
+nvim, tree-sitter, cc
 
 
 ## aws
