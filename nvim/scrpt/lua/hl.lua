@@ -13,7 +13,7 @@
 local hl__ = vim.api.nvim_set_hl
 local match_id
 
--- vim.opt.termguicolors = true
+vim.opt.termguicolors = true
 -- vim.opt.winblend = 0
 -- vim.opt.pumblend = 0
 
