@@ -1,6 +1,4 @@
 
--- plg
-
 -- vim-plug
 
 g.plg_mng_cmd = [[
@@ -33,16 +31,6 @@ end
 -- or :PlugUpdate
 -- or :PlugClean
 
-osc52 = require('osc52')
-
-require("oil").setup({
-  keymaps = {
-    ["<c-j>"] = { "actions.select", opts = { tab = bl.t } },
-  },
-  -- view_options = {
-  --   new_tab = bl.t,
-  -- },
-})
 
 -- lazy
 
@@ -65,6 +53,22 @@ require("oil").setup({
 --     build = ":TSUpdate",
 --   },
 -- })
+
+
+osc52 = require('osc52')
+
+require("oil").setup({
+  keymaps = {
+    ["<c-j>"] = { "actions.select", opts = { tab = bl.t } },
+  },
+  -- view_options = {
+  --   new_tab = bl.t,
+  -- },
+})
+
+-- tree-sitter
+
+-- require("nvim-treesitter.install").prefer_git = true
 
 require("nvim-treesitter.configs").setup({
   ensure_installed = {

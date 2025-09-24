@@ -13,13 +13,13 @@
 local hl__ = vim.api.nvim_set_hl
 local match_id
 
-vim.opt.termguicolors = true
+vim.opt.termguicolors = true -- true: ctermfg > fg
 -- vim.opt.winblend = 0
 -- vim.opt.pumblend = 0
 
 hl__(0, 'Normal'  , {bg = 'none'})
--- hl__(0, 'NormalNC', {bg = 'none'})
--- hl__(0, 'NormalSB', {bg = 'none'})
+hl__(0, 'NormalNC', {bg = 'none'})
+hl__(0, 'NormalSB', {bg = 'none'})
 
 hl__(0, 'LineNr', {fg = 'magenta'})
 
@@ -79,6 +79,9 @@ hl__(0, 'SpecialKey'    , {fg = '#005faf'     , bg = 'none'       })
 hl__(0, 'SpaceMb'       , {fg = 'magenta'     , bg = 'lightyellow'})
 match_id = vim.fn.matchadd('SpaceMb', '\\%u3000', 10) -- /　/
 -- vim.fn.matchdelete(match_id)
+
+hl__(0, 'mkdLineBreak'  , {fg = 'none'        , bg = 'darkmagenta'}) -- ctermfg=141
+match_id = vim.fn.matchadd('mkdLineBreak', '  $', 10) -- /　/
 
 -- vimdiff
 hl__(0, 'DiffAdd'       , {fg = '#00ff00'     , bg = '#005f00'    })

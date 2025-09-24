@@ -2,6 +2,18 @@
 # dotfiles
 
 
+## nvim
+
+hl `*.vim`, del
+
+hl markdown cr
+
+tree-sitter, color mod
+- confirm
+  - color mod method
+  - color off method
+
+
 ## fish
 
 config.fish, env tidy
@@ -30,12 +42,6 @@ game cre
 
 
 ## nvim
-
-tree-sitter, color mod
-- confirm
-  - color mod method
-  - color off method
-
 
 n F, cursor mv __ line u col
 - ref : n q
