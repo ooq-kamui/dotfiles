@@ -66,17 +66,17 @@ require("oil").setup({
 --   },
 -- })
 
-require("nvim-treesitter.configs").setup({
-  ensure_installed = {
-    "markdown",
-    "markdown_inline",
-    -- "lua",
-    -- "javascript"
-  },
-  sync_install = false,
-  highlight = { enable = true },
-  -- indent = { enable = true },
-})
+-- require("nvim-treesitter.configs").setup({
+--   ensure_installed = {
+--     "markdown",
+--     "markdown_inline",
+--     -- "lua",
+--     -- "javascript"
+--   },
+--   sync_install = false,
+--   highlight = { enable = true },
+--   -- indent = { enable = true },
+-- })
 -- ex
 -- :TSInstall lua
 
