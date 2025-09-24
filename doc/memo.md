@@ -14,6 +14,13 @@ tree-sitter, color mod
   - color off method
 
 
+## pwsh
+
+jf
+
+nvim, tree-sitter, cc
+
+
 ## fish
 
 config.fish, env tidy

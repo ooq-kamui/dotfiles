@@ -281,6 +281,8 @@ function jsd { git sd }
 function jwl { git wl }
 function jwd { git wd }
 
+# function jf { xxx } # dev
+
 # posh-git
 Import-Module posh-git
 
