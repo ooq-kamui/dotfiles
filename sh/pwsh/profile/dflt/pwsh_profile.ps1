@@ -179,7 +179,8 @@ function dir_jmp {
   pth
 }
 # Set-Alias dir "dir_jmp" -Option AllScope # cannot be removed
-Set-Alias d   "dir_jmp"
+Set-Alias f   "dir_jmp"
+# Set-Alias d   "dir_jmp"
 # function do { dir_jmp dotfiles }
 
 function k    { Set-Location -Path .. ; pth }
