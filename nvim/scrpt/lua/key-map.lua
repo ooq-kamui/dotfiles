@@ -493,7 +493,8 @@ keymap__('n', 'v', '<c-v>')
 -- keymap__('n', 'xx', v.Rgstr.ynk__line_all)
 
 -- slct re
-keymap__('n', 'S', v.Slctd.__ltst)
+keymap__('n', '<c-r>', v.Slctd.__ltst)
+-- keymap__('n', 'S', v.Slctd.__ltst)
 
 -- ynk clr
 keymap__('n', '<c-c>', v.Rgstr.ynk__clr)

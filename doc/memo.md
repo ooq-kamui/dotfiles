@@ -4,16 +4,11 @@
 
 ## fish
 
-config.fish, env tidy
-- linux-svr
-  - osc52.sh
-
-
-## nvim
-
-tree-sitter, color mod
-- method
-  - research
+config.fish,
+- env file tidy
+  - linux
+  - linux-svr
+    - osc52.sh
 
 
 ## pwsh
@@ -23,6 +18,13 @@ jf
 - str_git_root_rel
 
 nvim, tree-sitter, cc
+
+
+## nvim
+
+tree-sitter, color mod
+- method
+  - research
 
 
 ## aws
