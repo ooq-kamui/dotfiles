@@ -9,8 +9,12 @@ config.fish, env  tidy
   - mac
   - c9 - pri
   - skr
-    - s9
     - alm
+      - treesitter, err
+    - cnt-s9
+
+s9 > cnt-s9
+
 
 ## pwsh
 
