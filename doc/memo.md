@@ -7,9 +7,7 @@
 config.fish, env  tidy
 - env setting
   - mac
-  - c9
-    - ofc
-    - pri
+  - c9 - pri
   - skr
     - s9
     - alm
