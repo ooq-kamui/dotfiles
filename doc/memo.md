@@ -5,15 +5,11 @@
 ## fish
 
 config.fish, env  tidy
-- file mod
-  - linux
-  - linux-svr
-    - osc52.sh
-
 - env setting
   - mac
-  - wsl
   - c9
+    - ofc
+    - pri
   - skr
     - s9
     - alm
