@@ -4,6 +4,8 @@ vim.g.mapleader = vim.api.nvim_replace_termcodes('<esc>', bl.f, bl.f, bl.t)
 
 keymap__ = vim.keymap.set
 
+-- vim.keymap.del('n')
+
 
 -- mode normal
 
@@ -207,9 +209,6 @@ keymap__('n', 'ru', '<esc>')
 keymap__('n', 'rv', '<esc>')
 --                   :
 keymap__('n', 'rz', '<esc>')
-
-keymap__('n', 'Rj', '<esc>')
-keymap__('n', 'Rk', '<esc>')
 
 keymap__('n', 'xx', '<esc>')
 
@@ -494,6 +493,7 @@ keymap__('n', 'v', '<c-v>')
 
 -- slct re
 keymap__('n', '<c-r>', v.Slctd.__ltst)
+keymap__('n', 'R', v.Slctd.__ltst)
 -- keymap__('n', 'S', v.Slctd.__ltst)
 
 -- ynk clr

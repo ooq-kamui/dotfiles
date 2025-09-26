@@ -4,12 +4,19 @@
 
 ## fish
 
-config.fish,
-- env file tidy
+config.fish, env  tidy
+- file mod
   - linux
   - linux-svr
     - osc52.sh
 
+- env setting
+  - mac
+  - wsl
+  - c9
+  - skr
+    - s9
+    - alm
 
 ## pwsh
 
@@ -21,6 +28,8 @@ nvim, tree-sitter, cc
 
 
 ## nvim
+
+q err
 
 tree-sitter, color mod
 - method

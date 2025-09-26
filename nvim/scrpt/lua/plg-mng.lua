@@ -77,6 +77,7 @@ require("nvim-treesitter.configs").setup({
     "lua",
     "javascript",
     "python",
+    "powershell",
   },
   sync_install = false,
   highlight = { enable = true },
