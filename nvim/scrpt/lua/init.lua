@@ -47,7 +47,7 @@ end
 
 
 vim.g.env_dir = ''
-v.Env_dir__()
+v.Env.dir__()
 
 if vim.g.env_dir ~= '' then
   print("env : " .. vim.g.env_dir)

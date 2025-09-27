@@ -107,7 +107,9 @@ function v.Is_nvim() -- alias
   return ret
 end
 
-function v.Env_dir()
+v.Env = {}
+
+function v.Env.dir()
 
   local env_dir
 
@@ -127,9 +129,9 @@ function v.Env_dir()
   return env_dir
 end
 
-function v.Env_dir__()
+function v.Env.dir__()
 
-  vim.g.env_dir = v.Env_dir()
+  vim.g.env_dir = v.Env.dir()
 end
 
 -- plg
