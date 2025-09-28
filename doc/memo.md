@@ -2,14 +2,6 @@
 # dotfiles
 
 
-## nvim
-
-tree-sitter, color mod
-- method
-  - research
-  - doc-tech write
-
-
 ## pwsh
 
 jf
@@ -18,6 +10,18 @@ jf
 
 nvim, tree-sitter, cc
 - doc-tech write
+
+at linux
+- profile setting
+- profile file div tidy
+
+
+## nvim
+
+tree-sitter, color mod
+- method
+  - research
+  - doc-tech write
 
 
 ## godot
@@ -42,7 +46,7 @@ gen2 try
 
 ## nvim
 
-cursor style, tidy
+cursor style
 - reserch
 - cmdline err
 
