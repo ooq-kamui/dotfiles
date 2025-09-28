@@ -247,12 +247,15 @@ end
 
 function v.Cursor.__mv_word_dlm_f()
 
-  local ptn = '[_ABCDEFGHIJKLMNOPQRSTUVWXYZ]'
+  local ptn = v.Srch.ptn.word_dlm
 
   local line_num = v.Cursor.line_num()
 
-  v.Srch.srch(ptn, 'zW', line_num)
-  -- vf.search(ptn, 'zW', line_num)
+  local st = v.Srch.srch(ptn, 'zW', line_num)
+
+  if not st then
+    v.Cursor.__mv_line_end()
+  end
 end
 
 function v.Cursor.__mv_word_b_pre() -- use not
@@ -269,10 +272,9 @@ end
 
 function v.Cursor.__mv_fnc_name()
 
-  local col
-  col = v.Cursor.__mv_by_ptn('(', 'f')
+  local st = v.Cursor.__mv_by_ptn('(', 'f')
 
-  if col > 0 then
+  if st then
     v.Cursor.__mv_word_b()
   end
 end
@@ -480,10 +482,8 @@ function v.Cursor.__mv_by_ptn(ptn, drct) -- range, on 1 line
 
   local line_num = v.Cursor.line_num()
 
-  local col
-  col = v.Srch.srch(ptn, opt, line_num)
-  -- col = vf.search(ptn, opt, line_num)
-  return col
+  local st = v.Srch.srch(ptn, opt, line_num)
+  return st
 end
 
 function v.Cursor.__mv_by_srch_str(drct)
@@ -498,7 +498,6 @@ function v.Cursor.__mv_by_srch_str(drct)
 
   local ptn = v.Rgstr.get('/')
   v.Srch.srch(ptn, opt)
-  -- vf.search(ptn, opt)
 end
 
 function v.Cursor.__mv_block_out_swtch()
@@ -1290,58 +1289,6 @@ function v.Cursor.line__del()
   end
 end
 
-function v.Cursor.f_str__crct_by_line_u()
-
-  v.Cursor.f_str__crct_by_line('u')
-end
-
-function v.Cursor.f_str__crct_by_line_d()
-
-  v.Cursor.f_str__crct_by_line('d')
-end
-
-function v.Cursor.f_str__crct_by_line(target_line_drct)
-
-  local cursor_pos = v.Cursor.pos()
-
-  local str = v.Cursor.line_str_side_r_with_c()
-
-  -- dev anchor, confirm
-  local trim_len = v.Str.srch_idx_by_lua(str, '[^ ]') - 1
-  -- v.Log.val( trim_len )
-  local str = vf.trim(str)
-
-  local cursor_r_char =  v.Str.l_char(str)
-  -- v.Log.val( cursor_r_char )
-
-  -- todo refactoring, cursor u/d line str
-  v.Cursor.__mv_v(target_line_drct)
-
-  local target_line_str = v.Cursor.line_str_side_r()
-
-  local turn_drct
-  if target_line_drct == 'u' then
-    turn_drct = 'd'
-  else
-    turn_drct = 'u'
-  end
-  v.Cursor.__mv_v(turn_drct)
-
-  local char_idx = v.Str.srch_idx_by_lua(target_line_str, cursor_r_char)
-  if not char_idx then
-    return
-  end
-
-  local space_len = char_idx
-  -- v.Log.val( space_len )
-
-  space_len = space_len - trim_len
-  local space_str = v.Str.space(space_len)
-  v.Cursor.__ins(space_str)
-
-  v.Cursor.__mv_by_pos(cursor_pos)
-end
-
 function v.Cursor.f_char()
 
   local char
@@ -1365,37 +1312,39 @@ function v.Cursor.f_char_col_idx()
   return f_char_col_idx
 end
 
-function v.Cursor.f_str__space_crct(ref_line_drct)
+function v.Cursor.f_str__space_crct(drct)
 
-  local ref_line_num
-  if     ref_line_drct == 'u' then
-    ref_line_num = v.Cursor.line_num() - 1
+  local target_line_num
+  if     drct == 'u' then
+    target_line_num = v.Cursor.line_num() - 1
 
-  elseif ref_line_drct == 'd' then
-    ref_line_num = v.Cursor.line_num() + 1
+  elseif drct == 'd' then
+    target_line_num = v.Cursor.line_num() + 1
   end
 
-  local ref_line_str = v.Line.str_by_line_num(ref_line_num)
+  local ref_line_str = v.Line.str_by_line_num(target_line_num)
   local target_col_idx_lst = v.Str.col_idx_lst(ref_line_str)
 
-  -- local cursor_f_char = v.Cursor.f_char()
   local cursor_f_char_col_idx = v.Cursor.f_char_col_idx()
-
-  local crct_str
-  crct_str = v.Cursor.line_str_side_r_with_c()
-  crct_str = v.Str.trim(crct_str)
-  v.Cmd.nml('D')
 
   local cursor_col_idx = v.Cursor.col_num()
   local target_col_idx
   for _idx, _target_col_idx in pairs(target_col_idx_lst) do
 
-    -- if cursor_col_idx < _target_col_idx then
     if cursor_f_char_col_idx < _target_col_idx then
       target_col_idx = _target_col_idx
       break
     end
   end
+
+  if not target_col_idx then
+    return
+  end
+
+  local crct_str
+  crct_str = v.Cursor.line_str_side_r_with_c()
+  crct_str = v.Str.trim(crct_str)
+  v.Cmd.nml('D')
 
   local space_len = target_col_idx - cursor_col_idx
   local space_str = v.Str.space(space_len)

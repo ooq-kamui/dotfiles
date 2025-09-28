@@ -189,6 +189,23 @@ function v.Str.cmnt_1()
   return str
 end
 
+function v.Str.drct_turn(drct)
+
+  local drct_turn
+
+  if     drct == 'u' then
+    drct_turn = 'd'
+
+  elseif drct == 'd' then
+    drct_turn = 'u'
+
+  else
+    drct_turn = 'u'
+  end
+
+  return drct_turn
+end
+
 -- str cnd
 
 function v.Str.is__emp(str)

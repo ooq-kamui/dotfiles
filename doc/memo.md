@@ -4,12 +4,6 @@
 
 ## nvim
 
-n <c-f> fzy
-- line end
-
-q err ?
-- case: line u, target char none
-
 tree-sitter, color mod
 - method
   - research
@@ -47,11 +41,6 @@ gen2 try
 
 
 ## nvim
-
-n F, cursor mv __ line u col
-- ref : n q
-  - err ?
-    - case line u, tmp
 
 cursor style, tidy
 - reserch

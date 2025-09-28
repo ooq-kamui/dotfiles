@@ -423,7 +423,7 @@ keymap__('n', '<c-_>', 'hT_')
 keymap__('n', '<c-f>', v.Cursor.__mv_word_dlm_f)
 
 -- cursor mv fnc name
-keymap__('n', 'F', v.Cursor.__mv_fnc_name)
+-- keymap__('n', 'xx', v.Cursor.__mv_fnc_name)
 
 -- cursor mv bracket pair
 keymap__('n', '<c-l>', '%')
@@ -725,11 +725,8 @@ keymap__('n', 'ro', v.Cursor.line_indnt__shft_r)
 keymap__('n', 're', v.Cursor.line_indnt__crct)
 
 -- cursor l char col __ crct
-keymap__('n', 'q', v.Cursor.f_str__crct_by_line_u)
-keymap__('n', 'Q', v.Cursor.f_str__crct_by_line_d)
-
--- dev anchor
 keymap__('n', 'q', ':lua v.Cursor.f_str__space_crct("u")<cr>')
+keymap__('n', 'Q', ':lua v.Cursor.f_str__space_crct("d")<cr>')
 
 -- 
 -- srch

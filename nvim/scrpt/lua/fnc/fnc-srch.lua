@@ -4,14 +4,22 @@
 v.Srch = {}
 
 v.Srch.ptn = {}
+
 v.Srch.ptn.quote = '[' .. "'" .. '"' .. '`' .. ']'
 
--- srch exe, ref: cursor __ mv srch ptn
+v.Srch.ptn.word_dlm = '[_ABCDEFGHIJKLMNOPQRSTUVWXYZ]'
 
-function v.Srch.srch(ptn, opt, line_num) -- alias
 
-  col = vf.search(ptn, opt, line_num)
-  return col
+function v.Srch.srch(ptn, opt, line_num)
+
+  local line_num_st = vf.search(ptn, opt, line_num)
+
+  local ret = bl.t
+
+  if line_num_st == 0 then
+    ret = bl.f
+  end
+  return ret
 end
 
 function v.Srch._or(...)
