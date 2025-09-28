@@ -202,7 +202,7 @@ vim.opt.showtabline = 2
 vim.opt.wildmenu = bl.t -- ?
 -- vim.opt.showmatch = bl.t
 -- vim.opt.visualbell = bl.t
-vim.opt.autoread = bl.t -- enable not ? at wsl, c9
+vim.opt.autoread = bl.t -- enable not ? at wsl, linux
 -- vim.opt.clipboard:append {'unnamedplus'}
 
 -- vim.opt.ambiwidth = 'double'
@@ -260,11 +260,6 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
-
--- 
--- shell & .vimrc_env
--- 
-
+-- shell
 vim.opt.shell = 'fish'  -- default
-
 

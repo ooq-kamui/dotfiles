@@ -143,10 +143,10 @@ end
 
 function v.Rgstr.clp__ynk()
 
-  if v.Is_env__('linux') then
-    -- v.C9clp__ynk() -- off
-  else
+  if not v.Env.is__('linux') then
+
     v.Cmd.cmd('let @+ = @a')
+    -- dev anchor ?
     -- v.Rgstr.__('+', v.Rgstr.get('a'))
   end
 end

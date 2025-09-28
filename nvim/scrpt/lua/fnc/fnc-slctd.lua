@@ -1115,7 +1115,7 @@ end
 
 function v.Slctd.line_indnt__space(indnt_col) -- range
 
-  if v.Is_env__('win64') then
+  if v.Env.is__('win64') then
     v.Slctd.line_tab__rpl_space(indnt_col)
 
   else
@@ -1126,7 +1126,7 @@ end
 
 function v.Slctd.line_indnt__tab(indnt_col) -- range
 
-  if v.Is_env__('win64') then
+  if v.Env.is__('win64') then
     v.Do.nothing()
   else
     local sys_cmd = 'unexpand   -t ' .. indnt_col
@@ -1195,9 +1195,9 @@ function v.Slctd.line__crct_tbl() -- range
 
   local sys_cmd
 
-  if     v.Is_env__('linux') then
+  if     v.Env.is__('linux') then
     sys_cmd = '/usr/bin/column -t'
-  elseif v.Is_env__('mac')   then
+  elseif v.Env.is__('mac')   then
     sys_cmd = 'column -t'
   else
     sys_cmd = 'column -t'

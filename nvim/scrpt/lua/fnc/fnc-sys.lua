@@ -25,22 +25,22 @@ function v.Sys.cmd_opn_app(path)
   local path = path
   local cmd_sys
 
-  if     v.Is_env__('mac') then
+  if     v.Env.is__('mac') then
     cmd_sys = 'open'
 
-  elseif v.Is_env__('win64') then
+  elseif v.Env.is__('win64') then
     cmd_sys = 'start'
 
-  elseif v.Is_env__('win32unix') then
+  elseif v.Env.is__('win32unix') then
     cmd_sys = 'start'
 
-  elseif v.Is_env__('wsl') then
+  elseif v.Env.is__('wsl') then
     return
   else
     return
   end
 
-  if v.Is_env__('win64') then
+  if v.Env.is__('win64') then
     path = v.Str.path_unix__cnv_win(path)
   end
 

@@ -737,7 +737,7 @@ keymap__('n', 'q', ':lua v.Cursor.f_str__space_crct("u")<cr>')
 
 -- srch hl init
 -- keymap__('n', 'xx', '/<cr>N')
--- keymap__('n', 'xx', v.Srch.init)
+-- keymap__('n', 'xx', v.Srch.__init)
 
 -- srch char in line - forward
 -- keymap__('n', 'xx', 'f')

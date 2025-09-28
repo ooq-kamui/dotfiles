@@ -17,8 +17,7 @@ g.nvim_lua_dir     = g.nvim_init_dir .. '/lua'
 g.nvim_lua_fnc_dir = g.nvim_lua_dir  .. '/fnc'
 g.nvim_lua_etc_dir = g.nvim_lua_dir  .. ''
 
-g.nvim_lua_env_dir = g.nvim_lua_dir  .. '/env'
-
+require('fnc/fnc-env'   )
 require('fnc/fnc-cmd'   )
 require('fnc/fnc-dir'   )
 require('fnc/fnc-line'  )
@@ -86,54 +85,6 @@ function v.Color_name_lst()
   v.Cmd.cmd(cmd)
 end
 
--- env
-
-function v.Is_env__(env) -- alias
-
-  -- env : 'mac', 'win64', 'win32', 'wsl', 'linux'
-
-  local ret = ( vf.has(env) == 1 )
-
-  -- print( env .. ' : ', ret )
-  -- print( 'hostname : ' .. vf.hostname() )
-
-  return ret
-end
-
-function v.Is_nvim() -- alias
-
-  local ret = ( vf.has('nvim') == 1 )
-  print('nvim : ', ret)
-  return ret
-end
-
-v.Env = {}
-
-function v.Env.dir()
-
-  local env_dir
-
-  if     v.Is_env__('mac')       then -- mac
-    env_dir = 'mac'
-
-  elseif v.Is_env__('linux')     then -- c9, s9
-    env_dir = 'c9'
-
-  elseif v.Is_env__('win64')     then -- pwsh
-    env_dir = 'pwsh'
-
-  elseif v.Is_env__('win32unix') then -- gitbash
-    env_dir = 'gitbash'
-  end
-
-  return env_dir
-end
-
-function v.Env.dir__()
-
-  vim.g.env_dir = v.Env.dir()
-end
-
 -- plg
 
 function v.Vim_plg_path()
@@ -144,19 +95,19 @@ function v.Vim_plg_path()
 
   local vim_plg_dir = vim_plg_dir_linux -- dflt
 
-  if     v.Is_env__('mac') then
+  if     v.Env.is__('mac') then
 
     vim_plg_dir = vim_plg_dir_mac
 
-  elseif v.Is_env__('linux') then
+  elseif v.Env.is__('linux') then
 
     vim_plg_dir = vim_plg_dir_linux
 
-  elseif v.Is_env__('win64') then
+  elseif v.Env.is__('win64') then
 
     vim_plg_dir = vim_plg_dir_win
 
-  elseif v.Is_env__('win32unix') then -- gitbash
+  elseif v.Env.is__('win32unix') then -- gitbash
 
     vim_plg_dir = vim_plg_dir_win
   end

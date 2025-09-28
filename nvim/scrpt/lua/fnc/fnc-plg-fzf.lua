@@ -64,7 +64,7 @@ end
 
 function v.Fzf.rg_with_grep(ptn, ext, word1)
 
-  if not ( v.Is_env__('mac') or v.Is_env__('linux') or v.Is_env__('win64') ) then
+  if not ( v.Env.is__('mac') or v.Env.is__('linux') or v.Env.is__('win64') ) then
     return
   end
 
@@ -379,9 +379,9 @@ v.Cmd.cmd(vim_cmd)
 
 -- fzf var def ( in plugin ) end
 
-if v.Is_env__('mac') or v.Is_env__('linux') or v.Is_env__('win64') then
+if v.Env.is__('mac') or v.Env.is__('linux') or v.Env.is__('win64') then
 
-  if v.Is_env__('win64') then
+  if v.Env.is__('win64') then
     g.fzf_rg_opt = g.fzf_rg_opt .. ' -g "!.git/"'
   else
     g.fzf_rg_opt = g.fzf_rg_opt .. ' -g "!.git/"'

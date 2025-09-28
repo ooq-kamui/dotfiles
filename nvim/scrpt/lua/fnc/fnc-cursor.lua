@@ -1064,15 +1064,15 @@ function v.Cursor.filepath()
 
   local str
 
-  if     v.Is_env__('mac') then
+  if     v.Env.is__('mac') then
 
     str = vf.expand('<cfile>')
 
-  elseif v.Is_env__('win64') then
+  elseif v.Env.is__('win64') then
 
     str = v.Cursor.line_str()
 
-  elseif v.Is_env__('win32unix') then
+  elseif v.Env.is__('win32unix') then
 
     str = v.Cursor.line_str()
 

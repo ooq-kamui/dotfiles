@@ -2,18 +2,42 @@
 # dotfiles
 
 
-## fish
+## nvim
 
-config.fish, env  tidy
-- env setting
-  - mac
-  - c9 - pri
-  - skr
-    - alm
-      - treesitter, err
-    - cnt-s9
+launch echo c9 at linux
+- c9 > linux ?
+- confirm
+  - pri alm
+  - pri cnt
+  - pri c9
 
-s9 > cnt-s9
+
+log refactoring
+- print() > log()
+
+
+plg init at basic
+- refactoring
+
+
+
+vf.search, alias cre
+
+`__mv_srch_ptn` > `__mv_by_ptn`
+
+`__mv_srch` > `__mv_by_srch_str`
+
+
+n <c-f> fzy
+- line end
+
+q err ?
+- case: line u, target char none
+
+tree-sitter, color mod
+- method
+  - research
+  - doc-tech write
 
 
 ## pwsh
@@ -23,24 +47,6 @@ jf
 - str_git_root_rel
 
 nvim, tree-sitter, cc
-
-
-## nvim
-
-q err
-
-tree-sitter, color mod
-- method
-  - research
-
-
-## aws
-
-q dev try
-- setting
-  - account cre ?
-
-gen2 try
 
 
 ## godot
@@ -54,6 +60,15 @@ game cre
 - chara cre
 
 
+## aws
+
+q dev try
+- setting
+  - account cre ?
+
+gen2 try
+
+
 ## nvim
 
 n F, cursor mv __ line u col
@@ -65,9 +80,11 @@ cursor style, tidy
 - reserch
 - cmdline err
 
+plg-mng
+- lazy
+
 plg
 - lualine
-- lazy
 - coc
 
 

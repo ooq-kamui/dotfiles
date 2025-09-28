@@ -275,7 +275,7 @@ end
 
 -- srch init
 
-function v.Srch.init()
+function v.Srch.__init()
 
   v.Cmd.cmd('silent! /dmy')
   vim.defer_fn(function()
