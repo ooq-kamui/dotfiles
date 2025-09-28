@@ -40,7 +40,7 @@ function v.Mark.lst()
     end
   end
 
-  --print( mark_lst )
+  -- v.Log.val( mark_lst )
   return mark_lst
 end
 
@@ -56,7 +56,7 @@ function v.Mark.alph_line()
       -- continue
     else
       if _mark['pos'][2] == line_num then
-        --print( _alph )
+        -- v.Log.val( _alph )
         return _alph
       end
     end
@@ -67,7 +67,7 @@ end
 function v.Mark.tgl()
 
   local alph = v.Mark.alph_line()
-  --print( 'Mark_tgl ' .. alph )
+  -- v.Log.val( 'Mark_tgl ' .. alph )
 
   if v.Str.is__emp(alph) then
     v.Mark.add()
@@ -90,12 +90,12 @@ function v.Mark.alph_useabl()
 
   for idx, _alph in pairs(v.Mark.key_def) do
     if vf.count(mark, _alph) == 0 then
-      --print( _alph )
+      -- v.Log.val( _alph )
       return _alph
     end
   end
 
-  print( 'use alph all' )
+  v.Log.val( 'use alph all' )
   return ''
 end
 

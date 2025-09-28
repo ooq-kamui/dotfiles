@@ -41,7 +41,7 @@ end
 function v.Buf.opn_tmp_file()
 
   local path = v.File_tmp__cre()
-  print( path )
+  v.Log.val( path )
   v.Buf.opn(path)
 end
 
@@ -83,18 +83,18 @@ function v.Buf.opn_memo()
   local sys_cmd      = 'git rev-parse --show-cdup'
   local git_root_dir = v.Sys.cmd(sys_cmd)
   git_root_dir = v.Str.trim(git_root_dir)
-  -- print(git_root_dir)
+  -- v.Log.val(git_root_dir)
 
   local srch_idx = v.Str.srch_idx(git_root_dir, 'fatal:')
-  -- print(srch_idx)
+  -- v.Log.val(srch_idx)
   if srch_idx == 1 then
     git_root_dir = g.dotfiles_dir .. '/'
   end
-  -- print(git_root_dir)
+  -- v.Log.val(git_root_dir)
 
   local file_path
   file_path = git_root_dir .. g.memo_path
-  -- print(file_path)
+  -- v.Log.val(file_path)
 
   v.Buf.opn(file_path)
 end
@@ -108,24 +108,24 @@ function v.Buf.opn_by_path(rg_rslt_line)
   local rg_rslt_line = vf.trim(rg_rslt_line)
 
   if v.Str.is__emp(rg_rslt_line) then
-    print( 'empty' )
+    v.Log.val( 'empty' )
     return
   end
 
   local rg_rslt_line = vf.matchstr(rg_rslt_line, '\\S\\+')
-  -- print( rg_rslt_line )
+  -- v.Log.val( rg_rslt_line )
 
   local rg_rslt_line_ar = v.Rg.rslt_line_parse(rg_rslt_line)
-  -- print( rg_rslt_line_ar )
+  -- v.Log.val( rg_rslt_line_ar )
 
   local filename = rg_rslt_line_ar[1]
   local line_num = vf.get(rg_rslt_line_ar, 1, 1)
-  -- print( line_num )
+  -- v.Log.val( line_num )
   -- return
 
   -- dev anchor
   if not vf.filereadable(filename) then
-    print( 'file does not exist' )
+    v.Log.val( 'file does not exist' )
     return
   end
 

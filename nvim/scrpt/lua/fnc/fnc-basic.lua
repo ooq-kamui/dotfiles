@@ -32,6 +32,7 @@ require('fnc/fnc-buf'   )
 require('fnc/fnc-sys'   )
 require('fnc/fnc-mcr'   )
 
+require('fnc/fnc-plg'   )
 require('fnc/fnc-rg'    )
 require('fnc/fnc-jmplst')
 
@@ -42,7 +43,7 @@ require('fnc/fnc-tst'   )
 
 -- function v.Echo(str) -- alias -- old -- del
 -- 
---   print(str)
+--   v.Log.val(str)
 -- end
 
 -- vim
@@ -71,10 +72,10 @@ end
 
 function v.Hl_grp()
 
-  -- print( vf.synIDattr(vf.synID(vf.line('.'), vf.col('.'), 1), 'name') )
+  -- v.Log.val( vf.synIDattr(vf.synID(vf.line('.'), vf.col('.'), 1), 'name') )
   local cmd = "echo synIDattr(synID(line('.'), col('.'), 1), 'name')"
   v.Cmd.cmd(cmd)
-  -- print(  )
+  -- v.Log.val(  )
 end
 -- and
 -- :hi [grp name]
@@ -85,55 +86,14 @@ function v.Color_name_lst()
   v.Cmd.cmd(cmd)
 end
 
--- plg
-
-function v.Vim_plg_path()
-
-  local vim_plg_dir_linux = g.home_dir .. '/.local/share/nvim/site'
-  local vim_plg_dir_mac   = vim_plg_dir_linux
-  local vim_plg_dir_win   = g.home_dir .. '/AppData/Local/nvim-data/site'
-
-  local vim_plg_dir = vim_plg_dir_linux -- dflt
-
-  if     v.Env.is__('mac') then
-
-    vim_plg_dir = vim_plg_dir_mac
-
-  elseif v.Env.is__('linux') then
-
-    vim_plg_dir = vim_plg_dir_linux
-
-  elseif v.Env.is__('win64') then
-
-    vim_plg_dir = vim_plg_dir_win
-
-  elseif v.Env.is__('win32unix') then -- gitbash
-
-    vim_plg_dir = vim_plg_dir_win
-  end
-
-  local vim_plg_path = vim_plg_dir .. '/autoload/plug.vim'
-  return vim_plg_path
-end
-
-function v.Is_vim_plg__installed()
-
-  local vim_plg_path = v.Vim_plg_path()
-  -- print( vim_plg_path )
-
-  local ret = vf.empty(vf.glob(vim_plg_path)) == 0
-  -- print( 'vim-plug installed : ', ret)
-  return ret
-end
-
 -- repeat fnc
 
 function v.Repeat_fnc()
-  print('fnc repeat')
+  v.Log.val('fnc repeat')
 
   -- v.Tst.tst()
 
-  -- v.Cursor.__mv_srch('f')
+  -- v.Cursor.__mv_by_srch_str('f')
   -- v.Cursor.__mv_d()
   -- v.Cursor.__ins_ynk()
 end

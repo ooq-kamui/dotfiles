@@ -8,15 +8,21 @@ v.Srch.ptn.quote = '[' .. "'" .. '"' .. '`' .. ']'
 
 -- srch exe, ref: cursor __ mv srch ptn
 
+function v.Srch.srch(ptn, opt, line_num) -- alias
+
+  col = vf.search(ptn, opt, line_num)
+  return col
+end
+
 function v.Srch._or(...)
 
   local arg = {...}
 
   local str = '\\(' .. vf.join(arg, '\\|') .. '\\)'
-  --print( str )
+  --v.Log.val( str )
 
   v.Srch.str__ptn(str)
-  v.Cursor.__mv_srch('f')
+  v.Cursor.__mv_by_srch_str('f')
 end
 
 function v.Srch.str()
@@ -35,7 +41,7 @@ function v.Srch.str_flt()
   if v.Srch.is__word1() then
     str = vf.strcharpart(str, 2, vf.strchars(str) - 4)
   end
-  -- print( str )
+  -- v.Log.val( str )
 
   return str
 end
@@ -59,7 +65,7 @@ function v.Srch.str__(str, op_word1)
   exe_str = vf.escape(exe_str, '.*~[]\\^$')
 
   exe_str = vf.substitute(exe_str, '\\n', '\\\\n', 'g')
-  -- print( exe_str )
+  -- v.Log.val( exe_str )
 
   if op_word1 == bl.t then
     exe_str = v.Srch.str_word1(exe_str)
@@ -178,13 +184,12 @@ function v.Srch.srch_7_slctd__srch_nxt(drct) -- srch rpl skip
   end
 end
 
-function v.Srch._7_cursor__mv_srch_str_end_o()
+function v.Srch._7_cursor__mv_srch_str_end_o() -- use not
 
   local drct = 'f'
   v.Srch.slct(drct)
   v.Esc()
-  -- v.Cmd.nml("\\<esc>")
-  v.Esc()
+  v.Esc() -- dpl ?
   v.Cursor.__mv_char_f()
 end
 
@@ -193,7 +198,7 @@ function v.Srch.char(drct, char)
   -- v.Rgstr.__('/', '[' .. char .. ']')
   v.Srch.str__ptn('[' .. char .. ']')
 
-  v.Cursor.__mv_srch(drct)
+  v.Cursor.__mv_by_srch_str(drct)
 end
 
 function v.Srch.char_bracket(drct)

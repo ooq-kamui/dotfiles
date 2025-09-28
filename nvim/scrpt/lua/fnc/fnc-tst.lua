@@ -4,10 +4,10 @@
 v.Tst = {}
 
 function v.Tst.tst()
-  print('fnc tst')
+  v.Log.val('fnc tst')
 
   local val = vf.screencol()
-  print(val)
+  v.Log.val(val)
 
   -- local str = 'abcdefg'
   -- local ptn = 'b'
@@ -16,7 +16,7 @@ function v.Tst.tst()
   -- -- local idx = nil
   -- 
   -- local s_idx, e_idx = v.Str.srch_idx_by_vim(str, ptn, idx)
-  -- print(s_idx)
+  -- v.Log.val(s_idx)
 
 end
 

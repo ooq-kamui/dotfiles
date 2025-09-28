@@ -4,30 +4,6 @@
 
 ## nvim
 
-launch echo c9 at linux
-- c9 > linux ?
-- confirm
-  - pri alm
-  - pri cnt
-  - pri c9
-
-
-log refactoring
-- print() > log()
-
-
-plg init at basic
-- refactoring
-
-
-
-vf.search, alias cre
-
-`__mv_srch_ptn` > `__mv_by_ptn`
-
-`__mv_srch` > `__mv_by_srch_str`
-
-
 n <c-f> fzy
 - line end
 
@@ -47,6 +23,7 @@ jf
 - str_git_root_rel
 
 nvim, tree-sitter, cc
+- doc-tech write
 
 
 ## godot

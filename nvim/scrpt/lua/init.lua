@@ -1,6 +1,4 @@
 
--- print('init.lua')
-
 vf = vim.fn
 v = {}
 g = {}
@@ -26,5 +24,7 @@ v.Env.__init()
 v.Srch.__init()
 
 -- ynk init
-v.Rgstr.ynk__clp()
+if not v.Env.is__('linux') then -- dev tidy
+  v.Rgstr.ynk__clp()
+end
 

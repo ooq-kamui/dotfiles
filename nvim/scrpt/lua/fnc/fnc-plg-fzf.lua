@@ -141,7 +141,7 @@ function v.Fzf.rg_with_run(...)
     rg_rslt_cnt = v.Rg.all_cnt()
 
     if rg_rslt_cnt > g.fzf_line_cnt_max then
-      print("rg_rslt_cnt, end")
+      v.Log.val("rg_rslt_cnt, end")
       return
     end
 
@@ -151,7 +151,7 @@ function v.Fzf.rg_with_run(...)
     rg_rslt_cnt = v.Rg.ptn_cnt(ptn, nil)
 
     if rg_rslt_cnt > g.fzf_line_cnt_max then
-      print("rg_rslt_cnt, end")
+      v.Log.val("rg_rslt_cnt, end")
       return
     end
 
@@ -285,7 +285,7 @@ function v.Fzf.doc_tech()
   opt = opt .. ' --no-heading'
   -- opt = opt .. ' --line-number'
   local sys_cmd_rg = "rg" .. opt .. " '" .. ptn .. "' ~/" .. g.doc_tech_md_dir
-  -- print(sys_cmd)
+  -- v.Log.val(sys_cmd)
 
   local sys_cmd_sed = 'sed "s|^.*' .. g.doc_tech_md_dir .. '/||g"'
 
@@ -301,7 +301,7 @@ end
 function v.Doc_tech_tag_jmp(str)
 
   local str = g.home_dir .. '/' .. g.doc_tech_md_dir .. '/' .. str
-  -- print(str)
+  -- v.Log.val(str)
   v.Buf.opn_by_path(str)
 end
 

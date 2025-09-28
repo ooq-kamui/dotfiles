@@ -29,7 +29,7 @@ function v.Line.end_space__del(line_num)
   local ptn_tmp = v.Rgstr.get('/')
 
   local rpl_cmd = line_num .. 's/' .. g.line_end_space_ptn .. '//g'
-  -- print(rpl_cmd)
+  -- v.Log.val(rpl_cmd)
 
   v.Cmd.cmd(rpl_cmd)
 

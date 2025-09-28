@@ -23,7 +23,7 @@ g.plg_mng_cmd = [[
   " lua require("noice").setup()
 ]]
 
-if v.Is_vim_plg__installed() then
+if v.Plg.is_vim_plg__installed() then
 
   v.Cmd.cmd(g.plg_mng_cmd)
 end

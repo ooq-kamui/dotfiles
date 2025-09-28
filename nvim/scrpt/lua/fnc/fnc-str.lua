@@ -26,7 +26,7 @@ function v.Str.l_char(str)
 
   local l_idx = 1
   local char = str:sub(l_idx, l_idx)
-  --print(char)
+  -- v.Log.val(char)
   return char
 end
 
@@ -34,7 +34,7 @@ function v.Str.r_char(str)
 
   local r_idx = v.Str.len(str)
   local char = str:sub(r_idx, r_idx)
-  --print( char )
+  -- v.Log.val( char )
   return char
 end
 
@@ -91,10 +91,10 @@ function v.Str.srch(str, ptn)
 end
 
 function v.Str.srch_idx_by_lua(str, ptn, srch_s_idx)
-  -- print(str, ptn, srch_s_idx)
+  -- v.Log.val(str, ptn, srch_s_idx)
 
   local s_idx, e_idx = string.find(str, ptn, srch_s_idx)
-  -- print(s_idx, e_idx)
+  -- v.Log.val(s_idx, e_idx)
   return s_idx, e_idx
 end
 

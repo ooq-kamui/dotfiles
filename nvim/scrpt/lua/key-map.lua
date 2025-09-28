@@ -760,10 +760,10 @@ keymap__('n', '<leader>i', 'mz?')
 -- keymap__('n', 'xx', 'Xxx')
 
 -- srch forward
-keymap__('n', 'n'    , ':lua v.Cursor.__mv_srch("f")<cr>')
+keymap__('n', 'n'    , ':lua v.Cursor.__mv_by_srch_str("f")<cr>')
 
 -- srch back
-keymap__('n', '<c-n>', ':lua v.Cursor.__mv_srch("b")<cr>')
+keymap__('n', '<c-n>', ':lua v.Cursor.__mv_by_srch_str("b")<cr>')
 
 -- srch str set
 keymap__('n', 'e', v.Srch.str__cursor_word)

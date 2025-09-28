@@ -3,9 +3,9 @@ v.Sys = {}
 
 function v.Sys.cmd(sys_cmd)
 
-  -- print(sys_cmd)
+  -- v.Log.val(sys_cmd)
   local ret = vf.system(sys_cmd)
-  -- print(ret)
+  -- v.Log.val(ret)
   return ret
 end
 
@@ -14,7 +14,7 @@ function v.Sys.cmd_by_slctd_line()
   local str = v.Slctd.str()
   local sys_cmd = 'echo ' .. "'" .. str .. "'" .. ' | sh'
   local rslt = v.Sys.cmd(sys_cmd)
-  print( rslt )
+  v.Log.val( rslt )
   v.Rgstr.__('a', rslt)
 end
 
@@ -79,7 +79,7 @@ end
 function v.Sys.cmd_opn_app_buf_file()
 
   local path = v.Buf_file_path()
-  -- print( path )
+  -- v.Log.val( path )
   v.Sys.cmd_opn_app(path)
 end
 
@@ -138,7 +138,7 @@ function v.Sys.cmd_trns_by_slctd_str() -- range
   str = vf.escape(str, "'")
   local sys_cmd = 'trans -no-ansi ' .. lang .. " '" .. str .. "'"
   local rslt = v.Sys.cmd(sys_cmd)
-  print( rslt )
+  v.Log.val( rslt )
 end
 
 -- math
@@ -148,7 +148,7 @@ function v.Sys.cmd_math_by_slctd_line() -- range
   local str = v.Slctd.str()
   local sys_cmd = 'echo ' .. "'" .. str .. "'" .. ' | math'
   local rslt = v.Sys.cmd(sys_cmd)
-  print( rslt )
+  v.Log.val( rslt )
   v.Rgstr.__('a', rslt)
 end
 
@@ -159,7 +159,7 @@ function v.Sys.cmd_url_encode_by_slctd_str() -- range
   local str = v.Slctd.str()
   local sys_cmd = 'url_encode "' .. str .. '"'
   local rslt = v.Sys.cmd(sys_cmd)
-  --print( rslt )
+  --v.Log.val( rslt )
   v.Cursor.__ins(rslt)
 end
 

@@ -6,7 +6,7 @@
 -- 
 -- vim.api.nvim_create_user_command('StrUpr',
 --   function(opts)
---     print(string.upper(opts.fargs[1]))
+--     v.Log.val(string.upper(opts.fargs[1]))
 --   end,
 --   {nargs = 1, complete = 'file'},
 -- )

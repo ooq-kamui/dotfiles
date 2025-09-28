@@ -251,7 +251,8 @@ function v.Cursor.__mv_word_dlm_f()
 
   local line_num = v.Cursor.line_num()
 
-  vf.search(ptn, 'zW', line_num)
+  v.Srch.srch(ptn, 'zW', line_num)
+  -- vf.search(ptn, 'zW', line_num)
 end
 
 function v.Cursor.__mv_word_b_pre() -- use not
@@ -269,7 +270,7 @@ end
 function v.Cursor.__mv_fnc_name()
 
   local col
-  col = v.Cursor.__mv_srch_ptn('(', 'f')
+  col = v.Cursor.__mv_by_ptn('(', 'f')
 
   if col > 0 then
     v.Cursor.__mv_word_b()
@@ -441,7 +442,7 @@ function v.Cursor.__mv_v_jmp_d()
 end
 
 function v.Cursor.__mv_v_jmp(drct_cmd_nml)
-  -- print('__mv_v_jmp')
+  -- v.Log.val('__mv_v_jmp')
 
   if not v.Tbl.is_in(drct_cmd_nml, {'k', 'j'}) then
     return
@@ -451,20 +452,20 @@ function v.Cursor.__mv_v_jmp(drct_cmd_nml)
 
   local is_c_char__space = v.Cursor.is_c_char__space()
   local is_col__line_end = v.Cursor.is_col__line_end()
-  -- print('is_c_char__space : ', is_c_char__space)
-  -- print('is_col__line_end : ', is_col__line_end)
+  -- v.Log.val('is_c_char__space : ', is_c_char__space)
+  -- v.Log.val('is_col__line_end : ', is_col__line_end)
 
   if is_c_char__space or is_col__line_end then
 
-    -- print('__mv_v_jmp_to_char')
+    -- v.Log.val('__mv_v_jmp_to_char')
     v.Cursor.__mv_v_jmp_to_char(drct_cmd_nml)
   else
-    -- print('__mv_v_jmp_to_space')
+    -- v.Log.val('__mv_v_jmp_to_space')
     v.Cursor.__mv_v_jmp_to_space(drct_cmd_nml)
   end
 end
 
-function v.Cursor.__mv_srch_ptn(ptn, drct) -- range, on 1 line
+function v.Cursor.__mv_by_ptn(ptn, drct) -- range, on 1 line
 
   local opt_drct = ''
 
@@ -480,11 +481,12 @@ function v.Cursor.__mv_srch_ptn(ptn, drct) -- range, on 1 line
   local line_num = v.Cursor.line_num()
 
   local col
-  col = vf.search(ptn, opt, line_num)
+  col = v.Srch.srch(ptn, opt, line_num)
+  -- col = vf.search(ptn, opt, line_num)
   return col
 end
 
-function v.Cursor.__mv_srch(drct)
+function v.Cursor.__mv_by_srch_str(drct)
 
   local opt = ''
 
@@ -495,7 +497,8 @@ function v.Cursor.__mv_srch(drct)
   end
 
   local ptn = v.Rgstr.get('/')
-  vf.search(ptn, opt)
+  v.Srch.srch(ptn, opt)
+  -- vf.search(ptn, opt)
 end
 
 function v.Cursor.__mv_block_out_swtch()
@@ -507,9 +510,9 @@ function v.Cursor.__mv_block_out_swtch()
 
   if v.Buf.is_file_type__in({'markdown'}) then
 
-    -- v.Cursor.__mv_srch_ptn(v.Srch.ptn.markdown_h, 'b')
+    -- v.Cursor.__mv_by_ptn(v.Srch.ptn.markdown_h, 'b')
     v.Srch.str__ptn(v.Srch.ptn.markdown_h)
-    v.Cursor.__mv_srch('b')
+    v.Cursor.__mv_by_srch_str('b')
 
   -- elseif bl.t then
   elseif v.Buf.is_file_type__in(bracket_file_type_list) then
@@ -517,7 +520,7 @@ function v.Cursor.__mv_block_out_swtch()
 
   else
     v.Srch.str__fnc_def()
-    v.Cursor.__mv_srch('b')
+    v.Cursor.__mv_by_srch_str('b')
 
     -- v.Cursor.__mv_fnc_out()
   end
@@ -745,7 +748,7 @@ function v.Cursor.__ins_markdown_cr()
 end
 
 function v.Cursor.__ins_markdown_itm()
-  -- print('Cursor.__ins_markdown_itm')
+  -- v.Log.val('Cursor.__ins_markdown_itm')
 
   if v.Cursor.is_line__markdown_itm() then
     return
@@ -754,22 +757,22 @@ function v.Cursor.__ins_markdown_itm()
   local col = v.Cursor.line_indnt__crct()
 
   local str = '- '
-  --print( str )
+  --v.Log.val( str )
   v.Cursor.line_top1__ins(str)
 
-  -- print('ret')
+  -- v.Log.val('ret')
 end
 
 -- cnd line  markdown
 
 function v.Cursor.is_line__markdown_itm()
-  -- print('Cursor.is_line__markdown_itm')
+  -- v.Log.val('Cursor.is_line__markdown_itm')
 
   local ptn = '^%s*- '
   local str = v.Cursor.line_str()
-  -- print(str, ptn)
+  -- v.Log.val(str, ptn)
   local idx = v.Str.srch_idx_by_lua(str, ptn)
-  -- print(idx)
+  -- v.Log.val(idx)
 
   if not idx then
     return bl.f
@@ -971,18 +974,18 @@ end
 -- cursor char cnd
 
 function v.Cursor.is_c_char__ptn(ptn)
-  -- print('is_c_char__ptn')
+  -- v.Log.val('is_c_char__ptn')
 
   local ret = bl.f
 
   local c = v.Cursor.c_char()
-  -- print('c : ', c)
+  -- v.Log.val('c : ', c)
 
   if v.Str.is__ptn(c, ptn) then
     ret = bl.t
   end
 
-  -- print('is_c_char__ptn : ', ret)
+  -- v.Log.val('is_c_char__ptn : ', ret)
   return ret
 end
 
@@ -1079,9 +1082,9 @@ function v.Cursor.filepath()
   else
     str = v.Cursor.line_str()
   end
-  
+
   str = vf.trim(str)
-  
+
   return str
 end
 
@@ -1267,7 +1270,7 @@ function v.Cursor.f_space__del()
 
   -- if c =~ '\\s' then
   if v.Str.is__ptn(c, '\\s') then
-    -- print( "del" )
+    -- v.Log.val( "del" )
     v.Slctd.str__cursor_f_space()
     v.Cmd.nml('"zd')
   else
@@ -1305,11 +1308,11 @@ function v.Cursor.f_str__crct_by_line(target_line_drct)
 
   -- dev anchor, confirm
   local trim_len = v.Str.srch_idx_by_lua(str, '[^ ]') - 1
-  -- print( trim_len )
+  -- v.Log.val( trim_len )
   local str = vf.trim(str)
 
   local cursor_r_char =  v.Str.l_char(str)
-  -- print( cursor_r_char )
+  -- v.Log.val( cursor_r_char )
 
   -- todo refactoring, cursor u/d line str
   v.Cursor.__mv_v(target_line_drct)
@@ -1330,7 +1333,7 @@ function v.Cursor.f_str__crct_by_line(target_line_drct)
   end
 
   local space_len = char_idx
-  -- print( space_len )
+  -- v.Log.val( space_len )
 
   space_len = space_len - trim_len
   local space_str = v.Str.space(space_len)
@@ -1455,7 +1458,7 @@ function v.Cursor.is_line_num__file_edge()
   if v.Cursor.is_line_num__file_edge_bgn() or v.Cursor.is_line_num__file_edge_end() then
     ret = bl.t
   end
-  --print( ret )
+  --v.Log.val( ret )
   return ret
 end
 
@@ -1518,7 +1521,7 @@ function v.Cursor.line_indnt__add(col)
   v.Cmd.nml('0')
 
   local char = ' '
-  -- print(vim.bo.expandtab)
+  -- v.Log.val(vim.bo.expandtab)
   if not vim.bo.expandtab then
     char = ' '
     col = col
@@ -1562,7 +1565,7 @@ function v.Cursor.line_indnt__crct_with_c()
   v.Cursor.line_indnt__del()
 
   local col = v.Cursor.line_indnt_col_with_c()
-  --print( col )
+  --v.Log.val( col )
 
   v.Cursor.line_indnt__add(col)
   return col

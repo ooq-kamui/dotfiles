@@ -11,7 +11,7 @@ function v.Slctd.__cancel() -- range -- alias
 end
 
 function v.Slctd.__ltst() -- range
-  -- print(vf.mode())
+  -- v.Log.val(vf.mode())
 
   if v.Mode.is__box() then
     return
@@ -219,11 +219,11 @@ function v.Slctd.is_cursor_pos__r() -- range
   v.Slctd.__ltst()
 
   local cursor_pos1 = v.Cursor.pos()
-  -- print( cursor_pos1 )
+  -- v.Log.val( cursor_pos1 )
 
   v.Slctd.cursor__mv_edge_tgl()
   local cursor_pos2 = v.Cursor.pos()
-  -- print( cursor_pos2 )
+  -- v.Log.val( cursor_pos2 )
 
   v.Slctd.cursor__mv_edge_tgl()
 
@@ -285,21 +285,21 @@ end
 function v.Slctd.str__expnd_srch() -- range
 
   v.Slctd.__ltst()
-  v.Cursor.__mv_srch('f')
+  v.Cursor.__mv_by_srch_str('f')
 end
 
 function v.Slctd.str__expnd_ptn_f(ptn) -- range
 
   v.Slctd.__ltst()
   v.Slctd.cursor__mv_edge_r()
-  v.Cursor.__mv_srch_ptn(ptn, 'f')
+  v.Cursor.__mv_by_ptn(ptn, 'f')
 end
 
 function v.Slctd.str__expnd_ptn_b(ptn) -- range
 
   v.Slctd.__ltst()
   v.Slctd.cursor__mv_edge_l()
-  v.Cursor.__mv_srch_ptn(ptn, 'b')
+  v.Cursor.__mv_by_ptn(ptn, 'b')
 end
 
 function v.Slctd.str__expnd_edge_out() -- range
@@ -660,7 +660,7 @@ function v.Slctd.str_edge_out_char__tgl_swtch() -- range
   -- char chk
   local c_l = v.Slctd.str_edge_l_out_char()
   local c_r = v.Slctd.str_edge_r_out_char()
-  -- print( c_l c_r )
+  -- v.Log.val( c_l c_r )
 
   if     c_l == "'" and c_l == c_r then
     v.Slctd.str_edge_out_quote__tgl()
@@ -698,7 +698,7 @@ function v.Slctd.str_edge_out_quote__tgl() -- range
   -- char chk
   local c_l = v.Slctd.str_edge_l_out_char()
   local c_r = v.Slctd.str_edge_r_out_char()
-  -- print( c_l c_r )
+  -- v.Log.val( c_l c_r )
 
   local c_lst
 
@@ -783,7 +783,7 @@ function v.Slctd.str_edge_out__tgl_shft() -- range
   -- char chk
   local c_l = v.Slctd.str_edge_l_out_char()
   local c_r = v.Slctd.str_edge_r_out_char()
-  -- print( c_l c_r )
+  -- v.Log.val( c_l c_r )
 
   if     v.Char.is_pair__quote(c_l, c_r) then
     v.Slctd.str_edge_out_char__del()
@@ -911,7 +911,7 @@ function v.Slctd.is_str_edge_l_col__line_top() -- range
 
   v.Slctd.cursor__mv_edge_tgl()
   local cursor_l_pos = v.Cursor.pos()
-  -- print( cursor_l_pos )
+  -- v.Log.val( cursor_l_pos )
 
   v.Slctd.cursor__mv_edge_tgl()
 
@@ -975,7 +975,7 @@ function v.Slctd.line__rpl(srch, rpl) -- range
 
   local rng = v.Slctd.rng_dflt
   local cmd = rng .. 's/' .. srch .. '/' .. rpl .. '/eg'
-  --print( cmd )
+  --v.Log.val( cmd )
   v.Cmd.cmd(cmd)
 end
 
@@ -986,7 +986,7 @@ function v.Slctd.line__rpl_by_line1_line2() -- range
 
   local rng = v.Slctd.rng_dflt
   local cmd = rng .. 's/' .. srch .. '/' .. rpl .. '/eg'
-  --print( cmd )
+  --v.Log.val( cmd )
   v.Cmd.cmd(cmd)
 end
 
@@ -1030,8 +1030,8 @@ function v.Slctd.line_end_space__del() -- range
 
   -- v.Slctd.__ltst()
 
-  -- print(vim.api.nvim_buf_get_mark(0, '<')[1])
-  -- print(vim.api.nvim_buf_get_mark(0, '>')[1])
+  -- v.Log.val(vim.api.nvim_buf_get_mark(0, '<')[1])
+  -- v.Log.val(vim.api.nvim_buf_get_mark(0, '>')[1])
 
   for idx, line_num in pairs(v.Slctd.line_num_seq()) do
 
@@ -1105,7 +1105,7 @@ function v.Slctd.line__join_per_line(per_line_num) -- range
 
   -- local exe_num = line_num / per_line_num
   local exe_num = math.floor(line_num / per_line_num)
-  --print( exe_num )
+  --v.Log.val( exe_num )
 
   for _idx, idx in pairs(vf.range(1, exe_num)) do
 
@@ -1295,7 +1295,7 @@ end
 function v.Slctd.box_edge_l__ynk_line_1() -- range
 
   if v.Str.is__ptn(v.Rgstr.get('a'), '\\n') then
-    print( 'yank is include cr' )
+    v.Log.val( 'yank is include cr' )
     return
   end
 

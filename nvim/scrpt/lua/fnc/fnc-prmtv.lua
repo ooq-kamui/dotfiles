@@ -64,7 +64,7 @@ v.Do = {}
 
 function v.Do.nothing() -- use by tst
 
-  -- print( "do nothing.." )
+  -- v.Log.val( "do nothing.." )
 end
 
 -- fr utl

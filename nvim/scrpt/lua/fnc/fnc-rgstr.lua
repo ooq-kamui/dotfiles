@@ -11,7 +11,7 @@ end
 function v.Rgstr.info_rgstr(rgstr_info)
 
   local rgstr = v.Str.sub_by_char_idx(rgstr_info, 7, 7)
-  -- print(rgstr)
+  -- v.Log.val(rgstr)
   return rgstr
 end
 

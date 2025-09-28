@@ -74,7 +74,7 @@ end
 function v.Env.is__nvim()
 
   local ret = ( vf.has('nvim') == 1 )
-  print('nvim : ', ret)
+  v.Log.val('nvim : ', ret)
   return ret
 end
 
