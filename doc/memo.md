@@ -2,18 +2,20 @@
 # dotfiles
 
 
+## pwsh
+
+at linux
+- profile
+  - div
+    - win
+
+
 ## nvim
 
 tree-sitter, color mod
 - method
   - research
   - doc-tech write
-
-
-## pwsh
-
-at linux
-- profile setting
 
 
 ## godot

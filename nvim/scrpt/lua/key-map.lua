@@ -582,10 +582,11 @@ keymap__('n', '0', v.Cursor.__ins_hyphen)
 -- keymap__('n', 'xx', v.Cursor.__ins_quote)
 
 -- ins date ( da )
+keymap__('n', 't'    , v.Cursor.__ins_da)
 keymap__('n', '*'    , v.Cursor.__ins_da)
 
 -- ins time ( tm )
-keymap__('n', 't', v.Cursor.__ins_tm)
+keymap__('n', 'T', v.Cursor.__ins_tm)
 
 -- ins date time ( dt )
 -- keymap__('n', 'xx', v.Cursor.__ins_dt)

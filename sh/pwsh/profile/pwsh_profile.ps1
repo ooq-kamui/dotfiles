@@ -1,6 +1,4 @@
 
-chcp 65001
-
 function prompt {
   # "PS " + $( get-location ) + "> "
   $brnch = ( Write-VcsStatus )
