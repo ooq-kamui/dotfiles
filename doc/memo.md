@@ -2,13 +2,6 @@
 # dotfiles
 
 
-## nvim
-
-cursor style
-- reserch
-- cmdline err
-
-
 ## godot
 
 platformer
@@ -30,6 +23,10 @@ gen2 try
 
 
 ## nvim
+
+cursor style
+- reserch
+- cmdline err
 
 plg-mng
 - lazy

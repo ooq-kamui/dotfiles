@@ -81,6 +81,8 @@ hl__(0, 'SpaceMb'       , {fg = 'magenta'     , bg = 'lightyellow'})
 match_id = vim.fn.matchadd('SpaceMb', '\\%u3000', 10) -- /　/
 -- vim.fn.matchdelete(match_id)
 
+hl__(0, 'Title'         , {fg = 'lightgreen'  , bg = 'none'       })
+
 hl__(0, 'mkdLineBreak'  , {fg = 'none'        , bg = 'darkmagenta'}) -- ctermfg=141
 match_id = vim.fn.matchadd('mkdLineBreak', '  $', 10) -- /　/
 
@@ -101,9 +103,20 @@ hl__(0, 'StatusLineNC'  , {link = 'Comment'})
 hl__(0, 'VertSplit'     , {link = 'Comment'})
 
 
+-- lua
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "lua",
+  callback = function()
+    -- hl__(0, "@variable.builtin", { fg = "#7aa2f7" })
+    -- hl__(0, "@function.call"   , { fg = "yellow"  })
+  end,
+})
+
+
 v.Color = {}
 
-function v.Color.hl_grp()
+function v.Color.hl_grp() --
 
   -- v.Log.val( vf.synIDattr(vf.synID(vf.line('.'), vf.col('.'), 1), 'name') )
   local cmd = "echo synIDattr(synID(line('.'), col('.'), 1), 'name')"
@@ -118,6 +131,5 @@ function v.Color.name_lst()
   local cmd = "so $VIMRUNTIME/syntax/colortest.vim"
   v.Cmd.cmd(cmd)
 end
-
 
 
