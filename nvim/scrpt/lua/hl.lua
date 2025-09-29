@@ -81,8 +81,7 @@ hl__(0, 'SpaceMb'       , {fg = 'magenta'     , bg = 'lightyellow'})
 match_id = vim.fn.matchadd('SpaceMb', '\\%u3000', 10) -- /　/
 -- vim.fn.matchdelete(match_id)
 
-hl__(0, 'Title'         , {fg = 'lightgreen'  , bg = 'none'       })
-
+hl__(0, 'Title'         , {fg = 'cyan'        , bg = 'none'       })
 hl__(0, 'mkdLineBreak'  , {fg = 'none'        , bg = 'darkmagenta'}) -- ctermfg=141
 match_id = vim.fn.matchadd('mkdLineBreak', '  $', 10) -- /　/
 

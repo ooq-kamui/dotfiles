@@ -313,8 +313,8 @@ $ENV:Path += ";C:\Program Files\PostgreSQL\16\bin"
 
 # def
 
-$wrk               = "$home\wrk"
-$profile_dir       = "$wrk\prj-pri\dotfiles\sh\pwsh\profile\dflt"
+$wrk_dir           = "$home\wrk"
+$profile_dir       = "$wrk_dir\prj-pri\dotfiles\sh\pwsh\profile"
 $profile_file_name = "pwsh_profile.ps1"
 $profile_file_path = "$profile_dir\$profile_file_name"
 
