@@ -2,26 +2,18 @@
 # dotfiles
 
 
-## pwsh
-
-jf
-- cd_git_root
-- str_git_root_rel
-
-nvim, tree-sitter, cc
-- doc-tech write
-
-at linux
-- profile setting
-- profile file div tidy
-
-
 ## nvim
 
 tree-sitter, color mod
 - method
   - research
   - doc-tech write
+
+
+## pwsh
+
+at linux
+- profile setting
 
 
 ## godot

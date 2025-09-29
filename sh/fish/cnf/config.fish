@@ -66,6 +66,7 @@ alias his     'history'
 alias his_del 'history delete'
 
 # alias clp 'pbcopy'
+# alias clp 'xclip -selection clipboard'
 
 alias cd_parent 'cd ../; pwd'
 alias k         'cd_parent'
