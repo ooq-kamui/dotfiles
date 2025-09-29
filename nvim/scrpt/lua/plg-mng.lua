@@ -3,24 +3,20 @@
 
 g.plg_mng_cmd = [[
   call plug#begin()
+    " vim
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
 
-  " vim
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
+    " nvim
+    Plug 'ojroques/nvim-osc52'
+    Plug 'stevearc/oil.nvim'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-  " nvim
-  Plug 'ojroques/nvim-osc52'
-  Plug 'stevearc/oil.nvim'
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-  " Plug 'shellRaining/hlchunk.nvim'
-  " Plug 'sphamba/smear-cursor.nvim'
-  " Plug 'folke/noice.nvim'
-  " Plug 'MunifTanjim/nui.nvim'
+    " Plug 'shellRaining/hlchunk.nvim'
+    " Plug 'sphamba/smear-cursor.nvim'
+    " Plug 'folke/noice.nvim'
+    " Plug 'MunifTanjim/nui.nvim'
   call plug#end()
-
-  " lua require('smear_cursor').enabled = true
-  " lua require("noice").setup()
 ]]
 
 if v.Plg.is_vim_plg__installed() then
@@ -85,5 +81,11 @@ require("nvim-treesitter.configs").setup({
 })
 -- ex
 -- :TSInstall lua
+
+
+-- etc
+
+-- " lua require('smear_cursor').enabled = true
+-- " lua require("noice").setup()
 
 

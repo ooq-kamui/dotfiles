@@ -285,7 +285,7 @@ keymap__('n', '<leader>R', '<esc>')
 keymap__('n', ':m', ':message <cr>')
 
 -- quit buffer
-keymap__('n', 'w',  v.Buf__quit_swtch)
+keymap__('n', 'w',  v.Buf.__quit_swtch)
 
 -- quit buffer force
 keymap__('n', ':q', ':q!')
@@ -530,7 +530,8 @@ keymap__('n', 'h'    , 'u'    )
 keymap__('n', '<c-h>', '<c-r>')
 
 -- undo history clr
-keymap__('n', ':h', ':lua v.Undo__clr()')
+-- keymap__('n', ':h', ':lua v.Undo__clr()')
+keymap__('n', ':h', ':lua v.Buf.undo__clr()')
 
 -- repeat
 -- keymap__('n', 'xx', '.')
@@ -877,7 +878,7 @@ keymap__('n', '<s-right>', ':tabm+1<cr>')
 
 -- buf fltr
 keymap__('n', ':f', ':%! jq')  -- jq : sample
--- keymap__('n', 'xx', ':lua v.Buf__fltr()<cr>') -- use not, dev ?
+-- keymap__('n', 'xx', ':lua v.Buf.__fltr()<cr>') -- use not, dev ?
 
 -- win ( buf )
 

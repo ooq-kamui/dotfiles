@@ -78,7 +78,7 @@ end
 
 function v.Sys.cmd_opn_app_buf_file()
 
-  local path = v.Buf_file_path()
+  local path = v.Buf.file_path()
   -- v.Log.val( path )
   v.Sys.cmd_opn_app(path)
 end

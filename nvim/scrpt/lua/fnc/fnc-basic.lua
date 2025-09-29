@@ -56,36 +56,6 @@ function v.Esc() -- alias
   v.Cmd.cmd('exe "normal! \\<esc>"')
 end
 
--- undo clr, file ( crnt buf ? )
-
-function v.Undo__clr()
-
-  local undo_lvl_tmp = vim.bo.undolevels
-
-  vim.opt_local.undolevels = -1
-  v.Cmd.cmd([[exe "normal! a \<bs>\<esc>"]])
-
-  vim.bo.undolevels = undo_lvl_tmp
-end
-
--- syntax color
-
-function v.Hl_grp()
-
-  -- v.Log.val( vf.synIDattr(vf.synID(vf.line('.'), vf.col('.'), 1), 'name') )
-  local cmd = "echo synIDattr(synID(line('.'), col('.'), 1), 'name')"
-  v.Cmd.cmd(cmd)
-  -- v.Log.val(  )
-end
--- and
--- :hi [grp name]
-
-function v.Color_name_lst()
-
-  local cmd = "so $VIMRUNTIME/syntax/colortest.vim"
-  v.Cmd.cmd(cmd)
-end
-
 -- repeat fnc
 
 function v.Repeat_fnc()
@@ -102,7 +72,7 @@ end
 
 
 -- 
--- ref
+-- doc
 -- 
 
 -- https://vim-jp.org/vimdoc-ja/vimindex.html

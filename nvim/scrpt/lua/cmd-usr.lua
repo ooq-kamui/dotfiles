@@ -39,14 +39,14 @@ vim.api.nvim_create_user_command('Kkk',
 
 vim.api.nvim_create_user_command('Dpl',
   function(opts)
-    v.Buf_file__dpl()
+    v.Buf.file__dpl()
   end,
   {nargs = 0}
 )
 
 vim.api.nvim_create_user_command('Mv',
   function(opts)
-    v.Buf_file__mv(opts.fargs[1])
+    v.Buf.file__mv(opts.fargs[1])
   end,
   {nargs = 1}
 )

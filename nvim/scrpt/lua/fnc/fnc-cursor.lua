@@ -1104,7 +1104,7 @@ end
 
 function v.Cursor.__ins_line_buf_file_path()
 
-  local path = v.Buf_file_path()
+  local path = v.Buf.file_path()
   v.Cursor.__ins_line(path)
 end
 

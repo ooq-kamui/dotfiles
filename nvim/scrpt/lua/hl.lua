@@ -46,6 +46,7 @@ vim.opt.guicursor = "n-v-i-c:block" -- mac
 -- vim.opt.guicursor = "n-v-i-c:hor20-blinkwait700-blinkon400"
 
 hl__(0, 'Cursor'        , {fg      = 'none'   , bg = 'none'       , reverse = bl.t})
+-- hl__(0, 'Cursor'        , {fg      = 'none'   , bg = 'gray'       , reverse = bl.t})
 
 hl__(0, 'CursorLine'    , {underline = bl.t})
 hl__(0, 'CursorLineNr'  , {fg = 'magenta'                         })
@@ -98,4 +99,25 @@ hl__(0, 'Comment'       , {fg = '#00ffff'     , bg = 'none'       })
 -- win ( buf ) splt
 hl__(0, 'StatusLineNC'  , {link = 'Comment'})
 hl__(0, 'VertSplit'     , {link = 'Comment'})
+
+
+v.Color = {}
+
+function v.Color.hl_grp()
+
+  -- v.Log.val( vf.synIDattr(vf.synID(vf.line('.'), vf.col('.'), 1), 'name') )
+  local cmd = "echo synIDattr(synID(line('.'), col('.'), 1), 'name')"
+  v.Cmd.cmd(cmd)
+  -- v.Log.val(  )
+end
+-- and
+-- :hi [grp name]
+
+function v.Color.name_lst()
+
+  local cmd = "so $VIMRUNTIME/syntax/colortest.vim"
+  v.Cmd.cmd(cmd)
+end
+
+
 

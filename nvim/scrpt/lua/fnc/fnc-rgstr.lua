@@ -91,7 +91,7 @@ end
 
 function v.Rgstr.ynk__buf_file_path()
 
-  local path = v.Buf_file_path()
+  local path = v.Buf.file_path()
 
   v.Rgstr.__('a', path)
   v.Rgstr.clp__ynk()

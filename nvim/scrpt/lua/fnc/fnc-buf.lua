@@ -40,7 +40,7 @@ end
 
 function v.Buf.opn_tmp_file()
 
-  local path = v.File_tmp__cre()
+  local path = v.File.tmp__cre()
   v.Log.val( path )
   v.Buf.opn(path)
 end
@@ -163,25 +163,25 @@ end
 
 -- buf
 
-function v.Buf__quit()
+function v.Buf.__quit()
 
   local cmd = 'bd'
   v.Cmd.cmd(cmd)
 end
 
-function v.Buf__quit_swtch()
+function v.Buf.__quit_swtch()
 
   local win_num = vf.winnr('$')
 
   if win_num > 1 then
     v.Win.splt__quit()
   else
-    v.Buf__quit()
+    v.Buf.__quit()
   end
 end
 
 -- dev anchor
-function v.Buf__fltr() -- use not
+function v.Buf.__fltr() -- use not
 
 end
 
@@ -192,15 +192,25 @@ function v.Buf.save()
   v.Cmd.cmd('w')
 end
 
-function v.Buf_file__dpl()
+function v.Buf.undo__clr()
 
-  local sys_cmd = 'dpl ' .. v.Buf_file_path()
+  local undo_lvl_tmp = vim.bo.undolevels
+
+  vim.opt_local.undolevels = -1
+  v.Cmd.cmd([[exe "normal! a \<bs>\<esc>"]])
+
+  vim.bo.undolevels = undo_lvl_tmp
+end
+
+function v.Buf.file__dpl()
+
+  local sys_cmd = 'dpl ' .. v.Buf.file_path()
   v.Sys.cmd(sys_cmd)
 end
 
-function v.Buf_file__mv(file_name_aft)
+function v.Buf.file__mv(file_name_aft)
 
-  local file_path_bfr = v.Buf_file_path()
+  local file_path_bfr = v.Buf.file_path()
 
   local sys_cmd = 'str_mv_f ' .. file_path_bfr .. ' ' .. file_name_aft
   local file_path_aft = v.Sys.cmd(sys_cmd)
@@ -212,7 +222,7 @@ function v.Buf_file__mv(file_name_aft)
   v.Cmd.cmd(cmd)
 end
 
-function v.Buf_file_path()
+function v.Buf.file_path()
 
   local path = vf.expand('%:p')
   return path
@@ -253,22 +263,14 @@ end
 
 -- encode
 
-function v.Buf_file_encode()
+function v.Buf.file_encode()
 
   v.Cmd.cmd('set enc?')
 end
 
-function v.Buf_file_bom()
+function v.Buf.file_bom()
 
   v.Cmd.cmd('set bomb?')
-end
-
--- file tmp
-
-function v.File_tmp__cre() -- alias
-
-  local tmp_path = vf.system('mktemp ')
-  return tmp_path
 end
 
 -- file cnd
@@ -287,6 +289,20 @@ function v.Buf.is_file_type__in(type_lst)
   local ret = v.Tbl.is_in(vim.bo.filetype, type_lst)
   return ret
 end
+
+
+-- file
+
+v.File = {}
+
+-- file tmp
+
+function v.File.tmp__cre() -- alias
+
+  local tmp_path = vf.system('mktemp ')
+  return tmp_path
+end
+
 
 -- win
 
