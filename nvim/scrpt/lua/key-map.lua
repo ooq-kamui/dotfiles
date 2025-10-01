@@ -198,6 +198,7 @@ keymap__('n', 'rh', '<esc>')
 keymap__('n', 'ri', '<esc>')
 keymap__('n', 'rj', '<esc>')
 keymap__('n', 'rk', '<esc>')
+keymap__('n', 'rl', '<esc>')
 --                   :
 keymap__('n', 'rn', '<esc>')
 keymap__('n', 'ro', '<esc>')
@@ -208,6 +209,7 @@ keymap__('n', 'rr', '<esc>')
 keymap__('n', 'ru', '<esc>')
 keymap__('n', 'rv', '<esc>')
 --                   :
+keymap__('n', 'ry', '<esc>')
 keymap__('n', 'rz', '<esc>')
 
 keymap__('n', 'xx', '<esc>')
@@ -747,6 +749,7 @@ keymap__('n', 'Q', ':lua v.Cursor.f_str__space_crct("d")<cr>')
 -- srch by cmd forward
 -- keymap__('n', '<leader>k', '/')
 keymap__('n', '<leader>k', 'mz/')
+keymap__('n', 'F'        , 'mz/')
 
 -- srch by cmd back
 -- keymap__('n', '<leader>i', '?')
@@ -889,12 +892,14 @@ keymap__('n', ':f', ':%! jq')  -- jq : sample
 keymap__('n', 'rh', v.Win.__splt_h)
 
 -- win ( buf ) splt v
+keymap__('n', 'ry', v.Win.__splt_v)
 keymap__('n', 'rv', v.Win.__splt_v)
 
 -- win ( buf ) size w __ +
 keymap__('n', '{', '<c-w>>')
 
 -- win ( buf ) nxt
+keymap__('n', 'rl', v.Win.splt_cursor__mv_nxt)
 keymap__('n', 'rn', v.Win.splt_cursor__mv_nxt)
 
 -- win ( buf ) mv r
