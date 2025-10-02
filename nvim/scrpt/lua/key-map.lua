@@ -212,6 +212,8 @@ keymap__('n', 'rv', '<esc>')
 keymap__('n', 'ry', '<esc>')
 keymap__('n', 'rz', '<esc>')
 
+keymap__('n', 'r:', '<esc>')
+
 keymap__('n', 'xx', '<esc>')
 
 keymap__('n', ':a', ':a')
@@ -892,8 +894,9 @@ keymap__('n', ':f', ':%! jq')  -- jq : sample
 keymap__('n', 'rh', v.Win.__splt_h)
 
 -- win ( buf ) splt v
+keymap__('n', 'r:', v.Win.__splt_v)
 keymap__('n', 'ry', v.Win.__splt_v)
-keymap__('n', 'rv', v.Win.__splt_v)
+-- keymap__('n', 'rv', v.Win.__splt_v)
 
 -- win ( buf ) size w __ +
 keymap__('n', '{', '<c-w>>')
