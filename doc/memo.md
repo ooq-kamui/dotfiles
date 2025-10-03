@@ -4,9 +4,16 @@
 
 ## nvim
 
+dir __ git root
+
 fzf
 - buf crnt
+  - v <leader>k : nornal
   - v <leader>K : word1
+    - tst
+      - aabb bb
+      - aa   bb
+
 - rg
   - n <reader><c-o>
     - case : word1, err ? at c9
@@ -23,6 +30,10 @@ keymap__('n', 'F'        , 'mz/')
 ```
 
 dev anchor indnt
+
+Sys.cmd_xxx() > Sys.xxx()
+
+v.Sys.cmd_by_slctd_line()
 
 
 ## godot
