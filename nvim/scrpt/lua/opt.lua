@@ -104,8 +104,8 @@ vim.api.nvim_create_autocmd({'FileType'}, {
 vim.api.nvim_create_autocmd({'FileType'}, {
   pattern  = {'python'},
   callback = function()
-    vim.opt_local.sw  = 2
-    vim.opt_local.sts = 2
+    vim.opt_local.sw  = 4
+    vim.opt_local.sts = 4
     vim.opt_local.ts  = 4
     vim.opt_local.et  = bl.t
   end,

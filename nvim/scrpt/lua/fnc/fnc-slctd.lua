@@ -768,7 +768,8 @@ function v.Slctd.str_edge_out_bracket__tgl() -- range
   end
 end
 
-function v.Slctd.str_edge_out__tgl_shft() -- range
+-- function v.Slctd.str_edge_out__tgl_shft() -- range
+function v.Slctd.str_edge_out_char__type_ch() -- range
 
   v.Slctd.__ltst()
 

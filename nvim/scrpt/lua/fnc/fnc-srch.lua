@@ -293,6 +293,6 @@ function v.Srch.__init()
   v.Cmd.cmd('silent! /dmy')
   vim.defer_fn(function()
     v.Srch.str__prv_tgl()
-  end, 100)
+  end, 500)
 end
 

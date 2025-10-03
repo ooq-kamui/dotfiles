@@ -749,13 +749,12 @@ keymap__('n', 'Q', ':lua v.Cursor.f_str__space_crct("d")<cr>')
 -- keymap__('n', 'xx', ';')
 
 -- srch by cmd forward
--- keymap__('n', '<leader>k', '/')
 keymap__('n', '<leader>k', 'mz/')
 keymap__('n', 'F'        , 'mz/')
 
 -- srch by cmd back
--- keymap__('n', '<leader>i', '?')
-keymap__('n', '<leader>i', 'mz?')
+keymap__('n', '<leader><c-k>', 'mz?')
+-- keymap__('n', '<leader>i'    , 'mz?')
 
 -- srch by cmd word
 -- keymap__('n', '<leader>K', '/\\<\\><left><left>')
@@ -795,7 +794,6 @@ keymap__('n', '<c-p>', ':lua v.Srch.slct("f")<cr>')
 
 -- rpl ( cmd )
 keymap__('n', ':s', ':%s/<c-r>//xxx/g')
--- keymap__('n', ':s', ':%s///g')
 -- keymap__('n', ':s', ':Rpl ')
 
 -- fzf rg
@@ -814,7 +812,8 @@ keymap__('n', '<leader>O'    , v.Fzf.rg_word1_by_srch_str)
 -- keymap__('n', '<leader>xx', ':FzfRgWithRun <cr>')
 
 -- fzf buf
-keymap__('n', '<leader>K', ':lua v.Fzf.buf()<cr>')
+keymap__('n', '<leader>i', ':lua v.Fzf.buf()<cr>')
+-- keymap__('n', '<leader>K', ':lua v.Fzf.buf()<cr>')
 
 -- fzf jmplst
 keymap__('n', '<leader>e', v.Fzf.jmplst)
@@ -1089,6 +1088,8 @@ keymap__('x', ':f', '<esc>')
    --                    :
 keymap__('x', ':m', '<esc>')
    --                    :
+keymap__('x', ':r', '<esc>')
+   --                    :
 keymap__('x', ':t', '<esc>')
    --                    :
 keymap__('x', ':z', '<esc>')
@@ -1096,8 +1097,14 @@ keymap__('x', ':z', '<esc>')
    -- leader esc
 
 keymap__('x', '<leader>:', '<esc>')
+   --                    :
+keymap__('x', '<leader>i', '<esc>')
+   --                    :
+keymap__('x', '<leader>k', '<esc>')
 keymap__('x', '<leader>l', '<esc>')
+   --                    :
 keymap__('x', '<leader>u', '<esc>')
+   --                    :
 keymap__('x', '<leader>y', '<esc>')
 
 
@@ -1308,7 +1315,8 @@ end, {expr = bl.t})
 -- keymap__('x', 'xx', v.Slctd.str_edge_out_bracket__tgl)
 
 -- slctd str edge out __ tgl shft
-keymap__('x', 'W', v.Slctd.str_edge_out__tgl_shft)
+keymap__('x', 'W', v.Slctd.str_edge_out_char__type_ch)
+-- keymap__('x', 'W', v.Slctd.str_edge_out__tgl_shft)
 
 -- slctd str edge out __ ins space
 keymap__('x', 'O'    , v.Slctd.str_edge_out__ins_space)
@@ -1382,7 +1390,7 @@ keymap__('x', 'U', 'Ugv')
 -- 
 
 -- srch cmd
-keymap__('x', '<leader>k', '"zy/<c-r>z')
+-- keymap__('x', '<leader>k', '"zy/<c-r>z')
 
 -- srch forward ( srch rpl skip )
 keymap__('x', '<c-n>', ':lua v.Srch.srch_7_slctd__srch_nxt("f")<cr>')
@@ -1409,14 +1417,10 @@ keymap__('x', '<c-p>', v.Slctd.__rpl_7_srch_nxt)
 -- rpl ( cmd )
 keymap__('x', ':s', function()
   if v.Mode.is__box() then
-    return ':VBoxRpl '
+    return ':s/\\%V<c-r>//xxx/g'
   else
     return ':s/<c-r>//xxx/g'
   end
-
-  -- ':sort'
-  -- ':Rpl '
-
 end, {expr = bl.t})
 
 -- rpl cr ( add cr )
@@ -1441,8 +1445,8 @@ keymap__('x', '<c-u>', function()
 end, {expr = bl.t})
 
 -- fzf buf
-keymap__('x', '<leader>i', v.Fzf.buf_by_slctd_str)
-keymap__('x', '<leader>K', v.Fzf.buf_by_slctd_str)
+keymap__('x', '<leader>k', v.Fzf.buf_by_slctd_str)
+keymap__('x', '<leader>K', v.Fzf.buf_by_slctd_str) -- word1
 
 -- fzf rg
 keymap__('x', '<leader>o', function ()
@@ -1458,6 +1462,9 @@ end)
 
 -- tag jmp
 -- keymap__('x', 't', v.Buf.opn_by_slctd_line)
+
+-- sys cmd by slctd line
+keymap__('x', ':r', v.Sys.cmd_by_slctd_line)
 
 -- sys cmd opn
 
