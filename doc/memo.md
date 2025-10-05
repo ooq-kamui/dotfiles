@@ -23,7 +23,7 @@ fzf
       - aa   bb
 
 - rg
-  - n <reader><c-o>
+  - n <leader><c-o>
     - case : word1, err ? at c9
     - tst
       - aabb bb
