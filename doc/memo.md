@@ -4,7 +4,15 @@
 
 ## nvim
 
-dir __ git root
+dev anchor indnt
+- case : filetype
+  - confirm, cindext, etc
+
+sys
+- v.Sys.sh_by_slctd_line()
+  - confirm ( log ), bfr run
+- jq
+
 
 fzf
 - buf crnt
@@ -17,23 +25,9 @@ fzf
 - rg
   - n <reader><c-o>
     - case : word1, err ? at c9
-      - tst
-
-n q, err
-- case
-```
-keymap__('n', '<leader>k', 'mz/')
-keymap__('n', 'F'        , 'mz/')
-
-'IndexName'             : DB_INDEX10,
-'KeyConditionExpression': key,
-```
-
-dev anchor indnt
-
-Sys.cmd_xxx() > Sys.xxx()
-
-v.Sys.cmd_by_slctd_line()
+    - tst
+      - aabb bb
+      - aa   bb
 
 
 ## godot

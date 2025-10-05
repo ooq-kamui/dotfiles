@@ -1110,8 +1110,7 @@ end
 
 function v.Cursor.__ins_line_anchor()
 
-  local str  = v.Str.cmnt_1()
-  str = str .. 'dev anchor' -- del not
+  local str  = v.Str.cmnt_1() .. 'dev anchor'
   v.Cursor.__ins_line(str)
   v.Cursor.line_indnt__crct()
 end
@@ -1457,7 +1456,8 @@ end
 
 function v.Cursor.line_indnt_col_with_c()
 
-  local col = vf.cindent(v.Cursor.line_num())
+  local line_num = v.Cursor.line_num()
+  local col = vf.cindent(line_num)
   return col
 end
 
@@ -1503,7 +1503,7 @@ function v.Cursor.line_indnt__shft_r()
 end
 
 
-function v.Cursor.line_indnt__crct()
+function v.Cursor.line_indnt__crct() -- alias
 
   local col = v.Cursor.line_indnt__crct_with_c()
   return col

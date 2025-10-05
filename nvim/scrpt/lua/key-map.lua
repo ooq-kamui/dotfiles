@@ -286,7 +286,8 @@ keymap__('n', '<leader>R', '<esc>')
 --                           :
 
 -- log
-keymap__('n', ':m', ':message <cr>')
+keymap__('n', ':l', ':message <cr>')
+-- keymap__('n', ':m', ':message <cr>')
 
 -- quit buffer
 keymap__('n', 'w',  v.Buf.__quit_swtch)
@@ -352,19 +353,19 @@ keymap__('n', ':S', ':Sjis ')
 -- sys cmd opn
 
 -- sys cmd opn app
-keymap__('n', 'go', v.Sys.cmd_opn_app_by_cursor_path)
+keymap__('n', 'go', v.Sys.opn_app_by_cursor_path)
 
 -- sys cmd opn app slf
--- keymap__('n', 'xx', v.Sys.cmd_opn_app_buf_file)
+-- keymap__('n', 'xx', v.Sys.opn_buf_file)
 
 -- sys cmd opn dir slf
-keymap__('n', 'gd', v.Sys.cmd_opn_buf_file_dir)
+keymap__('n', 'gd', v.Sys.opn_buf_file_dir)
 
 -- sys cmd opn brwsr
--- keymap__('n', 'xx', v.Sys.cmd_opn_brwsr)
+-- keymap__('n', 'xx', v.Sys.opn_brwsr)
 
 -- sys cmd opn ggl srch
-keymap__('n', 'ggl', ':lua v.Sys.cmd_opn_ggl_srch("")<cr>')
+keymap__('n', 'ggl', ':lua v.Sys.opn_ggl_srch("")<cr>')
 
 -- cursor mv
 
@@ -498,7 +499,6 @@ keymap__('n', 'v', '<c-v>')
 -- slct re
 keymap__('n', '<c-r>', v.Slctd.__ltst)
 keymap__('n', 'R', v.Slctd.__ltst)
--- keymap__('n', 'S', v.Slctd.__ltst)
 
 -- ynk clr
 keymap__('n', '<c-c>', v.Rgstr.ynk__clr)
@@ -836,7 +836,7 @@ keymap__('n', ':!', ':!')
 keymap__('n', ':1', ':!')
 
 -- ins sys cmd ( read )
--- keymap__('n', ':r', ':InsSysCmd ')
+-- keymap__('n', 'xx', ':InsSysCmd ')
 
 -- pth
 keymap__('n', ':p', ':Pth <cr>')
@@ -881,8 +881,8 @@ keymap__('n', '<s-right>', ':tabm+1<cr>')
 -- keymap__('n', ':xx', ':buffers')
 
 -- buf fltr
-keymap__('n', ':f', ':%! jq')  -- jq : sample
--- keymap__('n', 'xx', ':lua v.Buf.__fltr()<cr>') -- use not, dev ?
+keymap__('n', ':a', ':%! jq')  -- jq : sample
+-- keymap__('n', 'xx', ':lua v.Buf.__fltr()<cr>') -- dev
 
 -- win ( buf )
 
@@ -1464,21 +1464,25 @@ end)
 -- keymap__('x', 't', v.Buf.opn_by_slctd_line)
 
 -- sys cmd by slctd line
-keymap__('x', ':r', v.Sys.cmd_by_slctd_line)
+keymap__('x', ':r', v.Sys.sh_by_slctd_line)
+
+-- sys cmd math by slctd line
+
+keymap__('x', ':m', v.Sys.math_by_slctd_line)
 
 -- sys cmd opn
 
 -- sys cmd opn app
-keymap__('x', 'go', v.Sys.cmd_opn_app_by_slctd_line)
+keymap__('x', 'go', v.Sys.opn_app_by_slctd_line)
 
 -- sys cmd opn ggl srch
-keymap__('x', 'ggl', v.Sys.cmd_opn_ggl_srch_by_slctd_str)
+keymap__('x', 'ggl', v.Sys.opn_ggl_srch_by_slctd_str)
 
 -- sys cmd opn youtube video_id
-keymap__('x', 'gy', v.Sys.cmd_opn_yt_by_slctd_str)
+keymap__('x', 'gy', v.Sys.opn_yt_by_slctd_str)
 
 -- trns
-keymap__('x', 'r', v.Sys.cmd_trns_by_slctd_str)
+keymap__('x', 'r', v.Sys.trns_by_slctd_str)
 
 -- cmd
 

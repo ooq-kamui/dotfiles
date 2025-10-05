@@ -180,11 +180,6 @@ function v.Buf.__quit_swtch()
   end
 end
 
--- dev anchor
-function v.Buf.__fltr() -- use not
-
-end
-
 -- file ( buf file )
 
 function v.Buf.save()
@@ -290,6 +285,10 @@ function v.Buf.is_file_type__in(type_lst)
   return ret
 end
 
+-- dev anchor
+function v.Buf.__fltr() -- use not
+
+end
 
 -- file
 

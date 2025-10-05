@@ -37,6 +37,13 @@ vim.api.nvim_create_user_command('Kkk',
   {nargs = 0}
 )
 
+vim.api.nvim_create_user_command('Kf',
+  function(opts)
+    v.Dir.__git_root()
+  end,
+  {nargs = 0}
+)
+
 vim.api.nvim_create_user_command('Dpl',
   function(opts)
     v.Buf.file__dpl()
@@ -58,12 +65,12 @@ vim.api.nvim_create_user_command('SrchOr',
   {nargs = '*'}
 )
 
-vim.api.nvim_create_user_command('InsSysCmd',
-  function(opts)
-    v.Cursor.__ins_sys_cmd(opts.fargs[1])
-  end,
-  {nargs = '*'}
-)
+-- vim.api.nvim_create_user_command('InsSysCmd',
+--   function(opts)
+--     v.Cursor.__ins_sys_cmd(opts.fargs[1])
+--   end,
+--   {nargs = '*'}
+-- )
 
 vim.api.nvim_create_user_command('Rpl',
   function(opts)

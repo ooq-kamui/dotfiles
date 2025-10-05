@@ -9,18 +9,32 @@ function v.Sys.cmd(sys_cmd)
   return ret
 end
 
-function v.Sys.cmd_by_slctd_line()
+function v.Sys.cmd_by_slctd_line(p_sys_cmd) -- range
 
   local str = v.Slctd.str()
-  local sys_cmd = 'echo ' .. "'" .. str .. "'" .. ' | sh'
+  local sys_cmd = 'echo ' .. "'" .. str .. "'" .. ' | ' .. p_sys_cmd
   local rslt = v.Sys.cmd(sys_cmd)
-  v.Log.val( rslt )
+  v.Log.val(rslt)
   v.Rgstr.__('a', rslt)
+end
+
+function v.Sys.sh_by_slctd_line()
+
+  local sys_cmd = 'sh'
+  v.Sys.cmd_by_slctd_line(sys_cmd)
+end
+
+-- math
+
+function v.Sys.math_by_slctd_line() -- range
+
+  local sys_cmd = 'math'
+  v.Sys.cmd_by_slctd_line(sys_cmd)
 end
 
 -- opn app
 
-function v.Sys.cmd_opn_app(path)
+function v.Sys.opn_app(path)
 
   local path = path
   local cmd_sys
@@ -47,88 +61,88 @@ function v.Sys.cmd_opn_app(path)
   local res = vf.system(cmd_sys .. " '" .. path .. "'")
 end
 
-function v.Sys.cmd_opn_app_by_cursor_path()
+function v.Sys.opn_app_by_cursor_path()
 
   local path = v.Cursor.filepath()
-  v.Sys.cmd_opn_app(path)
+  v.Sys.opn_app(path)
 end
 
-function v.Sys.cmd_opn_app_by_line_path(line_num)
+function v.Sys.opn_app_by_line_path(line_num)
 
   local path = v.Line.str_by_line_num(line_num)
 
   path = vf.trim(path)
-  v.Sys.cmd_opn_app(path)
+  v.Sys.opn_app(path)
 end
 
-function v.Sys.cmd_opn_app_by_slctd_str()
+function v.Sys.opn_app_by_slctd_str()
 
   local path = v.Slctd.str()
   path = vf.trim(path)
-  v.Sys.cmd_opn_app(path)
+  v.Sys.opn_app(path)
 end
 
-function v.Sys.cmd_opn_app_by_slctd_line() -- range
+function v.Sys.opn_app_by_slctd_line() -- range
 
   for idx, line_num in pairs(v.Slctd_line_num_seq()) do
 
-    v.Sys.cmd_opn_app_by_line_path(line_num)
+    v.Sys.opn_app_by_line_path(line_num)
   end
 end
 
-function v.Sys.cmd_opn_app_buf_file()
+function v.Sys.opn_buf_file()
 
   local path = v.Buf.file_path()
   -- v.Log.val( path )
-  v.Sys.cmd_opn_app(path)
+  v.Sys.opn_app(path)
 end
 
-function v.Sys.cmd_opn_buf_file_dir()
+function v.Sys.opn_buf_file_dir()
 
   local dir = v.Buf.file_dir()
-  v.Sys.cmd_opn_app(dir)
+  v.Sys.opn_app(dir)
 end
 
-function v.Sys.cmd_opn_yt_by_slctd_str()
+function v.Sys.opn_yt_by_slctd_str()
 
   local yt_video_id = v.Slctd.str()
   local yt_video_id = vf.trim(yt_video_id)
-  v.Sys.cmd_opn_yt(yt_video_id)
+  v.Sys.opn_yt(yt_video_id)
 end
 
-function v.Sys.cmd_opn_brwsr()
+function v.Sys.opn_brwsr()
 
   local url = 'https://www.google.com/'
-  v.Sys.cmd_opn_app(url)
+  v.Sys.opn_app(url)
 end
 
-function v.Sys.cmd_opn_ggl_srch(word)
+function v.Sys.opn_ggl_srch(word)
 
   local url = 'https://www.google.com/search?q=' .. word
-  v.Sys.cmd_opn_app(url)
+  v.Sys.opn_app(url)
 end
 
-function v.Sys.cmd_opn_ggl_srch_by_slctd_str()
+function v.Sys.opn_ggl_srch_by_slctd_str()
 
   local word = v.Slctd.str()
   local word = vf.trim(word)
-  v.Sys.cmd_opn_ggl_srch(word)
+  v.Sys.opn_ggl_srch(word)
 end
 
-function v.Sys.cmd_opn_yt(yt_video_id)
+function v.Sys.opn_yt(yt_video_id)
 
   local url = 'https://www.youtube.com/watch?v=' .. yt_video_id
-  v.Sys.cmd_opn_app(url)
+  v.Sys.opn_app(url)
 end
+
 -- sys cmd trns
 
-function v.Sys.cmd_trns_by_slctd_str() -- range
+function v.Sys.trns_by_slctd_str() -- range
 
   local str = v.Slctd.str()
   str = vf.substitute(str, "\\n", ' ', 'g')
 
   local lang
-  -- if str =~ '[^\\x01-\\x7E]' then -- mlt byte
   if v.Str.is__ptn(str, '[^\\x01-\\x7E]') then -- mlt byte
     lang = '{ja=en}'
   else
@@ -141,20 +155,9 @@ function v.Sys.cmd_trns_by_slctd_str() -- range
   v.Log.val( rslt )
 end
 
--- math
-
-function v.Sys.cmd_math_by_slctd_line() -- range
-
-  local str = v.Slctd.str()
-  local sys_cmd = 'echo ' .. "'" .. str .. "'" .. ' | math'
-  local rslt = v.Sys.cmd(sys_cmd)
-  v.Log.val( rslt )
-  v.Rgstr.__('a', rslt)
-end
-
 -- url encdoe
 
-function v.Sys.cmd_url_encode_by_slctd_str() -- range
+function v.Sys.url_encode_by_slctd_str() -- range
 
   local str = v.Slctd.str()
   local sys_cmd = 'url_encode "' .. str .. '"'

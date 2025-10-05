@@ -42,11 +42,19 @@ function v.Dir.__parent(lvl)
   v.Dir.pth()
 end
 
-g.nvim_launch_dir = vf.system('pwd') -- v.Sys.cmd('pwd')
+v.Dir.nvim_launch_dir = vf.system('pwd')
+-- Dir.nvim_launch_dir = v.Sys.cmd('pwd')-- rpl not
 
 function v.Dir.__nvim_launch()
 
-  local dir = g.nvim_launch_dir
+  local dir = v.Dir.nvim_launch_dir
+  v.Dir.__(dir)
+end
+
+function v.Dir.__git_root()
+
+  local sys_cmd = 'git rev-parse --show-cdup'
+  local dir     = v.Sys.cmd(sys_cmd)
   v.Dir.__(dir)
 end
 
