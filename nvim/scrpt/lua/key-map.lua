@@ -755,8 +755,8 @@ keymap__('n', 'F'        , 'mz/')
 -- srch by cmd back
 keymap__('n', '<leader><c-k>', 'mz?')
 
--- srch by cmd word
--- keymap__('n', '<leader>K', '/\\<\\><left><left>')
+-- srch by cmd word1
+keymap__('n', '<leader>K', '/\\<\\><left><left>')
 
 -- srch word or
 -- keymap__('n', 'xx', 'Xxx')
@@ -812,7 +812,10 @@ keymap__('n', '<leader>O'    , v.Fzf.rg_word1_by_srch_str)
 
 -- fzf buf
 keymap__('n', '<leader>i', ':lua v.Fzf.buf()<cr>')
--- keymap__('n', '<leader>K', ':lua v.Fzf.buf()<cr>')
+keymap__('n', '<leader>I', ':lua v.Fzf.buf()<cr>')
+
+-- fzf buf work1  -- dev
+-- keymap__('n', '<leader>I', ':lua v.Fzf.buf()<cr>')
 
 -- fzf jmplst
 keymap__('n', '<leader>e', v.Fzf.jmplst)
