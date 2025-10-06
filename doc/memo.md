@@ -2,6 +2,12 @@
 # dotfiles
 
 
+## nvim
+
+hl md cr
+- case file type md only
+
+
 ## godot
 
 platformer
