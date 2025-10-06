@@ -754,7 +754,6 @@ keymap__('n', 'F'        , 'mz/')
 
 -- srch by cmd back
 keymap__('n', '<leader><c-k>', 'mz?')
--- keymap__('n', '<leader>i'    , 'mz?')
 
 -- srch by cmd word
 -- keymap__('n', '<leader>K', '/\\<\\><left><left>')
@@ -1450,8 +1449,8 @@ keymap__('x', '<c-u>', function()
 end, {expr = bl.t})
 
 -- fzf buf
-keymap__('x', '<leader>k', v.Fzf.buf_by_slctd_str)
-keymap__('x', '<leader>K', v.Fzf.buf_by_slctd_str) -- word1
+keymap__('x', '<leader>i', v.Fzf.buf_by_slctd_str)
+keymap__('x', '<leader>i', v.Fzf.buf_by_slctd_str) -- word1
 
 -- fzf rg
 keymap__('x', '<leader>o', function ()
