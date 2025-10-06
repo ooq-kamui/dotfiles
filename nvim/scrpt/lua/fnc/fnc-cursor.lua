@@ -747,7 +747,6 @@ function v.Cursor.__ins_markdown_cr()
 end
 
 function v.Cursor.__ins_markdown_itm()
-  -- v.Log.val('Cursor.__ins_markdown_itm')
 
   if v.Cursor.is_line__markdown_itm() then
     return
@@ -756,10 +755,7 @@ function v.Cursor.__ins_markdown_itm()
   local col = v.Cursor.line_indnt__crct()
 
   local str = '- '
-  --v.Log.val( str )
   v.Cursor.line_top1__ins(str)
-
-  -- v.Log.val('ret')
 end
 
 -- cnd line  markdown
@@ -1454,13 +1450,6 @@ end
 
 -- indnt
 
-function v.Cursor.line_indnt_col_with_c()
-
-  local line_num = v.Cursor.line_num()
-  local col = vf.cindent(line_num)
-  return col
-end
-
 function v.Cursor.line_indnt__add(col)
 
   if col == 0 then
@@ -1505,8 +1494,22 @@ end
 
 function v.Cursor.line_indnt__crct() -- alias
 
-  local col = v.Cursor.line_indnt__crct_with_c()
-  return col
+  local col = 0
+
+  if bl.t then
+    col = v.Cursor.line_indnt__crct_with_c()
+    return col
+  else
+    -- dev anchor
+    v.Cursor.line_indnt__crct_with_nml()
+    return col
+  end
+end
+
+function v.Cursor.line_indnt__crct_with_nml()
+
+  v.Cmd.nml('1==')
+  return
 end
 
 function v.Cursor.line_indnt__crct_with_c()
@@ -1517,6 +1520,13 @@ function v.Cursor.line_indnt__crct_with_c()
   --v.Log.val( col )
 
   v.Cursor.line_indnt__add(col)
+  return col
+end
+
+function v.Cursor.line_indnt_col_with_c()
+
+  local line_num = v.Cursor.line_num()
+  local col = vf.cindent(line_num)
   return col
 end
 

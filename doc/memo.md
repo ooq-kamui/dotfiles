@@ -4,27 +4,22 @@
 
 ## nvim
 
-dev anchor indnt
-- case : filetype
-  - confirm, cindext, etc
+fzf
+- rg
+  - n <leader><c-o>
+    - case : word1, err ? at c9
+    - tst
+      - aabb bb
+      - aa   bb
 
-sys
-- v.Sys.sh_by_slctd_line()
-  - confirm ( log ), bfr run
-- jq
-
+v.Sys.sh_by_slctd_line()
+- confirm dialog ( neovim )
+  - view log
 
 fzf
 - buf crnt
   - v <leader>k : nornal
   - v <leader>K : word1
-    - tst
-      - aabb bb
-      - aa   bb
-
-- rg
-  - n <leader><c-o>
-    - case : word1, err ? at c9
     - tst
       - aabb bb
       - aa   bb

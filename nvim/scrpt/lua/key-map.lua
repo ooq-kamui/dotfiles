@@ -881,8 +881,13 @@ keymap__('n', '<s-right>', ':tabm+1<cr>')
 -- keymap__('n', ':xx', ':buffers')
 
 -- buf fltr
-keymap__('n', ':a', ':%! jq')  -- jq : sample
--- keymap__('n', 'xx', ':lua v.Buf.__fltr()<cr>') -- dev
+keymap__('n', ':f', ':%! jq')  -- jq : sample
+
+-- buf fltr jq
+keymap__('n', ':fj', ':lua v.Buf.__fltr_jq()')
+
+-- buf fltr ruff
+keymap__('n', ':fr', ':lua v.Buf.__fltr_ruff()')
 
 -- win ( buf )
 
@@ -1359,7 +1364,7 @@ keymap__('x', 'ri', v.Slctd.line_indnt__shft_l)
 keymap__('x', 'ro', v.Slctd.line_indnt__shft_r)
 
 -- indnt crct
-keymap__('x', ';', '=gv')
+-- keymap__('x', ';', '=gv')
 
 -- indnt tab   > space
 keymap__('x', ':e', ':lua v.Slctd.line_indnt__space(2)')

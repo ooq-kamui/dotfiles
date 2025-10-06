@@ -286,8 +286,22 @@ function v.Buf.is_file_type__in(type_lst)
 end
 
 -- dev anchor
-function v.Buf.__fltr() -- use not
+function v.Buf.__fltr(sys_fltr_cmd)
 
+  local sys_cmd = '%! ' .. sys_fltr_cmd
+  local rslt = v.Cmd.cmd(sys_cmd)
+end
+
+function v.Buf.__fltr_jq()
+
+  local sys_fltr_cmd = 'jq'
+  local rslt = v.Buf.__fltr(sys_fltr_cmd)
+end
+
+function v.Buf.__fltr_ruff()
+
+  local sys_fltr_cmd = 'ruff format'
+  local rslt = v.Buf.__fltr(sys_fltr_cmd)
 end
 
 -- file
