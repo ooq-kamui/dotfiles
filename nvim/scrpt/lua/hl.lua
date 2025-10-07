@@ -82,8 +82,14 @@ match_id = vim.fn.matchadd('SpaceMb', '\\%u3000', 10) -- /　/
 -- vim.fn.matchdelete(match_id)
 
 hl__(0, 'Title'         , {fg = 'cyan'        , bg = 'none'       })
-hl__(0, 'MdCr'          , {fg = 'none'        , bg = 'darkblue'   })
-match_id = vim.fn.matchadd('MdCr', '  $', 10)
+
+-- markdown
+vim.api.nvim_create_autocmd({'FileType'}, { pattern  = {'markdown'},
+  callback = function ()
+    hl__(0, 'MdCr'      , {fg = 'none'        , bg = 'darkblue'   })
+    match_id = vim.fn.matchadd('MdCr', '  $', 10)
+  end,
+})
 
 -- vimdiff
 hl__(0, 'DiffAdd'       , {fg = '#00ff00'     , bg = '#005f00'    })

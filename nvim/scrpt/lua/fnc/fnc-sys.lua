@@ -184,3 +184,25 @@ function v.Sys.ruff_by_slf()
   v.Sys.cmd_by_slf(sys_cmd)
 end
 
+function confirm()
+
+  local items = { "yes", "no" }
+  vim.ui.select(
+    items,
+    {
+      prompt = "exec ?",
+      -- kind = "Confirm", -- ??
+    },
+    function(choice, idx)
+      if     choice == "yes" then
+        -- vim.notify("操作が実行されました。", vim.log.levels.INFO)
+
+      elseif choice == "no"  then
+        vim.notify("canceled", vim.log.levels.INFO) -- ??
+      else
+        vim.notify("canceled", vim.log.levels.INFO) -- ??
+      end
+    end
+  )
+end
+

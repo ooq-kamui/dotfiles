@@ -10,7 +10,7 @@ bl = bool -- alias
 
 require('fnc/fnc-prmtv')
 require('fnc/fnc-basic')
-require('fnc/fnc-plg-fzf') -- todo refactoring
+require('fnc/fnc-plg-fzf')
 require('plg-mng' )
 
 require('opt'     )

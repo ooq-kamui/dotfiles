@@ -2,21 +2,6 @@
 # dotfiles
 
 
-## nvim
-
-ruff
-
-hl md cr
-- case file type md only
-
-v.Sys.sh_by_slctd_line()
-- confirm dialog ( neovim )
-  - view log
-
-blink.cmp
-- https://eiji.page/blog/neovim-blink-cmp-intro/
-
-
 ## godot
 
 platformer
@@ -39,15 +24,26 @@ gen2 try
 
 ## nvim
 
-cursor style
-- reserch
-- cmdline err
+v.Sys.sh_by_slctd_line()
+- confirm dialog ( neovim )
+  - view log
+  - by nui.nvim
+
+
+plg
+- nui.nvim
+- noice.nvim
+
+- blink.cmp
+  - https://eiji.page/blog/neovim-blink-cmp-intro/
+- lualine
 
 plg-mng
 - lazy
 
-plg
-- lualine
+cursor style
+- reserch
+- cmdline err
 
 
 ## skr-vps
