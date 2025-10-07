@@ -35,6 +35,8 @@ gen2 try
 
 ## nvim
 
+fzf git status
+
 v.Sys.sh_by_slctd_line()
 - confirm dialog ( neovim )
   - view log
