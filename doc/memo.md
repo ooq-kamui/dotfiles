@@ -2,15 +2,18 @@
 # dotfiles
 
 
+## nvim
+
+fzf git status
+- c-u
+
+
 ## music
 
-dl iphone
-
-
-## mac
-
-intel ba ch
-- charge full
+mac ply-lst
+- lst cre
+- name tidy
+- zld bow relax
 
 
 ## godot
@@ -34,8 +37,6 @@ gen2 try
 
 
 ## nvim
-
-fzf git status
 
 v.Sys.sh_by_slctd_line()
 - confirm dialog ( neovim )
