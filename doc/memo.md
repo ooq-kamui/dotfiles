@@ -2,6 +2,17 @@
 # dotfiles
 
 
+## music
+
+dl iphone
+
+
+## mac
+
+intel ba ch
+- charge full
+
+
 ## godot
 
 platformer
@@ -27,15 +38,13 @@ gen2 try
 v.Sys.sh_by_slctd_line()
 - confirm dialog ( neovim )
   - view log
-  - by nui.nvim
-
+  - use nui.nvim
 
 plg
-- nui.nvim
-- noice.nvim
-
 - blink.cmp
   - https://eiji.page/blog/neovim-blink-cmp-intro/
+- noice.nvim
+
 - lualine
 
 plg-mng
@@ -51,5 +60,4 @@ cursor style
 centos setting at skr console
 - firewall
   - url
-
 

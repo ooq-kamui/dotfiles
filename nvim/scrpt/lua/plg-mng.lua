@@ -11,6 +11,7 @@ g.plg_mng_cmd = [[
     Plug 'ojroques/nvim-osc52'
     Plug 'stevearc/oil.nvim'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'MunifTanjim/nui.nvim'
 
     " Plug 'shellRaining/hlchunk.nvim'
     " Plug 'sphamba/smear-cursor.nvim'
