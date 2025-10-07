@@ -4,8 +4,17 @@
 
 ## nvim
 
+ruff
+
 hl md cr
 - case file type md only
+
+v.Sys.sh_by_slctd_line()
+- confirm dialog ( neovim )
+  - view log
+
+blink.cmp
+- https://eiji.page/blog/neovim-blink-cmp-intro/
 
 
 ## godot
@@ -30,10 +39,6 @@ gen2 try
 
 ## nvim
 
-v.Sys.sh_by_slctd_line()
-- confirm dialog ( neovim )
-  - view log
-
 cursor style
 - reserch
 - cmdline err
@@ -43,7 +48,6 @@ plg-mng
 
 plg
 - lualine
-- coc
 
 
 ## skr-vps

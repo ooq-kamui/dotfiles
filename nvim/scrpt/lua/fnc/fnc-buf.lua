@@ -298,12 +298,6 @@ function v.Buf.__fltr_jq()
   local rslt = v.Buf.__fltr(sys_fltr_cmd)
 end
 
-function v.Buf.__fltr_ruff()
-
-  local sys_fltr_cmd = 'ruff format'
-  local rslt = v.Buf.__fltr(sys_fltr_cmd)
-end
-
 -- file
 
 v.File = {}

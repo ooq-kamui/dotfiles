@@ -166,3 +166,21 @@ function v.Sys.url_encode_by_slctd_str() -- range
   v.Cursor.__ins(rslt)
 end
 
+function v.Sys.cmd_by_slf(p_sys_cmd)
+
+  local file_path = v.Buf.file_path()
+  local sys_cmd   = p_sys_cmd .. ' ' .. file_path
+
+  local rslt = v.Sys.cmd(sys_cmd)
+  v.Log.val(rslt)
+  -- v.Rgstr.__('a', rslt)
+end
+
+-- ruff slf
+
+function v.Sys.ruff_by_slf()
+
+  local sys_cmd = 'ruff format'
+  v.Sys.cmd_by_slf(sys_cmd)
+end
+

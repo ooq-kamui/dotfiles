@@ -889,7 +889,8 @@ keymap__('n', ':f', ':%! jq')  -- jq : sample
 keymap__('n', ':fj', ':lua v.Buf.__fltr_jq()')
 
 -- buf fltr ruff
-keymap__('n', ':fr', ':lua v.Buf.__fltr_ruff()')
+keymap__('n', ':fr', ':lua v.Sys.ruff_by_slf()')
+-- keymap__('n', ':fr', ':lua v.Buf.__fltr_ruff()')
 
 -- win ( buf )
 
