@@ -166,6 +166,8 @@ function v.Sys.url_encode_by_slctd_str() -- range
   v.Cursor.__ins(rslt)
 end
 
+-- cmd by slf
+
 function v.Sys.cmd_by_slf(p_sys_cmd)
 
   local file_path = v.Buf.file_path()
@@ -174,9 +176,11 @@ function v.Sys.cmd_by_slf(p_sys_cmd)
   local rslt = v.Sys.cmd(sys_cmd)
   v.Log.val(rslt)
   -- v.Rgstr.__('a', rslt)
+
+  v.Load_re()
 end
 
--- ruff slf
+-- cmd ruff slf
 
 function v.Sys.ruff_by_slf()
 
