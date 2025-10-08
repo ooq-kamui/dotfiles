@@ -67,14 +67,26 @@ end
 
 function v.Env.is__(env) -- alias
 
-  local ret = ( vf.has(env) == 1 )
+  local ret = ( vf.has(env) == 1 ) -- refactoring, rpl can ?
   return ret
+end
+
+function v.Env.is__in(env_tbl)
+
+  for idx, env in pairs(env_tbl) do
+    if v.Env.is__(env) then
+      return bl.t
+    end
+  end
+  return bl.f
 end
 
 function v.Env.is__nvim()
 
-  local ret = ( vf.has('nvim') == 1 )
-  v.Log.val('nvim : ', ret)
-  return ret
+  return v.Env.is__('nvim')
+
+  -- local ret = ( vf.has('nvim') == 1 )
+  -- v.Log.val('nvim : ', ret)
+  -- return ret
 end
 

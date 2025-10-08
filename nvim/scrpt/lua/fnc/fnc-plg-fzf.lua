@@ -45,6 +45,17 @@ function v.Fzf.file()
   v.Fzf.by_txt(fzf_src_txt, fnc_name)
 end
 
+function v.Fzf.file_by_git_status()
+
+  -- dev anchor
+
+  local sys_cmd = 'git_status_file_lst'
+  local fzf_src_txt  = v.Sys.cmd(sys_cmd)
+
+  local fnc_name = v.Buf.opn
+  v.Fzf.by_txt(fzf_src_txt, fnc_name)
+end
+
 -- fzf rg
 
 function v.Fzf.rg(ptn, ext, word1) -- alias
@@ -276,7 +287,7 @@ end
 
 -- fzf doc-tech
 
-g.doc_tech_md_dir = 'wrk/prj-pri/doc-tech/docs/md'
+v.Fzf.doc_tech_md_dir = 'wrk/prj-pri/doc-tech/docs/md'
 
 function v.Fzf.doc_tech()
 
@@ -284,23 +295,22 @@ function v.Fzf.doc_tech()
   local opt  = ' -v'
   opt = opt .. ' --no-heading'
   -- opt = opt .. ' --line-number'
-  local sys_cmd_rg = "rg" .. opt .. " '" .. ptn .. "' ~/" .. g.doc_tech_md_dir
+  local sys_cmd_rg = "rg" .. opt .. " '" .. ptn .. "' ~/" .. v.Fzf.doc_tech_md_dir
   -- v.Log.val(sys_cmd)
 
-  local sys_cmd_sed = 'sed "s|^.*' .. g.doc_tech_md_dir .. '/||g"'
+  local sys_cmd_sed = 'sed "s|^.*' .. v.Fzf.doc_tech_md_dir .. '/||g"'
 
   local sys_cmd = sys_cmd_rg .. ' | ' .. sys_cmd_sed
 
   local fzf_src_txt = v.Sys.cmd(sys_cmd)
 
-  -- local fnc_name = 'Doc_tech_tag_jmp'
-  local fnc_name = v.Doc_tech_tag_jmp
+  local fnc_name = v.Fzf.doc_tech_tag_jmp
   v.Fzf.by_txt(fzf_src_txt, fnc_name)
 end
 
-function v.Doc_tech_tag_jmp(str)
+function v.Fzf.doc_tech_tag_jmp(str)
 
-  local str = g.home_dir .. '/' .. g.doc_tech_md_dir .. '/' .. str
+  local str = g.home_dir .. '/' .. v.Fzf.doc_tech_md_dir .. '/' .. str
   -- v.Log.val(str)
   v.Buf.opn_by_path(str)
 end
@@ -326,7 +336,7 @@ end
 
 -- setting
 
-vim_cmd = [[
+v.Fzf.opt_vim_cmd = [[
 let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
 let g:fzf_action = {
 \  'ctrl-o': 'tab drop',
@@ -341,7 +351,7 @@ let g:fzf_colors = {
 \   'hl+'    : ['fg', 'Statement'  ],
 \ }
 ]]
-v.Cmd.cmd(vim_cmd)
+v.Cmd.cmd(v.Fzf.opt_vim_cmd)
 
 -- vim.g.fzf_preview_window = {
 --   'down:40%:hidden',
@@ -379,12 +389,13 @@ v.Cmd.cmd(vim_cmd)
 
 -- fzf var def ( in plugin ) end
 
-if v.Env.is__('mac') or v.Env.is__('linux') or v.Env.is__('win64') then
+-- if v.Env.is__('mac') or v.Env.is__('linux') or v.Env.is__('win64') then
+if v.Env.is__in({'mac', 'linux', 'win64'}) then
 
   if v.Env.is__('win64') then
-    g.fzf_rg_opt = g.fzf_rg_opt .. ' -g "!.git/"'
+    v.Rg.fzf_rg_opt = v.Rg.fzf_rg_opt .. ' -g "!.git/"' -- same else ?
   else
-    g.fzf_rg_opt = g.fzf_rg_opt .. ' -g "!.git/"'
+    v.Rg.fzf_rg_opt = v.Rg.fzf_rg_opt .. ' -g "!.git/"'
   end
 end
 

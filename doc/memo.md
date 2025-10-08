@@ -5,15 +5,27 @@
 ## nvim
 
 fzf git status
-- c-u
+- fish git_status_file_lst
+  - cre
+
+cmdline__fnc_call(fnc_name)
+- err
+
+v.Sys.sh_by_slctd_line()
+- confirm dialog ( neovim )
+  - view log
+  - use nui.nvim
 
 
 ## music
 
 mac ply-lst
-- lst cre
 - name tidy
-- zld bow relax
+- dl
+  - knight in nightmare
+- cre
+  - zld bow relax
+  - etc
 
 
 ## godot
@@ -37,11 +49,6 @@ gen2 try
 
 
 ## nvim
-
-v.Sys.sh_by_slctd_line()
-- confirm dialog ( neovim )
-  - view log
-  - use nui.nvim
 
 plg
 - blink.cmp

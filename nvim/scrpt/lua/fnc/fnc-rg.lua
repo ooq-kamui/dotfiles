@@ -23,7 +23,7 @@ function v.Rg.rslt_line_parse(line)
   return ret
 end
 
-g.fzf_rg_opt = ''
+v.Rg.fzf_rg_opt = ''
   .. ' --color=always'
   .. ' --line-number'
   .. ' --smart-case'
@@ -60,7 +60,7 @@ function v.Rg.cmd(ptn, ext, word1, opt)
   end
 
   local rg_cmd = 'rg '
-          .. g.fzf_rg_opt
+          .. v.Rg.fzf_rg_opt
           .. fzf_rg_opt_ext
           .. fzf_rg_opt_word1
           .. opt

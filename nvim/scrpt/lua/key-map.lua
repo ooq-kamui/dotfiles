@@ -852,6 +852,8 @@ keymap__('n', ':D', ':lua v.Dir.__nvim_launch()')
 -- cd parent
 keymap__('n', ':k', ':K')
 
+-- fzf etc
+
 -- fzf cd
 keymap__('n', '<leader>d', v.Fzf.dir)
 
@@ -866,6 +868,9 @@ keymap__('n', '<leader>t', v.Fzf.doc_tech)
 
 -- fzf doc memo
 -- keymap__('n', '<leader>xx', v.Fzf.doc_memo_opn)
+
+-- fzf git status
+keymap__('n', '<leader>u', v.Fzf.file_by_git_status)
 
 -- tab
 
@@ -1092,28 +1097,37 @@ keymap__('x', 'gt', '<esc>')
 keymap__('x', 'gy', '<esc>')
    
 keymap__('x', ':a', '<esc>')
+--             :
 keymap__('x', ':f', '<esc>')
-   --                    :
+--             :
 keymap__('x', ':m', '<esc>')
-   --                    :
+--             :
 keymap__('x', ':r', '<esc>')
-   --                    :
+--             :
 keymap__('x', ':t', '<esc>')
-   --                    :
+--             :
 keymap__('x', ':z', '<esc>')
 
-   -- leader esc
+-- leader esc
 
 keymap__('x', '<leader>:', '<esc>')
-   --                    :
+
+keymap__('x', '<leader>a', '<esc>')
+--                     :
 keymap__('x', '<leader>i', '<esc>')
-   --                    :
+--                     :
 keymap__('x', '<leader>k', '<esc>')
 keymap__('x', '<leader>l', '<esc>')
-   --                    :
+--                     :
 keymap__('x', '<leader>u', '<esc>')
-   --                    :
+--                     :
 keymap__('x', '<leader>y', '<esc>')
+keymap__('x', '<leader>z', '<esc>')
+keymap__('x', '<leader>A', '<esc>')
+--                     :
+keymap__('x', '<leader>I', '<esc>')
+--                     :
+keymap__('x', '<leader>Z', '<esc>')
 
 
 -- mode ch line
