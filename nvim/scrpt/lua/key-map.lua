@@ -870,7 +870,7 @@ keymap__('n', '<leader>t', v.Fzf.doc_tech)
 -- keymap__('n', '<leader>xx', v.Fzf.doc_memo_opn)
 
 -- fzf git status
-keymap__('n', '<leader>u', v.Fzf.file_by_git_status)
+keymap__('n', '<leader>u', v.Fzf.file_by_git_st)
 
 -- tab
 

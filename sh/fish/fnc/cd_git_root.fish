@@ -1,9 +1,9 @@
 function cd_git_root
 
-  set dir ( git rev-parse --show-cdup )
+  set pth_rel ( git_root_pth_rel )
 
-  if test -n $dir
-    cd $dir
+  if test -n $pth_rel
+    cd $pth_rel
   end
 
   pth

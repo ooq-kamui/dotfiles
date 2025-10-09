@@ -74,7 +74,7 @@ alias kk   'k;k'
 alias kkk  'k;k;k'
 alias kkkk 'k;k;k;k'
 alias kj   'cd_git_root'
-alias kf   'cd_git_root'
+# alias kf   'cd_git_root'
 
 alias f  'dir_jmp_with_zoxide'
 alias fo 'dir_jmp_with_zoxide dotfiles'
@@ -163,9 +163,10 @@ alias jsd 'git sd'
 alias jwl 'git wl'
 alias jwd 'git wd'
 
-alias git_root_pth_rel 'git rev-parse --show-cdup'
+alias ji-co-file-lst 'git_co_file_lst'
+
+# alias git_root_pth_rel 'git rev-parse --show-cdup'
 alias jrp 'git_root_pth_rel'
-# alias jf  'cd_git_root'
 
 alias pd   'podman'
 alias pl   'podman container ls -a'

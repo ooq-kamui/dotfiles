@@ -228,7 +228,7 @@ function v.Srch.str__h_swtch()
     'ps1',
   }
 
-  if     vim.bo.filetype == 'markdown' then
+  if     v.Buf.is_file_type__('markdown') then
     v.Srch.str__markdown_h()
 
   elseif v.Tbl.is_in(vim.bo.filetype, fnc_def_lang_lst) then
@@ -261,7 +261,7 @@ function v.Srch.str__fnc_def()
     v.Srch.str__ptn('^function')
 
   elseif vim.bo.filetype == 'python' then
-    v.Srch.str__ptn('^def')
+    v.Srch.str__ptn('^ *def')
 
   else
     v.Srch.str__ptn('^function')

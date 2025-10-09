@@ -13,7 +13,7 @@ g.nvim_lua_key_map_file_path   = g.nvim_lua_etc_dir .. '/key-map.lua'
 g.nvim_lua_fnc_basic_file_path = g.nvim_lua_fnc_dir .. '/fnc-basic.lua'
 g.nvim_lua_plg_fzf_file_path   = g.nvim_lua_fnc_dir .. '/fnc-plg-fzf.lua'
 
--- buf opn
+-- buf
 
 function v.Buf.num()
 
@@ -49,6 +49,14 @@ function v.Buf.opn_init_vim()
 
   -- v.Buf.opn(g.nvim_lua_fnc_basic_file_path)
   v.Buf.opn(g.nvim_lua_key_map_file_path)
+end
+
+function v.Buf.opn_by_git_st_file_pth(git_st_file_pth)
+
+  local git_root_dir = v.Dir.git_root()
+  local file_path = git_root_dir .. git_st_file_pth
+  -- v.Log.val(file_path)
+  v.Buf.opn(file_path)
 end
 
 function v.Buf.opn_init_vim_l()

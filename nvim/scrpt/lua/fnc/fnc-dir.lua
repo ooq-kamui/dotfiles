@@ -51,10 +51,17 @@ function v.Dir.__nvim_launch()
   v.Dir.__(dir)
 end
 
-function v.Dir.__git_root()
+function v.Dir.git_root()
 
   local sys_cmd = 'git rev-parse --show-cdup'
-  local dir     = v.Sys.cmd(sys_cmd)
+  local git_root_dir = v.Sys.cmd(sys_cmd)
+  git_root_dir = v.Str.trim(git_root_dir)
+  return git_root_dir
+end
+
+function v.Dir.__git_root()
+
+  local dir = v.Dir.git_root()
   v.Dir.__(dir)
 end
 

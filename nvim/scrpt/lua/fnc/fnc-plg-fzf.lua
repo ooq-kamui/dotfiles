@@ -45,14 +45,14 @@ function v.Fzf.file()
   v.Fzf.by_txt(fzf_src_txt, fnc_name)
 end
 
-function v.Fzf.file_by_git_status()
+function v.Fzf.file_by_git_st()
 
   -- dev anchor
 
-  local sys_cmd = 'git_status_file_lst'
+  local sys_cmd = 'git_st_file_lst'
   local fzf_src_txt  = v.Sys.cmd(sys_cmd)
 
-  local fnc_name = v.Buf.opn
+  local fnc_name = v.Buf.opn_by_git_st_file_pth
   v.Fzf.by_txt(fzf_src_txt, fnc_name)
 end
 

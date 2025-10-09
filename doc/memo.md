@@ -4,12 +4,12 @@
 
 ## nvim
 
-fzf git status
-- fish git_status_file_lst
-  - cre
+fnc_buf.lua, global var, refactoring
+- var_name ch
 
 cmdline__fnc_call(fnc_name)
 - err
+  - `vf.feedkeys(':lua ')`
 
 v.Sys.sh_by_slctd_line()
 - confirm dialog ( neovim )
@@ -21,8 +21,7 @@ v.Sys.sh_by_slctd_line()
 
 mac ply-lst
 - name tidy
-- dl
-  - knight in nightmare
+  - fe kakusei
 - cre
   - zld bow relax
   - etc
