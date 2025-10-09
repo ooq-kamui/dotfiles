@@ -17,16 +17,6 @@ v.Sys.sh_by_slctd_line()
   - use nui.nvim
 
 
-## music
-
-mac ply-lst
-- name tidy
-  - fe kakusei
-- cre
-  - zld bow relax
-  - etc
-
-
 ## godot
 
 platformer
