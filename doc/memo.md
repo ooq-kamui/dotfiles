@@ -7,6 +7,7 @@
 fnc_buf.lua, global var, refactoring
 - var_name ch
 
+
 cmdline__fnc_call(fnc_name)
 - err
   - `vf.feedkeys(':lua ')`
