@@ -4,17 +4,6 @@
 v.Buf = {}
 -- v.Opn = v.Buf -- old
 
-g.nvim_lua_init_file_path      = g.nvim_lua_dir     .. '/init.lua'
-g.nvim_lua_opt_file_path       = g.nvim_lua_etc_dir .. '/opt.lua'
-g.nvim_lua_cmd_file_path       = g.nvim_lua_etc_dir .. '/cmd-usr.lua'
-g.nvim_lua_hl_file_path        = g.nvim_lua_etc_dir .. '/hl.lua'
-g.nvim_lua_key_map_file_path   = g.nvim_lua_etc_dir .. '/key-map.lua'
-
-g.nvim_lua_fnc_basic_file_path = g.nvim_lua_fnc_dir .. '/fnc-basic.lua'
-g.nvim_lua_plg_fzf_file_path   = g.nvim_lua_fnc_dir .. '/fnc-plg-fzf.lua'
-
--- buf
-
 function v.Buf.num()
 
   return vf.bufnr('%')
@@ -47,8 +36,8 @@ end
 
 function v.Buf.opn_init_vim()
 
-  -- v.Buf.opn(g.nvim_lua_fnc_basic_file_path)
-  v.Buf.opn(g.nvim_lua_key_map_file_path)
+  -- v.Buf.opn(v.Dir.c.nvim_lua_fnc_basic_file_path)
+  v.Buf.opn(v.Dir.c.nvim_lua_key_map_file_path)
 end
 
 function v.Buf.opn_by_git_st_file_pth(git_st_file_pth)
@@ -61,14 +50,14 @@ end
 
 function v.Buf.opn_init_vim_l()
 
-  v.Buf.opn(g.nvim_lua_opt_file_path     )
-  v.Buf.opn(g.nvim_lua_cmd_file_path     )
+  v.Buf.opn(v.Dir.c.nvim_lua_opt_file_path     )
+  v.Buf.opn(v.Dir.c.nvim_lua_cmd_file_path     )
 
-  v.Buf.opn(g.nvim_lua_init_file_path    )
+  v.Buf.opn(v.Dir.c.nvim_lua_init_file_path    )
 
-  v.Buf.opn(g.nvim_lua_hl_file_path      )
+  v.Buf.opn(v.Dir.c.nvim_lua_hl_file_path      )
 
-  v.Buf.opn(g.nvim_lua_plg_fzf_file_path )
+  v.Buf.opn(v.Dir.c.nvim_lua_plg_fzf_file_path )
 end
 
 function v.Buf.opn_fish_cnf()
@@ -96,7 +85,7 @@ function v.Buf.opn_memo()
   local srch_idx = v.Str.srch_idx(git_root_dir, 'fatal:')
   -- v.Log.val(srch_idx)
   if srch_idx == 1 then
-    git_root_dir = g.dotfiles_dir .. '/'
+    git_root_dir = v.Dir.c.dotfiles_dir .. '/'
   end
   -- v.Log.val(git_root_dir)
 

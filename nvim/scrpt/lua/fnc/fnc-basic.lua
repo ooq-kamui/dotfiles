@@ -9,17 +9,9 @@ g.dots_str     = ' .. '
 g.dots_str_ptn = ' %.%. '
 g.dots_put_col = 50
 
-g.home_dir         = vf.expand('$HOME')
-g.dotfiles_dir     = g.home_dir      .. '/wrk/prj-pri/dotfiles'
-g.nvim_init_dir    = g.dotfiles_dir  .. '/nvim/scrpt'
-
-g.nvim_lua_dir     = g.nvim_init_dir .. '/lua'
-g.nvim_lua_fnc_dir = g.nvim_lua_dir  .. '/fnc'
-g.nvim_lua_etc_dir = g.nvim_lua_dir  .. ''
-
+require('fnc/fnc-dir'   )
 require('fnc/fnc-env'   )
 require('fnc/fnc-cmd'   )
-require('fnc/fnc-dir'   )
 require('fnc/fnc-line'  )
 require('fnc/fnc-mode'  )
 require('fnc/fnc-rgstr' )

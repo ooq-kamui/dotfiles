@@ -245,7 +245,7 @@ vim.opt.swapfile = bl.f
 -- undo
 if vf.has('persistent_undo') == 1 then
 
-  vim.opt.undodir = g.home_dir .. '/.vim-undo'
+  vim.opt.undodir = v.Dir.c.home_dir .. '/.vim-undo'
   vim.opt.undofile = bl.t
 end
 

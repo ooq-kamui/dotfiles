@@ -278,7 +278,7 @@ end
 
 function v.Fzf.fnc_call()
 
-  local sys_cmd = 'rg --no-heading --no-filename --no-line-number "^function " --replace= ' .. g.nvim_lua_fnc_dir
+  local sys_cmd = 'rg --no-heading --no-filename --no-line-number "^function " --replace= ' .. v.Dir.c.nvim_lua_fnc_dir
   local fzf_src_txt  = v.Sys.cmd(sys_cmd)
 
   local fnc_name = v.Cmd.cmdline__fnc_call
@@ -310,7 +310,7 @@ end
 
 function v.Fzf.doc_tech_tag_jmp(str)
 
-  local str = g.home_dir .. '/' .. v.Fzf.doc_tech_md_dir .. '/' .. str
+  local str = v.Dir.c.home_dir .. '/' .. v.Fzf.doc_tech_md_dir .. '/' .. str
   -- v.Log.val(str)
   v.Buf.opn_by_path(str)
 end

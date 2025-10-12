@@ -4,7 +4,7 @@ v.Env = {}
 v.Env.c = {}
 v.Env.c.name  = nil
 
-g.nvim_lua_env_dir = g.nvim_lua_dir  .. '/env'
+g.nvim_lua_env_dir = v.Dir.c.nvim_lua_dir  .. '/env'
 
 function v.Env.name()
 

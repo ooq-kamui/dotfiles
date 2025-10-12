@@ -485,7 +485,7 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "international3",
+                                    "key_code": "slash",
                                     "modifiers": {
                                         "mandatory": ["fn"],
                                         "optional": ["any"]
@@ -662,7 +662,7 @@
                         ]
                     },
                     {
-                        "description": "shift underscore __ tatebou",
+                        "description": "underscore shift __ plus",
                         "manipulators": [
                             {
                                 "from": {
@@ -671,7 +671,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "international3",
+                                        "key_code": "semicolon",
                                         "modifiers": ["shift"]
                                     }
                                 ],
@@ -715,7 +715,7 @@
                 },
                 {
                     "from": { "key_code": "0" },
-                    "to": [{ "key_code": "international3" }]
+                    "to": [{ "key_code": "slash" }]
                 },
                 {
                     "from": { "key_code": "8" },
@@ -723,7 +723,7 @@
                 },
                 {
                     "from": { "key_code": "9" },
-                    "to": [{ "key_code": "slash" }]
+                    "to": [{ "key_code": "international3" }]
                 },
                 {
                     "from": { "key_code": "backslash" },

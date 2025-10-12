@@ -1,6 +1,27 @@
 
 v.Dir = {}
 
+v.Dir.c = {}
+
+v.Dir.c.home_dir         = vf.expand('$HOME')
+v.Dir.c.dotfiles_dir     = v.Dir.c.home_dir      .. '/wrk/prj-pri/dotfiles'
+v.Dir.c.nvim_init_dir    = v.Dir.c.dotfiles_dir  .. '/nvim/scrpt'
+
+v.Dir.c.nvim_lua_dir     = v.Dir.c.nvim_init_dir .. '/lua'
+v.Dir.c.nvim_lua_fnc_dir = v.Dir.c.nvim_lua_dir  .. '/fnc'
+v.Dir.c.nvim_lua_etc_dir = v.Dir.c.nvim_lua_dir  .. ''
+
+
+v.Dir.c.nvim_lua_init_file_path      = v.Dir.c.nvim_lua_dir     .. '/init.lua'
+v.Dir.c.nvim_lua_opt_file_path       = v.Dir.c.nvim_lua_etc_dir .. '/opt.lua'
+v.Dir.c.nvim_lua_cmd_file_path       = v.Dir.c.nvim_lua_etc_dir .. '/cmd-usr.lua'
+v.Dir.c.nvim_lua_hl_file_path        = v.Dir.c.nvim_lua_etc_dir .. '/hl.lua'
+v.Dir.c.nvim_lua_key_map_file_path   = v.Dir.c.nvim_lua_etc_dir .. '/key-map.lua'
+
+v.Dir.c.nvim_lua_fnc_basic_file_path = v.Dir.c.nvim_lua_fnc_dir .. '/fnc-basic.lua'
+v.Dir.c.nvim_lua_plg_fzf_file_path   = v.Dir.c.nvim_lua_fnc_dir .. '/fnc-plg-fzf.lua'
+
+
 function v.Dir.pth()
 
   v.Cmd.cmd('pwd')

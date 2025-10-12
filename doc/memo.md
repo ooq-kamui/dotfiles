@@ -4,13 +4,16 @@
 
 ## nvim
 
-fnc_buf.lua, global var, refactoring
-- var_name ch
+v M : expnd f srch h1
+
+v <c-f> : expnd f swtch
+- word end
 
 
 cmdline__fnc_call(fnc_name)
 - err
   - `vf.feedkeys(':lua ')`
+    - confirm
 
 v.Sys.sh_by_slctd_line()
 - confirm dialog ( neovim )

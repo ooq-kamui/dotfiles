@@ -3,9 +3,9 @@ v.Plg = {}
 
 function v.Plg.vim_plg_path()
 
-  local vim_plg_dir_linux = g.home_dir .. '/.local/share/nvim/site'
+  local vim_plg_dir_linux = v.Dir.c.home_dir .. '/.local/share/nvim/site'
   local vim_plg_dir_mac   = vim_plg_dir_linux
-  local vim_plg_dir_win   = g.home_dir .. '/AppData/Local/nvim-data/site'
+  local vim_plg_dir_win   = v.Dir.c.home_dir .. '/AppData/Local/nvim-data/site'
 
   local vim_plg_dir = vim_plg_dir_linux -- dflt
 
