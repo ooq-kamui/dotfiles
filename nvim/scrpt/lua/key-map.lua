@@ -1163,10 +1163,10 @@ keymap__('x', '<c-o>', 'h')
 keymap__('x', '<c-y>', v.Slctd.cursor__mv_line_end)
 
 -- slctd str r __ reduce dlm
-keymap__('x', 'h', ':lua v.Slctd.str__reduce_dlm_r("_")<cr>')
+keymap__('x', 'h'    , ':lua v.Slctd.str__reduce_dlm_r("_")<cr>')
 
 -- slctd str l __ reduce dlm
-keymap__('x', '<c-h>'    , ':lua v.Slctd.str__reduce_dlm_l("_")<cr>')
+keymap__('x', '<c-h>', ':lua v.Slctd.str__reduce_dlm_l("_")<cr>')
 
 -- cursor mv space forward ( word pre )
 -- keymap__('x', 'xx', 'wh')

@@ -2,18 +2,9 @@
 # dotfiles
 
 
-## godot
-
-platformer
-- tutorial
-
-game cre
-- prj cre
-- map cre
-- chara cre
-
-
 ## nvim
+
+v m case : line or word
 
 v.Slctd.is_str__srch_str()
 - word1 > flat
@@ -28,6 +19,17 @@ v.Sys.sh_by_slctd_line()
 - confirm dialog ( neovim )
   - view log
   - use nui.nvim
+
+
+## godot
+
+platformer
+- tutorial
+
+game cre
+- prj cre
+- map cre
+- chara cre
 
 
 ## aws
