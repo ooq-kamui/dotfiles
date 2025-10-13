@@ -251,7 +251,7 @@ end
 
 -- slctd str __ expnd
 
-function v.Slctd.str__expnd_f() -- range
+function v.Slctd.str__expnd_f_swtch() -- range
 
   v.Slctd.__ltst()
 
@@ -271,14 +271,12 @@ end
 function v.Slctd.str__expnd_word_f() -- range
 
   v.Slctd.__ltst()
-
   v.Cmd.nml('e')
 end
 
 function v.Slctd.str__expnd_space_f() -- range
 
   v.Slctd.__ltst()
-
   v.Cmd.nml('wh')
 end
 
@@ -317,11 +315,9 @@ function v.Slctd.str__expnd_edge_out() -- range
   v.Slctd.cursor__mv_edge_tgl()
 end
 
--- slctd __ expnd char set lst
+-- slctd __ expnd char pair lst
 
--- dev anchor
-
-v.Slctd.str_expnd_char_lst = {
+v.Slctd.str_expnd_char_pair_lst = {
   {'(', ')'},
   {'{', '}'},
   {"'", "'"},
@@ -331,19 +327,17 @@ v.Slctd.str_expnd_char_lst = {
 
 function v.Slctd.str_expnd__init()
 
-  v.Slctd.str_expnd_char_lst_l = {}
-  v.Slctd.str_expnd_char_lst_r = {}
+  v.Slctd.str_expnd_char_pair_lst_l = {}
+  v.Slctd.str_expnd_char_pair_lst_r = {}
 
-  for _idx, _pari in pairs(v.Slctd.str_expnd_char_lst) do
+  for _idx, _pari in pairs(v.Slctd.str_expnd_char_pair_lst) do
 
-    v.Tbl.add(v.Slctd.str_expnd_char_lst_l, _pari[1])
-    v.Tbl.add(v.Slctd.str_expnd_char_lst_r, _pari[2])
+    v.Tbl.add(v.Slctd.str_expnd_char_pair_lst_l, _pari[1])
+    v.Tbl.add(v.Slctd.str_expnd_char_pair_lst_r, _pari[2])
   end
 
-  v.Slctd.str_expnd_char_ptn_l = '[' .. v.Tbl.join(v.Slctd.str_expnd_char_lst_l) .. ']'
-  v.Slctd.str_expnd_char_ptn_r = '[' .. v.Tbl.join(v.Slctd.str_expnd_char_lst_r) .. ']'
-  -- v.Log.val(v.Slctd.str_expnd_char_ptn_l)
-  -- v.Log.val(v.Slctd.str_expnd_char_ptn_r)
+  v.Slctd.str_expnd_char_ptn_l = '[' .. v.Tbl.join(v.Slctd.str_expnd_char_pair_lst_l) .. ']'
+  v.Slctd.str_expnd_char_ptn_r = '[' .. v.Tbl.join(v.Slctd.str_expnd_char_pair_lst_r) .. ']'
 end
 v.Slctd.str_expnd__init()
 
@@ -353,41 +347,43 @@ function v.Slctd.str__expnd_char_pair() -- range
 
   local char_r_i = v.Slctd.str_edge_r_char()
   local char_l_i = v.Slctd.str_edge_l_char()
+
   local char_r_o = v.Slctd.str_edge_r_out_char()
   local char_l_o = v.Slctd.str_edge_l_out_char()
 
-  -- chk slctd lr on, already
   local expnd_char_idx
-  expnd_char_idx = v.Tbl.idx(v.Slctd.str_expnd_char_lst_r, char_r_i)
+  expnd_char_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_r, char_r_i)
   if expnd_char_idx then
-    if char_l_i == v.Slctd.str_expnd_char_lst_l[expnd_char_idx] then
+    if char_l_i == v.Slctd.str_expnd_char_pair_lst_l[expnd_char_idx] then
       return
     end
   end
 
-  -- chk slctd r in ( out match )
-  expnd_char_idx = v.Tbl.idx(v.Slctd.str_expnd_char_lst_r, char_r_o)
+  expnd_char_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_r, char_r_o)
 
   if expnd_char_idx then
 
-    -- chk slctd l in ( out match )
-    if char_l_o == v.Slctd.str_expnd_char_lst_l[expnd_char_idx] then
-      -- expnd on ( expnd lr out char )
+    if char_l_o == v.Slctd.str_expnd_char_pair_lst_l[expnd_char_idx] then
       v.Slctd.str__expnd_edge_out()
       return
     else
-      -- expnd l in
       v.Slctd.str__expnd_ptn_b(v.Slctd.str_expnd_char_ptn_l)
       v.Cmd.nml('l')
       return
     end
   end
 
-  -- expnd r in
   v.Slctd.str__expnd_ptn_f(v.Slctd.str_expnd_char_ptn_r)
   v.Cmd.nml('h')
 end
 
+function v.Slctd.str__expnd_h() -- range
+
+  v.Slctd.__ltst()
+
+  v.Srch.str__h_swtch()
+  v.Slctd.str__expnd_srch()
+end
 
 -- slctd str __ reduce
 
@@ -817,6 +813,9 @@ end
 -- slctd str cnd
 
 function v.Slctd.is_str__srch_str()
+
+  -- v.Log.log(v.Slctd.str()   )
+  -- v.Log.log(v.Rgstr.get('/'))
 
   if v.Slctd.str() == v.Rgstr.get('/') then
     return bl.t
@@ -1372,8 +1371,16 @@ function v.Slctd.srch__swtch() -- srch, set or run
   if v.Slctd.is_str__line_mlt() then
 
     v.Slctd.str__expnd_srch()
+
   else
-    v.Srch.str__slctd_str()
+    if v.Slctd.is_str__srch_str() then
+
+      v.Slctd.__cancel()
+      v.Srch.srch_7_slctd__srch_nxt("f")
+    else
+      v.Slctd.str__expnd_srch()
+    end
+    -- v.Srch.str__slctd_str()
   end
 end
 

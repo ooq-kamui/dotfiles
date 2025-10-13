@@ -2,12 +2,21 @@
 # dotfiles
 
 
+## godot
+
+platformer
+- tutorial
+
+game cre
+- prj cre
+- map cre
+- chara cre
+
+
 ## nvim
 
-v M : expnd f srch h1
-
-v <c-f> : expnd f swtch
-- word end
+v.Slctd.is_str__srch_str()
+- word1 > flat
 
 
 cmdline__fnc_call(fnc_name)
@@ -19,17 +28,6 @@ v.Sys.sh_by_slctd_line()
 - confirm dialog ( neovim )
   - view log
   - use nui.nvim
-
-
-## godot
-
-platformer
-- tutorial
-
-game cre
-- prj cre
-- map cre
-- chara cre
 
 
 ## aws

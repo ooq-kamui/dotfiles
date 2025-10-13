@@ -1200,10 +1200,14 @@ keymap__('x', 'gj', ':lua v.Slctd.cursor__mv_file_edge("j")<cr>')
 -- keymap__('x', 'xx', v.Slctd.str__expnd)
 
 -- slctd expnd srch
-keymap__('x', 'N', v.Slctd.str__expnd_srch)
+keymap__('x', 'N', ':lua v.Srch.str__slctd_str()<cr>')
+-- keymap__('x', 'N', v.Slctd.str__expnd_srch)
+
+-- slctd expnd forward swtch
+keymap__('x', 'f', ':lua v.Slctd.str__expnd_f_swtch()<cr>')
 
 -- slctd expnd word forward
-keymap__('x', 'f', v.Slctd.str__expnd_f)
+keymap__('x', '<c-f>', ':lua v.Slctd.str__expnd_word_f()<cr>')
 
 -- slctd expnd char pair
 keymap__('x', '<c-i>', v.Slctd.str__expnd_char_pair)
@@ -1342,8 +1346,6 @@ keymap__('x', 'W', v.Slctd.str_edge_out_char__type_ch)
 
 -- slctd str edge out __ ins space
 keymap__('x', 'O'    , v.Slctd.str_edge_out__ins_space)
--- keymap__('x', '<c-f>', v.Slctd.str_edge_out__ins_space)
--- keymap__('x', '.'    , v.Slctd.str_edge_out__ins_space)
 
 -- slctd str edge out __ ins markdown strikethrough
 keymap__('x', '~', v.Slctd.str_edge_out__ins_markdown_strikethrough)
@@ -1407,21 +1409,12 @@ keymap__('x', 'U', 'Ugv')
 -- str mb
 -- keymap__('x', 'xx', v.Slctd.line_mb__cnv)
 
--- 
 -- srch
--- 
 
 -- srch cmd
 -- keymap__('x', '<leader>k', '"zy/<c-r>z')
 
--- srch forward ( srch rpl skip )
-keymap__('x', '<c-n>', ':lua v.Srch.srch_7_slctd__srch_nxt("f")<cr>')
-
--- srch back
--- keymap__('x', 'xx', ':lua v.Srch.srch_7_slctd__srch_nxt('b')<cr>')
-
 -- srch str set
-keymap__('x', 'n', v.Slctd.srch__swtch)
 keymap__('x', 'e', function()
   if v.Mode.is__box() then
     return '<esc>'
@@ -1430,11 +1423,22 @@ keymap__('x', 'e', function()
   end
 end, {expr = bl.t})
 
+-- srch swtch
+keymap__('x', 'n', v.Slctd.srch__swtch)
+
+-- srch forward ( srch rpl skip )
+-- keymap__('x', '<c-n>', ':lua v.Srch.srch_7_slctd__srch_nxt("f")<cr>')
+keymap__('x', '<c-n>', ':lua v.Srch.srch_7_slctd__srch_nxt("b")<cr>')
+
+-- srch back
+-- keymap__('x', 'xx', ':lua v.Srch.srch_7_slctd__srch_nxt('b')<cr>')
+
 -- srch rpl one > ynk, nxt
 keymap__('x', '<c-p>', v.Slctd.__rpl_7_srch_nxt)
 
--- srch markdown h
--- keymap__('x', 'M', v.Srch.str__h_swtch)
+-- srch h swtch
+keymap__('x', 'M', v.Srch.str__h_swtch)
+-- keymap__('x', 'M', v.Slctd.str__expnd_h)
 
 -- rpl ( cmd )
 keymap__('x', ':s', function()
