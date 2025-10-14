@@ -1378,7 +1378,8 @@ function v.Slctd.srch__swtch() -- srch, set or run
       v.Slctd.__cancel()
       v.Srch.srch_7_slctd__srch_nxt("f")
     else
-      v.Slctd.str__expnd_srch()
+      v.Srch.str__slctd_str()
+      -- v.Slctd.str__expnd_srch()
     end
     -- v.Srch.str__slctd_str()
   end

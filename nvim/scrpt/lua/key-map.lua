@@ -440,7 +440,8 @@ keymap__('n', '<c-w>', v.Cursor.__mv_block_out_swtch)
 -- keymap__('n', 'xx', '[m')
 
 -- cursor mv bracket out back
-keymap__('n', '\\', '[{')
+keymap__('n', '<c-r>', '[{')
+-- keymap__('n', '\\', '[{')
 
 -- cursor mv indnt auto
 -- keymap__('n', 'xx', v.Cursor__mv_indnt_auto) -- todo dev
@@ -497,8 +498,8 @@ keymap__('n', 'v', '<c-v>')
 -- keymap__('n', 'xx', v.Rgstr.ynk__line_all)
 
 -- slct re
-keymap__('n', '<c-r>', v.Slctd.__ltst)
 keymap__('n', 'R', v.Slctd.__ltst)
+-- keymap__('n', '<c-r>', v.Slctd.__ltst)
 
 -- ynk clr
 keymap__('n', '<c-c>', v.Rgstr.ynk__clr)
@@ -1424,7 +1425,8 @@ keymap__('x', 'e', function()
 end, {expr = bl.t})
 
 -- srch swtch
-keymap__('x', 'n', v.Slctd.srch__swtch)
+keymap__('x', 'n', ':lua v.Slctd.srch__swtch()<cr>')
+-- keymap__('x', 'n', v.Slctd.srch__swtch)
 
 -- srch forward ( srch rpl skip )
 -- keymap__('x', '<c-n>', ':lua v.Srch.srch_7_slctd__srch_nxt("f")<cr>')
