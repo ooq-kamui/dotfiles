@@ -4,8 +4,6 @@
 
 ## nvim
 
-v m case : line or word
-
 v.Slctd.is_str__srch_str()
 - word1 > flat
 
