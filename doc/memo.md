@@ -15,7 +15,8 @@ Mb cre
 
 basic
 - global var
-- fnc
+- fnc, cls
+  - esc
 
 cmdline__fnc_call(fnc_name)
 - err
