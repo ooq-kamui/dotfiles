@@ -172,6 +172,15 @@ function kk   { k;k     }
 function kkk  { k;k;k   }
 function kkkk { k;k;k;k }
 
+function kj {
+
+  $dir = ( git rev-parse --show-cdup )
+
+  if ($dir -ne ''){
+    cd $dir
+  }
+}
+
 function touch {
   param( $path )
 
