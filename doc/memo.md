@@ -2,6 +2,12 @@
 # dotfiles
 
 
+## pwsh
+
+fo
+fl
+
+
 ## nvim
 
 Mb cre
