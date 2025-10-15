@@ -4,8 +4,7 @@
 
 ## pwsh
 
-fo
-fl
+kj
 
 
 ## nvim
