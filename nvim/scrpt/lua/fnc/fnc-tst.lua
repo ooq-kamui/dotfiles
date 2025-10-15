@@ -6,8 +6,10 @@ v.Tst = {}
 function v.Tst.tst()
   v.Log.val('fnc tst')
 
-  local val = vf.screencol()
-  v.Log.val(val)
+  v.Slctd.is_str__srch_str()
+
+  -- local val = vf.screencol()
+  -- v.Log.val(val)
 
   -- local str = 'abcdefg'
   -- local ptn = 'b'

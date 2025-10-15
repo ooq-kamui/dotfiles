@@ -144,9 +144,9 @@ end
 
 -- str __ rpl
 
-function v.Str.__rpl(str, srch, rpl) -- alias
+function v.Str.__rpl(str, ptn, rpl) -- alias
 
-  local r_str = vf.substitute(str, srch, rpl, 'g')
+  local r_str = vf.substitute(str, ptn, rpl, 'g')
   return r_str
 end
 

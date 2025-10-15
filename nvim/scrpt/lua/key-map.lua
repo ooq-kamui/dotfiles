@@ -973,7 +973,8 @@ keymap__('n', '<kPageUp>'  , '9')
 
 -- tst
 
-keymap__('n', ':t', v.Tst.tst)
+keymap__('n', ':z', v.Tst.tst)
+-- keymap__('n', ':t', v.Tst.tst)
 
 
 -- mode visual
@@ -1393,7 +1394,7 @@ keymap__('x', ':e', ':lua v.Slctd.line_indnt__space(2)')
 -- keymap__('x', 'xx', ':lua v.Slctd.line_indnt__tab(2)<cr>')
 
 -- tidy tbl
-keymap__('x', ':t', v.Slctd.line__crct_tbl)
+keymap__('x', ':t', ':lua v.Slctd.line__crct_tbl()<cr>')
 
 -- line end ovr, pad __ space
 -- keymap__('x', 'xx', v.Slctd.line_end__pad_space)
@@ -1517,6 +1518,9 @@ keymap__('x', 'r', v.Sys.trns_by_slctd_str)
 
 -- cmd history ( fzf )
 -- keymap__('x', '<leader>xx', ':FzfCmdHstry<cr>')
+
+-- tst
+keymap__('x', ':z', ':lua v.Tst.tst()<cr>')
 
 
 -- mode insert

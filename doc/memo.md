@@ -4,9 +4,13 @@
 
 ## nvim
 
-v.Slctd.is_str__srch_str()
-- word1 > flat
+Mb cre
+- cnv
+  - cre at nvim
 
+basic
+- global var
+- fnc
 
 cmdline__fnc_call(fnc_name)
 - err

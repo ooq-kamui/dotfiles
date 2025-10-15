@@ -30,13 +30,10 @@ require('fnc/fnc-jmplst')
 
 require('fnc/fnc-mark'  )
 
+require('fnc/fnc-mb'    )
+
 require('fnc/fnc-tst'   )
 
-
--- function v.Echo(str) -- alias -- old -- del
--- 
---   v.Log.val(str)
--- end
 
 -- vim
 
@@ -51,6 +48,7 @@ end
 -- repeat fnc
 
 function v.Repeat_fnc()
+
   v.Log.val('fnc repeat')
 
   -- v.Tst.tst()

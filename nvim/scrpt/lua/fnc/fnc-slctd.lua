@@ -814,10 +814,13 @@ end
 
 function v.Slctd.is_str__srch_str()
 
-  -- v.Log.log(v.Slctd.str()   )
-  -- v.Log.log(v.Rgstr.get('/'))
+  local srch_str = v.Rgstr.get('/')
+  -- v.Log.log(srch_str)
+  srch_str = v.Str.__rpl(srch_str, '\\\\<', '')
+  srch_str = v.Str.__rpl(srch_str, '\\\\>', '')
+  -- v.Log.log(srch_str)
 
-  if v.Slctd.str() == v.Rgstr.get('/') then
+  if v.Slctd.str() == srch_str then
     return bl.t
   else
     return bl.f

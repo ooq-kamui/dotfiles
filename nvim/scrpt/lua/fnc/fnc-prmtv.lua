@@ -2,8 +2,9 @@
 -- prmtv
 
 require('fnc/fnc-char')
-require('fnc/fnc-str')
-require('fnc/fnc-tbl')
+require('fnc/fnc-str' )
+require('fnc/fnc-mb'  )
+require('fnc/fnc-tbl' )
 
 -- idx
 
@@ -58,16 +59,12 @@ function v.Txt._to_ar(txt)
   return line_ar
 end
 
--- do nothing
-
 v.Do = {}
 
 function v.Do.nothing() -- use by tst
 
   -- v.Log.val( "do nothing.." )
 end
-
--- fr utl
 
 v.Num = {}
 
