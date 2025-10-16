@@ -2,33 +2,6 @@
 # dotfiles
 
 
-## pwsh
-
-kj
-
-
-## nvim
-
-Mb cre
-- cnv
-  - cre at nvim
-
-basic
-- global var
-- fnc, cls
-  - esc
-
-cmdline__fnc_call(fnc_name)
-- err
-  - `vf.feedkeys(':lua ')`
-    - confirm
-
-v.Sys.sh_by_slctd_line()
-- confirm dialog ( neovim )
-  - view log
-  - use nui.nvim
-
-
 ## godot
 
 platformer
@@ -50,6 +23,11 @@ gen2 try
 
 
 ## nvim
+
+v.Sys.sh_by_slctd_line()
+- confirm dialog ( neovim )
+  - view log
+  - use nui.nvim
 
 plg
 - blink.cmp

@@ -3,12 +3,6 @@
 
 require('fnc/fnc-log'   )
 
--- global
-
-g.dots_str     = ' .. '
-g.dots_str_ptn = ' %.%. '
-g.dots_put_col = 50
-
 require('fnc/fnc-dir'   )
 require('fnc/fnc-env'   )
 require('fnc/fnc-cmd'   )
@@ -35,35 +29,7 @@ require('fnc/fnc-mb'    )
 require('fnc/fnc-tst'   )
 
 
--- vim
-
--- vim basic
-
-function v.Esc() -- alias
-
-  -- v.Cmd.nml('\\<esc>')
-  v.Cmd.cmd('exe "normal! \\<esc>"')
-end
-
--- repeat fnc
-
-function v.Repeat_fnc()
-
-  v.Log.val('fnc repeat')
-
-  -- v.Tst.tst()
-
-  -- v.Cursor.__mv_by_srch_str('f')
-  -- v.Cursor.__mv_d()
-  -- v.Cursor.__ins_ynk()
-end
-
--- fnc end
-
-
--- 
 -- doc
--- 
 
 -- https://vim-jp.org/vimdoc-ja/vimindex.html
 -- 

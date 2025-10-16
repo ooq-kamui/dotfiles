@@ -1183,12 +1183,15 @@ function v.Cursor.line_top1__ins(str)
   v.Cursor.__ins(str)
 end
 
+v.Cnst.dots_str     = ' .. '
+v.Cnst.dots_str_ptn = ' %.%. '
+v.Cnst.dots_put_col = 50
+
 function v.Cursor.line_end__dots_adjst() -- todo dev, mb_str
 
   local line_str = v.Cursor.line_str()
 
-  -- local ptn = vf.escape(g.dots_str, '.')
-  local idx = v.Str.srch_idx_by_lua(line_str, g.dots_str_ptn)
+  local idx = v.Str.srch_idx_by_lua(line_str, v.Cnst.dots_str_ptn)
 
   if not idx then
     v.Cursor.line_end__ins_dots()
@@ -1201,8 +1204,7 @@ end
 function v.Cursor.line_end_dots__crct()
 
   local line_str = v.Cursor.line_str()
-  -- local ptn = vf.escape(g.dots_str, '.')
-  local idx = v.Str.srch_idx_by_lua(line_str, g.dots_str_ptn)
+  local idx = v.Str.srch_idx_by_lua(line_str, v.Cnst.dots_str_ptn)
 
   if not idx then
     return
@@ -1210,19 +1212,19 @@ function v.Cursor.line_end_dots__crct()
 
   idx = idx - 1 -- to idx 0 start
 
-  if idx == g.dots_put_col then
+  if idx == v.Cnst.dots_put_col then
     return
   end
 
   local line_str_0 = vf.strcharpart(line_str,     0, idx)
   local line_str_1 = vf.strcharpart(line_str, idx       )
 
-  if     idx < g.dots_put_col then
+  if     idx < v.Cnst.dots_put_col then
 
-    local space_str = v.Str.space(g.dots_put_col - idx)
+    local space_str = v.Str.space(v.Cnst.dots_put_col - idx)
     line_str = line_str_0 .. space_str .. line_str_1
   else
-    line_str_0 = vf.strcharpart(line_str_0, 0, g.dots_put_col)
+    line_str_0 = vf.strcharpart(line_str_0, 0, v.Cnst.dots_put_col)
     line_str = line_str_0 .. line_str_1
   end
 
@@ -1238,14 +1240,14 @@ function v.Cursor.line_end__ins_dots()
 
   local line_str_len = v.Cursor.line_str_len()
 
-  local space_len = g.dots_put_col - line_str_len
+  local space_len = v.Cnst.dots_put_col - line_str_len
   if space_len < 0 then
     space_len = 0
   end
 
   local space_str = v.Str.space(space_len)
 
-  line_str = line_str .. space_str .. g.dots_str
+  line_str = line_str .. space_str .. v.Cnst.dots_str
 
   vf.setline(line_num, line_str)
 end

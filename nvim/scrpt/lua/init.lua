@@ -1,12 +1,17 @@
 
 vf = vim.fn
+
 v = {}
+v.Cnst = {}
+
 g = {}
+
 bool = {
   t = true,
   f = false,
 }
 bl = bool -- alias
+
 
 require('fnc/fnc-prmtv')
 require('fnc/fnc-basic')

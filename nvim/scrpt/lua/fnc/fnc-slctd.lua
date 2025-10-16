@@ -7,7 +7,7 @@ v.Slctd.rng_dflt = "'<,'>"
 
 function v.Slctd.__cancel() -- range -- alias
 
-  v.Esc()
+  v.Cmd.esc()
 end
 
 function v.Slctd.__ltst() -- range
@@ -1054,7 +1054,7 @@ end
 function v.Slctd.line_end__ins_input() -- range
 
   -- if v.Mode.is__box() then
-  --   v.Esc()
+  --   v.Cmd.esc()
   -- end
 
   local line_s_num = v.Slctd.line_s_num()
@@ -1223,8 +1223,11 @@ end
 function v.Slctd.line_mb__cnv() -- range
 
   local sys_cmd = 'mb__cnv'
-
   v.Slctd.line__rpl_sys_cmd(sys_cmd)
+
+  -- dev anchor
+  -- local str = v.Slctd.str()
+  -- str = v.Mb.str__cnv(str)
 end
 
 function v.Slctd.is_line__mlt()

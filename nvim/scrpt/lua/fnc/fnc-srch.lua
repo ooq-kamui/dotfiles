@@ -196,8 +196,8 @@ function v.Srch._7_cursor__mv_srch_str_end_o() -- use not
 
   local drct = 'f'
   v.Srch.slct(drct)
-  v.Esc()
-  v.Esc() -- dpl ?
+  v.Cmd.esc()
+  v.Cmd.esc() -- dpl ?
   v.Cursor.__mv_char_f()
 end
 

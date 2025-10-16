@@ -542,8 +542,7 @@ keymap__('n', ':h', ':lua v.Buf.undo__clr()')
 -- keymap__('n', 'xx', '.')
 
 -- repeat fnc
-keymap__('n', '^', v.Repeat_fnc)
--- keymap__('n', '~', v.Repeat_fnc)
+keymap__('n', '^', v.Cmd._repeat)
 
 -- macro rec
 keymap__('n', '$', v.Mcr.rec, {expr = bl.t})
@@ -1409,7 +1408,7 @@ keymap__('x', 'U', 'Ugv')
 -- keymap__('x', 'xx', 'ugv')
 
 -- str mb
--- keymap__('x', 'xx', v.Slctd.line_mb__cnv)
+keymap__('x', ':mb', v.Slctd.line_mb__cnv)
 
 -- srch
 
@@ -1454,8 +1453,6 @@ end, {expr = bl.t})
 
 -- rpl srch_str to cr
 keymap__('x', '<c-m>', ':lua v.Slctd.line_srch_str__rpl_cr()<cr>')
--- keymap__('x', '<c-m>', v.Slctd.line_srch_str__rpl_cr)
--- keymap__('x', ':m'   , ':s/\\(<c-r>/\\)/\\1\\r/eg' )
 
 -- v box edge char shft in
 keymap__('x', '<c-h>', function()
@@ -1498,7 +1495,7 @@ keymap__('x', ':r', v.Sys.sh_by_slctd_line)
 
 -- sys cmd math by slctd line
 
-keymap__('x', ':m', v.Sys.math_by_slctd_line)
+keymap__('x', ':ma', v.Sys.math_by_slctd_line)
 
 -- sys cmd opn
 
