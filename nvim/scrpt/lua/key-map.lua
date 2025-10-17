@@ -805,7 +805,7 @@ keymap__('n', '<leader><c-o>', v.Fzf.rg_by_srch_str)
 keymap__('n', '<leader>O'    , v.Fzf.rg_word1_by_srch_str)
 
 -- fzf rg fltr ext
--- keymap__('n', '<leader>xx', ':FzfRgExt js')
+keymap__('n', ':F', ':FzfRgExt js')
 
 -- fzf rg with run
 -- keymap__('n', '<leader>xx', ':FzfRgWithRun <cr>')

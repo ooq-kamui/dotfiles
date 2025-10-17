@@ -163,7 +163,8 @@ alias jwl 'git wl'
 alias jwd 'git wd'
 
 alias jrp 'git_root_pth_rel'
-# alias ji-co-file-lst 'git_co_file_lst'
+alias ji-st-file-lst 'git_st_file_lst'
+alias ji-co-file-lst 'git_co_file_lst'
 
 alias pd   'podman'
 alias pl   'podman container ls -a'
