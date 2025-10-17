@@ -162,10 +162,8 @@ alias jsd 'git sd'
 alias jwl 'git wl'
 alias jwd 'git wd'
 
-alias ji-co-file-lst 'git_co_file_lst'
-
-# alias git_root_pth_rel 'git rev-parse --show-cdup'
 alias jrp 'git_root_pth_rel'
+# alias ji-co-file-lst 'git_co_file_lst'
 
 alias pd   'podman'
 alias pl   'podman container ls -a'
@@ -274,6 +272,7 @@ bind \cr fzf-history-widget
 # bind \cu fzf-history-widget
 
 bind \cu cmdline__fzf_git_st_file_lst
+bind \cq cmdline__fzf_git_co_file_lst
 
 # erase
 # bind -e \cu
