@@ -403,21 +403,21 @@ end
 
 vim.api.nvim_create_user_command('FzfRgExt',
   function(opts)
-    v.Fzf.rg_ext(table.unpack(opts.fargs))
+    v.Fzf.rg_ext(unpack(opts.fargs))
   end,
   {nargs = 1, bang = bl.t}
 )
 
 vim.api.nvim_create_user_command('FzfRgWithRun',
   function(opts)
-    v.Fzf.rg_with_run(table.unpack(opts.fargs))
+    v.Fzf.rg_with_run(unpack(opts.fargs))
   end,
   {nargs = '?'}
 )
 
 vim.api.nvim_create_user_command('FzfTagjmpByFile',
   function(opts)
-    v.Fzf.tag_jmp_by_file(table.unpack(opts.fargs))
+    v.Fzf.tag_jmp_by_file(unpack(opts.fargs))
   end,
   {nargs = '?'}
 )

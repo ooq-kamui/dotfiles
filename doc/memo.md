@@ -2,11 +2,6 @@
 # dotfiles
 
 
-## nvim
-
-FzfRgExt, err
-
-
 ## godot
 
 platformer

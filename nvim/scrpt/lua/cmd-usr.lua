@@ -60,7 +60,7 @@ vim.api.nvim_create_user_command('Mv',
 
 vim.api.nvim_create_user_command('SrchOr',
   function(opts)
-    v.Srch._or(table.unpack(opts.fargs))
+    v.Srch._or(unpack(opts.fargs))
   end,
   {nargs = '*'}
 )
