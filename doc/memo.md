@@ -2,13 +2,18 @@
 # dotfiles
 
 
+## nvim
+
+bracket out back
+- fnc cre
+
+
 ## godot
 
 platformer
 - tutorial
 
 game cre
-- prj cre
 - map cre
 - chara cre
 
