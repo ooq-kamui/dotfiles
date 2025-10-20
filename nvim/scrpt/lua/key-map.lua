@@ -611,7 +611,8 @@ keymap__('n', '<c-u>', function()
   if v.Buf.is_file_type__('markdown') then
     return ':lua v.Cursor.__ins_markdown_code()<cr>'
   else
-    return '[{'
+    -- return '[{'
+    return ''
   end
 end, {expr = bl.t})
 
