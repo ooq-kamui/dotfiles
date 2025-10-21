@@ -7,6 +7,8 @@
 bracket out back
 - fnc cre
 
+v K, case err
+
 
 ## godot
 

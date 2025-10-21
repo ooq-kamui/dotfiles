@@ -1328,7 +1328,8 @@ keymap__('x', 'm', ':lua v.Slctd.line_end_space__del()<cr>')
 -- keymap__('x', '<c-d>', 'D')
 
 -- slctd box __ del cursor f space
-keymap__('x', 'K', v.Slctd.box_cursor_r_space__crct)
+-- keymap__('x', 'K', v.Slctd.box_cursor_r_space__crct)
+keymap__('x', 'K', ':lu v.Slctd.box_cursor_r_space__crct()<cr>')
 
 -- slctd str edge out quote __ tgl
 keymap__('x', 'w', function()
