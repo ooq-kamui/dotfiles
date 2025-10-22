@@ -5,6 +5,7 @@
 ## nvim
 
 srch, back mark
+- or edit non, dev-mark
 
 
 ## browser
