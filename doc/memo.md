@@ -2,6 +2,11 @@
 # dotfiles
 
 
+## nvim
+
+srch, back mark
+
+
 ## browser
 
 try mac, commet zen dia
