@@ -440,8 +440,8 @@ keymap__('n', '<c-w>', v.Cursor.__mv_block_out_swtch)
 -- keymap__('n', 'xx', '[m')
 
 -- cursor mv bracket out back
-keymap__('n', '<c-r>', '[{')
--- keymap__('n', '\\', '[{')
+keymap__('n', '<c-r>', v.Cursor.__mv_bracket_out)
+-- keymap__('n', '<c-r>', '[{')
 
 -- cursor mv indnt auto
 -- keymap__('n', 'xx', v.Cursor__mv_indnt_auto) -- todo dev

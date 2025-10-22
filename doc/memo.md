@@ -2,10 +2,9 @@
 # dotfiles
 
 
-## nvim
+## browser
 
-bracket out back
-- fnc cre
+try mac, commet zen dia
 
 
 ## godot

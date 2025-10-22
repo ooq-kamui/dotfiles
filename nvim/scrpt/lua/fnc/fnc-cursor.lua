@@ -507,13 +507,11 @@ function v.Cursor.__mv_block_out_swtch()
     'java',
   }
 
-  if v.Buf.is_file_type__in({'markdown'}) then
+  if     v.Buf.is_file_type__in({'markdown'}) then
 
-    -- v.Cursor.__mv_by_ptn(v.Srch.ptn.markdown_h, 'b')
     v.Srch.str__ptn(v.Srch.ptn.markdown_h)
     v.Cursor.__mv_by_srch_str('b')
 
-  -- elseif bl.t then
   elseif v.Buf.is_file_type__in(bracket_file_type_list) then
     v.Cursor.__mv_bracket_out()
 
