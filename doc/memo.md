@@ -4,8 +4,11 @@
 
 ## nvim
 
-srch, back mark
-- or edit non, dev-mark
+v.Cmd.nml(cmd_nml)
+```
+  -- local cmd_nml = cursor_mv_line_step .. '\\<c-e>'
+  -- v.Cmd.nml(cmd_nml)
+```
 
 
 ## browser

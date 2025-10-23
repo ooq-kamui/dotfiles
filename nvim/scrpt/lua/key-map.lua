@@ -435,13 +435,13 @@ keymap__('n', '<c-l>', '%')
 
 -- cursor mv block out
 keymap__('n', '<c-w>', v.Cursor.__mv_block_out_swtch)
+keymap__('n', '<c-r>', v.Cursor.__mv_block_out_swtch)
 
 -- cursor mv fnc out back
 -- keymap__('n', 'xx', '[m')
 
 -- cursor mv bracket out back
-keymap__('n', '<c-r>', v.Cursor.__mv_bracket_out)
--- keymap__('n', '<c-r>', '[{')
+-- keymap__('n', '<c-r>', v.Cursor.__mv_bracket_out)
 
 -- cursor mv indnt auto
 -- keymap__('n', 'xx', v.Cursor__mv_indnt_auto) -- todo dev
@@ -499,7 +499,6 @@ keymap__('n', 'v', '<c-v>')
 
 -- slct re
 keymap__('n', 'R', v.Slctd.__ltst)
--- keymap__('n', '<c-r>', v.Slctd.__ltst)
 
 -- ynk clr
 keymap__('n', '<c-c>', v.Rgstr.ynk__clr)
@@ -604,6 +603,9 @@ keymap__('n', 'T', v.Cursor.__ins_tm)
 
 -- ins anchor
 keymap__('n', 'A', v.Cursor.__ins_line_anchor)
+
+-- ins anchor, del
+keymap__('n', 'S', v.Cursor.__ins_line_anchor_7_del)
 
 -- ins markdown code
 -- keymap__('n', '<c-u>', ':lua v.Cursor.__ins_markdown_code()<cr>')
@@ -750,8 +752,7 @@ keymap__('n', 'Q', ':lua v.Cursor.f_str__space_crct("d")<cr>')
 -- keymap__('n', 'xx', ';')
 
 -- srch by cmd forward
-keymap__('n', '<leader>k', 'mz/')
-keymap__('n', 'F'        , 'mz/')
+keymap__('n', '<leader>k'    , 'mz/')
 
 -- srch by cmd back
 keymap__('n', '<leader><c-k>', 'mz?')
@@ -847,7 +848,7 @@ keymap__('n', ':p', ':Pth <cr>')
 -- cd slf
 keymap__('n', ':d', ':lua v.Dir.__buf_file_dir()')
 
--- dev anchor
+-- cd __ nvim launch
 keymap__('n', ':D', ':lua v.Dir.__nvim_launch()')
 
 -- cd parent
@@ -934,8 +935,8 @@ keymap__('n', 'rn', v.Win.splt_cursor__mv_nxt)
 keymap__('n', 'x', 'mz')
 
 -- mark  -  cursor mv
-keymap__('n', 'H', '``')
--- keymap__('n', 'H', '`z')
+keymap__('n', 'rm', '``')
+-- keymap__('n', 'rm', '`z')
 
 keymap__('n', '<leader>m', ':FzfMark<cr>')
 

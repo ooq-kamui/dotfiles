@@ -3,6 +3,8 @@
 
 v.Cursor = {}
 
+v.Cursor.cnst = {}
+
 -- cursor pos
 
 function v.Cursor.pos() -- alias
@@ -302,24 +304,24 @@ function v.Cursor.__mv_v(drct)
   end
 end
 
-g.cursor_mv_line_step_dflt = 10
+v.Cursor.cnst.mv_line_step_dflt = 10
 
 function v.Cursor.__mv_mlt_u() -- alias
 
-  g.cursor_mv_line_step = g.cursor_mv_line_step_dflt
+  local cursor_mv_line_step = v.Cursor.cnst.mv_line_step_dflt
 
-  -- local cmd_nml = g.cursor_mv_line_step .. '\\<c-y>'
+  -- local cmd_nml = cursor_mv_line_step .. '\\<c-y>'
   -- v.Cmd.nml(cmd_nml)
-  v.Cmd.cmd('exe "normal! ' .. g.cursor_mv_line_step .. '\\<c-y>"')
+  v.Cmd.cmd('exe "normal! ' .. cursor_mv_line_step .. '\\<c-y>"')
 end
 
 function v.Cursor.__mv_mlt_d() -- alias
 
-  g.cursor_mv_line_step = g.cursor_mv_line_step_dflt
+  local cursor_mv_line_step = v.Cursor.cnst.mv_line_step_dflt
 
-  -- local cmd_nml = g.cursor_mv_line_step .. '\\<c-e>'
+  -- local cmd_nml = cursor_mv_line_step .. '\\<c-e>'
   -- v.Cmd.nml(cmd_nml)
-  v.Cmd.cmd('exe "normal! ' .. g.cursor_mv_line_step .. '\\<c-e>"')
+  v.Cmd.cmd('exe "normal! ' .. cursor_mv_line_step .. '\\<c-e>"')
 end
 
 function v.Cursor.__mv_u_line_end()
@@ -1085,6 +1087,8 @@ end
 
 function v.Cursor.__ins_line(str)
 
+  str = str or ''
+
   local line_num = v.Cursor.line_num() - 1
   vf.append(line_num, str)
   v.Cursor.__mv_u()
@@ -1107,6 +1111,13 @@ function v.Cursor.__ins_line_anchor()
   local str  = v.Str.cmnt_1() .. 'dev anchor'
   v.Cursor.__ins_line(str)
   v.Cursor.line_indnt__crct()
+end
+
+function v.Cursor.__ins_line_anchor_7_del()
+
+  -- v.Cursor.__ins_line_anchor()
+  v.Cursor.__ins_line()
+  v.Cursor.line__del()
 end
 
 function v.Cursor.d__ins_line(str)
