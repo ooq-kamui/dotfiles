@@ -4,6 +4,9 @@
 
 ## nvim
 
+key del <c-w> + ??
+
+
 v.Cmd.nml(cmd_nml)
 ```
   -- local cmd_nml = cursor_mv_line_step .. '\\<c-e>'
