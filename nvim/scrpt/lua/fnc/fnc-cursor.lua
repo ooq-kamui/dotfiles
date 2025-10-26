@@ -312,6 +312,7 @@ function v.Cursor.__mv_mlt_u() -- alias
 
   -- local cmd_nml = cursor_mv_line_step .. '\\<c-y>'
   -- v.Cmd.nml(cmd_nml)
+
   v.Cmd.cmd('exe "normal! ' .. cursor_mv_line_step .. '\\<c-y>"')
 end
 

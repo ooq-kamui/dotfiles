@@ -34,21 +34,13 @@ function v.Buf.opn_tmp_file()
   v.Buf.opn(path)
 end
 
-function v.Buf.opn_init_vim()
+function v.Buf.opn_nvim_init()
 
-  -- v.Buf.opn(v.Dir.c.nvim_lua_fnc_basic_file_path)
   v.Buf.opn(v.Dir.c.nvim_lua_key_map_file_path)
+  -- v.Buf.opn(v.Dir.c.nvim_lua_fnc_basic_file_path)
 end
 
-function v.Buf.opn_by_git_st_file_pth(git_st_file_pth)
-
-  local git_root_dir = v.Dir.git_root()
-  local file_path = git_root_dir .. git_st_file_pth
-  -- v.Log.val(file_path)
-  v.Buf.opn(file_path)
-end
-
-function v.Buf.opn_init_vim_l()
+function v.Buf.opn_nvim_init_l()
 
   v.Buf.opn(v.Dir.c.nvim_lua_opt_file_path     )
   v.Buf.opn(v.Dir.c.nvim_lua_cmd_file_path     )
@@ -58,6 +50,14 @@ function v.Buf.opn_init_vim_l()
   v.Buf.opn(v.Dir.c.nvim_lua_hl_file_path      )
 
   v.Buf.opn(v.Dir.c.nvim_lua_plg_fzf_file_path )
+end
+
+function v.Buf.opn_by_git_st_file_pth(git_st_file_pth)
+
+  local git_root_dir = v.Dir.git_root()
+  local file_path = git_root_dir .. git_st_file_pth
+  -- v.Log.val(file_path)
+  v.Buf.opn(file_path)
 end
 
 function v.Buf.opn_fish_cnf()

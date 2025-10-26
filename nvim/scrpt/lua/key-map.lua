@@ -2,9 +2,8 @@
 -- leader
 vim.g.mapleader = vim.api.nvim_replace_termcodes('<esc>', bl.f, bl.f, bl.t)
 
-keymap__ = vim.keymap.set
-
--- vim.keymap.del('n')
+keymap__    = vim.keymap.set
+keymap__clr = vim.keymap.del
 
 
 -- mode normal
@@ -152,24 +151,8 @@ keymap__('n', '<c-x>', '<esc>')
 keymap__('n', '<c-y>', '<esc>')
 keymap__('n', '<c-z>', '<esc>')
 
--- vim.keymap.del('n', '<c-w>c'    )
--- vim.keymap.del('n', '<c-w>d'    )
--- vim.keymap.del('n', '<c-w>h'    )
--- vim.keymap.del('n', '<c-w>j'    )
--- vim.keymap.del('n', '<c-w>k'    )
--- vim.keymap.del('n', '<c-w>l'    )
--- vim.keymap.del('n', '<c-w>q'    )
--- vim.keymap.del('n', '<c-w>s'    )
--- vim.keymap.del('n', '<c-w>t'    )
--- vim.keymap.del('n', '<c-w>v'    )
--- vim.keymap.del('n', '<c-w>w'    )
--- vim.keymap.del('n', '<c-w>z'    )
-
--- vim.keymap.del('n', '<c-w>='    )
--- vim.keymap.del('n', '<c-w>_'    )
--- vim.keymap.del('n', '<c-w><bar>')
-
--- vim.keymap.del('n', '<c-w><c-d>')
+keymap__clr('n', '<c-w>d'    )
+keymap__clr('n', '<c-w><c-d>')
 
 keymap__('n', 'ga', '<esc>')
 keymap__('n', 'gb', '<esc>')
@@ -339,8 +322,8 @@ keymap__('n', '<leader>L', ':FzfFileHstry<cr>')
 -- opn fish cnf
 -- keymap__('n', 'xx', v.Buf.opn_fish_cnf)
 
--- opn init vim
-keymap__('n', 'gh', v.Buf.opn_init_vim)
+-- opn nvim init
+-- keymap__('n', 'gh', v.Buf.opn_nvim_init)
 
 -- opn tmp file
 -- keymap__('n', 'xx', v.Buf.opn_tmp_file)
@@ -439,7 +422,6 @@ keymap__('n', '<c-l>', '%')
 
 -- cursor mv block out
 keymap__('n', '<c-w>', v.Cursor.__mv_block_out_swtch)
-keymap__('n', '<c-r>', v.Cursor.__mv_block_out_swtch)
 
 -- cursor mv fnc out back
 -- keymap__('n', 'xx', '[m')

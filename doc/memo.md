@@ -4,19 +4,15 @@
 
 ## nvim
 
-key del <c-w> + ??
-
-
 v.Cmd.nml(cmd_nml)
+- case `\\`
+
 ```
   -- local cmd_nml = cursor_mv_line_step .. '\\<c-e>'
   -- v.Cmd.nml(cmd_nml)
 ```
 
-
-## browser
-
-try mac, commet zen dia
+opn_file_close_recently
 
 
 ## godot
