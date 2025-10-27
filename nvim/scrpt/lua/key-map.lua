@@ -1206,8 +1206,8 @@ keymap__('x', '<tab>', v.Slctd.str__expnd_char_pair) -- tab : del not
 -- keymap__('x', 'xx', v.Slctd.str__expnd_bracket_swtch)
 
 -- slct all
+keymap__('x', 'a' , v.Slctd.str__all)
 keymap__('x', 'gg', v.Slctd.str__all)
--- keymap__('x', 'a', v.Slctd.str__all)
 
 -- ynk slctd
 keymap__('x', 'o', v.Rgstr.ynk__slctd)

@@ -2,17 +2,22 @@
 # dotfiles
 
 
-## nvim
+## wez-term 
 
-v.Cmd.nml(cmd_nml)
-- case `\\`
+mac
+- instl
 
-```
-  -- local cmd_nml = cursor_mv_line_step .. '\\<c-e>'
-  -- v.Cmd.nml(cmd_nml)
-```
+key-bind
+- win
+  - leader : alt
+    - tab new
+      - alt l : wsl
+      - alt w : pwsh
 
-opn_file_close_recently
+
+## fish 
+
+lazy-git, instl, at mac
 
 
 ## godot
@@ -32,6 +37,19 @@ q dev try
   - account cre ?
 
 gen2 try
+
+
+## nvim
+
+v.Cmd.nml(cmd_nml)
+- case `\\`
+
+```
+  -- local cmd_nml = cursor_mv_line_step .. '\\<c-e>'
+  -- v.Cmd.nml(cmd_nml)
+```
+
+opn_file_close_recently
 
 
 ## nvim
