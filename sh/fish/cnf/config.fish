@@ -53,7 +53,7 @@ zoxide init fish | source
 
 alias fi 'fish'
 
-alias tmx      'tmux'
+# alias tmx      'tmux'
 # alias tmx_init 'fi ~/sh/tmux/tmux-win-init.fish'
 
 alias clr 'clear; pwd'
@@ -84,48 +84,33 @@ alias mkd   'mkdir -p'
 
 alias lr-oo  'lr_d2'
 alias lr-ooo 'lr_d3'
-# alias lroo   'lr_d2'
-# alias lrooo  'lr_d3'
 
 alias lf     'lrf'
 alias lf-oo  'lrf_d2'
 alias lf-ooo 'lrf_d3'
-# alias lfoo   'lrf_d2'
-# alias lfooo  'lrf_d3'
-
-alias lf_ext  'lrf_ext'
-alias ext_lst 'lrf_ext'
 
 alias ld     'lrd'
 alias ld-oo  'lrd_d2'
 alias ld-ooo 'lrd_d3'
-alias ldoo   'lrd_d2'
-alias ldooo  'lrd_d3'
 
 alias fd 'fd --hidden --follow -I --exclude .git'
+
+alias lf_ext  'lrf_ext'
+alias ext_lst 'lrf_ext'
 
 alias o 'pth'
 
 alias oo-l    'pwd ../      ; l  ../      '
 alias ooo-l   'pwd ../../   ; l  ../../   '
 alias oooo-l  'pwd ../../../; l  ../../../'
-# alias ool     'pwd ../      ; l  ../      '
-# alias oool    'pwd ../../   ; l  ../../   '
-# alias ooool   'pwd ../../../; l  ../../../'
 
 alias oo-ll   'pwd ../      ; ll ../      '
 alias ooo-ll  'pwd ../../   ; ll ../../   '
 alias oooo-ll 'pwd ../../../; ll ../../../'
-# alias ooll    'pwd ../      ; ll ../      '
-# alias oooll   'pwd ../../   ; ll ../../   '
-# alias ooooll  'pwd ../../../; ll ../../../'
 
 alias oo-lf   'pwd ../      ; lf ../'
 alias ooo-lf  'pwd ../../   ; lf ../../'
 alias oooo-lf 'pwd ../../../; lf ../../../'
-# alias oolf    'pwd ../      ; lf ../'
-# alias ooolf   'pwd ../../   ; lf ../../'
-# alias oooolf  'pwd ../../../; lf ../../../'
 
 alias to     'touch'
 alias to_clr ':>'
@@ -140,27 +125,26 @@ alias rn  'rename'
 alias cp  'cp -ip'
 alias dpl 'file_dpl'
 
-alias rm    'rm -i'
-alias trash 'trash -F'
-alias gm    'trash -F'
+alias rm   'rm -i'
+alias trsh 'trash -F'
 
 alias vi  'nvim -p'
 alias vim 'nvim -p'
-# alias vid 'nvim -p doc/memo.md'
-alias vi_lf 'nvim -p ( lf )'
+alias vi-lf 'nvim -p ( lf )'
 
-alias ji  'git'
-alias j   'git status'
-alias jl  'git log'
-alias jj  'git add .; git status'
-# alias jp  'git pll origin main'
-alias jp  'git pll'
-alias jd  'git diff --staged'
+alias ji 'git'
+alias j  'git status'
+alias jl 'git log'
+alias ji-tree 'git log --oneline --graph --decorate --all'
 
-alias jsl 'git sl'
-alias jsd 'git sd'
-alias jwl 'git wl'
-alias jwd 'git wd'
+alias jj 'git add .; git status'
+alias jp 'git pll'
+# alias jd 'git diff --staged'
+
+# alias jsl 'git sl'
+# alias jsd 'git sd'
+# alias jwl 'git wl'
+# alias jwd 'git wd'
 
 alias jrp 'git_root_pth_rel'
 alias ji-st-file-lst 'git_st_file_lst'
@@ -214,18 +198,9 @@ alias trns_e2j 'trans {en=ja}'
 alias trns_je  'trans {ja=en}'
 alias trns_ej  'trans {en=ja}'
 
-alias ba   'battery'
-alias wthr 'weather'
-
-alias amp 'amplify'
-
 # nginx
 alias nx-vi-cnf   'vi /etc/nginx/nginx.conf'
 alias nx-start-re 'sudo nginx -s reload'
-
-# alias rf 'ruff'
-
-# alias cmd path
 
 # uconv
 # alias uconv '/opt/homebrew/Cellar/icu4c/73.2/bin/uconv'
@@ -233,9 +208,18 @@ alias uconv '/home/linuxbrew/.linuxbrew/Cellar/icu4c@77/77.1/bin/uconv'
 alias ucnv  'uconv'
 alias sjis  'ucnv_sjis'
 
+# variety
+alias ba   'battery'
+alias wthr 'weather'
+alias matrix 'cmatrix'
+
+
+alias amp 'amplify'
+# alias rf 'ruff'
+
 
 # 
-# bind
+# key-bind
 # 
 
 # corsor mv char

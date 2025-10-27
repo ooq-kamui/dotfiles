@@ -2,22 +2,36 @@
 # dotfiles
 
 
-## wez-term 
+## nvim
 
-mac
-- instl
+x a
 
-key-bind
-- win
+
+## wez-term
+
+hot reload
+- write, off
+
+cnf orgnize
+- mac, win
+
+win
+- cnf ln
+- key-bind
   - leader : alt
     - tab new
       - alt l : wsl
       - alt w : pwsh
 
+mac
+- bg light-blue
 
-## fish 
 
-lazy-git, instl, at mac
+## omarchy
+
+instl
+- usb cre
+- keyboard
 
 
 ## godot
