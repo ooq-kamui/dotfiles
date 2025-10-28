@@ -136,7 +136,7 @@ alias vi-lf 'nvim -p ( lf )'
 alias ji 'git'
 alias j  'git status'
 alias jl 'git log'
-alias ji-tree 'git log --oneline --graph --decorate --all'
+alias jl-tree 'git log --oneline --graph --decorate --all'
 
 alias jj 'git add .; git status'
 alias jp 'git pll'
