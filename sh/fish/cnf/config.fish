@@ -74,6 +74,7 @@ alias kk   'k;k'
 alias kkk  'k;k;k'
 alias kkkk 'k;k;k;k'
 alias kj   'cd_git_root'
+alias lj   'cd_git_root'
 
 alias f  'dir_jmp_with_zoxide'
 alias fo 'dir_jmp_with_zoxide dotfiles'
@@ -209,9 +210,9 @@ alias ucnv  'uconv'
 alias sjis  'ucnv_sjis'
 
 # variety
-alias ba   'battery'
+# alias ba   'battery'
 alias wthr 'weather'
-alias matrix 'cmatrix'
+alias mtrx 'cmatrix'
 
 
 alias amp 'amplify'

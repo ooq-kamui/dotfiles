@@ -9,10 +9,11 @@ set -x RIPGREP_CONFIG_PATH ~/wrk/prj-pri/dotfiles/cli/rg/ripgreprc/mac/.ripgrepr
 # alias
 
 alias clp 'pbcopy'
+alias ba  'battery_mac'
 
 # alias arg ( etc )
 
-alias cd_iclud "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
-alias cd_plist "cd ~/Library/LaunchAgents"
+alias cd-iclud "cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
+alias cd-plist "cd ~/Library/LaunchAgents"
 
 

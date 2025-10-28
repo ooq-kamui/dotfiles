@@ -2,29 +2,23 @@
 # dotfiles
 
 
-## nvim
-
-x a
-
-
 ## wez-term
 
-hot reload
-- write, off
-
-cnf orgnize
-- mac, win
-
-win
-- cnf ln
-- key-bind
-  - leader : alt
-    - tab new
-      - alt l : wsl
-      - alt w : pwsh
+win key-bind
+- leader : alt
+  - tab new
+    - alt l : wsl
+    - alt w : pwsh
 
 mac
 - bg light-blue
+
+
+tab color
+
+cnf ln, file div
+- win
+- mac
 
 
 ## omarchy
