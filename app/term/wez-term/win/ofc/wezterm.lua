@@ -41,7 +41,7 @@ config.color_scheme = 'AdventureTime'
 config.window_decorations = "RESIZE"
 config.hide_tab_bar_if_only_one_tab = false
 
-config.window_background_opacity = 0.10
+config.window_background_opacity    = 0.10
 config.macos_window_background_blur = 3
 
 config.window_frame = {
@@ -55,7 +55,6 @@ config.window_background_gradient = {
 config.default_cursor_style = "SteadyBlock"
 config.colors = {
   -- cursor_fg     = "#11111b",
-  -- cursor_fg     = "Magenta",
   cursor_fg     = "White",
   -- cursor_fg     = "Gray",
   cursor_bg     = "#59c2c6",

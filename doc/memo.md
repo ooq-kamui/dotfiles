@@ -14,8 +14,6 @@ mac
 - bg light-blue
 
 
-tab color
-
 cnf ln, file div
 - win
 - mac
