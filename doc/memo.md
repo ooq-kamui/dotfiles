@@ -19,6 +19,12 @@ cnf ln, file div
 - mac
 
 
+## fish
+
+nyancat, mac
+- cnf add
+
+
 ## omarchy
 
 instl
