@@ -2,6 +2,13 @@
 # dotfiles
 
 
+## omarchy
+
+instl
+- usb cre
+- keyboard
+
+
 ## wez-term
 
 win key-bind
@@ -10,26 +17,7 @@ win key-bind
     - alt l : wsl
     - alt w : pwsh
 
-mac
-- bg light-blue
-
-
-cnf ln, file div
-- win
-- mac
-
-
-## fish
-
-nyancat, mac
-- cnf add
-
-
-## omarchy
-
-instl
-- usb cre
-- keyboard
+mac, nvim c-i ?
 
 
 ## godot

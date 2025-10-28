@@ -30,7 +30,6 @@ wezterm.on('gui-startup', function()
 end)
 
 -- cmn
--- dofile([[\\wsl.localhost\AlmaLinux-10\home\alm\wrk\prj-pri\dotfiles\app\term\wez-term\wezterm.lua]])
 
 config.automatically_reload_config = false
 -- config.automatically_reload_config = true
@@ -48,27 +47,25 @@ config.window_frame = {
   inactive_titlebar_bg = "none",
   active_titlebar_bg   = "none",
 }
+
+config.default_cursor_style = "SteadyBlock"
+config.colors = {
+  cursor_fg     = "White",
+  cursor_bg     = "#59c2c6",
+  cursor_border = "#59c2c6",
+}
+
+config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
+
+
+-- win
+
 config.window_background_gradient = {
   colors = { "#000000" },
 }
 
-config.default_cursor_style = "SteadyBlock"
-config.colors = {
-  -- cursor_fg     = "#11111b",
-  cursor_fg     = "White",
-  -- cursor_fg     = "Gray",
-  cursor_bg     = "#59c2c6",
-  -- cursor_bg     = "Blue",
-  cursor_border = "#59c2c6",
-}
-
-
--- win
--- dofile([[\\wsl.localhost\AlmaLinux-10\home\alm\wrk\prj-pri\dotfiles\app\term\wez-term\wezterm-win.lua]])
-
 config.use_ime = true
 
 
--- Finally, return the configuration to wezterm:
 return config
 
