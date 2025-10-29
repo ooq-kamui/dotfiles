@@ -17,6 +17,8 @@ win key-bind
     - alt l : wsl
     - alt w : pwsh
 
+win, dofile
+
 mac, nvim c-i ?
 
 
