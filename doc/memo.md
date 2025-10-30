@@ -8,6 +8,11 @@ mac, nvim c-i ?
 - key bind confirm
 
 
+## iphone
+
+net data confirm
+
+
 ## omarchy
 
 instl
