@@ -4,8 +4,11 @@
 
 ## wez-term
 
-mac, nvim c-i ?
-- key bind confirm
+mac
+- nvim c-i ?
+  - key bind confirm
+
+- tab new: s-c-n
 
 
 ## iphone
