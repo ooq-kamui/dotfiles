@@ -2,24 +2,17 @@
 # dotfiles
 
 
+## wez-term
+
+mac, nvim c-i ?
+- key bind confirm
+
+
 ## omarchy
 
 instl
-- usb cre
-- keyboard
-
-
-## wez-term
-
-win key-bind
-- leader : alt
-  - tab new
-    - alt l : wsl
-    - alt w : pwsh
-
-win, dofile
-
-mac, nvim c-i ?
+- keyboard, confirm
+- instl
 
 
 ## godot
@@ -42,6 +35,8 @@ gen2 try
 
 
 ## nvim
+
+ri, repeat i
 
 v.Cmd.nml(cmd_nml)
 - case `\\`
