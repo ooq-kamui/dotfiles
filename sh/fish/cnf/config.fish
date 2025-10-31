@@ -152,14 +152,14 @@ alias jrp 'git_root_pth_rel'
 alias ji-st-file-lst 'git_st_file_lst'
 alias ji-co-file-lst 'git_co_file_lst'
 
+alias ji-lazy 'lazygit'
+
 alias pd   'podman'
 alias pl   'podman container ls -a'
 alias pil  'podman image ls'
 alias pnl  'podman network ls'
 # alias pdcl 'podman container ls -a'
 # alias pdil 'podman image ls'
-
-# alias po   'podman'
 
 alias line 'cat_line'
 
@@ -181,10 +181,10 @@ alias df   'df -h'
 
 # alias x 'xargs'
 
-alias zip_un 'unzip'
+alias zip-un 'unzip'
 
-alias pw_gen 'pwgen'
-alias pw_cre 'pwgen'
+alias pw-gen 'pwgen'
+alias pw-cre 'pwgen'
 
 alias clc 'math'
 
@@ -214,6 +214,7 @@ alias sjis  'ucnv_sjis'
 # alias ba   'battery'
 alias wthr 'weather'
 alias mtrx 'cmatrix'
+alias ncat 'nyancat'
 
 
 alias amp 'amplify'

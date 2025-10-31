@@ -2,6 +2,11 @@
 # dotfiles
 
 
+## bash
+
+env : dir > file-name
+
+
 ## wez-term
 
 mac
