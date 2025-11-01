@@ -863,6 +863,7 @@ keymap__('n', '<leader>u', v.Fzf.file_by_git_st)
 -- tab
 
 -- tab mv
+keymap__('n', '<c-i>'  , 'gt')
 keymap__('n', '<tab>'  , 'gt')
 keymap__('n', '<s-tab>', 'gT')
 

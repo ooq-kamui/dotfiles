@@ -2,18 +2,11 @@
 # dotfiles
 
 
-## bash
+## aws
 
-env : dir > file-name
-
-
-## wez-term
-
-mac
-- nvim c-i ?
-  - key bind confirm
-
-- tab new: s-c-n
+q dev try
+- setting
+  - account cre ?
 
 
 ## iphone
@@ -40,11 +33,13 @@ game cre
 
 ## aws
 
-q dev try
-- setting
-  - account cre ?
-
 gen2 try
+
+
+## bash
+
+env : dir > file-name
+- ofc
 
 
 ## nvim
