@@ -9,9 +9,10 @@ q dev try
   - account cre ?
 
 
-## iphone
+## wezterm
 
-net data confirm
+color
+- dir
 
 
 ## omarchy
@@ -29,6 +30,11 @@ platformer
 game cre
 - map cre
 - chara cre
+
+
+## iphone
+
+net data confirm
 
 
 ## aws

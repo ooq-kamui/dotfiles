@@ -74,8 +74,6 @@ alias kk   'k;k'
 alias kkk  'k;k;k'
 alias kkkk 'k;k;k;k'
 alias kr   'cd_git_root'
-# alias kj   'cd_git_root'
-# alias lj   'cd_git_root'
 
 alias f  'dir_jmp_with_zoxide'
 alias fo 'dir_jmp_with_zoxide dotfiles'
