@@ -2,16 +2,17 @@
 # dotfiles
 
 
-## aws
+## bash
 
-q dev try
-- setting
-  - account cre ?
+env : dir > file-name
+- ofc
 
 
 ## wezterm
 
-color
+cnf file, setting, by ln
+
+color scheme + setting
 - dir
 
 
@@ -20,6 +21,18 @@ color
 instl
 - keyboard, confirm
 - instl
+
+
+## iphone
+
+net data confirm
+
+
+## aws
+
+q dev try
+- setting
+  - account cre ?
 
 
 ## godot
@@ -32,25 +45,14 @@ game cre
 - chara cre
 
 
-## iphone
-
-net data confirm
-
-
 ## aws
 
 gen2 try
 
 
-## bash
-
-env : dir > file-name
-- ofc
-
-
 ## nvim
 
-ri, repeat i
+ri, shft, repeat i
 
 v.Cmd.nml(cmd_nml)
 - case `\\`
