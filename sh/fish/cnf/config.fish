@@ -193,10 +193,10 @@ alias tbl '/usr/bin/column -t'
 alias mb_chk 'file -i'
 
 alias trns     'trans'
-alias trns_j2e 'trans {ja=en}'
-alias trns_e2j 'trans {en=ja}'
-alias trns_je  'trans {ja=en}'
-alias trns_ej  'trans {en=ja}'
+alias trns-j2e 'trans {ja=en}'
+alias trns-e2j 'trans {en=ja}'
+alias trns-je  'trans {ja=en}'
+alias trns-ej  'trans {en=ja}'
 
 # nginx
 alias nx-vi-cnf   'vi /etc/nginx/nginx.conf'

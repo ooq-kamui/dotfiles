@@ -10,22 +10,24 @@ local config = wezterm.config_builder()
 
 
 -- 
--- env : mac : inch-14
+-- env : win : ofc
 -- 
 
+config.default_prog = {'wsl'}
+-- config.default_prog = {'pwsh'}
 -- config.default_prog = {'fish'}
 
-config.font_size = 18
+config.font_size = 13
 
 -- For example, changing the initial geometry for new windows:
-config.initial_cols = 89
-config.initial_rows = 37
+config.initial_cols = 183
+config.initial_rows =  40
 
 wezterm.on('gui-startup', function()
   wezterm.mux.spawn_window({
     position = {
-      x = 1000,
-      y =    0,
+      x = 50,
+      y = 10,
       origin = 'ActiveScreen',
     },
   })
@@ -40,7 +42,7 @@ config.automatically_reload_config = false
 -- config.automatically_reload_config = true
 
 -- or, changing the font size and color scheme.
--- config.color_scheme = 'AdventureTime'
+config.color_scheme = 'AdventureTime'
 
 config.window_decorations = "RESIZE"
 config.hide_tab_bar_if_only_one_tab = false
@@ -78,11 +80,13 @@ config.mouse_bindings = {
   },
 }
 
--- mac
+-- win
 
 config.window_background_gradient = {
-  colors = { "Blue" },
+  colors = { "#000000" },
 }
+
+config.use_ime = true
 
 
 return config
