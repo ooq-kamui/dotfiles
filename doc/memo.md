@@ -5,14 +5,15 @@
 ## bash
 
 env : dir > file-name
-- ofc
+- ofc: wsl, c9
+- pri
+  - skr: alm, cnt
+  - c9
 
 
 ## wezterm
 
-cnf file, setting, by ln
-
-color scheme + setting
+color: scheme + setting
 - dir
 
 
