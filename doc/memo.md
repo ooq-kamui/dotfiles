@@ -4,14 +4,17 @@
 
 ## wezterm
 
+cursor style
+- confirm
+  - win
+    - vim
+      - reserch
+      - cmdline err
+
 color: scheme + setting
-- dir
-
-
-## bash
-
-env : dir > file-name
-- pri, c9
+- mac
+  - dir
+    - tst at win
 
 
 ## omarchy
@@ -78,10 +81,6 @@ plg
 
 plg-mng
 - lazy
-
-cursor style
-- reserch
-- cmdline err
 
 
 ## skr-vps
