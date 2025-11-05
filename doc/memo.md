@@ -2,6 +2,11 @@
 # dotfiles
 
 
+## q dev
+
+c9 prj
+
+
 ## wezterm
 
 cursor style
