@@ -2,25 +2,21 @@
 # dotfiles
 
 
-## bash
-
-env : dir > file-name
-- ofc: wsl, c9
-- pri
-  - skr: alm, cnt
-  - c9
-
-
 ## wezterm
 
 color: scheme + setting
 - dir
 
 
+## bash
+
+env : dir > file-name
+- pri, c9
+
+
 ## omarchy
 
 instl
-- keyboard, confirm
 - instl
 
 
