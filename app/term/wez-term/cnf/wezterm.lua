@@ -13,8 +13,7 @@ local config = wezterm.config_builder()
 config.automatically_reload_config = false
 -- config.automatically_reload_config = true
 
--- or, changing the font size and color scheme.
--- config.color_scheme = 'AdventureTime'
+config.color_scheme = 'AdventureTime'
 
 config.window_decorations = "RESIZE"
 config.hide_tab_bar_if_only_one_tab = false
