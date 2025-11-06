@@ -48,7 +48,7 @@ function dir_jmp(){
 
   pth
 }
-alias d='dir_jmp'
+alias f='dir_jmp'
 
 alias ls='ls -a'
 alias ll='ls -lgohAD "%Y-%m-%d %H:%M" --color=auto'

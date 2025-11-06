@@ -1,7 +1,6 @@
 
 export PS1="_ "
 
-# PATH=$PATH:~/wrk/cnf/sh/bash/cmd
 PATH=$PATH:~/wrk/prj-pri/dotfiles/sh/bash/cmd
 
 # fnc
@@ -40,7 +39,6 @@ alias c='clr; pwd'
 alias src='source'
 
 alias o='pth'
-# alias p='pth'
 
 alias ls='ls -a'
 alias ll='ls -lgohA --time-style=long-iso --color=auto'
@@ -81,29 +79,14 @@ alias ts='date +"%Y-%m-%d.%H:%M:%S"'
 alias tm='date +"%H:%M"'
 alias t='ts'
 
-# alias clp='clp_by_tmp'
-# alias clp_mac='pbcopy'
-# alias clp='clp_mac'
-
 alias srt='sort'
 
-# alias tbl='column -t'
 alias tbl='/usr/bin/column -t'
 alias col="$HOME/wrk/cnf/sh/bash/cmd/col"
 
-# alias cal='cal -3'
-# alias ca='cal -3'
-# mac ?
-# alias ca='cal -B -1; cal; cal -A 1'
-# c9
 alias ca='cal $( date +"%m %Y" --date "-1 month" ); cal; cal $( date +"%m %Y" --date "+1 month" )'
 
 # alias fi='fish'
-
-# alias x='xargs'
-
-# alias ggl='opn https://google.com/'
-# alias opn_brwsr='ggl'
 
 # fd
 
@@ -114,8 +97,6 @@ alias fd='fd --hidden -I --exclude .git --follow'
 #alias rg='rg -nS'
 #alias rg='rg -nS --path-separator "//"'
 
-# export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
-# export RIPGREP_CONFIG_PATH=$HOME/wrk/cnf/sh/rg/.ripgreprc
 export RIPGREP_CONFIG_PATH=$HOME/wrk/prj-pri/dotfiles/cli/rg/ripgreprc/dflt/.ripgreprc
 
 # fzf
@@ -125,13 +106,6 @@ test -f ~/.fzf.bash && source ~/.fzf.bash
 #export FZF_DEFAULT_COMMAND='fd --type f --color=always --hidden --follow -I --exclude .git'
 export FZF_DEFAULT_OPTS='--ansi --bind=ctrl-o:accept,ctrl-l:forward-char,ctrl-f:forward-word'
 
-# z
-
-# if test -f ~/wrk/app/z/z.sh
-# then
-#   source ~/wrk/app/z/z.sh
-#   z_history_file_path=~/.z
-# fi
 
 function dir_jmp(){
 
@@ -157,7 +131,7 @@ function dir_jmp(){
 
   pth
 }
-alias d='dir_jmp'
+alias f='dir_jmp'
 
 # cargo
 
@@ -186,14 +160,12 @@ then
   #bind '"\C-q": yank'
   bind -x '"\C-q": cmd_line__clp_by_tmp'
 
-  #bind -x '"\C-u": cmd_line__bracket'
   bind -x '"\C-b": cmd_line__bracket'
 
   bind -x '"\C-t": cmd_line__dt'
 
   # fzf
   bind -x '"\C-y": fzf-file-widget'
-  #bind -x '"\C-r": fzf-history-widget'
 fi
 
 

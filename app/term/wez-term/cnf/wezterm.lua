@@ -13,8 +13,6 @@ local config = wezterm.config_builder()
 config.automatically_reload_config = false
 -- config.automatically_reload_config = true
 
-config.color_scheme = 'AdventureTime'
-
 config.window_decorations = "RESIZE"
 config.hide_tab_bar_if_only_one_tab = false
 -- config.tab_max_width = 16 -- ??
@@ -36,6 +34,52 @@ config.colors = {
 }
 
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
+
+
+-- config.color_scheme = 'AdventureTime'
+
+local function is_tbl_in(tbl, val)
+  for _, value in ipairs(tbl) do
+    if value == val then
+      return true
+    end
+  end
+  return false
+end
+
+function color_scheme__rnd()
+
+  local scheme_excld_list = {
+    'Icy Dark (base16)'   ,
+    'Zenburn (Gogh)'      ,
+    'Mono (terminal.sexy)',
+  }
+
+  local scheme_name_list = {}
+  for scheme_name, scheme in pairs(wezterm.color.get_builtin_schemes()) do
+    -- excld
+    if is_tbl_in(scheme_excld_list, scheme_name) then
+      -- skip
+      -- wezterm.log_info('skip: ' .. scheme_name)
+    else
+      table.insert(scheme_name_list, scheme_name)
+    end
+  end
+
+  wezterm.on('window-config-reloaded', function(window, pane)
+    if not window:get_config_overrides() then
+      local scheme_name = scheme_name_list[math.random(#scheme_name_list)]
+      wezterm.log_info(scheme_name .. '<')
+      window:set_config_overrides {
+        color_scheme = scheme_name,
+      }
+    end
+  end)
+
+  return {}
+end
+color_scheme__rnd()
+
 
 -- mouse
 
