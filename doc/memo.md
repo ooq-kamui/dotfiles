@@ -2,35 +2,16 @@
 # dotfiles
 
 
-## q dev
+## iphone
 
-c9 prj
-
-
-## wezterm
-
-cursor style
-- confirm
-  - win
-    - vim
-      - reserch
-      - cmdline err
-
-color: scheme + setting
-- mac
-  - dir
-    - tst at win
+net data
+- ggl, confirm
 
 
 ## omarchy
 
 instl
 - instl
-
-
-## iphone
-
-net data confirm
 
 
 ## aws
