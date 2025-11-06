@@ -2,12 +2,6 @@
 # dotfiles
 
 
-## iphone
-
-net data
-- ggl, confirm
-
-
 ## omarchy
 
 instl
@@ -34,6 +28,12 @@ game cre
 ## aws
 
 gen2 try
+
+
+## iphone
+
+net data
+- ggl, confirm
 
 
 ## nvim
@@ -74,4 +74,31 @@ plg-mng
 centos setting at skr console
 - firewall
   - url
+
+
+## wezterm
+
+excld
+```
+BelafonteNight (Gogh)
+XCode Dusk (base16)
+Atelier Sulphurpool Light (base16)
+City Streets (terminal.sexy)
+Horizon Light (base16)
+```
+
+```
+local function contains(tbl, val)
+    for _, value in ipairs(tbl) do -- ipairsは数値キーの配列部分を順に処理する
+        if value == val then
+            return true -- 値が見つかった時点でtrueを返す
+        end
+    end
+    return false -- ループが最後まで実行されても見つからなかった場合はfalseを返す
+end
+```
+
+bash, fish,
+- color comment out
+
 

@@ -1,4 +1,0 @@
-
-hi molderDirectory   ctermfg=cyan
-
-

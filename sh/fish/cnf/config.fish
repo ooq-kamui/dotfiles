@@ -5,10 +5,8 @@ set -U fish_greeting
 
 # ls color, mac
 # set -x LSCOLORS fxgxcxdxexegedabagacad
-# set -x LSCOLORS fxgxcxdxxxegedabagacad
-set -x LSCOLORS fxgxcxdxexegedabagacad
-#               ^dir    ^exe           2 chars set, foreground background
-#                 ^lnk
+# #               ^dir    ^exe           2 chars set, foreground background
+# #                 ^lnk
 # a:black, b:red, c:green, d:brown, e:blue, f:magenta, g:cyan, h:grey, x:default
 
 # ls color, linux

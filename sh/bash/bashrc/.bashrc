@@ -27,10 +27,9 @@ cmd_line__clp_by_tmp(){
   READLINE_LINE=$READLINE_LINE$clp_str
 }
 
-#export LSCOLORS=fxgxcxdxexegedabagacad
-export LSCOLORS=fxgxcxdxxxegedabagacad
-#               ^dir    ^exe
-#                 ^lnk?
+# export LSCOLORS=fxgxcxdxxxegedabagacad
+# #               ^dir    ^exe
+# #                 ^lnk?
 # a:black, b:red, c:green, d:brown, e:blue, f:magenta, g:cyan, h:grey
 
 # alias

@@ -1,5 +1,0 @@
-
-hi shOption     ctermfg=yellow
-
-
-
