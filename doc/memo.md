@@ -85,6 +85,7 @@ XCode Dusk (base16)
 Atelier Sulphurpool Light (base16)
 City Streets (terminal.sexy)
 Horizon Light (base16)
+Batman
 ```
 
 ```
