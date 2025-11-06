@@ -53,29 +53,38 @@ config = require('cnf\\wezterm')
 --   },
 -- }
 
+local function is_tbl_in(tbl, val)
+    for _, value in ipairs(tbl) do
+        if value == val then
+            return true
+        end
+    end
+    return false
+end
 
 function color_scheme__rnd()
 
-  -- local wezterm = require 'wezterm'
+  local scheme_excld_list = {
+    'Icy Dark (base16)',
+  }
 
-  -- The set of schemes that we like and want to put in our rotation
-  local schemes = {}
-  for name, scheme in pairs(wezterm.color.get_builtin_schemes()) do
-
-    -- excld -- todo
-
-    table.insert(schemes, name)
+  local scheme_name_list = {}
+  for scheme_name, scheme in pairs(wezterm.color.get_builtin_schemes()) do
+    -- excld
+    if is_tbl_in(scheme_excld_list, scheme_name) then
+      -- skip
+      wezterm.log_info('skip: ' .. scheme_name)
+    else
+      table.insert(scheme_name_list, scheme_name)
+    end
   end
 
   wezterm.on('window-config-reloaded', function(window, pane)
-    -- If there are no overrides, this is our first time seeing
-    -- this window, so we can pick a random scheme.
     if not window:get_config_overrides() then
-      -- Pick a random scheme name
-      local scheme = schemes[math.random(#schemes)]
-      wezterm.log_info(scheme)
+      local scheme_name = scheme_name_list[math.random(#scheme_name_list)]
+      wezterm.log_info(scheme_name .. '<')
       window:set_config_overrides {
-        color_scheme = scheme,
+        color_scheme = scheme_name,
       }
     end
   end)
