@@ -54,6 +54,37 @@ config = require('cnf\\wezterm')
 -- }
 
 
+function color_scheme__rnd()
+
+  -- local wezterm = require 'wezterm'
+
+  -- The set of schemes that we like and want to put in our rotation
+  local schemes = {}
+  for name, scheme in pairs(wezterm.color.get_builtin_schemes()) do
+
+    -- excld -- todo
+
+    table.insert(schemes, name)
+  end
+
+  wezterm.on('window-config-reloaded', function(window, pane)
+    -- If there are no overrides, this is our first time seeing
+    -- this window, so we can pick a random scheme.
+    if not window:get_config_overrides() then
+      -- Pick a random scheme name
+      local scheme = schemes[math.random(#schemes)]
+      wezterm.log_info(scheme)
+      window:set_config_overrides {
+        color_scheme = scheme,
+      }
+    end
+  end)
+
+  return {}
+end
+color_scheme__rnd()
+
+
 -- 
 -- env : win
 -- 
