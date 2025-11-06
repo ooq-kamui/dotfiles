@@ -38,8 +38,6 @@ net data
 
 ## nvim
 
-ri, shft, repeat i
-
 v.Cmd.nml(cmd_nml)
 - case `\\`
 
@@ -51,7 +49,8 @@ v.Cmd.nml(cmd_nml)
 opn_file_close_recently
 
 
-## nvim
+ri, shft, repeat i
+
 
 v.Sys.sh_by_slctd_line()
 - confirm dialog ( neovim )
