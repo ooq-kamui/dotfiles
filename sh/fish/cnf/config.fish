@@ -9,9 +9,6 @@ set -U fish_greeting
 # #                 ^lnk
 # a:black, b:red, c:green, d:brown, e:blue, f:magenta, g:cyan, h:grey, x:default
 
-# ls color, linux
-# ref: ~/.colorrc
-
 
 # path
 
@@ -207,7 +204,7 @@ alias ucnv  'uconv'
 alias sjis  'ucnv_sjis'
 
 # variety
-# alias ba   'battery'
+# alias ba   'battery' # mac
 alias wthr 'weather'
 alias mtrx 'cmatrix'
 alias ncat 'nyancat'
@@ -268,11 +265,8 @@ bind \cq cmdline__fzf_git_co_file_lst
 # color
 export GREP_COLOR=" 1;33"
 
-# set fish_color_autosuggestion yellow
 set fish_color_autosuggestion brmagenta
-# set fish_color_search_match   --background=brmagenta
 set fish_color_search_match   --background=yellow
-# set fish_color_command        brmagenta
 set fish_color_command        brgreen
 
 

@@ -36,7 +36,15 @@ net data
 - ggl, confirm
 
 
+## rg
+
+env: dir > file-name
+
+
 ## nvim
+
+line f col algn, char same
+
 
 v.Cmd.nml(cmd_nml)
 - case `\\`

@@ -50,9 +50,20 @@ end
 function color_scheme__rnd()
 
   local scheme_excld_list = {
-    'Icy Dark (base16)'   ,
-    'Zenburn (Gogh)'      ,
-    'Mono (terminal.sexy)',
+    'Icy Dark (base16)'             ,
+    'Zenburn (Gogh)'                ,
+    'Mono (terminal.sexy)'          ,
+    'nighty (Gogh)'                 ,
+    'Neutron'                       ,
+    'Ef-Tritanopia-Light'           ,
+    'FrontendDelight (Gogh)'        ,
+    'Atelier Savanna (base16)'      ,
+    'Gruvbox Light'                 ,
+    'Unsifted Wheat (terminal.sexy)',
+  }
+  local scheme_recommend_list = {
+    'Oxocarbon Dark (Gogh)'         ,
+    'Purple People Eater (Gogh)'    ,
   }
 
   local scheme_name_list = {}
