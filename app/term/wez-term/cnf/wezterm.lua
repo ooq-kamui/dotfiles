@@ -60,10 +60,12 @@ function color_scheme__rnd()
     'Atelier Savanna (base16)'      ,
     'Gruvbox Light'                 ,
     'Unsifted Wheat (terminal.sexy)',
+    'Google Light (base16)'         ,
   }
   local scheme_recommend_list = {
     'Oxocarbon Dark (Gogh)'         ,
     'Purple People Eater (Gogh)'    ,
+    'Builtin Pastel Dark'           ,
   }
 
   local scheme_name_list = {}

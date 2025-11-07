@@ -2,6 +2,17 @@
 # dotfiles
 
 
+## git
+
+git log format
+
+
+## fish
+
+countdown
+- install, at mac
+
+
 ## omarchy
 
 instl
