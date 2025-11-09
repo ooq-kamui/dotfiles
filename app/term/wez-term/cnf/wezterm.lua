@@ -50,22 +50,26 @@ end
 function color_scheme__rnd()
 
   local scheme_excld_list = {
-    'Icy Dark (base16)'             ,
-    'Zenburn (Gogh)'                ,
-    'Mono (terminal.sexy)'          ,
-    'nighty (Gogh)'                 ,
-    'Neutron'                       ,
-    'Ef-Tritanopia-Light'           ,
-    'FrontendDelight (Gogh)'        ,
-    'Atelier Savanna (base16)'      ,
-    'Gruvbox Light'                 ,
-    'Unsifted Wheat (terminal.sexy)',
-    'Google Light (base16)'         ,
+    'Icy Dark (base16)'              ,
+    'Zenburn (Gogh)'                 ,
+    'Mono (terminal.sexy)'           ,
+    'nighty (Gogh)'                  ,
+    'Neutron'                        ,
+    'Ef-Tritanopia-Light'            ,
+    'FrontendDelight (Gogh)'         ,
+    'Atelier Savanna (base16)'       ,
+    'Gruvbox Light'                  ,
+    'Unsifted Wheat (terminal.sexy)' ,
+    'Google Light (base16)'          ,
+    'Mona Lisa (Gogh)'               ,
+    'Monokai (light) (terminal.sexy)',
+    'AyuLight (Gogh)'                ,
   }
   local scheme_recommend_list = {
-    'Oxocarbon Dark (Gogh)'         ,
-    'Purple People Eater (Gogh)'    ,
-    'Builtin Pastel Dark'           ,
+    'Oxocarbon Dark (Gogh)'          ,
+    'Purple People Eater (Gogh)'     ,
+    'Builtin Pastel Dark'            ,
+    'Windows High Contrast (base16)' ,
   }
 
   local scheme_name_list = {}

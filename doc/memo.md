@@ -2,23 +2,14 @@
 # dotfiles
 
 
-## wez
+## rg
 
-excld
-```
-Mona Lisa (Gogh)
-```
+env: dir > file-name
 
 
 ## git
 
 git log format
-
-
-## fish
-
-countdown
-- install, at mac
 
 
 ## omarchy
@@ -55,12 +46,10 @@ net data
 - ggl, confirm
 
 
-## rg
-
-env: dir > file-name
-
-
 ## nvim
+
+oil, key-bind
+- v c-p
 
 line f col algn, char same
 
