@@ -8,9 +8,19 @@ end
 
 function v.Cmd.nml(cmd_nml) -- alias
 
-  v.Cmd.cmd('normal! ' .. cmd_nml)
+  -- v.Log.log(cmd_nml)
+  cmd_nml = v.Str.__rpl(cmd_nml, '"', [[\\"]])
+  -- v.Log.log(cmd_nml)
+  v.Cmd.cmd('exe "normal! ' .. cmd_nml .. '"')
 
-  -- v.Cmd.cmd('exe "normal! ' .. cmd_nml .. '"')
+  -- v.Cmd.cmd('normal! ' .. cmd_nml)
+
+  -- if v.Str.is__ptn(cmd_nml, '\\') then
+  -- 
+  --   v.Cmd.cmd('exe "normal! ' .. cmd_nml .. '"')
+  -- else
+  --   v.Cmd.cmd('normal! ' .. cmd_nml)
+  -- end
 end
 
 function v.Cmd.esc()

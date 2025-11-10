@@ -963,7 +963,6 @@ keymap__('n', '<kPageUp>'  , '9')
 -- tst
 
 keymap__('n', ':z', v.Tst.tst)
--- keymap__('n', ':t', v.Tst.tst)
 
 
 -- mode visual

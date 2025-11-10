@@ -67,6 +67,9 @@ local function color_scheme__rnd()
     'OneHalfLight'                   ,
     'Hybrid'                         ,
     'Raycast_Light'                  ,
+    'Harmonic16 Light (base16)'      ,
+    'CLRS'                           ,
+    'Homebrew (Gogh)'                ,
   }
   local scheme_recommend_list = {
     'Oxocarbon Dark (Gogh)'          ,

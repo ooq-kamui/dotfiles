@@ -57,6 +57,7 @@ osc52 = require('osc52')
 require("oil").setup({
   keymaps = {
     ["<c-j>"] = { "actions.select", opts = { tab = bl.t } },
+    -- ["<c-p>"] = bl.f,
   },
   -- view_options = {
   --   new_tab = bl.t,

@@ -2,14 +2,17 @@
 # dotfiles
 
 
-## rg
+## nvim
 
-env: dir > file-name
+`str.__rpl()` > `str.__rpl_by_vs()`
+- new `str.__rpl()` cre
+- `str.__rpl_by_vs()` > `str.__rpl()`
 
 
 ## git
 
-git log format
+git log-tree
+- format
 
 
 ## omarchy
@@ -24,6 +27,8 @@ q dev try
 - setting
   - account cre ?
 
+gen2 try
+
 
 ## godot
 
@@ -35,11 +40,6 @@ game cre
 - chara cre
 
 
-## aws
-
-gen2 try
-
-
 ## iphone
 
 net data
@@ -48,22 +48,9 @@ net data
 
 ## nvim
 
-oil, key-bind
-- v c-p
-
 line f col algn, char same
 
-
-v.Cmd.nml(cmd_nml)
-- case `\\`
-
-```
-  -- local cmd_nml = cursor_mv_line_step .. '\\<c-e>'
-  -- v.Cmd.nml(cmd_nml)
-```
-
 opn_file_close_recently
-
 
 ri, shft, repeat i
 

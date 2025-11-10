@@ -310,19 +310,22 @@ function v.Cursor.__mv_mlt_u() -- alias
 
   local cursor_mv_line_step = v.Cursor.cnst.mv_line_step_dflt
 
-  -- local cmd_nml = cursor_mv_line_step .. '\\<c-y>'
-  -- v.Cmd.nml(cmd_nml)
+  -- local cmd_nml = cursor_mv_line_step .. '<c-y>'
+  local cmd_nml = cursor_mv_line_step .. '\\<c-y>'
+  v.Cmd.nml(cmd_nml)
 
-  v.Cmd.cmd('exe "normal! ' .. cursor_mv_line_step .. '\\<c-y>"')
+  -- v.Cmd.cmd('exe "normal! ' .. cmd_nml .. '"')
 end
 
 function v.Cursor.__mv_mlt_d() -- alias
 
   local cursor_mv_line_step = v.Cursor.cnst.mv_line_step_dflt
 
-  -- local cmd_nml = cursor_mv_line_step .. '\\<c-e>'
-  -- v.Cmd.nml(cmd_nml)
-  v.Cmd.cmd('exe "normal! ' .. cursor_mv_line_step .. '\\<c-e>"')
+  -- local cmd_nml = cursor_mv_line_step .. '<c-e>'
+  local cmd_nml = cursor_mv_line_step .. '\\<c-e>'
+  v.Cmd.nml(cmd_nml)
+
+  -- v.Cmd.cmd('exe "normal! ' .. cmd_nml .. '"')
 end
 
 function v.Cursor.__mv_u_line_end()

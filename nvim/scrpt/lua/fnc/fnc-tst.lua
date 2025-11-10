@@ -8,8 +8,16 @@ function v.Tst.tst()
 
   -- v.Cmd.cmdline__('aa')
   -- v.Cmd.cmdline__('lua ')
-  v.Cmd.cmdline__fnc_call('fnc_name')
 
+  -- v.Cmd.cmdline__fnc_call('fnc_name')
+
+
+  -- vim.cmd('normal! j')
+  -- vim.cmd('normal! 10\\<c-e>')
+
+  -- vim.cmd("exe 'normal! j'")
+  -- vim.cmd('exe "normal! 5\\<c-e>"')
+  -- vim.cmd('exe "normal! \\"ay"')
 
 end
 
