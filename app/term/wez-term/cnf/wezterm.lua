@@ -82,6 +82,7 @@ local function color_scheme__rnd()
     'Espresso Libre'                 ,
     'IdleToes (Gogh)'                ,
     'Ef-Trio-Dark'                   ,
+    'Dracula (Gogh)'                 ,
   }
 
   local scheme_name_list = {}
