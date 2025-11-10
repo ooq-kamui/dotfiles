@@ -47,7 +47,7 @@ local function is_tbl_in(tbl, val)
   return false
 end
 
-function color_scheme__rnd()
+local function color_scheme__rnd()
 
   local scheme_excld_list = {
     'Icy Dark (base16)'              ,
@@ -64,12 +64,18 @@ function color_scheme__rnd()
     'Mona Lisa (Gogh)'               ,
     'Monokai (light) (terminal.sexy)',
     'AyuLight (Gogh)'                ,
+    'OneHalfLight'                   ,
+    'Hybrid'                         ,
+    'Raycast_Light'                  ,
   }
   local scheme_recommend_list = {
     'Oxocarbon Dark (Gogh)'          ,
     'Purple People Eater (Gogh)'     ,
     'Builtin Pastel Dark'            ,
     'Windows High Contrast (base16)' ,
+    'Espresso Libre'                 ,
+    'IdleToes (Gogh)'                ,
+    'Ef-Trio-Dark'                   ,
   }
 
   local scheme_name_list = {}

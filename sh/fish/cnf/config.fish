@@ -22,7 +22,7 @@ set -x NODEBREW_ROOT /opt/homebrew/var/nodebrew
 
 # ripgrep ( rg )
 
-set -x RIPGREP_CONFIG_PATH ~/wrk/prj-pri/dotfiles/cli/rg/ripgreprc/dflt/.ripgreprc
+set -x RIPGREP_CONFIG_PATH ~/wrk/prj-pri/dotfiles/cli/rg/ripgreprc/.ripgreprc
 
 # fzf
 

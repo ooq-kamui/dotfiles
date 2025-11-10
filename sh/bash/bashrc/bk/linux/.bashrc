@@ -1,5 +1,0 @@
-
-eval `dircolors ~/.colorrc`
-
-
-

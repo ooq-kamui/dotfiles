@@ -29,7 +29,7 @@ alias ca='cal'
 #alias fd='fd --path-separator=/'
 
 # rg
-export RIPGREP_CONFIG_PATH=$HOME/wrk/cnf/sh/rg/.ripgreprc_gitbash
+# export RIPGREP_CONFIG_PATH=$HOME/wrk/cnf/sh/rg/.ripgreprc-gitbash
 
 # fzf
 

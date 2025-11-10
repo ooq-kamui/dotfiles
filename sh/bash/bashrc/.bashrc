@@ -97,7 +97,7 @@ alias fd='fd --hidden -I --exclude .git --follow'
 #alias rg='rg -nS'
 #alias rg='rg -nS --path-separator "//"'
 
-export RIPGREP_CONFIG_PATH=$HOME/wrk/prj-pri/dotfiles/cli/rg/ripgreprc/dflt/.ripgreprc
+# export RIPGREP_CONFIG_PATH=$HOME/wrk/prj-pri/dotfiles/cli/rg/ripgreprc/.ripgreprc
 
 # fzf
 
