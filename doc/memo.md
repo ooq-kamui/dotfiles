@@ -74,6 +74,11 @@ plg-mng
 - lazy
 
 
+## web-svr
+
+mgr
+
+
 ## skr-vps
 
 centos setting at skr console
