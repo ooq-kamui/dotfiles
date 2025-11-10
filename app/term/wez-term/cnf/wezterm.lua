@@ -73,6 +73,9 @@ local function color_scheme__rnd()
     'Helios (base16)'                ,
     'Monokai Vivid'                  ,
     'Sagelight (base16)'             ,
+    'TokyoNightLight (Gogh)'         ,
+    'Spiderman'                      ,
+    'Tokyo Night Day'                ,
   }
   local scheme_recommend_list = {
     'Oxocarbon Dark (Gogh)'          ,

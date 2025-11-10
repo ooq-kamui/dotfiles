@@ -6,7 +6,10 @@
 
 `str.__rpl()` > `str.__rpl_by_vs()`
 - new `str.__rpl()` cre
+  - string.gsub()
 - `str.__rpl_by_vs()` > `str.__rpl()`
+
+`\<c-x>` > v.cmd.nml()
 
 
 ## git
