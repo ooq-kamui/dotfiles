@@ -76,6 +76,7 @@ local function color_scheme__rnd()
     'TokyoNightLight (Gogh)'         ,
     'Spiderman'                      ,
     'Tokyo Night Day'                ,
+    'Atelier Plateau Light (base16)' ,
   }
   local scheme_recommend_list = {
     'Oxocarbon Dark (Gogh)'          ,
