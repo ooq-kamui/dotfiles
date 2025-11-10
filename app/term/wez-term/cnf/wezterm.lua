@@ -70,6 +70,9 @@ local function color_scheme__rnd()
     'Harmonic16 Light (base16)'      ,
     'CLRS'                           ,
     'Homebrew (Gogh)'                ,
+    'Helios (base16)'                ,
+    'Monokai Vivid'                  ,
+    'Sagelight (base16)'             ,
   }
   local scheme_recommend_list = {
     'Oxocarbon Dark (Gogh)'          ,
