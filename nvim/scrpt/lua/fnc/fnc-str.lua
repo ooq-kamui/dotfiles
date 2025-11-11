@@ -159,16 +159,16 @@ end
 function v.Str.path_unix__cnv_win(path)
 
   local path = path
-  local path = v.Str.__rpl_by_vim(path, '/c/', 'C:/')
-  local path = v.Str.__rpl_by_vim(path, '/', '\\')
+  local path = v.Str.__rpl_by_lua(path, '/c/', 'C:/')
+  local path = v.Str.__rpl_by_lua(path, '/'  , [[\]])
   return path
 end
 
 function v.Str.path_win__cnv_unix(path)
 
   local path = path
-  local path = v.Str.__rpl_by_vim(path, 'C:', '/c')
-  local path = v.Str.__rpl_by_vim(path, '\\', '/')
+  local path = v.Str.__rpl_by_lua(path, 'C:' , '/c')
+  local path = v.Str.__rpl_by_lua(path, [[\]], '/')
   return path
 end
 

@@ -145,6 +145,7 @@ alias jp 'git pll'
 # alias jwd 'git wd'
 
 alias jrp 'git_root_pth_rel'
+alias jr  'cd_git_root'
 alias ji-st-file-lst 'git_st_file_lst'
 alias ji-co-file-lst 'git_co_file_lst'
 

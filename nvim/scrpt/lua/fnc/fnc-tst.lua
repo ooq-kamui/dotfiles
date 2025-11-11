@@ -19,6 +19,11 @@ function v.Tst.tst()
   -- vim.cmd('exe "normal! 5\\<c-e>"')
   -- vim.cmd([[exe "normal! \"eyy"]])
 
+  local str
+  str = '"aaa"'
+  str = v.Str.__rpl_by_lua(str, '"', [[\\"]])
+  print(str)
+
 end
 
 

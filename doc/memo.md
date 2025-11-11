@@ -2,11 +2,6 @@
 # dotfiles
 
 
-## nvim
-
-`str.__rpl_by_vs()` > `str.__rpl_by_lua()`
-
-
 ## git
 
 git log-tree
