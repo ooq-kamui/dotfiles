@@ -41,7 +41,7 @@ net data
 
 ## nvim
 
-line f col algn, char same
+line f col algn, fzy, char same
 
 opn_file_close_recently
 
