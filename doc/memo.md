@@ -4,12 +4,7 @@
 
 ## nvim
 
-`str.__rpl()` > `str.__rpl_by_vs()`
-- new `str.__rpl()` cre
-  - string.gsub()
-- `str.__rpl_by_vs()` > `str.__rpl()`
-
-`\<c-x>` > v.cmd.nml()
+`str.__rpl_by_vs()` > `str.__rpl_by_lua()`
 
 
 ## git
@@ -59,16 +54,16 @@ ri, shft, repeat i
 
 
 v.Sys.sh_by_slctd_line()
-- confirm dialog ( neovim )
+- confirm at dialog ( neovim )
   - view log
   - use nui.nvim
 
 plg
+- lualine
+
 - blink.cmp
   - https://eiji.page/blog/neovim-blink-cmp-intro/
 - noice.nvim
-
-- lualine
 
 plg-mng
 - lazy

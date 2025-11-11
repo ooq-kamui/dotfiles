@@ -77,6 +77,9 @@ local function color_scheme__rnd()
     'Spiderman'                      ,
     'Tokyo Night Day'                ,
     'Atelier Plateau Light (base16)' ,
+    'Lost Woods (terminal.sexy)'     ,
+    'LunariaLight (Gogh)'            ,
+    'Canvased Pastel (terminal.sexy)',
   }
   local scheme_recommend_list = {
     'Oxocarbon Dark (Gogh)'          ,
@@ -87,6 +90,9 @@ local function color_scheme__rnd()
     'IdleToes (Gogh)'                ,
     'Ef-Trio-Dark'                   ,
     'Dracula (Gogh)'                 ,
+    'niji'                           ,
+    'PaperColorDark (Gogh)'          ,
+    'iTerm2 Smoooooth'               ,
   }
 
   local scheme_name_list = {}

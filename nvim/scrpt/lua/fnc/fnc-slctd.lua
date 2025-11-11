@@ -32,7 +32,8 @@ function v.Slctd.mode__tgl()
     if v.Slctd.is_line__mlt() then
       v.Cmd.nml('V')
     else
-      v.Cmd.nml('\\<esc>')
+      v.Cmd.nml([[\<esc>]])
+      -- v.Cmd.nml('\\<esc>')
       v.Cmd.nml('v')
     end
   else
@@ -43,7 +44,9 @@ end
 function v.Slctd.mode_state__swtch()
 
   v.Slctd.__ltst()
-  v.Cmd.cmd('exe "normal! \\<c-v>"')
+  v.Cmd.nml([[\<c-v>]])
+  -- v.Cmd.nml('\\<c-v>')
+  -- v.Cmd.cmd('exe "normal! \\<c-v>"')
 end
 
 -- slctd str
@@ -476,13 +479,15 @@ function v.Slctd.__fil(char) -- range
   local char = char
 
   if char == '|' then
-    char = '\\<bar>'
+    char = [[\<bar>]]
+    -- char = '\\<bar>'
   end
 
   v.Slctd.__ltst()
 
   local cmd_nml = 'r' .. char
-  v.Cmd.cmd('exe "normal! ' .. cmd_nml .. '"')
+  v.Cmd.nml(cmd_nml)
+  -- v.Cmd.cmd('exe "normal! ' .. cmd_nml .. '"')
 
   v.Slctd.__ltst()
 end
@@ -816,8 +821,8 @@ function v.Slctd.is_str__srch_str()
 
   local srch_str = v.Rgstr.get('/')
   -- v.Log.log(srch_str)
-  srch_str = v.Str.__rpl(srch_str, '\\\\<', '')
-  srch_str = v.Str.__rpl(srch_str, '\\\\>', '')
+  srch_str = v.Str.__rpl_by_vim(srch_str, [[\\<]], '')
+  srch_str = v.Str.__rpl_by_vim(srch_str, [[\\>]], '')
   -- v.Log.log(srch_str)
 
   if v.Slctd.str() == srch_str then

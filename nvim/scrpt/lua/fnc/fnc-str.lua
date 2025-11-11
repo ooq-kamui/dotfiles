@@ -144,7 +144,13 @@ end
 
 -- str __ rpl
 
-function v.Str.__rpl(str, ptn, rpl) -- alias
+function v.Str.__rpl_by_lua(str, ptn, rpl)
+
+  local r_str = string.gsub(str, ptn, rpl)
+  return r_str
+end
+
+function v.Str.__rpl_by_vim(str, ptn, rpl) -- alias
 
   local r_str = vf.substitute(str, ptn, rpl, 'g')
   return r_str
@@ -153,16 +159,16 @@ end
 function v.Str.path_unix__cnv_win(path)
 
   local path = path
-  local path = v.Str.__rpl(path, '/c/', 'C:/')
-  local path = v.Str.__rpl(path, '/', '\\')
+  local path = v.Str.__rpl_by_vim(path, '/c/', 'C:/')
+  local path = v.Str.__rpl_by_vim(path, '/', '\\')
   return path
 end
 
 function v.Str.path_win__cnv_unix(path)
 
   local path = path
-  local path = v.Str.__rpl(path, 'C:', '/c')
-  local path = v.Str.__rpl(path, '\\', '/')
+  local path = v.Str.__rpl_by_vim(path, 'C:', '/c')
+  local path = v.Str.__rpl_by_vim(path, '\\', '/')
   return path
 end
 

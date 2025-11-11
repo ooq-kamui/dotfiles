@@ -9,24 +9,15 @@ end
 function v.Cmd.nml(cmd_nml) -- alias
 
   -- v.Log.log(cmd_nml)
-  cmd_nml = v.Str.__rpl(cmd_nml, '"', [[\\"]])
+  cmd_nml = v.Str.__rpl_by_vim(cmd_nml, '"', [[\\"]])
   -- v.Log.log(cmd_nml)
   v.Cmd.cmd('exe "normal! ' .. cmd_nml .. '"')
-
-  -- v.Cmd.cmd('normal! ' .. cmd_nml)
-
-  -- if v.Str.is__ptn(cmd_nml, '\\') then
-  -- 
-  --   v.Cmd.cmd('exe "normal! ' .. cmd_nml .. '"')
-  -- else
-  --   v.Cmd.cmd('normal! ' .. cmd_nml)
-  -- end
 end
 
 function v.Cmd.esc()
 
-  v.Cmd.cmd('exe "normal! \\<esc>"')
-  -- v.Cmd.nml('\\<esc>')
+  v.Cmd.nml([[\<esc>]])
+  -- v.Cmd.cmd('exe "normal! \\<esc>"')
 end
 
 function v.Cmd.cmdline__(str)

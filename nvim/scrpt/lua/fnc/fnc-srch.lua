@@ -60,7 +60,8 @@ function v.Srch.str_word1(str)
     str = v.Srch.str_flt()
   end
 
-  str = '\\<' .. str .. '\\>'
+  str = [[\<]] .. str .. [[\>]]
+  -- str = '\\<' .. str .. '\\>'
   return str
 end
 
@@ -123,11 +124,13 @@ function v.Srch.prv_tgl_str()
 
   if v.Rgstr.get('/') == v.Srch.str_ltst(1) then
 
-    if              v.Srch.str_ltst(1)          == '\\<' .. v.Srch.str_ltst(2) .. '\\>' then
+    if               v.Srch.str_ltst(1)           == [[\<]] .. v.Srch.str_ltst(2) .. [[\>]] then
+    -- if              v.Srch.str_ltst(1)          == '\\<' .. v.Srch.str_ltst(2) .. '\\>' then
 
       prv_tgl_str = v.Srch.str_ltst(3)
 
-    elseif '\\<' .. v.Srch.str_ltst(1) .. '\\>' ==          v.Srch.str_ltst(2)          then
+    elseif [[\<]] .. v.Srch.str_ltst(1) .. [[\>]] ==           v.Srch.str_ltst(2)           then
+    -- elseif '\\<' .. v.Srch.str_ltst(1) .. '\\>' ==          v.Srch.str_ltst(2)          then
 
       prv_tgl_str = v.Srch.str_ltst(3)
 
@@ -279,7 +282,8 @@ function v.Srch.is__word1()
   local str_l = vf.strcharpart(str, 0, 2)
   local str_r = vf.strcharpart(str, vf.strchars(str) - 2)
 
-  if str_l == '\\<' and str_r == '\\>' then
+  if str_l == [[\<]] and str_r == [[\>]] then
+  -- if str_l == '\\<' and str_r == '\\>' then
     ret = bl.t
   end
 

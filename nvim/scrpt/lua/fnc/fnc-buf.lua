@@ -189,7 +189,9 @@ function v.Buf.undo__clr()
   local undo_lvl_tmp = vim.bo.undolevels
 
   vim.opt_local.undolevels = -1
-  v.Cmd.cmd([[exe "normal! a \<bs>\<esc>"]])
+  v.Cmd.nml([[a \<bs>\<esc>]])
+  -- v.Cmd.nml('a \\<bs>\\<esc>')
+  -- v.Cmd.cmd([[exe "normal! a \<bs>\<esc>"]])
 
   vim.bo.undolevels = undo_lvl_tmp
 end
@@ -330,11 +332,15 @@ end
 
 function v.Win.splt_cursor__mv_nxt()
 
-  v.Cmd.cmd('exe "normal! \\<c-w>w>"')
+  v.Cmd.nml([[\<c-w>w>]])
+  -- v.Cmd.nml('\\<c-w>w>')
+  -- v.Cmd.cmd('exe "normal! \\<c-w>w>"')
 end
 
 function v.Win.splt__quit()
 
-  v.Cmd.cmd('exe "normal! \\<c-w>c>"')
+  v.Cmd.nml([[\<c-w>c>]])
+  -- v.Cmd.nml('\\<c-w>c>')
+  -- v.Cmd.cmd('exe "normal! \\<c-w>c>"')
 end
 

@@ -17,7 +17,7 @@ function v.Tst.tst()
 
   -- vim.cmd("exe 'normal! j'")
   -- vim.cmd('exe "normal! 5\\<c-e>"')
-  -- vim.cmd('exe "normal! \\"ay"')
+  -- vim.cmd([[exe "normal! \"eyy"]])
 
 end
 

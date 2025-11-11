@@ -485,7 +485,7 @@ keymap__('n', 'v', '<c-v>')
 
 -- slct re
 keymap__('n', 'R'    , v.Slctd.__ltst)
-keymap__('n', '<c-r>', v.Slctd.__ltst)
+-- keymap__('n', '<c-r>', v.Slctd.__ltst)
 
 -- ynk clr
 keymap__('n', '<c-c>', v.Rgstr.ynk__clr)
@@ -745,7 +745,8 @@ keymap__('n', '<leader>k'    , 'mz/')
 keymap__('n', '<leader><c-k>', 'mz?')
 
 -- srch by cmd word1
-keymap__('n', '<leader>K', '/\\<\\><left><left>')
+keymap__('n', '<leader>K', [[/\<\><left><left>]])
+-- keymap__('n', '<leader>K', '/\\<\\><left><left>')
 
 -- srch word or
 -- keymap__('n', 'xx', 'Xxx')
