@@ -8,10 +8,10 @@ end
 
 function v.Cmd.nml(cmd_nml) -- alias
 
-  v.Log.log(cmd_nml)
+  -- v.Log.log(cmd_nml)
   cmd_nml = v.Str.__rpl_by_lua(cmd_nml, '"', [[\"]])
   -- cmd_nml = v.Str.__rpl_by_vim(cmd_nml, '"', [[\\"]])
-  v.Log.log(cmd_nml)
+  -- v.Log.log(cmd_nml)
 
   v.Cmd.cmd('exe "normal! ' .. cmd_nml .. '"')
 end

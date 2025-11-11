@@ -47,58 +47,69 @@ local function is_tbl_in(tbl, val)
   return false
 end
 
-local function color_scheme__rnd()
+local scheme_list = {}
+scheme_list.excld = {
+  'Icy Dark (base16)'                 ,
+  'Zenburn (Gogh)'                    ,
+  'Mono (terminal.sexy)'              ,
+  'nighty (Gogh)'                     ,
+  'Neutron'                           ,
+  'Ef-Tritanopia-Light'               ,
+  'FrontendDelight (Gogh)'            ,
+  'Atelier Savanna (base16)'          ,
+  'Gruvbox Light'                     ,
+  'Unsifted Wheat (terminal.sexy)'    ,
+  'Google Light (base16)'             ,
+  'Mona Lisa (Gogh)'                  ,
+  'Monokai (light) (terminal.sexy)'   ,
+  'AyuLight (Gogh)'                   ,
+  'OneHalfLight'                      ,
+  'Hybrid'                            ,
+  'Raycast_Light'                     ,
+  'Harmonic16 Light (base16)'         ,
+  'CLRS'                              ,
+  'Homebrew (Gogh)'                   ,
+  'Helios (base16)'                   ,
+  'Monokai Vivid'                     ,
+  'Sagelight (base16)'                ,
+  'TokyoNightLight (Gogh)'            ,
+  'Spiderman'                         ,
+  'Tokyo Night Day'                   ,
+  'Atelier Plateau Light (base16)'    ,
+  'Lost Woods (terminal.sexy)'        ,
+  'LunariaLight (Gogh)'               ,
+  'Canvased Pastel (terminal.sexy)'   ,
+  'Pro (Gogh)'                        ,
+  'Light White (terminal.sexy)'       ,
+  'Lavandula (Gogh)'                  ,
+  'CrayonPonyFish'                    ,
+  'summercamp (base16)'               ,
+  '3024 Day (Gogh)'                   ,
+  'Ef-Frost'                          ,
+  'Greenscreen (dark) (terminal.sexy)',
+}
+scheme_list.recommend = {
+  'UltraViolent'                      , -- <
+  'niji'                              , -- <
+  'Borland'                           , -- <
+  'Oxocarbon Dark (Gogh)'             ,
+  'Purple People Eater (Gogh)'        ,
+  'Builtin Pastel Dark'               ,
+  'Windows High Contrast (base16)'    ,
+  'Espresso Libre'                    ,
+  'IdleToes (Gogh)'                   ,
+  'Ef-Trio-Dark'                      ,
+  'Dracula (Gogh)'                    ,
+  'PaperColorDark (Gogh)'             ,
+  'iTerm2 Smoooooth'                  ,
+}
 
-  local scheme_excld_list = {
-    'Icy Dark (base16)'              ,
-    'Zenburn (Gogh)'                 ,
-    'Mono (terminal.sexy)'           ,
-    'nighty (Gogh)'                  ,
-    'Neutron'                        ,
-    'Ef-Tritanopia-Light'            ,
-    'FrontendDelight (Gogh)'         ,
-    'Atelier Savanna (base16)'       ,
-    'Gruvbox Light'                  ,
-    'Unsifted Wheat (terminal.sexy)' ,
-    'Google Light (base16)'          ,
-    'Mona Lisa (Gogh)'               ,
-    'Monokai (light) (terminal.sexy)',
-    'AyuLight (Gogh)'                ,
-    'OneHalfLight'                   ,
-    'Hybrid'                         ,
-    'Raycast_Light'                  ,
-    'Harmonic16 Light (base16)'      ,
-    'CLRS'                           ,
-    'Homebrew (Gogh)'                ,
-    'Helios (base16)'                ,
-    'Monokai Vivid'                  ,
-    'Sagelight (base16)'             ,
-    'TokyoNightLight (Gogh)'         ,
-    'Spiderman'                      ,
-    'Tokyo Night Day'                ,
-    'Atelier Plateau Light (base16)' ,
-    'Lost Woods (terminal.sexy)'     ,
-    'LunariaLight (Gogh)'            ,
-    'Canvased Pastel (terminal.sexy)',
-  }
-  local scheme_recommend_list = {
-    'Oxocarbon Dark (Gogh)'          ,
-    'Purple People Eater (Gogh)'     ,
-    'Builtin Pastel Dark'            ,
-    'Windows High Contrast (base16)' ,
-    'Espresso Libre'                 ,
-    'IdleToes (Gogh)'                ,
-    'Ef-Trio-Dark'                   ,
-    'Dracula (Gogh)'                 ,
-    'niji'                           ,
-    'PaperColorDark (Gogh)'          ,
-    'iTerm2 Smoooooth'               ,
-  }
+local function color_scheme__rnd()
 
   local scheme_name_list = {}
   for scheme_name, scheme in pairs(wezterm.color.get_builtin_schemes()) do
     -- excld
-    if is_tbl_in(scheme_excld_list, scheme_name) then
+    if is_tbl_in(scheme_list.excld, scheme_name) then
       -- skip
       -- wezterm.log_info('skip: ' .. scheme_name)
     else
