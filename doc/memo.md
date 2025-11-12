@@ -2,6 +2,11 @@
 # dotfiles
 
 
+## nvim
+
+line f col algn, fzy, char same
+
+
 ## git
 
 git log-tree
@@ -40,8 +45,6 @@ net data
 
 
 ## nvim
-
-line f col algn, fzy, char same
 
 opn_file_close_recently
 
