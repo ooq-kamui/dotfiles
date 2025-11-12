@@ -47,20 +47,21 @@ local function is_tbl_in(tbl, val)
   return false
 end
 
-local scheme_list = require('cnf/wezterm-scheme')
+local scheme_my_lst = require('cnf/wezterm-scheme-my-lst')
 
 local function color_scheme__rnd()
 
   local scheme_name_list = {}
   for scheme_name, scheme in pairs(wezterm.color.get_builtin_schemes()) do
     -- excld
-    if is_tbl_in(scheme_list.win.excld, scheme_name) then
+    if is_tbl_in(scheme_my_lst.win.excld, scheme_name) then
       -- skip
       -- wezterm.log_info('skip: ' .. scheme_name)
     else
       table.insert(scheme_name_list, scheme_name)
     end
   end
+  scheme_name_list = scheme_my_lst.win.excld
 
   wezterm.on('window-config-reloaded', function(window, pane)
     if not window:get_config_overrides() then

@@ -64,6 +64,7 @@ scheme_lst.win.excld = {
   'Nighty (Gogh)'                         ,
   'rose-pine-moon'                        ,
   'RoséPine (Gogh)'                       ,
+  'Dawn (terminal.sexy)'                  ,
 }
 
 scheme_lst.win.recommend = {}
@@ -73,6 +74,7 @@ scheme_lst.win.recommend.h = {
   'Borland'                               , -- <
   'VibrantInk'                            , -- <
   'Synthwave (Gogh)'                      , -- <
+  'tokyonight'                            , --
   'Framer (base16)'                       , -- < mac
 }
 scheme_lst.win.recommend.m = {
