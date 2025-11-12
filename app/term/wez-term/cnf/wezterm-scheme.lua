@@ -1,7 +1,10 @@
 
-local scheme_list = {}
+local scheme_lst = {}
 
-scheme_list.excld = {
+scheme_lst.win = {}
+scheme_lst.mac = {}
+
+scheme_lst.win.excld = {
   '3024 Day (Gogh)'                       ,
   'Atelier Cave (base16)'                 ,
   'Atelier Plateau Light (base16)'        ,
@@ -60,17 +63,19 @@ scheme_list.excld = {
   'Vacuous 2 (terminal.sexy)'             ,
   'Nighty (Gogh)'                         ,
   'rose-pine-moon'                        ,
+  'RoséPine (Gogh)'                       ,
 }
 
-scheme_list.recommend = {}
-scheme_list.recommend.h = {
+scheme_lst.win.recommend = {}
+scheme_lst.win.recommend.h = {
   'UltraViolent'                          , -- <
   'niji'                                  , -- <
   'Borland'                               , -- <
   'VibrantInk'                            , -- <
   'Synthwave (Gogh)'                      , -- <
+  'Framer (base16)'                       , -- < mac
 }
-scheme_list.recommend.m = {
+scheme_lst.win.recommend.m = {
   'Builtin Pastel Dark'                   ,
   'Dracula (Gogh)'                        ,
   'Ef-Trio-Dark'                          ,
@@ -86,5 +91,5 @@ scheme_list.recommend.m = {
   'Purple Rain'                           ,
 }
 
-return scheme_list
+return scheme_lst
 

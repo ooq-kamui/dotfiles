@@ -47,14 +47,14 @@ local function is_tbl_in(tbl, val)
   return false
 end
 
-local scheme_list = require('wezterm-scheme')
+local scheme_list = require('cnf/wezterm-scheme')
 
 local function color_scheme__rnd()
 
   local scheme_name_list = {}
   for scheme_name, scheme in pairs(wezterm.color.get_builtin_schemes()) do
     -- excld
-    if is_tbl_in(scheme_list.excld, scheme_name) then
+    if is_tbl_in(scheme_list.win.excld, scheme_name) then
       -- skip
       -- wezterm.log_info('skip: ' .. scheme_name)
     else
