@@ -61,7 +61,7 @@ local function color_scheme__rnd()
       table.insert(scheme_name_list, scheme_name)
     end
   end
-  scheme_name_list = scheme_my_lst.win.excld
+  -- scheme_name_list = scheme_my_lst.win.excld
 
   wezterm.on('window-config-reloaded', function(window, pane)
     if not window:get_config_overrides() then
