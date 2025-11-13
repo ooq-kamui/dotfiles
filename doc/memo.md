@@ -2,6 +2,11 @@
 # dotfiles
 
 
+## wez
+
+tst
+
+
 ## nvim
 
 srch pre history str__rpl , err

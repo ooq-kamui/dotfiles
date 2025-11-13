@@ -2,8 +2,6 @@
 local scheme_lst = {}
 
 scheme_lst.win = {}
-scheme_lst.mac = {}
-
 scheme_lst.win.excld = {
   '3024 Day (Gogh)'                       ,
   'Atelier Plateau Light (base16)'        ,
@@ -57,17 +55,22 @@ scheme_lst.win.excld = {
   'Nighty (Gogh)'                         ,
   'RoséPine (Gogh)'                       ,
   'Dawn (terminal.sexy)'                  ,
+  'Galaxy'                                ,
+  'Wryan'                                 ,
+  'Black Metal (Khold) (base16)'          ,
+  'PaperColorLight (Gogh)'                ,
+  'CGA'                                   ,
 }
 
 scheme_lst.win.recommend = {}
 scheme_lst.win.recommend.h = {
-  'UltraViolent'                          , -- <
-  'niji'                                  , -- <
-  'Borland'                               , -- <
-  'VibrantInk'                            , -- <
-  'Synthwave (Gogh)'                      , -- <
-  'tokyonight'                            , --
-  'Framer (base16)'                       , -- < mac
+  'UltraViolent'                          ,
+  'niji'                                  ,
+  'Borland'                               ,
+  'VibrantInk'                            ,
+  'Synthwave (Gogh)'                      ,
+  'tokyonight'                            ,
+  'Everblush (Gogh)'                      ,
 }
 scheme_lst.win.recommend.m = {
   'Builtin Pastel Dark'                   ,
@@ -83,6 +86,16 @@ scheme_lst.win.recommend.m = {
   'Windows High Contrast (base16)'        ,
   'iTerm2 Smoooooth'                      ,
   'Purple Rain'                           ,
+}
+
+scheme_lst.mac = {}
+scheme_lst.mac.excld = {
+}
+scheme_lst.mac.recommend = {}
+scheme_lst.mac.recommend.h = {
+  'Framer (base16)'                       ,
+}
+scheme_lst.mac.recommend.m = {
 }
 
 return scheme_lst

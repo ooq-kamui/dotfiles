@@ -38,7 +38,7 @@ config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 
 -- config.color_scheme = 'AdventureTime'
 
-local function is_tbl_in(tbl, val)
+function is_tbl_in(tbl, val)
   for _, value in ipairs(tbl) do
     if value == val then
       return true
@@ -47,14 +47,15 @@ local function is_tbl_in(tbl, val)
   return false
 end
 
-local scheme_my_lst = require('cnf/wezterm-scheme-my-lst')
+scheme_my_lst = require('cnf/wezterm-scheme-my-lst')
 
-local function color_scheme__rnd()
+function color_scheme__rnd(env)
 
   local scheme_name_list = {}
   for scheme_name, scheme in pairs(wezterm.color.get_builtin_schemes()) do
     -- excld
-    if is_tbl_in(scheme_my_lst.win.excld, scheme_name) then
+    -- if is_tbl_in(scheme_my_lst.win.excld, scheme_name) then
+    if is_tbl_in(scheme_my_lst[env].excld, scheme_name) then
       -- skip
       -- wezterm.log_info('skip: ' .. scheme_name)
     else
@@ -75,7 +76,7 @@ local function color_scheme__rnd()
 
   return {}
 end
-color_scheme__rnd()
+-- color_scheme__rnd()
 
 
 -- mouse

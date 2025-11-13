@@ -42,5 +42,7 @@ wezterm.on('gui-startup', function()
   })
 end)
 
+color_scheme__rnd('win')
+
 return config
 
