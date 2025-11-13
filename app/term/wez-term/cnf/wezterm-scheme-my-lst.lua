@@ -103,6 +103,7 @@ scheme_lst.win.recommend.m = {
 
 scheme_lst.mac = {}
 scheme_lst.mac.excld = {
+  'PaperColor Dark (base16)'              ,
 }
 scheme_lst.mac.recommend = {}
 scheme_lst.mac.recommend.h = {

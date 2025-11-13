@@ -2,6 +2,11 @@
 # dotfiles
 
 
+## wezterm
+
+utl
+
+
 ## iphone
 
 net data
