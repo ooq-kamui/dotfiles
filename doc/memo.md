@@ -2,14 +2,7 @@
 # dotfiles
 
 
-## wez
-
-tst
-
-
 ## nvim
-
-srch pre history str__rpl , err
 
 line f col algn, fzy, char same
 

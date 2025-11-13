@@ -73,12 +73,13 @@ function v.Srch.str__(str, op_word1)
 
   exe_str = vf.escape(exe_str, '.*~[]\\^$')
 
-  exe_str = vf.substitute(exe_str, '\\n', '\\\\n', 'g')
+  exe_str = vf.substitute(exe_str, [[\n]], [[\\n]], 'g')
   -- v.Log.val( exe_str )
 
   if op_word1 == bl.t then
     exe_str = v.Srch.str_word1(exe_str)
   end
+  -- v.Log.val( exe_str )
 
   if v.Rgstr.get('/') == exe_str then -- same ltst 01
     return
@@ -86,6 +87,8 @@ function v.Srch.str__(str, op_word1)
 
   v.Rgstr.__('/', exe_str) -- highlight
 
+  exe_str = v.Str.__rpl_by_lua(exe_str, [[\]], [[\\]]) -- \\<aaa\\>
+  -- v.Log.val( exe_str )
   v.Cmd.nml('/' .. exe_str) -- srch hstry add
 end
 

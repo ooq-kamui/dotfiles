@@ -18,6 +18,7 @@ scheme_lst.win.excld = {
   'FrontendDelight (Gogh)'                ,
   'Github'                                ,
   'Google Light (base16)'                 ,
+  'Google Light (Gogh)'                   ,
   'Greenscreen (dark) (terminal.sexy)'    ,
   'Gruvbox Light'                         ,
   'Harmonic16 Light (base16)'             ,
@@ -60,6 +61,14 @@ scheme_lst.win.excld = {
   'Black Metal (Khold) (base16)'          ,
   'PaperColorLight (Gogh)'                ,
   'CGA'                                   ,
+  'Hardcore (base16)'                     ,
+  'Grass'                                 ,
+  'JWR dark (terminal.sexy)'              ,
+  'Ubuntu'                                ,
+  'HaX0R_GR33N'                           ,
+  'Sundried'                              ,
+  'Tangoesque (terminal.sexy)'            ,
+  'MonokaiDark (Gogh)'                    ,
 }
 
 scheme_lst.win.recommend = {}
