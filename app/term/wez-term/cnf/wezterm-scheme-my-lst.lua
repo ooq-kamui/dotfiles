@@ -59,6 +59,7 @@ scheme_lst.win.excld = {
   'Galaxy'                                ,
   'Wryan'                                 ,
   'Black Metal (Khold) (base16)'          ,
+  'Black Metal (Mayhem) (base16)'         ,
   'PaperColorLight (Gogh)'                ,
   'CGA'                                   ,
   'Hardcore (base16)'                     ,
@@ -69,6 +70,9 @@ scheme_lst.win.excld = {
   'Sundried'                              ,
   'Tangoesque (terminal.sexy)'            ,
   'MonokaiDark (Gogh)'                    ,
+  'Atelierheath (dark) (terminal.sexy)'   ,
+  'Kasugano (terminal.sexy)'              ,
+  'Catch Me If You Can (terminal.sexy)'   ,
 }
 
 scheme_lst.win.recommend = {}

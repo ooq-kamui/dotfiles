@@ -1,5 +1,5 @@
-function mv_excld
-  
+function mv-excld
+
   if test -n "$argv[1]"
     set fr_dir (string trim -r -c / $argv[1] )
   else

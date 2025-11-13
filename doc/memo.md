@@ -2,6 +2,12 @@
 # dotfiles
 
 
+## iphone
+
+net data
+- ggl, confirm
+
+
 ## nvim
 
 line f col algn, fzy, char same
@@ -36,12 +42,6 @@ platformer
 game cre
 - map cre
 - chara cre
-
-
-## iphone
-
-net data
-- ggl, confirm
 
 
 ## nvim
