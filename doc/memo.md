@@ -2,11 +2,6 @@
 # dotfiles
 
 
-## wezterm
-
-utl
-
-
 ## iphone
 
 net data
@@ -16,6 +11,9 @@ net data
 ## nvim
 
 line f col algn, fzy, char same
+
+vf.xxx > del
+- research, rg
 
 
 ## git

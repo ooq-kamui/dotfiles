@@ -73,10 +73,14 @@ scheme_lst.win.excld = {
   'Atelierheath (dark) (terminal.sexy)'   ,
   'Kasugano (terminal.sexy)'              ,
   'Catch Me If You Can (terminal.sexy)'   ,
+  'Man Page'                              ,
+  'darkermatrix'                          ,
+  'BlulocoZshLight (Gogh)'                ,
 }
 
 scheme_lst.win.recommend = {}
 scheme_lst.win.recommend.h = {
+  'Snazzy (base16)'                       , -- < h
   'UltraViolent'                          ,
   'niji'                                  ,
   'Borland'                               ,
@@ -84,6 +88,7 @@ scheme_lst.win.recommend.h = {
   'Synthwave (Gogh)'                      ,
   'tokyonight'                            ,
   'Everblush (Gogh)'                      ,
+  'AyuMirage (Gogh)'                      ,
 }
 scheme_lst.win.recommend.m = {
   'Builtin Pastel Dark'                   ,

@@ -227,6 +227,7 @@ vim.opt.laststatus  = 2 -- 0:off  1:on when 2 win  2:on
 vim.opt.completeopt = {'menuone', 'noinsert'}
 vim.opt.foldmethod  = 'manual'
 vim.opt.shortmess:append('I')
+vim.opt.shortmess:remove("S")
 -- vim.opt.nrformats:append {'unsigned'} -- 2022-05-09
 
 vim.opt.swapfile = bl.f
