@@ -2,6 +2,16 @@
 # dotfiles
 
 
+## git
+
+head の file を vim で見る
+- doc-tech write
+
+```
+git show HEAD:src/main.c | vim -
+```
+
+
 ## iphone
 
 net data

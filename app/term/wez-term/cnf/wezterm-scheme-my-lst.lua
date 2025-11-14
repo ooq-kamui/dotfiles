@@ -76,6 +76,15 @@ scheme_lst.win.excld = {
   'Man Page'                              ,
   'darkermatrix'                          ,
   'BlulocoZshLight (Gogh)'                ,
+  'Jackie Brown'                          ,
+  'Windows 95 Light (base16)'             ,
+  'Vag (Gogh)'                            ,
+  'GoogleLight (Gogh)'                    ,
+  'Circus (base16)'                       ,
+  'Violet Light'                          ,
+  'Shapeshifter (dark) (terminal.sexy)'   ,
+  'Freya (Gogh)'                          ,
+  'mono-red (Gogh)'                       ,
 }
 
 scheme_lst.win.recommend = {}
