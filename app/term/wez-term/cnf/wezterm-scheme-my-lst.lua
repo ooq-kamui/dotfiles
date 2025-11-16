@@ -118,12 +118,23 @@ scheme_lst.win.recommend.m = {
 scheme_lst.mac = {}
 scheme_lst.mac.excld = {
   'PaperColor Dark (base16)'              ,
+  'thwump (terminal.sexy)'                ,
+  'Cupertino (base16)'                    ,
+  'Elementary'                            ,
+  'Isotope (light) (terminal.sexy)'       ,
+  'Neutron (Gogh)'                        ,
+  'Geohot (Gogh)'                         ,
+  'Ic Orange Ppl (Gogh)'                  ,
+  'Jackie Brown (Gogh)'                   ,
+  'Ef-Melissa-Light'                      ,
+  'Rosé Pine Dawn (Gogh)'                 ,
 }
 scheme_lst.mac.recommend = {}
 scheme_lst.mac.recommend.h = {
   'Framer (base16)'                       ,
 }
 scheme_lst.mac.recommend.m = {
+  'IrBlack (Gogh)'                        ,
 }
 
 return scheme_lst
