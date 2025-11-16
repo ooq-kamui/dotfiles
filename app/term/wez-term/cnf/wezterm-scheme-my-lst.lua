@@ -19,6 +19,8 @@ scheme_lst.win.excld = {
   'Github'                                ,
   'Google Light (base16)'                 ,
   'Google Light (Gogh)'                   ,
+  'GoogleLight (Gogh)'                    ,
+  'Google (light) (terminal.sexy)'        ,
   'Greenscreen (dark) (terminal.sexy)'    ,
   'Gruvbox Light'                         ,
   'Harmonic16 Light (base16)'             ,
@@ -79,12 +81,16 @@ scheme_lst.win.excld = {
   'Jackie Brown'                          ,
   'Windows 95 Light (base16)'             ,
   'Vag (Gogh)'                            ,
-  'GoogleLight (Gogh)'                    ,
   'Circus (base16)'                       ,
   'Violet Light'                          ,
   'Shapeshifter (dark) (terminal.sexy)'   ,
   'Freya (Gogh)'                          ,
   'mono-red (Gogh)'                       ,
+  'Purpledream (base16)'                  ,
+  'Silk Light (base16)'                   ,
+  'Ibm 3270 (High Contrast) (Gogh)'       ,
+  'Ura (Gogh)'                            ,
+  'Nep (Gogh)'                            ,
 }
 
 scheme_lst.win.recommend = {}
