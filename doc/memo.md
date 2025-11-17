@@ -2,11 +2,15 @@
 # dotfiles
 
 
-## git
+## zoxide
+
+`zoxide: you are already in the only match`
+- pth
+
+
+## git ( fish )
 
 head の file を vim で見る
-- doc-tech write
-
 ```
 git show HEAD:src/main.c | vim -
 ```

@@ -31,6 +31,7 @@ scheme_lst.win.excld = {
   'Light White (terminal.sexy)'           ,
   'Lost Woods (terminal.sexy)'            ,
   'LunariaLight (Gogh)'                   ,
+  'Lunaria Light (Gogh)'                  ,
   'MaterialDark'                          ,
   'Mona Lisa (Gogh)'                      ,
   'Mono (terminal.sexy)'                  ,
@@ -91,6 +92,16 @@ scheme_lst.win.excld = {
   'Ibm 3270 (High Contrast) (Gogh)'       ,
   'Ura (Gogh)'                            ,
   'Nep (Gogh)'                            ,
+  'Bitmute (terminal.sexy)'               ,
+  'Low Contrast (terminal.sexy)'          ,
+  'TerminixDark (Gogh)'                   ,
+  'Porple (base16)'                       ,
+  'Shel (Gogh)'                           ,
+  'Catppuccin Latte (Gogh)'               ,
+  'One Light (base16)'                    ,
+  'Brewer (light) (terminal.sexy)'        ,
+  'Bluloco Light (Gogh)'                  ,
+  'Mirage'                                ,
 }
 
 scheme_lst.win.recommend = {}
@@ -118,7 +129,11 @@ scheme_lst.win.recommend.m = {
   'Red Alert'                             ,
   'Windows High Contrast (base16)'        ,
   'iTerm2 Smoooooth'                      ,
+  'iTerm2 Tango Dark'                     ,
   'Purple Rain'                           ,
+  'Monokai Remastered'                    ,
+  'BlueDolphin'                           ,
+  'Seti UI (base16)'                      ,
 }
 
 scheme_lst.mac = {}
