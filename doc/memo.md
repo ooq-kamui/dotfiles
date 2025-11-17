@@ -2,26 +2,6 @@
 # dotfiles
 
 
-## zoxide
-
-`zoxide: you are already in the only match`
-- pth
-
-
-## git ( fish )
-
-head の file を vim で見る
-```
-git show HEAD:src/main.c | vim -
-```
-
-
-## iphone
-
-net data
-- ggl, confirm
-
-
 ## nvim
 
 line f col algn, fzy, char same
@@ -30,7 +10,12 @@ vf.xxx > del
 - research, rg
 
 
-## git
+## git ( fish )
+
+head の file を vim で見る
+```
+git show HEAD:src/main.c | vim -
+```
 
 git log-tree
 - format

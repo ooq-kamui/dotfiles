@@ -162,6 +162,33 @@ scheme_lst.mac.excld = {
   'Jackie Brown (Gogh)'                   ,
   'Ef-Melissa-Light'                      ,
   'Rosé Pine Dawn (Gogh)'                 ,
+  'Edge Light (base16)'                   ,
+  'alacritty'                             ,
+  'VisiBone (terminal.sexy)'              ,
+  'Liquid Carbon (Gogh)'                  ,
+  'carbonfox'                             ,
+  'EspressoLibre (Gogh)'                  ,
+  'Grass'                                 ,
+  'Atelier Plateau (base16)'              ,
+  'Ef-Tritanopia-Light'                   ,
+  'Builtin Tango Light'                   ,
+  'HaX0R_BLUE'                            ,
+  'Deafened (terminal.sexy)'              ,
+  'Windows High Contrast Light (base16)'  ,
+  'Bespin (base16)'                       ,
+  'Freya (Gogh)'                          ,
+  'FrontendFunForrest (Gogh)'             ,
+  'Nightlion V1 (Gogh)'                   ,
+  'LunariaLight (Gogh)'                   ,
+  'gooey (Gogh)'                          ,
+  'Brewer (light) (terminal.sexy)'        ,
+  'Atlas (base16)'                        ,
+  'Sublette'                              ,
+  'Grass (Gogh)'                          ,
+  'One Dark (Gogh)'                       ,
+  'Atelierlakeside (dark) (terminal.sexy)',
+  'One Light (base16)'                    ,
+  'Urple (Gogh)'                          ,
 }
 scheme_lst.mac.recommend = {}
 scheme_lst.mac.recommend.h = {
@@ -169,6 +196,9 @@ scheme_lst.mac.recommend.h = {
 }
 scheme_lst.mac.recommend.m = {
   'IrBlack (Gogh)'                        ,
+  'rebecca'                               ,
+  'shades-of-purple'                      ,
+  'OneHalfBlack (Gogh)'                   ,
 }
 
 return scheme_lst
