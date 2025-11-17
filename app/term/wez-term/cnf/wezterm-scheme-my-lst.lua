@@ -85,6 +85,7 @@ scheme_lst.win.excld = {
   'Circus (base16)'                       ,
   'Violet Light'                          ,
   'Shapeshifter (dark) (terminal.sexy)'   ,
+  'Shapeshifter (base16)'                 ,
   'Freya (Gogh)'                          ,
   'mono-red (Gogh)'                       ,
   'Purpledream (base16)'                  ,
@@ -102,6 +103,15 @@ scheme_lst.win.excld = {
   'Brewer (light) (terminal.sexy)'        ,
   'Bluloco Light (Gogh)'                  ,
   'Mirage'                                ,
+  'Twilight (dark) (terminal.sexy)'       ,
+  'Ashes (light) (terminal.sexy)'         ,
+  'Mikazuki (terminal.sexy)'              ,
+  'Cobalt Neon'                           ,
+  'Treehouse'                             ,
+  'Digerati (terminal.sexy)'              ,
+  'vimbones'                              ,
+  'Clrs (Gogh)'                           ,
+  'Jup (Gogh)'                            ,
 }
 
 scheme_lst.win.recommend = {}
@@ -115,6 +125,8 @@ scheme_lst.win.recommend.h = {
   'tokyonight'                            ,
   'Everblush (Gogh)'                      ,
   'AyuMirage (Gogh)'                      ,
+  'arcoiris'                              ,
+  'Monokai Pro (Gogh)'                    ,
 }
 scheme_lst.win.recommend.m = {
   'Builtin Pastel Dark'                   ,
@@ -134,6 +146,7 @@ scheme_lst.win.recommend.m = {
   'Monokai Remastered'                    ,
   'BlueDolphin'                           ,
   'Seti UI (base16)'                      ,
+  'OneHalfBlack (Gogh)'                   ,
 }
 
 scheme_lst.mac = {}

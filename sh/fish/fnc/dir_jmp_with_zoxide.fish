@@ -4,7 +4,6 @@ function dir_jmp_with_zoxide
 
     set dir ( zoxide query --list | fzf )
 
-    #if test -n "$dir"
     if test -z "$dir"
       return
     end
@@ -14,9 +13,9 @@ function dir_jmp_with_zoxide
   else
     z $argv
 
-    if test "$status" -eq "1"
-      return
-    end
+    # if test "$status" -eq "1"
+    #   return
+    # end
   end
 
   pth
