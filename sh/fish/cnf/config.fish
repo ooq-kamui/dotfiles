@@ -212,6 +212,7 @@ alias sjis  'ucnv_sjis'
 alias wthr 'weather'
 alias mtrx 'cmatrix'
 alias ncat 'nyancat'
+alias nc   'nyancat'
 alias rcat 'lolcat'
 alias tmr  'countdown'
 

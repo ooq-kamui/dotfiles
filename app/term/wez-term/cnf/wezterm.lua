@@ -70,7 +70,9 @@ function color_scheme__rnd(env)
   wezterm.on('window-config-reloaded', function(window, pane)
     if not window:get_config_overrides() then
       local scheme_name = scheme_name_list[math.random(#scheme_name_list)]
-      wezterm.log_info(scheme_name .. '<')
+      -- scheme_name = 'Monokai Pro (Gogh)' -- confirm
+      wezterm.log_info('> ' .. scheme_name .. ' <')
+
       window:set_config_overrides {
         color_scheme = scheme_name,
       }

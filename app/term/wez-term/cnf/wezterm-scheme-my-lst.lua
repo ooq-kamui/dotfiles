@@ -112,7 +112,6 @@ scheme_lst.win.excld = {
   'vimbones'                              ,
   'Clrs (Gogh)'                           ,
   'Jup (Gogh)'                            ,
-  'Monokai Pro (Gogh)'                    ,
   'Terminal Basic'                        ,
   'Apple Classic'                         ,
   'Spacegray (Gogh)'                      ,
@@ -132,6 +131,9 @@ scheme_lst.win.excld = {
   'Humanoid light (base16)'               ,
   'Paraiso Dark (Gogh)'                   ,
   'Vs Code Light+ (Gogh)'                 ,
+  'darkmatrix'                            ,
+  'Harper'                                ,
+  'Invisibone (terminal.sexy)'            ,
 }
 
 scheme_lst.win.recommend = {}
@@ -149,6 +151,7 @@ scheme_lst.win.recommend.h = {
   'MonokaiPro (Gogh)'                     ,
   'Dracula+'                              ,
   'Tomorrow Night Blue'                   ,
+  'Hurtado'                               ,
   -- 'Monokai Pro (Gogh)'                    , -- ??
 }
 scheme_lst.win.recommend.m = {
