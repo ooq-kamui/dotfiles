@@ -112,6 +112,26 @@ scheme_lst.win.excld = {
   'vimbones'                              ,
   'Clrs (Gogh)'                           ,
   'Jup (Gogh)'                            ,
+  'Monokai Pro (Gogh)'                    ,
+  'Terminal Basic'                        ,
+  'Apple Classic'                         ,
+  'Spacegray (Gogh)'                      ,
+  'Pretty and Pastel (terminal.sexy)'     ,
+  'Terminal Basic (Gogh)'                 ,
+  'Nord Light (Gogh)'                     ,
+  'Nature Suede (terminal.sexy)'          ,
+  'IR Black (base16)'                     ,
+  'LunariaDark (Gogh)'                    ,
+  'Embers (base16)'                       ,
+  'Rydgel (terminal.sexy)'                ,
+  'Vice Alt (base16)'                     ,
+  'Tomorrow (Gogh)'                       ,
+  'Colorful Colors (terminal.sexy)'       ,
+  'GruvboxLight'                          ,
+  'Atelier Savanna (base16)'              ,
+  'Humanoid light (base16)'               ,
+  'Paraiso Dark (Gogh)'                   ,
+  'Vs Code Light+ (Gogh)'                 ,
 }
 
 scheme_lst.win.recommend = {}
@@ -126,7 +146,10 @@ scheme_lst.win.recommend.h = {
   'Everblush (Gogh)'                      ,
   'AyuMirage (Gogh)'                      ,
   'arcoiris'                              ,
-  'Monokai Pro (Gogh)'                    ,
+  'MonokaiPro (Gogh)'                     ,
+  'Dracula+'                              ,
+  'Tomorrow Night Blue'                   ,
+  -- 'Monokai Pro (Gogh)'                    , -- ??
 }
 scheme_lst.win.recommend.m = {
   'Builtin Pastel Dark'                   ,
@@ -147,6 +170,8 @@ scheme_lst.win.recommend.m = {
   'BlueDolphin'                           ,
   'Seti UI (base16)'                      ,
   'OneHalfBlack (Gogh)'                   ,
+  'iTerm2 Light Background'               ,
+  'Ef-Duo-Dark'                           ,
 }
 
 scheme_lst.mac = {}
