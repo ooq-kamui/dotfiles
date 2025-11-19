@@ -142,6 +142,9 @@ scheme_lst.win.excld = {
   'Navy and Ivory (terminal.sexy)'        ,
   'Hacktober'                             ,
   'Pop (base16)'                          ,
+  'Slate (Gogh)'                          ,
+  'Grayscale (light) (terminal.sexy)'     ,
+  'Ef-Elea-Light'                         ,
 }
 
 scheme_lst.win.recommend = {}

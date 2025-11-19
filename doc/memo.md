@@ -2,11 +2,6 @@
 # dotfiles
 
 
-## wez
-
-tst
-
-
 ## nvim
 
 c-d, at line end, esc
