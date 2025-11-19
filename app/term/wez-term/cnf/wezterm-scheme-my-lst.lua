@@ -230,6 +230,15 @@ scheme_lst.mac.excld = {
   'Atelierlakeside (dark) (terminal.sexy)',
   'One Light (base16)'                    ,
   'Urple (Gogh)'                          ,
+  'Icy Dark (base16)'                     ,
+  'Colorful Colors (terminal.sexy)'       ,
+  'Zenburn'                               ,
+  'Dotshare (terminal.sexy)'              ,
+  'Warm Neon (Gogh)'                      ,
+  'Material'                              ,
+  'BreathLight (Gogh)'                    ,
+  'Nord Light (Gogh)'                     ,
+  'iceberg-light'                         ,
 }
 scheme_lst.mac.recommend = {}
 scheme_lst.mac.recommend.h = {

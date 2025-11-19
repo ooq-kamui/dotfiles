@@ -6,10 +6,15 @@
 
 c-d, at line end, esc
 
+F, cursor __ mv line u col
+
 line f col algn, fzy, char same
 
 vf.xxx > del
 - research, rg
+
+plg
+- lualine
 
 
 ## git ( fish )
@@ -59,9 +64,6 @@ v.Sys.sh_by_slctd_line()
 - confirm at dialog ( neovim )
   - view log
   - use nui.nvim
-
-plg
-- lualine
 
 - blink.cmp
   - https://eiji.page/blog/neovim-blink-cmp-intro/
