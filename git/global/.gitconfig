@@ -56,3 +56,7 @@
 [pager]
   difftool = true
 
+[http]
+  sslVerify = true
+  # sslVerify = false
+

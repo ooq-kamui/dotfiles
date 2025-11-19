@@ -134,6 +134,14 @@ scheme_lst.win.excld = {
   'darkmatrix'                            ,
   'Harper'                                ,
   'Invisibone (terminal.sexy)'            ,
+  'Harmonic16 Dark (base16)'              ,
+  'LiquidCarbonTransparent'               ,
+  'Harper (Gogh)'                         ,
+  'Japanesque'                            ,
+  'Ic Orange Ppl (Gogh)'                  ,
+  'Navy and Ivory (terminal.sexy)'        ,
+  'Hacktober'                             ,
+  'Pop (base16)'                          ,
 }
 
 scheme_lst.win.recommend = {}
@@ -175,6 +183,8 @@ scheme_lst.win.recommend.m = {
   'OneHalfBlack (Gogh)'                   ,
   'iTerm2 Light Background'               ,
   'Ef-Duo-Dark'                           ,
+  'Ef-Elea-Dark'                          ,
+  'Red Alert (Gogh)'                      ,
 }
 
 scheme_lst.mac = {}

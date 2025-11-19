@@ -2,7 +2,14 @@
 # dotfiles
 
 
+## wez
+
+tst
+
+
 ## nvim
+
+c-d, at line end, esc
 
 line f col algn, fzy, char same
 
