@@ -2,15 +2,22 @@
 # dotfiles
 
 
+# lang
+
+ts, generics
+
+
 # wez
 
-tst
-
-color scheme lst, merge, env
+color scheme lst
+- mrg, env
+- cnc 連結
 wall paper by ai
 
 
 ## nvim
+
+lsp instl
 
 c-d, at line end, esc
 

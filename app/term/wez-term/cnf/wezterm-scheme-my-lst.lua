@@ -163,6 +163,14 @@ scheme_lst.win.excld = {
   'zenbones_light'                        ,
   'dayfox'                                ,
   'Atelierforest (light) (terminal.sexy)' ,
+  'Highway'                               ,
+  'Mono Yellow (Gogh)'                    ,
+  'N0Tch2K (Gogh)'                        ,
+  'Unikitty Light (base16)'               ,
+  'Fishbone (terminal.sexy)'              ,
+  'Mono White (Gogh)'                     ,
+  'Material (Gogh)'                       ,
+  'Brogrammer'                            ,
 }
 
 scheme_lst.win.recommend = {}
@@ -183,6 +191,7 @@ scheme_lst.win.recommend.h = {
   'Tomorrow Night Blue'                   ,
   'Horizon Dark (Gogh)'                   ,
   'PaperColorDark (Gogh)'                 ,
+  'Material (base16)'                     ,
   -- 'Monokai Pro (Gogh)'                    , -- ??
 }
 scheme_lst.win.recommend.m = {
@@ -208,6 +217,10 @@ scheme_lst.win.recommend.m = {
   'Ef-Duo-Dark'                           ,
   'Ef-Elea-Dark'                          ,
   'Red Alert (Gogh)'                      ,
+  'Ef-Rosa'                               ,
+  'Ef-Deuteranopia-Dark'                  ,
+  'Smyck (Gogh)'                          ,
+  'NightLion v2'                          ,
 }
 
 scheme_lst.mac = {}
