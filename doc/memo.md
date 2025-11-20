@@ -2,17 +2,16 @@
 # dotfiles
 
 
-# lang
-
-ts, generics
-
-
-# wez
+## wez
 
 color scheme lst
 - mrg, env
-- cnc 連結
-wall paper by ai
+- cnc
+
+
+## wall paper
+
+by ai
 
 
 ## nvim
