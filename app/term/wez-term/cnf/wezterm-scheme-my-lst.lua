@@ -145,11 +145,30 @@ scheme_lst.win.excld = {
   'Slate (Gogh)'                          ,
   'Grayscale (light) (terminal.sexy)'     ,
   'Ef-Elea-Light'                         ,
+  'Grape'                                 ,
+  'Espresso Libre (Gogh)'                 ,
+  'Synth Midnight Terminal Light (base16)',
+  'Mar (Gogh)'                            ,
+  'Solarized Dark (Gogh)'                 ,
+  'Solarized Light (Gogh)'                ,
+  'mono-yellow (Gogh)'                    ,
+  'Cobalt Neon (Gogh)'                    ,
+  'Rasi (terminal.sexy)'                  ,
+  'Shaman (Gogh)'                         ,
+  'FrontEndDelight'                       ,
+  'Dark Pastel (Gogh)'                    ,
+  'Modus-Operandi-Deuteranopia'           ,
+  'Atelierdune (dark) (terminal.sexy)'    ,
+  'DanQing Light (base16)'                ,
+  'zenbones_light'                        ,
+  'dayfox'                                ,
+  'Atelierforest (light) (terminal.sexy)' ,
 }
 
 scheme_lst.win.recommend = {}
 scheme_lst.win.recommend.h = {
   'Snazzy (base16)'                       , -- < h
+  'Hurtado'                               ,
   'UltraViolent'                          ,
   'niji'                                  ,
   'Borland'                               ,
@@ -162,7 +181,8 @@ scheme_lst.win.recommend.h = {
   'MonokaiPro (Gogh)'                     ,
   'Dracula+'                              ,
   'Tomorrow Night Blue'                   ,
-  'Hurtado'                               ,
+  'Horizon Dark (Gogh)'                   ,
+  'PaperColorDark (Gogh)'                 ,
   -- 'Monokai Pro (Gogh)'                    , -- ??
 }
 scheme_lst.win.recommend.m = {

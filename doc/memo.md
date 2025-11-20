@@ -2,6 +2,14 @@
 # dotfiles
 
 
+# wez
+
+tst
+
+color scheme lst, merge, env
+wall paper by ai
+
+
 ## nvim
 
 c-d, at line end, esc
