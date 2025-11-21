@@ -1,7 +1,71 @@
 
 local scheme_lst = {}
 
+-- win
+
 scheme_lst.win = {}
+scheme_lst.win.recommend = {}
+scheme_lst.win.recommend.h = {
+  'Snazzy (base16)'                       , -- < h
+  'Hurtado'                               ,
+  'SynthWave (Gogh)'                      ,
+  'UltraViolent'                          ,
+  'niji'                                  ,
+  'Borland'                               ,
+  'VibrantInk'                            ,
+  'Synthwave (Gogh)'                      ,
+  'tokyonight'                            ,
+  'Everblush (Gogh)'                      ,
+  'AyuMirage (Gogh)'                      ,
+  'arcoiris'                              ,
+  'MonokaiPro (Gogh)'                     ,
+  'Dracula+'                              ,
+  'Tomorrow Night Blue'                   ,
+  'Horizon Dark (Gogh)'                   ,
+  'PaperColorDark (Gogh)'                 ,
+  'Material (base16)'                     ,
+  'Chalk (dark) (terminal.sexy)'          ,
+  'Tokyo Night Storm'                     ,
+  'Duotone Dark'                          ,
+}
+scheme_lst.win.recommend.m = {
+  'BlueDolphin'                           ,
+  'Builtin Pastel Dark'                   ,
+  'Dracula (Gogh)'                        ,
+  'Ef-Deuteranopia-Dark'                  ,
+  'Ef-Duo-Dark'                           ,
+  'Ef-Elea-Dark'                          ,
+  'Ef-Rosa'                               ,
+  'Ef-Trio-Dark'                          ,
+  'Espresso Libre'                        ,
+  'IdleToes (Gogh)'                       ,
+  'Jellybeans'                            ,
+  'Monokai Remastered'                    ,
+  'NightLion v2'                          ,
+  'OneHalfBlack (Gogh)'                   ,
+  'Oxocarbon Dark (Gogh)'                 ,
+  'PaperColorDark (Gogh)'                 ,
+  'Purple People Eater (Gogh)'            ,
+  'Purple Rain'                           ,
+  'Red Alert (Gogh)'                      ,
+  'Red Alert'                             ,
+  'Relaxed'                               ,
+  'Seti UI (base16)'                      ,
+  'Smyck (Gogh)'                          ,
+  'Windows High Contrast (base16)'        ,
+  'iTerm2 Light Background'               ,
+  'iTerm2 Smoooooth'                      ,
+  'iTerm2 Tango Dark'                     ,
+  'kanagawabones'                         ,
+  'Nucolors (terminal.sexy)'              ,
+  'Moonfly (Gogh)'                        ,
+  'Poimandres'                            ,
+  'Paul Millr (Gogh)'                     ,
+  'Broadcast'                             ,
+  'Bright (base16)'                       ,
+  'Chalkboard (Gogh)'                     ,
+  'catppuccin-macchiato'                  ,
+}
 scheme_lst.win.excld = {
   '3024 Day (Gogh)'                       ,
   'Apple Classic'                         ,
@@ -177,62 +241,50 @@ scheme_lst.win.excld = {
   'zenbones_light'                        ,
   'Rippedcasts (Gogh)'                    ,
   'GruvboxDarkHard'                       ,
+  'Breeze'                                ,
+  'ibm3270 (Gogh)'                        ,
+  'Darkside'                              ,
+  'Vaughn'                                ,
+  'Lunaria Dark (Gogh)'                   ,
+  'IBM3270(HighContrast) (Gogh)'          ,
+  'shades-of-purple'                      ,
+  'Thayer Bright'                         ,
+  'iTerm2 Default'                        ,
+  'Black Metal (Burzum) (base16)'         ,
+  'Gigavolt (base16)'                     ,
+  'Bamboo Light'                          ,
+  'Subliminal'                            ,
+  'iceberg-light'                         ,
+  'Default (light) (terminal.sexy)'       ,
+  'Londontube (light) (terminal.sexy)'    ,
+  'hund (terminal.sexy)'                  ,
+  'Ollie (Gogh)'                          ,
+  'Gruvbox dark, hard (base16)'           ,
+  'RedAlert (Gogh)'                       ,
+  'Solarized Dark Higher Contrast'        ,
+  'Atelier Dune (base16)'                 ,
+  'Neopolitan'                            ,
+  'Atlas (base16)'                        ,
+  'Color Star (terminal.sexy)'            ,
+  'Everforest Light (Gogh)'               ,
+  'Neutron (Gogh)'                        ,
+  'BelafonteDay (Gogh)'                   ,
+  'HaX0R_BLUE'                            ,
 }
 
-scheme_lst.win.recommend = {}
-scheme_lst.win.recommend.h = {
-  'Snazzy (base16)'                       , -- < h
-  'Hurtado'                               ,
-  'UltraViolent'                          ,
-  'niji'                                  ,
-  'Borland'                               ,
-  'VibrantInk'                            ,
-  'Synthwave (Gogh)'                      ,
-  'tokyonight'                            ,
-  'Everblush (Gogh)'                      ,
-  'AyuMirage (Gogh)'                      ,
-  'arcoiris'                              ,
-  'MonokaiPro (Gogh)'                     ,
-  'Dracula+'                              ,
-  'Tomorrow Night Blue'                   ,
-  'Horizon Dark (Gogh)'                   ,
-  'PaperColorDark (Gogh)'                 ,
-  'Material (base16)'                     ,
-  'Chalk (dark) (terminal.sexy)'          ,
-}
-scheme_lst.win.recommend.m = {
-  'BlueDolphin'                           ,
-  'Builtin Pastel Dark'                   ,
-  'Dracula (Gogh)'                        ,
-  'Ef-Deuteranopia-Dark'                  ,
-  'Ef-Duo-Dark'                           ,
-  'Ef-Elea-Dark'                          ,
-  'Ef-Rosa'                               ,
-  'Ef-Trio-Dark'                          ,
-  'Espresso Libre'                        ,
-  'IdleToes (Gogh)'                       ,
-  'Jellybeans'                            ,
-  'Monokai Remastered'                    ,
-  'NightLion v2'                          ,
-  'OneHalfBlack (Gogh)'                   ,
-  'Oxocarbon Dark (Gogh)'                 ,
-  'PaperColorDark (Gogh)'                 ,
-  'Purple People Eater (Gogh)'            ,
-  'Purple Rain'                           ,
-  'Red Alert (Gogh)'                      ,
-  'Red Alert'                             ,
-  'Relaxed'                               ,
-  'Seti UI (base16)'                      ,
-  'Smyck (Gogh)'                          ,
-  'Windows High Contrast (base16)'        ,
-  'iTerm2 Light Background'               ,
-  'iTerm2 Smoooooth'                      ,
-  'iTerm2 Tango Dark'                     ,
-  'kanagawabones'                         ,
-  'Nucolors (terminal.sexy)'              ,
-}
+-- mac
 
 scheme_lst.mac = {}
+scheme_lst.mac.recommend = {}
+scheme_lst.mac.recommend.h = {
+  'Framer (base16)'                       ,
+}
+scheme_lst.mac.recommend.m = {
+  'IrBlack (Gogh)'                        ,
+  'rebecca'                               ,
+  'shades-of-purple'                      ,
+  'OneHalfBlack (Gogh)'                   ,
+}
 scheme_lst.mac.excld = {
   'PaperColor Dark (base16)'              ,
   'thwump (terminal.sexy)'                ,
@@ -281,16 +333,6 @@ scheme_lst.mac.excld = {
   'BreathLight (Gogh)'                    ,
   'Nord Light (Gogh)'                     ,
   'iceberg-light'                         ,
-}
-scheme_lst.mac.recommend = {}
-scheme_lst.mac.recommend.h = {
-  'Framer (base16)'                       ,
-}
-scheme_lst.mac.recommend.m = {
-  'IrBlack (Gogh)'                        ,
-  'rebecca'                               ,
-  'shades-of-purple'                      ,
-  'OneHalfBlack (Gogh)'                   ,
 }
 
 return scheme_lst

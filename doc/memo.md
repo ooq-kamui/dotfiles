@@ -4,9 +4,6 @@
 
 ## nvim
 
-lsp instl
-
-c-d, at line end, esc
 
 F, cursor __ mv line u col
 
@@ -17,6 +14,7 @@ vf.xxx > del
 
 plg
 - lualine
+- lsp, instl
 
 
 ## git ( fish )

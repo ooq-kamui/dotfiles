@@ -1,4 +1,6 @@
 
+math.randomseed(os.time())
+
 local wezterm = require('wezterm')
 local act     = wezterm.action
 
@@ -44,7 +46,7 @@ scheme_my_lst = require('cnf/wezterm-scheme-my-lst')
 
 function color_scheme__rnd(env)
 
-  local scheme_name_list = {}
+  local scheme_name_lst = {}
 
   local scheme_excld_lst = {}
   scheme_excld_lst = utl.tbl.cct(scheme_excld_lst, scheme_my_lst[env].excld      )
@@ -55,14 +57,18 @@ function color_scheme__rnd(env)
     if utl.tbl.is_in(scheme_excld_lst, scheme_name) then -- excld
       -- skip
     else
-      table.insert(scheme_name_list, scheme_name)
+      table.insert(scheme_name_lst, scheme_name)
     end
   end
-  -- scheme_name_list = scheme_my_lst.win.excld
+
+  if math.random(1, 20) == 1 then
+    wezterm.log_info('= scheme recommend =')
+    scheme_name_lst = scheme_my_lst[env].recommend.h
+  end
 
   wezterm.on('window-config-reloaded', function(window, pane)
     if not window:get_config_overrides() then
-      local scheme_name = scheme_name_list[math.random(#scheme_name_list)]
+      local scheme_name = scheme_name_lst[math.random(#scheme_name_lst)]
       -- scheme_name = 'Monokai Pro (Gogh)' -- confirm
       wezterm.log_info('> ' .. scheme_name .. ' <')
 

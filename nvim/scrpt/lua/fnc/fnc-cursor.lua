@@ -56,19 +56,19 @@ function v.Cursor.is_col__line_end()
   end
 end
 
-function v.Cursor.is_col__line_end_ovr() -- range
+function v.Cursor.is_col__line_end_inr()
 
-  if v.Cursor.col_num() >= v.Cursor.line_end_col() then
+  if v.Cursor.col_num() == v.Cursor.line_end_col() - 1 then
+
     return bl.t
   else
     return bl.f
   end
 end
 
-function v.Cursor.is_col__line_end_inr()
+function v.Cursor.is_col__line_end_ovr() -- range
 
-  if v.Cursor.col_num() == v.Cursor.line_end_col() - 1 then
-
+  if v.Cursor.col_num() >= v.Cursor.line_end_col() then
     return bl.t
   else
     return bl.f
@@ -1303,6 +1303,10 @@ function v.Cursor.line__del()
   end
 end
 
+-- cursor f
+
+-- cursor f char
+
 function v.Cursor.f_char()
 
   local char
@@ -1326,13 +1330,25 @@ function v.Cursor.f_char_col_idx()
   return f_char_col_idx
 end
 
-function v.Cursor.f_str__space_crct(drct)
+-- cursor f str
+
+function v.Cursor.f_str__del()
+
+  if v.Cursor.is_col__line_end() then
+    return
+  end
+
+  local cmd_nml = 'D'
+  v.Cmd.nml(cmd_nml)
+end
+
+function v.Cursor.f_str__space_crct(ref_drct)
 
   local target_line_num
-  if     drct == 'u' then
+  if     ref_drct == 'u' then
     target_line_num = v.Cursor.line_num() - 1
 
-  elseif drct == 'd' then
+  elseif ref_drct == 'd' then
     target_line_num = v.Cursor.line_num() + 1
   end
 

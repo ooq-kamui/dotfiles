@@ -672,7 +672,8 @@ keymap__('n', 's', v.Cursor.c_char__del)
 keymap__('n', 'd', v.Cursor.line__del)
 
 -- line forward del
-keymap__('n', '<c-d>', 'D')
+keymap__('n', '<c-d>', v.Cursor.f_str__del)
+-- keymap__('n', '<c-d>', 'D')
 
 -- word back    del
 -- keymap__('n', 'xx', 'hvbd')
