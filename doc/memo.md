@@ -2,18 +2,6 @@
 # dotfiles
 
 
-## wez
-
-color scheme lst
-- mrg, env
-- cnc
-
-
-## wall paper
-
-by ai
-
-
 ## nvim
 
 lsp instl
@@ -40,6 +28,11 @@ git show HEAD:src/main.c | vim -
 
 git log-tree
 - format
+
+
+## wall paper
+
+by ai
 
 
 ## omarchy

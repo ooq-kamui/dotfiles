@@ -40,27 +40,20 @@ config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 
 require('cnf/utl')
 
--- function is_tbl_in(tbl, val)
---   for _, value in ipairs(tbl) do
---     if value == val then
---       return true
---     end
---   end
---   return false
--- end
-
 scheme_my_lst = require('cnf/wezterm-scheme-my-lst')
 
 function color_scheme__rnd(env)
 
   local scheme_name_list = {}
+
+  local scheme_excld_lst = {}
+  scheme_excld_lst = (scheme_excld_lst, scheme_my_lst[env].excld      )
+  scheme_excld_lst = (scheme_excld_lst, scheme_my_lst[env].recommend.h)
+  scheme_excld_lst = (scheme_excld_lst, scheme_my_lst[env].recommend.m)
+
   for scheme_name, scheme in pairs(wezterm.color.get_builtin_schemes()) do
-    -- excld
-    -- if is_tbl_in(scheme_my_lst.win.excld, scheme_name) then
-    -- if is_tbl_in(scheme_my_lst[env].excld, scheme_name) then
-    if utl.tbl.is_in(scheme_my_lst[env].excld, scheme_name) then
+    if utl.tbl.is_in(scheme_excld_lst, scheme_name) then -- excld
       -- skip
-      -- wezterm.log_info('skip: ' .. scheme_name)
     else
       table.insert(scheme_name_list, scheme_name)
     end
