@@ -4,10 +4,11 @@
 
 ## nvim
 
+n F, cursor __ mv line u col
 
-F, cursor __ mv line u col
-
-line f col algn, fzy, char same
+n <c-f>, 
+- fzy, char same
+- line f col algn
 
 vf.xxx > del
 - research, rg
