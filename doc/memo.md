@@ -29,11 +29,6 @@ git log-tree
 - format
 
 
-## wall paper
-
-by ai
-
-
 ## omarchy
 
 instl

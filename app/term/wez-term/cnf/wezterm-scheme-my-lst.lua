@@ -333,6 +333,8 @@ scheme_lst.mac.excld = {
   'BreathLight (Gogh)'                    ,
   'Nord Light (Gogh)'                     ,
   'iceberg-light'                         ,
+  'Gruvbox light, medium (base16)'        ,
+  'Gotham (Gogh)'                         ,
 }
 
 return scheme_lst
