@@ -27,6 +27,7 @@ scheme_lst.win.recommend.h = {
   'Chalk (dark) (terminal.sexy)'          ,
   'Tokyo Night Storm'                     ,
   'Duotone Dark'                          ,
+  'Misterioso (Gogh)'                     ,
 }
 scheme_lst.win.recommend.m = {
   'BlueDolphin'                           ,

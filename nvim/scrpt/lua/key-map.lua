@@ -414,7 +414,7 @@ keymap__('n', '<c-_>', 'hT_')
 -- cursor mv word dlm ( camel or _ )  -  forward
 keymap__('n', '<c-f>', v.Cursor.__mv_word_dlm_f)
 
-keymap__('n', 'F', v.Cursor.__mv_line_u_col)
+keymap__('n', 'F', v.Cursor.__mv_line_u_word_col)
 
 -- cursor mv fnc name
 -- keymap__('n', 'xx', v.Cursor.__mv_fnc_name)
@@ -724,8 +724,8 @@ keymap__('n', 'ro', v.Cursor.line_indnt__shft_r)
 keymap__('n', 're', v.Cursor.line_indnt__crct)
 
 -- cursor l char col __ crct
-keymap__('n', 'q', ':lua v.Cursor.f_str__space_crct("u")<cr>')
-keymap__('n', 'Q', ':lua v.Cursor.f_str__space_crct("d")<cr>')
+keymap__('n', 'q', ':lua v.Cursor.f_str__space_crct_with_word("u")<cr>')
+keymap__('n', 'Q', ':lua v.Cursor.f_str__space_crct_with_word("d")<cr>')
 
 -- 
 -- srch

@@ -117,9 +117,9 @@ function v.Str.srch_end(str, ptn) -- alias
   return idx
 end
 
-function v.Str.col_idx_lst(str)
+function v.Str.word_col_idx_lst(str)
 
-  local col_idx_lst = {}
+  local word_col_idx_lst = {}
   local char
 
   local is_space = bl.t
@@ -133,13 +133,13 @@ function v.Str.col_idx_lst(str)
 
     else
       if is_space then
-        table.insert(col_idx_lst, idx)
+        table.insert(word_col_idx_lst, idx)
       end
       is_space = bl.f
     end
   end
 
-  return col_idx_lst
+  return word_col_idx_lst
 end
 
 -- str __ rpl

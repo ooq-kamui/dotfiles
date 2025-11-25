@@ -124,7 +124,6 @@ end
 
 function v.Cursor.__mv_by_line_col(line_num, col_num)
 
-  -- line_num = (line_num == nil) and v.Cursor.line_num() or line_num
   line_num = line_num or v.Cursor.line_num()
 
   vf.cursor(line_num, col_num)
@@ -546,16 +545,16 @@ function v.Cursor.__mv_by_line_ruler(line_num, ruler_num)
   v.Cursor.__mv_by_line_col(line_num, col_num)
 end
 
-function v.Cursor.__mv_line_u_col()
+function v.Cursor.__mv_line_u_word_col()
 
   local ref_drct       = 'u'
   local ref_line_num   = v.Cursor.line_num(ref_drct)
   local cursor_col_idx = v.Cursor.col_idx()
-  local col_idx        = v.Line.nxt_col_idx_by_col_idx(ref_line_num, cursor_col_idx)
+  local word_col_idx        = v.Line.word_col_idx(ref_line_num, cursor_col_idx)
 
-  if not col_idx then return end
+  if not word_col_idx then return end
 
-  v.Cursor.__mv_by_line_col(nil, col_idx)
+  v.Cursor.__mv_by_line_col(nil, word_col_idx)
 end
 
 -- cursor __ ins
@@ -691,7 +690,6 @@ end
 
 function v.Cursor.__ins_cmnt_1(cmd_cursor__mv_line_top)
 
-  -- if cmd_cursor__mv_line_top ~= nil then
   if cmd_cursor__mv_line_top then
     v.Cmd.nml(cmd_cursor__mv_line_top)
   end
@@ -855,7 +853,6 @@ function v.Cursor.u_char()
   local idx = v.Cursor.col_num()
   local line_num = v.Cursor.line_num() - 1
 
-  -- local c = vf.getline(line_num):sub(idx, idx)
   local c = v.Line.str_by_line_num(line_num):sub(idx, idx)
   return c
 end
@@ -868,7 +865,6 @@ function v.Cursor.d_char()
 
   local idx = v.Cursor.col_num()
   local line_num = v.Cursor.line_num() + 1
-  -- local c = vf.getline(line_num):sub(idx, idx)
   local c = v.Line.str_by_line_num(line_num):sub(idx, idx)
   return c
 end
@@ -1362,29 +1358,37 @@ function v.Cursor.f_str__del()
   v.Cmd.nml(cmd_nml)
 end
 
-function v.Cursor.f_str__space_crct(ref_drct)
+function v.Cursor.f_str__space_crct_with_word(ref_drct)
 
-  local target_line_num       = v.Cursor.line_num(ref_drct)
+  local line_num              = v.Cursor.line_num(ref_drct)
   local cursor_f_char_col_idx = v.Cursor.f_char_col_idx()
-  local target_col_idx        = v.Line.nxt_col_idx_by_col_idx(target_line_num, cursor_f_char_col_idx)
+  local word_col_idx          = v.Line.word_col_idx(line_num, cursor_f_char_col_idx)
 
-  if not target_col_idx then
-    return
-  end
+  if not word_col_idx then return end
 
   local crct_str
   crct_str = v.Cursor.line_str_side_r_with_c()
   crct_str = v.Str.trim(crct_str)
-  v.Cmd.nml('D')
 
   local cursor_col_idx = v.Cursor.col_num()
-
-  local space_len = target_col_idx - cursor_col_idx
+  local space_len = word_col_idx - cursor_col_idx
   local space_str = v.Str.space(space_len)
+
+  v.Cursor.f_str__del()
   v.Cursor.__ins(space_str)
   v.Cursor.__ins(crct_str)
 
   v.Cursor.__mv_by_col_num(cursor_col_idx)
+end
+
+function v.Cursor.f_str__space_crct_with_char(ref_drct) -- dev doing
+
+  local line_num = v.Cursor.line_num(ref_drct)
+  local line_str = v.Line.str_by_line_num(line_num)
+
+  local cursor_f_char_col_idx = v.Cursor.f_char_col_idx()
+
+  
 end
 
 function v.Cursor.__ins_sys_cmd(sys_cmd) -- read
