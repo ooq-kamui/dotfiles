@@ -2,13 +2,16 @@
 # dotfiles
 
 
+## git
+
+git log-tree
+- format
+
+
 ## nvim
 
-n F, cursor __ mv line u col
-
-n <c-f>, 
-- fzy, char same
-- line f col algn
+opn_file_close_recently
+- with global var
 
 vf.xxx > del
 - research, rg
@@ -16,17 +19,6 @@ vf.xxx > del
 plg
 - lualine
 - lsp, instl
-
-
-## git ( fish )
-
-head の file を vim で見る
-```
-git show HEAD:src/main.c | vim -
-```
-
-git log-tree
-- format
 
 
 ## omarchy
@@ -56,10 +48,10 @@ game cre
 
 ## nvim
 
-opn_file_close_recently
-
-ri, shft, repeat i
-
+n <c-f>,
+n q ??
+- fzy, char same
+- line f col algn
 
 v.Sys.sh_by_slctd_line()
 - confirm at dialog ( neovim )

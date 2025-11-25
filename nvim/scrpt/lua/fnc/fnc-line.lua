@@ -74,6 +74,29 @@ function v.Line.num_by_Line_info(line_info)
   return line_num
 end
 
+function v.Line.col_idx_lst(line_num)
+
+  local line_str    = v.Line.str_by_line_num(line_num)
+  local col_idx_lst = v.Str.col_idx_lst(line_str)
+  return col_idx_lst
+end
+
+function v.Line.nxt_col_idx_by_col_idx(line_num, col_idx)
+
+  local col_idx_lst = v.Line.col_idx_lst(line_num)
+
+  local nxt_col_idx
+  for _idx, _col_idx in pairs(col_idx_lst) do
+  
+    if col_idx < _col_idx then
+      nxt_col_idx = _col_idx
+      break
+    end
+  end
+
+  return nxt_col_idx
+end
+
 -- line cnd
 
 -- line col

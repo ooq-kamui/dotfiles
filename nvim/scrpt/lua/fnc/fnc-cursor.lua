@@ -37,14 +37,6 @@ function v.Cursor.ruler_num()
   return ruler_num
 end
 
-function v.Cursor.__mv_by_line_ruler(line_num, ruler_num)
-
-  local col_num
-  col_num = v.Line.col_num_by_ruler_num(line_num, ruler_num)
-
-  v.Cursor.__mv_by_line_col(line_num, col_num)
-end
-
 -- cursor col cnd
 
 function v.Cursor.is_col__line_end()
@@ -132,7 +124,8 @@ end
 
 function v.Cursor.__mv_by_line_col(line_num, col_num)
 
-  local line_num = (line_num == nil) and v.Cursor.line_num() or line_num
+  -- line_num = (line_num == nil) and v.Cursor.line_num() or line_num
+  line_num = line_num or v.Cursor.line_num()
 
   vf.cursor(line_num, col_num)
 end
@@ -543,7 +536,23 @@ end
 
 function v.Cursor.__mv_markdown_h_out()
 
-  
+end
+
+function v.Cursor.__mv_by_line_ruler(line_num, ruler_num)
+
+  local col_num
+  col_num = v.Line.col_num_by_ruler_num(line_num, ruler_num)
+
+  v.Cursor.__mv_by_line_col(line_num, col_num)
+end
+
+function v.Cursor.__mv_line_u_col()
+
+  local ref_drct       = 'u'
+  local ref_line_num   = v.Cursor.line_num(ref_drct)
+  local cursor_col_idx = v.Cursor.col_idx()
+  local col_idx        = v.Line.nxt_col_idx_by_col_idx(ref_line_num, cursor_col_idx)
+  v.Cursor.__mv_by_line_col(nil, col_idx)
 end
 
 -- cursor __ ins
@@ -1143,9 +1152,17 @@ end
 
 -- cursor line
 
-function v.Cursor.line_num() -- alias
+function v.Cursor.line_num(ref_drct) -- alias
 
-  return vf.line('.')
+  local line_num = vf.line('.')
+
+  if     ref_drct == 'u' then
+    line_num = line_num - 1
+  elseif ref_drct == 'd' then
+    line_num = line_num + 1
+  end
+
+  return line_num
 end
 
 function v.Cursor.line_end_col() -- alias
@@ -1344,28 +1361,9 @@ end
 
 function v.Cursor.f_str__space_crct(ref_drct)
 
-  local target_line_num
-  if     ref_drct == 'u' then
-    target_line_num = v.Cursor.line_num() - 1
-
-  elseif ref_drct == 'd' then
-    target_line_num = v.Cursor.line_num() + 1
-  end
-
-  local ref_line_str = v.Line.str_by_line_num(target_line_num)
-  local target_col_idx_lst = v.Str.col_idx_lst(ref_line_str)
-
+  local target_line_num       = v.Cursor.line_num(ref_drct)
   local cursor_f_char_col_idx = v.Cursor.f_char_col_idx()
-
-  local cursor_col_idx = v.Cursor.col_num()
-  local target_col_idx
-  for _idx, _target_col_idx in pairs(target_col_idx_lst) do
-
-    if cursor_f_char_col_idx < _target_col_idx then
-      target_col_idx = _target_col_idx
-      break
-    end
-  end
+  local target_col_idx        = v.Line.nxt_col_idx_by_col_idx(target_line_num, cursor_f_char_col_idx)
 
   if not target_col_idx then
     return
@@ -1375,6 +1373,8 @@ function v.Cursor.f_str__space_crct(ref_drct)
   crct_str = v.Cursor.line_str_side_r_with_c()
   crct_str = v.Str.trim(crct_str)
   v.Cmd.nml('D')
+
+  local cursor_col_idx = v.Cursor.col_num()
 
   local space_len = target_col_idx - cursor_col_idx
   local space_str = v.Str.space(space_len)
