@@ -2,16 +2,11 @@
 # dotfiles
 
 
-## git
-
-git log-tree
-- format
-
-
 ## nvim
 
 opn_file_close_recently
 - with global var
+  - json
 
 vf.xxx > del
 - research, rg
