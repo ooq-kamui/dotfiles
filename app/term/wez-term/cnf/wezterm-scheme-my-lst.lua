@@ -339,6 +339,13 @@ scheme_lst.mac.recommend.m = {
   'rebecca'                                ,
   'shades-of-purple'                       ,
   'OneHalfBlack (Gogh)'                    ,
+  'Peppermint (Gogh)'                      ,
+  'ight Owl (Gogh)'                        ,
+  'Synth Midnight Terminal Dark (base16)'  ,
+  'Red Alert (Gogh)'                       ,
+  'Orangish (terminal.sexy)'               ,
+  'Gogh (Gogh)'                            ,
+  'Brogrammer (Gogh)'                      ,
 }
 scheme_lst.mac.excld = {
   'PaperColor Dark (base16)'               ,
@@ -390,6 +397,14 @@ scheme_lst.mac.excld = {
   'iceberg-light'                          ,
   'Gruvbox light, medium (base16)'         ,
   'Gotham (Gogh)'                          ,
+  'nord-light'                             ,
+  'Belafonte Day (Gogh)'                   ,
+  'Homebrew Light (Gogh)'                  ,
+  'Catch Me If You Can (terminal.sexy)'    ,
+  'Batman'                                 ,
+  'Github Light (Gogh)'                    ,
+  'Sea Shells (Gogh)'                      ,
+  'Black Metal (Khold) (base16)'           ,
 }
 
 return scheme_lst
