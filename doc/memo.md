@@ -4,6 +4,13 @@
 
 ## nvim
 
+n q
+- line f col algn
+- fzy
+  - case: col algn: none
+    - char same
+
+
 opn_file_close_recently
 - with global var
   - json
@@ -43,12 +50,7 @@ game cre
 
 ## nvim
 
-n <c-f>,
-n q ??
-- fzy, char same
-- line f col algn
-
-v.Sys.sh_by_slctd_line()
+v.Sys.sh_run_by_slctd_line()
 - confirm at dialog ( neovim )
   - view log
   - use nui.nvim

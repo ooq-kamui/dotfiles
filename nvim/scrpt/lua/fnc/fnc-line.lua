@@ -93,7 +93,6 @@ function v.Line.nxt_col_idx_by_col_idx(line_num, col_idx)
       break
     end
   end
-
   return nxt_col_idx
 end
 

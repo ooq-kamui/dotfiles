@@ -74,6 +74,9 @@ scheme_lst.win.recommend.m = {
   'Eighties (base16)'                     ,
   'Londontube (dark) (terminal.sexy)'     ,
   'PaulMillr (Gogh)'                      ,
+  'Kibble'                                ,
+  'Night Owl (Gogh)'                      ,
+  'Summer Pop (Gogh)'                     ,
 }
 scheme_lst.win.excld = {
   '3024 Day (Gogh)'                       ,
@@ -295,6 +298,18 @@ scheme_lst.win.excld = {
   'Tomorrow Night Eighties (Gogh)'        ,
   'CloneofUbuntu (Gogh)'                  ,
   'Symfonic'                              ,
+  'Deafened (terminal.sexy)'              ,
+  'seoulbones_light'                      ,
+  'Spacemacs (base16)'                    ,
+  'Builtin Tango Light'                   ,
+  'zenbones_dark'                         ,
+  'Neopolitan (Gogh)'                     ,
+  'Ef-Cyprus'                             ,
+  'Default Light (base16)'                ,
+  'Builtin Solarized Dark'                ,
+  'Hopscotch (base16)'                    ,
+  'Builtin Dark'                          ,
+  'Sequoia Moonlight'                     ,
 }
 
 -- mac

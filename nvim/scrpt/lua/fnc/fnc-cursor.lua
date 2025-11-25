@@ -552,6 +552,9 @@ function v.Cursor.__mv_line_u_col()
   local ref_line_num   = v.Cursor.line_num(ref_drct)
   local cursor_col_idx = v.Cursor.col_idx()
   local col_idx        = v.Line.nxt_col_idx_by_col_idx(ref_line_num, cursor_col_idx)
+
+  if not col_idx then return end
+
   v.Cursor.__mv_by_line_col(nil, col_idx)
 end
 
