@@ -65,6 +65,15 @@ scheme_lst.win.recommend.m = {
   'Bright (base16)'                       ,
   'Chalkboard (Gogh)'                     ,
   'catppuccin-macchiato'                  ,
+  'DeHydration (Gogh)'                    ,
+  'terafox'                               ,
+  'Dracula'                               ,
+  'Silk Dark (base16)'                    ,
+  'Edge Dark (base16)'                    ,
+  'Banana Blueberry'                      ,
+  'Eighties (base16)'                     ,
+  'Londontube (dark) (terminal.sexy)'     ,
+  'PaulMillr (Gogh)'                      ,
 }
 scheme_lst.win.excld = {
   '3024 Day (Gogh)'                       ,
@@ -270,6 +279,22 @@ scheme_lst.win.excld = {
   'Neutron (Gogh)'                        ,
   'BelafonteDay (Gogh)'                   ,
   'HaX0R_BLUE'                            ,
+  'Nudge (terminal.sexy)'                 ,
+  'zenwritten_light'                      ,
+  'matrix'                                ,
+  'SolarizedDark (Gogh)'                  ,
+  'OneLight (Gogh)'                       ,
+  'Retro'                                 ,
+  'thwump (terminal.sexy)'                ,
+  'Tin (Gogh)'                            ,
+  'Andromeda'                             ,
+  'Urple (Gogh)'                          ,
+  'Windows NT (base16)'                   ,
+  'Modus-Operandi-Tinted'                 ,
+  'Grayscale (dark) (terminal.sexy)'      ,
+  'Tomorrow Night Eighties (Gogh)'        ,
+  'CloneofUbuntu (Gogh)'                  ,
+  'Symfonic'                              ,
 }
 
 -- mac
