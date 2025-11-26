@@ -348,6 +348,7 @@ scheme_lst.mac.recommend.h = {
   'Framer (base16)'                        ,
   'Rebecca (base16)'                       ,
   'Ir Black (Gogh)'                        ,
+  'DanQing (base16)'                       ,
 }
 scheme_lst.mac.recommend.m = {
   'IrBlack (Gogh)'                         ,
@@ -369,6 +370,9 @@ scheme_lst.mac.recommend.m = {
   'SynthwaveAlpha (Gogh)'                  ,
   'Ef-Melissa-Dark'                        ,
   'Solarized Dark Higher Contrast (Gogh)'  ,
+  'Everforest Dark (Gogh)'                 ,
+  'Mocha (base16)'                         ,
+  'Raycast_Light'                          ,
 }
 scheme_lst.mac.excld = {
   'PaperColor Dark (base16)'               ,
