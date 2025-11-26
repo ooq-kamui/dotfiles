@@ -12,7 +12,6 @@ scheme_lst.win.recommend.h = {
   'UltraViolent'                           ,
   'niji'                                   ,
   'Borland'                                ,
-  'VibrantInk'                             ,
   'Synthwave (Gogh)'                       ,
   'tokyonight'                             ,
   'Everblush (Gogh)'                       ,
@@ -30,6 +29,8 @@ scheme_lst.win.recommend.h = {
   'Misterioso (Gogh)'                      ,
   'Misterioso'                             ,
   'tender (base16)'                        ,
+  'VisiBone (terminal.sexy)'               ,
+  'Overnight Slumber'                      ,
 }
 scheme_lst.win.recommend.m = {
   'BlueDolphin'                            ,
@@ -83,6 +84,10 @@ scheme_lst.win.recommend.m = {
   'Synth Midnight Terminal Dark (base16)'  ,
   'IrBlack (Gogh)'                         ,
   'Rapture'                                ,
+  'Nova (base16)'                          ,
+  'Catppuccin Macchiato'                   ,
+  'Decaf (base16)'                         ,
+  'Ef-Dark'                                ,
 }
 scheme_lst.win.excld = {
   '3024 Day (Gogh)'                        ,
@@ -325,6 +330,14 @@ scheme_lst.win.excld = {
   'Grandshell (terminal.sexy)'             ,
   'Apathy (base16)'                        ,
   'Numix Darkest (terminal.sexy)'          ,
+  'VibrantInk'                             ,
+  'AtomOneLight'                           ,
+  'CobaltNeon (Gogh)'                      ,
+  'RoséPineDawn (Gogh)'                    ,
+  'Trim Yer Beard (terminal.sexy)'         ,
+  'Atelier Plateau (base16)'               ,
+  'IC_Orange_PPL'                          ,
+  'SeafoamPastel (Gogh)'                   ,
 }
 
 -- mac
