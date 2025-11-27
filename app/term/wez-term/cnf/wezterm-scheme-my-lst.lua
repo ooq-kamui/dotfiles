@@ -11,6 +11,7 @@ scheme_lst.win.recommend.h = {
   'SynthWave (Gogh)'                       ,
   'UltraViolent'                           ,
   'niji'                                   ,
+  'NightOwl (Gogh)'                        ,
   'Borland'                                ,
   'Synthwave (Gogh)'                       ,
   'tokyonight'                             ,
@@ -31,6 +32,9 @@ scheme_lst.win.recommend.h = {
   'tender (base16)'                        ,
   'VisiBone (terminal.sexy)'               ,
   'Overnight Slumber'                      ,
+  'Simple Rainbow (terminal.sexy)'         ,
+  'nightfox'                               ,
+  'Tomorrow Night Blue (Gogh)'             ,
 }
 scheme_lst.win.recommend.m = {
   'BlueDolphin'                            ,
@@ -88,6 +92,8 @@ scheme_lst.win.recommend.m = {
   'Catppuccin Macchiato'                   ,
   'Decaf (base16)'                         ,
   'Ef-Dark'                                ,
+  'Wombat'                                 ,
+  'Catppuccin Frappé (Gogh)'               ,
 }
 scheme_lst.win.excld = {
   '3024 Day (Gogh)'                        ,
@@ -338,6 +344,18 @@ scheme_lst.win.excld = {
   'Atelier Plateau (base16)'               ,
   'IC_Orange_PPL'                          ,
   'SeafoamPastel (Gogh)'                   ,
+  'Dotshare (terminal.sexy)'               ,
+  'OneDark (Gogh)'                         ,
+  'The Hulk'                               ,
+  'Atelier Lakeside Light (base16)'        ,
+  'Black Metal (Nile) (base16)'            ,
+  'EspressoLibre (Gogh)'                   ,
+  'Builtin Solarized Light'                ,
+  'Github (base16)'                        ,
+  'mono-white (Gogh)'                      ,
+  'Unikitty Dark (base16)'                 ,
+  'Pencil Light (Gogh)'                    ,
+  'Rosé Pine (base16)'                     ,
 }
 
 -- mac
