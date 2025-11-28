@@ -35,6 +35,13 @@ scheme_lst.win.recommend.h = {
   'Simple Rainbow (terminal.sexy)'         ,
   'nightfox'                               ,
   'Tomorrow Night Blue (Gogh)'             ,
+  'Fairyfloss'                             ,
+  'Monokai (base16)'                       ,
+  'cyberpunk'                              ,
+  'Kolorit'                                ,
+  'rebecca'                                ,
+  'Erebus (terminal.sexy)'                 ,
+  'ChallengerDeep'                         ,
 }
 scheme_lst.win.recommend.m = {
   'BlueDolphin'                            ,
@@ -94,6 +101,12 @@ scheme_lst.win.recommend.m = {
   'Ef-Dark'                                ,
   'Wombat'                                 ,
   'Catppuccin Frappé (Gogh)'               ,
+  'purplepeter'                            ,
+  'Teerb'                                  ,
+  'Orangish (terminal.sexy)'               ,
+  'Predawn (Gogh)'                         ,
+  'Modus-Vivendi-Tinted'                   ,
+  'Molokai'                                ,
 }
 scheme_lst.win.excld = {
   '3024 Day (Gogh)'                        ,
@@ -356,6 +369,19 @@ scheme_lst.win.excld = {
   'Unikitty Dark (base16)'                 ,
   'Pencil Light (Gogh)'                    ,
   'Rosé Pine (base16)'                     ,
+  'Ef-Spring'                              ,
+  '3024 Night'                             ,
+  'Paraiso Dark'                           ,
+  'Powershell (Gogh)'                      ,
+  'Hivacruz'                               ,
+  'iTerm2 Solarized Dark'                  ,
+  'Tinacious Design (Light)'               ,
+  'Black Metal (Bathory) (base16)'         ,
+  'Violet Dark'                            ,
+  'One Light (Gogh)'                       ,
+  'Oceanic Next (Gogh)'                    ,
+  'Material (terminal.sexy)'               ,
+  'Palenight (Gogh)'                       ,
 }
 
 -- mac
