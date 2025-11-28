@@ -409,6 +409,7 @@ scheme_lst.win.excld = {
   'Spacegray Eighties Dull (Gogh)'         ,
   'Pasque (base16)'                        ,
   'FrontendGalaxy (Gogh)'                  ,
+  'Twilight (Gogh)'                        ,
 }
 
 -- mac

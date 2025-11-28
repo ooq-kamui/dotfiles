@@ -81,19 +81,41 @@ function v.Line.word_col_idx_lst(line_num)
   return word_col_idx_lst
 end
 
-function v.Line.word_col_idx(line_num, col_idx)
+function v.Line.word_col_idx(line_num, col_idx_min)
 
   local word_col_idx_lst = v.Line.word_col_idx_lst(line_num)
 
   local word_col_idx
   for _idx, _word_col_idx in pairs(word_col_idx_lst) do
   
-    if col_idx < _word_col_idx then
+    if col_idx_min < _word_col_idx then
       word_col_idx = _word_col_idx
       break
     end
   end
   return word_col_idx
+end
+
+function v.Line.char_col_idx_lst(line_num, char)
+
+  local line_str         = v.Line.str_by_line_num(line_num)
+  local char_col_idx_lst = v.Str.char_col_idx_lst(line_str, char)
+  return char_col_idx_lst
+end
+
+function v.Line.char_col_idx(line_num, char, col_idx_min)
+
+  local char_col_idx_lst = v.Line.char_col_idx_lst(line_num, char)
+
+  local char_col_idx
+  for _idx, _char_col_idx in pairs(char_col_idx_lst) do
+  
+    if col_idx_min < _char_col_idx then
+      char_col_idx = _char_col_idx
+      break
+    end
+  end
+  return char_col_idx
 end
 
 -- line cnd

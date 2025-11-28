@@ -142,6 +142,23 @@ function v.Str.word_col_idx_lst(str)
   return word_col_idx_lst
 end
 
+function v.Str.char_col_idx_lst(str, char)
+
+    local char_col_idx_lst = {}
+    local col_idx = 1
+    while true do
+        local s_col_idx, e_col_idx = string.find(str, char, col_idx, true)
+
+        if s_col_idx then
+            table.insert(char_col_idx_lst, s_col_idx)
+            col_idx = e_col_idx + 1
+        else
+            break
+        end
+    end
+    return char_col_idx_lst
+end
+
 -- str __ rpl
 
 function v.Str.__rpl_by_lua(str, ptn, rpl)

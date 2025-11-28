@@ -1358,6 +1358,16 @@ function v.Cursor.f_str__del()
   v.Cmd.nml(cmd_nml)
 end
 
+function v.Cursor.f_str__space_crct_with_fzy(ref_drct) -- dev doing
+
+  v.Cursor.f_str__space_crct_with_word(ref_drct)
+
+  v.Cursor.f_str__space_crct_with_char(ref_drct)
+  -- dev anchor
+
+
+end
+
 function v.Cursor.f_str__space_crct_with_word(ref_drct)
 
   local line_num              = v.Cursor.line_num(ref_drct)
@@ -1366,12 +1376,29 @@ function v.Cursor.f_str__space_crct_with_word(ref_drct)
 
   if not word_col_idx then return end
 
+  v.Cursor.f_str__space_crct_by_col_idx(word_col_idx)
+end
+
+function v.Cursor.f_str__space_crct_with_char(ref_drct)
+
+  local line_num              = v.Cursor.line_num(ref_drct)
+  local char                  = v.Cursor.f_char()
+  local cursor_f_char_col_idx = v.Cursor.f_char_col_idx()
+  local char_col_idx          = v.Line.char_col_idx(line_num, char, cursor_f_char_col_idx)
+
+  if not char_col_idx then return end
+
+  v.Cursor.f_str__space_crct_by_col_idx(char_col_idx)
+end
+
+function v.Cursor.f_str__space_crct_by_col_idx(col_idx)
+
   local crct_str
   crct_str = v.Cursor.line_str_side_r_with_c()
   crct_str = v.Str.trim(crct_str)
 
   local cursor_col_idx = v.Cursor.col_num()
-  local space_len = word_col_idx - cursor_col_idx
+  local space_len = col_idx - cursor_col_idx
   local space_str = v.Str.space(space_len)
 
   v.Cursor.f_str__del()
@@ -1379,16 +1406,6 @@ function v.Cursor.f_str__space_crct_with_word(ref_drct)
   v.Cursor.__ins(crct_str)
 
   v.Cursor.__mv_by_col_num(cursor_col_idx)
-end
-
-function v.Cursor.f_str__space_crct_with_char(ref_drct) -- dev doing
-
-  local line_num = v.Cursor.line_num(ref_drct)
-  local line_str = v.Line.str_by_line_num(line_num)
-
-  local cursor_f_char_col_idx = v.Cursor.f_char_col_idx()
-
-  
 end
 
 function v.Cursor.__ins_sys_cmd(sys_cmd) -- read

@@ -6,9 +6,9 @@
 
 n q
 - line f col algn
-- fzy
-  - case: col algn: none
-    - char same
+  - fzy
+    - word
+    - char
 
 
 opn_file_close_recently
