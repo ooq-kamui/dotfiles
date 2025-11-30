@@ -68,6 +68,7 @@ alias k    'cd_parent'
 alias kk   'k;k'
 alias kkk  'k;k;k'
 alias kkkk 'k;k;k;k'
+alias kjr  'cd_git_root'
 alias kr   'cd_git_root'
 
 alias f  'dir_jmp_with_zoxide'

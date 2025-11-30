@@ -2,6 +2,15 @@
 # dotfiles
 
 
+## fish git
+
+alias
+
+```
+git branch --set-upstream-to=origin/main main
+```
+
+
 ## nvim
 
 n q
