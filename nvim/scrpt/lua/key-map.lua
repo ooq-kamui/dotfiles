@@ -477,7 +477,7 @@ keymap__('n', 'i', v.Slctd.str__word)
 keymap__('n', 'I', 've')
 
 -- slct visual
-keymap__('n', '<c-v>', 'v')
+-- keymap__('n', '<c-v>', 'v')
 
 -- slct visual box
 keymap__('n', 'v', '<c-v>')

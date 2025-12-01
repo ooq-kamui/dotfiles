@@ -8,6 +8,7 @@ scheme_lst.win.recommend = {}
 scheme_lst.win.recommend.h = {
   'Snazzy (base16)'                        , -- h
   'Outrun Dark (base16)'                   , -- h
+  'Wzoreck (Gogh)'                         , -- h
   'Hurtado'                                ,
   'SynthWave (Gogh)'                       ,
   'UltraViolent'                           ,
@@ -52,6 +53,7 @@ scheme_lst.win.recommend.h = {
   'Kokuban (Gogh)'                         ,
   'Ef-Melissa-Dark'                        ,
   'MaterialDesignColors'                   ,
+  'Tender (Gogh)'                          ,
 }
 scheme_lst.win.recommend.m = {
   'BlueDolphin'                            ,
@@ -127,6 +129,10 @@ scheme_lst.win.recommend.m = {
   'Earthsong'                              ,
   'Visibone Alt. 2 (terminal.sexy)'        ,
   'Arthur (Gogh)'                          ,
+  'Omni (Gogh)'                            ,
+  'catppuccin-frappe'                      ,
+  'PurplePeopleEater (Gogh)'               ,
+  'Argonaut'                               ,
 }
 scheme_lst.win.excld = {
   '3024 Day (Gogh)'                        ,
@@ -438,6 +444,15 @@ scheme_lst.win.excld = {
   's3r0 modified (terminal.sexy)'          ,
   'Ocean (dark) (terminal.sexy)'           ,
   'Thayer Bright (Gogh)'                   ,
+  'Sandcastle (base16)'                    ,
+  'Ef-Maris-Light'                         ,
+  'Elemental (Gogh)'                       ,
+  'Tango (base16)'                         ,
+  'GeoHot (Gogh)'                          ,
+  'Square (Gogh)'                          ,
+  'Dissonance (Gogh)'                      ,
+  'Vaughn (Gogh)'                          ,
+  'Red Sands'                              ,
 }
 
 -- mac

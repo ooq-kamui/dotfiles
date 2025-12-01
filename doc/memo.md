@@ -2,14 +2,15 @@
 # dotfiles
 
 
+
 ## nvim
+
+vf.xxx > rpl
+- fnc lst
 
 opn_file_close_recently
 - with save file, json
 
-
-vf.xxx > rpl
-- research, rg
 
 plg
 - lualine
