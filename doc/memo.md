@@ -2,36 +2,13 @@
 # dotfiles
 
 
-## fish git
-
-alias
-
-```
-git branch --set-upstream-to=origin/main main
-```
-
-arg research
-- doc write
-
-
 ## nvim
 
-n q
-- line f col algn
-  - fzy
-    - word
-    - char
-  - tst
-    aaa  baa  caa  daa   eaaxaa
-                            x
-
-
 opn_file_close_recently
-- with global var
-  - json
+- with save file, json
 
 
-vf.xxx > del
+vf.xxx > rpl
 - research, rg
 
 plg
