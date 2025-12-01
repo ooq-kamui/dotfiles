@@ -490,6 +490,7 @@ scheme_lst.mac.recommend.m = {
   'Raycast_Light'                          ,
   'VibrantInk'                             ,
   'Material (base16)'                      ,
+  'Humanoid dark (base16)'                 ,
 }
 scheme_lst.mac.excld = {
   'PaperColor Dark (base16)'               ,
@@ -611,6 +612,7 @@ scheme_lst.mac.excld = {
   'summercamp (base16)'                    ,
   '3024Day (Gogh)'                         ,
   'Mono White (Gogh)'                      ,
+  'Earthsong (Gogh)'                       ,
 }
 
 return scheme_lst

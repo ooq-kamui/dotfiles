@@ -2,11 +2,13 @@
 # dotfiles
 
 
+## omarchy
+
+instl
+- instl
+
 
 ## nvim
-
-vf.xxx > rpl
-- fnc lst
 
 opn_file_close_recently
 - with save file, json
@@ -15,12 +17,6 @@ opn_file_close_recently
 plg
 - lualine
 - lsp, instl
-
-
-## omarchy
-
-instl
-- instl
 
 
 ## aws
