@@ -60,6 +60,7 @@ function color_scheme__rnd(env)
       table.insert(scheme_name_lst, scheme_name)
     end
   end
+  wezterm.log_info(#scheme_name_lst)
 
   if math.random(1, 20) == 1 then
     wezterm.log_info('= scheme recommend =')
