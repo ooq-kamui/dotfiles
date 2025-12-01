@@ -50,6 +50,8 @@ scheme_lst.win.recommend.h = {
   'AyuDark (Gogh)'                         ,
   'Builtin Tango Dark'                     ,
   'Kokuban (Gogh)'                         ,
+  'Ef-Melissa-Dark'                        ,
+  'MaterialDesignColors'                   ,
 }
 scheme_lst.win.recommend.m = {
   'BlueDolphin'                            ,
@@ -123,6 +125,8 @@ scheme_lst.win.recommend.m = {
   'tokyonight_storm'                       ,
   'Laser'                                  ,
   'Earthsong'                              ,
+  'Visibone Alt. 2 (terminal.sexy)'        ,
+  'Arthur (Gogh)'                          ,
 }
 scheme_lst.win.excld = {
   '3024 Day (Gogh)'                        ,
@@ -423,6 +427,17 @@ scheme_lst.win.excld = {
   'Lab Fox'                                ,
   'Wryan (Gogh)'                           ,
   'FrontendFunForrest (Gogh)'              ,
+  'Windows High Contrast Light (base16)'   ,
+  'Cupertino (base16)'                     ,
+  'aikofog (terminal.sexy)'                ,
+  'Foxnightly (Gogh)'                      ,
+  'Konsolas'                               ,
+  'IC_Green_PPL'                           ,
+  'Smyck'                                  ,
+  'farmhouse-light'                        ,
+  's3r0 modified (terminal.sexy)'          ,
+  'Ocean (dark) (terminal.sexy)'           ,
+  'Thayer Bright (Gogh)'                   ,
 }
 
 -- mac
