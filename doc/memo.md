@@ -10,6 +10,9 @@ alias
 git branch --set-upstream-to=origin/main main
 ```
 
+arg research
+- doc write
+
 
 ## nvim
 
@@ -18,6 +21,9 @@ n q
   - fzy
     - word
     - char
+  - tst
+    aaa  baa  caa  daa   eaaxaa
+                            x
 
 
 opn_file_close_recently

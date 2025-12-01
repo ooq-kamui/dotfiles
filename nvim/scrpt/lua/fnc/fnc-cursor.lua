@@ -1360,12 +1360,10 @@ end
 
 function v.Cursor.f_str__space_crct_with_fzy(ref_drct) -- dev doing
 
-  v.Cursor.f_str__space_crct_with_word(ref_drct)
+  local word_col_idx = v.Cursor.f_str__space_crct_with_word(ref_drct)
+  if word_col_idx then return end
 
-  v.Cursor.f_str__space_crct_with_char(ref_drct)
-  -- dev anchor
-
-
+  local char_col_idx = v.Cursor.f_str__space_crct_with_char(ref_drct)
 end
 
 function v.Cursor.f_str__space_crct_with_word(ref_drct)
@@ -1374,9 +1372,11 @@ function v.Cursor.f_str__space_crct_with_word(ref_drct)
   local cursor_f_char_col_idx = v.Cursor.f_char_col_idx()
   local word_col_idx          = v.Line.word_col_idx(line_num, cursor_f_char_col_idx)
 
-  if not word_col_idx then return end
+  if not word_col_idx then return word_col_idx end
 
   v.Cursor.f_str__space_crct_by_col_idx(word_col_idx)
+
+  return word_col_idx
 end
 
 function v.Cursor.f_str__space_crct_with_char(ref_drct)
@@ -1386,9 +1386,11 @@ function v.Cursor.f_str__space_crct_with_char(ref_drct)
   local cursor_f_char_col_idx = v.Cursor.f_char_col_idx()
   local char_col_idx          = v.Line.char_col_idx(line_num, char, cursor_f_char_col_idx)
 
-  if not char_col_idx then return end
+  if not char_col_idx then return char_col_idx end
 
   v.Cursor.f_str__space_crct_by_col_idx(char_col_idx)
+
+  return char_col_idx
 end
 
 function v.Cursor.f_str__space_crct_by_col_idx(col_idx)

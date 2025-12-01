@@ -6,12 +6,14 @@ local scheme_lst = {}
 scheme_lst.win = {}
 scheme_lst.win.recommend = {}
 scheme_lst.win.recommend.h = {
-  'Snazzy (base16)'                        , -- < h
+  'Snazzy (base16)'                        , -- h
+  'Outrun Dark (base16)'                   , -- h
   'Hurtado'                                ,
   'SynthWave (Gogh)'                       ,
   'UltraViolent'                           ,
   'niji'                                   ,
   'NightOwl (Gogh)'                        ,
+  'Fairy Floss (Gogh)'                     ,
   'Borland'                                ,
   'Synthwave (Gogh)'                       ,
   'tokyonight'                             ,
@@ -45,6 +47,9 @@ scheme_lst.win.recommend.h = {
   'Papercolor Dark (Gogh)'                 ,
   'Flat (base16)'                          ,
   'Catppuccin Mocha'                       ,
+  'AyuDark (Gogh)'                         ,
+  'Builtin Tango Dark'                     ,
+  'Kokuban (Gogh)'                         ,
 }
 scheme_lst.win.recommend.m = {
   'BlueDolphin'                            ,
@@ -116,6 +121,8 @@ scheme_lst.win.recommend.m = {
   'Ef-Tritanopia-Dark'                     ,
   'Solar Flare (base16)'                   ,
   'tokyonight_storm'                       ,
+  'Laser'                                  ,
+  'Earthsong'                              ,
 }
 scheme_lst.win.excld = {
   '3024 Day (Gogh)'                        ,
@@ -410,6 +417,12 @@ scheme_lst.win.excld = {
   'Pasque (base16)'                        ,
   'FrontendGalaxy (Gogh)'                  ,
   'Twilight (Gogh)'                        ,
+  'Piatto Light'                           ,
+  'AlienBlood'                             ,
+  'ForestBlue'                             ,
+  'Lab Fox'                                ,
+  'Wryan (Gogh)'                           ,
+  'FrontendFunForrest (Gogh)'              ,
 }
 
 -- mac
