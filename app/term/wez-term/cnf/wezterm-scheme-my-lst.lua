@@ -149,6 +149,13 @@ scheme_lst.win.recommend.m = {
   'PhD (base16)'                           ,
   'Liquid Carbon Transparent (Gogh)'       ,
   'OneDark (base16)'                       ,
+  'Ef-Winter'                              ,
+  'iceberg-dark'                           ,
+  'Molokai (Gogh)'                         ,
+  'Galizur'                                ,
+  'Warm Neon (Gogh)'                       ,
+  'Classic Dark (base16)'                  ,
+  'Firefly Traditional'                    ,
 }
 scheme_lst.win.excld = {
   '3024 (dark) (terminal.sexy)'            ,
@@ -479,6 +486,16 @@ scheme_lst.win.excld = {
   'Matrix (terminal.sexy)'                 ,
   'MaterialOcean'                          ,
   'kanagawa (Gogh)'                        ,
+  'Codeschool (base16)'                    ,
+  'OceanDark (Gogh)'                       ,
+  'Glacier'                                ,
+  'Ashes (dark) (terminal.sexy)'           ,
+  'Atelier Sulphurpool Light (base16)'     ,
+  'Atelier Lakeside (base16)'              ,
+  'mono-amber (Gogh)'                      ,
+  'Tango Half Adapted'                     ,
+  'BelafonteNight (Gogh)'                  ,
+  'Muse (terminal.sexy)'                   ,
 }
 
 -- mac
