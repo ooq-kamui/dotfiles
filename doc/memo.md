@@ -14,6 +14,9 @@ opn_file_close_recently
 - with save file, json
 
 
+mac mb
+
+
 plg
 - lualine
 - lsp, instl
