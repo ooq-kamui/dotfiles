@@ -540,6 +540,7 @@ scheme_lst.mac.recommend.h = {
   'Rebecca (base16)'                       ,
   'Ir Black (Gogh)'                        ,
   'DanQing (base16)'                       ,
+  'Dracula (base16)'                       ,
 }
 scheme_lst.mac.recommend.m = {
   'IrBlack (Gogh)'                         ,
@@ -702,6 +703,9 @@ scheme_lst.mac.excld = {
   'SolarizedDarcula (Gogh)'                ,
   'LunariaEclipse (Gogh)'                  ,
   'Terminal Basic'                         ,
+  'mono-green (Gogh)'                      ,
+  'Fahrenheit'                             ,
+  'Elementary (Gogh)'                      ,
 }
 
 return scheme_lst
