@@ -18,6 +18,7 @@ config.window_background_gradient = {
 config.use_ime = true
 
 
+
 -- 
 -- env : win : ofc
 -- 

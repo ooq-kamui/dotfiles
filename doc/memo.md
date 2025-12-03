@@ -2,11 +2,6 @@
 # dotfiles
 
 
-## wez
-
-mac mb decide c-m
-
-
 ## nvim
 
 opn_file_close_recently

@@ -567,6 +567,9 @@ scheme_lst.mac.recommend.m = {
   'VibrantInk'                             ,
   'Material (base16)'                      ,
   'Humanoid dark (base16)'                 ,
+  'SweetTerminal (Gogh)'                   ,
+  'Equilibrium Dark (base16)'              ,
+  'Andromeda'                              ,
 }
 scheme_lst.mac.excld = {
   'PaperColor Dark (base16)'               ,
@@ -689,6 +692,16 @@ scheme_lst.mac.excld = {
   '3024Day (Gogh)'                         ,
   'Mono White (Gogh)'                      ,
   'Earthsong (Gogh)'                       ,
+  'Mono Yellow (Gogh)'                     ,
+  'MonaLisa'                               ,
+  'Floraverse'                             ,
+  'Google Dark (Gogh)'                     ,
+  'Rezza (terminal.sexy)'                  ,
+  'Galizur'                                ,
+  'Grayscale (dark) (terminal.sexy)'       ,
+  'SolarizedDarcula (Gogh)'                ,
+  'LunariaEclipse (Gogh)'                  ,
+  'Terminal Basic'                         ,
 }
 
 return scheme_lst

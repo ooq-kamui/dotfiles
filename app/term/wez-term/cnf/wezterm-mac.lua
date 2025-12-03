@@ -15,7 +15,8 @@ config.window_background_gradient = {
   colors = { "Blue" },
 }
 
-
+config.use_ime = true
+config.macos_forward_to_ime_modifier_mask = 'SHIFT|CTRL'
 
 
 -- 
