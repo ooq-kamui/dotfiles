@@ -142,7 +142,6 @@ function v.Buf.opn_by_cursor_line_pth()
   v.Cursor__mv_d()
 end
 
--- function v.Tag_jmp_by_slctd_line() -- range
 function v.Buf.opn_by_slctd_line() -- range
 
   local base_buf_num = v.Buf.num()
@@ -162,8 +161,29 @@ end
 
 function v.Buf.__quit()
 
+  v.Buf.quit.rcnt__save()
+
   local cmd = 'bd'
   v.Cmd.cmd(cmd)
+end
+
+v.Buf.quit = {}
+
+function v.Buf.quit.rcnt__save()
+
+  local file_path = v.Buf.file_path()
+
+  local save_file_path = v.Buf.quit.save_file_path()
+  v.File.save(save_file_path, file_path)
+end
+
+function v.Buf.quit.save_file_path()
+
+  local data_dir = vf.stdpath('data')
+
+  local save_file_path = data_dir .. '/buf-quit.txt'
+  -- v.Log.log(save_file_path)
+  return save_file_path
 end
 
 function v.Buf.__quit_swtch()
@@ -296,19 +316,6 @@ function v.Buf.__fltr_jq()
   local sys_fltr_cmd = 'jq'
   local rslt = v.Buf.__fltr(sys_fltr_cmd)
 end
-
--- file
-
-v.File = {}
-
--- file tmp
-
-function v.File.tmp__cre() -- alias
-
-  local tmp_path = vf.system('mktemp ')
-  return tmp_path
-end
-
 
 -- win
 

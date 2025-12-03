@@ -176,7 +176,7 @@ alias utc      'date_utc_fr_jst'
 alias ca 'cal'
 
 alias du   'du -h'
-alias du_1 'du -hd1'
+alias du-1 'du -hd1'
 alias df   'df -h'
 
 # alias x 'xargs'
@@ -209,6 +209,9 @@ alias nx-start-re 'sudo nginx -s reload'
 alias uconv '/home/linuxbrew/.linuxbrew/Cellar/icu4c@77/77.1/bin/uconv'
 alias ucnv  'uconv'
 alias sjis  'ucnv_sjis'
+
+# wez
+alias wez-color-scheme-lua-clp 'echo "window:get_config_overrides().color_scheme" | clp'
 
 # variety
 # alias ba   'battery' # mac

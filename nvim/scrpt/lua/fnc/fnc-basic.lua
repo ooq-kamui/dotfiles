@@ -4,6 +4,7 @@
 require('fnc/fnc-log'   )
 
 require('fnc/fnc-dir'   )
+require('fnc/fnc-file'  )
 require('fnc/fnc-env'   )
 require('fnc/fnc-cmd'   )
 require('fnc/fnc-line'  )

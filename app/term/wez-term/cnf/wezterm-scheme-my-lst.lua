@@ -62,6 +62,8 @@ scheme_lst.win.recommend.h = {
   'Monokai Pro Ristretto (Gogh)'           ,
   'HorizonDark (Gogh)'                     ,
   'Zenburn (Gogh)'                         ,
+  'MonokaiProRistretto (Gogh)'             ,
+  'Ef-Maris-Dark'                          ,
 }
 scheme_lst.win.recommend.m = {
   'BlueDolphin'                            ,
@@ -156,6 +158,13 @@ scheme_lst.win.recommend.m = {
   'Warm Neon (Gogh)'                       ,
   'Classic Dark (base16)'                  ,
   'Firefly Traditional'                    ,
+  'zenburned'                              ,
+  'Tokyo Night'                            ,
+  'summer-pop (Gogh)'                      ,
+  'Flatland (Gogh)'                        ,
+  'Nocturnal Winter'                       ,
+  'Selenized Dark (Gogh)'                  ,
+  'Mariana'                                ,
 }
 scheme_lst.win.excld = {
   '3024 (dark) (terminal.sexy)'            ,
@@ -496,6 +505,20 @@ scheme_lst.win.excld = {
   'Tango Half Adapted'                     ,
   'BelafonteNight (Gogh)'                  ,
   'Muse (terminal.sexy)'                   ,
+  'Terminix Dark (Gogh)'                   ,
+  'Spacegray Eighties (Gogh)'              ,
+  'SpaceGrayEighties (Gogh)'               ,
+  'ParaisoDark (Gogh)'                     ,
+  'Solarized Darcula (Gogh)'               ,
+  'Oceanic-Next'                           ,
+  'Nightlion V2 (Gogh)'                    ,
+  'Mono Cyan (Gogh)'                       ,
+  'Classic Light (base16)'                 ,
+  'BlulocoLight'                           ,
+  'Gruvbox light, soft (base16)'           ,
+  'zenbones'                               ,
+  'Solar Flare Light (base16)'             ,
+  'theme2 (terminal.sexy)'                 ,
 }
 
 -- mac

@@ -2,24 +2,28 @@
 # dotfiles
 
 
-## omarchy
+## wez
 
-instl
-- instl
+mac mb decide c-m
 
 
 ## nvim
 
 opn_file_close_recently
-- with save file, json
-
-
-mac mb
-
+- save file, when quit
+  - eof ??
+- opn
+  - load file
 
 plg
 - lualine
 - lsp, instl
+
+
+## omarchy
+
+instl
+- instl
 
 
 ## aws
