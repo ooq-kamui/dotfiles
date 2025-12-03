@@ -64,6 +64,7 @@ scheme_lst.win.recommend.h = {
   'Zenburn (Gogh)'                         ,
   'MonokaiProRistretto (Gogh)'             ,
   'Ef-Maris-Dark'                          ,
+  'neon-night (Gogh)'                      ,
 }
 scheme_lst.win.recommend.m = {
   'BlueDolphin'                            ,
@@ -165,6 +166,9 @@ scheme_lst.win.recommend.m = {
   'Nocturnal Winter'                       ,
   'Selenized Dark (Gogh)'                  ,
   'Mariana'                                ,
+  'LiquidCarbon'                           ,
+  'Aci (Gogh)'                             ,
+  'Ef-Symbiosis'                           ,
 }
 scheme_lst.win.excld = {
   '3024 (dark) (terminal.sexy)'            ,
@@ -519,6 +523,12 @@ scheme_lst.win.excld = {
   'zenbones'                               ,
   'Solar Flare Light (base16)'             ,
   'theme2 (terminal.sexy)'                 ,
+  'Marrakesh (dark) (terminal.sexy)'       ,
+  'Phrak1 (terminal.sexy)'                 ,
+  'Calamity'                               ,
+  'Eva (base16)'                           ,
+  'Chalk (light) (terminal.sexy)'          ,
+  'Everforest Dark (Gogh)'                 ,
 }
 
 -- mac
