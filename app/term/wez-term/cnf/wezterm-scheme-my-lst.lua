@@ -10,6 +10,7 @@ scheme_lst.win.recommend.h = {
   'Outrun Dark (base16)'                   , -- h
   'Wzoreck (Gogh)'                         , -- h
   'Sonokai (Gogh)'                         , -- h
+  'Pandora'                                , -- h
   -- 
   'Hurtado'                                ,
   'SynthWave (Gogh)'                       ,
@@ -65,6 +66,9 @@ scheme_lst.win.recommend.h = {
   'MonokaiProRistretto (Gogh)'             ,
   'Ef-Maris-Dark'                          ,
   'neon-night (Gogh)'                      ,
+  'Pnevma'                                 ,
+  'Snazzy'                                 ,
+  'Monokai (terminal.sexy)'                ,
 }
 scheme_lst.win.recommend.m = {
   'BlueDolphin'                            ,
@@ -169,6 +173,11 @@ scheme_lst.win.recommend.m = {
   'LiquidCarbon'                           ,
   'Aci (Gogh)'                             ,
   'Ef-Symbiosis'                           ,
+  'Flat Remix (Gogh)'                      ,
+  'Bamboo Multiplex'                       ,
+  'Pnevma (Gogh)'                          ,
+  'Atom'                                   ,
+  'BreathSilverfox (Gogh)'                 ,
 }
 scheme_lst.win.excld = {
   '3024 (dark) (terminal.sexy)'            ,
@@ -529,6 +538,14 @@ scheme_lst.win.excld = {
   'Eva (base16)'                           ,
   'Chalk (light) (terminal.sexy)'          ,
   'Everforest Dark (Gogh)'                 ,
+  'Gruvbox (Gogh)'                         ,
+  'Atelier Forest Light (base16)'          ,
+  'Gruvbox dark, soft (base16)'            ,
+  'Novel (Gogh)'                           ,
+  'Gruvbox light, medium (base16)'         ,
+  'Codeschool (dark) (terminal.sexy)'      ,
+  'Atelier Cave Light (base16)'            ,
+  'laserwave (Gogh)'                       ,
 }
 
 -- mac
