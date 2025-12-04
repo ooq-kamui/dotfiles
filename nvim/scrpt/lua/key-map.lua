@@ -317,6 +317,10 @@ keymap__('n', '<leader>l', v.Fzf.file)
 -- opn file hstry ( fzf )
 keymap__('n', '<leader>L', ':FzfFileHstry<cr>')
 
+-- opn file rcnt ( ltst )
+keymap__('n', 'S', v.Buf.quit.rcnt_opn_re)
+-- keymap__('n', 'H', v.Buf.quit.rcnt_opn_re)
+
 -- opn etc
 
 -- opn fish cnf
@@ -594,7 +598,7 @@ keymap__('n', 'T', v.Cursor.__ins_tm)
 keymap__('n', 'A', v.Cursor.__ins_line_anchor)
 
 -- ins anchor, del
-keymap__('n', 'S', v.Cursor.__ins_line_anchor_7_del)
+-- keymap__('n', 'xx', v.Cursor.__ins_line_anchor_7_del)
 
 -- ins markdown code
 -- keymap__('n', '<c-u>', ':lua v.Cursor.__ins_markdown_code()<cr>')

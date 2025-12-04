@@ -169,6 +169,19 @@ end
 
 v.Buf.quit = {}
 
+function v.Buf.quit.rcnt_opn_re()
+
+  local quit_rcnt_file_path = v.Buf.quit.rcnt_file_path()
+  v.Buf.opn(quit_rcnt_file_path)
+end
+
+function v.Buf.quit.rcnt_file_path()
+
+  local save_file_path = v.Buf.quit.save_file_path()
+  local quit_rcnt_file_path = v.File.load(save_file_path)
+  return quit_rcnt_file_path
+end
+
 function v.Buf.quit.rcnt__save()
 
   local file_path = v.Buf.file_path()

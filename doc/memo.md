@@ -4,15 +4,14 @@
 
 ## nvim
 
-opn_file_close_recently
-- save file, when quit
-  - eof ??
-- opn
-  - load file
-
 plg
 - lualine
 - lsp, instl
+
+
+## github
+
+mac, git stars, instl
 
 
 ## omarchy
