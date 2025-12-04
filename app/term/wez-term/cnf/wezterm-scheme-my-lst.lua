@@ -71,6 +71,8 @@ scheme_lst.win.recommend.h = {
   'Monokai (terminal.sexy)'                ,
   'Fairy Floss Dark (Gogh)'                ,
   'Guezwhoz'                               ,
+  'sweet-eliverlara (Gogh)'                ,
+  'Vs Code Dark+ (Gogh)'                   ,
 }
 scheme_lst.win.recommend.m = {
   'BlueDolphin'                            ,
@@ -561,6 +563,21 @@ scheme_lst.win.excld = {
   'DarkPastel (Gogh)'                      ,
   'Blue Matrix'                            ,
   'ToyChest'                               ,
+  'Mono Amber (Gogh)'                      ,
+  'EverforestLight (Gogh)'                 ,
+  'Nightlion V1 (Gogh)'                    ,
+  'flexoki-light'                          ,
+  'neobones_light'                         ,
+  'Shaman'                                 ,
+  'Macintosh (base16)'                     ,
+  'Sequoia Monochrome'                     ,
+  'Darktooth (base16)'                     ,
+  'SpaceGray'                              ,
+  'Marrakesh (light) (terminal.sexy)'      ,
+  'Github Light (Gogh)'                    ,
+  'Embers (dark) (terminal.sexy)'          ,
+  'Rezza (terminal.sexy)'                  ,
+  'Marrakesh (base16)'                     ,
 }
 
 -- mac
