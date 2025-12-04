@@ -2,16 +2,18 @@
 # dotfiles
 
 
+## github
+
+mac, git stars, instl
+
+
 ## nvim
 
 plg
 - lualine
+  - on / off ( comment out )
+
 - lsp, instl
-
-
-## github
-
-mac, git stars, instl
 
 
 ## omarchy
