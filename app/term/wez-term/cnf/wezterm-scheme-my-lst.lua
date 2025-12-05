@@ -185,6 +185,7 @@ scheme_lst.win.recommend.m = {
   'Everblush'                              ,
   'Peppermint (Gogh)'                      ,
   'Breeze (Gogh)'                          ,
+  'Clone Of Ubuntu (Gogh)'                 ,
 }
 scheme_lst.win.excld = {
   '3024 (dark) (terminal.sexy)'            ,
@@ -578,6 +579,10 @@ scheme_lst.win.excld = {
   'Embers (dark) (terminal.sexy)'          ,
   'Rezza (terminal.sexy)'                  ,
   'Marrakesh (base16)'                     ,
+  'Rippedcasts'                            ,
+  'Tomorrow (light) (terminal.sexy)'       ,
+  'Framer'                                 ,
+  'Epiphany (terminal.sexy)'               ,
 }
 
 -- mac

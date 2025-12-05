@@ -2,11 +2,6 @@
 # dotfiles
 
 
-## github
-
-mac, git stars, instl
-
-
 ## nvim
 
 plg
@@ -14,6 +9,17 @@ plg
   - on / off ( comment out )
 
 - lsp, instl
+
+
+## win
+
+upd
+disk size confirm
+
+
+## github
+
+mac, git stars, instl
 
 
 ## omarchy
