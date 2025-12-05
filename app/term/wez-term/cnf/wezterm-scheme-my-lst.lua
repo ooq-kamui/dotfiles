@@ -73,6 +73,7 @@ scheme_lst.win.recommend.h = {
   'Guezwhoz'                               ,
   'sweet-eliverlara (Gogh)'                ,
   'Vs Code Dark+ (Gogh)'                   ,
+  'Hurtado (Gogh)'                         ,
 }
 scheme_lst.win.recommend.m = {
   'BlueDolphin'                            ,
@@ -186,6 +187,7 @@ scheme_lst.win.recommend.m = {
   'Peppermint (Gogh)'                      ,
   'Breeze (Gogh)'                          ,
   'Clone Of Ubuntu (Gogh)'                 ,
+  'midnight-in-mojave'                     ,
 }
 scheme_lst.win.excld = {
   '3024 (dark) (terminal.sexy)'            ,
@@ -583,6 +585,11 @@ scheme_lst.win.excld = {
   'Tomorrow (light) (terminal.sexy)'       ,
   'Framer'                                 ,
   'Epiphany (terminal.sexy)'               ,
+  'Aurora'                                 ,
+  'VSCodeLight+ (Gogh)'                    ,
+  'Mocha (light) (terminal.sexy)'          ,
+  'Grayscale Dark (base16)'                ,
+  'Night Owlish Light'                     ,
 }
 
 -- mac
