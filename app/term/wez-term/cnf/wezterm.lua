@@ -72,8 +72,14 @@ function color_scheme__rnd(env)
       local scheme_name = scheme_name_lst[math.random(#scheme_name_lst)]
       -- scheme_name = 'Monokai Pro (Gogh)' -- confirm
       wezterm.log_info('> ' .. scheme_name .. ' <')
-      local cmd = 'echo "' .. scheme_name .. '" | clip'
-      os.execute(cmd)
+
+      if env == 'win' then
+        wezterm.log_info(env)
+        -- local cmd = '"' .. scheme_name .. '" | Out-String -NoNewline | clip'
+        -- local cmd = 'echo -n ' .. scheme_name .. '" | clip'
+        -- wezterm.log_info(cmd)
+        -- os.execute(cmd)
+      end
 
       window:set_config_overrides {
         color_scheme = scheme_name,
