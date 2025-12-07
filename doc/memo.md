@@ -2,6 +2,15 @@
 # dotfiles
 
 
+## aws
+
+q dev try
+- setting
+  - account cre ?
+
+gen2 try
+
+
 ## nvim
 
 plg
@@ -11,30 +20,10 @@ plg
 - lsp, instl
 
 
-## win
-
-upd
-disk size confirm
-
-
-## github
-
-mac, git stars, instl
-
-
 ## omarchy
 
 instl
 - instl
-
-
-## aws
-
-q dev try
-- setting
-  - account cre ?
-
-gen2 try
 
 
 ## godot
