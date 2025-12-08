@@ -2,6 +2,12 @@
 # dotfiles
 
 
+## omarchy
+
+instl
+- instl
+
+
 ## godot
 
 platformer
@@ -10,12 +16,6 @@ platformer
 game cre
 - map cre
 - chara cre
-
-
-## omarchy
-
-instl
-- instl
 
 
 ## nvim
