@@ -109,8 +109,8 @@ alias ooo-lf  'pwd ../../   ; lf ../../'
 alias oooo-lf 'pwd ../../../; lf ../../../'
 
 alias to     'touch'
-alias to_clr ':>'
-alias to_add_line_emp 'echo "" >>'
+alias to-clr ':>'
+alias to-add-line-emp 'echo "" >>'
 
 alias tmp 'file_tmp'
 
@@ -149,8 +149,8 @@ alias jr  'cd_git_root'
 alias ji-st-file-lst 'git_st_file_lst'
 alias ji-co-file-lst 'git_co_file_lst'
 
-alias ji-b-upstream 'git branch --set-upstream-to=origin/main main'
-alias ji-b-upstream 'get-branch-upstream'
+alias get-branch-upstream 'git branch --set-upstream-to=origin/main main'
+alias ji-b-upstream       'get-branch-upstream'
 
 alias ji-lazy 'lazygit'
 

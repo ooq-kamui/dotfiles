@@ -79,6 +79,7 @@ scheme_lst.win.recommend.h = {
   'Espresso'                               ,
   'Chalk (Gogh)'                           ,
   'Neon Night (Gogh)'                      ,
+  'Google Dark (Gogh)'                     ,
 }
 scheme_lst.win.recommend.m = {
   'BlueDolphin'                            ,
@@ -202,6 +203,9 @@ scheme_lst.win.recommend.m = {
   'Birds Of Paradise (Gogh)'               ,
   'Bamboo'                                 ,
   'TomorrowNightBright (Gogh)'             ,
+  'Argonaut (Gogh)'                        ,
+  'Catppuccin Macchiato (Gogh)'            ,
+  'Sweet Terminal (Gogh)'                  ,
 }
 scheme_lst.win.excld = {
   '3024 (dark) (terminal.sexy)'            ,
@@ -623,6 +627,16 @@ scheme_lst.win.excld = {
   'Nancy (terminal.sexy)'                  ,
   'Slate'                                  ,
   'Red Sands (Gogh)'                       ,
+  'lovelace'                               ,
+  'Django'                                 ,
+  'tlh (terminal.sexy)'                    ,
+  'Espresso (base16)'                      ,
+  'Jellybeans (Gogh)'                      ,
+  '3024 (light) (terminal.sexy)'           ,
+  'Ef-Summer'                              ,
+  'PowerShell (Gogh)'                      ,
+  'Breath (Gogh)'                          ,
+  'Rosé Pine Dawn (base16)'                ,
 }
 
 -- mac

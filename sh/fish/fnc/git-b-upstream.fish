@@ -1,4 +1,4 @@
-function git-log-tree
+function git-b-upstream
 
   if test -z "$argv[1]"
     return
