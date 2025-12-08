@@ -188,7 +188,7 @@ function v.Fzf.tag_jmp_by_file(...)
 
   local file_path = ( #arg >= 1 ) and arg[1] or 'doc/memo.md'
 
-  local fzf_src_txt = v.File_txt(file_path)
+  local fzf_src_txt = v.File.txt(file_path)
   local fnc_name    = v.Buf.opn_by_path
   v.Fzf.by_txt(fzf_src_txt, fnc_name)
 end

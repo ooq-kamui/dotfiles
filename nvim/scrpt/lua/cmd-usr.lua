@@ -102,7 +102,7 @@ vim.api.nvim_create_user_command('OpnMan',
 
 vim.api.nvim_create_user_command('Sjis',
   function(opts)
-    v.Buf.re__sjis()
+    v.Buf.opn_re_sjis()
   end,
   {nargs = 0}
 )

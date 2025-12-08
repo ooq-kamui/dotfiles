@@ -2,7 +2,6 @@
 -- buf
 
 v.Buf = {}
--- v.Opn = v.Buf -- old
 
 function v.Buf.num()
 
@@ -20,6 +19,9 @@ end
 function v.Buf.opn(filename)
 
   v.Cmd.cmd('tab drop ' .. filename)
+
+  -- local file_encode = v.Buf.file_encode()
+  -- v.Log.log(file_encode)
 end
 
 function v.Buf.opn_tab_prv()
@@ -255,35 +257,16 @@ function v.Buf.file_path()
   return path
 end
 
-function v.File_txt(file_path)
-
-  if not vf.filereadable(file_path) then
-    return
-  end
-
-  local cmd = 'cat ' .. file_path
-
-  local pth_lst_txt = v.Sys.cmd(cmd)
-  return pth_lst_txt
-end
-
-function v.File_line_ar(file_path)
-
-  local file_txt = v.File_txt(file_path)
-  local file_line_ar = v.Txt._to_ar(file_txt)
-  return file_line_ar
-end
-
 -- load re
 
-function v.Load_re()
+function v.Buf.opn_re()
 
   v.Cmd.cmd('e ')
 end
 
 -- load re  -  encode sjis
 
-function v.Buf.re__sjis()
+function v.Buf.opn_re_sjis()
 
   v.Cmd.cmd('e ++enc=sjis')
 end
@@ -292,7 +275,10 @@ end
 
 function v.Buf.file_encode()
 
-  v.Cmd.cmd('set enc?')
+  local file_encode = vim.opt.fileencoding:get()
+  return file_encode
+
+  -- v.Cmd.cmd('set enc?')
 end
 
 function v.Buf.file_bom()

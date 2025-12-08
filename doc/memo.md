@@ -20,21 +20,16 @@ instl
 
 ## nvim
 
-plg
-- lualine
-  - on / off ( comment out )
-  - ref : wip
-
-- lsp, instl
-  - blink.cmp
-    - https://eiji.page/blog/neovim-blink-cmp-intro/
-
-
 v.Sys.sh_run_by_slctd_line()
 - confirm at dialog ( neovim )
   - view log
   - use nui.nvim
 
+plg
+- blink.cmp
+  - lsp ?
+  - instl
+    - https://eiji.page/blog/neovim-blink-cmp-intro/
 - noice.nvim
 
 plg-mng

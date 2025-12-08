@@ -177,7 +177,7 @@ function v.Sys.cmd_by_slf(p_sys_cmd)
   v.Log.val(rslt)
   -- v.Rgstr.__('a', rslt)
 
-  v.Load_re()
+  v.Buf.opn_re()
 end
 
 -- cmd ruff slf

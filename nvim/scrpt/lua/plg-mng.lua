@@ -13,6 +13,10 @@ g.plg_mng_cmd = [[
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'MunifTanjim/nui.nvim'
 
+    Plug 'nvim-lualine/lualine.nvim'
+    " If you want to have icons in your statusline choose one of these
+    " Plug 'nvim-tree/nvim-web-devicons'
+
     " Plug 'shellRaining/hlchunk.nvim'
     " Plug 'sphamba/smear-cursor.nvim'
     " Plug 'folke/noice.nvim'
@@ -65,9 +69,7 @@ require("oil").setup({
 })
 
 -- tree-sitter
-
 -- require("nvim-treesitter.install").prefer_git = true
-
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
     "markdown",
@@ -84,9 +86,10 @@ require("nvim-treesitter.configs").setup({
 -- ex
 -- :TSInstall lua
 
+-- lualine
+-- require('lualine').setup()
 
 -- etc
-
 -- " lua require('smear_cursor').enabled = true
 -- " lua require("noice").setup()
 

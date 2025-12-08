@@ -274,7 +274,6 @@ keymap__('n', '<leader>R', '<esc>')
 
 -- log
 keymap__('n', ':l', ':message <cr>')
--- keymap__('n', ':m', ':message <cr>')
 
 -- quit buffer
 keymap__('n', 'w',  v.Buf.__quit_swtch)
@@ -295,7 +294,7 @@ keymap__('n', 'W', ':q<cr>')
 keymap__('n', 'a', v.Buf.save)
 
 -- load re slf
--- keymap__('n', 'xx', v.Load_re)
+-- keymap__('n', ':r', ':lua v.Buf.opn_re()')
 
 -- load re init vim  --  do not by lua ?
 -- keymap__('n', 'xx', ':source ~/wrk/prj-pri/dotfiles/nvim/scrpt/init.vim')
@@ -340,6 +339,9 @@ keymap__('n', 'gm', v.Buf.opn_memo)
 
 -- opn re sjis
 keymap__('n', ':S', ':Sjis ')
+
+-- file encode ( encoding )
+keymap__('n', ':e', ':set encoding?')
 
 -- sys cmd opn
 
