@@ -2,6 +2,16 @@
 # dotfiles
 
 
+## nvim
+
+plg
+- blink.cmp
+  - research
+  - lsp ?
+  - instl
+    - https://eiji.page/blog/neovim-blink-cmp-intro/
+
+
 ## omarchy
 
 instl
@@ -26,10 +36,6 @@ v.Sys.sh_run_by_slctd_line()
   - use nui.nvim
 
 plg
-- blink.cmp
-  - lsp ?
-  - instl
-    - https://eiji.page/blog/neovim-blink-cmp-intro/
 - noice.nvim
 
 plg-mng
