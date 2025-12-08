@@ -11,6 +11,7 @@ scheme_lst.win.recommend.h = {
   'Wzoreck (Gogh)'                         , -- h
   'Sonokai (Gogh)'                         , -- h
   'Pandora'                                , -- h
+  'Tinacious Design (Dark)'                , -- h
   -- 
   'Hurtado'                                ,
   'SynthWave (Gogh)'                       ,
@@ -76,6 +77,8 @@ scheme_lst.win.recommend.h = {
   'Hurtado (Gogh)'                         ,
   'FairyFloss (Gogh)'                      ,
   'Espresso'                               ,
+  'Chalk (Gogh)'                           ,
+  'Neon Night (Gogh)'                      ,
 }
 scheme_lst.win.recommend.m = {
   'BlueDolphin'                            ,
@@ -191,6 +194,14 @@ scheme_lst.win.recommend.m = {
   'Clone Of Ubuntu (Gogh)'                 ,
   'midnight-in-mojave'                     ,
   'Gruvbox Dark (Gogh)'                    ,
+  'seoulbones_dark'                        ,
+  'synthwave-everything'                   ,
+  'Relaxed (Gogh)'                         ,
+  'Kibble (Gogh)'                          ,
+  'Ayu Mirage'                             ,
+  'Birds Of Paradise (Gogh)'               ,
+  'Bamboo'                                 ,
+  'TomorrowNightBright (Gogh)'             ,
 }
 scheme_lst.win.excld = {
   '3024 (dark) (terminal.sexy)'            ,
@@ -597,6 +608,21 @@ scheme_lst.win.excld = {
   'Atelier Cave (base16)'                  ,
   'Treehouse (Gogh)'                       ,
   'Atelier Seaside Light (base16)'         ,
+  'Kimber (base16)'                        ,
+  'Sea Shells (Gogh)'                      ,
+  'Lumifoo (terminal.sexy)'                ,
+  'Ryuuko'                                 ,
+  'Eqie6 (terminal.sexy)'                  ,
+  '3024 Night (Gogh)'                      ,
+  'PaperColor Light (base16)'              ,
+  'Aardvark Blue'                          ,
+  'dawnfox'                                ,
+  'N0tch2k'                                ,
+  'Railscasts (base16)'                    ,
+  'darkmoss (base16)'                      ,
+  'Nancy (terminal.sexy)'                  ,
+  'Slate'                                  ,
+  'Red Sands (Gogh)'                       ,
 }
 
 -- mac
