@@ -12,6 +12,7 @@ scheme_lst.win.recommend.h = {
   'Sonokai (Gogh)'                         , -- h
   'Tinacious Design (Dark)'                , -- h
   'Wzoreck (Gogh)'                         , -- h
+  'Desert'                                 , -- h
   -- 
   'Aco (Gogh)'                             ,
   'AyuDark (Gogh)'                         ,
@@ -82,6 +83,8 @@ scheme_lst.win.recommend.h = {
   'tender (base16)'                        ,
   'tokyonight'                             ,
   'tokyonight_night'                       ,
+  'Catppuccin Frappe'                      ,
+  'Nightfly (Gogh)'                        ,
 }
 scheme_lst.win.recommend.m = {
   'Aci (Gogh)'                             ,
@@ -214,6 +217,10 @@ scheme_lst.win.recommend.m = {
   'zenburned'                              ,
   'Belge (terminal.sexy)'                  ,
   'Nord (Gogh)'                            ,
+  'Chester'                                ,
+  'Isotope (base16)'                       ,
+  'Monokai Dark (Gogh)'                    ,
+  'Bim (Gogh)'                             ,
 }
 scheme_lst.win.excld = {
   '3024 (dark) (terminal.sexy)'            ,
@@ -681,6 +688,10 @@ scheme_lst.win.excld = {
   'Breath Silverfox (Gogh)'                ,
   'mono-cyan (Gogh)'                       ,
   'Builtin Light'                          ,
+  'Man Page (Gogh)'                        ,
+  'HorizonBright (Gogh)'                   ,
+  'flexoki-dark'                           ,
+  'JackieBrown (Gogh)'                     ,
 }
 
 -- mac

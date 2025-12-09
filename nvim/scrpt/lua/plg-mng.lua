@@ -1,7 +1,7 @@
 
 -- vim-plug
 
-g.plg_mng_cmd = [[
+v.Plg.mng_vim_plg_cmd = [[
   call plug#begin()
     " vim
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -26,7 +26,7 @@ g.plg_mng_cmd = [[
 
 if v.Plg.is_vim_plg__installed() then
 
-  v.Cmd.cmd(g.plg_mng_cmd)
+  v.Cmd.cmd(v.Plg.mng_vim_plg_cmd)
 end
 -- do :PlugInstall
 -- or :PlugUpdate

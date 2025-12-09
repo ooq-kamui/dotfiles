@@ -6,8 +6,6 @@
 
 plg
 - blink.cmp
-  - research
-  - lsp ?
   - instl
     - https://eiji.page/blog/neovim-blink-cmp-intro/
 
