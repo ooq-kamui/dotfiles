@@ -88,6 +88,7 @@ scheme_lst.win.recommend.h = {
   'Ef-Cherie'                              ,
   'Adventure Time (Gogh)'                  ,
   'GJM (terminal.sexy)'                    ,
+  'Materia (base16)'                       ,
 }
 scheme_lst.win.recommend.m = {
   'Aci (Gogh)'                             ,
@@ -229,6 +230,7 @@ scheme_lst.win.recommend.m = {
   'Srcery (Gogh)'                          ,
   'BirdsOfParadise'                        ,
   'duckbones'                              ,
+  'MonokaiSoda (Gogh)'                     ,
 }
 scheme_lst.win.excld = {
   '3024 (dark) (terminal.sexy)'            ,
@@ -709,6 +711,9 @@ scheme_lst.win.excld = {
   'Paraiso (base16)'                       ,
   'Bespin (base16)'                        ,
   'Rosé Pine Moon (Gogh)'                  ,
+  'Ocean Dark (Gogh)'                      ,
+  'palenight (Gogh)'                       ,
+  'Isotope (dark) (terminal.sexy)'         ,
 }
 
 -- mac
