@@ -85,6 +85,9 @@ scheme_lst.win.recommend.h = {
   'tokyonight_night'                       ,
   'Catppuccin Frappe'                      ,
   'Nightfly (Gogh)'                        ,
+  'Ef-Cherie'                              ,
+  'Adventure Time (Gogh)'                  ,
+  'GJM (terminal.sexy)'                    ,
 }
 scheme_lst.win.recommend.m = {
   'Aci (Gogh)'                             ,
@@ -221,6 +224,11 @@ scheme_lst.win.recommend.m = {
   'Isotope (base16)'                       ,
   'Monokai Dark (Gogh)'                    ,
   'Bim (Gogh)'                             ,
+  'Summerfruit Dark (base16)'              ,
+  'Symphonic (Gogh)'                       ,
+  'Srcery (Gogh)'                          ,
+  'BirdsOfParadise'                        ,
+  'duckbones'                              ,
 }
 scheme_lst.win.excld = {
   '3024 (dark) (terminal.sexy)'            ,
@@ -692,6 +700,15 @@ scheme_lst.win.excld = {
   'HorizonBright (Gogh)'                   ,
   'flexoki-dark'                           ,
   'JackieBrown (Gogh)'                     ,
+  'Royal'                                  ,
+  'Github (Gogh)'                          ,
+  'Lunaria Eclipse (Gogh)'                 ,
+  'Ciapre'                                 ,
+  'Atelier Dune Light (base16)'            ,
+  'Black Metal (base16)'                   ,
+  'Paraiso (base16)'                       ,
+  'Bespin (base16)'                        ,
+  'Rosé Pine Moon (Gogh)'                  ,
 }
 
 -- mac
