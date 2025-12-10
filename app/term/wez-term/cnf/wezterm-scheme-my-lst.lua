@@ -13,6 +13,7 @@ scheme_lst.win.recommend.h = {
   'Tinacious Design (Dark)'                , -- h
   'Wzoreck (Gogh)'                         , -- h
   'Desert'                                 , -- h
+  'Monokai Pro (Gogh)'                     , -- h
   -- 
   'Aco (Gogh)'                             ,
   'AyuDark (Gogh)'                         ,
@@ -89,6 +90,7 @@ scheme_lst.win.recommend.h = {
   'Adventure Time (Gogh)'                  ,
   'GJM (terminal.sexy)'                    ,
   'Materia (base16)'                       ,
+  'idleToes'                               ,
 }
 scheme_lst.win.recommend.m = {
   'Aci (Gogh)'                             ,
@@ -231,6 +233,10 @@ scheme_lst.win.recommend.m = {
   'BirdsOfParadise'                        ,
   'duckbones'                              ,
   'MonokaiSoda (Gogh)'                     ,
+  'Chalk (base16)'                         ,
+  'Idle Toes (Gogh)'                       ,
+  'DanQing (base16)'                       ,
+  'Sublette'                               ,
 }
 scheme_lst.win.excld = {
   '3024 (dark) (terminal.sexy)'            ,
@@ -714,6 +720,25 @@ scheme_lst.win.excld = {
   'Ocean Dark (Gogh)'                      ,
   'palenight (Gogh)'                       ,
   'Isotope (dark) (terminal.sexy)'         ,
+  'Sweet Love (terminal.sexy)'             ,
+  'SolarizedLight (Gogh)'                  ,
+  'Apprentice (base16)'                    ,
+  'Geohot (Gogh)'                          ,
+  'Campbell (Gogh)'                        ,
+  'Hybrid (terminal.sexy)'                 ,
+  'AdventureTime'                          ,
+  'Cobalt 2 (Gogh)'                        ,
+  'Dark Ocean (terminal.sexy)'             ,
+  'Brogrammer (base16)'                    ,
+  'Brewer (base16)'                        ,
+  'Ef-Kassio'                              ,
+  'Homebrew Light (Gogh)'                  ,
+  'Batman'                                 ,
+  'Gruvbox dark, pale (base16)'            ,
+  'Synthwave Alpha (Gogh)'                 ,
+  'Flat (Gogh)'                            ,
+  'Material Vivid (base16)'                ,
+  'Github Dark (Gogh)'                     ,
 }
 
 -- mac
