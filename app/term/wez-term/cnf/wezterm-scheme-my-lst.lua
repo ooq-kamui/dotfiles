@@ -785,6 +785,7 @@ scheme_lst.win.excld = {
   'mono-green (Gogh)'                      ,
   'Material'                               ,
   'Eighties (light) (terminal.sexy)'       ,
+  'Gotham (Gogh)'                          ,
 }
 
 -- mac

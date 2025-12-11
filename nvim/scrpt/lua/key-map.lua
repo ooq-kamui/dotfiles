@@ -317,8 +317,8 @@ keymap__('n', '<leader>l', v.Fzf.file)
 keymap__('n', '<leader>L', ':FzfFileHstry<cr>')
 
 -- opn file rcnt ( ltst )
-keymap__('n', 'S', v.Buf.quit.rcnt_opn_re)
--- keymap__('n', 'H', v.Buf.quit.rcnt_opn_re)
+keymap__('n', 'H', v.Buf.quit.rcnt_opn_re)
+-- keymap__('n', 'S', v.Buf.quit.rcnt_opn_re)
 
 -- opn etc
 
