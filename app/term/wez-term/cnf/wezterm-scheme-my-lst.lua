@@ -91,6 +91,8 @@ scheme_lst.win.recommend.h = {
   'GJM (terminal.sexy)'                    ,
   'Materia (base16)'                       ,
   'idleToes'                               ,
+  'synthwave'                              ,
+  'deep'                                   ,
 }
 scheme_lst.win.recommend.m = {
   'Aci (Gogh)'                             ,
@@ -237,6 +239,15 @@ scheme_lst.win.recommend.m = {
   'Idle Toes (Gogh)'                       ,
   'DanQing (base16)'                       ,
   'Sublette'                               ,
+  'ThayerBright (Gogh)'                    ,
+  'Adventure'                              ,
+  'Doom Peacock'                           ,
+  'Monokai Soda'                           ,
+  'Teerb (Gogh)'                           ,
+  'Dehydration (Gogh)'                     ,
+  'SpaceGray Eighties Dull'                ,
+  'Nord (base16)'                          ,
+  'Mathias'                                ,
 }
 scheme_lst.win.excld = {
   '3024 (dark) (terminal.sexy)'            ,
@@ -739,6 +750,20 @@ scheme_lst.win.excld = {
   'Flat (Gogh)'                            ,
   'Material Vivid (base16)'                ,
   'Github Dark (Gogh)'                     ,
+  'Mashup Colors (terminal.sexy)'          ,
+  'FlatRemix (Gogh)'                       ,
+  'SolarizedDarcula (Gogh)'                ,
+  'rose-pine'                              ,
+  'LiquidCarbonTransparentInverse'         ,
+  'SleepyHollow'                           ,
+  'Tokyo Night Light (Gogh)'               ,
+  'Yousai (terminal.sexy)'                 ,
+  'Hardcore'                               ,
+  'Belafonte Day (Gogh)'                   ,
+  'Colorcli (Gogh)'                        ,
+  'Pencil Dark (Gogh)'                     ,
+  'Ashes (base16)'                         ,
+  'Laserwave (Gogh)'                       ,
 }
 
 -- mac
