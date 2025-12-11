@@ -109,17 +109,20 @@ end
 
 function v.Cursor.__mv_by_line_num(line_num)
 
-  -- dev anchor, refactoring
-  if not line_num then
-    return
-  elseif line_num == '' then
-    return
-  elseif not v.Str.is__num(line_num) then
+  if v.Var.is__emp(line_num) then
     return
   end
 
-  -- dev anchor, refactoring
-  v.Cmd.nml(line_num .. 'G')
+  if not v.Str.is__num(line_num) then
+    return
+  end
+
+  local win_id = 0 -- crnt
+  local cursor = vim.api.nvim_win_get_cursor(win_id)
+  local cursor_col_num = cursor[2]
+  vim.api.nvim_win_set_cursor(win_id, {line_num, cursor_col_num})
+
+  -- v.Cmd.nml(line_num .. 'G')
 end
 
 function v.Cursor.__mv_by_line_col(line_num, col_num)

@@ -2,18 +2,9 @@
 # dotfiles
 
 
-## nvim
-
-plg
-- blink.cmp
-  - instl
-    - https://eiji.page/blog/neovim-blink-cmp-intro/
-
-
 ## omarchy
 
 instl
-- instl
 
 
 ## godot
@@ -28,6 +19,14 @@ game cre
 
 ## nvim
 
+plg-mng
+- lazy
+
+plg
+- blink.cmp
+  - instl
+    - https://eiji.page/blog/neovim-blink-cmp-intro/
+
 v.Sys.sh_run_by_slctd_line()
 - confirm at dialog ( neovim )
   - view log
@@ -35,9 +34,6 @@ v.Sys.sh_run_by_slctd_line()
 
 plg
 - noice.nvim
-
-plg-mng
-- lazy
 
 
 ## aws

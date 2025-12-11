@@ -6,6 +6,25 @@ require('fnc/fnc-str' )
 require('fnc/fnc-mb'  )
 require('fnc/fnc-tbl' )
 
+-- var
+
+v.Var = {}
+
+function v.Var.is__emp(val)
+
+  if not val then
+    return bl.t
+
+  elseif val == '' then
+    return bl.t
+
+  -- dev anchor
+  -- if ar {}
+  end
+
+  return bl.f
+end
+
 -- idx
 
 v.Idx = {}

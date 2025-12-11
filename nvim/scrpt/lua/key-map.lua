@@ -457,6 +457,9 @@ keymap__('n', 'rj', v.Cursor.__mv_v_jmp_d)
 keymap__('n', 'rrk', v.Cursor.__mv_v_jmp_u_also_space)
 keymap__('n', 'rrj', v.Cursor.__mv_v_jmp_d_also_space)
 
+-- cursor mv by line num
+keymap__('n', ':g', ':lua v.Cursor.__mv_by_line_num()')
+
 -- scroll
 keymap__('n', 'K'     , '<c-y>')
 keymap__('n', 'J'     , '<c-e>')

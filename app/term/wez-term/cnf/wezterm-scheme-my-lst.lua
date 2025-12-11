@@ -94,6 +94,7 @@ scheme_lst.win.recommend.h = {
   'synthwave'                              ,
   'deep'                                   ,
   'kokuban (Gogh)'                         ,
+  'VSCodeDark+ (Gogh)'                     ,
 }
 scheme_lst.win.recommend.m = {
   'Aci (Gogh)'                             ,
