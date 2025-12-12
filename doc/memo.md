@@ -7,6 +7,12 @@
 instl
 
 
+## nvim
+
+plg-mng
+- lazy
+
+
 ## godot
 
 platformer
@@ -18,9 +24,6 @@ game cre
 
 
 ## nvim
-
-plg-mng
-- lazy
 
 plg
 - blink.cmp
@@ -47,11 +50,9 @@ gen2, try
 
 ## skr-vps
 
-web-svr
-- rpl
+web-svr rpl
 
 centos setting at skr console
 - firewall
   - url
-
 
