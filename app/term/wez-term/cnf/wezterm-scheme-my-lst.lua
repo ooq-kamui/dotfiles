@@ -98,6 +98,9 @@ scheme_lst.win.recommend.h = {
   'Poimandres Storm'                       ,
   'ayu'                                    ,
   'hardhacker'                             ,
+  'Operator Mono Dark'                     ,
+  'gooey (Gogh)'                           ,
+  'Snazzy (Gogh)'                          ,
 }
 scheme_lst.win.recommend.m = {
   'Aci (Gogh)'                             ,
@@ -266,6 +269,8 @@ scheme_lst.win.recommend.m = {
   'TokyoNight (Gogh)'                      ,
   'Default Dark (base16)'                  ,
   'nordfox'                                ,
+  'Eighties (dark) (terminal.sexy)'        ,
+  'Windows 10 (base16)'                    ,
 }
 scheme_lst.win.excld = {
   '3024 (dark) (terminal.sexy)'            ,
@@ -819,6 +824,26 @@ scheme_lst.win.excld = {
   'Frontend Delight (Gogh)'                ,
   'Parker Brothers (terminal.sexy)'        ,
   'OceanicNext (Gogh)'                     ,
+  'Heetch Dark (base16)'                   ,
+  'PencilLight'                            ,
+  'TerminalBasic (Gogh)'                   ,
+  'MonaLisa'                               ,
+  'Equilibrium Gray Light (base16)'        ,
+  'Red Phoenix (terminal.sexy)'            ,
+  'Paraiso (dark) (terminal.sexy)'         ,
+  'Atelierforest (dark) (terminal.sexy)'   ,
+  'Gogh (Gogh)'                            ,
+  'Mono Theme (terminal.sexy)'             ,
+  'Atelier Estuary Light (base16)'         ,
+  'Square'                                 ,
+  'Wez (Gogh)'                             ,
+  'Belafonte Night'                        ,
+  'Papercolor Light (Gogh)'                ,
+  'Insignificato (terminal.sexy)'          ,
+  'DoomOne'                                ,
+  'Fahrenheit'                             ,
+  'HipsterGreen (Gogh)'                    ,
+  'X::Erosion (terminal.sexy)'             ,
 }
 
 -- mac
