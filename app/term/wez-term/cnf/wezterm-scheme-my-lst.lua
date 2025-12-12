@@ -95,6 +95,9 @@ scheme_lst.win.recommend.h = {
   'deep'                                   ,
   'kokuban (Gogh)'                         ,
   'VSCodeDark+ (Gogh)'                     ,
+  'Poimandres Storm'                       ,
+  'ayu'                                    ,
+  'hardhacker'                             ,
 }
 scheme_lst.win.recommend.m = {
   'Aci (Gogh)'                             ,
@@ -255,6 +258,14 @@ scheme_lst.win.recommend.m = {
   'Elementary (Gogh)'                      ,
   'jmbi (terminal.sexy)'                   ,
   'Dark+'                                  ,
+  'Arthur'                                 ,
+  'TomorrowNightEighties (Gogh)'           ,
+  'SynthwaveAlpha (Gogh)'                  ,
+  'carbonfox'                              ,
+  'PaleNightHC'                            ,
+  'TokyoNight (Gogh)'                      ,
+  'Default Dark (base16)'                  ,
+  'nordfox'                                ,
 }
 scheme_lst.win.excld = {
   '3024 (dark) (terminal.sexy)'            ,
@@ -786,6 +797,28 @@ scheme_lst.win.excld = {
   'Material'                               ,
   'Eighties (light) (terminal.sexy)'       ,
   'Gotham (Gogh)'                          ,
+  'Cloud (terminal.sexy)'                  ,
+  'Pico (base16)'                          ,
+  'zenwritten_dark'                        ,
+  'astromouse (terminal.sexy)'             ,
+  'Splurge (terminal.sexy)'                ,
+  'Later This Evening'                     ,
+  'Flat'                                   ,
+  'Tomorrow Night (Gogh)'                  ,
+  'Gooey (Gogh)'                           ,
+  'Summerfruit Light (base16)'             ,
+  'TomorrowNight (Gogh)'                   ,
+  'Unikitty Reversible (base16)'           ,
+  'SOS (terminal.sexy)'                    ,
+  'Euphrasia (terminal.sexy)'              ,
+  'ayu_light'                              ,
+  'Google (dark) (terminal.sexy)'          ,
+  'Hemisu Dark (Gogh)'                     ,
+  'Firewatch'                              ,
+  'nord'                                   ,
+  'Frontend Delight (Gogh)'                ,
+  'Parker Brothers (terminal.sexy)'        ,
+  'OceanicNext (Gogh)'                     ,
 }
 
 -- mac
