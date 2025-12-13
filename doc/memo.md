@@ -9,6 +9,8 @@ instl
 
 ## nvim
 
+slctd __ expnd srch f
+
 plg-mng
 - lazy
 
@@ -46,6 +48,12 @@ q dev try
   - account cre ?
 
 gen2, try
+
+
+## wez
+
+require path div .
+- win, confirm
 
 
 ## skr-vps

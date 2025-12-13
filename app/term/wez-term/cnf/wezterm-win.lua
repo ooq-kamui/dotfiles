@@ -3,8 +3,8 @@ local wezterm = require 'wezterm'
 local act     = wezterm.action
 
 local config
--- config = wezterm.config_builder()
-config = require('cnf\\wezterm')
+-- config = require('cnf\\wezterm')
+config = require('cnf.wezterm')
 
 
 -- 
