@@ -2,17 +2,19 @@
 # dotfiles
 
 
-## omarchy
-
-instl
-
-
 ## nvim
 
-slctd __ expnd srch f
+slctd q
 
 plg-mng
 - lazy
+
+
+## music
+
+ply lst relax
+- cre
+watch add
 
 
 ## godot
@@ -41,19 +43,12 @@ plg
 - noice.nvim
 
 
-## aws
-
-q dev try
-- setting
-  - account cre ?
-
-gen2, try
-
-
 ## wez
 
 require path div .
 - win, confirm
+
+scheme lst refactoring
 
 
 ## skr-vps

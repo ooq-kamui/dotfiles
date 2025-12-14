@@ -1420,6 +1420,7 @@ keymap__('x', ':mb', v.Slctd.line_mb__cnv)
 
 -- srch cmd
 -- keymap__('x', '<leader>k', '"zy/<c-r>z')
+keymap__('x', '<leader>k', '/')
 
 -- srch str set
 keymap__('x', 'e', function()
