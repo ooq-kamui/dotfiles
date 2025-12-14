@@ -4,7 +4,7 @@
 
 ## nvim
 
-slctd q
+v q Q
 
 plg-mng
 - lazy
