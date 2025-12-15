@@ -8,6 +8,12 @@ v q Q
 
 plg-mng
 - lazy
+  - ref https://lazy.folke.io/installation
+
+
+## domain
+
+io at skr
 
 
 ## music
