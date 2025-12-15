@@ -11,11 +11,6 @@ plg-mng
   - ref https://lazy.folke.io/installation
 
 
-## domain
-
-io at skr
-
-
 ## music
 
 ply lst
@@ -35,6 +30,12 @@ game cre
 - chara cre
 
 
+## wez
+
+scheme lst refactoring
+- lst ( crnt ) > excld
+
+
 ## nvim
 
 plg
@@ -49,12 +50,6 @@ v.Sys.sh_run_by_slctd_line()
 
 plg
 - noice.nvim
-
-
-## wez
-
-scheme lst refactoring
-- lst ( crnt ) > excld
 
 
 ## skr-vps
