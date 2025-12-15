@@ -12,9 +12,11 @@ plg-mng
 
 ## music
 
-ply lst relax
-- cre
-watch add
+ply lst
+- relax
+  - cre
+  - watch add
+- name ch, valley
 
 
 ## godot
