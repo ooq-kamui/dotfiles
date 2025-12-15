@@ -1,7 +1,11 @@
 
 v.Plg = {}
 
-function v.Plg.vim_plg_path()
+v.Plg.mng = {}
+
+v.Plg.mng.vim_plg = {}
+
+function v.Plg.mng.vim_plg.path()
 
   local vim_plg_dir_linux = v.Dir.c.home_dir .. '/.local/share/nvim/site'
   local vim_plg_dir_mac   = vim_plg_dir_linux
@@ -30,9 +34,9 @@ function v.Plg.vim_plg_path()
   return vim_plg_path
 end
 
-function v.Plg.is_vim_plg__installed()
+function v.Plg.mng.vim_plg.is__installed()
 
-  local vim_plg_path = v.Plg.vim_plg_path()
+  local vim_plg_path = v.Plg.mng.vim_plg.path()
   -- v.Log.val( vim_plg_path )
 
   local ret = vf.empty(vf.glob(vim_plg_path)) == 0

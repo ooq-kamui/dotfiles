@@ -1,7 +1,5 @@
 
 local cnf
--- cnf = require('cnf\\wezterm-win')
--- key = require('cnf\\wezterm-win-key')
 cnf = require('cnf.wezterm-win')
 key = require('cnf.wezterm-win-key')
 

@@ -53,10 +53,8 @@ plg
 
 ## wez
 
-require path div .
-- win, confirm
-
 scheme lst refactoring
+- lst ( crnt ) > excld
 
 
 ## skr-vps
