@@ -103,6 +103,9 @@ scheme_lst.win.recommend.h = {
   'Snazzy (Gogh)'                          ,
   'Monokai (dark) (terminal.sexy)'         ,
   'NightlionV2 (Gogh)'                     ,
+  'Morada (Gogh)'                          ,
+  'SweetTerminal (Gogh)'                   ,
+  'IR_Black'                               ,
 }
 scheme_lst.win.recommend.m = {
   'Aci (Gogh)'                             ,
@@ -275,6 +278,11 @@ scheme_lst.win.recommend.m = {
   'zenburn (terminal.sexy)'                ,
   'zenburned'                              ,
   'Humanoid dark (base16)'                 ,
+  'Monokai Soda (Gogh)'                    ,
+  'One Half Black (Gogh)'                  ,
+  'DjangoSmooth'                           ,
+  'Wombat (Gogh)'                          ,
+  'Cai (Gogh)'                             ,
 }
 scheme_lst.win.excld = {
   '3024 (dark) (terminal.sexy)'            ,
@@ -866,6 +874,24 @@ scheme_lst.win.excld = {
   'Twilight'                               ,
   'Ivory Dark (terminal.sexy)'             ,
   'FirefoxDev'                             ,
+  'Maia (Gogh)'                            ,
+  'Later This Evening (Gogh)'              ,
+  'Horizon Light (base16)'                 ,
+  'UnderTheSea'                            ,
+  'Sakura'                                 ,
+  'Derp (terminal.sexy)'                   ,
+  'Tomorrow Night Burns'                   ,
+  'iTerm2 Pastel Dark Background'          ,
+  'Windows 10 Light (base16)'              ,
+  'Belafonte Night (Gogh)'                 ,
+  '3024Day (Gogh)'                         ,
+  'Atelier Sulphurpool (base16)'           ,
+  'Rouge 2'                                ,
+  'Medallion (Gogh)'                       ,
+  'SpaceGray Eighties'                     ,
+  'Codeschool (light) (terminal.sexy)'     ,
+  'Highway (Gogh)'                         ,
+  'Atelier Estuary (base16)'               ,
 }
 
 return scheme_lst.win
