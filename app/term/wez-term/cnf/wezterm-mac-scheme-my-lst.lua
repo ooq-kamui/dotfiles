@@ -49,6 +49,9 @@ scheme_lst.mac.recommend.m = {
   'Material (Gogh)'                        ,
   'Tomorrow Night Bright (Gogh)'           ,
   'MonokaiDark (Gogh)'                     ,
+  'Banana Blueberry'                       ,
+  'Mathias'                                ,
+  'Ef-Elea-Dark'                           ,
 }
 scheme_lst.mac.excld = {
   '3024Day (Gogh)'                         ,
@@ -209,6 +212,10 @@ scheme_lst.mac.excld = {
   'EverforestLight (Gogh)'                 ,
   'Neopolitan'                             ,
   'Atelier Forest (base16)'                ,
+  'Atelier Cave (base16)'                  ,
+  'Obsidian'                               ,
+  'Tango (base16)'                         ,
+  'Dehydration (Gogh)'                     ,
 }
 
 return scheme_lst.mac
