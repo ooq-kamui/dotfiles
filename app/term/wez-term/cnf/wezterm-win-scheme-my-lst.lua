@@ -14,6 +14,9 @@ scheme_lst.win.recommend.h = {
   'Wzoreck (Gogh)'                         , -- h
   'Desert'                                 , -- h
   'Monokai Pro (Gogh)'                     , -- h
+  'Modus-Vivendi-Deuteranopia'             , -- h
+  'Tokyo Night Moon'                       , -- h
+  'Grey-green'                             , -- h
   -- 
   'Aco (Gogh)'                             ,
   'Adventure Time (Gogh)'                  ,
@@ -113,6 +116,13 @@ scheme_lst.win.recommend.h = {
   'tokyonight'                             ,
   'tokyonight_night'                       ,
   'tokyonight_moon'                        ,
+  'duskfox'                                ,
+  'Tomorrow Night Bright'                  ,
+  'Ir Black (Gogh)'                        ,
+  'TomorrowNightBlue (Gogh)'               ,
+  'Dracula (base16)'                       ,
+  'Aura (Gogh)'                            ,
+  'Sweet Eliverlara (Gogh)'                ,
 }
 scheme_lst.win.recommend.m = {
   'Aci (Gogh)'                             ,
@@ -306,6 +316,10 @@ scheme_lst.win.recommend.m = {
   'zenburned'                              ,
   'Ocean (base16)'                         ,
   'iTerm2 Dark Background'                 ,
+  'Floraverse'                             ,
+  'Pixiefloss (Gogh)'                      ,
+  'Rosé Pine Moon (base16)'                ,
+  'Bright Lights'                          ,
 }
 scheme_lst.win.excld = {
   '3024 (base16)'                          ,
@@ -973,6 +987,27 @@ scheme_lst.win.excld = {
   'Pro'                                    ,
   'Frontend Fun Forrest (Gogh)'            ,
   'Bleh-1 (terminal.sexy)'                 ,
+  'Dimmed Monokai (Gogh)'                  ,
+  'X::DotShare (terminal.sexy)'            ,
+  'Atelier Heath (base16)'                 ,
+  'Solarized (light) (terminal.sexy)'      ,
+  'Ef-Duo-Light'                           ,
+  'Ef-Day'                                 ,
+  'Mathias (Gogh)'                         ,
+  'Elemental'                              ,
+  'rose-pine-dawn'                         ,
+  'RoséPineMoon (Gogh)'                    ,
+  '3024 Day'                               ,
+  'Lavandula'                              ,
+  'Vice Dark (base16)'                     ,
+  'Toy Chest (Gogh)'                       ,
+  'Gruvbox dark, medium (base16)'          ,
+  'Afterglow (Gogh)'                       ,
+  'RedSands (Gogh)'                        ,
+  '3024Night (Gogh)'                       ,
+  'LaterThisEvening (Gogh)'                ,
+  'Ef-Arbutus'                             ,
+  'Fishtank (Gogh)'                        ,
 }
 
 return scheme_lst.win
