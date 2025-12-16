@@ -1352,7 +1352,8 @@ keymap__('x', 'W', v.Slctd.str_edge_out_char__type_ch)
 -- keymap__('x', 'W', v.Slctd.str_edge_out__tgl_shft)
 
 -- slctd str edge out __ ins space
-keymap__('x', 'H'    , v.Slctd.str_edge_out__ins_space)
+keymap__('x', 'I'    , v.Slctd.str_edge_out__ins_space)
+-- keymap__('x', 'H'    , v.Slctd.str_edge_out__ins_space)
 -- keymap__('x', 'O'    , v.Slctd.str_edge_out__ins_space)
 
 -- slctd str edge out __ ins markdown strikethrough

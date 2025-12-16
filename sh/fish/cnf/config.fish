@@ -152,6 +152,7 @@ alias ji-co-file-lst 'git_co_file_lst'
 alias get-branch-upstream 'git branch --set-upstream-to=origin/main main'
 alias ji-b-upstream       'get-branch-upstream'
 
+alias ji-lzy  'lazygit'
 alias ji-lazy 'lazygit'
 
 alias pd   'podman'

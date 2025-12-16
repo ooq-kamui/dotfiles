@@ -11,6 +11,12 @@ plg-mng
   - ref https://lazy.folke.io/installation
 
 
+## kiro
+
+kiro-cli
+- instl
+
+
 ## music
 
 ply lst
