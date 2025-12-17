@@ -216,6 +216,8 @@ scheme_lst.mac.excld = {
   'Obsidian'                               ,
   'Tango (base16)'                         ,
   'Dehydration (Gogh)'                     ,
+  'Apple Classic'                          ,
+  'Default (dark) (terminal.sexy)'         ,
 }
 
 return scheme_lst.mac
