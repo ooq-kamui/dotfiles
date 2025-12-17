@@ -47,33 +47,36 @@ function color_scheme__rnd(env)
 
   local scheme_name_lst = {}
 
-  local scheme_excld_lst = {}
-  scheme_excld_lst = utl.tbl.cct(scheme_excld_lst, scheme_my_lst[env].excld      )
-  scheme_excld_lst = utl.tbl.cct(scheme_excld_lst, scheme_my_lst[env].recommend.h)
-  scheme_excld_lst = utl.tbl.cct(scheme_excld_lst, scheme_my_lst[env].recommend.m)
+  if     env == 'mac' then
 
-  for scheme_name, scheme in pairs(wezterm.color.get_builtin_schemes()) do
-    if utl.tbl.is_in(scheme_excld_lst, scheme_name) then -- excld
-      -- skip
-    else
-      table.insert(scheme_name_lst, scheme_name)
+    local scheme_excld_lst = {}
+    scheme_excld_lst = utl.tbl.cct(scheme_excld_lst, scheme_my_lst[env].excld      )
+    scheme_excld_lst = utl.tbl.cct(scheme_excld_lst, scheme_my_lst[env].recommend.h)
+    scheme_excld_lst = utl.tbl.cct(scheme_excld_lst, scheme_my_lst[env].recommend.m)
+
+    for scheme_name, scheme in pairs(wezterm.color.get_builtin_schemes()) do
+      if utl.tbl.is_in(scheme_excld_lst, scheme_name) then -- excld
+        -- skip
+      else
+        table.insert(scheme_name_lst, scheme_name)
+      end
     end
-  end
-  -- wezterm.log_info(#scheme_name_lst)
 
-  if math.random(1, 20) == 1 then
-    wezterm.log_info('= scheme recommend =')
-    scheme_name_lst = scheme_my_lst[env].recommend.h
+  elseif env == 'win' then
+
+    scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].recommend.h)
+    scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].recommend.m)
   end
 
   wezterm.on('window-config-reloaded', function(window, pane)
     if not window:get_config_overrides() then
       local scheme_name = scheme_name_lst[math.random(#scheme_name_lst)]
-      -- scheme_name = 'Monokai Pro (Gogh)' -- confirm
+
       wezterm.log_info('> ' .. scheme_name .. ' <')
 
       if env == 'win' then
         wezterm.log_info(env)
+        -- dev
         -- local cmd = '"' .. scheme_name .. '" | Out-String -NoNewline | clip'
         -- local cmd = 'echo -n ' .. scheme_name .. '" | clip'
         -- wezterm.log_info(cmd)

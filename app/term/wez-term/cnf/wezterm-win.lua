@@ -2,8 +2,7 @@
 local wezterm = require('wezterm')
 local act     = wezterm.action
 
-local config
-config = require('cnf.wezterm')
+local config = require('cnf.wezterm')
 
 
 -- 
@@ -42,17 +41,7 @@ wezterm.on('gui-startup', function()
   })
 end)
 
--- color_scheme__rnd('win')
-local scheme_name_lst = scheme_my_lst.win.recommend.h
--- local scheme_name_lst = scheme_my_lst.win.recommend.m
-
-local scheme_name = scheme_name_lst[math.random(#scheme_name_lst)]
-wezterm.log_info('> ' .. scheme_name .. ' <')
-
--- config.color_scheme = 'AdventureTime'
-config.color_scheme = scheme_name
-
+color_scheme__rnd('win')
 
 return config
-
 
