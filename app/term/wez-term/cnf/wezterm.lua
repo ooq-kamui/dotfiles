@@ -38,11 +38,10 @@ config.colors = {
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 
 
--- config.color_scheme = 'AdventureTime'
-
 require('cnf/utl')
+scheme_my_lst = require('cnf/wezterm-scheme-lst')
 
-scheme_my_lst = require('cnf/wezterm-scheme-my-lst')
+-- config.color_scheme = 'AdventureTime'
 
 function color_scheme__rnd(env)
 
@@ -60,7 +59,7 @@ function color_scheme__rnd(env)
       table.insert(scheme_name_lst, scheme_name)
     end
   end
-  wezterm.log_info(#scheme_name_lst)
+  -- wezterm.log_info(#scheme_name_lst)
 
   if math.random(1, 20) == 1 then
     wezterm.log_info('= scheme recommend =')

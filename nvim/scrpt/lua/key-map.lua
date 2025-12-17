@@ -733,8 +733,8 @@ keymap__('n', 'ro', v.Cursor.line_indnt__shft_r)
 keymap__('n', 're', v.Cursor.line_indnt__crct)
 
 -- cursor f str __ crct ( algn )
--- keymap__('n', 'q', ':lua v.Cursor.f_str__space_crct_with_word("u")<cr>')
--- keymap__('n', 'Q', ':lua v.Cursor.f_str__space_crct_with_word("d")<cr>')
+-- keymap__('n', 'x', ':lua v.Cursor.f_str__space_crct_with_word("u")<cr>')
+-- keymap__('n', 'x', ':lua v.Cursor.f_str__space_crct_with_word("d")<cr>')
 
 -- cursor f str __ crct ( algn ) fzy
 keymap__('n', 'q', ':lua v.Cursor.f_str__space_crct_with_fzy("u")<cr>')

@@ -4,6 +4,8 @@
 
 ## nvim
 
+n q, case line end, err
+
 v q Q
 
 plg-mng
