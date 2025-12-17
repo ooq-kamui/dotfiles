@@ -8,6 +8,9 @@ n q, case line end, err
 
 v q Q
 
+plg
+- fzf-lua
+
 plg-mng
 - lazy
   - ref https://lazy.folke.io/installation
