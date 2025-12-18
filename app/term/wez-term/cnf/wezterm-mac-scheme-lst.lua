@@ -12,6 +12,7 @@ scheme_lst.mac.recommend.h = {
   'Ir Black (Gogh)'                        ,
   'Rebecca (base16)'                       ,
   'astel White (terminal.sexy)'            ,
+  'Subliminal'                             ,
 }
 scheme_lst.mac.recommend.m = {
   'Andromeda'                              ,
@@ -52,6 +53,9 @@ scheme_lst.mac.recommend.m = {
   'Banana Blueberry'                       ,
   'Mathias'                                ,
   'Ef-Elea-Dark'                           ,
+  'SynthwaveAlpha'                         ,
+  'Tomorrow Night Bright'                  ,
+  'Londontube (dark) (terminal.sexy)'      ,
 }
 scheme_lst.mac.excld = {
   '3024Day (Gogh)'                         ,
@@ -218,6 +222,13 @@ scheme_lst.mac.excld = {
   'Dehydration (Gogh)'                     ,
   'Apple Classic'                          ,
   'Default (dark) (terminal.sexy)'         ,
+  'OneHalfLight'                           ,
+  'Jup (Gogh)'                             ,
+  'Purple Rain'                            ,
+  'Ef-Elea-Light'                          ,
+  'Glacier'                                ,
+  'Apathy (base16)'                        ,
+  'Twilight (light) (terminal.sexy)'       ,
 }
 
 return scheme_lst.mac

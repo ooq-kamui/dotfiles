@@ -6,8 +6,7 @@
 
 v q Q
 
-plg
-- fzf-lua
+fzf-lua
 
 plg-mng
 - lazy
@@ -20,15 +19,6 @@ kiro-cli
 - instl
 
 
-## music
-
-ply lst
-- relax
-  - cre
-  - watch add
-- name ch, valley
-
-
 ## godot
 
 platformer
@@ -37,6 +27,12 @@ platformer
 game cre
 - map cre
 - chara cre
+
+
+## wez
+
+mac
+- view lst num
 
 
 ## nvim
@@ -53,6 +49,14 @@ v.Sys.sh_run_by_slctd_line()
 
 plg
 - noice.nvim
+
+
+## music
+
+ply lst
+- relax
+  - cre
+  - watch add
 
 
 ## skr-vps
