@@ -1363,6 +1363,10 @@ end
 
 function v.Cursor.f_str__space_crct_with_fzy(ref_drct) -- dev doing
 
+  if v.Cursor.is_col__line_end() then
+    return
+  end
+
   local word_col_idx = v.Cursor.f_str__space_crct_with_word(ref_drct)
   if word_col_idx then return end
 

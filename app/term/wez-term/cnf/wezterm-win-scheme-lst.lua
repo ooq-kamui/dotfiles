@@ -348,6 +348,8 @@ scheme_lst.win.recommend.m = {
   'tokyonight_storm'                       ,
   'zenburn (terminal.sexy)'                ,
   'zenburned'                              ,
+  -- excld
+  -- '' ,
 }
 scheme_lst.win.excld = {
   '3024 (base16)'                          ,

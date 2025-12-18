@@ -4,8 +4,6 @@
 
 ## nvim
 
-n q, case line end, err
-
 v q Q
 
 plg
@@ -39,12 +37,6 @@ platformer
 game cre
 - map cre
 - chara cre
-
-
-## wez
-
-scheme lst refactoring
-- lst ( crnt ) > excld
 
 
 ## nvim
