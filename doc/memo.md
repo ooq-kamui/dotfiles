@@ -6,6 +6,8 @@
 
 v q Q
 
+fzf edit, err
+
 fzf-lua
 
 plg-mng
@@ -32,7 +34,7 @@ game cre
 ## wez
 
 mac
-- view lst num
+- lst num, log
 
 
 ## nvim

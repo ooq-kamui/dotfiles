@@ -158,7 +158,6 @@ scheme_lst.win.recommend.m = {
   'Breeze (Gogh)'                          ,
   'Bright (base16)'                        ,
   'Bright Lights'                          ,
-  'Broadcast (Gogh)'                       ,
   'Broadcast'                              ,
   'Builtin Pastel Dark'                    ,
   'Cai (Gogh)'                             ,
@@ -261,7 +260,6 @@ scheme_lst.win.recommend.m = {
   'OneDark (base16)'                       ,
   'OneHalfBlack (Gogh)'                    ,
   'OneHalfDark'                            ,
-  'Orangish (terminal.sexy)'               ,
   'Oxocarbon Dark (Gogh)'                  ,
   'PaleNightHC'                            ,
   'PaperColorDark (Gogh)'                  ,
@@ -348,10 +346,16 @@ scheme_lst.win.recommend.m = {
   'tokyonight_storm'                       ,
   'zenburn (terminal.sexy)'                ,
   'zenburned'                              ,
-  -- excld
-  -- '' ,
 }
 scheme_lst.win.excld = {
+  -- 
+  -- time 02
+  -- 
+  'Orangish (terminal.sexy)'               ,
+  'Broadcast (Gogh)'                       ,
+  -- 
+  -- time 01
+  -- 
   '3024 (base16)'                          ,
   '3024 (dark) (terminal.sexy)'            ,
   '3024 (light) (terminal.sexy)'           ,

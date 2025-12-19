@@ -1361,7 +1361,7 @@ function v.Cursor.f_str__del()
   v.Cmd.nml(cmd_nml)
 end
 
-function v.Cursor.f_str__space_crct_with_fzy(ref_drct) -- dev doing
+function v.Cursor.f_str__space_crct_with_fzy(ref_drct)
 
   if v.Cursor.is_col__line_end() then
     return

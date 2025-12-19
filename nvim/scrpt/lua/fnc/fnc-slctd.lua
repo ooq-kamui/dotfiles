@@ -749,7 +749,7 @@ function v.Slctd.str_edge_out_bracket__tgl() -- range
   local c_r = v.Slctd.str_edge_r_out_char()
 
   local c
-  local bracket_lst = {'(', '[', '<', '{' }
+  local bracket_lst = {'[', '(', '<', '{' }
 
   local idx = v.Tbl.idx(bracket_lst, c_l)
 
@@ -769,7 +769,6 @@ function v.Slctd.str_edge_out_bracket__tgl() -- range
   end
 end
 
--- function v.Slctd.str_edge_out__tgl_shft() -- range
 function v.Slctd.str_edge_out_char__type_ch() -- range
 
   v.Slctd.__ltst()
@@ -1107,7 +1106,7 @@ function v.Slctd.line__join_per_line(per_line_num) -- range
   local cmd_nml = per_line_num .. 'Jj'
 
   local slctd_line_s_num = v.Slctd.line_s_num()
-  local slctd_line_e_num  = v.Slctd.line_e_num()
+  local slctd_line_e_num = v.Slctd.line_e_num()
 
   local line_num = slctd_line_e_num - slctd_line_s_num + 1
 
@@ -1194,6 +1193,15 @@ function v.Slctd.line__ins_cmnt_1() -- range
     v.Cursor.__mv_by_line_col(line_num, col)
 
     v.Cursor.__ins_cmnt_1(nil)
+  end
+end
+
+-- dev anchor
+function v.Slctd.line_f_str__space_crct_with_fzy()
+
+  for idx, line_num in pairs(v.Slctd.line_num_seq()) do
+
+    -- v.Cursor.f_str__space_crct_with_fzy(ref_drct) -- dev-doing
   end
 end
 

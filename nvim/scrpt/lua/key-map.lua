@@ -1349,7 +1349,6 @@ end, {expr = bl.t})
 
 -- slctd str edge out __ tgl shft
 keymap__('x', 'W', v.Slctd.str_edge_out_char__type_ch)
--- keymap__('x', 'W', v.Slctd.str_edge_out__tgl_shft)
 
 -- slctd str edge out __ ins space
 keymap__('x', 'I'    , v.Slctd.str_edge_out__ins_space)
