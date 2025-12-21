@@ -6,6 +6,8 @@ local scheme_lst = {}
 scheme_lst.mac = {}
 scheme_lst.mac.recommend = {}
 scheme_lst.mac.recommend.h = {
+  'Synthwave (Gogh)'                       , -- h
+  --
   'DanQing (base16)'                       ,
   'Dracula (base16)'                       ,
   'Framer (base16)'                        ,
@@ -229,6 +231,12 @@ scheme_lst.mac.excld = {
   'Glacier'                                ,
   'Apathy (base16)'                        ,
   'Twilight (light) (terminal.sexy)'       ,
+  'Elemental'                              ,
+  'dirtysea (base16)'                      ,
+  'Gruvbox dark, soft (base16)'            ,
+  'Ivory Light (terminal.sexy)'            ,
+  'Invisibone (terminal.sexy)'            ,
+  'Shic (terminal.sexy)'                  ,
 }
 
 return scheme_lst.mac

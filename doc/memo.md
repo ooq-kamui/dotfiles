@@ -6,8 +6,6 @@
 
 v q Q
 
-fzf edit, err
-
 fzf-lua
 
 plg-mng
@@ -31,12 +29,6 @@ game cre
 - chara cre
 
 
-## wez
-
-mac
-- lst num, log
-
-
 ## nvim
 
 plg
@@ -52,13 +44,7 @@ v.Sys.sh_run_by_slctd_line()
 plg
 - noice.nvim
 
-
-## music
-
-ply lst
-- relax
-  - cre
-  - watch add
+fzf edit, err
 
 
 ## skr-vps

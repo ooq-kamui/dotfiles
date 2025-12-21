@@ -9,6 +9,8 @@ local config = require('cnf.wezterm')
 -- env : win
 -- 
 
+config.window_background_opacity    = 0.20
+
 config.window_background_gradient = {
   colors = { "#000000" },
 }

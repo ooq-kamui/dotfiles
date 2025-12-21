@@ -9,6 +9,8 @@ local config = require('cnf/wezterm')
 -- env : mac
 -- 
 
+config.window_background_opacity    = 0.25
+
 config.window_background_gradient = {
   colors = { "Blue" },
 }

@@ -19,8 +19,7 @@ config.window_decorations = "RESIZE"
 config.hide_tab_bar_if_only_one_tab = false
 -- config.tab_max_width = 16 -- ??
 
-config.window_background_opacity    = 0.20
--- config.window_background_opacity    = 1.00
+-- config.window_background_opacity    = 0.20
 config.macos_window_background_blur = 3
 
 config.window_frame = {
@@ -61,6 +60,7 @@ function color_scheme__rnd(env)
         table.insert(scheme_name_lst, scheme_name)
       end
     end
+    wezterm.log_info(#scheme_name_lst)
 
   elseif env == 'win' then
 
