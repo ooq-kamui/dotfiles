@@ -58,6 +58,7 @@ scheme_lst.mac.recommend.m = {
   'SynthwaveAlpha'                         ,
   'Tomorrow Night Bright'                  ,
   'Londontube (dark) (terminal.sexy)'      ,
+  'Night Owl (Gogh)'                       ,
 }
 scheme_lst.mac.excld = {
   '3024Day (Gogh)'                         ,
@@ -237,6 +238,10 @@ scheme_lst.mac.excld = {
   'Ivory Light (terminal.sexy)'            ,
   'Invisibone (terminal.sexy)'            ,
   'Shic (terminal.sexy)'                  ,
+  'Urple'                                 ,
+  'Hemisu Light (Gogh)'                   ,
+  'Material (terminal.sexy)'              ,
+  'Clrs (Gogh)'                           ,
 }
 
 return scheme_lst.mac
