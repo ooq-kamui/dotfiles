@@ -324,7 +324,6 @@ scheme_lst.win.recommend.m = {
   'Wombat'                                 ,
   'Zenburn (base16)'                       ,
   'Zenburn'                                ,
-  'carbonfox'                              ,
   'catppuccin-frappe'                      ,
   'catppuccin-macchiato'                   ,
   'duckbones'                              ,
@@ -353,6 +352,7 @@ scheme_lst.win.excld = {
   -- 
   'Orangish (terminal.sexy)'               ,
   'Broadcast (Gogh)'                       ,
+  'carbonfox'                              ,
   -- 
   -- time 01
   -- 

@@ -12,6 +12,8 @@ plg-mng
 - lazy
   - ref https://lazy.folke.io/installation
 
+md itm chkbox
+
 
 ## kiro
 
