@@ -2,8 +2,9 @@
 # dotfiles
 
 
-
 ## nvim
+
+file-name fnc del
 
 v q Q
 
