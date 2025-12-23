@@ -7,7 +7,7 @@ v.Plg.mng.vim_plg.cmd = [[
     " fzf
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
-    " Plug 'ibhagwan/fzf-lua', { 'branch': 'main' }
+    Plug 'ibhagwan/fzf-lua', { 'branch': 'main' }
 
     " nvim
     Plug 'ojroques/nvim-osc52'
