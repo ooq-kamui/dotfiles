@@ -6,20 +6,22 @@ local scheme_lst = {}
 scheme_lst.win = {}
 scheme_lst.win.recommend = {}
 scheme_lst.win.recommend.h = {
-  'Desert'                                 , -- h
-  'Dracula (Official)'                     , -- h
-  'Grey-green'                             , -- h
-  'Modus-Vivendi-Deuteranopia'             , -- h
-  'Monokai Pro (Gogh)'                     , -- h
-  'Outrun Dark (base16)'                   , -- h
-  'Panda (Gogh)'                           , -- h
-  'Pandora'                                , -- h
-  'Snazzy (base16)'                        , -- h
-  'Sonokai (Gogh)'                         , -- h
-  'Tinacious Design (Dark)'                , -- h
-  'Tokyo Night Moon'                       , -- h
-  'Wzoreck (Gogh)'                         , -- h
-  -- 
+  -- hh
+  'Desert'                                 ,
+  'Dracula (Official)'                     ,
+  'Grey-green'                             ,
+  'Modus-Vivendi-Deuteranopia'             ,
+  'Monokai Pro (Gogh)'                     ,
+  'Outrun Dark (base16)'                   ,
+  'Panda (Gogh)'                           ,
+  'Pandora'                                ,
+  'Snazzy (base16)'                        ,
+  'Sonokai (Gogh)'                         ,
+  'Tinacious Design (Dark)'                ,
+  'Tokyo Night Moon'                       ,
+  'Wzoreck (Gogh)'                         ,
+  'synthwave-everything'                   ,
+  -- h
   'Abernathy'                              ,
   'Aco (Gogh)'                             ,
   'Adventure Time (Gogh)'                  ,
@@ -128,7 +130,6 @@ scheme_lst.win.recommend.h = {
   'nightfox'                               ,
   'niji'                                   ,
   'rebecca'                                ,
-  'sweet-eliverlara (Gogh)'                ,
   'synthwave'                              ,
   'tender (base16)'                        ,
   'tokyonight'                             ,
@@ -137,7 +138,6 @@ scheme_lst.win.recommend.h = {
   'tokyonight_night'                       ,
 }
 scheme_lst.win.recommend.m = {
-  'Aci (Gogh)'                             ,
   'Adventure'                              ,
   'Apple System Colors'                    ,
   'Argonaut (Gogh)'                        ,
@@ -203,7 +203,6 @@ scheme_lst.win.recommend.m = {
   'Espresso Libre'                         ,
   'Everblush'                              ,
   'Firefly Traditional'                    ,
-  'Flat Remix (Gogh)'                      ,
   'Flatland (Gogh)'                        ,
   'Flatland'                               ,
   'Floraverse'                             ,
@@ -266,7 +265,6 @@ scheme_lst.win.recommend.m = {
   'Pastel White (terminal.sexy)'           ,
   'Paul Millr (Gogh)'                      ,
   'PaulMillr (Gogh)'                       ,
-  'PaulMillr'                              ,
   'PencilDark'                             ,
   'Peppermint (Gogh)'                      ,
   'Peppermint'                             ,
@@ -280,7 +278,6 @@ scheme_lst.win.recommend.m = {
   'Purple Rain'                            ,
   'PurplePeopleEater (Gogh)'               ,
   'Railscasts (dark) (terminal.sexy)'      ,
-  'Rapture'                                ,
   'Raycast_Dark'                           ,
   'Red Alert (Gogh)'                       ,
   'Red Alert'                              ,
@@ -294,7 +291,6 @@ scheme_lst.win.recommend.m = {
   'Smyck (Gogh)'                           ,
   'Solar Flare (base16)'                   ,
   'SpaceGray Eighties Dull'                ,
-  'Spacedust (Gogh)'                       ,
   'Spacedust'                              ,
   'Spring (Gogh)'                          ,
   'Srcery (Gogh)'                          ,
@@ -340,21 +336,28 @@ scheme_lst.win.recommend.m = {
   'purplepeter'                            ,
   'seoulbones_dark'                        ,
   'summer-pop (Gogh)'                      ,
-  'synthwave-everything'                   ,
   'terafox'                                ,
   'tokyonight_storm'                       ,
   'zenburn (terminal.sexy)'                ,
   'zenburned'                              ,
+  'Aci (Gogh)'                             ,
 }
 scheme_lst.win.excld = {
   -- 
-  -- time 02
+  -- phase 02
   -- 
-  'Orangish (terminal.sexy)'               ,
+  -- blue only
+  'PaulMillr'                              ,
+  -- 
   'Broadcast (Gogh)'                       ,
+  'Orangish (terminal.sexy)'               ,
+  'Spacedust (Gogh)'                       ,
   'carbonfox'                              ,
+  'sweet-eliverlara (Gogh)'                ,
+  'Flat Remix (Gogh)'                      ,
+  'Rapture'                                ,
   -- 
-  -- time 01
+  -- phase 01
   -- 
   '3024 (base16)'                          ,
   '3024 (dark) (terminal.sexy)'            ,
