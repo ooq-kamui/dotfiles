@@ -3,9 +3,11 @@
 
 v.Plg.mng.vim_plg.cmd = [[
   call plug#begin()
-    " vim
+
+    " fzf
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
+    " Plug 'ibhagwan/fzf-lua', { 'branch': 'main' }
 
     " nvim
     Plug 'ojroques/nvim-osc52'
@@ -56,8 +58,13 @@ end
 -- })
 
 
+-- fzf-lua
+-- wip
+
+-- osc52
 osc52 = require('osc52')
 
+-- oil
 require("oil").setup({
   keymaps = {
     ["<c-j>"] = { "actions.select", opts = { tab = bl.t } },
