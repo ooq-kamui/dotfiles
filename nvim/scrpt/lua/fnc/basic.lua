@@ -1,33 +1,33 @@
 
 -- fnc
 
-require('fnc/fnc-log'   )
+require('fnc/log'   )
 
-require('fnc/fnc-dir'   )
-require('fnc/fnc-file'  )
-require('fnc/fnc-env'   )
-require('fnc/fnc-cmd'   )
-require('fnc/fnc-line'  )
-require('fnc/fnc-mode'  )
-require('fnc/fnc-rgstr' )
-require('fnc/fnc-cursor')
-require('fnc/fnc-slctd' )
-require('fnc/fnc-srch'  )
-require('fnc/fnc-ins'   )
+require('fnc/dir'   )
+require('fnc/file'  )
+require('fnc/env'   )
+require('fnc/cmd'   )
+require('fnc/line'  )
+require('fnc/mode'  )
+require('fnc/rgstr' )
+require('fnc/cursor')
+require('fnc/slctd' )
+require('fnc/srch'  )
+require('fnc/ins'   )
 
-require('fnc/fnc-buf'   )
-require('fnc/fnc-sys'   )
-require('fnc/fnc-mcr'   )
+require('fnc/buf'   )
+require('fnc/sys'   )
+require('fnc/mcr'   )
 
-require('fnc/fnc-plg'   )
-require('fnc/fnc-rg'    )
-require('fnc/fnc-jmplst')
+require('fnc/plg'   )
+require('fnc/rg'    )
+require('fnc/jmplst')
 
-require('fnc/fnc-mark'  )
+require('fnc/mark'  )
 
-require('fnc/fnc-mb'    )
+require('fnc/mb'    )
 
-require('fnc/fnc-tst'   )
+require('fnc/tst'   )
 
 
 -- doc

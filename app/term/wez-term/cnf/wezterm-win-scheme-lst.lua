@@ -18,9 +18,11 @@ scheme_lst.win.recommend.h = {
   'Snazzy (base16)'                        ,
   'Sonokai (Gogh)'                         ,
   'Tinacious Design (Dark)'                ,
-  'Tokyo Night Moon'                       ,
+  'Tokyo Night Moon'                       , -- slctd ~
   'Wzoreck (Gogh)'                         ,
   'synthwave-everything'                   ,
+  'MaterialDesignColors'                   ,
+  'HorizonDark (Gogh)'                     ,
   -- h
   'Abernathy'                              ,
   'Aco (Gogh)'                             ,
@@ -59,7 +61,6 @@ scheme_lst.win.recommend.h = {
   'Google Dark (Gogh)'                     ,
   'Guezwhoz'                               ,
   'Horizon Dark (Gogh)'                    ,
-  'HorizonDark (Gogh)'                     ,
   'Hurtado (Gogh)'                         ,
   'Hurtado'                                ,
   'IR_Black'                               ,
@@ -69,7 +70,6 @@ scheme_lst.win.recommend.h = {
   'Materia (base16)'                       ,
   'Material (base16)'                      ,
   'Material Darker (base16)'               ,
-  'MaterialDesignColors'                   ,
   'Misterioso (Gogh)'                      ,
   'Misterioso'                             ,
   'Modus-Vivendi-Tritanopia'               ,
@@ -151,7 +151,6 @@ scheme_lst.win.recommend.m = {
   'Birds Of Paradise (Gogh)'               ,
   'BirdsOfParadise'                        ,
   'BlueDolphin'                            ,
-  'BreathSilverfox (Gogh)'                 ,
   'Breeze (Gogh)'                          ,
   'Bright (base16)'                        ,
   'Bright Lights'                          ,
@@ -176,7 +175,6 @@ scheme_lst.win.recommend.m = {
   'Decaf (base16)'                         ,
   'Default (dark) (terminal.sexy)'         ,
   'Default Dark (base16)'                  ,
-  'Dehydration (Gogh)'                     ,
   'DjangoSmooth'                           ,
   'Doom Peacock'                           ,
   'Dracula (Gogh)'                         ,
@@ -256,7 +254,6 @@ scheme_lst.win.recommend.m = {
   'Oxocarbon Dark (Gogh)'                  ,
   'PaleNightHC'                            ,
   'PaperColorDark (Gogh)'                  ,
-  'Pastel White (terminal.sexy)'           ,
   'Paul Millr (Gogh)'                      ,
   'PaulMillr (Gogh)'                       ,
   'PencilDark'                             ,
@@ -272,7 +269,6 @@ scheme_lst.win.recommend.m = {
   'Purple Rain'                            ,
   'PurplePeopleEater (Gogh)'               ,
   'Railscasts (dark) (terminal.sexy)'      ,
-  'Raycast_Dark'                           ,
   'Red Alert (Gogh)'                       ,
   'Red Alert'                              ,
   'Relaxed (Gogh)'                         ,
@@ -289,9 +285,7 @@ scheme_lst.win.recommend.m = {
   'Spring (Gogh)'                          ,
   'Srcery (Gogh)'                          ,
   'Sublette'                               ,
-  'Summer Pop (Gogh)'                      ,
   'Summerfruit Dark (base16)'              ,
-  'Sweet Terminal (Gogh)'                  ,
   'Symphonic (Gogh)'                       ,
   'Synth Midnight Terminal Dark (base16)'  ,
   'SynthwaveAlpha (Gogh)'                  ,
@@ -342,6 +336,10 @@ scheme_lst.win.excld = {
   -- 
   -- blue only
   'PaulMillr'                              ,
+  'Summer Pop (Gogh)'                      ,
+  'Dehydration (Gogh)'                     ,
+  -- slctd drk only
+  'Raycast_Dark'                           ,
   -- 
   'Broadcast (Gogh)'                       ,
   'Orangish (terminal.sexy)'               ,
@@ -356,6 +354,9 @@ scheme_lst.win.excld = {
   'Catppuccin Frappe'                      ,
   'ICGreenPPL (Gogh)'                      ,
   'Sweet Eliverlara (Gogh)'                ,
+  'BreathSilverfox (Gogh)'                 ,
+  'Sweet Terminal (Gogh)'                  ,
+  'Pastel White (terminal.sexy)'           ,
   -- 
   -- phase 01
   -- 

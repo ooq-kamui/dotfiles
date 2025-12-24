@@ -13,9 +13,9 @@ bool = {
 bl = bool -- alias
 
 
-require('fnc/fnc-prmtv')
-require('fnc/fnc-basic')
-require('fnc/fnc-plg-fzf')
+require('fnc/prmtv')
+require('fnc/basic')
+require('fnc/plg-fzf')
 require('plg-mng' )
 
 require('opt'     )

@@ -1,10 +1,10 @@
 
 -- prmtv
 
-require('fnc/fnc-char')
-require('fnc/fnc-str' )
-require('fnc/fnc-mb'  )
-require('fnc/fnc-tbl' )
+require('fnc/char')
+require('fnc/str' )
+require('fnc/mb'  )
+require('fnc/tbl' )
 
 -- var
 

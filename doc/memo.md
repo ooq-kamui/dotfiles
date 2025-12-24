@@ -4,8 +4,6 @@
 
 ## nvim
 
-file-name fnc del
-
 v q Q
 
 fzf-lua
@@ -14,7 +12,17 @@ plg-mng
 - lazy
   - ref https://lazy.folke.io/installation
 
-md itm chkbox
+md itm chk
+
+
+## music
+
+ply-lst
+- watch
+  - del
+    - rlx not
+  - add
+    - prsn
 
 
 ## kiro
