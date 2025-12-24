@@ -24,6 +24,7 @@ scheme_lst.win.recommend.h = {
   'HorizonDark (Gogh)'                     ,
   'Hurtado (Gogh)'                         ,
   'ChallengerDeep'                         ,
+  'Pixiefloss (Gogh)'                      ,
   -- hh slctd ~
   'Tokyo Night Moon'                       ,
   -- h
@@ -135,9 +136,9 @@ scheme_lst.win.recommend.h = {
   'tokyonight_moon'                        ,
   'tokyonight_night'                       ,
   'iTerm2 Smoooooth'                       ,
+  'Decaf (base16)'                         ,
 }
-scheme_lst.win.recommend.m = {
-}
+scheme_lst.win.recommend.m = {}
 scheme_lst.win.check = {
   'Adventure'                              ,
   'Apple System Colors'                    ,
@@ -152,10 +153,8 @@ scheme_lst.win.check = {
   'Belge (terminal.sexy)'                  ,
   'Bim (Gogh)'                             ,
   'Birds Of Paradise (Gogh)'               ,
-  'BirdsOfParadise'                        ,
   'BlueDolphin'                            ,
   'Breeze (Gogh)'                          ,
-  'Bright (base16)'                        ,
   'Bright Lights'                          ,
   'Broadcast'                              ,
   'Builtin Pastel Dark'                    ,
@@ -173,8 +172,6 @@ scheme_lst.win.check = {
   'DanQing (base16)'                       ,
   'Dark Pastel'                            ,
   'Dark+'                                  ,
-  'DeHydration (Gogh)'                     ,
-  'Decaf (base16)'                         ,
   'Default (dark) (terminal.sexy)'         ,
   'Default Dark (base16)'                  ,
   'DjangoSmooth'                           ,
@@ -261,7 +258,6 @@ scheme_lst.win.check = {
   'Peppermint (Gogh)'                      ,
   'Peppermint'                             ,
   'PhD (base16)'                           ,
-  'Pixiefloss (Gogh)'                      ,
   'Pnevma (Gogh)'                          ,
   'Poimandres'                             ,
   'Popping and Locking'                    ,
@@ -335,9 +331,10 @@ scheme_lst.win.excld = {
   -- phase 02
   -- 
   -- blue only
+  'DeHydration (Gogh)'                     ,
+  'Dehydration (Gogh)'                     ,
   'PaulMillr'                              ,
   'Summer Pop (Gogh)'                      ,
-  'Dehydration (Gogh)'                     ,
   -- slctd drk only
   'Raycast_Dark'                           ,
   'Ef-Symbiosis'                           ,
@@ -360,6 +357,8 @@ scheme_lst.win.excld = {
   'Pastel White (terminal.sexy)'           ,
   'Espresso'                               ,
   'Chalk'                                  ,
+  'BirdsOfParadise'                        ,
+  'Bright (base16)'                        ,
   -- 
   -- phase 01
   -- 

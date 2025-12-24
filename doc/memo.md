@@ -1,7 +1,6 @@
 
 # dotfiles
 
-a
 
 ## nvim
 
