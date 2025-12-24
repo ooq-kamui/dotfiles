@@ -18,11 +18,14 @@ scheme_lst.win.recommend.h = {
   'Snazzy (base16)'                        ,
   'Sonokai (Gogh)'                         ,
   'Tinacious Design (Dark)'                ,
-  'Tokyo Night Moon'                       , -- slctd ~
   'Wzoreck (Gogh)'                         ,
   'synthwave-everything'                   ,
   'MaterialDesignColors'                   ,
   'HorizonDark (Gogh)'                     ,
+  'Hurtado (Gogh)'                         ,
+  'ChallengerDeep'                         ,
+  -- hh slctd ~
+  'Tokyo Night Moon'                       ,
   -- h
   'Abernathy'                              ,
   'Aco (Gogh)'                             ,
@@ -37,7 +40,6 @@ scheme_lst.win.recommend.h = {
   'Catppuccin Mocha'                       ,
   'Chalk (Gogh)'                           ,
   'Chalk (dark) (terminal.sexy)'           ,
-  'ChallengerDeep'                         ,
   'Desert (Gogh)'                          ,
   'DotGov'                                 ,
   'Dracula (base16)'                       ,
@@ -48,7 +50,6 @@ scheme_lst.win.recommend.h = {
   'Ef-Maris-Dark'                          ,
   'Ef-Melissa-Dark'                        ,
   'Erebus (terminal.sexy)'                 ,
-  'Espresso'                               ,
   'Everblush (Gogh)'                       ,
   'Fairy Floss (Gogh)'                     ,
   'Fairy Floss Dark (Gogh)'                ,
@@ -61,7 +62,6 @@ scheme_lst.win.recommend.h = {
   'Google Dark (Gogh)'                     ,
   'Guezwhoz'                               ,
   'Horizon Dark (Gogh)'                    ,
-  'Hurtado (Gogh)'                         ,
   'Hurtado'                                ,
   'IR_Black'                               ,
   'Ir Black (Gogh)'                        ,
@@ -134,8 +134,11 @@ scheme_lst.win.recommend.h = {
   'tokyonight-storm'                       ,
   'tokyonight_moon'                        ,
   'tokyonight_night'                       ,
+  'iTerm2 Smoooooth'                       ,
 }
 scheme_lst.win.recommend.m = {
+}
+scheme_lst.win.check = {
   'Adventure'                              ,
   'Apple System Colors'                    ,
   'Argonaut (Gogh)'                        ,
@@ -161,7 +164,6 @@ scheme_lst.win.recommend.m = {
   'Catppuccin Macchiato (Gogh)'            ,
   'Catppuccin Macchiato'                   ,
   'Chalk (base16)'                         ,
-  'Chalk'                                  ,
   'Chalkboard (Gogh)'                      ,
   'Chalkboard'                             ,
   'Chester'                                ,
@@ -185,7 +187,6 @@ scheme_lst.win.recommend.m = {
   'Ef-Duo-Dark'                            ,
   'Ef-Elea-Dark'                           ,
   'Ef-Rosa'                                ,
-  'Ef-Symbiosis'                           ,
   'Ef-Trio-Dark'                           ,
   'Ef-Tritanopia-Dark'                     ,
   'Ef-Winter'                              ,
@@ -313,7 +314,6 @@ scheme_lst.win.recommend.m = {
   'duckbones'                              ,
   'iTerm2 Dark Background'                 ,
   'iTerm2 Light Background'                ,
-  'iTerm2 Smoooooth'                       ,
   'iTerm2 Tango Dark'                      ,
   'iceberg-dark'                           ,
   'jmbi (terminal.sexy)'                   ,
@@ -340,6 +340,7 @@ scheme_lst.win.excld = {
   'Dehydration (Gogh)'                     ,
   -- slctd drk only
   'Raycast_Dark'                           ,
+  'Ef-Symbiosis'                           ,
   -- 
   'Broadcast (Gogh)'                       ,
   'Orangish (terminal.sexy)'               ,
@@ -357,6 +358,8 @@ scheme_lst.win.excld = {
   'BreathSilverfox (Gogh)'                 ,
   'Sweet Terminal (Gogh)'                  ,
   'Pastel White (terminal.sexy)'           ,
+  'Espresso'                               ,
+  'Chalk'                                  ,
   -- 
   -- phase 01
   -- 

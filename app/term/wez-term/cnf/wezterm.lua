@@ -64,8 +64,9 @@ function color_scheme__rnd(env)
 
   elseif env == 'win' then
 
-    scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].recommend.h)
-    scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].recommend.m)
+    scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].check)
+    -- scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].recommend.h)
+    -- scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].recommend.m)
   end
 
   wezterm.on('window-config-reloaded', function(window, pane)
