@@ -4,15 +4,17 @@
 
 ## nvim
 
-v q Q
 
 fzf-lua
+
+v q Q
+
+md itm chk __ tgl
+- n x
 
 plg-mng
 - lazy
   - ref https://lazy.folke.io/installation
-
-md itm chk
 
 
 ## music
