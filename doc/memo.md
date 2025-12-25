@@ -4,7 +4,6 @@
 
 ## nvim
 
-
 fzf-lua
 
 v q Q
