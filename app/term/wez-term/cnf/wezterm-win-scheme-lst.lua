@@ -156,6 +156,10 @@ scheme_lst.win.recommend.h = {
   'Bamboo'                                 ,
   'Espresso (Gogh)'                        ,
   'PaleNightHC'                            ,
+  'IrBlack (Gogh)'                         ,
+  'Night Owl (Gogh)'                       ,
+  'Catppuccin Macchiato'                   ,
+  'Warm Neon (Gogh)'                       ,
 }
 scheme_lst.win.recommend.m = {}
 scheme_lst.win.check = {
@@ -174,7 +178,6 @@ scheme_lst.win.check = {
   'Broadcast'                              ,
   'Builtin Pastel Dark'                    ,
   'Catppuccin Macchiato (Gogh)'            ,
-  'Catppuccin Macchiato'                   ,
   'Chalk (base16)'                         ,
   'Chalkboard (Gogh)'                      ,
   'Chester'                                ,
@@ -190,7 +193,6 @@ scheme_lst.win.check = {
   'Ef-Duo-Dark'                            ,
   'Ef-Elea-Dark'                           ,
   'Ef-Rosa'                                ,
-  'Ef-Tritanopia-Dark'                     ,
   'Eighties (base16)'                      ,
   'Elic (Gogh)'                            ,
   'Espresso Libre'                         ,
@@ -204,7 +206,6 @@ scheme_lst.win.check = {
   'Ibm3270 (Gogh)'                         ,
   'Ic Green Ppl (Gogh)'                    ,
   'Idle Toes (Gogh)'                       ,
-  'IrBlack (Gogh)'                         ,
   'Isotope (base16)'                       ,
   'Jason Wryan (terminal.sexy)'            ,
   'Kibble (Gogh)'                          ,
@@ -223,7 +224,6 @@ scheme_lst.win.check = {
   'MonokaiSoda (Gogh)'                     ,
   'Moonfly (Gogh)'                         ,
   'Neon (terminal.sexy)'                   ,
-  'Night Owl (Gogh)'                       ,
   'NightLion v2'                           ,
   'Nocturnal Winter'                       ,
   'Nord (Gogh)'                            ,
@@ -266,7 +266,6 @@ scheme_lst.win.check = {
   'Tomorrow Night Eighties'                ,
   'TomorrowNightBright (Gogh)'             ,
   'Visibone Alt. 2 (terminal.sexy)'        ,
-  'Warm Neon (Gogh)'                       ,
   'WarmNeon'                               ,
   'Windows 10 (base16)'                    ,
   'Windows High Contrast (base16)'         ,
@@ -309,6 +308,7 @@ scheme_lst.win.excld = {
   'IdleToes (Gogh)'                        ,
   'tokyonight_storm'                       ,
   'Everblush'                              ,
+  'Ef-Tritanopia-Dark'                     ,
   -- 
   'Broadcast (Gogh)'                       ,
   'Orangish (terminal.sexy)'               ,
