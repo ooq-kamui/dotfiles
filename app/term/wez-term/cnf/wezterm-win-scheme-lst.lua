@@ -154,9 +154,12 @@ scheme_lst.win.recommend.h = {
   'Adventure'                              ,
   'Nucolors (terminal.sexy)'               ,
   'Bamboo'                                 ,
+  'Espresso (Gogh)'                        ,
+  'PaleNightHC'                            ,
 }
 scheme_lst.win.recommend.m = {}
 scheme_lst.win.check = {
+  'Aci (Gogh)'                             ,
   'Apple System Colors'                    ,
   'Argonaut (Gogh)'                        ,
   'Argonaut'                               ,
@@ -188,10 +191,8 @@ scheme_lst.win.check = {
   'Ef-Elea-Dark'                           ,
   'Ef-Rosa'                                ,
   'Ef-Tritanopia-Dark'                     ,
-  'Ef-Winter'                              ,
   'Eighties (base16)'                      ,
   'Elic (Gogh)'                            ,
-  'Espresso (Gogh)'                        ,
   'Espresso Libre'                         ,
   'Flatland (Gogh)'                        ,
   'Flatland'                               ,
@@ -206,7 +207,6 @@ scheme_lst.win.check = {
   'IrBlack (Gogh)'                         ,
   'Isotope (base16)'                       ,
   'Jason Wryan (terminal.sexy)'            ,
-  'Jellybeans'                             ,
   'Kibble (Gogh)'                          ,
   'Kibble'                                 ,
   'Laser'                                  ,
@@ -231,7 +231,6 @@ scheme_lst.win.check = {
   'Ocean (base16)'                         ,
   'One Half Black (Gogh)'                  ,
   'OneHalfBlack (Gogh)'                    ,
-  'PaleNightHC'                            ,
   'PaperColorDark (Gogh)'                  ,
   'Paul Millr (Gogh)'                      ,
   'PaulMillr (Gogh)'                       ,
@@ -252,7 +251,6 @@ scheme_lst.win.check = {
   'Seti UI (base16)'                       ,
   'Silk Dark (base16)'                     ,
   'Smyck (Gogh)'                           ,
-  'Solar Flare (base16)'                   ,
   'SpaceGray Eighties Dull'                ,
   'Spring (Gogh)'                          ,
   'Srcery (Gogh)'                          ,
@@ -264,7 +262,6 @@ scheme_lst.win.check = {
   'Teerb'                                  ,
   'ThayerBright (Gogh)'                    ,
   'Tokyo Night'                            ,
-  'TokyoNight (Gogh)'                      ,
   'Tomorrow Night Bright (Gogh)'           ,
   'Tomorrow Night Eighties'                ,
   'TomorrowNightBright (Gogh)'             ,
@@ -286,7 +283,6 @@ scheme_lst.win.check = {
   'purplepeter'                            ,
   'seoulbones_dark'                        ,
   'zenburned'                              ,
-  'Aci (Gogh)'                             ,
 }
 scheme_lst.win.excld = {
   -- 
@@ -359,6 +355,10 @@ scheme_lst.win.excld = {
   'Spacedust'                              ,
   'Horizon Dark (base16)'                  ,
   'duckbones'                              ,
+  'Solar Flare (base16)'                   ,
+  'Ef-Winter'                              ,
+  'TokyoNight (Gogh)'                      ,
+  'Jellybeans'                             ,
   -- phase 02 end
   -- 
   -- phase 01
