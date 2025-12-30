@@ -420,7 +420,9 @@ keymap__('n', '<c-_>', 'hT_')
 -- cursor mv word dlm ( camel or _ )  -  forward
 keymap__('n', '<c-f>', v.Cursor.__mv_word_dlm_f)
 
-keymap__('n', 'F', v.Cursor.__mv_line_u_word_col)
+-- cursor mv line u word col  -  forward
+keymap__('n', '<c-e>', v.Cursor.__mv_line_u_word_col)
+keymap__('n', 'F'    , v.Cursor.__mv_line_u_word_col)
 
 -- cursor mv fnc name
 -- keymap__('n', 'xx', v.Cursor.__mv_fnc_name)

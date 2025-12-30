@@ -2,9 +2,12 @@
 # dotfiles
 
 
-## nvim
+## wez
 
-fzf-lua
+launch, color scheme clp
+
+
+## nvim
 
 v q Q
 
@@ -15,15 +18,13 @@ plg-mng
 - lazy
   - ref https://lazy.folke.io/installation
 
+x <c-i>
+- case
+  - 'xxx (aaa) (bbb)'
+  - target none, cursor mv none
 
-## music
 
-ply-lst
-- watch
-  - del
-    - rlx not
-  - add
-    - prsn
+fzf-lua
 
 
 ## kiro

@@ -45,29 +45,9 @@ scheme_my_lst = require('cnf/wezterm-scheme-lst')
 function color_scheme__rnd(env)
 
   local scheme_name_lst = {}
-
-  if     env == 'mac' then
-
-    local scheme_excld_lst = {}
-    scheme_excld_lst = utl.tbl.cct(scheme_excld_lst, scheme_my_lst[env].excld      )
-    scheme_excld_lst = utl.tbl.cct(scheme_excld_lst, scheme_my_lst[env].recommend.h)
-    scheme_excld_lst = utl.tbl.cct(scheme_excld_lst, scheme_my_lst[env].recommend.m)
-
-    for scheme_name, scheme in pairs(wezterm.color.get_builtin_schemes()) do
-      if utl.tbl.is_in(scheme_excld_lst, scheme_name) then -- excld
-        -- skip
-      else
-        table.insert(scheme_name_lst, scheme_name)
-      end
-    end
-    wezterm.log_info(#scheme_name_lst)
-
-  elseif env == 'win' then
-
-    scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].check)
-    -- scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].recommend.h)
-    -- scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].recommend.m)
-  end
+  scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].check)
+  -- scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].recommend.h)
+  -- scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].recommend.m)
 
   wezterm.on('window-config-reloaded', function(window, pane)
     if not window:get_config_overrides() then
@@ -75,13 +55,18 @@ function color_scheme__rnd(env)
 
       wezterm.log_info('> ' .. scheme_name .. ' <')
 
-      if env == 'win' then
-        wezterm.log_info(env)
+      if   env == 'win' then
+        -- wezterm.log_info(env)
+
         -- dev
         -- local cmd = '"' .. scheme_name .. '" | Out-String -NoNewline | clip'
-        -- local cmd = 'echo -n ' .. scheme_name .. '" | clip'
+        -- local cmd = 'echo -n "' .. scheme_name .. '" | clip'
         -- wezterm.log_info(cmd)
         -- os.execute(cmd)
+
+      elseif env == 'mac' then
+        local cmd = 'echo "' .. scheme_name .. '" | pbcopy'
+        os.execute(cmd)
       end
 
       window:set_config_overrides {
