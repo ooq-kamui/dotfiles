@@ -3,18 +3,20 @@
 
 v.Log = {}
 
-function v.Log.log(val) -- alias
+function v.Log.log(...) -- alias
 
+  -- dev anchor
   if bl.t then
-    v.Log.val(val)
+    v.Log.val(...)
   else
     v.Log.tbl(val)
   end
 end
 
-function v.Log.val(val)
+function v.Log.val(...)
 
-  print(val)
+  print(...)
+  -- print(val)
 end
 
 function v.Log.tbl(tbl)

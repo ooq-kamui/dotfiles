@@ -2,27 +2,11 @@
 # dotfiles
 
 
-## wez
-
-launch, color scheme clp
-
-
 ## nvim
-
-v q Q
-
-md itm chk __ tgl
-- n x
 
 plg-mng
 - lazy
   - ref https://lazy.folke.io/installation
-
-x <c-i>
-- case
-  - 'xxx (aaa) (bbb)'
-  - target none, cursor mv none
-
 
 fzf-lua
 

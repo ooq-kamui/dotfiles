@@ -201,7 +201,7 @@ keymap__('n', 'rz', '<esc>')
 
 keymap__('n', 'r:', '<esc>')
 
-keymap__('n', 'xx', '<esc>')
+-- keymap__('n', 'xx', '<esc>')
 
 keymap__('n', ':a', ':a')
 keymap__('n', ':b', ':b')
@@ -410,7 +410,7 @@ keymap__('n', 'o', v.Cursor.__mv_word_b)
 -- keymap__('n', 'xx', v.Cursor.__mv_word_b_pre)
 
 -- cursor mv word dlm _ forward
-keymap__('n', '_', 'f_')
+-- keymap__('n', '_', 'f_')
 -- keymap__('n', '_', 'f_l')
 
 -- cursor mv word dlm _ back
@@ -497,8 +497,8 @@ keymap__('n', 'v', '<c-v>')
 -- keymap__('n', 'xx', v.Rgstr.ynk__line_all)
 
 -- slct re
-keymap__('n', 'R'    , v.Slctd.__ltst)
--- keymap__('n', '<c-r>', v.Slctd.__ltst)
+keymap__('n', 'rr', v.Slctd.__ltst)
+-- keymap__('n', 'R' , v.Slctd.__ltst)
 
 -- ynk clr
 keymap__('n', '<c-c>', v.Rgstr.ynk__clr)
@@ -618,7 +618,6 @@ keymap__('n', '<c-u>', function()
   end
 end, {expr = bl.t})
 
--- dev anchor
 -- ins markdown itm
 keymap__('n', 'O', function()
   if v.Buf.is_file_type__('markdown') then
@@ -631,6 +630,9 @@ keymap__('n', 'O', function()
     return ':lua v.Cursor.line_indnt__shft_r()<cr>'
   end
 end, {expr = bl.t})
+
+-- tgl markdown itm chk __ tgl
+keymap__('n', 'x', v.Cursor.markdown_itm_chk__tgl)
 
 -- ins dots ( or crnt )
 keymap__('n', 'ru', v.Cursor.line_end__dots_adjst)
@@ -671,9 +673,6 @@ keymap__('n', 'V', v.Cursor.d__ins_line_space)
 
 -- cahr rpl, under score
 -- keymap__('n', 'xx', v.Cursor.char__rpl_underscore)
-
--- tgl markdown chk
--- keymap__('n', 'xx', v.Char_markdown_chk__tgl)
 
 -- del char
 keymap__('n', 's', v.Cursor.c_char__del)
@@ -832,7 +831,7 @@ keymap__('n', '<leader>e', v.Fzf.jmplst)
 -- keymap__('n', '<leader>xx', ':FzfTagjmpByFile <cr>')
 
 -- tag jmp tab new
-keymap__('n', 'xx', v.Buf.opn_by_cursor_line_pth)
+-- keymap__('n', 'xx', v.Buf.opn_by_cursor_line_pth)
 
 -- cmd
 
@@ -1209,8 +1208,7 @@ keymap__('x', 'gj', ':lua v.Slctd.cursor__mv_file_edge("j")<cr>')
 -- keymap__('x', 'xx', v.Slctd.str__expnd)
 
 -- slctd expnd srch
-keymap__('x', 'N', ':lua v.Srch.str__slctd_str()<cr>')
--- keymap__('x', 'N', v.Slctd.str__expnd_srch)
+keymap__('x', 'F', ':lua v.Slctd.str__expnd_srch()<cr>')
 
 -- slctd expnd forward swtch
 keymap__('x', 'f', ':lua v.Slctd.str__expnd_f_swtch()<cr>')
@@ -1401,6 +1399,10 @@ keymap__('x', ':e', ':lua v.Slctd.line_indnt__space(2)')
 -- indnt space > tab
 -- keymap__('x', 'xx', ':lua v.Slctd.line_indnt__tab(2)<cr>')
 
+-- cursor f str __ crct ( algn ) fzy
+keymap__('x', 'q', ':lua v.Slctd.box_f_str__space_crct_with_fzy("u")<cr>')
+keymap__('x', 'Q', ':lua v.Slctd.box_f_str__space_crct_with_fzy("d")<cr>')
+
 -- tidy tbl
 keymap__('x', ':t', ':lua v.Slctd.line__crct_tbl()<cr>')
 
@@ -1433,6 +1435,8 @@ keymap__('x', 'e', function()
     return ':lua v.Srch.str__slctd_str()<cr>'
   end
 end, {expr = bl.t})
+
+keymap__('x', 'N', ':lua v.Srch.str__slctd_str()<cr>')
 
 -- srch swtch
 keymap__('x', 'n', ':lua v.Slctd.srch__swtch()<cr>')

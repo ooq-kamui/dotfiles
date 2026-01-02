@@ -287,6 +287,8 @@ function v.Slctd.str__expnd_srch() -- range
 
   v.Slctd.__ltst()
   v.Cursor.__mv_by_srch_str('f')
+
+  v.Slctd.str__expnd_word_f()
 end
 
 function v.Slctd.str__expnd_ptn_f(ptn) -- range
@@ -344,40 +346,54 @@ function v.Slctd.str_expnd__init()
 end
 v.Slctd.str_expnd__init()
 
+-- dev anchor
 function v.Slctd.str__expnd_char_pair() -- range
 
   v.Slctd.__ltst()
 
-  local char_r_i = v.Slctd.str_edge_r_char()
   local char_l_i = v.Slctd.str_edge_l_char()
+  local char_l_i_expnd_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_l, char_l_i)
+
+  local char_r_i = v.Slctd.str_edge_r_char()
+  local char_r_i_expnd_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_r, char_r_i)
+
+  local char_l_o = v.Slctd.str_edge_l_out_char()
+  local char_l_o_expnd_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_l, char_l_o)
 
   local char_r_o = v.Slctd.str_edge_r_out_char()
-  local char_l_o = v.Slctd.str_edge_l_out_char()
+  local char_r_o_expnd_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_r, char_r_o)
 
-  local expnd_char_idx
-  expnd_char_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_r, char_r_i)
-  if expnd_char_idx then
-    if char_l_i == v.Slctd.str_expnd_char_pair_lst_l[expnd_char_idx] then
-      return
-    end
-  end
+  -- v.Log.val(char_l_i_expnd_idx, char_r_i_expnd_idx)
+  -- v.Log.val(char_l_o_expnd_idx, char_r_o_expnd_idx)
 
-  expnd_char_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_r, char_r_o)
+  local char
 
-  if expnd_char_idx then
+  if     char_l_i_expnd_idx == char_r_i_expnd_idx and char_l_i_expnd_idx then
+    -- slctd lr completed
+    return
 
-    if char_l_o == v.Slctd.str_expnd_char_pair_lst_l[expnd_char_idx] then
+  elseif char_l_o_expnd_idx then
+
+    if     char_l_o_expnd_idx == char_r_o_expnd_idx  then
+
       v.Slctd.str__expnd_edge_out()
-      return
-    else
-      v.Slctd.str__expnd_ptn_b(v.Slctd.str_expnd_char_ptn_l)
-      v.Cmd.nml('l')
-      return
-    end
-  end
 
-  v.Slctd.str__expnd_ptn_f(v.Slctd.str_expnd_char_ptn_r)
-  v.Cmd.nml('h')
+    elseif char_l_o_expnd_idx ~= char_r_o_expnd_idx  then
+
+      char = v.Slctd.str_expnd_char_pair_lst_r[char_l_o_expnd_idx]
+      v.Slctd.str__expnd_ptn_f(char)
+      v.Cmd.nml('h')
+    end
+
+  elseif ( not char_l_o_expnd_idx ) and char_r_o_expnd_idx then
+
+    v.Slctd.str__expnd_ptn_b(v.Slctd.str_expnd_char_ptn_l)
+    v.Cmd.nml('l')
+
+  else
+    v.Slctd.str__expnd_ptn_f(v.Slctd.str_expnd_char_ptn_r)
+    v.Cmd.nml('h')
+  end
 end
 
 function v.Slctd.str__expnd_h() -- range
@@ -1183,26 +1199,32 @@ function v.Slctd.line__ins_cmnt_1() -- range
   v.Cursor.__mv_by_line_num(slctd_line_s_num)
   v.Cmd.nml('^')
 
-  local col = v.Cursor.col_num()
+  local col_num = v.Cursor.col_num()
 
   for idx, line_num in pairs(v.Slctd.line_num_seq()) do
     -- v.Log.val(line_num)
 
-    v.Line.end__pad_space(line_num, col - 1)
+    v.Line.end__pad_space(line_num, col_num - 1)
 
-    v.Cursor.__mv_by_line_col(line_num, col)
+    v.Cursor.__mv_by_line_col(line_num, col_num)
 
     v.Cursor.__ins_cmnt_1(nil)
   end
 end
 
 -- dev anchor
-function v.Slctd.line_f_str__space_crct_with_fzy()
+function v.Slctd.box_f_str__space_crct_with_fzy()
+
+  local col_num = v.Cursor.col_num()
 
   for idx, line_num in pairs(v.Slctd.line_num_seq()) do
 
-    -- v.Cursor.f_str__space_crct_with_fzy(ref_drct) -- dev-doing
+    v.Cursor.__mv_by_line_col(line_num, col_num)
+
+    v.Cursor.f_str__space_crct_with_fzy(ref_drct)
   end
+
+  v.Slctd.__ltst()
 end
 
 -- slctd line __ crct tbl

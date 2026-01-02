@@ -500,6 +500,8 @@ function v.Cursor.__mv_by_srch_str(drct)
   end
 
   local ptn = v.Rgstr.get('/')
+  -- local ptn = v.Rgstr.get('/') .. [[\ze]]
+
   v.Srch.srch(ptn, opt)
 end
 
@@ -804,9 +806,7 @@ function v.Cursor.__ins_markdown_code()
   v.Cursor.__ins_line(str)
 end
 
--- dev anchor
--- refactoring , def pos, fnc name re ?
-function v.Char_markdown_chk__tgl()
+function v.Cursor.markdown_itm_chk__tgl()
 
   if v.Cursor.l_char() ~= '[' or v.Cursor.r_char() ~= ']' then
     return
