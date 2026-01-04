@@ -119,9 +119,12 @@ scheme_lst.mac.recommend.h = {
   'nord'                                   ,
   'Seti (Gogh)'                            ,
   'Atom (Gogh)'                            ,
+  'Chalk (dark) (terminal.sexy)'           ,
+  'UltraDark'                              ,
 }
 scheme_lst.mac.recommend.dir_blue = {
   'Dissonance (Gogh)'                      ,
+  'Red Sands (Gogh)'                       ,
 }
 scheme_lst.mac.recommend.m = {}
 scheme_lst.mac.check = {
@@ -153,7 +156,6 @@ scheme_lst.mac.check = {
   'Catppuccin Macchiato'                   ,
   'Catppuccin Mocha (Gogh)'                ,
   'Catppuccin Mocha'                       ,
-  'Chalk (dark) (terminal.sexy)'           ,
   'Chalkboard'                             ,
   'Chester'                                ,
   'Classic Dark (base16)'                  ,
@@ -269,7 +271,6 @@ scheme_lst.mac.check = {
   'Rapture'                                ,
   'Raycast_Light'                          ,
   'Red Alert (Gogh)'                       ,
-  'Red Sands (Gogh)'                       ,
   'Red Sands'                              ,
   'RedAlert (Gogh)'                        ,
   'Rosé Pine Moon (Gogh)'                  ,
@@ -310,7 +311,6 @@ scheme_lst.mac.check = {
   'Tomorrow Night'                         ,
   'TomorrowNightBright (Gogh)'             ,
   'TomorrowNightEighties (Gogh)'           ,
-  'UltraDark'                              ,
   'Unikitty Dark (base16)'                 ,
   'VSCodeDark+ (Gogh)'                     ,
   'Vaughn'                                 ,

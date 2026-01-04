@@ -29,6 +29,8 @@ game cre
 
 ## nvim
 
+fzf edit, err
+
 plg
 - blink.cmp
   - instl
@@ -42,12 +44,13 @@ v.Sys.sh_run_by_slctd_line()
 plg
 - noice.nvim
 
-fzf edit, err
-
 
 ## skr-vps
 
 web-svr rpl
+
+
+## skr-vps
 
 centos setting at skr console
 - firewall
