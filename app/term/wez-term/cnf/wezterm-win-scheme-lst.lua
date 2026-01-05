@@ -164,6 +164,7 @@ scheme_lst.win.recommend.h = {
   'Chalk (base16)'                         ,
   'Humanoid dark (base16)'                 ,
   'Dracula'                                ,
+  'SynthwaveAlpha'                         ,
 }
 scheme_lst.win.recommend.m = {}
 scheme_lst.win.check = {
@@ -214,7 +215,6 @@ scheme_lst.win.check = {
   'Modus-Vivendi'                          ,
   'Modus-Vivendi-Tinted'                   ,
   'Monokai Dark (Gogh)'                    ,
-  'Monokai Soda'                           ,
   'MonokaiSoda (Gogh)'                     ,
   'Moonfly (Gogh)'                         ,
   'Neon (terminal.sexy)'                   ,
@@ -228,7 +228,6 @@ scheme_lst.win.check = {
   'PaperColorDark (Gogh)'                  ,
   'Paul Millr (Gogh)'                      ,
   'Peppermint (Gogh)'                      ,
-  'Peppermint'                             ,
   'PhD (base16)'                           ,
   'Pnevma (Gogh)'                          ,
   'Popping and Locking'                    ,
@@ -236,7 +235,6 @@ scheme_lst.win.check = {
   'PurplePeopleEater (Gogh)'               ,
   'Railscasts (dark) (terminal.sexy)'      ,
   'Red Alert (Gogh)'                       ,
-  'Relaxed (Gogh)'                         ,
   'Relaxed'                                ,
   'Rosé Pine Moon (base16)'                ,
   'Selenized Dark (Gogh)'                  ,
@@ -248,7 +246,6 @@ scheme_lst.win.check = {
   'Spring (Gogh)'                          ,
   'Summerfruit Dark (base16)'              ,
   'Synth Midnight Terminal Dark (base16)'  ,
-  'SynthwaveAlpha'                         ,
   'Teerb (Gogh)'                           ,
   'Teerb'                                  ,
   'ThayerBright (Gogh)'                    ,
@@ -275,8 +272,11 @@ scheme_lst.win.check = {
 }
 scheme_lst.win.excld = {
   -- 
-  -- phase 02
+  -- phase 03
   -- 
+  'Peppermint'                             ,
+  'Relaxed (Gogh)'                         ,
+  'SynthwaveAlpha'                         ,
   -- reason: blue only
   'GoogleDark (Gogh)'                      ,
   'Mathias'                                ,
@@ -301,6 +301,9 @@ scheme_lst.win.excld = {
   'tokyonight_storm'                       ,
   'Everblush'                              ,
   'Ef-Tritanopia-Dark'                     ,
+  'Monokai Soda'                           ,
+  -- 
+  -- phase 02
   -- 
   'Broadcast (Gogh)'                       ,
   'Orangish (terminal.sexy)'               ,
