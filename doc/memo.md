@@ -29,7 +29,7 @@ game cre
 
 ## nvim
 
-fzf edit, err
+fzf edit history, err
 
 plg
 - blink.cmp
