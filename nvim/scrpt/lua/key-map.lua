@@ -1428,6 +1428,9 @@ keymap__('x', ':mb', v.Slctd.line_mb__cnv)
 keymap__('x', '<leader>k', '/')
 
 -- srch str set
+keymap__('x', 'n', ':lua v.Srch.str__slctd_str()<cr>')
+keymap__('x', 'N', ':lua v.Srch.str__slctd_str()<cr>')
+
 keymap__('x', 'e', function()
   if v.Mode.is__box() then
     return '<esc>'
@@ -1436,11 +1439,8 @@ keymap__('x', 'e', function()
   end
 end, {expr = bl.t})
 
-keymap__('x', 'N', ':lua v.Srch.str__slctd_str()<cr>')
-
 -- srch swtch
-keymap__('x', 'n', ':lua v.Slctd.srch__swtch()<cr>')
--- keymap__('x', 'n', v.Slctd.srch__swtch)
+-- keymap__('x', 'n', ':lua v.Slctd.srch__swtch()<cr>')
 
 -- srch forward ( srch rpl skip )
 -- keymap__('x', '<c-n>', ':lua v.Srch.srch_7_slctd__srch_nxt("f")<cr>')
