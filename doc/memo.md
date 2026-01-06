@@ -2,6 +2,22 @@
 # dotfiles
 
 
+## gmail
+
+url tst
+
+
+## skr-vps
+
+web-svr rpl
+
+
+## nvim
+
+key: x N: srch ( crnt: x F )
+key: x n  : srch_str __ slctd, slct
+
+
 ## nvim
 
 plg-mng
@@ -43,11 +59,6 @@ v.Sys.sh_run_by_slctd_line()
 
 plg
 - noice.nvim
-
-
-## skr-vps
-
-web-svr rpl
 
 
 ## skr-vps
