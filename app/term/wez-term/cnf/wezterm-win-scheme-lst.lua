@@ -189,46 +189,44 @@ scheme_lst.win.recommend.h = {
   'Ef-Elea-Dark'                           ,
   'Rosé Pine Moon (base16)'                ,
   'MaterialDarker'                         ,
+  'Mocha (dark) (terminal.sexy)'           ,
+  'seoulbones_dark'                        ,
+  'Default (dark) (terminal.sexy)'         ,
+  'Seti UI (base16)'                       ,
+  'TomorrowNightBright (Gogh)'             ,
+  'Red Alert (Gogh)'                       ,
+  'PurplePeopleEater (Gogh)'               ,
+  'Argonaut (Gogh)'                        ,
+  'Modus-Vivendi'                          ,
+  'Silk Dark (base16)'                     ,
+  'Tomorrow Night Bright (Gogh)'           ,
+  'Ef-Dark'                                ,
+  'Peppermint (Gogh)'                      ,
+  'Wombat'                                 ,
+  'Paul Millr (Gogh)'                      ,
+  'Belge (terminal.sexy)'                  ,
+  'OneHalfBlack (Gogh)'                    ,
+  'Teerb (Gogh)'                           ,
 }
 scheme_lst.win.recommend.m = {}
-scheme_lst.win.check = {
-  'Argonaut (Gogh)'                        ,
-  'Argonaut'                               ,
-  'Belge (terminal.sexy)'                  ,
-  'Broadcast'                              ,
-  'Classic Dark (base16)'                  ,
-  'Default (dark) (terminal.sexy)'         ,
-  'Ef-Dark'                                ,
-  'Eighties (base16)'                      ,
-  'Flatland (Gogh)'                        ,
-  'Isotope (base16)'                       ,
-  'Mocha (dark) (terminal.sexy)'           ,
-  'Modus-Vivendi'                          ,
-  'Monokai Dark (Gogh)'                    ,
-  'Neon (terminal.sexy)'                   ,
-  'OneHalfBlack (Gogh)'                    ,
-  'Paul Millr (Gogh)'                      ,
-  'Peppermint (Gogh)'                      ,
-  'Pnevma (Gogh)'                          ,
-  'PurplePeopleEater (Gogh)'               ,
-  'Railscasts (dark) (terminal.sexy)'      ,
-  'Red Alert (Gogh)'                       ,
-  'Seti UI (base16)'                       ,
-  'Silk Dark (base16)'                     ,
-  'SpaceGray Eighties Dull'                ,
-  'Spring (Gogh)'                          ,
-  'Teerb (Gogh)'                           ,
-  'Tomorrow Night Bright (Gogh)'           ,
-  'TomorrowNightBright (Gogh)'             ,
-  'Windows 10 (base16)'                    ,
-  'Wombat'                                 ,
-  'midnight-in-mojave'                     ,
-  'seoulbones_dark'                        ,
-}
+scheme_lst.win.check = {}
 scheme_lst.win.excld = {
+  -- 
+  -- phase 04
+  -- 
+  -- dir blue
+  -- git
+  -- slctd
+
   -- 
   -- phase 03
   -- 
+  'Railscasts (dark) (terminal.sexy)'      ,
+  'Neon (terminal.sexy)'                   ,
+  'Classic Dark (base16)'                  ,
+  'Spring (Gogh)'                          ,
+  'Flatland (Gogh)'                        ,
+  'Pnevma (Gogh)'                          ,
   'Gruber (base16)'                        ,
   'WarmNeon'                               ,
   'Tomorrow Night Eighties'                ,
@@ -260,6 +258,8 @@ scheme_lst.win.excld = {
   'Gruvbox Dark (Gogh)'                    ,
   'Elic (Gogh)'                            ,
   -- reason: git only
+  'Monokai Dark (Gogh)'                    ,
+  'Broadcast'                              ,
   'Kibble'                                 ,
   'Smyck (Gogh)'                           ,
   'Birds Of Paradise (Gogh)'               ,
@@ -269,6 +269,12 @@ scheme_lst.win.excld = {
   'Clone Of Ubuntu (Gogh)'                 ,
   'Ic Green Ppl (Gogh)'                    ,
   -- reason: blue only
+  'Isotope (base16)'                       ,
+  'Eighties (base16)'                      ,
+  'Windows 10 (base16)'                    ,
+  'SpaceGray Eighties Dull'                ,
+  'Argonaut'                               ,
+  'midnight-in-mojave'                     ,
   'Windows High Contrast (base16)'         ,
   'Summerfruit Dark (base16)'              ,
   'ThayerBright (Gogh)'                    ,
