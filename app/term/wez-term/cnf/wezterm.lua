@@ -58,12 +58,8 @@ function color_scheme__rnd(env)
       local cmd
 
       if   env == 'win' then
-        wezterm.log_info(env)
-
-        -- dev
-        -- local cmd = '"' .. scheme_name .. '" | Out-String -NoNewline | clip'
-        cmd = 'echo -n "' .. scheme_name .. '" | osc52.sh'
-        wezterm.log_info(cmd)
+        cmd = 'echo "' .. scheme_name .. '" | clip'
+        -- wezterm.log_info(cmd)
         os.execute(cmd)
 
       elseif env == 'mac' then
