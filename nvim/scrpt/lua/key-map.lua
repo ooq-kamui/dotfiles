@@ -784,7 +784,7 @@ keymap__('n', 'E', v.Srch.str__word1_tgl)
 -- keymap__('n', 'xx', ':lua v.Srch.char_bracket('f')<cr>')
 
 -- srch markdown h
-keymap__('n', 'M', v.Srch.str__h_swtch)
+-- keymap__('n', 'xx', v.Srch.str__h_swtch)
 
 -- srch markdown itm
 keymap__('n', ':i', v.Srch.str__markdown_itm)

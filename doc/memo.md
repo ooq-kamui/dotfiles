@@ -2,11 +2,6 @@
 # dotfiles
 
 
-## gmail
-
-url tst
-
-
 ## skr-vps
 
 web-svr rpl
