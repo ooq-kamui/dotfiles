@@ -175,18 +175,15 @@ scheme_lst.win.recommend.h = {
   'Seti (Gogh)'                            ,
   'Nocturnal Winter'                       ,
   'Teerb'                                  ,
+  'Aci (Gogh)'                             ,
 }
 scheme_lst.win.recommend.m = {}
 scheme_lst.win.check = {
-  'Aci (Gogh)'                             ,
   'Argonaut (Gogh)'                        ,
   'Argonaut'                               ,
-  'Arthur (Gogh)'                          ,
-  'Bamboo Multiplex'                       ,
   'Banana Blueberry'                       ,
   'Belge (terminal.sexy)'                  ,
   'Birds Of Paradise (Gogh)'               ,
-  'Breeze (Gogh)'                          ,
   'Broadcast'                              ,
   'Catppuccin Macchiato (Gogh)'            ,
   'Classic Dark (base16)'                  ,
@@ -246,7 +243,6 @@ scheme_lst.win.check = {
   'Windows High Contrast (base16)'         ,
   'Wombat'                                 ,
   'Zenburn'                                ,
-  'iTerm2 Dark Background'                 ,
   'iTerm2 Light Background'                ,
   'iceberg-dark'                           ,
   'kanagawabones'                          ,
@@ -259,6 +255,9 @@ scheme_lst.win.excld = {
   -- 
   -- phase 03
   -- 
+  'Arthur (Gogh)'                          ,
+  'Bamboo Multiplex'                       ,
+  'Breeze (Gogh)'                          ,
   'Moonfly (Gogh)'                         ,
   'Chalkboard (Gogh)'                      ,
   'Popping and Locking'                    ,
@@ -273,6 +272,7 @@ scheme_lst.win.excld = {
   'Relaxed (Gogh)'                         ,
   'SynthwaveAlpha'                         ,
   -- reason: blue only
+  'iTerm2 Dark Background'                 ,
   'Chester'                                ,
   'GoogleDark (Gogh)'                      ,
   'Mathias'                                ,
