@@ -796,7 +796,7 @@ keymap__('n', '<leader>f', ':FzfSrchHstry<cr>')
 keymap__('n', 'N', v.Srch.str__prv_tgl)
 
 -- srch rpl one > ynk nxt ( only srch )
-keymap__('n', '<c-p>', ':lua v.Srch.slct("f")<cr>')
+keymap__('n', '<c-p>', ':lua v.Srch.__slct("f")<cr>')
 
 -- rpl ( cmd )
 keymap__('n', ':s', ':%s/<c-r>//xxx/g')
@@ -1208,7 +1208,7 @@ keymap__('x', 'gj', ':lua v.Slctd.cursor__mv_file_edge("j")<cr>')
 -- keymap__('x', 'xx', v.Slctd.str__expnd)
 
 -- slctd expnd srch
-keymap__('x', 'F', ':lua v.Slctd.str__expnd_srch()<cr>')
+keymap__('x', 'm', ':lua v.Slctd.str__expnd_srch()<cr>')
 
 -- slctd expnd forward swtch
 keymap__('x', 'f', ':lua v.Slctd.str__expnd_f_swtch()<cr>')
@@ -1325,12 +1325,13 @@ end, {expr = bl.t})
 -- keymap__('x', 'xx', v.Slctd.line_top_space__del)
 
 -- slctd line __ del end space
-keymap__('x', 'm', ':lua v.Slctd.line_end_space__del()<cr>')
+keymap__('x', '<c-d>', ':lua v.Slctd.line_end_space__del()<cr>')
+-- keymap__('x', 'm', ':lua v.Slctd.line_end_space__del()<cr>')
 
 -- slctd box
 
 -- slctd box __ forward del
--- keymap__('x', '<c-d>', 'D')
+-- keymap__('x', 'xx', 'D')
 
 -- slctd box __ del cursor f space
 keymap__('x', 'K', ':lua v.Slctd.box_cursor_r_space__crct()<cr>')
@@ -1368,7 +1369,7 @@ keymap__('x', 'b', v.Slctd.str_edge_out__ins_markdown_bold)
 -- keymap__('x', 'xx', ':lua v.Slctd.box_str__mv("r")<cr>')
 
 -- slctd box space __ del
-keymap__('x', 'D', v.Slctd.box_space__del)
+keymap__('x', 'D', ':lua v.Slctd.box_space__del()<cr>')
 
 -- slctd box mv back
 keymap__('x', '<c-w>', ':lua v.Slctd.box__mv("l")<cr>')
@@ -1429,7 +1430,7 @@ keymap__('x', '<leader>k', '/')
 
 -- srch str set
 keymap__('x', 'n', ':lua v.Srch.str__slctd_str()<cr>')
-keymap__('x', 'N', ':lua v.Srch.str__slctd_str()<cr>')
+-- keymap__('x', 'n', ':lua v.Srch.str__slctd_str_7__slct()<cr>')
 
 keymap__('x', 'e', function()
   if v.Mode.is__box() then
@@ -1454,7 +1455,6 @@ keymap__('x', '<c-p>', v.Slctd.__rpl_7_srch_nxt)
 
 -- srch h swtch
 keymap__('x', 'M', v.Srch.str__h_swtch)
--- keymap__('x', 'M', v.Slctd.str__expnd_h)
 
 -- rpl ( cmd )
 keymap__('x', ':s', function()

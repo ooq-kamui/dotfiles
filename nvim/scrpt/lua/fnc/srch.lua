@@ -177,7 +177,13 @@ function v.Srch.str__slctd_str() -- range
   v.Slctd.__cancel()
 end
 
-function v.Srch.slct(drct)
+function v.Srch.str__slctd_str_7__slct() -- range, use not
+
+  v.Srch.str__slctd_str()
+  v.Srch.__slct('f')
+end
+
+function v.Srch.__slct(drct)
 
   if     drct == 'f' then
     v.Cmd.nml('gn')
@@ -201,7 +207,7 @@ end
 function v.Srch._7_cursor__mv_srch_str_end_o() -- use not
 
   local drct = 'f'
-  v.Srch.slct(drct)
+  v.Srch.__slct(drct)
   v.Cmd.esc()
   v.Cmd.esc() -- dpl ?
   v.Cursor.__mv_char_f()

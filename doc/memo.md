@@ -12,21 +12,6 @@ url tst
 web-svr rpl
 
 
-## nvim
-
-key: x N: srch ( crnt: x F )
-key: x n  : srch_str __ slctd, slct
-
-
-## nvim
-
-plg-mng
-- lazy
-  - ref https://lazy.folke.io/installation
-
-fzf-lua
-
-
 ## kiro
 
 kiro-cli
@@ -41,6 +26,17 @@ platformer
 game cre
 - map cre
 - chara cre
+
+
+## nvim
+
+key: n i: case: line_end_in and space and line nxt space
+
+plg-mng
+- lazy
+  - ref https://lazy.folke.io/installation
+
+fzf-lua
 
 
 ## nvim
