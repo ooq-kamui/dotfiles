@@ -50,7 +50,8 @@ function color_scheme__rnd(env)
     -- scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].recommend.m)
 
   elseif env == 'mac' then
-    scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].check)
+    scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].recommend.h)
+    -- scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].check)
   end
 
   wezterm.on('window-config-reloaded', function(window, pane)
