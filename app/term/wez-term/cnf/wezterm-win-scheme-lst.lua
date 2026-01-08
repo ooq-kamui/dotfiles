@@ -6,207 +6,207 @@ local scheme_lst = {}
 scheme_lst.win = {}
 scheme_lst.win.recommend = {}
 scheme_lst.win.recommend.h = {
-  -- hh
-  'ChallengerDeep'                         ,
-  'Desert'                                 ,
-  'Dracula (Official)'                     ,
-  'Ef-Rosa'                                ,
-  'Grey-green'                             ,
-  'HorizonDark (Gogh)'                     ,
-  'Hurtado (Gogh)'                         ,
-  'MaterialDesignColors'                   ,
-  'Modus-Vivendi-Deuteranopia'             ,
-  'Monokai Pro (Gogh)'                     ,
-  'Outrun Dark (base16)'                   ,
-  'Panda (Gogh)'                           ,
-  'Pandora'                                ,
-  'Pixiefloss (Gogh)'                      ,
-  'Snazzy (base16)'                        ,
-  'Sonokai (Gogh)'                         ,
-  'Tinacious Design (Dark)'                ,
-  'Wzoreck (Gogh)'                         ,
-  'synthwave-everything'                   ,
+  -- hh                                      -- slctd
+  'ChallengerDeep'                         , -- white
+  'Desert'                                 , -- 
+  'Dracula (Official)'                     , -- 
+  'Ef-Rosa'                                , -- 
+  'Grey-green'                             , -- 
+  'HorizonDark (Gogh)'                     , -- 
+  'Hurtado (Gogh)'                         , -- 
+  'MaterialDesignColors'                   , -- 
+  'Modus-Vivendi-Deuteranopia'             , -- 
+  'Monokai Pro (Gogh)'                     , -- 
+  'Outrun Dark (base16)'                   , -- 
+  'Panda (Gogh)'                           , -- 
+  'Pandora'                                , -- 
+  'Pixiefloss (Gogh)'                      , -- 
+  'Snazzy (base16)'                        , -- 
+  'Sonokai (Gogh)'                         , -- 
+  'Tinacious Design (Dark)'                , -- 
+  'Wzoreck (Gogh)'                         , -- 
+  'synthwave-everything'                   , -- 
   -- hh slctd ~
-  'Modus-Vivendi-Tinted'                   ,
-  'Tokyo Night Moon'                       ,
+  'Modus-Vivendi-Tinted'                   , -- 
+  'Tokyo Night Moon'                       , -- 
   -- h
-  'Abernathy'                              ,
-  'Aci (Gogh)'                             ,
-  'Aco (Gogh)'                             ,
-  'Adventure Time (Gogh)'                  ,
-  'Adventure'                              ,
-  'Argonaut (Gogh)'                        ,
-  'Atom'                                   ,
-  'Aura (Gogh)'                            ,
-  'Ayu Mirage (Gogh)'                      ,
-  'AyuDark (Gogh)'                         ,
-  'AyuMirage (Gogh)'                       ,
-  'Bamboo'                                 ,
-  'Banana Blueberry'                       ,
-  'Belge (terminal.sexy)'                  ,
-  'BlueDolphin'                            ,
-  'Borland'                                ,
-  'Builtin Tango Dark'                     ,
-  'Cai (Gogh)'                             ,
-  'Catppuccin Macchiato (Gogh)'            ,
-  'Catppuccin Macchiato'                   ,
-  'Catppuccin Mocha (Gogh)'                ,
-  'Catppuccin Mocha'                       ,
-  'Chalk (Gogh)'                           ,
-  'Chalk (base16)'                         ,
-  'Chalk (dark) (terminal.sexy)'           ,
-  'Cyberdyne'                              ,
-  'Decaf (base16)'                         ,
-  'Default (dark) (terminal.sexy)'         ,
-  'Desert (Gogh)'                          ,
-  'DjangoSmooth'                           ,
-  'DotGov'                                 ,
-  'Dracula (Gogh)'                         ,
-  'Dracula (base16)'                       ,
-  'Dracula'                                ,
-  'Dracula+'                               ,
-  'Duotone Dark'                           ,
-  'Ef-Bio'                                 ,
-  'Ef-Cherie'                              ,
-  'Ef-Dark'                                ,
-  'Ef-Duo-Dark'                            ,
-  'Ef-Elea-Dark'                           ,
-  'Ef-Maris-Dark'                          ,
-  'Ef-Melissa-Dark'                        ,
-  'Eighties (dark) (terminal.sexy)'        ,
-  'Erebus (terminal.sexy)'                 ,
-  'Espresso (Gogh)'                        ,
-  'Everblush (Gogh)'                       ,
-  'Fairy Floss (Gogh)'                     ,
-  'Fairy Floss Dark (Gogh)'                ,
-  'FairyFloss (Gogh)'                      ,
-  'FairyFlossDark (Gogh)'                  ,
-  'Fairyfloss'                             ,
-  'Flat (base16)'                          ,
-  'Framer (base16)'                        ,
-  'GJM (terminal.sexy)'                    ,
-  'Google Dark (Gogh)'                     ,
-  'Guezwhoz'                               ,
-  'Horizon Dark (Gogh)'                    ,
-  'Humanoid dark (base16)'                 ,
-  'Hurtado'                                ,
-  'IR_Black'                               ,
-  'Ibm3270 (Gogh)'                         ,
-  'Ir Black (Gogh)'                        ,
-  'IrBlack (Gogh)'                         ,
-  'Kokuban (Gogh)'                         ,
-  'Kolorit'                                ,
-  'Materia (base16)'                       ,
-  'Material (base16)'                      ,
-  'Material Darker (base16)'               ,
-  'MaterialDarker'                         ,
-  'Misterioso (Gogh)'                      ,
-  'Misterioso'                             ,
-  'Mocha (dark) (terminal.sexy)'           ,
-  'Modus-Vivendi'                          ,
-  'Modus-Vivendi-Tritanopia'               ,
-  'Monokai (base16)'                       ,
-  'Monokai (dark) (terminal.sexy)'         ,
-  'Monokai (terminal.sexy)'                ,
-  'Monokai Pro Ristretto (Gogh)'           ,
-  'Monokai Soda (Gogh)'                    ,
-  'MonokaiPro (Gogh)'                      ,
-  'MonokaiProRistretto (Gogh)'             ,
-  'MonokaiSoda (Gogh)'                     ,
-  'Morada (Gogh)'                          ,
-  'Neon Night (Gogh)'                      ,
-  'Night Owl (Gogh)'                       ,
-  'NightLion v2'                           ,
-  'NightOwl (Gogh)'                        ,
-  'Nightfly (Gogh)'                        ,
-  'NightlionV2 (Gogh)'                     ,
-  'Nocturnal Winter'                       ,
-  'Nord (base16)'                          ,
-  'Nucolors (terminal.sexy)'               ,
-  'Obsidian (Gogh)'                        ,
-  'Obsidian'                               ,
-  'OceanicMaterial'                        ,
-  'One Half Black (Gogh)'                  ,
-  'OneHalfBlack (Gogh)'                    ,
-  'Operator Mono Dark'                     ,
-  'Overnight Slumber'                      ,
-  'Oxocarbon Dark (Gogh)'                  ,
-  'PaleNightHC'                            ,
-  'Papercolor Dark (Gogh)'                 ,
-  'Paul Millr (Gogh)'                      ,
-  'Peppermint (Gogh)'                      ,
-  'Pnevma'                                 ,
-  'Poimandres Storm'                       ,
-  'Poimandres'                             ,
-  'Purple People Eater (Gogh)'             ,
-  'Purple Rain'                            ,
-  'PurplePeopleEater (Gogh)'               ,
-  'Rebecca (base16)'                       ,
-  'Red Alert (Gogh)'                       ,
-  'Rosé Pine Moon (base16)'                ,
-  'Selenized Dark (Gogh)'                  ,
-  'Seti (Gogh)'                            ,
-  'Seti UI (base16)'                       ,
-  'Silk Dark (base16)'                     ,
-  'Simple Rainbow (terminal.sexy)'         ,
-  'Snazzy (Gogh)'                          ,
-  'Snazzy'                                 ,
-  'Sublette'                               ,
-  'SweetTerminal (Gogh)'                   ,
-  'Synth Midnight Terminal Dark (base16)'  ,
-  'SynthWave (Gogh)'                       ,
-  'Synthwave (Gogh)'                       ,
-  'SynthwaveAlpha'                         ,
-  'Teerb (Gogh)'                           ,
-  'Teerb'                                  ,
-  'Tender (Gogh)'                          ,
-  'Tokyo Night (Gogh)'                     ,
-  'Tokyo Night Storm (Gogh)'               ,
-  'Tokyo Night Storm'                      ,
-  'TokyoNightStorm (Gogh)'                 ,
-  'Tomorrow Night Blue (Gogh)'             ,
-  'Tomorrow Night Blue'                    ,
-  'Tomorrow Night Bright (Gogh)'           ,
-  'Tomorrow Night Bright'                  ,
-  'TomorrowNightBlue (Gogh)'               ,
-  'TomorrowNightBright (Gogh)'             ,
-  'TomorrowNightEighties (Gogh)'           ,
-  'UltraDark'                              ,
-  'UltraViolent'                           ,
-  'VSCodeDark+ (Gogh)'                     ,
-  'VisiBone (terminal.sexy)'               ,
-  'Visibone Alt. 2 (terminal.sexy)'        ,
-  'Vs Code Dark+ (Gogh)'                   ,
-  'Warm Neon (Gogh)'                       ,
-  'Wombat (Gogh)'                          ,
-  'Wombat'                                 ,
-  'Zenburn (Gogh)'                         ,
-  'arcoiris'                               ,
-  'ayu'                                    ,
-  'catppuccin-macchiato'                   ,
-  'catppuccin-mocha'                       ,
-  'cyberpunk'                              ,
-  'deep'                                   ,
-  'duskfox'                                ,
-  'gooey (Gogh)'                           ,
-  'hardhacker'                             ,
-  'iTerm2 Smoooooth'                       ,
-  'iceberg-dark'                           ,
-  'idleToes'                               ,
-  'kanagawabones'                          ,
-  'kokuban (Gogh)'                         ,
-  'neon-night (Gogh)'                      ,
-  'nightfox'                               ,
-  'niji'                                   ,
-  'rebecca'                                ,
-  'seoulbones_dark'                        ,
-  'synthwave'                              ,
-  'tender (base16)'                        ,
-  'tokyonight'                             ,
-  'tokyonight-storm'                       ,
-  'tokyonight_moon'                        ,
-  'tokyonight_night'                       ,
-  'zenburn (terminal.sexy)'                ,
+  'Abernathy'                              , -- 
+  'Aci (Gogh)'                             , -- 
+  'Aco (Gogh)'                             , -- 
+  'Adventure Time (Gogh)'                  , -- 
+  'Adventure'                              , -- 
+  'Argonaut (Gogh)'                        , -- 
+  'Atom'                                   , -- 
+  'Aura (Gogh)'                            , -- 
+  'Ayu Mirage (Gogh)'                      , -- 
+  'AyuDark (Gogh)'                         , -- 
+  'AyuMirage (Gogh)'                       , -- 
+  'Bamboo'                                 , -- 
+  'Banana Blueberry'                       , -- 
+  'Belge (terminal.sexy)'                  , -- 
+  'BlueDolphin'                            , -- 
+  'Borland'                                , -- 
+  'Builtin Tango Dark'                     , -- 
+  'Cai (Gogh)'                             , -- 
+  'Catppuccin Macchiato (Gogh)'            , -- 
+  'Catppuccin Macchiato'                   , -- 
+  'Catppuccin Mocha (Gogh)'                , -- 
+  'Catppuccin Mocha'                       , -- 
+  'Chalk (Gogh)'                           , -- 
+  'Chalk (base16)'                         , -- 
+  'Chalk (dark) (terminal.sexy)'           , -- 
+  'Cyberdyne'                              , -- 
+  'Decaf (base16)'                         , -- 
+  'Default (dark) (terminal.sexy)'         , -- 
+  'Desert (Gogh)'                          , -- 
+  'DjangoSmooth'                           , -- 
+  'DotGov'                                 , -- 
+  'Dracula (Gogh)'                         , -- 
+  'Dracula (base16)'                       , -- 
+  'Dracula'                                , -- 
+  'Dracula+'                               , -- 
+  'Duotone Dark'                           , -- 
+  'Ef-Bio'                                 , -- 
+  'Ef-Cherie'                              , -- 
+  'Ef-Dark'                                , -- 
+  'Ef-Duo-Dark'                            , -- 
+  'Ef-Elea-Dark'                           , -- 
+  'Ef-Maris-Dark'                          , -- 
+  'Ef-Melissa-Dark'                        , -- 
+  'Eighties (dark) (terminal.sexy)'        , -- 
+  'Erebus (terminal.sexy)'                 , -- 
+  'Espresso (Gogh)'                        , -- 
+  'Everblush (Gogh)'                       , -- 
+  'Fairy Floss (Gogh)'                     , -- 
+  'Fairy Floss Dark (Gogh)'                , -- 
+  'FairyFloss (Gogh)'                      , -- 
+  'FairyFlossDark (Gogh)'                  , -- 
+  'Fairyfloss'                             , -- 
+  'Flat (base16)'                          , -- 
+  'Framer (base16)'                        , -- 
+  'GJM (terminal.sexy)'                    , -- 
+  'Google Dark (Gogh)'                     , -- 
+  'Guezwhoz'                               , -- 
+  'Horizon Dark (Gogh)'                    , -- 
+  'Humanoid dark (base16)'                 , -- 
+  'Hurtado'                                , -- 
+  'IR_Black'                               , -- 
+  'Ibm3270 (Gogh)'                         , -- 
+  'Ir Black (Gogh)'                        , -- 
+  'IrBlack (Gogh)'                         , -- 
+  'Kokuban (Gogh)'                         , -- 
+  'Kolorit'                                , -- 
+  'Materia (base16)'                       , -- 
+  'Material (base16)'                      , -- 
+  'Material Darker (base16)'               , -- 
+  'MaterialDarker'                         , -- 
+  'Misterioso (Gogh)'                      , -- 
+  'Misterioso'                             , -- 
+  'Mocha (dark) (terminal.sexy)'           , -- 
+  'Modus-Vivendi'                          , -- 
+  'Modus-Vivendi-Tritanopia'               , -- 
+  'Monokai (base16)'                       , -- 
+  'Monokai (dark) (terminal.sexy)'         , -- 
+  'Monokai (terminal.sexy)'                , -- 
+  'Monokai Pro Ristretto (Gogh)'           , -- 
+  'Monokai Soda (Gogh)'                    , -- 
+  'MonokaiPro (Gogh)'                      , -- 
+  'MonokaiProRistretto (Gogh)'             , -- 
+  'MonokaiSoda (Gogh)'                     , -- 
+  'Morada (Gogh)'                          , -- 
+  'Neon Night (Gogh)'                      , -- 
+  'Night Owl (Gogh)'                       , -- 
+  'NightLion v2'                           , -- 
+  'NightOwl (Gogh)'                        , -- 
+  'Nightfly (Gogh)'                        , -- 
+  'NightlionV2 (Gogh)'                     , -- 
+  'Nocturnal Winter'                       , -- 
+  'Nord (base16)'                          , -- 
+  'Nucolors (terminal.sexy)'               , -- 
+  'Obsidian (Gogh)'                        , -- 
+  'Obsidian'                               , -- 
+  'OceanicMaterial'                        , -- 
+  'One Half Black (Gogh)'                  , -- 
+  'OneHalfBlack (Gogh)'                    , -- 
+  'Operator Mono Dark'                     , -- 
+  'Overnight Slumber'                      , -- 
+  'Oxocarbon Dark (Gogh)'                  , -- 
+  'PaleNightHC'                            , -- 
+  'Papercolor Dark (Gogh)'                 , -- 
+  'Paul Millr (Gogh)'                      , -- 
+  'Peppermint (Gogh)'                      , -- 
+  'Pnevma'                                 , -- 
+  'Poimandres Storm'                       , -- 
+  'Poimandres'                             , -- 
+  'Purple People Eater (Gogh)'             , -- 
+  'Purple Rain'                            , -- 
+  'PurplePeopleEater (Gogh)'               , -- 
+  'Rebecca (base16)'                       , -- 
+  'Red Alert (Gogh)'                       , -- 
+  'Rosé Pine Moon (base16)'                , -- 
+  'Selenized Dark (Gogh)'                  , -- 
+  'Seti (Gogh)'                            , -- 
+  'Seti UI (base16)'                       , -- 
+  'Silk Dark (base16)'                     , -- 
+  'Simple Rainbow (terminal.sexy)'         , -- 
+  'Snazzy (Gogh)'                          , -- 
+  'Snazzy'                                 , -- 
+  'Sublette'                               , -- 
+  'SweetTerminal (Gogh)'                   , -- 
+  'Synth Midnight Terminal Dark (base16)'  , -- 
+  'SynthWave (Gogh)'                       , -- 
+  'Synthwave (Gogh)'                       , -- 
+  'SynthwaveAlpha'                         , -- 
+  'Teerb (Gogh)'                           , -- 
+  'Teerb'                                  , -- 
+  'Tender (Gogh)'                          , -- 
+  'Tokyo Night (Gogh)'                     , -- 
+  'Tokyo Night Storm (Gogh)'               , -- 
+  'Tokyo Night Storm'                      , -- 
+  'TokyoNightStorm (Gogh)'                 , -- 
+  'Tomorrow Night Blue (Gogh)'             , -- 
+  'Tomorrow Night Blue'                    , -- 
+  'Tomorrow Night Bright (Gogh)'           , -- 
+  'Tomorrow Night Bright'                  , -- 
+  'TomorrowNightBlue (Gogh)'               , -- 
+  'TomorrowNightBright (Gogh)'             , -- 
+  'TomorrowNightEighties (Gogh)'           , -- 
+  'UltraDark'                              , -- 
+  'UltraViolent'                           , -- 
+  'VSCodeDark+ (Gogh)'                     , -- 
+  'VisiBone (terminal.sexy)'               , -- 
+  'Visibone Alt. 2 (terminal.sexy)'        , -- 
+  'Vs Code Dark+ (Gogh)'                   , -- 
+  'Warm Neon (Gogh)'                       , -- 
+  'Wombat (Gogh)'                          , -- 
+  'Wombat'                                 , -- 
+  'Zenburn (Gogh)'                         , -- 
+  'arcoiris'                               , -- 
+  'ayu'                                    , -- 
+  'catppuccin-macchiato'                   , -- 
+  'catppuccin-mocha'                       , -- 
+  'cyberpunk'                              , -- 
+  'deep'                                   , -- 
+  'duskfox'                                , -- 
+  'gooey (Gogh)'                           , -- 
+  'hardhacker'                             , -- 
+  'iTerm2 Smoooooth'                       , -- 
+  'iceberg-dark'                           , -- 
+  'idleToes'                               , -- 
+  'kanagawabones'                          , -- 
+  'kokuban (Gogh)'                         , -- 
+  'neon-night (Gogh)'                      , -- 
+  'nightfox'                               , -- 
+  'niji'                                   , -- 
+  'rebecca'                                , -- 
+  'seoulbones_dark'                        , -- white
+  'synthwave'                              , -- 
+  'tender (base16)'                        , -- 
+  'tokyonight'                             , -- 
+  'tokyonight-storm'                       , -- 
+  'tokyonight_moon'                        , -- 
+  'tokyonight_night'                       , -- 
+  'zenburn (terminal.sexy)'                , -- 
 }
 scheme_lst.win.recommend.m = {}
 scheme_lst.win.check = {}

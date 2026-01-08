@@ -2,11 +2,6 @@
 # dotfiles
 
 
-## skr-vps
-
-web-svr rpl
-
-
 ## kiro
 
 kiro-cli
@@ -54,7 +49,13 @@ plg
 
 ## skr-vps
 
-centos setting at skr console
+web-svr rpl
+
+
+## skr-vps
+
+alm setting at skr console
+- confirm
 - firewall
   - url
 
