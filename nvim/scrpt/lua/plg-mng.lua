@@ -76,8 +76,8 @@ require("oil").setup({
 })
 
 -- tree-sitter
--- require("nvim-treesitter.install").prefer_git = true
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter.install").prefer_git = true
+require("nvim-treesitter.config").setup({
   ensure_installed = {
     "markdown",
     "markdown_inline",
