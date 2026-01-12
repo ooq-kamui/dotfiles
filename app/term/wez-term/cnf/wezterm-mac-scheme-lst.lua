@@ -76,7 +76,6 @@ scheme_lst.mac.recommend.h = {
   'Ef-Tritanopia-Dark'                     ,
   'Eighties (base16)'                      ,
   'Erebus (terminal.sexy)'                 ,
-  'Espresso'                               ,
   'Everblush (Gogh)'                       ,
   'Fairyfloss'                             ,
   'Flat (base16)'                          ,
@@ -86,7 +85,6 @@ scheme_lst.mac.recommend.h = {
   'Frontend Galaxy (Gogh)'                 ,
   'GJM (terminal.sexy)'                    ,
   'Gigavolt (base16)'                      ,
-  'Grandshell (terminal.sexy)'             ,
   'Helios (base16)'                        ,
   'Hopscotch.256'                          ,
   'Horizon Dark (Gogh)'                    ,
@@ -131,7 +129,6 @@ scheme_lst.mac.recommend.h = {
   'Palenight (Gogh)'                       ,
   'Panda (Gogh)'                           ,
   'Pastel White (terminal.sexy)'           ,
-  'Paul Millr (Gogh)'                      ,
   'Pnevma (Gogh)'                          ,
   'Pnevma'                                 ,
   'Poimandres Storm'                       ,
@@ -199,6 +196,7 @@ scheme_lst.mac.recommend.h = {
   'tokyonight_storm'                       ,
   -- white
   -- blue
+  'Paul Millr (Gogh)'                      ,
   -- git
   -- etc
 }
@@ -208,6 +206,8 @@ scheme_lst.mac.recommend.l = {
   -- 
   -- white
   -- blue
+  'Espresso'                               ,
+  'Grandshell (terminal.sexy)'             ,
   -- git
   -- etc
   'Aco (Gogh)'                             ,

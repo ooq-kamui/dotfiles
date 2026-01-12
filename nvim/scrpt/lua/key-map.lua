@@ -1103,7 +1103,7 @@ keymap__('x', 'gp', '<esc>')
 keymap__('x', 'gs', '<esc>')
 keymap__('x', 'gt', '<esc>')
 keymap__('x', 'gy', '<esc>')
-   
+
 keymap__('x', ':a', '<esc>')
 --             :
 keymap__('x', ':f', '<esc>')
@@ -1208,7 +1208,9 @@ keymap__('x', 'gj', ':lua v.Slctd.cursor__mv_file_edge("j")<cr>')
 -- keymap__('x', 'xx', v.Slctd.str__expnd)
 
 -- slctd expnd srch
-keymap__('x', 'm', ':lua v.Slctd.str__expnd_srch()<cr>')
+keymap__('x', 'N'    , ':lua v.Slctd.str__expnd_srch()<cr>')
+-- keymap__('x', '<c-f>', ':lua v.Slctd.str__expnd_srch()<cr>')
+-- keymap__('x', 'm', ':lua v.Slctd.str__expnd_srch()<cr>')
 
 -- slctd expnd forward swtch
 keymap__('x', 'f', ':lua v.Slctd.str__expnd_f_swtch()<cr>')
@@ -1325,8 +1327,8 @@ end, {expr = bl.t})
 -- keymap__('x', 'xx', v.Slctd.line_top_space__del)
 
 -- slctd line __ del end space
+keymap__('x', 'm'    , ':lua v.Slctd.line_end_space__del()<cr>')
 keymap__('x', '<c-d>', ':lua v.Slctd.line_end_space__del()<cr>')
--- keymap__('x', 'm', ':lua v.Slctd.line_end_space__del()<cr>')
 
 -- slctd box
 
@@ -1451,10 +1453,10 @@ keymap__('x', '<c-n>', ':lua v.Srch.srch_7_slctd__srch_nxt("b")<cr>')
 -- keymap__('x', 'xx', ':lua v.Srch.srch_7_slctd__srch_nxt('b')<cr>')
 
 -- srch rpl one > ynk, nxt
-keymap__('x', '<c-p>', v.Slctd.__rpl_7_srch_nxt)
+keymap__('x', '<c-p>', 'lua: v.Slctd.__rpl_7_srch_nxt()')
 
 -- srch h swtch
-keymap__('x', 'M', v.Srch.str__h_swtch)
+keymap__('x', 'M', 'lua: v.Srch.str__h_swtch()')
 
 -- rpl ( cmd )
 keymap__('x', ':s', function()
@@ -1585,10 +1587,13 @@ keymap__('i', '<leader>i', '<nop>')
 keymap__('i', '<esc>', function()
   if     v.Mode.is__ins_menu() then
     return '<c-e>'
-  elseif v.Cursor.is_col__line_top0() then
-    return '<esc>'
   else
-    return '<esc>l'
+    local cmd_nml = '<esc>'
+    if v.Cursor.is_col__line_top0() then
+    else
+      cmd_nml = cmd_nml .. 'l'
+    end
+    return cmd_nml
   end
 end, {expr = bl.t})
 

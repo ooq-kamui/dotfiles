@@ -84,6 +84,9 @@ match_id = vf.matchadd('SpaceMb', '\\%u3000', 10) -- /　/
 hl__(0, 'Title'         , {fg = 'cyan'        , bg = 'none'       })
 
 -- markdown
+
+-- vim.g.markdown_recommended_style = 0
+
 vim.api.nvim_create_autocmd({'FileType'}, { pattern  = {'markdown'},
   callback = function ()
     hl__(0, 'MdCr'      , {fg = 'none'        , bg = 'darkblue'   })

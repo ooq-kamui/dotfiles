@@ -2,6 +2,28 @@
 # dotfiles
 
 
+## nvim
+
+tree-sitter, markdown
+
+x n: case: line mlt: esc
+
+x c-w, case: line mlt, esc
+
+key: n i: case: line_end_in and space and line nxt space
+
+plg-mng
+- lazy
+  - ref https://lazy.folke.io/installation
+
+fzf-lua
+
+
+## mac
+
+clp history, major
+
+
 ## kiro
 
 kiro-cli
@@ -16,17 +38,6 @@ platformer
 game cre
 - map cre
 - chara cre
-
-
-## nvim
-
-key: n i: case: line_end_in and space and line nxt space
-
-plg-mng
-- lazy
-  - ref https://lazy.folke.io/installation
-
-fzf-lua
 
 
 ## nvim
