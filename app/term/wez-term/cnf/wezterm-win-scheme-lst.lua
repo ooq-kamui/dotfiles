@@ -44,7 +44,6 @@ scheme_lst.win.recommend.h = {
   'Bamboo'                                 , -- 
   'Banana Blueberry'                       , -- 
   'Belge (terminal.sexy)'                  , -- 
-  'BlueDolphin'                            , -- 
   'Borland'                                , -- 
   'Builtin Tango Dark'                     , -- 
   'Cai (Gogh)'                             , -- 
@@ -171,7 +170,6 @@ scheme_lst.win.recommend.h = {
   'TomorrowNightBlue (Gogh)'               , -- 
   'TomorrowNightBright (Gogh)'             , -- 
   'TomorrowNightEighties (Gogh)'           , -- 
-  'UltraDark'                              , -- 
   'UltraViolent'                           , -- 
   'VSCodeDark+ (Gogh)'                     , -- 
   'VisiBone (terminal.sexy)'               , -- 
@@ -217,7 +215,9 @@ scheme_lst.win.excld = {
   -- dir blue
   -- git
   -- slctd
-
+  'UltraDark'                              , -- 
+  -- white
+  'BlueDolphin'                            , -- 
   -- 
   -- phase 03
   -- 
