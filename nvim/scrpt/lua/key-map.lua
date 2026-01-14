@@ -1453,7 +1453,7 @@ keymap__('x', '<c-n>', ':lua v.Srch.srch_7_slctd__srch_nxt("b")<cr>')
 -- keymap__('x', 'xx', ':lua v.Srch.srch_7_slctd__srch_nxt('b')<cr>')
 
 -- srch rpl one > ynk, nxt
-keymap__('x', '<c-p>', 'lua: v.Slctd.__rpl_7_srch_nxt()')
+keymap__('x', '<c-p>', ':lua v.Slctd.__rpl_7_srch_nxt()<cr>')
 
 -- srch h swtch
 keymap__('x', 'M', 'lua: v.Srch.str__h_swtch()')
