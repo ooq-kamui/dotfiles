@@ -479,7 +479,7 @@ keymap__('n', '<down>', '<c-e>')
 -- 
 
 -- slct
--- keymap__('n', 'I', 'v')
+-- keymap__('n', 'xx', 'v')
 
 -- slctd __ word
 keymap__('n', 'i', v.Slctd.str__word)

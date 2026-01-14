@@ -4,13 +4,8 @@
 
 ## nvim
 
-tree-sitter, markdown
-
-x n: case: line mlt: esc
-
-x c-w, case: line mlt, esc
-
-key: n i: case: line_end_in and space and line nxt space
+x N: cursor mv __ word end, logic mod
+- str len count
 
 plg-mng
 - lazy

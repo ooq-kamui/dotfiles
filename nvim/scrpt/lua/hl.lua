@@ -89,7 +89,8 @@ hl__(0, 'Title'         , {fg = 'cyan'        , bg = 'none'       })
 
 vim.api.nvim_create_autocmd({'FileType'}, { pattern  = {'markdown'},
   callback = function ()
-    hl__(0, 'MdCr'      , {fg = 'none'        , bg = 'darkblue'   })
+    hl__(0, 'markdownError' , {fg = 'none'        , bg = 'none'       })
+    hl__(0, 'MdCr'          , {fg = 'none'        , bg = 'darkblue'   })
     match_id = vf.matchadd('MdCr', '  $', 10)
   end,
 })

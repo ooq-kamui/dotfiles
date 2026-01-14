@@ -60,7 +60,6 @@ scheme_lst.win.recommend.h = {
   'Desert (Gogh)'                          , -- 
   'DjangoSmooth'                           , -- 
   'DotGov'                                 , -- 
-  'Dracula (Gogh)'                         , -- 
   'Dracula (base16)'                       , -- 
   'Dracula'                                , -- 
   'Dracula+'                               , -- 
@@ -214,6 +213,7 @@ scheme_lst.win.excld = {
   -- 
   -- dir blue
   -- git
+  'Dracula (Gogh)'                         , -- 
   -- slctd
   'UltraDark'                              , -- 
   -- white

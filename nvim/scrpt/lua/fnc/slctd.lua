@@ -109,7 +109,6 @@ function v.Slctd.str__cursor_f_space()
   end
 
   if v.Cursor.is_line_str_side_r__space() then
-
     -- v.Cmd.nml('v')
     v.Slctd.str__cursor_c_char()
     v.Cursor.__mv_line_end_in()
@@ -117,7 +116,9 @@ function v.Slctd.str__cursor_f_space()
   else
     -- v.Cmd.nml('v')
     v.Slctd.str__cursor_c_char()
-    v.Cmd.nml('wh')
+
+    v.Slctd.str__expnd_space_f()
+    -- v.Cmd.nml('wh')
   end
 end
 
@@ -280,12 +281,16 @@ end
 function v.Slctd.str__expnd_space_f() -- range
 
   v.Slctd.__ltst()
+
+  if v.Cursor.is_col__line_end_inr() then return end
+
   v.Cmd.nml('wh')
 end
 
 function v.Slctd.str__expnd_srch() -- range
 
   v.Slctd.__ltst()
+
   v.Cursor.__mv_by_srch_str('f')
 
   v.Slctd.str__expnd_word_f()
@@ -1284,6 +1289,14 @@ end
 function v.Slctd.box__mv(lr) -- range
 
   v.Slctd.__ltst()
+
+  if lr == 'l' and v.Cursor.is_col__line_top0()    then return end
+  if lr == 'r' and v.Cursor.is_col__line_end_inr() then return end
+
+  -- dev anchor
+  -- if v.Slctd.is_cursor_col__top0() then
+  --   
+  -- end
 
   local cmd_nml = v.Char.lr_2_normal_cmd(lr)
   v.Cmd.nml('o' .. cmd_nml)

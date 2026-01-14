@@ -172,6 +172,10 @@ function v.Srch.str__slctd_str() -- range
 
   v.Slctd.__ltst()
 
+  if v.Slctd.is_line__mlt() then
+    return
+  end
+
   local str = v.Slctd.str()
   v.Srch.str__(str, bl.f)
   v.Slctd.__cancel()

@@ -1197,6 +1197,7 @@ end
 function v.Cursor.line_str_side_r()
 
   local line_r = v.Cursor.line_str():sub(vf.col('.') + 1)
+  -- v.Log.log('>' .. line_r .. '<')
   return line_r
 end
 
