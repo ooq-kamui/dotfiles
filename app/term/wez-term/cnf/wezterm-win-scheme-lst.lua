@@ -6,8 +6,8 @@ local scheme_lst = {}
 scheme_lst.win = {}
 scheme_lst.win.recommend = {}
 scheme_lst.win.recommend.h = {
-  -- hh                                      -- slctd
-  'ChallengerDeep'                         , -- white
+  -- hh                                      -- 
+  'ChallengerDeep'                         , -- 
   'Desert'                                 , -- 
   'Dracula (Official)'                     , -- 
   'Ef-Rosa'                                , -- 
@@ -26,6 +26,7 @@ scheme_lst.win.recommend.h = {
   'Tinacious Design (Dark)'                , -- 
   'Wzoreck (Gogh)'                         , -- 
   'synthwave-everything'                   , -- 
+  'Purple Rain'                            , -- 
   -- hh slctd ~
   'Modus-Vivendi-Tinted'                   , -- 
   'Tokyo Night Moon'                       , -- 
@@ -137,7 +138,6 @@ scheme_lst.win.recommend.h = {
   'Poimandres Storm'                       , -- 
   'Poimandres'                             , -- 
   'Purple People Eater (Gogh)'             , -- 
-  'Purple Rain'                            , -- 
   'PurplePeopleEater (Gogh)'               , -- 
   'Rebecca (base16)'                       , -- 
   'Red Alert (Gogh)'                       , -- 
@@ -196,7 +196,7 @@ scheme_lst.win.recommend.h = {
   'nightfox'                               , -- 
   'niji'                                   , -- 
   'rebecca'                                , -- 
-  'seoulbones_dark'                        , -- white
+  'seoulbones_dark'                        , -- 
   'synthwave'                              , -- 
   'tender (base16)'                        , -- 
   'tokyonight'                             , -- 
