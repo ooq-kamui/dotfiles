@@ -53,6 +53,11 @@ plg
 - noice.nvim
 
 
+## skr
+
+domain buy
+
+
 ## skr-vps
 
 web-svr rpl
