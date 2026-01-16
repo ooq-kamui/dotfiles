@@ -4,9 +4,6 @@
 
 ## nvim
 
-x N: cursor mv __ word end, logic mod
-- str len count
-
 plg-mng
 - lazy
   - ref https://lazy.folke.io/installation

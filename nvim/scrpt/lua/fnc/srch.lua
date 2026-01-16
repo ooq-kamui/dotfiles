@@ -19,6 +19,7 @@ function v.Srch.srch(ptn, opt, line_num)
   if line_num_st == 0 then
     ret = bl.f
   end
+
   return ret
 end
 

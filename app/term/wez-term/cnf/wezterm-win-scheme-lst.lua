@@ -27,9 +27,7 @@ scheme_lst.win.recommend.h = {
   'Wzoreck (Gogh)'                         , -- 
   'synthwave-everything'                   , -- 
   'Purple Rain'                            , -- 
-  -- hh slctd ~
-  'Modus-Vivendi-Tinted'                   , -- 
-  'Tokyo Night Moon'                       , -- 
+  'IR_Black'                               , -- 
   -- h
   'Abernathy'                              , -- 
   'Aci (Gogh)'                             , -- 
@@ -75,10 +73,8 @@ scheme_lst.win.recommend.h = {
   'Eighties (dark) (terminal.sexy)'        , -- 
   'Erebus (terminal.sexy)'                 , -- 
   'Espresso (Gogh)'                        , -- 
-  'Everblush (Gogh)'                       , -- 
   'Fairy Floss (Gogh)'                     , -- 
   'Fairy Floss Dark (Gogh)'                , -- 
-  'FairyFloss (Gogh)'                      , -- 
   'FairyFlossDark (Gogh)'                  , -- 
   'Fairyfloss'                             , -- 
   'Flat (base16)'                          , -- 
@@ -89,7 +85,6 @@ scheme_lst.win.recommend.h = {
   'Horizon Dark (Gogh)'                    , -- 
   'Humanoid dark (base16)'                 , -- 
   'Hurtado'                                , -- 
-  'IR_Black'                               , -- 
   'Ibm3270 (Gogh)'                         , -- 
   'Ir Black (Gogh)'                        , -- 
   'IrBlack (Gogh)'                         , -- 
@@ -141,11 +136,9 @@ scheme_lst.win.recommend.h = {
   'PurplePeopleEater (Gogh)'               , -- 
   'Rebecca (base16)'                       , -- 
   'Red Alert (Gogh)'                       , -- 
-  'Rosé Pine Moon (base16)'                , -- 
   'Selenized Dark (Gogh)'                  , -- 
   'Seti (Gogh)'                            , -- 
   'Seti UI (base16)'                       , -- 
-  'Silk Dark (base16)'                     , -- 
   'Simple Rainbow (terminal.sexy)'         , -- 
   'Snazzy (Gogh)'                          , -- 
   'Snazzy'                                 , -- 
@@ -204,6 +197,12 @@ scheme_lst.win.recommend.h = {
   'tokyonight_moon'                        , -- 
   'tokyonight_night'                       , -- 
   'zenburn (terminal.sexy)'                , -- 
+  -- ~~
+  -- slctd
+  'Modus-Vivendi-Tinted'                   , -- 
+  'Tokyo Night Moon'                       , -- 
+  -- git
+  'Everblush (Gogh)'                       , -- 
 }
 scheme_lst.win.recommend.m = {}
 scheme_lst.win.check = {}
@@ -213,11 +212,15 @@ scheme_lst.win.excld = {
   -- 
   -- dir blue
   -- git
+  'FairyFloss (Gogh)'                      , -- 
   'Dracula (Gogh)'                         , -- 
+  'Rosé Pine Moon (base16)'                , -- 
   -- slctd
   'UltraDark'                              , -- 
   -- white
   'BlueDolphin'                            , -- 
+  -- etc
+  'Silk Dark (base16)'                     , -- 
   -- 
   -- phase 03
   -- 

@@ -291,9 +291,7 @@ function v.Slctd.str__expnd_srch() -- range
 
   v.Slctd.__ltst()
 
-  v.Cursor.__mv_by_srch_str('f')
-
-  v.Slctd.str__expnd_word_f()
+  v.Cursor.__mv_by_srch_str('f', bl.t)
 end
 
 function v.Slctd.str__expnd_ptn_f(ptn) -- range
@@ -1199,7 +1197,7 @@ function v.Slctd.line__ins_cmnt_1() -- range
   -- v.Slctd.__ltst() -- ??
 
   local slctd_line_s_num = v.Slctd.line_s_num()
-  v.Log.val(slctd_line_s_num)
+  -- v.Log.val(slctd_line_s_num)
 
   v.Cursor.__mv_by_line_num(slctd_line_s_num)
   v.Cmd.nml('^')
@@ -1290,17 +1288,21 @@ function v.Slctd.box__mv(lr) -- range
 
   v.Slctd.__ltst()
 
+  -- dev anchor
+  if     lr == 'l' then
+    v.Slctd.cursor__mv_edge_l()
+  elseif lr == 'r' then
+    v.Slctd.cursor__mv_edge_r()
+  end
+
   if lr == 'l' and v.Cursor.is_col__line_top0()    then return end
   if lr == 'r' and v.Cursor.is_col__line_end_inr() then return end
 
-  -- dev anchor
-  -- if v.Slctd.is_cursor_col__top0() then
-  --   
-  -- end
-
   local cmd_nml = v.Char.lr_2_normal_cmd(lr)
-  v.Cmd.nml('o' .. cmd_nml)
-  v.Cmd.nml('o' .. cmd_nml)
+  v.Slctd.cursor__mv_edge_tgl()
+  v.Cmd.nml(cmd_nml)
+  v.Slctd.cursor__mv_edge_tgl()
+  v.Cmd.nml(cmd_nml)
 end
 
 function v.Slctd.box_width__1() -- range

@@ -1209,8 +1209,6 @@ keymap__('x', 'gj', ':lua v.Slctd.cursor__mv_file_edge("j")<cr>')
 
 -- slctd expnd srch
 keymap__('x', 'N'    , ':lua v.Slctd.str__expnd_srch()<cr>')
--- keymap__('x', '<c-f>', ':lua v.Slctd.str__expnd_srch()<cr>')
--- keymap__('x', 'm', ':lua v.Slctd.str__expnd_srch()<cr>')
 
 -- slctd expnd forward swtch
 keymap__('x', 'f', ':lua v.Slctd.str__expnd_f_swtch()<cr>')
@@ -1298,7 +1296,7 @@ keymap__('x', '-'    , ':lua v.Slctd.__fil("-")<cr>')
 keymap__('x', '<bar>', v.Slctd.__fil_bar)
 
 -- slctd str space __ under score
-keymap__('x', '_', v.Slctd.str_space__underscore)
+-- keymap__('x', 'xx', ':lua v.Slctd.str_space__underscore()<cr>')
 
 -- line __ join per line
 keymap__('x', 'J', ':lua v.Slctd.line__join_per_line(3)')
