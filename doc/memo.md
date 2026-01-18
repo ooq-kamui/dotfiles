@@ -8,8 +8,6 @@ plg-mng
 - lazy
   - ref https://lazy.folke.io/installation
 
-fzf-lua
-
 
 ## mac
 
@@ -50,17 +48,9 @@ plg
 - noice.nvim
 
 
-## skr
-
-domain buy
-
-
 ## skr-vps
 
 web-svr rpl
-
-
-## skr-vps
 
 alm setting at skr console
 - confirm
