@@ -4,9 +4,7 @@
 
 ## nvim
 
-plg-mng
-- lazy
-  - ref https://lazy.folke.io/installation
+fzf edit history, err
 
 
 ## mac
@@ -32,7 +30,9 @@ game cre
 
 ## nvim
 
-fzf edit history, err
+plg-mng
+- lazy
+  - ref https://lazy.folke.io/installation
 
 plg
 - blink.cmp

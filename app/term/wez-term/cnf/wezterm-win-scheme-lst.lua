@@ -37,7 +37,6 @@ scheme_lst.win.recommend.h = {
   'Argonaut (Gogh)'                        , -- 
   'Atom'                                   , -- 
   'Aura (Gogh)'                            , -- 
-  'Ayu Mirage (Gogh)'                      , -- 
   'AyuDark (Gogh)'                         , -- 
   'AyuMirage (Gogh)'                       , -- 
   'Bamboo'                                 , -- 
@@ -56,7 +55,6 @@ scheme_lst.win.recommend.h = {
   'Cyberdyne'                              , -- 
   'Decaf (base16)'                         , -- 
   'Default (dark) (terminal.sexy)'         , -- 
-  'Desert (Gogh)'                          , -- 
   'DjangoSmooth'                           , -- 
   'DotGov'                                 , -- 
   'Dracula (base16)'                       , -- 
@@ -218,7 +216,10 @@ scheme_lst.win.excld = {
   -- slctd
   'UltraDark'                              , -- 
   -- white
+  'Ayu Mirage (Gogh)'                      , -- 
   'BlueDolphin'                            , -- 
+  -- cmd line
+  'Desert (Gogh)'                          , -- 
   -- etc
   'Silk Dark (base16)'                     , -- 
   -- 
