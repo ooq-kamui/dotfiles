@@ -1209,6 +1209,7 @@ keymap__('x', 'gj', ':lua v.Slctd.cursor__mv_file_edge("j")<cr>')
 
 -- slctd expnd srch
 keymap__('x', 'N'    , ':lua v.Slctd.str__expnd_srch()<cr>')
+keymap__('x', 'F'    , ':lua v.Slctd.str__expnd_srch()<cr>')
 
 -- slctd expnd forward swtch
 keymap__('x', 'f', ':lua v.Slctd.str__expnd_f_swtch()<cr>')
