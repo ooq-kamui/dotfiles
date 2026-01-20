@@ -56,7 +56,6 @@ scheme_lst.win.recommend.h = {
   'Chalk (dark) (terminal.sexy)'           , -- 
   'Cyberdyne'                              , -- 
   'Decaf (base16)'                         , -- 
-  'Default (dark) (terminal.sexy)'         , -- 
   'DjangoSmooth'                           , -- 
   'DotGov'                                 , -- 
   'Dracula (base16)'                       , -- 
@@ -223,6 +222,7 @@ scheme_lst.win.excld = {
   'Desert (Gogh)'                          , -- 
   -- etc
   'Silk Dark (base16)'                     , -- 
+  'Default (dark) (terminal.sexy)'         , -- 
   -- 
   -- phase 03
   -- 
