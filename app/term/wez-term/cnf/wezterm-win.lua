@@ -23,6 +23,16 @@ config.use_ime = true
 -- env : win : ofc
 -- 
 
+config.wsl_domains = {
+  {
+    name = 'wsl:alm-10-my-01',
+    distribution = 'alm-10-my-01',
+    default_cwd = '~',
+  },
+}
+
+config.default_domain = 'wsl:alm-10-my-01'
+
 config.default_prog = {'wsl'}
 -- config.default_prog = {'pwsh'}
 -- config.default_prog = {'fish'}
