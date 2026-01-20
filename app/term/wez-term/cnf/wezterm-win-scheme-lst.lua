@@ -28,6 +28,8 @@ scheme_lst.win.recommend.h = {
   'synthwave-everything'                   , -- 
   'Purple Rain'                            , -- 
   'IR_Black'                               , -- 
+  -- h ~
+  'Nocturnal Winter'                       , -- 
   -- h
   'Abernathy'                              , -- 
   'Aci (Gogh)'                             , -- 
@@ -112,7 +114,6 @@ scheme_lst.win.recommend.h = {
   'NightOwl (Gogh)'                        , -- 
   'Nightfly (Gogh)'                        , -- 
   'NightlionV2 (Gogh)'                     , -- 
-  'Nocturnal Winter'                       , -- 
   'Nord (base16)'                          , -- 
   'Nucolors (terminal.sexy)'               , -- 
   'Obsidian (Gogh)'                        , -- 
