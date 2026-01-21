@@ -28,6 +28,7 @@ scheme_lst.win.recommend.h = {
   'synthwave-everything'                   , -- 
   'Purple Rain'                            , -- 
   'IR_Black'                               , -- 
+  'TomorrowNightBlue (Gogh)'               , -- 
   -- h ~
   'Nocturnal Winter'                       , -- 
   -- h
@@ -157,7 +158,6 @@ scheme_lst.win.recommend.h = {
   'Tomorrow Night Blue'                    , -- 
   'Tomorrow Night Bright (Gogh)'           , -- 
   'Tomorrow Night Bright'                  , -- 
-  'TomorrowNightBlue (Gogh)'               , -- 
   'TomorrowNightBright (Gogh)'             , -- 
   'TomorrowNightEighties (Gogh)'           , -- 
   'UltraViolent'                           , -- 

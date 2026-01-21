@@ -914,8 +914,8 @@ keymap__('n', ':fr', ':lua v.Sys.ruff_by_slf()')
 keymap__('n', 'rh', v.Win.__splt_h)
 
 -- win ( buf ) splt v
-keymap__('n', 'r:', v.Win.__splt_v)
 keymap__('n', 'ry', v.Win.__splt_v)
+-- keymap__('n', 'r:', v.Win.__splt_v)
 -- keymap__('n', 'rv', v.Win.__splt_v)
 
 -- win ( buf ) size w __ +
