@@ -5,6 +5,7 @@
 ## nvim
 
 fzf edit history, err
+- v.Str.to_num()
 
 
 ## mac

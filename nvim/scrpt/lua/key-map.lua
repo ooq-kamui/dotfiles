@@ -1353,9 +1353,10 @@ end, {expr = bl.t})
 keymap__('x', 'W', v.Slctd.str_edge_out_char__type_ch)
 
 -- slctd str edge out __ ins space
-keymap__('x', 'I'    , v.Slctd.str_edge_out__ins_space)
--- keymap__('x', 'H'    , v.Slctd.str_edge_out__ins_space)
--- keymap__('x', 'O'    , v.Slctd.str_edge_out__ins_space)
+keymap__('x', 'I'    , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
+keymap__('x', 'C'    , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
+-- keymap__('x', 'H'    , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
+-- keymap__('x', 'O'    , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
 
 -- slctd str edge out __ ins markdown strikethrough
 keymap__('x', '~', v.Slctd.str_edge_out__ins_markdown_strikethrough)
@@ -1455,7 +1456,7 @@ keymap__('x', '<c-n>', ':lua v.Srch.srch_7_slctd__srch_nxt("b")<cr>')
 keymap__('x', '<c-p>', ':lua v.Slctd.__rpl_7_srch_nxt()<cr>')
 
 -- srch h swtch
-keymap__('x', 'M', 'lua: v.Srch.str__h_swtch()')
+keymap__('x', 'M', ':lua v.Srch.str__h_swtch()')
 
 -- rpl ( cmd )
 keymap__('x', ':s', function()

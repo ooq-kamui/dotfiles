@@ -120,8 +120,6 @@ function v.Cursor.__mv_by_line_num(line_num)
   local win_id = 0 -- crnt
   local cursor = vim.api.nvim_win_get_cursor(win_id)
   local cursor_col_num = cursor[2]
-  -- v.Log.val(line_num)
-  -- v.Log.val(cursor_col_num)
   vim.api.nvim_win_set_cursor(win_id, {line_num, cursor_col_num})
 
   -- v.Cmd.nml(line_num .. 'G')
@@ -136,7 +134,7 @@ end
 
 function v.Cursor.__mv_by_line_info(line_info)
 
-  v.log = line_info
+  -- v.log = line_info
 
   local line_num = v.Line.num_by_Line_info(line_info)
   v.Cursor.__mv_by_line_num(line_num)
