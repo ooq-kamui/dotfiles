@@ -45,7 +45,6 @@ function v.Str.sub_by_byte(str, byte_s, byte_e) -- col : 1 start
   return r_str
 end
 
--- dev anchor
 function v.Str.sub_by_col(str, col_s, col_e) -- col : 1 start
 
   local len    = col_e - col_s + 1
@@ -98,7 +97,6 @@ function v.Str.srch_idx_by_lua(str, ptn, srch_s_idx)
   return s_idx, e_idx
 end
 
--- dev anchor, rpl
 function v.Str.srch_idx_by_vim(str, ptn, idx) -- alias
 
   local r_idx = vf.match(str, ptn, idx)
@@ -227,6 +225,14 @@ function v.Str.drct_turn(drct)
   end
 
   return drct_turn
+end
+
+-- str num
+
+function v.Str.to_num(num_str)
+
+  local num = tonumber(num_str)
+  return num
 end
 
 -- str cnd

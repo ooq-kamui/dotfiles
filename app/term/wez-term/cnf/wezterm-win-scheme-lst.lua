@@ -8,7 +8,6 @@ scheme_lst.win.recommend = {}
 scheme_lst.win.recommend.h = {
   -- hh                                      -- 
   'ChallengerDeep'                         , -- 
-  'Desert'                                 , -- 
   'Dracula (Official)'                     , -- 
   'Ef-Rosa'                                , -- 
   'Grey-green'                             , -- 
@@ -40,7 +39,6 @@ scheme_lst.win.recommend.h = {
   'Argonaut (Gogh)'                        , -- 
   'Atom'                                   , -- 
   'Aura (Gogh)'                            , -- 
-  'AyuDark (Gogh)'                         , -- 
   'AyuMirage (Gogh)'                       , -- 
   'Bamboo'                                 , -- 
   'Banana Blueberry'                       , -- 
@@ -75,7 +73,6 @@ scheme_lst.win.recommend.h = {
   'Espresso (Gogh)'                        , -- 
   'Fairy Floss (Gogh)'                     , -- 
   'Fairy Floss Dark (Gogh)'                , -- 
-  'FairyFlossDark (Gogh)'                  , -- 
   'Fairyfloss'                             , -- 
   'Flat (base16)'                          , -- 
   'Framer (base16)'                        , -- 
@@ -137,7 +134,6 @@ scheme_lst.win.recommend.h = {
   'Red Alert (Gogh)'                       , -- 
   'Selenized Dark (Gogh)'                  , -- 
   'Seti (Gogh)'                            , -- 
-  'Seti UI (base16)'                       , -- 
   'Simple Rainbow (terminal.sexy)'         , -- 
   'Snazzy (Gogh)'                          , -- 
   'Snazzy'                                 , -- 
@@ -149,7 +145,6 @@ scheme_lst.win.recommend.h = {
   'SynthwaveAlpha'                         , -- 
   'Teerb (Gogh)'                           , -- 
   'Teerb'                                  , -- 
-  'Tender (Gogh)'                          , -- 
   'Tokyo Night (Gogh)'                     , -- 
   'Tokyo Night Storm (Gogh)'               , -- 
   'Tokyo Night Storm'                      , -- 
@@ -213,12 +208,17 @@ scheme_lst.win.excld = {
   'FairyFloss (Gogh)'                      , -- 
   'Dracula (Gogh)'                         , -- 
   'Rosé Pine Moon (base16)'                , -- 
+  'Tender (Gogh)'                          , -- 
+  'Seti UI (base16)'                       , -- 
   -- slctd
   'UltraDark'                              , -- 
   -- white
   'Ayu Mirage (Gogh)'                      , -- 
+  'AyuDark (Gogh)'                         , -- 
   'BlueDolphin'                            , -- 
+  'FairyFlossDark (Gogh)'                  , -- 
   -- cmd line
+  'Desert'                                 , -- 
   'Desert (Gogh)'                          , -- 
   -- etc
   'Silk Dark (base16)'                     , -- 

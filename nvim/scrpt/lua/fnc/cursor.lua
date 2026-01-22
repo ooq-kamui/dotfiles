@@ -134,8 +134,6 @@ end
 
 function v.Cursor.__mv_by_line_info(line_info)
 
-  -- v.log = line_info
-
   local line_num = v.Line.num_by_Line_info(line_info)
   v.Cursor.__mv_by_line_num(line_num)
 end
@@ -224,6 +222,7 @@ end
 function v.Cursor.__mv_word_b()
 
   local l_char = v.Cursor.l_char()
+  -- v.Log.log(l_char)
 
   if     v.Cursor.is_col__line_top0() then
     v.Cursor.__mv_u_line_end()
@@ -234,11 +233,23 @@ function v.Cursor.__mv_word_b()
   elseif v.Cursor.is_col__line_top1() then
     v.Cursor.__mv_line_top0()
 
-  elseif v.Char.is__symbol(l_char) then
-    v.Cursor.__mv_char_b()
+  -- elseif v.Char.is__symbol(l_char) then -- case mb: ng
+  --   v.Cursor.__mv_char_b()
 
   else
     v.Cmd.nml('b')
+  end
+end
+
+function v.Cursor.__mv_word_b_pre() -- use not
+
+  local c_char = v.Cursor.c_char()
+  local l_char = v.Cursor.r_char()
+
+  if v.Str.is__ptn(c_char, ' ') and not v.Str.is__ptn(l_char, ' ') then
+    v.Cmd.nml('gegel')
+  else
+    v.Cmd.nml('gel')
   end
 end
 
@@ -252,18 +263,6 @@ function v.Cursor.__mv_word_dlm_f()
 
   if not st then
     v.Cursor.__mv_line_end()
-  end
-end
-
-function v.Cursor.__mv_word_b_pre() -- use not
-
-  local c_char = v.Cursor.c_char()
-  local l_char = v.Cursor.r_char()
-
-  if v.Str.is__ptn(c_char, ' ') and not v.Str.is__ptn(l_char, ' ') then
-    v.Cmd.nml('gegel')
-  else
-    v.Cmd.nml('gel')
   end
 end
 

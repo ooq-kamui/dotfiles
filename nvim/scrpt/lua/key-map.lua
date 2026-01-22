@@ -825,7 +825,7 @@ keymap__('n', '<leader>I', ':lua v.Fzf.buf()<cr>')
 -- keymap__('n', '<leader>I', ':lua v.Fzf.buf()<cr>')
 
 -- fzf jmplst
-keymap__('n', '<leader>e', v.Fzf.jmplst)
+keymap__('n', '<leader>e', ':lua v.Fzf.jmplst()<cr>')
 
 -- fzf pth lst
 -- keymap__('n', '<leader>xx', ':FzfTagjmpByFile <cr>')
@@ -1427,8 +1427,8 @@ keymap__('x', ':mb', v.Slctd.line_mb__cnv)
 -- srch
 
 -- srch cmd
--- keymap__('x', '<leader>k', '"zy/<c-r>z')
-keymap__('x', '<leader>k', '/')
+keymap__('x', '<leader>k', '//e<left><left>')
+-- keymap__('x', '<leader>k', '"zy/<c-r>z') -- slctd str paste
 
 -- srch str set
 keymap__('x', 'n', ':lua v.Srch.str__slctd_str()<cr>')

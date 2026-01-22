@@ -4,13 +4,7 @@
 
 ## nvim
 
-fzf edit history, err
-- v.Str.to_num()
-
-
-## mac
-
-clp history, major
+x <c-j>: case: v-mode: line, str
 
 
 ## kiro

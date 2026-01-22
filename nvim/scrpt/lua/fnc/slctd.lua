@@ -349,7 +349,6 @@ function v.Slctd.str_expnd__init()
 end
 v.Slctd.str_expnd__init()
 
--- dev anchor
 function v.Slctd.str__expnd_char_pair() -- range
 
   v.Slctd.__ltst()

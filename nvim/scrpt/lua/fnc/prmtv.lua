@@ -25,6 +25,37 @@ function v.Var.is__emp(val)
   return bl.f
 end
 
+-- ar ( list )
+
+v.Ar = {}
+
+-- txt
+
+v.Txt = {}
+
+function v.Txt._to_ar(txt)
+
+  local line_ar  = vf.split(txt, '\\n')
+  return line_ar
+end
+
+v.Do = {}
+
+function v.Do.nothing() -- use by tst
+
+  -- v.Log.val( "do nothing.." )
+end
+
+-- int
+
+v.Int = {}
+
+function v.Int._2_str(num)
+
+  local num_str = vf.printf('%o', num)
+  return num_str
+end
+
 -- idx
 
 v.Idx = {}
@@ -52,37 +83,6 @@ function v.Idx.__dcl(idx, ar_len)
   end
 
   return r_idx
-end
-
--- int
-
-v.Int = {}
-
-function v.Int._2_str(num)
-
-  local num_str = vf.printf('%o', num)
-  return num_str
-end
-
--- ar ( list )
-
-v.Ar = {}
-
--- txt
-
-v.Txt = {}
-
-function v.Txt._to_ar(txt)
-
-  local line_ar  = vf.split(txt, '\\n')
-  return line_ar
-end
-
-v.Do = {}
-
-function v.Do.nothing() -- use by tst
-
-  -- v.Log.val( "do nothing.." )
 end
 
 v.Num = {}
