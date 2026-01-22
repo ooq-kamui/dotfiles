@@ -4,7 +4,9 @@
 
 ## nvim
 
-x <c-j>: case: v-mode: line, str
+x <c-j>:
+- case: str       : srch str __ slctd
+- case: line, vbox: cursor __ mv d
 
 
 ## kiro
