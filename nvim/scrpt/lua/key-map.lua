@@ -404,7 +404,7 @@ keymap__('n', '<c-s>', 'h')
 keymap__('n', 'f', v.Cursor.__mv_word_f)
 
 -- cursor mv word - back
-keymap__('n', 'o', v.Cursor.__mv_word_b)
+keymap__('n', 'o', ':lua v.Cursor.__mv_word_b()<cr>')
 
 -- cursor mv word - back pre
 -- keymap__('n', 'xx', v.Cursor.__mv_word_b_pre)
@@ -1076,8 +1076,11 @@ keymap__('x', '<c-c>', '<esc>')
 keymap__('x', '<c-d>', '<esc>')
 keymap__('x', '<c-e>', '<esc>')
 keymap__('x', '<c-f>', '<esc>')
+keymap__('x', '<c-g>', '<esc>')
 keymap__('x', '<c-h>', '<esc>')
 keymap__('x', '<c-i>', '<esc>')
+keymap__('x', '<c-j>', '<esc>')
+keymap__('x', '<c-k>', '<esc>')
 keymap__('x', '<c-l>', '<esc>')
 keymap__('x', '<c-m>', '<esc>')
 keymap__('x', '<c-n>', '<esc>')
@@ -1086,11 +1089,13 @@ keymap__('x', '<c-p>', '<esc>')
 keymap__('x', '<c-q>', '<esc>')
 keymap__('x', '<c-r>', '<esc>')
 keymap__('x', '<c-s>', '<esc>')
+keymap__('x', '<c-t>', '<esc>')
 keymap__('x', '<c-u>', '<esc>')
 keymap__('x', '<c-v>', '<esc>')
 keymap__('x', '<c-w>', '<esc>')
 keymap__('x', '<c-x>', '<esc>')
 keymap__('x', '<c-y>', '<esc>')
+keymap__('x', '<c-z>', '<esc>')
 
 keymap__('x', 'gb', '<esc>')
 keymap__('x', 'gg', '<esc>')
@@ -1139,10 +1144,10 @@ keymap__('x', '<leader>Z', '<esc>')
 
 
 -- mode ch line
-keymap__('x', 'i', v.Slctd.mode__tgl)
+keymap__('x', 'i', ':lua v.Slctd.mode__tgl()<cr>')
 
 -- mode ch visual box
-keymap__('x', 'v', v.Slctd.mode_state__swtch)
+keymap__('x', 'v', ':lua v.Slctd.mode_state__swtch()<cr>')
 
 -- file srch ( fzf )
 -- keymap__('x', '<leader>xx', '"zy:FzfFile <c-r>z')
@@ -1180,7 +1185,13 @@ keymap__('x', '<c-h>', ':lua v.Slctd.str__reduce_dlm_l("_")<cr>')
 -- keymap__('x', 'xx', 'wh')
 
 -- cursor mv line
-keymap__('x', '<c-j>', '10j')
+keymap__('x', '<c-j>', function()
+  if v.Mode.is__str() then
+    return ':lua v.Srch.str__slctd_str()<cr>'
+  else
+    return '10j'
+  end
+end, {expr = bl.t})
 keymap__('x', '<c-k>', '10k')
 
 -- cursor mv jmp
@@ -1511,21 +1522,21 @@ keymap__('x', ':r', v.Sys.sh_by_slctd_line)
 
 -- sys cmd math by slctd line
 
-keymap__('x', ':ma', v.Sys.math_by_slctd_line)
+keymap__('x', ':ma', ':lua v.Sys.math_by_slctd_line()<cr>')
 
 -- sys cmd opn
 
 -- sys cmd opn app
-keymap__('x', 'go', v.Sys.opn_app_by_slctd_line)
+keymap__('x', 'go', ':lua v.Sys.opn_app_by_slctd_line()<cr>')
 
 -- sys cmd opn ggl srch
-keymap__('x', 'ggl', v.Sys.opn_ggl_srch_by_slctd_str)
+keymap__('x', 'ggl', ':lua v.Sys.opn_ggl_srch_by_slctd_str()<cr>')
 
 -- sys cmd opn youtube video_id
-keymap__('x', 'gy', v.Sys.opn_yt_by_slctd_str)
+keymap__('x', 'gy', ':lua v.Sys.opn_yt_by_slctd_str()<cr>')
 
 -- trns
-keymap__('x', 'r', v.Sys.trns_by_slctd_str)
+keymap__('x', 'r', ':lua v.Sys.trns_by_slctd_str()<cr>')
 
 -- cmd
 

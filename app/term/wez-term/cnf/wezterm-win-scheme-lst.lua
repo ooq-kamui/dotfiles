@@ -121,7 +121,6 @@ scheme_lst.win.recommend.h = {
   'Operator Mono Dark'                     , -- 
   'Overnight Slumber'                      , -- 
   'Oxocarbon Dark (Gogh)'                  , -- 
-  'PaleNightHC'                            , -- 
   'Papercolor Dark (Gogh)'                 , -- 
   'Paul Millr (Gogh)'                      , -- 
   'Peppermint (Gogh)'                      , -- 
@@ -217,6 +216,7 @@ scheme_lst.win.excld = {
   'AyuDark (Gogh)'                         , -- 
   'BlueDolphin'                            , -- 
   'FairyFlossDark (Gogh)'                  , -- 
+  'PaleNightHC'                            , -- 
   -- cmd line
   'Desert'                                 , -- 
   'Desert (Gogh)'                          , -- 

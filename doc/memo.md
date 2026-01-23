@@ -2,11 +2,9 @@
 # dotfiles
 
 
-## nvim
+## zenn
 
-x <c-j>:
-- case: str       : srch str __ slctd
-- case: line, vbox: cursor __ mv d
+spr mro
 
 
 ## kiro
