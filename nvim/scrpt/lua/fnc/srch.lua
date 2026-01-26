@@ -182,12 +182,6 @@ function v.Srch.str__slctd_str() -- range
   v.Slctd.__cancel()
 end
 
-function v.Srch.str__slctd_str_7__slct() -- range, use not
-
-  v.Srch.str__slctd_str()
-  v.Srch.__slct('f')
-end
-
 function v.Srch.__slct(drct)
 
   if     drct == 'f' then

@@ -1443,7 +1443,6 @@ keymap__('x', '<leader>k', '//e<left><left>')
 
 -- srch str set
 keymap__('x', 'n', ':lua v.Srch.str__slctd_str()<cr>')
--- keymap__('x', 'n', ':lua v.Srch.str__slctd_str_7__slct()<cr>')
 
 keymap__('x', 'e', function()
   if v.Mode.is__box() then
@@ -1454,6 +1453,7 @@ keymap__('x', 'e', function()
 end, {expr = bl.t})
 
 -- srch swtch
+-- dev anchor
 -- keymap__('x', 'n', ':lua v.Slctd.srch__swtch()<cr>')
 
 -- srch forward ( srch rpl skip )

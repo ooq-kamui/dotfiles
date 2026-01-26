@@ -1421,6 +1421,7 @@ end
 
 -- slctd etc
 
+-- dev anchor
 function v.Slctd.srch__swtch() -- srch, set or run
 
   if v.Slctd.is_str__line_mlt() then
@@ -1432,6 +1433,7 @@ function v.Slctd.srch__swtch() -- srch, set or run
 
       v.Slctd.__cancel()
       v.Srch.srch_7_slctd__srch_nxt("f")
+
     else
       v.Srch.str__slctd_str()
       -- v.Slctd.str__expnd_srch()
