@@ -2,9 +2,11 @@
 # dotfiles
 
 
-## zenn
+## nvim
 
-spr mro
+x n
+- slctd srch __ swtch
+  - case: line: slctd __ expnd
 
 
 ## kiro
