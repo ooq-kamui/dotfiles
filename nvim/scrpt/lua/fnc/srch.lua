@@ -184,12 +184,15 @@ end
 
 function v.Srch.__slct(drct)
 
-  if     drct == 'f' then
-    v.Cmd.nml('gn')
+  v.Slctd.__srch(drct)
 
-  elseif drct == 'b' then
-    v.Cmd.nml('gN')
-  end
+  -- todo: del
+  -- if     drct == 'f' then
+  --   v.Cmd.nml('gn')
+  -- 
+  -- elseif drct == 'b' then
+  --   v.Cmd.nml('gN')
+  -- end
 end
 
 -- refactoring fnc name re ?
@@ -201,15 +204,6 @@ function v.Srch.srch_7_slctd__srch_nxt(drct) -- srch rpl skip
   elseif drct == 'b' then
     v.Cmd.nml('`<hgN')
   end
-end
-
-function v.Srch._7_cursor__mv_srch_str_end_o() -- use not
-
-  local drct = 'f'
-  v.Srch.__slct(drct)
-  v.Cmd.esc()
-  v.Cmd.esc() -- dpl ?
-  v.Cursor.__mv_char_f()
 end
 
 function v.Srch.char(drct, char)
@@ -226,9 +220,8 @@ function v.Srch.char_bracket(drct)
   v.Srch.char(drct, char_bracket)
 end
 
-function v.Srch.str__h_swtch()
+function v.Srch.str__heading()
 
-  -- dev anchor
   local fnc_def_lang_lst = {
     'lua',
     'vim',
@@ -240,22 +233,22 @@ function v.Srch.str__h_swtch()
   }
 
   if     v.Buf.is_file_type__('markdown') then
-    v.Srch.str__markdown_h()
+    v.Srch.str__markdown_heading()
 
   elseif v.Tbl.is_in(vim.bo.filetype, fnc_def_lang_lst) then
     v.Srch.str__fnc_def()
 
-  else
-    v.Srch.str__markdown_h()
+  else -- default
+    v.Srch.str__markdown_heading()
   end
 end
 
-v.Srch.ptn.markdown_h = '^#\\+ '
+v.Srch.ptn.markdown_heading = '^#\\+ '
 
-function v.Srch.str__markdown_h()
+function v.Srch.str__markdown_heading()
 
   -- v.Srch.str__ptn('^#\\+ ')
-  v.Srch.str__ptn(v.Srch.ptn.markdown_h)
+  v.Srch.str__ptn(v.Srch.ptn.markdown_heading)
 end
 
 v.Srch.ptn.markdown_itm = '^ *- '

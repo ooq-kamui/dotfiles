@@ -308,16 +308,16 @@ keymap__('n', 'a', v.Buf.save)
 keymap__('n', ':o', ':Oil . ')
 
 -- opn tab prv
-keymap__('n', 'gi', v.Buf.opn_tab_prv)
+keymap__('n', 'gi', ':lua v.Buf.opn_tab_prv()<cr>')
 
 -- opn file srch  ( fzf )
-keymap__('n', '<leader>l', v.Fzf.file)
+keymap__('n', '<leader>l', ':lua v.Fzf.file()<cr>')
 
 -- opn file hstry ( fzf )
 keymap__('n', '<leader>L', ':FzfFileHstry<cr>')
 
 -- opn file rcnt ( ltst )
-keymap__('n', 'H', v.Buf.quit.rcnt_opn_re)
+keymap__('n', 'H', ':lua v.Buf.quit.rcnt_opn_re()<cr>')
 -- keymap__('n', 'S', v.Buf.quit.rcnt_opn_re)
 
 -- opn etc
@@ -602,10 +602,10 @@ keymap__('n', 'T', v.Cursor.__ins_tm)
 -- keymap__('n', 'xx', v.Cursor.__ins_line_buf_file_path)
 
 -- ins anchor
-keymap__('n', 'A', v.Cursor.__ins_line_anchor)
+keymap__('n', 'A', ':lua v.Cursor.__ins_line_anchor()<cr>')
 
 -- ins anchor, del
--- keymap__('n', 'xx', v.Cursor.__ins_line_anchor_7_del)
+-- keymap__('n', 'xx', ':lua v.Cursor.__ins_line_anchor_7_del()<cr>')
 
 -- ins markdown code
 -- keymap__('n', '<c-u>', ':lua v.Cursor.__ins_markdown_code()<cr>')
@@ -646,7 +646,7 @@ keymap__('n', 'ru', v.Cursor.line_end__dots_adjst)
 -- ins comment 1
 keymap__('n', '!', function()
   if v.Buf.is_file_type__('markdown') then
-    return ':lua v.Cursor.__ins_markdown_h()<cr>'
+    return ':lua v.Cursor.__ins_markdown_heading()<cr>'
   else
     return ':lua v.Cursor.__ins_cmnt_1("^")<cr>'
   end
@@ -654,7 +654,7 @@ end, {expr = bl.t})
 
 keymap__('n', '1', function()
   if v.Buf.is_file_type__('markdown') then
-    return ':lua v.Cursor.__ins_markdown_h()<cr>'
+    return ':lua v.Cursor.__ins_markdown_heading()<cr>'
   else
     return ':lua v.Cursor.__ins_cmnt_1("^")<cr>'
   end
@@ -662,7 +662,7 @@ end, {expr = bl.t})
 
 keymap__('n', '"', function()
   if v.Buf.is_file_type__('markdown') then
-    return ':lua v.Cursor.__ins_markdown_h()<cr>'
+    return ':lua v.Cursor.__ins_markdown_heading()<cr>'
   else
     return ':lua v.Cursor.__ins_cmnt_1("^")<cr>'
   end
@@ -784,7 +784,7 @@ keymap__('n', 'E', v.Srch.str__word1_tgl)
 -- keymap__('n', 'xx', ':lua v.Srch.char_bracket('f')<cr>')
 
 -- srch markdown h
--- keymap__('n', 'xx', v.Srch.str__h_swtch)
+-- keymap__('n', 'xx', ':lua v.Srch.str__heading()<cr>')
 
 -- srch markdown itm
 keymap__('n', ':i', v.Srch.str__markdown_itm)
@@ -1442,7 +1442,7 @@ keymap__('x', '<leader>k', '//e<left><left>')
 -- keymap__('x', '<leader>k', '"zy/<c-r>z') -- slctd str paste
 
 -- srch str set
-keymap__('x', 'n', ':lua v.Srch.str__slctd_str()<cr>')
+-- keymap__('x', 'n', ':lua v.Srch.str__slctd_str()<cr>')
 
 keymap__('x', 'e', function()
   if v.Mode.is__box() then
@@ -1454,10 +1454,11 @@ end, {expr = bl.t})
 
 -- srch swtch
 -- dev anchor
--- keymap__('x', 'n', ':lua v.Slctd.srch__swtch()<cr>')
+keymap__('x', 'n', ':lua v.Slctd.srch__swtch()<cr>')
 
 -- srch forward ( srch rpl skip )
--- keymap__('x', '<c-n>', ':lua v.Srch.srch_7_slctd__srch_nxt("f")<cr>')
+-- dev anchor
+-- keymap__('x', 'n'    , ':lua v.Srch.srch_7_slctd__srch_nxt("f")<cr>')
 keymap__('x', '<c-n>', ':lua v.Srch.srch_7_slctd__srch_nxt("b")<cr>')
 
 -- srch back
@@ -1466,8 +1467,8 @@ keymap__('x', '<c-n>', ':lua v.Srch.srch_7_slctd__srch_nxt("b")<cr>')
 -- srch rpl one > ynk, nxt
 keymap__('x', '<c-p>', ':lua v.Slctd.__rpl_7_srch_nxt()<cr>')
 
--- srch h swtch
-keymap__('x', 'M', ':lua v.Srch.str__h_swtch()')
+-- srch heading swtch
+keymap__('x', 'M', ':lua v.Srch.str__heading()')
 
 -- rpl ( cmd )
 keymap__('x', ':s', function()

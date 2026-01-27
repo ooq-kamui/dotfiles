@@ -515,7 +515,7 @@ function v.Cursor.__mv_block_out_swtch()
 
   if     v.Buf.is_file_type__in({'markdown'}) then
 
-    v.Srch.str__ptn(v.Srch.ptn.markdown_h)
+    v.Srch.str__ptn(v.Srch.ptn.markdown_heading)
     v.Cursor.__mv_by_srch_str('b')
 
   elseif v.Buf.is_file_type__in(block_type_bracket_list) then
@@ -539,10 +539,6 @@ function v.Cursor.__mv_fnc_out()
 
   local cmd_nml = '[m'
   v.Cmd.nml(cmd_nml)
-end
-
-function v.Cursor.__mv_markdown_h_out()
-
 end
 
 function v.Cursor.__mv_by_line_ruler(line_num, ruler_num)
@@ -747,7 +743,7 @@ end
 
 -- markdown
 
-function v.Cursor.__ins_markdown_h()
+function v.Cursor.__ins_markdown_heading()
 
   v.Cursor.__mv_line_top0()
   local top0_char = v.Cursor.c_char()
@@ -1135,7 +1131,7 @@ function v.Cursor.__ins_line_anchor()
   v.Cursor.line_indnt__crct()
 end
 
-function v.Cursor.__ins_line_anchor_7_del()
+function v.Cursor.__ins_line_anchor_7_del() -- use not
 
   -- v.Cursor.__ins_line_anchor()
   v.Cursor.__ins_line()

@@ -28,6 +28,7 @@ scheme_lst.win.recommend.h = {
   'Purple Rain'                            , -- 
   'IR_Black'                               , -- 
   'TomorrowNightBlue (Gogh)'               , -- 
+  'arcoiris'                               , -- 
   -- h ~
   'Nocturnal Winter'                       , -- 
   -- h
@@ -163,7 +164,6 @@ scheme_lst.win.recommend.h = {
   'Wombat (Gogh)'                          , -- 
   'Wombat'                                 , -- 
   'Zenburn (Gogh)'                         , -- 
-  'arcoiris'                               , -- 
   'ayu'                                    , -- 
   'catppuccin-macchiato'                   , -- 
   'catppuccin-mocha'                       , -- 

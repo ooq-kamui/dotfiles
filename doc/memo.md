@@ -2,13 +2,6 @@
 # dotfiles
 
 
-## nvim
-
-x n
-- slctd srch __ swtch
-  - case: line: slctd __ expnd
-
-
 ## kiro
 
 kiro-cli
@@ -26,6 +19,8 @@ game cre
 
 
 ## nvim
+
+fzf rslt, case: file same, win split
 
 plg-mng
 - lazy

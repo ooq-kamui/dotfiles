@@ -398,14 +398,6 @@ function v.Slctd.str__expnd_char_pair() -- range
   end
 end
 
-function v.Slctd.str__expnd_h() -- range
-
-  v.Slctd.__ltst()
-
-  v.Srch.str__h_swtch()
-  v.Slctd.str__expnd_srch()
-end
-
 -- slctd str __ reduce
 
 function v.Slctd.str__reduce_dlm_r(char) -- range
@@ -458,6 +450,31 @@ end
 
 function v.Slctd.str__(str) -- range -- todo dev
 
+end
+
+function v.Slctd.__srch(drct)
+
+  local cmd_nml = 'g'
+
+  if     drct == 'f' then
+    cmd_nml = cmd_nml .. 'n'
+
+  elseif drct == 'b' then
+    cmd_nml = cmd_nml .. 'N'
+  end
+
+  v.Cmd.nml(cmd_nml)
+end
+
+-- dev anchor
+function v.Slctd.__srch_nxt() -- dir forward only
+
+  v.Slctd.__ltst()
+  v.Slctd.cursor__mv_edge_r()
+  v.Slctd.__cancel()
+  v.Cursor.__mv_char_f()
+
+  v.Slctd.__srch('f')
 end
 
 -- slctd str __ rpl, srch nxt slctd
@@ -1055,9 +1072,6 @@ function v.Slctd.line_end_space__del() -- range
 
   -- v.Slctd.__ltst()
 
-  -- v.Log.val(vim.api.nvim_buf_get_mark(0, '<')[1])
-  -- v.Log.val(vim.api.nvim_buf_get_mark(0, '>')[1])
-
   for idx, line_num in pairs(v.Slctd.line_num_seq()) do
 
     v.Line.end_space__del(line_num)
@@ -1419,26 +1433,22 @@ function v.Slctd.box_cursor_r_space__crct() -- range
   end
 end
 
--- slctd etc
+-- slctd srch
 
--- dev anchor
 function v.Slctd.srch__swtch() -- srch, set or run
 
-  if v.Slctd.is_str__line_mlt() then
+  v.Slctd.__ltst()
+
+  if     v.Mode.is__line() then
 
     v.Slctd.str__expnd_srch()
 
+  elseif v.Slctd.is_str__srch_str() then
+  
+    v.Slctd.__srch_nxt()
+
   else
-    if v.Slctd.is_str__srch_str() then
-
-      v.Slctd.__cancel()
-      v.Srch.srch_7_slctd__srch_nxt("f")
-
-    else
-      v.Srch.str__slctd_str()
-      -- v.Slctd.str__expnd_srch()
-    end
-    -- v.Srch.str__slctd_str()
+    v.Srch.str__slctd_str()
   end
 end
 
