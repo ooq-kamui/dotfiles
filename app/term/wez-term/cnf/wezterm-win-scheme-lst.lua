@@ -31,7 +31,8 @@ scheme_lst.win.recommend.h = {
   'arcoiris'                               , -- 
   -- h ~
   'Nocturnal Winter'                       , -- 
-  -- h
+  'hardhacker'                             , -- 
+  -- h ( chk no )
   'Abernathy'                              , -- 
   'Aci (Gogh)'                             , -- 
   'Aco (Gogh)'                             , -- 
@@ -44,7 +45,6 @@ scheme_lst.win.recommend.h = {
   'Bamboo'                                 , -- 
   'Banana Blueberry'                       , -- 
   'Belge (terminal.sexy)'                  , -- 
-  'Borland'                                , -- 
   'Builtin Tango Dark'                     , -- 
   'Cai (Gogh)'                             , -- 
   'Catppuccin Macchiato (Gogh)'            , -- 
@@ -71,7 +71,6 @@ scheme_lst.win.recommend.h = {
   'Ef-Melissa-Dark'                        , -- 
   'Eighties (dark) (terminal.sexy)'        , -- 
   'Erebus (terminal.sexy)'                 , -- 
-  'Espresso (Gogh)'                        , -- 
   'Fairy Floss (Gogh)'                     , -- 
   'Fairy Floss Dark (Gogh)'                , -- 
   'Fairyfloss'                             , -- 
@@ -85,7 +84,6 @@ scheme_lst.win.recommend.h = {
   'Hurtado'                                , -- 
   'Ibm3270 (Gogh)'                         , -- 
   'Ir Black (Gogh)'                        , -- 
-  'IrBlack (Gogh)'                         , -- 
   'Kokuban (Gogh)'                         , -- 
   'Kolorit'                                , -- 
   'Materia (base16)'                       , -- 
@@ -97,7 +95,6 @@ scheme_lst.win.recommend.h = {
   'Mocha (dark) (terminal.sexy)'           , -- 
   'Modus-Vivendi'                          , -- 
   'Modus-Vivendi-Tritanopia'               , -- 
-  'Monokai (base16)'                       , -- 
   'Monokai (dark) (terminal.sexy)'         , -- 
   'Monokai (terminal.sexy)'                , -- 
   'Monokai Pro Ristretto (Gogh)'           , -- 
@@ -153,7 +150,6 @@ scheme_lst.win.recommend.h = {
   'Tomorrow Night Blue'                    , -- 
   'Tomorrow Night Bright (Gogh)'           , -- 
   'Tomorrow Night Bright'                  , -- 
-  'TomorrowNightBright (Gogh)'             , -- 
   'TomorrowNightEighties (Gogh)'           , -- 
   'UltraViolent'                           , -- 
   'VSCodeDark+ (Gogh)'                     , -- 
@@ -171,7 +167,6 @@ scheme_lst.win.recommend.h = {
   'deep'                                   , -- 
   'duskfox'                                , -- 
   'gooey (Gogh)'                           , -- 
-  'hardhacker'                             , -- 
   'iTerm2 Smoooooth'                       , -- 
   'iceberg-dark'                           , -- 
   'idleToes'                               , -- 
@@ -195,6 +190,8 @@ scheme_lst.win.recommend.h = {
   'Tokyo Night Moon'                       , -- 
   -- git
   'Everblush (Gogh)'                       , -- 
+  -- cmd line
+  'Monokai (base16)'                       , -- 
 }
 scheme_lst.win.recommend.m = {}
 scheme_lst.win.check = {}
@@ -204,6 +201,8 @@ scheme_lst.win.excld = {
   -- 
   -- dir blue
   -- git
+  'Espresso (Gogh)'                        , -- 
+  'IrBlack (Gogh)'                         , -- 
   'FairyFloss (Gogh)'                      , -- 
   'Dracula (Gogh)'                         , -- 
   'Rosé Pine Moon (base16)'                , -- 
@@ -212,14 +211,17 @@ scheme_lst.win.excld = {
   -- slctd
   'UltraDark'                              , -- 
   -- white
+  'Borland'                                , -- 
   'Ayu Mirage (Gogh)'                      , -- 
   'AyuDark (Gogh)'                         , -- 
   'BlueDolphin'                            , -- 
   'FairyFlossDark (Gogh)'                  , -- 
   'PaleNightHC'                            , -- 
   -- cmd line
+  'TomorrowNightBright (Gogh)'             , -- 
   'Desert'                                 , -- 
   'Desert (Gogh)'                          , -- 
+  'Monokai (base16)'                       , -- 
   -- etc
   'Silk Dark (base16)'                     , -- 
   'Default (dark) (terminal.sexy)'         , -- 

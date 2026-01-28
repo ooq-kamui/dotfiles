@@ -2,6 +2,11 @@
 # dotfiles
 
 
+## nvim
+
+`v__xxx()` ??
+
+
 ## kiro
 
 kiro-cli

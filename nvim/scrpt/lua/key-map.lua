@@ -498,7 +498,6 @@ keymap__('n', 'v', '<c-v>')
 
 -- slct re
 keymap__('n', 'rr', v.Slctd.__ltst)
--- keymap__('n', 'R' , v.Slctd.__ltst)
 
 -- ynk clr
 keymap__('n', '<c-c>', v.Rgstr.ynk__clr)
@@ -605,7 +604,7 @@ keymap__('n', 'T', v.Cursor.__ins_tm)
 keymap__('n', 'A', ':lua v.Cursor.__ins_line_anchor()<cr>')
 
 -- ins anchor, del
--- keymap__('n', 'xx', ':lua v.Cursor.__ins_line_anchor_7_del()<cr>')
+-- keymap__('n', 'xx', ':lua v.Cursor.__ins_line_anchor__del()<cr>')
 
 -- ins markdown code
 -- keymap__('n', '<c-u>', ':lua v.Cursor.__ins_markdown_code()<cr>')
@@ -797,6 +796,9 @@ keymap__('n', 'N', v.Srch.str__prv_tgl)
 
 -- srch rpl one > ynk nxt ( only srch )
 keymap__('n', '<c-p>', ':lua v.Srch.__slct("f")<cr>')
+
+-- srch keymap__()
+keymap__('n', 'M'    , [[/keymap__('n', ']])
 
 -- rpl ( cmd )
 keymap__('n', ':s', ':%s/<c-r>//xxx/g')
@@ -1454,18 +1456,16 @@ end, {expr = bl.t})
 
 -- srch swtch
 -- dev anchor
-keymap__('x', 'n', ':lua v.Slctd.srch__swtch()<cr>')
+keymap__('x', 'n', ':lua v.Slctd.__srch_swtch()<cr>')
 
 -- srch forward ( srch rpl skip )
--- dev anchor
--- keymap__('x', 'n'    , ':lua v.Srch.srch_7_slctd__srch_nxt("f")<cr>')
-keymap__('x', '<c-n>', ':lua v.Srch.srch_7_slctd__srch_nxt("b")<cr>')
+-- keymap__('x', 'n'    , ':lua v.Slctd.__srch_nxt("f")<cr>')
 
 -- srch back
--- keymap__('x', 'xx', ':lua v.Srch.srch_7_slctd__srch_nxt('b')<cr>')
+keymap__('x', '<c-n>', ':lua v.Slctd.__srch_nxt("b")<cr>')
 
 -- srch rpl one > ynk, nxt
-keymap__('x', '<c-p>', ':lua v.Slctd.__rpl_7_srch_nxt()<cr>')
+keymap__('x', '<c-p>', ':lua v.Slctd.str__ynk__srch_nxt_f()<cr>')
 
 -- srch heading swtch
 keymap__('x', 'M', ':lua v.Srch.str__heading()')

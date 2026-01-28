@@ -186,14 +186,30 @@ function v.Cursor.__mv_line_end_in()
   end
 end
 
+function v.Cursor.__mv_char(drct)
+
+  local cmd_nml
+
+  if     drct == 'f' then
+    cmd_nml = 'l'
+
+  elseif drct == 'b' then
+    cmd_nml = 'h'
+  end
+
+  v.Cmd.nml(cmd_nml)
+end
+
 function v.Cursor.__mv_char_f()
 
-  v.Cmd.nml('l')
+  v.Cursor.__mv_char('f')
+  -- v.Cmd.nml('l')
 end
 
 function v.Cursor.__mv_char_b()
 
-  v.Cmd.nml('h')
+  v.Cursor.__mv_char('b')
+  -- v.Cmd.nml('h')
 end
 
 function v.Cursor.__mv_word_f()
@@ -1131,7 +1147,7 @@ function v.Cursor.__ins_line_anchor()
   v.Cursor.line_indnt__crct()
 end
 
-function v.Cursor.__ins_line_anchor_7_del() -- use not
+function v.Cursor.__ins_line_anchor__del() -- use not
 
   -- v.Cursor.__ins_line_anchor()
   v.Cursor.__ins_line()

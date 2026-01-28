@@ -123,7 +123,7 @@ function v.Rgstr.ynk__slctd()
 
   v.Rgstr.clp__ynk()
 
-  v.Slctd.__cancel()
+  v.Slctd.__clr()
 end
 
 function v.Rgstr.ynk__add_slctd()

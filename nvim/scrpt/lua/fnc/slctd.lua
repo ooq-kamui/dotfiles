@@ -5,7 +5,7 @@ v.Slctd.rng_dflt = "'<,'>"
 
 -- slctd __
 
-function v.Slctd.__cancel() -- range -- alias
+function v.Slctd.__clr() -- range -- alias
 
   v.Cmd.esc()
 end
@@ -155,6 +155,16 @@ function v.Slctd.cursor__mv_edge_tgl() -- range
 
   v.Slctd.__ltst()
   v.Cmd.nml('o')
+end
+
+function v.Slctd.cursor__mv_edge(drct) -- range
+
+  if     drct == 'f' then
+    v.Slctd.cursor__mv_edge_r()
+
+  elseif drct == 'b' then
+    v.Slctd.cursor__mv_edge_l()
+  end
 end
 
 function v.Slctd.cursor__mv_edge_r() -- range
@@ -416,7 +426,7 @@ function v.Slctd.str__reduce_dlm_l(char) -- range
   local srch_idx = v.Str.srch_idx_by_lua(slctd_str, char)
 
   if not srch_idx then
-    v.Slctd.__cancel()
+    v.Slctd.__clr()
     return
   end
 
@@ -466,36 +476,34 @@ function v.Slctd.__srch(drct)
   v.Cmd.nml(cmd_nml)
 end
 
--- dev anchor
-function v.Slctd.__srch_nxt() -- dir forward only
+function v.Slctd.__srch_nxt(drct) -- srch rpl skip
 
   v.Slctd.__ltst()
-  v.Slctd.cursor__mv_edge_r()
-  v.Slctd.__cancel()
-  v.Cursor.__mv_char_f()
 
-  v.Slctd.__srch('f')
+  v.Slctd.cursor__mv_edge(drct)
+
+  v.Slctd.__clr()
+
+  v.Cursor.__mv_char(drct)
+  v.Slctd.__srch(drct)
+end
+
+function v.Slctd.__srch_nxt_f()
+
+  v.Slctd.__srch_nxt('f')
 end
 
 -- slctd str __ rpl, srch nxt slctd
 
-function v.Slctd.__rpl_7_srch_nxt() -- dir forward only
+function v.Slctd.str__ynk__srch_nxt_f()
 
   v.Slctd.__ltst()
-  v.Cmd.nml('"zd"aPlgn')
+
+  v.Slctd.str__ynk()
+  v.Slctd.__srch('f')
 end
 
 -- slctd str __ del
-
--- dev anchor
-function v.Slctd.v__del() -- dev doing, can
-
-  v.Slctd.__ltst()
-
-  v.Cmd.nml('"ad')
-
-  v.Rgstr.__('+', v.Rgstr.get('a'))
-end
 
 function v.Slctd.__del() -- range
 
@@ -505,6 +513,15 @@ function v.Slctd.__del() -- range
 
   local cmd = '"' .. rgstr .. 'dgv'
   v.Cmd.nml(cmd)
+end
+
+function v.Slctd.v__del() -- dev doing, can
+
+  v.Slctd.__ltst()
+
+  v.Cmd.nml('"ad')
+
+  v.Rgstr.__('+', v.Rgstr.get('a'))
 end
 
 -- slctd str __ fil
@@ -629,7 +646,7 @@ function v.Slctd.str_edge_out__ins(c) -- range
   v.Slctd.__ltst()
 
   if v.Slctd.is_line__mlt() then
-    v.Slctd.__cancel()
+    v.Slctd.__clr()
     return
   end
 
@@ -674,7 +691,7 @@ function v.Slctd.str_edge_out__ins_markdown_strikethrough()
   v.Slctd.__ltst()
 
   if v.Slctd.is_line__mlt() then
-    v.Slctd.__cancel()
+    v.Slctd.__clr()
     return
   end
 
@@ -855,8 +872,8 @@ function v.Slctd.is_str__srch_str()
 
   local srch_str = v.Rgstr.get('/')
   -- v.Log.log(srch_str)
-  srch_str = v.Str.__rpl_by_lua(srch_str, [[\\<]], '')
-  srch_str = v.Str.__rpl_by_lua(srch_str, [[\\>]], '')
+  srch_str = v.Str.__rpl_by_lua(srch_str, [[\<]], '')
+  srch_str = v.Str.__rpl_by_lua(srch_str, [[\>]], '')
   -- v.Log.log(srch_str)
 
   if v.Slctd.str() == srch_str then
@@ -1435,7 +1452,7 @@ end
 
 -- slctd srch
 
-function v.Slctd.srch__swtch() -- srch, set or run
+function v.Slctd.__srch_swtch() -- srch, set or run
 
   v.Slctd.__ltst()
 
@@ -1445,7 +1462,7 @@ function v.Slctd.srch__swtch() -- srch, set or run
 
   elseif v.Slctd.is_str__srch_str() then
   
-    v.Slctd.__srch_nxt()
+    v.Slctd.__srch_nxt_f()
 
   else
     v.Srch.str__slctd_str()

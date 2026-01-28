@@ -167,7 +167,7 @@ end
 function v.Srch.str__slctd_str() -- range
 
   if v.Slctd.is_str__srch_str() then
-    v.Slctd.__cancel()
+    v.Slctd.__clr()
     return
   end
 
@@ -179,31 +179,12 @@ function v.Srch.str__slctd_str() -- range
 
   local str = v.Slctd.str()
   v.Srch.str__(str, bl.f)
-  v.Slctd.__cancel()
+  v.Slctd.__clr()
 end
 
 function v.Srch.__slct(drct)
 
   v.Slctd.__srch(drct)
-
-  -- todo: del
-  -- if     drct == 'f' then
-  --   v.Cmd.nml('gn')
-  -- 
-  -- elseif drct == 'b' then
-  --   v.Cmd.nml('gN')
-  -- end
-end
-
--- refactoring fnc name re ?
-function v.Srch.srch_7_slctd__srch_nxt(drct) -- srch rpl skip
-
-  if     drct == 'f' then
-    v.Cmd.nml('`>lgn')
-
-  elseif drct == 'b' then
-    v.Cmd.nml('`<hgN')
-  end
 end
 
 function v.Srch.char(drct, char)
