@@ -786,13 +786,13 @@ keymap__('n', 'E', v.Srch.str__word1_tgl)
 -- keymap__('n', 'xx', ':lua v.Srch.str__heading()<cr>')
 
 -- srch markdown itm
-keymap__('n', ':i', v.Srch.str__markdown_itm)
+keymap__('n', ':i', ':lua v.Srch.str__markdown_itm()<cr>')
 
 -- srch str history ( fzf )
 keymap__('n', '<leader>f', ':FzfSrchHstry<cr>')
 
 -- srch str set prv ( tgl )
-keymap__('n', 'N', v.Srch.str__prv_tgl)
+keymap__('n', 'N', ':lua v.Srch.str__prv_tgl()<cr>')
 
 -- srch rpl one > ynk nxt ( only srch )
 keymap__('n', '<c-p>', ':lua v.Srch.__slct("f")<cr>')
@@ -805,13 +805,13 @@ keymap__('n', ':s', ':%s/<c-r>//xxx/g')
 -- keymap__('n', ':s', ':Rpl ')
 
 -- fzf rg
-keymap__('n', '<leader>o'    , v.Fzf.rg)
+keymap__('n', '<leader>o'    , ':lua v.Fzf.rg()<cr>')
 
 -- fzf rg srch str
-keymap__('n', '<leader><c-o>', v.Fzf.rg_by_srch_str)
+keymap__('n', '<leader><c-o>', ':lua v.Fzf.rg_by_srch_str()<cr>')
 
 -- fzf rg srch str word1
-keymap__('n', '<leader>O'    , v.Fzf.rg_word1_by_srch_str)
+keymap__('n', '<leader>O'    , ':lua v.Fzf.rg_word1_by_srch_str()<cr>')
 
 -- fzf rg fltr ext
 keymap__('n', ':F', ':FzfRgExt js')

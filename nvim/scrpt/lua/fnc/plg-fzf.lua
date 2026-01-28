@@ -105,14 +105,6 @@ function v.Fzf.rg_with_grep(ptn, ext, word1)
   --     [spec dict],
   --     [fullscreen bool]
   --   )
-  -- 
-  --   old
-  --     fzf#vim#grep(
-  --       command,
-  --       [has_column bool],
-  --       [spec dict],
-  --       [fullscreen bool]
-  --     )
 end
 
 -- fzf rg ext
@@ -329,7 +321,6 @@ function v.Fzf.doc_memo_opn()
   }
 
   local fzf_src_ar = memo_file_lst
-  -- local fnc_name    = 'Opn'
   local fnc_name    = v.Buf.opn
   v.Fzf.by_ar(fzf_src_ar, fnc_name)
 end

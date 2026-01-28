@@ -16,7 +16,7 @@ end
 
 -- buf opn
 
-function v.Buf.opn(filename)
+function v.Buf.opn(filename, line_num)
 
   v.Cmd.cmd('tab drop ' .. filename)
 

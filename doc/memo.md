@@ -6,6 +6,10 @@
 
 `v__xxx()` ??
 
+opn
+
+rg ptn def, var-name
+
 
 ## kiro
 
