@@ -89,6 +89,7 @@ function v.Fzf.rg_with_grep(ptn, ext, word1)
 
   vim.fn['fzf#vim#grep'](
     rg_cmd,
+    1,
     vim.fn['fzf#vim#with_preview'](
       {
         options = '--exact --delimiter : --nth 3..',
@@ -102,6 +103,7 @@ function v.Fzf.rg_with_grep(ptn, ext, word1)
   -- hlp
   --   fzf#vim#grep(
   --     command,
+  --     [has_column bool],
   --     [spec dict],
   --     [fullscreen bool]
   --   )
