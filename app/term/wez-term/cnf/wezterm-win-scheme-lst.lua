@@ -32,6 +32,7 @@ scheme_lst.win.recommend.h = {
   -- h ~
   'Nocturnal Winter'                       , -- 
   'hardhacker'                             , -- 
+  'Modus-Vivendi-Tritanopia'               , -- 
   -- h ( chk no )
   'Abernathy'                              , -- 
   'Aci (Gogh)'                             , -- 
@@ -94,7 +95,6 @@ scheme_lst.win.recommend.h = {
   'Misterioso'                             , -- 
   'Mocha (dark) (terminal.sexy)'           , -- 
   'Modus-Vivendi'                          , -- 
-  'Modus-Vivendi-Tritanopia'               , -- 
   'Monokai (dark) (terminal.sexy)'         , -- 
   'Monokai (terminal.sexy)'                , -- 
   'Monokai Pro Ristretto (Gogh)'           , -- 

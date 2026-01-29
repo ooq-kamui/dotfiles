@@ -1,4 +1,4 @@
-function lrf_ext
+function lrf-ext
 
   fd |\
   stdin_ext_uniq

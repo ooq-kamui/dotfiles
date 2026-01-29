@@ -78,21 +78,21 @@ alias fl 'dir_jmp_with_zoxide life'
 alias mkdir 'mkdir -p'
 alias mkd   'mkdir -p'
 
-alias lr-oo  'lr_d2'
-alias lr-ooo 'lr_d3'
+alias lr-oo  'lr-d2'
+alias lr-ooo 'lr-d3'
 
 alias lf     'lrf'
-alias lf-oo  'lrf_d2'
-alias lf-ooo 'lrf_d3'
+alias lf-oo  'lrf-d2'
+alias lf-ooo 'lrf-d3'
 
 alias ld     'lrd'
-alias ld-oo  'lrd_d2'
-alias ld-ooo 'lrd_d3'
+alias ld-oo  'lrd-d2'
+alias ld-ooo 'lrd-d3'
 
 alias fd 'fd --hidden --follow -I --exclude .git'
 
-alias lf_ext  'lrf_ext'
-alias ext_lst 'lrf_ext'
+alias lf-ext  'lrf-ext'
+# alias ext-lst 'lrf-ext'
 
 alias o 'pth'
 
@@ -115,7 +115,6 @@ alias to-add-line-emp 'echo "" >>'
 alias tmp 'file_tmp'
 
 alias mv  'mv -i'
-alias mve 'mv_excld'
 alias rn  'rename'
 
 alias cp  'cp -ip'

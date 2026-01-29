@@ -276,7 +276,7 @@ keymap__('n', '<leader>R', '<esc>')
 keymap__('n', ':l', ':message <cr>')
 
 -- quit buffer
-keymap__('n', 'w',  v.Buf.__quit_swtch)
+keymap__('n', 'w',  ':lua v.Buf.__quit_swtch()<cr>')
 
 -- quit buffer force
 keymap__('n', ':q', ':q!')
@@ -291,7 +291,7 @@ keymap__('n', 'W', ':q<cr>')
 -- keymap__('n', '<c-z>', '<c-z>')
 
 -- save
-keymap__('n', 'a', v.Buf.save)
+keymap__('n', 'a', ':lua v.Buf.save()<cr>')
 
 -- load re slf
 -- keymap__('n', ':r', ':lua v.Buf.opn_re()')
@@ -302,7 +302,7 @@ keymap__('n', 'a', v.Buf.save)
 -- opn
 
 -- opn file
--- keymap__('n', ':o', ':Opn ')
+-- keymap__('n', 'xx', ':Opn ')
 
 -- opn file by oil
 keymap__('n', ':o', ':Oil . ')
@@ -318,21 +318,20 @@ keymap__('n', '<leader>L', ':FzfFileHstry<cr>')
 
 -- opn file rcnt ( ltst )
 keymap__('n', 'H', ':lua v.Buf.quit.rcnt_opn_re()<cr>')
--- keymap__('n', 'S', v.Buf.quit.rcnt_opn_re)
 
 -- opn etc
 
 -- opn fish cnf
--- keymap__('n', 'xx', v.Buf.opn_fish_cnf)
+-- keymap__('n', 'xx', ':lua v.Buf.opn_fish_cnf()<cr>')
 
 -- opn nvim init
--- keymap__('n', 'gh', v.Buf.opn_nvim_init)
+-- keymap__('n', 'xx', ':lua v.Buf.opn_nvim_init()<cr>')
 
 -- opn tmp file
--- keymap__('n', 'xx', v.Buf.opn_tmp_file)
+-- keymap__('n', 'xx', ':lua v.Buf.opn_tmp_file()<cr>')
 
 -- opn memo
-keymap__('n', 'gm', v.Buf.opn_memo)
+keymap__('n', 'gm', ':lua v.Buf.opn_memo()<cr>')
 
 -- opn man
 -- keymap__('n', 'xx', ':OpnMan ')
@@ -346,16 +345,16 @@ keymap__('n', ':e', ':set encoding?')
 -- sys cmd opn
 
 -- sys cmd opn app
-keymap__('n', 'go', v.Sys.opn_app_by_cursor_path)
+keymap__('n', 'go', ':lua v.Sys.opn_app_by_cursor_path()<cr>')
 
 -- sys cmd opn app slf
--- keymap__('n', 'xx', v.Sys.opn_buf_file)
+-- keymap__('n', 'xx', ':lua v.Sys.opn_buf_file()<cr>')
 
 -- sys cmd opn dir slf
-keymap__('n', 'gd', v.Sys.opn_buf_file_dir)
+keymap__('n', 'gd', ':lua v.Sys.opn_buf_file_dir()<cr>')
 
 -- sys cmd opn brwsr
--- keymap__('n', 'xx', v.Sys.opn_brwsr)
+-- keymap__('n', 'xx', ':lua v.Sys.opn_brwsr()<cr>')
 
 -- sys cmd opn ggl srch
 keymap__('n', 'ggl', ':lua v.Sys.opn_ggl_srch("")<cr>')
@@ -369,18 +368,18 @@ keymap__('n', '<Up>'   , 'k')
 keymap__('n', '<Down>' , 'j')
 
 -- cursor mv line
-keymap__('n', 'k', v.Cursor.__mv_u)
-keymap__('n', 'j', v.Cursor.__mv_d)
+keymap__('n', 'k', ':lua v.Cursor.__mv_u()<cr>')
+keymap__('n', 'j', ':lua v.Cursor.__mv_d()<cr>')
 
 -- cursor mv line mlt
-keymap__('n', '<c-k>', v.Cursor.__mv_mlt_u)
-keymap__('n', '<c-j>', v.Cursor.__mv_mlt_d)
+keymap__('n', '<c-k>', ':lua v.Cursor.__mv_mlt_u()<cr>')
+keymap__('n', '<c-j>', ':lua v.Cursor.__mv_mlt_d()<cr>')
 
 -- cursor mv line top | ins line
-keymap__('n', 'y', v.Cursor.__mv_line_top_or_new_line)
+keymap__('n', 'y', ':lua v.Cursor.__mv_line_top_or_new_line()<cr>')
 
 -- cursor mv line top
--- keymap__('n', '<c-a>', v.Cursor.__mv_line_top0)
+-- keymap__('n', '<c-a>', ':lua v.Cursor.__mv_line_top0()<cr>')
 
 -- cursor mv line end
 keymap__('n', '<c-y>', function()
@@ -401,7 +400,7 @@ keymap__('n', '<c-s>', 'h')
 -- keymap__('n', '<c-o>', 'h')
 
 -- cursor mv word - forward
-keymap__('n', 'f', v.Cursor.__mv_word_f)
+keymap__('n', 'f', ':lua v.Cursor.__mv_word_f()<cr>')
 
 -- cursor mv word - back
 keymap__('n', 'o', ':lua v.Cursor.__mv_word_b()<cr>')
@@ -421,8 +420,8 @@ keymap__('n', '<c-_>', 'hT_')
 keymap__('n', '<c-f>', v.Cursor.__mv_word_dlm_f)
 
 -- cursor mv line u word col  -  forward
-keymap__('n', '<c-e>', v.Cursor.__mv_line_u_word_col)
-keymap__('n', 'F'    , v.Cursor.__mv_line_u_word_col)
+keymap__('n', '<c-e>', ':lua v.Cursor.__mv_line_u_word_col()<cr>')
+keymap__('n', 'F'    , ':lua v.Cursor.__mv_line_u_word_col()<cr>')
 
 -- cursor mv fnc name
 -- keymap__('n', 'xx', v.Cursor.__mv_fnc_name)
@@ -431,7 +430,7 @@ keymap__('n', 'F'    , v.Cursor.__mv_line_u_word_col)
 keymap__('n', '<c-l>', '%')
 
 -- cursor mv block out
-keymap__('n', '<c-w>', v.Cursor.__mv_block_out_swtch)
+keymap__('n', '<c-w>', ':lua v.Cursor.__mv_block_out_swtch()<cr>')
 
 -- cursor mv fnc out back
 -- keymap__('n', 'xx', '[m')
@@ -443,21 +442,21 @@ keymap__('n', '<c-w>', v.Cursor.__mv_block_out_swtch)
 -- keymap__('n', 'xx', v.Cursor__mv_indnt_auto) -- todo dev
 
 -- cursor mv file edge bgn
-keymap__('n', 'gk', v.Cursor.__mv_file_edge_bgn)
+keymap__('n', 'gk', ':lua v.Cursor.__mv_file_edge_bgn()<cr>')
 
 -- cursor mv file edge end
-keymap__('n', 'gj', v.Cursor.__mv_file_edge_end)
+keymap__('n', 'gj', ':lua v.Cursor.__mv_file_edge_end()<cr>')
 
 -- cursor mv edit latest
 -- keymap__('n', 'xx', '`.')
 
 -- cursor mv jmp
-keymap__('n', 'rk', v.Cursor.__mv_v_jmp_u)
-keymap__('n', 'rj', v.Cursor.__mv_v_jmp_d)
+keymap__('n', 'rk', ':lua v.Cursor.__mv_v_jmp_u()<cr>')
+keymap__('n', 'rj', ':lua v.Cursor.__mv_v_jmp_d()<cr>')
 
 -- cursor mv jmp - space stop
-keymap__('n', 'rrk', v.Cursor.__mv_v_jmp_u_also_space)
-keymap__('n', 'rrj', v.Cursor.__mv_v_jmp_d_also_space)
+keymap__('n', 'rrk', ':lua v.Cursor.__mv_v_jmp_u_also_space()<cr>')
+keymap__('n', 'rrj', ':lua v.Cursor.__mv_v_jmp_d_also_space()<cr>')
 
 -- cursor mv by line num
 keymap__('n', ':g', ':lua v.Cursor.__mv_by_line_num()')
@@ -482,7 +481,7 @@ keymap__('n', '<down>', '<c-e>')
 -- keymap__('n', 'xx', 'v')
 
 -- slctd __ word
-keymap__('n', 'i', v.Slctd.str__word)
+keymap__('n', 'i', ':lua v.Slctd.str__word()<cr>')
 
 -- slctd __ char current - word end
 keymap__('n', 'I', 've')
@@ -1323,8 +1322,6 @@ keymap__('x', 'd', function()
     return '"ad:let @+ = @a<cr>'
   end
 end, {expr = bl.t})
-
--- keymap__('x', 'xx', v.Slctd.v__del)
 
 -- del str > ynk not
 keymap__('x', 's', function()

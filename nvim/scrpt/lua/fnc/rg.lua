@@ -1,6 +1,12 @@
 
 v.Rg = {}
 
+v.Rg.cnst = {}
+
+v.Rg.cnst.emp_line_ptn  = '^[ \\t]*$'
+v.Rg.cnst.some_line_ptn = '^[^ \\t]+$'
+-- v.Rg.cnst.some_line_ptn = '[^ \\t]'
+
 -- dev anchor
 function v.Rg.rslt_line_parse(line)
 
@@ -69,10 +75,6 @@ function v.Rg.cmd(ptn, ext, word1, opt)
   return rg_cmd
 end
 
-g.rg_emp_line_ptn  = '^[ \\t]*$'
-g.rg_some_line_ptn = '^[^ \\t]+$'
--- g.rg_some_line_ptn = '[^ \\t]'
-
 function v.Rg.ptn_cnt(ptn, opt)
 
   local opt
@@ -91,7 +93,7 @@ end
 
 function v.Rg.all_cnt()
 
-  local ptn = g.rg_emp_line_ptn
+  local ptn = v.Rg.cnst.emp_line_ptn
   local opt = '-v'
 
   local rg_rslt_cnt = v.Rg.ptn_cnt(ptn, opt)
@@ -100,21 +102,21 @@ end
 
 function v.Rg.all_rslt_ar()
 
-  local ptn = g.rg_emp_line_ptn
+  local ptn = v.Rg.cnst.emp_line_ptn
   local opt = '-v'
 
-  local rslt_ar = v.Rg.ptn_rslt_ar(ptn, opt)
+  local rslt_ar = v.Rg.rslt_ar_by_ptn(ptn, opt)
   return rslt_ar
 end
 
-function v.Rg.ptn_rslt_ar(ptn, opt)
+function v.Rg.rslt_ar_by_ptn(ptn, opt)
 
-  local rg_rslt_txt = v.Rg.ptn_rslt_txt(ptn, opt)
+  local rg_rslt_txt = v.Rg.rslt_txt_by_ptn(ptn, opt)
   local rg_rslt_ar  = vf.split(rg_rslt_txt, "\\n")
   return rg_rslt_ar
 end
 
-function v.Rg.ptn_rslt_txt(ptn, opt)
+function v.Rg.rslt_txt_by_ptn(ptn, opt)
   
   local rg_cmd = v.Rg.cmd(ptn, nil, nil, opt) -- todo dev
   local r_rslt_txt = v.Sys.cmd(rg_cmd)

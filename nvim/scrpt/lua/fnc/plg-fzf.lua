@@ -80,7 +80,7 @@ function v.Fzf.rg_with_grep(ptn, ext, word1)
   end
 
   ptn   = ptn   or ''
-  -- ptn   = ptn   or g.rg_some_line_ptn
+  -- ptn   = ptn   or v.Rg.cnst.some_line_ptn
   ext   = ext   or nil
   word1 = word1 or bl.f
 
@@ -131,7 +131,8 @@ end
 
 -- fzf rg by run
 
-g.fzf_line_cnt_max = 30000
+v.Fzf.cnst = {}
+v.Fzf.cnst.line_cnt_max = 30000
 
 function v.Fzf.rg_with_run(...)
 
@@ -145,7 +146,7 @@ function v.Fzf.rg_with_run(...)
 
     rg_rslt_cnt = v.Rg.all_cnt()
 
-    if rg_rslt_cnt > g.fzf_line_cnt_max then
+    if rg_rslt_cnt > v.Fzf.cnst.line_cnt_max then
       v.Log.val("rg_rslt_cnt, end")
       return
     end
@@ -155,12 +156,12 @@ function v.Fzf.rg_with_run(...)
   else
     rg_rslt_cnt = v.Rg.ptn_cnt(ptn, nil)
 
-    if rg_rslt_cnt > g.fzf_line_cnt_max then
+    if rg_rslt_cnt > v.Fzf.cnst.line_cnt_max then
       v.Log.val("rg_rslt_cnt, end")
       return
     end
 
-    fzf_src_ar = v.Rg.ptn_rslt_ar(ptn, nil)
+    fzf_src_ar = v.Rg.rslt_ar_by_ptn(ptn, nil)
   end
 
   vim.fn['fzf#run'](
@@ -285,7 +286,7 @@ v.Fzf.doc_tech_md_dir = 'wrk/prj-pri/doc-tech/docs/md'
 
 function v.Fzf.doc_tech()
 
-  local ptn = g.rg_emp_line_ptn
+  local ptn = v.Rg.cnst.emp_line_ptn
   local opt  = ' -v'
   opt = opt .. ' --no-heading'
   -- opt = opt .. ' --line-number'

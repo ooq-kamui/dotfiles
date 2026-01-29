@@ -515,15 +515,6 @@ function v.Slctd.__del() -- range
   v.Cmd.nml(cmd)
 end
 
-function v.Slctd.v__del() -- dev doing, can
-
-  v.Slctd.__ltst()
-
-  v.Cmd.nml('"ad')
-
-  v.Rgstr.__('+', v.Rgstr.get('a'))
-end
-
 -- slctd str __ fil
 
 function v.Slctd.__fil(char) -- range

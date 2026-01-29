@@ -4,11 +4,10 @@
 
 ## nvim
 
-`v__xxx()` ??
+keymap n
+- call fnc, mod
 
 opn
-
-rg ptn def, var-name
 
 
 ## kiro
