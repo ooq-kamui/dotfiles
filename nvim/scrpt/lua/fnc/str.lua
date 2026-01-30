@@ -22,6 +22,12 @@ function v.Str.trim(str) -- alias
   return str
 end
 
+function v.Str.char_by_char_idx(str, char_idx) -- char_idx: 1 start, mb:ok
+
+  local char = v.Str.sub_by_char_idx(str, char_idx, char_idx)
+  return char
+end
+
 function v.Str.l_char(str)
 
   local l_idx = 1
@@ -54,10 +60,10 @@ function v.Str.sub_by_col(str, col_s, col_e) -- col : 1 start
   return r_str
 end
 
-function v.Str.sub_by_char_idx(str, char_idx_s, char_idx_e) -- char_idx : 1 start
+function v.Str.sub_by_char_idx(str, char_idx_s, char_idx_e) -- char_idx : 1 start, str:mb:ok
 
   local len = char_idx_e - char_idx_s + 1
-  local r_str = vf.strcharpart(str, char_idx_s - 1, len)
+  local r_str = vf.strcharpart(str, char_idx_s - 1, len) -- arg2: 0 start
   return r_str
 end
 

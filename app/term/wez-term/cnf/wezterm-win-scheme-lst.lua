@@ -7,6 +7,7 @@ scheme_lst.win = {}
 scheme_lst.win.recommend = {}
 scheme_lst.win.recommend.h = {
   -- hh                                      -- 
+  'niji'                                   , -- 
   'ChallengerDeep'                         , -- 
   'Dracula (Official)'                     , -- 
   'Ef-Rosa'                                , -- 
@@ -174,7 +175,6 @@ scheme_lst.win.recommend.h = {
   'kokuban (Gogh)'                         , -- 
   'neon-night (Gogh)'                      , -- 
   'nightfox'                               , -- 
-  'niji'                                   , -- 
   'rebecca'                                , -- 
   'seoulbones_dark'                        , -- 
   'synthwave'                              , -- 

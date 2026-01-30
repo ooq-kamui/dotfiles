@@ -4,10 +4,12 @@
 
 ## nvim
 
-keymap n
-- call fnc, mod
+n o: is char __ symbol
 
-opn
+col_num > char_idx ??
+- tidy
+
+opn: by line_num
 
 
 ## kiro

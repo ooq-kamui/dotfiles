@@ -27,6 +27,11 @@ function v.Cursor.col_idx() -- alias
   return col_idx
 end
 
+function v.Cursor.l_col_num()
+
+  
+end
+
 function v.Cursor.ruler_num()
 
   local str = v.Cursor.line_str_side_l()
@@ -249,8 +254,8 @@ function v.Cursor.__mv_word_b()
   elseif v.Cursor.is_col__line_top1() then
     v.Cursor.__mv_line_top0()
 
-  -- elseif v.Char.is__symbol(l_char) then -- case mb: ng
-  --   v.Cursor.__mv_char_b()
+  elseif v.Char.is__symbol(l_char) then
+    v.Cursor.__mv_char_b()
 
   else
     v.Cmd.nml('b')
@@ -840,26 +845,40 @@ end
 
 -- cursor char
 
+function v.Cursor.c_char_idx() -- 1 start
+
+  local c_char_idx = vf.charcol('.')
+  return c_char_idx
+end
+
 function v.Cursor.c_char()
 
   local idx = v.Cursor.col_num()
   local str = v.Cursor.line_str()
-  local c   = str:sub(idx, idx)
-  return c
+  local char = str:sub(idx, idx)
+  return char
 end
 
 function v.Cursor.l_char()
 
-  local idx = v.Cursor.col_num() - 1
-  local c = v.Cursor.line_str():sub(idx, idx)
-  return c
+  local line_str = v.Cursor.line_str()
+  local c_char_idx = v.Cursor.c_char_idx()
+
+  if c_char_idx <= 1 then
+    return ''
+  end
+
+  local l_char_idx = c_char_idx - 1
+  local l_char = v.Str.char_by_char_idx(line_str, l_char_idx, l_char_idx)
+  -- v.Log.val(l_char)
+  return l_char
 end
 
 function v.Cursor.r_char()
 
   local idx = v.Cursor.col_num() + 1
-  local c = v.Cursor.line_str():sub(idx, idx)
-  return c
+  local char = v.Cursor.line_str():sub(idx, idx)
+  return char
 end
 
 function v.Cursor.u_char()
