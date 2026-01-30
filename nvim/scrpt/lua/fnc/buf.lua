@@ -18,7 +18,13 @@ end
 
 function v.Buf.opn(filename, line_num)
 
-  v.Cmd.cmd('tab drop ' .. filename)
+  local cmd = 'tab drop ' .. filename
+
+  if line_num then
+    cmd = cmd .. ' +' .. line_num
+  end
+
+  v.Cmd.cmd(cmd)
 
   -- local file_encode = v.Buf.file_encode()
   -- v.Log.log(file_encode)

@@ -4,26 +4,16 @@
 v.Tst = {}
 
 function v.Tst.tst()
-  -- v.Log.val('fnc tst')
 
-  -- v.Cmd.cmdline__('aa')
-  -- v.Cmd.cmdline__('lua ')
+  local char
+  -- char = 'あ'
+  -- char = 'a'
+  -- char = '/'
+  char = ' '
 
-  -- v.Cmd.cmdline__fnc_call('fnc_name')
+  local st = v.Char.is__symbol(char)
 
-
-  -- vim.cmd('normal! j')
-  -- vim.cmd('normal! 10\\<c-e>')
-
-  -- vim.cmd("exe 'normal! j'")
-  -- vim.cmd('exe "normal! 5\\<c-e>"')
-  -- vim.cmd([[exe "normal! \"eyy"]])
-
-  local str
-  str = '"aaa"'
-  str = v.Str.__rpl_by_lua(str, '"', [[\\"]])
-  print(str)
-
+  v.Log.val(st)
 end
 
 

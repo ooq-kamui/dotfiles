@@ -24,7 +24,7 @@ end
 
 function v.Str.char_by_char_idx(str, char_idx) -- char_idx: 1 start, mb:ok
 
-  local char = v.Str.sub_by_char_idx(str, char_idx, char_idx)
+  local char = v.Str.sub_str_by_char_idx(str, char_idx, char_idx)
   return char
 end
 
@@ -44,26 +44,26 @@ function v.Str.r_char(str)
   return char
 end
 
+function v.Str.sub_str_by_char_idx(str, char_idx_s, char_idx_e) -- char_idx : 1 start, str:mb:ok
+
+  local len = char_idx_e - char_idx_s + 1
+  local r_str = vf.strcharpart(str, char_idx_s - 1, len) -- arg2: 0 start
+  return r_str
+end
+
 -- dev anchor
-function v.Str.sub_by_byte(str, byte_s, byte_e) -- col : 1 start
+function v.Str.sub_str_by_byte(str, byte_s, byte_e) -- col : 1 start -- use not
 
   local r_str = string.sub(str, byte_s, byte_e)
   return r_str
 end
 
-function v.Str.sub_by_col(str, col_s, col_e) -- col : 1 start
+function v.Str.sub_str_by_col(str, col_s, col_e) -- col : 1 start -- use not
 
   local len    = col_e - col_s + 1
   local byte_s = col_s - 1
 
   local r_str = vf.strpart(str, byte_s, len)
-  return r_str
-end
-
-function v.Str.sub_by_char_idx(str, char_idx_s, char_idx_e) -- char_idx : 1 start, str:mb:ok
-
-  local len = char_idx_e - char_idx_s + 1
-  local r_str = vf.strcharpart(str, char_idx_s - 1, len) -- arg2: 0 start
   return r_str
 end
 

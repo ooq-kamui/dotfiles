@@ -26,6 +26,7 @@ require('fnc/jmplst')
 require('fnc/mark'  )
 
 require('fnc/mb'    )
+require('fnc/date'  )
 
 require('fnc/tst'   )
 

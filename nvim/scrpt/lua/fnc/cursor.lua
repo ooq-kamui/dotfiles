@@ -678,37 +678,32 @@ end
 
 function v.Cursor.__ins_da()
 
-  local da = vf.strftime('%Y-%m-%d')
-  v.Cursor.__ins(da)
+  local str = v.Date.da()
+  v.Cursor.__ins(str)
 end
 
 function v.Cursor.__ins_tm()
 
-  -- v.Cursor.__ins('.')
-
-  local tm = vf.strftime('%H:%M')
-  v.Cursor.__ins(tm)
+  local str = v.Date.tm()
+  v.Cursor.__ins(str)
 end
 
 function v.Cursor.__ins_dt()
 
-  local dt = vf.strftime('%Y-%m-%d.%H:%M')
-  v.Cursor.__ins(dt)
+  local str = v.Date.dt()
+  v.Cursor.__ins(str)
 end
 
 function v.Cursor.__ins_ts()
 
-  local ts = vf.strftime('%Y-%m-%d.%H:%M:%S')
-  v.Cursor.__ins(ts)
+  local str = v.Date.ts()
+  v.Cursor.__ins(str)
 end
-
-g.week_def = { 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' }
 
 function v.Cursor.__ins_week()
 
-  local idx  = vf.strftime('%w') + 1
-  local week = g.week_def[idx]
-  v.Cursor.__ins(week)
+  local str = v.Date.week()
+  v.Cursor.__ins(str)
 end
 
 -- cmnt
@@ -945,7 +940,7 @@ function v.Char.__tgl_swtch01()
     return
   end
 
-  local rpl = v.Char.is__tgl_symbol(c)
+  local rpl = v.Char.is__symbol_tgl(c)
   if not v.Str.is__emp(rpl) then
 
     v.Cursor.char__rpl(rpl)
@@ -1159,17 +1154,26 @@ function v.Cursor.__ins_line_buf_file_path()
   v.Cursor.__ins_line(path)
 end
 
-function v.Cursor.__ins_line_anchor()
+function v.Cursor.__ins_line_anchor(str)
 
-  local str  = v.Str.cmnt_1() .. 'dev anchor'
+  str  = v.Str.cmnt_1() .. str
   v.Cursor.__ins_line(str)
   v.Cursor.line_indnt__crct()
 end
 
+function v.Cursor.__ins_line_anchor_dev()
+
+  v.Cursor.__ins_line_anchor('dev anchor')
+end
+
+function v.Cursor.__ins_line_anchor_srch_start()
+
+  v.Cursor.__ins_line_anchor('srch anchor' .. ' ' .. vf.strftime('%H:%M'))
+end
+
 function v.Cursor.__ins_line_anchor__del() -- use not
 
-  -- v.Cursor.__ins_line_anchor()
-  v.Cursor.__ins_line()
+  v.Cursor.__ins_line_anchor('')
   v.Cursor.line__del()
 end
 

@@ -34,14 +34,10 @@ function v.Cmd.cmdline__fnc_call(fnc_name)
   v.Cmd.cmdline__('lua ' .. fnc_name)
 end
 
-function v.Cmd._repeat() -- repeat : reserve word
+function v.Cmd._repeat() -- repeat : lua reserve word
 
   v.Log.val('fnc repeat')
 
-  -- v.Tst.tst()
 
-  -- v.Cursor.__mv_by_srch_str('f')
-  -- v.Cursor.__mv_d()
-  -- v.Cursor.__ins_ynk()
 end
 

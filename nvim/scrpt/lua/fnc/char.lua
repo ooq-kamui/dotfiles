@@ -43,7 +43,9 @@ function v.Char.is__symbol(char)
 
   local ret = bl.f
 
-  if not v.Str.is__ptn(char, '\\s') and not v.Str.is__ptn(char, '\\w') then
+  local symbol_ptn = [[\v[\x00-\x7f]&\W&\S]]
+
+  if v.Str.is__ptn(char, symbol_ptn) then
     ret = bl.t
   end
 
@@ -97,7 +99,7 @@ end
 
 -- char cnd tgl
 
-function v.Char.is__tgl_symbol(c)
+function v.Char.is__symbol_tgl(c)
 
   local rpl = ''
 

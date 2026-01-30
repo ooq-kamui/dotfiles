@@ -154,7 +154,7 @@ function v.Fzf.rg_with_run(...)
     fzf_src_ar = v.Rg.all_rslt_ar()
 
   else
-    rg_rslt_cnt = v.Rg.ptn_cnt(ptn, nil)
+    rg_rslt_cnt = v.Rg.rslt_cnt(ptn, nil)
 
     if rg_rslt_cnt > v.Fzf.cnst.line_cnt_max then
       v.Log.val("rg_rslt_cnt, end")

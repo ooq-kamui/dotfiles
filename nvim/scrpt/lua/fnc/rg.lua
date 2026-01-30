@@ -75,7 +75,7 @@ function v.Rg.cmd(ptn, ext, word1, opt)
   return rg_cmd
 end
 
-function v.Rg.ptn_cnt(ptn, opt)
+function v.Rg.rslt_cnt(ptn, opt)
 
   local opt
 
@@ -96,7 +96,7 @@ function v.Rg.all_cnt()
   local ptn = v.Rg.cnst.emp_line_ptn
   local opt = '-v'
 
-  local rg_rslt_cnt = v.Rg.ptn_cnt(ptn, opt)
+  local rg_rslt_cnt = v.Rg.rslt_cnt(ptn, opt)
   return rg_rslt_cnt
 end
 

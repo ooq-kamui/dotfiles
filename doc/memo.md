@@ -4,12 +4,12 @@
 
 ## nvim
 
-n o: is char __ symbol
-
 col_num > char_idx ??
 - tidy
+  - xxx
 
-opn: by line_num
+ruler num
+- vim.fn.virtcol('.')
 
 
 ## kiro

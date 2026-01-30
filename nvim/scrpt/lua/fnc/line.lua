@@ -136,7 +136,7 @@ function v.Line.col_num_by_ruler_num(line_num, p_ruler_num)
 
   while char_idx > 0 do
 
-    str = v.Str.sub_by_char_idx(line_str, 1, char_idx)
+    str = v.Str.sub_str_by_char_idx(line_str, 1, char_idx)
     -- v.Log.val(str)
 
     _ruler_len = v.Str.ruler_len(str)
