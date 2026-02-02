@@ -1217,17 +1217,18 @@ keymap__('x', 'gj', ':lua v.Slctd.cursor__mv_file_edge("j")<cr>')
 -- slct / ynk / paste
 
 -- slctd expnd
--- keymap__('x', 'xx', v.Slctd.str__expnd)
-
--- slctd expnd srch
-keymap__('x', 'N'    , ':lua v.Slctd.str__expnd_srch()<cr>')
-keymap__('x', 'F'    , ':lua v.Slctd.str__expnd_srch()<cr>')
+-- keymap__('x', 'xx', ':lua v.Slctd.str__expnd()<cr>')
 
 -- slctd expnd forward swtch
 keymap__('x', 'f', ':lua v.Slctd.str__expnd_f_swtch()<cr>')
 
+-- slctd expnd srch
+keymap__('x', '<c-f>', ':lua v.Slctd.str__expnd_srch()<cr>')
+keymap__('x', 'N'    , ':lua v.Slctd.str__expnd_srch()<cr>')
+keymap__('x', 'F'    , ':lua v.Slctd.str__expnd_srch()<cr>')
+
 -- slctd expnd word forward
-keymap__('x', '<c-f>', ':lua v.Slctd.str__expnd_word_f()<cr>')
+-- keymap__('x', '<c-f>', ':lua v.Slctd.str__expnd_word_f()<cr>')
 
 -- slctd expnd char pair
 keymap__('x', '<c-i>', ':lua v.Slctd.str__expnd_char_pair()<cr>')
