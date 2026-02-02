@@ -15,13 +15,13 @@ end
 
 -- cursor col
 
-function v.Cursor.col_num()
+function v.Cursor.col_num() -- byte ( mb:3 )
 
   local col_num = vf.col('.')
   return col_num
 end
 
-function v.Cursor.col_idx() -- alias
+function v.Cursor.col_idx() -- alias -- byte ( mb:3 )
 
   local col_idx = v.Cursor.col_num()
   return col_idx
@@ -37,7 +37,7 @@ function v.Cursor.ruler_num()
   local str = v.Cursor.line_str_side_l()
 
   local ruler_num = v.Str.ruler_len(str) + 1
-  -- v.Log.val(ruler_num)
+  v.Log.val(ruler_num)
 
   return ruler_num
 end
@@ -562,6 +562,7 @@ function v.Cursor.__mv_fnc_out()
   v.Cmd.nml(cmd_nml)
 end
 
+-- dev anchor
 function v.Cursor.__mv_by_line_ruler(line_num, ruler_num)
 
   local col_num
@@ -572,10 +573,21 @@ end
 
 function v.Cursor.__mv_line_u_word_col()
 
-  local ref_drct       = 'u'
+  local ref_drct = 'u'
+  v.Cursor.__mv_line_x_word_col(ref_drct)
+end
+
+function v.Cursor.__mv_line_d_word_col()
+
+  local ref_drct = 'd'
+  v.Cursor.__mv_line_x_word_col(ref_drct)
+end
+
+function v.Cursor.__mv_line_x_word_col(ref_drct)
+
   local ref_line_num   = v.Cursor.line_num(ref_drct)
   local cursor_col_idx = v.Cursor.col_idx()
-  local word_col_idx        = v.Line.word_col_idx(ref_line_num, cursor_col_idx)
+  local word_col_idx   = v.Line.word_col_idx(ref_line_num, cursor_col_idx)
 
   if not word_col_idx then return end
 

@@ -8,6 +8,7 @@ scheme_lst.win.recommend = {}
 scheme_lst.win.recommend.h = {
   -- hh                                      -- 
   'niji'                                   , -- 
+  'Purple Rain'                            , -- 
   'ChallengerDeep'                         , -- 
   'Dracula (Official)'                     , -- 
   'Ef-Rosa'                                , -- 
@@ -26,7 +27,6 @@ scheme_lst.win.recommend.h = {
   'Tinacious Design (Dark)'                , -- 
   'Wzoreck (Gogh)'                         , -- 
   'synthwave-everything'                   , -- 
-  'Purple Rain'                            , -- 
   'IR_Black'                               , -- 
   'TomorrowNightBlue (Gogh)'               , -- 
   'arcoiris'                               , -- 
@@ -34,12 +34,13 @@ scheme_lst.win.recommend.h = {
   'Nocturnal Winter'                       , -- 
   'hardhacker'                             , -- 
   'Modus-Vivendi-Tritanopia'               , -- 
+  'cyberpunk'                              , -- 
+  'Tomorrow Night Blue (Gogh)'             , -- 
   -- h ( chk no )
   'Abernathy'                              , -- 
   'Aci (Gogh)'                             , -- 
   'Aco (Gogh)'                             , -- 
   'Adventure Time (Gogh)'                  , -- 
-  'Adventure'                              , -- 
   'Argonaut (Gogh)'                        , -- 
   'Atom'                                   , -- 
   'Aura (Gogh)'                            , -- 
@@ -64,9 +65,7 @@ scheme_lst.win.recommend.h = {
   'Dracula'                                , -- 
   'Dracula+'                               , -- 
   'Duotone Dark'                           , -- 
-  'Ef-Bio'                                 , -- 
   'Ef-Cherie'                              , -- 
-  'Ef-Dark'                                , -- 
   'Ef-Duo-Dark'                            , -- 
   'Ef-Elea-Dark'                           , -- 
   'Ef-Maris-Dark'                          , -- 
@@ -147,7 +146,6 @@ scheme_lst.win.recommend.h = {
   'Tokyo Night Storm (Gogh)'               , -- 
   'Tokyo Night Storm'                      , -- 
   'TokyoNightStorm (Gogh)'                 , -- 
-  'Tomorrow Night Blue (Gogh)'             , -- 
   'Tomorrow Night Blue'                    , -- 
   'Tomorrow Night Bright (Gogh)'           , -- 
   'Tomorrow Night Bright'                  , -- 
@@ -164,7 +162,6 @@ scheme_lst.win.recommend.h = {
   'ayu'                                    , -- 
   'catppuccin-macchiato'                   , -- 
   'catppuccin-mocha'                       , -- 
-  'cyberpunk'                              , -- 
   'deep'                                   , -- 
   'duskfox'                                , -- 
   'gooey (Gogh)'                           , -- 
@@ -201,6 +198,7 @@ scheme_lst.win.excld = {
   -- 
   -- dir blue
   -- git
+  'Adventure'                              , -- 
   'Espresso (Gogh)'                        , -- 
   'IrBlack (Gogh)'                         , -- 
   'FairyFloss (Gogh)'                      , -- 
@@ -210,6 +208,7 @@ scheme_lst.win.excld = {
   'Seti UI (base16)'                       , -- 
   -- slctd
   'UltraDark'                              , -- 
+  'Ef-Dark'                                , -- 
   -- white
   'Borland'                                , -- 
   'Ayu Mirage (Gogh)'                      , -- 
@@ -222,6 +221,7 @@ scheme_lst.win.excld = {
   'Desert'                                 , -- 
   'Desert (Gogh)'                          , -- 
   'Monokai (base16)'                       , -- 
+  'Ef-Bio'                                 , -- 
   -- etc
   'Silk Dark (base16)'                     , -- 
   'Default (dark) (terminal.sexy)'         , -- 

@@ -18,6 +18,8 @@
   ff = only
 [merge]
   tool = vimdiff
+[mergetool "nvimdiff"]
+  cmd = nvim -d "$LOCAL" "$MERGED" "$REMOTE"
 [alias]
   l     = log
   co-ls = show --name-only

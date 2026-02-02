@@ -4,12 +4,11 @@
 
 ## nvim
 
-col_num > char_idx ??
-- tidy
-  - xxx
-
-ruler num
-- vim.fn.virtcol('.')
+cursor __ mv by ruler_num
+v.Cursor.__mv_by_line_ruler(line_num, ruler_num)
+```
+vim.cmd("normal! 30|")
+```
 
 
 ## kiro
