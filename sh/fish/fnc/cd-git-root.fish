@@ -1,6 +1,6 @@
-function cd_git_root
+function cd-git-root
 
-  set pth_rel ( git_root_pth_rel )
+  set pth_rel ( git-root-pth-rel )
 
   if test -n $pth_rel
     cd $pth_rel

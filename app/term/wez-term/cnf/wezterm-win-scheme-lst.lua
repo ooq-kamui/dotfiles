@@ -30,6 +30,7 @@ scheme_lst.win.recommend.h = {
   'IR_Black'                               , -- 
   'TomorrowNightBlue (Gogh)'               , -- 
   'arcoiris'                               , -- 
+  'GJM (terminal.sexy)'                    , -- 
   -- h ~
   'Nocturnal Winter'                       , -- 
   'hardhacker'                             , -- 
@@ -77,7 +78,6 @@ scheme_lst.win.recommend.h = {
   'Fairyfloss'                             , -- 
   'Flat (base16)'                          , -- 
   'Framer (base16)'                        , -- 
-  'GJM (terminal.sexy)'                    , -- 
   'Google Dark (Gogh)'                     , -- 
   'Guezwhoz'                               , -- 
   'Horizon Dark (Gogh)'                    , -- 

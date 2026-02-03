@@ -144,9 +144,9 @@ function v.Slctd.__by_line_col(s_line, s_col, e_line, e_col)
   s_line = (s_line == nil) and v.Cursor.line_num() or s_line
   e_line = (e_line == nil) and v.Cursor.line_num() or e_line
 
-  v.Cursor.__mv_by_line_col(s_line, s_col)
+  v.Cursor.__mv_by_line_col_num(s_line, s_col)
   v.Slctd.str__cursor_c_char()
-  v.Cursor.__mv_by_line_col(e_line, e_col)
+  v.Cursor.__mv_by_line_col_num(e_line, e_col)
 end
 
 -- slctd cursor __ mv
@@ -1230,7 +1230,7 @@ function v.Slctd.line__ins_cmnt_1() -- range
 
     v.Line.end__pad_space(line_num, col_num - 1)
 
-    v.Cursor.__mv_by_line_col(line_num, col_num)
+    v.Cursor.__mv_by_line_col_num(line_num, col_num)
 
     v.Cursor.__ins_cmnt_1(nil)
   end
@@ -1243,7 +1243,7 @@ function v.Slctd.box_f_str__space_crct_with_fzy()
 
   for idx, line_num in pairs(v.Slctd.line_num_seq()) do
 
-    v.Cursor.__mv_by_line_col(line_num, col_num)
+    v.Cursor.__mv_by_line_col_num(line_num, col_num)
 
     v.Cursor.f_str__space_crct_with_fzy(ref_drct)
   end
@@ -1369,22 +1369,19 @@ function v.Slctd.box_edge_l__ins_space()
   -- v.Slctd.__ltst()
 end
 
-function v.Slctd.box_edge_l__ynk_line_1() -- range
+function v.Slctd.box_edge_l__ynk_str() -- range
 
   if v.Str.is__ptn(v.Rgstr.get('a'), '\\n') then
     v.Log.val( 'yank is include cr' )
     return
   end
 
-  -- local col_num   = v.Cursor.col_num()
   local ruler_num = v.Cursor.ruler_num()
-
-  -- v.Log.val(col_num)
+  -- v.Log.val(ruler_num)
 
   for idx, line_num in pairs(v.Slctd.line_num_seq()) do
 
-    -- v.Cursor.__mv_by_line_col(line_num, col_num)
-    v.Cursor.__mv_by_line_ruler(line_num, ruler_num)
+    v.Cursor.__mv_by_line_ruler_num(line_num, ruler_num)
 
     if v.Cursor.col_num() < ruler_num then
       -- continue
@@ -1432,7 +1429,7 @@ function v.Slctd.box_cursor_r_space__crct() -- range
   local col              = v.Cursor.col_num()
   local slctd_line_s_num = v.Slctd.line_s_num()
 
-  v.Cursor.__mv_by_line_col(slctd_line_s_num, col)
+  v.Cursor.__mv_by_line_col_num(slctd_line_s_num, col)
 
   for idx, line_num in pairs(v.Slctd.line_num_seq()) do
 

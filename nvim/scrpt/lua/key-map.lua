@@ -186,7 +186,7 @@ keymap__('n', 'ri', '<esc>')
 keymap__('n', 'rj', '<esc>')
 keymap__('n', 'rk', '<esc>')
 keymap__('n', 'rl', '<esc>')
---                   :
+keymap__('n', 'rm', '<esc>')
 keymap__('n', 'rn', '<esc>')
 keymap__('n', 'ro', '<esc>')
 keymap__('n', 'rp', '<esc>')
@@ -421,7 +421,6 @@ keymap__('n', '<c-f>', ':lua v.Cursor.__mv_word_dlm_f()<cr>')
 
 -- cursor mv line u word col  -  forward
 keymap__('n', '<c-e>', ':lua v.Cursor.__mv_line_u_word_col()<cr>')
-keymap__('n', 'F'    , ':lua v.Cursor.__mv_line_u_word_col()<cr>')
 
 -- cursor mv fnc name
 -- keymap__('n', 'xx', ':lua v.Cursor.__mv_fnc_name()<cr>')
@@ -838,8 +837,8 @@ keymap__('n', '<leader>e', ':lua v.Fzf.jmplst()<cr>')
 
 -- cmd history ( fzf )
 keymap__('n', '<leader>r', ':FzfCmdHstry<cr>')
-keymap__('n', '<leader>h', ':FzfCmdHstry<cr>')
 keymap__('n', '<leader>:', ':FzfCmdHstry<cr>')
+-- keymap__('n', '<leader>h', ':FzfCmdHstry<cr>')
 
 -- sys cmd
 keymap__('n', ':!', ':!')
@@ -868,8 +867,11 @@ keymap__('n', '<leader>d', ':lua v.Fzf.dir()<cr>')
 -- fzf cd ( dir jmp , zoxide )
 keymap__('n', '<leader>D', ':lua v.Fzf.dir_jmp()<cr>')
 
+-- fzf git status
+keymap__('n', '<leader>u', ':lua v.Fzf.file_by_git_st()<cr>')
+
 -- fzf fnc call
-keymap__('n', '<leader>R', ':lua v.Fzf.fnc_call()<cr>')
+-- keymap__('n', '<leader>R', ':lua v.Fzf.fnc_call()<cr>')
 
 -- fzf doc tech
 keymap__('n', '<leader>t', ':lua v.Fzf.doc_tech()<cr>')
@@ -877,8 +879,8 @@ keymap__('n', '<leader>t', ':lua v.Fzf.doc_tech()<cr>')
 -- fzf doc memo
 -- keymap__('n', '<leader>xx', ':lua v.Fzf.doc_memo_opn()<cr>')
 
--- fzf git status
-keymap__('n', '<leader>u', ':lua v.Fzf.file_by_git_st()<cr>')
+-- fzf str ref
+keymap__('n', '<leader>s', ':lua v.Fzf.str_ref()<cr>')
 
 -- tab
 
@@ -938,14 +940,11 @@ keymap__('n', 'rn', ':lua v.Win.splt_cursor__mv_nxt()<cr>')
 -- term launch
 -- keymap__('n', 'xx', ':Term ')
 
--- mark
--- keymap__('n', 'xx', 'mz')
-
--- mark  -  cursor mv
-keymap__('n', 'rm', '``')
--- keymap__('n', 'rm', '`z')
-
+-- mark lst ( fzf )
 keymap__('n', '<leader>m', ':FzfMark<cr>')
+
+-- mark add
+keymap__('n', 'S', ':lua v.Mark.add()<cr>')
 
 -- 
 -- setting ( set )
@@ -1254,7 +1253,7 @@ keymap__('x', 'o', ':lua v.Rgstr.ynk__slctd()<cr>')
 -- todo refactoring ?
 keymap__('x', 'p', function()
   if v.Mode.is__box() then
-    return ':lua v.Slctd.box_edge_l__ynk_line_1()<cr>'
+    return ':lua v.Slctd.box_edge_l__ynk_str()<cr>'
   else
     return ':lua v.Slctd.str__ynk()<cr>'
   end

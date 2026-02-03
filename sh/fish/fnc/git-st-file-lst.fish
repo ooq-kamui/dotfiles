@@ -1,4 +1,4 @@
-function git_st_file_lst
+function git-st-file-lst
 
   set tmp_file_path ( mktemp )
 

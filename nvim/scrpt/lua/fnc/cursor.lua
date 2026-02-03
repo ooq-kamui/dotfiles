@@ -109,7 +109,7 @@ function v.Cursor.__mv_by_col_num(col_num)
 
   local line_num = v.Cursor.line_num()
 
-  v.Cursor.__mv_by_line_col(line_num, col_num)
+  v.Cursor.__mv_by_line_col_num(line_num, col_num)
 end
 
 function v.Cursor.__mv_by_line_num(line_num)
@@ -130,7 +130,7 @@ function v.Cursor.__mv_by_line_num(line_num)
   -- v.Cmd.nml(line_num .. 'G')
 end
 
-function v.Cursor.__mv_by_line_col(line_num, col_num)
+function v.Cursor.__mv_by_line_col_num(line_num, col_num)
 
   line_num = line_num or v.Cursor.line_num()
 
@@ -562,13 +562,12 @@ function v.Cursor.__mv_fnc_out()
   v.Cmd.nml(cmd_nml)
 end
 
--- dev anchor
-function v.Cursor.__mv_by_line_ruler(line_num, ruler_num)
+function v.Cursor.__mv_by_line_ruler_num(line_num, ruler_num)
 
-  local col_num
-  col_num = v.Line.col_num_by_ruler_num(line_num, ruler_num)
+  v.Cursor.__mv_by_line_num(line_num)
 
-  v.Cursor.__mv_by_line_col(line_num, col_num)
+  local cmd_nml = ruler_num .. '|'
+  v.Cmd.nml(cmd_nml)
 end
 
 function v.Cursor.__mv_line_u_word_col()
@@ -591,7 +590,7 @@ function v.Cursor.__mv_line_x_word_col(ref_drct)
 
   if not word_col_idx then return end
 
-  v.Cursor.__mv_by_line_col(nil, word_col_idx)
+  v.Cursor.__mv_by_line_col_num(nil, word_col_idx)
 end
 
 -- cursor __ ins
@@ -786,7 +785,7 @@ function v.Cursor.__ins_markdown_heading()
 
   local ptn = '^#* '
   local col = v.Str.srch_end(v.Cursor.line_str(), ptn) + 1
-  v.Cursor.__mv_by_line_col(nil, col)
+  v.Cursor.__mv_by_line_col_num(nil, col)
 end
 
 function v.Cursor.__ins_markdown_cr()
@@ -1079,14 +1078,14 @@ end
 function v.Cursor.str_week__icl()
 
   local week_str = v.Cursor.word()
-  local week_idx = vf.index(g.week_def, week_str)
+  local week_idx = vf.index(v.Date.week_def, week_str)
 
   if week_idx == -1 then
     return
   end
 
-  local week_nxt_idx = v.Idx.__icl(week_idx, vf.len(g.week_def))
-  local week_nxt_str = g.week_def[week_nxt_idx]
+  local week_nxt_idx = v.Idx.__icl(week_idx, vf.len(v.Date.week_def))
+  local week_nxt_str = v.Date.week_def[week_nxt_idx]
 
   v.Slctd.str__word()
   v.Cmd.nml('"zd')
@@ -1096,14 +1095,14 @@ end
 function v.Cursor.str_week__dcl()
 
   local week_str = v.Cursor.word()
-  local week_idx = vf.index(g.week_def, week_str)
+  local week_idx = vf.index(v.Date.week_def, week_str)
 
   if week_idx == -1 then
     return
   end
 
-  local week_nxt_idx = v.Idx.__dcl(week_idx, vf.len(g.week_def))
-  local week_nxt_str = g.week_def[week_nxt_idx]
+  local week_nxt_idx = v.Idx.__dcl(week_idx, vf.len(v.Date.week_def))
+  local week_nxt_str = v.Date.week_def[week_nxt_idx]
 
   v.Slctd.str__word()
   v.Cmd.nml('"zd')
@@ -1180,7 +1179,7 @@ end
 
 function v.Cursor.__ins_line_anchor_srch_start()
 
-  v.Cursor.__ins_line_anchor('srch anchor' .. ' ' .. vf.strftime('%H:%M'))
+  v.Cursor.__ins_line_anchor('srch start' .. ' ' .. vf.strftime('%H:%M'))
 end
 
 function v.Cursor.__ins_line_anchor__del() -- use not

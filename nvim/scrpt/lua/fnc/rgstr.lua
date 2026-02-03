@@ -46,7 +46,9 @@ end
 
 -- ynk
 
-v.Rgstr.Ynk = {}
+v.Rgstr.Ynk = {} -- use not
+
+v.Rgstr.ynk_key_dflt = 'a'
 
 function v.Rgstr.ynk__clr()
 
@@ -63,12 +65,6 @@ function v.Rgstr.ynk__(str)
 
   v.Rgstr.__shft()
   v.Rgstr.__('a', str)
-end
-
-function v.Rgstr.ynk__rgstr()
-
--- todo dev
-
 end
 
 function v.Rgstr.ynk__cursor_line()

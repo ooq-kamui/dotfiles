@@ -56,7 +56,7 @@ end
 
 function v.Ins.week()
 
-  vf.complete(vf.col('.'), g.week_def)
+  vf.complete(vf.col('.'), v.Date.week_def)
   return ''
 end
 

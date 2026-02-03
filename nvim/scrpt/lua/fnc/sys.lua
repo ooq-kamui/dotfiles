@@ -14,7 +14,7 @@ function v.Sys.cmd_by_slctd_line(p_sys_cmd) -- range
   local str = v.Slctd.str()
   local sys_cmd = 'echo ' .. "'" .. str .. "'" .. ' | ' .. p_sys_cmd
   local rslt = v.Sys.cmd(sys_cmd)
-  v.Log.val(rslt)
+  -- v.Log.val(rslt)
   v.Rgstr.__('a', rslt)
 end
 

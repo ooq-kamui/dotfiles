@@ -1,24 +1,14 @@
 
 v.Fzf = {}
 
-function v.Fzf.by_txt(...)
-
-  local arg = {...}
-
-  local src_txt  = arg[1] or nil
-  local fnc_name = arg[2] or nil
+function v.Fzf.by_txt(src_txt, fnc_name)
 
   local src_ar = v.Txt._to_ar(src_txt)
 
   v.Fzf.by_ar(src_ar, fnc_name)
 end
 
-function v.Fzf.by_ar(...)
-
-  local arg = {...}
-
-  local src_ar   = arg[1] or nil
-  local fnc_name = arg[2] or nil
+function v.Fzf.by_ar(src_ar, fnc_name)
 
   vim.fn['fzf#run'](
     {
@@ -129,12 +119,12 @@ function v.Fzf.rg_word1_by_srch_str()
   v.Fzf.rg(ptn, nil, bl.t)
 end
 
--- fzf rg by run
+-- fzf rg with run
 
 v.Fzf.cnst = {}
 v.Fzf.cnst.line_cnt_max = 30000
 
-function v.Fzf.rg_with_run(...)
+function v.Fzf.rg_with_run(...) -- use not
 
   local arg = {...}
 
@@ -312,7 +302,7 @@ end
 
 -- fzf doc-memo
 
-function v.Fzf.doc_memo_opn()
+function v.Fzf.doc_memo_opn() -- use not
 
   local dir = '~'
 
@@ -324,11 +314,23 @@ function v.Fzf.doc_memo_opn()
   }
 
   local fzf_src_ar = memo_file_lst
-  local fnc_name    = v.Buf.opn
+  local fnc_name   = v.Buf.opn
   v.Fzf.by_ar(fzf_src_ar, fnc_name)
 end
 
+function v.Fzf.str_ref()
+
+  local file_path   = v.Dir.c.nvim_lua_fnc_dir .. '/str-ref.txt'
+  local sys_cmd     = 'cat ' .. file_path
+  local fzf_src_txt = v.Sys.cmd(sys_cmd)
+
+  local fnc_name = v.Rgstr.ynk__
+  v.Fzf.by_txt(fzf_src_txt, fnc_name)
+end
+
+-- 
 -- setting
+-- 
 
 v.Fzf.opt_vim_cmd = [[
 let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
@@ -432,6 +434,8 @@ v.Cmd.cmd('command! -bang -nargs=* FzfCmdHstry call fzf#vim#command_history(fzf#
 v.Cmd.cmd('command! -bang -nargs=* FzfSrchHstry call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)')
 
 -- fzf cmd def : mark
-v.Cmd.cmd('command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)')
-
+-- v.Cmd.cmd([[command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)]])
+v.Cmd.cmd([[command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview({'options': '--query "^a | ^b | ^c"'}), <bang>1)]])
+-- v.Cmd.cmd([[command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview({'options': '--query "^a "'}), <bang>1)]])
+-- v.Cmd.cmd([[command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview({'options': '--query "^[a-z] "'}), <bang>1)]])
 

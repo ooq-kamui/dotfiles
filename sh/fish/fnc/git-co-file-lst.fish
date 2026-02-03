@@ -1,4 +1,4 @@
-function git_co_file_lst
+function git-co-file-lst
 
   set times 3
   if test -n "$argv[1]"

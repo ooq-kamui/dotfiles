@@ -4,11 +4,24 @@
 
 ## nvim
 
-cursor __ mv by ruler_num
-v.Cursor.__mv_by_line_ruler(line_num, ruler_num)
-```
-vim.cmd("normal! 30|")
-```
+rgstr, ynk, tidy
+- a: refactoring
+
+
+fzf doc-tech: err
+- line_num ?
+
+
+vf.len() > v.Tbl.len() ?
+- confirm
+
+
+rg: dev doing
+
+
+## skr-vps
+
+doc-tech, rsync at own
 
 
 ## kiro
