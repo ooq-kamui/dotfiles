@@ -2,6 +2,21 @@
 # dotfiles
 
 
+## skr-vps
+
+key file name ch, cnt
+- ofc
+
+ofc wsl confirm
+- fish.config
+- ssh-skr ?
+
+
+## watch
+
+music odn
+
+
 ## nvim
 
 srch case: word1  edge 1
@@ -36,11 +51,6 @@ str.alph-lst
 
 repeat
 - tst
-
-
-## watch
-
-music odn
 
 
 ## doc-tech
