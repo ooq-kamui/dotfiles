@@ -11,13 +11,13 @@ function v.Slctd.__clr() -- range -- alias
 end
 
 function v.Slctd.__ltst() -- range
-  -- v.Log.val(vf.mode())
+  -- v.Log.val(v.Mode.mode())
 
   if v.Mode.is__box() then
     return
-  elseif vf.mode() == 'v' then
+  elseif v.Mode.is__str()  then
     return
-  elseif vf.mode() == 'V' then
+  elseif v.Mode.is__line() then
     return
   end
 
@@ -1371,7 +1371,7 @@ end
 
 function v.Slctd.box_edge_l__ynk_str() -- range
 
-  if v.Str.is__ptn(v.Rgstr.get('a'), '\\n') then
+  if v.Str.is__ptn(v.Rgstr.ynk(), '\\n') then
     v.Log.val( 'yank is include cr' )
     return
   end

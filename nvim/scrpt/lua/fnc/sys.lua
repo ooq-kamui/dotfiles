@@ -15,7 +15,7 @@ function v.Sys.cmd_by_slctd_line(p_sys_cmd) -- range
   local sys_cmd = 'echo ' .. "'" .. str .. "'" .. ' | ' .. p_sys_cmd
   local rslt = v.Sys.cmd(sys_cmd)
   -- v.Log.val(rslt)
-  v.Rgstr.__('a', rslt)
+  v.Rgstr.ynk__(rslt)
 end
 
 function v.Sys.sh_by_slctd_line()
@@ -71,14 +71,14 @@ function v.Sys.opn_app_by_line_path(line_num)
 
   local path = v.Line.str_by_line_num(line_num)
 
-  path = vf.trim(path)
+  path = v.Str.trim(path)
   v.Sys.opn_app(path)
 end
 
 function v.Sys.opn_app_by_slctd_str()
 
   local path = v.Slctd.str()
-  path = vf.trim(path)
+  path = v.Str.trim(path)
   v.Sys.opn_app(path)
 end
 
@@ -106,7 +106,7 @@ end
 function v.Sys.opn_yt_by_slctd_str()
 
   local yt_video_id = v.Slctd.str()
-  local yt_video_id = vf.trim(yt_video_id)
+  local yt_video_id = v.Str.trim(yt_video_id)
   v.Sys.opn_yt(yt_video_id)
 end
 
@@ -125,7 +125,7 @@ end
 function v.Sys.opn_ggl_srch_by_slctd_str()
 
   local word = v.Slctd.str()
-  local word = vf.trim(word)
+  local word = v.Str.trim(word)
   v.Sys.opn_ggl_srch(word)
 end
 
@@ -140,7 +140,7 @@ end
 function v.Sys.trns_by_slctd_str() -- range
 
   local str = v.Slctd.str()
-  str = vf.substitute(str, "\\n", ' ', 'g')
+  str = v.Str.__rpl_with_vim(str, "\\n", ' ', 'g')
 
   local lang
   if v.Str.is__ptn(str, '[^\\x01-\\x7E]') then -- mlt byte
@@ -175,7 +175,7 @@ function v.Sys.cmd_by_slf(p_sys_cmd)
 
   local rslt = v.Sys.cmd(sys_cmd)
   v.Log.val(rslt)
-  -- v.Rgstr.__('a', rslt)
+  -- v.Rgstr.ynk__(rslt)
 
   v.Buf.opn_re()
 end

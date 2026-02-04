@@ -35,7 +35,7 @@ v.Txt = {}
 
 function v.Txt._to_ar(txt)
 
-  local line_ar  = vf.split(txt, '\\n')
+  local line_ar  = v.Str.split(txt, '\\n')
   return line_ar
 end
 

@@ -11,7 +11,7 @@ function v.Tbl.del(tbl, idx)
   return table.remove(tbl, idx)
 end
 
-function v.Tbl.len(tbl)
+function v.Tbl.len(tbl) -- rpl vf.len()
 
   return #tbl
 end

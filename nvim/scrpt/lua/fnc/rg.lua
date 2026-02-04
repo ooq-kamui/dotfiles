@@ -4,29 +4,27 @@ v.Rg = {}
 v.Rg.cnst = {}
 
 v.Rg.cnst.emp_line_ptn  = '^[ \\t]*$'
-v.Rg.cnst.some_line_ptn = '^[^ \\t]+$'
--- v.Rg.cnst.some_line_ptn = '[^ \\t]'
+v.Rg.cnst.some_line_ptn = '^[^ \\t]+$' -- '[^ \\t]'
 
--- dev anchor
-function v.Rg.rslt_line_parse(line)
+function v.Rg.rslt_line_parse_ar(line)
 
   local dlm = ':'
-  local ret = vf.split(line, dlm)
-  --echo ret
+  local line_parse_ar = v.Str.split(line, dlm)
+  --echo line_parse_ar
 
   local idx = 1
-  while idx <= vf.len(ret) do
+  while idx <= v.Tbl.len(line_parse_ar) do
 
-    ret[idx] = vf.trim(ret[idx])
+    line_parse_ar[idx] = v.Str.trim(line_parse_ar[idx])
 
     idx = idx + 1
   end
 
-  if ( vf.len(ret) > 1 ) and ( not v.Char.is__num(ret[2]) ) then
-    ret[2] = '1'
+  if ( v.Tbl.len(line_parse_ar) > 1 ) and ( not v.Char.is__num(line_parse_ar[2]) ) then
+    line_parse_ar[2] = '1'
   end
 
-  return ret
+  return line_parse_ar
 end
 
 v.Rg.fzf_rg_opt = ''
@@ -39,11 +37,7 @@ v.Rg.fzf_rg_opt = ''
 
 function v.Rg.cmd(ptn, ext, word1, opt)
 
-  if ptn == nil then
-    ptn = ''
-  else
-    ptn = ptn
-  end
+  ptn = ptn or ''
 
   local fzf_rg_opt_ext
 
@@ -112,7 +106,7 @@ end
 function v.Rg.rslt_ar_by_ptn(ptn, opt)
 
   local rg_rslt_txt = v.Rg.rslt_txt_by_ptn(ptn, opt)
-  local rg_rslt_ar  = vf.split(rg_rslt_txt, "\\n")
+  local rg_rslt_ar  = v.Str.split(rg_rslt_txt, "\\n")
   return rg_rslt_ar
 end
 

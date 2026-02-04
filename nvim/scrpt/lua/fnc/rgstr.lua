@@ -3,9 +3,14 @@
 
 v.Rgstr = {}
 
-function v.Rgstr.get(rgstr_name) -- alias
+v.Ynk = v.Rgstr
 
-  return vf.getreg(rgstr_name)
+v.Rgstr.ynk_key_dflt = 'a'
+v.Rgstr.ynk_key_lst  = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'}
+
+function v.Rgstr.get(rgstr_key) -- alias
+
+  return vf.getreg(rgstr_key)
 end
 
 function v.Rgstr.info_rgstr(rgstr_info)
@@ -15,56 +20,61 @@ function v.Rgstr.info_rgstr(rgstr_info)
   return rgstr
 end
 
-function v.Rgstr.__(rgstr_name, val)
+function v.Rgstr.__(rgstr_key, val) -- alias
 
-  vf.setreg(rgstr_name, val)
+  vf.setreg(rgstr_key, val)
 end
 
-function v.Rgstr.__clr()
+function v.Rgstr.__clr() -- use not
 
-  v.Rgstr.__('a', '')
+  -- dev anchor
+  v.Rgstr.ynk__('')
 end
 
 function v.Rgstr.__shft()
 
-  local a = v.Rgstr.get('a')
-  local b = v.Rgstr.get('b')
+  local a = v.Rgstr.get(v.Rgstr.ynk_key_lst[1])
+  local b = v.Rgstr.get(v.Rgstr.ynk_key_lst[2])
 
   if a == b then
     return
   end
 
-  v.Rgstr.__('h', v.Rgstr.get('g'))
-  v.Rgstr.__('g', v.Rgstr.get('f'))
-  v.Rgstr.__('f', v.Rgstr.get('e'))
-
-  v.Rgstr.__('e', v.Rgstr.get('d'))
-  v.Rgstr.__('d', v.Rgstr.get('c'))
-  v.Rgstr.__('c', b               )
-  v.Rgstr.__('b', a               )
+  local idx = v.Tbl.len(v.Rgstr.ynk_key_lst)
+  while idx >= 2 do
+    v.Rgstr.__(v.Rgstr.ynk_key_lst[idx], v.Rgstr.get(v.Rgstr.ynk_key_lst[idx - 1]))
+    idx = idx - 1
+  end
 end
 
 -- ynk
 
-v.Rgstr.Ynk = {} -- use not
+function v.Rgstr.ynk(ynk_key)
 
-v.Rgstr.ynk_key_dflt = 'a'
+  ynk_key = ynk_key or v.Rgstr.ynk_key_dflt
 
-function v.Rgstr.ynk__clr()
-
-  v.Rgstr.__('a', '')
+  return v.Rgstr.get(ynk_key)
 end
 
-function v.Rgstr.ynk__(str)
+function v.Rgstr.ynk__(str, ynk_key)
 
-  local a = v.Rgstr.get('a')
+  ynk_key = ynk_key or v.Rgstr.ynk_key_dflt
 
-  if a == str then
+  local str_crnt = v.Rgstr.get(ynk_key)
+
+  if str_crnt == str then
     return
   end
 
   v.Rgstr.__shft()
-  v.Rgstr.__('a', str)
+  v.Rgstr.__(ynk_key, str)
+end
+
+function v.Rgstr.ynk__clr(ynk_key)
+
+  ynk_key = ynk_key or v.Rgstr.ynk_key_dflt
+
+  v.Rgstr.__(ynk_key, '')
 end
 
 function v.Rgstr.ynk__cursor_line()
@@ -81,7 +91,7 @@ function v.Rgstr.ynk__line_all()
   local cmd = '%y' -- todo rgstr a direct
   v.Cmd.cmd(cmd)
 
-  v.Rgstr.__('a', v.Rgstr.get('0'))
+  v.Rgstr.ynk__(v.Rgstr.get('0'))
   v.Rgstr.clp__ynk()
 end
 
@@ -89,13 +99,13 @@ function v.Rgstr.ynk__buf_file_path()
 
   local path = v.Buf.file_path()
 
-  v.Rgstr.__('a', path)
+  v.Rgstr.ynk__(path)
   v.Rgstr.clp__ynk()
 end
 
 function v.Rgstr.ynk__clp()
 
-  v.Rgstr.__('a', v.Rgstr.get('+'))
+  v.Rgstr.ynk__(v.Rgstr.get('+'))
 end
 
 function v.Rgstr.ynk__slctd()
@@ -132,7 +142,7 @@ function v.Rgstr.ynk__by_rgstr_info(rgstr_info)
 
   local rgstr = v.Rgstr.info_rgstr(rgstr_info)
   local scrpt = 'let @a = @' .. rgstr
-  vf.execute(scrpt) -- refactoring ?
+  v.Cmd.cmd(scrpt)
 end
 
 -- clp
@@ -143,7 +153,7 @@ function v.Rgstr.clp__ynk()
 
     v.Cmd.cmd('let @+ = @a')
     -- dev anchor ?
-    -- v.Rgstr.__('+', v.Rgstr.get('a'))
+    -- v.Rgstr.__('+', v.Rgstr.ynk())
   end
 end
 

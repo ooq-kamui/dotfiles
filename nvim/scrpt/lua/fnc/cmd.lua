@@ -6,6 +6,11 @@ function v.Cmd.cmd(cmd) -- alias
   vim.cmd(cmd)
 end
 
+function v.Cmd.exc(cmd) -- alias
+
+  return vf.execute(cmd)
+end
+
 function v.Cmd.nml(cmd_nml) -- alias
 
   -- v.Log.log(cmd_nml)

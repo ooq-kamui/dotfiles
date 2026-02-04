@@ -4,24 +4,39 @@
 
 ## nvim
 
+srch case: word1  edge 1
+- tst
+  - acase:
+
+
+n u: | , err
+
+
 rgstr, ynk, tidy
 - a: refactoring
+
+
+str len : tidy
+- call xxx()
 
 
 fzf doc-tech: err
 - line_num ?
 
 
-vf.len() > v.Tbl.len() ?
-- confirm
+vf rpl
+- vf.strcharpart()
 
 
-rg: dev doing
+## doc-tech
+
+skr-vps
+- rsync at own
 
 
-## skr-vps
+## git
 
-doc-tech, rsync at own
+git-co-summary date
 
 
 ## kiro

@@ -110,7 +110,7 @@ end
 
 function v.Buf.opn_by_path(rg_rslt_line)
 
-  local rg_rslt_line = vf.trim(rg_rslt_line)
+  local rg_rslt_line = v.Str.trim(rg_rslt_line)
 
   if v.Str.is__emp(rg_rslt_line) then
     v.Log.val( 'empty' )
@@ -120,7 +120,7 @@ function v.Buf.opn_by_path(rg_rslt_line)
   local rg_rslt_line = vf.matchstr(rg_rslt_line, '\\S\\+')
   -- v.Log.val( rg_rslt_line )
 
-  local rg_rslt_line_ar = v.Rg.rslt_line_parse(rg_rslt_line)
+  local rg_rslt_line_ar = v.Rg.rslt_line_parse_ar(rg_rslt_line)
   -- v.Log.val( rg_rslt_line_ar )
 
   local filename = rg_rslt_line_ar[1]

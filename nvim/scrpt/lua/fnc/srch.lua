@@ -61,8 +61,16 @@ function v.Srch.str_word1(str)
     str = v.Srch.str_flt()
   end
 
+  -- dev anchor
+  -- if v.Str.is__ptn(str, [[^\w]]) then
+  --   str = [[\<]] .. str
+  -- end
+  -- 
+  -- if v.Str.is__ptn(str, [[\w$]]) then
+  --   str = str .. [[\>]]
+  -- end
+
   str = [[\<]] .. str .. [[\>]]
-  -- str = '\\<' .. str .. '\\>'
   return str
 end
 
@@ -70,11 +78,10 @@ end
 
 function v.Srch.str__(str, op_word1)
 
-  local exe_str = str
+  local exe_str
+  exe_str = vf.escape(str, '.*~[]\\^$')
 
-  exe_str = vf.escape(exe_str, '.*~[]\\^$')
-
-  exe_str = vf.substitute(exe_str, [[\n]], [[\\n]], 'g')
+  exe_str = v.Str.__rpl_with_vim(exe_str, [[\n]], [[\\n]], 'g')
   -- v.Log.val( exe_str )
 
   if op_word1 == bl.t then
@@ -129,12 +136,10 @@ function v.Srch.prv_tgl_str()
   if v.Rgstr.get('/') == v.Srch.str_ltst(1) then
 
     if               v.Srch.str_ltst(1)           == [[\<]] .. v.Srch.str_ltst(2) .. [[\>]] then
-    -- if              v.Srch.str_ltst(1)          == '\\<' .. v.Srch.str_ltst(2) .. '\\>' then
 
       prv_tgl_str = v.Srch.str_ltst(3)
 
     elseif [[\<]] .. v.Srch.str_ltst(1) .. [[\>]] ==           v.Srch.str_ltst(2)           then
-    -- elseif '\\<' .. v.Srch.str_ltst(1) .. '\\>' ==          v.Srch.str_ltst(2)          then
 
       prv_tgl_str = v.Srch.str_ltst(3)
 
@@ -261,8 +266,8 @@ function v.Srch.is__word1()
   local str = v.Rgstr.get('/')
   local ret = bl.f
 
-  local str_l = vf.strcharpart(str, 0, 2)
-  local str_r = vf.strcharpart(str, vf.strchars(str) - 2)
+  local str_l = vf.strcharpart(str,                    0, 2)
+  local str_r = vf.strcharpart(str, vf.strchars(str) - 2   )
 
   if str_l == [[\<]] and str_r == [[\>]] then
   -- if str_l == '\\<' and str_r == '\\>' then

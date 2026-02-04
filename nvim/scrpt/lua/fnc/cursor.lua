@@ -29,6 +29,7 @@ end
 
 function v.Cursor.l_col_num()
 
+  -- dev anchor
   
 end
 
@@ -36,8 +37,8 @@ function v.Cursor.ruler_num()
 
   local str = v.Cursor.line_str_side_l()
 
-  local ruler_num = v.Str.ruler_len(str) + 1
-  v.Log.val(ruler_num)
+  local ruler_num = v.Str.len_ruler(str) + 1
+  -- v.Log.val(ruler_num)
 
   return ruler_num
 end
@@ -1084,7 +1085,7 @@ function v.Cursor.str_week__icl()
     return
   end
 
-  local week_nxt_idx = v.Idx.__icl(week_idx, vf.len(v.Date.week_def))
+  local week_nxt_idx = v.Idx.__icl(week_idx, v.Tbl.len(v.Date.week_def))
   local week_nxt_str = v.Date.week_def[week_nxt_idx]
 
   v.Slctd.str__word()
@@ -1101,7 +1102,7 @@ function v.Cursor.str_week__dcl()
     return
   end
 
-  local week_nxt_idx = v.Idx.__dcl(week_idx, vf.len(v.Date.week_def))
+  local week_nxt_idx = v.Idx.__dcl(week_idx, v.Tbl.len(v.Date.week_def))
   local week_nxt_str = v.Date.week_def[week_nxt_idx]
 
   v.Slctd.str__word()
@@ -1137,7 +1138,7 @@ function v.Cursor.filepath()
     str = v.Cursor.line_str()
   end
 
-  str = vf.trim(str)
+  str = v.Str.trim(str)
 
   return str
 end
@@ -1292,9 +1293,7 @@ function v.Cursor.line_end_dots__crct()
   local line_str = v.Cursor.line_str()
   local idx = v.Str.srch_idx_by_lua(line_str, v.Cnst.dots_str_ptn)
 
-  if not idx then
-    return
-  end
+  if not idx then return end
 
   idx = idx - 1 -- to idx 0 start
 
@@ -1302,10 +1301,13 @@ function v.Cursor.line_end_dots__crct()
     return
   end
 
-  local line_str_0 = vf.strcharpart(line_str,     0, idx)
-  local line_str_1 = vf.strcharpart(line_str, idx       )
+  -- dev anchor
+  local line_str_0 = vf.strcharpart(line_str,   0, idx)
+  local line_str_1 = vf.strcharpart(line_str, idx     )
+  -- local line_str_0 = v.Str.sub_str_by_char_idx(line_str,       1, idx)
+  -- local line_str_1 = v.Str.sub_str_by_char_idx(line_str, idx + 1     )
 
-  if     idx < v.Cnst.dots_put_col then
+  if idx < v.Cnst.dots_put_col then
 
     local space_str = v.Str.space(v.Cnst.dots_put_col - idx)
     line_str = line_str_0 .. space_str .. line_str_1
@@ -1350,7 +1352,6 @@ function v.Cursor.f_space__del()
 
   local c = v.Cursor.c_char()
 
-  -- if c =~ '\\s' then
   if v.Str.is__ptn(c, '\\s') then
     -- v.Log.val( "del" )
     v.Slctd.str__cursor_f_space()

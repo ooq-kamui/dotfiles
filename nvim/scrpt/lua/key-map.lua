@@ -586,7 +586,7 @@ keymap__('n', '0', ':lua v.Cursor.__ins_hyphen()<cr>')
 keymap__('n', '*'    , ':lua v.Cursor.__ins_da()<cr>')
 
 -- ins time ( tm )
-keymap__('n', 'T', ':lua v.Cursor.__ins_tm()<cr>')
+keymap__('n', '+', ':lua v.Cursor.__ins_tm()<cr>')
 
 -- ins date time ( dt )
 -- keymap__('n', 'xx', ':lua v.Cursor.__ins_dt()<cr>')
@@ -598,8 +598,8 @@ keymap__('n', 'T', ':lua v.Cursor.__ins_tm()<cr>')
 -- keymap__('n', 'xx', ':lua v.Cursor.__ins_line_buf_file_path()<cr>')
 
 -- ins anchor
-keymap__('n', 'A'    , ':lua v.Cursor.__ins_line_anchor_srch_start()<cr>')
-keymap__('n', '<c-a>', ':lua v.Cursor.__ins_line_anchor_dev()<cr>')
+keymap__('n', 'A', ':lua v.Cursor.__ins_line_anchor_dev()<cr>')
+-- keymap__('n', 'A', ':lua v.Cursor.__ins_line_anchor_srch_start()<cr>')
 
 -- ins anchor, del
 -- keymap__('n', 'xx', ':lua v.Cursor.__ins_line_anchor__del()<cr>')

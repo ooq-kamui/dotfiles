@@ -1,25 +1,25 @@
 
 v.Str = {}
 
-function v.Str.len(str) -- alias
-
-  return vf.strchars(str) -- by char
-end
-
 function v.Str.len_byte(str) -- alias
 
-  return vf.strlen(str) -- by byte
+  return vf.strlen(str) -- by byte , mb:3
+end
+
+function v.Str.len(str) -- alias
+
+  return vf.strchars(str) -- by char , mb:1
 end
 
 function v.Str.len_char(str) -- alias
 
-  return vf.strcharlen(str) -- by char
+  return vf.strcharlen(str) -- by char on neovim , mb:2
 end
 
-function v.Str.trim(str) -- alias
+function v.Str.len_ruler(str)
 
-  str = vf.trim(str)
-  return str
+  local len_ruler = vf.strdisplaywidth(str)
+  return len_ruler
 end
 
 function v.Str.char_by_char_idx(str, char_idx) -- char_idx: 1 start, mb:ok
@@ -46,9 +46,17 @@ end
 
 function v.Str.sub_str_by_char_idx(str, char_idx_s, char_idx_e) -- char_idx : 1 start, str:mb:ok
 
-  local len = char_idx_e - char_idx_s + 1
+  local len
+  if char_idx_e then
+    len = char_idx_e - char_idx_s + 1
+  end
+
   local r_str = vf.strcharpart(str, char_idx_s - 1, len) -- arg2: 0 start
   return r_str
+
+  -- rpl rvrs
+  -- vf.strcharpart(     str, char_idx_s    , len             )
+  -- sub_str_by_char_idx(str, char_idx_s + 1, char_idx_s + len)
 end
 
 -- dev anchor
@@ -67,6 +75,25 @@ function v.Str.sub_str_by_col(str, col_s, col_e) -- col : 1 start -- use not
   return r_str
 end
 
+function v.Str.trim(str) -- alias
+
+  str = vf.trim(str)
+  return str
+end
+
+function v.Str.split(str, dlm)
+
+  return vf.split(str, dlm)
+end
+
+-- str to num
+
+function v.Str.to_num(num_str)
+
+  local num = tonumber(num_str)
+  return num
+end
+
 function v.Str.space(len)
 
   local space_str = ''
@@ -79,12 +106,6 @@ function v.Str.space(len)
     idx = idx + 1
   end
   return space_str
-end
-
-function v.Str.ruler_len(str)
-
-  local ruler_num = vf.strdisplaywidth(str)
-  return ruler_num
 end
 
 -- str srch
@@ -137,7 +158,7 @@ function v.Str.word_col_idx_lst(str)
 
     else
       if is_space then
-        table.insert(word_col_idx_lst, idx)
+        v.Tbl.add(word_col_idx_lst, idx)
       end
       is_space = bl.f
     end
@@ -154,7 +175,7 @@ function v.Str.char_col_idx_lst(str, char)
         local s_col_idx, e_col_idx = string.find(str, char, col_idx, true)
 
         if s_col_idx then
-            table.insert(char_col_idx_lst, s_col_idx)
+            v.Tbl.add(char_col_idx_lst, s_col_idx)
             col_idx = e_col_idx + 1
         else
             break
@@ -171,7 +192,7 @@ function v.Str.__rpl_by_lua(str, ptn, rpl)
   return r_str
 end
 
-function v.Str.__rpl_by_vim(str, ptn, rpl) -- alias
+function v.Str.__rpl_with_vim(str, ptn, rpl) -- alias
 
   local r_str = vf.substitute(str, ptn, rpl, 'g')
   return r_str
@@ -231,14 +252,6 @@ function v.Str.drct_turn(drct)
   end
 
   return drct_turn
-end
-
--- str num
-
-function v.Str.to_num(num_str)
-
-  local num = tonumber(num_str)
-  return num
 end
 
 -- str cnd

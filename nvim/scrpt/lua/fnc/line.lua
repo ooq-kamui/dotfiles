@@ -67,10 +67,9 @@ end
 
 function v.Line.num_by_Line_info(line_info)
 
-  local line_info = vf.trim(line_info, ' ', 1)
-  local line_num  = vf.split(line_info, '\\s\\+')[1]
+  local line_info = v.Str.trim(line_info, ' ', 1)
+  local line_num  = v.Str.split(line_info, '\\s\\+')[1]
 
-  -- line_num = tonumber(line_num)
   line_num = v.Str.to_num(line_num)
   -- v.Log.val(line_num)
 
@@ -125,24 +124,24 @@ end
 
 -- line col
 
-function v.Line.col_num_by_ruler_num(line_num, p_ruler_num)
+function v.Line.col_num_by_len_ruler(line_num, p_len_ruler) -- use not ?
 
   local line_str          = v.Line.str_by_line_num(line_num)
   local line_str_len_char = v.Str.len_char(line_str)
 
-  local t_ruler_num = p_ruler_num - 1
-  local char_idx = math.min(t_ruler_num, line_str_len_char)
-  local str, _ruler_len
+  local t_len_ruler = p_len_ruler - 1
+  local char_idx = math.min(t_len_ruler, line_str_len_char)
+  local str, _len_ruler
 
   while char_idx > 0 do
 
     str = v.Str.sub_str_by_char_idx(line_str, 1, char_idx)
     -- v.Log.val(str)
 
-    _ruler_len = v.Str.ruler_len(str)
-    -- v.Log.val(_ruler_len, '>', t_ruler_num)
+    _len_ruler = v.Str.len_ruler(str)
+    -- v.Log.val(_len_ruler, '>', t_len_ruler)
 
-    if _ruler_len <= t_ruler_num then
+    if _len_ruler <= t_len_ruler then
       break
     end
 

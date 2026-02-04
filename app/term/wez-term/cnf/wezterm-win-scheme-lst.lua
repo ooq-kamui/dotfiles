@@ -31,12 +31,14 @@ scheme_lst.win.recommend.h = {
   'TomorrowNightBlue (Gogh)'               , -- 
   'arcoiris'                               , -- 
   'GJM (terminal.sexy)'                    , -- 
-  -- h ~
+  -- hh ~
   'Nocturnal Winter'                       , -- 
   'hardhacker'                             , -- 
   'Modus-Vivendi-Tritanopia'               , -- 
   'cyberpunk'                              , -- 
   'Tomorrow Night Blue (Gogh)'             , -- 
+  -- h ( chk ed )
+  'Snazzy'                                 , -- 
   -- h ( chk no )
   'Abernathy'                              , -- 
   'Aci (Gogh)'                             , -- 
@@ -133,7 +135,6 @@ scheme_lst.win.recommend.h = {
   'Seti (Gogh)'                            , -- 
   'Simple Rainbow (terminal.sexy)'         , -- 
   'Snazzy (Gogh)'                          , -- 
-  'Snazzy'                                 , -- 
   'Sublette'                               , -- 
   'SweetTerminal (Gogh)'                   , -- 
   'Synth Midnight Terminal Dark (base16)'  , -- 
@@ -181,13 +182,9 @@ scheme_lst.win.recommend.h = {
   'tokyonight_moon'                        , -- 
   'tokyonight_night'                       , -- 
   'zenburn (terminal.sexy)'                , -- 
-  -- ~~
-  -- slctd
   'Modus-Vivendi-Tinted'                   , -- 
   'Tokyo Night Moon'                       , -- 
-  -- git
   'Everblush (Gogh)'                       , -- 
-  -- cmd line
   'Monokai (base16)'                       , -- 
 }
 scheme_lst.win.recommend.m = {}

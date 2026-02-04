@@ -195,8 +195,8 @@ end
 
 function v.Fzf.rgstr()
 
-  local rgstr_info_str = vf.execute(':reg')
-  local rgstr_info_ar = vf.split(rgstr_info_str, '\\n')
+  local rgstr_info_txt = v.Cmd.exc(':reg')
+  local rgstr_info_ar  = v.Txt._to_ar(rgstr_info_txt)
   v.Tbl.del(rgstr_info_ar, 1)
   -- v.Log.tbl(rgstr_info_ar)
 
