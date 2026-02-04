@@ -9,15 +9,15 @@ srch case: word1  edge 1
   - acase:
 
 
-n u: | , err
-
-
 rgstr, ynk, tidy
-- a: refactoring
+- 'a' refactoring
 
 
 str len : tidy
 - call xxx()
+
+
+n u: | , err
 
 
 fzf doc-tech: err
@@ -26,6 +26,21 @@ fzf doc-tech: err
 
 vf rpl
 - vf.strcharpart()
+  - kmn
+
+
+str.alph-lst
+- ynk key
+- mark
+
+
+repeat
+- tst
+
+
+## watch
+
+music odn
 
 
 ## doc-tech

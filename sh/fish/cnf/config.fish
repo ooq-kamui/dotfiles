@@ -152,8 +152,7 @@ alias ji-co-smry     'git-co-summary'
 alias get-branch-upstream 'git branch --set-upstream-to=origin/main main'
 alias ji-b-upstream       'get-branch-upstream'
 
-alias ji-lzy  'lazygit'
-alias ji-lazy 'lazygit'
+alias lj 'lazygit'
 
 alias pd   'podman'
 alias pl   'podman container ls -a'
