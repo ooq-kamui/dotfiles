@@ -36,22 +36,34 @@ end
 
 function v.Srch.str()
 
-  -- local str = @/
-  -- local str = vf.getreg('/')
   local str = v.Rgstr.get('/')
   return str
 end
 
 function v.Srch.str_flt()
 
-  -- local str = @/
-  local str = v.Rgstr.get('/')
+  local str = v.Srch.str()
 
-  if v.Srch.is__word1() then
-    str = vf.strcharpart(str, 2, vf.strchars(str) - 4)
+  if not v.Srch.is__word1() then
+    return str
   end
-  -- v.Log.val( str )
 
+  local str_len = v.Str.len(str)
+
+  -- dev anchor, todo dev: one and one
+
+  -- str = v.Str.sub_by_char_idx(str, 3, str_len - 2)
+
+  -- dev anchor, todo: rpl by ptn
+  if v.Str.is__ptn(str, [[\\>$]]) then
+    str = v.Str.sub_by_char_idx(str, 1, str_len - 2)
+  end
+
+  if v.Str.is__ptn(str, [[^\\<]]) then
+    str = v.Str.sub_by_char_idx(str, 3)
+  end
+
+  -- v.Log.val(str)
   return str
 end
 
@@ -62,15 +74,16 @@ function v.Srch.str_word1(str)
   end
 
   -- dev anchor
-  -- if v.Str.is__ptn(str, [[^\w]]) then
-  --   str = [[\<]] .. str
-  -- end
-  -- 
-  -- if v.Str.is__ptn(str, [[\w$]]) then
-  --   str = str .. [[\>]]
-  -- end
+  if v.Str.is__ptn(str, [[^\w]]) then
+    str = [[\<]] .. str
+  end
+  
+  if v.Str.is__ptn(str, [[\w$]]) then
+    str = str .. [[\>]]
+  end
 
-  str = [[\<]] .. str .. [[\>]]
+  -- str = [[\<]] .. str .. [[\>]]
+
   return str
 end
 
@@ -79,7 +92,7 @@ end
 function v.Srch.str__(str, op_word1)
 
   local exe_str
-  exe_str = vf.escape(str, '.*~[]\\^$')
+  exe_str = v.Str.escape(str, '.*~[]\\^$')
 
   exe_str = v.Str.__rpl_with_vim(exe_str, [[\n]], [[\\n]], 'g')
   -- v.Log.val( exe_str )
@@ -89,7 +102,7 @@ function v.Srch.str__(str, op_word1)
   end
   -- v.Log.val( exe_str )
 
-  if v.Rgstr.get('/') == exe_str then -- same ltst 01
+  if v.Srch.str() == exe_str then -- same ltst 01
     return
   end
 
@@ -114,6 +127,7 @@ end
 function v.Srch.str__word1_tgl()
 
   local str = v.Srch.str_flt()
+  -- v.Log.val(str)
 
   if v.Srch.is__word1() then
 
@@ -133,7 +147,7 @@ function v.Srch.prv_tgl_str()
 
   local prv_tgl_str
 
-  if v.Rgstr.get('/') == v.Srch.str_ltst(1) then
+  if v.Srch.str() == v.Srch.str_ltst(1) then
 
     if               v.Srch.str_ltst(1)           == [[\<]] .. v.Srch.str_ltst(2) .. [[\>]] then
 
@@ -262,15 +276,13 @@ end
 
 function v.Srch.is__word1()
 
-  -- local str = @/
-  local str = v.Rgstr.get('/')
   local ret = bl.f
 
-  local str_l = vf.strcharpart(str,                    0, 2)
-  local str_r = vf.strcharpart(str, vf.strchars(str) - 2   )
+  local str = v.Srch.str()
+  local len = v.Str.len(str)
 
-  if str_l == [[\<]] and str_r == [[\>]] then
-  -- if str_l == '\\<' and str_r == '\\>' then
+  -- if v.Str.is__ptn(str, [[^\\<]]) and v.Str.is__ptn(str, [[\\>$]]) then
+  if v.Str.is__ptn(str, [[^\\<]]) or v.Str.is__ptn(str, [[\\>$]]) then
     ret = bl.t
   end
 

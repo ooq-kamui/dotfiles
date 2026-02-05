@@ -3,17 +3,18 @@
 
 v.Mark = {}
 
-v.Mark.key_lst_def = {
-  'a','b','c',
-  -- 'a','b','c','d','e','f','g','h','i','j','k','l','m','n',
-  -- 'o','p','q','r','s','t','u','v','w','x','y','z'
-}
+v.Mark.key_lst_def = v.Str.alph_lst('c')
+-- v.Mark.key_lst_def = {'a','b','c'}
+-- v.Mark.key_lst_def = {
+--   -- 'a','b','c','d','e','f','g','h','i','j','k','l','m','n',
+--   -- 'o','p','q','r','s','t','u','v','w','x','y','z'
+-- }
 
 function v.Mark.add()
 
   v.Mark.rotate()
 
-  local alph = 'a'
+  local alph = 'a' -- top key
   v.Cmd.cmd('mark ' .. alph)
 end
 

@@ -2,61 +2,33 @@
 # dotfiles
 
 
-## skr-vps
-
-key file name ch, cnt
-- ofc
-
-ofc wsl confirm
-- fish.config
-- ssh-skr ?
-
-
-## watch
-
-music odn
-
-
 ## nvim
 
-srch case: word1  edge 1
-- tst
-  - acase:
-
-
-rgstr, ynk, tidy
-- 'a' refactoring
-
-
-str len : tidy
-- call xxx()
-
-
-n u: | , err
+mb ptn def
 
 
 fzf doc-tech: err
 - line_num ?
 
 
-vf rpl
-- vf.strcharpart()
-  - kmn
+col > byte_idx
+cursor char, str, tidy
+vf.col() > ???
 
 
-str.alph-lst
-- ynk key
-- mark
+ptn: vim or lua, tidy
+
+
+n e, case: cursor __ line_end, err
 
 
 repeat
 - tst
 
 
-## doc-tech
+## watch
 
-skr-vps
-- rsync at own
+music odn
 
 
 ## git

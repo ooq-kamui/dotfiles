@@ -6,7 +6,7 @@ v.Rgstr = {}
 v.Ynk = v.Rgstr
 
 v.Rgstr.ynk_key_dflt = 'a'
-v.Rgstr.ynk_key_lst  = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'}
+v.Rgstr.ynk_key_lst  = v.Str.alph_lst('h')
 
 function v.Rgstr.get(rgstr_key) -- alias
 
@@ -15,7 +15,7 @@ end
 
 function v.Rgstr.info_rgstr(rgstr_info)
 
-  local rgstr = v.Str.sub_str_by_char_idx(rgstr_info, 7, 7)
+  local rgstr = v.Str.sub_by_char_idx(rgstr_info, 7, 7)
   -- v.Log.val(rgstr)
   return rgstr
 end

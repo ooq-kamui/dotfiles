@@ -1,19 +1,32 @@
 
 v.Str = {}
 
-function v.Str.len_byte(str) -- alias
+-- len
+
+function v.Str.len_byte(str)
 
   return vf.strlen(str) -- by byte , mb:3
 end
 
-function v.Str.len(str) -- alias
+function v.Str.len(str)
 
-  return vf.strchars(str) -- by char , mb:1
+  return v.Str.len_char(str)
 end
 
-function v.Str.len_char(str) -- alias
+function v.Str.len_char(str)
 
-  return vf.strcharlen(str) -- by char on neovim , mb:2
+  return v.Str.len_char_on_nvim(str)
+end
+
+function v.Str.len_char_on_nvim(str)
+
+  return vf.strcharlen(str) -- by char on nvim , mb:1
+end
+
+function v.Str.len_char_raw(str) -- use not
+
+  return vf.strchars(str) -- by char , mb:1
+  --   = vf.strchars(str, 0)
 end
 
 function v.Str.len_ruler(str)
@@ -22,58 +35,50 @@ function v.Str.len_ruler(str)
   return len_ruler
 end
 
+-- char
+
 function v.Str.char_by_char_idx(str, char_idx) -- char_idx: 1 start, mb:ok
 
-  local char = v.Str.sub_str_by_char_idx(str, char_idx, char_idx)
+  local char = v.Str.sub_by_char_idx(str, char_idx, char_idx)
   return char
 end
 
 function v.Str.l_char(str)
 
   local l_idx = 1
-  local char = str:sub(l_idx, l_idx)
-  -- v.Log.val(char)
+  local char = v.Str.sub_by_byte(str, l_idx, l_idx)
   return char
 end
 
 function v.Str.r_char(str)
 
   local r_idx = v.Str.len(str)
-  local char = str:sub(r_idx, r_idx)
+  local char  = v.Str.sub_by_byte(str, r_idx, r_idx)
   -- v.Log.val( char )
   return char
 end
 
-function v.Str.sub_str_by_char_idx(str, char_idx_s, char_idx_e) -- char_idx : 1 start, str:mb:ok
+-- str sub
 
-  local len
+function v.Str.sub_by_char_idx(str, char_idx_s, char_idx_e) -- char_idx : 1 start, str:mb:ok
+
+  local len = v.Str.len(str)
+
   if char_idx_e then
     len = char_idx_e - char_idx_s + 1
   end
 
   local r_str = vf.strcharpart(str, char_idx_s - 1, len) -- arg2: 0 start
   return r_str
-
-  -- rpl rvrs
-  -- vf.strcharpart(     str, char_idx_s    , len             )
-  -- sub_str_by_char_idx(str, char_idx_s + 1, char_idx_s + len)
 end
 
--- dev anchor
-function v.Str.sub_str_by_byte(str, byte_s, byte_e) -- col : 1 start -- use not
+function v.Str.sub_by_byte(str, byte_s, byte_e) -- byte : 1 start
 
   local r_str = string.sub(str, byte_s, byte_e)
   return r_str
 end
 
-function v.Str.sub_str_by_col(str, col_s, col_e) -- col : 1 start -- use not
-
-  local len    = col_e - col_s + 1
-  local byte_s = col_s - 1
-
-  local r_str = vf.strpart(str, byte_s, len)
-  return r_str
-end
+-- cnv etc
 
 function v.Str.trim(str) -- alias
 
@@ -94,26 +99,17 @@ function v.Str.to_num(num_str)
   return num
 end
 
-function v.Str.space(len)
-
-  local space_str = ''
-
-  local idx = 1
-  while idx <= len do
-
-    space_str = space_str .. ' '
-
-    idx = idx + 1
-  end
-  return space_str
-end
-
 -- str srch
 
 function v.Str.srch(str, ptn)
 
   local match_str = string.match(str, ptn)
   return match_str
+end
+
+function v.Str.srch_idx(str, ptn, srch_s_idx) -- alias
+
+  return v.Str.srch_idx_by_lua(str, ptn, srch_s_idx)
 end
 
 function v.Str.srch_idx_by_lua(str, ptn, srch_s_idx)
@@ -128,12 +124,6 @@ function v.Str.srch_idx_by_vim(str, ptn, idx) -- alias
 
   local r_idx = vf.match(str, ptn, idx)
   return r_idx -- -1 : match not
-end
-
-function v.Str.srch_idx(str, ptn, srch_s_idx) -- alias
-
-  -- return v.Str.srch_idx_by_vim(str, ptn, srch_s_idx)
-  return v.Str.srch_idx_by_lua(str, ptn, srch_s_idx)
 end
 
 function v.Str.srch_end(str, ptn) -- alias
@@ -151,7 +141,7 @@ function v.Str.word_col_idx_lst(str)
 
   for idx = 1, #str do
 
-    char = str:sub(idx, idx)
+    char = v.Str.sub_by_byte(str, idx, idx)
 
     if v.Char.is_space(char) then
       is_space = bl.t
@@ -198,6 +188,8 @@ function v.Str.__rpl_with_vim(str, ptn, rpl) -- alias
   return r_str
 end
 
+-- cnv
+
 function v.Str.path_unix__cnv_win(path)
 
   local path = path
@@ -212,6 +204,45 @@ function v.Str.path_win__cnv_unix(path)
   local path = v.Str.__rpl_by_lua(path, 'C:' , '/c')
   local path = v.Str.__rpl_by_lua(path, [[\]], '/')
   return path
+end
+
+function v.Str.drct_turn(drct)
+
+  local drct_turn
+
+  if     drct == 'u' then
+    drct_turn = 'd'
+
+  elseif drct == 'd' then
+    drct_turn = 'u'
+
+  else
+    drct_turn = 'u'
+  end
+
+  return drct_turn
+end
+
+function v.Str.escape(str, escape_chars) -- alias
+
+  str = vf.escape(str, escape_chars)
+  return str
+end
+
+-- str cre
+
+function v.Str.space(len)
+
+  local space_str = ''
+
+  local idx = 1
+  while idx <= len do
+
+    space_str = space_str .. ' '
+
+    idx = idx + 1
+  end
+  return space_str
 end
 
 function v.Str.cmnt_1()
@@ -231,27 +262,29 @@ function v.Str.cmnt_1()
     dflt       = '# ' ,
   }
 
-  -- dev anchor
-  -- local str = vf.get(cmnt_1_def, vim.bo.filetype, cmnt_1_def['dflt'])
   local str = cmnt_1_def[vim.bo.filetype] or cmnt_1_def['dflt']
   return str
 end
 
-function v.Str.drct_turn(drct)
+-- dev anchor
 
-  local drct_turn
+v.Str.alph_lst_def = {
+  'a','b','c','d','e','f','g','h','i','j','k','l','m','n',
+  'o','p','q','r','s','t','u','v','w','x','y','z'
+}
 
-  if     drct == 'u' then
-    drct_turn = 'd'
+function v.Str.alph_lst(alph_to)
 
-  elseif drct == 'd' then
-    drct_turn = 'u'
+  local alph_lst = {}
 
-  else
-    drct_turn = 'u'
+  for idx, _alph in pairs(v.Str.alph_lst_def) do
+
+    v.Tbl.add(alph_lst, _alph)
+
+    if _alph == alph_to then break end
   end
 
-  return drct_turn
+  return alph_lst
 end
 
 -- str cnd
@@ -296,5 +329,4 @@ function v.Str.is__num(str)
   local ret = v.Str.is__ptn(str, ptn)
   return ret
 end
-
 

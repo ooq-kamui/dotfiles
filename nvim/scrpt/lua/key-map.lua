@@ -586,7 +586,7 @@ keymap__('n', '0', ':lua v.Cursor.__ins_hyphen()<cr>')
 keymap__('n', '*'    , ':lua v.Cursor.__ins_da()<cr>')
 
 -- ins time ( tm )
-keymap__('n', '+', ':lua v.Cursor.__ins_tm()<cr>')
+keymap__('n', 't', ':lua v.Cursor.__ins_tm()<cr>')
 
 -- ins date time ( dt )
 -- keymap__('n', 'xx', ':lua v.Cursor.__ins_dt()<cr>')
@@ -796,7 +796,7 @@ keymap__('n', 'N', ':lua v.Srch.str__prv_tgl()<cr>')
 keymap__('n', '<c-p>', ':lua v.Srch.__slct("f")<cr>')
 
 -- srch keymap__()
-keymap__('n', 'M'    , [[/keymap__('n', ']])
+keymap__('n', 'S'    , [[/keymap__('n', ']])
 
 -- rpl ( cmd )
 keymap__('n', ':s', ':%s/<c-r>//xxx/g')
@@ -880,7 +880,7 @@ keymap__('n', '<leader>t', ':lua v.Fzf.doc_tech()<cr>')
 -- keymap__('n', '<leader>xx', ':lua v.Fzf.doc_memo_opn()<cr>')
 
 -- fzf str ref
-keymap__('n', '<leader>s', ':lua v.Fzf.str_ref()<cr>')
+keymap__('n', '<leader>s', ':lua v.Fzf.cheat_sheet()<cr>')
 
 -- tab
 
@@ -944,7 +944,7 @@ keymap__('n', 'rn', ':lua v.Win.splt_cursor__mv_nxt()<cr>')
 keymap__('n', '<leader>m', ':FzfMark<cr>')
 
 -- mark add
-keymap__('n', 'S', ':lua v.Mark.add()<cr>')
+keymap__('n', 'M', ':lua v.Mark.add()<cr>')
 
 -- 
 -- setting ( set )

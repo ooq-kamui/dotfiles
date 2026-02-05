@@ -38,6 +38,8 @@ scheme_lst.win.recommend.h = {
   'cyberpunk'                              , -- 
   'Tomorrow Night Blue (Gogh)'             , -- 
   -- h ( chk ed )
+  'Decaf (base16)'                         , -- 
+  'neon-night (Gogh)'                      , -- 
   'Snazzy'                                 , -- 
   -- h ( chk no )
   'Abernathy'                              , -- 
@@ -61,7 +63,6 @@ scheme_lst.win.recommend.h = {
   'Chalk (base16)'                         , -- 
   'Chalk (dark) (terminal.sexy)'           , -- 
   'Cyberdyne'                              , -- 
-  'Decaf (base16)'                         , -- 
   'DjangoSmooth'                           , -- 
   'DotGov'                                 , -- 
   'Dracula (base16)'                       , -- 
@@ -119,7 +120,6 @@ scheme_lst.win.recommend.h = {
   'One Half Black (Gogh)'                  , -- 
   'OneHalfBlack (Gogh)'                    , -- 
   'Operator Mono Dark'                     , -- 
-  'Overnight Slumber'                      , -- 
   'Oxocarbon Dark (Gogh)'                  , -- 
   'Papercolor Dark (Gogh)'                 , -- 
   'Paul Millr (Gogh)'                      , -- 
@@ -171,7 +171,6 @@ scheme_lst.win.recommend.h = {
   'idleToes'                               , -- 
   'kanagawabones'                          , -- 
   'kokuban (Gogh)'                         , -- 
-  'neon-night (Gogh)'                      , -- 
   'nightfox'                               , -- 
   'rebecca'                                , -- 
   'seoulbones_dark'                        , -- 
@@ -204,6 +203,7 @@ scheme_lst.win.excld = {
   'Tender (Gogh)'                          , -- 
   'Seti UI (base16)'                       , -- 
   -- slctd
+  'Overnight Slumber'                      , -- 
   'UltraDark'                              , -- 
   'Ef-Dark'                                , -- 
   -- white

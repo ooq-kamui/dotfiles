@@ -26,7 +26,7 @@ g.line_end_space_ptn = '[ \\t]*$'
 
 function v.Line.end_space__del(line_num)
 
-  local ptn_tmp = v.Rgstr.get('/')
+  local ptn_tmp = v.Srch.str()
 
   local rpl_cmd = line_num .. 's/' .. g.line_end_space_ptn .. '//g'
   -- v.Log.val(rpl_cmd)
@@ -122,34 +122,5 @@ end
 
 -- line cnd
 
--- line col
-
-function v.Line.col_num_by_len_ruler(line_num, p_len_ruler) -- use not ?
-
-  local line_str          = v.Line.str_by_line_num(line_num)
-  local line_str_len_char = v.Str.len_char(line_str)
-
-  local t_len_ruler = p_len_ruler - 1
-  local char_idx = math.min(t_len_ruler, line_str_len_char)
-  local str, _len_ruler
-
-  while char_idx > 0 do
-
-    str = v.Str.sub_str_by_char_idx(line_str, 1, char_idx)
-    -- v.Log.val(str)
-
-    _len_ruler = v.Str.len_ruler(str)
-    -- v.Log.val(_len_ruler, '>', t_len_ruler)
-
-    if _len_ruler <= t_len_ruler then
-      break
-    end
-
-    char_idx = char_idx - 1
-  end
-
-  -- v.Log.val(str)
-  local t_col_num = v.Str.len_byte(str) + 1
-  return t_col_num
-end
+-- ...
 

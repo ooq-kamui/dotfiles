@@ -188,7 +188,7 @@ end
 function v.Fzf.buf_by_slctd_str()
 
   v.Srch.str__slctd_str()
-  v.Cmd.cmd('FzfBufCrnt ' .. vf.escape(vf.getreg('z'), '.*~'))
+  v.Cmd.cmd('FzfBufCrnt ' .. v.Str.escape(v.Rgstr.get('z'), '.*~'))
 end
 
 -- fzf rgstr
@@ -304,13 +304,13 @@ end
 
 function v.Fzf.doc_memo_opn() -- use not
 
-  local dir = '~'
+  local dir = '~/wrk/prj-pri'
 
   local memo_file_lst = {
-    dir .. '/wrk/prj-pri/dotfiles/doc/memo.md'  ,
-    dir .. '/wrk/prj-pri/doc-tech/doc/memo.md'  ,
-    dir .. '/wrk/prj-pri/life/doc/memo.md'      ,
-    dir .. '/wrk/prj-pri/wall-paper/doc/memo.md',
+    dir .. '/dotfiles/doc/memo.md'  ,
+    dir .. '/doc-tech/doc/memo.md'  ,
+    dir .. '/life/doc/memo.md'      ,
+    dir .. '/wall-paper/doc/memo.md',
   }
 
   local fzf_src_ar = memo_file_lst
@@ -318,9 +318,9 @@ function v.Fzf.doc_memo_opn() -- use not
   v.Fzf.by_ar(fzf_src_ar, fnc_name)
 end
 
-function v.Fzf.str_ref()
+function v.Fzf.cheat_sheet()
 
-  local file_path   = v.Dir.c.nvim_lua_fnc_dir .. '/str-ref.txt'
+  local file_path   = v.Dir.c.nvim_lua_dir .. '/txt/cheat-sheet.txt'
   local sys_cmd     = 'cat ' .. file_path
   local fzf_src_txt = v.Sys.cmd(sys_cmd)
 

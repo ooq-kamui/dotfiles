@@ -423,7 +423,7 @@ function v.Slctd.str__reduce_dlm_l(char) -- range
   v.Slctd.__ltst()
 
   local slctd_str = v.Slctd.str()
-  local srch_idx = v.Str.srch_idx_by_lua(slctd_str, char)
+  local srch_idx = v.Str.srch_idx(slctd_str, char)
 
   if not srch_idx then
     v.Slctd.__clr()
@@ -861,7 +861,7 @@ end
 
 function v.Slctd.is_str__srch_str()
 
-  local srch_str = v.Rgstr.get('/')
+  local srch_str = v.Srch.str()
   -- v.Log.log(srch_str)
   srch_str = v.Str.__rpl_by_lua(srch_str, [[\<]], '')
   srch_str = v.Str.__rpl_by_lua(srch_str, [[\>]], '')
@@ -1029,7 +1029,7 @@ function v.Slctd.line__rpl(srch, rpl) -- range
   v.Cmd.cmd(cmd)
 end
 
-function v.Slctd.line__rpl_by_line1_line2() -- range
+function v.Slctd.line__rpl_by_line1_line2() -- range -- use not
 
   local srch = v.Line.str_by_line_num(1)
   local rpl  = v.Line.str_by_line_num(2)
@@ -1049,10 +1049,10 @@ end
 
 function v.Slctd.line_srch_str__rpl_cr() -- range
 
-  local srch = v.Rgstr.get('/')
+  local srch_str = v.Srch.str()
 
   local rng = v.Slctd.rng_dflt
-  local cmd = rng .. 's/\\(' .. srch .. '\\)/\\1\\r/eg'
+  local cmd = rng .. 's/\\(' .. srch_str .. '\\)/\\1\\r/eg'
   v.Cmd.cmd(cmd)
 end
 

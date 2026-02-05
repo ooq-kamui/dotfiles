@@ -64,7 +64,7 @@ function v.Rg.cmd(ptn, ext, word1, opt)
           .. fzf_rg_opt_ext
           .. fzf_rg_opt_word1
           .. opt
-          .. ' -- ' .. '"' .. vf.escape(ptn, '().$') .. '"'
+          .. ' -- ' .. '"' .. v.Str.escape(ptn, '().$') .. '"'
 
   return rg_cmd
 end

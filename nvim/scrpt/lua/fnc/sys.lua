@@ -143,13 +143,13 @@ function v.Sys.trns_by_slctd_str() -- range
   str = v.Str.__rpl_with_vim(str, "\\n", ' ', 'g')
 
   local lang
-  if v.Str.is__ptn(str, '[^\\x01-\\x7E]') then -- mlt byte
+  if v.Str.is__ptn(str, '[^\\x01-\\x7E]') then -- mb
     lang = '{ja=en}'
   else
     lang = '{en=ja}'
   end
 
-  str = vf.escape(str, "'")
+  str = v.Str.escape(str, "'")
   local sys_cmd = 'trans -no-ansi ' .. lang .. " '" .. str .. "'"
   local rslt = v.Sys.cmd(sys_cmd)
   v.Log.val( rslt )

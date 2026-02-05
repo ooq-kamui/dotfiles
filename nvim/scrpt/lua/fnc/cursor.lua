@@ -522,8 +522,7 @@ function v.Cursor.__mv_by_srch_str(drct, end_flg)
     opt = opt .. 'e'
   end
 
-  local ptn = v.Rgstr.get('/')
-  -- local ptn = v.Rgstr.get('/') .. [[\ze]]
+  local ptn = v.Srch.str()
 
   v.Srch.srch(ptn, opt)
 end
@@ -814,7 +813,7 @@ function v.Cursor.is_line__markdown_itm()
   local ptn = '^%s*- '
   local str = v.Cursor.line_str()
   -- v.Log.val(str, ptn)
-  local idx = v.Str.srch_idx_by_lua(str, ptn)
+  local idx = v.Str.srch_idx(str, ptn)
   -- v.Log.val(idx)
 
   if not idx then
@@ -862,7 +861,7 @@ function v.Cursor.c_char()
 
   local idx = v.Cursor.col_num()
   local str = v.Cursor.line_str()
-  local char = str:sub(idx, idx)
+  local char = v.Str.sub_by_byte(str, idx, idx)
   return char
 end
 
@@ -884,7 +883,7 @@ end
 function v.Cursor.r_char()
 
   local idx = v.Cursor.col_num() + 1
-  local char = v.Cursor.line_str():sub(idx, idx)
+  local char = v.Str.sub_by_byte(v.Cursor.line_str(), idx, idx)
   return char
 end
 
@@ -897,7 +896,7 @@ function v.Cursor.u_char()
   local idx = v.Cursor.col_num()
   local line_num = v.Cursor.line_num() - 1
 
-  local c = v.Line.str_by_line_num(line_num):sub(idx, idx)
+  local c = v.Str.sub_by_byte(v.Line.str_by_line_num(line_num), idx, idx)
   return c
 end
 
@@ -909,13 +908,17 @@ function v.Cursor.d_char()
 
   local idx = v.Cursor.col_num()
   local line_num = v.Cursor.line_num() + 1
-  local c = v.Line.str_by_line_num(line_num):sub(idx, idx)
+  local c = v.Str.sub_by_byte(v.Line.str_by_line_num(line_num), idx, idx)
   return c
 end
 
 -- cursor char __
 
 function v.Cursor.char__rpl(rpl)
+
+  if v.Str.is__ptn(rpl, [[\\]]) then
+    rpl = v.Str.__rpl_with_vim(rpl, [[\\]], [[\\\\]])
+  end
 
   v.Cmd.nml('r' .. rpl)
 end
@@ -1238,13 +1241,13 @@ end
 
 function v.Cursor.line_str_side_l()
 
-  local line_l = v.Cursor.line_str():sub(1             , vf.col('.') - 1)
+  local line_l = v.Str.sub_by_byte(v.Cursor.line_str(), 1             , vf.col('.') - 1)
   return line_l
 end
 
 function v.Cursor.line_str_side_r()
 
-  local line_r = v.Cursor.line_str():sub(vf.col('.') + 1)
+  local line_r = v.Str.sub_by_byte(v.Cursor.line_str(), vf.col('.') + 1)
   -- v.Log.log('>' .. line_r .. '<')
   return line_r
 end
@@ -1252,7 +1255,7 @@ end
 -- todo refactoring Cursor.line_str_side_r() + opt arg
 function v.Cursor.line_str_side_r_with_c()
 
-  local line_r = v.Cursor.line_str():sub(vf.col('.'))
+  local line_r = v.Str.sub_by_byte(v.Cursor.line_str(), vf.col('.'))
   return line_r
 end
 
@@ -1278,7 +1281,7 @@ function v.Cursor.line_end__dots_adjst() -- todo dev, mb_str
 
   local line_str = v.Cursor.line_str()
 
-  local idx = v.Str.srch_idx_by_lua(line_str, v.Cnst.dots_str_ptn)
+  local idx = v.Str.srch_idx(line_str, v.Cnst.dots_str_ptn)
 
   if not idx then
     v.Cursor.line_end__ins_dots()
@@ -1291,7 +1294,7 @@ end
 function v.Cursor.line_end_dots__crct()
 
   local line_str = v.Cursor.line_str()
-  local idx = v.Str.srch_idx_by_lua(line_str, v.Cnst.dots_str_ptn)
+  local idx = v.Str.srch_idx(line_str, v.Cnst.dots_str_ptn)
 
   if not idx then return end
 
@@ -1302,17 +1305,15 @@ function v.Cursor.line_end_dots__crct()
   end
 
   -- dev anchor
-  local line_str_0 = vf.strcharpart(line_str,   0, idx)
-  local line_str_1 = vf.strcharpart(line_str, idx     )
-  -- local line_str_0 = v.Str.sub_str_by_char_idx(line_str,       1, idx)
-  -- local line_str_1 = v.Str.sub_str_by_char_idx(line_str, idx + 1     )
+  local line_str_0 = v.Str.sub_by_char_idx(line_str,       1, idx)
+  local line_str_1 = v.Str.sub_by_char_idx(line_str, idx + 1)
 
   if idx < v.Cnst.dots_put_col then
 
     local space_str = v.Str.space(v.Cnst.dots_put_col - idx)
     line_str = line_str_0 .. space_str .. line_str_1
   else
-    line_str_0 = vf.strcharpart(line_str_0, 0, v.Cnst.dots_put_col)
+    line_str_0 = v.Str.sub_by_char_idx(line_str_0, 1, v.Cnst.dots_put_col)
     line_str = line_str_0 .. line_str_1
   end
 
@@ -1395,7 +1396,7 @@ function v.Cursor.f_char_col_idx()
   local ptn = '[^ ]'
   local cursor_col_idx = v.Cursor.col_num()
   local str = v.Cursor.line_str()
-  f_char_col_idx = v.Str.srch_idx_by_lua(str, ptn, cursor_col_idx)
+  f_char_col_idx = v.Str.srch_idx(str, ptn, cursor_col_idx)
 
   return f_char_col_idx
 end
