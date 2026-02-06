@@ -108,7 +108,7 @@ function v.Srch.str__(str, op_word1)
 
   v.Rgstr.__('/', exe_str) -- highlight
 
-  exe_str = v.Str.__rpl_by_lua(exe_str, [[\]], [[\\]]) -- \\<aaa\\>
+  exe_str = v.Str.__rpl_with_lua(exe_str, [[\]], [[\\]]) -- \\<aaa\\>
   -- v.Log.val( exe_str )
   v.Cmd.nml('/' .. exe_str) -- srch hstry add
 end
@@ -121,6 +121,9 @@ end
 function v.Srch.str__cursor_word()
 
   local str = v.Cursor.word()
+
+  if v.Str.is__emp(str) then return end
+
   v.Srch.str__(str, bl.f)
 end
 

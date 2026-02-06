@@ -38,6 +38,7 @@ scheme_lst.win.recommend.h = {
   'cyberpunk'                              , -- 
   'Tomorrow Night Blue (Gogh)'             , -- 
   -- h ( chk ed )
+  'Catppuccin Macchiato (Gogh)'            , -- 
   'Decaf (base16)'                         , -- 
   'neon-night (Gogh)'                      , -- 
   'Snazzy'                                 , -- 
@@ -55,7 +56,6 @@ scheme_lst.win.recommend.h = {
   'Belge (terminal.sexy)'                  , -- 
   'Builtin Tango Dark'                     , -- 
   'Cai (Gogh)'                             , -- 
-  'Catppuccin Macchiato (Gogh)'            , -- 
   'Catppuccin Macchiato'                   , -- 
   'Catppuccin Mocha (Gogh)'                , -- 
   'Catppuccin Mocha'                       , -- 
@@ -79,7 +79,6 @@ scheme_lst.win.recommend.h = {
   'Fairy Floss (Gogh)'                     , -- 
   'Fairy Floss Dark (Gogh)'                , -- 
   'Fairyfloss'                             , -- 
-  'Flat (base16)'                          , -- 
   'Framer (base16)'                        , -- 
   'Google Dark (Gogh)'                     , -- 
   'Guezwhoz'                               , -- 
@@ -129,7 +128,6 @@ scheme_lst.win.recommend.h = {
   'Poimandres'                             , -- 
   'Purple People Eater (Gogh)'             , -- 
   'PurplePeopleEater (Gogh)'               , -- 
-  'Rebecca (base16)'                       , -- 
   'Red Alert (Gogh)'                       , -- 
   'Selenized Dark (Gogh)'                  , -- 
   'Seti (Gogh)'                            , -- 
@@ -214,6 +212,8 @@ scheme_lst.win.excld = {
   'FairyFlossDark (Gogh)'                  , -- 
   'PaleNightHC'                            , -- 
   -- cmd line
+  'Rebecca (base16)'                       , -- 
+  'Flat (base16)'                          , -- 
   'TomorrowNightBright (Gogh)'             , -- 
   'Desert'                                 , -- 
   'Desert (Gogh)'                          , -- 

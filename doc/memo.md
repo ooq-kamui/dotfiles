@@ -4,36 +4,15 @@
 
 ## nvim
 
-mb ptn def
-
-
-fzf doc-tech: err
-- line_num ?
-
-
 col > byte_idx
 cursor char, str, tidy
 vf.col() > ???
 
 
-ptn: vim or lua, tidy
-
-
-n e, case: cursor __ line_end, err
-
-
-repeat
-- tst
-
-
-## watch
-
-music odn
-
-
-## git
-
-git-co-summary date
+vf
+- vf.matchstr()
+- vf.filereadable()
+- vf.get() > v.Tbl.get()
 
 
 ## kiro

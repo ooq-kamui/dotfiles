@@ -25,6 +25,15 @@ function v.Var.is__emp(val)
   return bl.f
 end
 
+function v.Var.is__str(val)
+
+  if type(val) == 'string' then
+    return bl.t
+  else
+    return bl.f
+  end
+end
+
 -- ar ( list )
 
 v.Ar = {}

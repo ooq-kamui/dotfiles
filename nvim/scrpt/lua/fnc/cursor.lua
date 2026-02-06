@@ -114,13 +114,18 @@ function v.Cursor.__mv_by_col_num(col_num)
 end
 
 function v.Cursor.__mv_by_line_num(line_num)
+  -- v.Log.val(line_num)
 
   if v.Var.is__emp(line_num) then
     return
   end
 
-  if not v.Str.is__num(line_num) then
-    return
+  if v.Var.is__str(line_num) then
+    if not v.Str.is__num(line_num) then
+      return
+    else
+      line_num = v.Str.to_num(line_num)
+    end
   end
 
   local win_id = 0 -- crnt

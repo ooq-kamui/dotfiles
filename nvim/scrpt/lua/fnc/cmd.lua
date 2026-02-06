@@ -14,7 +14,7 @@ end
 function v.Cmd.nml(cmd_nml) -- alias
 
   -- v.Log.log(cmd_nml)
-  cmd_nml = v.Str.__rpl_by_lua(cmd_nml, '"', [[\"]])
+  cmd_nml = v.Str.__rpl_with_lua(cmd_nml, '"', [[\"]])
   -- cmd_nml = v.Str.__rpl_by_vim(cmd_nml, '"', [[\\"]])
   -- v.Log.log(cmd_nml)
 
@@ -39,7 +39,7 @@ function v.Cmd.cmdline__fnc_call(fnc_name)
   v.Cmd.cmdline__('lua ' .. fnc_name)
 end
 
-function v.Cmd._repeat() -- repeat : lua reserve word
+function v.Cmd.repeat_with_fnc() -- repeat : lua reserve word
 
   v.Log.val('fnc repeat')
 

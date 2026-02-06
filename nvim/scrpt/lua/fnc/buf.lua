@@ -113,7 +113,6 @@ function v.Buf.opn_by_path(rg_rslt_line)
   local rg_rslt_line = v.Str.trim(rg_rslt_line)
 
   if v.Str.is__emp(rg_rslt_line) then
-    v.Log.val( 'empty' )
     return
   end
 
@@ -126,7 +125,6 @@ function v.Buf.opn_by_path(rg_rslt_line)
   local filename = rg_rslt_line_ar[1]
   local line_num = vf.get(rg_rslt_line_ar, 1, 1)
   -- v.Log.val( line_num )
-  -- return
 
   -- dev anchor
   if not vf.filereadable(filename) then

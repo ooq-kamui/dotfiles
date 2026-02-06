@@ -535,10 +535,10 @@ keymap__('n', '<c-h>', '<c-r>')
 keymap__('n', ':h', ':lua v.Buf.undo__clr()')
 
 -- repeat
--- keymap__('n', 'xx', '.')
+keymap__('n', '~', '.')
 
 -- repeat fnc
-keymap__('n', '^', ':lua v.Cmd._repeat()<cr>')
+keymap__('n', '^', ':lua v.Cmd.repeat_with_fnc()<cr>')
 
 -- macro rec
 keymap__('n', '$', ':lua v.Mcr.rec()<cr>', {expr = bl.t})

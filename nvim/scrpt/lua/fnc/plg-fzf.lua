@@ -279,7 +279,7 @@ function v.Fzf.doc_tech()
   local ptn = v.Rg.cnst.emp_line_ptn
   local opt  = ' -v'
   opt = opt .. ' --no-heading'
-  -- opt = opt .. ' --line-number'
+  opt = opt .. ' --line-number'
   local sys_cmd_rg = "rg" .. opt .. " '" .. ptn .. "' ~/" .. v.Fzf.doc_tech_md_dir
   -- v.Log.val(sys_cmd)
 

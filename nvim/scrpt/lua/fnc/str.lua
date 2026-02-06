@@ -1,6 +1,12 @@
 
 v.Str = {}
 
+-- ptn
+
+v.Str.ptn = {}
+
+v.Str.ptn.mb = '[^\\x01-\\x7E]'
+
 -- len
 
 function v.Str.len_byte(str)
@@ -103,6 +109,11 @@ end
 
 function v.Str.srch(str, ptn)
 
+  return v.Str.srch_with_lua(str, ptn)
+end
+
+function v.Str.srch_with_lua(str, ptn)
+
   local match_str = string.match(str, ptn)
   return match_str
 end
@@ -120,7 +131,7 @@ function v.Str.srch_idx_by_lua(str, ptn, srch_s_idx)
   return s_idx, e_idx
 end
 
-function v.Str.srch_idx_by_vim(str, ptn, idx) -- alias
+function v.Str.srch_idx_by_vim(str, ptn, idx) -- alias -- use not
 
   local r_idx = vf.match(str, ptn, idx)
   return r_idx -- -1 : match not
@@ -176,7 +187,13 @@ end
 
 -- str __ rpl
 
-function v.Str.__rpl_by_lua(str, ptn, rpl)
+function v.Str.__rpl(str, ptn, rpl)
+
+  return v.Str.__rpl_with_vim(str, ptn, rpl)
+  -- return v.Str.__rpl_with_lua(str, ptn, rpl)
+end
+
+function v.Str.__rpl_with_lua(str, ptn, rpl)
 
   local r_str = string.gsub(str, ptn, rpl)
   return r_str
@@ -193,16 +210,16 @@ end
 function v.Str.path_unix__cnv_win(path)
 
   local path = path
-  local path = v.Str.__rpl_by_lua(path, '/c/', 'C:/')
-  local path = v.Str.__rpl_by_lua(path, '/'  , [[\]])
+  local path = v.Str.__rpl_with_lua(path, '/c/', 'C:/')
+  local path = v.Str.__rpl_with_lua(path, '/'  , [[\]])
   return path
 end
 
 function v.Str.path_win__cnv_unix(path)
 
   local path = path
-  local path = v.Str.__rpl_by_lua(path, 'C:' , '/c')
-  local path = v.Str.__rpl_by_lua(path, [[\]], '/')
+  local path = v.Str.__rpl_with_lua(path, 'C:' , '/c')
+  local path = v.Str.__rpl_with_lua(path, [[\]], '/')
   return path
 end
 
@@ -304,6 +321,11 @@ function v.Str.is__emp(str)
 end
 
 function v.Str.is__ptn(str, ptn)
+
+  return v.Str.is__ptn_with_vim(str, ptn)
+end
+
+function v.Str.is__ptn_with_vim(str, ptn)
 
   local ret
 

@@ -863,8 +863,8 @@ function v.Slctd.is_str__srch_str()
 
   local srch_str = v.Srch.str()
   -- v.Log.log(srch_str)
-  srch_str = v.Str.__rpl_by_lua(srch_str, [[\<]], '')
-  srch_str = v.Str.__rpl_by_lua(srch_str, [[\>]], '')
+  srch_str = v.Str.__rpl_with_lua(srch_str, [[\<]], '')
+  srch_str = v.Str.__rpl_with_lua(srch_str, [[\>]], '')
   -- v.Log.log(srch_str)
 
   if v.Slctd.str() == srch_str then
