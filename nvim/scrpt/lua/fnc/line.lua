@@ -18,6 +18,14 @@ function v.Line.str_by_line_num(line_num) -- alias
   return vf.getline(line_num)
 end
 
+-- line set
+
+function v.Line.__by_line_num(line_num, line_str)
+
+  vf.setline(line_num, line_str)
+end
+
+
 -- line xx __ ins
 
 g.line_top_space_ptn = '^[ \\t]*'
@@ -50,7 +58,7 @@ function v.Line.end__pad_space(line_num, fil_end_col)
 
   local space_str = v.Str.space(space_len)
   line_str = line_str .. space_str
-  vf.setline(line_num, line_str)
+  v.Line.__by_line_num(line_num, line_str)
 end
 
 function v.Line.__del_by_line_num(line_num)

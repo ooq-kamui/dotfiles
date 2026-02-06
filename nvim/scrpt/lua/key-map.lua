@@ -880,7 +880,8 @@ keymap__('n', '<leader>t', ':lua v.Fzf.doc_tech()<cr>')
 -- keymap__('n', '<leader>xx', ':lua v.Fzf.doc_memo_opn()<cr>')
 
 -- fzf str ref
-keymap__('n', '<leader>s', ':lua v.Fzf.cheat_sheet()<cr>')
+keymap__('n', '<leader>s'    , ':lua v.Fzf.cheat_sheet()<cr>')
+keymap__('n', '<leader><c-s>', ':lua v.Fzf.cheat_sheet__opn()<cr>')
 
 -- tab
 
@@ -1141,6 +1142,12 @@ keymap__('x', '<leader>A', '<esc>')
 keymap__('x', '<leader>I', '<esc>')
 --                     :
 keymap__('x', '<leader>Z', '<esc>')
+
+keymap__('x', '<leader><c-a>', '<esc>')
+--                     :
+keymap__('x', '<leader><c-o>', '<esc>')
+--                     :
+keymap__('x', '<leader><c-z>', '<esc>')
 
 
 -- mode ch line

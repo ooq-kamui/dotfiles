@@ -1,13 +1,14 @@
 
 v.Tbl = {}
 
-function v.Tbl.get(tbl, idx, val_dflt)
+function v.Tbl.get_by_key(tbl, key, val_dflt)
+  -- return vf.get(tbl, key, val_dflt)
 
-  if not tbl[idx] then
+  if not tbl[key] then
     return val_dflt
   end
 
-  return tbl[idx]
+  return tbl[key]
 end
 
 function v.Tbl.last(tbl)

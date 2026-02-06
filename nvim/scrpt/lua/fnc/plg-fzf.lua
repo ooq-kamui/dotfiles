@@ -320,11 +320,19 @@ end
 
 function v.Fzf.cheat_sheet()
 
-  local file_path   = v.Dir.c.nvim_lua_dir .. '/txt/cheat-sheet.txt'
-  local sys_cmd     = 'cat ' .. file_path
+  local sys_cmd     = 'cat    ' .. v.Dir.c.cheat_sheet_file_path
   local fzf_src_txt = v.Sys.cmd(sys_cmd)
 
   local fnc_name = v.Rgstr.ynk__
+  v.Fzf.by_txt(fzf_src_txt, fnc_name)
+end
+
+function v.Fzf.cheat_sheet__opn()
+
+  local sys_cmd     = 'cat -n ' .. v.Dir.c.cheat_sheet_file_path
+  local fzf_src_txt = v.Sys.cmd(sys_cmd)
+
+  local fnc_name = v.Buf.opn_cheat_sheet_by_line_num
   v.Fzf.by_txt(fzf_src_txt, fnc_name)
 end
 

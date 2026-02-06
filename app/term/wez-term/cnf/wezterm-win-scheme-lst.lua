@@ -75,7 +75,6 @@ scheme_lst.win.recommend.h = {
   'Ef-Maris-Dark'                          , -- 
   'Ef-Melissa-Dark'                        , -- 
   'Eighties (dark) (terminal.sexy)'        , -- 
-  'Erebus (terminal.sexy)'                 , -- 
   'Fairy Floss (Gogh)'                     , -- 
   'Fairy Floss Dark (Gogh)'                , -- 
   'Fairyfloss'                             , -- 
@@ -212,6 +211,7 @@ scheme_lst.win.excld = {
   'FairyFlossDark (Gogh)'                  , -- 
   'PaleNightHC'                            , -- 
   -- cmd line
+  'Erebus (terminal.sexy)'                 , -- 
   'Rebecca (base16)'                       , -- 
   'Flat (base16)'                          , -- 
   'TomorrowNightBright (Gogh)'             , -- 

@@ -15,16 +15,15 @@ end
 
 -- cursor col
 
-function v.Cursor.col_num() -- byte ( mb:3 )
+function v.Cursor.col_num()
+
+  return v.Cursor.col_byte_idx()
+end
+
+function v.Cursor.col_byte_idx() -- byte ( mb:3, start 1 )
 
   local col_num = vf.col('.')
   return col_num
-end
-
-function v.Cursor.col_idx() -- alias -- byte ( mb:3 )
-
-  local col_idx = v.Cursor.col_num()
-  return col_idx
 end
 
 function v.Cursor.l_col_num()
@@ -47,7 +46,7 @@ end
 
 function v.Cursor.is_col__line_end()
 
-  if v.Cursor.col_num() == v.Cursor.line_end_col() then
+  if v.Cursor.col_num() == v.Cursor.line_end_col_num() then
     return bl.t
   else
     return bl.f
@@ -56,7 +55,7 @@ end
 
 function v.Cursor.is_col__line_end_inr()
 
-  if v.Cursor.col_num() == v.Cursor.line_end_col() - 1 then
+  if v.Cursor.col_num() == v.Cursor.line_end_col_num() - 1 then
 
     return bl.t
   else
@@ -66,7 +65,7 @@ end
 
 function v.Cursor.is_col__line_end_ovr() -- range
 
-  if v.Cursor.col_num() >= v.Cursor.line_end_col() then
+  if v.Cursor.col_num() >= v.Cursor.line_end_col_num() then
     return bl.t
   else
     return bl.f
@@ -590,7 +589,7 @@ end
 function v.Cursor.__mv_line_x_word_col(ref_drct)
 
   local ref_line_num   = v.Cursor.line_num(ref_drct)
-  local cursor_col_idx = v.Cursor.col_idx()
+  local cursor_col_idx = v.Cursor.col_byte_idx()
   local word_col_idx   = v.Line.word_col_idx(ref_line_num, cursor_col_idx)
 
   if not word_col_idx then return end
@@ -761,7 +760,7 @@ function v.Cursor.__ins_cmnt_mlt_by_pos_key(pos_key)
     dflt       = {'/*'     ,  ' */'},
   }
 
-  local str = vf.get(cmnt_mlt_def, vim.bo.filetype, cmnt_mlt_def['dflt'])
+  local str = v.Tbl.get_by_key(cmnt_mlt_def, vim.bo.filetype, cmnt_mlt_def['dflt'])
 
   if     pos_key == 'bgn' then
     v.Cmd.nml('O')
@@ -1225,7 +1224,7 @@ function v.Cursor.line_num(ref_drct) -- alias
   return line_num
 end
 
-function v.Cursor.line_end_col() -- alias
+function v.Cursor.line_end_col_num() -- alias
 
   local col = vf.col('$')
   return col
@@ -1238,21 +1237,21 @@ function v.Cursor.line_str()
   return vf.getline('.')
 end
 
-function v.Cursor.line_str_len()
+function v.Cursor.line_str_len_byte()
 
-  local len = v.Cursor.line_end_col() - 1
+  local len = v.Cursor.line_end_col_num() - 1
   return len
 end
 
 function v.Cursor.line_str_side_l()
 
-  local line_l = v.Str.sub_by_byte(v.Cursor.line_str(), 1             , vf.col('.') - 1)
+  local line_l = v.Str.sub_by_byte(v.Cursor.line_str(), 1                     , v.Cursor.col_num() - 1)
   return line_l
 end
 
 function v.Cursor.line_str_side_r()
 
-  local line_r = v.Str.sub_by_byte(v.Cursor.line_str(), vf.col('.') + 1)
+  local line_r = v.Str.sub_by_byte(v.Cursor.line_str(), v.Cursor.col_num() + 1)
   -- v.Log.log('>' .. line_r .. '<')
   return line_r
 end
@@ -1260,7 +1259,7 @@ end
 -- todo refactoring Cursor.line_str_side_r() + opt arg
 function v.Cursor.line_str_side_r_with_c()
 
-  local line_r = v.Str.sub_by_byte(v.Cursor.line_str(), vf.col('.'))
+  local line_r = v.Str.sub_by_byte(v.Cursor.line_str(), v.Cursor.col_num()    )
   return line_r
 end
 
@@ -1323,7 +1322,7 @@ function v.Cursor.line_end_dots__crct()
   end
 
   local line_num = v.Cursor.line_num()
-  vf.setline(line_num, line_str)
+  v.Line.__by_line_num(line_num, line_str)
 end
 
 function v.Cursor.line_end__ins_dots()
@@ -1332,9 +1331,9 @@ function v.Cursor.line_end__ins_dots()
 
   local line_str = v.Cursor.line_str()
 
-  local line_str_len = v.Cursor.line_str_len()
+  local line_str_len_byte = v.Cursor.line_str_len_byte()
 
-  local space_len = v.Cnst.dots_put_col - line_str_len
+  local space_len = v.Cnst.dots_put_col - line_str_len_byte
   if space_len < 0 then
     space_len = 0
   end
@@ -1343,7 +1342,7 @@ function v.Cursor.line_end__ins_dots()
 
   line_str = line_str .. space_str .. v.Cnst.dots_str
 
-  vf.setline(line_num, line_str)
+  v.Line.__by_line_num(line_num, line_str)
 end
 
 function v.Cursor.line_end__ins(str)
@@ -1533,7 +1532,7 @@ end
 
 function v.Cursor.is_line_str__emp()
 
-  if v.Cursor.line_end_col() == 1 then
+  if v.Cursor.line_end_col_num() == 1 then
     return bl.t
   else
     return bl.f

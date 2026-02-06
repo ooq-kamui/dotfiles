@@ -104,6 +104,12 @@ function v.Buf.opn_memo()
   v.Buf.opn(file_path)
 end
 
+function v.Buf.opn_cheat_sheet_by_line_num(line_str)
+
+  -- dev anchor: dev doing
+  
+end
+
 -- tag jmp
 
 -- tag jmp by str ( refactoring path )
@@ -123,7 +129,7 @@ function v.Buf.opn_by_path(rg_rslt_line)
   -- v.Log.val( rg_rslt_line_ar )
 
   local filename = rg_rslt_line_ar[1]
-  local line_num = vf.get(rg_rslt_line_ar, 1, 1)
+  local line_num = v.Tbl.get_by_key(rg_rslt_line_ar, 1, 1)
   -- v.Log.val( line_num )
 
   -- dev anchor

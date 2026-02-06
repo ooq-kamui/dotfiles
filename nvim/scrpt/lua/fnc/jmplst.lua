@@ -32,7 +32,7 @@ function v.Jmplst.lst()
   local buf_num_key = buf_num_key_prefix .. v.Buf.num()
   -- v.Log.val(buf_num_key)
 
-  local r_jmplst    = vf.get(jmplst, buf_num_key, {})
+  local r_jmplst    = v.Tbl.get_by_key(jmplst, buf_num_key, {})
   -- v.Log.tbl(r_jmplst)
 
   return r_jmplst

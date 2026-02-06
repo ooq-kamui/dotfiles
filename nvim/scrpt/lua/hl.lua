@@ -127,7 +127,6 @@ v.Color = {}
 
 function v.Color.hl_grp() --
 
-  -- v.Log.val( vf.synIDattr(vf.synID(vf.line('.'), vf.col('.'), 1), 'name') )
   local cmd = "echo synIDattr(synID(line('.'), col('.'), 1), 'name')"
   v.Cmd.cmd(cmd)
   -- v.Log.val(  )

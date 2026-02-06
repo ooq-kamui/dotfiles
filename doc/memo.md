@@ -4,15 +4,29 @@
 
 ## nvim
 
-col > byte_idx
-cursor char, str, tidy
-vf.col() > ???
+srch word1 tgl
+- xxx\\\.xxx
 
 
 vf
 - vf.matchstr()
 - vf.filereadable()
-- vf.get() > v.Tbl.get()
+
+
+cmnt str def > Str
+
+
+n q: mb err
+
+
+cheat-sheet fzf opn
+- <leader><c-s>
+
+
+## wez
+
+tab new time
+- win, mac
 
 
 ## kiro
