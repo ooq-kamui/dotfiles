@@ -27,6 +27,8 @@ cheat-sheet fzf opn
 
 tab new time
 - win, mac
+  - confirm
+    - case: color-scheme lst off
 
 
 ## kiro
