@@ -41,39 +41,48 @@ function v.Srch.str()
 end
 
 function v.Srch.str_flt()
+  -- v.Log.val('str_flt init')
 
-  local str = v.Srch.str()
+  return v.Srch._str_flt
 
-  if not v.Srch.is__word1() then
-    return str
-  end
+  -- local str = v.Srch.str()
+  -- -- v.Log.val(str)
+  -- 
+  -- if not v.Srch.is__word1() then
+  --   return str
+  -- end
+  -- 
+  -- local str_len = v.Str.len(str)
+  -- 
+  -- -- dev anchor, todo: rpl by ptn
+  -- if v.Str.is__ptn(str, [[\\>$]]) then
+  --   str = v.Str.sub_by_char_idx(str, 1, str_len - 2)
+  -- end
+  -- 
+  -- if v.Str.is__ptn(str, [[^\\<]]) then
+  --   str = v.Str.sub_by_char_idx(str, 3)
+  -- end
+  -- 
+  -- -- v.Log.val('str_flt')
+  -- -- v.Log.val(str)
+  -- return str
+end
 
-  local str_len = v.Str.len(str)
+function v.Srch.str_flt__(str)
 
-  -- dev anchor, todo dev: one and one
-
-  -- str = v.Str.sub_by_char_idx(str, 3, str_len - 2)
-
-  -- dev anchor, todo: rpl by ptn
-  if v.Str.is__ptn(str, [[\\>$]]) then
-    str = v.Str.sub_by_char_idx(str, 1, str_len - 2)
-  end
-
-  if v.Str.is__ptn(str, [[^\\<]]) then
-    str = v.Str.sub_by_char_idx(str, 3)
-  end
-
-  -- v.Log.val(str)
-  return str
+  v.Srch._str_flt = str
 end
 
 function v.Srch.str_word1(str)
+  -- v.Log.val('str_word1')
+  -- v.Log.val(str)
 
-  if str == nil then
+  if not str then
     str = v.Srch.str_flt()
   end
+  -- v.Log.val('str_word1')
+  -- v.Log.val(str)
 
-  -- dev anchor
   if v.Str.is__ptn(str, [[^\w]]) then
     str = [[\<]] .. str
   end
@@ -82,14 +91,14 @@ function v.Srch.str_word1(str)
     str = str .. [[\>]]
   end
 
-  -- str = [[\<]] .. str .. [[\>]]
-
   return str
 end
 
 -- srch str __
 
 function v.Srch.str__(str, op_word1)
+
+  v.Srch.str_flt__(str)
 
   local exe_str
   exe_str = v.Str.escape(str, '.*~[]\\^$')
@@ -238,7 +247,7 @@ function v.Srch.str__heading()
   if     v.Buf.is_file_type__('markdown') then
     v.Srch.str__markdown_heading()
 
-  elseif v.Tbl.is_in(vim.bo.filetype, fnc_def_lang_lst) then
+  elseif v.Tbl.is_in(v.Buf.file_type(), fnc_def_lang_lst) then
     v.Srch.str__fnc_def()
 
   else -- default
@@ -264,10 +273,12 @@ end
 
 function v.Srch.str__fnc_def()
 
-  if     vim.bo.filetype == 'lua'    then
+  local file_type = v.Buf.file_type()
+
+  if     file_type == 'lua'    then
     v.Srch.str__ptn('^function')
 
-  elseif vim.bo.filetype == 'python' then
+  elseif file_type == 'python' then
     v.Srch.str__ptn('^ *def')
 
   else

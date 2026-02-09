@@ -58,3 +58,11 @@ function v.File.line_ar(file_path)
   return file_line_ar
 end
 
+-- file cnd
+
+function v.File.is__readable(file_name)
+
+  local ret = vf.filereadable(file_name)
+  return ret
+end
+

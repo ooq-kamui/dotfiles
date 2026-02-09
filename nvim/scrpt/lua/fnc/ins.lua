@@ -41,7 +41,8 @@ function v.Ins.quote()
     dflt     = { "''", '""', '``' },
   }
 
-  local lst = quote_lst[vim.bo.filetype] or quote_lst['dflt']
+  local file_type = v.Buf.file_type()
+  local lst = quote_lst[file_type] or quote_lst['dflt']
 
   vf.complete(v.Cursor.col_num(), lst)
   return ''

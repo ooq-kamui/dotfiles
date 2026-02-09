@@ -14,6 +14,12 @@ function v.Buf.file_dir()
   return dir
 end
 
+function v.Buf.file_type()
+
+  local file_type = vim.bo.filetype
+  return file_type
+end
+
 -- buf opn
 
 function v.Buf.opn(filename, line_num)
@@ -90,7 +96,7 @@ function v.Buf.opn_memo()
   git_root_dir = v.Str.trim(git_root_dir)
   -- v.Log.val(git_root_dir)
 
-  local srch_idx = v.Str.srch_idx(git_root_dir, 'fatal:')
+  local srch_idx = v.Str.srch_idx_with_lua(git_root_dir, 'fatal:')
   -- v.Log.val(srch_idx)
   if srch_idx == 1 then
     git_root_dir = v.Dir.c.dotfiles_dir .. '/'
@@ -122,23 +128,23 @@ function v.Buf.opn_by_path(rg_rslt_line)
     return
   end
 
-  local rg_rslt_line = vf.matchstr(rg_rslt_line, '\\S\\+')
+  local rg_rslt_line = v.Str.sub_by_ptn(rg_rslt_line, [[\S\+]])
   -- v.Log.val( rg_rslt_line )
 
   local rg_rslt_line_ar = v.Rg.rslt_line_parse_ar(rg_rslt_line)
   -- v.Log.val( rg_rslt_line_ar )
 
-  local filename = rg_rslt_line_ar[1]
-  local line_num = v.Tbl.get_by_key(rg_rslt_line_ar, 1, 1)
+  local file_name = rg_rslt_line_ar[1]
+  local line_num  = v.Tbl.get_by_key(rg_rslt_line_ar, 1, 1)
   -- v.Log.val( line_num )
 
   -- dev anchor
-  if not vf.filereadable(filename) then
+  if not v.File.is__readable(file_name) then
     v.Log.val( 'file does not exist' )
     return
   end
 
-  v.Cmd.cmd('tab drop ' .. filename)
+  v.Cmd.cmd('tab drop ' .. file_name)
   v.Cursor.__mv_by_line_num(line_num)
 end
 
@@ -300,7 +306,7 @@ end
 
 function v.Buf.is_file_type__(type)
 
-  if vim.bo.filetype == type then
+  if v.Buf.file_type() == type then
     return bl.t
   else
     return bl.f
@@ -309,7 +315,7 @@ end
 
 function v.Buf.is_file_type__in(type_lst)
 
-  local ret = v.Tbl.is_in(vim.bo.filetype, type_lst)
+  local ret = v.Tbl.is_in(v.Buf.file_type(), type_lst)
   return ret
 end
 

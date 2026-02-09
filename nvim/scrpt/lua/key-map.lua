@@ -1370,10 +1370,9 @@ end, {expr = bl.t})
 keymap__('x', 'W', v.Slctd.str_edge_out_char__type_ch)
 
 -- slctd str edge out __ ins space
-keymap__('x', 'I'    , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
-keymap__('x', 'C'    , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
--- keymap__('x', 'H'    , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
--- keymap__('x', 'O'    , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
+keymap__('x', 'I' , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
+keymap__('x', 'E' , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
+-- keymap__('x', 'H' , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
 
 -- slctd str edge out __ ins markdown strikethrough
 keymap__('x', '~', ':lua v.Slctd.str_edge_out__ins_markdown_strikethrough()<cr>')

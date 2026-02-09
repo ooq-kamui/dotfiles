@@ -7,6 +7,33 @@ v.Str.ptn = {}
 
 v.Str.ptn.mb = '[^\\x01-\\x7E]'
 
+v.Str.cmnt = {}
+
+v.Str.cmnt.line_1_lst = {
+  lua             = '-- ',
+  text            = '# ' ,
+  vim             = '" ' ,
+  fish            = '# ' ,
+  sh              = '# ' ,
+  css             = '/* ',
+  javascript      = '// ',
+  typescript      = '// ',
+  typescriptreact = '// ',
+  java            = '// ',
+  sql             = '-- ',
+  dflt            = '# ' ,
+}
+
+v.Str.cmnt.line_mlt_lst = {
+  lua        = {[[--[[]] , '--]]'},
+  html       = {'<!--'   ,  '-->'},
+  css        = {'/*'     ,  ' */'},
+  javascript = {'/*'     ,  ' */'},
+  typescript = {'/*'     ,  ' */'},
+  java       = {'/*'     ,  ' */'},
+  dflt       = {'/*'     ,  ' */'},
+}
+
 -- len
 
 function v.Str.len_byte(str)
@@ -31,14 +58,25 @@ end
 
 function v.Str.len_char_raw(str) -- use not
 
-  return vf.strchars(str) -- by char , mb:1
-  --   = vf.strchars(str, 0)
+  return vf.strchars(str, 0) -- by char , mb:1
 end
 
 function v.Str.len_ruler(str)
 
   local len_ruler = vf.strdisplaywidth(str)
   return len_ruler
+end
+
+-- str idx cnv
+
+function v.Str.ruler_idx_by_byte_idx(str, byte_idx)
+
+  -- dev anchor
+  str = str
+
+  local ruler_idx = v.Str.len_ruler(str)
+
+  return ruler_idx
 end
 
 -- char
@@ -118,12 +156,12 @@ function v.Str.srch_with_lua(str, ptn)
   return match_str
 end
 
-function v.Str.srch_idx(str, ptn, srch_s_idx) -- alias
+function v.Str.srch_idx(str, ptn, srch_s_idx)
 
-  return v.Str.srch_idx_by_lua(str, ptn, srch_s_idx)
+  return v.Str.srch_idx_with_vim(str, ptn, srch_s_idx)
 end
 
-function v.Str.srch_idx_by_lua(str, ptn, srch_s_idx)
+function v.Str.srch_idx_with_lua(str, ptn, srch_s_idx)
   -- v.Log.val(str, ptn, srch_s_idx)
 
   local s_idx, e_idx = string.find(str, ptn, srch_s_idx)
@@ -131,7 +169,7 @@ function v.Str.srch_idx_by_lua(str, ptn, srch_s_idx)
   return s_idx, e_idx
 end
 
-function v.Str.srch_idx_by_vim(str, ptn, idx) -- alias -- use not
+function v.Str.srch_idx_with_vim(str, ptn, idx)
 
   local r_idx = vf.match(str, ptn, idx)
   return r_idx -- -1 : match not
@@ -183,6 +221,17 @@ function v.Str.char_col_idx_lst(str, char)
         end
     end
     return char_col_idx_lst
+end
+
+function v.Str.sub_by_ptn(str, ptn)
+
+  return v.Str.sub_by_ptn_with_vim(str. ptn)
+end
+
+function v.Str.sub_by_ptn_with_vim(str, ptn)
+
+  str = vf.matchstr(str, ptn)
+  return str
 end
 
 -- str __ rpl
@@ -262,25 +311,20 @@ function v.Str.space(len)
   return space_str
 end
 
-function v.Str.cmnt_1()
+function v.Str.cmnt.line_1()
 
-  local cmnt_1_def = {
-    lua        = '-- ',
-    text       = '# ' ,
-    vim        = '" ' ,
-    fish       = '# ' ,
-    sh         = '# ' ,
-    css        = '/* ',
-    javascript = '// ',
-    typescript = '// ',
-    typescriptreact = '// ',
-    java       = '// ',
-    sql        = '-- ',
-    dflt       = '# ' ,
-  }
-
-  local str = cmnt_1_def[vim.bo.filetype] or cmnt_1_def['dflt']
+  local cmnt_1_lst = v.Str.cmnt.line_1_lst
+  local file_type  = v.Buf.file_type()
+  local str = cmnt_1_lst[file_type] or cmnt_1_lst['dflt']
   return str
+end
+
+function v.Str.cmnt.line_mlt()
+
+  local cmnt_mlt_lst = v.Str.cmnt.line_mlt_lst
+  local file_type    = v.Buf.file_type()
+  local str_ar = v.Tbl.get_by_key(cmnt_mlt_lst, file_type, cmnt_mlt_lst['dflt'])
+  return str_ar
 end
 
 -- dev anchor

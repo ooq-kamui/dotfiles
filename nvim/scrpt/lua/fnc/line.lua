@@ -106,6 +106,27 @@ function v.Line.word_col_idx(line_num, col_idx_min)
   return word_col_idx
 end
 
+function v.Line.word_ruler_idx(line_num, col_idx_min)
+
+  -- dev anchor
+
+
+
+
+
+
+  return v.Line.word_col_idx(line_num, col_idx_min)
+end
+
+function v.Line.ruler_idx_by_col_idx(line_num, col_idx)
+
+  local line_str = v.Line.str(line_num)
+
+  local ruler_idx = v.Str.ruler_idx_by_byte_idx(line_str, col_idx)
+
+  return ruler_idx
+end
+
 function v.Line.char_col_idx_lst(line_num, char)
 
   local line_str         = v.Line.str_by_line_num(line_num)

@@ -38,6 +38,7 @@ scheme_lst.win.recommend.h = {
   'cyberpunk'                              , -- 
   'Tomorrow Night Blue (Gogh)'             , -- 
   -- h ( chk ed )
+  'Everblush (Gogh)'                       , -- 
   'Catppuccin Macchiato (Gogh)'            , -- 
   'Decaf (base16)'                         , -- 
   'neon-night (Gogh)'                      , -- 
@@ -93,7 +94,6 @@ scheme_lst.win.recommend.h = {
   'Material Darker (base16)'               , -- 
   'MaterialDarker'                         , -- 
   'Misterioso (Gogh)'                      , -- 
-  'Misterioso'                             , -- 
   'Mocha (dark) (terminal.sexy)'           , -- 
   'Modus-Vivendi'                          , -- 
   'Monokai (dark) (terminal.sexy)'         , -- 
@@ -180,7 +180,6 @@ scheme_lst.win.recommend.h = {
   'zenburn (terminal.sexy)'                , -- 
   'Modus-Vivendi-Tinted'                   , -- 
   'Tokyo Night Moon'                       , -- 
-  'Everblush (Gogh)'                       , -- 
   'Monokai (base16)'                       , -- 
 }
 scheme_lst.win.recommend.m = {}
@@ -203,6 +202,7 @@ scheme_lst.win.excld = {
   'Overnight Slumber'                      , -- 
   'UltraDark'                              , -- 
   'Ef-Dark'                                , -- 
+  'Misterioso'                             , -- 
   -- white
   'Borland'                                , -- 
   'Ayu Mirage (Gogh)'                      , -- 

@@ -4,19 +4,16 @@
 
 ## nvim
 
-srch word1 tgl
-- xxx\\\.xxx
-
-
-vf
-- vf.matchstr()
-- vf.filereadable()
-
-
-cmnt str def > Str
-
-
 n q: mb err
+- use: vim.str_utf_start(str, byte_idx)
+- tst
+  - あいうえお  aa  bb  cc
+  - a  b  c  e   f   g
+
+
+v.Str.srch_idx_with_lua()
+- rpl v.Str.srch_idx_with_vim()
+
 
 
 cheat-sheet fzf opn

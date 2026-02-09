@@ -729,7 +729,7 @@ function v.Cursor.__ins_cmnt_1(cmd_cursor__mv_line_top)
     v.Cmd.nml(cmd_cursor__mv_line_top)
   end
 
-  local str = v.Str.cmnt_1()
+  local str = v.Str.cmnt.line_1()
   v.Cmd.nml('i' .. str)
   
   v.Cmd.nml('^') -- or '0'
@@ -750,25 +750,15 @@ end
 
 function v.Cursor.__ins_cmnt_mlt_by_pos_key(pos_key)
 
-  local cmnt_mlt_def = {
-    lua        = {[[--[[]] , '--]]'},
-    html       = {'<!--'   ,  '-->'},
-    css        = {'/*'     ,  ' */'},
-    javascript = {'/*'     ,  ' */'},
-    typescript = {'/*'     ,  ' */'},
-    java       = {'/*'     ,  ' */'},
-    dflt       = {'/*'     ,  ' */'},
-  }
-
-  local str = v.Tbl.get_by_key(cmnt_mlt_def, vim.bo.filetype, cmnt_mlt_def['dflt'])
+  local str_ar = v.Str.cmnt.line_mlt()
 
   if     pos_key == 'bgn' then
     v.Cmd.nml('O')
-    v.Cmd.nml('i' .. str[1])
+    v.Cmd.nml('i' .. str_ar[1])
 
   elseif pos_key == 'end' then
     v.Cmd.nml('o')
-    v.Cmd.nml('i' .. str[2])
+    v.Cmd.nml('i' .. str_ar[2])
   end
 end
 
@@ -817,7 +807,7 @@ function v.Cursor.is_line__markdown_itm()
   local ptn = '^%s*- '
   local str = v.Cursor.line_str()
   -- v.Log.val(str, ptn)
-  local idx = v.Str.srch_idx(str, ptn)
+  local idx = v.Str.srch_idx_with_lua(str, ptn)
   -- v.Log.val(idx)
 
   if not idx then
@@ -1175,7 +1165,7 @@ end
 
 function v.Cursor.__ins_line_anchor(str)
 
-  str  = v.Str.cmnt_1() .. str
+  str  = v.Str.cmnt.line_1() .. str
   v.Cursor.__ins_line(str)
   v.Cursor.line_indnt__crct()
 end
@@ -1285,7 +1275,7 @@ function v.Cursor.line_end__dots_adjst() -- todo dev, mb_str
 
   local line_str = v.Cursor.line_str()
 
-  local idx = v.Str.srch_idx(line_str, v.Cnst.dots_str_ptn)
+  local idx = v.Str.srch_idx_with_lua(line_str, v.Cnst.dots_str_ptn)
 
   if not idx then
     v.Cursor.line_end__ins_dots()
@@ -1298,7 +1288,7 @@ end
 function v.Cursor.line_end_dots__crct()
 
   local line_str = v.Cursor.line_str()
-  local idx = v.Str.srch_idx(line_str, v.Cnst.dots_str_ptn)
+  local idx = v.Str.srch_idx_with_lua(line_str, v.Cnst.dots_str_ptn)
 
   if not idx then return end
 
@@ -1391,7 +1381,6 @@ function v.Cursor.f_char()
   return char
 end
 
--- dev anchor
 function v.Cursor.f_char_col_idx()
 
   local f_char_col_idx
@@ -1400,9 +1389,17 @@ function v.Cursor.f_char_col_idx()
   local ptn = '[^ ]'
   local cursor_col_idx = v.Cursor.col_num()
   local str = v.Cursor.line_str()
-  f_char_col_idx = v.Str.srch_idx(str, ptn, cursor_col_idx)
+  f_char_col_idx = v.Str.srch_idx_with_lua(str, ptn, cursor_col_idx)
 
   return f_char_col_idx
+end
+
+function v.Cursor.f_char_ruler_idx()
+
+  local f_char_col_idx = v.Cursor.f_char_col_idx()
+  local line_num = v.Cursor.line_num()
+  local ruler_idx = v.Line.ruler_idx_by_col_idx(line_num, f_char_col_idx)
+  return ruler_idx
 end
 
 -- cursor f str
@@ -1431,15 +1428,17 @@ end
 
 function v.Cursor.f_str__space_crct_with_word(ref_drct)
 
-  local line_num              = v.Cursor.line_num(ref_drct)
-  local cursor_f_char_col_idx = v.Cursor.f_char_col_idx()
-  local word_col_idx          = v.Line.word_col_idx(line_num, cursor_f_char_col_idx)
+  local cursor_f_char_ruler_idx = v.Cursor.f_char_ruler_idx()
+  local line_num                = v.Cursor.line_num(ref_drct)
 
-  if not word_col_idx then return word_col_idx end
+  local word_ruler_idx = v.Line.word_ruler_idx(line_num, cursor_f_char_ruler_idx)
 
-  v.Cursor.f_str__space_crct_by_col_idx(word_col_idx)
+  if not word_ruler_idx then return word_ruler_idx end
 
-  return word_col_idx
+  -- v.Log.val(word_ruler_idx)
+  v.Cursor.f_str__space_crct_by_ruler_idx(word_ruler_idx)
+
+  return word_ruler_idx
 end
 
 function v.Cursor.f_str__space_crct_with_char(ref_drct)
@@ -1471,6 +1470,11 @@ function v.Cursor.f_str__space_crct_by_col_idx(col_idx)
   v.Cursor.__ins(crct_str)
 
   v.Cursor.__mv_by_col_num(cursor_col_idx)
+end
+
+function v.Cursor.f_str__space_crct_by_ruler_idx(col_idx)
+
+  
 end
 
 function v.Cursor.__ins_sys_cmd(sys_cmd) -- read

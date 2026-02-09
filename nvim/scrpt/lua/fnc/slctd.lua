@@ -423,7 +423,7 @@ function v.Slctd.str__reduce_dlm_l(char) -- range
   v.Slctd.__ltst()
 
   local slctd_str = v.Slctd.str()
-  local srch_idx = v.Str.srch_idx(slctd_str, char)
+  local srch_idx = v.Str.srch_idx_with_lua(slctd_str, char)
 
   if not srch_idx then
     v.Slctd.__clr()
