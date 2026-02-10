@@ -855,7 +855,7 @@ function v.Cursor.c_char()
 
   local idx = v.Cursor.col_num()
   local str = v.Cursor.line_str()
-  local char = v.Str.sub_by_byte(str, idx, idx)
+  local char = v.Str.sub_by_byte_idx(str, idx, idx)
   return char
 end
 
@@ -877,7 +877,7 @@ end
 function v.Cursor.r_char()
 
   local idx = v.Cursor.col_num() + 1
-  local char = v.Str.sub_by_byte(v.Cursor.line_str(), idx, idx)
+  local char = v.Str.sub_by_byte_idx(v.Cursor.line_str(), idx, idx)
   return char
 end
 
@@ -890,7 +890,7 @@ function v.Cursor.u_char()
   local idx = v.Cursor.col_num()
   local line_num = v.Cursor.line_num() - 1
 
-  local c = v.Str.sub_by_byte(v.Line.str_by_line_num(line_num), idx, idx)
+  local c = v.Str.sub_by_byte_idx(v.Line.str_by_line_num(line_num), idx, idx)
   return c
 end
 
@@ -902,7 +902,7 @@ function v.Cursor.d_char()
 
   local idx = v.Cursor.col_num()
   local line_num = v.Cursor.line_num() + 1
-  local c = v.Str.sub_by_byte(v.Line.str_by_line_num(line_num), idx, idx)
+  local c = v.Str.sub_by_byte_idx(v.Line.str_by_line_num(line_num), idx, idx)
   return c
 end
 
@@ -1235,13 +1235,13 @@ end
 
 function v.Cursor.line_str_side_l()
 
-  local line_l = v.Str.sub_by_byte(v.Cursor.line_str(), 1                     , v.Cursor.col_num() - 1)
+  local line_l = v.Str.sub_by_byte_idx(v.Cursor.line_str(), 1                     , v.Cursor.col_num() - 1)
   return line_l
 end
 
 function v.Cursor.line_str_side_r()
 
-  local line_r = v.Str.sub_by_byte(v.Cursor.line_str(), v.Cursor.col_num() + 1)
+  local line_r = v.Str.sub_by_byte_idx(v.Cursor.line_str(), v.Cursor.col_num() + 1)
   -- v.Log.log('>' .. line_r .. '<')
   return line_r
 end
@@ -1249,7 +1249,7 @@ end
 -- todo refactoring Cursor.line_str_side_r() + opt arg
 function v.Cursor.line_str_side_r_with_c()
 
-  local line_r = v.Str.sub_by_byte(v.Cursor.line_str(), v.Cursor.col_num()    )
+  local line_r = v.Str.sub_by_byte_idx(v.Cursor.line_str(), v.Cursor.col_num()    )
   return line_r
 end
 

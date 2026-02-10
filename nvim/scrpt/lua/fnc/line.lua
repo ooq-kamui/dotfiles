@@ -106,21 +106,30 @@ function v.Line.word_col_idx(line_num, col_idx_min)
   return word_col_idx
 end
 
-function v.Line.word_ruler_idx(line_num, col_idx_min)
+-- dev anchor
+function v.Line.word_ruler_idx_lst(line_num)
 
-  -- dev anchor
-
-
-
-
-
-
-  return v.Line.word_col_idx(line_num, col_idx_min)
+  local line_str         = v.Line.str_by_line_num(line_num)
+  local word_ruler_idx_lst = v.Str.word_ruler_idx_lst(line_str)
+  return word_ruler_idx_lst
 end
 
-function v.Line.ruler_idx_by_col_idx(line_num, col_idx)
+-- dev anchor
+function v.Line.word_ruler_idx(line_num, ruler_idx_min)
 
-  local line_str = v.Line.str(line_num)
+  local word_ruler_idx_lst = v.Line.word_ruler_idx_lst(line_num)
+
+
+
+
+
+
+  return v.Line.word_col_idx(line_num, ruler_idx_min)
+end
+
+function v.Line.ruler_idx_by_col_idx(line_num, col_idx) -- refactoring: col > byte
+
+  local line_str = v.Line.str_by_line_num(line_num)
 
   local ruler_idx = v.Str.ruler_idx_by_byte_idx(line_str, col_idx)
 

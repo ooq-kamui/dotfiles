@@ -31,7 +31,9 @@ scheme_lst.win.recommend.h = {
   'TomorrowNightBlue (Gogh)'               , -- 
   'arcoiris'                               , -- 
   'GJM (terminal.sexy)'                    , -- 
+  'DjangoSmooth'                           , -- 
   -- hh ~
+  'Sublette'                               , -- 
   'Nocturnal Winter'                       , -- 
   'hardhacker'                             , -- 
   'Modus-Vivendi-Tritanopia'               , -- 
@@ -43,6 +45,8 @@ scheme_lst.win.recommend.h = {
   'Decaf (base16)'                         , -- 
   'neon-night (Gogh)'                      , -- 
   'Snazzy'                                 , -- 
+  'Catppuccin Mocha (Gogh)'                , -- 
+  'idleToes'                               , -- 
   -- h ( chk no )
   'Abernathy'                              , -- 
   'Aci (Gogh)'                             , -- 
@@ -58,13 +62,11 @@ scheme_lst.win.recommend.h = {
   'Builtin Tango Dark'                     , -- 
   'Cai (Gogh)'                             , -- 
   'Catppuccin Macchiato'                   , -- 
-  'Catppuccin Mocha (Gogh)'                , -- 
   'Catppuccin Mocha'                       , -- 
   'Chalk (Gogh)'                           , -- 
   'Chalk (base16)'                         , -- 
   'Chalk (dark) (terminal.sexy)'           , -- 
   'Cyberdyne'                              , -- 
-  'DjangoSmooth'                           , -- 
   'DotGov'                                 , -- 
   'Dracula (base16)'                       , -- 
   'Dracula'                                , -- 
@@ -87,7 +89,6 @@ scheme_lst.win.recommend.h = {
   'Hurtado'                                , -- 
   'Ibm3270 (Gogh)'                         , -- 
   'Ir Black (Gogh)'                        , -- 
-  'Kokuban (Gogh)'                         , -- 
   'Kolorit'                                , -- 
   'Materia (base16)'                       , -- 
   'Material (base16)'                      , -- 
@@ -110,7 +111,6 @@ scheme_lst.win.recommend.h = {
   'NightOwl (Gogh)'                        , -- 
   'Nightfly (Gogh)'                        , -- 
   'NightlionV2 (Gogh)'                     , -- 
-  'Nord (base16)'                          , -- 
   'Nucolors (terminal.sexy)'               , -- 
   'Obsidian (Gogh)'                        , -- 
   'Obsidian'                               , -- 
@@ -132,7 +132,6 @@ scheme_lst.win.recommend.h = {
   'Seti (Gogh)'                            , -- 
   'Simple Rainbow (terminal.sexy)'         , -- 
   'Snazzy (Gogh)'                          , -- 
-  'Sublette'                               , -- 
   'SweetTerminal (Gogh)'                   , -- 
   'Synth Midnight Terminal Dark (base16)'  , -- 
   'SynthWave (Gogh)'                       , -- 
@@ -165,7 +164,6 @@ scheme_lst.win.recommend.h = {
   'gooey (Gogh)'                           , -- 
   'iTerm2 Smoooooth'                       , -- 
   'iceberg-dark'                           , -- 
-  'idleToes'                               , -- 
   'kanagawabones'                          , -- 
   'kokuban (Gogh)'                         , -- 
   'nightfox'                               , -- 
@@ -211,6 +209,8 @@ scheme_lst.win.excld = {
   'FairyFlossDark (Gogh)'                  , -- 
   'PaleNightHC'                            , -- 
   -- cmd line
+  'Nord (base16)'                          , -- 
+  'Kokuban (Gogh)'                         , -- 
   'Erebus (terminal.sexy)'                 , -- 
   'Rebecca (base16)'                       , -- 
   'Flat (base16)'                          , -- 

@@ -5,19 +5,33 @@
 ## nvim
 
 n q: mb err
-- use: vim.str_utf_start(str, byte_idx)
+function v.Line.word_ruler_idx(line_num, ruler_idx_min)
+
 - tst
   - あいうえお  aa  bb  cc
   - a  b  c  e   f   g
+
+- v.Cursor.c_char()
+  - err
 
 
 v.Str.srch_idx_with_lua()
 - rpl v.Str.srch_idx_with_vim()
 
 
+n E, err
+- case: /  after
+  - srch str flt
+
 
 cheat-sheet fzf opn
 - <leader><c-s>
+
+
+col_idx > byte_idx
+- line
+- str
+- cursor
 
 
 ## wez

@@ -36,32 +36,32 @@ v.Str.cmnt.line_mlt_lst = {
 
 -- len
 
-function v.Str.len_byte(str)
-
-  return vf.strlen(str) -- by byte , mb:3
-end
-
 function v.Str.len(str)
 
   return v.Str.len_char(str)
 end
 
-function v.Str.len_char(str)
+function v.Str.len_byte(str)
+
+  return vf.strlen(str) -- byte , mb:3
+end
+
+function v.Str.len_char(str) -- mb:1
 
   return v.Str.len_char_on_nvim(str)
 end
 
 function v.Str.len_char_on_nvim(str)
 
-  return vf.strcharlen(str) -- by char on nvim , mb:1
+  return vf.strcharlen(str) -- char on nvim , mb:1
 end
 
 function v.Str.len_char_raw(str) -- use not
 
-  return vf.strchars(str, 0) -- by char , mb:1
+  return vf.strchars(str, 0) -- char , mb:1
 end
 
-function v.Str.len_ruler(str)
+function v.Str.len_ruler(str) -- mb:2
 
   local len_ruler = vf.strdisplaywidth(str)
   return len_ruler
@@ -90,14 +90,14 @@ end
 function v.Str.l_char(str)
 
   local l_idx = 1
-  local char = v.Str.sub_by_byte(str, l_idx, l_idx)
+  local char = v.Str.sub_by_byte_idx(str, l_idx, l_idx)
   return char
 end
 
 function v.Str.r_char(str)
 
   local r_idx = v.Str.len(str)
-  local char  = v.Str.sub_by_byte(str, r_idx, r_idx)
+  local char  = v.Str.sub_by_byte_idx(str, r_idx, r_idx)
   -- v.Log.val( char )
   return char
 end
@@ -116,9 +116,27 @@ function v.Str.sub_by_char_idx(str, char_idx_s, char_idx_e) -- char_idx : 1 star
   return r_str
 end
 
-function v.Str.sub_by_byte(str, byte_s, byte_e) -- byte : 1 start
+function v.Str.sub_by_byte_idx(str, byte_idx_s, byte_idx_e) -- alias
 
-  local r_str = string.sub(str, byte_s, byte_e)
+  return v.Str.sub_by_byte_idx_with_mb(str, byte_idx_s, byte_idx_e)
+  -- return v.Str.sub_by_byte_idx_with_ascii(str, byte_idx_s, byte_idx_e)
+end
+
+function v.Str.sub_by_byte_idx_with_mb(str, byte_idx_s, byte_idx_e) -- mb: ok, byte : 1 start
+
+  byte_idx_s = byte_idx_s + vim.str_utf_start(str, byte_idx_s)
+
+  if byte_idx_e then
+    byte_idx_e = byte_idx_e + vim.str_utf_start(str, byte_idx_e)
+  end
+
+  local r_str = string.sub(str, byte_idx_s, byte_idx_e)
+  return r_str
+end
+
+function v.Str.sub_by_byte_idx_with_ascii(str, byte_idx_s, byte_idx_e) -- mb: ng, byte : 1 start
+
+  local r_str = string.sub(str, byte_idx_s, byte_idx_e)
   return r_str
 end
 
@@ -190,7 +208,7 @@ function v.Str.word_col_idx_lst(str)
 
   for idx = 1, #str do
 
-    char = v.Str.sub_by_byte(str, idx, idx)
+    char = v.Str.sub_by_byte_idx(str, idx, idx)
 
     if v.Char.is_space(char) then
       is_space = bl.t
@@ -204,6 +222,32 @@ function v.Str.word_col_idx_lst(str)
   end
 
   return word_col_idx_lst
+end
+
+-- dev anchor
+function v.Str.word_ruler_idx_lst(str)
+
+  local word_ruler_idx_lst = {}
+  local char
+
+  local is_space = bl.t
+
+  for idx = 1, #str do
+
+    char = v.Str.sub_by_byte_idx(str, idx, idx)
+
+    if v.Char.is_space(char) then
+      is_space = bl.t
+
+    else
+      if is_space then
+        v.Tbl.add(word_ruler_idx_lst, idx)
+      end
+      is_space = bl.f
+    end
+  end
+
+  return word_ruler_idx_lst
 end
 
 function v.Str.char_col_idx_lst(str, char)
