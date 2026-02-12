@@ -4,12 +4,15 @@
 
 ## nvim
 
-col > ??
-- word1
-
-
 v.Slctd.is_str_edge_l_byte_idx__line_top()
 - l get: method ch, tgl > ??
+
+
+n rj, err
+
+
+col > ??
+- word1
 
 
 x w, W
