@@ -4,6 +4,21 @@
 
 ## nvim
 
+col > ??
+- word1
+
+
+v.Slctd.is_str_edge_l_byte_idx__line_top()
+- l get: method ch, tgl > ??
+
+
+x w, W
+
+
+vf rpl
+- vf.setpos()
+
+
 n q: mb err
 function v.Line.word_ruler_idx(line_num, ruler_idx_min)
 
@@ -26,12 +41,6 @@ n E, err
 
 cheat-sheet fzf opn
 - <leader><c-s>
-
-
-col_idx > byte_idx
-- line
-- str
-- cursor
 
 
 ## wez

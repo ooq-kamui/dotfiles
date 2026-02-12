@@ -40,6 +40,8 @@ scheme_lst.win.recommend.h = {
   'cyberpunk'                              , -- 
   'Tomorrow Night Blue (Gogh)'             , -- 
   -- h ( chk ed )
+  'Fairyfloss'                             , -- 
+  'Snazzy (Gogh)'                          , -- 
   'Everblush (Gogh)'                       , -- 
   'Catppuccin Macchiato (Gogh)'            , -- 
   'Decaf (base16)'                         , -- 
@@ -80,7 +82,6 @@ scheme_lst.win.recommend.h = {
   'Eighties (dark) (terminal.sexy)'        , -- 
   'Fairy Floss (Gogh)'                     , -- 
   'Fairy Floss Dark (Gogh)'                , -- 
-  'Fairyfloss'                             , -- 
   'Framer (base16)'                        , -- 
   'Google Dark (Gogh)'                     , -- 
   'Guezwhoz'                               , -- 
@@ -131,7 +132,6 @@ scheme_lst.win.recommend.h = {
   'Selenized Dark (Gogh)'                  , -- 
   'Seti (Gogh)'                            , -- 
   'Simple Rainbow (terminal.sexy)'         , -- 
-  'Snazzy (Gogh)'                          , -- 
   'SweetTerminal (Gogh)'                   , -- 
   'Synth Midnight Terminal Dark (base16)'  , -- 
   'SynthWave (Gogh)'                       , -- 

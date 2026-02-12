@@ -230,8 +230,8 @@ function v.Fzf.jmplst()
 
   vim.fn['fzf#run'](
     {
-      source  = v.Jmplst.line_info(),
-      sink    = v.Cursor.__mv_by_line_info,
+      source  = v.Jmplst.line_info_lst(),
+      sink    = v.Cursor.__mv_by_jmplst_line_info_lst,
       window  = '-tabnew',
       options = {'--reverse'},
     }

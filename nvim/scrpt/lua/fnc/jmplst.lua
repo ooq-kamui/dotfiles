@@ -38,25 +38,24 @@ function v.Jmplst.lst()
   return r_jmplst
 end
 
-function v.Jmplst.line_info()
+function v.Jmplst.line_info_lst()
 
-  local jmplst = v.Jmplst.lst()
+  local jmplst_lst = v.Jmplst.lst()
 
-  local jmplst_line_info = {}
+  local line_info_lst = {}
 
   local line_num
-  for idx, _jmplst in pairs(jmplst) do
+  for idx, _jmplst in pairs(jmplst_lst) do
 
     line_num  = _jmplst['lnum']
 
-    -- line_info = line_num .. ' ' .. vf.getline(line_num)
     line_info = line_num .. ' ' .. v.Line.str_by_line_num(line_num)
 
-    v.Tbl.add(jmplst_line_info, line_info)
+    v.Tbl.add(line_info_lst, line_info)
   end
-  -- v.Log.tbl(jmplst_line_info)
+  -- v.Log.tbl(line_info_lst)
 
-  return jmplst_line_info
+  return line_info_lst
 end
 
 function v.Jmplst.cmp(jmplst1, jmplst2)

@@ -13,49 +13,55 @@ function v.Cursor.pos() -- alias
   return pos
 end
 
--- cursor col
+-- cursor byte_idx ( col )
 
-function v.Cursor.col_num()
+function v.Cursor.byte_idx_with_vim(key)
 
-  return v.Cursor.col_byte_idx()
+  local byte_idx = vf.col(key)
+  return byte_idx
 end
 
-function v.Cursor.col_byte_idx() -- byte ( mb:3, start 1 )
+function v.Cursor.byte_idx() -- byte ( mb:3, start 1 )
 
-  local col_num = vf.col('.')
-  return col_num
+  return v.Cursor.c_byte_idx()
 end
 
-function v.Cursor.l_col_num()
+function v.Cursor.c_byte_idx()
 
-  -- dev anchor
+  local byte_idx = v.Cursor.byte_idx_with_vim('.')
+  return byte_idx
+end
+
+-- dev anchor
+function v.Cursor.l_byte_idx()
+
   
 end
 
-function v.Cursor.ruler_num()
+function v.Cursor.ruler_idx()
 
   local str = v.Cursor.line_str_side_l()
 
-  local ruler_num = v.Str.len_ruler(str) + 1
-  -- v.Log.val(ruler_num)
+  local ruler_idx = v.Str.len_ruler(str) + 1
+  -- v.Log.val(ruler_idx)
 
-  return ruler_num
+  return ruler_idx
 end
 
 -- cursor col cnd
 
-function v.Cursor.is_col__line_end()
+function v.Cursor.is_byte_idx__line_end()
 
-  if v.Cursor.col_num() == v.Cursor.line_end_col_num() then
+  if v.Cursor.byte_idx() == v.Cursor.line_end_byte_idx() then
     return bl.t
   else
     return bl.f
   end
 end
 
-function v.Cursor.is_col__line_end_inr()
+function v.Cursor.is_byte_idx__line_end_inr()
 
-  if v.Cursor.col_num() == v.Cursor.line_end_col_num() - 1 then
+  if v.Cursor.byte_idx() == v.Cursor.line_end_byte_idx() - 1 then
 
     return bl.t
   else
@@ -63,36 +69,37 @@ function v.Cursor.is_col__line_end_inr()
   end
 end
 
-function v.Cursor.is_col__line_end_ovr() -- range
+function v.Cursor.is_byte_idx__line_end_ovr() -- range
 
-  if v.Cursor.col_num() >= v.Cursor.line_end_col_num() then
+  if v.Cursor.byte_idx() >= v.Cursor.line_end_byte_idx() then
     return bl.t
   else
     return bl.f
   end
 end
 
-function v.Cursor.is_col__line_top0()
+function v.Cursor.is_byte_idx__line_top0()
 
-  if v.Cursor.col_num() == 1 then
+  if v.Cursor.byte_idx() == 1 then
     return bl.t
   else
     return bl.f
   end
 end
 
-function v.Cursor.is_col__line_top1()
+-- dev anchor
+function v.Cursor.is_byte_idx__line_top1()
 
   local pos_c = v.Cursor.pos()
 
-  local col_c = v.Cursor.col_num()
-  
+  local c_byte_idx = v.Cursor.byte_idx()
+
   v.Cursor.__mv_line_top1()
-  local col_s1 = v.Cursor.col_num()
-  
-  vf.setpos('.', pos_c)
-  
-  if col_c == col_s1 then
+  local col_s1 = v.Cursor.byte_idx()
+
+  v.Cursor.__mv_by_pos(pos_c)
+
+  if c_byte_idx == col_s1 then
     return bl.t
   else
     return bl.f
@@ -101,15 +108,15 @@ end
 
 -- cursor __ mv
 
-function v.Cursor.__mv_by_col_num(col_num)
+function v.Cursor.__mv_by_byte_idx(byte_idx)
 
-  if not v.Str.is__num(col_num) then
+  if not v.Str.is__num(byte_idx) then
     return
   end
 
   local line_num = v.Cursor.line_num()
 
-  v.Cursor.__mv_by_line_col_num(line_num, col_num)
+  v.Cursor.__mv_by_line_byte_idx(line_num, byte_idx)
 end
 
 function v.Cursor.__mv_by_line_num(line_num)
@@ -129,27 +136,27 @@ function v.Cursor.__mv_by_line_num(line_num)
 
   local win_id = 0 -- crnt
   local cursor = vim.api.nvim_win_get_cursor(win_id)
-  local cursor_col_num = cursor[2]
-  vim.api.nvim_win_set_cursor(win_id, {line_num, cursor_col_num})
+  local cursor_byte_idx = cursor[2]
+  vim.api.nvim_win_set_cursor(win_id, {line_num, cursor_byte_idx})
 
   -- v.Cmd.nml(line_num .. 'G')
 end
 
-function v.Cursor.__mv_by_line_col_num(line_num, col_num)
+function v.Cursor.__mv_by_line_byte_idx(line_num, byte_idx)
 
   line_num = line_num or v.Cursor.line_num()
 
-  vf.cursor(line_num, col_num)
+  vf.cursor(line_num, byte_idx)
 end
 
-function v.Cursor.__mv_by_line_info(line_info)
+function v.Cursor.__mv_by_jmplst_line_info_lst(jmplst_line_info_lst)
 
-  local line_num = v.Line.num_by_Line_info(line_info)
+  local line_num = v.Line.num_by_jmplst_line_info(jmplst_line_info_lst)
   v.Cursor.__mv_by_line_num(line_num)
 end
 
 function v.Cursor.__mv_by_pos(pos)
-  
+
   vf.setpos('.', pos)
 end
 
@@ -224,7 +231,7 @@ end
 
 function v.Cursor.__mv_word_f()
 
-  if     v.Cursor.is_col__line_end() or v.Cursor.is_col__line_end_inr() then
+  if     v.Cursor.is_byte_idx__line_end() or v.Cursor.is_byte_idx__line_end_inr() then
 
     v.Cursor.__mv_char_f()
     return
@@ -250,13 +257,13 @@ function v.Cursor.__mv_word_b()
   local l_char = v.Cursor.l_char()
   -- v.Log.log(l_char)
 
-  if     v.Cursor.is_col__line_top0() then
+  if     v.Cursor.is_byte_idx__line_top0() then
     v.Cursor.__mv_u_line_end()
 
   elseif v.Cursor.is_line_str_side_l__space() then
     v.Cursor.__mv_line_top0()
 
-  elseif v.Cursor.is_col__line_top1() then
+  elseif v.Cursor.is_byte_idx__line_top1() then
     v.Cursor.__mv_line_top0()
 
   elseif v.Char.is__symbol(l_char) then
@@ -356,11 +363,11 @@ end
 
 function v.Cursor.__mv_line_top_or_new_line()
 
-  if     v.Cursor.is_col__line_top0() then
+  if     v.Cursor.is_byte_idx__line_top0() then
 
     v.Cursor.__ins_line_emp()
 
-  elseif v.Cursor.is_col__line_top1() then
+  elseif v.Cursor.is_byte_idx__line_top1() then
 
     v.Cursor.__mv_line_top0()
   else
@@ -414,7 +421,7 @@ function v.Cursor.__mv_v_jmp_to_char(drct_cmd_nml, is_space_stop)
 
   while ( not v.Cursor.is_line_num__file_edge() and cnt < cnt_max ) do
 
-    if not ( v.Cursor.is_c_char__space() or v.Cursor.is_col__line_end() ) then
+    if not ( v.Cursor.is_c_char__space() or v.Cursor.is_byte_idx__line_end() ) then
       break -- stop
     end
 
@@ -450,7 +457,7 @@ function v.Cursor.__mv_v_jmp_to_space(drct_cmd_nml)
 
   while ( not v.Cursor.is_line_num__file_edge() and cnt < cnt_max ) do
 
-    if v.Cursor.is_c_char__space() or v.Cursor.is_col__line_end() then
+    if v.Cursor.is_c_char__space() or v.Cursor.is_byte_idx__line_end() then
       break
     end
 
@@ -479,7 +486,7 @@ function v.Cursor.__mv_v_jmp(drct_cmd_nml)
   v.Cmd.nml(drct_cmd_nml)
 
   local is_c_char__space = v.Cursor.is_c_char__space()
-  local is_col__line_end = v.Cursor.is_col__line_end()
+  local is_col__line_end = v.Cursor.is_byte_idx__line_end()
   -- v.Log.val('is_c_char__space : ', is_c_char__space)
   -- v.Log.val('is_col__line_end : ', is_col__line_end)
 
@@ -566,35 +573,35 @@ function v.Cursor.__mv_fnc_out()
   v.Cmd.nml(cmd_nml)
 end
 
-function v.Cursor.__mv_by_line_ruler_num(line_num, ruler_num)
+function v.Cursor.__mv_by_line_ruler_idx(line_num, ruler_idx)
 
   v.Cursor.__mv_by_line_num(line_num)
 
-  local cmd_nml = ruler_num .. '|'
+  local cmd_nml = ruler_idx .. '|'
   v.Cmd.nml(cmd_nml)
 end
 
-function v.Cursor.__mv_line_u_word_col()
+function v.Cursor.__mv_line_u_word_byte_idx()
 
   local ref_drct = 'u'
-  v.Cursor.__mv_line_x_word_col(ref_drct)
+  v.Cursor.__mv_line_x_word_byte_idx(ref_drct)
 end
 
-function v.Cursor.__mv_line_d_word_col()
+function v.Cursor.__mv_line_d_word_byte_idx()
 
   local ref_drct = 'd'
-  v.Cursor.__mv_line_x_word_col(ref_drct)
+  v.Cursor.__mv_line_x_word_byte_idx(ref_drct)
 end
 
-function v.Cursor.__mv_line_x_word_col(ref_drct)
+function v.Cursor.__mv_line_x_word_byte_idx(ref_drct)
 
-  local ref_line_num   = v.Cursor.line_num(ref_drct)
-  local cursor_col_idx = v.Cursor.col_byte_idx()
-  local word_col_idx   = v.Line.word_col_idx(ref_line_num, cursor_col_idx)
+  local ref_line_num    = v.Cursor.line_num(ref_drct)
+  local cursor_byte_idx = v.Cursor.byte_idx()
+  local word_byte_idx    = v.Line.word_byte_idx(ref_line_num, cursor_byte_idx)
 
-  if not word_col_idx then return end
+  if not word_byte_idx then return end
 
-  v.Cursor.__mv_by_line_col_num(nil, word_col_idx)
+  v.Cursor.__mv_by_line_byte_idx(nil, word_byte_idx)
 end
 
 -- cursor __ ins
@@ -779,7 +786,7 @@ function v.Cursor.__ins_markdown_heading()
 
   local ptn = '^#* '
   local col = v.Str.srch_end(v.Cursor.line_str(), ptn) + 1
-  v.Cursor.__mv_by_line_col_num(nil, col)
+  v.Cursor.__mv_by_line_byte_idx(nil, col)
 end
 
 function v.Cursor.__ins_markdown_cr()
@@ -853,7 +860,7 @@ end
 
 function v.Cursor.c_char()
 
-  local idx = v.Cursor.col_num()
+  local idx = v.Cursor.byte_idx()
   local str = v.Cursor.line_str()
   local char = v.Str.sub_by_byte_idx(str, idx, idx)
   return char
@@ -876,7 +883,7 @@ end
 
 function v.Cursor.r_char()
 
-  local idx = v.Cursor.col_num() + 1
+  local idx = v.Cursor.byte_idx() + 1
   local char = v.Str.sub_by_byte_idx(v.Cursor.line_str(), idx, idx)
   return char
 end
@@ -887,7 +894,7 @@ function v.Cursor.u_char()
     return ''
   end
 
-  local idx = v.Cursor.col_num()
+  local idx = v.Cursor.byte_idx()
   local line_num = v.Cursor.line_num() - 1
 
   local c = v.Str.sub_by_byte_idx(v.Line.str_by_line_num(line_num), idx, idx)
@@ -900,7 +907,7 @@ function v.Cursor.d_char()
     return ''
   end
 
-  local idx = v.Cursor.col_num()
+  local idx = v.Cursor.byte_idx()
   local line_num = v.Cursor.line_num() + 1
   local c = v.Str.sub_by_byte_idx(v.Line.str_by_line_num(line_num), idx, idx)
   return c
@@ -1194,7 +1201,7 @@ end
 
 function v.Cursor.d__ins_line_space() -- range
 
-  local space_len = v.Cursor.col_num() - 1
+  local space_len = v.Cursor.byte_idx() - 1
   local space_str = v.Str.space(space_len)
   v.Cursor.d__ins_line(space_str)
 end
@@ -1214,10 +1221,10 @@ function v.Cursor.line_num(ref_drct) -- alias
   return line_num
 end
 
-function v.Cursor.line_end_col_num() -- alias
+function v.Cursor.line_end_byte_idx() -- alias
 
-  local col = vf.col('$')
-  return col
+  local byte_idx = v.Cursor.byte_idx_with_vim('$')
+  return byte_idx
 end
 
 -- cursor line str
@@ -1229,19 +1236,19 @@ end
 
 function v.Cursor.line_str_len_byte()
 
-  local len = v.Cursor.line_end_col_num() - 1
+  local len = v.Cursor.line_end_byte_idx() - 1
   return len
 end
 
 function v.Cursor.line_str_side_l()
 
-  local line_l = v.Str.sub_by_byte_idx(v.Cursor.line_str(), 1                     , v.Cursor.col_num() - 1)
+  local line_l = v.Str.sub_by_byte_idx(v.Cursor.line_str(), 1                     , v.Cursor.byte_idx() - 1)
   return line_l
 end
 
 function v.Cursor.line_str_side_r()
 
-  local line_r = v.Str.sub_by_byte_idx(v.Cursor.line_str(), v.Cursor.col_num() + 1)
+  local line_r = v.Str.sub_by_byte_idx(v.Cursor.line_str(), v.Cursor.byte_idx() + 1)
   -- v.Log.log('>' .. line_r .. '<')
   return line_r
 end
@@ -1249,7 +1256,7 @@ end
 -- todo refactoring Cursor.line_str_side_r() + opt arg
 function v.Cursor.line_str_side_r_with_c()
 
-  local line_r = v.Str.sub_by_byte_idx(v.Cursor.line_str(), v.Cursor.col_num()    )
+  local line_r = v.Str.sub_by_byte_idx(v.Cursor.line_str(), v.Cursor.byte_idx()    )
   return line_r
 end
 
@@ -1381,24 +1388,24 @@ function v.Cursor.f_char()
   return char
 end
 
-function v.Cursor.f_char_col_idx()
+function v.Cursor.f_char_byte_idx()
 
-  local f_char_col_idx
+  local f_char_byte_idx
 
   -- local ptn = '[^ \t]'
   local ptn = '[^ ]'
-  local cursor_col_idx = v.Cursor.col_num()
+  local cursor_byte_idx = v.Cursor.byte_idx()
   local str = v.Cursor.line_str()
-  f_char_col_idx = v.Str.srch_idx_with_lua(str, ptn, cursor_col_idx)
-
-  return f_char_col_idx
+  f_char_byte_idx = v.Str.srch_idx_with_lua(str, ptn, cursor_byte_idx)
+  return f_char_byte_idx
 end
 
 function v.Cursor.f_char_ruler_idx()
 
-  local f_char_col_idx = v.Cursor.f_char_col_idx()
+  -- dev anchor
+  local f_char_byte_idx = v.Cursor.f_char_byte_idx()
   local line_num = v.Cursor.line_num()
-  local ruler_idx = v.Line.ruler_idx_by_col_idx(line_num, f_char_col_idx)
+  local ruler_idx = v.Line.ruler_idx_by_byte_idx(line_num, f_char_byte_idx)
   return ruler_idx
 end
 
@@ -1406,7 +1413,7 @@ end
 
 function v.Cursor.f_str__del()
 
-  if v.Cursor.is_col__line_end() then
+  if v.Cursor.is_byte_idx__line_end() then
     return
   end
 
@@ -1416,14 +1423,14 @@ end
 
 function v.Cursor.f_str__space_crct_with_fzy(ref_drct)
 
-  if v.Cursor.is_col__line_end() then
+  if v.Cursor.is_byte_idx__line_end() then
     return
   end
 
-  local word_col_idx = v.Cursor.f_str__space_crct_with_word(ref_drct)
-  if word_col_idx then return end
+  local word_ruler_idx = v.Cursor.f_str__space_crct_with_word(ref_drct)
+  if word_ruler_idx then return end
 
-  local char_col_idx = v.Cursor.f_str__space_crct_with_char(ref_drct)
+  local char_byte_idx = v.Cursor.f_str__space_crct_with_char(ref_drct)
 end
 
 function v.Cursor.f_str__space_crct_with_word(ref_drct)
@@ -1443,36 +1450,36 @@ end
 
 function v.Cursor.f_str__space_crct_with_char(ref_drct)
 
-  local line_num              = v.Cursor.line_num(ref_drct)
-  local char                  = v.Cursor.f_char()
-  local cursor_f_char_col_idx = v.Cursor.f_char_col_idx()
-  local char_col_idx          = v.Line.char_col_idx(line_num, char, cursor_f_char_col_idx)
+  local line_num               = v.Cursor.line_num(ref_drct)
+  local char                   = v.Cursor.f_char()
+  local cursor_f_char_byte_idx = v.Cursor.f_char_byte_idx()
+  local char_byte_idx          = v.Line.char_byte_idx(line_num, char, cursor_f_char_byte_idx)
 
-  if not char_col_idx then return char_col_idx end
+  if not char_byte_idx then return char_byte_idx end
 
-  v.Cursor.f_str__space_crct_by_col_idx(char_col_idx)
+  v.Cursor.f_str__space_crct_by_byte_idx(char_byte_idx)
 
-  return char_col_idx
+  return char_byte_idx
 end
 
-function v.Cursor.f_str__space_crct_by_col_idx(col_idx)
+function v.Cursor.f_str__space_crct_by_byte_idx(byte_idx)
 
   local crct_str
   crct_str = v.Cursor.line_str_side_r_with_c()
   crct_str = v.Str.trim(crct_str)
 
-  local cursor_col_idx = v.Cursor.col_num()
-  local space_len = col_idx - cursor_col_idx
+  local cursor_byte_idx = v.Cursor.byte_idx()
+  local space_len = byte_idx - cursor_byte_idx
   local space_str = v.Str.space(space_len)
 
   v.Cursor.f_str__del()
   v.Cursor.__ins(space_str)
   v.Cursor.__ins(crct_str)
 
-  v.Cursor.__mv_by_col_num(cursor_col_idx)
+  v.Cursor.__mv_by_byte_idx(cursor_byte_idx)
 end
 
-function v.Cursor.f_str__space_crct_by_ruler_idx(col_idx)
+function v.Cursor.f_str__space_crct_by_ruler_idx(ruler_idx)
 
   
 end
@@ -1536,7 +1543,7 @@ end
 
 function v.Cursor.is_line_str__emp()
 
-  if v.Cursor.line_end_col_num() == 1 then
+  if v.Cursor.line_end_byte_idx() == 1 then
     return bl.t
   else
     return bl.f

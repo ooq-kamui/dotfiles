@@ -119,7 +119,6 @@ end
 function v.Str.sub_by_byte_idx(str, byte_idx_s, byte_idx_e) -- alias
 
   return v.Str.sub_by_byte_idx_with_mb(str, byte_idx_s, byte_idx_e)
-  -- return v.Str.sub_by_byte_idx_with_ascii(str, byte_idx_s, byte_idx_e)
 end
 
 function v.Str.sub_by_byte_idx_with_mb(str, byte_idx_s, byte_idx_e) -- mb: ok, byte : 1 start
@@ -199,9 +198,9 @@ function v.Str.srch_end(str, ptn) -- alias
   return idx
 end
 
-function v.Str.word_col_idx_lst(str)
+function v.Str.word_byte_idx_lst(str)
 
-  local word_col_idx_lst = {}
+  local word_byte_idx_lst = {}
   local char
 
   local is_space = bl.t
@@ -215,13 +214,13 @@ function v.Str.word_col_idx_lst(str)
 
     else
       if is_space then
-        v.Tbl.add(word_col_idx_lst, idx)
+        v.Tbl.add(word_byte_idx_lst, idx)
       end
       is_space = bl.f
     end
   end
 
-  return word_col_idx_lst
+  return word_byte_idx_lst
 end
 
 -- dev anchor
@@ -250,21 +249,21 @@ function v.Str.word_ruler_idx_lst(str)
   return word_ruler_idx_lst
 end
 
-function v.Str.char_col_idx_lst(str, char)
+function v.Str.char_byte_idx_lst(str, char)
 
-    local char_col_idx_lst = {}
-    local col_idx = 1
+    local char_byte_idx_lst = {}
+    local byte_idx = 1
     while true do
-        local s_col_idx, e_col_idx = string.find(str, char, col_idx, true)
+        local s_byte_idx, e_byte_idx = string.find(str, char, byte_idx, true)
 
-        if s_col_idx then
-            v.Tbl.add(char_col_idx_lst, s_col_idx)
-            col_idx = e_col_idx + 1
+        if s_byte_idx then
+            v.Tbl.add(char_byte_idx_lst, s_byte_idx)
+            byte_idx = e_byte_idx + 1
         else
             break
         end
     end
-    return char_col_idx_lst
+    return char_byte_idx_lst
 end
 
 function v.Str.sub_by_ptn(str, ptn)

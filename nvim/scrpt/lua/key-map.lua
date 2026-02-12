@@ -383,7 +383,7 @@ keymap__('n', 'y', ':lua v.Cursor.__mv_line_top_or_new_line()<cr>')
 
 -- cursor mv line end
 keymap__('n', '<c-y>', function()
-  if v.Cursor.is_col__line_end() then
+  if v.Cursor.is_byte_idx__line_end() then
     return ':lua v.Cursor.__ins_markdown_cr()<cr>'
     -- return v.Cursor.__ins_markdown_cr
   else
@@ -420,7 +420,7 @@ keymap__('n', '<c-_>', 'hT_')
 keymap__('n', '<c-f>', ':lua v.Cursor.__mv_word_dlm_f()<cr>')
 
 -- cursor mv line u word col  -  forward
-keymap__('n', '<c-e>', ':lua v.Cursor.__mv_line_u_word_col()<cr>')
+keymap__('n', '<c-e>', ':lua v.Cursor.__mv_line_u_word_byte_idx()<cr>')
 
 -- cursor mv fnc name
 -- keymap__('n', 'xx', ':lua v.Cursor.__mv_fnc_name()<cr>')
@@ -689,7 +689,7 @@ keymap__('n', '<c-d>', ':lua v.Cursor.f_str__del()<cr>')
 
 -- word forward del
 -- keymap__('n', 'xx', function()
---   if v.Cursor.is_col__line_end() then
+--   if v.Cursor.is_byte_idx__line_end() then
 --     return '<esc>'
 --   else
 --     return '"zdw'
@@ -697,7 +697,7 @@ keymap__('n', '<c-d>', ':lua v.Cursor.f_str__del()<cr>')
 -- end, {expr = bl.t})
 
 -- keymap__('n', 'xx', function()
---   if v.Cursor.is_col__line_end() then
+--   if v.Cursor.is_byte_idx__line_end() then
 --     return '<esc>'
 --   else
 --     return '"zde'
@@ -1606,7 +1606,7 @@ keymap__('i', '<esc>', function()
     return '<c-e>'
   else
     local cmd_nml = '<esc>'
-    if v.Cursor.is_col__line_top0() then
+    if v.Cursor.is_byte_idx__line_top0() then
     else
       cmd_nml = cmd_nml .. 'l'
     end
@@ -1617,7 +1617,7 @@ end, {expr = bl.t})
 keymap__('i', '<c-c>', function()
   if     v.Mode.is__ins_menu() then
     return '<c-e>'
-  elseif v.Cursor.is_col__line_top0() then
+  elseif v.Cursor.is_byte_idx__line_top0() then
     return '<esc>'
   else
     return '<esc>l'
