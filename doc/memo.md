@@ -9,12 +9,9 @@ ptn
 - cnst ptn def
 
 
-n q: mb err
-function v.Line.word_ruler_idx(line_num, ruler_idx_min)
-
-- tst
-  - あいうえお  aa  bb  cc
-  - a  b  c  e   f   g
+v.Str.srch_byte_idx_with_lua()
+- > xxx_with_ptn_lua(), xxx_with_ptn_vim()
+- rpl ? v.Str.srch_byte_idx_with_vim()
 
 
 slctd.edge_x_byte_idx()
@@ -23,26 +20,31 @@ v.Slctd.is_str_edge_l_byte_idx__line_top()
 - l get: method ch, tgl > ??
 - key: f b + r l
 
+
+n q: mb err
+function v.Line.word_ruler_idx(line_num, ruler_idx_min)
+
+- tst
+  - あいうえお  aa  bb  cc
+  - a  b  c  e   f   g
+
+
 v.Slctd.is_cursor_pos__r()
 
 v.Line.end__pad_space(line_num, fil_end_byte_idx)
 
 
 v.Slctd.str_edge_r_out_char()
-- cursor __ mv not
+- logic: cursor __ mv not
 
 
-v.Str.srch_byte_idx_with_lua()
-- rpl v.Str.srch_byte_idx_with_vim()
+cheat-sheet fzf opn
+- <leader><c-s>
 
 
 n E, err
 - case: /  after
   - srch str flt
-
-
-cheat-sheet fzf opn
-- <leader><c-s>
 
 
 ## wez
