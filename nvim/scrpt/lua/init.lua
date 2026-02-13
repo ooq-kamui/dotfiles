@@ -2,7 +2,7 @@
 vf = vim.fn
 
 v = {}
-v.Cnst = {}
+-- v.Cnst = {}
 
 g = {}
 

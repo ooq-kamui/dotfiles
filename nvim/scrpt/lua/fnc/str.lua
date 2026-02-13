@@ -34,9 +34,14 @@ v.Str.cmnt.line_mlt_lst = {
   dflt       = {'/*'     ,  ' */'},
 }
 
+v.Str.dots = {}
+v.Str.dots.str     = ' .. '
+v.Str.dots.ptn_lua = ' %.%. '
+v.Str.dots.plt_byte_idx = 50
+
 -- len
 
-function v.Str.len(str)
+function v.Str.len(str) -- alias
 
   return v.Str.len_char(str)
 end
@@ -123,11 +128,21 @@ end
 
 function v.Str.sub_by_byte_idx_with_mb(str, byte_idx_s, byte_idx_e) -- mb: ok, byte : 1 start
 
-  byte_idx_s = byte_idx_s + vim.str_utf_start(str, byte_idx_s)
+  local len_byte = v.Str.len_byte(str)
 
-  if byte_idx_e then
-    byte_idx_e = byte_idx_e + vim.str_utf_start(str, byte_idx_e)
+  if byte_idx_s > len_byte then
+    return ''
   end
+
+  if not byte_idx_e then
+    byte_idx_e = len_byte
+
+  elseif byte_idx_e > len_byte then
+    byte_idx_e = len_byte
+  end
+
+  byte_idx_s = byte_idx_s + vim.str_utf_start(str, byte_idx_s)
+  byte_idx_e = byte_idx_e + vim.str_utf_end(  str, byte_idx_e)
 
   local r_str = string.sub(str, byte_idx_s, byte_idx_e)
   return r_str
@@ -162,40 +177,31 @@ end
 
 -- str srch
 
-function v.Str.srch(str, ptn)
+function v.Str.srch_byte_idx(str, ptn, srch_s_byte_idx) -- use not
 
-  return v.Str.srch_with_lua(str, ptn)
+  -- dev anchor
+  -- return v.Str.srch_byte_idx_with_vim(str, ptn, srch_s_byte_idx)
+  -- return v.Str.srch_byte_idx_with_lua(str, ptn, srch_s_byte_idx)
 end
 
-function v.Str.srch_with_lua(str, ptn)
+function v.Str.srch_byte_idx_with_lua(str, ptn, srch_s_byte_idx) -- byte_idx start 1
+  -- v.Log.val(str, ptn, srch_s_byte_idx)
 
-  local match_str = string.match(str, ptn)
-  return match_str
+  local s_byte_idx, e_byte_idx = string.find(str, ptn, srch_s_byte_idx)
+  -- v.Log.val(s_byte_idx, e_byte_idx)
+  return s_byte_idx, e_byte_idx
 end
 
-function v.Str.srch_idx(str, ptn, srch_s_idx)
+function v.Str.srch_byte_idx_with_vim(str, ptn, s_byte_idx) -- byte_idx start 0
 
-  return v.Str.srch_idx_with_vim(str, ptn, srch_s_idx)
-end
-
-function v.Str.srch_idx_with_lua(str, ptn, srch_s_idx)
-  -- v.Log.val(str, ptn, srch_s_idx)
-
-  local s_idx, e_idx = string.find(str, ptn, srch_s_idx)
-  -- v.Log.val(s_idx, e_idx)
-  return s_idx, e_idx
-end
-
-function v.Str.srch_idx_with_vim(str, ptn, idx)
-
-  local r_idx = vf.match(str, ptn, idx)
-  return r_idx -- -1 : match not
+  local r_byte_idx = vf.match(str, ptn, s_byte_idx)
+  return r_byte_idx -- -1 : match not
 end
 
 function v.Str.srch_end(str, ptn) -- alias
 
-  local idx = vf.matchend(str, ptn)
-  return idx
+  local byte_idx = vf.matchend(str, ptn)
+  return byte_idx
 end
 
 function v.Str.word_byte_idx_lst(str)
@@ -204,17 +210,18 @@ function v.Str.word_byte_idx_lst(str)
   local char
 
   local is_space = bl.t
+  local str_len  = #str
 
-  for idx = 1, #str do
+  for byte_idx = 1, str_len do
 
-    char = v.Str.sub_by_byte_idx(str, idx, idx)
+    char = v.Str.sub_by_byte_idx(str, byte_idx, byte_idx)
 
     if v.Char.is_space(char) then
       is_space = bl.t
 
     else
       if is_space then
-        v.Tbl.add(word_byte_idx_lst, idx)
+        v.Tbl.add(word_byte_idx_lst, byte_idx)
       end
       is_space = bl.f
     end
@@ -266,15 +273,23 @@ function v.Str.char_byte_idx_lst(str, char)
     return char_byte_idx_lst
 end
 
-function v.Str.sub_by_ptn(str, ptn)
+-- sub str
 
-  return v.Str.sub_by_ptn_with_vim(str. ptn)
+function v.Str.sub_by_ptn(str, ptn_vim) -- alias
+
+  return v.Str.sub_by_ptn_with_vim(str, ptn_vim)
 end
 
 function v.Str.sub_by_ptn_with_vim(str, ptn)
 
   str = vf.matchstr(str, ptn)
   return str
+end
+
+function v.Str.sub_by_ptn_with_lua(str, ptn_lua) -- use not
+
+  local match_str = string.match(str, ptn_lua)
+  return match_str
 end
 
 -- str __ rpl
@@ -340,12 +355,12 @@ end
 
 -- str cre
 
-function v.Str.space(len)
+function v.Str.space(len_byte)
 
   local space_str = ''
 
   local idx = 1
-  while idx <= len do
+  while idx <= len_byte do
 
     space_str = space_str .. ' '
 
@@ -407,16 +422,17 @@ function v.Str.is__emp(str)
   return ret
 end
 
-function v.Str.is__ptn(str, ptn)
+function v.Str.is__ptn(str, ptn_vim) -- alias
 
-  return v.Str.is__ptn_with_vim(str, ptn)
+  return v.Str.is__ptn_with_vim(str, ptn_vim)
 end
 
-function v.Str.is__ptn_with_vim(str, ptn)
+function v.Str.is__ptn_with_vim(str, ptn_vim)
 
   local ret
 
-  if vf.match(str, ptn) == -1 then
+  local srch_byte_idx = v.Str.srch_byte_idx_with_vim(str, ptn_vim)
+  if srch_byte_idx == -1 then
     ret = bl.f
   else
     ret = bl.t

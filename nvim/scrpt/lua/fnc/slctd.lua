@@ -122,11 +122,11 @@ function v.Slctd.str__cursor_f_space()
   end
 end
 
-function v.Slctd.str__by_col_len(s_col, len)
+function v.Slctd.str__by_byte_idx_len(s_byte_idx, len)
 
-  local e_col = len - 1
+  local e_byte_idx = len - 1
 
-  v.Slctd.__by_line_col(nil, s_col, nil, e_col)
+  v.Slctd.__by_line_byte_idx(nil, s_byte_idx, nil, e_byte_idx)
 end
 
 -- slctd __
@@ -139,14 +139,14 @@ function v.Slctd.__by_pos(s_pos, e_pos) -- use not
   v.Cursor.__mv_by_pos(e_pos)
 end
 
-function v.Slctd.__by_line_col(s_line, s_col, e_line, e_col)
+function v.Slctd.__by_line_byte_idx(s_line, s_byte_idx, e_line, e_byte_idx)
 
   s_line = (s_line == nil) and v.Cursor.line_num() or s_line
   e_line = (e_line == nil) and v.Cursor.line_num() or e_line
 
-  v.Cursor.__mv_by_line_byte_idx(s_line, s_col)
+  v.Cursor.__mv_by_line_byte_idx(s_line, s_byte_idx)
   v.Slctd.str__cursor_c_char()
-  v.Cursor.__mv_by_line_byte_idx(e_line, e_col)
+  v.Cursor.__mv_by_line_byte_idx(e_line, e_byte_idx)
 end
 
 -- slctd cursor __ mv
@@ -247,7 +247,7 @@ function v.Slctd.is_cursor_pos__r() -- range
 
   elseif cursor_pos1[2] == cursor_pos2[2] then -- line
 
-    if   cursor_pos1[3] >= cursor_pos2[3] then -- col
+    if   cursor_pos1[3] >= cursor_pos2[3] then -- byte_idx ( col_num )
       ret = bl.t
     end
   end
@@ -423,9 +423,9 @@ function v.Slctd.str__reduce_dlm_l(char) -- range
   v.Slctd.__ltst()
 
   local slctd_str = v.Slctd.str()
-  local srch_idx = v.Str.srch_idx_with_lua(slctd_str, char)
+  local srch_byte_idx = v.Str.srch_byte_idx_with_lua(slctd_str, char)
 
-  if not srch_idx then
+  if not srch_byte_idx then
     v.Slctd.__clr()
     return
   end
@@ -552,20 +552,20 @@ end
 
 -- slctd str edge
 
-function v.Slctd.str_edge_l_col()
+function v.Slctd.str_edge_l_byte_idx()
 
   v.Slctd.cursor__mv_edge_l()
 
-  local col = v.Cursor.byte_idx()
-  return col
+  local byte_idx = v.Cursor.byte_idx()
+  return byte_idx
 end
 
-function v.Slctd.str_edge_r_col()
+function v.Slctd.str_edge_r_byte_idx()
 
   v.Slctd.cursor__mv_edge_r()
   
-  local col = v.Cursor.byte_idx()
-  return col
+  local byte_idx = v.Cursor.byte_idx()
+  return byte_idx
 end
 
 function v.Slctd.str_edge_l_pos()
@@ -961,11 +961,14 @@ function v.Slctd.is_str_edge_l_byte_idx__line_top() -- range
 
   -- dev anchor: refactoring
   v.Slctd.cursor__mv_edge_tgl()
-  local cursor_l_pos = v.Cursor.pos()
+
+  -- local cursor_l_pos = v.Cursor.pos()
+  local l_byte_idx = v.Cursor.byte_idx()
 
   v.Slctd.cursor__mv_edge_tgl()
 
-  if cursor_l_pos[3] == 1 then -- col
+  -- if cursor_l_pos[3] == 1 then
+  if l_byte_idx == 1 then
     ret = bl.t
   end
 
@@ -1132,11 +1135,11 @@ function v.Slctd.line_end__pad_space() -- range -- use not
   v.Slctd.__ltst()
   v.Cmd.nml('o')
 
-  local fil_end_col = v.Cursor.byte_idx() - 1
+  local fil_end_byte_idx = v.Cursor.byte_idx() - 1
 
   for idx, line_num in pairs(v.Slctd.line_num_seq()) do
 
-    v.Line.end__pad_space(line_num, fil_end_col)
+    v.Line.end__pad_space(line_num, fil_end_byte_idx)
   end
 end
 
@@ -1159,23 +1162,23 @@ function v.Slctd.line__join_per_line(per_line_num) -- range
   end
 end
 
-function v.Slctd.line_indnt__space(indnt_col) -- range
+function v.Slctd.line_indnt__space(indnt_byte_idx) -- range
 
   if v.Env.is__('win64') then
-    v.Slctd.line_tab__rpl_space(indnt_col)
+    v.Slctd.line_tab__rpl_space(indnt_byte_idx)
 
   else
-    local sys_cmd = '  expand   -t ' .. indnt_col
+    local sys_cmd = '  expand   -t ' .. indnt_byte_idx
     v.Slctd.line__rpl_sys_cmd(sys_cmd)
   end
 end
 
-function v.Slctd.line_indnt__tab(indnt_col) -- range
+function v.Slctd.line_indnt__tab(indnt_byte_idx) -- range
 
   if v.Env.is__('win64') then
     v.Do.nothing()
   else
-    local sys_cmd = 'unexpand   -t ' .. indnt_col
+    local sys_cmd = 'unexpand   -t ' .. indnt_byte_idx
     v.Slctd.line__rpl_sys_cmd(sys_cmd)
   end
 end
@@ -1200,9 +1203,9 @@ end
 
 -- slctd line tab
 
-function v.Slctd.line_tab__rpl_space(space_col) -- range
+function v.Slctd.line_tab__rpl_space(byte_idx) -- range
 
-  local space_str = v.Str_space(space_col)
+  local space_str = v.Str.space(byte_idx)
   local rng = v.Slctd.rng_dflt
   local cmd = rng .. 's/\\t/' .. space_str .. '/eg'
   v.Cmd.cmd(cmd)
@@ -1425,10 +1428,10 @@ end
 
 function v.Slctd.box_cursor_r_space__crct() -- range
 
-  local col              = v.Cursor.byte_idx()
+  local byte_idx         = v.Cursor.byte_idx()
   local slctd_line_s_num = v.Slctd.line_s_num()
 
-  v.Cursor.__mv_by_line_byte_idx(slctd_line_s_num, col)
+  v.Cursor.__mv_by_line_byte_idx(slctd_line_s_num, byte_idx)
 
   for idx, line_num in pairs(v.Slctd.line_num_seq()) do
 

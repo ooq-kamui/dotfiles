@@ -90,16 +90,16 @@ end
 -- dev anchor
 function v.Cursor.is_byte_idx__line_top1()
 
-  local pos_c = v.Cursor.pos()
+  local c_pos = v.Cursor.pos()
 
   local c_byte_idx = v.Cursor.byte_idx()
 
   v.Cursor.__mv_line_top1()
-  local col_s1 = v.Cursor.byte_idx()
+  local top1_byte_idx = v.Cursor.byte_idx()
 
-  v.Cursor.__mv_by_pos(pos_c)
+  v.Cursor.__mv_by_pos(c_pos)
 
-  if c_byte_idx == col_s1 then
+  if c_byte_idx == top1_byte_idx then
     return bl.t
   else
     return bl.f
@@ -486,11 +486,11 @@ function v.Cursor.__mv_v_jmp(drct_cmd_nml)
   v.Cmd.nml(drct_cmd_nml)
 
   local is_c_char__space = v.Cursor.is_c_char__space()
-  local is_col__line_end = v.Cursor.is_byte_idx__line_end()
+  local is_byte_idx__line_end = v.Cursor.is_byte_idx__line_end()
   -- v.Log.val('is_c_char__space : ', is_c_char__space)
-  -- v.Log.val('is_col__line_end : ', is_col__line_end)
+  -- v.Log.val('is_byte_idx__line_end : ', is_byte_idx__line_end)
 
-  if is_c_char__space or is_col__line_end then
+  if is_c_char__space or is_byte_idx__line_end then
 
     -- v.Log.val('__mv_v_jmp_to_char')
     v.Cursor.__mv_v_jmp_to_char(drct_cmd_nml)
@@ -601,7 +601,8 @@ function v.Cursor.__mv_line_x_word_byte_idx(ref_drct)
 
   if not word_byte_idx then return end
 
-  v.Cursor.__mv_by_line_byte_idx(nil, word_byte_idx)
+  v.Cursor.__mv_by_byte_idx(word_byte_idx)
+  -- v.Cursor.__mv_by_line_byte_idx(nil, word_byte_idx)
 end
 
 -- cursor __ ins
@@ -785,8 +786,11 @@ function v.Cursor.__ins_markdown_heading()
   v.Cursor.__ins(str)
 
   local ptn = '^#* '
-  local col = v.Str.srch_end(v.Cursor.line_str(), ptn) + 1
-  v.Cursor.__mv_by_line_byte_idx(nil, col)
+
+  local byte_idx = v.Str.srch_end(v.Cursor.line_str(), ptn) + 1
+
+  v.Cursor.__mv_by_byte_idx(byte_idx)
+  -- v.Cursor.__mv_by_line_byte_idx(nil, byte_idx)
 end
 
 function v.Cursor.__ins_markdown_cr()
@@ -800,7 +804,7 @@ function v.Cursor.__ins_markdown_itm()
     return
   end
 
-  local col = v.Cursor.line_indnt__crct()
+  local byte_idx = v.Cursor.line_indnt__crct()
 
   local str = '- '
   v.Cursor.line_top1__ins(str)
@@ -814,7 +818,7 @@ function v.Cursor.is_line__markdown_itm()
   local ptn = '^%s*- '
   local str = v.Cursor.line_str()
   -- v.Log.val(str, ptn)
-  local idx = v.Str.srch_idx_with_lua(str, ptn)
+  local idx = v.Str.srch_byte_idx_with_lua(str, ptn)
   -- v.Log.val(idx)
 
   if not idx then
@@ -860,10 +864,11 @@ end
 
 function v.Cursor.c_char()
 
-  local idx = v.Cursor.byte_idx()
-  local str = v.Cursor.line_str()
-  local char = v.Str.sub_by_byte_idx(str, idx, idx)
-  return char
+  local line_str   = v.Cursor.line_str()
+  local c_char_idx = v.Cursor.c_char_idx()
+
+  local c_char = v.Str.char_by_char_idx(line_str, c_char_idx, c_char_idx)
+  return c_char
 end
 
 function v.Cursor.l_char()
@@ -883,8 +888,10 @@ end
 
 function v.Cursor.r_char()
 
-  local idx = v.Cursor.byte_idx() + 1
-  local char = v.Str.sub_by_byte_idx(v.Cursor.line_str(), idx, idx)
+  local byte_idx = v.Cursor.byte_idx() + 1
+  local line_str = v.Cursor.line_str()
+  local char = v.Str.sub_by_byte_idx(line_str, byte_idx, byte_idx)
+
   return char
 end
 
@@ -1274,20 +1281,16 @@ function v.Cursor.line_top1__ins(str)
   v.Cursor.__ins(str)
 end
 
-v.Cnst.dots_str     = ' .. '
-v.Cnst.dots_str_ptn = ' %.%. '
-v.Cnst.dots_put_col = 50
-
 function v.Cursor.line_end__dots_adjst() -- todo dev, mb_str
 
   local line_str = v.Cursor.line_str()
 
-  local idx = v.Str.srch_idx_with_lua(line_str, v.Cnst.dots_str_ptn)
+  local byte_idx = v.Str.srch_byte_idx_with_lua(line_str, v.Str.dots.ptn_lua)
 
-  if not idx then
+  if not byte_idx then
     v.Cursor.line_end__ins_dots()
 
-  else -- idx >= 1
+  else -- byte_idx >= 1
     v.Cursor.line_end_dots__crct()
   end
 end
@@ -1295,13 +1298,13 @@ end
 function v.Cursor.line_end_dots__crct()
 
   local line_str = v.Cursor.line_str()
-  local idx = v.Str.srch_idx_with_lua(line_str, v.Cnst.dots_str_ptn)
+  local idx = v.Str.srch_byte_idx_with_lua(line_str, v.Str.dots.ptn_lua)
 
   if not idx then return end
 
   idx = idx - 1 -- to idx 0 start
 
-  if idx == v.Cnst.dots_put_col then
+  if idx == v.Str.dots.plt_byte_idx then
     return
   end
 
@@ -1309,12 +1312,12 @@ function v.Cursor.line_end_dots__crct()
   local line_str_0 = v.Str.sub_by_char_idx(line_str,       1, idx)
   local line_str_1 = v.Str.sub_by_char_idx(line_str, idx + 1)
 
-  if idx < v.Cnst.dots_put_col then
+  if idx < v.Str.dots.plt_byte_idx then
 
-    local space_str = v.Str.space(v.Cnst.dots_put_col - idx)
+    local space_str = v.Str.space(v.Str.dots.plt_byte_idx - idx)
     line_str = line_str_0 .. space_str .. line_str_1
   else
-    line_str_0 = v.Str.sub_by_char_idx(line_str_0, 1, v.Cnst.dots_put_col)
+    line_str_0 = v.Str.sub_by_char_idx(line_str_0, 1, v.Str.dots.plt_byte_idx)
     line_str = line_str_0 .. line_str_1
   end
 
@@ -1330,14 +1333,14 @@ function v.Cursor.line_end__ins_dots()
 
   local line_str_len_byte = v.Cursor.line_str_len_byte()
 
-  local space_len = v.Cnst.dots_put_col - line_str_len_byte
+  local space_len = v.Str.dots.plt_byte_idx - line_str_len_byte
   if space_len < 0 then
     space_len = 0
   end
 
   local space_str = v.Str.space(space_len)
 
-  line_str = line_str .. space_str .. v.Cnst.dots_str
+  line_str = line_str .. space_str .. v.Str.dots.str
 
   v.Line.__by_line_num(line_num, line_str)
 end
@@ -1396,7 +1399,7 @@ function v.Cursor.f_char_byte_idx()
   local ptn = '[^ ]'
   local cursor_byte_idx = v.Cursor.byte_idx()
   local str = v.Cursor.line_str()
-  f_char_byte_idx = v.Str.srch_idx_with_lua(str, ptn, cursor_byte_idx)
+  f_char_byte_idx = v.Str.srch_byte_idx_with_lua(str, ptn, cursor_byte_idx)
   return f_char_byte_idx
 end
 
@@ -1585,9 +1588,9 @@ end
 
 -- indnt
 
-function v.Cursor.line_indnt__add(col)
+function v.Cursor.line_indnt__add(byte_idx)
 
-  if col == 0 then
+  if byte_idx == 0 then
     return
   end
 
@@ -1597,14 +1600,14 @@ function v.Cursor.line_indnt__add(col)
   -- v.Log.val(vim.bo.expandtab)
   if not vim.bo.expandtab then
     char = ' '
-    col = col
+    byte_idx = byte_idx
   else
     -- dev anchor : todo dev
     char = '\t'
     -- char = vim.api.nvim_replace_termcodes('\t', bl.f, bl.f, bl.t)
-    col = col / 2
+    byte_idx = byte_idx / 2
   end
-  v.Cursor.__ins_mlt(char, col)
+  v.Cursor.__ins_mlt(char, byte_idx)
 
   v.Cursor.__mv_line_top1()
 end
@@ -1622,22 +1625,22 @@ end
 
 function v.Cursor.line_indnt__shft_r()
 
-  local col = 2
-  v.Cursor.line_indnt__add(col)
+  local byte_idx = 2
+  v.Cursor.line_indnt__add(byte_idx)
 end
 
 
 function v.Cursor.line_indnt__crct() -- alias
 
-  local col = 0
+  local byte_idx = 0
 
-  if bl.t then
-    col = v.Cursor.line_indnt__crct_with_c()
-    return col
+  if bl.t then -- dflt
+    byte_idx = v.Cursor.line_indnt__crct_with_c()
+    return byte_idx
   else
     -- dev anchor
     v.Cursor.line_indnt__crct_with_nml()
-    return col
+    return byte_idx
   end
 end
 
@@ -1651,17 +1654,17 @@ function v.Cursor.line_indnt__crct_with_c()
 
   v.Cursor.line_indnt__del()
 
-  local col = v.Cursor.line_indnt_col_with_c()
-  --v.Log.val( col )
+  local byte_idx = v.Cursor.line_indnt_byte_idx_with_c()
+  --v.Log.val( byte_idx )
 
-  v.Cursor.line_indnt__add(col)
-  return col
+  v.Cursor.line_indnt__add(byte_idx)
+  return byte_idx
 end
 
-function v.Cursor.line_indnt_col_with_c()
+function v.Cursor.line_indnt_byte_idx_with_c()
 
   local line_num = v.Cursor.line_num()
-  local col = vf.cindent(line_num)
-  return col
+  local byte_idx = vf.cindent(line_num)
+  return byte_idx
 end
 

@@ -44,19 +44,18 @@ function v.Line.end_space__del(line_num)
   v.Srch.str__ptn(ptn_tmp)
 end
 
-function v.Line.end__pad_space(line_num, fil_end_col)
+function v.Line.end__pad_space(line_num, fil_end_byte_idx)
 
-  -- local line_str     = vf.getline(line_num)
   local line_str     = v.Line.str_by_line_num(line_num)
 
-  local line_str_len = v.Str.len(line_str)
-  local space_len    = fil_end_col - line_str_len
+  local line_str_len_byte = v.Str.len_byte(line_str)
+  local space_len_byte    = fil_end_byte_idx - line_str_len_byte
 
-  if space_len <= 0 then
+  if space_len_byte <= 0 then
     return
   end
 
-  local space_str = v.Str.space(space_len)
+  local space_str = v.Str.space(space_len_byte)
   line_str = line_str .. space_str
   v.Line.__by_line_num(line_num, line_str)
 end

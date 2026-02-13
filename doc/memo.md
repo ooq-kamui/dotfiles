@@ -4,22 +4,9 @@
 
 ## nvim
 
-v.Slctd.is_str_edge_l_byte_idx__line_top()
-- l get: method ch, tgl > ??
-
-
-n rj, err
-
-
-col > ??
-- word1
-
-
-x w, W
-
-
-vf rpl
-- vf.setpos()
+ptn
+- ptn_vim, ptn_lua
+- cnst ptn def
 
 
 n q: mb err
@@ -29,12 +16,24 @@ function v.Line.word_ruler_idx(line_num, ruler_idx_min)
   - あいうえお  aa  bb  cc
   - a  b  c  e   f   g
 
-- v.Cursor.c_char()
-  - err
+
+slctd.edge_x_byte_idx()
+- cre
+v.Slctd.is_str_edge_l_byte_idx__line_top()
+- l get: method ch, tgl > ??
+- key: f b + r l
+
+v.Slctd.is_cursor_pos__r()
+
+v.Line.end__pad_space(line_num, fil_end_byte_idx)
 
 
-v.Str.srch_idx_with_lua()
-- rpl v.Str.srch_idx_with_vim()
+v.Slctd.str_edge_r_out_char()
+- cursor __ mv not
+
+
+v.Str.srch_byte_idx_with_lua()
+- rpl v.Str.srch_byte_idx_with_vim()
 
 
 n E, err

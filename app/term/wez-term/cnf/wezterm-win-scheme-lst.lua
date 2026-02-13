@@ -59,7 +59,6 @@ scheme_lst.win.recommend.h = {
   'Aura (Gogh)'                            , -- 
   'AyuMirage (Gogh)'                       , -- 
   'Bamboo'                                 , -- 
-  'Banana Blueberry'                       , -- 
   'Belge (terminal.sexy)'                  , -- 
   'Builtin Tango Dark'                     , -- 
   'Cai (Gogh)'                             , -- 
@@ -197,6 +196,7 @@ scheme_lst.win.excld = {
   'Tender (Gogh)'                          , -- 
   'Seti UI (base16)'                       , -- 
   -- slctd
+  'Banana Blueberry'                       , -- 
   'Overnight Slumber'                      , -- 
   'UltraDark'                              , -- 
   'Ef-Dark'                                , -- 
