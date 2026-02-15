@@ -1,12 +1,6 @@
 
 v.Str = {}
 
--- ptn
-
-v.Str.ptn = {}
-
-v.Str.ptn.mb = '[^\\x01-\\x7E]'
-
 v.Str.cmnt = {}
 
 v.Str.cmnt.line_1_lst = {
@@ -184,23 +178,23 @@ function v.Str.srch_byte_idx(str, ptn, srch_s_byte_idx) -- use not
   -- return v.Str.srch_byte_idx_with_lua(str, ptn, srch_s_byte_idx)
 end
 
-function v.Str.srch_byte_idx_with_lua(str, ptn, srch_s_byte_idx) -- byte_idx start 1
-  -- v.Log.val(str, ptn, srch_s_byte_idx)
+function v.Str.srch_byte_idx_with_lua(str, ptn_lua, srch_s_byte_idx) -- byte_idx start 1
+  -- v.Log.val(str, ptn_lua, srch_s_byte_idx)
 
-  local s_byte_idx, e_byte_idx = string.find(str, ptn, srch_s_byte_idx)
+  local s_byte_idx, e_byte_idx = string.find(str, ptn_lua, srch_s_byte_idx)
   -- v.Log.val(s_byte_idx, e_byte_idx)
   return s_byte_idx, e_byte_idx
 end
 
-function v.Str.srch_byte_idx_with_vim(str, ptn, s_byte_idx) -- byte_idx start 0
+function v.Str.srch_byte_idx_with_vim(str, ptn_vim, s_byte_idx) -- byte_idx start 0
 
-  local r_byte_idx = vf.match(str, ptn, s_byte_idx)
+  local r_byte_idx = vf.match(str, ptn_vim, s_byte_idx)
   return r_byte_idx -- -1 : match not
 end
 
-function v.Str.srch_end(str, ptn) -- alias
+function v.Str.srch_byte_idx_with_vim_end(str, ptn_vim) -- alias
 
-  local byte_idx = vf.matchend(str, ptn)
+  local byte_idx = vf.matchend(str, ptn_vim)
   return byte_idx
 end
 
@@ -443,15 +437,15 @@ end
 
 function v.Str.is__space(str)
 
-  local ptn = '^\\s\\+$'
-  local ret = v.Str.is__ptn(str, ptn)
+  local ptn_vim = '^\\s\\+$'
+  local ret = v.Str.is__ptn(str, ptn_vim)
   return ret
 end
 
 function v.Str.is__num(str)
 
-  local ptn = '^\\d\\+$'
-  local ret = v.Str.is__ptn(str, ptn)
+  local ptn_vim = '^\\d\\+$'
+  local ret = v.Str.is__ptn(str, ptn_vim)
   return ret
 end
 

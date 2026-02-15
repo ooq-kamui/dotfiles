@@ -54,11 +54,11 @@ end
 
 -- char cnd  -  char pair __
 
-function v.Char.is_pair__ptn(c1, c2, ptn)
+function v.Char.is_pair__ptn(c1, c2, ptn_vim)
 
   local ret = bl.f
 
-  if v.Str.is__ptn(c1, ptn) and v.Str.is__ptn(c2, ptn) then
+  if v.Str.is__ptn(c1, ptn_vim) and v.Str.is__ptn(c2, ptn_vim) then
     ret = bl.t
   end
 

@@ -288,11 +288,10 @@ end
 
 function v.Cursor.__mv_word_dlm_f()
 
-  local ptn = v.Srch.ptn.word_dlm
-
+  local ptn_vim  = v.Srch.ptn.vim.word_dlm
   local line_num = v.Cursor.line_num()
 
-  local st = v.Srch.srch(ptn, 'zW', line_num)
+  local st = v.Srch.srch(ptn_vim, 'zW', line_num)
 
   if not st then
     v.Cursor.__mv_line_end()
@@ -500,7 +499,7 @@ function v.Cursor.__mv_v_jmp(drct_cmd_nml)
   end
 end
 
-function v.Cursor.__mv_by_ptn(ptn, drct) -- range, on 1 line
+function v.Cursor.__mv_by_ptn(ptn_vim, drct) -- range, on 1 line
 
   local opt_drct = ''
 
@@ -515,7 +514,7 @@ function v.Cursor.__mv_by_ptn(ptn, drct) -- range, on 1 line
 
   local line_num = v.Cursor.line_num()
 
-  local st = v.Srch.srch(ptn, opt, line_num)
+  local st = v.Srch.srch(ptn_vim, opt, line_num)
   return st
 end
 
@@ -533,9 +532,9 @@ function v.Cursor.__mv_by_srch_str(drct, end_flg)
     opt = opt .. 'e'
   end
 
-  local ptn = v.Srch.str()
+  local ptn_vim = v.Srch.str()
 
-  v.Srch.srch(ptn, opt)
+  v.Srch.srch(ptn_vim, opt)
 end
 
 function v.Cursor.__mv_block_out_swtch()
@@ -785,12 +784,11 @@ function v.Cursor.__ins_markdown_heading()
 
   v.Cursor.__ins(str)
 
-  local ptn = '^#* '
-
-  local byte_idx = v.Str.srch_end(v.Cursor.line_str(), ptn) + 1
+  local ptn_vim  = v.Srch.ptn.vim.markdown_heading
+  local line_str = v.Cursor.line_str()
+  local byte_idx = v.Str.srch_byte_idx_with_vim_end(line_str, ptn_vim) + 1
 
   v.Cursor.__mv_by_byte_idx(byte_idx)
-  -- v.Cursor.__mv_by_line_byte_idx(nil, byte_idx)
 end
 
 function v.Cursor.__ins_markdown_cr()

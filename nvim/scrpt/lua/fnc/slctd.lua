@@ -899,12 +899,12 @@ end
 
 -- slctd str edge cnd
 
-function v.Slctd.is_str_edge_char__(ptn)
+function v.Slctd.is_str_edge_char__(ptn_vim)
 
   local edge_l_char = v.Slctd.str_edge_l_char()
   local edge_r_char = v.Slctd.str_edge_r_char()
 
-  local ret = v.Char.is_pair__ptn(edge_l_char, edge_r_char, ptn)
+  local ret = v.Char.is_pair__ptn(edge_l_char, edge_r_char, ptn_vim)
   return ret
 end
 

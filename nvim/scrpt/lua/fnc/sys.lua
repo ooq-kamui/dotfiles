@@ -143,7 +143,7 @@ function v.Sys.trns_by_slctd_str() -- range
   str = v.Str.__rpl_with_vim(str, "\\n", ' ', 'g')
 
   local lang
-  if v.Str.is__ptn(str, v.Str.ptn.mb) then
+  if v.Str.is__ptn(str, v.Srch.ptn.vim.mb) then
     lang = '{ja=en}'
   else
     lang = '{en=ja}'

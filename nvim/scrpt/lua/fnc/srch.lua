@@ -3,16 +3,25 @@
 
 v.Srch = {}
 
+-- ptn
+
 v.Srch.ptn = {}
+v.Srch.ptn.vim = {}
+v.Srch.ptn.lua = {}
+
+v.Srch.ptn.vim.mb = '[^\\x01-\\x7E]'
+
+v.Srch.ptn.vim.markdown_heading = '^#* '
+
 
 v.Srch.ptn.quote = '[' .. "'" .. '"' .. '`' .. ']'
 
-v.Srch.ptn.word_dlm = '[_ABCDEFGHIJKLMNOPQRSTUVWXYZ]'
+v.Srch.ptn.vim.word_dlm = '[_ABCDEFGHIJKLMNOPQRSTUVWXYZ]'
 
 
-function v.Srch.srch(ptn, opt, line_num)-- vim srch exe
+function v.Srch.srch(ptn_vim, opt, line_num)-- run vim srch
 
-  local line_num_st = vf.search(ptn, opt, line_num)
+  local line_num_st = vf.search(ptn_vim, opt, line_num)
 
   local ret = bl.t
 
@@ -44,28 +53,6 @@ function v.Srch.str_flt()
   -- v.Log.val('str_flt init')
 
   return v.Srch._str_flt
-
-  -- local str = v.Srch.str()
-  -- -- v.Log.val(str)
-  -- 
-  -- if not v.Srch.is__word1() then
-  --   return str
-  -- end
-  -- 
-  -- local str_len = v.Str.len(str)
-  -- 
-  -- -- dev anchor, todo: rpl by ptn
-  -- if v.Str.is__ptn(str, [[\\>$]]) then
-  --   str = v.Str.sub_by_char_idx(str, 1, str_len - 2)
-  -- end
-  -- 
-  -- if v.Str.is__ptn(str, [[^\\<]]) then
-  --   str = v.Str.sub_by_char_idx(str, 3)
-  -- end
-  -- 
-  -- -- v.Log.val('str_flt')
-  -- -- v.Log.val(str)
-  -- return str
 end
 
 function v.Srch.str_flt__(str)
@@ -83,11 +70,14 @@ function v.Srch.str_word1(str)
   -- v.Log.val('str_word1')
   -- v.Log.val(str)
 
-  if v.Str.is__ptn(str, [[^\w]]) then
+  local ptn_vim
+  ptn_vim = [[^\w]]
+  if v.Str.is__ptn(str, ptn_vim) then
     str = [[\<]] .. str
   end
-  
-  if v.Str.is__ptn(str, [[\w$]]) then
+
+  ptn_vim = [[\w$]]
+  if v.Str.is__ptn(str, ptn_vim) then
     str = str .. [[\>]]
   end
 
@@ -295,7 +285,6 @@ function v.Srch.is__word1()
   local str = v.Srch.str()
   local len = v.Str.len(str)
 
-  -- if v.Str.is__ptn(str, [[^\\<]]) and v.Str.is__ptn(str, [[\\>$]]) then
   if v.Str.is__ptn(str, [[^\\<]]) or v.Str.is__ptn(str, [[\\>$]]) then
     ret = bl.t
   end

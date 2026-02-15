@@ -8,6 +8,8 @@ ptn
 - ptn_vim, ptn_lua
 - cnst ptn def
 
+v.Str.is__ptn() -- vim
+
 
 v.Str.srch_byte_idx_with_lua()
 - > xxx_with_ptn_lua(), xxx_with_ptn_vim()
@@ -19,6 +21,10 @@ slctd.edge_x_byte_idx()
 v.Slctd.is_str_edge_l_byte_idx__line_top()
 - l get: method ch, tgl > ??
 - key: f b + r l
+
+
+srch_byte_idx_with_vim_end() union
+
 
 
 n q: mb err
@@ -45,6 +51,22 @@ cheat-sheet fzf opn
 n E, err
 - case: /  after
   - srch str flt
+```
+vim.api.nvim_create_autocmd("CmdlineLeave", {
+  group = vim.api.nvim_create_augroup("SearchCallback", { clear = true }),
+  pattern = { "/", "?" }, -- 検索コマンドのみを対象にする
+  callback = function()
+    -- 検索がキャンセル（Escなど）された場合は実行しないための判定
+    if vim.v.event.abort then
+      return
+    end
+
+    -- ここに呼び出したい所定の関数を書く
+    print("検索が完了しました！")
+    -- your_function() 
+  end,
+})
+```
 
 
 ## wez
