@@ -138,7 +138,6 @@ vim.opt.shiftwidth = 2  -- 4
 vim.opt.tabstop    = 2  -- 4
 vim.opt.expandtab  = bl.t  -- tab > space
 
-
 -- file opn, cursor mv last
 vim.api.nvim_create_autocmd('BufRead', {
   group    = vim.api.nvim_create_augroup( 'vimrcEx', {} ),
@@ -152,6 +151,19 @@ vim.api.nvim_create_autocmd('BufRead', {
     end
   end,
 })
+
+-- srch cmd
+-- vim.api.nvim_create_autocmd('CmdlineLeave', {
+--   group = vim.api.nvim_create_augroup('SearchCallback', { clear = true }),
+--   pattern = { '/', '?' },
+--   callback = function()
+-- 
+--     if vim.v.event.abort then return end
+-- 
+--     -- v.Log.val('run /')
+--     -- v.Srch.str_flt__(v.Rgstr.get('/'))
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd({'BufWinEnter'}, {
   pattern  = {'*'},

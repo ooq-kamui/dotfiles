@@ -31,7 +31,8 @@ v.Str.cmnt.line_mlt_lst = {
 v.Str.dots = {}
 v.Str.dots.str     = ' .. '
 v.Str.dots.ptn_lua = ' %.%. '
-v.Str.dots.plt_byte_idx = 50
+v.Str.dots.plt_byte_idx  = 50
+v.Str.dots.plt_ruler_idx = 50
 
 -- len
 

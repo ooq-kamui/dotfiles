@@ -4,35 +4,25 @@
 
 ## nvim
 
+dots > ruler_idx
+
+v.Cursor.line_end_dots__crct()
+
+v.Line.end__pad_space(line_num, fil_end_byte_idx)
+- tst
+  - aaa                                            .. ok
+  - あいう                                    .. 
+
+
+
 v.Slctd.str_edge_r_out_char()
 - with: cursor __ mv, not
-
 
 slctd.str_edge_x_byte_idx()
 - with v.Slctd.str_edge_pos()
 - tst, confirm
 
-
 v.Slctd.str_edge_xxx() > v.Slctd.edge_xxx()
-
-
-n E, err
-- case: /  after
-  - srch str flt
-
-```
-vim.api.nvim_create_autocmd("CmdlineLeave", {
-  group = vim.api.nvim_create_augroup("SearchCallback", { clear = true }),
-  pattern = { '/', '?' },
-  callback = function()
-
-    if vim.v.event.abort then return end
-
-    -- your logic
-
-  end,
-})
-```
 
 
 n q: mb err
@@ -43,15 +33,11 @@ function v.Line.word_ruler_idx(line_num, ruler_idx_min)
   - a  b  c  e   f   g
 
 
-v.Line.end__pad_space(line_num, fil_end_byte_idx)
-
-
 cheat-sheet fzf opn
 - <leader><c-s>
 
 
-keymap__('x', 'M', ':lua v.Srch.str__heading()')
-- confirm ??
+n E, err
 
 
 ## wez

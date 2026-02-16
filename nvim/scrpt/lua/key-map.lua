@@ -784,7 +784,7 @@ keymap__('n', 'E', ':lua v.Srch.str__word1_tgl()<cr>')
 -- keymap__('n', 'xx', ':lua v.Srch.str__heading()<cr>')
 
 -- srch markdown itm
-keymap__('n', ':i', ':lua v.Srch.str__markdown_itm()<cr>')
+-- keymap__('n', 'xx', ':lua v.Srch.str__markdown_itm()<cr>')
 
 -- srch str history ( fzf )
 keymap__('n', '<leader>f', ':FzfSrchHstry<cr>')
@@ -1471,7 +1471,7 @@ keymap__('x', '<c-n>', ':lua v.Slctd.__srch_nxt("b")<cr>')
 keymap__('x', '<c-p>', ':lua v.Slctd.str__ynk__srch_nxt_f()<cr>')
 
 -- srch heading swtch
-keymap__('x', 'M', ':lua v.Srch.str__heading()')
+-- keymap__('x', 'xx', ':lua v.Srch.str__heading()')
 
 -- rpl ( cmd )
 keymap__('x', ':s', function()

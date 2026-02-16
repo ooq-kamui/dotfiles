@@ -18,7 +18,7 @@ v.Srch.ptn.vim.quote = '[' .. "'" .. '"' .. '`' .. ']'
 v.Srch.ptn.vim.word_dlm = '[_ABCDEFGHIJKLMNOPQRSTUVWXYZ]'
 
 
-function v.Srch.srch(ptn_vim, opt, line_num)-- run vim srch
+function v.Srch.srch(ptn_vim, opt, line_num) -- run vim srch
 
   local line_num_st = vf.search(ptn_vim, opt, line_num)
 
