@@ -48,13 +48,13 @@ end
 
 -- fzf rg
 
-function v.Fzf.rg(ptn, ext, word1) -- alias
+function v.Fzf.rg(ptn_rg, ext, word1) -- alias
 
-  ptn   = ptn   or ''
-  ext   = ext   or nil
-  word1 = word1 or bl.f
+  ptn_rg = ptn_rg   or ''
+  ext    = ext   or nil
+  word1  = word1 or bl.f
 
-  v.Fzf.rg_with_grep(ptn, ext, word1)
+  v.Fzf.rg_with_grep(ptn_rg, ext, word1)
 end
 
 function v.Fzf.rg_by_srch_str()
@@ -63,18 +63,17 @@ function v.Fzf.rg_by_srch_str()
   v.Fzf.rg(srch_str)
 end
 
-function v.Fzf.rg_with_grep(ptn, ext, word1)
+function v.Fzf.rg_with_grep(ptn_rg, ext, word1)
 
   if not ( v.Env.is__('mac') or v.Env.is__('linux') or v.Env.is__('win64') ) then
     return
   end
 
-  ptn   = ptn   or ''
-  -- ptn   = ptn   or v.Rg.cnst.some_line_ptn
-  ext   = ext   or nil
-  word1 = word1 or bl.f
+  ptn_rg = ptn_rg   or ''
+  ext    = ext   or nil
+  word1  = word1 or bl.f
 
-  local rg_cmd = v.Rg.cmd(ptn, ext, word1, nil)
+  local rg_cmd = v.Rg.cmd(ptn_rg, ext, word1, nil)
   -- v.Log.val(rg_cmd)
 
   vim.fn['fzf#vim#grep'](
@@ -108,15 +107,15 @@ function v.Fzf.rg_ext(ext)
 end
 
 -- rg word1
-function v.Fzf.rg_word1(ptn)
+function v.Fzf.rg_word1(ptn_rg)
 
-  v.Fzf.rg(ptn, nil, bl.t)
+  v.Fzf.rg(ptn_rg, nil, bl.t)
 end
 
 function v.Fzf.rg_word1_by_srch_str()
 
-  local ptn = v.Srch.str()
-  v.Fzf.rg(ptn, nil, bl.t)
+  local ptn_rg = v.Srch.str()
+  v.Fzf.rg(ptn_rg, nil, bl.t)
 end
 
 -- fzf rg with run
@@ -128,11 +127,11 @@ function v.Fzf.rg_with_run(...) -- use not
 
   local arg = {...}
 
-  local ptn = arg[1] or nil
+  local ptn_rg = arg[1] or nil
 
   local rg_rslt_cnt, fzf_src_ar
 
-  if ptn == nil then
+  if ptn_rg == nil then
 
     rg_rslt_cnt = v.Rg.all_cnt()
 
@@ -144,14 +143,14 @@ function v.Fzf.rg_with_run(...) -- use not
     fzf_src_ar = v.Rg.all_rslt_ar()
 
   else
-    rg_rslt_cnt = v.Rg.rslt_cnt(ptn, nil)
+    rg_rslt_cnt = v.Rg.rslt_cnt(ptn_rg, nil)
 
     if rg_rslt_cnt > v.Fzf.cnst.line_cnt_max then
       v.Log.val("rg_rslt_cnt, end")
       return
     end
 
-    fzf_src_ar = v.Rg.rslt_ar_by_ptn(ptn, nil)
+    fzf_src_ar = v.Rg.rslt_ar_by_ptn(ptn_rg, nil)
   end
 
   vim.fn['fzf#run'](
@@ -276,11 +275,11 @@ v.Fzf.doc_tech_md_dir = 'wrk/prj-pri/doc-tech/docs/md'
 
 function v.Fzf.doc_tech()
 
-  local ptn = v.Rg.cnst.emp_line_ptn
-  local opt  = ' -v'
+  local ptn_rg = v.Rg.ptn.emp_line
+  local opt = ' -v'
   opt = opt .. ' --no-heading'
   opt = opt .. ' --line-number'
-  local sys_cmd_rg = "rg" .. opt .. " '" .. ptn .. "' ~/" .. v.Fzf.doc_tech_md_dir
+  local sys_cmd_rg = "rg" .. opt .. " '" .. ptn_rg .. "' ~/" .. v.Fzf.doc_tech_md_dir
   -- v.Log.val(sys_cmd)
 
   local sys_cmd_sed = 'sed "s|^.*' .. v.Fzf.doc_tech_md_dir .. '/||g"'

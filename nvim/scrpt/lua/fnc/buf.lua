@@ -96,7 +96,7 @@ function v.Buf.opn_memo()
   git_root_dir = v.Str.trim(git_root_dir)
   -- v.Log.val(git_root_dir)
 
-  local srch_byte_idx = v.Str.srch_byte_idx_with_lua(git_root_dir, 'fatal:')
+  local srch_byte_idx = v.Str.srch_byte_idx_by_ptn_lua(git_root_dir, 'fatal:')
   -- v.Log.val(srch_byte_idx)
   if srch_byte_idx == 1 then
     git_root_dir = v.Dir.c.dotfiles_dir .. '/'

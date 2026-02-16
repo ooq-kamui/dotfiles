@@ -13,8 +13,7 @@ v.Srch.ptn.vim.mb = '[^\\x01-\\x7E]'
 
 v.Srch.ptn.vim.markdown_heading = '^#* '
 
-
-v.Srch.ptn.quote = '[' .. "'" .. '"' .. '`' .. ']'
+v.Srch.ptn.vim.quote = '[' .. "'" .. '"' .. '`' .. ']'
 
 v.Srch.ptn.vim.word_dlm = '[_ABCDEFGHIJKLMNOPQRSTUVWXYZ]'
 
@@ -112,9 +111,9 @@ function v.Srch.str__(str, op_word1)
   v.Cmd.nml('/' .. exe_str) -- srch hstry add
 end
 
-function v.Srch.str__ptn(ptn)
+function v.Srch.str__ptn(ptn_vim)
 
-  v.Rgstr.__('/', ptn)
+  v.Rgstr.__('/', ptn_vim)
 end
 
 function v.Srch.str__cursor_word()
@@ -245,12 +244,9 @@ function v.Srch.str__heading()
   end
 end
 
-v.Srch.ptn.markdown_heading = '^#\\+ '
-
 function v.Srch.str__markdown_heading()
 
-  -- v.Srch.str__ptn('^#\\+ ')
-  v.Srch.str__ptn(v.Srch.ptn.markdown_heading)
+  v.Srch.str__ptn(v.Srch.ptn.vim.markdown_heading)
 end
 
 v.Srch.ptn.markdown_itm = '^ *- '

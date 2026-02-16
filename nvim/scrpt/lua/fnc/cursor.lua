@@ -546,7 +546,7 @@ function v.Cursor.__mv_block_out_swtch()
 
   if     v.Buf.is_file_type__in({'markdown'}) then
 
-    v.Srch.str__ptn(v.Srch.ptn.markdown_heading)
+    v.Srch.str__ptn(v.Srch.ptn.vim.markdown_heading)
     v.Cursor.__mv_by_srch_str('b')
 
   elseif v.Buf.is_file_type__in(block_type_bracket_list) then
@@ -786,7 +786,7 @@ function v.Cursor.__ins_markdown_heading()
 
   local ptn_vim  = v.Srch.ptn.vim.markdown_heading
   local line_str = v.Cursor.line_str()
-  local byte_idx = v.Str.srch_byte_idx_with_vim_end(line_str, ptn_vim) + 1
+  local byte_idx = v.Str.srch_byte_idx_by_ptn_vim_end(line_str, ptn_vim) + 1
 
   v.Cursor.__mv_by_byte_idx(byte_idx)
 end
@@ -813,13 +813,14 @@ end
 function v.Cursor.is_line__markdown_itm()
   -- v.Log.val('Cursor.is_line__markdown_itm')
 
-  local ptn = '^%s*- '
-  local str = v.Cursor.line_str()
-  -- v.Log.val(str, ptn)
-  local idx = v.Str.srch_byte_idx_with_lua(str, ptn)
-  -- v.Log.val(idx)
+  local ptn_lua = '^%s*- '
 
-  if not idx then
+  local str = v.Cursor.line_str()
+  -- v.Log.val(str, ptn_lua)
+  local byte_idx = v.Str.srch_byte_idx_by_ptn_lua(str, ptn_lua)
+  -- v.Log.val(byte_idx)
+
+  if not byte_idx then
     return bl.f
   else
     return bl.t
@@ -1035,33 +1036,30 @@ end
 
 -- cursor char cnd
 
-function v.Cursor.is_c_char__ptn(ptn)
-  -- v.Log.val('is_c_char__ptn')
+function v.Cursor.is_c_char__ptn(ptn_vim)
 
   local ret = bl.f
 
   local c = v.Cursor.c_char()
-  -- v.Log.val('c : ', c)
 
-  if v.Str.is__ptn(c, ptn) then
+  if v.Str.is__ptn(c, ptn_vim) then
     ret = bl.t
   end
 
-  -- v.Log.val('is_c_char__ptn : ', ret)
   return ret
 end
 
 function v.Cursor.is_c_char__space()
 
-  local ptn = '\\s'
-  local ret = v.Cursor.is_c_char__ptn(ptn)
+  local ptn_vim = '\\s'
+  local ret = v.Cursor.is_c_char__ptn(ptn_vim)
   return ret
 end
 
 function v.Cursor.is_c_char__alph()
 
-  local ptn = '\\a'
-  local ret = v.Cursor.is_c_char__ptn(ptn)
+  local ptn_vim = '\\a'
+  local ret = v.Cursor.is_c_char__ptn(ptn_vim)
   return ret
 end
 
@@ -1283,7 +1281,7 @@ function v.Cursor.line_end__dots_adjst() -- todo dev, mb_str
 
   local line_str = v.Cursor.line_str()
 
-  local byte_idx = v.Str.srch_byte_idx_with_lua(line_str, v.Str.dots.ptn_lua)
+  local byte_idx = v.Str.srch_byte_idx_by_ptn_lua(line_str, v.Str.dots.ptn_lua)
 
   if not byte_idx then
     v.Cursor.line_end__ins_dots()
@@ -1296,7 +1294,7 @@ end
 function v.Cursor.line_end_dots__crct()
 
   local line_str = v.Cursor.line_str()
-  local idx = v.Str.srch_byte_idx_with_lua(line_str, v.Str.dots.ptn_lua)
+  local idx = v.Str.srch_byte_idx_by_ptn_lua(line_str, v.Str.dots.ptn_lua)
 
   if not idx then return end
 
@@ -1393,11 +1391,11 @@ function v.Cursor.f_char_byte_idx()
 
   local f_char_byte_idx
 
-  -- local ptn = '[^ \t]'
-  local ptn = '[^ ]'
+  -- local ptn_lua = '[^ \t]'
+  local ptn_lua = '[^ ]'
   local cursor_byte_idx = v.Cursor.byte_idx()
   local str = v.Cursor.line_str()
-  f_char_byte_idx = v.Str.srch_byte_idx_with_lua(str, ptn, cursor_byte_idx)
+  f_char_byte_idx = v.Str.srch_byte_idx_by_ptn_lua(str, ptn_lua, cursor_byte_idx)
   return f_char_byte_idx
 end
 
@@ -1572,13 +1570,13 @@ function v.Cursor.is_line_str_side_r__space()
   return ret
 end
 
-function v.Cursor.is_line_str__ptn(ptn) -- todo dev
+function v.Cursor.is_line_str__ptn(ptn_vim) -- todo dev
 
   local str = v.Cursor.line_str_side_r()
 
   local ret = bl.f
 
-  if v.Str.is__ptn(str, ptn) then
+  if v.Str.is__ptn(str, ptn_vim) then
     ret = bl.t
   end
   return ret

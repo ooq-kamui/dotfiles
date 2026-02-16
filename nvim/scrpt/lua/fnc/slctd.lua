@@ -3,6 +3,14 @@ v.Slctd = {}
 
 v.Slctd.rng_dflt = "'<,'>"
 
+v.Slctd.str_expnd_char_pair_lst = {
+  {'(', ')'},
+  {'{', '}'},
+  {"'", "'"},
+  {'"', '"'},
+  {'`', '`'},
+}
+
 -- slctd __
 
 function v.Slctd.__clr() -- range -- alias
@@ -159,10 +167,10 @@ end
 
 function v.Slctd.cursor__mv_edge(drct) -- range
 
-  if     drct == 'f' then
+  if     v.Tbl.is_in(drct, {'f', 'r'}) then
     v.Slctd.cursor__mv_edge_r()
 
-  elseif drct == 'b' then
+  elseif v.Tbl.is_in(drct, {'b', 'l'}) then
     v.Slctd.cursor__mv_edge_l()
   end
 end
@@ -171,7 +179,7 @@ function v.Slctd.cursor__mv_edge_r() -- range
 
   v.Slctd.__ltst()
 
-  if v.Slctd.is_cursor_pos__r() then
+  if v.Slctd.is_cursor__edge_r() then
     return
   end
 
@@ -182,7 +190,7 @@ function v.Slctd.cursor__mv_edge_l() -- range
 
   v.Slctd.__ltst()
 
-  if v.Slctd.is_cursor_pos__l() then
+  if v.Slctd.is_cursor__edge_l() then
     return
   end
 
@@ -226,7 +234,7 @@ end
 
 -- slctd cursor cnd
 
-function v.Slctd.is_cursor_pos__r() -- range
+function v.Slctd.is_cursor__edge_r() -- range
 
   local ret = bl.f
 
@@ -255,9 +263,9 @@ function v.Slctd.is_cursor_pos__r() -- range
   return ret
 end
 
-function v.Slctd.is_cursor_pos__l() -- range
+function v.Slctd.is_cursor__edge_l() -- range
 
-  local ret = not v.Slctd.is_cursor_pos__r()
+  local ret = not v.Slctd.is_cursor__edge_r()
   return ret
 end
 
@@ -304,18 +312,18 @@ function v.Slctd.str__expnd_srch() -- range
   v.Cursor.__mv_by_srch_str('f', bl.t)
 end
 
-function v.Slctd.str__expnd_ptn_f(ptn) -- range
+function v.Slctd.str__expnd_ptn_f(ptn_vim) -- range
 
   v.Slctd.__ltst()
   v.Slctd.cursor__mv_edge_r()
-  v.Cursor.__mv_by_ptn(ptn, 'f')
+  v.Cursor.__mv_by_ptn(ptn_vim, 'f')
 end
 
-function v.Slctd.str__expnd_ptn_b(ptn) -- range
+function v.Slctd.str__expnd_ptn_b(ptn_vim) -- range
 
   v.Slctd.__ltst()
   v.Slctd.cursor__mv_edge_l()
-  v.Cursor.__mv_by_ptn(ptn, 'b')
+  v.Cursor.__mv_by_ptn(ptn_vim, 'b')
 end
 
 function v.Slctd.str__expnd_edge_out() -- range
@@ -334,14 +342,6 @@ function v.Slctd.str__expnd_edge_out() -- range
 end
 
 -- slctd __ expnd char pair lst
-
-v.Slctd.str_expnd_char_pair_lst = {
-  {'(', ')'},
-  {'{', '}'},
-  {"'", "'"},
-  {'"', '"'},
-  {'`', '`'},
-}
 
 function v.Slctd.str_expnd__init()
 
@@ -423,7 +423,7 @@ function v.Slctd.str__reduce_dlm_l(char) -- range
   v.Slctd.__ltst()
 
   local slctd_str = v.Slctd.str()
-  local srch_byte_idx = v.Str.srch_byte_idx_with_lua(slctd_str, char)
+  local srch_byte_idx = v.Str.srch_byte_idx_by_ptn_lua(slctd_str, char)
 
   if not srch_byte_idx then
     v.Slctd.__clr()
@@ -552,36 +552,65 @@ end
 
 -- slctd str edge
 
-function v.Slctd.str_edge_l_byte_idx()
+function v.Slctd.str_edge_pos()
 
-  v.Slctd.cursor__mv_edge_l()
+  v.Slctd.__ltst()
 
-  local byte_idx = v.Cursor.byte_idx()
-  return byte_idx
-end
+  local s_pos = vf.getpos('v')
+  local e_pos = vf.getpos('.')
 
-function v.Slctd.str_edge_r_byte_idx()
+  local pos = {}
 
-  v.Slctd.cursor__mv_edge_r()
-  
-  local byte_idx = v.Cursor.byte_idx()
-  return byte_idx
-end
+  pos.s = {}
+  pos.s.line_num = s_pos[2]
+  pos.s.byte_idx = s_pos[3]
 
-function v.Slctd.str_edge_l_pos()
+  pos.e = {}
+  pos.e.line_num = e_pos[2]
+  pos.e.byte_idx = e_pos[3]
 
-  v.Slctd.cursor__mv_edge_l()
-  local pos = v.Cursor.pos()
+  if     pos.s.line_num <  pos.e.line_num then
+    pos.l = pos.s
+    pos.r = pos.e
+
+  elseif pos.s.line_num == pos.e.line_num then
+
+    if pos.s.byte_idx <= pos.e.byte_idx then
+      pos.l = pos.s
+      pos.r = pos.e
+    else
+      pos.l = pos.e
+      pos.r = pos.s
+    end
+
+  else
+    pos.l = pos.e
+    pos.r = pos.s
+  end
+
   return pos
 end
 
-function v.Slctd.str_edge_r_pos()
+function v.Slctd.str_edge_x_byte_idx(lr)
 
-  v.Slctd.cursor__mv_edge_r()
-  local pos = v.Cursor.pos()
-  return pos
+  local edge_pos = v.Slctd.str_edge_pos()
+  local byte_idx = edge_pos[lr].byte_idx
+  return byte_idx
 end
 
+function v.Slctd.str_edge_l_byte_idx() -- use not
+
+  local byte_idx = v.Slctd.str_edge_x_byte_idx('l')
+  return byte_idx
+end
+
+function v.Slctd.str_edge_r_byte_idx() -- use not
+
+  local byte_idx = v.Slctd.str_edge_x_byte_idx('r')
+  return byte_idx
+end
+
+-- dev anchor
 function v.Slctd.str_edge_l_char()
 
   v.Slctd.cursor__mv_edge_l()
@@ -850,6 +879,7 @@ function v.Slctd.str_edge_out_char__del() -- range
     return
   end
 
+  -- dev anchor : refactoring
   v.Cmd.nml('"zx')
   v.Cmd.nml('xhx')
   v.Cmd.nml('"zP')
@@ -910,7 +940,7 @@ end
 
 function v.Slctd.is_str_edge_char__quote()
 
-  local ret = v.Slctd.is_str_edge_char__(v.Srch.ptn.quote)
+  local ret = v.Slctd.is_str_edge_char__(v.Srch.ptn.vim.quote)
   return ret
 end
 
@@ -926,18 +956,18 @@ function v.Slctd.is_str_edge_char__pair(char_l, char_r)
   end
 end
 
-function v.Slctd.is_str_edge_out_char__(ptn)
+function v.Slctd.is_str_edge_out_char__(ptn_vim)
 
   local char_l = v.Slctd.str_edge_l_out_char()
   local char_r = v.Slctd.str_edge_r_out_char()
 
-  local ret = v.Char.is_pair__ptn(char_l, char_r, ptn)
+  local ret = v.Char.is_pair__ptn(char_l, char_r, ptn_vim)
   return ret
 end
 
 function v.Slctd.is_str_edge_out_char__quote()
 
-  local ret = v.Slctd.is_str_edge_out_char__(v.Srch.ptn.quote)
+  local ret = v.Slctd.is_str_edge_out_char__(v.Srch.ptn.vim.quote)
   return ret
 end
 
@@ -962,12 +992,10 @@ function v.Slctd.is_str_edge_l_byte_idx__line_top() -- range
   -- dev anchor: refactoring
   v.Slctd.cursor__mv_edge_tgl()
 
-  -- local cursor_l_pos = v.Cursor.pos()
   local l_byte_idx = v.Cursor.byte_idx()
 
   v.Slctd.cursor__mv_edge_tgl()
 
-  -- if cursor_l_pos[3] == 1 then
   if l_byte_idx == 1 then
     ret = bl.t
   end

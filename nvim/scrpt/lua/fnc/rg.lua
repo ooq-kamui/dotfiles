@@ -1,10 +1,9 @@
 
 v.Rg = {}
 
-v.Rg.cnst = {}
-
-v.Rg.cnst.emp_line_ptn  = '^[ \\t]*$'
-v.Rg.cnst.some_line_ptn = '^[^ \\t]+$' -- '[^ \\t]'
+v.Rg.ptn = {}
+v.Rg.ptn.emp_line  = '^[ \\t]*$'
+v.Rg.ptn.some_line = '^[^ \\t]+$' -- '[^ \\t]'
 
 function v.Rg.rslt_line_parse_ar(line)
 
@@ -35,9 +34,9 @@ v.Rg.fzf_rg_opt = ''
   .. ' --no-heading'
   .. ' --hidden'
 
-function v.Rg.cmd(ptn, ext, word1, opt)
+function v.Rg.cmd(ptn_rg, ext, word1, opt)
 
-  ptn = ptn or ''
+  ptn_rg = ptn_rg or ''
 
   local fzf_rg_opt_ext
 
@@ -64,12 +63,12 @@ function v.Rg.cmd(ptn, ext, word1, opt)
           .. fzf_rg_opt_ext
           .. fzf_rg_opt_word1
           .. opt
-          .. ' -- ' .. '"' .. v.Str.escape(ptn, '().$') .. '"'
+          .. ' -- ' .. '"' .. v.Str.escape(ptn_rg, '().$') .. '"'
 
   return rg_cmd
 end
 
-function v.Rg.rslt_cnt(ptn, opt)
+function v.Rg.rslt_cnt(ptn_rg, opt)
 
   local opt
 
@@ -79,7 +78,7 @@ function v.Rg.rslt_cnt(ptn, opt)
     opt = opt
   end
 
-  local rg_cmd = "rg " .. opt .. " -e '" .. ptn .. "' | count"
+  local rg_cmd = "rg " .. opt .. " -e '" .. ptn_rg .. "' | count"
   local rg_rslt_cnt = v.Sys.cmd(rg_cmd)
   rg_rslt_cnt = tonumber(rg_rslt_cnt)
   return rg_rslt_cnt
@@ -87,32 +86,32 @@ end
 
 function v.Rg.all_cnt()
 
-  local ptn = v.Rg.cnst.emp_line_ptn
+  local ptn_rg = v.Rg.ptn.emp_line
   local opt = '-v'
 
-  local rg_rslt_cnt = v.Rg.rslt_cnt(ptn, opt)
+  local rg_rslt_cnt = v.Rg.rslt_cnt(ptn_rg, opt)
   return rg_rslt_cnt
 end
 
 function v.Rg.all_rslt_ar()
 
-  local ptn = v.Rg.cnst.emp_line_ptn
+  local ptn_rg = v.Rg.ptn.emp_line
   local opt = '-v'
 
-  local rslt_ar = v.Rg.rslt_ar_by_ptn(ptn, opt)
+  local rslt_ar = v.Rg.rslt_ar_by_ptn(ptn_rg, opt)
   return rslt_ar
 end
 
-function v.Rg.rslt_ar_by_ptn(ptn, opt)
+function v.Rg.rslt_ar_by_ptn(ptn_rg, opt)
 
-  local rg_rslt_txt = v.Rg.rslt_txt_by_ptn(ptn, opt)
+  local rg_rslt_txt = v.Rg.rslt_txt_by_ptn(ptn_rg, opt)
   local rg_rslt_ar  = v.Str.split(rg_rslt_txt, "\\n")
   return rg_rslt_ar
 end
 
-function v.Rg.rslt_txt_by_ptn(ptn, opt)
+function v.Rg.rslt_txt_by_ptn(ptn_rg, opt)
   
-  local rg_cmd = v.Rg.cmd(ptn, nil, nil, opt) -- todo dev
+  local rg_cmd = v.Rg.cmd(ptn_rg, nil, nil, opt) -- todo dev
   local r_rslt_txt = v.Sys.cmd(rg_cmd)
   return r_rslt_txt
 end

@@ -171,28 +171,33 @@ end
 
 -- str srch
 
-function v.Str.srch_byte_idx(str, ptn, srch_s_byte_idx) -- use not
+function v.Str.srch_byte_idx(str, ptn_xxx, srch_s_byte_idx) -- use not
 
   -- dev anchor
-  -- return v.Str.srch_byte_idx_with_vim(str, ptn, srch_s_byte_idx)
-  -- return v.Str.srch_byte_idx_with_lua(str, ptn, srch_s_byte_idx)
+  -- return v.Str.srch_byte_idx_by_ptn_vim(str, ptn_xxx, srch_s_byte_idx)
+  -- return v.Str.srch_byte_idx_by_ptn_lua(str, ptn_xxx, srch_s_byte_idx)
 end
 
-function v.Str.srch_byte_idx_with_lua(str, ptn_lua, srch_s_byte_idx) -- byte_idx start 1
-  -- v.Log.val(str, ptn_lua, srch_s_byte_idx)
+function v.Str.srch_byte_idx_by_ptn_lua(str, ptn_lua, srch_s_byte_idx) -- byte_idx start 1
 
   local s_byte_idx, e_byte_idx = string.find(str, ptn_lua, srch_s_byte_idx)
-  -- v.Log.val(s_byte_idx, e_byte_idx)
   return s_byte_idx, e_byte_idx
 end
 
-function v.Str.srch_byte_idx_with_vim(str, ptn_vim, s_byte_idx) -- byte_idx start 0
+function v.Str.srch_byte_idx_by_ptn_vim(str, ptn_vim, s_byte_idx, end_flg) -- byte_idx start 0
 
-  local r_byte_idx = vf.match(str, ptn_vim, s_byte_idx)
+  local r_byte_idx
+
+  if not end_flg then
+    r_byte_idx = vf.match(   str, ptn_vim, s_byte_idx)
+  else
+    r_byte_idx = vf.matchend(str, ptn_vim, s_byte_idx)
+  end
+
   return r_byte_idx -- -1 : match not
 end
 
-function v.Str.srch_byte_idx_with_vim_end(str, ptn_vim) -- alias
+function v.Str.srch_byte_idx_by_ptn_vim_end(str, ptn_vim) -- alias
 
   local byte_idx = vf.matchend(str, ptn_vim)
   return byte_idx
@@ -274,9 +279,9 @@ function v.Str.sub_by_ptn(str, ptn_vim) -- alias
   return v.Str.sub_by_ptn_with_vim(str, ptn_vim)
 end
 
-function v.Str.sub_by_ptn_with_vim(str, ptn)
+function v.Str.sub_by_ptn_with_vim(str, ptn_vim)
 
-  str = vf.matchstr(str, ptn)
+  str = vf.matchstr(str, ptn_vim)
   return str
 end
 
@@ -288,21 +293,21 @@ end
 
 -- str __ rpl
 
-function v.Str.__rpl(str, ptn, rpl)
+function v.Str.__rpl(str, ptn_vim, rpl)
 
-  return v.Str.__rpl_with_vim(str, ptn, rpl)
-  -- return v.Str.__rpl_with_lua(str, ptn, rpl)
+  return v.Str.__rpl_with_vim(str, ptn_vim, rpl)
+  -- return v.Str.__rpl_with_lua(str, ptn_lua, rpl)
 end
 
-function v.Str.__rpl_with_lua(str, ptn, rpl)
+function v.Str.__rpl_with_lua(str, ptn_lua, rpl)
 
-  local r_str = string.gsub(str, ptn, rpl)
+  local r_str = string.gsub(str, ptn_lua, rpl)
   return r_str
 end
 
-function v.Str.__rpl_with_vim(str, ptn, rpl) -- alias
+function v.Str.__rpl_with_vim(str, ptn_vim, rpl) -- alias
 
-  local r_str = vf.substitute(str, ptn, rpl, 'g')
+  local r_str = vf.substitute(str, ptn_vim, rpl, 'g')
   return r_str
 end
 
@@ -423,13 +428,11 @@ end
 
 function v.Str.is__ptn_with_vim(str, ptn_vim)
 
-  local ret
+  local ret = bl.t
 
-  local srch_byte_idx = v.Str.srch_byte_idx_with_vim(str, ptn_vim)
+  local srch_byte_idx = v.Str.srch_byte_idx_by_ptn_vim(str, ptn_vim)
   if srch_byte_idx == -1 then
     ret = bl.f
-  else
-    ret = bl.t
   end
 
   return ret
