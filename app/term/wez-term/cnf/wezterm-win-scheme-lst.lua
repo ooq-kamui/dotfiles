@@ -49,10 +49,10 @@ scheme_lst.win.recommend.h = {
   'Snazzy'                                 , -- 
   'Catppuccin Mocha (Gogh)'                , -- 
   'idleToes'                               , -- 
+  'Aco (Gogh)'                             , -- 
   -- h ( chk no )
   'Abernathy'                              , -- 
   'Aci (Gogh)'                             , -- 
-  'Aco (Gogh)'                             , -- 
   'Adventure Time (Gogh)'                  , -- 
   'Argonaut (Gogh)'                        , -- 
   'Atom'                                   , -- 
@@ -162,7 +162,6 @@ scheme_lst.win.recommend.h = {
   'duskfox'                                , -- 
   'gooey (Gogh)'                           , -- 
   'iTerm2 Smoooooth'                       , -- 
-  'iceberg-dark'                           , -- 
   'kanagawabones'                          , -- 
   'kokuban (Gogh)'                         , -- 
   'nightfox'                               , -- 
@@ -208,6 +207,7 @@ scheme_lst.win.excld = {
   'BlueDolphin'                            , -- 
   'FairyFlossDark (Gogh)'                  , -- 
   'PaleNightHC'                            , -- 
+  'iceberg-dark'                           , -- 
   -- cmd line
   'Nord (base16)'                          , -- 
   'Kokuban (Gogh)'                         , -- 

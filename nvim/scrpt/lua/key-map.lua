@@ -632,7 +632,7 @@ end, {expr = bl.t})
 keymap__('n', 'x', ':lua v.Cursor.markdown_itm_chk__tgl()<cr>')
 
 -- ins dots ( or crnt )
-keymap__('n', 'ru', ':lua v.Cursor.line_end__dots_adjst()<cr>')
+keymap__('n', 'ru', ':lua v.Cursor.line_end_dots__care()<cr>')
 
 -- ins line emp
 -- " ref nnoremap y

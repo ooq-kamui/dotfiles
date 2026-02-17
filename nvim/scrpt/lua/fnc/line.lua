@@ -129,9 +129,7 @@ end
 function v.Line.ruler_idx_by_byte_idx(line_num, byte_idx)
 
   local line_str = v.Line.str_by_line_num(line_num)
-
   local ruler_idx = v.Str.ruler_idx_by_byte_idx(line_str, byte_idx)
-
   return ruler_idx
 end
 

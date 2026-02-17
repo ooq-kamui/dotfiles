@@ -70,14 +70,13 @@ function v.Slctd.str() -- range
   return v.Rgstr.get('z')
 end
 
-function v.Slctd.str_len() -- range
+function v.Slctd.str_len_char() -- range -- use not
 
   v.Slctd.__ltst()
 
   local slctd_str = v.Slctd.str()
-
-  local len = v.Str.len(slctd_str)
-  return len
+  local len_char = v.Str.len_char(slctd_str)
+  return len_char
 end
 
 -- slctd str __

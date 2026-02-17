@@ -31,34 +31,39 @@ v.Str.cmnt.line_mlt_lst = {
 v.Str.dots = {}
 v.Str.dots.str     = ' .. '
 v.Str.dots.ptn_lua = ' %.%. '
-v.Str.dots.plt_byte_idx  = 50
+v.Str.dots.ptn_vim = [[ \.\. ]]
 v.Str.dots.plt_ruler_idx = 50
 
 -- len
 
-function v.Str.len(str) -- alias
-
-  return v.Str.len_char(str)
-end
-
 function v.Str.len_byte(str)
 
-  return vf.strlen(str) -- byte , mb:3
+  local len_byte = vf.strlen(str) -- byte , mb:3
+  return len_byte
+end
+
+function v.Str.len(str) -- alias
+
+  local len_char = v.Str.len_char(str)
+  return len_char
 end
 
 function v.Str.len_char(str) -- mb:1
 
-  return v.Str.len_char_on_nvim(str)
+  local len_char = v.Str.len_char_on_nvim(str)
+  return len_char
 end
 
 function v.Str.len_char_on_nvim(str)
 
-  return vf.strcharlen(str) -- char on nvim , mb:1
+  local len_char = vf.strcharlen(str) -- char on nvim , mb:1
+  return len_char
 end
 
 function v.Str.len_char_raw(str) -- use not
 
-  return vf.strchars(str, 0) -- char , mb:1
+  local len_char = vf.strchars(str, 0) -- char , mb:1
+  return len_char
 end
 
 function v.Str.len_ruler(str) -- mb:2
@@ -71,12 +76,54 @@ end
 
 function v.Str.ruler_idx_by_byte_idx(str, byte_idx)
 
-  -- dev anchor
-  str = str
-
-  local ruler_idx = v.Str.len_ruler(str)
-
+  local str_sub   = v.Str.sub_by_byte_idx_with_mb(str, 1, byte_idx)
+  local ruler_idx = v.Str.len_ruler(str_sub)
   return ruler_idx
+end
+
+-- dev anchor , todo refactoring
+function v.Str.byte_idx_by_ruler_idx(str, ruler_idx) -- byte_idx: side end
+
+  if v.Str.len_ruler(str) <= ruler_idx then
+    return v.Str.len_byte(str)
+  end
+
+  local current_width = 0
+
+  for byte_idx = 1, #str do
+
+    -- UTF-8 の文字の開始バイトか判定（マルチバイト対応）
+    -- 0x80 (10000000) でない、または 1バイト文字の場合
+
+    local byte = string.byte(str, byte_idx)
+
+    if byte < 0x80 or byte >= 0xc0 then
+      -- 現在のバイト位置までの表示幅を確認
+      local sub_str = str:sub(1, byte_idx)
+
+      current_width = v.Str.len_ruler(sub_str)
+      
+      -- 指定の幅に達したら、その直前のバイト長を返す
+      if current_width > ruler_idx then
+
+        -- 1文字前の末尾（現在の文字の開始直前）のバイト数を返す
+        -- 正確には現在の文字の開始インデックス - 1
+
+        return byte_idx - 1
+
+      elseif current_width == ruler_idx then
+
+        -- ちょうど一致した場合は現在の文字の末尾バイト数を計算
+        -- 次の文字の開始位置を探す
+
+        local next_idx = byte_idx + 1
+        while next_idx <= #str and (string.byte(str, next_idx) >= 0x80 and string.byte(str, next_idx) < 0xc0) do
+          next_idx = next_idx + 1
+        end
+        return next_idx - 1
+      end
+    end
+  end
 end
 
 -- char
@@ -89,30 +136,41 @@ end
 
 function v.Str.l_char(str)
 
-  local l_idx = 1
-  local char = v.Str.sub_by_byte_idx(str, l_idx, l_idx)
+  local l_char_idx = v.Str.l_char_idx(str)
+  local char = v.Str.sub_by_char_idx(str, l_char_idx, l_char_idx)
   return char
 end
 
 function v.Str.r_char(str)
 
-  local r_idx = v.Str.len(str)
-  local char  = v.Str.sub_by_byte_idx(str, r_idx, r_idx)
-  -- v.Log.val( char )
+  local r_char_idx = v.Str.r_char_idx(str)
+  local char  = v.Str.sub_by_char_idx(str, r_char_idx, r_char_idx)
   return char
+end
+
+function v.Str.l_char_idx(str)
+
+  local l_char_idx = 1
+  return l_char_idx
+end
+
+function v.Str.r_char_idx(str)
+
+  local r_char_idx = v.Str.len_char(str)
+  return r_char_idx
 end
 
 -- str sub
 
 function v.Str.sub_by_char_idx(str, char_idx_s, char_idx_e) -- char_idx : 1 start, str:mb:ok
 
-  local len = v.Str.len(str)
+  local len_char = v.Str.len_char(str)
 
   if char_idx_e then
-    len = char_idx_e - char_idx_s + 1
+    len_char = char_idx_e - char_idx_s + 1
   end
 
-  local r_str = vf.strcharpart(str, char_idx_s - 1, len) -- arg2: 0 start
+  local r_str = vf.strcharpart(str, char_idx_s - 1, len_char) -- arg2: 0 start
   return r_str
 end
 
@@ -143,9 +201,19 @@ function v.Str.sub_by_byte_idx_with_mb(str, byte_idx_s, byte_idx_e) -- mb: ok, b
   return r_str
 end
 
-function v.Str.sub_by_byte_idx_with_ascii(str, byte_idx_s, byte_idx_e) -- mb: ng, byte : 1 start
+function v.Str.sub_by_byte_idx_with_ascii(str, byte_idx_s, byte_idx_e) -- mb: ng, byte : 1 start -- use not
 
   local r_str = string.sub(str, byte_idx_s, byte_idx_e)
+  return r_str
+end
+
+-- dev anchor
+function v.Str.sub_by_ruler_idx(str, ruler_idx_s, ruler_idx_e) -- char_idx : 1 start, str:mb:ok
+
+  local byte_idx_s = v.Str.byte_idx_by_ruler_idx(str, ruler_idx_s)
+  local byte_idx_e = v.Str.byte_idx_by_ruler_idx(str, ruler_idx_e)
+
+  local r_str = v.Str.sub_by_byte_idx(str, byte_idx_s, byte_idx_e)
   return r_str
 end
 
@@ -195,13 +263,31 @@ function v.Str.srch_byte_idx_by_ptn_vim(str, ptn_vim, s_byte_idx, end_flg) -- by
     r_byte_idx = vf.matchend(str, ptn_vim, s_byte_idx)
   end
 
-  return r_byte_idx -- -1 : match not
+  if r_byte_idx == -1 then return end
+
+  return r_byte_idx
 end
 
 function v.Str.srch_byte_idx_by_ptn_vim_end(str, ptn_vim) -- alias
 
   local byte_idx = vf.matchend(str, ptn_vim)
+
+  if byte_idx == -1 then return end
+
   return byte_idx
+end
+
+-- dev anchor
+function v.Str.srch_ruler_idx_by_ptn_vim(str, ptn_vim, srch_s_ruler_idx)
+
+  local srch_s_byte_idx = srch_s_ruler_idx -- todo dev
+
+  local byte_idx = v.Str.srch_byte_idx_by_ptn_vim(str, ptn_vim, s_byte_idx)
+
+  if not byte_idx then return end
+
+  local ruler_idx = v.Str.ruler_idx_by_byte_idx(str, byte_idx)
+  return ruler_idx
 end
 
 function v.Str.word_byte_idx_lst(str)
@@ -432,7 +518,8 @@ function v.Str.is__ptn_with_vim(str, ptn_vim)
   local ret = bl.t
 
   local srch_byte_idx = v.Str.srch_byte_idx_by_ptn_vim(str, ptn_vim)
-  if srch_byte_idx == -1 then
+
+  if not srch_byte_idx then
     ret = bl.f
   end
 

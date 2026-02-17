@@ -279,7 +279,6 @@ function v.Srch.is__word1()
   local ret = bl.f
 
   local str = v.Srch.str()
-  local len = v.Str.len(str)
 
   if v.Str.is__ptn(str, [[^\\<]]) or v.Str.is__ptn(str, [[\\>$]]) then
     ret = bl.t
