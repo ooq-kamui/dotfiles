@@ -26,9 +26,12 @@ Set-PSReadLineKeyHandler -Key Ctrl+f -Function ForwardWord
 Set-PSReadLineKeyHandler -Key Ctrl+w -Function BackwardDeleteWord
 Set-PSReadLineKeyHandler -Key Ctrl+k -Function DeleteEndOfWord
 
-# Set-PSReadLineKeyHandler -Key Ctrl+i -Function TabCompleteNext
+Set-PSReadLineKeyHandler -Key Tab    -Function MenuComplete
 Set-PSReadLineKeyHandler -Key Ctrl+i -Function MenuComplete
-Set-PSReadLineKeyHandler -Key Ctrl+u -Function Complete
+# Set-PSReadLineKeyHandler -Key Ctrl+i -Function NextCompletion
+# Set-PSReadLineKeyHandler -Key Ctrl+i -Function TabCompleteNext
+# Set-PSReadLineKeyHandler -Key Ctrl+u -Function Complete
+
 
 # read line list view
 # Set-PSReadLineOption -PredictionViewStyle ListView
