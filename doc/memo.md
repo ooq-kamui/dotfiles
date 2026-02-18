@@ -5,11 +5,14 @@
 ## nvim
 
 n q: mb cre
-function v.Line.word_ruler_idx(line_num, ruler_idx_min)
+
+v.Line.word_ruler_idx(line_num, ruler_idx_min)
 - cre
+
 
 v.Str.word_ruler_idx_lst(str)
 - logic confirm
+
 
 v.Str.byte_idx_by_char_idx(str, char_idx)
 - cre
