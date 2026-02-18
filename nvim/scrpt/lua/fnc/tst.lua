@@ -5,15 +5,8 @@ v.Tst = {}
 
 function v.Tst.tst()
 
-  local char
-  -- char = 'あ'
-  -- char = 'a'
-  -- char = '/'
-  char = ' '
-
-  local st = v.Char.is__symbol(char)
-
-  v.Log.val(st)
+  local byte_idx = v.Slctd.str_edge_r_byte_idx()
+  -- v.Cursor.str_week__icl()
 end
 
 

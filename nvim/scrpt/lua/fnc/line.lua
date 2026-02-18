@@ -44,12 +44,12 @@ function v.Line.end_space__del(line_num)
   v.Srch.str__ptn(ptn_tmp)
 end
 
-function v.Line.end__pad_space(line_num, fil_end_byte_idx)
+function v.Line.end__pad_space(line_num, fil_end_ruler_idx)
 
   local line_str     = v.Line.str_by_line_num(line_num)
 
-  local line_str_len_byte = v.Str.len_byte(line_str)
-  local space_len_byte    = fil_end_byte_idx - line_str_len_byte
+  local line_str_len_ruler = v.Str.len_ruler(line_str)
+  local space_len_byte     = fil_end_ruler_idx - line_str_len_ruler
 
   if space_len_byte <= 0 then
     return
@@ -121,21 +121,19 @@ function v.Line.word_ruler_idx(line_num, ruler_idx_min)
 
 
 
-
-
   return v.Line.word_byte_idx(line_num, ruler_idx_min)
 end
 
 function v.Line.ruler_idx_by_byte_idx(line_num, byte_idx)
 
-  local line_str = v.Line.str_by_line_num(line_num)
+  local line_str  = v.Line.str_by_line_num(line_num)
   local ruler_idx = v.Str.ruler_idx_by_byte_idx(line_str, byte_idx)
   return ruler_idx
 end
 
 function v.Line.char_byte_idx_lst(line_num, char)
 
-  local line_str         = v.Line.str_by_line_num(line_num)
+  local line_str          = v.Line.str_by_line_num(line_num)
   local char_byte_idx_lst = v.Str.char_byte_idx_lst(line_str, char)
   return char_byte_idx_lst
 end

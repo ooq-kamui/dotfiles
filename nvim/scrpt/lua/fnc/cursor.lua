@@ -555,8 +555,6 @@ function v.Cursor.__mv_block_out_swtch()
   else
     v.Srch.str__fnc_def()
     v.Cursor.__mv_by_srch_str('b')
-
-    -- v.Cursor.__mv_fnc_out()
   end
 end
 
@@ -1089,35 +1087,33 @@ end
 function v.Cursor.str_week__icl()
 
   local week_str = v.Cursor.word()
-  local week_idx = vf.index(v.Date.week_def, week_str)
+  local week_idx = v.Tbl.idx(v.Date.week_def, week_str)
 
-  if week_idx == -1 then
-    return
-  end
+  if not week_idx then return end
 
   local week_nxt_idx = v.Idx.__icl(week_idx, v.Tbl.len(v.Date.week_def))
   local week_nxt_str = v.Date.week_def[week_nxt_idx]
 
   v.Slctd.str__word()
   v.Cmd.nml('"zd')
-  v.Cmd.nml('i' .. week_nxt_str)
+
+  v.Cursor.__ins(week_nxt_str)
 end
 
 function v.Cursor.str_week__dcl()
 
   local week_str = v.Cursor.word()
-  local week_idx = vf.index(v.Date.week_def, week_str)
+  local week_idx = v.Tbl.idx(v.Date.week_def, week_str)
 
-  if week_idx == -1 then
-    return
-  end
+  if not week_idx then return end
 
   local week_nxt_idx = v.Idx.__dcl(week_idx, v.Tbl.len(v.Date.week_def))
   local week_nxt_str = v.Date.week_def[week_nxt_idx]
 
   v.Slctd.str__word()
   v.Cmd.nml('"zd')
-  v.Cmd.nml('i' .. week_nxt_str)
+
+  v.Cursor.__ins(week_nxt_str)
 end
 
 -- cursor etc

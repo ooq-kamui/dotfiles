@@ -4,39 +4,35 @@
 
 ## nvim
 
-vf.index() > tbl.xxx(), ret idx 1 start, match not : nil
-- week __ inc, dcl
-
+n q: mb cre
+function v.Line.word_ruler_idx(line_num, ruler_idx_min)
+- cre
 
 v.Str.word_ruler_idx_lst(str)
+- logic confirm
 
-v.Line.end__pad_space(line_num, fil_end_byte_idx)
+v.Str.byte_idx_by_char_idx(str, char_idx)
+- cre
 
-v.Str.srch_ruler_idx_by_ptn_vim(str, ptn_vim, srch_s_ruler_idx)
+v.Str.ruler_idx_by_char_idx(str, char_idx)
+- cre
 
-
-v.Slctd.str_edge_r_out_char()
-- with: cursor __ mv, not
-
-
-slctd.str_edge_x_byte_idx()
-- with v.Slctd.str_edge_pos()
-- tst, confirm
-
-
-v.Slctd.str_edge_xxx() > v.Slctd.edge_xxx()
-
-
-n q: mb err
-function v.Line.word_ruler_idx(line_num, ruler_idx_min)
 
 - tst
   - あいうえお  aa  bb  cc
   - a  b  c  e   f   g
 
 
+v.Slctd.str_edge_r_out_char()
+- with: cursor __ mv, not
+
+
 cheat-sheet fzf opn
 - <leader><c-s>
+
+
+v.Str.char_byte_idx_lst(str, char)
+- logic confirm
 
 
 n E, err

@@ -11,7 +11,7 @@ v.Str.ptn.vim.space = [[^\s\+$]]
 v.Str.ptn.vim.num   = [[^\d\+$]]
 
 v.Str.ptn.vim.mb = '[^\\x01-\\x7E]'
-v.Str.ptn.vim.markdown_heading = '^#* '
+v.Str.ptn.vim.markdown_heading = [[^#\+ ]]
 v.Str.ptn.vim.quote = '[' .. "'" .. '"' .. '`' .. ']'
 v.Str.ptn.vim.word_dlm = '[_ABCDEFGHIJKLMNOPQRSTUVWXYZ]'
 
@@ -107,7 +107,6 @@ function v.Str.ruler_idx_by_byte_idx(str, byte_idx)
   return ruler_idx
 end
 
--- dev anchor
 function v.Str.byte_idx_by_ruler_idx(str, ruler_idx) -- byte_idx: mb end
 
   local byte_idx
@@ -129,7 +128,35 @@ function v.Str.byte_idx_by_ruler_idx(str, ruler_idx) -- byte_idx: mb end
   return byte_idx
 end
 
+-- dev anchor : confirm
+function v.Str.byte_idx_by_char_idx(str, char_idx)
+
+  local byte_idx = vim.str_byteindex(str, char_idx - 1) -- 0 start
+  byte_idx = byte_idx + 1
+  return byte_idx
+end
+
+-- dev anchor : confirm
+function v.Str.char_idx_by_byte_idx(str, byte_idx)
+
+  local char_idx = vim.str_utfindex(str, byte_idx - 1) -- 0 start
+  char_idx = char_idx + 1
+  return char_idx
+end
+
+function v.Str.ruler_idx_by_char_idx(str, char_idx)
+
+  local byte_idx  = v.Str.byte_idx_by_char_idx( str, char_idx)
+  local ruler_idx = v.Str.ruler_idx_by_byte_idx(str, byte_idx)
+  return ruler_idx
+end
+
 -- char
+
+function v.Str.char(str, char_idx) -- alias
+
+  return v.Str.char_by_char_idx(str, char_idx)
+end
 
 function v.Str.char_by_char_idx(str, char_idx) -- char_idx: 1 start, mb:ok
 
@@ -280,12 +307,11 @@ function v.Str.srch_byte_idx_by_ptn_vim_end(str, ptn_vim) -- alias
   return byte_idx
 end
 
--- dev anchor
-function v.Str.srch_ruler_idx_by_ptn_vim(str, ptn_vim, srch_s_ruler_idx)
+function v.Str.srch_ruler_idx_by_ptn_vim(str, ptn_vim, srch_s_ruler_idx) -- use not
 
-  local srch_s_byte_idx = srch_s_ruler_idx -- todo dev
+  local srch_s_byte_idx = v.Str.byte_idx_by_ruler_idx(str, srch_s_ruler_idx)
 
-  local byte_idx = v.Str.srch_byte_idx_by_ptn_vim(str, ptn_vim, s_byte_idx)
+  local byte_idx = v.Str.srch_byte_idx_by_ptn_vim(str, ptn_vim, srch_s_byte_idx)
 
   if not byte_idx then return end
 
@@ -319,24 +345,25 @@ function v.Str.word_byte_idx_lst(str)
   return word_byte_idx_lst
 end
 
--- dev anchor
 function v.Str.word_ruler_idx_lst(str)
 
   local word_ruler_idx_lst = {}
-  local char
 
+  local len_char = v.Str.len_char(str)
   local is_space = bl.t
+  local char, ruler_idx
 
-  for idx = 1, #str do
+  for char_idx = 1, len_char do
 
-    char = v.Str.sub_by_byte_idx(str, idx, idx)
+    char = v.Str.char(str, char_idx)
 
     if v.Char.is_space(char) then
       is_space = bl.t
 
     else
       if is_space then
-        v.Tbl.add(word_ruler_idx_lst, idx)
+        ruler_idx = v.Str.ruler_idx_by_char_idx(char_idx)
+        v.Tbl.add(word_ruler_idx_lst, ruler_idx)
       end
       is_space = bl.f
     end

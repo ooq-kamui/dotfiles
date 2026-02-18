@@ -1240,7 +1240,6 @@ end
 
 -- slctd line __ cmnt
 
--- dev anchor
 function v.Slctd.line__ins_cmnt_1() -- range
 
   -- dev anchor

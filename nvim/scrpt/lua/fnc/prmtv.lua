@@ -74,7 +74,6 @@ function v.Idx.__icl(idx, ar_len)
   local r_idx = idx + 1
 
   if r_idx > ar_len then
-    -- r_idx = 0
     r_idx = 1
   end
 
@@ -85,9 +84,7 @@ function v.Idx.__dcl(idx, ar_len)
 
   local r_idx = idx - 1
 
-  -- if r_idx < 0 then
   if r_idx <= 0 then
-    -- r_idx = ar_len - 1
     r_idx = ar_len
   end
 
