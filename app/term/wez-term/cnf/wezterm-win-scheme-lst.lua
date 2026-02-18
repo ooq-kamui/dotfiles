@@ -39,6 +39,7 @@ scheme_lst.win.recommend.h = {
   'Modus-Vivendi-Tritanopia'               , -- 
   'cyberpunk'                              , -- 
   'Tomorrow Night Blue (Gogh)'             , -- 
+  'MaterialDarker'                         , -- 
   -- h ( chk ed )
   'Fairyfloss'                             , -- 
   'Snazzy (Gogh)'                          , -- 
@@ -93,7 +94,6 @@ scheme_lst.win.recommend.h = {
   'Materia (base16)'                       , -- 
   'Material (base16)'                      , -- 
   'Material Darker (base16)'               , -- 
-  'MaterialDarker'                         , -- 
   'Misterioso (Gogh)'                      , -- 
   'Mocha (dark) (terminal.sexy)'           , -- 
   'Modus-Vivendi'                          , -- 

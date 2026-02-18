@@ -1,6 +1,33 @@
 
 v.Str = {}
 
+-- ptn
+
+v.Str.ptn = {}
+v.Str.ptn.vim = {}
+v.Str.ptn.lua = {}
+
+v.Str.ptn.vim.space = [[^\s\+$]]
+v.Str.ptn.vim.num   = [[^\d\+$]]
+
+v.Str.ptn.vim.mb = '[^\\x01-\\x7E]'
+v.Str.ptn.vim.markdown_heading = '^#* '
+v.Str.ptn.vim.quote = '[' .. "'" .. '"' .. '`' .. ']'
+v.Str.ptn.vim.word_dlm = '[_ABCDEFGHIJKLMNOPQRSTUVWXYZ]'
+
+-- cnst
+
+v.Str.cnst = {}
+
+-- alph
+
+v.Str.cnst.alph_lst = {
+  'a','b','c','d','e','f','g','h','i','j','k','l','m','n',
+  'o','p','q','r','s','t','u','v','w','x','y','z'
+}
+
+-- cmnt
+
 v.Str.cmnt = {}
 
 v.Str.cmnt.line_1_lst = {
@@ -30,7 +57,6 @@ v.Str.cmnt.line_mlt_lst = {
 
 v.Str.dots = {}
 v.Str.dots.str     = ' .. '
-v.Str.dots.ptn_lua = ' %.%. '
 v.Str.dots.ptn_vim = [[ \.\. ]]
 v.Str.dots.plt_ruler_idx = 50
 
@@ -81,49 +107,26 @@ function v.Str.ruler_idx_by_byte_idx(str, byte_idx)
   return ruler_idx
 end
 
--- dev anchor , todo refactoring
-function v.Str.byte_idx_by_ruler_idx(str, ruler_idx) -- byte_idx: side end
+-- dev anchor
+function v.Str.byte_idx_by_ruler_idx(str, ruler_idx) -- byte_idx: mb end
 
-  if v.Str.len_ruler(str) <= ruler_idx then
-    return v.Str.len_byte(str)
-  end
+  local byte_idx
 
-  local current_width = 0
+  local len_char = v.Str.len_char(str)
+  local str_sub, str_sub_len_ruler
 
-  for byte_idx = 1, #str do
+  for char_idx = 1, len_char do
 
-    -- UTF-8 の文字の開始バイトか判定（マルチバイト対応）
-    -- 0x80 (10000000) でない、または 1バイト文字の場合
+    str_sub  = v.Str.sub_by_char_idx(str, 1, char_idx)
+    byte_idx = v.Str.len_byte(str_sub)
 
-    local byte = string.byte(str, byte_idx)
-
-    if byte < 0x80 or byte >= 0xc0 then
-      -- 現在のバイト位置までの表示幅を確認
-      local sub_str = str:sub(1, byte_idx)
-
-      current_width = v.Str.len_ruler(sub_str)
-      
-      -- 指定の幅に達したら、その直前のバイト長を返す
-      if current_width > ruler_idx then
-
-        -- 1文字前の末尾（現在の文字の開始直前）のバイト数を返す
-        -- 正確には現在の文字の開始インデックス - 1
-
-        return byte_idx - 1
-
-      elseif current_width == ruler_idx then
-
-        -- ちょうど一致した場合は現在の文字の末尾バイト数を計算
-        -- 次の文字の開始位置を探す
-
-        local next_idx = byte_idx + 1
-        while next_idx <= #str and (string.byte(str, next_idx) >= 0x80 and string.byte(str, next_idx) < 0xc0) do
-          next_idx = next_idx + 1
-        end
-        return next_idx - 1
-      end
+    str_sub_len_ruler = v.Str.len_ruler(str_sub)
+    if str_sub_len_ruler >= ruler_idx then
+      break
     end
   end
+
+  return byte_idx
 end
 
 -- char
@@ -207,10 +210,10 @@ function v.Str.sub_by_byte_idx_with_ascii(str, byte_idx_s, byte_idx_e) -- mb: ng
   return r_str
 end
 
--- dev anchor
 function v.Str.sub_by_ruler_idx(str, ruler_idx_s, ruler_idx_e) -- char_idx : 1 start, str:mb:ok
 
   local byte_idx_s = v.Str.byte_idx_by_ruler_idx(str, ruler_idx_s)
+  byte_idx_s = byte_idx_s + vim.str_utf_start(str, byte_idx_s)
   local byte_idx_e = v.Str.byte_idx_by_ruler_idx(str, ruler_idx_e)
 
   local r_str = v.Str.sub_by_byte_idx(str, byte_idx_s, byte_idx_e)
@@ -471,18 +474,11 @@ function v.Str.cmnt.line_mlt()
   return str_ar
 end
 
--- dev anchor
-
-v.Str.alph_lst_def = {
-  'a','b','c','d','e','f','g','h','i','j','k','l','m','n',
-  'o','p','q','r','s','t','u','v','w','x','y','z'
-}
-
 function v.Str.alph_lst(alph_to)
 
   local alph_lst = {}
 
-  for idx, _alph in pairs(v.Str.alph_lst_def) do
+  for idx, _alph in pairs(v.Str.cnst.alph_lst) do
 
     v.Tbl.add(alph_lst, _alph)
 
@@ -528,15 +524,13 @@ end
 
 function v.Str.is__space(str)
 
-  local ptn_vim = '^\\s\\+$'
-  local ret = v.Str.is__ptn(str, ptn_vim)
+  local ret = v.Str.is__ptn(str, v.Str.ptn.vim.space)
   return ret
 end
 
 function v.Str.is__num(str)
 
-  local ptn_vim = '^\\d\\+$'
-  local ret = v.Str.is__ptn(str, ptn_vim)
+  local ret = v.Str.is__ptn(str, v.Str.ptn.vim.num)
   return ret
 end
 

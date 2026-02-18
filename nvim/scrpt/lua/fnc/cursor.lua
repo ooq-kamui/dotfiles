@@ -1242,8 +1242,17 @@ end
 
 function v.Cursor.line_str_len_byte()
 
-  local len = v.Cursor.line_end_byte_idx() - 1
-  return len
+  -- local len_byte = v.Cursor.line_end_byte_idx() - 1
+  local line_str = v.Cursor.line_str()
+  local len_byte = v.Str.len_byte(line_str)
+  return len_byte
+end
+
+function v.Cursor.line_str_len_ruler()
+
+  local line_str = v.Cursor.line_str()
+  local len_ruler = v.Str.len_ruler(line_str)
+  return len_ruler
 end
 
 function v.Cursor.line_str_side_l()
@@ -1282,71 +1291,38 @@ end
 
 function v.Cursor.line_end_dots__care()
 
-  local line_str  = v.Cursor.line_str()
-
-  local ruler_idx = v.Str.srch_ruler_idx_by_ptn_vim(line_str, v.Str.dots.ptn_vim)
-  -- v.Log.val(ruler_idx)
-
-  if not ruler_idx then
-    v.Cursor.line_end__ins_dots()
-
-  else
-    v.Cursor.line_end_dots__adjst()
-  end
-end
-
-function v.Cursor.line_end_dots__adjst()
-
   local line_str = v.Cursor.line_str()
+  local is_line_dots__exist = v.Str.is__ptn(line_str, v.Str.dots.ptn_vim)
 
-  -- dev anchor
-  local ruler_idx = v.Str.srch_ruler_idx_by_ptn_vim(line_str, v.Str.dots.ptn_vim)
-  v.Log.val(ruler_idx)
-
-  if not ruler_idx then return end
-
-  if ruler_idx == v.Str.dots.plt_ruler_idx then
-    return
+  if is_line_dots__exist then
+    v.Cursor.line_end_dots__del()
   end
 
-  -- dev anchor
-  -- local line_str_0 = v.Str.sub_by_char_idx(line_str,             1, ruler_idx)
-  -- local line_str_1 = v.Str.sub_by_char_idx(line_str, ruler_idx + 1)
-  local line_str_0 = v.Str.sub_by_ruler_idx(line_str,             1, ruler_idx)
-  local line_str_1 = v.Str.sub_by_ruler_idx(line_str, ruler_idx + 1)
-
-  if ruler_idx < v.Str.dots.plt_ruler_idx then
-
-    local space_str = v.Str.space(v.Str.dots.plt_ruler_idx - ruler_idx)
-    line_str = line_str_0 .. space_str .. line_str_1
-
-  else
-    line_str_0 = v.Str.sub_by_char_idx(line_str_0, 1, v.Str.dots.plt_ruler_idx)
-    line_str = line_str_0 .. line_str_1
-  end
-
-  local line_num = v.Cursor.line_num()
-  v.Line.__by_line_num(line_num, line_str)
+  v.Cursor.line_end__ins_dots()
 end
 
 function v.Cursor.line_end__ins_dots()
 
-  local line_num = v.Cursor.line_num()
+  local line_str_len_ruler = v.Cursor.line_str_len_ruler()
+
+  local space_len_byte = v.Str.dots.plt_ruler_idx - line_str_len_ruler
+  if space_len_byte < 0 then
+    space_len_byte = 0
+  end
+
+  local line_str  = v.Cursor.line_str()
+  local space_str = v.Str.space(space_len_byte)
+  line_str = line_str .. space_str .. v.Str.dots.str
+  v.Cursor.line__(line_str)
+end
+
+function v.Cursor.line_end_dots__del()
 
   local line_str = v.Cursor.line_str()
 
-  local line_str_len_byte = v.Cursor.line_str_len_byte()
-
-  local space_len = v.Str.dots.plt_ruler_idx - line_str_len_byte
-  if space_len < 0 then
-    space_len = 0
-  end
-
-  local space_str = v.Str.space(space_len)
-
-  line_str = line_str .. space_str .. v.Str.dots.str
-
-  v.Line.__by_line_num(line_num, line_str)
+  local byte_idx = v.Str.srch_byte_idx_by_ptn_vim(line_str, [[\s\+]] .. v.Str.dots.ptn_vim)
+  line_str = v.Str.sub_by_byte_idx(line_str, 1, byte_idx)
+  v.Cursor.line__(line_str)
 end
 
 function v.Cursor.line_end__ins(str)
@@ -1371,6 +1347,12 @@ function v.Cursor.f_space__del()
 end
 
 -- cursor __ ins line
+
+function v.Cursor.line__(line_str)
+
+  local line_num = v.Cursor.line_num()
+  v.Line.__by_line_num(line_num, line_str)
+end
 
 function v.Cursor.line__del()
 

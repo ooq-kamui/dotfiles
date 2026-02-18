@@ -3,19 +3,7 @@
 
 v.Srch = {}
 
--- ptn
-
-v.Srch.ptn = {}
-v.Srch.ptn.vim = {}
-v.Srch.ptn.lua = {}
-
-v.Srch.ptn.vim.mb = '[^\\x01-\\x7E]'
-
-v.Srch.ptn.vim.markdown_heading = '^#* '
-
-v.Srch.ptn.vim.quote = '[' .. "'" .. '"' .. '`' .. ']'
-
-v.Srch.ptn.vim.word_dlm = '[_ABCDEFGHIJKLMNOPQRSTUVWXYZ]'
+v.Srch.ptn = v.Str.ptn
 
 
 function v.Srch.srch(ptn_vim, opt, line_num) -- run vim srch

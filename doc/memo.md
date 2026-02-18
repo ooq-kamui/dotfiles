@@ -4,47 +4,27 @@
 
 ## nvim
 
-dots > ruler_idx
+vf.index() > tbl.xxx(), ret idx 1 start, match not : nil
+- week __ inc, dcl
 
-v.Cursor.line_end__dots_adjst()
-
-v.Cursor.line_end__ins_dots()
-
-
-v.Str.byte_idx_by_ruler_idx(str, ruler_idx) -- todo dev
-
-v.Str.sub_by_ruler_idx(str, ruler_idx_s, ruler_idx_e) -- todo dev
-
-v.Str.srch_ruler_idx_by_ptn_vim(str, ptn_vim, srch_s_ruler_idx)
 
 v.Str.word_ruler_idx_lst(str)
 
-
 v.Line.end__pad_space(line_num, fil_end_byte_idx)
 
-
-- tst
-  - aaa                                            .. 
-  - あいう                                         ..  
-
-
-ptn
-- def at str
-- srch alias
+v.Str.srch_ruler_idx_by_ptn_vim(str, ptn_vim, srch_s_ruler_idx)
 
 
 v.Slctd.str_edge_r_out_char()
 - with: cursor __ mv, not
 
+
 slctd.str_edge_x_byte_idx()
 - with v.Slctd.str_edge_pos()
 - tst, confirm
 
+
 v.Slctd.str_edge_xxx() > v.Slctd.edge_xxx()
-
-
-vf.index() > tbl.xxx(), ret idx 1 start, match not : nil
-- week __ inc, dcl
 
 
 n q: mb err
