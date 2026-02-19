@@ -113,15 +113,23 @@ function v.Line.word_ruler_idx_lst(line_num)
   return word_ruler_idx_lst
 end
 
--- dev anchor
 function v.Line.word_ruler_idx(line_num, ruler_idx_min)
+
+  ruler_idx_min = ruler_idx_min or 1
 
   local word_ruler_idx_lst = v.Line.word_ruler_idx_lst(line_num)
 
+  local word_ruler_idx
 
+  for idx, _word_ruler_idx in pairs(word_ruler_idx_lst) do
 
+    if _word_ruler_idx >= ruler_idx_min then
+      word_ruler_idx = _word_ruler_idx
+      break
+    end
+  end
 
-  return v.Line.word_byte_idx(line_num, ruler_idx_min)
+  return word_ruler_idx
 end
 
 function v.Line.ruler_idx_by_byte_idx(line_num, byte_idx)

@@ -128,18 +128,31 @@ function v.Str.byte_idx_by_ruler_idx(str, ruler_idx) -- byte_idx: mb end
   return byte_idx
 end
 
--- dev anchor : confirm
-function v.Str.byte_idx_by_char_idx(str, char_idx)
+function v.Str.byte_idx_by_char_idx(str, char_idx, end_flg)
+  -- v.Log.val(char_idx)
 
-  local byte_idx = vim.str_byteindex(str, char_idx - 1) -- 0 start
+  if char_idx > v.Str.len_char(str) then return end
+
+  local byte_idx = vf.byteidx(str, char_idx - 1) -- 0 start
+
+  if byte_idx == -1 then return end
+
+  if end_flg then
+    byte_idx = byte_idx + vim.str_utf_end(str, byte_idx + 1) -- fnc arg2: 1 start
+  end
+
   byte_idx = byte_idx + 1
   return byte_idx
 end
 
--- dev anchor : confirm
 function v.Str.char_idx_by_byte_idx(str, byte_idx)
 
-  local char_idx = vim.str_utfindex(str, byte_idx - 1) -- 0 start
+  if byte_idx > v.Str.len_byte(str) then return end
+
+  local char_idx = vf.charidx(str, byte_idx - 1)
+
+  if char_idx == -1 then return end
+
   char_idx = char_idx + 1
   return char_idx
 end
@@ -224,8 +237,8 @@ function v.Str.sub_by_byte_idx_with_mb(str, byte_idx_s, byte_idx_e) -- mb: ok, b
     byte_idx_e = len_byte
   end
 
-  byte_idx_s = byte_idx_s + vim.str_utf_start(str, byte_idx_s)
-  byte_idx_e = byte_idx_e + vim.str_utf_end(  str, byte_idx_e)
+  byte_idx_s = byte_idx_s + vim.str_utf_start(str, byte_idx_s) -- 1 start
+  byte_idx_e = byte_idx_e + vim.str_utf_end(  str, byte_idx_e) -- 1 start
 
   local r_str = string.sub(str, byte_idx_s, byte_idx_e)
   return r_str
@@ -362,7 +375,7 @@ function v.Str.word_ruler_idx_lst(str)
 
     else
       if is_space then
-        ruler_idx = v.Str.ruler_idx_by_char_idx(char_idx)
+        ruler_idx = v.Str.ruler_idx_by_char_idx(str, char_idx)
         v.Tbl.add(word_ruler_idx_lst, ruler_idx)
       end
       is_space = bl.f

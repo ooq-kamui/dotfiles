@@ -110,13 +110,20 @@ end
 
 function v.Cursor.__mv_by_byte_idx(byte_idx)
 
-  if not v.Str.is__num(byte_idx) then
-    return
-  end
+  if not v.Str.is__num(byte_idx) then return end
 
   local line_num = v.Cursor.line_num()
 
   v.Cursor.__mv_by_line_byte_idx(line_num, byte_idx)
+end
+
+function v.Cursor.__mv_by_ruler_idx(ruler_idx)
+
+  if not v.Str.is__num(ruler_idx) then return end
+
+  local line_num = v.Cursor.line_num()
+
+  v.Cursor.__mv_by_line_ruler_idx(line_num, ruler_idx)
 end
 
 function v.Cursor.__mv_by_line_num(line_num)
@@ -1253,7 +1260,7 @@ end
 
 function v.Cursor.line_str_side_l()
 
-  local line_l = v.Str.sub_by_byte_idx(v.Cursor.line_str(), 1                     , v.Cursor.byte_idx() - 1)
+  local line_l = v.Str.sub_by_byte_idx(v.Cursor.line_str(),                       1, v.Cursor.byte_idx() - 1)
   return line_l
 end
 
@@ -1412,8 +1419,10 @@ function v.Cursor.f_str__space_crct_with_fzy(ref_drct)
   end
 
   local word_ruler_idx = v.Cursor.f_str__space_crct_with_word(ref_drct)
+
   if word_ruler_idx then return end
 
+  -- dev anchor, logic confirm
   local char_byte_idx = v.Cursor.f_str__space_crct_with_char(ref_drct)
 end
 
@@ -1426,7 +1435,6 @@ function v.Cursor.f_str__space_crct_with_word(ref_drct)
 
   if not word_ruler_idx then return word_ruler_idx end
 
-  -- v.Log.val(word_ruler_idx)
   v.Cursor.f_str__space_crct_by_ruler_idx(word_ruler_idx)
 
   return word_ruler_idx
@@ -1463,9 +1471,22 @@ function v.Cursor.f_str__space_crct_by_byte_idx(byte_idx)
   v.Cursor.__mv_by_byte_idx(cursor_byte_idx)
 end
 
+-- dev anchor
 function v.Cursor.f_str__space_crct_by_ruler_idx(ruler_idx)
 
-  
+  local crct_str
+  crct_str = v.Cursor.line_str_side_r_with_c()
+  crct_str = v.Str.trim(crct_str)
+
+  local cursor_ruler_idx = v.Cursor.ruler_idx()
+  local space_len = ruler_idx - cursor_ruler_idx
+  local space_str = v.Str.space(space_len)
+
+  v.Cursor.f_str__del()
+  v.Cursor.__ins(space_str)
+  v.Cursor.__ins(crct_str)
+
+  v.Cursor.__mv_by_ruler_idx(cursor_ruler_idx)
 end
 
 function v.Cursor.__ins_sys_cmd(sys_cmd) -- read

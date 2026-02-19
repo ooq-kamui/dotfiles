@@ -4,41 +4,37 @@
 
 ## nvim
 
-n q: mb cre
-
-v.Line.word_ruler_idx(line_num, ruler_idx_min)
-- cre
+v.Cursor.line_str_side_r_with_c()
+- todo refactoring Cursor.line_str_side_r() + opt arg
 
 
-v.Str.word_ruler_idx_lst(str)
-- logic confirm
-
-
-v.Str.byte_idx_by_char_idx(str, char_idx)
-- cre
-
-v.Str.ruler_idx_by_char_idx(str, char_idx)
-- cre
-
+n q, Q, case:mb
+- case: on word-top
 
 - tst
   - あいうえお  aa  bb  cc
-  - a  b  c  e   f   g
+  -  a  b   c    e     f   g
 
 
 v.Slctd.str_edge_r_out_char()
 - with: cursor __ mv, not
 
 
+n E, err
+
+
 cheat-sheet fzf opn
 - <leader><c-s>
+- rpl <leader>s
+  - off: <leader><c-s>
 
 
 v.Str.char_byte_idx_lst(str, char)
 - logic confirm
 
 
-n E, err
+x h, <c-h>, case: xx__xx
+
 
 
 ## wez

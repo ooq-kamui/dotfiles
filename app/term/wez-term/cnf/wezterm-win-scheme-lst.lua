@@ -145,7 +145,6 @@ scheme_lst.win.recommend.h = {
   'Tomorrow Night Blue'                    , -- 
   'Tomorrow Night Bright (Gogh)'           , -- 
   'Tomorrow Night Bright'                  , -- 
-  'TomorrowNightEighties (Gogh)'           , -- 
   'UltraViolent'                           , -- 
   'VSCodeDark+ (Gogh)'                     , -- 
   'VisiBone (terminal.sexy)'               , -- 
@@ -173,7 +172,6 @@ scheme_lst.win.recommend.h = {
   'tokyonight-storm'                       , -- 
   'tokyonight_moon'                        , -- 
   'tokyonight_night'                       , -- 
-  'zenburn (terminal.sexy)'                , -- 
   'Modus-Vivendi-Tinted'                   , -- 
   'Tokyo Night Moon'                       , -- 
   'Monokai (base16)'                       , -- 
@@ -185,6 +183,7 @@ scheme_lst.win.excld = {
   -- phase 04
   -- 
   -- dir blue
+  'TomorrowNightEighties (Gogh)'           , -- 
   -- git
   'Adventure'                              , -- 
   'Espresso (Gogh)'                        , -- 
@@ -194,6 +193,7 @@ scheme_lst.win.excld = {
   'Rosé Pine Moon (base16)'                , -- 
   'Tender (Gogh)'                          , -- 
   'Seti UI (base16)'                       , -- 
+  'zenburn (terminal.sexy)'                , -- 
   -- slctd
   'Banana Blueberry'                       , -- 
   'Overnight Slumber'                      , -- 
