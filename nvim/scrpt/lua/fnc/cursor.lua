@@ -1264,18 +1264,25 @@ function v.Cursor.line_str_side_l()
   return line_l
 end
 
-function v.Cursor.line_str_side_r()
+function v.Cursor.line_str_side_r(c_char_flg)
 
-  local line_r = v.Str.sub_by_byte_idx(v.Cursor.line_str(), v.Cursor.byte_idx() + 1)
-  -- v.Log.log('>' .. line_r .. '<')
+  local line_str   = v.Cursor.line_str()
+  local c_byte_idx = v.Cursor.byte_idx()
+
+  local line_r
+
+  if not c_char_flg then
+    line_r = v.Str.sub_by_byte_idx(line_str, c_byte_idx + 1)
+  else
+    line_r = v.Str.sub_by_byte_idx(line_str, c_byte_idx    )
+  end
+
   return line_r
 end
 
--- todo refactoring Cursor.line_str_side_r() + opt arg
 function v.Cursor.line_str_side_r_with_c()
 
-  local line_r = v.Str.sub_by_byte_idx(v.Cursor.line_str(), v.Cursor.byte_idx()    )
-  return line_r
+  return v.Cursor.line_str_side_r(bl.t)
 end
 
 -- cursor line str __

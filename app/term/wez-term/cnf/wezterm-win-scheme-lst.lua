@@ -139,7 +139,6 @@ scheme_lst.win.recommend.h = {
   'Teerb (Gogh)'                           , -- 
   'Teerb'                                  , -- 
   'Tokyo Night (Gogh)'                     , -- 
-  'Tokyo Night Storm (Gogh)'               , -- 
   'Tokyo Night Storm'                      , -- 
   'TokyoNightStorm (Gogh)'                 , -- 
   'Tomorrow Night Blue'                    , -- 
@@ -186,42 +185,43 @@ scheme_lst.win.excld = {
   'TomorrowNightEighties (Gogh)'           , -- 
   -- git
   'Adventure'                              , -- 
-  'Espresso (Gogh)'                        , -- 
-  'IrBlack (Gogh)'                         , -- 
-  'FairyFloss (Gogh)'                      , -- 
   'Dracula (Gogh)'                         , -- 
+  'Espresso (Gogh)'                        , -- 
+  'FairyFloss (Gogh)'                      , -- 
+  'IrBlack (Gogh)'                         , -- 
   'Rosé Pine Moon (base16)'                , -- 
-  'Tender (Gogh)'                          , -- 
   'Seti UI (base16)'                       , -- 
+  'Tender (Gogh)'                          , -- 
   'zenburn (terminal.sexy)'                , -- 
   -- slctd
   'Banana Blueberry'                       , -- 
-  'Overnight Slumber'                      , -- 
-  'UltraDark'                              , -- 
   'Ef-Dark'                                , -- 
   'Misterioso'                             , -- 
+  'Overnight Slumber'                      , -- 
+  'UltraDark'                              , -- 
   -- white
-  'Borland'                                , -- 
   'Ayu Mirage (Gogh)'                      , -- 
   'AyuDark (Gogh)'                         , -- 
   'BlueDolphin'                            , -- 
+  'Borland'                                , -- 
   'FairyFlossDark (Gogh)'                  , -- 
   'PaleNightHC'                            , -- 
+  'Tokyo Night Storm (Gogh)'               , -- 
   'iceberg-dark'                           , -- 
   -- cmd line
-  'Nord (base16)'                          , -- 
-  'Kokuban (Gogh)'                         , -- 
-  'Erebus (terminal.sexy)'                 , -- 
-  'Rebecca (base16)'                       , -- 
-  'Flat (base16)'                          , -- 
-  'TomorrowNightBright (Gogh)'             , -- 
-  'Desert'                                 , -- 
   'Desert (Gogh)'                          , -- 
-  'Monokai (base16)'                       , -- 
+  'Desert'                                 , -- 
   'Ef-Bio'                                 , -- 
+  'Erebus (terminal.sexy)'                 , -- 
+  'Flat (base16)'                          , -- 
+  'Kokuban (Gogh)'                         , -- 
+  'Monokai (base16)'                       , -- 
+  'Nord (base16)'                          , -- 
+  'Rebecca (base16)'                       , -- 
+  'TomorrowNightBright (Gogh)'             , -- 
   -- etc
-  'Silk Dark (base16)'                     , -- 
   'Default (dark) (terminal.sexy)'         , -- 
+  'Silk Dark (base16)'                     , -- 
   -- 
   -- phase 03
   -- 
