@@ -335,6 +335,9 @@ function v.Fzf.cheat_sheet__opn()
   v.Fzf.by_txt(fzf_src_txt, fnc_name)
 end
 
+-- tab drop neo
+--   dev doing ..
+
 -- 
 -- setting
 -- 
@@ -356,51 +359,14 @@ let g:fzf_colors = {
 ]]
 v.Cmd.cmd(v.Fzf.opt_vim_cmd)
 
--- vim.g.fzf_preview_window = {
---   'down:40%:hidden',
---   'ctrl-/',
--- }
--- vim.g.fzf_action = {}
--- vim.g.fzf_action['ctrl-o'] = 'tab drop'
-
---  'ctrl-o' = 'enter',
---  'ctrl-i' = 'item slct mtl',
---  'ctrl-s' = 'backward-char',
-
--- vim.g.fzf_colors = {}
--- vim.g.fzf_colors['hl' ] = {'fg', 'Statement'}
--- vim.g.fzf_colors['hl+'] = {'fg', 'Statement'}
-
---   'bg+'     = {'bg', 'CursorLine' },
---   'bg+'     = {'bg', 'Normal'     },
-
---   'info'    = {'fg', 'Comment'    },
---   'border'  = {'fg', 'Ignore'     },
---   'prompt'  = {'fg', 'Function'   },
---   'pointer' = {'fg', 'Statement'  },
---   'marker'  = {'fg', 'Conditional'},
-
---   'info'    = {'Comment'},
---   'border'  = {'Comment'},
---   'prompt'  = {'Comment'},
---   'pointer' = {'Comment'},
---   'marker'  = {'Comment'},
-
--- use ??
--- g.fzf_buffers_jump = 1
--- fzf#vim#complete#buffer_line([spec])
-
--- fzf var def ( in plugin ) end
-
--- if v.Env.is__('mac') or v.Env.is__('linux') or v.Env.is__('win64') then
-if v.Env.is__in({'mac', 'linux', 'win64'}) then
-
-  if v.Env.is__('win64') then
-    v.Rg.fzf_rg_opt = v.Rg.fzf_rg_opt .. ' -g "!.git/"' -- same else ?
-  else
-    v.Rg.fzf_rg_opt = v.Rg.fzf_rg_opt .. ' -g "!.git/"'
-  end
-end
+-- if v.Env.is__in({'mac', 'linux', 'win64'}) then
+-- 
+--   if v.Env.is__('win64') then
+--     v.Rg.fzf_rg_opt = v.Rg.fzf_rg_opt .. ' -g "!.git/"' -- same else ?
+--   else
+--     v.Rg.fzf_rg_opt = v.Rg.fzf_rg_opt .. ' -g "!.git/"'
+--   end
+-- end
 
 -- cmd usr
 

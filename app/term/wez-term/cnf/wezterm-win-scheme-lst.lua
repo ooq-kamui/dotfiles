@@ -7,14 +7,15 @@ scheme_lst.win = {}
 scheme_lst.win.recommend = {}
 scheme_lst.win.recommend.h = {
   -- hh                                      -- 
-  'niji'                                   , -- 
-  'Purple Rain'                            , -- 
   'ChallengerDeep'                         , -- 
+  'DjangoSmooth'                           , -- 
   'Dracula (Official)'                     , -- 
   'Ef-Rosa'                                , -- 
+  'GJM (terminal.sexy)'                    , -- 
   'Grey-green'                             , -- 
   'HorizonDark (Gogh)'                     , -- 
   'Hurtado (Gogh)'                         , -- 
+  'IR_Black'                               , -- 
   'MaterialDesignColors'                   , -- 
   'Modus-Vivendi-Deuteranopia'             , -- 
   'Monokai Pro (Gogh)'                     , -- 
@@ -22,35 +23,34 @@ scheme_lst.win.recommend.h = {
   'Panda (Gogh)'                           , -- 
   'Pandora'                                , -- 
   'Pixiefloss (Gogh)'                      , -- 
+  'Purple Rain'                            , -- 
   'Snazzy (base16)'                        , -- 
   'Sonokai (Gogh)'                         , -- 
   'Tinacious Design (Dark)'                , -- 
-  'Wzoreck (Gogh)'                         , -- 
-  'synthwave-everything'                   , -- 
-  'IR_Black'                               , -- 
   'TomorrowNightBlue (Gogh)'               , -- 
+  'Wzoreck (Gogh)'                         , -- 
   'arcoiris'                               , -- 
-  'GJM (terminal.sexy)'                    , -- 
-  'DjangoSmooth'                           , -- 
+  'niji'                                   , -- 
+  'synthwave-everything'                   , -- 
   -- hh ~
-  'Sublette'                               , -- 
-  'Nocturnal Winter'                       , -- 
-  'hardhacker'                             , -- 
-  'Modus-Vivendi-Tritanopia'               , -- 
-  'cyberpunk'                              , -- 
-  'Tomorrow Night Blue (Gogh)'             , -- 
   'MaterialDarker'                         , -- 
+  'Modus-Vivendi-Tritanopia'               , -- 
+  'Nocturnal Winter'                       , -- 
+  'Sublette'                               , -- 
+  'Tomorrow Night Blue (Gogh)'             , -- 
+  'cyberpunk'                              , -- 
+  'hardhacker'                             , -- 
   -- h ( chk ed )
+  'Aco (Gogh)'                             , -- 
+  'Catppuccin Macchiato (Gogh)'            , -- 
+  'Catppuccin Mocha (Gogh)'                , -- 
+  'Decaf (base16)'                         , -- 
+  'Everblush (Gogh)'                       , -- 
   'Fairyfloss'                             , -- 
   'Snazzy (Gogh)'                          , -- 
-  'Everblush (Gogh)'                       , -- 
-  'Catppuccin Macchiato (Gogh)'            , -- 
-  'Decaf (base16)'                         , -- 
-  'neon-night (Gogh)'                      , -- 
   'Snazzy'                                 , -- 
-  'Catppuccin Mocha (Gogh)'                , -- 
   'idleToes'                               , -- 
-  'Aco (Gogh)'                             , -- 
+  'neon-night (Gogh)'                      , -- 
   -- h ( chk no )
   'Abernathy'                              , -- 
   'Aci (Gogh)'                             , -- 
@@ -63,7 +63,6 @@ scheme_lst.win.recommend.h = {
   'Belge (terminal.sexy)'                  , -- 
   'Builtin Tango Dark'                     , -- 
   'Cai (Gogh)'                             , -- 
-  'Catppuccin Macchiato'                   , -- 
   'Catppuccin Mocha'                       , -- 
   'Chalk (Gogh)'                           , -- 
   'Chalk (base16)'                         , -- 
@@ -116,7 +115,6 @@ scheme_lst.win.recommend.h = {
   'Obsidian'                               , -- 
   'OceanicMaterial'                        , -- 
   'One Half Black (Gogh)'                  , -- 
-  'OneHalfBlack (Gogh)'                    , -- 
   'Operator Mono Dark'                     , -- 
   'Oxocarbon Dark (Gogh)'                  , -- 
   'Papercolor Dark (Gogh)'                 , -- 
@@ -172,7 +170,6 @@ scheme_lst.win.recommend.h = {
   'tokyonight_moon'                        , -- 
   'tokyonight_night'                       , -- 
   'Modus-Vivendi-Tinted'                   , -- 
-  'Tokyo Night Moon'                       , -- 
   'Monokai (base16)'                       , -- 
 }
 scheme_lst.win.recommend.m = {}
@@ -183,6 +180,8 @@ scheme_lst.win.excld = {
   -- 
   -- dir blue
   'TomorrowNightEighties (Gogh)'           , -- 
+  'Catppuccin Macchiato'                   , -- 
+  'Tokyo Night Moon'                       , -- 
   -- git
   'Adventure'                              , -- 
   'Dracula (Gogh)'                         , -- 
@@ -219,6 +218,7 @@ scheme_lst.win.excld = {
   'Nord (base16)'                          , -- 
   'Rebecca (base16)'                       , -- 
   'TomorrowNightBright (Gogh)'             , -- 
+  'OneHalfBlack (Gogh)'                    , -- 
   -- etc
   'Default (dark) (terminal.sexy)'         , -- 
   'Silk Dark (base16)'                     , -- 

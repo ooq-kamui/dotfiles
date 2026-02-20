@@ -730,10 +730,6 @@ keymap__('n', 'ro', ':lua v.Cursor.line_indnt__shft_r()<cr>')
 -- indnt crct
 keymap__('n', 're', ':lua v.Cursor.line_indnt__crct()<cr>')
 
--- cursor f str __ crct ( algn )
--- keymap__('n', 'xx', ':lua v.Cursor.f_str__space_crct_with_word("u")<cr>')
--- keymap__('n', 'xx', ':lua v.Cursor.f_str__space_crct_with_word("d")<cr>')
-
 -- cursor f str __ crct ( algn ) fzy
 keymap__('n', 'q', ':lua v.Cursor.f_str__space_crct_with_fzy("u")<cr>')
 keymap__('n', 'Q', ':lua v.Cursor.f_str__space_crct_with_fzy("d")<cr>')
@@ -797,6 +793,7 @@ keymap__('n', '<c-p>', ':lua v.Srch.__slct("f")<cr>')
 
 -- srch keymap__()
 keymap__('n', 'S'    , [[/keymap__('n', ']])
+keymap__('n', 'X'    , [[/keymap__('x', ']])
 
 -- rpl ( cmd )
 keymap__('n', ':s', ':%s/<c-r>//xxx/g')
@@ -1245,7 +1242,6 @@ keymap__('x', '<tab>', ':lua v.Slctd.str__expnd_char_pair()<cr>') -- tab : del n
 
 -- slct all
 keymap__('x', 'a' , ':lua v.Slctd.str__all()<cr>')
--- keymap__('x', 'gg', ':lua v.Slctd.str__all()<cr>')
 
 -- ynk slctd
 keymap__('x', 'o', ':lua v.Rgstr.ynk__slctd()<cr>')
@@ -1370,9 +1366,7 @@ end, {expr = bl.t})
 keymap__('x', 'W', v.Slctd.str_edge_out_char__type_ch)
 
 -- slctd str edge out __ ins space
-keymap__('x', 'I' , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
-keymap__('x', 'E' , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
--- keymap__('x', 'H' , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
+keymap__('x', 'ru' , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
 
 -- slctd str edge out __ ins markdown strikethrough
 keymap__('x', '~', ':lua v.Slctd.str_edge_out__ins_markdown_strikethrough()<cr>')
@@ -1533,16 +1527,16 @@ keymap__('x', ':ma', ':lua v.Sys.math_by_slctd_line()<cr>')
 -- sys cmd opn
 
 -- sys cmd opn app
-keymap__('x', 'go', ':lua v.Sys.opn_app_by_slctd_line()<cr>')
+-- keymap__('x', 'xx', ':lua v.Sys.opn_app_by_slctd_line()<cr>')
 
 -- sys cmd opn ggl srch
-keymap__('x', 'ggl', ':lua v.Sys.opn_ggl_srch_by_slctd_str()<cr>')
+-- keymap__('x', 'xx', ':lua v.Sys.opn_ggl_srch_by_slctd_str()<cr>')
 
 -- sys cmd opn youtube video_id
-keymap__('x', 'gy', ':lua v.Sys.opn_yt_by_slctd_str()<cr>')
+-- keymap__('x', 'xx', ':lua v.Sys.opn_yt_by_slctd_str()<cr>')
 
 -- trns
-keymap__('x', 'r', ':lua v.Sys.trns_by_slctd_str()<cr>')
+keymap__('x', 'r' , ':lua v.Slctd.str_trns()<cr>')
 
 -- cmd
 

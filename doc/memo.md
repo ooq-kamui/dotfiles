@@ -4,24 +4,37 @@
 
 ## nvim
 
-n q, Q, case:mb
-- case: cursor on word-top
+x h, <c-h>, case: xx__xx
+- v.Slctd.str__reduce_dlm_r()
+  - cre re
+  - v.Slctd.str__reduce_dlm(char, lr)
 
-- tst
-  - あいうえお  aa  bb  cc
-  -  a  b   c    e     f   g
-
-
-
-v.Str.char_byte_idx_lst(str, char)
-- logic confirm
 
 
 v.Slctd.str_edge_r_out_char()
 - with: cursor __ mv, not
 
 
-n E, err
+v.Cursor.__mv_by_ptn(ptn_vim, drct, end_flg)
+- end_flg cre
+- refactoring ?
+
+
+function v.Cursor.__ins_markdown_heading()
+- refactoring
+
+
+function v.Cursor.line_end__ins(str)
+- refactoring: call v.line.end__ins()
+
+
+v.Slctd.is_str_edge_r_out_char__space()
+- ptn refactoring
+
+
+Str.srch_byte_idx_by_ptn_lua
+- rpl Str.srch_byte_idx_by_ptn_vim
+- ptn confirm
 
 
 cheat-sheet fzf opn
@@ -30,10 +43,10 @@ cheat-sheet fzf opn
   - off: <leader><c-s>
 
 
-x h, <c-h>, case: xx__xx
+n E, err
 
 
-dev-anchor, clean
+dev-anchor, tidy
 
 
 ## keyboard

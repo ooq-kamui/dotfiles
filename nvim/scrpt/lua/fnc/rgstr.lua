@@ -151,9 +151,8 @@ function v.Rgstr.clp__ynk()
 
   if not v.Env.is__('linux') then
 
-    v.Cmd.cmd('let @+ = @a')
-    -- dev anchor ?
-    -- v.Rgstr.__('+', v.Rgstr.ynk())
+    v.Rgstr.__('+', v.Rgstr.ynk())
+    -- v.Cmd.cmd('let @+ = @a')
   end
 end
 

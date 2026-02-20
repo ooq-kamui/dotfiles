@@ -285,9 +285,7 @@ end
 
 function v.Str.srch_byte_idx(str, ptn_xxx, srch_s_byte_idx) -- use not
 
-  -- dev anchor
-  -- return v.Str.srch_byte_idx_by_ptn_vim(str, ptn_xxx, srch_s_byte_idx)
-  -- return v.Str.srch_byte_idx_by_ptn_lua(str, ptn_xxx, srch_s_byte_idx)
+  return v.Str.srch_byte_idx_by_ptn_vim(str, ptn_xxx, srch_s_byte_idx)
 end
 
 function v.Str.srch_byte_idx_by_ptn_lua(str, ptn_lua, srch_s_byte_idx) -- byte_idx start 1
@@ -297,6 +295,26 @@ function v.Str.srch_byte_idx_by_ptn_lua(str, ptn_lua, srch_s_byte_idx) -- byte_i
 end
 
 function v.Str.srch_byte_idx_by_ptn_vim(str, ptn_vim, s_byte_idx, end_flg) -- byte_idx start 0
+
+  local byte_idx
+  byte_idx = v.Str.srch_byte_idx_by_ptn_vim_idx_s1(str, ptn_vim, s_byte_idx, end_flg)
+  -- byte_idx = v.Str.srch_byte_idx_by_ptn_vim_idx_s0(str, ptn_vim, s_byte_idx, end_flg)
+  return byte_idx
+end
+
+function v.Str.srch_byte_idx_by_ptn_vim_idx_s1(str, ptn_vim, s_byte_idx, end_flg)
+
+  s_byte_idx = s_byte_idx - 1
+
+  local byte_idx = v.Str.srch_byte_idx_by_ptn_vim_idx_s0(str, ptn_vim, s_byte_idx, end_flg)
+
+  if byte_idx then return end
+
+  byte_idx = byte_idx + 1
+  return byte_idx
+end
+
+function v.Str.srch_byte_idx_by_ptn_vim_idx_s0(str, ptn_vim, s_byte_idx, end_flg) -- byte_idx start 0
 
   local r_byte_idx
 
@@ -311,20 +329,11 @@ function v.Str.srch_byte_idx_by_ptn_vim(str, ptn_vim, s_byte_idx, end_flg) -- by
   return r_byte_idx
 end
 
-function v.Str.srch_byte_idx_by_ptn_vim_end(str, ptn_vim) -- alias
-
-  local byte_idx = vf.matchend(str, ptn_vim)
-
-  if byte_idx == -1 then return end
-
-  return byte_idx
-end
-
 function v.Str.srch_ruler_idx_by_ptn_vim(str, ptn_vim, srch_s_ruler_idx) -- use not
 
   local srch_s_byte_idx = v.Str.byte_idx_by_ruler_idx(str, srch_s_ruler_idx)
 
-  local byte_idx = v.Str.srch_byte_idx_by_ptn_vim(str, ptn_vim, srch_s_byte_idx)
+  local byte_idx = v.Str.srch_byte_idx_by_ptn_vim_idx_s0(str, ptn_vim, srch_s_byte_idx)
 
   if not byte_idx then return end
 
@@ -390,14 +399,14 @@ function v.Str.char_byte_idx_lst(str, char)
     local char_byte_idx_lst = {}
     local byte_idx = 1
     while true do
-        local s_byte_idx, e_byte_idx = string.find(str, char, byte_idx, true)
+      local s_byte_idx, e_byte_idx = string.find(str, char, byte_idx, true)
 
-        if s_byte_idx then
-            v.Tbl.add(char_byte_idx_lst, s_byte_idx)
-            byte_idx = e_byte_idx + 1
-        else
-            break
-        end
+      if s_byte_idx then
+        v.Tbl.add(char_byte_idx_lst, s_byte_idx)
+        byte_idx = e_byte_idx + 1
+      else
+        break
+      end
     end
     return char_byte_idx_lst
 end

@@ -506,7 +506,7 @@ function v.Cursor.__mv_v_jmp(drct_cmd_nml)
   end
 end
 
-function v.Cursor.__mv_by_ptn(ptn_vim, drct) -- range, on 1 line
+function v.Cursor.__mv_by_ptn(ptn_vim, drct, end_flg) -- range, on 1 line
 
   local opt_drct = ''
 
@@ -540,7 +540,6 @@ function v.Cursor.__mv_by_srch_str(drct, end_flg)
   end
 
   local ptn_vim = v.Srch.str()
-
   v.Srch.srch(ptn_vim, opt)
 end
 
@@ -743,8 +742,9 @@ function v.Cursor.__ins_cmnt_1(cmd_cursor__mv_line_top)
 
   local str = v.Str.cmnt.line_1()
   v.Cmd.nml('i' .. str)
-  
-  v.Cmd.nml('^') -- or '0'
+
+  -- v.Cmd.nml('^')
+  v.Cursor.__mv_line_top1()
 end
 
 function v.Cursor.__ins_rgstr_by_rgstr_info(rgstr_info)
@@ -792,7 +792,9 @@ function v.Cursor.__ins_markdown_heading()
   local ptn_vim  = v.Srch.ptn.vim.markdown_heading
   local line_str = v.Cursor.line_str()
 
-  local byte_idx = v.Str.srch_byte_idx_by_ptn_vim_end(line_str, ptn_vim) + 1
+  -- refactoring : v.Cursor.__mv_by_ptn()
+  local end_flg = bl.t
+  local byte_idx = v.Str.srch_byte_idx_by_ptn_vim_idx_s0(line_str, ptn_vim, nil, end_flg) + 1
 
   if not byte_idx then return end
 
@@ -1330,7 +1332,7 @@ function v.Cursor.line_end_dots__del()
 
   local line_str = v.Cursor.line_str()
 
-  local byte_idx = v.Str.srch_byte_idx_by_ptn_vim(line_str, [[\s\+]] .. v.Str.dots.ptn_vim)
+  local byte_idx = v.Str.srch_byte_idx_by_ptn_vim_idx_s1(line_str, [[\s\+]] .. v.Str.dots.ptn_vim)
   line_str = v.Str.sub_by_byte_idx(line_str, 1, byte_idx)
   v.Cursor.line__(line_str)
 end
@@ -1429,8 +1431,7 @@ function v.Cursor.f_str__space_crct_with_fzy(ref_drct)
 
   if word_ruler_idx then return end
 
-  -- dev anchor, logic confirm
-  local char_byte_idx = v.Cursor.f_str__space_crct_with_char(ref_drct)
+  local char_byte_idx = v.Cursor.f_str__space_crct_with_char(ref_drct) -- run case exist ?
 end
 
 function v.Cursor.f_str__space_crct_with_word(ref_drct)
@@ -1438,7 +1439,7 @@ function v.Cursor.f_str__space_crct_with_word(ref_drct)
   local cursor_f_char_ruler_idx = v.Cursor.f_char_ruler_idx()
   local line_num                = v.Cursor.line_num(ref_drct)
 
-  local word_ruler_idx = v.Line.word_ruler_idx(line_num, cursor_f_char_ruler_idx)
+  local word_ruler_idx = v.Line.word_ruler_idx(line_num, cursor_f_char_ruler_idx + 1)
 
   if not word_ruler_idx then return word_ruler_idx end
 

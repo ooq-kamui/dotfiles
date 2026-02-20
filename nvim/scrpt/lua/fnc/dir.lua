@@ -57,7 +57,6 @@ function v.Dir.__parent(lvl)
   while cnt <= lvl do
 
     v.Cmd.cmd('cd ..')
-
     cnt = cnt + 1
   end
 

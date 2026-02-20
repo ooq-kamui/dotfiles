@@ -409,6 +409,7 @@ end
 
 -- slctd str __ reduce
 
+-- dev anchor : refactoring : cre re
 function v.Slctd.str__reduce_dlm_r(char) -- range
 
   v.Slctd.__ltst()
@@ -417,20 +418,31 @@ function v.Slctd.str__reduce_dlm_r(char) -- range
   v.Cmd.nml(cmd_nml)
 end
 
+-- dev anchor : refactoring : cre re
 function v.Slctd.str__reduce_dlm_l(char) -- range
 
   v.Slctd.__ltst()
 
-  local slctd_str = v.Slctd.str()
-  local srch_byte_idx = v.Str.srch_byte_idx_by_ptn_lua(slctd_str, char)
+  local is__ptn = v.Slctd.is_str__ptn(char)
+  -- local slctd_str = v.Slctd.str()
+  -- local is__ptn = v.Str.is__ptn(slctd_str, char)
 
-  if not srch_byte_idx then
+  if not is__ptn then
     v.Slctd.__clr()
     return
   end
 
   local cmd_nml = 'F' .. char .. 'h'
   v.Cmd.nml(cmd_nml)
+end
+
+-- dev anchor
+function v.Slctd.str__reduce_dlm(char, lr)
+
+  v.Slctd.__ltst()
+
+
+
 end
 
 -- slctd str __ ( edit )
@@ -912,17 +924,10 @@ function v.Slctd.is_str__line_mlt()
   end
 end
 
-function  v.Slctd.is_str_edge_r_out_char__space()
+function v.Slctd.is_str__ptn(ptn_vim)
 
-  local ret = bl.f
-
-  local slctd_r_out_char = v.Slctd.str_edge_r_out_char()
-
-  if v.Str.is__ptn(slctd_r_out_char, '\\s') then
-
-    ret = bl.t
-  end
-
+  local slctd_str = v.Slctd.str()
+  local ret = v.Str.is__ptn(slctd_str, ptn_vim)
   return ret
 end
 
@@ -980,6 +985,19 @@ function v.Slctd.is_str_edge_out_char__pair(char_l, char_r)
   else
     return bl.f
   end
+end
+
+function v.Slctd.is_str_edge_r_out_char__space()
+
+  local ret = bl.f
+
+  local slctd_r_out_char = v.Slctd.str_edge_r_out_char()
+
+  if v.Str.is__ptn(slctd_r_out_char, '\\s') then
+    ret = bl.t
+  end
+
+  return ret
 end
 
 function v.Slctd.is_str_edge_l_byte_idx__line_top() -- range
@@ -1242,30 +1260,26 @@ end
 
 function v.Slctd.line__ins_cmnt_1() -- range
 
-  -- dev anchor
-  -- v.Slctd.__ltst() -- ??
+  -- v.Slctd.__ltst() -- why ??
 
   local slctd_line_s_num = v.Slctd.line_s_num()
-  -- v.Log.val(slctd_line_s_num)
 
   v.Cursor.__mv_by_line_num(slctd_line_s_num)
-  v.Cmd.nml('^')
+
+  v.Cursor.__mv_line_top1() -- v.Cmd.nml('^')
 
   local byte_idx = v.Cursor.byte_idx()
 
   for idx, line_num in pairs(v.Slctd.line_num_seq()) do
-    -- v.Log.val(line_num)
+    -- v.Log.val(idx)
 
     v.Line.end__pad_space(line_num, byte_idx - 1)
-
     v.Cursor.__mv_by_line_byte_idx(line_num, byte_idx)
-
     v.Cursor.__ins_cmnt_1(nil)
   end
 end
 
--- dev anchor
-function v.Slctd.box_f_str__space_crct_with_fzy()
+function v.Slctd.box_f_str__space_crct_with_fzy() -- use not, dev doing
 
   local byte_idx = v.Cursor.byte_idx()
 
@@ -1483,5 +1497,12 @@ function v.Slctd.__srch_swtch() -- srch, set or run
   else
     v.Srch.str__slctd_str()
   end
+end
+
+-- trns
+
+function v.Slctd.str_trns()
+
+  v.Sys.trns_by_slctd_str()
 end
 
