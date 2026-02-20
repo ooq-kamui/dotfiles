@@ -304,11 +304,13 @@ end
 
 function v.Str.srch_byte_idx_by_ptn_vim_idx_s1(str, ptn_vim, s_byte_idx, end_flg)
 
+  s_byte_idx = s_byte_idx or 1
+
   s_byte_idx = s_byte_idx - 1
 
   local byte_idx = v.Str.srch_byte_idx_by_ptn_vim_idx_s0(str, ptn_vim, s_byte_idx, end_flg)
 
-  if byte_idx then return end
+  if not byte_idx then return end
 
   byte_idx = byte_idx + 1
   return byte_idx
