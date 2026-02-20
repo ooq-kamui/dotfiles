@@ -409,40 +409,44 @@ end
 
 -- slctd str __ reduce
 
--- dev anchor : refactoring : cre re
-function v.Slctd.str__reduce_dlm_r(char) -- range
+function v.Slctd.str__reduce_dlm_l(char)
 
-  v.Slctd.__ltst()
-
-  local cmd_nml = 'of' .. char .. 'lo'
-  v.Cmd.nml(cmd_nml)
+  v.Slctd.str__reduce_dlm(char, 'l')
 end
 
--- dev anchor : refactoring : cre re
-function v.Slctd.str__reduce_dlm_l(char) -- range
+function v.Slctd.str__reduce_dlm_r(char)
 
-  v.Slctd.__ltst()
-
-  local is__ptn = v.Slctd.is_str__ptn(char)
-  -- local slctd_str = v.Slctd.str()
-  -- local is__ptn = v.Str.is__ptn(slctd_str, char)
-
-  if not is__ptn then
-    v.Slctd.__clr()
-    return
-  end
-
-  local cmd_nml = 'F' .. char .. 'h'
-  v.Cmd.nml(cmd_nml)
+  v.Slctd.str__reduce_dlm(char, 'r')
 end
 
--- dev anchor
+-- dev anchor : refactoring
 function v.Slctd.str__reduce_dlm(char, lr)
 
   v.Slctd.__ltst()
 
+  local is__ptn = v.Slctd.is_str__ptn(char)
+  if not is__ptn then return end
 
+  v.Slctd.cursor__mv_edge(lr)
+  v.Slctd.cursor__mv_edge_tgl()
 
+  local cmd_nml
+
+  if     lr == 'l' then
+
+    cmd_nml = 'F' .. char
+    v.Cmd.nml(cmd_nml)
+
+    v.Cursor.__mv_char_b()
+
+  elseif lr == 'r' then
+
+    cmd_nml = 'f' .. char
+    v.Cmd.nml(cmd_nml)
+
+    v.Cursor.__mv_char_f()
+    v.Slctd.cursor__mv_edge_tgl()
+  end
 end
 
 -- slctd str __ ( edit )

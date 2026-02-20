@@ -4,15 +4,17 @@
 
 ## nvim
 
+is __ lr, fb
+- cre
+
+
 x h, <c-h>, case: xx__xx
-- v.Slctd.str__reduce_dlm_r()
-  - cre re
-  - v.Slctd.str__reduce_dlm(char, lr)
 
+- v.Slctd.str__reduce_dlm(char, lr)
+  - logic fix : word byte_idx ?
 
-
-v.Slctd.str_edge_r_out_char()
-- with: cursor __ mv, not
+  - refactoring
+    - cursor __ mv ptn char () ?
 
 
 v.Cursor.__mv_by_ptn(ptn_vim, drct, end_flg)
@@ -41,6 +43,10 @@ cheat-sheet fzf opn
 - <leader><c-s>
 - rpl <leader>s
   - off: <leader><c-s>
+
+
+v.Slctd.str_edge_r_out_char()
+- with: cursor __ mv, not
 
 
 n E, err

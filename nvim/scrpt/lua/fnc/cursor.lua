@@ -227,13 +227,11 @@ end
 function v.Cursor.__mv_char_f()
 
   v.Cursor.__mv_char('f')
-  -- v.Cmd.nml('l')
 end
 
 function v.Cursor.__mv_char_b()
 
   v.Cursor.__mv_char('b')
-  -- v.Cmd.nml('h')
 end
 
 function v.Cursor.__mv_word_f()
