@@ -415,7 +415,7 @@ end
 
 function v.Cursor.__mv_v_jmp_to_char(drct_cmd_nml, is_space_stop)
 
-  if not v.Tbl.is_in(drct_cmd_nml, {'k', 'j'}) then
+  if not v.Tbl.is__in(drct_cmd_nml, {'k', 'j'}) then
     return
   end
 
@@ -450,7 +450,7 @@ end
 
 function v.Cursor.__mv_v_jmp_to_space(drct_cmd_nml)
 
-  if not v.Tbl.is_in(drct_cmd_nml, {'k', 'j'}) then
+  if not v.Tbl.is__in(drct_cmd_nml, {'k', 'j'}) then
     return
   end
 
@@ -483,7 +483,7 @@ end
 function v.Cursor.__mv_v_jmp(drct_cmd_nml)
   -- v.Log.val('__mv_v_jmp')
 
-  if not v.Tbl.is_in(drct_cmd_nml, {'k', 'j'}) then
+  if not v.Tbl.is__in(drct_cmd_nml, {'k', 'j'}) then
     return
   end
 
@@ -508,14 +508,17 @@ function v.Cursor.__mv_by_ptn(ptn_vim, drct, end_flg) -- range, on 1 line
 
   local opt_drct = ''
 
-  if     drct == 'b' then
-    opt_drct = 'b'
-
-  elseif drct == 'f' then
+  if     drct == 'f' then
     opt_drct = ''
+  elseif drct == 'b' then
+    opt_drct = 'b'
   end
 
   local opt = 'W' .. opt_drct
+
+  if end_flg then
+    opt = opt .. 'e'
+  end
 
   local line_num = v.Cursor.line_num()
 
@@ -776,27 +779,20 @@ end
 
 function v.Cursor.__ins_markdown_heading()
 
-  v.Cursor.__mv_line_top0()
-  local top0_char = v.Cursor.c_char()
+  local md_head_str = '#'
 
-  local str = '#'
+  local top0_char = v.Cursor.line_top0_char()
 
-  if top0_char ~= str then
-    str = str .. ' '
+  if top0_char ~= md_head_str then
+    md_head_str = md_head_str .. ' '
   end
 
-  v.Cursor.__ins(str)
+  v.Cursor.line_top0__ins(md_head_str)
 
+  -- refactoring : mv __ markdown_heading_str end
   local ptn_vim  = v.Srch.ptn.vim.markdown_heading
-  local line_str = v.Cursor.line_str()
-
-  -- refactoring : v.Cursor.__mv_by_ptn()
   local end_flg = bl.t
-  local byte_idx = v.Str.srch_byte_idx_by_ptn_vim_idx_s0(line_str, ptn_vim, nil, end_flg) + 1
-
-  if not byte_idx then return end
-
-  v.Cursor.__mv_by_byte_idx(byte_idx)
+  v.Cursor.__mv_by_ptn(ptn_vim, 'f', end_flg)
 end
 
 function v.Cursor.__ins_markdown_cr()
@@ -1245,10 +1241,16 @@ end
 
 function v.Cursor.line_str_len_byte()
 
-  -- local len_byte = v.Cursor.line_end_byte_idx() - 1
   local line_str = v.Cursor.line_str()
   local len_byte = v.Str.len_byte(line_str)
   return len_byte
+end
+
+function v.Cursor.line_str_len_char()
+
+  local line_str = v.Cursor.line_str()
+  local len_char_idx = v.Str.len_char(line_str)
+  return len_char
 end
 
 function v.Cursor.line_str_len_ruler()
@@ -1286,6 +1288,19 @@ function v.Cursor.line_str_side_r_with_c()
 end
 
 -- cursor line str __
+
+function v.Cursor.line_char_by_char_idx(char_idx)
+
+  local line_str = v.Cursor.line_str()
+  local char     = v.Str.char_by_char_idx(line_str, char_idx)
+  return char
+end
+
+function v.Cursor.line_top0_char()
+
+  local char = v.Cursor.line_char_by_char_idx(1)
+  return char
+end
 
 function v.Cursor.line_top0__ins(str)
 
@@ -1337,8 +1352,8 @@ end
 
 function v.Cursor.line_end__ins(str)
 
-  local cmd_nml = 'A' .. str
-  v.Cmd.nml(cmd_nml)
+  local line_num = v.Cursor.line_num()
+  v.Line.end__ins(line_num, str)
 end
 
 -- cursor f

@@ -4,8 +4,13 @@
 
 ## nvim
 
-is __ lr, fb
-- cre
+v.Ptn cre
+- rpl
+
+
+v.Cursor.__ins_markdown_heading()
+- add aftr, cursor mv err
+
 
 
 x h, <c-h>, case: xx__xx
@@ -17,27 +22,6 @@ x h, <c-h>, case: xx__xx
     - cursor __ mv ptn char () ?
 
 
-v.Cursor.__mv_by_ptn(ptn_vim, drct, end_flg)
-- end_flg cre
-- refactoring ?
-
-
-function v.Cursor.__ins_markdown_heading()
-- refactoring
-
-
-function v.Cursor.line_end__ins(str)
-- refactoring: call v.line.end__ins()
-
-
-v.Slctd.is_str_edge_r_out_char__space()
-- ptn refactoring
-
-
-Str.srch_byte_idx_by_ptn_lua
-- rpl Str.srch_byte_idx_by_ptn_vim
-- ptn confirm
-
 
 cheat-sheet fzf opn
 - <leader><c-s>
@@ -45,8 +29,9 @@ cheat-sheet fzf opn
   - off: <leader><c-s>
 
 
-v.Slctd.str_edge_r_out_char()
-- with: cursor __ mv, not
+Str.srch_byte_idx_by_ptn_lua
+- rpl Str.srch_byte_idx_by_ptn_vim
+- ptn confirm
 
 
 n E, err

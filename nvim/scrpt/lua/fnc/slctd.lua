@@ -161,15 +161,17 @@ end
 function v.Slctd.cursor__mv_edge_tgl() -- range
 
   v.Slctd.__ltst()
-  v.Cmd.nml('o')
+
+  local cmd_nml = 'o'
+  v.Cmd.nml(cmd_nml)
 end
 
 function v.Slctd.cursor__mv_edge(drct) -- range
 
-  if     v.Tbl.is_in(drct, {'f', 'r'}) then
+  if     v.Char.is__r(drct) then
     v.Slctd.cursor__mv_edge_r()
 
-  elseif v.Tbl.is_in(drct, {'b', 'l'}) then
+  elseif v.Char.is__l(drct) then
     v.Slctd.cursor__mv_edge_l()
   end
 end
@@ -572,7 +574,7 @@ function v.Slctd.str_edge_pos()
   v.Slctd.__ltst()
 
   local s_pos = vf.getpos('v')
-  local e_pos = vf.getpos('.')
+  local e_pos = vf.getpos('.') -- mb: ng
 
   local pos = {}
 
@@ -606,71 +608,126 @@ function v.Slctd.str_edge_pos()
   return pos
 end
 
-function v.Slctd.str_edge_x_byte_idx(lr)
+function v.Slctd.str_edge_x_line_byte_idx(lr)
 
   local edge_pos = v.Slctd.str_edge_pos()
   local byte_idx = edge_pos[lr].byte_idx
   return byte_idx
 end
 
-function v.Slctd.str_edge_l_byte_idx() -- use not
+function v.Slctd.str_edge_l_line_byte_idx()
 
-  local byte_idx = v.Slctd.str_edge_x_byte_idx('l')
+  local byte_idx = v.Slctd.str_edge_x_line_byte_idx('l')
   return byte_idx
 end
 
-function v.Slctd.str_edge_r_byte_idx() -- use not
+function v.Slctd.str_edge_r_line_byte_idx()
 
-  local byte_idx = v.Slctd.str_edge_x_byte_idx('r')
+  local byte_idx = v.Slctd.str_edge_x_line_byte_idx('r')
   return byte_idx
 end
 
--- dev anchor
+function v.Slctd.str_edge_l_line_char_idx()
+
+  v.Slctd.__ltst()
+
+  local byte_idx = v.Slctd.str_edge_l_line_byte_idx()
+  local line_str = v.Cursor.line_str()
+  local char_idx = v.Str.char_idx_by_byte_idx(line_str, byte_idx)
+  return char_idx
+end
+
+function v.Slctd.str_edge_r_line_char_idx()
+
+  v.Slctd.__ltst()
+
+  local byte_idx = v.Slctd.str_edge_r_line_byte_idx()
+  local line_str = v.Cursor.line_str()
+  local char_idx = v.Str.char_idx_by_byte_idx(line_str, byte_idx)
+  return char_idx
+end
+
 function v.Slctd.str_edge_l_char()
 
-  v.Slctd.cursor__mv_edge_l()
+  v.Slctd.__ltst()
 
-  local c_char = v.Cursor.c_char()
-  return c_char
+  local char_idx = v.Slcrd.str_edge_l_line_char_idx()
+  local line_str = v.Cursor.line_str()
+  local char = v.Str.char_by_char_idx(line_str, char_idx)
+  return char
 end
 
 function v.Slctd.str_edge_r_char()
 
-  v.Slctd.cursor__mv_edge_r()
+  v.Slctd.__ltst()
 
-  local c_char = v.Cursor.c_char()
-  return c_char
+  local char_idx = v.Slcrd.str_edge_r_line_char_idx()
+  local line_str = v.Cursor.line_str()
+  local char = v.Str.char_by_char_idx(line_str, char_idx)
+  return char
 end
 
 function v.Slctd.str_edge_l_out_char()
 
-  v.Slctd.cursor__mv_edge_l()
+  v.Slctd.__ltst()
 
-  local l_char = v.Cursor.l_char()
-  return l_char
+  local char_idx = v.Slcrd.str_edge_l_line_char_idx()
+
+  if char_idx == 1 then return '' end 
+
+  char_idx = char_idx - 1
+
+  local line_str = v.Cursor.line_str()
+  local char = v.Str.char_by_char_idx(line_str, char_idx)
+  return char
 end
 
 function v.Slctd.str_edge_r_out_char()
 
-  v.Slctd.cursor__mv_edge_r()
+  v.Slctd.__ltst()
 
-  local r_char = v.Cursor.r_char()
-  return r_char
+  local char_idx = v.Slcrd.str_edge_l_line_char_idx()
+
+  local line_str_len_char = v.Cursor.line_str_len_char()
+
+  if char_idx == line_str_len_char then return '' end 
+
+  char_idx = char_idx + 1
+
+  local line_str = v.Cursor.line_str()
+  local char = v.Str.char_by_char_idx(line_str, char_idx)
+  return char
 end
 
 function v.Slctd.str_edge_l_out_str()
 
-  v.Slctd.cursor__mv_edge_l()
+  v.Slctd.__ltst()
 
-  local str = v.Cursor.line_str_side_l()
+  local char_idx = v.Slcrd.str_edge_l_line_char_idx()
+
+  if char_idx == 1 then return '' end 
+
+  char_idx = char_idx - 1
+
+  local line_str = v.Cursor.line_str()
+  local str = v.Str.sub_by_char_idx(line_str, 1, char_idx)
   return str
 end
 
 function v.Slctd.str_edge_r_out_str()
 
-  v.Slctd.cursor__mv_edge_r()
+  v.Slctd.__ltst()
 
-  local str = v.Cursor.line_str_side_r()
+  local char_idx = v.Slcrd.str_edge_l_line_char_idx()
+
+  local line_str_len_char = v.Cursor.line_str_len_char()
+
+  if char_idx == line_str_len_char then return '' end 
+
+  char_idx = char_idx + 1
+
+  local line_str = v.Cursor.line_str()
+  local str = v.Str.sub_by_char_idx(line_str, char_idx, line_str_len_char)
   return str
 end
 
@@ -995,9 +1052,10 @@ function v.Slctd.is_str_edge_r_out_char__space()
 
   local ret = bl.f
 
+  local ptn_vim = v.Str.ptn.vim.space_char
   local slctd_r_out_char = v.Slctd.str_edge_r_out_char()
 
-  if v.Str.is__ptn(slctd_r_out_char, '\\s') then
+  if v.Str.is__ptn(slctd_r_out_char, ptn_vim) then
     ret = bl.t
   end
 

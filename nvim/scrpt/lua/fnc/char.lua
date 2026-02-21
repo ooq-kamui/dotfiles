@@ -1,6 +1,20 @@
 
 v.Char = {}
 
+-- cnst
+
+v.Char.cnst = {}
+v.Char.cnst.l_lst = {'l', 'b'}
+v.Char.cnst.r_lst = {'r', 'f'}
+v.Char.cnst.b_lst = v.Char.cnst.l_lst
+v.Char.cnst.f_lst = v.Char.cnst.r_lst
+
+-- ptn
+
+v.Char.ptn = {}
+v.Char.ptn.l = 'lb'
+v.Char.ptn.r = 'rf'
+
 function v.Char.lr_2_normal_cmd(lr)
 
   local cmd_nml
@@ -16,6 +30,30 @@ function v.Char.lr_2_normal_cmd(lr)
 end
 
 -- char cnd
+
+function v.Char.is__l(lr)
+
+  local ret = bl.f
+
+  if v.Tbl.is__in(lr, v.Char.cnst.l_lst) then
+    ret = bl.t
+  end
+
+  return ret
+end
+v.Char.is__b = v.Char.is__l
+
+function v.Char.is__r(lr)
+
+  local ret = bl.f
+
+  if v.Tbl.is__in(lr, v.Char.cnst.r_lst) then
+    ret = bl.t
+  end
+
+  return ret
+end
+v.Char.is__f = v.Char.is__r
 
 function v.Char.is__num(char)
 

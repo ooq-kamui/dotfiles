@@ -18,7 +18,7 @@ function v.Tst.tst()
   local char_idx = v.Str.char_idx_by_byte_idx(str, byte_idx)
   v.Log.val(char_idx)
 
-  local byte_idx = v.Slctd.str_edge_r_byte_idx()
+  local byte_idx = v.Slctd.str_edge_r_line_byte_idx()
   -- v.Cursor.str_week__icl()
 end
 

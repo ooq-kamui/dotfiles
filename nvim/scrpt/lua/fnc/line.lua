@@ -13,12 +13,22 @@ function v.Line.num_file_edge_end() -- alias
   return vf.line('$')
 end
 
+function v.Line.str(line_num) -- alias
+
+  return v.Line.str_by_line_num(line_num)
+end
+
 function v.Line.str_by_line_num(line_num) -- alias
 
   return vf.getline(line_num)
 end
 
 -- line set
+
+function v.Line.__(line_num, line_str) -- alias
+
+  v.Line.__by_line_num(line_num, line_str)
+end
 
 function v.Line.__by_line_num(line_num, line_str)
 
@@ -31,6 +41,13 @@ end
 g.line_top_space_ptn = '^[ \\t]*'
 -- g.line_end_space_ptn = '[ \\t]\\+$'
 g.line_end_space_ptn = '[ \\t]*$'
+
+function v.Line.end__ins(line_num, str)
+
+  local line_str = v.Line.str_by_line_num(line_num)
+  line_str = line_str .. str
+  v.Line.__by_line_num(line_num, line_str)
+end
 
 function v.Line.end_space__del(line_num)
 

@@ -7,6 +7,7 @@ v.Str.ptn = {}
 v.Str.ptn.vim = {}
 v.Str.ptn.lua = {}
 
+v.Str.ptn.vim.space_char = [[\s]]
 v.Str.ptn.vim.space = [[^\s\+$]]
 v.Str.ptn.vim.num   = [[^\d\+$]]
 
@@ -207,13 +208,11 @@ end
 
 function v.Str.sub_by_char_idx(str, char_idx_s, char_idx_e) -- char_idx : 1 start, str:mb:ok
 
-  local len_char = v.Str.len_char(str)
+  char_idx_e = char_idx_e or v.Str.len_char(str)
 
-  if char_idx_e then
-    len_char = char_idx_e - char_idx_s + 1
-  end
+  local sub_str_len_char = char_idx_e - char_idx_s + 1
 
-  local r_str = vf.strcharpart(str, char_idx_s - 1, len_char) -- arg2: 0 start
+  local r_str = vf.strcharpart(str, char_idx_s - 1, sub_str_len_char) -- arg2: 0 start
   return r_str
 end
 

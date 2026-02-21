@@ -56,7 +56,7 @@ end
 
 -- cnd
 
-function v.Tbl.is_in(val, lst)
+function v.Tbl.is__in(val, lst)
 
   local idx = v.Tbl.idx(lst, val)
 

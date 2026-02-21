@@ -315,7 +315,7 @@ end
 
 function v.Buf.is_file_type__in(type_lst)
 
-  local ret = v.Tbl.is_in(v.Buf.file_type(), type_lst)
+  local ret = v.Tbl.is__in(v.Buf.file_type(), type_lst)
   return ret
 end
 
