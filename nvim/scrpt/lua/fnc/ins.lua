@@ -14,7 +14,7 @@ end
 
 function v.Ins.symbol02()
 
-  local lst = { '?', '!', '&', '~', '^', '|', '\\', '/' }
+  local lst = { '?', '!', '^', '~', '&', '|', '\\', '/' }
   vf.complete(v.Cursor.byte_idx(), lst)
   return ''
 end
@@ -28,7 +28,6 @@ end
 
 function v.Ins.bracket()
 
-  -- local lst = { '()', '{}', '[]', '<>', '[]()', '[][]', '(){}' }
   local lst = { '()', '{}', '[]', '<>' }
   vf.complete(v.Cursor.byte_idx(), lst)
   return ''

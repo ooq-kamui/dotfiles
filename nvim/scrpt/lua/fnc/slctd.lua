@@ -651,7 +651,7 @@ function v.Slctd.str_edge_l_char()
 
   v.Slctd.__ltst()
 
-  local char_idx = v.Slcrd.str_edge_l_line_char_idx()
+  local char_idx = v.Slctd.str_edge_l_line_char_idx()
   local line_str = v.Cursor.line_str()
   local char = v.Str.char_by_char_idx(line_str, char_idx)
   return char
@@ -661,7 +661,7 @@ function v.Slctd.str_edge_r_char()
 
   v.Slctd.__ltst()
 
-  local char_idx = v.Slcrd.str_edge_r_line_char_idx()
+  local char_idx = v.Slctd.str_edge_r_line_char_idx()
   local line_str = v.Cursor.line_str()
   local char = v.Str.char_by_char_idx(line_str, char_idx)
   return char
@@ -671,7 +671,7 @@ function v.Slctd.str_edge_l_out_char()
 
   v.Slctd.__ltst()
 
-  local char_idx = v.Slcrd.str_edge_l_line_char_idx()
+  local char_idx = v.Slctd.str_edge_l_line_char_idx()
 
   if char_idx == 1 then return '' end 
 
@@ -686,7 +686,7 @@ function v.Slctd.str_edge_r_out_char()
 
   v.Slctd.__ltst()
 
-  local char_idx = v.Slcrd.str_edge_l_line_char_idx()
+  local char_idx = v.Slctd.str_edge_l_line_char_idx()
 
   local line_str_len_char = v.Cursor.line_str_len_char()
 
@@ -703,7 +703,7 @@ function v.Slctd.str_edge_l_out_str()
 
   v.Slctd.__ltst()
 
-  local char_idx = v.Slcrd.str_edge_l_line_char_idx()
+  local char_idx = v.Slctd.str_edge_l_line_char_idx()
 
   if char_idx == 1 then return '' end 
 
@@ -718,7 +718,7 @@ function v.Slctd.str_edge_r_out_str()
 
   v.Slctd.__ltst()
 
-  local char_idx = v.Slcrd.str_edge_l_line_char_idx()
+  local char_idx = v.Slctd.str_edge_l_line_char_idx()
 
   local line_str_len_char = v.Cursor.line_str_len_char()
 
@@ -1005,7 +1005,7 @@ end
 
 function v.Slctd.is_str_edge_char__quote()
 
-  local ret = v.Slctd.is_str_edge_char__(v.Srch.ptn.vim.quote)
+  local ret = v.Slctd.is_str_edge_char__(v.Ptn.vim.quote)
   return ret
 end
 
@@ -1032,7 +1032,7 @@ end
 
 function v.Slctd.is_str_edge_out_char__quote()
 
-  local ret = v.Slctd.is_str_edge_out_char__(v.Srch.ptn.vim.quote)
+  local ret = v.Slctd.is_str_edge_out_char__(v.Ptn.vim.quote)
   return ret
 end
 
@@ -1052,7 +1052,7 @@ function v.Slctd.is_str_edge_r_out_char__space()
 
   local ret = bl.f
 
-  local ptn_vim = v.Str.ptn.vim.space_char
+  local ptn_vim = v.Ptn.vim.space_char
   local slctd_r_out_char = v.Slctd.str_edge_r_out_char()
 
   if v.Str.is__ptn(slctd_r_out_char, ptn_vim) then

@@ -2,6 +2,7 @@
 -- prmtv
 
 require('fnc/char')
+require('fnc/ptn' )
 require('fnc/str' )
 require('fnc/mb'  )
 require('fnc/tbl' )

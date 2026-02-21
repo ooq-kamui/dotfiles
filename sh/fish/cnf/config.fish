@@ -76,6 +76,7 @@ alias fl 'dir_jmp_with_zoxide life'
 
 alias mkdir 'mkdir -p'
 alias mkd   'mkdir -p'
+alias rmd   'rmdir'
 
 alias lr-oo  'lr-d2'
 alias lr-ooo 'lr-d3'

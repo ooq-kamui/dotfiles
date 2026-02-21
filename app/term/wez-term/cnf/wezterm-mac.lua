@@ -9,10 +9,14 @@ local config = require('cnf/wezterm')
 -- env : mac
 -- 
 
-config.window_background_opacity    = 0.25
+-- config.window_background_opacity    = 0.50
+config.window_background_opacity    = 0.40
 
 config.window_background_gradient = {
-  colors = { "Blue" },
+  -- colors = { "blue" },
+  colors = { "darkblue" },
+  -- colors = { "red" },
+  -- colors = { "darkred" },
 }
 
 config.use_ime = true

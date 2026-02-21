@@ -1,10 +1,5 @@
 
--- srch
-
 v.Srch = {}
-
-v.Srch.ptn = v.Str.ptn
-
 
 function v.Srch.srch(ptn_vim, opt, line_num) -- run vim srch
 
@@ -234,15 +229,15 @@ end
 
 function v.Srch.str__markdown_heading()
 
-  v.Srch.str__ptn(v.Srch.ptn.vim.markdown_heading)
+  v.Srch.str__ptn(v.Ptn.vim.markdown_heading)
 end
 
-v.Srch.ptn.markdown_itm = '^ *- '
+v.Ptn.markdown_itm = '^ *- '
 
 function v.Srch.str__markdown_itm()
 
   -- v.Srch.str__ptn('^ *- ')
-  v.Srch.str__ptn(v.Srch.ptn.markdown_itm)
+  v.Srch.str__ptn(v.Ptn.markdown_itm)
 end
 
 function v.Srch.str__fnc_def()

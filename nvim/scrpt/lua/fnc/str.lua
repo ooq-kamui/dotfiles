@@ -1,21 +1,6 @@
 
 v.Str = {}
 
--- ptn
-
-v.Str.ptn = {}
-v.Str.ptn.vim = {}
-v.Str.ptn.lua = {}
-
-v.Str.ptn.vim.space_char = [[\s]]
-v.Str.ptn.vim.space = [[^\s\+$]]
-v.Str.ptn.vim.num   = [[^\d\+$]]
-
-v.Str.ptn.vim.mb = '[^\\x01-\\x7E]'
-v.Str.ptn.vim.markdown_heading = [[^#\+ ]]
-v.Str.ptn.vim.quote = '[' .. "'" .. '"' .. '`' .. ']'
-v.Str.ptn.vim.word_dlm = '[_ABCDEFGHIJKLMNOPQRSTUVWXYZ]'
-
 -- cnst
 
 v.Str.cnst = {}
@@ -574,13 +559,13 @@ end
 
 function v.Str.is__space(str)
 
-  local ret = v.Str.is__ptn(str, v.Str.ptn.vim.space)
+  local ret = v.Str.is__ptn(str, v.Ptn.vim.space)
   return ret
 end
 
 function v.Str.is__num(str)
 
-  local ret = v.Str.is__ptn(str, v.Str.ptn.vim.num)
+  local ret = v.Str.is__ptn(str, v.Ptn.vim.num)
   return ret
 end
 

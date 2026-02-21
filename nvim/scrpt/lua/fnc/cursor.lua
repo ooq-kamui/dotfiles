@@ -293,7 +293,7 @@ end
 
 function v.Cursor.__mv_word_dlm_f()
 
-  local ptn_vim  = v.Srch.ptn.vim.word_dlm
+  local ptn_vim  = v.Ptn.vim.word_dlm
   local line_num = v.Cursor.line_num()
 
   local st = v.Srch.srch(ptn_vim, 'zW', line_num)
@@ -553,7 +553,7 @@ function v.Cursor.__mv_block_out_swtch()
 
   if     v.Buf.is_file_type__in({'markdown'}) then
 
-    v.Srch.str__ptn(v.Srch.ptn.vim.markdown_heading)
+    v.Srch.str__ptn(v.Ptn.vim.markdown_heading)
     v.Cursor.__mv_by_srch_str('b')
 
   elseif v.Buf.is_file_type__in(block_type_bracket_list) then
@@ -601,12 +601,11 @@ function v.Cursor.__mv_line_x_word_byte_idx(ref_drct)
 
   local ref_line_num    = v.Cursor.line_num(ref_drct)
   local cursor_byte_idx = v.Cursor.byte_idx()
-  local word_byte_idx    = v.Line.word_byte_idx(ref_line_num, cursor_byte_idx)
+  local word_byte_idx   = v.Line.word_byte_idx(ref_line_num, cursor_byte_idx)
 
   if not word_byte_idx then return end
 
   v.Cursor.__mv_by_byte_idx(word_byte_idx)
-  -- v.Cursor.__mv_by_line_byte_idx(nil, word_byte_idx)
 end
 
 -- cursor __ ins
@@ -655,8 +654,6 @@ function v.Cursor.__ins_cr()
   local line_num = v.Cursor.line_num()
 
   v.Cmd.nml([[i\<cr> ]])
-  -- v.Cmd.nml('i\\<cr> ')
-  -- v.Cmd.cmd('exe "normal! i\\<cr> "')
   v.Cmd.nml('x')
 
   v.Line.end_space__del(line_num)
@@ -679,19 +676,19 @@ function v.Cursor.__ins_hyphen()
   -- v.Cursor.__ins('-')
 end
 
-function v.Cursor.__ins_tilde()
+function v.Cursor.__ins_tilde() -- use not
 
   v.Cmd.nml('i~')
   -- v.Cursor.__ins('~')
 end
 
-function v.Cursor.__ins_slash()
+function v.Cursor.__ins_slash() -- use not
 
   v.Cmd.nml('i/')
   -- v.Cursor.__ins('/')
 end
 
-function v.Cursor.__ins_slashback()
+function v.Cursor.__ins_slashback() -- use not
 
   v.Cmd.nml('i\\')
   -- v.Cursor.__ins('\\')
@@ -789,10 +786,12 @@ function v.Cursor.__ins_markdown_heading()
 
   v.Cursor.line_top0__ins(md_head_str)
 
-  -- refactoring : mv __ markdown_heading_str end
-  local ptn_vim  = v.Srch.ptn.vim.markdown_heading
+  if md_head_str == '# ' then return end
+
+  local ptn_vim = v.Ptn.vim.markdown_heading
   local end_flg = bl.t
   v.Cursor.__mv_by_ptn(ptn_vim, 'f', end_flg)
+  v.Cursor.__mv_char_f()
 end
 
 function v.Cursor.__ins_markdown_cr()
@@ -817,12 +816,10 @@ end
 function v.Cursor.is_line__markdown_itm()
   -- v.Log.val('Cursor.is_line__markdown_itm')
 
-  local ptn_lua = '^%s*- '
+  local ptn_lua = v.Ptn.lua.markdown_itm
 
   local str = v.Cursor.line_str()
-  -- v.Log.val(str, ptn_lua)
   local byte_idx = v.Str.srch_byte_idx_by_ptn_lua(str, ptn_lua)
-  -- v.Log.val(byte_idx)
 
   if not byte_idx then
     return bl.f
@@ -1406,8 +1403,8 @@ function v.Cursor.f_char_byte_idx()
 
   local f_char_byte_idx
 
-  -- local ptn_lua = '[^ \t]'
-  local ptn_lua = '[^ ]'
+  local ptn_lua = v.Ptn.lua.space_not_char
+
   local cursor_byte_idx = v.Cursor.byte_idx()
   local str = v.Cursor.line_str()
   f_char_byte_idx = v.Str.srch_byte_idx_by_ptn_lua(str, ptn_lua, cursor_byte_idx)

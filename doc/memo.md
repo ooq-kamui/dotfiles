@@ -2,15 +2,25 @@
 # dotfiles
 
 
+## keyboard
+
+logi
+- sticker n
+
+mac
+- sticker n
+
+
 ## nvim
 
-v.Ptn cre
-- rpl
+Str.srch_byte_idx_by_ptn_lua
+- rpl Str.srch_byte_idx_by_ptn_vim
+- ptn confirm
 
 
-v.Cursor.__ins_markdown_heading()
-- add aftr, cursor mv err
-
+ptn tidy
+- ptn
+  - char, str
 
 
 x h, <c-h>, case: xx__xx
@@ -29,26 +39,10 @@ cheat-sheet fzf opn
   - off: <leader><c-s>
 
 
-Str.srch_byte_idx_by_ptn_lua
-- rpl Str.srch_byte_idx_by_ptn_vim
-- ptn confirm
-
-
 n E, err
 
 
 dev-anchor, tidy
-
-
-## keyboard
-
-sticker n
-
-
-## fish
-
-rmdir alias rmd
-- tst, confirm
 
 
 ## wez
