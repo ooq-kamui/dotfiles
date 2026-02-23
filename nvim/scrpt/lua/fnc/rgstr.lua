@@ -28,6 +28,8 @@ end
 function v.Rgstr.__clr() -- use not
 
   -- dev anchor
+  -- all clr
+  --   v.Rgstr.ynk_key_lst
   v.Rgstr.ynk__('')
 end
 

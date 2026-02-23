@@ -14,6 +14,14 @@ cheat-sheet fzf opn
 
 
 dev-anchor, tidy
+- grep
+
+
+v.Rgstr.__clr()
+
+
+/xxx, n E
+- tst : xxxa
 
 
 ## kirby
