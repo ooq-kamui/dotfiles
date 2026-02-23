@@ -7,6 +7,9 @@
 ptn rpl, \s \w etc
 
 
+fzf-rg \s
+
+
 cheat-sheet fzf opn
 - <leader><c-s>
 - rpl <leader>s
