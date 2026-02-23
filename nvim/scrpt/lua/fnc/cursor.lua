@@ -214,10 +214,9 @@ function v.Cursor.__mv_char(drct)
 
   local cmd_nml
 
-  if     drct == 'f' then
+  if     v.Char.is__f(drct) then
     cmd_nml = 'l'
-
-  elseif drct == 'b' then
+  elseif v.Char.is__b(drct) then
     cmd_nml = 'h'
   end
 
@@ -512,9 +511,9 @@ function v.Cursor.__mv_by_ptn(ptn_vim, drct, end_flg) -- range, on 1 line
 
   local opt_drct = ''
 
-  if     drct == 'f' then
+  if     v.Char.is__f(drct) then
     opt_drct = ''
-  elseif drct == 'b' then
+  elseif v.Char.is__b(drct) then
     opt_drct = 'b'
   end
 
@@ -534,9 +533,9 @@ function v.Cursor.__mv_by_srch_str(drct, end_flg)
 
   local opt = ''
 
-  if     drct == 'f' then
+  if     v.Char.is__f(drct) then
     opt = opt .. ''
-  elseif drct == 'b' then
+  elseif v.Char.is__b(drct) then
     opt = opt .. 'b'
   end
 

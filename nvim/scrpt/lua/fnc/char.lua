@@ -19,10 +19,10 @@ function v.Char.lr_2_normal_cmd(lr)
 
   local cmd_nml
 
-  if     lr == 'l' then
+  if     v.Char.is__l(lr) then
     cmd_nml = 'h'
 
-  elseif lr == 'r' then
+  elseif v.Char.is__r(lr) then
     cmd_nml = 'l'
   end
 
@@ -59,7 +59,7 @@ function v.Char.is__num(char)
 
   local ret = bl.f
 
-  if v.Str.is__ptn(char, '\\d') then
+  if v.Str.is__ptn(char, [[\d]]) then
     ret = bl.t
   end
 
@@ -70,7 +70,7 @@ function v.Char.is__alpha(char)
 
   local ret = bl.f
 
-  if v.Str.is__ptn(char, '\\a') then
+  if v.Str.is__ptn(char, [[\a]]) then
     ret = bl.t
   end
 

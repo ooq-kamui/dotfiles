@@ -4,12 +4,6 @@
 
 ## nvim
 
-char is __ l r, rpl
-
-
-srch __, \ err ? dpl
-
-
 ptn rpl, \s \w etc
 
 
@@ -17,9 +11,6 @@ cheat-sheet fzf opn
 - <leader><c-s>
 - rpl <leader>s
   - off: <leader><c-s>
-
-
-n E, err
 
 
 dev-anchor, tidy

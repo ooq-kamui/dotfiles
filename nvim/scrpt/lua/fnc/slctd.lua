@@ -467,10 +467,10 @@ function v.Slctd.__srch(drct)
 
   local cmd_nml = 'g'
 
-  if     drct == 'f' then
+  if     v.Char.is__f(drct) then
     cmd_nml = cmd_nml .. 'n'
 
-  elseif drct == 'b' then
+  elseif v.Char.is__b(drct) then
     cmd_nml = cmd_nml .. 'N'
   end
 
@@ -1398,15 +1398,15 @@ function v.Slctd.box__mv(lr) -- range
 
   v.Slctd.__ltst()
 
-  -- dev anchor
-  if     lr == 'l' then
+  if     v.Char.is__l(lr) then
     v.Slctd.cursor__mv_edge_l()
-  elseif lr == 'r' then
+
+  elseif v.Char.is__r(lr) then
     v.Slctd.cursor__mv_edge_r()
   end
 
-  if lr == 'l' and v.Cursor.is_byte_idx__line_top0()    then return end
-  if lr == 'r' and v.Cursor.is_byte_idx__line_end_inr() then return end
+  if v.Char.is__l(lr) and v.Cursor.is_byte_idx__line_top0()    then return end
+  if v.Char.is__r(lr) and v.Cursor.is_byte_idx__line_end_inr() then return end
 
   local cmd_nml = v.Char.lr_2_normal_cmd(lr)
   v.Slctd.cursor__mv_edge_tgl()

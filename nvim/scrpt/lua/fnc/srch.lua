@@ -74,8 +74,7 @@ function v.Srch.str__(str, op_word1)
 
   local exe_str
   exe_str = v.Str.escape(str, '.*~[]\\^$')
-
-  exe_str = v.Str.__rpl_with_vim(exe_str, [[\n]], [[\\n]], 'g')
+  -- exe_str = v.Str.__rpl_with_vim(exe_str, [[\n]], [[\\n]], 'g')
   -- v.Log.val( exe_str )
 
   if op_word1 == bl.t then
@@ -87,10 +86,7 @@ function v.Srch.str__(str, op_word1)
     return
   end
 
-  v.Rgstr.__('/', exe_str) -- highlight
-
-  exe_str = v.Str.__rpl_with_lua(exe_str, [[\]], [[\\]]) -- \\<aaa\\>
-  -- v.Log.val( exe_str )
+  v.Rgstr.__('/', exe_str)  -- highlight
   v.Cmd.nml('/' .. exe_str) -- srch hstry add
 end
 
