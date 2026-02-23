@@ -2,26 +2,7 @@
 # dotfiles
 
 
-## keyboard
-
-logi
-- sticker n
-
-mac
-- sticker n
-
-
 ## nvim
-
-Str.srch_byte_idx_by_ptn_lua
-- rpl Str.srch_byte_idx_by_ptn_vim
-- ptn confirm
-
-
-ptn tidy
-- ptn
-  - char, str
-
 
 x h, <c-h>, case: xx__xx
 
@@ -30,7 +11,6 @@ x h, <c-h>, case: xx__xx
 
   - refactoring
     - cursor __ mv ptn char () ?
-
 
 
 cheat-sheet fzf opn
@@ -43,6 +23,11 @@ n E, err
 
 
 dev-anchor, tidy
+
+
+## kirby
+
+morphing
 
 
 ## wez

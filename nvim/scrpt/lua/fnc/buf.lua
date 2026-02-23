@@ -96,7 +96,7 @@ function v.Buf.opn_memo()
   git_root_dir = v.Str.trim(git_root_dir)
   -- v.Log.val(git_root_dir)
 
-  local srch_byte_idx = v.Str.srch_byte_idx_by_ptn_lua(git_root_dir, 'fatal:')
+  local srch_byte_idx = v.Str.srch_byte_idx_by_ptn_vim(git_root_dir, 'fatal:')
   -- v.Log.val(srch_byte_idx)
   if srch_byte_idx == 1 then
     git_root_dir = v.Dir.c.dotfiles_dir .. '/'
@@ -240,10 +240,7 @@ function v.Buf.undo__clr()
   local undo_lvl_tmp = vim.bo.undolevels
 
   vim.opt_local.undolevels = -1
-  v.Cmd.nml([[a \<bs>\<esc>]])
-  -- v.Cmd.nml('a \\<bs>\\<esc>')
-  -- v.Cmd.cmd([[exe "normal! a \<bs>\<esc>"]])
-
+  v.Cmd.nml([[a <bs><esc>]])
   vim.bo.undolevels = undo_lvl_tmp
 end
 
@@ -354,15 +351,11 @@ end
 
 function v.Win.splt_cursor__mv_nxt()
 
-  v.Cmd.nml([[\<c-w>w>]])
-  -- v.Cmd.nml('\\<c-w>w>')
-  -- v.Cmd.cmd('exe "normal! \\<c-w>w>"')
+  v.Cmd.nml([[<c-w>w>]])
 end
 
 function v.Win.splt__quit()
 
-  v.Cmd.nml([[\<c-w>c>]])
-  -- v.Cmd.nml('\\<c-w>c>')
-  -- v.Cmd.cmd('exe "normal! \\<c-w>c>"')
+  v.Cmd.nml([[<c-w>c>]])
 end
 

@@ -559,13 +559,13 @@ end
 
 function v.Str.is__space(str)
 
-  local ret = v.Str.is__ptn(str, v.Ptn.vim.space)
+  local ret = v.Str.is__ptn(str, v.Ptn.vim.space_entire)
   return ret
 end
 
 function v.Str.is__num(str)
 
-  local ret = v.Str.is__ptn(str, v.Ptn.vim.num)
+  local ret = v.Str.is__ptn(str, v.Ptn.vim.num_entire)
   return ret
 end
 

@@ -3,11 +3,11 @@ v.Srch = {}
 
 function v.Srch.srch(ptn_vim, opt, line_num) -- run vim srch
 
-  local line_num_st = vf.search(ptn_vim, opt, line_num)
-
   local ret = bl.t
 
-  if line_num_st == 0 then
+  local st = vf.search(ptn_vim, opt, line_num)
+
+  if st == 0 then
     ret = bl.f
   end
 

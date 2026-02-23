@@ -293,10 +293,10 @@ end
 
 function v.Cursor.__mv_word_dlm_f()
 
-  local ptn_vim  = v.Ptn.vim.word_dlm
+  local ptn_vim  = v.Ptn.vim.word_dlm_char_lst
   local line_num = v.Cursor.line_num()
-
-  local st = v.Srch.srch(ptn_vim, 'zW', line_num)
+  local opt      = 'zW' -- z: srch start line top, W: file end stop
+  local st = v.Srch.srch(ptn_vim, opt, line_num)
 
   if not st then
     v.Cursor.__mv_line_end()
@@ -337,26 +337,30 @@ end
 
 v.Cursor.cnst.mv_line_step_dflt = 10
 
-function v.Cursor.__mv_mlt_u() -- alias
+function v.Cursor.__mv_mlt(drct) -- alias
 
-  local cursor_mv_line_step = v.Cursor.cnst.mv_line_step_dflt
+  local cmd_nml
 
-  local cmd_nml = cursor_mv_line_step .. [[\<c-y>]]
-  -- local cmd_nml = cursor_mv_line_step .. '\\<c-y>'
+  if     drct == 'u' then
+    cmd_nml = [[<c-y>]]
+
+  elseif drct == 'd' then
+    cmd_nml = [[<c-e>]]
+  end
+
+  local num = v.Cursor.cnst.mv_line_step_dflt
+  local cmd_nml = num .. cmd_nml
   v.Cmd.nml(cmd_nml)
-
-  -- v.Cmd.cmd('exe "normal! ' .. cmd_nml .. '"')
 end
 
-function v.Cursor.__mv_mlt_d() -- alias
+function v.Cursor.__mv_mlt_u()
 
-  local cursor_mv_line_step = v.Cursor.cnst.mv_line_step_dflt
+  v.Cursor.__mv_mlt('u')
+end
 
-  local cmd_nml = cursor_mv_line_step .. [[\<c-e>]]
-  -- local cmd_nml = cursor_mv_line_step .. '\\<c-e>'
-  v.Cmd.nml(cmd_nml)
+function v.Cursor.__mv_mlt_d()
 
-  -- v.Cmd.cmd('exe "normal! ' .. cmd_nml .. '"')
+  v.Cursor.__mv_mlt('d')
 end
 
 function v.Cursor.__mv_u_line_end()
@@ -816,10 +820,9 @@ end
 function v.Cursor.is_line__markdown_itm()
   -- v.Log.val('Cursor.is_line__markdown_itm')
 
-  local ptn_lua = v.Ptn.lua.markdown_itm
-
-  local str = v.Cursor.line_str()
-  local byte_idx = v.Str.srch_byte_idx_by_ptn_lua(str, ptn_lua)
+  local ptn_vim  = v.Ptn.vim.markdown_itm
+  local str      = v.Cursor.line_str()
+  local byte_idx = v.Str.srch_byte_idx_by_ptn_vim(str, ptn_vim)
 
   if not byte_idx then
     return bl.f
@@ -827,7 +830,6 @@ function v.Cursor.is_line__markdown_itm()
     return bl.t
   end
 end
-
 
 function v.Cursor.__ins_markdown_code()
 
@@ -1070,18 +1072,14 @@ end
 
 function v.Cursor.str__icl()
 
-  local cmd_nml = [[\<c-a>]]
-  -- local cmd_nml = "\\<c-a>"
+  local cmd_nml = [[<c-a>]]
   v.Cmd.nml(cmd_nml)
-  -- v.Cmd.cmd('exe "normal! \\<c-a>"')
 end
 
 function v.Cursor.str__dcl()
 
-  local cmd_nml = [[\<c-x>]]
-  -- local cmd_nml = "\\<c-x>"
+  local cmd_nml = [[<c-x>]]
   v.Cmd.nml(cmd_nml)
-  -- v.Cmd.cmd('exe "normal! \\<c-x>"')
 end
 
 function v.Cursor.str_week__icl()
@@ -1403,11 +1401,11 @@ function v.Cursor.f_char_byte_idx()
 
   local f_char_byte_idx
 
-  local ptn_lua = v.Ptn.lua.space_not_char
+  local ptn_vim = v.Ptn.vim.space_not_char
 
   local cursor_byte_idx = v.Cursor.byte_idx()
   local str = v.Cursor.line_str()
-  f_char_byte_idx = v.Str.srch_byte_idx_by_ptn_lua(str, ptn_lua, cursor_byte_idx)
+  f_char_byte_idx = v.Str.srch_byte_idx_by_ptn_vim(str, ptn_vim, cursor_byte_idx)
   return f_char_byte_idx
 end
 
@@ -1489,7 +1487,6 @@ function v.Cursor.f_str__space_crct_by_byte_idx(byte_idx)
   v.Cursor.__mv_by_byte_idx(cursor_byte_idx)
 end
 
--- dev anchor
 function v.Cursor.f_str__space_crct_by_ruler_idx(ruler_idx)
 
   local crct_str

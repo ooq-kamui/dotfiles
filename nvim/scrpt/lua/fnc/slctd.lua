@@ -40,8 +40,7 @@ function v.Slctd.mode__tgl()
     if v.Slctd.is_line__mlt() then
       v.Cmd.nml('V')
     else
-      v.Cmd.nml([[\<esc>]])
-      -- v.Cmd.nml('\\<esc>')
+      v.Cmd.nml([[<esc>]])
       v.Cmd.nml('v')
     end
   else
@@ -52,9 +51,7 @@ end
 function v.Slctd.mode_state__swtch()
 
   v.Slctd.__ltst()
-  v.Cmd.nml([[\<c-v>]])
-  -- v.Cmd.nml('\\<c-v>')
-  -- v.Cmd.cmd('exe "normal! \\<c-v>"')
+  v.Cmd.nml([[<c-v>]])
 end
 
 -- slctd str
@@ -686,13 +683,14 @@ function v.Slctd.str_edge_r_out_char()
 
   v.Slctd.__ltst()
 
-  local char_idx = v.Slctd.str_edge_l_line_char_idx()
+  local char_idx = v.Slctd.str_edge_r_line_char_idx()
 
   local line_str_len_char = v.Cursor.line_str_len_char()
 
   if char_idx == line_str_len_char then return '' end 
 
   char_idx = char_idx + 1
+  -- v.Log.val(char_idx)
 
   local line_str = v.Cursor.line_str()
   local char = v.Str.char_by_char_idx(line_str, char_idx)
@@ -1005,7 +1003,7 @@ end
 
 function v.Slctd.is_str_edge_char__quote()
 
-  local ret = v.Slctd.is_str_edge_char__(v.Ptn.vim.quote)
+  local ret = v.Slctd.is_str_edge_char__(v.Ptn.vim.quote_char_lst)
   return ret
 end
 
@@ -1032,7 +1030,7 @@ end
 
 function v.Slctd.is_str_edge_out_char__quote()
 
-  local ret = v.Slctd.is_str_edge_out_char__(v.Ptn.vim.quote)
+  local ret = v.Slctd.is_str_edge_out_char__(v.Ptn.vim.quote_char_lst)
   return ret
 end
 

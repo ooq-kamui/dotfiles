@@ -14,16 +14,14 @@ end
 function v.Cmd.nml(cmd_nml) -- alias
 
   -- v.Log.log(cmd_nml)
-  cmd_nml = v.Str.__rpl_with_lua(cmd_nml, '"', [[\"]])
-  -- cmd_nml = v.Str.__rpl_by_vim(cmd_nml, '"', [[\\"]])
+  cmd_nml = v.Str.escape(cmd_nml, [[\<"]])
   -- v.Log.log(cmd_nml)
-
   v.Cmd.cmd('exe "normal! ' .. cmd_nml .. '"')
 end
 
 function v.Cmd.esc()
 
-  v.Cmd.nml([[\<esc>]])
+  v.Cmd.nml([[<esc>]])
   -- v.Cmd.cmd('exe "normal! \\<esc>"')
 end
 
