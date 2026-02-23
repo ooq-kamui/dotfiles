@@ -4,13 +4,13 @@
 
 ## nvim
 
-x h, <c-h>, case: xx__xx
+char is __ l r, rpl
 
-- v.Slctd.str__reduce_dlm(char, lr)
-  - logic fix : word byte_idx ?
 
-  - refactoring
-    - cursor __ mv ptn char () ?
+srch __, \ err ? dpl
+
+
+ptn rpl, \s \w etc
 
 
 cheat-sheet fzf opn

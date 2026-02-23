@@ -92,11 +92,8 @@ end
 function v.Line.num_by_jmplst_line_info(jmplst_line_info)
 
   local jmplst_line_info = v.Str.trim(jmplst_line_info, ' ', 1)
-  local line_num  = v.Str.split(jmplst_line_info, '\\s\\+')[1]
-
+  local line_num  = v.Str.split(jmplst_line_info, v.Str.vim.space_str)[1]
   line_num = v.Str.to_num(line_num)
-  -- v.Log.val(line_num)
-
   return line_num
 end
 

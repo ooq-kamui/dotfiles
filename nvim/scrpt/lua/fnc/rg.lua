@@ -105,7 +105,7 @@ end
 function v.Rg.rslt_ar_by_ptn(ptn_rg, opt)
 
   local rg_rslt_txt = v.Rg.rslt_txt_by_ptn(ptn_rg, opt)
-  local rg_rslt_ar  = v.Str.split(rg_rslt_txt, "\\n")
+  local rg_rslt_ar  = v.Str.split(rg_rslt_txt, v.Ptn.vim.nl)
   return rg_rslt_ar
 end
 

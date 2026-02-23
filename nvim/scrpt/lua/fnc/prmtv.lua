@@ -45,7 +45,7 @@ v.Txt = {}
 
 function v.Txt._to_ar(txt)
 
-  local line_ar  = v.Str.split(txt, '\\n')
+  local line_ar  = v.Str.split(txt, v.Ptn.vim.nl)
   return line_ar
 end
 

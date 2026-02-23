@@ -83,24 +83,23 @@ function v.Slctd.str__all()
   v.Cmd.nml('ggVG')
 end
 
-function v.Slctd.str__cursor_c_char()
+function v.Slctd.__cursor_c_char()
 
   v.Cmd.nml('v')
 end
 
-function v.Slctd.str__word()
+function v.Slctd.__cursor_word()
 
   local c = v.Cursor.c_char()
 
-  if     v.Str.is__ptn(c, '\\w') then
+  if     v.Str.is__ptn(c, [[\w]]) then
     v.Cmd.nml('viw')
 
-  elseif v.Str.is__ptn(c, '\\s') then
+  elseif v.Str.is__ptn(c, [[\s]]) then
     v.Slctd.str__cursor_f_space()
 
   else
-    -- v.Cmd.nml('v')
-    v.Slctd.str__cursor_c_char()
+    v.Slctd.__cursor_c_char()
   end
 end
 
@@ -108,49 +107,42 @@ function v.Slctd.str__cursor_f_space()
 
   local c = v.Cursor.c_char()
 
-  if not v.Str.is__ptn(c, '\\s') then
+  if not v.Str.is__ptn(c, [[\s]]) then
     return
   end
 
   if v.Cursor.is_line_str_side_r__space() then
-    -- v.Cmd.nml('v')
-    v.Slctd.str__cursor_c_char()
+    v.Slctd.__cursor_c_char()
     v.Cursor.__mv_line_end_in()
 
   else
-    -- v.Cmd.nml('v')
-    v.Slctd.str__cursor_c_char()
+    v.Slctd.__cursor_c_char()
 
     v.Slctd.str__expnd_space_f()
-    -- v.Cmd.nml('wh')
   end
-end
-
-function v.Slctd.str__by_byte_idx_len(s_byte_idx, len)
-
-  local e_byte_idx = len - 1
-
-  v.Slctd.__by_line_byte_idx(nil, s_byte_idx, nil, e_byte_idx)
 end
 
 -- slctd __
 
-function v.Slctd.__by_pos(s_pos, e_pos) -- use not
-
-  v.Cursor.__mv_by_pos(s_pos)
-  -- v.Cmd.nml('v')
-  v.Slctd.str__cursor_c_char()
-  v.Cursor.__mv_by_pos(e_pos)
-end
-
 function v.Slctd.__by_line_byte_idx(s_line, s_byte_idx, e_line, e_byte_idx)
 
-  s_line = (s_line == nil) and v.Cursor.line_num() or s_line
-  e_line = (e_line == nil) and v.Cursor.line_num() or e_line
+  v.Slctd.__clr()
+
+  s_line = s_line or v.Cursor.line_num()
+  e_line = e_line or v.Cursor.line_num()
 
   v.Cursor.__mv_by_line_byte_idx(s_line, s_byte_idx)
-  v.Slctd.str__cursor_c_char()
+  v.Slctd.__cursor_c_char()
   v.Cursor.__mv_by_line_byte_idx(e_line, e_byte_idx)
+end
+
+function v.Slctd.__by_pos(s_pos, e_pos) -- use not
+
+  v.Slctd.__clr()
+
+  v.Cursor.__mv_by_pos(s_pos)
+  v.Slctd.__cursor_c_char()
+  v.Cursor.__mv_by_pos(e_pos)
 end
 
 -- slctd cursor __ mv
@@ -418,34 +410,29 @@ function v.Slctd.str__reduce_dlm_r(char)
   v.Slctd.str__reduce_dlm(char, 'r')
 end
 
--- dev anchor : refactoring
-function v.Slctd.str__reduce_dlm(char, lr)
+function v.Slctd.str__reduce_dlm(char, lr) -- lr: base side
 
   v.Slctd.__ltst()
 
-  local is__ptn = v.Slctd.is_str__ptn(char)
-  if not is__ptn then return end
-
-  v.Slctd.cursor__mv_edge(lr)
-  v.Slctd.cursor__mv_edge_tgl()
-
-  local cmd_nml
-
-  if     lr == 'l' then
-
-    cmd_nml = 'F' .. char
-    v.Cmd.nml(cmd_nml)
-
-    v.Cursor.__mv_char_b()
-
-  elseif lr == 'r' then
-
-    cmd_nml = 'f' .. char
-    v.Cmd.nml(cmd_nml)
-
-    v.Cursor.__mv_char_f()
-    v.Slctd.cursor__mv_edge_tgl()
+  if not v.Slctd.is_str__ptn(char) then
+    return
   end
+
+  local slctd_str = v.Slctd.str()
+  local byte_idx_lst1, byte_idx_lst2 = v.Str.word_byte_idx_lst(slctd_str, char)
+  local len = v.Tbl.len(byte_idx_lst2)
+
+  local s_byte_idx = v.Slctd.str_edge_l_line_byte_idx()
+  local e_byte_idx = v.Slctd.str_edge_r_line_byte_idx()
+
+  if     v.Char.is__r(lr) then
+    s_byte_idx = s_byte_idx + byte_idx_lst1[2]       - 1
+
+  elseif v.Char.is__l(lr) then
+    e_byte_idx = s_byte_idx + byte_idx_lst2[len - 1] - 1
+  end
+
+  v.Slctd.__by_line_byte_idx(nil, s_byte_idx, nil, e_byte_idx)
 end
 
 -- slctd str __ ( edit )

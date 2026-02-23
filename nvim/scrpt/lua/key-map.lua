@@ -480,7 +480,7 @@ keymap__('n', '<down>', '<c-e>')
 -- keymap__('n', 'xx', 'v')
 
 -- slctd __ word
-keymap__('n', 'i', ':lua v.Slctd.str__word()<cr>')
+keymap__('n', 'i', ':lua v.Slctd.__cursor_word()<cr>')
 
 -- slctd __ char current - word end
 keymap__('n', 'I', 've')

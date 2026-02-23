@@ -252,9 +252,9 @@ function v.Str.trim(str) -- alias
   return str
 end
 
-function v.Str.split(str, dlm)
+function v.Str.split(str, dlm_ptn)
 
-  return vf.split(str, dlm)
+  return vf.split(str, dlm_ptn)
 end
 
 -- str to num
@@ -327,30 +327,43 @@ function v.Str.srch_ruler_idx_by_ptn_vim(str, ptn_vim, srch_s_ruler_idx) -- use 
   return ruler_idx
 end
 
-function v.Str.word_byte_idx_lst(str)
+function v.Str.word_byte_idx_lst(str, dlm_char)
 
-  local word_byte_idx_lst = {}
-  local char
+  dlm_char = dlm_char or ' '
 
-  local is_space = bl.t
-  local str_len  = #str
+  local word_byte_idx_lst1 = {} -- word start
+  local word_byte_idx_lst2 = {} -- word end
 
-  for byte_idx = 1, str_len do
+  local is__dlm = bl.t
+  local str_len_byte  = v.Str.len_byte(str)
 
-    char = v.Str.sub_by_byte_idx(str, byte_idx, byte_idx)
+  local _char
+  for byte_idx = 1, str_len_byte do
 
-    if v.Char.is_space(char) then
-      is_space = bl.t
+    _char = v.Str.sub_by_byte_idx(str, byte_idx, byte_idx)
+
+    if _char == dlm_char then
+
+      if not is__dlm then
+        v.Tbl.add(word_byte_idx_lst2, byte_idx - 1)
+      end
+
+      is__dlm = bl.t
 
     else
-      if is_space then
-        v.Tbl.add(word_byte_idx_lst, byte_idx)
+      if is__dlm then
+        v.Tbl.add(word_byte_idx_lst1, byte_idx)
       end
-      is_space = bl.f
+
+      is__dlm = bl.f
     end
   end
 
-  return word_byte_idx_lst
+  if _char ~= dlm_char then
+    v.Tbl.add(word_byte_idx_lst2, str_len_byte)
+  end
+
+  return word_byte_idx_lst1, word_byte_idx_lst2
 end
 
 function v.Str.word_ruler_idx_lst(str)

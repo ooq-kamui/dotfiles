@@ -5,8 +5,11 @@ v.Ptn = {}
 
 v.Ptn.vim = {}
 
+v.Ptn.vim.nl = [[\n]]
+
 v.Ptn.vim.space_char     = [[\s]]
 v.Ptn.vim.space_not_char = [[\S]]
+v.Ptn.vim.space_str      = [[\s\+]]
 v.Ptn.vim.space_entire   = '^' .. [[\s\+]] .. '$'
 
 v.Ptn.vim.num_entire     = '^' .. [[\d\+]] .. '$'

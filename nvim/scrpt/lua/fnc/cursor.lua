@@ -1092,7 +1092,7 @@ function v.Cursor.str_week__icl()
   local week_nxt_idx = v.Idx.__icl(week_idx, v.Tbl.len(v.Date.week_def))
   local week_nxt_str = v.Date.week_def[week_nxt_idx]
 
-  v.Slctd.str__word()
+  v.Slctd.__cursor_word()
   v.Cmd.nml('"zd')
 
   v.Cursor.__ins(week_nxt_str)
@@ -1108,7 +1108,7 @@ function v.Cursor.str_week__dcl()
   local week_nxt_idx = v.Idx.__dcl(week_idx, v.Tbl.len(v.Date.week_def))
   local week_nxt_str = v.Date.week_def[week_nxt_idx]
 
-  v.Slctd.str__word()
+  v.Slctd.__cursor_word()
   v.Cmd.nml('"zd')
 
   v.Cursor.__ins(week_nxt_str)
