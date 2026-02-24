@@ -29,7 +29,6 @@ scheme_lst.win.recommend.h = {
   'Tinacious Design (Dark)'                , -- 
   'TomorrowNightBlue (Gogh)'               , -- 
   'Wzoreck (Gogh)'                         , -- 
-  'arcoiris'                               , -- 
   'niji'                                   , -- 
   'synthwave-everything'                   , -- 
   -- hh ~
@@ -198,6 +197,7 @@ scheme_lst.win.excld = {
   'Misterioso'                             , -- 
   'Overnight Slumber'                      , -- 
   'UltraDark'                              , -- 
+  'arcoiris'                               , -- 
   -- white
   'Ayu Mirage (Gogh)'                      , -- 
   'AyuDark (Gogh)'                         , -- 

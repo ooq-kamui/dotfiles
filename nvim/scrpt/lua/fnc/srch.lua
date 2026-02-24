@@ -52,15 +52,12 @@ function v.Srch.str_word1(str)
   -- v.Log.val('str_word1')
   -- v.Log.val(str)
 
-  local ptn_vim
-  ptn_vim = [[^\w]]
-  if v.Str.is__ptn(str, ptn_vim) then
+  if v.Str.is__ptn(str, '^' .. v.Ptn.vim.word_char       ) then
     str = [[\<]] .. str
   end
 
-  ptn_vim = [[\w$]]
-  if v.Str.is__ptn(str, ptn_vim) then
-    str = str .. [[\>]]
+  if v.Str.is__ptn(str,        v.Ptn.vim.word_char .. '$') then
+    str =           str .. [[\>]]
   end
 
   return str

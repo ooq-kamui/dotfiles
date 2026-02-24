@@ -27,10 +27,10 @@ end
 
 function v.Rgstr.__clr() -- use not
 
-  -- dev anchor
-  -- all clr
-  --   v.Rgstr.ynk_key_lst
-  v.Rgstr.ynk__('')
+  for idx, key in pairs(v.Rgstr.ynk_key_lst) do
+
+    v.Rgstr.__(key, '')
+  end
 end
 
 function v.Rgstr.__shft()

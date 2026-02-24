@@ -128,15 +128,11 @@ function v.Buf.opn_by_path(rg_rslt_line)
     return
   end
 
-  local rg_rslt_line = v.Str.sub_by_ptn(rg_rslt_line, [[\S\+]])
-  -- v.Log.val( rg_rslt_line )
-
+  local rg_rslt_line    = v.Str.sub_by_ptn(rg_rslt_line, v.Ptn.vim.space_not_str)
   local rg_rslt_line_ar = v.Rg.rslt_line_parse_ar(rg_rslt_line)
-  -- v.Log.val( rg_rslt_line_ar )
 
   local file_name = rg_rslt_line_ar[1]
   local line_num  = v.Tbl.get_by_key(rg_rslt_line_ar, 1, 1)
-  -- v.Log.val( line_num )
 
   -- dev anchor
   if not v.File.is__readable(file_name) then

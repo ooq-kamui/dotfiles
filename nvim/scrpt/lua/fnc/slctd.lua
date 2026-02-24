@@ -92,10 +92,10 @@ function v.Slctd.__cursor_word()
 
   local c = v.Cursor.c_char()
 
-  if     v.Str.is__ptn(c, [[\w]]) then
+  if     v.Str.is__ptn(c, v.Ptn.vim.word_char) then
     v.Cmd.nml('viw')
 
-  elseif v.Str.is__ptn(c, [[\s]]) then
+  elseif v.Str.is__ptn(c, v.Ptn.vim.space_char) then
     v.Slctd.str__cursor_f_space()
 
   else
@@ -107,7 +107,7 @@ function v.Slctd.str__cursor_f_space()
 
   local c = v.Cursor.c_char()
 
-  if not v.Str.is__ptn(c, [[\s]]) then
+  if not v.Str.is__ptn(c, v.Ptn.vim.space_char) then
     return
   end
 

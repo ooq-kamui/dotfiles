@@ -1053,15 +1053,13 @@ end
 
 function v.Cursor.is_c_char__space()
 
-  local ptn_vim = '\\s'
-  local ret = v.Cursor.is_c_char__ptn(ptn_vim)
+  local ret = v.Cursor.is_c_char__ptn(v.Ptn.vim.space_char)
   return ret
 end
 
 function v.Cursor.is_c_char__alph()
 
-  local ptn_vim = '\\a'
-  local ret = v.Cursor.is_c_char__ptn(ptn_vim)
+  local ret = v.Cursor.is_c_char__ptn(v.Ptn.vim.alph_char)
   return ret
 end
 
@@ -1338,8 +1336,8 @@ end
 function v.Cursor.line_end_dots__del()
 
   local line_str = v.Cursor.line_str()
-
-  local byte_idx = v.Str.srch_byte_idx_by_ptn_vim_idx_s1(line_str, [[\s\+]] .. v.Str.dots.ptn_vim)
+  local ptn_vim = v.Ptn.vim.space_str .. v.Str.dots.ptn_vim
+  local byte_idx = v.Str.srch_byte_idx_by_ptn_vim_idx_s1(line_str, ptn_vim)
   line_str = v.Str.sub_by_byte_idx(line_str, 1, byte_idx)
   v.Cursor.line__(line_str)
 end
@@ -1356,8 +1354,7 @@ function v.Cursor.f_space__del()
 
   local c = v.Cursor.c_char()
 
-  if v.Str.is__ptn(c, '\\s') then
-    -- v.Log.val( "del" )
+  if v.Str.is__ptn(c, v.Ptn.vim.space_char) then
     v.Slctd.str__cursor_f_space()
     v.Cmd.nml('"zd')
   else

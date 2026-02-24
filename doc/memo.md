@@ -4,10 +4,12 @@
 
 ## nvim
 
-ptn rpl, \s \w etc
+fzf-rg \s, err ?
+- by srch str
 
 
-fzf-rg \s
+/xxx, n E
+- tst : xxxa
 
 
 cheat-sheet fzf opn
@@ -18,13 +20,6 @@ cheat-sheet fzf opn
 
 dev-anchor, tidy
 - grep
-
-
-v.Rgstr.__clr()
-
-
-/xxx, n E
-- tst : xxxa
 
 
 ## kirby
