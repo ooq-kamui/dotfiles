@@ -267,9 +267,9 @@ end
 
 -- str srch
 
-function v.Str.srch_byte_idx(str, ptn_xxx, srch_s_byte_idx) -- use not
+function v.Str.srch_byte_idx(str, ptn_vim, srch_s_byte_idx) -- use not
 
-  return v.Str.srch_byte_idx_by_ptn_vim(str, ptn_xxx, srch_s_byte_idx)
+  return v.Str.srch_byte_idx_by_ptn_vim(str, ptn_vim, srch_s_byte_idx)
 end
 
 function v.Str.srch_byte_idx_by_ptn_lua(str, ptn_lua, srch_s_byte_idx) -- byte_idx start 1
@@ -278,11 +278,11 @@ function v.Str.srch_byte_idx_by_ptn_lua(str, ptn_lua, srch_s_byte_idx) -- byte_i
   return s_byte_idx, e_byte_idx
 end
 
-function v.Str.srch_byte_idx_by_ptn_vim(str, ptn_vim, s_byte_idx, end_flg) -- byte_idx start 0
+function v.Str.srch_byte_idx_by_ptn_vim(str, ptn_vim, s_byte_idx, end_flg) -- byte_idx start 1
 
-  local byte_idx
-  byte_idx = v.Str.srch_byte_idx_by_ptn_vim_idx_s1(str, ptn_vim, s_byte_idx, end_flg)
-  -- byte_idx = v.Str.srch_byte_idx_by_ptn_vim_idx_s0(str, ptn_vim, s_byte_idx, end_flg)
+  s_byte_idx = s_byte_idx or 1
+
+  local byte_idx = v.Str.srch_byte_idx_by_ptn_vim_idx_s1(str, ptn_vim, s_byte_idx, end_flg)
   return byte_idx
 end
 
@@ -302,15 +302,22 @@ end
 
 function v.Str.srch_byte_idx_by_ptn_vim_idx_s0(str, ptn_vim, s_byte_idx, end_flg) -- byte_idx start 0
 
+  s_byte_idx = s_byte_idx or 0
+
   local r_byte_idx
 
   if not end_flg then
     r_byte_idx = vf.match(   str, ptn_vim, s_byte_idx)
+
+    if r_byte_idx == -1 then return end
+
   else
     r_byte_idx = vf.matchend(str, ptn_vim, s_byte_idx)
-  end
 
-  if r_byte_idx == -1 then return end
+    if r_byte_idx == -1 then return end
+
+    r_byte_idx = r_byte_idx - 1
+  end
 
   return r_byte_idx
 end

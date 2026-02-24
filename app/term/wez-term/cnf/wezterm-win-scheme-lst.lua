@@ -50,6 +50,8 @@ scheme_lst.win.recommend.h = {
   'Snazzy'                                 , -- 
   'idleToes'                               , -- 
   'neon-night (Gogh)'                      , -- 
+  'Misterioso (Gogh)'                      , -- 
+  'Wombat (Gogh)'                          , -- 
   -- h ( chk no )
   'Abernathy'                              , -- 
   'Aci (Gogh)'                             , -- 
@@ -92,7 +94,6 @@ scheme_lst.win.recommend.h = {
   'Materia (base16)'                       , -- 
   'Material (base16)'                      , -- 
   'Material Darker (base16)'               , -- 
-  'Misterioso (Gogh)'                      , -- 
   'Mocha (dark) (terminal.sexy)'           , -- 
   'Modus-Vivendi'                          , -- 
   'Monokai (dark) (terminal.sexy)'         , -- 
@@ -147,7 +148,6 @@ scheme_lst.win.recommend.h = {
   'Visibone Alt. 2 (terminal.sexy)'        , -- 
   'Vs Code Dark+ (Gogh)'                   , -- 
   'Warm Neon (Gogh)'                       , -- 
-  'Wombat (Gogh)'                          , -- 
   'Wombat'                                 , -- 
   'Zenburn (Gogh)'                         , -- 
   'ayu'                                    , -- 

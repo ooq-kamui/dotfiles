@@ -43,8 +43,6 @@ function v.Cursor.ruler_idx()
   local str = v.Cursor.line_str_side_l()
 
   local ruler_idx = v.Str.len_ruler(str) + 1
-  -- v.Log.val(ruler_idx)
-
   return ruler_idx
 end
 
@@ -127,7 +125,6 @@ function v.Cursor.__mv_by_ruler_idx(ruler_idx)
 end
 
 function v.Cursor.__mv_by_line_num(line_num)
-  -- v.Log.val(line_num)
 
   if v.Var.is__emp(line_num) then
     return
@@ -484,7 +481,6 @@ function v.Cursor.__mv_v_jmp_d()
 end
 
 function v.Cursor.__mv_v_jmp(drct_cmd_nml)
-  -- v.Log.val('__mv_v_jmp')
 
   if not v.Tbl.is__in(drct_cmd_nml, {'k', 'j'}) then
     return
@@ -494,15 +490,11 @@ function v.Cursor.__mv_v_jmp(drct_cmd_nml)
 
   local is_c_char__space = v.Cursor.is_c_char__space()
   local is_byte_idx__line_end = v.Cursor.is_byte_idx__line_end()
-  -- v.Log.val('is_c_char__space : ', is_c_char__space)
-  -- v.Log.val('is_byte_idx__line_end : ', is_byte_idx__line_end)
 
   if is_c_char__space or is_byte_idx__line_end then
 
-    -- v.Log.val('__mv_v_jmp_to_char')
     v.Cursor.__mv_v_jmp_to_char(drct_cmd_nml)
   else
-    -- v.Log.val('__mv_v_jmp_to_space')
     v.Cursor.__mv_v_jmp_to_space(drct_cmd_nml)
   end
 end
@@ -615,8 +607,8 @@ end
 
 function v.Cursor.__ins(str)
 
-  local cmd = 'i' .. str
-  v.Cmd.nml(cmd)
+  local cmd_nml = 'i' .. str
+  v.Cmd.nml(cmd_nml)
   v.Cursor.__mv_char_f()
 end
 
@@ -656,7 +648,8 @@ function v.Cursor.__ins_cr()
 
   local line_num = v.Cursor.line_num()
 
-  v.Cmd.nml([[i\<cr> ]])
+  local cmd_nml = [[i<cr> ]]
+  v.Cmd.nml(cmd_nml)
   v.Cmd.nml('x')
 
   v.Line.end_space__del(line_num)
@@ -817,7 +810,6 @@ end
 -- cnd line  markdown
 
 function v.Cursor.is_line__markdown_itm()
-  -- v.Log.val('Cursor.is_line__markdown_itm')
 
   local ptn_vim  = v.Ptn.vim.markdown_itm
   local str      = v.Cursor.line_str()
@@ -883,7 +875,6 @@ function v.Cursor.l_char()
 
   local l_char_idx = c_char_idx - 1
   local l_char = v.Str.char_by_char_idx(line_str, l_char_idx, l_char_idx)
-  -- v.Log.val(l_char)
   return l_char
 end
 
@@ -1306,16 +1297,22 @@ function v.Cursor.line_top1__ins(str)
   v.Cursor.__ins(str)
 end
 
+function v.Cursor.line_end__ins(str)
+
+  local line_num = v.Cursor.line_num()
+  v.Line.end__ins(line_num, str)
+end
+
 function v.Cursor.line_end_dots__care()
 
   local line_str = v.Cursor.line_str()
   local is_line_dots__exist = v.Str.is__ptn(line_str, v.Str.dots.ptn_vim)
 
-  if is_line_dots__exist then
-    v.Cursor.line_end_dots__del()
+  if not is_line_dots__exist then
+    v.Cursor.line_end__ins_dots()
+  else
+    v.Cursor.line_end_dots__adjst()
   end
-
-  v.Cursor.line_end__ins_dots()
 end
 
 function v.Cursor.line_end__ins_dots()
@@ -1327,25 +1324,33 @@ function v.Cursor.line_end__ins_dots()
     space_len_byte = 0
   end
 
-  local line_str  = v.Cursor.line_str()
   local space_str = v.Str.space(space_len_byte)
+  local line_str  = v.Cursor.line_str()
   line_str = line_str .. space_str .. v.Str.dots.str
   v.Cursor.line__(line_str)
+end
+
+function v.Cursor.line_end_dots__adjst()
+
+  local line_str = v.Cursor.line_str()
+  local end_flg = bl.t
+  local byte_idx = v.Str.srch_byte_idx_by_ptn_vim(line_str, v.Str.dots.ptn_vim, 1, end_flg)
+
+  local status_str = v.Str.sub_by_byte_idx(line_str, byte_idx + 1)
+
+  v.Cursor.line_end_dots__del()
+  v.Cursor.line_end__ins_dots()
+  v.Cursor.line_end__ins(status_str)
 end
 
 function v.Cursor.line_end_dots__del()
 
   local line_str = v.Cursor.line_str()
-  local ptn_vim = v.Ptn.vim.space_str .. v.Str.dots.ptn_vim
-  local byte_idx = v.Str.srch_byte_idx_by_ptn_vim_idx_s1(line_str, ptn_vim)
-  line_str = v.Str.sub_by_byte_idx(line_str, 1, byte_idx)
-  v.Cursor.line__(line_str)
-end
+  local ptn_vim  = v.Ptn.vim.space_str .. v.Str.dots.ptn_vim
+  local byte_idx = v.Str.srch_byte_idx_by_ptn_vim(line_str, ptn_vim)
 
-function v.Cursor.line_end__ins(str)
-
-  local line_num = v.Cursor.line_num()
-  v.Line.end__ins(line_num, str)
+  local set_line_str = v.Str.sub_by_byte_idx(line_str, 1, byte_idx - 1)
+  v.Cursor.line__(set_line_str)
 end
 
 -- cursor f
@@ -1553,7 +1558,7 @@ function v.Cursor.is_line_num__file_edge()
   if v.Cursor.is_line_num__file_edge_bgn() or v.Cursor.is_line_num__file_edge_end() then
     ret = bl.t
   end
-  --v.Log.val( ret )
+
   return ret
 end
 
@@ -1610,7 +1615,7 @@ function v.Cursor.line_indnt__add(byte_idx)
   v.Cmd.nml('0')
 
   local char = ' '
-  -- v.Log.val(vim.bo.expandtab)
+
   if not vim.bo.expandtab then
     char = ' '
     byte_idx = byte_idx
@@ -1668,8 +1673,6 @@ function v.Cursor.line_indnt__crct_with_c()
   v.Cursor.line_indnt__del()
 
   local byte_idx = v.Cursor.line_indnt_byte_idx_with_c()
-  --v.Log.val( byte_idx )
-
   v.Cursor.line_indnt__add(byte_idx)
   return byte_idx
 end
