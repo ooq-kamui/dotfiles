@@ -319,7 +319,14 @@ keymap__('n', '<leader>L', ':FzfFileHstry<cr>')
 -- opn file rcnt ( ltst )
 keymap__('n', 'H', ':lua v.Buf.quit.rcnt_opn_re()<cr>')
 
--- opn etc
+-- opn re sjis
+keymap__('n', ':S', ':Sjis ')
+
+-- file encode ( encoding )
+keymap__('n', ':e', ':set encoding?')
+
+
+-- opn file etc
 
 -- opn fish cnf
 -- keymap__('n', 'xx', ':lua v.Buf.opn_fish_cnf()<cr>')
@@ -327,20 +334,18 @@ keymap__('n', 'H', ':lua v.Buf.quit.rcnt_opn_re()<cr>')
 -- opn nvim init
 -- keymap__('n', 'xx', ':lua v.Buf.opn_nvim_init()<cr>')
 
--- opn tmp file
--- keymap__('n', 'xx', ':lua v.Buf.opn_tmp_file()<cr>')
+-- opn cheat sheet
+keymap__('n', '<leader>s', ':lua v.Buf.opn_cheat_sheet()<cr>')
 
 -- opn memo
-keymap__('n', 'gm', ':lua v.Buf.opn_memo()<cr>')
+-- keymap__('n', 'gm', ':lua v.Buf.opn_memo()<cr>')
 
 -- opn man
 -- keymap__('n', 'xx', ':OpnMan ')
 
--- opn re sjis
-keymap__('n', ':S', ':Sjis ')
+-- opn tmp file
+-- keymap__('n', 'xx', ':lua v.Buf.opn_tmp_file()<cr>')
 
--- file encode ( encoding )
-keymap__('n', ':e', ':set encoding?')
 
 -- sys cmd opn
 
@@ -875,10 +880,6 @@ keymap__('n', '<leader>t', ':lua v.Fzf.doc_tech()<cr>')
 
 -- fzf doc memo
 -- keymap__('n', '<leader>xx', ':lua v.Fzf.doc_memo_opn()<cr>')
-
--- fzf str ref
-keymap__('n', '<leader>s'    , ':lua v.Fzf.cheat_sheet()<cr>')
-keymap__('n', '<leader><c-s>', ':lua v.Fzf.cheat_sheet__opn()<cr>')
 
 -- tab
 

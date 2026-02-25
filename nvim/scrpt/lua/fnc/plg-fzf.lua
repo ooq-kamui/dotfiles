@@ -50,9 +50,9 @@ end
 
 function v.Fzf.rg(ptn_rg, ext, word1) -- alias
 
-  ptn_rg = ptn_rg   or ''
-  ext    = ext   or nil
-  word1  = word1 or bl.f
+  ptn_rg = ptn_rg or ''
+  ext    = ext    or nil
+  word1  = word1  or bl.f
 
   v.Fzf.rg_with_grep(ptn_rg, ext, word1)
 end
@@ -65,13 +65,13 @@ end
 
 function v.Fzf.rg_with_grep(ptn_rg, ext, word1)
 
-  if not ( v.Env.is__('mac') or v.Env.is__('linux') or v.Env.is__('win64') ) then
-    return
-  end
+  -- if not ( v.Env.is__('mac') or v.Env.is__('linux') or v.Env.is__('win64') ) then
+  --   return
+  -- end
 
-  ptn_rg = ptn_rg   or ''
-  ext    = ext   or nil
-  word1  = word1 or bl.f
+  ptn_rg = ptn_rg or ''
+  ext    = ext    or nil
+  word1  = word1  or bl.f
 
   local rg_cmd = v.Rg.cmd(ptn_rg, ext, word1, nil)
   -- v.Log.val(rg_cmd)
@@ -325,7 +325,7 @@ function v.Fzf.cheat_sheet()
   v.Fzf.by_txt(fzf_src_txt, fnc_name)
 end
 
-function v.Fzf.cheat_sheet__opn()
+function v.Fzf.cheat_sheet__opn() -- dev doing
 
   local sys_cmd     = 'cat -n ' .. v.Dir.c.cheat_sheet_file_path
   local fzf_src_txt = v.Sys.cmd(sys_cmd)

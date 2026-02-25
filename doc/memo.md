@@ -6,16 +6,15 @@
 
 fzf-rg \s, err ?
 - by srch str
+- srch str vim
+- srch str plain ( flt )
 
 
 /xxx, n E
 - tst : xxxa
 
 
-cheat-sheet fzf opn
-- <leader><c-s>
-- rpl <leader>s
-  - off: <leader><c-s>
+fzf-jmplst, err
 
 
 dev-anchor, tidy

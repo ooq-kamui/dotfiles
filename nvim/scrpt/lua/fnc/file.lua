@@ -1,6 +1,10 @@
 
 v.File = {}
 
+v.File.path = {}
+v.File.path.memo_path = 'doc/memo.md'
+v.File.path.fish_cnf_path = '~/.config/fish/config.fish'
+
 function v.File.load(file_path)
 
   local file, err = io.open(file_path, 'r')

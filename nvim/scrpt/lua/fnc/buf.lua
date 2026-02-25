@@ -44,14 +44,26 @@ end
 function v.Buf.opn_tmp_file()
 
   local path = v.File.tmp__cre()
-  v.Log.val( path )
+  -- v.Log.val(path)
   v.Buf.opn(path)
+end
+
+function v.Buf.opn_fish_cnf()
+
+  local file_path = v.File.path.fish_cnf_path
+  v.Buf.opn(file_path)
 end
 
 function v.Buf.opn_nvim_init()
 
   v.Buf.opn(v.Dir.c.nvim_lua_key_map_file_path)
   -- v.Buf.opn(v.Dir.c.nvim_lua_fnc_basic_file_path)
+end
+
+function v.Buf.opn_cheat_sheet()
+
+  local file_path = v.Dir.c.cheat_sheet_file_path
+  v.Buf.opn(file_path)
 end
 
 function v.Buf.opn_nvim_init_l()
@@ -66,28 +78,12 @@ function v.Buf.opn_nvim_init_l()
   v.Buf.opn(v.Dir.c.nvim_lua_plg_fzf_file_path )
 end
 
-function v.Buf.opn_by_git_st_file_pth(git_st_file_pth)
-
-  local git_root_dir = v.Dir.git_root()
-  local file_path = git_root_dir .. git_st_file_pth
-  -- v.Log.val(file_path)
-  v.Buf.opn(file_path)
-end
-
-function v.Buf.opn_fish_cnf()
-
-  local path = '~/.config/fish/config.fish'
-  v.Buf.opn(path)
-end
-
 function v.Buf.opn_man(cmd)
 
   v.Cmd.cmd('tab new')
   v.Cmd.cmd('Man ' .. cmd)
   v.Cmd.cmd('only')
 end
-
-g.memo_path = 'doc/memo.md'
 
 function v.Buf.opn_memo()
 
@@ -103,17 +99,18 @@ function v.Buf.opn_memo()
   end
   -- v.Log.val(git_root_dir)
 
-  local file_path
-  file_path = git_root_dir .. g.memo_path
+  local file_path = git_root_dir .. v.File.path.memo_path
   -- v.Log.val(file_path)
 
   v.Buf.opn(file_path)
 end
 
-function v.Buf.opn_cheat_sheet_by_line_num(line_str)
+function v.Buf.opn_by_git_st_file_pth(git_st_file_pth)
 
-  -- dev anchor: dev doing
-  
+  local git_root_dir = v.Dir.git_root()
+  local file_path = git_root_dir .. git_st_file_pth
+  -- v.Log.val(file_path)
+  v.Buf.opn(file_path)
 end
 
 -- tag jmp

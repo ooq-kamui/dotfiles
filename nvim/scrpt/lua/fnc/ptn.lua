@@ -19,7 +19,7 @@ v.Ptn.vim.alph_char = [[\a]]
 
 v.Ptn.vim.word_char = [[\w]]
 
-v.Ptn.vim.mb_char_lst    = '[^' .. [[\x01-\x7E]] .. ']' -- ascii not
+v.Ptn.vim.mb_char_lst = '[^' .. [[\x01-\x7E]] .. ']' -- ascii not
 
 v.Ptn.vim.quote_char_lst    = '[' .. "'" .. '"`' .. ']'
 v.Ptn.vim.word_dlm_char_lst = '[' .. '_ABCDEFGHIJKLMNOPQRSTUVWXYZ' .. ']'

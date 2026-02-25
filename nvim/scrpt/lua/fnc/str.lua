@@ -97,6 +97,10 @@ function v.Str.byte_idx_by_ruler_idx(str, ruler_idx) -- byte_idx: mb end
 
   local byte_idx
 
+  if not v.Str.is__in_mb(str) then
+    return ruler_idx
+  end
+
   local len_char = v.Str.len_char(str)
   local str_sub, str_sub_len_ruler
 
@@ -586,6 +590,12 @@ end
 function v.Str.is__num(str)
 
   local ret = v.Str.is__ptn(str, v.Ptn.vim.num_entire)
+  return ret
+end
+
+function v.Str.is__in_mb(str)
+
+  local ret = v.Str.is__ptn(str, v.Ptn.vim.mb_char_lst)
   return ret
 end
 
