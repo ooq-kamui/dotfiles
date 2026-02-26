@@ -517,8 +517,8 @@ function v.Cursor.__mv_by_ptn(ptn_vim, drct, end_flg) -- range, on 1 line
 
   local line_num = v.Cursor.line_num()
 
-  local st = v.Srch.srch(ptn_vim, opt, line_num)
-  return st
+  local ret = v.Srch.srch(ptn_vim, opt, line_num)
+  return ret
 end
 
 function v.Cursor.__mv_by_srch_str(drct, end_flg)
@@ -535,7 +535,7 @@ function v.Cursor.__mv_by_srch_str(drct, end_flg)
     opt = opt .. 'e'
   end
 
-  local ptn_vim = v.Srch.str()
+  local ptn_vim = v.Srch.str_vim()
   v.Srch.srch(ptn_vim, opt)
 end
 
@@ -548,7 +548,7 @@ function v.Cursor.__mv_block_out_swtch()
 
   if     v.Buf.is_file_type__in({'markdown'}) then
 
-    v.Srch.str__ptn(v.Ptn.vim.markdown_heading)
+    v.Srch.str_vim__ptn(v.Ptn.vim.markdown_heading)
     v.Cursor.__mv_by_srch_str('b')
 
   elseif v.Buf.is_file_type__in(block_type_bracket_list) then

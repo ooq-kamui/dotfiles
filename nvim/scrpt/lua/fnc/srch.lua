@@ -14,42 +14,69 @@ function v.Srch.srch(ptn_vim, opt, line_num) -- run vim srch
   return ret
 end
 
-function v.Srch._or(...)
+-- srch str
 
-  local arg = {...}
+function v.Srch.str_plain()
 
-  local str = '\\(' .. vf.join(arg, '\\|') .. '\\)'
-  --v.Log.val( str )
-
-  v.Srch.str__ptn(str)
-  v.Cursor.__mv_by_srch_str('f')
+  return v.Srch._str_plain
 end
 
-function v.Srch.str()
+function v.Srch.str_plain__(str)
+
+  v.Srch._str_plain = str
+end
+
+function v.Srch.str_vim()
 
   local str = v.Rgstr.get('/')
   return str
 end
 
-function v.Srch.str_flt()
-  -- v.Log.val('str_flt init')
+function v.Srch.str_vim__(str_plain, op_word1)
 
-  return v.Srch._str_flt
+  v.Srch.str_vim_flt__(str_plain)
+
+  local str_vim
+
+  str_vim = v.Srch.str_plain_to_str_vim(str_plain)
+
+  if op_word1 then
+    str_vim = v.Srch.str_vim_word1(str_vim)
+  end
+
+  if str_vim == v.Srch.str_vim() then -- same ltst
+    return
+  end
+
+  v.Rgstr.__('/', str_vim)  -- highlight
+  v.Cmd.nml('/' .. str_vim) -- srch hstry add
 end
 
-function v.Srch.str_flt__(str)
+function v.Srch.str_plain_to_str_vim(str_plain)
 
-  v.Srch._str_flt = str
+  -- local escape_chars = '.*~[]\\^$'
+  local escape_chars = '.*~[]^$' .. [[\]]
+  local str_vim = v.Str.escape(str_plain, escape_chars)
+  -- v.Log.val(str_vim)
+
+  return str_vim
 end
 
-function v.Srch.str_word1(str)
-  -- v.Log.val('str_word1')
-  -- v.Log.val(str)
+function v.Srch.str_vim_flt()
+
+  return v.Srch._str_vim_flt
+end
+
+function v.Srch.str_vim_flt__(str)
+
+  v.Srch._str_vim_flt = str
+end
+
+function v.Srch.str_vim_word1(str)
 
   if not str then
-    str = v.Srch.str_flt()
+    str = v.Srch.str_vim_flt()
   end
-  -- v.Log.val('str_word1')
   -- v.Log.val(str)
 
   if v.Str.is__ptn(str, '^' .. v.Ptn.vim.word_char       ) then
@@ -63,31 +90,7 @@ function v.Srch.str_word1(str)
   return str
 end
 
--- srch str __
-
-function v.Srch.str__(str, op_word1)
-
-  v.Srch.str_flt__(str)
-
-  local exe_str
-  exe_str = v.Str.escape(str, '.*~[]\\^$')
-  -- exe_str = v.Str.__rpl_with_vim(exe_str, [[\n]], [[\\n]], 'g')
-  -- v.Log.val( exe_str )
-
-  if op_word1 == bl.t then
-    exe_str = v.Srch.str_word1(exe_str)
-  end
-  -- v.Log.val( exe_str )
-
-  if v.Srch.str() == exe_str then -- same ltst 01
-    return
-  end
-
-  v.Rgstr.__('/', exe_str)  -- highlight
-  v.Cmd.nml('/' .. exe_str) -- srch hstry add
-end
-
-function v.Srch.str__ptn(ptn_vim)
+function v.Srch.str_vim__ptn(ptn_vim)
 
   v.Rgstr.__('/', ptn_vim)
 end
@@ -98,19 +101,19 @@ function v.Srch.str__cursor_word()
 
   if v.Str.is__emp(str) then return end
 
-  v.Srch.str__(str, bl.f)
+  v.Srch.str_vim__(str, bl.f)
 end
 
 function v.Srch.str__word1_tgl()
 
-  local str = v.Srch.str_flt()
+  local str = v.Srch.str_vim_flt()
   -- v.Log.val(str)
 
   if v.Srch.is__word1() then
 
-    v.Srch.str__(str, bl.f)
+    v.Srch.str_vim__(str, bl.f)
   else
-    v.Srch.str__(str, bl.t)
+    v.Srch.str_vim__(str, bl.t)
   end
 end
 
@@ -124,7 +127,7 @@ function v.Srch.prv_tgl_str()
 
   local prv_tgl_str
 
-  if v.Srch.str() == v.Srch.str_ltst(1) then
+  if v.Srch.str_vim() == v.Srch.str_ltst(1) then
 
     if               v.Srch.str_ltst(1)           == [[\<]] .. v.Srch.str_ltst(2) .. [[\>]] then
 
@@ -174,7 +177,7 @@ function v.Srch.str__slctd_str() -- range
   end
 
   local str = v.Slctd.str()
-  v.Srch.str__(str, bl.f)
+  v.Srch.str_vim__(str, bl.f)
   v.Slctd.__clr()
 end
 
@@ -186,7 +189,7 @@ end
 function v.Srch.char(drct, char)
 
   -- v.Rgstr.__('/', '[' .. char .. ']')
-  v.Srch.str__ptn('[' .. char .. ']')
+  v.Srch.str_vim__ptn('[' .. char .. ']')
 
   v.Cursor.__mv_by_srch_str(drct)
 end
@@ -222,15 +225,14 @@ end
 
 function v.Srch.str__markdown_heading()
 
-  v.Srch.str__ptn(v.Ptn.vim.markdown_heading)
+  v.Srch.str_vim__ptn(v.Ptn.vim.markdown_heading)
 end
 
 v.Ptn.markdown_itm = '^ *- '
 
 function v.Srch.str__markdown_itm()
 
-  -- v.Srch.str__ptn('^ *- ')
-  v.Srch.str__ptn(v.Ptn.markdown_itm)
+  v.Srch.str_vim__ptn(v.Ptn.markdown_itm)
 end
 
 function v.Srch.str__fnc_def()
@@ -238,13 +240,13 @@ function v.Srch.str__fnc_def()
   local file_type = v.Buf.file_type()
 
   if     file_type == 'lua'    then
-    v.Srch.str__ptn('^function')
+    v.Srch.str_vim__ptn('^function')
 
   elseif file_type == 'python' then
-    v.Srch.str__ptn('^ *def')
+    v.Srch.str_vim__ptn('^ *def')
 
   else
-    v.Srch.str__ptn('^function')
+    v.Srch.str_vim__ptn('^function')
   end
 end
 
@@ -254,7 +256,7 @@ function v.Srch.is__word1()
 
   local ret = bl.f
 
-  local str = v.Srch.str()
+  local str = v.Srch.str_vim()
 
   if v.Str.is__ptn(str, [[^\\<]]) or v.Str.is__ptn(str, [[\\>$]]) then
     ret = bl.t

@@ -306,14 +306,16 @@ function v.Slctd.str__expnd_ptn_f(ptn_vim) -- range
 
   v.Slctd.__ltst()
   v.Slctd.cursor__mv_edge_r()
-  v.Cursor.__mv_by_ptn(ptn_vim, 'f')
+  local ret = v.Cursor.__mv_by_ptn(ptn_vim, 'f')
+  return ret
 end
 
 function v.Slctd.str__expnd_ptn_b(ptn_vim) -- range
 
   v.Slctd.__ltst()
   v.Slctd.cursor__mv_edge_l()
-  v.Cursor.__mv_by_ptn(ptn_vim, 'b')
+  local ret = v.Cursor.__mv_by_ptn(ptn_vim, 'b')
+  return ret
 end
 
 function v.Slctd.str__expnd_edge_out() -- range
@@ -368,7 +370,7 @@ function v.Slctd.str__expnd_char_pair() -- range
   -- v.Log.val(char_l_i_expnd_idx, char_r_i_expnd_idx)
   -- v.Log.val(char_l_o_expnd_idx, char_r_o_expnd_idx)
 
-  local char
+  local char, st
 
   if     char_l_i_expnd_idx == char_r_i_expnd_idx and char_l_i_expnd_idx then
     -- slctd lr completed
@@ -393,8 +395,10 @@ function v.Slctd.str__expnd_char_pair() -- range
     v.Cmd.nml('l')
 
   else
-    v.Slctd.str__expnd_ptn_f(v.Slctd.str_expnd_char_ptn_r)
-    v.Cmd.nml('h')
+    st = v.Slctd.str__expnd_ptn_f(v.Slctd.str_expnd_char_ptn_r)
+    if st then
+      v.Cmd.nml('h')
+    end
   end
 end
 
@@ -458,10 +462,6 @@ function v.Slctd.str__rpl(srch, rpl) -- range
 end
 
 -- slctd str __ ( rpl )
-
-function v.Slctd.str__(str) -- range -- todo dev
-
-end
 
 function v.Slctd.__srch(drct)
 
@@ -948,7 +948,7 @@ end
 
 function v.Slctd.is_str__srch_str()
 
-  local srch_str = v.Srch.str()
+  local srch_str = v.Srch.str_vim()
   -- v.Log.log(srch_str)
   srch_str = v.Str.__rpl_with_lua(srch_str, [[\<]], '')
   srch_str = v.Str.__rpl_with_lua(srch_str, [[\>]], '')
@@ -1143,7 +1143,7 @@ end
 
 function v.Slctd.line_srch_str__rpl_cr() -- range
 
-  local srch_str = v.Srch.str()
+  local srch_str = v.Srch.str_vim()
 
   local rng = v.Slctd.rng_dflt
   local cmd = rng .. 's/\\(' .. srch_str .. '\\)/\\1\\r/eg'

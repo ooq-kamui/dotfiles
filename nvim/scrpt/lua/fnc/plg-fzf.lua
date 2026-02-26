@@ -59,7 +59,7 @@ end
 
 function v.Fzf.rg_by_srch_str()
 
-  local srch_str = v.Srch.str()
+  local srch_str = v.Srch.str_vim()
   v.Fzf.rg(srch_str)
 end
 
@@ -114,7 +114,7 @@ end
 
 function v.Fzf.rg_word1_by_srch_str()
 
-  local ptn_rg = v.Srch.str()
+  local ptn_rg = v.Srch.str_vim()
   v.Fzf.rg(ptn_rg, nil, bl.t)
 end
 

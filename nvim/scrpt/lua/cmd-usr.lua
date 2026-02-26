@@ -58,13 +58,6 @@ vim.api.nvim_create_user_command('Mv',
   {nargs = 1}
 )
 
-vim.api.nvim_create_user_command('SrchOr',
-  function(opts)
-    v.Srch._or(unpack(opts.fargs))
-  end,
-  {nargs = '*'}
-)
-
 -- vim.api.nvim_create_user_command('InsSysCmd',
 --   function(opts)
 --     v.Cursor.__ins_sys_cmd(opts.fargs[1])

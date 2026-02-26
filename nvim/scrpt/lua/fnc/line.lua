@@ -51,14 +51,14 @@ end
 
 function v.Line.end_space__del(line_num)
 
-  local ptn_tmp = v.Srch.str()
+  local ptn_tmp = v.Srch.str_vim()
 
   local rpl_cmd = line_num .. 's/' .. g.line_end_space_ptn .. '//g'
   -- v.Log.val(rpl_cmd)
 
   v.Cmd.cmd(rpl_cmd)
 
-  v.Srch.str__ptn(ptn_tmp)
+  v.Srch.str_vim__ptn(ptn_tmp)
 end
 
 function v.Line.end__pad_space(line_num, fil_end_ruler_idx)

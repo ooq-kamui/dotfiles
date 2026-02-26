@@ -43,7 +43,6 @@ scheme_lst.win.recommend.h = {
   'Catppuccin Mocha (Gogh)'                , -- 
   'Decaf (base16)'                         , -- 
   'Everblush (Gogh)'                       , -- 
-  'Fairyfloss'                             , -- 
   'Snazzy (Gogh)'                          , -- 
   'Snazzy'                                 , -- 
   'idleToes'                               , -- 
@@ -52,7 +51,10 @@ scheme_lst.win.recommend.h = {
   'Wombat (Gogh)'                          , -- 
   'Poimandres Storm'                       , -- 
   'AyuMirage (Gogh)'                       , -- 
-  -- h ( chk ed ) -- slctd -- white
+  'Material Darker (base16)'               , -- 
+  -- h ( chk ed ) ~ git
+  'Fairyfloss'                             , -- 
+  -- h ( chk ed ) ~ slctd -- white
   'Snazzy (base16)'                        , -- 
   -- h ( chk no )
   'Abernathy'                              , -- 
@@ -93,7 +95,6 @@ scheme_lst.win.recommend.h = {
   'Kolorit'                                , -- 
   'Materia (base16)'                       , -- 
   'Material (base16)'                      , -- 
-  'Material Darker (base16)'               , -- 
   'Mocha (dark) (terminal.sexy)'           , -- 
   'Modus-Vivendi'                          , -- 
   'Monokai (dark) (terminal.sexy)'         , -- 

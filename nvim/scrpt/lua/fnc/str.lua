@@ -497,8 +497,13 @@ end
 
 function v.Str.escape(str, escape_chars) -- alias
 
-  str = vf.escape(str, escape_chars)
-  return str
+  return v.Str.escape_with_vim(str, escape_chars)
+end
+
+function v.Str.escape_with_vim(str, escape_chars) -- alias
+
+  local ret_str = vf.escape(str, escape_chars)
+  return ret_str
 end
 
 -- str cre

@@ -4,10 +4,16 @@
 
 ## nvim
 
-fzf-rg \s, err ?
-- by srch str
+srch str
+- srch str plain
 - srch str vim
-- srch str plain ( flt )
+
+
+fzf-rg \s, err ?
+- by srch str_plain
+
+
+`fnc def` ptn def
 
 
 /xxx, n E

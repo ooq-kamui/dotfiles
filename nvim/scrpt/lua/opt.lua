@@ -161,7 +161,7 @@ vim.api.nvim_create_autocmd('BufRead', {
 --     if vim.v.event.abort then return end
 -- 
 --     -- v.Log.val('run /')
---     -- v.Srch.str_flt__(v.Rgstr.get('/'))
+--     -- v.Srch.str_vim_flt__(v.Rgstr.get('/'))
 --   end,
 -- })
 
