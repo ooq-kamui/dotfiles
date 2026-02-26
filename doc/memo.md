@@ -8,6 +8,8 @@ srch str
 - srch str plain
 - srch str vim
 
+- is_str_vim__word1 cre
+
 
 fzf-rg \s, err ?
 - by srch str_plain
