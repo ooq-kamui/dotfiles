@@ -30,6 +30,7 @@ scheme_lst.win.recommend.h_done = {
   'niji'                                   , -- 
   'synthwave-everything'                   , -- 
   'SynthWave (Gogh)'                       , -- 
+  'Synthwave (Gogh)'                       , -- 
   -- hh ~
   'MaterialDarker'                         , -- 
   'Modus-Vivendi-Tritanopia'               , -- 
@@ -68,26 +69,35 @@ scheme_lst.win.recommend.h_done = {
   'Horizon Dark (Gogh)'                    , -- 
   'Ef-Maris-Dark'                          , -- 
   'synthwave'                              , -- 
+  'Poimandres'                             , -- 
+  'TokyoNightStorm (Gogh)'                 , -- 
   -- h ( chk ed ) ~ dir
   'MonokaiPro (Gogh)'                      , -- 
   'Teerb (Gogh)'                           , -- 
   'MonokaiProRistretto (Gogh)'             , -- 
   'Dracula+'                               , -- 
+  -- h ( chk ed ) ~ white
+  'Vs Code Dark+ (Gogh)'                   , -- 
   -- h ( chk ed ) ~ git
   'Fairyfloss'                             , -- 
   'Ir Black (Gogh)'                        , -- 
   'seoulbones_dark'                        , -- 
   'Belge (terminal.sexy)'                  , -- 
   'Dracula (base16)'                       , -- 
+  'Red Alert (Gogh)'                       , -- 
   -- h ( chk ed ) ~ cmd line
   'kokuban (Gogh)'                         , -- 
   -- h ( chk ed ) ~ slctd -- white
   'Snazzy (base16)'                        , -- 
   'Monokai (base16)'                       , -- 
+  'Material (base16)'                      , -- 
   -- h ( chk ed ) ~ slctd -- dark
   'deep'                                   , -- 
   'tokyonight_moon'                        , -- 
   'Wombat'                                 , -- 
+  'ayu'                                    , -- 
+  'Ef-Cherie'                              , -- 
+  'Obsidian'                               , -- 
 }
 scheme_lst.win.recommend.h = {
   -- h ( chk no )
@@ -100,37 +110,26 @@ scheme_lst.win.recommend.h = {
   'Chalk (dark) (terminal.sexy)'           , -- 
   'Dracula'                                , -- 
   'Duotone Dark'                           , -- 
-  'Ef-Cherie'                              , -- 
   'Fairy Floss (Gogh)'                     , -- 
   'Guezwhoz'                               , -- 
   'Humanoid dark (base16)'                 , -- 
-  'Material (base16)'                      , -- 
   'Modus-Vivendi'                          , -- 
   'Monokai (dark) (terminal.sexy)'         , -- 
   'Monokai (terminal.sexy)'                , -- 
-  'Monokai Soda (Gogh)'                    , -- 
   'NightLion v2'                           , -- 
   'NightOwl (Gogh)'                        , -- 
   'Nightfly (Gogh)'                        , -- 
-  'Obsidian'                               , -- 
   'OceanicMaterial'                        , -- 
-  'Operator Mono Dark'                     , -- 
   'Oxocarbon Dark (Gogh)'                  , -- 
   'Paul Millr (Gogh)'                      , -- 
   'Peppermint (Gogh)'                      , -- 
   'Pnevma'                                 , -- 
-  'Poimandres'                             , -- 
-  'Red Alert (Gogh)'                       , -- 
   'SweetTerminal (Gogh)'                   , -- 
-  'Synthwave (Gogh)'                       , -- 
   'Tokyo Night (Gogh)'                     , -- 
   'Tokyo Night Storm'                      , -- 
-  'TokyoNightStorm (Gogh)'                 , -- 
   'Tomorrow Night Bright'                  , -- 
   'VSCodeDark+ (Gogh)'                     , -- 
   'VisiBone (terminal.sexy)'               , -- 
-  'Vs Code Dark+ (Gogh)'                   , -- 
-  'ayu'                                    , -- 
   'catppuccin-macchiato'                   , -- 
   'catppuccin-mocha'                       , -- 
   'iTerm2 Smoooooth'                       , -- 
@@ -159,6 +158,7 @@ scheme_lst.win.excld = {
   'Mocha (dark) (terminal.sexy)'           , -- 
   'Fairy Floss Dark (Gogh)'                , -- 
   'Cyberdyne'                              , -- 
+  'Operator Mono Dark'                     , -- 
   -- dir blue
   'TomorrowNightEighties (Gogh)'           , -- 
   'Catppuccin Macchiato'                   , -- 
@@ -176,6 +176,7 @@ scheme_lst.win.excld = {
   'Aci (Gogh)'                             , -- 
   'Papercolor Dark (Gogh)'                 , -- 
   'Google Dark (Gogh)'                     , -- 
+  'Monokai Soda (Gogh)'                    , -- 
   -- cmd line
   'Desert (Gogh)'                          , -- 
   'Desert'                                 , -- 
