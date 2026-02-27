@@ -5,7 +5,8 @@ local scheme_lst = {}
 
 scheme_lst.win = {}
 scheme_lst.win.recommend = {}
-scheme_lst.win.recommend.h_done = {
+scheme_lst.win.recommend.h_done = {}
+scheme_lst.win.recommend.h = {
   -- hh                                      -- 
   'ChallengerDeep'                         , -- 
   'Dracula (Official)'                     , -- 
@@ -71,13 +72,27 @@ scheme_lst.win.recommend.h_done = {
   'synthwave'                              , -- 
   'Poimandres'                             , -- 
   'TokyoNightStorm (Gogh)'                 , -- 
+  'Guezwhoz'                               , -- 
+  'Paul Millr (Gogh)'                      , -- 
+  'Abernathy'                              , -- 
+  'Monokai (terminal.sexy)'                , -- 
+  'catppuccin-mocha'                       , -- 
+  'Modus-Vivendi'                          , -- 
+  'Oxocarbon Dark (Gogh)'                  , -- 
+  'Chalk (dark) (terminal.sexy)'           , -- 
+  'Monokai (dark) (terminal.sexy)'         , -- 
   -- h ( chk ed ) ~ dir
   'MonokaiPro (Gogh)'                      , -- 
   'Teerb (Gogh)'                           , -- 
   'MonokaiProRistretto (Gogh)'             , -- 
   'Dracula+'                               , -- 
+  'Dracula'                                , -- 
+  'Aura (Gogh)'                            , -- 
+  'iTerm2 Smoooooth'                       , -- 
+  'Catppuccin Mocha'                       , -- 
   -- h ( chk ed ) ~ white
   'Vs Code Dark+ (Gogh)'                   , -- 
+  'NightOwl (Gogh)'                        , -- 
   -- h ( chk ed ) ~ git
   'Fairyfloss'                             , -- 
   'Ir Black (Gogh)'                        , -- 
@@ -91,6 +106,9 @@ scheme_lst.win.recommend.h_done = {
   'Snazzy (base16)'                        , -- 
   'Monokai (base16)'                       , -- 
   'Material (base16)'                      , -- 
+  'Chalk (base16)'                         , -- 
+  'tender (base16)'                        , -- 
+  'Humanoid dark (base16)'                 , -- 
   -- h ( chk ed ) ~ slctd -- dark
   'deep'                                   , -- 
   'tokyonight_moon'                        , -- 
@@ -98,43 +116,6 @@ scheme_lst.win.recommend.h_done = {
   'ayu'                                    , -- 
   'Ef-Cherie'                              , -- 
   'Obsidian'                               , -- 
-}
-scheme_lst.win.recommend.h = {
-  -- h ( chk no )
-  'Abernathy'                              , -- 
-  'Atom'                                   , -- 
-  'Aura (Gogh)'                            , -- 
-  'Cai (Gogh)'                             , -- 
-  'Catppuccin Mocha'                       , -- 
-  'Chalk (base16)'                         , -- 
-  'Chalk (dark) (terminal.sexy)'           , -- 
-  'Dracula'                                , -- 
-  'Duotone Dark'                           , -- 
-  'Fairy Floss (Gogh)'                     , -- 
-  'Guezwhoz'                               , -- 
-  'Humanoid dark (base16)'                 , -- 
-  'Modus-Vivendi'                          , -- 
-  'Monokai (dark) (terminal.sexy)'         , -- 
-  'Monokai (terminal.sexy)'                , -- 
-  'NightLion v2'                           , -- 
-  'NightOwl (Gogh)'                        , -- 
-  'Nightfly (Gogh)'                        , -- 
-  'OceanicMaterial'                        , -- 
-  'Oxocarbon Dark (Gogh)'                  , -- 
-  'Paul Millr (Gogh)'                      , -- 
-  'Peppermint (Gogh)'                      , -- 
-  'Pnevma'                                 , -- 
-  'SweetTerminal (Gogh)'                   , -- 
-  'Tokyo Night (Gogh)'                     , -- 
-  'Tokyo Night Storm'                      , -- 
-  'Tomorrow Night Bright'                  , -- 
-  'VSCodeDark+ (Gogh)'                     , -- 
-  'VisiBone (terminal.sexy)'               , -- 
-  'catppuccin-macchiato'                   , -- 
-  'catppuccin-mocha'                       , -- 
-  'iTerm2 Smoooooth'                       , -- 
-  'tender (base16)'                        , -- 
-  'tokyonight-storm'                       , -- 
 }
 scheme_lst.win.recommend.m = {}
 scheme_lst.win.check = {}
@@ -159,6 +140,11 @@ scheme_lst.win.excld = {
   'Fairy Floss Dark (Gogh)'                , -- 
   'Cyberdyne'                              , -- 
   'Operator Mono Dark'                     , -- 
+  'NightLion v2'                           , -- 
+  'Atom'                                   , -- 
+  'Duotone Dark'                           , -- 
+  'Nightfly (Gogh)'                        , -- 
+  'Fairy Floss (Gogh)'                     , -- 
   -- dir blue
   'TomorrowNightEighties (Gogh)'           , -- 
   'Catppuccin Macchiato'                   , -- 
@@ -177,6 +163,14 @@ scheme_lst.win.excld = {
   'Papercolor Dark (Gogh)'                 , -- 
   'Google Dark (Gogh)'                     , -- 
   'Monokai Soda (Gogh)'                    , -- 
+  'tokyonight-storm'                       , -- 
+  'catppuccin-macchiato'                   , -- 
+  'Tomorrow Night Bright'                  , -- 
+  'Pnevma'                                 , -- 
+  'Tokyo Night Storm'                      , -- 
+  'Tokyo Night (Gogh)'                     , -- 
+  'VSCodeDark+ (Gogh)'                     , -- 
+  'Cai (Gogh)'                             , -- 
   -- cmd line
   'Desert (Gogh)'                          , -- 
   'Desert'                                 , -- 
@@ -210,8 +204,12 @@ scheme_lst.win.excld = {
   'SynthwaveAlpha'                         , -- 
   'Builtin Tango Dark'                     , -- 
   'Teerb'                                  , -- 
+  'SweetTerminal (Gogh)'                   , -- 
+  'VisiBone (terminal.sexy)'               , -- 
+  'Peppermint (Gogh)'                      , -- 
   -- slctd -- white
   'Framer (base16)'                        , -- 
+  'OceanicMaterial'                        , -- 
   -- slctd -- dark
   'Banana Blueberry'                       , -- 
   'Ef-Dark'                                , -- 
