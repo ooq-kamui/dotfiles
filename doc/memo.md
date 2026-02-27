@@ -7,6 +7,8 @@
 /xxx, n E
 - tst : xxxa
 
+- srch.str_vim__restore()
+
 
 fzf-jmplst, err
 
