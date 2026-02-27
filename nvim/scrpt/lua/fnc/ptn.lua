@@ -27,6 +27,10 @@ v.Ptn.vim.word_dlm_char_lst = '[' .. '_ABCDEFGHIJKLMNOPQRSTUVWXYZ' .. ']'
 v.Ptn.vim.markdown_heading = '^' .. [[#\+ ]]
 v.Ptn.vim.markdown_itm     = '^' .. [[\s*- ]]
 
+v.Ptn.vim.fnc_def = {}
+v.Ptn.vim.fnc_def.lua    = '^function'
+v.Ptn.vim.fnc_def.python = '^ *def'
+v.Ptn.vim.fnc_def.dflt   = '^function'
 
 -- lua
 

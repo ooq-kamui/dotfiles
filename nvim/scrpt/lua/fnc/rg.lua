@@ -93,10 +93,10 @@ function v.Rg.all_cnt()
   return rg_rslt_cnt
 end
 
-function v.Rg.all_rslt_ar()
+function v.Rg.all_rslt_ar() -- use not
 
   local ptn_rg = v.Rg.ptn.emp_line
-  local opt = '-v'
+  local opt = '-v' -- match not
 
   local rslt_ar = v.Rg.rslt_ar_by_ptn(ptn_rg, opt)
   return rslt_ar

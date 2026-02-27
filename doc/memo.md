@@ -4,25 +4,17 @@
 
 ## nvim
 
-srch str
-- srch str plain
-- srch str vim
-
-- is_str_vim__word1 cre
-
-
-fzf-rg \s, err ?
-- by srch str_plain
-
-
-`fnc def` ptn def
-
-
 /xxx, n E
 - tst : xxxa
 
 
 fzf-jmplst, err
+
+
+fzf rg : refactoring
+- word1
+- key map
+  - slctd fnc cre
 
 
 dev-anchor, tidy

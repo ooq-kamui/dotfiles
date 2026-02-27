@@ -48,32 +48,31 @@ end
 
 -- fzf rg
 
-function v.Fzf.rg(ptn_rg, ext, word1) -- alias
+function v.Fzf.rg(ptn_rg, ext, word1, opt) -- alias
 
   ptn_rg = ptn_rg or ''
   ext    = ext    or nil
   word1  = word1  or bl.f
+  opt    = opt    or nil
 
-  v.Fzf.rg_with_grep(ptn_rg, ext, word1)
+  v.Fzf.rg_with_grep(ptn_rg, ext, word1, opt)
 end
 
 function v.Fzf.rg_by_srch_str()
 
-  local srch_str = v.Srch.str_vim()
-  v.Fzf.rg(srch_str)
+  local srch_str_plain = v.Srch.str_plain()
+  local opt = '-F' -- str plain ( ptn not )
+  v.Fzf.rg(srch_str_plain, nil, nil, opt)
 end
 
-function v.Fzf.rg_with_grep(ptn_rg, ext, word1)
-
-  -- if not ( v.Env.is__('mac') or v.Env.is__('linux') or v.Env.is__('win64') ) then
-  --   return
-  -- end
+function v.Fzf.rg_with_grep(ptn_rg, ext, word1, opt)
 
   ptn_rg = ptn_rg or ''
   ext    = ext    or nil
   word1  = word1  or bl.f
+  opt    = opt    or nil
 
-  local rg_cmd = v.Rg.cmd(ptn_rg, ext, word1, nil)
+  local rg_cmd = v.Rg.cmd(ptn_rg, ext, word1, opt)
   -- v.Log.val(rg_cmd)
 
   vim.fn['fzf#vim#grep'](
@@ -122,47 +121,6 @@ end
 
 v.Fzf.cnst = {}
 v.Fzf.cnst.line_cnt_max = 30000
-
-function v.Fzf.rg_with_run(...) -- use not
-
-  local arg = {...}
-
-  local ptn_rg = arg[1] or nil
-
-  local rg_rslt_cnt, fzf_src_ar
-
-  if ptn_rg == nil then
-
-    rg_rslt_cnt = v.Rg.all_cnt()
-
-    if rg_rslt_cnt > v.Fzf.cnst.line_cnt_max then
-      v.Log.val("rg_rslt_cnt, end")
-      return
-    end
-
-    fzf_src_ar = v.Rg.all_rslt_ar()
-
-  else
-    rg_rslt_cnt = v.Rg.rslt_cnt(ptn_rg, nil)
-
-    if rg_rslt_cnt > v.Fzf.cnst.line_cnt_max then
-      v.Log.val("rg_rslt_cnt, end")
-      return
-    end
-
-    fzf_src_ar = v.Rg.rslt_ar_by_ptn(ptn_rg, nil)
-  end
-
-  vim.fn['fzf#run'](
-    {
-      source = fzf_src_ar,
-      sink   = v.Buf.opn_by_path,
-      window = '-tabnew',
-    }
-  )
-  --     'options': ['--reverse'],
-  --     'options': ['--no-sort'],
-end
 
 -- fzf tag jmp by file
 
@@ -358,15 +316,6 @@ let g:fzf_colors = {
 ]]
 v.Cmd.cmd(v.Fzf.opt_vim_cmd)
 
--- if v.Env.is__in({'mac', 'linux', 'win64'}) then
--- 
---   if v.Env.is__('win64') then
---     v.Rg.fzf_rg_opt = v.Rg.fzf_rg_opt .. ' -g "!.git/"' -- same else ?
---   else
---     v.Rg.fzf_rg_opt = v.Rg.fzf_rg_opt .. ' -g "!.git/"'
---   end
--- end
-
 -- cmd usr
 
 vim.api.nvim_create_user_command('FzfRgExt',
@@ -374,13 +323,6 @@ vim.api.nvim_create_user_command('FzfRgExt',
     v.Fzf.rg_ext(unpack(opts.fargs))
   end,
   {nargs = 1, bang = bl.t}
-)
-
-vim.api.nvim_create_user_command('FzfRgWithRun',
-  function(opts)
-    v.Fzf.rg_with_run(unpack(opts.fargs))
-  end,
-  {nargs = '?'}
 )
 
 vim.api.nvim_create_user_command('FzfTagjmpByFile',

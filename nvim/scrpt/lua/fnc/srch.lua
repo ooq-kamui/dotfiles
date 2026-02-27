@@ -34,14 +34,14 @@ end
 
 function v.Srch.str_vim__(str_plain, op_word1)
 
-  v.Srch.str_vim_flt__(str_plain)
+  v.Srch.str_plain__(str_plain)
 
   local str_vim
 
   str_vim = v.Srch.str_plain_to_str_vim(str_plain)
 
   if op_word1 then
-    str_vim = v.Srch.str_vim_word1(str_vim)
+    str_vim = v.Srch.str_vim_to_word1(str_vim)
   end
 
   if str_vim == v.Srch.str_vim() then -- same ltst
@@ -62,32 +62,31 @@ function v.Srch.str_plain_to_str_vim(str_plain)
   return str_vim
 end
 
-function v.Srch.str_vim_flt()
+-- function v.Srch.str_vim_flt()
+-- 
+--   return v.Srch._str_vim_flt
+-- end
 
-  return v.Srch._str_vim_flt
-end
+-- function v.Srch.str_vim_flt__(str)
+-- 
+--   v.Srch._str_vim_flt = str
+-- end
 
-function v.Srch.str_vim_flt__(str)
+function v.Srch.str_vim_to_word1(str_vim)
 
-  v.Srch._str_vim_flt = str
-end
-
-function v.Srch.str_vim_word1(str)
-
-  if not str then
-    str = v.Srch.str_vim_flt()
-  end
-  -- v.Log.val(str)
-
-  if v.Str.is__ptn(str, '^' .. v.Ptn.vim.word_char       ) then
-    str = [[\<]] .. str
+  if not str_vim then
+    str_vim = v.Srch.str_vim()
   end
 
-  if v.Str.is__ptn(str,        v.Ptn.vim.word_char .. '$') then
-    str =           str .. [[\>]]
+  if v.Str.is__ptn(str_vim, '^' .. v.Ptn.vim.word_char       ) then
+    str_vim = [[\<]] .. str_vim
   end
 
-  return str
+  if v.Str.is__ptn(str_vim,        v.Ptn.vim.word_char .. '$') then
+    str_vim =           str_vim .. [[\>]]
+  end
+
+  return str_vim
 end
 
 function v.Srch.str_vim__ptn(ptn_vim)
@@ -106,10 +105,9 @@ end
 
 function v.Srch.str__word1_tgl()
 
-  local str = v.Srch.str_vim_flt()
-  -- v.Log.val(str)
+  local str = v.Srch.str_plain()
 
-  if v.Srch.is__word1() then
+  if v.Srch.is_str_vim__word1() then
 
     v.Srch.str_vim__(str, bl.f)
   else
@@ -240,19 +238,19 @@ function v.Srch.str__fnc_def()
   local file_type = v.Buf.file_type()
 
   if     file_type == 'lua'    then
-    v.Srch.str_vim__ptn('^function')
+    v.Srch.str_vim__ptn(v.Ptn.vim.fnc_def.lua   )
 
   elseif file_type == 'python' then
-    v.Srch.str_vim__ptn('^ *def')
+    v.Srch.str_vim__ptn(v.Ptn.vim.fnc_def.python)
 
   else
-    v.Srch.str_vim__ptn('^function')
+    v.Srch.str_vim__ptn(v.Ptn.vim.fnc_def.dflt  )
   end
 end
 
 -- srch cnd
 
-function v.Srch.is__word1()
+function v.Srch.is_str_vim__word1()
 
   local ret = bl.f
 

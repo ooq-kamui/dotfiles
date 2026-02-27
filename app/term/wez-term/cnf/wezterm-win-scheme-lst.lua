@@ -5,7 +5,7 @@ local scheme_lst = {}
 
 scheme_lst.win = {}
 scheme_lst.win.recommend = {}
-scheme_lst.win.recommend.h = {
+scheme_lst.win.recommend.h_done = {
   -- hh                                      -- 
   'ChallengerDeep'                         , -- 
   'DjangoSmooth'                           , -- 
@@ -56,6 +56,8 @@ scheme_lst.win.recommend.h = {
   'Fairyfloss'                             , -- 
   -- h ( chk ed ) ~ slctd -- white
   'Snazzy (base16)'                        , -- 
+}
+scheme_lst.win.recommend.h = {
   -- h ( chk no )
   'Abernathy'                              , -- 
   'Aci (Gogh)'                             , -- 
