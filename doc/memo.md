@@ -22,20 +22,6 @@ dev-anchor, tidy
 - grep
 
 
-## wez
-
-tab new time
-- win, mac
-  - confirm
-    - case: color-scheme lst off
-
-
-## kiro
-
-kiro-cli
-- instl
-
-
 ## godot
 
 platformer
@@ -44,6 +30,14 @@ platformer
 game cre
 - map cre
 - chara cre
+
+
+## wez
+
+tab new time
+- win, mac
+  - confirm
+    - case: color-scheme lst off
 
 
 ## nvim
