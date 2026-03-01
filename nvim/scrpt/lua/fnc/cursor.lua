@@ -555,7 +555,7 @@ function v.Cursor.__mv_block_out_swtch()
     v.Cursor.__mv_bracket_out()
 
   else
-    v.Srch.str__fnc_def()
+    v.Srch.str_vim__fnc_def()
     v.Cursor.__mv_by_srch_str('b')
   end
 end

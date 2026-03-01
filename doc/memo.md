@@ -2,30 +2,24 @@
 # dotfiles
 
 
+## kirby
+
+morphing
+
+
 ## nvim
 
-/xxx, n E
-- tst : xxxa
-
-- srch.str_vim__restore()
-
-
-fzf-jmplst, err
+fzf rg
+- word1 > fnc opt ( arg )
+- refactoring
 
 
-fzf rg : refactoring
-- word1
-- key map
-  - slctd fnc cre
+srch str_plain history
+- at srch str __ tgl
 
 
 dev-anchor, tidy
 - grep
-
-
-## kirby
-
-morphing
 
 
 ## wez

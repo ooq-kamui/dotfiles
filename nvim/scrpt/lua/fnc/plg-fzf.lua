@@ -55,7 +55,7 @@ function v.Fzf.rg(ptn_rg, ext, word1, opt) -- alias
   word1  = word1  or bl.f
   opt    = opt    or nil
 
-  v.Fzf.rg_with_grep(ptn_rg, ext, word1, opt)
+  v.Fzf.rg_with_fzfgrep(ptn_rg, ext, word1, opt)
 end
 
 function v.Fzf.rg_by_srch_str()
@@ -65,7 +65,13 @@ function v.Fzf.rg_by_srch_str()
   v.Fzf.rg(srch_str_plain, nil, nil, opt)
 end
 
-function v.Fzf.rg_with_grep(ptn_rg, ext, word1, opt)
+function v.Fzf.rg_by_slctd_str()
+
+  local str = v.Slctd.str()
+  v.Fzf.rg(str)
+end
+
+function v.Fzf.rg_with_fzfgrep(ptn_rg, ext, word1, opt)
 
   ptn_rg = ptn_rg or ''
   ext    = ext    or nil
@@ -106,6 +112,7 @@ function v.Fzf.rg_ext(ext)
 end
 
 -- rg word1
+
 function v.Fzf.rg_word1(ptn_rg)
 
   v.Fzf.rg(ptn_rg, nil, bl.t)
@@ -113,8 +120,15 @@ end
 
 function v.Fzf.rg_word1_by_srch_str()
 
-  local ptn_rg = v.Srch.str_vim()
-  v.Fzf.rg(ptn_rg, nil, bl.t)
+  -- local ptn_rg = v.Srch.str_vim()
+  local str_plain = v.Srch.str_plain()
+  v.Fzf.rg(str_plain, nil, bl.t)
+end
+
+function v.Fzf.rg_word1_by_slctd_str()
+
+  local str = v.Slctd.str()
+  v.Fzf.rg_word1(str)
 end
 
 -- fzf rg with run
@@ -144,7 +158,7 @@ end
 
 function v.Fzf.buf_by_slctd_str()
 
-  v.Srch.str__slctd_str()
+  v.Srch.str_vim__slctd_str()
   v.Cmd.cmd('FzfBufCrnt ' .. v.Str.escape(v.Rgstr.get('z'), '.*~'))
 end
 
@@ -232,7 +246,7 @@ v.Fzf.doc_tech_md_dir = 'wrk/prj-pri/doc-tech/docs/md'
 
 function v.Fzf.doc_tech()
 
-  local ptn_rg = v.Rg.ptn.emp_line
+  local ptn_rg = v.Rg.ptn.line_emp
   local opt = ' -v'
   opt = opt .. ' --no-heading'
   opt = opt .. ' --line-number'
@@ -315,6 +329,10 @@ let g:fzf_colors = {
 \ }
 ]]
 v.Cmd.cmd(v.Fzf.opt_vim_cmd)
+
+-- rg opt
+
+v.Rg.fzf_rg_opt = v.Rg.fzf_rg_opt .. ' -g "!.git/"'
 
 -- cmd usr
 

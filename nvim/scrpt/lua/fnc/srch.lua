@@ -18,7 +18,26 @@ end
 
 function v.Srch.str_plain()
 
+  v.Srch.str_plain__restore()
+
   return v.Srch._str_plain
+end
+
+function v.Srch.str_plain__restore()
+
+  local str_vim = v.Srch.str_vim()
+
+  local str_plain = v.Srch._str_plain
+  local str_vim_by_plain = v.Srch.str_plain_to_str_vim(str_plain)
+  if v.Srch.is_str_vim__word1() then
+    str_vim_by_plain = v.Srch.str_vim_to_word1(str_vim_by_plain)
+  end
+
+  if str_vim_by_plain == str_vim then
+    return
+  end
+
+  v.Srch._str_plain = str_vim
 end
 
 function v.Srch.str_plain__(str)
@@ -28,8 +47,8 @@ end
 
 function v.Srch.str_vim()
 
-  local str = v.Rgstr.get('/')
-  return str
+  local str_vim = v.Rgstr.get('/')
+  return str_vim
 end
 
 function v.Srch.str_vim__(str_plain, op_word1)
@@ -48,29 +67,17 @@ function v.Srch.str_vim__(str_plain, op_word1)
     return
   end
 
-  v.Rgstr.__('/', str_vim)  -- highlight
-  v.Cmd.nml('/' .. str_vim) -- srch hstry add
+  v.Srch.str_vim__ptn(str_vim)
+  -- v.Rgstr.__('/', str_vim)  -- highlight
+  -- v.Cmd.nml('/' .. str_vim) -- srch history add
 end
 
 function v.Srch.str_plain_to_str_vim(str_plain)
 
-  -- local escape_chars = '.*~[]\\^$'
   local escape_chars = '.*~[]^$' .. [[\]]
   local str_vim = v.Str.escape(str_plain, escape_chars)
-  -- v.Log.val(str_vim)
-
   return str_vim
 end
-
--- function v.Srch.str_vim_flt()
--- 
---   return v.Srch._str_vim_flt
--- end
-
--- function v.Srch.str_vim_flt__(str)
--- 
---   v.Srch._str_vim_flt = str
--- end
 
 function v.Srch.str_vim_to_word1(str_vim)
 
@@ -89,9 +96,10 @@ function v.Srch.str_vim_to_word1(str_vim)
   return str_vim
 end
 
-function v.Srch.str_vim__ptn(ptn_vim)
+function v.Srch.str_vim__ptn(str_vim)
 
-  v.Rgstr.__('/', ptn_vim)
+  v.Rgstr.__('/', str_vim)  -- highlight
+  v.Cmd.nml('/' .. str_vim) -- srch history add
 end
 
 function v.Srch.str__cursor_word()
@@ -103,7 +111,7 @@ function v.Srch.str__cursor_word()
   v.Srch.str_vim__(str, bl.f)
 end
 
-function v.Srch.str__word1_tgl()
+function v.Srch.str_vim__word1_tgl()
 
   local str = v.Srch.str_plain()
 
@@ -115,55 +123,80 @@ function v.Srch.str__word1_tgl()
   end
 end
 
-function v.Srch.str_ltst(idx)
+function v.Srch.str_vim_ltst(idx)
 
   local str = vf.histget('/', - idx)
   return str
 end
 
-function v.Srch.prv_tgl_str()
+function v.Srch.str_vim_prv()
 
-  local prv_tgl_str
+  local str_vim_prv = v.Srch.str_vim_ltst(2)
+  return str_vim_prv
+end
 
-  if v.Srch.str_vim() == v.Srch.str_ltst(1) then
+function v.Srch.str_vim__prv_tgl()
 
-    if               v.Srch.str_ltst(1)           == [[\<]] .. v.Srch.str_ltst(2) .. [[\>]] then
+  local str_vim_prv = v.Srch.str_vim_prv()
 
-      prv_tgl_str = v.Srch.str_ltst(3)
+  v.Srch.str_vim__ptn(str_vim_prv)
+end
 
-    elseif [[\<]] .. v.Srch.str_ltst(1) .. [[\>]] ==           v.Srch.str_ltst(2)           then
+-- srch str vim __ xx
 
-      prv_tgl_str = v.Srch.str_ltst(3)
+function v.Srch.str_vim__heading()
 
-    else -- default
-      prv_tgl_str = v.Srch.str_ltst(2)
-    end
+  local fnc_def_lang_lst = {
+    'lua',
+    'vim',
+    'python',
+    'javascript',
+    'typescript',
+    'typescriptreact',
+    'ps1',
+  }
+
+  if     v.Buf.is_file_type__('markdown') then
+    v.Srch.str_vim__markdown_heading()
+
+  elseif v.Tbl.is_in(v.Buf.file_type(), fnc_def_lang_lst) then
+    v.Srch.str_vim__fnc_def()
 
   else -- default
-    prv_tgl_str = v.Srch.str_ltst(1)
+    v.Srch.str_vim__markdown_heading()
   end
-  -- v.Log.val(prv_tgl_str)
-
-  -- dev anchor
-  -- if prv_tgl_str == '[ \t]*$' then skip ?
-
-  return prv_tgl_str
 end
 
-function v.Srch.str__prv_tgl()
+function v.Srch.str_vim__markdown_heading()
 
-  local prv_tgl_str = v.Srch.prv_tgl_str()
-
-  if prv_tgl_str == '[ \\t]*$' then
-    return
-  end
-
-  v.Rgstr.__('/', prv_tgl_str)
+  v.Srch.str_vim__ptn(v.Ptn.vim.markdown_heading)
 end
 
-function v.Srch.str__slctd_str() -- range
+function v.Srch.str_vim__markdown_itm()
 
-  if v.Slctd.is_str__srch_str() then
+  v.Srch.str_vim__ptn(v.Ptn.vim.markdown_itm)
+end
+
+function v.Srch.str_vim__fnc_def()
+
+  local file_type = v.Buf.file_type()
+
+  if     file_type == 'lua'    then
+    v.Srch.str_vim__ptn(v.Ptn.vim.fnc_def.lua   )
+
+  elseif file_type == 'python' then
+    v.Srch.str_vim__ptn(v.Ptn.vim.fnc_def.python)
+
+  else
+    v.Srch.str_vim__ptn(v.Ptn.vim.fnc_def.dflt  )
+  end
+end
+
+-- slctd
+
+function v.Srch.str_vim__slctd_str() -- range
+
+  if v.Slctd.is_str__srch_str_plain() then
     v.Slctd.__clr()
     return
   end
@@ -179,73 +212,30 @@ function v.Srch.str__slctd_str() -- range
   v.Slctd.__clr()
 end
 
-function v.Srch.__slct(drct)
+function v.Srch.__slct(drct) -- alias
 
   v.Slctd.__srch(drct)
 end
 
+-- srch char
+
 function v.Srch.char(drct, char)
 
-  -- v.Rgstr.__('/', '[' .. char .. ']')
   v.Srch.str_vim__ptn('[' .. char .. ']')
-
   v.Cursor.__mv_by_srch_str(drct)
 end
 
 function v.Srch.char_bracket(drct)
 
-  local char_bracket = "'" .. '")}\\]'
-  v.Srch.char(drct, char_bracket)
-end
+  local char_bracket_ptn = "'" .. '"'
 
-function v.Srch.str__heading()
-
-  local fnc_def_lang_lst = {
-    'lua',
-    'vim',
-    'python',
-    'javascript',
-    'typescript',
-    'typescriptreact',
-    'ps1',
-  }
-
-  if     v.Buf.is_file_type__('markdown') then
-    v.Srch.str__markdown_heading()
-
-  elseif v.Tbl.is_in(v.Buf.file_type(), fnc_def_lang_lst) then
-    v.Srch.str__fnc_def()
-
-  else -- default
-    v.Srch.str__markdown_heading()
+  if     drct == 'f' then
+    char_bracket_ptn = char_bracket_ptn .. ')}\\]'
+  elseif drct == 'b' then
+    char_bracket_ptn = char_bracket_ptn .. '({\\['
   end
-end
 
-function v.Srch.str__markdown_heading()
-
-  v.Srch.str_vim__ptn(v.Ptn.vim.markdown_heading)
-end
-
-v.Ptn.markdown_itm = '^ *- '
-
-function v.Srch.str__markdown_itm()
-
-  v.Srch.str_vim__ptn(v.Ptn.markdown_itm)
-end
-
-function v.Srch.str__fnc_def()
-
-  local file_type = v.Buf.file_type()
-
-  if     file_type == 'lua'    then
-    v.Srch.str_vim__ptn(v.Ptn.vim.fnc_def.lua   )
-
-  elseif file_type == 'python' then
-    v.Srch.str_vim__ptn(v.Ptn.vim.fnc_def.python)
-
-  else
-    v.Srch.str_vim__ptn(v.Ptn.vim.fnc_def.dflt  )
-  end
+  v.Srch.char(drct, char_bracket_ptn)
 end
 
 -- srch cnd
@@ -269,7 +259,7 @@ function v.Srch.__init()
 
   v.Cmd.cmd('silent! /dmy')
   vim.defer_fn(function()
-    v.Srch.str__prv_tgl()
+    v.Srch.str_vim__prv_tgl()
   end, 500)
 end
 

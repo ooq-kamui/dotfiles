@@ -2,8 +2,7 @@
 v.Rg = {}
 
 v.Rg.ptn = {}
-v.Rg.ptn.emp_line  = '^[ \\t]*$'
-v.Rg.ptn.some_line = '^[^ \\t]+$' -- '[^ \\t]'
+v.Rg.ptn.line_emp  = '^['  .. [[ \t]] .. ']*$'
 
 function v.Rg.rslt_line_parse_ar(line)
 
@@ -63,7 +62,7 @@ function v.Rg.cmd(ptn_rg, ext, word1, opt)
           .. fzf_rg_opt_ext
           .. fzf_rg_opt_word1
           .. opt
-          .. ' -- ' .. '"' .. v.Str.escape(ptn_rg, '().$') .. '"'
+          .. ' -- ' .. '"' .. ptn_rg .. '"'
 
   return rg_cmd
 end
@@ -80,14 +79,14 @@ function v.Rg.rslt_cnt(ptn_rg, opt)
 
   local rg_cmd = "rg " .. opt .. " -e '" .. ptn_rg .. "' | count"
   local rg_rslt_cnt = v.Sys.cmd(rg_cmd)
-  rg_rslt_cnt = tonumber(rg_rslt_cnt)
+  rg_rslt_cnt = v.Str.to_num(rg_rslt_cnt)
   return rg_rslt_cnt
 end
 
 function v.Rg.all_cnt()
 
-  local ptn_rg = v.Rg.ptn.emp_line
-  local opt = '-v'
+  local ptn_rg = v.Rg.ptn.line_emp
+  local opt = '-v' -- match not
 
   local rg_rslt_cnt = v.Rg.rslt_cnt(ptn_rg, opt)
   return rg_rslt_cnt
@@ -95,7 +94,7 @@ end
 
 function v.Rg.all_rslt_ar() -- use not
 
-  local ptn_rg = v.Rg.ptn.emp_line
+  local ptn_rg = v.Rg.ptn.line_emp
   local opt = '-v' -- match not
 
   local rslt_ar = v.Rg.rslt_ar_by_ptn(ptn_rg, opt)

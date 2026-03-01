@@ -313,7 +313,7 @@ keymap__('n', 'gi', ':lua v.Buf.opn_tab_prv()<cr>')
 -- opn file srch  ( fzf )
 keymap__('n', '<leader>l', ':lua v.Fzf.file()<cr>')
 
--- opn file hstry ( fzf )
+-- opn file history ( fzf )
 keymap__('n', '<leader>L', ':FzfFileHstry<cr>')
 
 -- opn file rcnt ( ltst )
@@ -776,22 +776,22 @@ keymap__('n', '<c-n>', ':lua v.Cursor.__mv_by_srch_str("b")<cr>')
 keymap__('n', 'e', ':lua v.Srch.str__cursor_word()<cr>')
 
 -- srch str set ( word 1 )
-keymap__('n', 'E', ':lua v.Srch.str__word1_tgl()<cr>')
+keymap__('n', 'E', ':lua v.Srch.str_vim__word1_tgl()<cr>')
 
 -- srch char bracket forward
 -- keymap__('n', 'xx', ':lua v.Srch.char_bracket('f')<cr>')
 
 -- srch markdown h
--- keymap__('n', 'xx', ':lua v.Srch.str__heading()<cr>')
+-- keymap__('n', 'xx', ':lua v.Srch.str_vim__heading()<cr>')
 
 -- srch markdown itm
--- keymap__('n', 'xx', ':lua v.Srch.str__markdown_itm()<cr>')
+-- keymap__('n', 'xx', ':lua v.Srch.str_vim__markdown_itm()<cr>')
 
 -- srch str history ( fzf )
 keymap__('n', '<leader>f', ':FzfSrchHstry<cr>')
 
 -- srch str set prv ( tgl )
-keymap__('n', 'N', ':lua v.Srch.str__prv_tgl()<cr>')
+keymap__('n', 'N', ':lua v.Srch.str_vim__prv_tgl()<cr>')
 
 -- srch rpl one > ynk nxt ( only srch )
 keymap__('n', '<c-p>', ':lua v.Srch.__slct("f")<cr>')
@@ -1192,7 +1192,7 @@ keymap__('x', '<c-h>', ':lua v.Slctd.str__reduce_dlm_l("_")<cr>')
 -- cursor mv line
 keymap__('x', '<c-j>', function()
   if v.Mode.is__str() then
-    return ':lua v.Srch.str__slctd_str()<cr>'
+    return ':lua v.Srch.str_vim__slctd_str()<cr>'
   else
     return '10j'
   end
@@ -1442,13 +1442,13 @@ keymap__('x', '<leader>k', '//e<left><left>')
 -- keymap__('x', '<leader>k', '"zy/<c-r>z') -- slctd str paste
 
 -- srch str set
--- keymap__('x', 'n', ':lua v.Srch.str__slctd_str()<cr>')
+-- keymap__('x', 'n', ':lua v.Srch.str_vim__slctd_str()<cr>')
 
 keymap__('x', 'e', function()
   if v.Mode.is__box() then
     return '<esc>'
   else
-    return ':lua v.Srch.str__slctd_str()<cr>'
+    return ':lua v.Srch.str_vim__slctd_str()<cr>'
   end
 end, {expr = bl.t})
 
@@ -1466,7 +1466,7 @@ keymap__('x', '<c-n>', ':lua v.Slctd.__srch_nxt("b")<cr>')
 keymap__('x', '<c-p>', ':lua v.Slctd.str__ynk__srch_nxt_f()<cr>')
 
 -- srch heading swtch
--- keymap__('x', 'xx', ':lua v.Srch.str__heading()')
+-- keymap__('x', 'xx', ':lua v.Srch.str_vim__heading()')
 
 -- rpl ( cmd )
 keymap__('x', ':s', function()
@@ -1504,16 +1504,10 @@ keymap__('x', '<leader>i', ':lua v.Fzf.buf_by_slctd_str()<cr>')
 -- keymap__('x', '<leader>i', ':lua v.Fzf.buf_by_slctd_str()<cr>')
 
 -- fzf rg
-keymap__('x', '<leader>o', function ()
-  local str = v.Slctd.str()
-  v.Fzf.rg(str)
-end)
+keymap__('x', '<leader>o', ':lua v.Fzf.rg_by_slctd_str()<cr>')
 
 -- fzf rg word1
-keymap__('x', '<leader>O', function ()
-  local str = v.Slctd.str()
-  v.Fzf.rg_word1(str)
-end)
+keymap__('x', '<leader>O', ':lua v.Fzf.rg_word1_by_slctd_str()<cr>')
 
 -- tag jmp
 -- keymap__('x', 't', ':lua v.Buf.opn_by_slctd_line()<cr>')

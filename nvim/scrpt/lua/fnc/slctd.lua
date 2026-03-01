@@ -946,13 +946,9 @@ end
 
 -- slctd str cnd
 
-function v.Slctd.is_str__srch_str()
+function v.Slctd.is_str__srch_str_plain()
 
-  local srch_str = v.Srch.str_vim()
-  -- v.Log.log(srch_str)
-  srch_str = v.Str.__rpl_with_lua(srch_str, [[\<]], '')
-  srch_str = v.Str.__rpl_with_lua(srch_str, [[\>]], '')
-  -- v.Log.log(srch_str)
+  local srch_str = v.Srch.str_plain()
 
   if v.Slctd.str() == srch_str then
     return bl.t
@@ -1537,12 +1533,12 @@ function v.Slctd.__srch_swtch() -- srch, set or run
 
     v.Slctd.str__expnd_srch()
 
-  elseif v.Slctd.is_str__srch_str() then
+  elseif v.Slctd.is_str__srch_str_plain() then
   
     v.Slctd.__srch_nxt_f()
 
   else
-    v.Srch.str__slctd_str()
+    v.Srch.str_vim__slctd_str()
   end
 end
 
