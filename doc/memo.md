@@ -9,17 +9,11 @@ morphing
 
 ## nvim
 
-fzf rg
-- word1 > fnc opt ( arg )
-- refactoring
-
+dev-anchor, tidy
+- grep
 
 srch str_plain history
 - at srch str __ tgl
-
-
-dev-anchor, tidy
-- grep
 
 
 ## godot

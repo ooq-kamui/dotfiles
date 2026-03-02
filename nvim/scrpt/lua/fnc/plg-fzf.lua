@@ -48,27 +48,30 @@ end
 
 -- fzf rg
 
-function v.Fzf.rg(ptn_rg, ext, word1, opt) -- alias
+function v.Fzf.rg(ptn_rg, ext, word1_flg, opt) -- alias
 
-  ptn_rg = ptn_rg or ''
-  ext    = ext    or nil
-  word1  = word1  or bl.f
-  opt    = opt    or nil
+  ptn_rg    = ptn_rg     or ''
+  ext       = ext        or nil
+  word1_flg = word1_flg  or bl.f
+  opt       = opt        or nil
 
-  v.Fzf.rg_with_fzfgrep(ptn_rg, ext, word1, opt)
+  v.Fzf.rg_with_fzfgrep(ptn_rg, ext, word1_flg, opt)
 end
 
-function v.Fzf.rg_by_srch_str()
+function v.Fzf.rg_by_srch_str(word1_flg)
+
+  word1_flg = word1_flg or bl.f
 
   local srch_str_plain = v.Srch.str_plain()
   local opt = '-F' -- str plain ( ptn not )
-  v.Fzf.rg(srch_str_plain, nil, nil, opt)
+  v.Fzf.rg(srch_str_plain, nil, word1_flg, opt)
 end
 
-function v.Fzf.rg_by_slctd_str()
+function v.Fzf.rg_by_slctd_str(word1_flg)
 
-  local str = v.Slctd.str()
-  v.Fzf.rg(str)
+  local str     = v.Slctd.str()
+  local str_ptn = v.Str.escape(str, '()')
+  v.Fzf.rg(str_ptn, nil, word1_flg)
 end
 
 function v.Fzf.rg_with_fzfgrep(ptn_rg, ext, word1, opt)
@@ -109,26 +112,6 @@ function v.Fzf.rg_ext(ext)
 
   local ext = ext
   v.Fzf.rg(nil, ext)
-end
-
--- rg word1
-
-function v.Fzf.rg_word1(ptn_rg)
-
-  v.Fzf.rg(ptn_rg, nil, bl.t)
-end
-
-function v.Fzf.rg_word1_by_srch_str()
-
-  -- local ptn_rg = v.Srch.str_vim()
-  local str_plain = v.Srch.str_plain()
-  v.Fzf.rg(str_plain, nil, bl.t)
-end
-
-function v.Fzf.rg_word1_by_slctd_str()
-
-  local str = v.Slctd.str()
-  v.Fzf.rg_word1(str)
 end
 
 -- fzf rg with run

@@ -811,7 +811,8 @@ keymap__('n', '<leader>o'    , ':lua v.Fzf.rg()<cr>')
 keymap__('n', '<leader><c-o>', ':lua v.Fzf.rg_by_srch_str()<cr>')
 
 -- fzf rg srch str word1
-keymap__('n', '<leader>O'    , ':lua v.Fzf.rg_word1_by_srch_str()<cr>')
+keymap__('n', '<leader>O'    , ':lua v.Fzf.rg_by_srch_str(bl.t)<cr>')
+-- keymap__('n', '<leader>O'    , ':lua v.Fzf.rg_word1_by_srch_str()<cr>')
 
 -- fzf rg fltr ext
 keymap__('n', ':F', ':FzfRgExt js')
@@ -1504,10 +1505,11 @@ keymap__('x', '<leader>i', ':lua v.Fzf.buf_by_slctd_str()<cr>')
 -- keymap__('x', '<leader>i', ':lua v.Fzf.buf_by_slctd_str()<cr>')
 
 -- fzf rg
-keymap__('x', '<leader>o', ':lua v.Fzf.rg_by_slctd_str()<cr>')
+keymap__('x', '<leader>o', ':lua v.Fzf.rg_by_slctd_str(bl.f)<cr>')
 
 -- fzf rg word1
-keymap__('x', '<leader>O', ':lua v.Fzf.rg_word1_by_slctd_str()<cr>')
+keymap__('x', '<leader>O', ':lua v.Fzf.rg_by_slctd_str(bl.t)<cr>')
+-- keymap__('x', '<leader>O', ':lua v.Fzf.rg_word1_by_slctd_str()<cr>')
 
 -- tag jmp
 -- keymap__('x', 't', ':lua v.Buf.opn_by_slctd_line()<cr>')

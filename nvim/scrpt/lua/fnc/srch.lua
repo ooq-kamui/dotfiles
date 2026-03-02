@@ -51,7 +51,7 @@ function v.Srch.str_vim()
   return str_vim
 end
 
-function v.Srch.str_vim__(str_plain, op_word1)
+function v.Srch.str_vim__(str_plain, word1_flg)
 
   v.Srch.str_plain__(str_plain)
 
@@ -59,7 +59,7 @@ function v.Srch.str_vim__(str_plain, op_word1)
 
   str_vim = v.Srch.str_plain_to_str_vim(str_plain)
 
-  if op_word1 then
+  if word1_flg then
     str_vim = v.Srch.str_vim_to_word1(str_vim)
   end
 
@@ -68,8 +68,6 @@ function v.Srch.str_vim__(str_plain, op_word1)
   end
 
   v.Srch.str_vim__ptn(str_vim)
-  -- v.Rgstr.__('/', str_vim)  -- highlight
-  -- v.Cmd.nml('/' .. str_vim) -- srch history add
 end
 
 function v.Srch.str_plain_to_str_vim(str_plain)
@@ -108,19 +106,22 @@ function v.Srch.str__cursor_word()
 
   if v.Str.is__emp(str) then return end
 
-  v.Srch.str_vim__(str, bl.f)
+  local word1_flg = bl.f
+  v.Srch.str_vim__(str, word1_flg)
 end
 
 function v.Srch.str_vim__word1_tgl()
 
-  local str = v.Srch.str_plain()
+  local word1_flg
 
   if v.Srch.is_str_vim__word1() then
-
-    v.Srch.str_vim__(str, bl.f)
+    word1_flg = bl.f
   else
-    v.Srch.str_vim__(str, bl.t)
+    word1_flg = bl.t
   end
+
+  local str = v.Srch.str_plain()
+  v.Srch.str_vim__(str, word1_flg)
 end
 
 function v.Srch.str_vim_ltst(idx)
