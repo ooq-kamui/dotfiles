@@ -25,13 +25,13 @@ scheme_lst.win.recommend.h = {
   'Pixiefloss (Gogh)'                      , -- 
   'Purple Rain'                            , -- 
   'Sonokai (Gogh)'                         , -- 
+  'SynthWave (Gogh)'                       , -- 
+  'Synthwave (Gogh)'                       , -- 
   'Tinacious Design (Dark)'                , -- 
   'TomorrowNightBlue (Gogh)'               , -- 
   'Wzoreck (Gogh)'                         , -- 
   'niji'                                   , -- 
   'synthwave-everything'                   , -- 
-  'SynthWave (Gogh)'                       , -- 
-  'Synthwave (Gogh)'                       , -- 
   -- hh ~
   'MaterialDarker'                         , -- 
   'Modus-Vivendi-Tritanopia'               , -- 
@@ -41,85 +41,89 @@ scheme_lst.win.recommend.h = {
   'cyberpunk'                              , -- 
   'hardhacker'                             , -- 
   -- h ( chk ed )
+  'Abernathy'                              , -- 
+  'AyuMirage (Gogh)'                       , -- 
   'Catppuccin Macchiato (Gogh)'            , -- 
   'Catppuccin Mocha (Gogh)'                , -- 
+  'Chalk (dark) (terminal.sexy)'           , -- 
   'Decaf (base16)'                         , -- 
-  'Everblush (Gogh)'                       , -- 
-  'Snazzy (Gogh)'                          , -- 
-  'Snazzy'                                 , -- 
-  'idleToes'                               , -- 
-  'neon-night (Gogh)'                      , -- 
-  'Misterioso (Gogh)'                      , -- 
-  'Wombat (Gogh)'                          , -- 
-  'Poimandres Storm'                       , -- 
-  'AyuMirage (Gogh)'                       , -- 
-  'Material Darker (base16)'               , -- 
   'DotGov'                                 , -- 
-  'rebecca'                                , -- 
+  'Ef-Maris-Dark'                          , -- 
+  'Everblush (Gogh)'                       , -- 
+  'Guezwhoz'                               , -- 
+  'Horizon Dark (Gogh)'                    , -- 
+  'Hurtado'                                , -- 
   'Kolorit'                                , -- 
-  'Tomorrow Night Blue'                    , -- 
+  'Materia (base16)'                       , -- 
+  'Material Darker (base16)'               , -- 
+  'Misterioso (Gogh)'                      , -- 
+  'Modus-Vivendi'                          , -- 
   'Modus-Vivendi-Tinted'                   , -- 
+  'Monokai (dark) (terminal.sexy)'         , -- 
+  'Monokai (terminal.sexy)'                , -- 
+  'Neon Night (Gogh)'                      , -- 
   'Night Owl (Gogh)'                       , -- 
   'Nucolors (terminal.sexy)'               , -- 
-  'Selenized Dark (Gogh)'                  , -- 
-  'Neon Night (Gogh)'                      , -- 
-  'Zenburn (Gogh)'                         , -- 
   'Obsidian (Gogh)'                        , -- 
-  'Hurtado'                                , -- 
-  'Materia (base16)'                       , -- 
-  'Horizon Dark (Gogh)'                    , -- 
-  'Ef-Maris-Dark'                          , -- 
-  'synthwave'                              , -- 
-  'Poimandres'                             , -- 
-  'TokyoNightStorm (Gogh)'                 , -- 
-  'Guezwhoz'                               , -- 
-  'Paul Millr (Gogh)'                      , -- 
-  'Abernathy'                              , -- 
-  'Monokai (terminal.sexy)'                , -- 
-  'catppuccin-mocha'                       , -- 
-  'Modus-Vivendi'                          , -- 
   'Oxocarbon Dark (Gogh)'                  , -- 
-  'Chalk (dark) (terminal.sexy)'           , -- 
-  'Monokai (dark) (terminal.sexy)'         , -- 
+  'Paul Millr (Gogh)'                      , -- 
+  'Poimandres Storm'                       , -- 
+  'Poimandres'                             , -- 
+  'Selenized Dark (Gogh)'                  , -- 
+  'Snazzy (Gogh)'                          , -- 
+  'Snazzy'                                 , -- 
+  'TokyoNightStorm (Gogh)'                 , -- 
+  'Tomorrow Night Blue'                    , -- 
+  'Wombat (Gogh)'                          , -- 
+  'Zenburn (Gogh)'                         , -- 
+  'catppuccin-mocha'                       , -- 
+  'idleToes'                               , -- 
+  'neon-night (Gogh)'                      , -- 
+  'rebecca'                                , -- 
+  'synthwave'                              , -- 
   -- h ( chk ed ) ~ dir
-  'MonokaiPro (Gogh)'                      , -- 
-  'Teerb (Gogh)'                           , -- 
-  'MonokaiProRistretto (Gogh)'             , -- 
-  'Dracula+'                               , -- 
-  'Dracula'                                , -- 
   'Aura (Gogh)'                            , -- 
-  'iTerm2 Smoooooth'                       , -- 
   'Catppuccin Mocha'                       , -- 
+  'Dracula'                                , -- 
+  'Dracula+'                               , -- 
+  'MonokaiProRistretto (Gogh)'             , -- 
+  'Teerb (Gogh)'                           , -- 
+  'iTerm2 Smoooooth'                       , -- 
   -- h ( chk ed ) ~ white
-  'Vs Code Dark+ (Gogh)'                   , -- 
   'NightOwl (Gogh)'                        , -- 
+  'Vs Code Dark+ (Gogh)'                   , -- 
   -- h ( chk ed ) ~ git
-  'Fairyfloss'                             , -- 
-  'Ir Black (Gogh)'                        , -- 
-  'seoulbones_dark'                        , -- 
   'Belge (terminal.sexy)'                  , -- 
   'Dracula (base16)'                       , -- 
+  'Fairyfloss'                             , -- 
+  'Ir Black (Gogh)'                        , -- 
   'Red Alert (Gogh)'                       , -- 
+  'seoulbones_dark'                        , -- 
   -- h ( chk ed ) ~ cmd line
   'kokuban (Gogh)'                         , -- 
   -- h ( chk ed ) ~ slctd -- white
-  'Snazzy (base16)'                        , -- 
-  'Monokai (base16)'                       , -- 
-  'Material (base16)'                      , -- 
   'Chalk (base16)'                         , -- 
-  'tender (base16)'                        , -- 
   'Humanoid dark (base16)'                 , -- 
+  'Material (base16)'                      , -- 
+  'Monokai (base16)'                       , -- 
+  'Snazzy (base16)'                        , -- 
+  'tender (base16)'                        , -- 
   -- h ( chk ed ) ~ slctd -- dark
-  'deep'                                   , -- 
-  'tokyonight_moon'                        , -- 
-  'Wombat'                                 , -- 
-  'ayu'                                    , -- 
   'Ef-Cherie'                              , -- 
   'Obsidian'                               , -- 
+  'Wombat'                                 , -- 
+  'ayu'                                    , -- 
+  'deep'                                   , -- 
+  'tokyonight_moon'                        , -- 
 }
 scheme_lst.win.recommend.m = {}
 scheme_lst.win.check = {}
 scheme_lst.win.excld = {
+  -- 
+  -- phase 05
+  -- 
+  -- dir blue
+  'MonokaiPro (Gogh)'                      , -- 
   -- 
   -- phase 04
   -- 
