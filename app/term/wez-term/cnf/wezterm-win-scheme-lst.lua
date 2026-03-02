@@ -99,8 +99,6 @@ scheme_lst.win.recommend.h = {
   'Ir Black (Gogh)'                        , -- 
   'Red Alert (Gogh)'                       , -- 
   'seoulbones_dark'                        , -- 
-  -- h ( chk ed ) ~ cmd line
-  'kokuban (Gogh)'                         , -- 
   -- h ( chk ed ) ~ slctd -- white
   'Chalk (base16)'                         , -- 
   'Humanoid dark (base16)'                 , -- 
@@ -124,6 +122,8 @@ scheme_lst.win.excld = {
   -- 
   -- dir blue
   'MonokaiPro (Gogh)'                      , -- 
+  -- cmd line
+  'kokuban (Gogh)'                         , -- 
   -- 
   -- phase 04
   -- 

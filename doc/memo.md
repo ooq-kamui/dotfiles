@@ -4,6 +4,7 @@
 
 ## kirby
 
+claude code
 sh cmd
 morphing
 
@@ -12,9 +13,6 @@ morphing
 
 dev-anchor, tidy
 - grep
-
-srch str_plain history
-- at srch str __ tgl
 
 
 ## godot
@@ -36,6 +34,9 @@ tab new time
 
 
 ## nvim
+
+srch str_plain history
+- at srch str __ tgl
 
 fzf rslt, case: file same, win split
 
