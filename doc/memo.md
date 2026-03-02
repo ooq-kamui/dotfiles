@@ -2,17 +2,16 @@
 # dotfiles
 
 
-## kirby
-
-claude code
-sh cmd
-morphing
-
-
 ## nvim
 
 dev-anchor, tidy
 - grep
+
+plg-mng
+- lazy
+  - ref https://lazy.folke.io/installation
+
+fzf rslt, case: file same, win split
 
 
 ## godot
@@ -25,24 +24,10 @@ game cre
 - chara cre
 
 
-## wez
-
-tab new time
-- win, mac
-  - confirm
-    - case: color-scheme lst off
-
-
 ## nvim
 
 srch str_plain history
 - at srch str __ tgl
-
-fzf rslt, case: file same, win split
-
-plg-mng
-- lazy
-  - ref https://lazy.folke.io/installation
 
 plg
 - blink.cmp
