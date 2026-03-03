@@ -4,14 +4,27 @@
 
 ## nvim
 
-dev-anchor, tidy
-- grep
-
 plg-mng
 - lazy
   - ref https://lazy.folke.io/installation
+  - by ai
+
+dev-anchor, tidy, by grep
+- cursor
+  - cmd nml not
+    - > fnc cre
+  - mv not
+- slctd
 
 fzf rslt, case: file same, win split
+
+
+## site ds
+
+godot
+- github
+defold
+- github
 
 
 ## godot

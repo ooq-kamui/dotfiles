@@ -136,14 +136,13 @@ function v.Srch.str_vim_prv()
   return str_vim_prv
 end
 
+-- srch str vim __ xx
+
 function v.Srch.str_vim__prv_tgl()
 
   local str_vim_prv = v.Srch.str_vim_prv()
-
   v.Srch.str_vim__ptn(str_vim_prv)
 end
-
--- srch str vim __ xx
 
 function v.Srch.str_vim__heading()
 
@@ -260,7 +259,8 @@ function v.Srch.__init()
 
   v.Cmd.cmd('silent! /dmy')
   vim.defer_fn(function()
-    v.Srch.str_vim__prv_tgl()
+    local str_vim = v.Srch.str_vim_ltst(1)
+    v.Srch.str_vim__ptn(str_vim)
   end, 500)
 end
 

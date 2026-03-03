@@ -937,11 +937,11 @@ function v.Slctd.str_edge_out_char__del() -- range
   end
 
   -- dev anchor : refactoring
-  v.Cmd.nml('"zx')
-  v.Cmd.nml('xhx')
-  v.Cmd.nml('"zP')
-  v.Cmd.nml('gv')
-  v.Slctd.box__mv('l')
+  v.Cmd.nml('"zx')     -- ??
+  v.Cmd.nml('xhx')     -- ??
+  v.Cmd.nml('"zP')     -- ??
+  v.Cmd.nml('gv')      -- ??
+  v.Slctd.box__mv('l') -- ??
 end
 
 -- slctd str cnd
@@ -1159,8 +1159,7 @@ end
 
 function v.Slctd.line_top_space__del()
 
-  -- dev anchor
-  -- refactoring, line num seq ?
+  -- dev anchor : refactoring, line num seq ?
   local rng = v.Slctd.rng_dflt
   local rpl_cmd = rng .. 's/' .. g.line_top_space_ptn .. '//eg'
   v.Cmd.cmd(rpl_cmd)

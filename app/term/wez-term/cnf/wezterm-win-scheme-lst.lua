@@ -84,7 +84,6 @@ scheme_lst.win.recommend.h = {
   -- h ( chk ed ) ~ dir
   'Aura (Gogh)'                            , -- 
   'Catppuccin Mocha'                       , -- 
-  'Dracula'                                , -- 
   'Dracula+'                               , -- 
   'MonokaiProRistretto (Gogh)'             , -- 
   'Teerb (Gogh)'                           , -- 
@@ -121,6 +120,7 @@ scheme_lst.win.excld = {
   -- phase 05
   -- 
   -- dir blue
+  'Dracula'                                , -- 
   'MonokaiPro (Gogh)'                      , -- 
   -- cmd line
   'kokuban (Gogh)'                         , -- 

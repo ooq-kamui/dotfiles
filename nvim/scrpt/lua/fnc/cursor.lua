@@ -32,10 +32,11 @@ function v.Cursor.c_byte_idx()
   return byte_idx
 end
 
--- dev anchor
 function v.Cursor.l_byte_idx()
 
-  
+  local c_byte_idx = v.Cursor.c_byte_idx()
+  local l_byte_idx = c_byte_idx - 1
+  return l_byte_idx
 end
 
 function v.Cursor.ruler_idx()
@@ -85,7 +86,7 @@ function v.Cursor.is_byte_idx__line_top0()
   end
 end
 
--- dev anchor
+-- dev anchor : refactoring : mv not
 function v.Cursor.is_byte_idx__line_top1()
 
   local c_pos = v.Cursor.pos()
@@ -932,8 +933,7 @@ function v.Cursor.char__rpl_underscore() -- alias
   -- v.Cursor.__mv_char_forward() -- todo, fnc cre
 end
 
--- todo fnc name mod ?
--- dev anchor
+-- dev anchor : todo fnc name mod ?
 function v.Char.__tgl_swtch01()
 
   local c = v.Cursor.c_char()
@@ -963,8 +963,7 @@ function v.Char.__tgl_swtch01()
   end
 end
 
--- todo fnc name mod ?
--- dev anchor
+-- dev anchor : todo fnc name mod ?
 function v.Char.__tgl_swtch02()
 
   local c = v.Cursor.c_char()
@@ -1620,7 +1619,7 @@ function v.Cursor.line_indnt__add(byte_idx)
     char = ' '
     byte_idx = byte_idx
   else
-    -- dev anchor : todo dev
+    -- dev anchor : todo dev ???
     char = '\t'
     -- char = vim.api.nvim_replace_termcodes('\t', bl.f, bl.f, bl.t)
     byte_idx = byte_idx / 2
