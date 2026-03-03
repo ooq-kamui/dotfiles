@@ -4,17 +4,17 @@
 
 ## nvim
 
-plg-mng
-- lazy
-  - ref https://lazy.folke.io/installation
-  - by ai
-
 dev-anchor, tidy, by grep
 - cursor
   - cmd nml not
     - > fnc cre
   - mv not
 - slctd
+
+plg-mng
+- lazy
+  - ref https://lazy.folke.io/installation
+  - by ai
 
 fzf rslt, case: file same, win split
 

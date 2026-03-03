@@ -51,7 +51,6 @@ scheme_lst.mac.recommend.h = {
   'Catppuccin Mocha (Gogh)'                ,
   'Catppuccin Mocha'                       ,
   'Chalk (Gogh)'                           ,
-  'Chalk (dark) (terminal.sexy)'           ,
   'Chalk'                                  ,
   'Chalkboard'                             ,
   'ChallengerDeep'                         ,
@@ -68,7 +67,6 @@ scheme_lst.mac.recommend.h = {
   'Ef-Autumn'                              ,
   'Ef-Bio'                                 ,
   'Ef-Cherie'                              ,
-  'Ef-Elea-Dark'                           ,
   'Ef-Maris-Dark'                          ,
   'Ef-Melissa-Dark'                        ,
   'Ef-Rosa'                                ,
@@ -109,11 +107,8 @@ scheme_lst.mac.recommend.h = {
   'Monokai (base16)'                       ,
   'Monokai (dark) (terminal.sexy)'         ,
   'Monokai (terminal.sexy)'                ,
-  'Monokai Pro (Gogh)'                     ,
-  'Monokai Pro Ristretto (Gogh)'           ,
   'MonokaiPro (Gogh)'                      ,
   'Moonfly (Gogh)'                         ,
-  'Neon (terminal.sexy)'                   ,
   'Night Owl (Gogh)'                       ,
   'NightOwl (Gogh)'                        ,
   'Nocturnal Winter'                       ,
@@ -122,7 +117,6 @@ scheme_lst.mac.recommend.h = {
   'Obsidian (Gogh)'                        ,
   'OceanicMaterial'                        ,
   'OceanicNext (base16)'                   ,
-  'OneHalfBlack (Gogh)'                    ,
   'OneHalfDark'                            ,
   'Outrun Dark (base16)'                   ,
   'PaleNightHC'                            ,
@@ -205,9 +199,16 @@ scheme_lst.mac.recommend.l = {
   -- phase 04
   -- 
   -- white
-  -- blue
+  -- dir
   'Espresso'                               ,
   'Grandshell (terminal.sexy)'             ,
+  'Monokai Pro Ristretto (Gogh)'           ,
+  'Monokai Pro (Gogh)'                     ,
+  -- cmd line
+  'Neon (terminal.sexy)'                   ,
+  'Chalk (dark) (terminal.sexy)'           ,
+  'Ef-Elea-Dark'                           ,
+  'OneHalfBlack (Gogh)'                    ,
   -- git
   -- etc
   'Aco (Gogh)'                             ,
