@@ -933,10 +933,11 @@ function v.Cursor.char__rpl_underscore() -- alias
   -- v.Cursor.__mv_char_forward() -- todo, fnc cre
 end
 
--- dev anchor : todo fnc name mod ?
+-- dev anchor : todo fnc name mod ?  , cmd nml not
 function v.Char.__tgl_swtch01()
 
   local c = v.Cursor.c_char()
+  local rpl
 
   if     v.Char.is__num(c) then
 
@@ -946,10 +947,12 @@ function v.Char.__tgl_swtch01()
   elseif v.Char.is__alpha(c) then
 
     v.Cmd.nml('v~') -- upper / lower
+    -- rpl = xxx
+    -- v.Cursor.char__rpl(rpl) -- refactoring
     return
   end
 
-  local rpl = v.Char.is__tgl_bracket_trn(c)
+  rpl = v.Char.is__tgl_bracket_trn(c)
   if not v.Str.is__emp(rpl) then
     v.Cursor.char__rpl(rpl)
     return

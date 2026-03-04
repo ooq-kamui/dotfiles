@@ -19,9 +19,8 @@ function v.Slctd.__clr() -- range -- alias
 end
 
 function v.Slctd.__ltst() -- range
-  -- v.Log.val(v.Mode.mode())
 
-  if v.Mode.is__box() then
+  if     v.Mode.is__box() then
     return
   elseif v.Mode.is__str()  then
     return
@@ -29,7 +28,8 @@ function v.Slctd.__ltst() -- range
     return
   end
 
-  v.Cmd.nml('gv')
+  local cmd_nml = 'gv'
+  v.Cmd.nml(cmd_nml)
 end
 
 function v.Slctd.mode__tgl()
@@ -511,8 +511,7 @@ function v.Slctd.__del() -- range
   v.Slctd.__ltst()
 
   local rgstr = 'z'
-
-  local cmd = '"' .. rgstr .. 'dgv'
+  local cmd = '"' .. rgstr .. 'd' .. 'gv'
   v.Cmd.nml(cmd)
 end
 
@@ -937,11 +936,12 @@ function v.Slctd.str_edge_out_char__del() -- range
   end
 
   -- dev anchor : refactoring
-  v.Cmd.nml('"zx')     -- ??
-  v.Cmd.nml('xhx')     -- ??
-  v.Cmd.nml('"zP')     -- ??
-  v.Cmd.nml('gv')      -- ??
-  v.Slctd.box__mv('l') -- ??
+  v.Cmd.nml('"zx')     -- ??  v.Slctd.__del() ??
+  v.Cmd.nml('xhx')     -- ??  
+  v.Cmd.nml('"zP')     -- ??  
+
+  v.Slctd.__ltst()
+  v.Slctd.box__mv('l')
 end
 
 -- slctd str cnd

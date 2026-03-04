@@ -338,7 +338,7 @@ keymap__('n', ':e', ':set encoding?')
 keymap__('n', '<leader>s', ':lua v.Buf.opn_cheat_sheet()<cr>')
 
 -- opn memo
--- keymap__('n', 'gm', ':lua v.Buf.opn_memo()<cr>')
+keymap__('n', 'gm', ':lua v.Buf.opn_memo()<cr>')
 
 -- opn man
 -- keymap__('n', 'xx', ':OpnMan ')
@@ -918,8 +918,7 @@ keymap__('n', 'rh', ':lua v.Win.__splt_h()<cr>')
 
 -- win ( buf ) splt v
 keymap__('n', 'ry', ':lua v.Win.__splt_v()<cr>')
--- keymap__('n', 'r:', ':lua v.Win.__splt_v()<cr>')
--- keymap__('n', 'rv', ':lua v.Win.__splt_v()<cr>')
+keymap__('n', 'Y',  ':lua v.Win.__splt_v()<cr>')
 
 -- win ( buf ) size w __ +
 keymap__('n', '{', '<c-w>>')

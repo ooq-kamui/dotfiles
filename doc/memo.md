@@ -4,12 +4,22 @@
 
 ## nvim
 
+n <leader><c-i> fzf buf by srch str
+- cre
+
+
 dev-anchor, tidy, by grep
 - cursor
   - cmd nml not
     - > fnc cre
   - mv not
+
 - slctd
+  - cmd nml not
+    - v.Slctd.str_edge_out_char__del()
+      - tst
+        - aaa   (bbb)    cc
+
 
 plg-mng
 - lazy

@@ -5,10 +5,9 @@ v.Tst = {}
 
 function v.Tst.tst()
 
-  local str = 'aaabいbb'
-  local ret = v.Str.is__in_mb(str)
-  v.Log.val(ret)
-  -- v.Rgstr.__clr()
+  v.Slctd.str_edge_out_char__del()
+
+
 end
 
 
