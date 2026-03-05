@@ -935,10 +935,16 @@ function v.Slctd.str_edge_out_char__del() -- range
     return
   end
 
-  -- dev anchor : refactoring
-  v.Cmd.nml('"zx')     -- ??  v.Slctd.__del() ??
-  v.Cmd.nml('xhx')     -- ??  
-  v.Cmd.nml('"zP')     -- ??  
+  local slctd_str = v.Slctd.str()
+
+  v.Slctd.cursor__mv_edge_l()
+  v.Slctd.__del()
+
+  v.Slctd.__clr()
+
+  v.Cmd.nml('hxx')
+
+  v.Cursor.__ins(slctd_str)
 
   v.Slctd.__ltst()
   v.Slctd.box__mv('l')

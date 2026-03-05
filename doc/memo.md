@@ -4,21 +4,17 @@
 
 ## nvim
 
-n <leader><c-i> fzf buf by srch str
-- cre
-
-
 dev-anchor, tidy, by grep
 - cursor
+  - mv not
+    - v.Cursor.is_byte_idx__line_top1()
+
+
   - cmd nml not
     - > fnc cre
-  - mv not
 
-- slctd
-  - cmd nml not
-    - v.Slctd.str_edge_out_char__del()
-      - tst
-        - aaa   (bbb)    cc
+
+srch.str_plain__clp()
 
 
 plg-mng
@@ -31,20 +27,15 @@ fzf rslt, case: file same, win split
 
 ## site ds
 
-godot
-- github
-defold
-- github
+g engine github
+- bevy
+- defold
+- godot
 
 
-## godot
+## bevy
 
-platformer
-- tutorial
-
-game cre
-- map cre
-- chara cre
+learn
 
 
 ## pixelart
@@ -84,4 +75,14 @@ alm setting at skr console
 - confirm
 - firewall
   - url
+
+
+## godot
+
+platformer
+- tutorial
+
+game cre
+- map cre
+- chara cre
 

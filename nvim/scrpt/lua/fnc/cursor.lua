@@ -93,6 +93,7 @@ function v.Cursor.is_byte_idx__line_top1()
 
   local c_byte_idx = v.Cursor.byte_idx()
 
+  -- refactoring : mv not
   v.Cursor.__mv_line_top1()
   local top1_byte_idx = v.Cursor.byte_idx()
 

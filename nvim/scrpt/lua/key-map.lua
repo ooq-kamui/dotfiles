@@ -350,10 +350,10 @@ keymap__('n', 'gm', ':lua v.Buf.opn_memo()<cr>')
 -- sys cmd opn
 
 -- sys cmd opn app
-keymap__('n', 'go', ':lua v.Sys.opn_app_by_cursor_path()<cr>')
+-- keymap__('n', 'go', ':lua v.Sys.opn_app_by_cursor_path()<cr>')
 
 -- sys cmd opn app slf
--- keymap__('n', 'xx', ':lua v.Sys.opn_buf_file()<cr>')
+keymap__('n', 'go', ':lua v.Sys.opn_buf_file()<cr>')
 
 -- sys cmd opn dir slf
 keymap__('n', 'gd', ':lua v.Sys.opn_buf_file_dir()<cr>')
@@ -822,10 +822,12 @@ keymap__('n', ':F', ':FzfRgExt js')
 
 -- fzf buf
 keymap__('n', '<leader>i', ':lua v.Fzf.buf()<cr>')
-keymap__('n', '<leader>I', ':lua v.Fzf.buf()<cr>')
 
 -- fzf buf work1  -- dev
 -- keymap__('n', '<leader>I', ':lua v.Fzf.buf()<cr>')
+
+-- fzf buf by srch str
+keymap__('n', '<leader><c-i>', ':lua v.Fzf.buf_by_srch_str()<cr>')
 
 -- fzf jmplst
 keymap__('n', '<leader>e', ':lua v.Fzf.jmplst()<cr>')

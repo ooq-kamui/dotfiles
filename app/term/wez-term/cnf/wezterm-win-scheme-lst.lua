@@ -77,7 +77,6 @@ scheme_lst.win.recommend.h = {
   'Wombat (Gogh)'                          , -- 
   'Zenburn (Gogh)'                         , -- 
   'catppuccin-mocha'                       , -- 
-  'idleToes'                               , -- 
   'neon-night (Gogh)'                      , -- 
   'rebecca'                                , -- 
   'synthwave'                              , -- 
@@ -124,6 +123,8 @@ scheme_lst.win.excld = {
   'MonokaiPro (Gogh)'                      , -- 
   -- cmd line
   'kokuban (Gogh)'                         , -- 
+  -- slctd -- dark
+  'idleToes'                               , -- 
   -- 
   -- phase 04
   -- 

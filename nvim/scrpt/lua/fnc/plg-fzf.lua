@@ -134,15 +134,26 @@ end
 
 -- fzf buf
 
-function v.Fzf.buf()
-  
-  v.Cmd.cmd('FzfBufCrnt ')
+function v.Fzf.buf(str)
+
+  str = str or ''
+
+  local escape_char = '.*~'
+  str = v.Str.escape(str, escape_char)
+
+  v.Cmd.cmd('FzfBufCrnt ' .. str)
+end
+
+function v.Fzf.buf_by_srch_str()
+
+  local srch_str_plain = v.Srch.str_plain()
+  v.Fzf.buf(srch_str_plain)
 end
 
 function v.Fzf.buf_by_slctd_str()
 
-  v.Srch.str_vim__slctd_str()
-  v.Cmd.cmd('FzfBufCrnt ' .. v.Str.escape(v.Rgstr.get('z'), '.*~'))
+  local slctd_str = v.Slctd.str()
+  v.Fzf.buf(slctd_str)
 end
 
 -- fzf rgstr

@@ -49,16 +49,18 @@ function v.Sys.opn_app(path)
     cmd_sys = 'start'
 
   elseif v.Env.is__('wsl') then
-    return
+    cmd_sys = 'opn'
+    -- return
   else
     return
   end
 
-  if v.Env.is__('win64') then
+  if v.Env.is__in({'win64', 'wsl'}) then
     path = v.Str.path_unix__cnv_win(path)
   end
 
-  local res = vf.system(cmd_sys .. " '" .. path .. "'")
+  cmd_sys = cmd_sys .. " '" .. path .. "'"
+  local res = vf.system(cmd_sys)
 end
 
 function v.Sys.opn_app_by_cursor_path()
