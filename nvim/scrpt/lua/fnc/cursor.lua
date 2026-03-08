@@ -634,9 +634,8 @@ function v.Cursor.__ins_cr()
 
   local line_num = v.Cursor.line_num()
 
-  local cmd_nml = [[i<cr> ]]
+  local cmd_nml = 'i<cr>'
   v.Cmd.nml(cmd_nml)
-  v.Cmd.nml('x')
 
   v.Line.end_space__del(line_num)
   v.Cursor.__mv_d()
