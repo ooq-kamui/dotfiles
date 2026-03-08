@@ -10,6 +10,13 @@ v.Ptn.vim.nl = [[\n]]
 v.Ptn.vim.space_char     = [[\s]]
 v.Ptn.vim.space_str      = v.Ptn.vim.space_char .. [[\+]]
 v.Ptn.vim.space_entire   = '^' .. v.Ptn.vim.space_str .. '$'
+
+v.Ptn.vim.line_space_top = '^' .. v.Ptn.vim.space_str
+v.Ptn.vim.line_space_end =        v.Ptn.vim.space_str .. '$'
+
+v.Ptn.vim.line_top_space_ptn = '^' .. v.Ptn.vim.space_char .. '*'
+v.Ptn.vim.line_end_space_ptn =        v.Ptn.vim.space_char .. '*' .. '$' -- '[ \\t]\\+$'
+
 v.Ptn.vim.space_not_char = [[\S]]
 v.Ptn.vim.space_not_str  = v.Ptn.vim.space_not_char .. [[\+]]
 

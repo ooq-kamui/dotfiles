@@ -38,10 +38,6 @@ end
 
 -- line xx __ ins
 
-g.line_top_space_ptn = '^[ \\t]*'
--- g.line_end_space_ptn = '[ \\t]\\+$'
-g.line_end_space_ptn = '[ \\t]*$'
-
 function v.Line.end__ins(line_num, str)
 
   local line_str = v.Line.str_by_line_num(line_num)
@@ -51,14 +47,8 @@ end
 
 function v.Line.end_space__del(line_num)
 
-  local ptn_tmp = v.Srch.str_vim()
-
-  local rpl_cmd = line_num .. 's/' .. g.line_end_space_ptn .. '//g'
-  -- v.Log.val(rpl_cmd)
-
+  local rpl_cmd = line_num .. 's/' .. v.Ptn.vim.line_space_end .. '//eg'
   v.Cmd.cmd(rpl_cmd)
-
-  v.Srch.str_vim__ptn(ptn_tmp)
 end
 
 function v.Line.end__pad_space(line_num, fil_end_ruler_idx)

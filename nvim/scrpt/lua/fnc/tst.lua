@@ -5,7 +5,8 @@ v.Tst = {}
 
 function v.Tst.tst()
 
-  v.Slctd.str_edge_out_char__del()
+  v.Slctd.line_top_space__del()
+
 
 
 end

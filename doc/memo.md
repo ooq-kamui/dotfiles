@@ -5,16 +5,13 @@
 ## nvim
 
 dev-anchor, tidy, by grep
-- cursor
-  - mv not
-    - v.Cursor.is_byte_idx__line_top1()
+- file etc
 
 
-  - cmd nml not
-    - > fnc cre
+slctd __ reduce, err, case: aa_bb__
 
 
-srch.str_plain__clp()
+leader c-o, srch word1 think
 
 
 plg-mng

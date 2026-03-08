@@ -86,18 +86,11 @@ function v.Cursor.is_byte_idx__line_top0()
   end
 end
 
--- dev anchor : refactoring : mv not
 function v.Cursor.is_byte_idx__line_top1()
-
-  local c_pos = v.Cursor.pos()
 
   local c_byte_idx = v.Cursor.byte_idx()
 
-  -- refactoring : mv not
-  v.Cursor.__mv_line_top1()
-  local top1_byte_idx = v.Cursor.byte_idx()
-
-  v.Cursor.__mv_by_pos(c_pos)
+  local top1_byte_idx = v.Cursor.line_top1_byte_idx()
 
   if c_byte_idx == top1_byte_idx then
     return bl.t
@@ -168,23 +161,14 @@ end
 
 function v.Cursor.__mv_line_top0()
 
-  if v.Cursor.is_line_str__emp() then
-    return
-  end
-
-  v.Cmd.nml('0')
+  local top0_byte_idx = 1
+  v.Cursor.__mv_by_byte_idx(top0_byte_idx)
 end
 
 function v.Cursor.__mv_line_top1()
 
-  if     v.Cursor.is_line_str__space() then
-    v.Cursor.__mv_line_end()
-
-  elseif v.Cursor.is_line__markdown_itm() then
-    v.Cmd.nml('^2l')
-  else
-    v.Cmd.nml('^')
-  end
+  local top1_byte_idx = v.Cursor.line_top1_byte_idx()
+  v.Cursor.__mv_by_byte_idx(top1_byte_idx)
 end
 
 function v.Cursor.__mv_line_end()
@@ -737,17 +721,15 @@ function v.Cursor.__ins_cmnt_1(cmd_cursor__mv_line_top)
   end
 
   local str = v.Str.cmnt.line_1()
-  v.Cmd.nml('i' .. str)
+  v.Cmd.nml('i' .. str) -- refactoring
 
-  -- v.Cmd.nml('^')
   v.Cursor.__mv_line_top1()
 end
 
 function v.Cursor.__ins_rgstr_by_rgstr_info(rgstr_info)
 
   local rgstr = v.Rgstr.info_rgstr(rgstr_info)
-  -- v.Cmd.nml('"' .. rgstr .. rgstr .. 'P')
-  v.Cmd.nml('"' .. rgstr .. 'P')
+  v.Cmd.nml('"' .. rgstr .. 'P') -- refactoring
 end
 
 function v.Cursor.__ins_cmnt_mlt() -- call when mode normal
@@ -934,51 +916,56 @@ function v.Cursor.char__rpl_underscore() -- alias
   -- v.Cursor.__mv_char_forward() -- todo, fnc cre
 end
 
--- dev anchor : todo fnc name mod ?  , cmd nml not
-function v.Char.__tgl_swtch01()
+function v.Cursor.c_char__tgl_case()
 
-  local c = v.Cursor.c_char()
-  local rpl
+  v.Cmd.nml('v~') -- tgl upper / lower -- refactoring : cmd nml not
+  -- local rpl_char = xxx
+  -- v.Cursor.char__rpl(rpl_char) -- refactoring
+end
 
-  if     v.Char.is__num(c) then
+function v.Cursor.c_char__tgl_swtch01()
+
+  local c_char = v.Cursor.c_char()
+  local rpl_char
+
+  if     v.Char.is__num(c_char) then
 
     v.Cursor.str__icl()
     return
 
-  elseif v.Char.is__alpha(c) then
+  elseif v.Char.is__alpha(c_char) then
 
-    v.Cmd.nml('v~') -- upper / lower
-    -- rpl = xxx
-    -- v.Cursor.char__rpl(rpl) -- refactoring
+    v.Cursor.c_char__tgl_case()
     return
   end
 
-  rpl = v.Char.is__tgl_bracket_trn(c)
-  if not v.Str.is__emp(rpl) then
-    v.Cursor.char__rpl(rpl)
+  rpl_char = v.Char.is__tgl_bracket_trn(c_char)
+  if not v.Str.is__emp(rpl_char) then
+    v.Cursor.char__rpl(rpl_char)
     return
   end
 
-  local rpl = v.Char.is__symbol_tgl(c)
-  if not v.Str.is__emp(rpl) then
+  rpl_char = v.Char.is__symbol_tgl(c_char)
+  if not v.Str.is__emp(rpl_char) then
 
-    v.Cursor.char__rpl(rpl)
+    v.Cursor.char__rpl(rpl_char)
     return
   end
 end
 
--- dev anchor : todo fnc name mod ?
 function v.Char.__tgl_swtch02()
 
-  local c = v.Cursor.c_char()
+  local c_char = v.Cursor.c_char()
 
-  if v.Char.is__num(c) then
+  if v.Char.is__num(c_char) then
 
     v.Cursor.str__dcl()
     return
-  end
 
-  v.Cursor.char__tgl_type_shift(c)
+  else
+    v.Cursor.char__tgl_type_shift(c_char)
+    return
+  end
 end
 
 function v.Cursor.char__tgl_type_shift(c)
@@ -1286,6 +1273,25 @@ function v.Cursor.line_top0_char()
 
   local char = v.Cursor.line_char_by_char_idx(1)
   return char
+end
+
+function v.Cursor.line_top1_char()
+
+  local top1_byte_idx = v.Cursor.line_top1_byte_idx()
+  local char = v.Cursor.line_char_by_char_idx(top1_byte_idx)
+  return char
+end
+
+function v.Cursor.line_top1_byte_idx()
+
+  local line_num = v.Cursor.line_num()
+  local byte_idx = vf.indent(line_num) + 1
+
+  if v.Cursor.is_line__markdown_itm() then
+    byte_idx = byte_idx + 2
+  end
+
+  return byte_idx
 end
 
 function v.Cursor.line_top0__ins(str)
@@ -1611,21 +1617,19 @@ end
 
 function v.Cursor.line_indnt__add(byte_idx)
 
-  if byte_idx == 0 then
-    return
-  end
+  if byte_idx <= 0 then return end
 
-  v.Cmd.nml('0')
+  v.Cursor.__mv_line_top0()
 
-  local char = ' '
+  local char
 
+  v.Log.val(vim.bo.expandtab)
   if not vim.bo.expandtab then
     char = ' '
-    byte_idx = byte_idx
+    byte_idx = byte_idx -- todo dev
+
   else
-    -- dev anchor : todo dev ???
-    char = '\t'
-    -- char = vim.api.nvim_replace_termcodes('\t', bl.f, bl.f, bl.t)
+    char = '<tab>'
     byte_idx = byte_idx / 2
   end
   v.Cursor.__ins_mlt(char, byte_idx)
@@ -1651,7 +1655,7 @@ function v.Cursor.line_indnt__shft_r()
 end
 
 
-function v.Cursor.line_indnt__crct() -- alias
+function v.Cursor.line_indnt__crct() -- use not
 
   local byte_idx = 0
 
@@ -1659,16 +1663,18 @@ function v.Cursor.line_indnt__crct() -- alias
     byte_idx = v.Cursor.line_indnt__crct_with_c()
     return byte_idx
   else
-    -- dev anchor
-    v.Cursor.line_indnt__crct_with_nml()
+    byte_idx = v.Cursor.line_indnt__crct_with_nml()
     return byte_idx
   end
 end
 
 function v.Cursor.line_indnt__crct_with_nml()
 
-  v.Cmd.nml('1==')
-  return
+  local line_mlt_num = '1'
+  local indnt_crct   = '=='
+  local cmd_nml = line_mlt_num .. indnt_crct
+  v.Cmd.nml(cmd_nml)
+  return 0 -- todo dev
 end
 
 function v.Cursor.line_indnt__crct_with_c()

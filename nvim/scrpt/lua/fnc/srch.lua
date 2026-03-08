@@ -192,6 +192,12 @@ function v.Srch.str_vim__fnc_def()
   end
 end
 
+function v.Srch.str_vim__clp()
+
+  local str = v.Rgstr.clp()
+  v.Srch.str_vim__ptn(str)
+end
+
 -- slctd
 
 function v.Srch.str_vim__slctd_str() -- range

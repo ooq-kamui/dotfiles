@@ -310,7 +310,7 @@ keymap__('n', ':o', ':Oil . ')
 -- opn tab prv
 keymap__('n', 'gi', ':lua v.Buf.opn_tab_prv()<cr>')
 
--- opn file srch  ( fzf )
+-- opn file find  ( fzf )
 keymap__('n', '<leader>l', ':lua v.Fzf.file()<cr>')
 
 -- opn file history ( fzf )
@@ -604,7 +604,6 @@ keymap__('n', 't', ':lua v.Cursor.__ins_tm()<cr>')
 
 -- ins anchor
 keymap__('n', 'A', ':lua v.Cursor.__ins_line_anchor_dev()<cr>')
--- keymap__('n', 'A', ':lua v.Cursor.__ins_line_anchor_srch_start()<cr>')
 
 -- ins anchor, del
 -- keymap__('n', 'xx', ':lua v.Cursor.__ins_line_anchor__del()<cr>')
@@ -720,7 +719,7 @@ keymap__('n', '<enter>', 'J')
 keymap__('n', 'D', ':lua v.Line.__dpl()<cr>')
 
 -- char tgl 01 ( ?? / num icl  )
-keymap__('n', 'u', ':lua v.Char.__tgl_swtch01()<cr>')
+keymap__('n', 'u', ':lua v.Cursor.c_char__tgl_swtch01()<cr>')
 
 -- char tgl 02 ( type ch / num dcl )
 keymap__('n', 'U', ':lua v.Char.__tgl_swtch02()<cr>')
@@ -733,7 +732,7 @@ keymap__('n', 'ro', ':lua v.Cursor.line_indnt__shft_r()<cr>')
 -- keymap__('n', 'xx', ':lua v.Cursor.line_indnt__add(2)<cr>')
 
 -- indnt crct
-keymap__('n', 're', ':lua v.Cursor.line_indnt__crct()<cr>')
+-- keymap__('n', 'xx', ':lua v.Cursor.line_indnt__crct()<cr>')
 
 -- cursor f str __ crct ( algn ) fzy
 keymap__('n', 'q', ':lua v.Cursor.f_str__space_crct_with_fzy("u")<cr>')
@@ -759,12 +758,8 @@ keymap__('n', '<leader>k'    , 'mz/')
 -- srch by cmd back
 keymap__('n', '<leader><c-k>', 'mz?')
 
--- srch by cmd word1
-keymap__('n', '<leader>K', [[/\<\><left><left>]])
--- keymap__('n', '<leader>K', '/\\<\\><left><left>')
-
--- srch word or
--- keymap__('n', 'xx', 'Xxx')
+-- srch by clp
+keymap__('n', 'r', ':lua v.Srch.str_vim__clp()<cr>')
 
 -- srch forward
 keymap__('n', 'n'    , ':lua v.Cursor.__mv_by_srch_str("f")<cr>')
@@ -1455,7 +1450,6 @@ keymap__('x', 'e', function()
 end, {expr = bl.t})
 
 -- srch swtch
--- dev anchor
 keymap__('x', 'n', ':lua v.Slctd.__srch_swtch()<cr>')
 
 -- srch forward ( srch rpl skip )

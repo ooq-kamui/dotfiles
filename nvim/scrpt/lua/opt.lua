@@ -129,9 +129,7 @@ vim.opt.fileencodings = {'utf-8', 'sjis'}
 -- vim.opt.mouse = 'n'
 vim.opt.mouse = '' -- off
 
--- dev anchor
--- map <LeftMouse> <nop>
--- ???  <nop> ??
+-- map <LeftMouse> <nop> -- ??
 
 vim.opt.autoindent = bl.t
 vim.opt.shiftwidth = 2  -- 4

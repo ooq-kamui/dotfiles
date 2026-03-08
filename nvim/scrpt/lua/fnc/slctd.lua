@@ -931,7 +931,7 @@ function v.Slctd.str_edge_out_char__del() -- range
 
   v.Slctd.__ltst()
 
-  if v.Slctd.is_str_edge_l_byte_idx__line_top() then
+  if v.Slctd.is_str_edge_l__line_top() then
     return
   end
 
@@ -1049,20 +1049,15 @@ function v.Slctd.is_str_edge_r_out_char__space()
   return ret
 end
 
-function v.Slctd.is_str_edge_l_byte_idx__line_top() -- range
-
-  local ret = bl.f
+function v.Slctd.is_str_edge_l__line_top() -- range
 
   v.Slctd.__ltst()
 
-  -- dev anchor: refactoring
-  v.Slctd.cursor__mv_edge_tgl()
+  local ret = bl.f
 
-  local l_byte_idx = v.Cursor.byte_idx()
+  local edge_l_byte_idx   = v.Slctd.str_edge_l_line_byte_idx()
 
-  v.Slctd.cursor__mv_edge_tgl()
-
-  if l_byte_idx == 1 then
+  if edge_l_byte_idx == 1 then
     ret = bl.t
   end
 
@@ -1165,10 +1160,14 @@ end
 
 function v.Slctd.line_top_space__del()
 
-  -- dev anchor : refactoring, line num seq ?
-  local rng = v.Slctd.rng_dflt
-  local rpl_cmd = rng .. 's/' .. g.line_top_space_ptn .. '//eg'
-  v.Cmd.cmd(rpl_cmd)
+  local rpl_cmd = 's/' .. v.Ptn.vim.line_space_top .. '//eg'
+  local cmd
+
+  for idx, line_num in pairs(v.Slctd.line_num_seq()) do
+
+    cmd = line_num .. rpl_cmd
+    v.Cmd.cmd(cmd)
+  end
 end
 
 function v.Slctd.line_end_space__del() -- range

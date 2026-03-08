@@ -81,7 +81,7 @@ end
 
 function v.Rgstr.ynk__cursor_line()
 
-  v.Cmd.nml('"ayy')
+  v.Cmd.nml('"ayy') -- refactoring
   -- line_str = Cursor.line_str()
   -- let @a = line_str
 
@@ -107,7 +107,8 @@ end
 
 function v.Rgstr.ynk__clp()
 
-  v.Rgstr.ynk__(v.Rgstr.get('+'))
+  local str = v.Rgstr.clp()
+  v.Rgstr.ynk__(str)
 end
 
 function v.Rgstr.ynk__slctd()
@@ -149,12 +150,19 @@ end
 
 -- clp
 
+function v.Rgstr.clp()
+
+  local str = v.Rgstr.get('+')
+  return str
+end
+
 function v.Rgstr.clp__ynk()
 
-  if not v.Env.is__('linux') then
-
-    v.Rgstr.__('+', v.Rgstr.ynk())
-    -- v.Cmd.cmd('let @+ = @a')
+  if v.Env.is__('linux') then
+    return
   end
+
+  local str = v.Rgstr.ynk()
+  v.Rgstr.__('+', str)
 end
 
