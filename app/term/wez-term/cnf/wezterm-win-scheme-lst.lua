@@ -105,7 +105,6 @@ scheme_lst.win.recommend.h = {
   'Snazzy (base16)'                        , -- 
   'tender (base16)'                        , -- 
   -- h ( chk ed ) ~ slctd -- dark
-  'Ef-Cherie'                              , -- 
   'Obsidian'                               , -- 
   'Wombat'                                 , -- 
   'ayu'                                    , -- 
@@ -124,6 +123,7 @@ scheme_lst.win.excld = {
   -- cmd line
   'kokuban (Gogh)'                         , -- 
   -- slctd -- dark
+  'Ef-Cherie'                              , -- 
   'idleToes'                               , -- 
   -- 
   -- phase 04

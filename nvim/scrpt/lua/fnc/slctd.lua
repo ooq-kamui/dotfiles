@@ -1160,19 +1160,13 @@ end
 
 function v.Slctd.line_top_space__del()
 
-  local rpl_cmd = 's/' .. v.Ptn.vim.line_space_top .. '//eg'
-  local cmd
-
   for idx, line_num in pairs(v.Slctd.line_num_seq()) do
 
-    cmd = line_num .. rpl_cmd
-    v.Cmd.cmd(cmd)
+    v.Line.top_space__del(line_num)
   end
 end
 
 function v.Slctd.line_end_space__del() -- range
-
-  -- v.Slctd.__ltst()
 
   for idx, line_num in pairs(v.Slctd.line_num_seq()) do
 

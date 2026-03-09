@@ -352,3 +352,14 @@ function v.Win.splt__quit()
   v.Cmd.nml([[<c-w>c>]])
 end
 
+function v.Win.view_save()
+
+  local view = vf.winsaveview()
+  return view
+end
+
+function v.Win.view_restore(view)
+
+  vf.winrestview(view)
+end
+

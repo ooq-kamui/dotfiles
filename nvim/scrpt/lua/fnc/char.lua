@@ -234,7 +234,7 @@ function v.Char.bracket_r(bracket_l)
   return bracket_r
 end
 
-function v.Char.is_space(char)
+function v.Char.is__space(char)
 
   local ret = bl.f
 
@@ -242,6 +242,12 @@ function v.Char.is_space(char)
     ret = bl.t
   end
 
+  return ret
+end
+
+function v.Char.is__mb(char)
+
+  local ret = v.Str.is__ptn(char, v.Ptn.vim.mb_char_lst)
   return ret
 end
 

@@ -97,7 +97,7 @@ function v.Str.byte_idx_by_ruler_idx(str, ruler_idx) -- byte_idx: mb end
 
   local byte_idx
 
-  if not v.Str.is__in_mb(str) then
+  if not v.Str.is__mb_in(str) then
     return ruler_idx
   end
 
@@ -389,7 +389,7 @@ function v.Str.word_ruler_idx_lst(str)
 
     char = v.Str.char(str, char_idx)
 
-    if v.Char.is_space(char) then
+    if v.Char.is__space(char) then
       is_space = bl.t
 
     else
@@ -598,7 +598,7 @@ function v.Str.is__num(str)
   return ret
 end
 
-function v.Str.is__in_mb(str)
+function v.Str.is__mb_in(str)
 
   local ret = v.Str.is__ptn(str, v.Ptn.vim.mb_char_lst)
   return ret

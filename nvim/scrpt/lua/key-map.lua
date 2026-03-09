@@ -806,8 +806,7 @@ keymap__('n', '<leader>o'    , ':lua v.Fzf.rg()<cr>')
 keymap__('n', '<leader><c-o>', ':lua v.Fzf.rg_by_srch_str()<cr>')
 
 -- fzf rg srch str word1
-keymap__('n', '<leader>O'    , ':lua v.Fzf.rg_by_srch_str(bl.t)<cr>')
--- keymap__('n', '<leader>O'    , ':lua v.Fzf.rg_word1_by_srch_str()<cr>')
+-- keymap__('n', '<leader>O'    , ':lua v.Fzf.rg_by_srch_str(bl.t)<cr>')
 
 -- fzf rg fltr ext
 keymap__('n', ':F', ':FzfRgExt js')

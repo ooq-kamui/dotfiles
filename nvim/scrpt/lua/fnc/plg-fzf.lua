@@ -58,12 +58,13 @@ function v.Fzf.rg(ptn_rg, ext, word1_flg, opt) -- alias
   v.Fzf.rg_with_fzfgrep(ptn_rg, ext, word1_flg, opt)
 end
 
-function v.Fzf.rg_by_srch_str(word1_flg)
-
-  word1_flg = word1_flg or bl.f
+function v.Fzf.rg_by_srch_str()
 
   local srch_str_plain = v.Srch.str_plain()
   local opt = '-F' -- str plain ( ptn not )
+
+  local word1_flg = v.Srch.is_str_vim__word1()
+
   v.Fzf.rg(srch_str_plain, nil, word1_flg, opt)
 end
 

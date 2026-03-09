@@ -35,38 +35,6 @@ function v.Line.__by_line_num(line_num, line_str)
   vf.setline(line_num, line_str)
 end
 
-
--- line xx __ ins
-
-function v.Line.end__ins(line_num, str)
-
-  local line_str = v.Line.str_by_line_num(line_num)
-  line_str = line_str .. str
-  v.Line.__by_line_num(line_num, line_str)
-end
-
-function v.Line.end_space__del(line_num)
-
-  local rpl_cmd = line_num .. 's/' .. v.Ptn.vim.line_space_end .. '//eg'
-  v.Cmd.cmd(rpl_cmd)
-end
-
-function v.Line.end__pad_space(line_num, fil_end_ruler_idx)
-
-  local line_str     = v.Line.str_by_line_num(line_num)
-
-  local line_str_len_ruler = v.Str.len_ruler(line_str)
-  local space_len_byte     = fil_end_ruler_idx - line_str_len_ruler
-
-  if space_len_byte <= 0 then
-    return
-  end
-
-  local space_str = v.Str.space(space_len_byte)
-  line_str = line_str .. space_str
-  v.Line.__by_line_num(line_num, line_str)
-end
-
 function v.Line.__del_by_line_num(line_num)
 
   vf.deletebufline('%', line_num)
@@ -163,6 +131,56 @@ function v.Line.char_byte_idx(line_num, char, byte_idx_min)
     end
   end
   return char_byte_idx
+end
+
+-- line top
+
+function v.Line.top_space__del(line_num)
+
+  -- local view = v.Win.view_save()
+
+  local rpl_cmd = line_num .. 's/' .. v.Ptn.vim.space_str_top .. '//eg'
+  v.Cmd.cmd(rpl_cmd)
+
+  -- local rpl_cmd = line_num .. 's/' .. v.Ptn.vim.space_str_end .. '//eg'
+  -- v.Cmd.cmd(rpl_cmd)
+
+  -- v.Win.view_restore(view)
+end
+
+-- line end
+
+function v.Line.end__ins(line_num, str)
+
+  local line_str = v.Line.str_by_line_num(line_num)
+  line_str = line_str .. str
+  v.Line.__by_line_num(line_num, line_str)
+end
+
+function v.Line.end_space__del(line_num)
+
+  local view = v.Win.view_save()
+
+  local rpl_cmd = line_num .. 's/' .. v.Ptn.vim.space_str_end .. '//eg'
+  v.Cmd.cmd(rpl_cmd)
+
+  v.Win.view_restore(view)
+end
+
+function v.Line.end__pad_space(line_num, fil_end_ruler_idx)
+
+  local line_str     = v.Line.str_by_line_num(line_num)
+
+  local line_str_len_ruler = v.Str.len_ruler(line_str)
+  local space_len_byte     = fil_end_ruler_idx - line_str_len_ruler
+
+  if space_len_byte <= 0 then
+    return
+  end
+
+  local space_str = v.Str.space(space_len_byte)
+  line_str = line_str .. space_str
+  v.Line.__by_line_num(line_num, line_str)
 end
 
 -- line cnd
