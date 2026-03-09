@@ -57,7 +57,6 @@ end
 function v.Buf.opn_nvim_init()
 
   v.Buf.opn(v.Dir.c.nvim_lua_key_map_file_path)
-  -- v.Buf.opn(v.Dir.c.nvim_lua_fnc_basic_file_path)
 end
 
 function v.Buf.opn_cheat_sheet()
@@ -131,14 +130,12 @@ function v.Buf.opn_by_path(rg_rslt_line)
   local file_name = rg_rslt_line_ar[1]
   local line_num  = v.Tbl.get_by_key(rg_rslt_line_ar, 1, 1)
 
-  -- dev anchor
   if not v.File.is__readable(file_name) then
     v.Log.val( 'file does not exist' )
     return
   end
 
-  v.Cmd.cmd('tab drop ' .. file_name)
-  v.Cursor.__mv_by_line_num(line_num)
+  v.Buf.opn(filename, line_num)
 end
 
 function v.Buf.opn_by_cursor_line_pth()

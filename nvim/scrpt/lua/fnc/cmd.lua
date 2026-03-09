@@ -26,14 +26,12 @@ function v.Cmd.esc()
 end
 
 function v.Cmd.cmdline__(str)
-  -- v.Log.log(str)
 
-  vf.feedkeys(': ' .. str)
+  vf.feedkeys(': ' .. str) -- del not space
 end
 
 function v.Cmd.cmdline__fnc_call(fnc_name)
 
-  -- dev anchor
   v.Cmd.cmdline__('lua ' .. fnc_name)
 end
 

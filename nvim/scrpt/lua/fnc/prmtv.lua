@@ -35,6 +35,15 @@ function v.Var.is__str(val)
   end
 end
 
+function v.Var.is__tbl(val)
+
+  if type(val) == 'table' then
+    return bl.t
+  else
+    return bl.f
+  end
+end
+
 -- ar ( list )
 
 v.Ar = {}

@@ -2,20 +2,24 @@
 # dotfiles
 
 
+## magical blossom flora
+
+git tidy
+- doc engine mv
+
+
 ## nvim
 
 dev-anchor, tidy, by grep
 - file etc
   ```
-  fnc/buf.lua:134:  -- dev anchor
-  fnc/cmd.lua:36:  -- dev anchor
-  fnc/line.lua:80:-- dev anchor
-  fnc/log.lua:8:  -- dev anchor
-  fnc/plg-fzf.lua:40:  -- dev anchor
   fnc/prmtv.lua:22:  -- dev anchor
+  - is __ emp, case tbl
   fnc/rgstr.lua:122:    -- dev anchor
   fnc/slctd.lua:1370:  -- dev anchor
   key-map.lua:1616:-- dev anchor  continue
+  fnc/plg-fzf.lua:40:  -- dev anchor
+  - git st file slt
   ```
 
 

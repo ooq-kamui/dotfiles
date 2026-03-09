@@ -77,10 +77,9 @@ function v.Line.word_byte_idx(line_num, byte_idx_min)
   return word_byte_idx
 end
 
--- dev anchor
 function v.Line.word_ruler_idx_lst(line_num)
 
-  local line_str         = v.Line.str_by_line_num(line_num)
+  local line_str           = v.Line.str_by_line_num(line_num)
   local word_ruler_idx_lst = v.Str.word_ruler_idx_lst(line_str)
   return word_ruler_idx_lst
 end

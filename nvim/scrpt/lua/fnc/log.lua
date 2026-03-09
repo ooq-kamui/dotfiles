@@ -5,18 +5,19 @@ v.Log = {}
 
 function v.Log.log(...) -- alias
 
-  -- dev anchor
-  if bl.t then
-    v.Log.val(...)
+  local len = select('#', ...)
+  local val1 = ...
+
+  if len == 1 and v.Var.is__tbl(val1) then
+    v.Log.tbl(val1)
   else
-    v.Log.tbl(val)
+    v.Log.val(...)
   end
 end
 
 function v.Log.val(...)
 
   print(...)
-  -- print(val)
 end
 
 function v.Log.tbl(tbl)
