@@ -2,12 +2,6 @@
 # dotfiles
 
 
-## magical blossom flora
-
-git tidy
-- doc engine mv
-
-
 ## nvim
 
 dev-anchor, tidy, by grep

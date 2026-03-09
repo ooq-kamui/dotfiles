@@ -139,7 +139,6 @@ scheme_lst.mac.recommend.h = {
   'Subliminal'                             ,
   'Sweet Eliverlara (Gogh)'                ,
   'SweetTerminal (Gogh)'                   ,
-  'Symfonic'                               ,
   'Symphonic (Gogh)'                       ,
   'Teerb (Gogh)'                           ,
   'Teerb'                                  ,
@@ -203,6 +202,7 @@ scheme_lst.mac.recommend.l = {
   'Monokai Pro (Gogh)'                     ,
   'Wombat'                                 ,
   'Red Sands'                              ,
+  'Symfonic'                               ,
   -- cmd line
   'Neon (terminal.sexy)'                   ,
   'Chalk (dark) (terminal.sexy)'           ,
