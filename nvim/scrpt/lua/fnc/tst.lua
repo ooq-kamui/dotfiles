@@ -5,11 +5,13 @@ v.Tst = {}
 
 function v.Tst.tst()
 
-  local str = 'Ａ'
-  str = v.Str.mb_to_ascii(str)
+  v.Buf.__fltr_jq()
+
+  -- v.Slctd.str_edge_out_char__del()
+
+  -- local str = 'Ａ'
+  -- str = v.Str.mb_to_ascii(str)
   -- v.Log.val(str)
-
-
 end
 
 

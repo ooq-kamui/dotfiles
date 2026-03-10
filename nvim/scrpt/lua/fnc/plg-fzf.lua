@@ -309,12 +309,13 @@ end
 v.Fzf.opt_vim_cmd = [[
 let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
 let g:fzf_action = {
-\  'ctrl-o': 'tab drop',
+\   'ctrl-o': 'tab drop',
 \ }
 
-"\  'ctrl-o': 'enter',
-"\  'ctrl-i': 'item slct mtl',
-"\  'ctrl-s': 'backward-char',
+"\   'ctrl-o': 'tab drop',
+"\   'ctrl-o': 'enter',
+"\   'ctrl-i': 'item slct mtl',
+"\   'ctrl-s': 'backward-char',
 
 let g:fzf_colors = {
 \   'hl'     : ['fg', 'Statement'  ],

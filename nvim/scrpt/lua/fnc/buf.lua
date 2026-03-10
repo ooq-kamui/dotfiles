@@ -36,6 +36,44 @@ function v.Buf.opn(filename, line_num)
   -- v.Log.log(file_encode)
 end
 
+-- dev anchor
+function opn_splt(file_name, line_num)
+
+  local buf_num = vf.bufnr(file_name)
+
+  if buf_num ~= -1 then
+
+    local wins = vf.win_findnr(buf_num)
+    local current_tab = vim.api.nvim_get_current_tabpage()
+    local target_win = nil
+
+    for _, winid in ipairs(wins) do
+      if vim.api.nvim_win_get_tabpage(winid) == current_tab then
+        target_win = winid
+        break
+      end
+    end
+
+    if target_win then
+      vim.api.nvim_set_current_win(target_win)
+    else
+      vim.cmd('split | buffer ' .. buf_num)
+    end
+  else
+    vim.cmd('tabdrop ' .. file_name)
+  end
+
+  if line_num and line_num ~= "" then
+    vim.api.nvim_win_set_cursor(0, {tonumber(line_num), 0})
+  end
+end
+
+-- コマンド登録 (引数 1〜2 個を受け付ける)
+vim.api.nvim_create_user_command('SmartOpen', function(opts)
+  smart_open(opts.fargs[1], opts.fargs[2])
+end, { nargs = '+', complete = 'file' })
+
+
 function v.Buf.opn_tab_prv()
 
   v.Cmd.cmd('tab drop #')
@@ -65,7 +103,7 @@ function v.Buf.opn_cheat_sheet()
   v.Buf.opn(file_path)
 end
 
-function v.Buf.opn_nvim_init_l()
+function v.Buf.opn_nvim_init_l() -- use not
 
   v.Buf.opn(v.Dir.c.nvim_lua_opt_file_path     )
   v.Buf.opn(v.Dir.c.nvim_lua_cmd_file_path     )
@@ -165,7 +203,7 @@ function v.Buf.opn_by_slctd_line() -- range
   end
 end
 
--- buf
+-- buf quit
 
 function v.Buf.__quit()
 
@@ -306,7 +344,6 @@ function v.Buf.is_file_type__in(type_lst)
   return ret
 end
 
--- dev anchor
 function v.Buf.__fltr(sys_fltr_cmd)
 
   local sys_cmd = '%! ' .. sys_fltr_cmd
@@ -325,7 +362,7 @@ end
 
 v.Win = {}
 
-function v.Win.__splt_h()
+function v.Win.__splt_h() -- alias
 
   local cmd = 'split'
   v.Cmd.cmd(cmd)
@@ -339,23 +376,23 @@ function v.Win.__splt_v()
   v.Win.splt_cursor__mv_nxt()
 end
 
-function v.Win.splt_cursor__mv_nxt()
+function v.Win.splt_cursor__mv_nxt() -- alias
 
   v.Cmd.nml([[<c-w>w>]])
 end
 
-function v.Win.splt__quit()
+function v.Win.splt__quit() -- alias
 
   v.Cmd.nml([[<c-w>c>]])
 end
 
-function v.Win.view_save()
+function v.Win.view_save() -- alias
 
   local view = vf.winsaveview()
   return view
 end
 
-function v.Win.view_restore(view)
+function v.Win.view_restore(view) -- alias
 
   vf.winrestview(view)
 end

@@ -4,12 +4,10 @@
 
 ## nvim
 
-x w, err
-- case: #tbl
-
-
 fzf rslt
 - case: file same, win split
+- buf.drp
+- or opn opt
 
 
 plg-mng
@@ -22,6 +20,11 @@ plg
 - blink.cmp
   - instl
     - https://eiji.page/blog/neovim-blink-cmp-intro/
+
+
+## mac
+
+air m5
 
 
 ## skr-vps

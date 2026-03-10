@@ -779,23 +779,12 @@ function v.Slctd.str_edge_out__ins_markdown_bold()
   v.Slctd.str_edge_out__ins('**')
 end
 
-function v.Slctd.str_edge_out_char__tgl() -- range
-
-  v.Slctd.str_edge_out_char__tgl_swtch()
-end
-
 function v.Slctd.str_edge_out_char__tgl_swtch() -- range
 
-  -- char chk
   local c_l = v.Slctd.str_edge_l_out_char()
   local c_r = v.Slctd.str_edge_r_out_char()
-  -- v.Log.val( c_l c_r )
 
-  if     c_l == "'" and c_l == c_r then
-    v.Slctd.str_edge_out_quote__tgl()
-  elseif c_l == '"' and c_l == c_r then
-    v.Slctd.str_edge_out_quote__tgl()
-  elseif c_l == '`' and c_l == c_r then
+  if v.Tbl.is__in(c_l, {"'", '"', '`'}) and c_l == c_r then
     v.Slctd.str_edge_out_quote__tgl()
 
   elseif c_l == '(' and c_r == ')' then
@@ -816,18 +805,12 @@ function v.Slctd.str_edge_out_quote__tgl() -- range
 
   v.Slctd.__ltst()
 
-  if v.Slctd.is_line__mlt() then
-    return
-  end
+  if v.Slctd.is_line__mlt()           then return end
 
-  if v.Cursor.is_byte_idx__line_end() then
-    return
-  end
+  if v.Cursor.is_byte_idx__line_end() then return end
 
-  -- char chk
   local c_l = v.Slctd.str_edge_l_out_char()
   local c_r = v.Slctd.str_edge_r_out_char()
-  -- v.Log.val( c_l c_r )
 
   local c_lst
 
@@ -853,7 +836,6 @@ function v.Slctd.str_edge_out_quote__tgl() -- range
     v.Slctd.str_edge_out_char__del()
 
   else
-
     v.Slctd.str_edge_out_char__del()
     c = c_lst[idx + 1]
     v.Slctd.str_edge_out__ins(c)
@@ -872,7 +854,6 @@ function v.Slctd.str_edge_out_bracket__tgl() -- range
     return
   end
 
-  -- char chk
   local c_l = v.Slctd.str_edge_l_out_char()
   local c_r = v.Slctd.str_edge_r_out_char()
 
@@ -882,7 +863,6 @@ function v.Slctd.str_edge_out_bracket__tgl() -- range
   local idx = v.Tbl.idx(bracket_lst, c_l)
 
   if idx then
-
     v.Slctd.str_edge_out_char__del()
 
     if c_l == v.Tbl.last(bracket_lst) then
@@ -931,23 +911,18 @@ function v.Slctd.str_edge_out_char__del() -- range
 
   v.Slctd.__ltst()
 
-  if v.Slctd.is_str_edge_l__line_top() then
-    return
-  end
+  if v.Slctd.is_str_edge_l__line_top() then return end
 
   local slctd_str = v.Slctd.str()
 
   v.Slctd.cursor__mv_edge_l()
   v.Slctd.__del()
-
   v.Slctd.__clr()
 
   v.Cmd.nml('hxx')
 
   v.Cursor.__ins(slctd_str)
-
-  v.Slctd.__ltst()
-  v.Slctd.box__mv('l')
+  v.Cmd.nml('`[v`]h')
 end
 
 -- slctd str cnd

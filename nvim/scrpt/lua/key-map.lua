@@ -1352,7 +1352,7 @@ keymap__('x', 'w', function()
   if v.Mode.is__box() then
     return ':lua v.Slctd.box_width__1()<cr>'
   else
-    return ':lua v.Slctd.str_edge_out_char__tgl()<cr>'
+    return ':lua v.Slctd.str_edge_out_char__tgl_swtch()<cr>'
   end
 end, {expr = bl.t})
 
