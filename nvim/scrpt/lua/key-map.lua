@@ -1363,6 +1363,8 @@ end, {expr = bl.t})
 keymap__('x', 'W', v.Slctd.str_edge_out_char__type_ch)
 
 -- slctd str edge out __ ins space
+keymap__('x', 'I' , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
+keymap__('x', 'O' , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
 keymap__('x', 'ru' , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
 
 -- slctd str edge out __ ins markdown strikethrough
@@ -1429,7 +1431,7 @@ keymap__('x', 'U', 'Ugv')
 -- keymap__('x', 'xx', 'ugv')
 
 -- str mb
-keymap__('x', ':mb', ':lua v.Slctd.line_mb__cnv()<cr>')
+keymap__('x', ':mb', ':lua v.Slctd.line_mlt_mb__cnv()<cr>')
 
 -- srch
 
@@ -1612,8 +1614,6 @@ end, {expr = bl.t})
 -- cursor mv in line top
 -- keymap__('i', '<c-a>', '<c-o>^')
 -- keymap__('i', '<c-a>', '<c-o>0')
-
--- dev anchor  continue
 
 -- cursor mv in line end
 keymap__('i', '<c-e>', '<c-o>$')

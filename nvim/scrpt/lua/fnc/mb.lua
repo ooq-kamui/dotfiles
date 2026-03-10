@@ -1,10 +1,11 @@
 
 v.Mb = {}
 
-function v.Mb.str__cnv(str)
+function v.Mb.__cnv(str)
 
-  -- dev anchor
-
+  local sys_cmd = 'echo "' .. str .. '" | mb__cnv'
+  str = v.Sys.cmd(sys_cmd)
+  return str
 end
 
 

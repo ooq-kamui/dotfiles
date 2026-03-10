@@ -1360,16 +1360,12 @@ function v.Slctd.line__cnv_markdown_tbl_header() -- range -- ??
   v.Slctd.line__rpl('.|'  , ' |' )
 end
 
--- slctd line mb
+-- slctd line mlt cnv mb to ascii
 
-function v.Slctd.line_mb__cnv() -- range
+function v.Slctd.line_mlt_mb__cnv() -- range
 
   local sys_cmd = 'mb__cnv'
   v.Slctd.line__rpl_sys_cmd(sys_cmd)
-
-  -- dev anchor
-  -- local str = v.Slctd.str()
-  -- str = v.Mb.str__cnv(str)
 end
 
 function v.Slctd.is_line__mlt()

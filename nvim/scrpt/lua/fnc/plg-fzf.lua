@@ -37,9 +37,7 @@ end
 
 function v.Fzf.file_by_git_st()
 
-  -- dev anchor
-
-  local sys_cmd = 'git_st_file_lst'
+  local sys_cmd = 'git-st-file-lst'
   local fzf_src_txt  = v.Sys.cmd(sys_cmd)
 
   local fnc_name = v.Buf.opn_by_git_st_file_pth

@@ -37,19 +37,19 @@ end
 function v.Sys.opn_app(path)
 
   local path = path
-  local cmd_sys
+  local sys_cmd
 
   if     v.Env.is__('mac') then
-    cmd_sys = 'open'
+    sys_cmd = 'open'
 
   elseif v.Env.is__('win64') then
-    cmd_sys = 'start'
+    sys_cmd = 'start'
 
   elseif v.Env.is__('win32unix') then
-    cmd_sys = 'start'
+    sys_cmd = 'start'
 
   elseif v.Env.is__('wsl') then
-    cmd_sys = 'opn'
+    sys_cmd = 'opn'
     -- return
   else
     return
@@ -59,8 +59,8 @@ function v.Sys.opn_app(path)
     path = v.Str.path_unix__cnv_win(path)
   end
 
-  cmd_sys = cmd_sys .. " '" .. path .. "'"
-  local res = vf.system(cmd_sys)
+  sys_cmd = sys_cmd .. " '" .. path .. "'"
+  local res = vf.system(sys_cmd)
 end
 
 function v.Sys.opn_app_by_cursor_path()

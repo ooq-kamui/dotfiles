@@ -29,7 +29,10 @@ end
 
 function v.Tbl.len(tbl) -- rpl vf.len()
 
-  return #tbl
+  if not v.Var.is__tbl(tbl) then return end
+
+  local len = #tbl
+  return len
 end
 
 function v.Tbl.idx(tbl, val)

@@ -19,8 +19,8 @@ function v.Var.is__emp(val)
   elseif val == '' then
     return bl.t
 
-  -- dev anchor
-  -- if ar {}
+  elseif v.Var.is__tbl(val) and v.tbl.len(val) == 0 then
+    return bl.t
   end
 
   return bl.f

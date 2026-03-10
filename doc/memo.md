@@ -4,23 +4,9 @@
 
 ## nvim
 
-dev-anchor, tidy, by grep
-- file etc
-  ```
-  fnc/prmtv.lua:22:  -- dev anchor
-  - is __ emp, case tbl
-  fnc/rgstr.lua:122:    -- dev anchor
-  fnc/slctd.lua:1370:  -- dev anchor
-  key-map.lua:1616:-- dev anchor  continue
-  fnc/plg-fzf.lua:40:  -- dev anchor
-  - git st file slt
-  ```
+x w, err
+- case: #tbl
 
-
-dev
-```
-fnc/mb.lua:6:  -- dev anchor
-```
 
 fzf rslt
 - case: file same, win split

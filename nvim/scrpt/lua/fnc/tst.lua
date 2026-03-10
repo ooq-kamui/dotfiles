@@ -5,9 +5,11 @@ v.Tst = {}
 
 function v.Tst.tst()
 
-  v.Fzf.fnc_call()
+  local str = 'Ａ'
+  str = v.Str.mb_to_ascii(str)
+  -- v.Log.val(str)
 
-  -- v.Slctd.line_top_space__del()
+
 end
 
 

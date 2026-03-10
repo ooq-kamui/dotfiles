@@ -91,7 +91,6 @@ scheme_lst.win.recommend.h = {
   'NightOwl (Gogh)'                        , -- 
   'Vs Code Dark+ (Gogh)'                   , -- 
   -- h ( chk ed ) ~ git
-  'Belge (terminal.sexy)'                  , -- 
   'Dracula (base16)'                       , -- 
   'Fairyfloss'                             , -- 
   'Ir Black (Gogh)'                        , -- 
@@ -122,6 +121,8 @@ scheme_lst.win.excld = {
   'MonokaiPro (Gogh)'                      , -- 
   -- cmd line
   'kokuban (Gogh)'                         , -- 
+  -- git
+  'Belge (terminal.sexy)'                  , -- 
   -- slctd -- dark
   'Ef-Cherie'                              , -- 
   'idleToes'                               , -- 

@@ -119,11 +119,8 @@ function v.Rgstr.ynk__slctd()
 
   if v.Mode.is__box() then
 
-    -- dev anchor
-    cmd_nml = '"ay'
+    cmd_nml = '"a' .. 'y'
     v.Cmd.nml(cmd_nml)
-
-    -- v.Rgstr.ynk__(str)
 
   else
     str = v.Slctd.str()

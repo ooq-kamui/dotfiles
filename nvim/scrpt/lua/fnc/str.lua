@@ -269,6 +269,12 @@ function v.Str.to_num(num_str)
   return num
 end
 
+function v.Str.mb_to_ascii(str)
+
+  str = v.Mb.__cnv(str)
+  return str
+end
+
 -- str srch
 
 function v.Str.srch_byte_idx(str, ptn_vim, srch_s_byte_idx) -- use not
