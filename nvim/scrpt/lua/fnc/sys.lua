@@ -176,7 +176,7 @@ function v.Sys.cmd_by_slf(p_sys_cmd)
   local sys_cmd   = p_sys_cmd .. ' ' .. file_path
 
   local rslt = v.Sys.cmd(sys_cmd)
-  v.Log.val(rslt)
+  -- v.Log.val(rslt)
   -- v.Rgstr.ynk__(rslt)
 
   v.Buf.opn_re()

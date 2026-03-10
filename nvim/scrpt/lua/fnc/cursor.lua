@@ -598,8 +598,10 @@ function v.Cursor.__ins(str)
   v.Cursor.__mv_char_f()
 end
 
-function v.Cursor.__ins_with_cursor_fix(str) -- todo dev
+function v.Cursor.__ins__slct(str)
 
+  v.Cursor.__ins(str)
+  v.Cmd.nml('`[v`]h')
 end
 
 -- cursor __ ins ynk ( paste )

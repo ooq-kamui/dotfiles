@@ -317,7 +317,7 @@ keymap__('n', '<leader>l', ':lua v.Fzf.file()<cr>')
 keymap__('n', '<leader>L', ':FzfFileHstry<cr>')
 
 -- opn file rcnt ( ltst )
-keymap__('n', 'H', ':lua v.Buf.quit.rcnt_opn_re()<cr>')
+keymap__('n', '<leader><c-l>', ':lua v.Buf.quit.rcnt_opn_re()<cr>')
 
 -- opn re sjis
 keymap__('n', ':S', ':Sjis ')
@@ -536,13 +536,12 @@ keymap__('n', 'h'    , 'u'    )
 keymap__('n', '<c-h>', '<c-r>')
 
 -- undo history clr
--- keymap__('n', ':h', ':lua v.Undo__clr()')
 keymap__('n', ':h', ':lua v.Buf.undo__clr()')
 
 -- repeat
 keymap__('n', '~', '.')
 
--- repeat fnc
+-- repeat with fnc
 keymap__('n', '^', ':lua v.Cmd.repeat_with_fnc()<cr>')
 
 -- macro rec
@@ -870,7 +869,7 @@ keymap__('n', '<leader>D', ':lua v.Fzf.dir_jmp()<cr>')
 keymap__('n', '<leader>u', ':lua v.Fzf.file_by_git_st()<cr>')
 
 -- fzf fnc call
--- keymap__('n', '<leader>R', ':lua v.Fzf.fnc_call()<cr>')
+keymap__('n', '<leader>a', ':lua v.Fzf.fnc_call()<cr>')
 
 -- fzf doc tech
 keymap__('n', '<leader>t', ':lua v.Fzf.doc_tech()<cr>')

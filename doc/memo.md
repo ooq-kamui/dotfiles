@@ -40,6 +40,13 @@ vim.fn['fzf#vim#grep'](rg_cmd, 1, spec, 1)
 ```
 
 
+cmd_nml, tidy
+- cls cre
+
+
+slctd reduce , case: __xx_bb__
+
+
 plg-mng
 - lazy
   - ref https://lazy.folke.io/installation
@@ -50,11 +57,6 @@ plg
 - blink.cmp
   - instl
     - https://eiji.page/blog/neovim-blink-cmp-intro/
-
-
-## claude
-
-try
 
 
 ## skr-vps

@@ -921,8 +921,7 @@ function v.Slctd.str_edge_out_char__del() -- range
 
   v.Cmd.nml('hxx')
 
-  v.Cursor.__ins(slctd_str)
-  v.Cmd.nml('`[v`]h')
+  v.Cursor.__ins__slct(slctd_str)
 end
 
 -- slctd str cnd

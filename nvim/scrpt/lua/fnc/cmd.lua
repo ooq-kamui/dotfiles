@@ -37,7 +37,7 @@ end
 
 function v.Cmd.repeat_with_fnc() -- repeat : lua reserve word
 
-  v.Log.val('fnc repeat')
+  -- v.Log.val('fnc repeat')
 
 
 end
