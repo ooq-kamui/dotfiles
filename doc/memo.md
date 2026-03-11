@@ -4,6 +4,10 @@
 
 ## nvim
 
+cmd_nml, tidy
+- cls nml cre
+
+
 fzf rslt
 - case: file same, win split
 - buf.drp
@@ -26,10 +30,6 @@ spec['sink*'] = fzf_handler
 
 vim.fn['fzf#vim#grep'](rg_cmd, 1, spec, 1)
 ```
-
-
-cmd_nml, tidy
-- cls cre
 
 
 slctd reduce , case: __xx_bb__
