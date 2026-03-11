@@ -640,7 +640,6 @@ function v.Cursor.__ins_cr()
   v.Cmd.nml(cmd_nml)
 
   v.Line.end_space__del(line_num)
-  -- v.Cursor.__mv_d()
 end
 
 function v.Cursor.__ins_space(is_cursor_mv)

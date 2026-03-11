@@ -105,6 +105,37 @@ function v.Fzf.rg_with_fzfgrep(ptn_rg, ext, word1, opt)
   --   )
 end
 
+function v.Fzf.rg_with_fzfgrep_02(ptn_rg, ext, word1, opt)
+
+  local rg_cmd = '....'
+
+  local spec = vim.fn['fzf#vim#with_preview'](
+    { options = '--exact --delimiter : --nth 3.. --expect=ctrl-o', },
+    'up:70%:hidden',
+    'ctrl-u'
+  )
+
+  spec['sink*'] = fzf_handler
+
+  vim.fn['fzf#vim#grep'](rg_cmd, 1, spec, 1)
+
+end
+
+function v.Fzf.hndl(line_str_ar)
+
+  if v.Tbl.len(line_str_ar) < 2 then return end
+
+  -- local key       = line_str_ar[1]
+  local selection = line_str_ar[2]
+
+  local parts = v.Str.split(selection, ":")
+  local file_name = parts[1]
+  local line_num  = parts[2]
+  line_num = v.Str.to_num(line_num)
+
+  v.Buf.Opn_splt(file_name, line_num)
+end
+
 -- fzf rg ext
 
 function v.Fzf.rg_ext(ext)
@@ -360,8 +391,5 @@ v.Cmd.cmd('command! -bang -nargs=* FzfCmdHstry call fzf#vim#command_history(fzf#
 v.Cmd.cmd('command! -bang -nargs=* FzfSrchHstry call fzf#vim#search_history(fzf#vim#with_preview(), <bang>1)')
 
 -- fzf cmd def : mark
--- v.Cmd.cmd([[command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview(), <bang>1)]])
 v.Cmd.cmd([[command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview({'options': '--query "^a | ^b | ^c"'}), <bang>1)]])
--- v.Cmd.cmd([[command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview({'options': '--query "^a "'}), <bang>1)]])
--- v.Cmd.cmd([[command! -bang -nargs=* FzfMark call fzf#vim#marks(fzf#vim#with_preview({'options': '--query "^[a-z] "'}), <bang>1)]])
 

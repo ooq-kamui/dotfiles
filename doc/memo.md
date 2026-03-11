@@ -11,18 +11,6 @@ fzf rslt
 
 
 ```lua
-local function fzf_handler(lines)
-
-  if #lines < 2 then return end
-
-  local key = lines[1]
-  local selection = lines[2]
-  local parts = vim.split(selection, ":")
-  local filename = parts[1]
-  local lnum = parts[2]
-
-  smart_open(filename, lnum)
-end
 
 local rg_cmd = '....'
 
@@ -57,6 +45,11 @@ plg
 - blink.cmp
   - instl
     - https://eiji.page/blog/neovim-blink-cmp-intro/
+
+
+## wez
+
+tab new, dir same, off
 
 
 ## skr-vps

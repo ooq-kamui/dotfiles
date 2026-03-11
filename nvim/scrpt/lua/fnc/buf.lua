@@ -37,35 +37,36 @@ function v.Buf.opn(filename, line_num)
 end
 
 -- dev anchor
-function opn_splt(file_name, line_num)
+function v.Buf.Opn_splt(file_name, line_num)
 
   local buf_num = vf.bufnr(file_name)
 
   if buf_num ~= -1 then
 
-    local wins = vf.win_findnr(buf_num)
-    local current_tab = vim.api.nvim_get_current_tabpage()
-    local target_win = nil
+    local win_id_lst = vf.win_findnr(buf_num)
+    local tab_crnt   = vim.api.nvim_get_current_tabpage()
+    local t_win_id   = nil
 
-    for _, winid in ipairs(wins) do
-      if vim.api.nvim_win_get_tabpage(winid) == current_tab then
-        target_win = winid
+    for idx, win_id in ipairs(win_id_lst) do
+      if vim.api.nvim_win_get_tabpage(win_id) == tab_crnt then
+        t_win_id = win_id
         break
       end
     end
 
-    if target_win then
-      vim.api.nvim_set_current_win(target_win)
+    if t_win_id then
+      vim.api.nvim_set_current_win(t_win_id)
     else
       vim.cmd('split | buffer ' .. buf_num)
     end
+
   else
     vim.cmd('tabdrop ' .. file_name)
   end
 
-  if line_num and line_num ~= "" then
-    vim.api.nvim_win_set_cursor(0, {tonumber(line_num), 0})
-  end
+  if not line_num then return end
+
+  vim.api.nvim_win_set_cursor(0, {line_num, 0})
 end
 
 -- コマンド登録 (引数 1〜2 個を受け付ける)
