@@ -9,11 +9,10 @@ fzf rslt
 
 
 
-
 slctd reduce , case: __xx_bb__
 
 
-nml_cmd def
+nml.cmd def
 
 
 plg-mng
