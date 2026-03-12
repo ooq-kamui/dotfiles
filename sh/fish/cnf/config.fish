@@ -133,18 +133,18 @@ alias jl 'git log'
 alias jl-tree 'git-log-tree'
 alias jlt     'jl-tree'
 alias jlo     'jl-tree'
+alias jlof    'jl-tree'
 
 alias jj 'git add .; git status'
 alias jp 'git pll'
-# alias jd 'git diff --staged'
 
 # alias jsl 'git sl'
 # alias jsd 'git sd'
 # alias jwl 'git wl'
 # alias jwd 'git wd'
 
-alias jrp 'git-root-pth-rel'
-alias jr  'cd_git_root'
+# alias jrp 'git-root-pth-rel'
+# alias jr  'cd_git_root'
 alias ji-st-file-lst 'git-st-file-lst'
 alias ji-co-file-lst 'git-co-file-lst'
 alias ji-co-smry     'git-co-summary'
@@ -154,6 +154,10 @@ alias get-branch-upstream 'git branch --set-upstream-to=origin/main main'
 alias ji-b-upstream       'get-branch-upstream'
 
 alias lj 'lazygit'
+
+alias dif 'difft'
+alias di  'difft'
+
 
 alias pd   'podman'
 alias pl   'podman container ls -a'

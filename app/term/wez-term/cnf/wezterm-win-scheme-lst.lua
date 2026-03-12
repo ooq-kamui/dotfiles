@@ -107,7 +107,6 @@ scheme_lst.win.recommend.h = {
   'Obsidian'                               , -- 
   'Wombat'                                 , -- 
   'ayu'                                    , -- 
-  'deep'                                   , -- 
   'tokyonight_moon'                        , -- 
 }
 scheme_lst.win.recommend.m = {}
@@ -126,6 +125,7 @@ scheme_lst.win.excld = {
   -- slctd -- dark
   'Ef-Cherie'                              , -- 
   'idleToes'                               , -- 
+  'deep'                                   , -- 
   -- 
   -- phase 04
   -- 
