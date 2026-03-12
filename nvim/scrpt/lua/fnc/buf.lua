@@ -185,7 +185,7 @@ function v.Buf.opn_by_cursor_line_pth()
   v.Buf.opn_by_path(str)
 
   v.Cmd.cmd('sbuffer ' .. base_buf_num)
-  -- v.Cmd.nml('j')
+  -- v.Nml.exe('j')
   v.Cursor__mv_d()
 end
 
@@ -269,7 +269,7 @@ function v.Buf.undo__clr()
   local undo_lvl_tmp = vim.bo.undolevels
 
   vim.opt_local.undolevels = -1
-  v.Cmd.nml([[a <bs><esc>]])
+  v.Nml.exe([[a <bs><esc>]])
   vim.bo.undolevels = undo_lvl_tmp
 end
 
@@ -379,12 +379,12 @@ end
 
 function v.Win.splt_cursor__mv_nxt() -- alias
 
-  v.Cmd.nml([[<c-w>w>]])
+  v.Nml.exe([[<c-w>w>]])
 end
 
 function v.Win.splt__quit() -- alias
 
-  v.Cmd.nml([[<c-w>c>]])
+  v.Nml.exe([[<c-w>c>]])
 end
 
 function v.Win.view_save() -- alias

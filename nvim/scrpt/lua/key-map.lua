@@ -1591,12 +1591,12 @@ keymap__('i', '<esc>', function()
   if     v.Mode.is__ins_menu() then
     return '<c-e>'
   else
-    local cmd_nml = '<esc>'
+    local nml_cmd = '<esc>'
     if v.Cursor.is_byte_idx__line_top0() then
     else
-      cmd_nml = cmd_nml .. 'l'
+      nml_cmd = nml_cmd .. 'l'
     end
-    return cmd_nml
+    return nml_cmd
   end
 end, {expr = bl.t})
 

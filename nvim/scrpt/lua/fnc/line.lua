@@ -42,7 +42,7 @@ end
 
 function v.Line.__dpl()
 
-  v.Cmd.nml('"zyy"zP')
+  v.Nml.exe('"zyy"zP')
 end
 
 -- line num

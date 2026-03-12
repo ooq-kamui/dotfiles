@@ -28,8 +28,8 @@ function v.Slctd.__ltst() -- range
     return
   end
 
-  local cmd_nml = 'gv'
-  v.Cmd.nml(cmd_nml)
+  local nml_cmd = 'gv'
+  v.Nml.exe(nml_cmd)
 end
 
 function v.Slctd.mode__tgl()
@@ -38,20 +38,20 @@ function v.Slctd.mode__tgl()
 
   if v.Mode.is__box() then
     if v.Slctd.is_line__mlt() then
-      v.Cmd.nml('V')
+      v.Nml.exe('V')
     else
-      v.Cmd.nml([[<esc>]])
-      v.Cmd.nml('v')
+      v.Nml.exe([[<esc>]])
+      v.Nml.exe('v')
     end
   else
-    v.Cmd.nml('V')
+    v.Nml.exe('V')
   end
 end
 
 function v.Slctd.mode_state__swtch()
 
   v.Slctd.__ltst()
-  v.Cmd.nml([[<c-v>]])
+  v.Nml.exe([[<c-v>]])
 end
 
 -- slctd str
@@ -60,7 +60,7 @@ function v.Slctd.str() -- range
 
   v.Slctd.__ltst()
 
-  v.Cmd.nml('"zy')
+  v.Nml.exe('"zy')
 
   v.Slctd.__ltst()
 
@@ -80,12 +80,12 @@ end
 
 function v.Slctd.str__all()
 
-  v.Cmd.nml('ggVG')
+  v.Nml.exe('ggVG')
 end
 
 function v.Slctd.__cursor_c_char()
 
-  v.Cmd.nml('v')
+  v.Nml.exe('v')
 end
 
 function v.Slctd.__cursor_word()
@@ -93,7 +93,7 @@ function v.Slctd.__cursor_word()
   local c = v.Cursor.c_char()
 
   if     v.Str.is__ptn(c, v.Ptn.vim.word_char) then
-    v.Cmd.nml('viw')
+    v.Nml.exe('viw')
 
   elseif v.Str.is__ptn(c, v.Ptn.vim.space_char) then
     v.Slctd.str__cursor_f_space()
@@ -151,8 +151,8 @@ function v.Slctd.cursor__mv_edge_tgl() -- range
 
   v.Slctd.__ltst()
 
-  local cmd_nml = 'o'
-  v.Cmd.nml(cmd_nml)
+  local nml_cmd = 'o'
+  v.Nml.exe(nml_cmd)
 end
 
 function v.Slctd.cursor__mv_edge(drct) -- range
@@ -187,11 +187,11 @@ function v.Slctd.cursor__mv_edge_l() -- range
   v.Slctd.cursor__mv_edge_tgl()
 end
 
-function v.Slctd.cursor__mv_file_edge(cmd_nml)
+function v.Slctd.cursor__mv_file_edge(nml_cmd)
 
   v.Slctd.__ltst()
 
-  v.Cursor.__mv_file_edge(cmd_nml)
+  v.Cursor.__mv_file_edge(nml_cmd)
 end
 
 function v.Slctd.cursor__mv_v_jmp(drct) -- range
@@ -283,7 +283,7 @@ end
 function v.Slctd.str__expnd_word_f() -- range
 
   v.Slctd.__ltst()
-  v.Cmd.nml('e')
+  v.Nml.exe('e')
 end
 
 function v.Slctd.str__expnd_space_f() -- range
@@ -292,7 +292,7 @@ function v.Slctd.str__expnd_space_f() -- range
 
   if v.Cursor.is_byte_idx__line_end_inr() then return end
 
-  v.Cmd.nml('wh')
+  v.Nml.exe('wh')
 end
 
 function v.Slctd.str__expnd_srch() -- range
@@ -324,11 +324,11 @@ function v.Slctd.str__expnd_edge_out() -- range
   v.Slctd.__ltst()
 
   v.Slctd.cursor__mv_edge_r()
-  v.Cmd.nml('l')
+  v.Nml.exe('l')
 
   -- v.Slctd.cursor__mv_edge_tgl()
   v.Slctd.cursor__mv_edge_l()
-  v.Cmd.nml('h')
+  v.Nml.exe('h')
 
   v.Slctd.cursor__mv_edge_tgl()
 end
@@ -386,18 +386,18 @@ function v.Slctd.str__expnd_char_pair() -- range
 
       char = v.Slctd.str_expnd_char_pair_lst_r[char_l_o_expnd_idx]
       v.Slctd.str__expnd_ptn_f(char)
-      v.Cmd.nml('h')
+      v.Nml.exe('h')
     end
 
   elseif ( not char_l_o_expnd_idx ) and char_r_o_expnd_idx then
 
     v.Slctd.str__expnd_ptn_b(v.Slctd.str_expnd_char_ptn_l)
-    v.Cmd.nml('l')
+    v.Nml.exe('l')
 
   else
     st = v.Slctd.str__expnd_ptn_f(v.Slctd.str_expnd_char_ptn_r)
     if st then
-      v.Cmd.nml('h')
+      v.Nml.exe('h')
     end
   end
 end
@@ -444,7 +444,7 @@ end
 function v.Slctd.str__ynk() -- range
 
   v.Slctd.__ltst()
-  v.Cmd.nml('"zd')
+  v.Nml.exe('"zd')
   v.Cursor.__ins_ynk()
 end
 
@@ -465,16 +465,16 @@ end
 
 function v.Slctd.__srch(drct)
 
-  local cmd_nml = 'g'
+  local nml_cmd = 'g'
 
   if     v.Char.is__f(drct) then
-    cmd_nml = cmd_nml .. 'n'
+    nml_cmd = nml_cmd .. 'n'
 
   elseif v.Char.is__b(drct) then
-    cmd_nml = cmd_nml .. 'N'
+    nml_cmd = nml_cmd .. 'N'
   end
 
-  v.Cmd.nml(cmd_nml)
+  v.Nml.exe(nml_cmd)
 end
 
 function v.Slctd.__srch_nxt(drct) -- srch rpl skip
@@ -512,7 +512,7 @@ function v.Slctd.__del() -- range
 
   local rgstr = 'z'
   local cmd = '"' .. rgstr .. 'd' .. 'gv'
-  v.Cmd.nml(cmd)
+  v.Nml.exe(cmd)
 end
 
 -- slctd str __ fil
@@ -528,9 +528,9 @@ function v.Slctd.__fil(char) -- range
 
   v.Slctd.__ltst()
 
-  local cmd_nml = 'r' .. char
-  v.Cmd.nml(cmd_nml)
-  -- v.Cmd.cmd('exe "normal! ' .. cmd_nml .. '"')
+  local nml_cmd = 'r' .. char
+  v.Nml.exe(nml_cmd)
+  -- v.Cmd.cmd('exe "normal! ' .. nml_cmd .. '"')
 
   v.Slctd.__ltst()
 end
@@ -739,14 +739,14 @@ function v.Slctd.str_edge_out__ins(c) -- range
     c_r = '>'
   end
 
-  v.Cmd.nml('"zx')
+  v.Nml.exe('"zx')
   v.Cursor.__ins(c_l .. c_r)
 
   local str_len = v.Str.len(c_l)
-  v.Cmd.nml(str_len .. 'h')
+  v.Nml.exe(str_len .. 'h')
 
-  v.Cmd.nml('"zP')
-  v.Cmd.nml('gv')
+  v.Nml.exe('"zP')
+  v.Nml.exe('gv')
 
   local cnt = 0
   while cnt < str_len do
@@ -919,7 +919,7 @@ function v.Slctd.str_edge_out_char__del() -- range
   v.Slctd.__del()
   v.Slctd.__clr()
 
-  v.Cmd.nml('hxx')
+  v.Nml.exe('hxx')
 
   v.Cursor.__ins__slct(slctd_str)
 end
@@ -1063,21 +1063,21 @@ end
 
 function v.Slctd.line__del() -- use not, todo dev
 
-  v.Cmd.nml('gvj')
-  --v.Cmd.nml('"ad')
+  v.Nml.exe('gvj')
+  --v.Nml.exe('"ad')
 
   v.Rgstr.clp__ynk()
 end
 
 function v.Slctd.line__cursor_line()
 
-  v.Cmd.nml('V')
+  v.Nml.exe('V')
 end
 
 function v.Slctd.line__by_line_rng(line_s_num, line_e_num)
 
   v.Cursor.__mv_by_line_num(line_s_num)
-  -- v.Cmd.nml('V')
+  -- v.Nml.exe('V')
   v.Slctd.line__cursor_line()
   v.Cursor.__mv_by_line_num(line_e_num)
 end
@@ -1193,7 +1193,7 @@ function v.Slctd.line_end__pad_space() -- range -- use not
   -- use recommend "aygvr gv
 
   v.Slctd.__ltst()
-  v.Cmd.nml('o')
+  v.Nml.exe('o')
 
   local fil_end_byte_idx = v.Cursor.byte_idx() - 1
 
@@ -1205,7 +1205,7 @@ end
 
 function v.Slctd.line__join_per_line(per_line_num) -- range
 
-  local cmd_nml = per_line_num .. 'Jj'
+  local nml_cmd = per_line_num .. 'Jj'
 
   local slctd_line_s_num = v.Slctd.line_s_num()
   local slctd_line_e_num = v.Slctd.line_e_num()
@@ -1218,7 +1218,7 @@ function v.Slctd.line__join_per_line(per_line_num) -- range
 
   for _idx, idx in pairs(vf.range(1, exe_num)) do
 
-    v.Cmd.nml(cmd_nml)
+    v.Nml.exe(nml_cmd)
   end
 end
 
@@ -1249,16 +1249,16 @@ function v.Slctd.line_indnt__shft_l()
 
   v.Slctd.__ltst()
 
-  local cmd_nml = '<gv'
-  v.Cmd.nml(cmd_nml)
+  local nml_cmd = '<gv'
+  v.Nml.exe(nml_cmd)
 end
 
 function v.Slctd.line_indnt__shft_r()
 
   v.Slctd.__ltst()
 
-  local cmd_nml = '>gv'
-  v.Cmd.nml(cmd_nml)
+  local nml_cmd = '>gv'
+  v.Nml.exe(nml_cmd)
 end
 
 -- slctd line tab
@@ -1281,7 +1281,7 @@ function v.Slctd.line__ins_cmnt_1() -- range
 
   v.Cursor.__mv_by_line_num(slctd_line_s_num)
 
-  v.Cursor.__mv_line_top1() -- v.Cmd.nml('^')
+  v.Cursor.__mv_line_top1() -- v.Nml.exe('^')
 
   local byte_idx = v.Cursor.byte_idx()
 
@@ -1372,11 +1372,11 @@ function v.Slctd.box__mv(lr) -- range
   if v.Char.is__l(lr) and v.Cursor.is_byte_idx__line_top0()    then return end
   if v.Char.is__r(lr) and v.Cursor.is_byte_idx__line_end_inr() then return end
 
-  local cmd_nml = v.Char.lr_2_normal_cmd(lr)
+  local nml_cmd = v.Char.lr_2_normal_cmd(lr)
   v.Slctd.cursor__mv_edge_tgl()
-  v.Cmd.nml(cmd_nml)
+  v.Nml.exe(nml_cmd)
   v.Slctd.cursor__mv_edge_tgl()
-  v.Cmd.nml(cmd_nml)
+  v.Nml.exe(nml_cmd)
 end
 
 function v.Slctd.box_width__1() -- range
@@ -1387,22 +1387,22 @@ function v.Slctd.box_width__1() -- range
     return
   end
 
-  v.Cmd.nml('o')
+  v.Nml.exe('o')
   local byte_idx = v.Cursor.byte_idx()
 
-  v.Cmd.nml('o')
+  v.Nml.exe('o')
   v.Cursor.__mv_by_byte_idx(byte_idx)
 end
 
 function v.Slctd.box_str__mv(lr) -- range
 
-  local cmd_nml = v.Char.lr_2_normal_cmd(lr)
+  local nml_cmd = v.Char.lr_2_normal_cmd(lr)
 
   v.Slctd.__ltst()
 
-  v.Cmd.nml('"zx')
-  v.Cmd.nml(cmd_nml)
-  v.Cmd.nml('"zP')
+  v.Nml.exe('"zx')
+  v.Nml.exe(nml_cmd)
+  v.Nml.exe('"zP')
 
   v.Slctd.__ltst()
   v.Slctd.box__mv(lr)
@@ -1414,7 +1414,7 @@ function v.Slctd.box_edge_l__ins_space()
 
   v.Slctd.__ltst()
 
-  v.Cmd.nml('I ')
+  v.Nml.exe('I ')
 
   v.Slctd.__ltst()
 

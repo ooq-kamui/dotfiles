@@ -97,7 +97,7 @@ end
 function v.Srch.str_vim__ptn(str_vim)
 
   v.Rgstr.__('/', str_vim)  -- highlight
-  v.Cmd.nml('/' .. str_vim) -- srch history add
+  v.Nml.exe('/' .. str_vim) -- srch history add
 end
 
 function v.Srch.str__cursor_word()

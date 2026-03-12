@@ -13,7 +13,7 @@ end
 function v.Mode.__ins() -- use not
 
   v.Cmd.cmd('startinsert')
-  -- v.Cmd.nml('i')
+  -- v.Nml.exe('i')
 end
 
 -- cnd

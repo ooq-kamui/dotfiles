@@ -81,7 +81,7 @@ end
 
 function v.Rgstr.ynk__cursor_line()
 
-  v.Cmd.nml('"ayy') -- refactoring
+  v.Nml.exe('"ayy') -- refactoring
   -- line_str = Cursor.line_str()
   -- let @a = line_str
 
@@ -115,12 +115,12 @@ function v.Rgstr.ynk__slctd()
 
   v.Slctd.__ltst()
 
-  local str, cmd_nml
+  local str, nml_cmd
 
   if v.Mode.is__box() then
 
-    cmd_nml = '"a' .. 'y'
-    v.Cmd.nml(cmd_nml)
+    nml_cmd = '"a' .. 'y'
+    v.Nml.exe(nml_cmd)
 
   else
     str = v.Slctd.str()
@@ -134,7 +134,7 @@ end
 
 function v.Rgstr.ynk__add_slctd()
 
-  v.Cmd.nml('gv"Ay')
+  v.Nml.exe('gv"Ay')
   v.Rgstr.clp__ynk()
 end
 

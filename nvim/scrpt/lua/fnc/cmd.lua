@@ -11,17 +11,19 @@ function v.Cmd.exc(cmd) -- alias
   return vf.execute(cmd)
 end
 
-function v.Cmd.nml(cmd_nml) -- alias
-
-  -- v.Log.log(cmd_nml)
-  cmd_nml = v.Str.escape(cmd_nml, [[\<"]])
-  -- v.Log.log(cmd_nml)
-  v.Cmd.cmd('exe "normal! ' .. cmd_nml .. '"')
-end
+-- function v.Cmd.nml(nml_cmd) -- alias
+-- 
+--   v.Nml.exe(nml_cmd)
+-- 
+--   -- -- v.Log.log(nml_cmd)
+--   -- nml_cmd = v.Str.escape(nml_cmd, [[\<"]])
+--   -- -- v.Log.log(nml_cmd)
+--   -- v.Cmd.cmd('exe "normal! ' .. nml_cmd .. '"')
+-- end
 
 function v.Cmd.esc()
 
-  v.Cmd.nml([[<esc>]])
+  v.Nml.exe([[<esc>]])
   -- v.Cmd.cmd('exe "normal! \\<esc>"')
 end
 

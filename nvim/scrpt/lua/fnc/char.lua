@@ -17,16 +17,16 @@ v.Char.ptn.r = 'rf'
 
 function v.Char.lr_2_normal_cmd(lr)
 
-  local cmd_nml
+  local nml_cmd
 
   if     v.Char.is__l(lr) then
-    cmd_nml = 'h'
+    nml_cmd = 'h'
 
   elseif v.Char.is__r(lr) then
-    cmd_nml = 'l'
+    nml_cmd = 'l'
   end
 
-  return cmd_nml
+  return nml_cmd
 end
 
 -- char cnd
