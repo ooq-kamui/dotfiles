@@ -28,6 +28,11 @@ plg
     - https://eiji.page/blog/neovim-blink-cmp-intro/
 
 
+## img
+
+aseprite
+
+
 ## skr-vps
 
 web-svr rpl
