@@ -4,15 +4,16 @@
 
 ## nvim
 
-fzf rslt
-- case: file same, win split
-
+str.split > splt
 
 
 slctd reduce , case: __xx_bb__
 
 
 nml.cmd def
+
+
+rg opn splt, err, case: x 3
 
 
 plg-mng

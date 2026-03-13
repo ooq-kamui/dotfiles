@@ -22,9 +22,9 @@ end
 
 -- buf opn
 
-function v.Buf.opn(filename, line_num)
+function v.Buf.opn(file_path, line_num)
 
-  local cmd = 'tab drop ' .. filename
+  local cmd = 'tab drop ' .. file_path
 
   if line_num then
     cmd = cmd .. ' +' .. line_num
@@ -36,37 +36,22 @@ function v.Buf.opn(filename, line_num)
   -- v.Log.log(file_encode)
 end
 
--- dev anchor
-function v.Buf.Opn_splt(file_name, line_num)
+function v.Buf.Opn_splt(file_path, line_num, width_byte_idx)
 
-  local buf_num = vf.bufnr(file_name)
+  local win_id = vim.fn.bufwinid(file_path)
 
-  if buf_num ~= -1 then
-
-    local win_id_lst = vf.win_findnr(buf_num)
-    local tab_crnt   = vim.api.nvim_get_current_tabpage()
-    local t_win_id   = nil
-
-    for idx, win_id in ipairs(win_id_lst) do
-      if vim.api.nvim_win_get_tabpage(win_id) == tab_crnt then
-        t_win_id = win_id
-        break
-      end
-    end
-
-    if t_win_id then
-      vim.api.nvim_set_current_win(t_win_id)
-    else
-      vim.cmd('split | buffer ' .. buf_num)
-    end
-
-  else
-    vim.cmd('tabdrop ' .. file_name)
+  if win_id == -1 then -- not is_file__opn(file_path)
+    v.Buf.opn(file_path)
+    return
   end
+
+  vim.api.nvim_set_current_win(win_id)
+
+  v.Win.__splt_v(width_byte_idx)
 
   if not line_num then return end
 
-  vim.api.nvim_win_set_cursor(0, {line_num, 0})
+  v.Cursor.__mv_by_line_num(line_num)
 end
 
 -- コマンド登録 (引数 1〜2 個を受け付ける)
@@ -369,10 +354,14 @@ function v.Win.__splt_h() -- alias
   v.Cmd.cmd(cmd)
 end
 
-function v.Win.__splt_v()
+function v.Win.__splt_v(width_byte_idx)
 
   local cmd = 'vsplit'
   v.Cmd.cmd(cmd)
+
+  if width_byte_idx then
+    v.Cmd.cmd('vertical resize ' .. width_byte_idx)
+  end
 
   v.Win.splt_cursor__mv_nxt()
 end

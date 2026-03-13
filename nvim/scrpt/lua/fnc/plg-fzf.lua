@@ -53,7 +53,8 @@ function v.Fzf.rg(ptn_rg, ext, word1_flg, opt) -- alias
   word1_flg = word1_flg  or bl.f
   opt       = opt        or nil
 
-  v.Fzf.rg_with_fzfgrep(ptn_rg, ext, word1_flg, opt)
+  -- v.Fzf.rg_with_fzfgrep(ptn_rg, ext, word1_flg, opt)
+  v.Fzf.rg_with_fzfgrep_v02(ptn_rg, ext, word1_flg, opt)
 end
 
 function v.Fzf.rg_by_srch_str()
@@ -73,28 +74,22 @@ function v.Fzf.rg_by_slctd_str(word1_flg)
   v.Fzf.rg(str_ptn, nil, word1_flg)
 end
 
-function v.Fzf.rg_with_fzfgrep(ptn_rg, ext, word1, opt)
+function v.Fzf.rg_with_fzfgrep(ptn_rg, ext, word1_flg, opt)
 
-  ptn_rg = ptn_rg or ''
-  ext    = ext    or nil
-  word1  = word1  or bl.f
-  opt    = opt    or nil
+  ptn_rg    = ptn_rg    or ''
+  ext       = ext       or nil
+  word1_flg = word1_flg or bl.f
+  opt       = opt       or nil
 
-  local rg_cmd = v.Rg.cmd(ptn_rg, ext, word1, opt)
+  local rg_cmd = v.Rg.cmd(ptn_rg, ext, word1_flg, opt)
   -- v.Log.val(rg_cmd)
 
-  vim.fn['fzf#vim#grep'](
-    rg_cmd,
-    1,
-    vim.fn['fzf#vim#with_preview'](
-      {
-        options = '--exact --delimiter : --nth 3..',
-      },
-      'up:70%:hidden',
-      'ctrl-u'
-    ),
-    1
+  local spec = vim.fn['fzf#vim#with_preview'](
+    { options = '--exact --delimiter : --nth 3..', },
+    'up:70%:hidden',
+    'ctrl-u'
   )
+  vim.fn['fzf#vim#grep'](rg_cmd, 1, spec, 1)
 
   -- hlp
   --   fzf#vim#grep(
@@ -105,20 +100,22 @@ function v.Fzf.rg_with_fzfgrep(ptn_rg, ext, word1, opt)
   --   )
 end
 
-function v.Fzf.rg_with_fzfgrep_02(ptn_rg, ext, word1, opt)
+function v.Fzf.rg_with_fzfgrep_v02(ptn_rg, ext, word1_flg, opt)
 
-  local rg_cmd = '....'
+  ptn_rg    = ptn_rg    or ''
+  ext       = ext       or nil
+  word1_flg = word1_flg or bl.f
+  opt       = opt       or nil
+
+  local rg_cmd = v.Rg.cmd(ptn_rg, ext, word1_flg, opt)
 
   local spec = vim.fn['fzf#vim#with_preview'](
     { options = '--exact --delimiter : --nth 3.. --expect=ctrl-o', },
     'up:70%:hidden',
     'ctrl-u'
   )
-
-  spec['sink*'] = fzf_handler
-
+  spec['sink*'] = v.Fzf.hndl
   vim.fn['fzf#vim#grep'](rg_cmd, 1, spec, 1)
-
 end
 
 function v.Fzf.hndl(line_str_ar)
@@ -132,7 +129,6 @@ function v.Fzf.hndl(line_str_ar)
   local file_name = parts[1]
   local line_num  = parts[2]
   line_num = v.Str.to_num(line_num)
-
   v.Buf.Opn_splt(file_name, line_num)
 end
 
