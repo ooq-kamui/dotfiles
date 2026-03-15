@@ -7,13 +7,13 @@
 str.split > splt
 
 
+win splt, width wide
+
+
 slctd reduce , case: __xx_bb__
 
 
 nml.cmd def
-
-
-rg opn splt, err, case: x 3
 
 
 plg-mng
