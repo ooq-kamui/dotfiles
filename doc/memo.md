@@ -7,6 +7,10 @@
 str.split > splt
 
 
+buf.is_file__opn() cre
+- mod: buf.opn_splt()
+
+
 win splt, width wide
 
 

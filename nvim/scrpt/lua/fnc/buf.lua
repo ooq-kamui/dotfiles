@@ -39,6 +39,12 @@ end
 function v.Buf.Opn_splt(file_path, line_num, width_byte_idx)
 
   local buf_num    = vim.fn.bufnr(file_path)
+
+  if buf_num == -1 then -- not is_file__opn(file_path)
+    v.Buf.opn(file_path)
+    return
+  end
+
   local win_id_lst = vim.fn.win_findbuf(buf_num)
 
   -- local win_id = vim.fn.bufwinid(file_path)
