@@ -7,7 +7,7 @@
 nml.cmd def
 
 ai ask
-
+- `KIRO_LOG_NO_COLOR=true`
 
 plg-mng
 - lazy
@@ -19,11 +19,6 @@ plg
 - blink.cmp
   - instl
     - https://eiji.page/blog/neovim-blink-cmp-intro/
-
-
-## img
-
-aseprite
 
 
 ## skr-vps

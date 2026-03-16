@@ -140,7 +140,6 @@ scheme_lst.mac.recommend.h = {
   'SweetTerminal (Gogh)'                   ,
   'Symphonic (Gogh)'                       ,
   'Teerb (Gogh)'                           ,
-  'Teerb'                                  ,
   'Tender (Gogh)'                          ,
   'Tinacious Design (Dark)'                ,
   'Tokyo Night (Gogh)'                     ,
@@ -209,6 +208,7 @@ scheme_lst.mac.recommend.l = {
   'OneHalfBlack (Gogh)'                    ,
   'Jellybeans (Gogh)'                      ,
   'Vs Code Dark+ (Gogh)'                   ,
+  'Teerb'                                  ,
   -- git
   -- etc
   'Aco (Gogh)'                             ,
