@@ -6,6 +6,8 @@
 
 nml.cmd def
 
+ai ask
+
 
 plg-mng
 - lazy

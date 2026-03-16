@@ -11,96 +11,96 @@ end
 
 v.Nml.cmd = {}
 
--- '/'                  --  
--- '<<'                 --  
--- '<c-a>'              --  
--- '<c-e>'              --  
--- '<c-v>'              --  
--- '<c-w>c>'            --  
--- '<c-w>w>'            --  
--- '<c-x>'              --  
--- '<c-y>'              --  
--- '<esc>'              --  
--- '<esc>'              --  
--- '<gv'                --  
--- '>gv'                --  
--- 'D'                  --  
--- 'G'                  --  
--- 'I '                 --  
--- 'Jj'                 --  
--- 'N'                  --  
--- 'O'                  --  
--- 'P'                  --  
--- 'V'                  --  
--- '[m'                 --  
--- '[{'                 --  
--- '`[v`]h'             --  
--- 'a <bs><esc>'        --  
--- 'b'                  --  
--- 'e'                  --  
--- 'el'                 --  
--- 'g'                  --  
--- 'gegel'              --  
--- 'gel'                --  
--- 'gg'                 --  
--- 'ggVG'               --  
--- 'gv"Ay'              --  
--- 'gv'                 --  
--- 'gvj'                --  
--- 'hxx'                --  
-                        --  
--- 'n'                  --  
--- 'o'                  --  
--- 'r'                  --  
--- 'v'                  --  
--- 'viw'                --  
--- 'v~'                 --  
--- 'w'                  --  
--- 'wh'                 --  
--- 'y'                  --  
--- '|'                  --  
-                        --  
-                        --  
---                      --  
--- cursor mv            --  
---                      --  
-                        --  
--- 'j'                  --  
--- 'k'                  --  
--- 'h'                  --  
--- 'l'                  --  
--- '$'                  --  
--- '$h'                 --  
--- '$l'                 --  
-                        --  
---                      --  
--- rgstr                --  
---                      --  
-                        --  
--- '""P'                --  
--- '"'                  --  
--- '"_dd'               --  
--- '"a'                 --  
--- '"aP'                --  
--- '"ad'                --  
--- '"add'               --  
--- '"ayy'               --  
--- '"zP'                --  
--- '"zd'                --  
--- '"zx'                --  
--- '"zy'                --  
--- '"zyy"zP'            --  
-                        --  
---                      --  
--- ins                  --  
---                      --  
-                        --  
--- "i' '"               --  
--- 'i '                 --  
--- 'i'                  --  
--- 'i-'                 --  
--- 'i/'                 --  
--- 'i<cr>'              --  
--- 'i\\'                --  
--- 'i~'                 --  
+-- v.Nml.cmd.srch                        = '' -- '/'
+-- v.Nml.cmd.line_shft_l                 = '' -- '<<'
+-- v.Nml.cmd.dmy                         = '' -- '<c-a>'
+-- v.Nml.cmd.dmy                         = '' -- '<c-e>'
+-- v.Nml.cmd.dmy                         = '' -- '<c-v>'
+-- v.Nml.cmd.dmy                         = '' -- '<c-w>c>'
+-- v.Nml.cmd.dmy                         = '' -- '<c-w>w>'
+-- v.Nml.cmd.dmy                         = '' -- '<c-x>'
+-- v.Nml.cmd.dmy                         = '' -- '<c-y>'
+-- v.Nml.cmd.dmy                         = '' -- '<esc>'
+-- v.Nml.cmd.dmy                         = '' -- '<esc>'
+-- v.Nml.cmd.dmy                         = '' -- '<gv'
+-- v.Nml.cmd.dmy                         = '' -- '>gv'
+-- v.Nml.cmd.dmy                         = '' -- 'D'
+-- v.Nml.cmd.dmy                         = '' -- 'G'
+-- v.Nml.cmd.dmy                         = '' -- 'I '
+-- v.Nml.cmd.dmy                         = '' -- 'Jj'
+-- v.Nml.cmd.dmy                         = '' -- 'N'
+-- v.Nml.cmd.dmy                         = '' -- 'O'
+-- v.Nml.cmd.dmy                         = '' -- 'P'
+-- v.Nml.cmd.dmy                         = '' -- 'V'
+-- v.Nml.cmd.dmy                         = '' -- '[m'
+-- v.Nml.cmd.dmy                         = '' -- '[{'
+-- v.Nml.cmd.dmy                         = '' -- '`[v`]h'
+-- v.Nml.cmd.dmy                         = '' -- 'a <bs><esc>'
+-- v.Nml.cmd.dmy                         = '' -- 'b'
+-- v.Nml.cmd.dmy                         = '' -- 'e'
+-- v.Nml.cmd.dmy                         = '' -- 'el'
+-- v.Nml.cmd.dmy                         = '' -- 'g'
+-- v.Nml.cmd.dmy                         = '' -- 'gegel'
+-- v.Nml.cmd.dmy                         = '' -- 'gel'
+-- v.Nml.cmd.dmy                         = '' -- 'gg'
+-- v.Nml.cmd.dmy                         = '' -- 'ggVG'
+-- v.Nml.cmd.dmy                         = '' -- 'gv"Ay'
+-- v.Nml.cmd.dmy                         = '' -- 'gv'
+-- v.Nml.cmd.dmy                         = '' -- 'gvj'
+-- v.Nml.cmd.dmy                         = '' -- 'hxx'
+--
+-- v.Nml.cmd.dmy                         = '' -- 'n'
+-- v.Nml.cmd.dmy                         = '' -- 'o'
+-- v.Nml.cmd.dmy                         = '' -- 'r'
+-- v.Nml.cmd.dmy                         = '' -- 'v'
+-- v.Nml.cmd.dmy                         = '' -- 'viw'
+-- v.Nml.cmd.dmy                         = '' -- 'v~'
+-- v.Nml.cmd.dmy                         = '' -- 'w'
+-- v.Nml.cmd.dmy                         = '' -- 'wh'
+-- v.Nml.cmd.dmy                         = '' -- 'y'
+-- v.Nml.cmd.dmy                         = '' -- '|'
+--
+--
+-- v.Nml.cmd.dmy                         = '' --
+-- v.Nml.cmd.dmy                         = '' -- cursor mv
+-- v.Nml.cmd.dmy                         = '' --
+--
+-- v.Nml.cmd.dmy                         = '' -- 'j'
+-- v.Nml.cmd.dmy                         = '' -- 'k'
+-- v.Nml.cmd.dmy                         = '' -- 'h'
+-- v.Nml.cmd.dmy                         = '' -- 'l'
+-- v.Nml.cmd.dmy                         = '' -- '$'
+-- v.Nml.cmd.dmy                         = '' -- '$h'
+-- v.Nml.cmd.dmy                         = '' -- '$l'
+--
+-- v.Nml.cmd.dmy                         = '' --
+-- v.Nml.cmd.dmy                         = '' -- rgstr
+-- v.Nml.cmd.dmy                         = '' --
+--
+-- v.Nml.cmd.dmy                         = '' -- '""P'
+-- v.Nml.cmd.dmy                         = '' -- '"'
+-- v.Nml.cmd.dmy                         = '' -- '"_dd'
+-- v.Nml.cmd.dmy                         = '' -- '"a'
+-- v.Nml.cmd.dmy                         = '' -- '"aP'
+-- v.Nml.cmd.dmy                         = '' -- '"ad'
+-- v.Nml.cmd.dmy                         = '' -- '"add'
+-- v.Nml.cmd.dmy                         = '' -- '"ayy'
+-- v.Nml.cmd.dmy                         = '' -- '"zP'
+-- v.Nml.cmd.dmy                         = '' -- '"zd'
+-- v.Nml.cmd.dmy                         = '' -- '"zx'
+-- v.Nml.cmd.dmy                         = '' -- '"zy'
+-- v.Nml.cmd.dmy                         = '' -- '"zyy"zP'
+--
+-- v.Nml.cmd.dmy                         = '' --
+-- v.Nml.cmd.dmy                         = '' -- ins
+-- v.Nml.cmd.dmy                         = '' --
+--
+-- v.Nml.cmd.dmy                         = '' -- "i' '"
+-- v.Nml.cmd.dmy                         = '' -- 'i '
+-- v.Nml.cmd.dmy                         = '' -- 'i'
+-- v.Nml.cmd.dmy                         = '' -- 'i-'
+-- v.Nml.cmd.dmy                         = '' -- 'i/'
+-- v.Nml.cmd.dmy                         = '' -- 'i<cr>'
+-- v.Nml.cmd.dmy                         = '' -- 'i\\'
+-- v.Nml.cmd.dmy                         = '' -- 'i~'
 
