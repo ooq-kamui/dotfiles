@@ -4,20 +4,13 @@
 
 ## nvim
 
-str.split > splt
-
-
-buf.is_file__opn() cre
-- mod: buf.opn_splt()
+nml.cmd def
 
 
 win splt, width wide
 
 
 slctd reduce , case: __xx_bb__
-
-
-nml.cmd def
 
 
 plg-mng

@@ -25,37 +25,28 @@ end
 function v.Buf.opn(file_path, line_num)
 
   local cmd = 'tab drop ' .. file_path
-
-  if line_num then
-    cmd = cmd .. ' +' .. line_num
-  end
-
   v.Cmd.cmd(cmd)
 
-  -- local file_encode = v.Buf.file_encode()
-  -- v.Log.log(file_encode)
+  if line_num then
+    v.Cursor.__mv_by_line_num(line_num)
+  end
 end
 
 function v.Buf.Opn_splt(file_path, line_num, width_byte_idx)
 
-  local buf_num    = vim.fn.bufnr(file_path)
-
-  if buf_num == -1 then -- not is_file__opn(file_path)
-    v.Buf.opn(file_path)
+  if not v.Buf.is_file__opn(file_path) then
+    v.Buf.opn(file_path, line_num)
     return
   end
 
-  local win_id_lst = vim.fn.win_findbuf(buf_num)
+  local win_id = v.Win.win_id_by_file_path(file_path)
 
-  -- local win_id = vim.fn.bufwinid(file_path)
-  local win_id = v.Tbl.last(win_id_lst)
+  -- if win_id == -1 then
+  --   v.Buf.opn(file_path, line_num)
+  --   return
+  -- end
 
-  if win_id == -1 then -- not is_file__opn(file_path)
-    v.Buf.opn(file_path)
-    return
-  end
-
-  vim.api.nvim_set_current_win(win_id)
+  v.Cursor.__mv_by_win_id(win_id)
 
   v.Win.__splt_v(width_byte_idx)
 
@@ -63,12 +54,6 @@ function v.Buf.Opn_splt(file_path, line_num, width_byte_idx)
 
   v.Cursor.__mv_by_line_num(line_num)
 end
-
--- コマンド登録 (引数 1〜2 個を受け付ける)
-vim.api.nvim_create_user_command('SmartOpen', function(opts)
-  smart_open(opts.fargs[1], opts.fargs[2])
-end, { nargs = '+', complete = 'file' })
-
 
 function v.Buf.opn_tab_prv()
 
@@ -352,11 +337,36 @@ function v.Buf.__fltr_jq()
   local rslt = v.Buf.__fltr(sys_fltr_cmd)
 end
 
+-- buf cnd
+
+function v.Buf.is_file__opn(file_path)
+
+  local ret
+
+  local buf_num = vim.fn.bufnr(file_path)
+
+  if buf_num == -1 then
+    ret = bl.f
+  else
+    ret = bl.t
+  end
+
+  return ret
+end
+
 -- win
 
 -- win splt
 
 v.Win = {}
+
+function v.Win.win_id_by_file_path(file_path)
+
+  local buf_num    = vim.fn.bufnr(file_path)
+  local win_id_lst = vim.fn.win_findbuf(buf_num)
+  local win_id     = v.Tbl.last(win_id_lst)
+  return win_id
+end
 
 function v.Win.__splt_h() -- alias
 

@@ -589,6 +589,11 @@ function v.Cursor.__mv_line_x_word_byte_idx(ref_drct)
   v.Cursor.__mv_by_byte_idx(word_byte_idx)
 end
 
+function v.Cursor.__mv_by_win_id(win_id)
+
+  vim.api.nvim_set_current_win(win_id)
+end
+
 -- cursor __ ins
 
 function v.Cursor.__ins(str)

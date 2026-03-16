@@ -7,7 +7,7 @@ v.Rg.ptn.line_emp  = '^['  .. [[ \t]] .. ']*$'
 function v.Rg.rslt_line_parse_ar(line)
 
   local dlm = ':'
-  local line_parse_ar = v.Str.split(line, dlm)
+  local line_parse_ar = v.Str.splt(line, dlm)
   --echo line_parse_ar
 
   local idx = 1
@@ -104,7 +104,7 @@ end
 function v.Rg.rslt_ar_by_ptn(ptn_rg, opt)
 
   local rg_rslt_txt = v.Rg.rslt_txt_by_ptn(ptn_rg, opt)
-  local rg_rslt_ar  = v.Str.split(rg_rslt_txt, v.Ptn.vim.nl)
+  local rg_rslt_ar  = v.Str.splt(rg_rslt_txt, v.Ptn.vim.nl)
   return rg_rslt_ar
 end
 

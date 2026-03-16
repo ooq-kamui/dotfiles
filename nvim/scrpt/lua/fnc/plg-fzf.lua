@@ -125,7 +125,7 @@ function v.Fzf.hndl(line_str_ar)
   -- local key       = line_str_ar[1]
   local selection = line_str_ar[2]
 
-  local parts = v.Str.split(selection, ":")
+  local parts = v.Str.splt(selection, ":")
   local file_name = parts[1]
   local line_num  = parts[2]
   line_num = v.Str.to_num(line_num)

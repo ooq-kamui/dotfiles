@@ -50,7 +50,7 @@ end
 function v.Line.num_by_jmplst_line_info(jmplst_line_info)
 
   local jmplst_line_info = v.Str.trim(jmplst_line_info, ' ', 1)
-  local line_str_ar = v.Str.split(jmplst_line_info, v.Ptn.vim.space_char)
+  local line_str_ar = v.Str.splt(jmplst_line_info, v.Ptn.vim.space_char)
   local line_num = v.Str.to_num(line_str_ar[1])
   return line_num
 end

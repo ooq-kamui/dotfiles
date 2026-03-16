@@ -256,7 +256,7 @@ function v.Str.trim(str) -- alias
   return str
 end
 
-function v.Str.split(str, dlm_ptn)
+function v.Str.splt(str, dlm_ptn)
 
   return vf.split(str, dlm_ptn)
 end
