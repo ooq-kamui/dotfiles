@@ -407,3 +407,8 @@ function v.Win.view_restore(view) -- alias
   vf.winrestview(view)
 end
 
+function v.Win.width__add(col_num)
+
+  vim.api.nvim_win_set_width(0, vim.api.nvim_win_get_width(0) + col_num)
+end
+

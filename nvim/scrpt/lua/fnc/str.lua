@@ -380,6 +380,8 @@ function v.Str.word_byte_idx_lst(str, dlm_char)
     v.Tbl.add(word_byte_idx_lst2, str_len_byte)
   end
 
+  -- v.Log.log(word_byte_idx_lst1)
+  -- v.Log.log(word_byte_idx_lst2)
   return word_byte_idx_lst1, word_byte_idx_lst2
 end
 

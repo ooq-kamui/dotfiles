@@ -414,8 +414,8 @@ keymap__('n', 'o', ':lua v.Cursor.__mv_word_b()<cr>')
 -- keymap__('n', 'xx', ':lua v.Cursor.__mv_word_b_pre()<cr>')
 
 -- cursor mv word dlm _ forward
--- keymap__('n', '_', 'f_')
--- keymap__('n', '_', 'f_l')
+-- keymap__('n', 'xx', 'f_')
+-- keymap__('n', 'xx', 'f_l')
 
 -- cursor mv word dlm _ back
 keymap__('n', '<c-o>', 'hT_')
@@ -927,6 +927,9 @@ keymap__('n', 'rn', ':lua v.Win.splt_cursor__mv_nxt()<cr>')
 
 -- win ( buf ) mv l
 -- keymap__('n', 'xx', '<c-w>h')
+
+-- win ( buf ) width add
+keymap__('n', '_', ':lua v.Win.width__add(1)<cr>')
 
 -- fnc call
 -- keymap__('n', ':c', ':call ')

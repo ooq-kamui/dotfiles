@@ -7,12 +7,6 @@
 nml.cmd def
 
 
-win splt, width wide
-
-
-slctd reduce , case: __xx_bb__
-
-
 plg-mng
 - lazy
   - ref https://lazy.folke.io/installation

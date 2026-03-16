@@ -414,26 +414,40 @@ function v.Slctd.str__reduce_dlm_r(char)
   v.Slctd.str__reduce_dlm(char, 'r')
 end
 
-function v.Slctd.str__reduce_dlm(char, lr) -- lr: base side
+function v.Slctd.str__reduce_dlm(dlm_char, lr) -- lr: base side
 
   v.Slctd.__ltst()
 
-  if not v.Slctd.is_str__ptn(char) then
+  if not v.Slctd.is_str__ptn(dlm_char) then
     return
   end
 
   local slctd_str = v.Slctd.str()
-  local byte_idx_lst1, byte_idx_lst2 = v.Str.word_byte_idx_lst(slctd_str, char)
-  local len = v.Tbl.len(byte_idx_lst2)
+  local byte_idx_lst1, byte_idx_lst2 = v.Str.word_byte_idx_lst(slctd_str, dlm_char)
+  local word_s_idx, word_e_idx
 
   local s_byte_idx = v.Slctd.str_edge_l_line_byte_idx()
   local e_byte_idx = v.Slctd.str_edge_r_line_byte_idx()
 
   if     v.Char.is__r(lr) then
-    s_byte_idx = s_byte_idx + byte_idx_lst1[2]       - 1
+
+    word_s_idx = 1
+
+    if v.Str.l_char(slctd_str) ~= dlm_char then
+      word_s_idx = word_s_idx + 1
+    end
+
+    s_byte_idx = s_byte_idx + byte_idx_lst1[word_s_idx] - 1
 
   elseif v.Char.is__l(lr) then
-    e_byte_idx = s_byte_idx + byte_idx_lst2[len - 1] - 1
+
+    word_e_idx = v.Tbl.len(byte_idx_lst2)
+
+    if v.Str.r_char(slctd_str) ~= dlm_char then
+      word_e_idx = word_e_idx - 1
+    end
+
+    e_byte_idx = s_byte_idx + byte_idx_lst2[word_e_idx] - 1
   end
 
   v.Slctd.__by_line_byte_idx(nil, s_byte_idx, nil, e_byte_idx)
