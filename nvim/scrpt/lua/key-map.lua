@@ -1150,7 +1150,7 @@ keymap__('x', '<leader><c-z>', '<esc>')
 keymap__('x', 'i', ':lua v.Slctd.mode__tgl()<cr>')
 
 -- mode ch visual box
-keymap__('x', 'v', ':lua v.Slctd.mode_state__swtch()<cr>')
+keymap__('x', 'v', ':lua v.Slctd.mode__box()<cr>')
 
 -- file srch ( fzf )
 -- keymap__('x', '<leader>xx', '"zy:FzfFile <c-r>z')

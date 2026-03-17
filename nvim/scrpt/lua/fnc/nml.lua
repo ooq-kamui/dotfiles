@@ -9,103 +9,104 @@ function v.Nml.exe(nml_cmd) -- alias
   v.Cmd.cmd('exe "normal! ' .. nml_cmd .. '"')
 end
 
-v.Nml.cmd = {}
+v.Nml.n = {}
 
--- v.Nml.cmd.srch                        = '' -- '/'
--- v.Nml.cmd.line_shft_l                 = '' -- '<<'
+-- v.Nml.n.srch                        = '/'
 
-v.Nml.cmd.cursor = {}
--- v.Nml.cmd.cursor.str_icl              = '' -- '<c-a>'
--- v.Nml.cmd.cursor.str_dcl              = '' -- '<c-x>'
+-- v.Nml.n.line_shft_l                 = '<<'
 
-v.Nml.cmd.cursor.mv = {}
--- v.Nml.cmd.cursor.mv.d                 = '' -- '<c-e>'
--- v.Nml.cmd.cursor.mv.u                 = '' -- '<c-y>'
+v.Nml.n.cursor = {}
+v.Nml.n.cursor.str = {}
+v.Nml.n.cursor.str.icl              = '<c-a>'
+v.Nml.n.cursor.str.dcl              = '<c-x>'
 
--- v.Nml.cmd.dmy                         = '' -- '<c-v>'
--- v.Nml.cmd.dmy                         = '' -- '<c-w>c>'
--- v.Nml.cmd.dmy                         = '' -- '<c-w>w>'
--- v.Nml.cmd.dmy                         = '' -- '<esc>'
--- v.Nml.cmd.dmy                         = '' -- '<esc>'
--- v.Nml.cmd.dmy                         = '' -- '<gv'
--- v.Nml.cmd.dmy                         = '' -- '>gv'
--- v.Nml.cmd.dmy                         = '' -- 'D'
--- v.Nml.cmd.dmy                         = '' -- 'G'
--- v.Nml.cmd.dmy                         = '' -- 'I '
--- v.Nml.cmd.dmy                         = '' -- 'Jj'
--- v.Nml.cmd.dmy                         = '' -- 'N'
--- v.Nml.cmd.dmy                         = '' -- 'O'
--- v.Nml.cmd.dmy                         = '' -- 'P'
--- v.Nml.cmd.dmy                         = '' -- 'V'
--- v.Nml.cmd.dmy                         = '' -- '[m'
--- v.Nml.cmd.dmy                         = '' -- '[{'
--- v.Nml.cmd.dmy                         = '' -- '`[v`]h'
--- v.Nml.cmd.dmy                         = '' -- 'a <bs><esc>'
--- v.Nml.cmd.dmy                         = '' -- 'b'
--- v.Nml.cmd.dmy                         = '' -- 'e'
--- v.Nml.cmd.dmy                         = '' -- 'el'
--- v.Nml.cmd.dmy                         = '' -- 'g'
--- v.Nml.cmd.dmy                         = '' -- 'gegel'
--- v.Nml.cmd.dmy                         = '' -- 'gel'
--- v.Nml.cmd.dmy                         = '' -- 'gg'
--- v.Nml.cmd.dmy                         = '' -- 'ggVG'
--- v.Nml.cmd.dmy                         = '' -- 'gv"Ay'
--- v.Nml.cmd.dmy                         = '' -- 'gv'
--- v.Nml.cmd.dmy                         = '' -- 'gvj'
--- v.Nml.cmd.dmy                         = '' -- 'hxx'
+
+-- v.Nml.n.dmy                         = '<c-v>'
+
+-- v.Nml.n.dmy                         = '<c-w>c>'
+-- v.Nml.n.dmy                         = '<c-w>w>'
+
+-- v.Nml.n.dmy                         = '<esc>'
+-- v.Nml.n.dmy                         = '<gv'
+-- v.Nml.n.dmy                         = '>gv'
+-- v.Nml.n.dmy                         = 'D'
+-- v.Nml.n.dmy                         = 'G'
+-- v.Nml.n.dmy                         = 'I '
+-- v.Nml.n.dmy                         = 'Jj'
+-- v.Nml.n.dmy                         = 'N'
+-- v.Nml.n.dmy                         = 'O'
+-- v.Nml.n.dmy                         = 'P'
+-- v.Nml.n.dmy                         = 'V'
+-- v.Nml.n.dmy                         = '[m'
+-- v.Nml.n.dmy                         = '[{'
+-- v.Nml.n.dmy                         = '`[v`]h'
+-- v.Nml.n.dmy                         = 'a <bs><esc>'
+-- v.Nml.n.dmy                         = 'b'
+-- v.Nml.n.dmy                         = 'e'
+-- v.Nml.n.dmy                         = 'el'
+-- v.Nml.n.dmy                         = 'g'
+-- v.Nml.n.dmy                         = 'gegel'
+-- v.Nml.n.dmy                         = 'gel'
+-- v.Nml.n.dmy                         = 'gg'
+-- v.Nml.n.dmy                         = 'ggVG'
+-- v.Nml.n.dmy                         = 'gv"Ay'
+-- v.Nml.n.dmy                         = 'gv'
+-- v.Nml.n.dmy                         = 'gvj'
+-- v.Nml.n.dmy                         = 'hxx'
 --
--- v.Nml.cmd.dmy                         = '' -- 'n'
--- v.Nml.cmd.dmy                         = '' -- 'o'
--- v.Nml.cmd.dmy                         = '' -- 'r'
--- v.Nml.cmd.dmy                         = '' -- 'v'
--- v.Nml.cmd.dmy                         = '' -- 'viw'
--- v.Nml.cmd.dmy                         = '' -- 'v~'
--- v.Nml.cmd.dmy                         = '' -- 'w'
--- v.Nml.cmd.dmy                         = '' -- 'wh'
--- v.Nml.cmd.dmy                         = '' -- 'y'
--- v.Nml.cmd.dmy                         = '' -- '|'
+-- v.Nml.n.dmy                         = 'n'
+-- v.Nml.n.dmy                         = 'o'
+-- v.Nml.n.dmy                         = 'r'
+-- v.Nml.n.dmy                         = 'v'
+-- v.Nml.n.dmy                         = 'viw'
+-- v.Nml.n.dmy                         = 'v~'
+-- v.Nml.n.dmy                         = 'w'
+-- v.Nml.n.dmy                         = 'wh'
+-- v.Nml.n.dmy                         = 'y'
+-- v.Nml.n.dmy                         = '|'
+
+v.Nml.n.cursor.mv = {}
+-- v.Nml.n.cursor.mv.d                 = '<c-e>'
+-- v.Nml.n.cursor.mv.u                 = '<c-y>'
+
+-- v.Nml.n.cursor.mv.xx                = 'j'
+-- v.Nml.n.cursor.mv.xx                = 'k'
+-- v.Nml.n.cursor.mv.xx                = 'h'
+-- v.Nml.n.cursor.mv.xx                = 'l'
+
+-- v.Nml.n.cursor.mv.xx                = '$'
+
+-- v.Nml.n.cursor.mv.xx                = '$h'
+-- v.Nml.n.cursor.mv.xx                = '$l'
+
 --
+-- rgstr
 --
--- v.Nml.cmd.dmy                         = '' --
--- v.Nml.cmd.dmy                         = '' -- cursor mv
--- v.Nml.cmd.dmy                         = '' --
+
+-- v.Nml.n.rgstr.xx                    = '""P'
+-- v.Nml.n.rgstr.xx                    = '"'
+-- v.Nml.n.rgstr.xx                    = '"_dd'
+-- v.Nml.n.rgstr.xx                    = '"a'
+-- v.Nml.n.rgstr.xx                    = '"aP'
+-- v.Nml.n.rgstr.xx                    = '"ad'
+-- v.Nml.n.rgstr.xx                    = '"add'
+-- v.Nml.n.rgstr.xx                    = '"ayy'
+-- v.Nml.n.rgstr.xx                    = '"zP'
+-- v.Nml.n.rgstr.xx                    = '"zd'
+-- v.Nml.n.rgstr.xx                    = '"zx'
+-- v.Nml.n.rgstr.xx                    = '"zy'
+-- v.Nml.n.rgstr.xx                    = '"zyy"zP'
+
 --
--- v.Nml.cmd.dmy                         = '' -- 'j'
--- v.Nml.cmd.dmy                         = '' -- 'k'
--- v.Nml.cmd.dmy                         = '' -- 'h'
--- v.Nml.cmd.dmy                         = '' -- 'l'
--- v.Nml.cmd.dmy                         = '' -- '$'
--- v.Nml.cmd.dmy                         = '' -- '$h'
--- v.Nml.cmd.dmy                         = '' -- '$l'
+-- ins
 --
--- v.Nml.cmd.dmy                         = '' --
--- v.Nml.cmd.dmy                         = '' -- rgstr
--- v.Nml.cmd.dmy                         = '' --
---
--- v.Nml.cmd.dmy                         = '' -- '""P'
--- v.Nml.cmd.dmy                         = '' -- '"'
--- v.Nml.cmd.dmy                         = '' -- '"_dd'
--- v.Nml.cmd.dmy                         = '' -- '"a'
--- v.Nml.cmd.dmy                         = '' -- '"aP'
--- v.Nml.cmd.dmy                         = '' -- '"ad'
--- v.Nml.cmd.dmy                         = '' -- '"add'
--- v.Nml.cmd.dmy                         = '' -- '"ayy'
--- v.Nml.cmd.dmy                         = '' -- '"zP'
--- v.Nml.cmd.dmy                         = '' -- '"zd'
--- v.Nml.cmd.dmy                         = '' -- '"zx'
--- v.Nml.cmd.dmy                         = '' -- '"zy'
--- v.Nml.cmd.dmy                         = '' -- '"zyy"zP'
---
--- v.Nml.cmd.dmy                         = '' --
--- v.Nml.cmd.dmy                         = '' -- ins
--- v.Nml.cmd.dmy                         = '' --
---
--- v.Nml.cmd.dmy                         = '' -- "i' '"
--- v.Nml.cmd.dmy                         = '' -- 'i '
--- v.Nml.cmd.dmy                         = '' -- 'i'
--- v.Nml.cmd.dmy                         = '' -- 'i-'
--- v.Nml.cmd.dmy                         = '' -- 'i/'
--- v.Nml.cmd.dmy                         = '' -- 'i<cr>'
--- v.Nml.cmd.dmy                         = '' -- 'i\\'
--- v.Nml.cmd.dmy                         = '' -- 'i~'
+
+-- v.Nml.n.ins.xx                      = "i' '"
+-- v.Nml.n.ins.xx                      = 'i '
+-- v.Nml.n.ins.xx                      = 'i'
+-- v.Nml.n.ins.xx                      = 'i-'
+-- v.Nml.n.ins.xx                      = 'i/'
+-- v.Nml.n.ins.xx                      = 'i<cr>'
+-- v.Nml.n.ins.xx                      = 'i\\'
+-- v.Nml.n.ins.xx                      = 'i~'
 

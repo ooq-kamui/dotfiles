@@ -88,12 +88,12 @@ require("lazy").setup({
     end
   },
 
-  -- { 'MunifTanjim/nui.nvim' },
   -- {
   --   'nvim-lualine/lualine.nvim',
   --   dependencies = { 'nvim-tree/nvim-web-devicons' },
   --   opts = {}
   -- },
+  -- { 'MunifTanjim/nui.nvim' },
   -- { 'shellRaining/hlchunk.nvim', event = "BufRead" },
   -- { 'sphamba/smear-cursor.nvim', opts = {} },
   -- { 'folke/noice.nvim', dependencies = { "MunifTanjim/nui.nvim" }, opts = {} },

@@ -48,10 +48,10 @@ function v.Slctd.mode__tgl()
   end
 end
 
-function v.Slctd.mode_state__swtch()
+function v.Slctd.mode__box()
 
   v.Slctd.__ltst()
-  v.Nml.exe([[<c-v>]])
+  v.Nml.exe('<c-v>')
 end
 
 -- slctd str

@@ -6,8 +6,9 @@
 
 nml.cmd def
 
-ai ask
-- `KIRO_LOG_NO_COLOR=1`
+
+statusline tgl
+- file cre
 
 
 plg
