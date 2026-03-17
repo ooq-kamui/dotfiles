@@ -4,11 +4,12 @@
 
 ## nvim
 
-nml.cmd def
-
-
 statusline tgl
 - file cre
+
+opn_splt log
+
+nml.cmd def
 
 
 plg

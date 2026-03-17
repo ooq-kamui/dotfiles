@@ -67,6 +67,7 @@ require("lazy").setup({
   },
   { 
     'nvim-treesitter/nvim-treesitter', 
+    branch = 'main',
     build = ':TSUpdate',
     config = function()
       require("nvim-treesitter.install").prefer_git = true
@@ -82,8 +83,14 @@ require("lazy").setup({
           "python",
           "powershell",
         },
-        sync_install = false,
-        highlight = { enable = true },
+      })
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function()
+          local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
+          if lang then
+            vim.treesitter.start()
+          end
+        end,
       })
     end
   },
