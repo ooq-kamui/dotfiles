@@ -13,13 +13,18 @@ v.Nml.cmd = {}
 
 -- v.Nml.cmd.srch                        = '' -- '/'
 -- v.Nml.cmd.line_shft_l                 = '' -- '<<'
--- v.Nml.cmd.dmy                         = '' -- '<c-a>'
--- v.Nml.cmd.dmy                         = '' -- '<c-e>'
+
+v.Nml.cmd.cursor = {}
+-- v.Nml.cmd.cursor.str_icl              = '' -- '<c-a>'
+-- v.Nml.cmd.cursor.str_dcl              = '' -- '<c-x>'
+
+v.Nml.cmd.cursor.mv = {}
+-- v.Nml.cmd.cursor.mv.d                 = '' -- '<c-e>'
+-- v.Nml.cmd.cursor.mv.u                 = '' -- '<c-y>'
+
 -- v.Nml.cmd.dmy                         = '' -- '<c-v>'
 -- v.Nml.cmd.dmy                         = '' -- '<c-w>c>'
 -- v.Nml.cmd.dmy                         = '' -- '<c-w>w>'
--- v.Nml.cmd.dmy                         = '' -- '<c-x>'
--- v.Nml.cmd.dmy                         = '' -- '<c-y>'
 -- v.Nml.cmd.dmy                         = '' -- '<esc>'
 -- v.Nml.cmd.dmy                         = '' -- '<esc>'
 -- v.Nml.cmd.dmy                         = '' -- '<gv'

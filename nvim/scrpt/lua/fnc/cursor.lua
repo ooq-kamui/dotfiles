@@ -319,15 +319,15 @@ end
 
 v.Cursor.cnst.mv_line_step_dflt = 10
 
-function v.Cursor.__mv_mlt(drct) -- alias
+function v.Cursor.__mv_line_mlt(drct) -- alias
 
   local nml_cmd
 
   if     drct == 'u' then
-    nml_cmd = [[<c-y>]]
+    nml_cmd = '<c-y>'
 
   elseif drct == 'd' then
-    nml_cmd = [[<c-e>]]
+    nml_cmd = '<c-e>'
   end
 
   local num = v.Cursor.cnst.mv_line_step_dflt
@@ -335,14 +335,14 @@ function v.Cursor.__mv_mlt(drct) -- alias
   v.Nml.exe(nml_cmd)
 end
 
-function v.Cursor.__mv_mlt_u()
+function v.Cursor.__mv_line_mlt_u()
 
-  v.Cursor.__mv_mlt('u')
+  v.Cursor.__mv_line_mlt('u')
 end
 
-function v.Cursor.__mv_mlt_d()
+function v.Cursor.__mv_line_mlt_d()
 
-  v.Cursor.__mv_mlt('d')
+  v.Cursor.__mv_line_mlt('d')
 end
 
 function v.Cursor.__mv_u_line_end()

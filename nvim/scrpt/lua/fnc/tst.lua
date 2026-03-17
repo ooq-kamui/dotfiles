@@ -5,7 +5,9 @@ v.Tst = {}
 
 function v.Tst.tst()
 
-  v.Buf.__fltr_jq()
+  v.Ai.ask_by_slctd()
+
+  -- v.Buf.__fltr_jq()
 
   -- v.Slctd.str_edge_out_char__del()
 

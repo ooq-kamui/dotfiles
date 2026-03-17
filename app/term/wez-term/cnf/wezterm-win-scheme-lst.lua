@@ -18,13 +18,11 @@ scheme_lst.win.recommend.h = {
   'IR_Black'                               , -- 
   'MaterialDesignColors'                   , -- 
   'Modus-Vivendi-Deuteranopia'             , -- 
-  'Monokai Pro (Gogh)'                     , -- 
   'Outrun Dark (base16)'                   , -- 
   'Panda (Gogh)'                           , -- 
   'Pandora'                                , -- 
   'Pixiefloss (Gogh)'                      , -- 
   'Purple Rain'                            , -- 
-  'Sonokai (Gogh)'                         , -- 
   'SynthWave (Gogh)'                       , -- 
   'Synthwave (Gogh)'                       , -- 
   'Tinacious Design (Dark)'                , -- 
@@ -39,7 +37,6 @@ scheme_lst.win.recommend.h = {
   'Sublette'                               , -- 
   'Tomorrow Night Blue (Gogh)'             , -- 
   'cyberpunk'                              , -- 
-  'hardhacker'                             , -- 
   -- h ( chk ed )
   'Abernathy'                              , -- 
   'AyuMirage (Gogh)'                       , -- 
@@ -60,7 +57,6 @@ scheme_lst.win.recommend.h = {
   'Modus-Vivendi'                          , -- 
   'Modus-Vivendi-Tinted'                   , -- 
   'Monokai (dark) (terminal.sexy)'         , -- 
-  'Monokai (terminal.sexy)'                , -- 
   'Neon Night (Gogh)'                      , -- 
   'Night Owl (Gogh)'                       , -- 
   'Nucolors (terminal.sexy)'               , -- 
@@ -91,11 +87,9 @@ scheme_lst.win.recommend.h = {
   'NightOwl (Gogh)'                        , -- 
   'Vs Code Dark+ (Gogh)'                   , -- 
   -- h ( chk ed ) ~ git
-  'Dracula (base16)'                       , -- 
   'Fairyfloss'                             , -- 
   'Ir Black (Gogh)'                        , -- 
   'Red Alert (Gogh)'                       , -- 
-  'seoulbones_dark'                        , -- 
   -- h ( chk ed ) ~ slctd -- white
   'Chalk (base16)'                         , -- 
   'Humanoid dark (base16)'                 , -- 
@@ -118,10 +112,16 @@ scheme_lst.win.excld = {
   -- dir blue
   'Dracula'                                , -- 
   'MonokaiPro (Gogh)'                      , -- 
+  'Sonokai (Gogh)'                         , -- 
+  'hardhacker'                             , -- 
+  'Monokai Pro (Gogh)'                     , -- 
   -- cmd line
   'kokuban (Gogh)'                         , -- 
   -- git
   'Belge (terminal.sexy)'                  , -- 
+  'seoulbones_dark'                        , -- 
+  'Monokai (terminal.sexy)'                , -- 
+  'Dracula (base16)'                       , -- 
   -- slctd -- dark
   'Ef-Cherie'                              , -- 
   'idleToes'                               , -- 

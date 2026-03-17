@@ -154,7 +154,7 @@ function v.Sys.trns_by_slctd_str() -- range
   str = v.Str.escape(str, "'")
   local sys_cmd = 'trans -no-ansi ' .. lang .. " '" .. str .. "'"
   local rslt = v.Sys.cmd(sys_cmd)
-  v.Log.val( rslt )
+  v.Log.val(rslt)
 end
 
 -- url encdoe

@@ -377,8 +377,8 @@ keymap__('n', 'k', ':lua v.Cursor.__mv_u()<cr>')
 keymap__('n', 'j', ':lua v.Cursor.__mv_d()<cr>')
 
 -- cursor mv line mlt
-keymap__('n', '<c-k>', ':lua v.Cursor.__mv_mlt_u()<cr>')
-keymap__('n', '<c-j>', ':lua v.Cursor.__mv_mlt_d()<cr>')
+keymap__('n', '<c-k>', ':lua v.Cursor.__mv_line_mlt_u()<cr>')
+keymap__('n', '<c-j>', ':lua v.Cursor.__mv_line_mlt_d()<cr>')
 
 -- cursor mv line top | ins line
 keymap__('n', 'y', ':lua v.Cursor.__mv_line_top_or_new_line()<cr>')

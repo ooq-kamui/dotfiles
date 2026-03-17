@@ -7,12 +7,7 @@
 nml.cmd def
 
 ai ask
-- `KIRO_LOG_NO_COLOR=true`
-
-plg-mng
-- lazy
-  - ref https://lazy.folke.io/installation
-  - by ai
+- `KIRO_LOG_NO_COLOR=1`
 
 
 plg
