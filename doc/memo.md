@@ -2,11 +2,6 @@
 # dotfiles
 
 
-## aseprite
-
-try
-
-
 ## nvim
 
 nml.cmd def
@@ -33,6 +28,34 @@ plg
 - blink.cmp
   - instl
     - https://eiji.page/blog/neovim-blink-cmp-intro/
+
+
+## claude
+
+account
+start
+- cli
+
+
+## pixel-art
+
+booth chk
+
+
+## wez
+
+width
+- cs-h
+
+mac
+- splt
+- width
+
+
+## aseprite
+
+try
+doc
 
 
 ## skr-vps
