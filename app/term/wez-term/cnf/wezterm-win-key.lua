@@ -97,7 +97,7 @@ return {
     { key = 'c'         , mods = 'SUPER'         , action = act.CopyTo 'Clipboard' },
     { key = 'f'         , mods = 'SHIFT|CTRL'    , action = act.Search 'CurrentSelectionOrEmptyString' },
     { key = 'f'         , mods = 'SUPER'         , action = act.Search 'CurrentSelectionOrEmptyString' },
- -- { key = 'i'         , mods = 'SHIFT|CTRL'    , action = act.ActivatePaneDirection 'Next' },
+    { key = 'i'         , mods = 'SHIFT|CTRL'    , action = act.ActivatePaneDirection 'Next' },
  -- { key = 'j'         , mods = 'SHIFT|CTRL'    , action = act.SpawnTab 'CurrentPaneDomain' },
     { key = 'j'         , mods = 'SHIFT|CTRL'    , action = act.SpawnCommandInNewTab { domain = 'CurrentPaneDomain', cwd = wezterm.home_dir } },
     { key = 'k'         , mods = 'SHIFT|CTRL'    , action = act.ClearScrollback 'ScrollbackOnly' },
