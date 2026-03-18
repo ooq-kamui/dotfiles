@@ -9,6 +9,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+
 require("lazy").setup({
   -- fzf
   { 'junegunn/fzf', build = "./install --all" },
@@ -77,15 +78,16 @@ require("lazy").setup({
     end
   },
 
+  -- { 'MunifTanjim/nui.nvim' },
+  -- { 'folke/noice.nvim', dependencies = { "MunifTanjim/nui.nvim" }, opts = {} },
+  -- { 'shellRaining/hlchunk.nvim', event = "BufRead" },
+  -- { 'sphamba/smear-cursor.nvim', opts = {} },
+
   -- {
   --   'nvim-lualine/lualine.nvim',
   --   dependencies = { 'nvim-tree/nvim-web-devicons' },
   --   opts = {}
   -- },
-  -- { 'MunifTanjim/nui.nvim' },
-  -- { 'shellRaining/hlchunk.nvim', event = "BufRead" },
-  -- { 'sphamba/smear-cursor.nvim', opts = {} },
-  -- { 'folke/noice.nvim', dependencies = { "MunifTanjim/nui.nvim" }, opts = {} },
 })
 
 osc52 = require('osc52')

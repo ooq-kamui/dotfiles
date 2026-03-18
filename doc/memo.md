@@ -2,6 +2,11 @@
 # dotfiles
 
 
+## aseprite
+
+try
+
+
 ## nvim
 
 nml.cmd def
@@ -21,11 +26,9 @@ x w, err, case: line emp
 
 
 plg
-- tree-sitter on ?
+- osc52 config ?
 
-- lualine
-  - try
-  - tidy
+- tree-sitter on ?
 
 - blink.cmp
   - instl
