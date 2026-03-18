@@ -156,10 +156,11 @@ end
 function v.Rgstr.clp__ynk()
 
   if v.Env.is__('linux') then
-    return
-  end
+    osc52.copy_register("a")
 
-  local str = v.Rgstr.ynk()
-  v.Rgstr.__('+', str)
+  else
+    local str = v.Rgstr.ynk()
+    v.Rgstr.__('+', str)
+  end
 end
 

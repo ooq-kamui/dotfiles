@@ -1,43 +1,5 @@
 
--- -- vim-plug
--- 
--- v.Plg.mng.vim_plg.cmd = [[
---   call plug#begin()
--- 
--- "    " fzf
--- "    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
--- "    Plug 'junegunn/fzf.vim'
--- "    Plug 'ibhagwan/fzf-lua', { 'branch': 'main' }
--- "
--- "    " nvim
--- "    Plug 'ojroques/nvim-osc52'
--- "    Plug 'stevearc/oil.nvim'
--- "    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
--- "    Plug 'MunifTanjim/nui.nvim'
--- "
--- "    Plug 'nvim-lualine/lualine.nvim'
--- "    " If you want to have icons in your statusline choose one of these
--- "    " Plug 'nvim-tree/nvim-web-devicons'
--- "
--- "    " Plug 'shellRaining/hlchunk.nvim'
--- "    " Plug 'sphamba/smear-cursor.nvim'
--- "    " Plug 'folke/noice.nvim'
--- "    " Plug 'MunifTanjim/nui.nvim'
---   call plug#end()
--- ]]
--- 
--- if v.Plg.mng.vim_plg.is__installed() then
--- 
---   v.Cmd.cmd(v.Plg.mng.vim_plg.cmd)
--- end
--- -- -- do :PlugInstall
--- -- -- or :PlugUpdate
--- -- -- or :PlugClean
-
-
--- 
 -- lazy.nvim
--- 
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -55,7 +17,8 @@ require("lazy").setup({
 
   -- nvim utilities
   { 'ojroques/nvim-osc52' },
-  { 'stevearc/oil.nvim', opts = {
+  { 'stevearc/oil.nvim',
+    opts = {
       keymaps = {
         ["<c-j>"] = { "actions.select", opts = { tab = bl.t } },
         -- ["<c-p>"] = bl.f,
@@ -65,12 +28,20 @@ require("lazy").setup({
       -- },
     }
   },
-  { 
+  {
     'nvim-treesitter/nvim-treesitter', 
     branch = 'main',
     build = ':TSUpdate',
     config = function()
       require("nvim-treesitter").setup({})
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("vim-treesitter-start", {}),
+        callback = function(ctx)
+          pcall(vim.treesitter.start)
+        end,
+      })
+
       -- require("nvim-treesitter.install").prefer_git = true
       -- require('nvim-treesitter.config').setup({
       --   ensure_installed = {
@@ -86,23 +57,23 @@ require("lazy").setup({
       --   },
       -- })
 
-      vim.api.nvim_create_autocmd("FileType", {
-        callback = function()
-
-          local ext_excld_lst = {
-            'fzf',
-            'gitconfig',
-            'gitignore',
-            'bash',
-          }
-          if v.Tbl.is__in(vim.bo.filetype, ext_excld_lst) then return end
-
-          local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
-          if lang then
-            vim.treesitter.start()
-          end
-        end,
-      })
+      -- vim.api.nvim_create_autocmd("FileType", {
+      --   callback = function()
+      -- 
+      --     local ext_excld_lst = {
+      --       'fzf',
+      --       'gitconfig',
+      --       'gitignore',
+      --       'bash',
+      --     }
+      --     if v.Tbl.is__in(vim.bo.filetype, ext_excld_lst) then return end
+      -- 
+      --     local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
+      --     if lang then
+      --       vim.treesitter.start()
+      --     end
+      --   end,
+      -- })
     end
   },
 

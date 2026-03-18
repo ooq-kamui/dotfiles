@@ -11,25 +11,36 @@ end
 
 v.Nml.n = {}
 
--- v.Nml.n.srch                        = '/'
-
--- v.Nml.n.line_shft_l                 = '<<'
+v.Nml.n.srch                        = '/'
 
 v.Nml.n.cursor = {}
-v.Nml.n.cursor.str = {}
-v.Nml.n.cursor.str.icl              = '<c-a>'
-v.Nml.n.cursor.str.dcl              = '<c-x>'
+
+v.Nml.n.cursor.line = {}
+v.Nml.n.cursor.line.shft_l           = '<<'
+
+v.Nml.n.cursor.word = {}
+v.Nml.n.cursor.word.icl              = '<c-a>'
+v.Nml.n.cursor.word.dcl              = '<c-x>'
+
+v.Nml.n.cursor.line.f_str = {}
+v.Nml.n.cursor.line.f_str.del = 'D'
 
 
--- v.Nml.n.dmy                         = '<c-v>'
+v.Nml.n.mode = {}
+v.Nml.n.mode.box                 = '<c-v>'
 
--- v.Nml.n.dmy                         = '<c-w>c>'
--- v.Nml.n.dmy                         = '<c-w>w>'
+v.Nml.n.win = {}
+v.Nml.n.win.splt = {}
+v.Nml.n.win.splt.quit = '<c-w>c>'
+v.Nml.n.win.splt.nxt  = '<c-w>w>'
 
--- v.Nml.n.dmy                         = '<esc>'
+v.Nml.n.esc                         = '<esc>'
+
+v.Nml.n.slctd = {}
 -- v.Nml.n.dmy                         = '<gv'
 -- v.Nml.n.dmy                         = '>gv'
--- v.Nml.n.dmy                         = 'D'
+
+
 -- v.Nml.n.dmy                         = 'G'
 -- v.Nml.n.dmy                         = 'I '
 -- v.Nml.n.dmy                         = 'Jj'
@@ -101,12 +112,13 @@ v.Nml.n.cursor.mv = {}
 -- ins
 --
 
--- v.Nml.n.ins.xx                      = "i' '"
--- v.Nml.n.ins.xx                      = 'i '
--- v.Nml.n.ins.xx                      = 'i'
--- v.Nml.n.ins.xx                      = 'i-'
--- v.Nml.n.ins.xx                      = 'i/'
--- v.Nml.n.ins.xx                      = 'i<cr>'
--- v.Nml.n.ins.xx                      = 'i\\'
--- v.Nml.n.ins.xx                      = 'i~'
+v.Nml.n.mode.ins          = 'i'
+v.Nml.n.ins = {}
+-- v.Nml.n.ins.quote_space = "i' '"
+-- v.Nml.n.ins.space       = 'i '
+-- v.Nml.n.ins.hyphen      = 'i-'
+-- v.Nml.n.ins.slash       = 'i/'
+-- v.Nml.n.ins.cr          = 'i<cr>'
+-- v.Nml.n.ins.slash_back  = [[i\]]
+-- v.Nml.n.ins.childer     = 'i~'
 

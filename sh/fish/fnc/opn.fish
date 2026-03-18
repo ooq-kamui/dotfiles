@@ -9,7 +9,7 @@ function opn
   set st ( uname -a | grep -o 'WSL2' )
 
   if test "$st" = "WSL2"
-    explorer.exe $path
+    explorer.exe ( wslpath -w $path )
   else
     open $path
   end

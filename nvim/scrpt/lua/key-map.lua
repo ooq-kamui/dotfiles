@@ -515,7 +515,7 @@ keymap__('n', 'c', ':lua v.Rgstr.ynk__cursor_line()<cr>')
 keymap__('n', 'gs', ':lua v.Rgstr.ynk__buf_file_path()<cr>')
 
 -- ojroques/nvim-osc52
-keymap__('n', 'C', ':lua osc52.copy_register("a")<cr>')
+-- keymap__('n', 'C', ':lua osc52.copy_register("a")<cr>')
 
 -- paste
 keymap__('n', 'p', ':lua v.Cursor.__ins_ynk()<cr>')

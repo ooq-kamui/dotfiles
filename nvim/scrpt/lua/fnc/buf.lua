@@ -41,11 +41,6 @@ function v.Buf.Opn_splt(file_path, line_num, width_byte_idx)
 
   local win_id = v.Win.win_id_by_file_path(file_path)
 
-  -- if win_id == -1 then
-  --   v.Buf.opn(file_path, line_num)
-  --   return
-  -- end
-
   v.Cursor.__mv_by_win_id(win_id)
 
   v.Win.__splt_v(width_byte_idx)
@@ -364,7 +359,9 @@ function v.Win.win_id_by_file_path(file_path)
 
   local buf_num    = vim.fn.bufnr(file_path)
   local win_id_lst = vim.fn.win_findbuf(buf_num)
+  v.Log.tbl(win_id_lst)
   local win_id     = v.Tbl.last(win_id_lst)
+  v.Log.log('buf_num:', buf_num, ', win_id:', win_id)
   return win_id
 end
 
@@ -388,12 +385,12 @@ end
 
 function v.Win.splt_cursor__mv_nxt() -- alias
 
-  v.Nml.exe([[<c-w>w>]])
+  v.Nml.exe('<c-w>w>')
 end
 
 function v.Win.splt__quit() -- alias
 
-  v.Nml.exe([[<c-w>c>]])
+  v.Nml.exe('<c-w>c>')
 end
 
 function v.Win.view_save() -- alias
