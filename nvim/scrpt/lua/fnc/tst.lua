@@ -5,7 +5,9 @@ v.Tst = {}
 
 function v.Tst.tst()
 
-  v.Ai.ask_by_slctd()
+  v.Statusline.show__tgl()
+
+  -- v.Ai.ask_by_slctd()
 
   -- v.Buf.__fltr_jq()
 
