@@ -17,7 +17,11 @@ require("lazy").setup({
   { 'ibhagwan/fzf-lua', branch = 'main' },
 
   -- nvim utilities
-  { 'ojroques/nvim-osc52' },
+  { 'ojroques/nvim-osc52',
+    config = function()
+      osc52 = require('osc52')
+    end,
+  },
   { 'stevearc/oil.nvim',
     opts = {
       keymaps = {
@@ -29,8 +33,7 @@ require("lazy").setup({
       -- },
     }
   },
-  {
-    'nvim-treesitter/nvim-treesitter', 
+  { 'nvim-treesitter/nvim-treesitter', 
     branch = 'main',
     build = ':TSUpdate',
     config = function()
@@ -75,7 +78,7 @@ require("lazy").setup({
       --     end
       --   end,
       -- })
-    end
+    end,
   },
 
   -- { 'MunifTanjim/nui.nvim' },
@@ -83,12 +86,11 @@ require("lazy").setup({
   -- { 'shellRaining/hlchunk.nvim', event = "BufRead" },
   -- { 'sphamba/smear-cursor.nvim', opts = {} },
 
-  -- {
-  --   'nvim-lualine/lualine.nvim',
+  -- { 'nvim-lualine/lualine.nvim',
   --   dependencies = { 'nvim-tree/nvim-web-devicons' },
   --   opts = {}
   -- },
 })
 
-osc52 = require('osc52')
+-- osc52 = require('osc52')
 

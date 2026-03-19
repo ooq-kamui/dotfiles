@@ -144,7 +144,6 @@ end
 function v.Cursor.__mv_by_line_byte_idx(line_num, byte_idx)
 
   line_num = line_num or v.Cursor.line_num()
-
   vf.cursor(line_num, byte_idx)
 end
 
@@ -598,8 +597,9 @@ end
 
 function v.Cursor.__ins(str)
 
-  local nml_cmd = 'i' .. str
-  v.Nml.exe(nml_cmd)
+  v.Nml.ins(str)
+  -- local nml_cmd = 'i' .. str
+  -- v.Nml.exe(nml_cmd)
   v.Cursor.__mv_char_f()
 end
 
@@ -1446,9 +1446,8 @@ end
 
 function v.Cursor.f_str__space_crct_with_fzy(ref_drct)
 
-  if v.Cursor.is_byte_idx__line_end() then
-    return
-  end
+  if v.Cursor.is_byte_idx__line_end() then return end
+
 
   local word_ruler_idx = v.Cursor.f_str__space_crct_with_word(ref_drct)
 
@@ -1459,9 +1458,8 @@ end
 
 function v.Cursor.f_str__space_crct_with_word(ref_drct)
 
-  local cursor_f_char_ruler_idx = v.Cursor.f_char_ruler_idx()
   local line_num                = v.Cursor.line_num(ref_drct)
-
+  local cursor_f_char_ruler_idx = v.Cursor.f_char_ruler_idx()
   local word_ruler_idx = v.Line.word_ruler_idx(line_num, cursor_f_char_ruler_idx + 1)
 
   if not word_ruler_idx then return word_ruler_idx end

@@ -4,26 +4,28 @@
 
 ## nvim
 
-nml.cmd def
-
-
 x q cre
 - v.Slctd.box_f_str__space_crct_with_fzy()
 
 
-n q, err, case: `'<c-w>c>'`
+nvim-submode
+- rii
+- roo
 
 
-slctd line > box w 1
-- x w
+__ins() rpl, confirm
 
-x w, err, case: line emp
+
+nml.cmd def
+
+
+x w, err
+- case: cursor line emp
+  - on hold
 
 
 plg
-- osc52 config ?
-
-- tree-sitter on ?
+- tree-sitter on ?  confirm
 
 - blink.cmp
   - instl
@@ -37,19 +39,13 @@ start
 - cli
 
 
-## pixel-art
-
-booth chk
-
-
 ## wez
 
-width
-- cs-h
-
-mac
-- splt
-- width
+key-bind
+- mac < win
+  - splt
+  - width
+  - log
 
 
 ## aseprite

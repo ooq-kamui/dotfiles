@@ -359,6 +359,7 @@ function v.Win.win_id_by_file_path(file_path)
 
   local buf_num    = vim.fn.bufnr(file_path)
   local win_id_lst = vim.fn.win_findbuf(buf_num)
+  v.Log.log('win_id_lst')
   v.Log.tbl(win_id_lst)
   local win_id     = v.Tbl.last(win_id_lst)
   v.Log.log('buf_num:', buf_num, ', win_id:', win_id)
@@ -404,7 +405,7 @@ function v.Win.view_restore(view) -- alias
   vf.winrestview(view)
 end
 
-function v.Win.width__add(col_num)
+function v.Win.splt_width__add(col_num)
 
   vim.api.nvim_win_set_width(0, vim.api.nvim_win_get_width(0) + col_num)
 end

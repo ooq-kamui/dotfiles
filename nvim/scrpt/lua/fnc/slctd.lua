@@ -151,8 +151,7 @@ function v.Slctd.cursor__mv_edge_tgl() -- range
 
   v.Slctd.__ltst()
 
-  local nml_cmd = 'o'
-  v.Nml.exe(nml_cmd)
+  v.Nml.exe(v.Nml.x.cursor.mv.edge_tgl)
 end
 
 function v.Slctd.cursor__mv_edge(drct) -- range
@@ -795,6 +794,11 @@ end
 
 function v.Slctd.str_edge_out_char__tgl_swtch() -- range
 
+  v.Slctd.__ltst()
+
+  if v.Slctd.is_line__mlt() then return end
+
+
   local c_l = v.Slctd.str_edge_l_out_char()
   local c_r = v.Slctd.str_edge_r_out_char()
 
@@ -1397,14 +1401,13 @@ function v.Slctd.box_width__1() -- range
 
   v.Slctd.__ltst()
 
-  if not v.Mode.is__box() then
-    return
-  end
+  if not v.Mode.is__box() then return end
 
-  v.Nml.exe('o')
+
+  v.Slctd.cursor__mv_edge_tgl()
   local byte_idx = v.Cursor.byte_idx()
 
-  v.Nml.exe('o')
+  v.Slctd.cursor__mv_edge_tgl()
   v.Cursor.__mv_by_byte_idx(byte_idx)
 end
 

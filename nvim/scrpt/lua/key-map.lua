@@ -724,8 +724,8 @@ keymap__('n', 'u', ':lua v.Cursor.c_char__tgl_swtch01()<cr>')
 keymap__('n', 'U', ':lua v.Char.__tgl_swtch02()<cr>')
 
 -- indnt shft
-keymap__('n', 'ri', ':lua v.Cursor.line_indnt__shft_l()<cr>')
-keymap__('n', 'ro', ':lua v.Cursor.line_indnt__shft_r()<cr>')
+-- keymap__('n', 'ri', ':lua v.Cursor.line_indnt__shft_l()<cr>')
+-- keymap__('n', 'ro', ':lua v.Cursor.line_indnt__shft_r()<cr>')
 
 -- indnt add
 -- keymap__('n', 'xx', ':lua v.Cursor.line_indnt__add(2)<cr>')
@@ -909,7 +909,7 @@ keymap__('n', ':fr', ':lua v.Sys.ruff_by_slf()')
 -- keymap__('n', 'rq', ':lua v.Win.splt__quit()<cr>')
 
 -- win ( buf ) splt h
-keymap__('n', 'rh', ':lua v.Win.__splt_h()<cr>')
+-- keymap__('n', 'xx', ':lua v.Win.__splt_h()<cr>')
 
 -- win ( buf ) splt v
 keymap__('n', 'ry', ':lua v.Win.__splt_v()<cr>')
@@ -919,8 +919,9 @@ keymap__('n', 'Y',  ':lua v.Win.__splt_v()<cr>')
 keymap__('n', '{', '<c-w>>')
 
 -- win ( buf ) nxt
-keymap__('n', 'rl', ':lua v.Win.splt_cursor__mv_nxt()<cr>')
-keymap__('n', 'rn', ':lua v.Win.splt_cursor__mv_nxt()<cr>')
+keymap__('n', 'H', ':lua v.Win.splt_cursor__mv_nxt()<cr>')
+-- keymap__('n', 'rl', ':lua v.Win.splt_cursor__mv_nxt()<cr>')
+-- keymap__('n', 'rn', ':lua v.Win.splt_cursor__mv_nxt()<cr>')
 
 -- win ( buf ) mv r
 -- keymap__('n', 'xx', '<c-w>l')
@@ -928,8 +929,10 @@ keymap__('n', 'rn', ':lua v.Win.splt_cursor__mv_nxt()<cr>')
 -- win ( buf ) mv l
 -- keymap__('n', 'xx', '<c-w>h')
 
--- win ( buf ) width add
-keymap__('n', '_', ':lua v.Win.width__add(1)<cr>')
+-- win ( buf ) width mod , add / sub
+keymap__('n', 'ri', ':lua v.Win.splt_width__add( 1)<cr>')
+keymap__('n', 'ro', ':lua v.Win.splt_width__add(-1)<cr>')
+-- keymap__('n', 'H', ':lua v.Win.splt_width__add(1)<cr>')
 
 -- fnc call
 -- keymap__('n', ':c', ':call ')
@@ -1351,8 +1354,11 @@ keymap__('x', 'K', ':lua v.Slctd.box_cursor_r_space__crct()<cr>')
 
 -- slctd str edge out quote __ tgl
 keymap__('x', 'w', function()
-  if v.Mode.is__box() then
+  if     v.Mode.is__box() then
     return ':lua v.Slctd.box_width__1()<cr>'
+
+  elseif v.Mode.is__line() then
+    return ':lua v.Slctd.mode__box()<cr>'
   else
     return ':lua v.Slctd.str_edge_out_char__tgl_swtch()<cr>'
   end
@@ -1367,7 +1373,7 @@ keymap__('x', 'W', v.Slctd.str_edge_out_char__type_ch)
 -- slctd str edge out __ ins space
 keymap__('x', 'I' , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
 keymap__('x', 'O' , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
-keymap__('x', 'ru' , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
+keymap__('x', 'ru', ':lua v.Slctd.str_edge_out__ins_space()<cr>')
 
 -- slctd str edge out __ ins markdown strikethrough
 keymap__('x', '~', ':lua v.Slctd.str_edge_out__ins_markdown_strikethrough()<cr>')
