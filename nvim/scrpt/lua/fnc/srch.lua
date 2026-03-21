@@ -94,10 +94,14 @@ function v.Srch.str_vim_to_word1(str_vim)
   return str_vim
 end
 
-function v.Srch.str_vim__ptn(str_vim)
+function v.Srch.str_vim__ptn(ptn_vim)
 
-  v.Rgstr.__('/', str_vim)  -- highlight
-  v.Nml.exe('/' .. str_vim) -- srch history add
+  if v.Str.is__cr_in(ptn_vim) then return end
+
+  -- highlight
+  v.Rgstr.__('/', ptn_vim)
+  -- srch history add
+  v.Cmd.cmd('exe "normal! ' .. '/' .. ptn_vim .. '"') -- not v.Nml.exe()
 end
 
 function v.Srch.str__cursor_word()

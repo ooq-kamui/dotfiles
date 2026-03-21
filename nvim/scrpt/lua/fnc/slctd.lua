@@ -1312,15 +1312,14 @@ function v.Slctd.line__ins_cmnt_1() -- range
   end
 end
 
-function v.Slctd.box_f_str__space_crct_with_fzy() -- use not, dev doing
+function v.Slctd.box_f_str__space_crct_with_fzy()
 
   local byte_idx = v.Cursor.byte_idx()
 
   for idx, line_num in pairs(v.Slctd.line_num_seq()) do
 
     v.Cursor.__mv_by_line_byte_idx(line_num, byte_idx)
-
-    v.Cursor.f_str__space_crct_with_fzy(ref_drct)
+    v.Cursor.f_str__space_crct_with_fzy('u')
   end
 
   v.Slctd.__ltst()

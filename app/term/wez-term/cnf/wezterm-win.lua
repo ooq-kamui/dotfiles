@@ -44,12 +44,16 @@ config.initial_cols = 183
 config.initial_rows =  40
 
 wezterm.on('gui-startup', function()
-  wezterm.mux.spawn_window({
+  local _, pane, _ = wezterm.mux.spawn_window({
     position = {
       x = 50,
       y = 10,
       origin = 'ActiveScreen',
     },
+  })
+  pane:split({
+    direction = 'Right',
+    size = 0.7,
   })
 end)
 

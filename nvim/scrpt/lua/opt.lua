@@ -189,9 +189,9 @@ vim.opt.whichwrap:append('[')
 vim.opt.whichwrap:append(']')
 
 vim.opt.virtualedit = {
+  -- 'all',
   'onemore', -- cursor mv cr
   'block',
-  -- 'all',
 }
 
 vim.opt.scrolloff     = 5

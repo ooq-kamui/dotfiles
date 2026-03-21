@@ -3,10 +3,11 @@
 
 v.Rgstr = {}
 
-v.Ynk = v.Rgstr
+-- v.Ynk = v.Rgstr
 
 v.Rgstr.ynk_key_dflt = 'a'
 v.Rgstr.ynk_key_lst  = v.Str.alph_lst('h')
+v.Rgstr.ynk_key_nil  = 'z'
 
 function v.Rgstr.get(rgstr_key) -- alias
 
@@ -156,7 +157,7 @@ end
 function v.Rgstr.clp__ynk()
 
   if v.Env.is__('linux') then
-    osc52.copy_register("a")
+    osc52.copy_register('a')
 
   else
     local str = v.Rgstr.ynk()

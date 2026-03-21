@@ -5,7 +5,9 @@ v.Ptn = {}
 
 v.Ptn.vim = {}
 
-v.Ptn.vim.nl = [[\n]]
+v.Ptn.vim.nl      = [[\n]]
+v.Ptn.vim.nl_char = [[\n]]
+-- v.Ptn.vim.cr = '[' .. [[\r\n]] .. ']'
 
 v.Ptn.vim.space_char     = [[\s]]
 v.Ptn.vim.space_str      = v.Ptn.vim.space_char .. [[\+]]
@@ -42,6 +44,7 @@ v.Ptn.vim.fnc_def.dflt   = '^function'
 -- lua
 
 v.Ptn.lua = {}
+v.Ptn.lua.cr             = '[\r\n]'
 v.Ptn.lua.markdown_itm   = '^%s*- '
 v.Ptn.lua.space_not_char = '[^ ]' -- '[^ \t]'
 

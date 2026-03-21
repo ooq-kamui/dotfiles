@@ -223,9 +223,7 @@ end
 
 function v.Buf.__quit_swtch()
 
-  local win_num = vf.winnr('$')
-
-  if win_num > 1 then
+  if v.Win.is_splt__mlt() then
     v.Win.splt__quit()
   else
     v.Buf.__quit()
@@ -361,9 +359,22 @@ function v.Win.win_id_by_file_path(file_path)
   local win_id_lst = vim.fn.win_findbuf(buf_num)
   v.Log.log('win_id_lst')
   v.Log.tbl(win_id_lst)
+
   local win_id     = v.Tbl.last(win_id_lst)
   v.Log.log('buf_num:', buf_num, ', win_id:', win_id)
   return win_id
+end
+
+-- splt
+
+function v.Win.splt__quit() -- alias
+
+  v.Nml.exe('<c-w>c>')
+end
+
+function v.Win.splt__quit_othr()
+
+  v.Nml.exe('<c-w>o>')
 end
 
 function v.Win.__splt_h() -- alias
@@ -389,10 +400,12 @@ function v.Win.splt_cursor__mv_nxt() -- alias
   v.Nml.exe('<c-w>w>')
 end
 
-function v.Win.splt__quit() -- alias
+function v.Win.splt_width__add(col_num)
 
-  v.Nml.exe('<c-w>c>')
+  vim.api.nvim_win_set_width(0, vim.api.nvim_win_get_width(0) + col_num)
 end
+
+-- win view
 
 function v.Win.view_save() -- alias
 
@@ -405,8 +418,21 @@ function v.Win.view_restore(view) -- alias
   vf.winrestview(view)
 end
 
-function v.Win.splt_width__add(col_num)
+-- cnd
 
-  vim.api.nvim_win_set_width(0, vim.api.nvim_win_get_width(0) + col_num)
+function v.Win.is_splt__mlt()
+
+  local ret = bl.f
+
+  local win_num = vf.winnr('$')
+  if win_num > 1 then
+    ret = bl.t
+  end
+
+  return ret
 end
+
+
+
+
 

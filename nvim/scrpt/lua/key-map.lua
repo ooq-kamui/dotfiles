@@ -275,14 +275,14 @@ keymap__('n', '<leader>R', '<esc>')
 -- log
 keymap__('n', ':l', ':message <cr>')
 
--- quit buffer
+-- quit buffer ( or win )
 keymap__('n', 'w',  ':lua v.Buf.__quit_swtch()<cr>')
 
 -- quit buffer force
 keymap__('n', ':q', ':q!')
 
 -- quit vim
-keymap__('n', 'W', ':q<cr>')
+-- keymap__('n', 'W', ':q<cr>')
 
 -- quit tab other
 -- keymap__('n', 'xx', ':tabo<cr>')
@@ -390,10 +390,8 @@ keymap__('n', 'y', ':lua v.Cursor.__mv_line_top_or_new_line()<cr>')
 keymap__('n', '<c-y>', function()
   if v.Cursor.is_byte_idx__line_end() then
     return ':lua v.Cursor.__ins_markdown_cr()<cr>'
-    -- return v.Cursor.__ins_markdown_cr
   else
     return ':lua v.Cursor.__mv_line_end()<cr>'
-    -- return v.Cursor.__mv_line_end
   end
 end, {expr = bl.t})
 
@@ -425,7 +423,7 @@ keymap__('n', '<c-_>', 'hT_')
 keymap__('n', '<c-f>', ':lua v.Cursor.__mv_word_dlm_f()<cr>')
 
 -- cursor mv line u word col  -  forward
-keymap__('n', '<c-e>', ':lua v.Cursor.__mv_line_u_word_byte_idx()<cr>')
+-- keymap__('n', 'xx', ':lua v.Cursor.__mv_line_u_word_byte_idx()<cr>')
 
 -- cursor mv fnc name
 -- keymap__('n', 'xx', ':lua v.Cursor.__mv_fnc_name()<cr>')
@@ -434,7 +432,7 @@ keymap__('n', '<c-e>', ':lua v.Cursor.__mv_line_u_word_byte_idx()<cr>')
 keymap__('n', '<c-l>', '%')
 
 -- cursor mv block out
-keymap__('n', '<c-w>', ':lua v.Cursor.__mv_block_out_swtch()<cr>')
+keymap__('n', 'H', ':lua v.Cursor.__mv_block_out_swtch()<cr>')
 
 -- cursor mv fnc out back
 -- keymap__('n', 'xx', '[m')
@@ -515,7 +513,7 @@ keymap__('n', 'c', ':lua v.Rgstr.ynk__cursor_line()<cr>')
 keymap__('n', 'gs', ':lua v.Rgstr.ynk__buf_file_path()<cr>')
 
 -- ojroques/nvim-osc52
--- keymap__('n', 'C', ':lua osc52.copy_register("a")<cr>')
+-- keymap__('n', 'xx', ':lua osc52.copy_register("a")<cr>')
 
 -- paste
 keymap__('n', 'p', ':lua v.Cursor.__ins_ynk()<cr>')
@@ -724,8 +722,10 @@ keymap__('n', 'u', ':lua v.Cursor.c_char__tgl_swtch01()<cr>')
 keymap__('n', 'U', ':lua v.Char.__tgl_swtch02()<cr>')
 
 -- indnt shft
--- keymap__('n', 'ri', ':lua v.Cursor.line_indnt__shft_l()<cr>')
--- keymap__('n', 'ro', ':lua v.Cursor.line_indnt__shft_r()<cr>')
+keymap__('n', 'ri', ':lua v.Cursor.line_indnt__shft_l()<cr>')
+keymap__('n', 'ro', ':lua v.Cursor.line_indnt__shft_r()<cr>')
+-- keymap__('n', '<', ':lua v.Cursor.line_indnt__shft_l()<cr>')
+-- keymap__('n', '>', ':lua v.Cursor.line_indnt__shft_r()<cr>')
 
 -- indnt add
 -- keymap__('n', 'xx', ':lua v.Cursor.line_indnt__add(2)<cr>')
@@ -758,7 +758,7 @@ keymap__('n', '<leader>k'    , 'mz/')
 keymap__('n', '<leader><c-k>', 'mz?')
 
 -- srch by clp
-keymap__('n', 'r', ':lua v.Srch.str_vim__clp()<cr>')
+keymap__('n', 'C', ':lua v.Srch.str_vim__clp()<cr>')
 
 -- srch forward
 keymap__('n', 'n'    , ':lua v.Cursor.__mv_by_srch_str("f")<cr>')
@@ -791,8 +791,8 @@ keymap__('n', 'N', ':lua v.Srch.str_vim__prv_tgl()<cr>')
 keymap__('n', '<c-p>', ':lua v.Srch.__slct("f")<cr>')
 
 -- srch keymap__()
-keymap__('n', 'S'    , [[/keymap__('n', ']])
-keymap__('n', 'X'    , [[/keymap__('x', ']])
+keymap__('n', 'S' , [[/keymap__('n', ']])
+keymap__('n', 'Z' , [[/keymap__('x', ']])
 
 -- rpl ( cmd )
 keymap__('n', ':s', ':%s/<c-r>//xxx/g')
@@ -906,22 +906,26 @@ keymap__('n', ':fr', ':lua v.Sys.ruff_by_slf()')
 -- win ( buf )
 
 -- win ( buf ) splt quit
--- keymap__('n', 'rq', ':lua v.Win.splt__quit()<cr>')
+-- keymap__('n', 'xx', ':lua v.Win.splt__quit()<cr>')
+
+-- quit win othr
+keymap__('n', 'W', function()
+  if v.Win.is_splt__mlt() then
+    return ':lua v.Win.splt__quit_othr()<cr>'
+  else
+    return ':q<cr>'
+  end
+end, {expr = bl.t})
+
+-- win ( buf ) splt v
+keymap__('n', 'Y',  ':lua v.Win.__splt_v()<cr>')
+keymap__('n', 'ry', ':lua v.Win.__splt_v()<cr>')
 
 -- win ( buf ) splt h
 -- keymap__('n', 'xx', ':lua v.Win.__splt_h()<cr>')
 
--- win ( buf ) splt v
-keymap__('n', 'ry', ':lua v.Win.__splt_v()<cr>')
-keymap__('n', 'Y',  ':lua v.Win.__splt_v()<cr>')
-
--- win ( buf ) size w __ +
-keymap__('n', '{', '<c-w>>')
-
 -- win ( buf ) nxt
-keymap__('n', 'H', ':lua v.Win.splt_cursor__mv_nxt()<cr>')
--- keymap__('n', 'rl', ':lua v.Win.splt_cursor__mv_nxt()<cr>')
--- keymap__('n', 'rn', ':lua v.Win.splt_cursor__mv_nxt()<cr>')
+keymap__('n', '<c-w>', ':lua v.Win.splt_cursor__mv_nxt()<cr>')
 
 -- win ( buf ) mv r
 -- keymap__('n', 'xx', '<c-w>l')
@@ -929,10 +933,12 @@ keymap__('n', 'H', ':lua v.Win.splt_cursor__mv_nxt()<cr>')
 -- win ( buf ) mv l
 -- keymap__('n', 'xx', '<c-w>h')
 
+-- win ( buf ) width add ( or vim quit )
+keymap__('n', '<c-e>', ':lua v.Win.splt_width__add(1)<cr>')
+
 -- win ( buf ) width mod , add / sub
-keymap__('n', 'ri', ':lua v.Win.splt_width__add( 1)<cr>')
-keymap__('n', 'ro', ':lua v.Win.splt_width__add(-1)<cr>')
--- keymap__('n', 'H', ':lua v.Win.splt_width__add(1)<cr>')
+-- keymap__('n', 'xx', ':lua v.Win.splt_width__add( 1)<cr>')
+-- keymap__('n', 'xx', ':lua v.Win.splt_width__add(-1)<cr>')
 
 -- fnc call
 -- keymap__('n', ':c', ':call ')
@@ -1420,8 +1426,7 @@ keymap__('x', ':e', ':lua v.Slctd.line_indnt__space(2)')
 -- keymap__('x', 'xx', ':lua v.Slctd.line_indnt__tab(2)<cr>')
 
 -- cursor f str __ crct ( algn ) fzy
-keymap__('x', 'q', ':lua v.Slctd.box_f_str__space_crct_with_fzy("u")<cr>')
-keymap__('x', 'Q', ':lua v.Slctd.box_f_str__space_crct_with_fzy("d")<cr>')
+keymap__('x', 'q', ':lua v.Slctd.box_f_str__space_crct_with_fzy()<cr>')
 
 -- tidy tbl
 keymap__('x', ':t', ':lua v.Slctd.line__crct_tbl()<cr>')

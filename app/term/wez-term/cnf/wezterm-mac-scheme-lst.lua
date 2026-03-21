@@ -66,7 +66,6 @@ scheme_lst.mac.recommend.h = {
   'Dracula+'                               ,
   'Ef-Autumn'                              ,
   'Ef-Bio'                                 ,
-  'Ef-Cherie'                              ,
   'Ef-Maris-Dark'                          ,
   'Ef-Melissa-Dark'                        ,
   'Ef-Rosa'                                ,
@@ -91,7 +90,6 @@ scheme_lst.mac.recommend.h = {
   'Ibm 3270 (High Contrast) (Gogh)'        ,
   'Idle Toes (Gogh)'                       ,
   'Ir Black (Gogh)'                        ,
-  'Isotope (dark) (terminal.sexy)'         ,
   'Kolorit'                                ,
   'Londontube (dark) (terminal.sexy)'      ,
   'Material (base16)'                      ,
@@ -209,6 +207,9 @@ scheme_lst.mac.recommend.l = {
   'Jellybeans (Gogh)'                      ,
   'Vs Code Dark+ (Gogh)'                   ,
   'Teerb'                                  ,
+  'Isotope (dark) (terminal.sexy)'         ,
+  -- slctd
+  'Ef-Cherie'                              ,
   -- git
   -- etc
   'Aco (Gogh)'                             ,

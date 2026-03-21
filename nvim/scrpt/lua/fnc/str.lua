@@ -606,6 +606,12 @@ function v.Str.is__num(str)
   return ret
 end
 
+function v.Str.is__cr_in(str)
+
+  local ret = v.Str.is__ptn(str, v.Ptn.vim.nl_char)
+  return ret
+end
+
 function v.Str.is__mb_in(str)
 
   local ret = v.Str.is__ptn(str, v.Ptn.vim.mb_char_lst)

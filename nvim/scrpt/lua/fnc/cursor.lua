@@ -144,7 +144,13 @@ end
 function v.Cursor.__mv_by_line_byte_idx(line_num, byte_idx)
 
   line_num = line_num or v.Cursor.line_num()
+
+  local tmp = vim.o.virtualedit
+  vim.o.virtualedit = "all"
+
   vf.cursor(line_num, byte_idx)
+
+  vim.o.virtualedit = tmp
 end
 
 function v.Cursor.__mv_by_jmplst_line_info_lst(jmplst_line_info_lst)
@@ -598,8 +604,6 @@ end
 function v.Cursor.__ins(str)
 
   v.Nml.ins(str)
-  -- local nml_cmd = 'i' .. str
-  -- v.Nml.exe(nml_cmd)
   v.Cursor.__mv_char_f()
 end
 
@@ -629,12 +633,10 @@ end
 
 function v.Cursor.__ins_mlt(str, num)
 
-  if num == 0 then
-    return
-  end
+  if num == 0 then return end
 
-  local cmd = num .. 'i' .. str
-  v.Nml.exe(cmd)
+  local nml_cmd = num .. 'i' .. str
+  v.Nml.exe(nml_cmd)
 end
 
 function v.Cursor.__ins_cr()
@@ -652,38 +654,40 @@ function v.Cursor.__ins_space(is_cursor_mv)
   if is_cursor_mv then
     v.Cursor.__ins(' ')
   else
-    v.Nml.exe('i ')
+    v.Cursor.__ins(' ')
+    -- v.Nml.exe('i ')
     -- v.Nml.exe('l')
   end
 end
 
 function v.Cursor.__ins_hyphen()
 
-  v.Nml.exe('i-')
-  -- v.Cursor.__ins('-')
+  v.Cursor.__ins('-')
+  -- v.Nml.exe('i-')
 end
 
 function v.Cursor.__ins_tilde() -- use not
 
-  v.Nml.exe('i~')
-  -- v.Cursor.__ins('~')
+  v.Cursor.__ins('~')
+  -- v.Nml.exe('i~')
 end
 
 function v.Cursor.__ins_slash() -- use not
 
-  v.Nml.exe('i/')
-  -- v.Cursor.__ins('/')
+  v.Cursor.__ins('/')
+  -- v.Nml.exe('i/')
 end
 
 function v.Cursor.__ins_slashback() -- use not
 
-  v.Nml.exe('i\\')
-  -- v.Cursor.__ins('\\')
+  v.Cursor.__ins([[\]])
+  -- v.Nml.exe('i\\')
 end
 
 function v.Cursor.__ins_quote()
 
-  v.Nml.exe("i' '")
+  v.Cursor.__ins("' '")
+  -- v.Nml.exe("i' '")
   v.Nml.exe('h')
 end
 
