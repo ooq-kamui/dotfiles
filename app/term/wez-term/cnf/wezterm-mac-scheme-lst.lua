@@ -58,7 +58,6 @@ scheme_lst.mac.recommend.h = {
   'Dark Pastel'                            ,
   'DeHydration (Gogh)'                     ,
   'Desert (Gogh)'                          ,
-  'Desert'                                 ,
   'DotGov'                                 ,
   'Dracula (Official)'                     ,
   'Dracula (base16)'                       ,
@@ -107,7 +106,6 @@ scheme_lst.mac.recommend.h = {
   'Moonfly (Gogh)'                         ,
   'Night Owl (Gogh)'                       ,
   'NightOwl (Gogh)'                        ,
-  'Nocturnal Winter'                       ,
   'Nord (Gogh)'                            ,
   'Nucolors (terminal.sexy)'               ,
   'Obsidian (Gogh)'                        ,
@@ -208,9 +206,11 @@ scheme_lst.mac.recommend.l = {
   'Vs Code Dark+ (Gogh)'                   ,
   'Teerb'                                  ,
   'Isotope (dark) (terminal.sexy)'         ,
+  'Nocturnal Winter'                       ,
   -- slctd
   'Ef-Cherie'                              ,
   -- git
+  'Desert'                                 ,
   -- etc
   'Aco (Gogh)'                             ,
   'Monokai Remastered'                     ,

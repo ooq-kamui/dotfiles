@@ -40,7 +40,7 @@ wezterm.on('gui-startup', function()
   local x, y, cols, rows
 
   if scrn.name == 'HG-245H' then
-    x, y = 43, 15
+    x, y = 43, 10
     cols, rows = 167, 42
 
   else -- dflt 'Built-in Retina Display'

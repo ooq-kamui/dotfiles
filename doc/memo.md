@@ -2,11 +2,13 @@
 # dotfiles
 
 
-## claude
+## wez
 
-account
-start
-- cli
+win
+- key-bind
+  - same mac
+    - key
+    - col
 
 
 ## aseprite
