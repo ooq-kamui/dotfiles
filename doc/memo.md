@@ -8,6 +8,13 @@ try
 doc
 
 
+## wez
+
+cs-e: log
+
+cs-p: paste
+
+
 ## nvim
 
 nml.cmd def
