@@ -163,7 +163,6 @@ return {
     { key = 'Copy'      , mods = 'NONE'            , action = act.CopyTo 'Clipboard' },
     { key = 'Paste'     , mods = 'NONE'            , action = act.PasteFrom 'Clipboard' },
   },
-
   key_tables = {
     copy_mode = {
       { key = 'Tab'       , mods = 'NONE'   , action = act.CopyMode 'MoveForwardWord' },
@@ -229,20 +228,18 @@ return {
       { key = 'UpArrow'   , mods = 'NONE'   , action = act.CopyMode 'MoveUp' },
       { key = 'DownArrow' , mods = 'NONE'   , action = act.CopyMode 'MoveDown' },
     },
-
     search_mode = {
-      { key = 'Enter'      , mods = 'NONE', action = act.CopyMode 'PriorMatch'     },
-      { key = 'Escape'     , mods = 'NONE', action = act.CopyMode 'Close'          },
-      { key = 'n'          , mods = 'CTRL', action = act.CopyMode 'NextMatch'      },
-      { key = 'p'          , mods = 'CTRL', action = act.CopyMode 'PriorMatch'     },
-      { key = 'r'          , mods = 'CTRL', action = act.CopyMode 'CycleMatchType' },
-      { key = 'u'          , mods = 'CTRL', action = act.CopyMode 'ClearPattern'   },
-      { key = 'PageUp'     , mods = 'NONE', action = act.CopyMode 'PriorMatchPage' },
-      { key = 'PageDown'   , mods = 'NONE', action = act.CopyMode 'NextMatchPage'  },
-      { key = 'UpArrow'    , mods = 'NONE', action = act.CopyMode 'PriorMatch'     },
-      { key = 'DownArrow'  , mods = 'NONE', action = act.CopyMode 'NextMatch'      },
+      { key = 'Enter'     , mods = 'NONE'   , action = act.CopyMode 'PriorMatch' },
+      { key = 'Escape'    , mods = 'NONE'   , action = act.CopyMode 'Close' },
+      { key = 'n'         , mods = 'CTRL'   , action = act.CopyMode 'NextMatch' },
+      { key = 'p'         , mods = 'CTRL'   , action = act.CopyMode 'PriorMatch' },
+      { key = 'r'         , mods = 'CTRL'   , action = act.CopyMode 'CycleMatchType' },
+      { key = 'u'         , mods = 'CTRL'   , action = act.CopyMode 'ClearPattern' },
+      { key = 'PageUp'    , mods = 'NONE'   , action = act.CopyMode 'PriorMatchPage' },
+      { key = 'PageDown'  , mods = 'NONE'   , action = act.CopyMode 'NextMatchPage' },
+      { key = 'UpArrow'   , mods = 'NONE'   , action = act.CopyMode 'PriorMatch' },
+      { key = 'DownArrow' , mods = 'NONE'   , action = act.CopyMode 'NextMatch' },
     },
-
   }
 }
 

@@ -45,16 +45,9 @@ config.initial_rows =  40
 
 wezterm.on('gui-startup', function()
   local _, pane, _ = wezterm.mux.spawn_window({
-    position = {
-      x = 50,
-      y = 10,
-      origin = 'ActiveScreen',
-    },
+    position = { x = 50, y = 10, origin = 'ActiveScreen' },
   })
-  pane:split({
-    direction = 'Right',
-    size = 0.7,
-  })
+  pane:split({ direction = 'Right', size = 0.7 })
 end)
 
 color_scheme__rnd('win')
