@@ -563,8 +563,7 @@ keymap__('n', '<space>', ':lua v.Mode.__ins()<cr>')
 keymap__('n', 'm', ':lua v.Cursor.__ins_cr()<cr>')
 
 -- ins space
--- keymap__('n', 'L', ':lua v.Cursor.__ins_space(bl.f)<cr>')
-keymap__('n', 'L', ':lua v.Cursor.__ins_space()<cr>')
+keymap__('n', 'L', ':lua v.Cursor.__ins_space(bl.t)<cr>')
 
 -- ins equal
 keymap__('n', '2', 'i=<esc>')
@@ -1255,7 +1254,7 @@ keymap__('x', 'a' , ':lua v.Slctd.str__all()<cr>')
 keymap__('x', 'o', ':lua v.Rgstr.ynk__slctd()<cr>')
 
 -- ynk slctd add
--- keymap__('x', 'xx', ':lua v.Rgstr.ynk__add_slctd()<cr>')
+keymap__('x', 'O', ':lua v.Rgstr.ynk__add_slctd()<cr>')
 
 -- clp slctd
 -- keymap__('x', 'xx', '"+y')
@@ -1378,8 +1377,8 @@ keymap__('x', 'W', v.Slctd.str_edge_out_char__type_ch)
 
 -- slctd str edge out __ ins space
 keymap__('x', 'I' , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
-keymap__('x', 'O' , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
 keymap__('x', 'ru', ':lua v.Slctd.str_edge_out__ins_space()<cr>')
+-- keymap__('x', 'O' , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
 
 -- slctd str edge out __ ins markdown strikethrough
 keymap__('x', '~', ':lua v.Slctd.str_edge_out__ins_markdown_strikethrough()<cr>')

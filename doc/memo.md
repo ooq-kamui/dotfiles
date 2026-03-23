@@ -2,15 +2,6 @@
 # dotfiles
 
 
-## wez
-
-win
-- key-bind
-  - same mac
-    - key
-    - col
-
-
 ## aseprite
 
 try
@@ -38,4 +29,10 @@ alm setting at skr console
 - confirm
 - firewall
   - url
+
+
+## honox
+
+try
+
 

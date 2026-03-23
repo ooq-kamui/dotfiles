@@ -129,12 +129,19 @@ v.Nml.n.rgstr.key.nul2  = v.Nml.n.rgstr.key.rgstr .. '_'
 -- 
 
 v.Nml.n.edit = {}
+
 -- v.Nml.n.edit.xx = 'y'
--- v.Nml.n.edit.xx = 'P'
 -- v.Nml.n.edit.xx = 'd'
--- v.Nml.n.edit.xx = 'x'
--- v.Nml.n.edit.xx = 'yy'
--- v.Nml.n.edit.xx = 'dd'
+
+v.Nml.n.edit.char = {}
+v.Nml.n.edit.char.del = 'x'
+
+v.Nml.n.edit.line = {}
+v.Nml.n.edit.line.ynk = 'yy'
+v.Nml.n.edit.line.del = 'dd'
+
+v.Nml.n.edit.paste = {}
+v.Nml.n.edit.paste.pre = 'P'
 
 -- 
 -- mode

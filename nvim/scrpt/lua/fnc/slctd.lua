@@ -734,6 +734,8 @@ function v.Slctd.str_edge_out__ins(c) -- range
 
   v.Slctd.__ltst()
 
+  if not v.Mode.is__str() then return end
+
   if v.Slctd.is_line__mlt() then
     v.Slctd.__clr()
     return

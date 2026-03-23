@@ -649,45 +649,38 @@ function v.Cursor.__ins_cr()
   v.Line.end_space__del(line_num)
 end
 
-function v.Cursor.__ins_space(is_cursor_mv)
+function v.Cursor.__ins_space(is_cursor_anchor)
 
-  if is_cursor_mv then
-    v.Cursor.__ins(' ')
-  else
-    v.Cursor.__ins(' ')
-    -- v.Nml.exe('i ')
-    -- v.Nml.exe('l')
+  v.Cursor.__ins(' ')
+
+  if is_cursor_anchor then
+    v.Nml.exe('h')
   end
 end
 
 function v.Cursor.__ins_hyphen()
 
   v.Cursor.__ins('-')
-  -- v.Nml.exe('i-')
 end
 
 function v.Cursor.__ins_tilde() -- use not
 
   v.Cursor.__ins('~')
-  -- v.Nml.exe('i~')
 end
 
 function v.Cursor.__ins_slash() -- use not
 
   v.Cursor.__ins('/')
-  -- v.Nml.exe('i/')
 end
 
 function v.Cursor.__ins_slashback() -- use not
 
   v.Cursor.__ins([[\]])
-  -- v.Nml.exe('i\\')
 end
 
 function v.Cursor.__ins_quote()
 
   v.Cursor.__ins("' '")
-  -- v.Nml.exe("i' '")
   v.Nml.exe('h')
 end
 
