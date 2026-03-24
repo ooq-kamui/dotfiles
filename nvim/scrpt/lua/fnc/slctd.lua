@@ -807,7 +807,7 @@ function v.Slctd.str_edge_out_char__tgl_swtch() -- range
   if v.Tbl.is__in(c_l, {"'", '"', '`'}) and c_l == c_r then
     v.Slctd.str_edge_out_quote__tgl()
 
-  elseif c_l == '(' and c_r == ')' then
+  elseif       c_l == '(' and c_r == ')' then
     v.Slctd.str_edge_out_bracket__tgl()
   elseif c_l == '{' and c_r == '}' then
     v.Slctd.str_edge_out_bracket__tgl()

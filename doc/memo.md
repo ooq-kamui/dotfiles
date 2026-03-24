@@ -11,12 +11,14 @@ doc
 ## pwsh
 
 todo lst cre
-- xxx ?
+- xxx    ?
 
 
 ## nvim
 
 x w, err
+- v.Slctd.str_edge_out__ins(c)
+  - mod ( re cre )
 
 
 nml.cmd def
