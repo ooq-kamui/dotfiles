@@ -10,7 +10,7 @@ end
 
 function v.Nml.ins(str)
   -- v.Log.log(str)
-  str = v.Str.escape(str, [[\]])
+  str = v.Str.escape(str, [[\"]])
   v.Cmd.cmd('exe "normal! ' .. 'i' .. str .. '"')
 end
 

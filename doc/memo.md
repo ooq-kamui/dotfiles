@@ -16,9 +16,8 @@ todo lst cre
 
 ## nvim
 
-x w, err
-- v.Slctd.str_edge_out__ins(c)
-  - mod ( re cre )
+v.Slctd.str_edge_out__ins(c)
+- mod ( re cre )
 
 
 nml.cmd def
