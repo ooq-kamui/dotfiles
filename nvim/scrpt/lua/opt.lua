@@ -242,6 +242,10 @@ vim.opt.shortmess:append('I')
 vim.opt.shortmess:remove("S")
 -- vim.opt.nrformats:append {'unsigned'} -- 2022-05-09
 
+vim.opt.report    = 10 -- 2: dflt
+vim.opt.cmdheight =  1 -- 1: dflt
+
+
 vim.opt.swapfile = bl.f
 
 -- undo

@@ -8,14 +8,16 @@ try
 doc
 
 
-## wez
+## pwsh
 
-cs-e: log
-
-cs-p: paste
+todo lst cre
+- xxx ?
 
 
 ## nvim
+
+x w, err
+
 
 nml.cmd def
 

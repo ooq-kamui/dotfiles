@@ -77,7 +77,6 @@ scheme_lst.win.recommend.h = {
   'rebecca'                                , -- 
   'synthwave'                              , -- 
   -- h ( chk ed ) ~ dir
-  'Aura (Gogh)'                            , -- 
   'Catppuccin Mocha'                       , -- 
   'Dracula+'                               , -- 
   'MonokaiProRistretto (Gogh)'             , -- 
@@ -115,6 +114,7 @@ scheme_lst.win.excld = {
   'Sonokai (Gogh)'                         , -- 
   'hardhacker'                             , -- 
   'Monokai Pro (Gogh)'                     , -- 
+  'Aura (Gogh)'                            , -- 
   -- cmd line
   'kokuban (Gogh)'                         , -- 
   -- git

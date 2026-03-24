@@ -16,12 +16,6 @@ require("lazy").setup({
   { 'junegunn/fzf.vim' },
   { 'ibhagwan/fzf-lua', branch = 'main' },
 
-  -- nvim utilities
-  { 'ojroques/nvim-osc52',
-    config = function()
-      osc52 = require('osc52')
-    end,
-  },
   { 'stevearc/oil.nvim',
     opts = {
       keymaps = {
@@ -80,6 +74,11 @@ require("lazy").setup({
       -- })
     end,
   },
+  { 'ojroques/nvim-osc52',
+    config = function()
+      osc52 = require('osc52')
+    end,
+  },
 
   -- { 'MunifTanjim/nui.nvim' },
   -- { 'folke/noice.nvim', dependencies = { "MunifTanjim/nui.nvim" }, opts = {} },
@@ -91,6 +90,4 @@ require("lazy").setup({
   --   opts = {}
   -- },
 })
-
--- osc52 = require('osc52')
 

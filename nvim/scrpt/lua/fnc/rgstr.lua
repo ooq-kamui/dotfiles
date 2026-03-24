@@ -120,7 +120,7 @@ function v.Rgstr.ynk__slctd()
 
   if v.Mode.is__box() then
 
-    nml_cmd = '"a' .. 'y'
+    nml_cmd = v.Nml.n.rgstr.main .. v.Nml.n.edit.ynk
     v.Nml.exe(nml_cmd)
 
   else
