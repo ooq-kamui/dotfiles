@@ -115,7 +115,8 @@ return {
         tab:active_pane():split({direction = 'Right', size = 0.7})
       end),
     },
-    { key = 'k'         , mods = 'SHIFT|CTRL'      , action = act.ClearScrollback 'ScrollbackOnly' },
+ -- { key = 'k'         , mods = 'SHIFT|CTRL'      , action = act.ClearScrollback 'ScrollbackOnly' },
+    { key = 'k'         , mods = 'SHIFT|CTRL'      , action = act.ActivatePaneDirection 'Next' },
     { key = 'k'         , mods = 'SUPER'           , action = act.ClearScrollback 'ScrollbackOnly' },
  -- { key = 'l'         , mods = 'SHIFT|CTRL'      , action = act.ShowDebugOverlay },
     { key = 'l'         , mods = 'CTRL|SHIFT'      , action = act.RotatePanes 'Clockwise' },
