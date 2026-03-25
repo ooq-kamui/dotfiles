@@ -203,9 +203,9 @@ function v.Cursor.__mv_char(drct)
   local nml_cmd
 
   if     v.Char.is__f(drct) then
-    nml_cmd = 'l'
+    nml_cmd = v.Nml.n.cursor.mv.f
   elseif v.Char.is__b(drct) then
-    nml_cmd = 'h'
+    nml_cmd = v.Nml.n.cursor.mv.b
   end
 
   v.Nml.exe(nml_cmd)
@@ -223,7 +223,12 @@ end
 
 function v.Cursor.__mv_word_f()
 
-  if     v.Cursor.is_byte_idx__line_end() or v.Cursor.is_byte_idx__line_end_inr() then
+  if     v.Cursor.is_byte_idx__line_end_inr() then
+
+    v.Cursor.__mv_char_f()
+    return
+
+  elseif v.Cursor.is_byte_idx__line_end() then
 
     v.Cursor.__mv_char_f()
     return
@@ -238,7 +243,7 @@ function v.Cursor.__mv_word_f()
   local r_char = v.Cursor.r_char()
 
   if v.Str.is__ptn(c_char, ' ') and v.Str.is__ptn(r_char, ' ') then
-    v.Nml.exe('w')
+    v.Nml.exe(v.Nml.n.cursor.mv.f_word_s)
   else
     v.Nml.exe('el')
   end

@@ -281,7 +281,15 @@ end
 function v.Slctd.str__expnd_word_f() -- range
 
   v.Slctd.__ltst()
-  v.Nml.exe('e')
+
+  v.Nml.exe(v.Nml.n.cursor.mv.f_word_e)
+end
+
+function v.Slctd.str__expnd_word_f() -- range
+
+  v.Slctd.__ltst()
+
+  v.Nml.exe(v.Nml.n.cursor.mv.f_spce_not_e)
 end
 
 function v.Slctd.str__expnd_space_f() -- range

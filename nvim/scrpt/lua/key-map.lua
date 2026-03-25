@@ -406,6 +406,9 @@ keymap__('n', '<c-s>', 'h')
 -- cursor mv word - forward
 keymap__('n', 'f', ':lua v.Cursor.__mv_word_f()<cr>')
 
+-- cursor mv space not - forward
+keymap__('n', 'F', ':lua v.Nml.exe("E")<cr>')
+
 -- cursor mv word - back
 keymap__('n', 'o', ':lua v.Cursor.__mv_word_b()<cr>')
 
@@ -1237,8 +1240,8 @@ keymap__('x', 'f', ':lua v.Slctd.str__expnd_f_swtch()<cr>')
 keymap__('x', '<c-f>', ':lua v.Slctd.str__expnd_srch()<cr>')
 keymap__('x', 'N'    , ':lua v.Slctd.str__expnd_srch()<cr>')
 
--- slctd expnd space pre
--- keymap__('x', 'F'    , ':lua v.Slctd.str__expnd_xxx()<cr>')
+-- slctd expnd space not forward
+keymap__('x', 'F', ':lua v.Slctd.str__expnd_word_f()<cr>')
 
 -- slctd expnd word forward
 -- keymap__('x', '<c-f>', ':lua v.Slctd.str__expnd_word_f()<cr>')

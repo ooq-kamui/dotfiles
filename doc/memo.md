@@ -4,15 +4,8 @@
 
 ## nvim
 
-n <c-f>, skp line emp ( cursor mv )
-
-
-x F : to space not
-- n F : too
-- exist confirm
-
-
-osc52, err, and __ srch
+n f, skp line emp ( cursor mv )
+- at line end
 
 
 local bracket_lst
@@ -23,6 +16,9 @@ local bracket_lst
 
 
 nml.cmd def
+
+
+osc52, err, and __ srch
 
 
 ## pwsh

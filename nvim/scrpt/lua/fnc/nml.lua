@@ -43,12 +43,28 @@ v.Nml.n.cursor.mv.u_mlt = '<c-y>'
 v.Nml.n.cursor.mv.d     = 'j'
 v.Nml.n.cursor.mv.u     = 'k'
 v.Nml.n.cursor.mv.l     = 'h'
+v.Nml.n.cursor.mv.b     = 'h'
 v.Nml.n.cursor.mv.r     = 'l'
+v.Nml.n.cursor.mv.f     = 'l'
 
 v.Nml.n.cursor.mv.line_end = '$'
 
 -- v.Nml.n.cursor.mv.xx = '$h'
 -- v.Nml.n.cursor.mv.xx = '$l'
+
+v.Nml.n.cursor.mv.b_word_s = 'b'
+v.Nml.n.cursor.mv.b_word_e = 'ge'
+-- v.Nml.n.dmy = 'gegel'
+-- v.Nml.n.dmy = 'gel'
+v.Nml.n.cursor.mv.f_word_s = 'w'
+v.Nml.n.cursor.mv.f_space_not_s = 'W'
+-- v.Nml.n.dmy = 'wh'
+v.Nml.n.cursor.mv.f_word_e = 'e'
+v.Nml.n.cursor.mv.f_spce_not_e = 'E'
+-- v.Nml.n.dmy = 'el'
+
+-- v.Nml.n.dmy = 'g'
+-- v.Nml.n.dmy = 'gg'
 
 -- 
 -- win
@@ -72,23 +88,12 @@ v.Nml.n.win.splt.nxt  = '<c-w>w>'
 -- v.Nml.n.dmy = '[{'
 -- v.Nml.n.dmy = '`[v`]h'
 -- v.Nml.n.dmy = 'a <bs><esc>'
--- v.Nml.n.dmy = 'b'
--- v.Nml.n.dmy = 'e'
--- v.Nml.n.dmy = 'el'
-
--- v.Nml.n.dmy = 'g'
-
--- v.Nml.n.dmy = 'gegel'
--- v.Nml.n.dmy = 'gel'
--- v.Nml.n.dmy = 'gg'
 
 -- v.Nml.n.dmy = 'n'
 -- v.Nml.n.dmy = 'r'
 -- v.Nml.n.dmy = 'v'
 -- v.Nml.n.dmy = 'viw'
 -- v.Nml.n.dmy = 'v~'
--- v.Nml.n.dmy = 'w'
--- v.Nml.n.dmy = 'wh'
 -- v.Nml.n.dmy = '|'
 
 -- 
