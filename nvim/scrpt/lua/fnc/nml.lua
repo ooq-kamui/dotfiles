@@ -75,15 +75,12 @@ v.Nml.n.win.splt.nxt  = '<c-w>w>'
 -- v.Nml.n.dmy = 'b'
 -- v.Nml.n.dmy = 'e'
 -- v.Nml.n.dmy = 'el'
+
 -- v.Nml.n.dmy = 'g'
+
 -- v.Nml.n.dmy = 'gegel'
 -- v.Nml.n.dmy = 'gel'
 -- v.Nml.n.dmy = 'gg'
--- v.Nml.n.dmy = 'ggVG'
--- v.Nml.n.dmy = 'gv"Ay'
--- v.Nml.n.dmy = 'gv'
--- v.Nml.n.dmy = 'gvj'
--- v.Nml.n.dmy = 'hxx'
 
 -- v.Nml.n.dmy = 'n'
 -- v.Nml.n.dmy = 'r'
@@ -115,6 +112,8 @@ v.Nml.n.rgstr.nul2 = v.Nml.n.rgstr.key.rgstr .. '_'
 -- edit
 -- 
 
+-- edit base
+
 v.Nml.n.edit = {}
 
 v.Nml.n.edit.del = 'd'
@@ -132,22 +131,22 @@ v.Nml.n.edit.paste.pre = 'P'
 
 -- 
 
--- v.Nml.n.rgstr.xx = v.Nml.n.rgstr.key.main .. v.Nml.n.edit.paste.pre
--- v.Nml.n.rgstr.xx = v.Nml.n.rgstr.key.main .. v.Nml.n.edit.del
--- v.Nml.n.rgstr.xx = v.Nml.n.rgstr.key.main .. v.Nml.n.edit.line.del
--- v.Nml.n.rgstr.xx = v.Nml.n.rgstr.key.main .. v.Nml.n.edit.line.ynk
+-- v.Nml.n.edit.xx = v.Nml.n.rgstr.key.main .. v.Nml.n.edit.paste.pre
+-- v.Nml.n.edit.xx = v.Nml.n.rgstr.key.main .. v.Nml.n.edit.del
+-- v.Nml.n.edit.xx = v.Nml.n.rgstr.key.main .. v.Nml.n.edit.line.del
+-- v.Nml.n.edit.xx = v.Nml.n.rgstr.key.main .. v.Nml.n.edit.line.ynk
 
--- v.Nml.n.rgstr.xx = v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.paste.pre
--- v.Nml.n.rgstr.xx = v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.char.del
--- v.Nml.n.rgstr.xx = v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.del
--- v.Nml.n.rgstr.xx = v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.ynk
+-- v.Nml.n.edit.xx = v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.paste.pre
+-- v.Nml.n.edit.xx = v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.char.del
+-- v.Nml.n.edit.xx = v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.del
+-- v.Nml.n.edit.xx = v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.ynk
 
--- v.Nml.n.rgstr.xx = v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.line.ynk
---                 .. v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.paste.pre
+-- v.Nml.n.edit.xx = v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.line.ynk
+--                .. v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.paste.pre
 
--- v.Nml.n.rgstr.xx = v.Nml.n.rgstr.key.nul2 .. v.Nml.n.edit.line.del
+-- v.Nml.n.edit.xx = v.Nml.n.rgstr.key.nul2 .. v.Nml.n.edit.line.del
 
--- v.Nml.n.rgstr.xx = '""' .. 'P'
+-- v.Nml.n.edit.xx = '""' .. 'P'
 
 -- 
 -- mode
@@ -166,6 +165,12 @@ v.Nml.n.slctd = {}
 
 v.Nml.x = {}
 v.Nml.x.slctd = {}
+
+v.Nml.x.slctd.re = 'gv'
+
+-- v.Nml.n.dmy = 'ggVG'
+-- v.Nml.n.dmy = 'gv"Ay'
+-- v.Nml.n.dmy = 'gvj'
 
 -- v.Nml.n.dmy = '<gv'
 -- v.Nml.n.dmy = '>gv'

@@ -10,13 +10,16 @@ end
 
 function v.Fzf.by_ar(src_ar, fnc_name)
 
-  vim.fn['fzf#run'](
+  local spec = vim.fn['fzf#vim#with_preview'](
     {
       source = src_ar,
       sink   = fnc_name,
       window = '-tabnew',
-    }
+    },
+    'up:70%:hidden',
+    'ctrl-u'
   )
+  vim.fn['fzf#run'](spec)
   --     'options': ['--reverse'],
   --     'options': ['--no-sort'],
 end

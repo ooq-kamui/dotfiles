@@ -107,6 +107,7 @@ keymap__('n', 'W', '<esc>')
 keymap__('n', 'V', '<esc>')
 keymap__('n', 'X', '<esc>')
 keymap__('n', 'Y', '<esc>')
+keymap__('n', 'Z', '<esc>')
 
 keymap__('n', '<c-tab>'  , '<esc>')
 keymap__('n', '<c-space>', '<esc>')
@@ -791,7 +792,7 @@ keymap__('n', '<c-p>', ':lua v.Srch.__slct("f")<cr>')
 
 -- srch keymap__()
 keymap__('n', 'S' , [[/keymap__('n', ']])
-keymap__('n', 'Z' , [[/keymap__('x', ']])
+keymap__('n', 'X' , [[/keymap__('x', ']])
 
 -- rpl ( cmd )
 keymap__('n', ':s', ':%s/<c-r>//xxx/g')
@@ -1235,7 +1236,9 @@ keymap__('x', 'f', ':lua v.Slctd.str__expnd_f_swtch()<cr>')
 -- slctd expnd srch
 keymap__('x', '<c-f>', ':lua v.Slctd.str__expnd_srch()<cr>')
 keymap__('x', 'N'    , ':lua v.Slctd.str__expnd_srch()<cr>')
-keymap__('x', 'F'    , ':lua v.Slctd.str__expnd_srch()<cr>')
+
+-- slctd expnd space pre
+-- keymap__('x', 'F'    , ':lua v.Slctd.str__expnd_xxx()<cr>')
 
 -- slctd expnd word forward
 -- keymap__('x', '<c-f>', ':lua v.Slctd.str__expnd_word_f()<cr>')

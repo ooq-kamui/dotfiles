@@ -101,6 +101,7 @@ function v.Srch.str_vim__ptn(ptn_vim)
   -- highlight
   v.Rgstr.__('/', ptn_vim)
   -- srch history add
+  ptn_vim = v.Str.escape(ptn_vim, [[\]])
   v.Cmd.cmd('exe "normal! ' .. '/' .. ptn_vim .. '"') -- not v.Nml.exe()
 end
 

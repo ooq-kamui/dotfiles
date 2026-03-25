@@ -28,8 +28,7 @@ function v.Slctd.__ltst() -- range
     return
   end
 
-  local nml_cmd = 'gv'
-  v.Nml.exe(nml_cmd)
+  v.Nml.exe(v.Nml.x.slctd.re)
 end
 
 function v.Slctd.mode__tgl()
@@ -730,7 +729,7 @@ end
 
 -- slctd str edge __ ( edit )
 
-function v.Slctd.str_edge_out__ins(c) -- range
+function v.Slctd.str_edge_out__ins(str) -- range
 
   v.Slctd.__ltst()
 
@@ -741,35 +740,22 @@ function v.Slctd.str_edge_out__ins(c) -- range
     return
   end
 
-  local c_l = c
-  local c_r = c
+  local c_l = str
+  local c_r = str
 
-  if     c == '(' then
-    c_r = ')'
-  elseif c == '{' then
-    c_r = '}'
-  elseif c == '[' then
-    c_r = ']'
-  elseif c == '<' then
-    c_r = '>'
+  if v.Tbl.is__in(str, v.Char.cnst.bracket.l_lst) then
+    c_r = v.Char.bracket_r(str)
   end
+
+  local ins_str = c_l .. v.Slctd.str() .. c_r
 
   v.Nml.exe('"zx')
-  v.Cursor.__ins(c_l .. c_r)
+  v.Cursor.__ins(ins_str)
+
+  v.Slctd.__ltst()
 
   local str_len = v.Str.len(c_l)
-  v.Nml.exe(str_len .. 'h')
-
-  v.Nml.exe('"zP')
-  v.Nml.exe('gv')
-
-  local cnt = 0
-  while cnt < str_len do
-
-    v.Slctd.box__mv('r')
-
-    cnt = cnt + 1
-  end
+  v.Slctd.box__mv_mlt('r', str_len)
 end
 
 function v.Slctd.str_edge_out__ins_space()
@@ -878,21 +864,21 @@ function v.Slctd.str_edge_out_bracket__tgl() -- range
   local c_r = v.Slctd.str_edge_r_out_char()
 
   local c
-  local bracket_lst = {'[', '(', '<', '{' }
+  local b_lst = v.Char.cnst.bracket.l_lst
 
-  local idx = v.Tbl.idx(bracket_lst, c_l)
+  local idx = v.Tbl.idx(b_lst, c_l)
 
   if idx then
     v.Slctd.str_edge_out_char__del()
 
-    if c_l == v.Tbl.last(bracket_lst) then
+    if c_l == v.Tbl.last(b_lst) then
       -- nothing
     else
-      c = bracket_lst[idx + 1]
+      c = b_lst[idx + 1]
       v.Slctd.str_edge_out__ins(c)
     end
   else
-    c = bracket_lst[1]
+    c = b_lst[1]
     v.Slctd.str_edge_out__ins(c)
   end
 end
@@ -1396,6 +1382,15 @@ function v.Slctd.box__mv(lr) -- range
   v.Nml.exe(nml_cmd)
   v.Slctd.cursor__mv_edge_tgl()
   v.Nml.exe(nml_cmd)
+end
+
+function v.Slctd.box__mv_mlt(lr, num) -- range
+
+  local cnt = 1
+  while cnt <= num do
+    v.Slctd.box__mv(lr)
+    cnt = cnt + 1
+  end
 end
 
 function v.Slctd.box_width__1() -- range

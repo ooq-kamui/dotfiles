@@ -9,6 +9,15 @@ v.Char.cnst.r_lst = {'r', 'f'}
 v.Char.cnst.b_lst = v.Char.cnst.l_lst
 v.Char.cnst.f_lst = v.Char.cnst.r_lst
 
+v.Char.cnst.bracket = {}
+v.Char.cnst.bracket.lst = {
+  {'[', ']'},
+  {'(', ')'},
+  {'<', '>'},
+  {'{', '}'},
+}
+v.Char.cnst.bracket.l_lst = {'[', '(', '<', '{'} -- tgl odr
+
 -- ptn
 
 v.Char.ptn = {}
@@ -215,19 +224,13 @@ end
 
 function v.Char.bracket_r(bracket_l)
 
-  local bracket_lst = {
-    {'(', ')'},
-    {'[', ']'},
-    {'{', '}'},
-    {'<', '>'},
-  }
-
   local bracket_r
 
-  for idx, bracket_pair in pairs(bracket_lst) do
+  for idx, bracket_pair in pairs(v.Char.cnst.bracket.lst) do
 
     if bracket_l == bracket_pair[1] then
       bracket_r = bracket_pair[2]
+      break
     end
   end
 

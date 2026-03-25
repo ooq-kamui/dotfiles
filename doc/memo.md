@@ -2,10 +2,27 @@
 # dotfiles
 
 
-## aseprite
+## nvim
 
-try
-doc
+n <c-f>, skp line emp ( cursor mv )
+
+
+x F : to space not
+- n F : too
+- exist confirm
+
+
+osc52, err, and __ srch
+
+
+local bracket_lst
+- refactoring
+  - bracket_l_lst, bracket_r_lst, fnc
+  - at char cls
+  - rpl
+
+
+nml.cmd def
 
 
 ## pwsh
@@ -14,14 +31,15 @@ todo lst cre
 - xxx    ?
 
 
+## aseprite
+
+try
+doc
+
+pixel ai
+
+
 ## nvim
-
-v.Slctd.str_edge_out__ins(c)
-- mod ( re cre )
-
-
-nml.cmd def
-
 
 plg
 - tree-sitter on ?  confirm
