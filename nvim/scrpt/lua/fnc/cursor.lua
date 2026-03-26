@@ -223,6 +223,9 @@ end
 
 function v.Cursor.__mv_word_f()
 
+  local drct = 'd'
+  local line_nxt_num
+
   if     v.Cursor.is_byte_idx__line_end_inr() then
 
     v.Cursor.__mv_char_f()
@@ -230,7 +233,12 @@ function v.Cursor.__mv_word_f()
 
   elseif v.Cursor.is_byte_idx__line_end() then
 
-    v.Cursor.__mv_char_f()
+    line_nxt_num = v.Cursor.line_num(drct)
+    if v.Line.is_str__emp(line_nxt_num) then
+      v.Cursor.__mv_line_emp_mlt_edge(drct)
+    else
+      v.Cursor.__mv_char_f()
+    end
     return
 
   elseif v.Cursor.is_line_str_side_r__space() then
@@ -295,6 +303,11 @@ function v.Cursor.__mv_word_dlm_f()
   end
 end
 
+function v.Cursor.__mv_space_not_f()
+
+  v.Nml.exe(v.Nml.n.cursor.mv.f_space_not_e)
+end
+
 function v.Cursor.__mv_fnc_name()
 
   local st = v.Cursor.__mv_by_ptn('(', 'f')
@@ -321,9 +334,8 @@ function v.Cursor.__mv_v(drct)
 
   elseif drct == 'd' then
     v.Cursor.__mv_d()
-
   else
-    v.Cursor.__mv_u()
+    v.Cursor.__mv_d()
   end
 end
 
@@ -597,6 +609,21 @@ function v.Cursor.__mv_line_x_word_byte_idx(ref_drct)
   if not word_byte_idx then return end
 
   v.Cursor.__mv_by_byte_idx(word_byte_idx)
+end
+
+function v.Cursor.__mv_line_emp_mlt_edge(drct)
+
+  drct = drct or 'd'
+
+  local line_nxt_num, is_line_nxt_str__emp
+
+  repeat
+    line_nxt_num = v.Cursor.line_num(drct)
+    is_line_nxt_str__emp = v.Line.is_str__emp(line_nxt_num)
+    if is_line_nxt_str__emp then
+      v.Cursor.__mv_v(drct)
+    end
+  until not is_line_nxt_str__emp
 end
 
 function v.Cursor.__mv_by_win_id(win_id)
@@ -946,13 +973,13 @@ function v.Cursor.c_char__tgl_swtch01()
     return
   end
 
-  rpl_char = v.Char.is__tgl_bracket_trn(c_char)
+  rpl_char = v.Char.bracket_pair_char(c_char)
   if not v.Str.is__emp(rpl_char) then
     v.Cursor.char__rpl(rpl_char)
     return
   end
 
-  rpl_char = v.Char.is__symbol_tgl(c_char)
+  rpl_char = v.Char.symbol_tgl(c_char)
   if not v.Str.is__emp(rpl_char) then
 
     v.Cursor.char__rpl(rpl_char)

@@ -17,6 +17,25 @@ v.Char.cnst.bracket.lst = {
   {'{', '}'},
 }
 v.Char.cnst.bracket.l_lst = {'[', '(', '<', '{'} -- tgl odr
+v.Char.cnst.bracket.r_lst = {']', ')', '>', '}'}
+
+v.Char.cnst.quote = {}
+v.Char.cnst.quote.lst = {"'", '"', '`'}
+
+v.Char.cnst.symbol = {}
+v.Char.cnst.symbol.tgl_grp_lst = {
+  { '/', '|', [[\]],    },
+
+  { "'", '"', '`',      },
+
+  { '-', '+', '=', '*', },
+
+  { ',', '.',           },
+
+  { ';', ':',           },
+
+  { '?', '!',           },
+}
 
 -- ptn
 
@@ -27,18 +46,125 @@ v.Char.ptn.r = 'rf'
 function v.Char.lr_2_normal_cmd(lr)
 
   local nml_cmd
-
-  if     v.Char.is__l(lr) then
-    nml_cmd = 'h'
-
-  elseif v.Char.is__r(lr) then
-    nml_cmd = 'l'
+  if     v.Char.is__l(lr) then nml_cmd = v.Nml.n.cursor.mv.l
+  elseif v.Char.is__r(lr) then nml_cmd = v.Nml.n.cursor.mv.r
   end
-
   return nml_cmd
 end
 
--- char cnd
+function v.Char.symbol_tgl(c)
+
+  -- v.Char.cnst.symbol.tgl_grp_lst
+
+
+  local rpl = ''
+
+  if     c == '/' then
+    rpl = '|'
+  elseif c == '|' then
+    rpl = [[\]]
+  elseif c == [[\]] then
+    rpl = '/'
+
+  elseif c == "'" then
+    rpl = '"'
+  elseif c == '"' then
+    rpl = "'"
+    -- rpl = '`'
+
+  elseif c == '`' then
+    rpl = "'"
+
+  elseif c == '-' then
+    rpl = '+'
+  elseif c == '+' then
+    rpl = '='
+  elseif c == '=' then
+    rpl = '*'
+  elseif c == '*' then
+    rpl = '-'
+
+  elseif c == ',' then
+    rpl = '.'
+  elseif c == '.' then
+    rpl = ','
+
+  elseif c == ';' then
+    rpl = ':'
+  elseif c == ':' then
+    rpl = ';'
+
+  elseif c == '?' then
+    rpl = '!'
+  elseif c == '!' then
+    rpl = '?'
+  end
+
+  return rpl
+end
+
+function v.Char.bracket_l_lst()
+
+  local l_lst = v.Tbl.lst_by_2d_idx(v.Char.cnst.bracket.lst, 1)
+  return l_lst
+end
+
+function v.Char.bracket_r_lst()
+
+  local r_lst = v.Tbl.lst_by_2d_idx(v.Char.cnst.bracket.lst, 2)
+  return r_lst
+end
+
+function v.Char.bracket_r(bracket_l)
+
+  local bracket_r
+
+  for idx, bracket_pair in pairs(v.Char.cnst.bracket.lst) do
+
+    if bracket_l == bracket_pair[1] then
+      bracket_r = bracket_pair[2]
+      break
+    end
+  end
+
+  return bracket_r
+end
+
+function v.Char.bracket_pair_char(c)
+
+  local rpl = ''
+
+  local bracket_l_lst = v.Char.bracket_l_lst()
+  local l_idx         = v.Tbl.idx(bracket_l_lst, c)
+  local bracket_r_lst = v.Char.bracket_r_lst()
+  local r_idx         = v.Tbl.idx(bracket_r_lst, c)
+
+  if     l_idx then
+    rpl = bracket_r_lst[l_idx]
+  elseif r_idx then
+    rpl = bracket_l_lst[r_idx]
+  end
+  return rpl
+end
+
+-- cnd
+
+function v.Char.is__space(char)
+
+  local ret = bl.f
+
+  if char == ' ' or char == '\t' then
+    ret = bl.t
+  end
+
+  return ret
+end
+
+function v.Char.is__mb(char)
+
+  local ret = v.Str.is__ptn(char, v.Ptn.vim.mb_char_lst)
+  return ret
+end
 
 function v.Char.is__l(lr)
 
@@ -99,7 +225,7 @@ function v.Char.is__symbol(char)
   return ret
 end
 
--- char cnd  -  char pair __
+-- cnd  -  char pair __
 
 function v.Char.is_pair__ptn(c1, c2, ptn_vim)
 
@@ -141,116 +267,6 @@ function v.Char.is_pair__bracket(c1, c2)
     ret = bl.t
   end
 
-  return ret
-end
-
--- char cnd tgl
-
-function v.Char.is__symbol_tgl(c)
-
-  local rpl = ''
-
-  if     c == '/' then
-    rpl = '|'
-  elseif c == '|' then
-    rpl = '\\'
-  elseif c == '\\' then
-    rpl = '/'
-
-  elseif c == "'" then
-    rpl = '"'
-  elseif c == '"' then
-    rpl = "'"
-    -- rpl = '`'
-
-  elseif c == '`' then
-    rpl = "'"
-
-  elseif c == '-' then
-    rpl = '+'
-  elseif c == '+' then
-    rpl = '='
-  elseif c == '=' then
-    rpl = '*'
-  elseif c == '*' then
-    rpl = '-'
-
-  elseif c == ',' then
-    rpl = '.'
-  elseif c == '.' then
-    rpl = ','
-
-  elseif c == ';' then
-    rpl = ':'
-  elseif c == ':' then
-    rpl = ';'
-
-  elseif c == '?' then
-    rpl = '!'
-  elseif c == '!' then
-    rpl = '?'
-  end
-
-  return rpl
-end
-
-function v.Char.is__tgl_bracket_trn(c)
-
-  local rpl = ''
-
-  if     c == '<' then
-    rpl = '>'
-  elseif c == '>' then
-    rpl = '<'
-
-  elseif c == '{' then
-    rpl = '}'
-  elseif c == '}' then
-    rpl = '{'
-
-  elseif c == '[' then
-    rpl = ']'
-  elseif c == ']' then
-    rpl = '['
-
-  elseif c == '(' then
-    rpl = ')'
-  elseif c == ')' then
-    rpl = '('
-  end
-
-  return rpl
-end
-
-function v.Char.bracket_r(bracket_l)
-
-  local bracket_r
-
-  for idx, bracket_pair in pairs(v.Char.cnst.bracket.lst) do
-
-    if bracket_l == bracket_pair[1] then
-      bracket_r = bracket_pair[2]
-      break
-    end
-  end
-
-  return bracket_r
-end
-
-function v.Char.is__space(char)
-
-  local ret = bl.f
-
-  if char == ' ' or char == '\t' then
-    ret = bl.t
-  end
-
-  return ret
-end
-
-function v.Char.is__mb(char)
-
-  local ret = v.Str.is__ptn(char, v.Ptn.vim.mb_char_lst)
   return ret
 end
 

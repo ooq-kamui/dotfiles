@@ -169,7 +169,7 @@ end
 
 function v.Line.end__pad_space(line_num, fil_end_ruler_idx)
 
-  local line_str     = v.Line.str_by_line_num(line_num)
+  local line_str = v.Line.str_by_line_num(line_num)
 
   local line_str_len_ruler = v.Str.len_ruler(line_str)
   local space_len_byte     = fil_end_ruler_idx - line_str_len_ruler
@@ -185,5 +185,15 @@ end
 
 -- line cnd
 
--- ...
+function v.Line.is_str__emp(line_num)
+
+  local ret = bl.f
+
+  local line_str = v.Line.str_by_line_num(line_num)
+  local is__emp  = v.Str.is__emp(line_str)
+  if is__emp then
+    ret = bl.t
+  end
+  return ret
+end
 

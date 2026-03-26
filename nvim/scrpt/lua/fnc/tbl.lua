@@ -79,3 +79,13 @@ function v.Tbl.is_last(tbl, val)
   end
 end
 
+function v.Tbl.lst_by_2d_idx(tbl2d, idx)
+
+  local lst = {}
+
+  for _idx, val in pairs(tbl2d) do
+    v.Tbl.add(lst, tbl2d[_idx][idx])
+  end
+  return lst
+end
+

@@ -4,18 +4,25 @@
 
 ## nvim
 
-n f, skp line emp ( cursor mv )
-- at line end
+tbl tbl2d idx by val
+- return idx1, idx2
 
 
-local bracket_lst
-- refactoring
-  - bracket_l_lst, bracket_r_lst, fnc
-  - at char cls
-  - rpl
+char tgl
+- v.Char.symbol_tgl(c)
+  - def tgl grp lst
+
+char quote lst
+- cre
+
+
+x <c-o>, slctd __ expnd obj
+- cre
 
 
 nml.cmd def
+- rpl
+  - srch `Nml.exe('`
 
 
 osc52, err, and __ srch
@@ -23,8 +30,15 @@ osc52, err, and __ srch
 
 ## pwsh
 
-todo lst cre
-- xxx    ?
+todo
+- lst cre
+  - xxx ?
+
+
+## ai
+
+pixel-art
+- research, try
 
 
 ## aseprite

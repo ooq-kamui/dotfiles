@@ -60,7 +60,7 @@ v.Nml.n.cursor.mv.f_word_s = 'w'
 v.Nml.n.cursor.mv.f_space_not_s = 'W'
 -- v.Nml.n.dmy = 'wh'
 v.Nml.n.cursor.mv.f_word_e = 'e'
-v.Nml.n.cursor.mv.f_spce_not_e = 'E'
+v.Nml.n.cursor.mv.f_space_not_e = 'E'
 -- v.Nml.n.dmy = 'el'
 
 -- v.Nml.n.dmy = 'g'
