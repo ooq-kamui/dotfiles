@@ -25,15 +25,10 @@ v.Char.cnst.quote.lst = {"'", '"', '`'}
 v.Char.cnst.symbol = {}
 v.Char.cnst.symbol.tgl_grp_lst = {
   { '/', '|', [[\]],    },
-
   { "'", '"', '`',      },
-
   { '-', '+', '=', '*', },
-
   { ',', '.',           },
-
   { ';', ':',           },
-
   { '?', '!',           },
 }
 
@@ -54,52 +49,16 @@ end
 
 function v.Char.symbol_tgl(c)
 
-  -- v.Char.cnst.symbol.tgl_grp_lst
-
-
   local rpl = ''
 
-  if     c == '/' then
-    rpl = '|'
-  elseif c == '|' then
-    rpl = [[\]]
-  elseif c == [[\]] then
-    rpl = '/'
+  local idx1, idx2 = v.Tbl.tbl2d_idx(v.Char.cnst.symbol.tgl_grp_lst, c)
 
-  elseif c == "'" then
-    rpl = '"'
-  elseif c == '"' then
-    rpl = "'"
-    -- rpl = '`'
+  if not idx1 then return rpl end
 
-  elseif c == '`' then
-    rpl = "'"
+  local grp_lst = v.Char.cnst.symbol.tgl_grp_lst[idx1]
+  idx2 = v.Tbl.idx_inc_loop(grp_lst, idx2)
 
-  elseif c == '-' then
-    rpl = '+'
-  elseif c == '+' then
-    rpl = '='
-  elseif c == '=' then
-    rpl = '*'
-  elseif c == '*' then
-    rpl = '-'
-
-  elseif c == ',' then
-    rpl = '.'
-  elseif c == '.' then
-    rpl = ','
-
-  elseif c == ';' then
-    rpl = ':'
-  elseif c == ':' then
-    rpl = ';'
-
-  elseif c == '?' then
-    rpl = '!'
-  elseif c == '!' then
-    rpl = '?'
-  end
-
+  rpl = v.Char.cnst.symbol.tgl_grp_lst[idx1][idx2]
   return rpl
 end
 
@@ -242,14 +201,9 @@ function v.Char.is_pair__quote(c1, c2)
 
   local ret = bl.f
 
-  if     c1 == "'" and c2 == "'" then
-    ret = bl.t
-  elseif c1 == '"' and c2 == '"' then
-    ret = bl.t
-  elseif c1 == '`' and c2 == '`' then
+  if c1 == c2 and v.Tbl.is__in(v.Char.cnst.quote.lst, c1) then
     ret = bl.t
   end
-
   return ret
 end
 

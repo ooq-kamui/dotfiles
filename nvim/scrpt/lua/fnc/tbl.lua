@@ -46,6 +46,21 @@ function v.Tbl.idx(tbl, val)
   return nil
 end
 
+function v.Tbl.tbl2d_idx(tbl2d, val)
+
+  local idx1, idx2
+
+  for _idx1, tbl in pairs(tbl2d) do
+    for _idx2, _val in pairs(tbl) do
+      if _val == val then
+        idx1, idx2 = _idx1, _idx2
+        break
+      end
+    end
+  end
+  return idx1, idx2
+end
+
 function v.Tbl.join(tbl, dlm)
 
   ret = table.concat(tbl, dlm)
@@ -55,6 +70,25 @@ end
 function v.Tbl.srt(tbl, cmp_fnc)
 
   return table.sort(tbl, cmp_fnc)
+end
+
+function v.Tbl.lst_by_2d_idx(tbl2d, idx)
+
+  local lst = {}
+
+  for _idx, val in pairs(tbl2d) do
+    v.Tbl.add(lst, tbl2d[_idx][idx])
+  end
+  return lst
+end
+
+function v.Tbl.idx_inc_loop(tbl, idx)
+
+  idx = idx + 1
+  if idx > v.Tbl.len(tbl) then
+    idx = 1
+  end
+  return idx
 end
 
 -- cnd
@@ -77,15 +111,5 @@ function v.Tbl.is_last(tbl, val)
   else
     return bl.f
   end
-end
-
-function v.Tbl.lst_by_2d_idx(tbl2d, idx)
-
-  local lst = {}
-
-  for _idx, val in pairs(tbl2d) do
-    v.Tbl.add(lst, tbl2d[_idx][idx])
-  end
-  return lst
 end
 

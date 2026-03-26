@@ -109,7 +109,6 @@ scheme_lst.mac.recommend.h = {
   'Nord (Gogh)'                            ,
   'Nucolors (terminal.sexy)'               ,
   'Obsidian (Gogh)'                        ,
-  'OceanicMaterial'                        ,
   'OceanicNext (base16)'                   ,
   'OneHalfDark'                            ,
   'Outrun Dark (base16)'                   ,
@@ -207,6 +206,7 @@ scheme_lst.mac.recommend.l = {
   'Teerb'                                  ,
   'Isotope (dark) (terminal.sexy)'         ,
   'Nocturnal Winter'                       ,
+  'OceanicMaterial'                        ,
   -- slctd
   'Ef-Cherie'                              ,
   -- git

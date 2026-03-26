@@ -4,20 +4,12 @@
 
 ## nvim
 
-tbl tbl2d idx by val
-- return idx1, idx2
-
-
-char tgl
-- v.Char.symbol_tgl(c)
-  - def tgl grp lst
-
-char quote lst
-- cre
-
-
 x <c-o>, slctd __ expnd obj
 - cre
+  - chain . :
+
+
+x F, expnd space not
 
 
 nml.cmd def
@@ -28,11 +20,8 @@ nml.cmd def
 osc52, err, and __ srch
 
 
-## pwsh
-
-todo
-- lst cre
-  - xxx ?
+buf opn splt, err
+- log, confirm
 
 
 ## ai
@@ -47,6 +36,13 @@ try
 doc
 
 pixel ai
+
+
+## pwsh
+
+todo
+- lst cre
+  - xxx ?
 
 
 ## nvim
