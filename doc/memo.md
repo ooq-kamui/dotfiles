@@ -8,9 +8,17 @@ nml.cmd def, rpl, tidy
 - srch `Nml.exe('`
 
 
-v.Slctd.str__expnd_var_f()
+v.Slctd.str__ynk() > str __ rpl ynk
+
+
 v.Slctd.str__expnd_char_pair()
 - refactoring
+
+v.Slctd.str__expnd_var_f()
+- refactoring
+
+
+normal gd, try-rsrch, jmp var def
 
 
 osc52, err, and __ srch ?

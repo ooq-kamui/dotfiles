@@ -1384,8 +1384,8 @@ end, {expr = bl.t})
 keymap__('x', 'W', v.Slctd.str_edge_out_char__type_ch)
 
 -- slctd str edge out __ ins space
-keymap__('x', 'I' , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
--- keymap__('x', 'ru', ':lua v.Slctd.str_edge_out__ins_space()<cr>')
+keymap__('x', '<c-u>', ':lua v.Slctd.str_edge_out__ins_space()<cr>')
+keymap__('x', 'I',     ':lua v.Slctd.str_edge_out__ins_space()<cr>')
 
 -- slctd str edge out __ ins markdown strikethrough
 keymap__('x', '~', ':lua v.Slctd.str_edge_out__ins_markdown_strikethrough()<cr>')
@@ -1497,21 +1497,7 @@ end, {expr = bl.t})
 keymap__('x', '<c-m>', ':lua v.Slctd.line_srch_str__rpl_cr()<cr>')
 
 -- v box edge char shft in
-keymap__('x', '<c-h>', function()
-  if v.Mode.is__box() then
-    return ':lua v.Slctd.box_edge_r_char__shft_in()<cr>'
-  else
-    return ':lua v.Slctd.str__reduce_dlm_l("_")<cr>'
-  end
-end, {expr = bl.t})
-
-keymap__('x', '<c-u>', function()
-  if v.Mode.is__box() then
-    return ':lua v.Slctd.box_edge_r_char__shft_in()<cr>'
-  else
-    return ':lua v.Slctd_str_edge_out__ins(" ")<cr>'
-  end
-end, {expr = bl.t})
+keymap__('x', 'H', ':lua v.Slctd.box_edge_r_char__shft_in()<cr>')
 
 -- fzf buf
 keymap__('x', '<leader>i', ':lua v.Fzf.buf_by_slctd_str()<cr>')

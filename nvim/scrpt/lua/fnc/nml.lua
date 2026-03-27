@@ -14,11 +14,13 @@ function v.Nml.ins(str)
   v.Cmd.cmd('exe "normal! ' .. 'i' .. str .. '"')
 end
 
+-- 
+-- normal
+-- 
+
 v.Nml.n = {}
 
 v.Nml.n.esc = '<esc>'
-
-v.Nml.n.srch = '/'
 
 -- 
 -- cursor
@@ -80,22 +82,30 @@ v.Nml.n.win.splt.nxt       = '<c-w>w>'
 -- v.Nml.n.dmy = 'G'
 -- v.Nml.n.dmy = 'I '
 -- v.Nml.n.dmy = 'Jj'
--- v.Nml.n.dmy = 'N'
 -- v.Nml.n.dmy = 'O'
 -- v.Nml.n.dmy = 'o'
 -- v.Nml.n.dmy = 'P'
--- v.Nml.n.dmy = 'V'
+
 -- v.Nml.n.dmy = '[m'
 -- v.Nml.n.dmy = '[{'
 -- v.Nml.n.dmy = '`[v`]h'
 -- v.Nml.n.dmy = 'a <bs><esc>'
 
--- v.Nml.n.dmy = 'n'
--- v.Nml.n.dmy = 'r'
--- v.Nml.n.dmy = 'v'
 -- v.Nml.n.dmy = 'viw'
 -- v.Nml.n.dmy = 'v~'
 -- v.Nml.n.dmy = '|'
+
+-- 
+-- srch
+-- 
+
+v.Nml.n.srch = {}
+v.Nml.n.srch.exe = '/'
+v.Nml.n.srch.nxt_f = 'n'
+v.Nml.n.srch.nxt_b = 'N'
+v.Nml.n.srch.nxt_f_slct = 'g' .. 'n'
+v.Nml.n.srch.nxt_b_slct = 'g' .. 'N'
+
 
 -- 
 -- rgstr
@@ -154,13 +164,22 @@ v.Nml.n.edit.paste.pre = 'P'
 
 -- v.Nml.n.edit.xx = '""' .. 'P'
 
+
 -- 
 -- mode
 -- 
 
 v.Nml.n.mode = {}
-v.Nml.n.mode.box = '<c-v>'
-v.Nml.n.mode.ins = 'i'
+v.Nml.n.mode.v_str  = 'v'
+v.Nml.n.mode.v_line = 'V'
+v.Nml.n.mode.v_box  = '<c-v>'
+
+v.Nml.n.mode.ins  = 'i'
+
+v.Nml.x = {}
+v.Nml.x.mode = {}
+v.Nml.x.mode.v_line = 'V'
+v.Nml.x.mode.v_box  = '<c-v>'
 
 
 -- 
@@ -169,7 +188,6 @@ v.Nml.n.mode.ins = 'i'
 
 v.Nml.n.slctd = {}
 
-v.Nml.x = {}
 v.Nml.x.slctd = {}
 
 v.Nml.x.slctd.re = 'gv'
@@ -186,6 +204,10 @@ v.Nml.x.cursor.mv = {}
 v.Nml.x.cursor.mv.edge_tgl = 'o'
 
 v.Nml.x.cursor.mv.f_word_e = 'e'
+
+
+v.Nml.x.edit = {}
+v.Nml.x.edit.fil_char = 'r'
 
 
 -- 

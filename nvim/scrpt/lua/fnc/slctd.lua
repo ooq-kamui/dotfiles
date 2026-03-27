@@ -37,20 +37,21 @@ function v.Slctd.mode__tgl()
 
   if v.Mode.is__box() then
     if v.Slctd.is_line__mlt() then
-      v.Nml.exe('V')
+      v.Nml.exe(v.Nml.x.mode.v_line)
     else
-      v.Nml.exe([[<esc>]])
-      v.Nml.exe('v')
+      v.Slctd.__clr()
+      v.Nml.exe(v.Nml.n.mode.v_str)
     end
   else
-    v.Nml.exe('V')
+    v.Nml.exe(v.Nml.x.mode.v_line)
   end
 end
 
 function v.Slctd.mode__box()
 
   v.Slctd.__ltst()
-  v.Nml.exe('<c-v>')
+
+  v.Nml.exe(v.Nml.x.mode.v_box)
 end
 
 -- slctd str
@@ -59,11 +60,11 @@ function v.Slctd.str() -- range
 
   v.Slctd.__ltst()
 
-  v.Nml.exe('"zy')
+  v.Nml.exe(v.Nml.n.rgstr.nul .. v.Nml.n.edit.ynk) -- "zy
 
   v.Slctd.__ltst()
 
-  return v.Rgstr.get('z')
+  return v.Rgstr.get(v.Nml.n.rgstr.key.nul)
 end
 
 function v.Slctd.str_len_char() -- range -- use not
@@ -84,7 +85,7 @@ end
 
 function v.Slctd.__cursor_c_char()
 
-  v.Nml.exe('v')
+  v.Nml.exe(v.Nml.n.mode.v_str)
 end
 
 function v.Slctd.__cursor_word()
@@ -332,16 +333,14 @@ function v.Slctd.str__expnd_ptn_b(ptn_vim) -- range
 end
 
 function v.Slctd.str__expnd_edge_out() -- range
-  -- v.Log.val('str__expnd_edge_out')
 
   v.Slctd.__ltst()
 
   v.Slctd.cursor__mv_edge_r()
-  v.Nml.exe('l')
+  v.Nml.exe(v.Nml.n.cursor.mv.f)
 
-  -- v.Slctd.cursor__mv_edge_tgl()
   v.Slctd.cursor__mv_edge_l()
-  v.Nml.exe('h')
+  v.Nml.exe(v.Nml.n.cursor.mv.b)
 
   v.Slctd.cursor__mv_edge_tgl()
 end
@@ -471,7 +470,8 @@ end
 function v.Slctd.str__ynk() -- range
 
   v.Slctd.__ltst()
-  v.Nml.exe('"zd')
+
+  v.Nml.exe(v.Nml.n.rgstr.nul .. v.Nml.n.edit.del) -- "zd
   v.Cursor.__ins_ynk()
 end
 
@@ -550,14 +550,12 @@ function v.Slctd.__fil(char) -- range
 
   if char == '|' then
     char = [[\<bar>]]
-    -- char = '\\<bar>'
   end
 
   v.Slctd.__ltst()
 
-  local nml_cmd = 'r' .. char
+  local nml_cmd = v.Nml.x.edit.fil_char .. char
   v.Nml.exe(nml_cmd)
-  -- v.Cmd.cmd('exe "normal! ' .. nml_cmd .. '"')
 
   v.Slctd.__ltst()
 end
@@ -776,7 +774,7 @@ end
 
 function v.Slctd.str_edge_out__ins_space()
 
-  v.Slctd.str_edge_out__ins(" ")
+  v.Slctd.str_edge_out__ins(' ')
 end
 
 function v.Slctd.str_edge_out__ins_markdown_strikethrough()
@@ -1090,15 +1088,14 @@ function v.Slctd.line__del() -- use not, todo dev
   v.Rgstr.clp__ynk()
 end
 
-function v.Slctd.line__cursor_line()
+function v.Slctd.line__cursor_line() -- use not
 
-  v.Nml.exe('V')
+  v.Nml.exe(v.Nml.n.mode.v_line)
 end
 
-function v.Slctd.line__by_line_rng(line_s_num, line_e_num)
+function v.Slctd.line__by_line_rng(line_s_num, line_e_num) -- use not
 
   v.Cursor.__mv_by_line_num(line_s_num)
-  -- v.Nml.exe('V')
   v.Slctd.line__cursor_line()
   v.Cursor.__mv_by_line_num(line_e_num)
 end
