@@ -1180,7 +1180,7 @@ keymap__('x', 'l', 'l')
 
 -- cursor mv char back
 keymap__('x', '<c-s>', 'h')
-keymap__('x', '<c-o>', 'h')
+-- keymap__('x', '<c-o>', 'h')
 
 -- cursor mv word back
 -- keymap__('x', 'xx', 'b')
@@ -1241,7 +1241,7 @@ keymap__('x', '<c-f>', ':lua v.Slctd.str__expnd_srch()<cr>')
 keymap__('x', 'N'    , ':lua v.Slctd.str__expnd_srch()<cr>')
 
 -- slctd expnd space not forward
-keymap__('x', 'F', ':lua v.Slctd.str__expnd_word_f()<cr>')
+keymap__('x', 'F', ':lua v.Slctd.str__expnd_space_not_f()<cr>')
 
 -- slctd expnd word forward
 -- keymap__('x', 'xx', ':lua v.Slctd.str__expnd_word_f()<cr>')
@@ -1249,6 +1249,8 @@ keymap__('x', 'F', ':lua v.Slctd.str__expnd_word_f()<cr>')
 -- slctd expnd char pair
 keymap__('x', '<c-i>', ':lua v.Slctd.str__expnd_char_pair()<cr>')
 keymap__('x', '<tab>', ':lua v.Slctd.str__expnd_char_pair()<cr>') -- tab : del not
+
+keymap__('x', '<c-o>', ':lua v.Slctd.str__expnd_var_f()<cr>')
 
 -- slctd expnd bracket forward
 -- keymap__('x', 'xx', ':lua v.Slctd.str__expnd_bracket_swtch()<cr>')
@@ -1383,8 +1385,7 @@ keymap__('x', 'W', v.Slctd.str_edge_out_char__type_ch)
 
 -- slctd str edge out __ ins space
 keymap__('x', 'I' , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
-keymap__('x', 'ru', ':lua v.Slctd.str_edge_out__ins_space()<cr>')
--- keymap__('x', 'O' , ':lua v.Slctd.str_edge_out__ins_space()<cr>')
+-- keymap__('x', 'ru', ':lua v.Slctd.str_edge_out__ins_space()<cr>')
 
 -- slctd str edge out __ ins markdown strikethrough
 keymap__('x', '~', ':lua v.Slctd.str_edge_out__ins_markdown_strikethrough()<cr>')

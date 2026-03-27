@@ -64,7 +64,7 @@ require("lazy").setup({
       --       'gitignore',
       --       'bash',
       --     }
-      --     if v.Tbl.is__in(vim.bo.filetype, ext_excld_lst) then return end
+      --     if v.Tbl.is__in(ext_excld_lst, vim.bo.filetype) then return end
       -- 
       --     local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
       --     if lang then

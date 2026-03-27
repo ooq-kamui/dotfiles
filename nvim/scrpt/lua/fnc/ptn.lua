@@ -5,11 +5,9 @@ v.Ptn = {}
 
 v.Ptn.vim = {}
 
-v.Ptn.vim.nl      = [[\n]]
 v.Ptn.vim.nl_char = [[\n]]
--- v.Ptn.vim.cr = '[' .. [[\r\n]] .. ']'
 
-v.Ptn.vim.space_char     = [[\s]]
+v.Ptn.vim.space_char = [[\s]]
 v.Ptn.vim.space_str      = v.Ptn.vim.space_char .. [[\+]]
 v.Ptn.vim.space_entire   = '^' .. v.Ptn.vim.space_str .. '$'
 
@@ -20,26 +18,33 @@ v.Ptn.vim.line_top_space_ptn = '^' .. v.Ptn.vim.space_char .. '*'
 v.Ptn.vim.line_end_space_ptn =        v.Ptn.vim.space_char .. '*' .. '$' -- '[ \\t]\\+$'
 
 v.Ptn.vim.space_not_char = [[\S]]
-v.Ptn.vim.space_not_str  = v.Ptn.vim.space_not_char .. [[\+]]
+v.Ptn.vim.space_not_str      = v.Ptn.vim.space_not_char .. [[\+]]
 
-v.Ptn.vim.num_entire     = '^' .. [[\d\+]] .. '$'
+v.Ptn.vim.num_entire    = '^' .. [[\d\+]] .. '$'
 
-v.Ptn.vim.alph_char = [[\a]]
+v.Ptn.vim.alph_char_set = [[\a]] -- [a-zA-Z]
 
-v.Ptn.vim.word_char = [[\w]]
+v.Ptn.vim.word_char_set = [[\w]] -- [a-zA-Z0-9_]
 
-v.Ptn.vim.mb_char_lst = '[^' .. [[\x01-\x7E]] .. ']' -- ascii not
+v.Ptn.vim.mb_char       = '[^' .. [[\x01-\x7E]] .. ']' -- ^ascii
 
-v.Ptn.vim.quote_char_lst    = '[' .. "'" .. '"`' .. ']'
-v.Ptn.vim.word_dlm_char_lst = '[' .. '_ABCDEFGHIJKLMNOPQRSTUVWXYZ' .. ']'
+v.Ptn.vim.quote_char    = '[' .. "'" .. '"`' .. ']'
+
+v.Ptn.vim.word_dlm_02_char  = '[' .. '_ABCDEFGHIJKLMNOPQRSTUVWXYZ' .. ']'
 
 v.Ptn.vim.markdown_heading = '^' .. [[#\+ ]]
 v.Ptn.vim.markdown_itm     = '^' .. [[\s*- ]]
 
-v.Ptn.vim.fnc_def = {}
-v.Ptn.vim.fnc_def.lua    = '^function'
-v.Ptn.vim.fnc_def.python = '^ *def'
-v.Ptn.vim.fnc_def.dflt   = '^function'
+v.Ptn.vim.fnc = {}
+v.Ptn.vim.fnc.def = {}
+v.Ptn.vim.fnc.def.lua    = '^function'
+v.Ptn.vim.fnc.def.python = '^ *def'
+v.Ptn.vim.fnc.def.dflt   = '^function'
+
+v.Ptn.vim.var = {}
+v.Ptn.vim.var.char = '[' .. 'a-zA-Z0-9_:' .. [[\.]] .. ']'
+v.Ptn.vim.var.str  = v.Ptn.vim.var.char .. [[\+]]
+
 
 -- lua
 

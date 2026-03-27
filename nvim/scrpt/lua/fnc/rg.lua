@@ -104,7 +104,7 @@ end
 function v.Rg.rslt_ar_by_ptn(ptn_rg, opt)
 
   local rg_rslt_txt = v.Rg.rslt_txt_by_ptn(ptn_rg, opt)
-  local rg_rslt_ar  = v.Str.splt(rg_rslt_txt, v.Ptn.vim.nl)
+  local rg_rslt_ar  = v.Str.splt(rg_rslt_txt, v.Ptn.vim.nl_char)
   return rg_rslt_ar
 end
 

@@ -4,24 +4,16 @@
 
 ## nvim
 
-x <c-o>, slctd __ expnd obj
-- cre
-  - chain . :
+nml.cmd def, rpl, tidy
+- srch `Nml.exe('`
 
 
-x F, expnd space not
+v.Slctd.str__expnd_var_f()
+v.Slctd.str__expnd_char_pair()
+- refactoring
 
 
-nml.cmd def
-- rpl
-  - srch `Nml.exe('`
-
-
-osc52, err, and __ srch
-
-
-buf opn splt, err
-- log, confirm
+osc52, err, and __ srch ?
 
 
 ## ai
@@ -43,6 +35,11 @@ pixel ai
 todo
 - lst cre
   - xxx ?
+
+
+## wez
+
+font , cs-- , cs-^
 
 
 ## nvim

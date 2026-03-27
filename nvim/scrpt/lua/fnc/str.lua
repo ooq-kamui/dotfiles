@@ -614,7 +614,7 @@ end
 
 function v.Str.is__mb_in(str)
 
-  local ret = v.Str.is__ptn(str, v.Ptn.vim.mb_char_lst)
+  local ret = v.Str.is__ptn(str, v.Ptn.vim.mb_char)
   return ret
 end
 

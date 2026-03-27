@@ -91,7 +91,7 @@ function v.Slctd.__cursor_word()
 
   local c = v.Cursor.c_char()
 
-  if     v.Str.is__ptn(c, v.Ptn.vim.word_char) then
+  if     v.Str.is__ptn(c, v.Ptn.vim.word_char_set) then
     v.Nml.exe('viw')
 
   elseif v.Str.is__ptn(c, v.Ptn.vim.space_char) then
@@ -282,7 +282,13 @@ function v.Slctd.str__expnd_word_f() -- range
 
   v.Slctd.__ltst()
 
-  v.Nml.exe(v.Nml.n.cursor.mv.f_word_e)
+  v.Nml.exe(v.Nml.x.cursor.mv.f_word_e)
+end
+
+function v.Slctd.str__expnd_var_f() -- range
+
+  local end_flg = bl.t
+  local st = v.Slctd.str__expnd_ptn_f(v.Ptn.vim.var.str, end_flg)
 end
 
 function v.Slctd.str__expnd_space_not_f() -- range
@@ -298,7 +304,7 @@ function v.Slctd.str__expnd_space_f() -- range
 
   if v.Cursor.is_byte_idx__line_end_inr() then return end
 
-  v.Nml.exe('wh')
+  v.Nml.exe(v.Nml.n.cursor.mv.f_space_e)
 end
 
 function v.Slctd.str__expnd_srch() -- range
@@ -308,11 +314,12 @@ function v.Slctd.str__expnd_srch() -- range
   v.Cursor.__mv_by_srch_str('f', bl.t)
 end
 
-function v.Slctd.str__expnd_ptn_f(ptn_vim) -- range
+function v.Slctd.str__expnd_ptn_f(ptn_vim, end_flg) -- range
 
   v.Slctd.__ltst()
+
   v.Slctd.cursor__mv_edge_r()
-  local ret = v.Cursor.__mv_by_ptn(ptn_vim, 'f')
+  local ret = v.Cursor.__mv_by_ptn(ptn_vim, 'f', end_flg)
   return ret
 end
 
@@ -392,18 +399,18 @@ function v.Slctd.str__expnd_char_pair() -- range
 
       char = v.Slctd.str_expnd_char_pair_lst_r[char_l_o_expnd_idx]
       v.Slctd.str__expnd_ptn_f(char)
-      v.Nml.exe('h')
+      v.Nml.exe(v.Nml.n.cursor.mv.b)
     end
 
   elseif ( not char_l_o_expnd_idx ) and char_r_o_expnd_idx then
 
     v.Slctd.str__expnd_ptn_b(v.Slctd.str_expnd_char_ptn_l)
-    v.Nml.exe('l')
+    v.Nml.exe(v.Nml.n.cursor.mv.f)
 
   else
     st = v.Slctd.str__expnd_ptn_f(v.Slctd.str_expnd_char_ptn_r)
     if st then
-      v.Nml.exe('h')
+      v.Nml.exe(v.Nml.n.cursor.mv.b)
     end
   end
 end
@@ -752,7 +759,7 @@ function v.Slctd.str_edge_out__ins(str) -- range
   local c_r = str
   local bracket_l_lst = v.Char.bracket_l_lst()
 
-  if v.Tbl.is__in(str, bracket_l_lst) then
+  if v.Tbl.is__in(bracket_l_lst, str) then
     c_r = v.Char.bracket_r(str)
   end
 
@@ -799,7 +806,7 @@ function v.Slctd.str_edge_out_char__tgl_swtch() -- range
   local c_l = v.Slctd.str_edge_l_out_char()
   local c_r = v.Slctd.str_edge_r_out_char()
 
-  if v.Tbl.is__in(c_l, v.Char.cnst.quote.lst) and c_l == c_r then
+  if v.Tbl.is__in(v.Char.cnst.quote.lst, c_l) and c_l == c_r then
     v.Slctd.str_edge_out_quote__tgl()
 
   elseif c_l == '(' and c_r == ')' then
@@ -980,7 +987,7 @@ end
 
 function v.Slctd.is_str_edge_char__quote()
 
-  local ret = v.Slctd.is_str_edge_char__(v.Ptn.vim.quote_char_lst)
+  local ret = v.Slctd.is_str_edge_char__(v.Ptn.vim.quote_char)
   return ret
 end
 
@@ -1007,7 +1014,7 @@ end
 
 function v.Slctd.is_str_edge_out_char__quote()
 
-  local ret = v.Slctd.is_str_edge_out_char__(v.Ptn.vim.quote_char_lst)
+  local ret = v.Slctd.is_str_edge_out_char__(v.Ptn.vim.quote_char)
   return ret
 end
 

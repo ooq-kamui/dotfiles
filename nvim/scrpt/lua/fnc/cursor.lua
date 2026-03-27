@@ -293,7 +293,7 @@ end
 
 function v.Cursor.__mv_word_dlm_f()
 
-  local ptn_vim  = v.Ptn.vim.word_dlm_char_lst
+  local ptn_vim  = v.Ptn.vim.word_dlm_02_char
   local line_num = v.Cursor.line_num()
   local opt      = 'zW' -- z: srch start line top, W: file end stop
   local st = v.Srch.srch(ptn_vim, opt, line_num)
@@ -423,7 +423,7 @@ end
 
 function v.Cursor.__mv_v_jmp_to_char(drct_cmd_nml, is_space_stop)
 
-  if not v.Tbl.is__in(drct_cmd_nml, {'k', 'j'}) then
+  if not v.Tbl.is__in({'k', 'j'}, drct_cmd_nml) then
     return
   end
 
@@ -458,7 +458,7 @@ end
 
 function v.Cursor.__mv_v_jmp_to_space(drct_cmd_nml)
 
-  if not v.Tbl.is__in(drct_cmd_nml, {'k', 'j'}) then
+  if not v.Tbl.is__in({'k', 'j'}, drct_cmd_nml) then
     return
   end
 
@@ -490,7 +490,7 @@ end
 
 function v.Cursor.__mv_v_jmp(drct_cmd_nml)
 
-  if not v.Tbl.is__in(drct_cmd_nml, {'k', 'j'}) then
+  if not v.Tbl.is__in({'k', 'j'}, drct_cmd_nml) then
     return
   end
 
@@ -1074,7 +1074,7 @@ end
 
 function v.Cursor.is_c_char__alph()
 
-  local ret = v.Cursor.is_c_char__ptn(v.Ptn.vim.alph_char)
+  local ret = v.Cursor.is_c_char__ptn(v.Ptn.vim.alph_char_set)
   return ret
 end
 

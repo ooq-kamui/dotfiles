@@ -40,6 +40,11 @@ function v.Buf.Opn_splt(file_path, line_num, width_byte_idx)
   end
 
   local win_id = v.Win.win_id_by_file_path(file_path)
+  if not win_id then
+    v.Log.log('file_path:', file_path)
+    v.Buf.opn(file_path, line_num)
+    return
+  end
 
   v.Cursor.__mv_by_win_id(win_id)
 
@@ -314,7 +319,7 @@ end
 
 function v.Buf.is_file_type__in(type_lst)
 
-  local ret = v.Tbl.is__in(v.Buf.file_type(), type_lst)
+  local ret = v.Tbl.is__in(type_lst, v.Buf.file_type())
   return ret
 end
 
@@ -356,12 +361,15 @@ v.Win = {}
 function v.Win.win_id_by_file_path(file_path)
 
   local buf_num    = vim.fn.bufnr(file_path)
+  v.Log.log('file_path:', file_path)
+  v.Log.log('buf_num:', buf_num)
+
   local win_id_lst = vim.fn.win_findbuf(buf_num)
   v.Log.log('win_id_lst')
   v.Log.tbl(win_id_lst)
 
-  local win_id     = v.Tbl.last(win_id_lst)
-  v.Log.log('buf_num:', buf_num, ', win_id:', win_id)
+  local win_id = v.Tbl.last(win_id_lst)
+  v.Log.log('win_id:', win_id)
   return win_id
 end
 
@@ -369,12 +377,12 @@ end
 
 function v.Win.splt__quit() -- alias
 
-  v.Nml.exe('<c-w>c>')
+  v.Nml.exe(v.Nml.n.win.splt.quit)
 end
 
 function v.Win.splt__quit_othr()
 
-  v.Nml.exe('<c-w>o>')
+  v.Nml.exe(v.Nml.n.win.splt.quit_othr)
 end
 
 function v.Win.__splt_h() -- alias
@@ -397,7 +405,7 @@ end
 
 function v.Win.splt_cursor__mv_nxt() -- alias
 
-  v.Nml.exe('<c-w>w>')
+  v.Nml.exe(v.Nml.n.win.splt.nxt)
 end
 
 function v.Win.splt_width__add(col_num)

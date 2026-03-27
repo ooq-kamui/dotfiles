@@ -83,11 +83,11 @@ function v.Srch.str_vim_to_word1(str_vim)
     str_vim = v.Srch.str_vim()
   end
 
-  if v.Str.is__ptn(str_vim, '^' .. v.Ptn.vim.word_char       ) then
+  if v.Str.is__ptn(str_vim, '^' .. v.Ptn.vim.word_char_set       ) then
     str_vim = [[\<]] .. str_vim
   end
 
-  if v.Str.is__ptn(str_vim,        v.Ptn.vim.word_char .. '$') then
+  if v.Str.is__ptn(str_vim,        v.Ptn.vim.word_char_set .. '$') then
     str_vim =           str_vim .. [[\>]]
   end
 
@@ -187,13 +187,13 @@ function v.Srch.str_vim__fnc_def()
   local file_type = v.Buf.file_type()
 
   if     file_type == 'lua'    then
-    v.Srch.str_vim__ptn(v.Ptn.vim.fnc_def.lua   )
+    v.Srch.str_vim__ptn(v.Ptn.vim.fnc.def.lua   )
 
   elseif file_type == 'python' then
-    v.Srch.str_vim__ptn(v.Ptn.vim.fnc_def.python)
+    v.Srch.str_vim__ptn(v.Ptn.vim.fnc.def.python)
 
   else
-    v.Srch.str_vim__ptn(v.Ptn.vim.fnc_def.dflt  )
+    v.Srch.str_vim__ptn(v.Ptn.vim.fnc.def.dflt  )
   end
 end
 

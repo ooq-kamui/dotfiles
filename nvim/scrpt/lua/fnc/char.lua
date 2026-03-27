@@ -121,7 +121,7 @@ end
 
 function v.Char.is__mb(char)
 
-  local ret = v.Str.is__ptn(char, v.Ptn.vim.mb_char_lst)
+  local ret = v.Str.is__ptn(char, v.Ptn.vim.mb_char)
   return ret
 end
 
@@ -129,7 +129,7 @@ function v.Char.is__l(lr)
 
   local ret = bl.f
 
-  if v.Tbl.is__in(lr, v.Char.cnst.l_lst) then
+  if v.Tbl.is__in(v.Char.cnst.l_lst, lr) then
     ret = bl.t
   end
 
@@ -141,7 +141,7 @@ function v.Char.is__r(lr)
 
   local ret = bl.f
 
-  if v.Tbl.is__in(lr, v.Char.cnst.r_lst) then
+  if v.Tbl.is__in(v.Char.cnst.r_lst, lr) then
     ret = bl.t
   end
 

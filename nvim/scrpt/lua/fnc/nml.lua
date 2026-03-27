@@ -58,10 +58,10 @@ v.Nml.n.cursor.mv.b_word_e = 'ge'
 -- v.Nml.n.dmy = 'gel'
 v.Nml.n.cursor.mv.f_word_s = 'w'
 v.Nml.n.cursor.mv.f_space_not_s = 'W'
--- v.Nml.n.dmy = 'wh'
 v.Nml.n.cursor.mv.f_word_e = 'e'
 v.Nml.n.cursor.mv.f_space_not_e = 'E'
 -- v.Nml.n.dmy = 'el'
+v.Nml.n.cursor.mv.f_space_e = v.Nml.n.cursor.mv.f_word_s .. v.Nml.n.cursor.mv.b -- 'wh'
 
 -- v.Nml.n.dmy = 'g'
 -- v.Nml.n.dmy = 'gg'
@@ -72,8 +72,9 @@ v.Nml.n.cursor.mv.f_space_not_e = 'E'
 
 v.Nml.n.win = {}
 v.Nml.n.win.splt = {}
-v.Nml.n.win.splt.quit = '<c-w>c>'
-v.Nml.n.win.splt.nxt  = '<c-w>w>'
+v.Nml.n.win.splt.quit      = '<c-w>c>'
+v.Nml.n.win.splt.quit_othr = '<c-w>o>'
+v.Nml.n.win.splt.nxt       = '<c-w>w>'
 
 
 -- v.Nml.n.dmy = 'G'
@@ -183,6 +184,8 @@ v.Nml.x.slctd.re = 'gv'
 v.Nml.x.cursor = {}
 v.Nml.x.cursor.mv = {}
 v.Nml.x.cursor.mv.edge_tgl = 'o'
+
+v.Nml.x.cursor.mv.f_word_e = 'e'
 
 
 -- 
