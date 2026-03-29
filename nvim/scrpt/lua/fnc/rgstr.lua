@@ -82,10 +82,7 @@ end
 
 function v.Rgstr.ynk__cursor_line()
 
-  v.Nml.exe('"ayy') -- refactoring
-  -- line_str = Cursor.line_str()
-  -- let @a = line_str
-
+  v.Nml.exe(v.Nml.n.rgstr.main .. v.Nml.n.edit.line.ynk) -- "ayy
   v.Rgstr.clp__ynk()
 end
 
@@ -135,7 +132,8 @@ end
 
 function v.Rgstr.ynk__add_slctd()
 
-  v.Nml.exe('gv"Ay')
+  v.Nml.exe(v.Nml.n.slct.re) -- gv
+  v.Nml.exe(v.Nml.n.rgstr.main_add .. v.Nml.x.edit.ynk) -- "Ay
   v.Rgstr.clp__ynk()
 end
 

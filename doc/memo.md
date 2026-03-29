@@ -4,21 +4,8 @@
 
 ## nvim
 
-nml.cmd def, rpl, tidy
-- srch `Nml.exe('`
-
-
-v.Slctd.str__ynk() > str __ rpl ynk
-
-
 v.Slctd.str__expnd_char_pair()
 - refactoring
-
-v.Slctd.str__expnd_var_f()
-- refactoring
-
-
-normal gd, try-rsrch, jmp var def
 
 
 osc52, err, and __ srch ?
@@ -28,6 +15,7 @@ osc52, err, and __ srch ?
 
 pixel-art
 - research, try
+  - xxx
 
 
 ## aseprite
@@ -43,11 +31,6 @@ pixel ai
 todo
 - lst cre
   - xxx ?
-
-
-## wez
-
-font , cs-- , cs-^
 
 
 ## nvim

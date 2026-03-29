@@ -21,7 +21,8 @@ v.Dir.c.nvim_lua_key_map_file_path   = v.Dir.c.nvim_lua_etc_dir .. '/key-map.lua
 v.Dir.c.nvim_lua_fnc_basic_file_path = v.Dir.c.nvim_lua_fnc_dir .. '/fnc-basic.lua'
 v.Dir.c.nvim_lua_plg_fzf_file_path   = v.Dir.c.nvim_lua_fnc_dir .. '/fnc-plg-fzf.lua'
 
-v.Dir.c.cheat_sheet_file_path = v.Dir.c.nvim_lua_dir .. '/txt/cheat-sheet.txt'
+v.Dir.c.txt_ref_file_path            = v.Dir.c.nvim_lua_dir .. '/txt/txt-ref.txt'
+-- v.Dir.c.cheat_sheet_file_path = v.Dir.c.nvim_lua_dir .. '/txt/cheat-sheet.txt'
 
 function v.Dir.pth()
 

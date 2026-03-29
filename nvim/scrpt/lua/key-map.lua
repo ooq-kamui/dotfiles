@@ -336,7 +336,8 @@ keymap__('n', ':e', ':set encoding?')
 -- keymap__('n', 'xx', ':lua v.Buf.opn_nvim_init()<cr>')
 
 -- opn cheat sheet
-keymap__('n', '<leader>s', ':lua v.Buf.opn_cheat_sheet()<cr>')
+keymap__('n', '<leader>s', ':lua v.Buf.opn_txt_ref()<cr>')
+keymap__('n', '<leader>v', ':lua v.Buf.opn_txt_ref()<cr>')
 
 -- opn memo
 keymap__('n', 'gm', ':lua v.Buf.opn_memo()<cr>')
@@ -407,7 +408,10 @@ keymap__('n', '<c-s>', 'h')
 keymap__('n', 'f', ':lua v.Cursor.__mv_word_f()<cr>')
 
 -- cursor mv space not - forward
-keymap__('n', 'F', ':lua v.Cursor.__mv_space_not_f()<cr>')
+-- keymap__('n', '<c-f>', ':lua v.Cursor.__mv_space_not_f()<cr>')
+
+-- cursor mv var - forward
+keymap__('n', '<c-f>', ':lua v.Cursor.__mv_var_f()<cr>')
 
 -- cursor mv word - back
 keymap__('n', 'o', ':lua v.Cursor.__mv_word_b()<cr>')
@@ -415,18 +419,17 @@ keymap__('n', 'o', ':lua v.Cursor.__mv_word_b()<cr>')
 -- cursor mv word - back pre
 -- keymap__('n', 'xx', ':lua v.Cursor.__mv_word_b_pre()<cr>')
 
--- cursor mv word dlm _ forward
+-- cursor mv word dlm ( camel or _ ) - forward
+keymap__('n', '_', ':lua v.Cursor.__mv_word_dlm_f()<cr>')
+
+-- cursor mv word dlm _ - forward
 -- keymap__('n', 'xx', 'f_')
--- keymap__('n', 'xx', 'f_l')
 
 -- cursor mv word dlm _ back
 keymap__('n', '<c-o>', 'hT_')
 keymap__('n', '<c-_>', 'hT_')
 
--- cursor mv word dlm ( camel or _ )  -  forward
-keymap__('n', '<c-f>', ':lua v.Cursor.__mv_word_dlm_f()<cr>')
-
--- cursor mv line u word col  -  forward
+-- cursor mv line u word col - forward
 -- keymap__('n', 'xx', ':lua v.Cursor.__mv_line_u_word_byte_idx()<cr>')
 
 -- cursor mv fnc name
@@ -436,7 +439,7 @@ keymap__('n', '<c-f>', ':lua v.Cursor.__mv_word_dlm_f()<cr>')
 keymap__('n', '<c-l>', '%')
 
 -- cursor mv block out
-keymap__('n', 'H', ':lua v.Cursor.__mv_block_out_swtch()<cr>')
+-- keymap__('n', 'xx', ':lua v.Cursor.__mv_block_out_swtch()<cr>')
 
 -- cursor mv fnc out back
 -- keymap__('n', 'xx', '[m')
@@ -490,7 +493,7 @@ keymap__('n', '<down>', '<c-e>')
 keymap__('n', 'i', ':lua v.Slctd.__cursor_word()<cr>')
 
 -- slctd __ char current - word end
-keymap__('n', 'I', 've')
+-- keymap__('n', 'xx', 've')
 
 -- slct visual
 -- keymap__('n', '<c-v>', 'v')
@@ -754,7 +757,7 @@ keymap__('n', 'Q', ':lua v.Cursor.f_str__space_crct_with_fzy("d")<cr>')
 -- srch char in line repeat
 -- keymap__('n', 'xx', ';')
 
--- srch by cmd forward
+-- srch by cmd - forward
 keymap__('n', '<leader>k'    , 'mz/')
 
 -- srch by cmd back
@@ -763,11 +766,12 @@ keymap__('n', '<leader><c-k>', 'mz?')
 -- srch by clp
 keymap__('n', 'C', ':lua v.Srch.str_vim__clp()<cr>')
 
--- srch forward
-keymap__('n', 'n'    , ':lua v.Cursor.__mv_by_srch_str("f")<cr>')
+-- srch - forward
+keymap__('n', 'n'    , ':lua v.Cursor.__mv_srch_str("f")<cr>')
+keymap__('n', 'F'    , ':lua v.Cursor.__mv_srch_str("f")<cr>')
 
--- srch back
-keymap__('n', '<c-n>', ':lua v.Cursor.__mv_by_srch_str("b")<cr>')
+-- srch - back
+keymap__('n', '<c-n>', ':lua v.Cursor.__mv_srch_str("b")<cr>')
 
 -- srch str set
 keymap__('n', 'e', ':lua v.Srch.str__cursor_word()<cr>')
@@ -775,11 +779,11 @@ keymap__('n', 'e', ':lua v.Srch.str__cursor_word()<cr>')
 -- srch str set ( word 1 )
 keymap__('n', 'E', ':lua v.Srch.str_vim__word1_tgl()<cr>')
 
--- srch char bracket forward
+-- srch char bracket - forward
 -- keymap__('n', 'xx', ':lua v.Srch.char_bracket('f')<cr>')
 
--- srch markdown h
--- keymap__('n', 'xx', ':lua v.Srch.str_vim__heading()<cr>')
+-- srch heading ( markdown heading / fnc def )
+keymap__('n', 'H', ':lua v.Srch.str_vim__heading_swtch()<cr>')
 
 -- srch markdown itm
 -- keymap__('n', 'xx', ':lua v.Srch.str_vim__markdown_itm()<cr>')
@@ -936,11 +940,10 @@ keymap__('n', '<c-w>', ':lua v.Win.splt_cursor__mv_nxt()<cr>')
 -- win ( buf ) mv l
 -- keymap__('n', 'xx', '<c-w>h')
 
--- win ( buf ) width add ( or vim quit )
-keymap__('n', '<c-e>', ':lua v.Win.splt_width__add(1)<cr>')
+-- win ( buf ) width add
+keymap__('n', 'I', ':lua v.Win.splt_width__add(1)<cr>')
 
--- win ( buf ) width mod , add / sub
--- keymap__('n', 'xx', ':lua v.Win.splt_width__add( 1)<cr>')
+-- win ( buf ) width sub
 -- keymap__('n', 'xx', ':lua v.Win.splt_width__add(-1)<cr>')
 
 -- fnc call
@@ -1175,10 +1178,10 @@ keymap__('x', 'y', ':lua v.Slctd.cursor__mv_edge_tgl()<cr>')
 -- cursor mv slctd edge tgl, v box line same
 keymap__('x', '.', 'O')
 
--- cursor mv char forward
+-- cursor mv char - forward
 keymap__('x', 'l', 'l')
 
--- cursor mv char back
+-- cursor mv char - back
 keymap__('x', '<c-s>', 'h')
 -- keymap__('x', '<c-o>', 'h')
 
@@ -1196,7 +1199,7 @@ keymap__('x', 'h'    , ':lua v.Slctd.str__reduce_dlm_r("_")<cr>')
 -- slctd str l __ reduce dlm
 keymap__('x', '<c-h>', ':lua v.Slctd.str__reduce_dlm_l("_")<cr>')
 
--- cursor mv space forward ( word pre )
+-- cursor mv space - forward ( word pre )
 -- keymap__('x', 'xx', 'wh')
 
 -- cursor mv line
@@ -1225,7 +1228,7 @@ keymap__('x', '<c-l>', '%')
 -- cursor mv file edge back    ( file bgn )
 keymap__('x', 'gk', ':lua v.Slctd.cursor__mv_file_edge("k")<cr>')
 
--- cursor mv file edge forward ( file end )
+-- cursor mv file edge - forward ( file end )
 keymap__('x', 'gj', ':lua v.Slctd.cursor__mv_file_edge("j")<cr>')
 
 -- slct / ynk / paste
@@ -1233,26 +1236,27 @@ keymap__('x', 'gj', ':lua v.Slctd.cursor__mv_file_edge("j")<cr>')
 -- slctd expnd
 -- keymap__('x', 'xx', ':lua v.Slctd.str__expnd()<cr>')
 
--- slctd expnd forward swtch
+-- slctd expnd - forward swtch
 keymap__('x', 'f', ':lua v.Slctd.str__expnd_f_swtch()<cr>')
 
 -- slctd expnd srch
-keymap__('x', '<c-f>', ':lua v.Slctd.str__expnd_srch()<cr>')
-keymap__('x', 'N'    , ':lua v.Slctd.str__expnd_srch()<cr>')
+keymap__('x', 'F', ':lua v.Slctd.str__expnd_srch()<cr>')
+keymap__('x', 'N', ':lua v.Slctd.str__expnd_srch()<cr>')
 
--- slctd expnd space not forward
-keymap__('x', 'F', ':lua v.Slctd.str__expnd_space_not_f()<cr>')
+-- slctd expnd space not - forward
+-- keymap__('x', 'F', ':lua v.Slctd.str__expnd_space_not_f()<cr>')
 
--- slctd expnd word forward
+-- slctd expnd word - forward
 -- keymap__('x', 'xx', ':lua v.Slctd.str__expnd_word_f()<cr>')
+
+-- slctd expnd var - forward
+keymap__('x', '<c-f>', ':lua v.Slctd.str__expnd_var_f()<cr>')
 
 -- slctd expnd char pair
 keymap__('x', '<c-i>', ':lua v.Slctd.str__expnd_char_pair()<cr>')
 keymap__('x', '<tab>', ':lua v.Slctd.str__expnd_char_pair()<cr>') -- tab : del not
 
-keymap__('x', '<c-o>', ':lua v.Slctd.str__expnd_var_f()<cr>')
-
--- slctd expnd bracket forward
+-- slctd expnd bracket - forward
 -- keymap__('x', 'xx', ':lua v.Slctd.str__expnd_bracket_swtch()<cr>')
 
 -- slct all
@@ -1273,7 +1277,7 @@ keymap__('x', 'p', function()
   if v.Mode.is__box() then
     return ':lua v.Slctd.box_edge_l__ynk_str()<cr>'
   else
-    return ':lua v.Slctd.str__ynk()<cr>'
+    return ':lua v.Slctd.str__rpl_ynk()<cr>'
   end
 end, {expr = bl.t})
 
@@ -1396,7 +1400,7 @@ keymap__('x', 'b', ':lua v.Slctd.str_edge_out__ins_markdown_bold()<cr>')
 -- slctd box str mv back
 -- keymap__('x', 'xx', ':lua v.Slctd.box_str__mv("l")<cr>')
 
--- slctd box str mv forward
+-- slctd box str mv - r
 -- keymap__('x', 'xx', ':lua v.Slctd.box_str__mv("r")<cr>')
 
 -- slctd box space __ del
@@ -1405,7 +1409,7 @@ keymap__('x', 'D', ':lua v.Slctd.box_space__del()<cr>')
 -- slctd box mv back
 keymap__('x', '<c-w>', ':lua v.Slctd.box__mv("l")<cr>')
 
--- slctd box mv forward
+-- slctd box mv - r
 keymap__('x', '<c-e>', ':lua v.Slctd.box__mv("r")<cr>')
 
 -- num icl
@@ -1472,17 +1476,17 @@ end, {expr = bl.t})
 -- srch swtch
 keymap__('x', 'n', ':lua v.Slctd.__srch_swtch()<cr>')
 
--- srch forward ( srch rpl skip )
+-- srch - forward ( srch rpl skip )
 -- keymap__('x', 'n'    , ':lua v.Slctd.__srch_nxt("f")<cr>')
 
 -- srch back
 keymap__('x', '<c-n>', ':lua v.Slctd.__srch_nxt("b")<cr>')
 
 -- srch rpl one > ynk, nxt
-keymap__('x', '<c-p>', ':lua v.Slctd.str__ynk__srch_nxt_f()<cr>')
+keymap__('x', '<c-p>', ':lua v.Slctd.str__rpl_ynk__srch_nxt_f()<cr>')
 
 -- srch heading swtch
--- keymap__('x', 'xx', ':lua v.Srch.str_vim__heading()')
+-- keymap__('x', 'xx', ':lua v.Slctd.str__expnd_heading_f()')
 
 -- rpl ( cmd )
 keymap__('x', ':s', function()
@@ -1497,7 +1501,13 @@ end, {expr = bl.t})
 keymap__('x', '<c-m>', ':lua v.Slctd.line_srch_str__rpl_cr()<cr>')
 
 -- v box edge char shft in
-keymap__('x', 'H', ':lua v.Slctd.box_edge_r_char__shft_in()<cr>')
+keymap__('x', 'H', function()
+  if not v.Mode.is__box() then
+    return ':lua v.Slctd.str__expnd_heading_f()<cr>'
+  else
+    return ':lua v.Slctd.box_edge_r_char__shft_in()<cr>'
+  end
+end, {expr = bl.t})
 
 -- fzf buf
 keymap__('x', '<leader>i', ':lua v.Fzf.buf_by_slctd_str()<cr>')
@@ -1623,7 +1633,7 @@ end, {expr = bl.t})
 -- cursor mv in line end
 keymap__('i', '<c-e>', '<c-o>$')
 
--- cursor mv char forward
+-- cursor mv char - forward
 keymap__('i', '<c-l>', '<c-o>l')
 
 -- cursor mv char back
@@ -1636,7 +1646,7 @@ keymap__('i', '<c-o>', function()
   end
 end, {expr = bl.t})
 
--- cursor mv word forward
+-- cursor mv word - forward
 -- keymap__('i', 'xx', '<c-o>e<c-o>l')
 
 -- cursor mv word back
@@ -1707,7 +1717,7 @@ keymap__('i', '<c-p>', '<c-r>=v:lua.v.Ins.symbol03()<cr>')
 -- ins register
 -- keymap__('i', 'xx', '<c-r>=v:lua.v.Ins.reg()<cr>')
 
--- del char forward
+-- del char - forward
 keymap__('i', '<c-d>', '<c-o>x')
 
 -- del char back
@@ -1787,7 +1797,7 @@ keymap__('c', '<c-f>', '<s-right>')
 keymap__('c', '<c-h>', '<bs>')
 keymap__('c', '<c-d>', '<del>')
 
--- del word forward
+-- del word - forward
 -- "cnoremap ?? non ? idea <s-right><c-w>
 keymap__('c', '<c-k>', '<del>')
 

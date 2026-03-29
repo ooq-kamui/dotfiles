@@ -78,9 +78,9 @@ function v.Buf.opn_nvim_init()
   v.Buf.opn(v.Dir.c.nvim_lua_key_map_file_path)
 end
 
-function v.Buf.opn_cheat_sheet()
+function v.Buf.opn_txt_ref()
 
-  local file_path = v.Dir.c.cheat_sheet_file_path
+  local file_path = v.Dir.c.txt_ref_file_path
   v.Buf.opn(file_path)
 end
 
@@ -165,7 +165,6 @@ function v.Buf.opn_by_cursor_line_pth()
   v.Buf.opn_by_path(str)
 
   v.Cmd.cmd('sbuffer ' .. base_buf_num)
-  -- v.Nml.exe('j')
   v.Cursor__mv_d()
 end
 

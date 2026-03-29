@@ -1,7 +1,9 @@
 
 v.Ptn = {}
 
+-- 
 -- vim
+-- 
 
 v.Ptn.vim = {}
 
@@ -46,7 +48,31 @@ v.Ptn.vim.var.char = '[' .. 'a-zA-Z0-9_:' .. [[\.]] .. ']'
 v.Ptn.vim.var.str  = v.Ptn.vim.var.char .. [[\+]]
 
 
+function v.Ptn.vim.heading(file_type)
+
+  file_type = file_type or v.Buf.file_type()
+
+  local ptn
+
+  if     v.Buf.is_file_type__('markdown') then
+
+    ptn = v.Ptn.vim.markdown_heading
+
+  elseif v.Tbl.is__in(v.File.type.fnc_def_lang_lst, v.Buf.file_type()) then
+
+    ptn = v.Ptn.vim.fnc.def[file_type] or v.Ptn.vim.fnc.def.dflt
+
+  else -- default
+    ptn = v.Ptn.vim.markdown_heading
+  end
+
+  return ptn
+end
+
+
+-- 
 -- lua
+-- 
 
 v.Ptn.lua = {}
 v.Ptn.lua.cr             = '[\r\n]'
@@ -55,9 +81,14 @@ v.Ptn.lua.space_not_char = '[^ ]' -- '[^ \t]'
 
 
 -- 
+-- doc
+-- 
+
+-- 
 -- ptn vim
 -- 
 -- https://vim-jp.org/vimdoc-ja/vimindex.html
+-- 
 -- 
 -- \n : 改行
 -- \t : tab

@@ -8,6 +8,15 @@ function v.Nml.exe(nml_cmd) -- alias
   v.Cmd.cmd('exe "normal! ' .. nml_cmd .. '"')
 end
 
+function v.Nml.exe_x_time(nml_cmd, time) -- alias
+
+  time = time or 1
+
+  for idx = 1, time do
+    v.Nml.exe(nml_cmd)
+  end
+end
+
 function v.Nml.ins(str)
   -- v.Log.log(str)
   str = v.Str.escape(str, [[\"]])
@@ -28,16 +37,6 @@ v.Nml.n.esc = '<esc>'
 
 v.Nml.n.cursor = {}
 
-v.Nml.n.cursor.line = {}
-v.Nml.n.cursor.line.shft_l = '<<'
-
-v.Nml.n.cursor.word = {}
-v.Nml.n.cursor.word.icl = '<c-a>'
-v.Nml.n.cursor.word.dcl = '<c-x>'
-
-v.Nml.n.cursor.line.f_str = {}
-v.Nml.n.cursor.line.f_str.del = 'D'
-
 v.Nml.n.cursor.mv = {}
 v.Nml.n.cursor.mv.d_mlt = '<c-e>'
 v.Nml.n.cursor.mv.u_mlt = '<c-y>'
@@ -51,22 +50,19 @@ v.Nml.n.cursor.mv.f     = 'l'
 
 v.Nml.n.cursor.mv.line_end = '$'
 
--- v.Nml.n.cursor.mv.xx = '$h'
--- v.Nml.n.cursor.mv.xx = '$l'
-
 v.Nml.n.cursor.mv.b_word_s = 'b'
 v.Nml.n.cursor.mv.b_word_e = 'ge'
--- v.Nml.n.dmy = 'gegel'
--- v.Nml.n.dmy = 'gel'
+
 v.Nml.n.cursor.mv.f_word_s = 'w'
-v.Nml.n.cursor.mv.f_space_not_s = 'W'
 v.Nml.n.cursor.mv.f_word_e = 'e'
+v.Nml.n.cursor.mv.f_space_not_s = 'W'
 v.Nml.n.cursor.mv.f_space_not_e = 'E'
--- v.Nml.n.dmy = 'el'
 v.Nml.n.cursor.mv.f_space_e = v.Nml.n.cursor.mv.f_word_s .. v.Nml.n.cursor.mv.b -- 'wh'
 
--- v.Nml.n.dmy = 'g'
--- v.Nml.n.dmy = 'gg'
+v.Nml.n.cursor.mv.line_end = '$'
+
+v.Nml.n.cursor.mv.file_top = 'gg'
+v.Nml.n.cursor.mv.file_end = 'G'
 
 -- 
 -- win
@@ -78,21 +74,13 @@ v.Nml.n.win.splt.quit      = '<c-w>c>'
 v.Nml.n.win.splt.quit_othr = '<c-w>o>'
 v.Nml.n.win.splt.nxt       = '<c-w>w>'
 
-
--- v.Nml.n.dmy = 'G'
--- v.Nml.n.dmy = 'I '
 -- v.Nml.n.dmy = 'Jj'
--- v.Nml.n.dmy = 'O'
--- v.Nml.n.dmy = 'o'
--- v.Nml.n.dmy = 'P'
 
 -- v.Nml.n.dmy = '[m'
 -- v.Nml.n.dmy = '[{'
 -- v.Nml.n.dmy = '`[v`]h'
 -- v.Nml.n.dmy = 'a <bs><esc>'
 
--- v.Nml.n.dmy = 'viw'
--- v.Nml.n.dmy = 'v~'
 -- v.Nml.n.dmy = '|'
 
 -- 
@@ -103,6 +91,9 @@ v.Nml.n.srch = {}
 v.Nml.n.srch.exe = '/'
 v.Nml.n.srch.nxt_f = 'n'
 v.Nml.n.srch.nxt_b = 'N'
+
+-- srch slct
+
 v.Nml.n.srch.nxt_f_slct = 'g' .. 'n'
 v.Nml.n.srch.nxt_b_slct = 'g' .. 'N'
 
@@ -115,14 +106,20 @@ v.Nml.n.rgstr = {}
 v.Nml.n.rgstr.key = {}
 
 v.Nml.n.rgstr.key.rgstr = '"'
-v.Nml.n.rgstr.key.main  = 'a'
-v.Nml.n.rgstr.key.nul   = 'z'
-v.Nml.n.rgstr.key.nul2  = '_'
--- v.Nml.n.rgstr.key.xx        = '"'
 
-v.Nml.n.rgstr.main = v.Nml.n.rgstr.key.rgstr .. 'a'
-v.Nml.n.rgstr.nul  = v.Nml.n.rgstr.key.rgstr .. 'z'
-v.Nml.n.rgstr.nul2 = v.Nml.n.rgstr.key.rgstr .. '_'
+v.Nml.n.rgstr.key.main    = 'a'
+v.Nml.n.rgstr.key.nul     = 'z'
+v.Nml.n.rgstr.key.nul2    = '_'
+v.Nml.n.rgstr.key.name_no = '"'
+
+v.Nml.n.rgstr.main    = v.Nml.n.rgstr.key.rgstr .. v.Nml.n.rgstr.key.main    -- "a
+v.Nml.n.rgstr.nul     = v.Nml.n.rgstr.key.rgstr .. v.Nml.n.rgstr.key.nul     -- "z
+v.Nml.n.rgstr.nul2    = v.Nml.n.rgstr.key.rgstr .. v.Nml.n.rgstr.key.nul2    -- "_
+v.Nml.n.rgstr.name_no = v.Nml.n.rgstr.key.rgstr .. v.Nml.n.rgstr.key.name_no -- ""
+
+v.Nml.n.rgstr.key.main_add = 'A'
+
+v.Nml.n.rgstr.main_add = v.Nml.n.rgstr.key.rgstr .. v.Nml.n.rgstr.key.main_add -- "A
 
 -- 
 -- edit
@@ -132,37 +129,54 @@ v.Nml.n.rgstr.nul2 = v.Nml.n.rgstr.key.rgstr .. '_'
 
 v.Nml.n.edit = {}
 
-v.Nml.n.edit.del = 'd'
 v.Nml.n.edit.ynk = 'y'
+v.Nml.n.edit.del = 'd'
 
 v.Nml.n.edit.char = {}
 v.Nml.n.edit.char.del = 'x'
+v.Nml.n.edit.char.rpl = 'r'
+v.Nml.n.edit.char.case_tgl = 'v~'
 
 v.Nml.n.edit.line = {}
-v.Nml.n.edit.line.del = 'dd'
 v.Nml.n.edit.line.ynk = 'yy'
+v.Nml.n.edit.line.del = 'dd'
 
 v.Nml.n.edit.paste = {}
 v.Nml.n.edit.paste.pre = 'P'
 
 -- 
 
--- v.Nml.n.edit.xx = v.Nml.n.rgstr.key.main .. v.Nml.n.edit.paste.pre
--- v.Nml.n.edit.xx = v.Nml.n.rgstr.key.main .. v.Nml.n.edit.del
--- v.Nml.n.edit.xx = v.Nml.n.rgstr.key.main .. v.Nml.n.edit.line.del
--- v.Nml.n.edit.xx = v.Nml.n.rgstr.key.main .. v.Nml.n.edit.line.ynk
+v.Nml.n.edit.xx = v.Nml.n.rgstr.main .. v.Nml.n.edit.del       -- "ad
+v.Nml.n.edit.xx = v.Nml.n.rgstr.main .. v.Nml.n.edit.char.del  -- "ax
+v.Nml.n.edit.xx = v.Nml.n.rgstr.main .. v.Nml.n.edit.line.ynk  -- "ayy
+v.Nml.n.edit.xx = v.Nml.n.rgstr.main .. v.Nml.n.edit.line.del  -- "add
 
--- v.Nml.n.edit.xx = v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.paste.pre
--- v.Nml.n.edit.xx = v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.char.del
--- v.Nml.n.edit.xx = v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.del
--- v.Nml.n.edit.xx = v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.ynk
+v.Nml.n.edit.xx = v.Nml.n.rgstr.main .. v.Nml.n.edit.paste.pre -- "aP
 
--- v.Nml.n.edit.xx = v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.line.ynk
---                .. v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.paste.pre
+v.Nml.n.edit.xx = v.Nml.n.rgstr.nul  .. v.Nml.n.edit.ynk       -- "zy
+v.Nml.n.edit.xx = v.Nml.n.rgstr.nul  .. v.Nml.n.edit.del       -- "zd
 
--- v.Nml.n.edit.xx = v.Nml.n.rgstr.key.nul2 .. v.Nml.n.edit.line.del
+v.Nml.n.edit.xx = v.Nml.n.rgstr.nul  .. v.Nml.n.edit.line.ynk  -- "zyy
 
--- v.Nml.n.edit.xx = '""' .. 'P'
+v.Nml.n.edit.xx = v.Nml.n.rgstr.nul  .. v.Nml.n.edit.char.del  -- "zx
+
+v.Nml.n.edit.xx = v.Nml.n.rgstr.nul  .. v.Nml.n.edit.paste.pre -- "zP
+
+v.Nml.n.edit.xx = v.Nml.n.rgstr.nul  .. v.Nml.n.edit.line.ynk  -- "zyy
+               .. v.Nml.n.rgstr.nul  .. v.Nml.n.edit.paste.pre -- "zP
+
+v.Nml.n.edit.xx = v.Nml.n.rgstr.nul2 .. v.Nml.n.edit.line.del  -- "_dd
+
+v.Nml.n.edit.xx = v.Nml.n.rgstr.name_no .. v.Nml.n.edit.paste.pre  -- ""P
+
+v.Nml.n.edit.line.shft_l = '<<'
+
+v.Nml.n.edit.line.f_str = {}
+v.Nml.n.edit.line.f_str.del = 'D'
+
+v.Nml.n.edit.word = {}
+v.Nml.n.edit.word.icl = '<c-a>'
+v.Nml.n.edit.word.dcl = '<c-x>'
 
 
 -- 
@@ -175,22 +189,27 @@ v.Nml.n.mode.v_line = 'V'
 v.Nml.n.mode.v_box  = '<c-v>'
 
 v.Nml.n.mode.ins  = 'i'
+v.Nml.n.mode.ins_line_pre = 'O'
+v.Nml.n.mode.ins_line_flw = 'o'
 
 v.Nml.x = {}
 v.Nml.x.mode = {}
 v.Nml.x.mode.v_line = 'V'
 v.Nml.x.mode.v_box  = '<c-v>'
 
+-- 
+-- slct
+-- 
+
+v.Nml.n.slct = {}
+v.Nml.n.slct.re = 'gv'
+v.Nml.n.slct.word = 'viw'
 
 -- 
 -- slctd
 -- 
 
-v.Nml.n.slctd = {}
-
 v.Nml.x.slctd = {}
-
-v.Nml.x.slctd.re = 'gv'
 
 -- v.Nml.n.dmy = 'ggVG'
 -- v.Nml.n.dmy = 'gv"Ay'
@@ -201,13 +220,17 @@ v.Nml.x.slctd.re = 'gv'
 
 v.Nml.x.cursor = {}
 v.Nml.x.cursor.mv = {}
-v.Nml.x.cursor.mv.edge_tgl = 'o'
 
+v.Nml.x.cursor.mv.edge_tgl = 'o'
 v.Nml.x.cursor.mv.f_word_e = 'e'
 
 
 v.Nml.x.edit = {}
+
+v.Nml.x.edit.ynk      = 'y'
+
 v.Nml.x.edit.fil_char = 'r'
+v.Nml.x.edit.box_ins  = 'I'
 
 
 -- 

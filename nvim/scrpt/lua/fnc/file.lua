@@ -70,3 +70,21 @@ function v.File.is__readable(file_name)
   return ret
 end
 
+-- file type
+
+v.File.type = {}
+
+v.File.type.fnc_def_lang_lst = {
+  'lua',
+  'vim',
+  'python',
+  'javascript',
+  'typescript',
+  'typescriptreact',
+  'ps1',
+}
+
+
+
+-- end
+

@@ -179,7 +179,8 @@ alias date_y2 "date_y 2"
 alias date-utc 'date_utc_fr_jst'
 alias utc      'date_utc_fr_jst'
 
-alias ca 'cal'
+alias ca   'cal'
+alias ca-y 'cal-y'
 
 alias du   'du -h'
 alias du-1 'du -hd1'

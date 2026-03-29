@@ -182,19 +182,19 @@ function v.Cursor.__mv_line_end()
     return
   end
 
+  v.Nml.exe(v.Nml.n.cursor.mv.line_end)
+
   if v.Mode.is__normal() then
-    v.Nml.exe('$l')
-  else
-    v.Nml.exe('$')
+    v.Nml.exe(v.Nml.n.cursor.mv.f)
   end
 end
 
 function v.Cursor.__mv_line_end_in()
 
-  if v.Mode.is__normal() then
-    v.Nml.exe('$')
-  else
-    v.Nml.exe('$h')
+  v.Nml.exe(v.Nml.n.cursor.mv.line_end)
+
+  if not v.Mode.is__normal() then
+    v.Nml.exe(v.Nml.n.cursor.mv.b)
   end
 end
 
@@ -253,7 +253,7 @@ function v.Cursor.__mv_word_f()
   if v.Str.is__ptn(c_char, ' ') and v.Str.is__ptn(r_char, ' ') then
     v.Nml.exe(v.Nml.n.cursor.mv.f_word_s)
   else
-    v.Nml.exe('el')
+    v.Nml.exe(v.Nml.n.cursor.mv.f_word_e .. v.Nml.n.cursor.mv.f)-- el
   end
 end
 
@@ -275,19 +275,22 @@ function v.Cursor.__mv_word_b()
     v.Cursor.__mv_char_b()
 
   else
-    v.Nml.exe('b')
+    v.Nml.exe(v.Nml.n.cursor.mv.b_word_s)
   end
 end
 
-function v.Cursor.__mv_word_b_pre() -- use not
+function v.Cursor.__mv_word_b_pre() -- use off
 
   local c_char = v.Cursor.c_char()
   local l_char = v.Cursor.r_char()
 
   if v.Str.is__ptn(c_char, ' ') and not v.Str.is__ptn(l_char, ' ') then
-    v.Nml.exe('gegel')
+    v.Nml.exe(v.Nml.n.cursor.mv.b_word_e) -- ge
+    v.Nml.exe(v.Nml.n.cursor.mv.b_word_e) -- ge
+    v.Nml.exe(v.Nml.n.cursor.mv.f)        -- l
   else
-    v.Nml.exe('gel')
+    v.Nml.exe(v.Nml.n.cursor.mv.b_word_e) -- ge
+    v.Nml.exe(v.Nml.n.cursor.mv.f)        -- l
   end
 end
 
@@ -308,7 +311,12 @@ function v.Cursor.__mv_space_not_f()
   v.Nml.exe(v.Nml.n.cursor.mv.f_space_not_e)
 end
 
-function v.Cursor.__mv_fnc_name()
+function v.Cursor.__mv_var_f()
+
+  local st = v.Cursor.__mv_by_ptn(v.Ptn.vim.var.str, 'f', bl.t, bl.t)
+end
+
+function v.Cursor.__mv_fnc_name() -- use off
 
   local st = v.Cursor.__mv_by_ptn('(', 'f')
 
@@ -319,12 +327,12 @@ end
 
 function v.Cursor.__mv_u() -- alias
 
-  v.Nml.exe('k')
+  v.Nml.exe(v.Nml.n.cursor.mv.u) -- k
 end
 
 function v.Cursor.__mv_d() -- alias
 
-  v.Nml.exe('j')
+  v.Nml.exe(v.Nml.n.cursor.mv.d) -- j
 end
 
 function v.Cursor.__mv_v(drct)
@@ -404,9 +412,9 @@ function v.Cursor.__mv_file_edge(nml_cmd)
 
   if not v.Cursor.is_line_num__file_edge() then
     if     nml_cmd == 'k' then
-      v.Nml.exe('gg')
+      v.Nml.exe(v.Nml.n.cursor.mv.file_top) -- gg
     elseif nml_cmd == 'j' then
-      v.Nml.exe('G' )
+      v.Nml.exe(v.Nml.n.cursor.mv.file_end) -- G
     end
   end
 end
@@ -507,7 +515,7 @@ function v.Cursor.__mv_v_jmp(drct_cmd_nml)
   end
 end
 
-function v.Cursor.__mv_by_ptn(ptn_vim, drct, end_flg) -- range, on 1 line
+function v.Cursor.__mv_by_ptn(ptn_vim, drct, end_flg, line_only_flg) -- range, on 1 line
 
   local opt_drct = ''
 
@@ -523,13 +531,14 @@ function v.Cursor.__mv_by_ptn(ptn_vim, drct, end_flg) -- range, on 1 line
     opt = opt .. 'e'
   end
 
-  local line_num = v.Cursor.line_num()
+  local line_num = line_only_flg and v.Cursor.line_num() or nil
 
+  -- v.Log.log(ptn_vim, opt, line_num)
   local ret = v.Srch.srch(ptn_vim, opt, line_num)
   return ret
 end
 
-function v.Cursor.__mv_by_srch_str(drct, end_flg)
+function v.Cursor.__mv_srch_str(drct, end_flg)
 
   local opt = ''
 
@@ -547,28 +556,12 @@ function v.Cursor.__mv_by_srch_str(drct, end_flg)
   v.Srch.srch(ptn_vim, opt)
 end
 
-function v.Cursor.__mv_block_out_swtch()
+function v.Cursor.__mv_bracket_out() -- use off
 
-  local block_type_bracket_list = {
+  local block_type_bracket_list = { -- todo use
     'javascript',
     'java',
   }
-
-  if     v.Buf.is_file_type__in({'markdown'}) then
-
-    v.Srch.str_vim__ptn(v.Ptn.vim.markdown_heading)
-    v.Cursor.__mv_by_srch_str('b')
-
-  elseif v.Buf.is_file_type__in(block_type_bracket_list) then
-    v.Cursor.__mv_bracket_out()
-
-  else
-    v.Srch.str_vim__fnc_def()
-    v.Cursor.__mv_by_srch_str('b')
-  end
-end
-
-function v.Cursor.__mv_bracket_out()
 
   local nml_cmd = '[{'
   v.Nml.exe(nml_cmd)
@@ -623,7 +616,7 @@ function v.Cursor.__mv_line_emp_mlt_edge(drct)
     if is_line_nxt_str__emp then
       v.Cursor.__mv_v(drct)
     end
-  until not is_line_nxt_str__emp
+  until (not is_line_nxt_str__emp) or v.Cursor.is_line_num__file_edge_end()
 end
 
 function v.Cursor.__mv_by_win_id(win_id)
@@ -649,12 +642,12 @@ end
 
 function v.Cursor.__ins_ynk()
 
-  v.Nml.exe('"aP')
+  v.Nml.exe(v.Nml.n.rgstr.main .. v.Nml.n.edit.paste.pre)
 end
 
 function v.Cursor.__ins_ynk_box()
 
-  v.Nml.exe('""P')
+  v.Nml.exe(v.Nml.n.rgstr.name_no .. v.Nml.n.edit.paste.pre)
 end
 
 function v.Cursor.__ins_clp()
@@ -686,7 +679,7 @@ function v.Cursor.__ins_space(is_cursor_anchor)
   v.Cursor.__ins(' ')
 
   if is_cursor_anchor then
-    v.Nml.exe('h')
+    v.Nml.exe(v.Nml.n.cursor.mv.b)
   end
 end
 
@@ -695,17 +688,17 @@ function v.Cursor.__ins_hyphen()
   v.Cursor.__ins('-')
 end
 
-function v.Cursor.__ins_tilde() -- use not
+function v.Cursor.__ins_tilde() -- use off
 
   v.Cursor.__ins('~')
 end
 
-function v.Cursor.__ins_slash() -- use not
+function v.Cursor.__ins_slash() -- use off
 
   v.Cursor.__ins('/')
 end
 
-function v.Cursor.__ins_slashback() -- use not
+function v.Cursor.__ins_slashback() -- use off
 
   v.Cursor.__ins([[\]])
 end
@@ -713,7 +706,7 @@ end
 function v.Cursor.__ins_quote()
 
   v.Cursor.__ins("' '")
-  v.Nml.exe('h')
+  v.Nml.exe(v.Nml.n.cursor.mv.b)
 end
 
 function v.Cursor.__ins_da()
@@ -755,7 +748,7 @@ function v.Cursor.__ins_cmnt_1(cmd_cursor__mv_line_top)
   end
 
   local str = v.Str.cmnt.line_1()
-  v.Nml.exe('i' .. str) -- refactoring
+  v.Nml.ins(str)
 
   v.Cursor.__mv_line_top1()
 end
@@ -763,7 +756,7 @@ end
 function v.Cursor.__ins_rgstr_by_rgstr_info(rgstr_info)
 
   local rgstr = v.Rgstr.info_rgstr(rgstr_info)
-  v.Nml.exe('"' .. rgstr .. 'P') -- refactoring
+  v.Nml.exe(v.Nml.n.rgstr.key.rgstr .. rgstr .. v.Nml.n.edit.paste.pre)
 end
 
 function v.Cursor.__ins_cmnt_mlt() -- call when mode normal
@@ -777,12 +770,12 @@ function v.Cursor.__ins_cmnt_mlt_by_pos_key(pos_key)
   local str_ar = v.Str.cmnt.line_mlt()
 
   if     pos_key == 'bgn' then
-    v.Nml.exe('O')
-    v.Nml.exe('i' .. str_ar[1])
+    v.Nml.exe(v.Nml.n.mode.ins_line_pre) -- O
+    v.Nml.ins(str_ar[1]) -- v.Nml.exe('i' .. str_ar[1])
 
   elseif pos_key == 'end' then
-    v.Nml.exe('o')
-    v.Nml.exe('i' .. str_ar[2])
+    v.Nml.exe(v.Nml.n.mode.ins_line_flw) -- o
+    v.Nml.ins(str_ar[2]) -- v.Nml.exe('i' .. str_ar[2])
   end
 end
 
@@ -938,7 +931,7 @@ function v.Cursor.char__rpl(rpl)
     rpl = v.Str.__rpl_with_vim(rpl, [[\\]], [[\\\\]])
   end
 
-  v.Nml.exe('r' .. rpl)
+  v.Nml.exe(v.Nml.n.edit.char.rpl .. rpl)
 end
 
 function v.Cursor.char__rpl_underscore() -- alias
@@ -952,7 +945,8 @@ end
 
 function v.Cursor.c_char__tgl_case()
 
-  v.Nml.exe('v~') -- tgl upper / lower -- refactoring : cmd nml not
+  v.Nml.exe(v.Nml.n.edit.char.case_tgl) -- v~
+  -- refactoring : cmd nml not
   -- local rpl_char = xxx
   -- v.Cursor.char__rpl(rpl_char) -- refactoring
 end
@@ -1041,14 +1035,12 @@ end
 
 function v.Cursor.c_char__del()
 
-  local cmd = '"zx'
-  v.Nml.exe(cmd)
+  v.Nml.exe(v.Nml.n.rgstr.nul  .. v.Nml.n.edit.char.del) -- "zx
 end
 
 function v.Cursor.c_char__del_ynk()
 
-  local cmd = '"ax'
-  v.Nml.exe(cmd)
+  v.Nml.exe(v.Nml.n.rgstr.main .. v.Nml.n.edit.char.del) -- "ax
 end
 
 -- cursor char cnd
@@ -1084,14 +1076,12 @@ end
 
 function v.Cursor.str__icl()
 
-  local nml_cmd = [[<c-a>]]
-  v.Nml.exe(nml_cmd)
+  v.Nml.exe(v.Nml.n.edit.word.icl)
 end
 
 function v.Cursor.str__dcl()
 
-  local nml_cmd = [[<c-x>]]
-  v.Nml.exe(nml_cmd)
+  v.Nml.exe(v.Nml.n.edit.word.dcl)
 end
 
 function v.Cursor.str_week__icl()
@@ -1105,7 +1095,7 @@ function v.Cursor.str_week__icl()
   local week_nxt_str = v.Date.week_def[week_nxt_idx]
 
   v.Slctd.__cursor_word()
-  v.Nml.exe('"zd')
+  v.Nml.exe(v.Nml.n.rgstr.nul .. v.Nml.n.edit.del) -- "zd
 
   v.Cursor.__ins(week_nxt_str)
 end
@@ -1121,7 +1111,7 @@ function v.Cursor.str_week__dcl()
   local week_nxt_str = v.Date.week_def[week_nxt_idx]
 
   v.Slctd.__cursor_word()
-  v.Nml.exe('"zd')
+  v.Nml.exe(v.Nml.n.rgstr.nul  .. v.Nml.n.edit.del) -- "zd
 
   v.Cursor.__ins(week_nxt_str)
 end
@@ -1404,7 +1394,7 @@ function v.Cursor.f_space__del()
 
   if v.Str.is__ptn(c, v.Ptn.vim.space_char) then
     v.Slctd.str__cursor_f_space()
-    v.Nml.exe('"zd')
+    v.Nml.exe(v.Nml.n.rgstr.nul .. v.Nml.n.edit.del) -- "zd
   else
     v.Do.nothing()
   end
@@ -1421,9 +1411,9 @@ end
 function v.Cursor.line__del()
 
   if v.Cursor.is_line_str__emp() or v.Cursor.is_line_str__space() then
-    v.Nml.exe('"_dd') -- rgstr del
+    v.Nml.exe(v.Nml.n.rgstr.nul2 .. v.Nml.n.edit.line.del) -- "_dd
   else
-    v.Nml.exe('"add')
+    v.Nml.exe(v.Nml.n.rgstr.main .. v.Nml.n.edit.line.del) -- "add
     v.Rgstr.clp__ynk()
   end
 end
@@ -1551,9 +1541,8 @@ function v.Cursor.__ins_sys_cmd(sys_cmd) -- read
   local is_line_num_eq_1 = v.Cursor.is_line_num__file_edge_bgn()
 
   if is_line_num_eq_1 then
-    v.Nml.exe('O')
+    v.Nml.exe(v.Nml.n.mode.ins_line_pre) -- O
   else
-    -- v.Nml.exe('k')
     v.Cursor.__mv_u()
   end
 
@@ -1676,7 +1665,7 @@ end
 
 function v.Cursor.line_indnt__shft_l()
 
-  v.Nml.exe('<<')
+  v.Nml.exe(v.Nml.n.edit.line.shft_l) -- <<
   v.Cursor.__mv_line_top1()
 end
 
@@ -1687,7 +1676,7 @@ function v.Cursor.line_indnt__shft_r()
 end
 
 
-function v.Cursor.line_indnt__crct() -- use not
+function v.Cursor.line_indnt__crct()
 
   local byte_idx = 0
 

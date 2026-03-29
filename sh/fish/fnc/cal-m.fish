@@ -1,4 +1,4 @@
-function cal_m
+function cal-m
 
   if test -n "$argv[1]"
 

@@ -42,7 +42,8 @@ end
 
 function v.Line.__dpl()
 
-  v.Nml.exe('"zyy"zP')
+  v.Nml.exe(v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.line.ynk ) -- "zyy
+  v.Nml.exe(v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.paste.pre) -- "zP
 end
 
 -- line num

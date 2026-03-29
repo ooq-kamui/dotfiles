@@ -1,10 +1,11 @@
 
 v.Srch = {}
 
-function v.Srch.srch(ptn_vim, opt, line_num) -- run vim srch
+function v.Srch.srch(ptn_vim, opt, line_num) -- exe vim srch
 
   local ret = bl.t
 
+  -- v.Log.log('vf.search()', ptn_vim, opt, line_num)
   local st = vf.search(ptn_vim, opt, line_num)
 
   if st == 0 then
@@ -56,7 +57,6 @@ function v.Srch.str_vim__(str_plain, word1_flg)
   v.Srch.str_plain__(str_plain)
 
   local str_vim
-
   str_vim = v.Srch.str_plain_to_str_vim(str_plain)
 
   if word1_flg then
@@ -101,7 +101,7 @@ function v.Srch.str_vim__ptn(ptn_vim)
   -- highlight
   v.Rgstr.__('/', ptn_vim)
   -- srch history add
-  ptn_vim = v.Str.escape(ptn_vim, [[\]])
+  ptn_vim = v.Str.escape(ptn_vim, [[\"]])
   v.Cmd.cmd('exe "normal! ' .. '/' .. ptn_vim .. '"') -- not v.Nml.exe()
 end
 
@@ -149,27 +149,19 @@ function v.Srch.str_vim__prv_tgl()
   v.Srch.str_vim__ptn(str_vim_prv)
 end
 
-function v.Srch.str_vim__heading()
-
-  local fnc_def_lang_lst = {
-    'lua',
-    'vim',
-    'python',
-    'javascript',
-    'typescript',
-    'typescriptreact',
-    'ps1',
-  }
+function v.Srch.str_vim__heading_swtch()
 
   if     v.Buf.is_file_type__('markdown') then
     v.Srch.str_vim__markdown_heading()
 
-  elseif v.Tbl.is_in(v.Buf.file_type(), fnc_def_lang_lst) then
+  elseif v.Tbl.is__in(v.File.type.fnc_def_lang_lst, v.Buf.file_type()) then
     v.Srch.str_vim__fnc_def()
 
   else -- default
     v.Srch.str_vim__markdown_heading()
   end
+
+  v.Cursor.__mv_srch_str('b')
 end
 
 function v.Srch.str_vim__markdown_heading()
@@ -185,16 +177,8 @@ end
 function v.Srch.str_vim__fnc_def()
 
   local file_type = v.Buf.file_type()
-
-  if     file_type == 'lua'    then
-    v.Srch.str_vim__ptn(v.Ptn.vim.fnc.def.lua   )
-
-  elseif file_type == 'python' then
-    v.Srch.str_vim__ptn(v.Ptn.vim.fnc.def.python)
-
-  else
-    v.Srch.str_vim__ptn(v.Ptn.vim.fnc.def.dflt  )
-  end
+  local ptn = v.Ptn.vim.fnc.def[file_type] or v.Ptn.vim.fnc.def.dflt
+  v.Srch.str_vim__ptn(ptn)
 end
 
 function v.Srch.str_vim__clp()
@@ -233,7 +217,7 @@ end
 function v.Srch.char(drct, char)
 
   v.Srch.str_vim__ptn('[' .. char .. ']')
-  v.Cursor.__mv_by_srch_str(drct)
+  v.Cursor.__mv_srch_str(drct)
 end
 
 function v.Srch.char_bracket(drct)

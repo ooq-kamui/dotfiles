@@ -2,7 +2,7 @@ function cal
 
   if test -z "$argv"
 
-    cal_3_v
+    cal-3-v
 
   else
     command cal $argv
