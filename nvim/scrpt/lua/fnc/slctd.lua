@@ -344,10 +344,7 @@ function v.Slctd.str__expnd_heading_f()
   v.Slctd.__ltst()
 
   local ptn = v.Ptn.vim.heading()
-  -- v.Log.log(ptn)
-  v.Slctd.str__expnd_by_ptn_f(ptn, bl.t, bl.t)
-  -- v.Srch.str_vim__heading_swtch()
-  -- v.Cursor.__mv_srch_str('f', bl.t)
+  v.Slctd.str__expnd_by_ptn_f(ptn, bl.t, bl.f)
 end
 
 function v.Slctd.str__expnd_edge_out()

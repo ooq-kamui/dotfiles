@@ -1194,7 +1194,14 @@ keymap__('x', '<c-s>', 'h')
 keymap__('x', '<c-y>', ':lua v.Slctd.cursor__mv_line_end()<cr>')
 
 -- slctd str r __ reduce dlm
-keymap__('x', 'h'    , ':lua v.Slctd.str__reduce_dlm_r("_")<cr>')
+-- keymap__('x', 'h'    , ':lua v.Slctd.str__reduce_dlm_r("_")<cr>')
+keymap__('x', 'h', function()
+  if not v.Mode.is__box() then
+    return ':lua v.Slctd.str__reduce_dlm_r("_")<cr>'
+  else
+    return ':lua v.Slctd.box_edge_r_char__shft_in()<cr>'
+  end
+end, {expr = bl.t})
 
 -- slctd str l __ reduce dlm
 keymap__('x', '<c-h>', ':lua v.Slctd.str__reduce_dlm_l("_")<cr>')
@@ -1202,7 +1209,7 @@ keymap__('x', '<c-h>', ':lua v.Slctd.str__reduce_dlm_l("_")<cr>')
 -- cursor mv space - forward ( word pre )
 -- keymap__('x', 'xx', 'wh')
 
--- cursor mv line
+-- cursor mv line mlt
 keymap__('x', '<c-j>', function()
   if v.Mode.is__str() then
     return ':lua v.Srch.str_vim__slctd_str()<cr>'

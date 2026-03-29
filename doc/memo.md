@@ -2,20 +2,11 @@
 # dotfiles
 
 
-## nvim
-
-v.Slctd.str__expnd_char_pair()
-- refactoring
-
-
-osc52, err, and __ srch ?
-
-
 ## ai
 
 pixel-art
 - research, try
-  - xxx
+  - pixel-lab
 
 
 ## aseprite
@@ -23,7 +14,14 @@ pixel-art
 try
 doc
 
-pixel ai
+
+## nvim
+
+v.Slctd.str__expnd_char_pair()
+- refactoring
+
+
+osc52, err, and __ srch ?
 
 
 ## pwsh
