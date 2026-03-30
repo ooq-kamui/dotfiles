@@ -382,45 +382,41 @@ function v.Slctd.str__expnd_char_pair()
 
   v.Slctd.__ltst()
 
-  local char_l_i = v.Slctd.str_edge_l_char()
-  local char_l_i_expnd_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_l, char_l_i)
+  local char_l_i, char_r_i = v.Slctd.str_edge_char()
+  local char_l_i_expnd_char_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_l, char_l_i)
+  local char_r_i_expnd_char_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_r, char_r_i)
+  -- v.Log.val(char_l_i_expnd_char_idx, char_r_i_expnd_char_idx)
 
-  local char_r_i = v.Slctd.str_edge_r_char()
-  local char_r_i_expnd_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_r, char_r_i)
-
-  local char_l_o = v.Slctd.str_edge_l_out_char()
-  local char_l_o_expnd_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_l, char_l_o)
-
-  local char_r_o = v.Slctd.str_edge_r_out_char()
-  local char_r_o_expnd_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_r, char_r_o)
-
-  -- v.Log.val(char_l_i_expnd_idx, char_r_i_expnd_idx)
-  -- v.Log.val(char_l_o_expnd_idx, char_r_o_expnd_idx)
+  local char_l_o, char_r_o = v.Slctd.str_edge_out_char()
+  local char_l_o_expnd_char_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_l, char_l_o)
+  local char_r_o_expnd_char_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_r, char_r_o)
+  -- v.Log.val(char_l_o_expnd_char_idx, char_r_o_expnd_char_idx)
 
   local char, st
 
-  if     char_l_i_expnd_idx == char_r_i_expnd_idx and char_l_i_expnd_idx then
+  if     char_l_i_expnd_char_idx == char_r_i_expnd_char_idx and char_l_i_expnd_char_idx then
     -- slctd lr completed
     return
 
-  elseif char_l_o_expnd_idx then
+  elseif char_l_o_expnd_char_idx then
 
-    if     char_l_o_expnd_idx == char_r_o_expnd_idx  then
+    if     char_l_o_expnd_char_idx == char_r_o_expnd_char_idx then
 
       v.Slctd.str__expnd_edge_out()
 
-    elseif char_l_o_expnd_idx ~= char_r_o_expnd_idx  then
+    elseif char_l_o_expnd_char_idx ~= char_r_o_expnd_char_idx then
 
-      char = v.Slctd.str_expnd_char_pair_lst_r[char_l_o_expnd_idx]
+      char = v.Slctd.str_expnd_char_pair_lst_r[char_l_o_expnd_char_idx]
       v.Slctd.str__expnd_by_ptn_f(char, nil, bl.t)
       v.Nml.exe(v.Nml.n.cursor.mv.b)
     end
 
-  elseif ( not char_l_o_expnd_idx ) and char_r_o_expnd_idx then
+  elseif ( not char_l_o_expnd_char_idx ) and char_r_o_expnd_char_idx then
 
     st = v.Slctd.str__expnd_by_ptn_b(v.Slctd.str_expnd_char_ptn_l, nil, bl.t)
-    v.Nml.exe(v.Nml.n.cursor.mv.f)
-
+    if bl.t then -- must
+      v.Nml.exe(v.Nml.n.cursor.mv.f)
+    end
   else
     st = v.Slctd.str__expnd_by_ptn_f(v.Slctd.str_expnd_char_ptn_r, nil, bl.t)
     if st then
@@ -670,6 +666,21 @@ function v.Slctd.str_edge_r_line_char_idx()
   return char_idx
 end
 
+function v.Slctd.str_edge_char()
+
+  v.Slctd.__ltst()
+
+  local line_str = v.Cursor.line_str()
+
+  local char_l_idx = v.Slctd.str_edge_l_line_char_idx()
+  local char_l     = v.Str.char_by_char_idx(line_str, char_l_idx)
+
+  local char_r_idx = v.Slctd.str_edge_r_line_char_idx()
+  local char_r     = v.Str.char_by_char_idx(line_str, char_r_idx)
+
+  return char_l, char_r
+end
+
 function v.Slctd.str_edge_l_char()
 
   v.Slctd.__ltst()
@@ -688,6 +699,37 @@ function v.Slctd.str_edge_r_char()
   local line_str = v.Cursor.line_str()
   local char = v.Str.char_by_char_idx(line_str, char_idx)
   return char
+end
+
+function v.Slctd.str_edge_out_char()
+
+  v.Slctd.__ltst()
+
+  local line_str = v.Cursor.line_str()
+
+  local char_l
+
+  local char_l_idx = v.Slctd.str_edge_l_line_char_idx()
+
+  if char_l_idx == 1 then
+    char_l = ''
+  else
+    char_l_idx = char_l_idx - 1
+    char_l = v.Str.char_by_char_idx(line_str, char_l_idx)
+  end
+
+  local char_r
+
+  local char_r_idx = v.Slctd.str_edge_r_line_char_idx()
+
+  if char_r_idx == v.Str.len_char(line_str) then
+    char_r = ''
+  else
+    char_r_idx = char_r_idx + 1
+    char_r = v.Str.char_by_char_idx(line_str, char_r_idx)
+  end
+
+  return char_l, char_r
 end
 
 function v.Slctd.str_edge_l_out_char()

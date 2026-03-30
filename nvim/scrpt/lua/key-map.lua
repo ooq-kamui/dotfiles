@@ -612,7 +612,6 @@ keymap__('n', 'A', ':lua v.Cursor.__ins_line_anchor_dev()<cr>')
 -- keymap__('n', 'xx', ':lua v.Cursor.__ins_line_anchor__del()<cr>')
 
 -- ins markdown code
--- keymap__('n', '<c-u>', ':lua v.Cursor.__ins_markdown_code()<cr>')
 keymap__('n', '<c-u>', function()
   if v.Buf.is_file_type__('markdown') then
     return ':lua v.Cursor.__ins_markdown_code()<cr>'
@@ -1389,7 +1388,7 @@ keymap__('x', 'w', function()
 end, {expr = bl.t})
 
 -- slctd str edge bracket __ tgl
--- keymap__('x', 'xx', v.Slctd.str_edge_out_bracket__tgl)
+-- keymap__('x', 'xx', ':lua v.Slctd.str_edge_out_bracket__tgl()<cr>')
 
 -- slctd str edge out __ tgl shft
 keymap__('x', 'W', v.Slctd.str_edge_out_char__type_ch)

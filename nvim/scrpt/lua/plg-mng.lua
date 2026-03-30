@@ -80,6 +80,13 @@ require("lazy").setup({
     end,
   },
 
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function() vim.fn["mkdp#util#install"]() end,
+  }
+
   -- { 'MunifTanjim/nui.nvim' },
   -- { 'folke/noice.nvim', dependencies = { "MunifTanjim/nui.nvim" }, opts = {} },
   -- { 'shellRaining/hlchunk.nvim', event = "BufRead" },

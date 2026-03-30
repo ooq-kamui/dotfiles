@@ -2,6 +2,23 @@
 # dotfiles
 
 
+## nvim
+
+v.Slctd.str__expnd_char_pair()
+- pair spec def
+  - l, r
+    - base ? ( l or r )
+  - ...
+
+- tst
+```
+   (   " xx  yy  zzz "     '  aa  bb  cc  '      )
+```
+
+
+osc52, err, and __ srch ?
+
+
 ## ai
 
 pixel-art
@@ -11,17 +28,7 @@ pixel-art
 
 ## aseprite
 
-try
 doc
-
-
-## nvim
-
-v.Slctd.str__expnd_char_pair()
-- refactoring
-
-
-osc52, err, and __ srch ?
 
 
 ## pwsh
