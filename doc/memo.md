@@ -5,6 +5,7 @@
 ## mac
 
 inp `\`
+- karabiner confirm
 
 
 ## aseprite
