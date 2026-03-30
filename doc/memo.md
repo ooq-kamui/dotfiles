@@ -2,21 +2,14 @@
 # dotfiles
 
 
-## nvim
+## mac
 
-v.Slctd.str__expnd_char_pair()
-- pair spec def
-  - l, r
-    - base ? ( l or r )
-  - ...
-
-- tst
-```
-   (   " xx  yy  zzz "     '  aa  bb  cc  '      )
-```
+inp `\`
 
 
-osc52, err, and __ srch ?
+## aseprite
+
+doc
 
 
 ## ai
@@ -26,19 +19,21 @@ pixel-art
   - pixel-lab
 
 
-## aseprite
+## nvim
 
-doc
+v.Slctd.str__expnd_char_pair()
+- tgt char ch logic
+  - cre
 
-
-## pwsh
-
-todo
-- lst cre
-  - xxx ?
+- tst
+```
+   (   " xx  yy  zzz "     '  aa  bb  cc  '      )
+```
 
 
 ## nvim
+
+osc52, err, and __ srch ?
 
 plg
 - tree-sitter on ?  confirm
