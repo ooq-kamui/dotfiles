@@ -282,8 +282,27 @@ function cd_git_root {
 
   pth
 }
+Set-Alias kr "cd_git_root"
 
-Set-Alias jf "cd_git_root"
+function git_st_file_lst {
+
+  $tmp_file_path = New-TemporaryFile
+
+  git sl >> $tmp_file_path.FullName
+  git wl >> $tmp_file_path.FullName
+
+  Get-Content $tmp_file_path.FullName | Sort-Object -Unique
+}
+
+$fzf_git_st_file_lst = {
+  $selected = ( git_st_file_lst | fzf | Out-String )
+
+  if ($selected) {
+    [Microsoft.PowerShell.PSConsoleReadLine]::Insert($selected.Trim())
+  }
+}
+Set-PSReadLineKeyHandler -Key "Ctrl+u" -BriefDescription "GitStatusFileListWithFzf" -ScriptBlock $fzf_git_st_file_lst
+
 
 # posh-git
 Import-Module posh-git
