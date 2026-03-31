@@ -15,11 +15,11 @@ doc
 
 ## ai
 
+claude cli
+
 pixel-art
 - research, try
   - pixel-lab
-
-claude cli
 
 
 ## nvim
