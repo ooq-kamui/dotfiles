@@ -5,7 +5,9 @@ v.Tst = {}
 
 function v.Tst.tst()
 
-  v.Nml.exe_x_time('h', 2)
+  v.Slctd.str__expnd_by_ptn_b('"', nil, bl.t)
+
+  -- v.Nml.exe_x_time('h', 2)
 
   -- v.Nml.exe('gd')
 

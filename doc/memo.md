@@ -5,7 +5,7 @@
 ## mac
 
 inp `\`
-- karabiner confirm
+- karabiner setting
 
 
 ## aseprite
@@ -19,17 +19,7 @@ pixel-art
 - research, try
   - pixel-lab
 
-
-## nvim
-
-v.Slctd.str__expnd_char_pair()
-- tgt char ch logic
-  - cre
-
-- tst
-```
-   (   " xx  yy  zzz "     '  aa  bb  cc  '      )
-```
+claude cli
 
 
 ## nvim

@@ -299,7 +299,14 @@ function v.Slctd.str__expnd_by_ptn(ptn_vim, drct, end_flg, line_only_flg)
 
   v.Slctd.__ltst()
 
-  v.Slctd.cursor__mv_edge_r()
+  if     drct == 'f' then
+    v.Slctd.cursor__mv_edge_r()
+  elseif drct == 'b' then
+    v.Slctd.cursor__mv_edge_l()
+  else
+    v.Slctd.cursor__mv_edge_r()
+  end
+
   local ret = v.Cursor.__mv_by_ptn(ptn_vim, drct, end_flg, line_only_flg)
   return ret
 end
@@ -383,22 +390,22 @@ function v.Slctd.str__expnd_char_pair()
   v.Slctd.__ltst()
 
   local char_l_i, char_r_i = v.Slctd.str_edge_char()
+  local char_l_o, char_r_o = v.Slctd.str_edge_out_char()
+
   local char_l_i_expnd_char_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_l, char_l_i)
   local char_r_i_expnd_char_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_r, char_r_i)
-  -- v.Log.val(char_l_i_expnd_char_idx, char_r_i_expnd_char_idx)
-
-  local char_l_o, char_r_o = v.Slctd.str_edge_out_char()
   local char_l_o_expnd_char_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_l, char_l_o)
   local char_r_o_expnd_char_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_r, char_r_o)
+  -- v.Log.val(char_l_i_expnd_char_idx, char_r_i_expnd_char_idx)
   -- v.Log.val(char_l_o_expnd_char_idx, char_r_o_expnd_char_idx)
 
-  local char, st
+  local tgt_char_l, st
 
-  if     char_l_i_expnd_char_idx == char_r_i_expnd_char_idx and char_l_i_expnd_char_idx then
+  if     char_r_i_expnd_char_idx and ( char_l_i_expnd_char_idx == char_r_i_expnd_char_idx ) then
     -- slctd lr completed
     return
 
-  elseif char_l_o_expnd_char_idx then
+  elseif char_r_o_expnd_char_idx then
 
     if     char_l_o_expnd_char_idx == char_r_o_expnd_char_idx then
 
@@ -406,15 +413,8 @@ function v.Slctd.str__expnd_char_pair()
 
     elseif char_l_o_expnd_char_idx ~= char_r_o_expnd_char_idx then
 
-      char = v.Slctd.str_expnd_char_pair_lst_r[char_l_o_expnd_char_idx]
-      v.Slctd.str__expnd_by_ptn_f(char, nil, bl.t)
-      v.Nml.exe(v.Nml.n.cursor.mv.b)
-    end
-
-  elseif ( not char_l_o_expnd_char_idx ) and char_r_o_expnd_char_idx then
-
-    st = v.Slctd.str__expnd_by_ptn_b(v.Slctd.str_expnd_char_ptn_l, nil, bl.t)
-    if bl.t then -- must
+      tgt_char_l = v.Slctd.str_expnd_char_pair_lst_l[char_r_o_expnd_char_idx]
+      v.Slctd.str__expnd_by_ptn_b(tgt_char_l, nil, bl.t)
       v.Nml.exe(v.Nml.n.cursor.mv.f)
     end
   else
