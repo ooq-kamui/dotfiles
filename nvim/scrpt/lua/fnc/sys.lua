@@ -50,16 +50,16 @@ function v.Sys.opn_app(path)
 
   elseif v.Env.is__('wsl') then
     sys_cmd = 'opn'
-    -- return
   else
     return
   end
 
   if v.Env.is__in({'win64', 'wsl'}) then
-    path = v.Str.path_unix__cnv_win(path)
+    -- path = v.Str.path_unix__cnv_win(path)
   end
 
   sys_cmd = sys_cmd .. " '" .. path .. "'"
+  -- v.Log.log(sys_cmd)
   local res = vf.system(sys_cmd)
 end
 
