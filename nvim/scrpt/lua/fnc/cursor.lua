@@ -185,7 +185,7 @@ function v.Cursor.__mv_line_end()
   v.Nml.exe(v.Nml.n.cursor.mv.line_end)
 
   if v.Mode.is__normal() then
-    v.Nml.exe(v.Nml.n.cursor.mv.f)
+    v.Cursor.__mv_char_f()
   end
 end
 
@@ -194,7 +194,7 @@ function v.Cursor.__mv_line_end_in()
   v.Nml.exe(v.Nml.n.cursor.mv.line_end)
 
   if not v.Mode.is__normal() then
-    v.Nml.exe(v.Nml.n.cursor.mv.b)
+    v.Cursor.__mv_char_b()
   end
 end
 
@@ -253,7 +253,8 @@ function v.Cursor.__mv_word_f()
   if v.Str.is__ptn(c_char, ' ') and v.Str.is__ptn(r_char, ' ') then
     v.Nml.exe(v.Nml.n.cursor.mv.f_word_s)
   else
-    v.Nml.exe(v.Nml.n.cursor.mv.f_word_e .. v.Nml.n.cursor.mv.f)-- el
+    v.Nml.exe(v.Nml.n.cursor.mv.f_word_e) -- e
+    v.Cursor.__mv_char_f()                -- l
   end
 end
 
@@ -287,10 +288,10 @@ function v.Cursor.__mv_word_b_pre() -- use off
   if v.Str.is__ptn(c_char, ' ') and not v.Str.is__ptn(l_char, ' ') then
     v.Nml.exe(v.Nml.n.cursor.mv.b_word_e) -- ge
     v.Nml.exe(v.Nml.n.cursor.mv.b_word_e) -- ge
-    v.Nml.exe(v.Nml.n.cursor.mv.f)        -- l
+    v.Cursor.__mv_char_f()
   else
     v.Nml.exe(v.Nml.n.cursor.mv.b_word_e) -- ge
-    v.Nml.exe(v.Nml.n.cursor.mv.f)        -- l
+    v.Cursor.__mv_char_f()
   end
 end
 
@@ -679,7 +680,7 @@ function v.Cursor.__ins_space(is_cursor_anchor)
   v.Cursor.__ins(' ')
 
   if is_cursor_anchor then
-    v.Nml.exe(v.Nml.n.cursor.mv.b)
+    v.Cursor.__mv_char_b()
   end
 end
 
@@ -706,7 +707,7 @@ end
 function v.Cursor.__ins_quote()
 
   v.Cursor.__ins("' '")
-  v.Nml.exe(v.Nml.n.cursor.mv.b)
+  v.Cursor.__mv_char_b()
 end
 
 function v.Cursor.__ins_da()

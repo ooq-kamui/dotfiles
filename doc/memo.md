@@ -2,6 +2,20 @@
 # dotfiles
 
 
+## docker
+
+learn
+
+
+## nvim
+
+nml exe, tidy
+- nml exe( cnst ) > fnc call
+  - lst, by rg
+
+n go, opn app slf, at wsl
+
+
 ## aseprite
 
 doc
@@ -11,6 +25,8 @@ doc
 ## ai
 
 gemini pro
+
+manus
 
 
 ## web-svr
@@ -34,10 +50,5 @@ alm setting at skr console
 - confirm
 - firewall
   - url
-
-
-## honox
-
-try
 
 

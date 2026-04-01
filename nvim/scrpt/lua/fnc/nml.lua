@@ -29,7 +29,10 @@ end
 
 v.Nml.n = {}
 
-v.Nml.n.esc = '<esc>'
+v.Nml.n.key = {}
+v.Nml.n.key.esc  = '<esc>'
+v.Nml.n.key.bs   = '<bs>'
+v.Nml.n.key.pipe = '|'
 
 -- 
 -- cursor
@@ -43,10 +46,10 @@ v.Nml.n.cursor.mv.u_mlt = '<c-y>'
 
 v.Nml.n.cursor.mv.d     = 'j'
 v.Nml.n.cursor.mv.u     = 'k'
-v.Nml.n.cursor.mv.l     = 'h'
 v.Nml.n.cursor.mv.b     = 'h'
-v.Nml.n.cursor.mv.r     = 'l'
+v.Nml.n.cursor.mv.l     = 'h'
 v.Nml.n.cursor.mv.f     = 'l'
+v.Nml.n.cursor.mv.r     = 'l'
 
 v.Nml.n.cursor.mv.line_end = '$'
 
@@ -80,8 +83,6 @@ v.Nml.n.win.splt.nxt       = '<c-w>w>'
 -- v.Nml.n.dmy = '[{'
 -- v.Nml.n.dmy = '`[v`]h'
 -- v.Nml.n.dmy = 'a <bs><esc>'
-
--- v.Nml.n.dmy = '|'
 
 -- 
 -- srch
@@ -202,7 +203,7 @@ v.Nml.x.mode.v_box  = '<c-v>'
 -- 
 
 v.Nml.n.slct = {}
-v.Nml.n.slct.re = 'gv'
+v.Nml.n.slct.re   = 'gv'
 v.Nml.n.slct.word = 'viw'
 
 -- 
@@ -214,9 +215,6 @@ v.Nml.x.slctd = {}
 -- v.Nml.n.dmy = 'ggVG'
 -- v.Nml.n.dmy = 'gv"Ay'
 -- v.Nml.n.dmy = 'gvj'
-
--- v.Nml.n.dmy = '<gv'
--- v.Nml.n.dmy = '>gv'
 
 v.Nml.x.cursor = {}
 v.Nml.x.cursor.mv = {}
@@ -231,6 +229,10 @@ v.Nml.x.edit.ynk      = 'y'
 
 v.Nml.x.edit.fil_char = 'r'
 v.Nml.x.edit.box_ins  = 'I'
+
+v.Nml.x.edit.line = {}
+v.Nml.x.edit.line.shft_l = '<'
+v.Nml.x.edit.line.shft_r = '>'
 
 
 -- 

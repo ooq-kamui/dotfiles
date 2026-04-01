@@ -246,7 +246,8 @@ function v.Buf.undo__clr()
   local undo_lvl_tmp = vim.bo.undolevels
 
   vim.opt_local.undolevels = -1
-  v.Nml.exe([[a <bs><esc>]])
+  local nml_cmd = 'a ' .. v.Nml.n.key.bs .. v.Nml.n.key.esc -- a <bs><esc>
+  v.Nml.exe(nml_cmd)
   vim.bo.undolevels = undo_lvl_tmp
 end
 

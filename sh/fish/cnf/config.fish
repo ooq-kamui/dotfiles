@@ -18,7 +18,12 @@ set -x PATH $HOME/.cargo/bin $PATH
 set -x PATH /opt/homebrew/var/nodebrew/current/bin $PATH
 #set -x PATH $HOME/.nodebrew/current/bin $PATH
 
-set -x NODEBREW_ROOT /opt/homebrew/var/nodebrew
+# cp -b
+set -gx VERSION_CONTROL numbered
+
+
+# set -x NODEBREW_ROOT /opt/homebrew/var/nodebrew
+
 
 # ripgrep ( rg )
 
@@ -34,6 +39,7 @@ set -x FZF_CTRL_T_COMMAND  $FZF_DEFAULT_COMMAND
 
 # zoxide ( z )
 zoxide init fish | source
+
 
 # 
 # alias

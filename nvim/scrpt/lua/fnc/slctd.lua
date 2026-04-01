@@ -359,10 +359,10 @@ function v.Slctd.str__expnd_edge_out()
   v.Slctd.__ltst()
 
   v.Slctd.cursor__mv_edge_r()
-  v.Nml.exe(v.Nml.n.cursor.mv.f)
+  v.Cursor.__mv_char_f()
 
   v.Slctd.cursor__mv_edge_l()
-  v.Nml.exe(v.Nml.n.cursor.mv.b)
+  v.Cursor.__mv_char_b()
 
   v.Slctd.cursor__mv_edge_tgl()
 end
@@ -415,12 +415,12 @@ function v.Slctd.str__expnd_char_pair()
 
       tgt_char_l = v.Slctd.str_expnd_char_pair_lst_l[char_r_o_expnd_char_idx]
       v.Slctd.str__expnd_by_ptn_b(tgt_char_l, nil, bl.t)
-      v.Nml.exe(v.Nml.n.cursor.mv.f)
+      v.Cursor.__mv_char_f()
     end
   else
     st = v.Slctd.str__expnd_by_ptn_f(v.Slctd.str_expnd_char_ptn_r, nil, bl.t)
     if st then
-      v.Nml.exe(v.Nml.n.cursor.mv.b)
+      v.Cursor.__mv_char_b()
     end
   end
 end
@@ -995,7 +995,7 @@ function v.Slctd.str_edge_out_char__del()
   v.Slctd.__del()
   v.Slctd.__clr()
 
-  v.Nml.exe(v.Nml.n.cursor.mv.b  ) -- h
+  v.Cursor.__mv_char_b()
   -- v.Nml.exe_x_time(v.Nml.n.edit.char.del, 2)
   v.Nml.exe(v.Nml.n.edit.char.del) -- x
   v.Nml.exe(v.Nml.n.edit.char.del) -- x
@@ -1320,7 +1320,7 @@ function v.Slctd.line_indnt__shft_l()
 
   v.Slctd.__ltst()
 
-  local nml_cmd = '<gv'
+  local nml_cmd = v.Nml.x.edit.line.shft_l .. v.Nml.n.slct.re
   v.Nml.exe(nml_cmd)
 end
 
@@ -1328,7 +1328,7 @@ function v.Slctd.line_indnt__shft_r()
 
   v.Slctd.__ltst()
 
-  local nml_cmd = '>gv'
+  local nml_cmd = v.Nml.x.edit.line.shft_r .. v.Nml.n.slct.re
   v.Nml.exe(nml_cmd)
 end
 
