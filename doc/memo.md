@@ -2,18 +2,16 @@
 # dotfiles
 
 
-## docker
-
-learn
-
-
 ## nvim
 
 nml exe, tidy
 - nml exe( cnst ) > fnc call
   - lst, by rg
 
-n go, opn app slf, at wsl
+
+## ai
+
+gemini, skr, login
 
 
 ## aseprite
@@ -22,16 +20,21 @@ doc
 - menu, lst
 
 
-## ai
-
-gemini pro
-
-manus
-
-
 ## web-svr
 
-svr rpl
+web svr rpl
+- task lst cre
+
+
+
+## mac
+
+m1, setup
+
+
+## docker
+
+learn
 
 
 ## nvim
