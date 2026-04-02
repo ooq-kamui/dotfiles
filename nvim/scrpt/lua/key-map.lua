@@ -416,9 +416,6 @@ keymap__('n', '<c-f>', ':lua v.Cursor.__mv_var_f()<cr>')
 -- cursor mv word - back
 keymap__('n', 'o', ':lua v.Cursor.__mv_word_b()<cr>')
 
--- cursor mv word - back pre
--- keymap__('n', 'xx', ':lua v.Cursor.__mv_word_b_pre()<cr>')
-
 -- cursor mv word dlm ( camel or _ ) - forward
 keymap__('n', '_', ':lua v.Cursor.__mv_word_dlm_f()<cr>')
 

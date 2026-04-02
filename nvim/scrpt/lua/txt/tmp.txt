@@ -1,0 +1,28 @@
+
+-- v.Nml.exe('gd'
+-- v.Nml.exe('i'
+-- v.Nml.exe(line_num .. 'G'
+
+'`[v`]h'
+
+
+v.Nml.x.cursor.mv.edge_tgl
+
+v.Nml.x.mode.v_line
+
+v.Nml.n.rgstr.key.nul .. v.Nml.n.edit.char.del
+v.Nml.n.rgstr.key.nul .. v.Nml.n.edit.line.ynk
+v.Nml.n.rgstr.key.nul .. v.Nml.n.edit.paste.pre
+v.Nml.n.rgstr.key.rgstr .. rgstr .. v.Nml.n.edit.paste.pre
+v.Nml.n.rgstr.main .. v.Nml.n.edit.char.del
+v.Nml.n.rgstr.main .. v.Nml.n.edit.line.del
+v.Nml.n.rgstr.main .. v.Nml.n.edit.line.ynk
+v.Nml.n.rgstr.main .. v.Nml.n.edit.paste.pre
+v.Nml.n.rgstr.main_add .. v.Nml.x.edit.ynk
+v.Nml.n.rgstr.name_no .. v.Nml.n.edit.paste.pre
+v.Nml.n.rgstr.nul .. v.Nml.n.edit.char.del
+v.Nml.n.rgstr.nul .. v.Nml.n.edit.del
+v.Nml.n.rgstr.nul .. v.Nml.n.edit.ynk
+v.Nml.n.rgstr.nul2 .. v.Nml.n.edit.line.del
+
+

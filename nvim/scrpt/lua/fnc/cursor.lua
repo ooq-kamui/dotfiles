@@ -280,21 +280,6 @@ function v.Cursor.__mv_word_b()
   end
 end
 
-function v.Cursor.__mv_word_b_pre() -- use off
-
-  local c_char = v.Cursor.c_char()
-  local l_char = v.Cursor.r_char()
-
-  if v.Str.is__ptn(c_char, ' ') and not v.Str.is__ptn(l_char, ' ') then
-    v.Nml.exe(v.Nml.n.cursor.mv.b_word_e) -- ge
-    v.Nml.exe(v.Nml.n.cursor.mv.b_word_e) -- ge
-    v.Cursor.__mv_char_f()
-  else
-    v.Nml.exe(v.Nml.n.cursor.mv.b_word_e) -- ge
-    v.Cursor.__mv_char_f()
-  end
-end
-
 function v.Cursor.__mv_word_dlm_f()
 
   local ptn_vim  = v.Ptn.vim.word_dlm_02_char
@@ -771,7 +756,8 @@ function v.Cursor.__ins_cmnt_mlt_by_pos_key(pos_key)
   local str_ar = v.Str.cmnt.line_mlt()
 
   if     pos_key == 'bgn' then
-    v.Nml.exe(v.Nml.n.mode.ins_line_pre) -- O
+    v.Cursor.__ins_line_emp()
+    -- v.Nml.exe(v.Nml.n.mode.ins_line_pre) -- O
     v.Nml.ins(str_ar[1]) -- v.Nml.exe('i' .. str_ar[1])
 
   elseif pos_key == 'end' then
@@ -1542,7 +1528,8 @@ function v.Cursor.__ins_sys_cmd(sys_cmd) -- read
   local is_line_num_eq_1 = v.Cursor.is_line_num__file_edge_bgn()
 
   if is_line_num_eq_1 then
-    v.Nml.exe(v.Nml.n.mode.ins_line_pre) -- O
+    v.Cursor.__ins_line_emp()
+    -- v.Nml.exe(v.Nml.n.mode.ins_line_pre) -- O
   else
     v.Cursor.__mv_u()
   end

@@ -40,7 +40,8 @@ function v.Slctd.mode__tgl()
       v.Nml.exe(v.Nml.x.mode.v_line)
     else
       v.Slctd.__clr()
-      v.Nml.exe(v.Nml.n.mode.v_str)
+      v.Slctd.__cursor_c_char()
+      -- v.Nml.exe(v.Nml.n.mode.v_str)
     end
   else
     v.Nml.exe(v.Nml.x.mode.v_line)
@@ -81,7 +82,7 @@ end
 function v.Slctd.str__all()
 
   v.Nml.exe(v.Nml.n.cursor.mv.file_top) -- gg
-  v.Nml.exe(v.Nml.n.mode.v_line       ) -- V
+  v.Slctd.line__cursor_line()
   v.Nml.exe(v.Nml.n.cursor.mv.file_end) -- G
 end
 
@@ -334,7 +335,7 @@ function v.Slctd.str__expnd_space_not_f()
 
   v.Slctd.__ltst()
 
-  v.Nml.exe(v.Nml.n.cursor.mv.f_space_not_e)
+  v.Cursor.__mv_space_not_f()
 end
 
 function v.Slctd.str__expnd_space_f()
@@ -997,8 +998,10 @@ function v.Slctd.str_edge_out_char__del()
 
   v.Cursor.__mv_char_b()
   -- v.Nml.exe_x_time(v.Nml.n.edit.char.del, 2)
-  v.Nml.exe(v.Nml.n.edit.char.del) -- x
-  v.Nml.exe(v.Nml.n.edit.char.del) -- x
+  -- v.Nml.exe(v.Nml.n.edit.char.del) -- x
+  -- v.Nml.exe(v.Nml.n.edit.char.del) -- x
+  v.Cursor.c_char__del()
+  v.Cursor.c_char__del()
 
   v.Cursor.__ins__slct(slctd_str)
 end

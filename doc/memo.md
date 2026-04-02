@@ -6,12 +6,18 @@
 
 nml exe, tidy
 - nml exe( cnst ) > fnc call
-  - lst, by rg
+
+```
+   aaa    bbb   ccc    dd   
+```
+
+
 
 
 ## ai
 
-gemini, skr, login
+gemini, on skr
+- login, at mac
 
 
 ## aseprite
@@ -20,16 +26,16 @@ doc
 - menu, lst
 
 
+## mac
+
+m1, setup, fix
+- wez setting
+
+
 ## web-svr
 
 web svr rpl
 - task lst cre
-
-
-
-## mac
-
-m1, setup
 
 
 ## docker

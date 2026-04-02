@@ -51,8 +51,6 @@ v.Nml.n.cursor.mv.l     = 'h'
 v.Nml.n.cursor.mv.f     = 'l'
 v.Nml.n.cursor.mv.r     = 'l'
 
-v.Nml.n.cursor.mv.line_end = '$'
-
 v.Nml.n.cursor.mv.b_word_s = 'b'
 v.Nml.n.cursor.mv.b_word_e = 'ge'
 
@@ -189,7 +187,7 @@ v.Nml.n.mode.v_str  = 'v'
 v.Nml.n.mode.v_line = 'V'
 v.Nml.n.mode.v_box  = '<c-v>'
 
-v.Nml.n.mode.ins  = 'i'
+v.Nml.n.mode.ins = 'i'
 v.Nml.n.mode.ins_line_pre = 'O'
 v.Nml.n.mode.ins_line_flw = 'o'
 

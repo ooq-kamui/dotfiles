@@ -5,7 +5,12 @@ v.Tst = {}
 
 function v.Tst.tst()
 
-  v.Slctd.str__expnd_by_ptn_b('"', nil, bl.t)
+  v.Cursor.__ins_line_emp()
+  -- v.Nml.exe(v.Nml.n.mode.ins_line_pre) -- O
+
+  -- v.Cursor.__mv_word_b_pre()
+
+  -- v.Slctd.str__expnd_by_ptn_b('"', nil, bl.t)
 
   -- v.Nml.exe_x_time('h', 2)
 
