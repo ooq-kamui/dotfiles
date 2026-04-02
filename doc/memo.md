@@ -8,16 +8,8 @@ nml exe, tidy
 - nml exe( cnst ) > fnc call
 
 ```
-   aaa    bbb   ccc    dd   
+   aaa    bbb   ccc    dd
 ```
-
-
-
-
-## ai
-
-gemini, on skr
-- login, at mac
 
 
 ## aseprite
@@ -26,21 +18,10 @@ doc
 - menu, lst
 
 
-## mac
-
-m1, setup, fix
-- wez setting
-
-
 ## web-svr
 
 web svr rpl
 - task lst cre
-
-
-## docker
-
-learn
 
 
 ## nvim
@@ -51,6 +32,14 @@ plg
 - blink.cmp
   - instl
     - https://eiji.page/blog/neovim-blink-cmp-intro/
+
+
+## mac m1
+
+wez, win size, pos
+- zsh, err ?
+
+spotlight key-bind: cmd + space
 
 
 ## skr-vps

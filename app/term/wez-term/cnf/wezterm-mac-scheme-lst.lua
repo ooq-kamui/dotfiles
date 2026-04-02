@@ -72,7 +72,6 @@ scheme_lst.mac.recommend.h = {
   'Erebus (terminal.sexy)'                 ,
   'Everblush (Gogh)'                       ,
   'Fairyfloss'                             ,
-  'Flat (base16)'                          ,
   'Flat Remix (Gogh)'                      ,
   'Framer (base16)'                        ,
   'Frontend Galaxy (Gogh)'                 ,
@@ -115,7 +114,6 @@ scheme_lst.mac.recommend.h = {
   'Pnevma'                                 ,
   'Poimandres Storm'                       ,
   'Poimandres'                             ,
-  'Predawn (Gogh)'                         ,
   'Purple People Eater (Gogh)'             ,
   'Raycast_Dark'                           ,
   'Rebecca (base16)'                       ,
@@ -168,11 +166,6 @@ scheme_lst.mac.recommend.h = {
   'tokyonight-storm'                       ,
   'tokyonight_moon'                        ,
   'tokyonight_storm'                       ,
-  -- white
-  -- blue
-  'Paul Millr (Gogh)'                      ,
-  -- git
-  -- etc
 }
 scheme_lst.mac.recommend.l = {
   -- 
@@ -190,6 +183,7 @@ scheme_lst.mac.recommend.l = {
   'GJM (terminal.sexy)'                    ,
   'hardhacker'                             ,
   'Tomorrow Night'                         ,
+  'Paul Millr (Gogh)'                      ,
   -- cmd line
   'Neon (terminal.sexy)'                   ,
   'Chalk (dark) (terminal.sexy)'           ,
@@ -206,6 +200,8 @@ scheme_lst.mac.recommend.l = {
   'farmhouse-dark'                         ,
   'Desert (Gogh)'                          ,
   'OneHalfDark'                            ,
+  'Flat (base16)'                          ,
+  'Predawn (Gogh)'                         ,
   -- slctd
   'DotGov'                                 ,
   'Ef-Cherie'                              ,
