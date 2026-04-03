@@ -65,6 +65,9 @@ v.Nml.n.cursor.mv.line_end = '$'
 v.Nml.n.cursor.mv.file_top = 'gg'
 v.Nml.n.cursor.mv.file_end = 'G'
 
+v.Nml.n.cursor.mv.edit_ltst_top = '`['
+v.Nml.n.cursor.mv.edit_ltst_end = '`]'
+
 -- 
 -- win
 -- 

@@ -37,15 +37,22 @@ function v.Slctd.mode__tgl()
 
   if v.Mode.is__box() then
     if v.Slctd.is_line__mlt() then
-      v.Nml.exe(v.Nml.x.mode.v_line)
+      v.Slctd.mode__line()
     else
       v.Slctd.__clr()
       v.Slctd.__cursor_c_char()
       -- v.Nml.exe(v.Nml.n.mode.v_str)
     end
   else
-    v.Nml.exe(v.Nml.x.mode.v_line)
+    v.Slctd.mode__line()
   end
+end
+
+function v.Slctd.mode__line()
+
+  v.Slctd.__ltst()
+
+  v.Nml.exe(v.Nml.x.mode.v_line)
 end
 
 function v.Slctd.mode__box()
@@ -389,6 +396,8 @@ v.Slctd.str_expnd__init()
 function v.Slctd.str__expnd_char_pair()
 
   v.Slctd.__ltst()
+
+  if v.Slctd.is_line__mlt() then return end
 
   local char_l_i, char_r_i = v.Slctd.str_edge_char()
   local char_l_o, char_r_o = v.Slctd.str_edge_out_char()
@@ -835,6 +844,11 @@ function v.Slctd.str_edge_out__ins_space()
   v.Slctd.str_edge_out__ins(' ')
 end
 
+function v.Slctd.str_edge_out__ins_quote()
+
+  v.Slctd.str_edge_out__ins("'")
+end
+
 function v.Slctd.str_edge_out__ins_markdown_strikethrough()
 
   v.Slctd.__ltst()
@@ -859,19 +873,14 @@ function v.Slctd.str_edge_out_char__tgl_swtch()
   if v.Slctd.is_line__mlt() then return end
 
 
-  local c_l = v.Slctd.str_edge_l_out_char()
-  local c_r = v.Slctd.str_edge_r_out_char()
+  local char_l, char_r = v.Slctd.str_edge_out_char()
+  local c_l_char_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_l, char_l)
+  local c_r_char_idx = v.Tbl.idx(v.Slctd.str_expnd_char_pair_lst_r, char_r)
 
-  if v.Tbl.is__in(v.Char.cnst.quote.lst, c_l) and c_l == c_r then
+  if     v.Tbl.is__in(v.Char.cnst.quote.lst    , char_l) and ( char_l == char_r ) then
     v.Slctd.str_edge_out_quote__tgl()
 
-  elseif c_l == '(' and c_r == ')' then
-    v.Slctd.str_edge_out_bracket__tgl()
-  elseif c_l == '{' and c_r == '}' then
-    v.Slctd.str_edge_out_bracket__tgl()
-  elseif c_l == '[' and c_r == ']' then
-    v.Slctd.str_edge_out_bracket__tgl()
-  elseif c_l == '<' and c_r == '>' then
+  elseif v.Tbl.is__in(v.Char.cnst.bracket.l_lst, char_l) and ( c_l_char_idx == c_r_char_idx ) then
     v.Slctd.str_edge_out_bracket__tgl()
 
   else
@@ -887,6 +896,7 @@ function v.Slctd.str_edge_out_quote__tgl()
 
   if v.Cursor.is_byte_idx__line_end() then return end
 
+
   local c_l = v.Slctd.str_edge_l_out_char()
   local c_r = v.Slctd.str_edge_r_out_char()
 
@@ -898,7 +908,7 @@ function v.Slctd.str_edge_out_quote__tgl()
     c_lst = {"'", '"', '`'}
   end
 
-  local c, idx
+  local char, idx
 
   if c_l == c_r then
     idx = v.Tbl.idx(c_lst, c_l)
@@ -906,8 +916,8 @@ function v.Slctd.str_edge_out_quote__tgl()
 
   if idx == nil then
 
-    c = c_lst[1]
-    v.Slctd.str_edge_out__ins(c)
+    char = c_lst[1]
+    v.Slctd.str_edge_out__ins(char)
 
   elseif idx == v.Tbl.len(c_lst) then
 
@@ -915,8 +925,8 @@ function v.Slctd.str_edge_out_quote__tgl()
 
   else
     v.Slctd.str_edge_out_char__del()
-    c = c_lst[idx + 1]
-    v.Slctd.str_edge_out__ins(c)
+    char = c_lst[idx + 1]
+    v.Slctd.str_edge_out__ins(char)
   end
 end
 
@@ -1263,11 +1273,9 @@ end
 
 function v.Slctd.line_end__pad_space() -- use off
 
-  -- use recommend "aygvr gv
-
   v.Slctd.__ltst()
 
-  v.Nml.exe(v.Nml.x.cursor.mv.edge_tgl) -- o
+  v.Slctd.cursor__mv_edge_tgl()
 
   local fil_end_byte_idx = v.Cursor.byte_idx() - 1
 
@@ -1481,11 +1489,12 @@ function v.Slctd.box_str__mv(lr)
 
   v.Slctd.__ltst()
 
-  v.Nml.exe(v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.char.del) -- "zx
+  v.Nml.exe(v.Nml.n.rgstr.nul .. v.Nml.n.edit.char.del) -- "zx
   v.Nml.exe(nml_cmd)
-  v.Nml.exe(v.Nml.n.rgstr.key.nul  .. v.Nml.n.edit.paste.pre) -- "zP
+  v.Nml.exe(v.Nml.n.rgstr.nul .. v.Nml.n.edit.paste.pre) -- "zP
 
   v.Slctd.__ltst()
+
   v.Slctd.box__mv(lr)
 end
 

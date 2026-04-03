@@ -4,12 +4,20 @@
 
 ## nvim
 
-nml exe, tidy
-- nml exe( cnst ) > fnc call
+v.Slctd.str_edge_out__ins_quote()
+- refactoring
 
-```
-   aaa    bbb   ccc    dd
-```
+v.Slctd.str_edge_out_quote__tgl()
+- refactoring
+  - c_lst get with fnc
+
+v.Char.is_pair__bracket(c_l, c_r)
+- refactoring
+
+v.Char.bracket_l_lst()
+- init set cnst
+
+n <c-o>: like: n <c-f>: ver: b ( back )
 
 
 ## aseprite

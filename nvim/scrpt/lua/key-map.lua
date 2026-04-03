@@ -1179,7 +1179,6 @@ keymap__('x', 'l', 'l')
 
 -- cursor mv char - back
 keymap__('x', '<c-s>', 'h')
--- keymap__('x', '<c-o>', 'h')
 
 -- cursor mv word back
 -- keymap__('x', 'xx', 'b')
@@ -1384,11 +1383,14 @@ keymap__('x', 'w', function()
   end
 end, {expr = bl.t})
 
+-- slctd str edge out __ ins quote
+keymap__('x', '<c-o>', ':lua v.Slctd.str_edge_out__ins_quote()<cr>')
+
 -- slctd str edge bracket __ tgl
 -- keymap__('x', 'xx', ':lua v.Slctd.str_edge_out_bracket__tgl()<cr>')
 
 -- slctd str edge out __ tgl shft
-keymap__('x', 'W', v.Slctd.str_edge_out_char__type_ch)
+keymap__('x', 'W', ':lua v.Slctd.str_edge_out_char__type_ch()<cr>')
 
 -- slctd str edge out __ ins space
 keymap__('x', '<c-u>', ':lua v.Slctd.str_edge_out__ins_space()<cr>')
@@ -1400,10 +1402,10 @@ keymap__('x', '~', ':lua v.Slctd.str_edge_out__ins_markdown_strikethrough()<cr>'
 -- slctd str edge out __ ins markdown strikethrough
 keymap__('x', 'b', ':lua v.Slctd.str_edge_out__ins_markdown_bold()<cr>')
 
--- slctd box str mv back
+-- slctd box str mv b
 -- keymap__('x', 'xx', ':lua v.Slctd.box_str__mv("l")<cr>')
 
--- slctd box str mv - r
+-- slctd box str mv f
 -- keymap__('x', 'xx', ':lua v.Slctd.box_str__mv("r")<cr>')
 
 -- slctd box space __ del

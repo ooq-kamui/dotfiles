@@ -621,7 +621,10 @@ end
 function v.Cursor.__ins__slct(str)
 
   v.Cursor.__ins(str)
-  v.Nml.exe('`[v`]h')
+  v.Nml.exe(v.Nml.n.cursor.mv.edit_ltst_top) -- `[
+  v.Nml.exe(v.Nml.n.mode.v_str)              -- v
+  v.Nml.exe(v.Nml.n.cursor.mv.edit_ltst_end) -- `]
+  v.Nml.exe(v.Nml.n.cursor.mv.b)             -- h
 end
 
 -- cursor __ ins ynk ( paste )
@@ -741,8 +744,9 @@ end
 
 function v.Cursor.__ins_rgstr_by_rgstr_info(rgstr_info)
 
-  local rgstr = v.Rgstr.info_rgstr(rgstr_info)
-  v.Nml.exe(v.Nml.n.rgstr.key.rgstr .. rgstr .. v.Nml.n.edit.paste.pre)
+  local rgstr_key = v.Rgstr.info_rgstr(rgstr_info)
+  local rgstr     = v.Nml.n.rgstr.key.rgstr .. rgstr_key
+  v.Nml.exe(rgstr .. v.Nml.n.edit.paste.pre)
 end
 
 function v.Cursor.__ins_cmnt_mlt() -- call when mode normal
