@@ -11,6 +11,22 @@ v.Slctd.str_expnd_char_pair_lst = {
   {'`', '`'},
 }
 
+function v.Slctd.str_expnd_char_pair__init()
+
+  v.Slctd.str_expnd_char_pair_lst_l = {}
+  v.Slctd.str_expnd_char_pair_lst_r = {}
+
+  for _idx, _pari in pairs(v.Slctd.str_expnd_char_pair_lst) do
+
+    v.Tbl.add(v.Slctd.str_expnd_char_pair_lst_l, _pari[1])
+    v.Tbl.add(v.Slctd.str_expnd_char_pair_lst_r, _pari[2])
+  end
+
+  v.Slctd.str_expnd_char_ptn_l = '[' .. v.Tbl.join(v.Slctd.str_expnd_char_pair_lst_l) .. ']'
+  v.Slctd.str_expnd_char_ptn_r = '[' .. v.Tbl.join(v.Slctd.str_expnd_char_pair_lst_r) .. ']'
+end
+v.Slctd.str_expnd_char_pair__init()
+
 -- slctd __
 
 function v.Slctd.__clr() -- alias
@@ -376,22 +392,6 @@ function v.Slctd.str__expnd_edge_out()
 end
 
 -- slctd __ expnd char pair lst
-
-function v.Slctd.str_expnd__init()
-
-  v.Slctd.str_expnd_char_pair_lst_l = {}
-  v.Slctd.str_expnd_char_pair_lst_r = {}
-
-  for _idx, _pari in pairs(v.Slctd.str_expnd_char_pair_lst) do
-
-    v.Tbl.add(v.Slctd.str_expnd_char_pair_lst_l, _pari[1])
-    v.Tbl.add(v.Slctd.str_expnd_char_pair_lst_r, _pari[2])
-  end
-
-  v.Slctd.str_expnd_char_ptn_l = '[' .. v.Tbl.join(v.Slctd.str_expnd_char_pair_lst_l) .. ']'
-  v.Slctd.str_expnd_char_ptn_r = '[' .. v.Tbl.join(v.Slctd.str_expnd_char_pair_lst_r) .. ']'
-end
-v.Slctd.str_expnd__init()
 
 function v.Slctd.str__expnd_char_pair()
 
@@ -846,7 +846,8 @@ end
 
 function v.Slctd.str_edge_out__ins_quote()
 
-  v.Slctd.str_edge_out__ins("'")
+  local char = v.Char.quote_odr_lst()[1]
+  v.Slctd.str_edge_out__ins(char)
 end
 
 function v.Slctd.str_edge_out__ins_markdown_strikethrough()
@@ -900,32 +901,26 @@ function v.Slctd.str_edge_out_quote__tgl()
   local c_l = v.Slctd.str_edge_l_out_char()
   local c_r = v.Slctd.str_edge_r_out_char()
 
-  local c_lst
-
-  if v.Buf.is_file_type__('markdown') then
-    c_lst = {'`', "'", '"'}
-  else
-    c_lst = {"'", '"', '`'}
-  end
+  local char_lst = v.Char.quote_odr_lst()
 
   local char, idx
 
   if c_l == c_r then
-    idx = v.Tbl.idx(c_lst, c_l)
+    idx = v.Tbl.idx(char_lst, c_l)
   end
 
   if idx == nil then
 
-    char = c_lst[1]
+    char = char_lst[1]
     v.Slctd.str_edge_out__ins(char)
 
-  elseif idx == v.Tbl.len(c_lst) then
+  elseif idx == v.Tbl.len(char_lst) then
 
     v.Slctd.str_edge_out_char__del()
 
   else
     v.Slctd.str_edge_out_char__del()
-    char = c_lst[idx + 1]
+    char = char_lst[idx + 1]
     v.Slctd.str_edge_out__ins(char)
   end
 end

@@ -46,6 +46,12 @@ wezterm.on('gui-startup', function()
   else -- dflt 'Built-in Retina Display'
     x, y = 25, 70
     cols, rows = 134, 37
+
+    -- local success, stdout, stderr = wezterm.run_child_process({ 'sysctl', '-n', 'machdep.cpu.brand_string' })
+    -- if success then
+    --   stdout = stdout:gsub("^%s*(.-)%s*$", "%1")
+    --   wezterm.log_info(stdout)
+    -- end
   end
 
   local tab, pane, win = wezterm.mux.spawn_window({

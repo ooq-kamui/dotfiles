@@ -2,7 +2,6 @@
 v.Tbl = {}
 
 function v.Tbl.get_by_key(tbl, key, val_dflt)
-  -- return vf.get(tbl, key, val_dflt)
 
   if not tbl[key] then
     return val_dflt

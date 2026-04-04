@@ -408,10 +408,13 @@ keymap__('n', '<c-s>', 'h')
 keymap__('n', 'f', ':lua v.Cursor.__mv_word_f()<cr>')
 
 -- cursor mv space not - forward
--- keymap__('n', '<c-f>', ':lua v.Cursor.__mv_space_not_f()<cr>')
+-- keymap__('n', 'xx', ':lua v.Cursor.__mv_space_not_f()<cr>')
 
 -- cursor mv var - forward
 keymap__('n', '<c-f>', ':lua v.Cursor.__mv_var_f()<cr>')
+
+-- cursor mv var - back
+keymap__('n', '<c-o>', ':lua v.Cursor.__mv_var_b()<cr>')
 
 -- cursor mv word - back
 keymap__('n', 'o', ':lua v.Cursor.__mv_word_b()<cr>')
@@ -423,8 +426,8 @@ keymap__('n', '_', ':lua v.Cursor.__mv_word_dlm_f()<cr>')
 -- keymap__('n', 'xx', 'f_')
 
 -- cursor mv word dlm _ back
-keymap__('n', '<c-o>', 'hT_')
-keymap__('n', '<c-_>', 'hT_')
+-- keymap__('n', '<c-o>', 'hT_')
+-- keymap__('n', '<c-_>', 'hT_')
 
 -- cursor mv line u word col - forward
 -- keymap__('n', 'xx', ':lua v.Cursor.__mv_line_u_word_byte_idx()<cr>')
@@ -603,7 +606,7 @@ keymap__('n', 't', ':lua v.Cursor.__ins_tm()<cr>')
 -- keymap__('n', 'xx', ':lua v.Cursor.__ins_line_buf_file_path()<cr>')
 
 -- ins anchor
-keymap__('n', 'A', ':lua v.Cursor.__ins_line_anchor_dev()<cr>')
+-- keymap__('n', 'xx', ':lua v.Cursor.__ins_line_anchor_dev()<cr>')
 
 -- ins anchor, del
 -- keymap__('n', 'xx', ':lua v.Cursor.__ins_line_anchor__del()<cr>')
@@ -795,7 +798,7 @@ keymap__('n', '<c-p>', ':lua v.Srch.__slct("f")<cr>')
 
 -- srch keymap__()
 keymap__('n', 'S' , [[/keymap__('n', ']])
-keymap__('n', 'X' , [[/keymap__('x', ']])
+keymap__('n', 'A' , [[/keymap__('x', ']])
 
 -- rpl ( cmd )
 keymap__('n', ':s', ':%s/<c-r>//xxx/g')
@@ -1148,8 +1151,10 @@ keymap__('x', '<leader>A', '<esc>')
 --                     :
 keymap__('x', '<leader>I', '<esc>')
 --                     :
+keymap__('x', '<leader>O', '<esc>')
+--                     :
 keymap__('x', '<leader>Z', '<esc>')
-
+--
 keymap__('x', '<leader><c-a>', '<esc>')
 --                     :
 keymap__('x', '<leader><c-o>', '<esc>')
@@ -1524,8 +1529,8 @@ keymap__('x', '<leader>i', ':lua v.Fzf.buf_by_slctd_str()<cr>')
 keymap__('x', '<leader>o', ':lua v.Fzf.rg_by_slctd_str(bl.f)<cr>')
 
 -- fzf rg word1
-keymap__('x', '<leader>O', ':lua v.Fzf.rg_by_slctd_str(bl.t)<cr>')
--- keymap__('x', '<leader>O', ':lua v.Fzf.rg_word1_by_slctd_str()<cr>')
+keymap__('x', '<leader><c-o>', ':lua v.Fzf.rg_by_slctd_str(bl.t)<cr>')
+keymap__('x', '<leader>O',     ':lua v.Fzf.rg_by_slctd_str(bl.t)<cr>')
 
 -- tag jmp
 -- keymap__('x', 't', ':lua v.Buf.opn_by_slctd_line()<cr>')

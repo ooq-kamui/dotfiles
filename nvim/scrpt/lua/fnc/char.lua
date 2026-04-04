@@ -16,11 +16,21 @@ v.Char.cnst.bracket.lst = {
   {'<', '>'},
   {'{', '}'},
 }
-v.Char.cnst.bracket.l_lst = {'[', '(', '<', '{'} -- tgl odr
-v.Char.cnst.bracket.r_lst = {']', ')', '>', '}'}
+
+function v.Char.bracket__init()
+
+  v.Char.cnst.bracket.l_lst = v.Tbl.lst_by_2d_idx(v.Char.cnst.bracket.lst, 1)
+  v.Char.cnst.bracket.r_lst = v.Tbl.lst_by_2d_idx(v.Char.cnst.bracket.lst, 2)
+end
+v.Char.bracket__init()
 
 v.Char.cnst.quote = {}
 v.Char.cnst.quote.lst = {"'", '"', '`'}
+
+v.Char.cnst.quote.odr_lst = {
+  markdown = {'`', "'", '"'},
+  dflt     = {"'", '"', '`'},
+}
 
 v.Char.cnst.symbol = {}
 v.Char.cnst.symbol.tgl_grp_lst = {
@@ -104,6 +114,14 @@ function v.Char.bracket_pair_char(c)
     rpl = bracket_l_lst[r_idx]
   end
   return rpl
+end
+
+function v.Char.quote_odr_lst()
+
+  local file_type = v.Buf.file_type()
+  local dflt = v.Char.cnst.quote.odr_lst['dflt']
+  local quote_odr_lst = v.Tbl.get_by_key(v.Char.cnst.quote.odr_lst, file_type, dflt)
+  return quote_odr_lst
 end
 
 -- cnd
@@ -207,17 +225,14 @@ function v.Char.is_pair__quote(c1, c2)
   return ret
 end
 
-function v.Char.is_pair__bracket(c1, c2)
+function v.Char.is_pair__bracket(char1, char2)
 
   local ret = bl.f
 
-  if     c1 == '(' and c2 == ')' then
-    ret = bl.t
-  elseif c1 == '{' and c2 == '}' then
-    ret = bl.t
-  elseif c1 == '[' and c2 == ']' then
-    ret = bl.t
-  elseif c1 == '<' and c2 == '>' then
+  local char1_bracket_idx = v.Tbl.idx(v.Char.cnst.bracket.l_lst, char1)
+  local char2_bracket_idx = v.Tbl.idx(v.Char.cnst.bracket.r_lst, char2)
+
+  if char1_bracket_idx and (char1_bracket_idx == char2_bracket_idx) then
     ret = bl.t
   end
 

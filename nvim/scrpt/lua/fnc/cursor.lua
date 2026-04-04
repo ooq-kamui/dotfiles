@@ -302,6 +302,11 @@ function v.Cursor.__mv_var_f()
   local st = v.Cursor.__mv_by_ptn(v.Ptn.vim.var.str, 'f', bl.t, bl.t)
 end
 
+function v.Cursor.__mv_var_b()
+
+  local st = v.Cursor.__mv_by_ptn(v.Ptn.vim.var.str, 'b', bl.f, bl.t)
+end
+
 function v.Cursor.__mv_fnc_name() -- use off
 
   local st = v.Cursor.__mv_by_ptn('(', 'f')
