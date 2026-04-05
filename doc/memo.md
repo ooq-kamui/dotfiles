@@ -2,6 +2,31 @@
 # dotfiles
 
 
+## nvim
+
+srch history tgl
+- tgt plain
+  - history lst cre
+
+- fnc cre
+  - hl add
+  - history add
+
+
+osc52, err, and __ srch ?
+
+
+## fish
+
+c-u ? ( c-q )
+
+
+## artcl
+
+rsync, ssh ? err
+- ask ai
+
+
 ## web-svr
 
 web svr rpl
@@ -9,11 +34,6 @@ web svr rpl
 
 
 ## nvim
-
-srch history tgl
-- tgt plain
-
-osc52, err, and __ srch ?
 
 plg
 - blink.cmp
