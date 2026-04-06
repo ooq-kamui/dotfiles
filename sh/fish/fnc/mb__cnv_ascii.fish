@@ -1,4 +1,4 @@
-function mb__cnv
+function mb__cnv_ascii
 
   cat -          |\
   mb__cnv_space  |\

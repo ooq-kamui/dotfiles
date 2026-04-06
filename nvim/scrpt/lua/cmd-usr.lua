@@ -67,7 +67,7 @@ vim.api.nvim_create_user_command('Mv',
 
 vim.api.nvim_create_user_command('Rpl',
   function(opts)
-    v.Slctd.line__rpl(opts.fargs[1], opts.fargs[2])
+    v.Slctd.line__rpl_by_ptn(opts.fargs[1], opts.fargs[2])
   end,
   {nargs = '*'}
 )

@@ -1164,22 +1164,18 @@ end
 
 -- slctd line __ rpl
 
-function v.Slctd.line__rpl(srch, rpl)
+function v.Slctd.line__rpl_by_ptn(ptn_vim, rpl)
 
   local rng = v.Slctd.rng_dflt
-  local cmd = rng .. 's/' .. srch .. '/' .. rpl .. '/eg'
+  local cmd = rng .. 's/' .. ptn_vim .. '/' .. rpl .. '/eg'
   --v.Log.val( cmd )
   v.Cmd.cmd(cmd)
 end
 
-function v.Slctd.line__rpl_by_line1_line2() -- use not
-
-  local srch = v.Line.str_by_line_num(1)
-  local rpl  = v.Line.str_by_line_num(2)
+function v.Slctd.line__rpl_str(str)
 
   local rng = v.Slctd.rng_dflt
-  local cmd = rng .. 's/' .. srch .. '/' .. rpl .. '/eg'
-  --v.Log.val( cmd )
+  local cmd = rng .. ' ! ' .. 'echo ' .. str
   v.Cmd.cmd(cmd)
 end
 
@@ -1405,17 +1401,16 @@ end
 
 function v.Slctd.line__cnv_markdown_tbl_header() -- ??
 
-  v.Slctd.line__rpl('[^|]', '-'  )
-  v.Slctd.line__rpl( '|.' , '| ' )
-  v.Slctd.line__rpl('.|'  , ' |' )
+  v.Slctd.line__rpl_by_ptn('[^|]', '-'  )
+  v.Slctd.line__rpl_by_ptn( '|.' , '| ' )
+  v.Slctd.line__rpl_by_ptn('.|'  , ' |' )
 end
 
 -- slctd line mlt cnv mb to ascii
 
-function v.Slctd.line_mlt_mb__cnv()
+function v.Slctd.line_mlt_mb__cnv_ascii()
 
-  local sys_cmd = 'mb__cnv'
-  v.Slctd.line__rpl_sys_cmd(sys_cmd)
+  v.Slctd.line__rpl_sys_cmd(v.Mb.cmd.__cnv_ascii)
 end
 
 function v.Slctd.is_line__mlt()

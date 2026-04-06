@@ -2,29 +2,10 @@
 # dotfiles
 
 
-## nvim
-
-srch history tgl
-- tgt plain
-  - history lst cre
-
-- fnc cre
-  - hl add
-  - history add
-
-
-osc52, err, and __ srch ?
-
-
 ## fish
 
 c-u ? ( c-q )
-
-
-## artcl
-
-rsync, ssh ? err
-- ask ai
+- at mac
 
 
 ## web-svr
@@ -47,5 +28,4 @@ alm setting at skr console
 - confirm
 - firewall
   - url
-
 

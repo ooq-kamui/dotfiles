@@ -85,8 +85,12 @@ alias mkdir 'mkdir -p'
 alias mkd   'mkdir -p'
 alias rmd   'rmdir'
 
+# alias lr   # fnc
 alias lr-oo  'lr-d2'
 alias lr-ooo 'lr-d3'
+
+alias fd  'fd --hidden --follow -I --exclude .git'
+alias lfd 'fd'
 
 alias lf     'lrf'
 alias lf-oo  'lrf-d2'
@@ -95,8 +99,6 @@ alias lf-ooo 'lrf-d3'
 alias ld     'lrd'
 alias ld-oo  'lrd-d2'
 alias ld-ooo 'lrd-d3'
-
-alias fd 'fd --hidden --follow -I --exclude .git'
 
 alias lf-ext  'lrf-ext'
 # alias ext-lst 'lrf-ext'
@@ -205,7 +207,7 @@ alias clc 'math'
 
 alias tbl '/usr/bin/column -t'
 
-alias mb_chk 'file -i'
+alias mb-chk 'file -i'
 
 alias trns     'trans'
 alias trns-j2e 'trans {ja=en}'

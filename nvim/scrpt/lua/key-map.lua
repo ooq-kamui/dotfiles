@@ -763,7 +763,7 @@ keymap__('n', '<leader>k'    , 'mz/')
 keymap__('n', '<leader><c-k>', 'mz?')
 
 -- srch by clp
-keymap__('n', 'C', ':lua v.Srch.str_vim__clp()<cr>')
+keymap__('n', 'C', ':lua v.Srch.str_vim__clp()<cr>') -- think: off, provisional
 
 -- srch - forward
 keymap__('n', 'n'    , ':lua v.Cursor.__mv_srch_str("f")<cr>')
@@ -1464,7 +1464,7 @@ keymap__('x', 'U', 'Ugv')
 -- keymap__('x', 'xx', 'ugv')
 
 -- str mb
-keymap__('x', ':mb', ':lua v.Slctd.line_mlt_mb__cnv()<cr>')
+keymap__('x', ':mb', ':lua v.Slctd.line_mlt_mb__cnv_ascii()<cr>')
 
 -- srch
 

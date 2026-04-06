@@ -269,9 +269,9 @@ function v.Str.to_num(num_str)
   return num
 end
 
-function v.Str.mb_to_ascii(str)
+function v.Str.mb__cnv_ascii(str)
 
-  str = v.Mb.__cnv(str)
+  str = v.Mb.__cnv_ascii(str)
   return str
 end
 

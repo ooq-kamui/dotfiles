@@ -43,6 +43,8 @@ end
 
 function v.Srch.str_plain__(str)
 
+  v.Srch._str_plain_prv = v.Srch._str_plain
+
   v.Srch._str_plain = str
 end
 
@@ -98,9 +100,17 @@ function v.Srch.str_vim__ptn(ptn_vim)
 
   if v.Str.is__cr_in(ptn_vim) then return end
 
-  -- highlight
+  v.Srch.hl__(ptn_vim)
+  v.Srch.hstry__add(ptn_vim)
+end
+
+function v.Srch.hl__(ptn_vim) -- highlight
+
   v.Rgstr.__('/', ptn_vim)
-  -- srch history add
+end
+
+function v.Srch.hstry__add(ptn_vim)
+
   ptn_vim = v.Str.escape(ptn_vim, [[\"]])
   v.Cmd.cmd('exe "normal! ' .. '/' .. ptn_vim .. '"') -- not v.Nml.exe()
 end
@@ -137,7 +147,10 @@ end
 
 function v.Srch.str_vim_prv()
 
-  local str_vim_prv = v.Srch.str_vim_ltst(2)
+  local str_vim_prv
+  str_vim_prv = v.Srch.str_vim_ltst(2)
+  -- str_vim_prv = v.Srch.str_plain_to_str_vim(v.Srch._str_plain_prv)
+
   return str_vim_prv
 end
 
