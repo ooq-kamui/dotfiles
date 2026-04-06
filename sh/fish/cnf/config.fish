@@ -245,6 +245,8 @@ alias amp 'amplify'
 # key-bind
 # 
 
+stty -ixon
+
 # corsor mv char
 bind \cs backward-char
 bind \cl forward-char

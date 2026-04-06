@@ -2,10 +2,18 @@
 # dotfiles
 
 
-## fish
+## wez
 
-c-u ? ( c-q )
-- at mac
+ctrl q, setting
+- doc-tech
+
+select mode ? by key
+
+
+## lua
+
+'\xXX'
+- doc-tech
 
 
 ## web-svr
