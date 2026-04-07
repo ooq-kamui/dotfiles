@@ -10,6 +10,9 @@ web svr rpl
 
 ## nvim
 
+srch tgl, by plain str
+
+
 plg
 - blink.cmp
   - instl
