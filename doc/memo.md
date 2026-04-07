@@ -6,6 +6,9 @@
 
 img view
 
+cp mode
+- key bind
+
 
 ## web-svr
 

@@ -29,7 +29,6 @@ scheme_lst.win.recommend.h = {
   'TomorrowNightBlue (Gogh)'               , -- 
   'Wzoreck (Gogh)'                         , -- 
   'niji'                                   , -- 
-  'synthwave-everything'                   , -- 
   -- hh ~
   'MaterialDarker'                         , -- 
   'Modus-Vivendi-Tritanopia'               , -- 
@@ -117,6 +116,7 @@ scheme_lst.win.excld = {
   'Aura (Gogh)'                            , -- 
   -- cmd line
   'kokuban (Gogh)'                         , -- 
+  'synthwave-everything'                   , -- 
   -- git
   'Belge (terminal.sexy)'                  , -- 
   'seoulbones_dark'                        , -- 

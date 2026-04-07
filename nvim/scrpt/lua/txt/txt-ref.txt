@@ -13,3 +13,16 @@ abcdefghijklmnopqrstuvwxyz
     aaa   bbb   ccc   
 ```
 
+```
+feat:     新機能の追加 (feature)
+fix:      バグの修正
+docs:     ドキュメントのみの変更 (READMEの修正など)
+style:    コードの意味に影響を与えない変更 (ホワイトスペース, セミコロンの抜け, 整形など)
+refactor: バグ修正や機能追加を含まないコードの整理
+perf:     性能向上 (performance)
+test:     テストコードの追加や修正
+build:    ビルドシステムや外部依存関係の変更 (npm, webpackなど)
+ci:       CI設定の変更 (GitHub Actions, Travisなど)
+chore:    その他, ソースやテストの変更を含まない雑事 (ビルドプロセスの変更など)
+```
+
