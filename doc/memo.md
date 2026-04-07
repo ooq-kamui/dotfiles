@@ -2,6 +2,11 @@
 # dotfiles
 
 
+## wez
+
+img view
+
+
 ## web-svr
 
 web svr rpl
