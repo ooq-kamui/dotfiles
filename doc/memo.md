@@ -2,20 +2,6 @@
 # dotfiles
 
 
-## wez
-
-ctrl q, setting
-- doc-tech
-
-select mode ? by key
-
-
-## lua
-
-'\xXX'
-- doc-tech
-
-
 ## web-svr
 
 web svr rpl

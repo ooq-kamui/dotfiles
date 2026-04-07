@@ -93,7 +93,8 @@ return {
     { key = '^'         , mods = 'SHIFT|CTRL'      , action = act.ActivateTab(5) },
     { key = '_'         , mods = 'CTRL'            , action = act.DisableDefaultAssignment },
     { key = '_'         , mods = 'SHIFT|CTRL'      , action = act.DisableDefaultAssignment },
-    { key = 'c'         , mods = 'SHIFT|CTRL'      , action = act.CopyTo 'Clipboard' },
+ -- { key = 'c'         , mods = 'SHIFT|CTRL'      , action = act.CopyTo 'Clipboard' },
+    { key = 'c'         , mods = 'SHIFT|CTRL'      , action = act.ActivateCopyMode },
     { key = 'c'         , mods = 'SUPER'           , action = act.CopyTo 'Clipboard' },
  -- { key = 'e'         , mods = 'SHIFT|CTRL'      , action = act.AdjustPaneSize{ 'Left', 1 } },
     { key = 'e'         , mods = 'SHIFT|CTRL'      , action = act.ShowDebugOverlay },
@@ -107,7 +108,7 @@ return {
     { key = 'i'         , mods = 'SHIFT|CTRL'      , action = act.AdjustPaneSize{ 'Left', 1 } },
  -- { key = 'j'         , mods = 'SHIFT|CTRL'      , action = act.SpawnTab 'CurrentPaneDomain' },
  -- { key = 'j'         , mods = 'SHIFT|CTRL'      , action = act.SpawnCommandInNewTab { domain = 'CurrentPaneDomain', cwd = wezterm.home_dir } },
-    { key = 'j'         , mods = 'CTRL|SHIFT'      ,
+    { key = 'j'         , mods = 'SHIFT|CTRL'      ,
       action = wezterm.action_callback(function(window, pane)
         local tab, _, _ = window:mux_window():spawn_tab{}
         tab:active_pane():split({direction = 'Right', size = 0.7})
@@ -118,7 +119,7 @@ return {
     { key = 'k'         , mods = 'SUPER'           , action = act.ClearScrollback 'ScrollbackOnly' },
  -- { key = 'l'         , mods = 'SHIFT|CTRL'      , action = act.ActivatePaneDirection 'Next' },
  -- { key = 'l'         , mods = 'SHIFT|CTRL'      , action = act.ShowDebugOverlay },
-    { key = 'l'         , mods = 'CTRL|SHIFT'      , action = act.RotatePanes 'Clockwise' },
+    { key = 'l'         , mods = 'SHIFT|CTRL'      , action = act.RotatePanes 'Clockwise' },
     { key = 'm'         , mods = 'SHIFT|CTRL'      , action = act.Hide },
     { key = 'm'         , mods = 'SUPER'           , action = act.Hide },
  -- { key = 'n'         , mods = 'SHIFT|CTRL'      , action = act.SpawnWindow },
