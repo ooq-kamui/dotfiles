@@ -108,12 +108,13 @@ return {
     { key = 'i'         , mods = 'SHIFT|CTRL'      , action = act.AdjustPaneSize{ 'Left', 1 } },
  -- { key = 'j'         , mods = 'SHIFT|CTRL'      , action = act.SpawnTab 'CurrentPaneDomain' },
  -- { key = 'j'         , mods = 'SHIFT|CTRL'      , action = act.SpawnCommandInNewTab { domain = 'CurrentPaneDomain', cwd = wezterm.home_dir } },
-    { key = 'j'         , mods = 'SHIFT|CTRL'      ,
-      action = wezterm.action_callback(function(window, pane)
-        local tab, _, _ = window:mux_window():spawn_tab{}
-        tab:active_pane():split({direction = 'Right', size = 0.7})
-      end),
-    },
+ -- { key = 'j'         , mods = 'SHIFT|CTRL'      ,
+ --   action = wezterm.action_callback(function(window, pane)
+ --     local tab, _, _ = window:mux_window():spawn_tab{}
+ --     tab:active_pane():split({direction = 'Right', size = 0.7})
+ --   end),
+ -- },
+    { key = 'j'         , mods = 'SHIFT|CTRL'      , action = act.ActivateCopyMode },
  -- { key = 'k'         , mods = 'SHIFT|CTRL'      , action = act.ClearScrollback 'ScrollbackOnly' },
     { key = 'k'         , mods = 'SHIFT|CTRL'      , action = act.ActivatePaneDirection 'Next' },
     { key = 'k'         , mods = 'SUPER'           , action = act.ClearScrollback 'ScrollbackOnly' },
@@ -124,7 +125,13 @@ return {
     { key = 'm'         , mods = 'SHIFT|CTRL'      , action = act.ActivateCopyMode },
     { key = 'm'         , mods = 'SUPER'           , action = act.Hide },
  -- { key = 'n'         , mods = 'SHIFT|CTRL'      , action = act.SpawnWindow },
-    { key = 'n'         , mods = 'SHIFT|CTRL'      , action = act.SpawnTab 'CurrentPaneDomain' },
+ -- { key = 'n'         , mods = 'SHIFT|CTRL'      , action = act.SpawnTab 'CurrentPaneDomain' },
+    { key = 'n'         , mods = 'SHIFT|CTRL'      ,
+      action = wezterm.action_callback(function(window, pane)
+        local tab, _, _ = window:mux_window():spawn_tab{}
+        tab:active_pane():split({direction = 'Right', size = 0.7})
+      end),
+    },
     { key = 'n'         , mods = 'SUPER'           , action = act.SpawnWindow },
  -- { key = 'o'         , mods = 'SHIFT|CTRL'      , action = act.ShowDebugOverlay },
     { key = 'o'         , mods = 'SHIFT|CTRL'      , action = act.AdjustPaneSize{ 'Right', 1 } },
@@ -223,7 +230,7 @@ return {
       { key = 't'         , mods = 'NONE'   , action = act.CopyMode{ JumpForward = { prev_char = true } } },
       { key = 'u'         , mods = 'CTRL'   , action = act.CopyMode{ MoveByPage = (-0.5) } },
    -- { key = 'v'         , mods = 'NONE'   , action = act.CopyMode{ SetSelectionMode =  'Cell' } },
-  -- { key = 'v'         , mods = 'CTRL'   , action = act.CopyMode{ SetSelectionMode =  'Block' } },
+   -- { key = 'v'         , mods = 'CTRL'   , action = act.CopyMode{ SetSelectionMode =  'Block' } },
       { key = 'v'         , mods = 'NONE'   , action = act.CopyMode{ SetSelectionMode =  'Block' } },
       { key = 'w'         , mods = 'NONE'   , action = act.CopyMode 'MoveForwardWord' },
    -- { key = 'y'         , mods = 'NONE'   , action = act.Multiple{ { CopyTo =  'ClipboardAndPrimarySelection' }, { CopyMode =  'Close' } } },

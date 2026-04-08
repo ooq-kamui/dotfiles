@@ -2,6 +2,11 @@
 # dotfiles
 
 
+## mac
+
+apple intelligence, try
+
+
 ## web-svr
 
 web svr rpl
