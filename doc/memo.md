@@ -2,6 +2,13 @@
 # dotfiles
 
 
+## wez
+
+cp mode, key bind
+- slctd not
+  - c-o: word back
+
+
 ## mac
 
 apple intelligence, try
