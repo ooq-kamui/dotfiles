@@ -8,6 +8,8 @@ cp mode, key bind
 - slctd not
   - c-o: word back
 
+- mac, same win
+
 
 ## mac
 
