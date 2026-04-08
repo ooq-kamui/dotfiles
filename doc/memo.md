@@ -4,8 +4,6 @@
 
 ## wez
 
-img view
-
 cp mode
 - key bind
 
