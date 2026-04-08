@@ -2,12 +2,6 @@
 # dotfiles
 
 
-## wez
-
-cp mode
-- key bind
-
-
 ## web-svr
 
 web svr rpl
