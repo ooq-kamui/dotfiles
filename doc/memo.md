@@ -2,20 +2,6 @@
 # dotfiles
 
 
-## wez
-
-cp mode, key bind
-- slctd not
-  - c-o: word back
-
-- mac, same win
-
-
-## mac
-
-apple intelligence, try
-
-
 ## web-svr
 
 web svr rpl
