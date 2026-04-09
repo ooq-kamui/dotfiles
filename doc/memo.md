@@ -10,6 +10,9 @@ web svr rpl
 
 ## nvim
 
+n f, case: line end
+
+
 srch tgl, by plain str
 
 

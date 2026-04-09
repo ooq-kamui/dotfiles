@@ -40,7 +40,6 @@ scheme_lst.mac.recommend.h = {
   'AyuMirage (Gogh)'                       ,
   'Bamboo'                                 ,
   'Banana Blueberry'                       ,
-  'Belge (terminal.sexy)'                  ,
   'Breeze (Gogh)'                          ,
   'Breeze'                                 ,
   'Bright (base16)'                        ,
@@ -202,6 +201,7 @@ scheme_lst.mac.recommend.l = {
   'Galaxy'                                 ,
   'Flat Remix (Gogh)'                      ,
   'Modus-Vivendi-Tinted'                   ,
+  'Belge (terminal.sexy)'                  ,
   -- slctd
   'DotGov'                                 ,
   'Ef-Cherie'                              ,
