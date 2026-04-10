@@ -224,7 +224,7 @@ end
 function v.Cursor.__mv_word_f()
 
   local drct = 'd'
-  local line_nxt_num
+  local line_crnt_num, line_nxt_num
 
   if     v.Cursor.is_byte_idx__line_end_inr() then
 
@@ -233,8 +233,10 @@ function v.Cursor.__mv_word_f()
 
   elseif v.Cursor.is_byte_idx__line_end() then
 
-    line_nxt_num = v.Cursor.line_num(drct)
-    if v.Line.is_str__emp(line_nxt_num) then
+    line_crnt_num = v.Cursor.line_num()
+    line_nxt_num  = line_crnt_num + 1
+
+    if v.Line.is_str__emp(line_crnt_num) and v.Line.is_str__emp(line_nxt_num) then
       v.Cursor.__mv_line_emp_mlt_edge(drct)
     else
       v.Cursor.__mv_char_f()

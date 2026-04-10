@@ -2,6 +2,27 @@
 # dotfiles
 
 
+## keyboard sticker
+
+- logi
+  - ^, win
+
+
+## wez
+
+key-bind
+- cp mode
+  - o
+    - case: slctd not: cursor mv word b
+    - case: slctd    : cp
+  - c-a: cursor mv line top
+
+
+## nvim
+
+srch tgl, err
+
+
 ## web-svr
 
 web svr rpl
@@ -9,12 +30,6 @@ web svr rpl
 
 
 ## nvim
-
-n f, case: line end
-
-
-srch tgl, by plain str
-
 
 plg
 - blink.cmp

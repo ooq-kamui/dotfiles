@@ -43,9 +43,17 @@ end
 
 function v.Srch.str_plain__(str)
 
-  v.Srch._str_plain_prv = v.Srch._str_plain
+  if v.Srch._str_plain == str then return end
 
-  v.Srch._str_plain = str
+  v.Srch._str_plain_prv = v.Srch._str_plain
+  v.Srch._str_plain     = str
+end
+
+function v.Srch.str_plain__tgl()
+
+  local tmp = v.Srch._str_plain_prv or ''
+  v.Srch._str_plain_prv = v.Srch._str_plain
+  v.Srch._str_plain     = tmp
 end
 
 function v.Srch.str_vim()
@@ -58,8 +66,7 @@ function v.Srch.str_vim__(str_plain, word1_flg)
 
   v.Srch.str_plain__(str_plain)
 
-  local str_vim
-  str_vim = v.Srch.str_plain_to_str_vim(str_plain)
+  local str_vim = v.Srch.str_plain_to_str_vim(str_plain)
 
   if word1_flg then
     str_vim = v.Srch.str_vim_to_word1(str_vim)
@@ -148,8 +155,8 @@ end
 function v.Srch.str_vim_prv()
 
   local str_vim_prv
-  str_vim_prv = v.Srch.str_vim_ltst(2)
-  -- str_vim_prv = v.Srch.str_plain_to_str_vim(v.Srch._str_plain_prv)
+  -- str_vim_prv = v.Srch.str_vim_ltst(2)
+  str_vim_prv = v.Srch.str_plain_to_str_vim(v.Srch._str_plain_prv)
 
   return str_vim_prv
 end
@@ -159,6 +166,7 @@ end
 function v.Srch.str_vim__prv_tgl()
 
   local str_vim_prv = v.Srch.str_vim_prv()
+  v.Srch.str_plain__tgl()
   v.Srch.str_vim__ptn(str_vim_prv)
 end
 
