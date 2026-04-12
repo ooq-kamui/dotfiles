@@ -69,7 +69,6 @@ scheme_lst.mac.recommend.h = {
   'Eighties (base16)'                      ,
   'Erebus (terminal.sexy)'                 ,
   'Everblush (Gogh)'                       ,
-  'Fairyfloss'                             ,
   'Framer (base16)'                        ,
   'Frontend Galaxy (Gogh)'                 ,
   'Gigavolt (base16)'                      ,
@@ -78,7 +77,6 @@ scheme_lst.mac.recommend.h = {
   'Horizon Dark (Gogh)'                    ,
   'Horizon Dark (base16)'                  ,
   'HorizonDark (Gogh)'                     ,
-  'Ibm 3270 (High Contrast) (Gogh)'        ,
   'Idle Toes (Gogh)'                       ,
   'Ir Black (Gogh)'                        ,
   'Kolorit'                                ,
@@ -109,7 +107,6 @@ scheme_lst.mac.recommend.h = {
   'Poimandres'                             ,
   'Purple People Eater (Gogh)'             ,
   'Raycast_Dark'                           ,
-  'Rebecca (base16)'                       ,
   'Seti (Gogh)'                            ,
   'Snazzy (Gogh)'                          ,
   'Snazzy (base16)'                        ,
@@ -202,11 +199,14 @@ scheme_lst.mac.recommend.l = {
   'Flat Remix (Gogh)'                      ,
   'Modus-Vivendi-Tinted'                   ,
   'Belge (terminal.sexy)'                  ,
+  'Fairyfloss'                             ,
+  'Ibm 3270 (High Contrast) (Gogh)'        ,
   -- slctd
   'DotGov'                                 ,
   'Ef-Cherie'                              ,
   -- git
   'Desert'                                 ,
+  'Rebecca (base16)'                       ,
   -- etc
   'Aco (Gogh)'                             ,
   'Monokai Remastered'                     ,

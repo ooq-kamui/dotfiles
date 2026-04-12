@@ -209,13 +209,15 @@ return {
       { key = 'V'         , mods = 'SHIFT'  , action = act.CopyMode{ SetSelectionMode =  'Line' } },
       { key = '^'         , mods = 'NONE'   , action = act.CopyMode 'MoveToStartOfLineContent' },
       { key = '^'         , mods = 'SHIFT'  , action = act.CopyMode 'MoveToStartOfLineContent' },
+      { key = 'a'         , mods = 'CTRL'   , action = act.CopyMode 'MoveToStartOfLineContent' },
       { key = 'b'         , mods = 'NONE'   , action = act.CopyMode 'MoveBackwardWord' },
       { key = 'b'         , mods = 'ALT'    , action = act.CopyMode 'MoveBackwardWord' },
       { key = 'b'         , mods = 'CTRL'   , action = act.CopyMode 'PageUp' },
       { key = 'c'         , mods = 'CTRL'   , action = act.CopyMode 'Close' },
       { key = 'd'         , mods = 'CTRL'   , action = act.CopyMode{ MoveByPage = (0.5) } },
       { key = 'e'         , mods = 'NONE'   , action = act.CopyMode 'MoveForwardWordEnd' },
-      { key = 'f'         , mods = 'NONE'   , action = act.CopyMode{ JumpForward = { prev_char = false } } },
+   -- { key = 'f'         , mods = 'NONE'   , action = act.CopyMode{ JumpForward = { prev_char = false } } },
+      { key = 'f'         , mods = 'NONE'   , action = act.CopyMode 'MoveForwardWord' },
       { key = 'f'         , mods = 'ALT'    , action = act.CopyMode 'MoveForwardWord' },
       { key = 'f'         , mods = 'CTRL'   , action = act.CopyMode 'PageDown' },
       { key = 'g'         , mods = 'NONE'   , action = act.CopyMode 'MoveToScrollbackTop' },
@@ -227,7 +229,18 @@ return {
       { key = 'l'         , mods = 'NONE'   , action = act.CopyMode 'MoveRight' },
       { key = 'm'         , mods = 'ALT'    , action = act.CopyMode 'MoveToStartOfLineContent' },
    -- { key = 'o'         , mods = 'NONE'   , action = act.CopyMode 'MoveToSelectionOtherEnd' },
-      { key = 'o'         , mods = 'NONE'   , action = act.Multiple{ { CopyTo =  'ClipboardAndPrimarySelection' }, { CopyMode =  'Close' } } },
+   -- { key = 'o'         , mods = 'NONE'   , action = act.Multiple{ { CopyTo =  'ClipboardAndPrimarySelection' }, { CopyMode =  'Close' } } },
+      { key = 'o'         , mods = 'NONE',
+        action = wezterm.action_callback(function(window, pane)
+          local selection = window:get_selection_text_for_pane(pane)
+          if selection == "" then
+            window:perform_action(act.CopyMode('MoveBackwardWord'), pane)
+          else
+            window:perform_action(act.CopyTo('ClipboardAndPrimarySelection'), pane)
+            window:perform_action(act.CopyMode('Close'), pane)
+          end
+        end),
+      },
       { key = 'q'         , mods = 'NONE'   , action = act.CopyMode 'Close' },
       { key = 's'         , mods = 'CTRL'   , action = act.CopyMode 'MoveLeft' },
       { key = 't'         , mods = 'NONE'   , action = act.CopyMode{ JumpForward = { prev_char = true } } },
@@ -237,6 +250,7 @@ return {
       { key = 'v'         , mods = 'NONE'   , action = act.CopyMode{ SetSelectionMode =  'Block' } },
       { key = 'w'         , mods = 'NONE'   , action = act.CopyMode 'MoveForwardWord' },
    -- { key = 'y'         , mods = 'NONE'   , action = act.Multiple{ { CopyTo =  'ClipboardAndPrimarySelection' }, { CopyMode =  'Close' } } },
+      { key = 'y'         , mods = 'CTRL'   , action = act.CopyMode 'MoveToEndOfLineContent' },
       { key = 'y'         , mods = 'NONE'   , action = act.CopyMode 'MoveToSelectionOtherEnd' },
       { key = 'PageUp'    , mods = 'NONE'   , action = act.CopyMode 'PageUp' },
       { key = 'PageDown'  , mods = 'NONE'   , action = act.CopyMode 'PageDown' },

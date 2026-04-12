@@ -2,25 +2,18 @@
 # dotfiles
 
 
-## keyboard sticker
+## claude
 
-- logi
-  - ^, win
-
-
-## wez
-
-key-bind
-- cp mode
-  - o
-    - case: slctd not: cursor mv word b
-    - case: slctd    : cp
-  - c-a: cursor mv line top
+claude code
+- alm
+  - install, login
+  - spec rsrch
 
 
 ## nvim
 
 srch tgl, err
+- case: null
 
 
 ## web-svr
