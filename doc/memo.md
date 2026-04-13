@@ -2,11 +2,6 @@
 # dotfiles
 
 
-## key sticker
-
-logi, win, cut
-
-
 ## ai
 
 gemini
@@ -15,17 +10,12 @@ gemini
   - call nano banana 2
     - try
 
-claude
-- skr-alm, login, auth
 
+## nvim
 
-## mac
-
-dir tidy
-- `prj-pri/ssh`
-
-mac svr
-- cnct ssh
+srch tgl, err
+- case: null
+  - init
 
 
 ## web-svr
@@ -34,12 +24,6 @@ cnt mem swap, same alm, confirm
 
 web svr rpl
 - task lst cre
-
-
-## nvim
-
-srch tgl, err
-- case: null
 
 
 ## nvim
