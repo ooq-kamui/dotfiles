@@ -2,15 +2,11 @@
 # dotfiles
 
 
-## linkedin
-
-reg
-
-
 ## steam
 
 mac, app only launch
-- rsrch
+- best practice
+  - rsrch
 
 
 ## ai gemini
@@ -20,6 +16,14 @@ gemini cli
   - extension install
     - mac
     - alm
+
+
+## linkedin
+
+reg
+
+
+## ai gemini
 
 - gemini.md, try
 
@@ -33,6 +37,15 @@ web svr rpl
     - memory
   - nginx setting
   - ...
+
+
+## ff
+
+pixel art, tidy
+
+logic tidy
+
+etc
 
 
 ## nvim
