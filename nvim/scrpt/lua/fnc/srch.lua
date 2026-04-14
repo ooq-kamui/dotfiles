@@ -154,10 +154,8 @@ end
 
 function v.Srch.str_vim_prv()
 
-  local str_vim_prv
-  -- str_vim_prv = v.Srch.str_vim_ltst(2)
-  str_vim_prv = v.Srch.str_plain_to_str_vim(v.Srch._str_plain_prv)
-
+  local str_plain_prv = v.Srch._str_plain_prv or ''
+  local str_vim_prv = v.Srch.str_plain_to_str_vim(str_plain_prv)
   return str_vim_prv
 end
 

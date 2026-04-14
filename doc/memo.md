@@ -2,28 +2,37 @@
 # dotfiles
 
 
-## ai
+## linkedin
 
-gemini
-- gemini cli
-  - gemini.md, try
-  - call nano banana 2
-    - try
+reg
 
 
-## nvim
+## steam
 
-srch tgl, err
-- case: null
-  - init
+mac, app only launch
+- rsrch
+
+
+## ai gemini
+
+gemini cli
+- call nano banana 2, terminal, try
+  - extension install
+    - mac
+    - alm
+
+- gemini.md, try
 
 
 ## web-svr
 
-cnt mem swap, same alm, confirm
-
 web svr rpl
-- task lst cre
+- task lst
+  - spec confirm
+    - strage
+    - memory
+  - nginx setting
+  - ...
 
 
 ## nvim
