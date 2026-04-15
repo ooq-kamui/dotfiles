@@ -2,13 +2,6 @@
 # dotfiles
 
 
-## steam
-
-mac, app only launch
-- best practice
-  - rsrch
-
-
 ## ai gemini
 
 gemini cli
@@ -17,15 +10,12 @@ gemini cli
     - mac
     - alm
 
+gemini.md, try
+
 
 ## linkedin
 
 reg
-
-
-## ai gemini
-
-- gemini.md, try
 
 
 ## web-svr
