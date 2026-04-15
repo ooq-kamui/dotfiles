@@ -43,7 +43,6 @@ scheme_lst.win.recommend.h = {
   'Catppuccin Mocha (Gogh)'                , -- 
   'Chalk (dark) (terminal.sexy)'           , -- 
   'Decaf (base16)'                         , -- 
-  'DotGov'                                 , -- 
   'Ef-Maris-Dark'                          , -- 
   'Everblush (Gogh)'                       , -- 
   'Guezwhoz'                               , -- 
@@ -78,7 +77,6 @@ scheme_lst.win.recommend.h = {
   -- h ( chk ed ) ~ dir
   'Catppuccin Mocha'                       , -- 
   'Dracula+'                               , -- 
-  'MonokaiProRistretto (Gogh)'             , -- 
   'Teerb (Gogh)'                           , -- 
   'iTerm2 Smoooooth'                       , -- 
   -- h ( chk ed ) ~ white
@@ -114,9 +112,11 @@ scheme_lst.win.excld = {
   'hardhacker'                             , -- 
   'Monokai Pro (Gogh)'                     , -- 
   'Aura (Gogh)'                            , -- 
+  'MonokaiProRistretto (Gogh)'             , -- 
   -- cmd line
   'kokuban (Gogh)'                         , -- 
   'synthwave-everything'                   , -- 
+  'DotGov'                                 , -- 
   -- git
   'Belge (terminal.sexy)'                  , -- 
   'seoulbones_dark'                        , -- 
