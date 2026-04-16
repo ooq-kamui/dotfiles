@@ -2,6 +2,21 @@
 # dotfiles
 
 
+## wez
+
+pwsh launch, by key-bind
+
+
+## hm svr
+
+rsrch, mac
+
+
+## llm
+
+ollama, gemma
+
+
 ## ai gemini
 
 gemini cli
@@ -11,22 +26,6 @@ gemini cli
     - alm
 
 gemini.md, try
-
-
-
-## ai
-
-eclipse agents plugin zip
-
-
-## mac
-
-svr rsrch
-
-
-## linkedin
-
-reg
 
 
 ## web-svr
@@ -40,7 +39,7 @@ web svr rpl
   - ...
 
 
-## ff
+## flo flow
 
 pixel art, tidy
 
