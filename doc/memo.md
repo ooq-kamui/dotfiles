@@ -13,6 +13,17 @@ gemini cli
 gemini.md, try
 
 
+
+## ai
+
+eclipse agents plugin zip
+
+
+## mac
+
+svr rsrch
+
+
 ## linkedin
 
 reg
