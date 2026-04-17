@@ -1464,7 +1464,7 @@ keymap__('x', 'U', 'Ugv')
 -- keymap__('x', 'xx', 'ugv')
 
 -- str mb
-keymap__('x', ':mb', ':lua v.Slctd.line_mlt_mb__cnv_ascii()<cr>')
+keymap__('x', ':mb', ':lua v.Slctd.line_mlt_mb__cnv_ascii()')
 
 -- srch
 

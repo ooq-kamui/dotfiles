@@ -2,16 +2,6 @@
 # dotfiles
 
 
-## wez
-
-pwsh launch, by key-bind
-
-
-## hm svr
-
-rsrch, mac
-
-
 ## llm
 
 ollama, gemma
@@ -26,6 +16,16 @@ gemini cli
     - alm
 
 gemini.md, try
+- doc-tech write
+
+
+## flo flow
+
+pixel art, tidy
+
+logic tidy
+
+etc
 
 
 ## web-svr
@@ -37,15 +37,6 @@ web svr rpl
     - memory
   - nginx setting
   - ...
-
-
-## flo flow
-
-pixel art, tidy
-
-logic tidy
-
-etc
 
 
 ## nvim
