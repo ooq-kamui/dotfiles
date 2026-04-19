@@ -2,6 +2,12 @@
 # dotfiles
 
 
+## doc-tech
+
+claude
+- at iphone, cmd
+
+
 ## llm
 
 ollama, gemma
