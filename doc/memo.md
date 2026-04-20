@@ -2,6 +2,15 @@
 # dotfiles
 
 
+## ai gemini
+
+gemini cli
+- call nano banana 2, terminal, try
+  - extension install
+    - mac
+    - alm
+
+
 ## doc-tech
 
 claude
@@ -14,12 +23,6 @@ ollama, gemma
 
 
 ## ai gemini
-
-gemini cli
-- call nano banana 2, terminal, try
-  - extension install
-    - mac
-    - alm
 
 gemini.md, try
 - doc-tech write
