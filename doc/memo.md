@@ -11,10 +11,10 @@ gemini cli
     - alm
 
 
-## doc-tech
+## ai claude
 
-claude
-- at iphone, cmd
+at iphone, cmd
+- doc-tech
 
 
 ## llm
