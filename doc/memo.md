@@ -2,6 +2,11 @@
 # dotfiles
 
 
+## wez
+
+opcty crnt log
+
+
 ## nvim
 
 x S, case: mb
