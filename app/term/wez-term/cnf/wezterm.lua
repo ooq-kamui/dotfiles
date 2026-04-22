@@ -54,8 +54,8 @@ function color_scheme__rnd(env)
     -- scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].check)
   end
 
-  wezterm.on('window-config-reloaded', function(window, pane)
-    if not window:get_config_overrides() then
+  wezterm.on('window-config-reloaded', function(win, pane)
+    if not win:get_config_overrides() then
       local scheme_name = scheme_name_lst[math.random(#scheme_name_lst)]
 
       wezterm.log_info('> ' .. scheme_name .. ' <')
@@ -72,7 +72,7 @@ function color_scheme__rnd(env)
         os.execute(cmd)
       end
 
-      window:set_config_overrides {
+      win:set_config_overrides {
         color_scheme = scheme_name,
       }
     end
@@ -81,6 +81,23 @@ function color_scheme__rnd(env)
   return {}
 end
 
+wezterm.on('opacity-tgl', function(win, pane)
+
+  local cnf_tmp = win:get_config_overrides() or {}
+
+  local opcty_crnt = cnf_tmp.window_background_opacity
+  local opcty_init = 0.20
+  local opcty_01 = opcty_init
+  local opcty_02 = 0.55
+
+  if cnf_tmp.window_background_opacity == opcty_01 then
+    cnf_tmp.window_background_opacity = opcty_02
+  else
+    cnf_tmp.window_background_opacity = opcty_01
+  end
+
+  win:set_config_overrides(cnf_tmp)
+end)
 
 -- mouse
 
