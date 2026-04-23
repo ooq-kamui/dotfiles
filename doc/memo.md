@@ -2,6 +2,13 @@
 # dotfiles
 
 
+## fish
+
+ja: git status, lst
+- fish fnc
+  - for loop
+
+
 ## nvim
 
 x S, case: mb

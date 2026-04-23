@@ -140,6 +140,7 @@ alias vi-lf 'nvim -p ( lf )'
 
 alias ji 'git'
 alias j  'git status'
+alias ja 'git -C ~/wrk/prj-pri/dotfiles/ status; git -C ~/wrk/prj-pri/life/ status; git -C ~/wrk/prj-pri/doc-tech/ status'
 alias jl 'git log'
 alias jl-tree 'git-log-tree'
 alias jlt     'jl-tree'
