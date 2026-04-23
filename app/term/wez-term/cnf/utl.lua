@@ -1,6 +1,16 @@
 
 utl = {}
 
+utl.log = {}
+
+function utl.log.log(val)
+
+  local wezterm = require('wezterm')
+
+  wezterm.log_info(val)
+end
+log = utl.log.log
+
 utl.tbl = {}
 
 function utl.tbl.is_in(tbl, _val)

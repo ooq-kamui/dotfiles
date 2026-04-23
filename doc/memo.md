@@ -2,11 +2,6 @@
 # dotfiles
 
 
-## wez
-
-opcty crnt log
-
-
 ## nvim
 
 x S, case: mb
@@ -20,8 +15,10 @@ gemini cli
     - mac
     - alm
 
-gemini.md, try
-- doc-tech write
+
+## ai claude
+
+claude design, try
 
 
 ## web-svr
@@ -42,6 +39,11 @@ pixel art, tidy
 logic tidy
 
 etc
+
+
+## wez
+
+opcty, refactoring
 
 
 ## nvim
