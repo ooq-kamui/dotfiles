@@ -23,6 +23,11 @@ gemini cli
     - alm
 
 
+## wez
+
+opcty, refactoring
+
+
 ## ai claude
 
 claude design, try
@@ -39,18 +44,13 @@ web svr rpl
   - ...
 
 
-## flo flow
+## flow flow
 
 pixel art, tidy
 
 logic tidy
 
 etc
-
-
-## wez
-
-opcty, refactoring
 
 
 ## nvim

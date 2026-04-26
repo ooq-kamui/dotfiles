@@ -78,8 +78,9 @@ alias kr   'cd-git-root'
 
 alias f  'dir_jmp_with_zoxide'
 alias fo 'dir_jmp_with_zoxide dotfiles'
+alias fl 'dir_jmp_with_zoxide life'
 alias fp 'dir_jmp_with_zoxide life'
-alias fl 'dir_jmp_with_zoxide flofro'
+# alias fl 'dir_jmp_with_zoxide flofro'
 
 alias mkdir 'mkdir -p'
 alias mkd   'mkdir -p'
