@@ -516,18 +516,35 @@ end
 
 -- str cre
 
-function v.Str.space(len_byte)
+function v.Str.char_mlt(char, len_byte)
 
-  local space_str = ''
+  local str = ''
 
   local idx = 1
   while idx <= len_byte do
 
-    space_str = space_str .. ' '
+    str = str .. char
 
     idx = idx + 1
   end
+  return str
+end
+
+function v.Str.space(len_byte)
+
+  local space_str = char_mlt(' ', len_byte)
   return space_str
+
+  -- local space_str = ''
+  -- 
+  -- local idx = 1
+  -- while idx <= len_byte do
+  -- 
+  --   space_str = space_str .. ' '
+  -- 
+  --   idx = idx + 1
+  -- end
+  -- return space_str
 end
 
 function v.Str.cmnt.line_1()

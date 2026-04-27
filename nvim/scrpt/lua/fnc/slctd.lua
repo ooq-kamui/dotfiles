@@ -488,6 +488,14 @@ end
 
 -- slctd str __ ( edit )
 
+function v.Slctd.str__rpl_str(str)
+
+  v.Slctd.__ltst()
+
+  v.Nml.exe(v.Nml.n.rgstr.nul .. v.Nml.n.edit.del) -- "zd
+  v.Cursor.__ins(str)
+end
+
 function v.Slctd.str__rpl_ynk()
 
   v.Slctd.__ltst()
@@ -567,16 +575,16 @@ end
 
 function v.Slctd.__fil(char)
 
-  local char = char
-
   if char == '|' then
     char = [[\<bar>]]
   end
 
   v.Slctd.__ltst()
 
-  local nml_cmd = v.Nml.x.edit.fil_char .. char
-  v.Nml.exe(nml_cmd)
+  local slctd_str = v.Slctd.str()
+  local slctd_str_len_ruler = v.Str.len_ruler(slctd_str)
+  local str = v.Str.char_mlt(char, slctd_str_len_ruler)
+  v.Slctd.str__rpl_str(str)
 
   v.Slctd.__ltst()
 end

@@ -9,11 +9,6 @@ ja: git status, lst
   - for loop
 
 
-## nvim
-
-x S, case: mb
-
-
 ## ai gemini
 
 gemini cli
