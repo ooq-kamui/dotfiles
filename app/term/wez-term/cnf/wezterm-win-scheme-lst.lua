@@ -69,7 +69,6 @@ scheme_lst.win.recommend.h = {
   'TokyoNightStorm (Gogh)'                 , -- 
   'Tomorrow Night Blue'                    , -- 
   'Wombat (Gogh)'                          , -- 
-  'Zenburn (Gogh)'                         , -- 
   'catppuccin-mocha'                       , -- 
   'neon-night (Gogh)'                      , -- 
   'rebecca'                                , -- 
@@ -106,26 +105,27 @@ scheme_lst.win.excld = {
   -- phase 05
   -- 
   -- dir blue
+  'Aura (Gogh)'                            , -- 
   'Dracula'                                , -- 
+  'Monokai Pro (Gogh)'                     , -- 
   'MonokaiPro (Gogh)'                      , -- 
+  'MonokaiProRistretto (Gogh)'             , -- 
   'Sonokai (Gogh)'                         , -- 
   'hardhacker'                             , -- 
-  'Monokai Pro (Gogh)'                     , -- 
-  'Aura (Gogh)'                            , -- 
-  'MonokaiProRistretto (Gogh)'             , -- 
   -- cmd line
+  'DotGov'                                 , -- 
   'kokuban (Gogh)'                         , -- 
   'synthwave-everything'                   , -- 
-  'DotGov'                                 , -- 
   -- git
   'Belge (terminal.sexy)'                  , -- 
-  'seoulbones_dark'                        , -- 
-  'Monokai (terminal.sexy)'                , -- 
   'Dracula (base16)'                       , -- 
+  'Monokai (terminal.sexy)'                , -- 
+  'Zenburn (Gogh)'                         , -- 
+  'seoulbones_dark'                        , -- 
   -- slctd -- dark
   'Ef-Cherie'                              , -- 
-  'idleToes'                               , -- 
   'deep'                                   , -- 
+  'idleToes'                               , -- 
 }
 
 return scheme_lst.win

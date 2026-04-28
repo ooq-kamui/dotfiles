@@ -295,7 +295,7 @@ keymap__('n', ':q', ':q!')
 keymap__('n', 'a', ':lua v.Buf.save()<cr>')
 
 -- load re slf
--- keymap__('n', ':r', ':lua v.Buf.opn_re()')
+-- keymap__('n', 'xx', ':lua v.Buf.opn_re()')
 
 -- load re init vim  --  do not by lua ?
 -- keymap__('n', 'xx', ':source ~/wrk/prj-pri/dotfiles/nvim/scrpt/init.vim')
@@ -799,6 +799,7 @@ keymap__('n', '<c-p>', ':lua v.Srch.__slct("f")<cr>')
 -- srch keymap__()
 keymap__('n', 'S' , [[/keymap__('n', ']])
 keymap__('n', 'A' , [[/keymap__('x', ']])
+keymap__('n', 'X' , [[/keymap__('x', ']])
 
 -- rpl ( cmd )
 keymap__('n', ':s', ':%s/<c-r>//xxx/g')
@@ -1535,8 +1536,12 @@ keymap__('x', '<leader>O',     ':lua v.Fzf.rg_by_slctd_str(bl.t)<cr>')
 -- tag jmp
 -- keymap__('x', 't', ':lua v.Buf.opn_by_slctd_line()<cr>')
 
+-- cmd srt by slctd line
+keymap__('x', ':so', ':sort')
+-- keymap__('x', ':sr', ':sort')
+
 -- sys cmd by slctd line
-keymap__('x', ':r', ':lua v.Sys.sh_by_slctd_line()<cr>')
+keymap__('x', ':sh', ':lua v.Sys.sh_by_slctd_line()')
 
 -- sys cmd math by slctd line
 

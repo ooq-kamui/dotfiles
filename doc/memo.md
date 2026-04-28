@@ -2,11 +2,23 @@
 # dotfiles
 
 
+## wez
+
+opcty, refactoring
+
+
+## nvim
+
+slctd.__restore(), cre
+- when slctd: info into lst
+
+
 ## fish
 
 ja: git status, lst
 - fish fnc
   - for loop
+  - header output
 
 
 ## ai gemini
@@ -16,11 +28,6 @@ gemini cli
   - extension install
     - mac
     - alm
-
-
-## wez
-
-opcty, refactoring
 
 
 ## ai claude
@@ -39,7 +46,7 @@ web svr rpl
   - ...
 
 
-## flow flow
+## flo-flo
 
 pixel art, tidy
 
@@ -59,6 +66,8 @@ plg
 
 
 ## skr-vps
+
+memory, up, srch money
 
 alm setting at skr console
 - confirm

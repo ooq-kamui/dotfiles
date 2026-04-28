@@ -532,19 +532,8 @@ end
 
 function v.Str.space(len_byte)
 
-  local space_str = char_mlt(' ', len_byte)
+  local space_str = v.Str.char_mlt(' ', len_byte)
   return space_str
-
-  -- local space_str = ''
-  -- 
-  -- local idx = 1
-  -- while idx <= len_byte do
-  -- 
-  --   space_str = space_str .. ' '
-  -- 
-  --   idx = idx + 1
-  -- end
-  -- return space_str
 end
 
 function v.Str.cmnt.line_1()
