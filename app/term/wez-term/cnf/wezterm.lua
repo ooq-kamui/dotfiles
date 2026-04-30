@@ -84,7 +84,11 @@ end
 wezterm.on('opacity-tgl', function(win, pane)
 
   local cnf_tmp = win:get_config_overrides() or {}
-  local opcty_crnt = cnf_tmp.window_background_opacity or win:effective_config().window_background_opacity
+
+  local opcty_crnt
+  opcty_crnt = win:effective_config().window_background_opacity
+  log(opcty_crnt)
+  opcty_crnt = cnf_tmp.window_background_opacity or opcty_crnt
 
   local opcty_01 = 0.20
   local opcty_02 = 0.55

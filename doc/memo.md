@@ -2,17 +2,6 @@
 # dotfiles
 
 
-## wez
-
-opcty, refactoring
-
-
-## nvim
-
-slctd.__restore(), cre
-- when slctd: info into lst
-
-
 ## fish
 
 ja: git status, lst
@@ -28,6 +17,19 @@ gemini cli
   - extension install
     - mac
     - alm
+
+
+## wez
+
+opcty
+- init val, float dlt, think
+- refactoring
+
+
+## nvim
+
+slctd.__restore(), cre
+- when slctd: info into lst
 
 
 ## ai claude
