@@ -2,14 +2,6 @@
 # dotfiles
 
 
-## fish
-
-ja: git status, lst
-- fish fnc
-  - for loop
-  - header output
-
-
 ## ai gemini
 
 gemini cli
@@ -17,6 +9,14 @@ gemini cli
   - extension install
     - mac
     - alm
+
+
+## fish
+
+ja: git status, lst
+- fish fnc
+  - for loop
+  - header output
 
 
 ## wez
