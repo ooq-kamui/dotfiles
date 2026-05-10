@@ -2,21 +2,24 @@
 # dotfiles
 
 
-## ai gemini
-
-gemini cli
-- call nano banana 2, terminal, try
-  - extension install
-    - mac
-    - alm
-
-
 ## fish
 
 ja: git status, lst
 - fish fnc
   - for loop
   - header output
+
+
+## ai gemini
+
+gemini cli
+- call nano banana 2, terminal, try
+  - extension install
+    - mac
+      ```
+      wip
+      ```
+    - alm
 
 
 ## wez
