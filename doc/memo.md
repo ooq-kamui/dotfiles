@@ -4,6 +4,8 @@
 
 ## fish
 
+e echo
+
 ja: git status, lst
 - fish fnc
   - for loop

@@ -135,6 +135,8 @@ alias dpl 'file_dpl'
 alias rm   'rm -i'
 alias trsh 'trash -F'
 
+alias e 'echo'
+
 alias vi  'nvim -p'
 alias vim 'nvim -p'
 alias vi-lf 'nvim -p ( lf )'
