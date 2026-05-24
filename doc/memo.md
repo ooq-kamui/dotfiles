@@ -2,7 +2,29 @@
 # dotfiles
 
 
+## doc-tech
+
+unix, chmod cp
+
+
+## bevy
+
+learn
+
+
+## rust
+
+learn
+
+
+## ai
+
+claude cowork try
+
+
 ## fish
+
+chmod cp, alias
 
 e echo
 
