@@ -8,6 +8,8 @@ tee -a
 
 unix, chmod cp
 
+tee -a
+
 
 ## bevy
 
