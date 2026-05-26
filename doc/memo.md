@@ -4,6 +4,8 @@
 
 ## doc-tech
 
+tee -a
+
 unix, chmod cp
 
 
