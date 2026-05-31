@@ -2,13 +2,10 @@
 # dotfiles
 
 
-## doc-tech
+## wall-paper
 
-tee -a
-
-unix, chmod cp
-
-tee -a
+new ?
+- tidy
 
 
 ## bevy
