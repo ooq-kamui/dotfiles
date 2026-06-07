@@ -11,7 +11,6 @@ scheme_lst.mac.recommend.h = {
   'Chalk (base16)'                         ,
   'Dark Pastel (Gogh)'                     ,
   'Dracula (Gogh)'                         ,
-  'FrontendGalaxy (Gogh)'                  ,
   'Grey-green'                             ,
   'Humanoid dark (base16)'                 ,
   'IBM3270(HighContrast) (Gogh)'           ,
@@ -162,6 +161,7 @@ scheme_lst.mac.recommend.l = {
   -- white
   -- dir
   'Espresso'                               ,
+  'FrontendGalaxy (Gogh)'                  ,
   'GJM (terminal.sexy)'                    ,
   'Grandshell (terminal.sexy)'             ,
   'Monokai Pro (Gogh)'                     ,
