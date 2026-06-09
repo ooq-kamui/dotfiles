@@ -2,6 +2,23 @@
 # dotfiles
 
 
+## touch pad
+
+at win, try: magic utilities
+
+
+## win
+
+win pri, upgrade to pro
+
+
+## keyboard
+
+pouch
+
+key-cap odr
+
+
 ## wall-paper
 
 new ?
@@ -36,6 +53,10 @@ ja: git status, lst
 
 
 ## ai gemini
+
+- antigravity cli install
+  - mac
+  - skr alm
 
 gemini cli
 - call nano banana 2, terminal, try
@@ -96,6 +117,8 @@ plg
 
 
 ## skr-vps
+
+alm upgrade
 
 memory, up, srch money
 
