@@ -2,21 +2,18 @@
 # dotfiles
 
 
-## touch pad
-
-at win, try: magic utilities
-
-
 ## win
 
-win pri, upgrade to pro
+upgrade to pro
+
+linux try
+
+touch pad, magic utilities, try
 
 
 ## keyboard
 
 pouch
-
-key-cap odr
 
 
 ## wall-paper
