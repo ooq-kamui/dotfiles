@@ -11,30 +11,17 @@ linux try
 touch pad, magic utilities, try
 
 
-## keyboard
-
-pouch
-
-
 ## wall-paper
 
 new ?
 - tidy
 
-
-## bevy
-
-learn
+icn nin
 
 
-## rust
+## keychron
 
-learn
-
-
-## ai
-
-claude cowork try
+pouch
 
 
 ## fish
@@ -49,26 +36,10 @@ ja: git status, lst
   - header output
 
 
-## ai gemini
-
-- antigravity cli install
-  - mac
-  - skr alm
-
-gemini cli
-- call nano banana 2, terminal, try
-  - extension install
-    - mac
-      ```
-      wip
-      ```
-    - alm
-
-
 ## wez
 
 opcty
-- init val, float dlt, think
+- init val, float dlt, think rng
 - refactoring
 
 
@@ -78,9 +49,18 @@ slctd.__restore(), cre
 - when slctd: info into lst
 
 
-## ai claude
+## gemini
+
+antigravity cli install
+- mac
+- skr alm
+
+
+## claude
 
 claude design, try
+
+claude cowork try
 
 
 ## web-svr
@@ -94,7 +74,17 @@ web svr rpl
   - ...
 
 
-## flo-flo
+## bevy
+
+learn
+
+
+## rust
+
+learn
+
+
+## floral rain
 
 pixel art, tidy
 
