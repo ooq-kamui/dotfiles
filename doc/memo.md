@@ -2,38 +2,35 @@
 # dotfiles
 
 
-## win
+## web-svr
 
-upgrade to pro
-
-linux try
-
-touch pad, magic utilities, try
-
-
-## wall-paper
-
-new ?
-- tidy
-
-icn nin
-
-
-## keychron
-
-pouch
+web svr rpl
+- task lst
+  - spec confirm
+    - strage
+    - memory
+  - nginx setting
+  - ...
 
 
 ## fish
 
 chmod cp, alias
+- doc-tech write
 
-e echo
+e echo, alias
 
-ja: git status, lst
-- fish fnc
-  - for loop
-  - header output
+ja ??
+- git status, lst
+  - fish fnc
+    - for loop
+    - header output
+
+
+## wall-paper
+
+color tidy
+- new ?
 
 
 ## wez
@@ -58,20 +55,9 @@ antigravity cli install
 
 ## claude
 
-claude design, try
-
-claude cowork try
-
-
-## web-svr
-
-web svr rpl
-- task lst
-  - spec confirm
-    - strage
-    - memory
-  - nginx setting
-  - ...
+try
+- claude design
+- claude cowork
 
 
 ## bevy
@@ -113,4 +99,5 @@ alm setting at skr console
 - confirm
 - firewall
   - url
+
 
