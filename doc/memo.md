@@ -12,6 +12,8 @@ web svr rpl
   - nginx setting
   - ...
 
+alm upg
+
 
 ## fish
 
@@ -38,6 +40,13 @@ color tidy
 opcty
 - init val, float dlt, think rng
 - refactoring
+
+cnf file div by pc
+
+
+## fedora
+
+at mac
 
 
 ## nvim
