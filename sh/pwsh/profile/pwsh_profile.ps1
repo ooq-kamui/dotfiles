@@ -379,4 +379,26 @@ function cnf {
   }
 }
 
+function ssh-hyper-v {
+  param(
+    [Parameter(Mandatory, Position = 0)]
+    [ValidatePattern('.+@.+')]
+    [string]$Destination
+  )
+
+  $UserName, $VMName = $Destination -split '@', 2
+
+  $ip = (Get-VMNetworkAdapter -VMName $VMName).IPAddresses |
+    Where-Object { $_ -match '^\d+\.\d+\.\d+\.\d+$' } |
+    Select-Object -First 1
+
+  if (-not $ip) {
+    Write-Error "Failed to get IPv4 address for VM '$VMName'. Ensure the VM is running and hv_kvp_daemon is active."
+    return
+  }
+
+  Write-Host "Connecting to $UserName@$ip ..." -ForegroundColor Cyan
+  ssh "$UserName@$ip"
+}
+
 
