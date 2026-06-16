@@ -135,6 +135,8 @@ alias dpl 'file_dpl'
 alias rm   'rm -i'
 alias trsh 'trash -F'
 
+# alias chmod-by-ref 'chmod --reference='
+
 alias e 'echo'
 
 alias vi  'nvim -p'
@@ -143,7 +145,7 @@ alias vi-lf 'nvim -p ( lf )'
 
 alias ji 'git'
 alias j  'git status'
-alias ja 'git -C ~/wrk/prj-pri/dotfiles/ status; git -C ~/wrk/prj-pri/life/ status; git -C ~/wrk/prj-pri/doc-tech/ status'
+alias jc 'git-st-my'
 alias jl 'git log'
 alias jl-tree 'git-log-tree'
 alias jlt     'jl-tree'

@@ -2,7 +2,18 @@
 # dotfiles
 
 
+## wez
+
+cnf file div by pc
+
+opcty
+- init val, float dlt, think rng
+- refactoring
+
+
 ## web-svr
+
+alm tier upg
 
 web svr rpl
 - task lst
@@ -12,41 +23,11 @@ web svr rpl
   - nginx setting
   - ...
 
-alm upg
-
-
-## fish
-
-chmod cp, alias
-- doc-tech write
-
-e echo, alias
-
-ja ??
-- git status, lst
-  - fish fnc
-    - for loop
-    - header output
-
 
 ## wall-paper
 
 color tidy
 - new ?
-
-
-## wez
-
-opcty
-- init val, float dlt, think rng
-- refactoring
-
-cnf file div by pc
-
-
-## fedora
-
-at mac
 
 
 ## nvim
@@ -55,31 +36,35 @@ slctd.__restore(), cre
 - when slctd: info into lst
 
 
-## gemini
+## ai
+
+### gemini
 
 antigravity cli install
 - mac
 - skr alm
 
 
-## claude
+### claude
 
 try
 - claude design
 - claude cowork
 
 
-## bevy
+## game
+
+### bevy
 
 learn
 
 
-## rust
+### rust
 
 learn
 
 
-## floral rain
+### floral rain
 
 pixel art, tidy
 
@@ -99,10 +84,6 @@ plg
 
 
 ## skr-vps
-
-alm upgrade
-
-memory, up, srch money
 
 alm setting at skr console
 - confirm
