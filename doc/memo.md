@@ -2,6 +2,19 @@
 # dotfiles
 
 
+## web-svr
+
+alm tier upg
+
+web svr rpl ( mv )
+- task lst
+  - spec confirm
+    - strage
+    - memory
+  - nginx setting
+  - ...
+
+
 ## wez
 
 cnf file div by pc
@@ -9,19 +22,6 @@ cnf file div by pc
 opcty
 - init val, float dlt, think rng
 - refactoring
-
-
-## web-svr
-
-alm tier upg
-
-web svr rpl
-- task lst
-  - spec confirm
-    - strage
-    - memory
-  - nginx setting
-  - ...
 
 
 ## wall-paper
@@ -45,13 +45,6 @@ antigravity cli install
 - skr alm
 
 
-### claude
-
-try
-- claude design
-- claude cowork
-
-
 ## game
 
 ### bevy
@@ -64,7 +57,7 @@ learn
 learn
 
 
-### floral rain
+### game
 
 pixel art, tidy
 
