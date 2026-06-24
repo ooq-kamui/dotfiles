@@ -401,4 +401,85 @@ function ssh-hyper-v {
   ssh "$UserName@$ip"
 }
 
+function zscaler-cer-export {
+    <#
+    .SYNOPSIS
+        Zscaler のルート証明書をすべて 1 つの Base-64 (PEM) バンドルに出力します。
+
+    .DESCRIPTION
+        証明書ストアから件名 (Subject) に "Zscaler" を含む証明書をすべて検索し、
+        1 つの PEM ファイルに連結して保存します。Zscaler は同名ルート CA が
+        複数 (新旧世代など) 存在することがあるため、まとめて 1 ファイルにします。
+        curl / Python (REQUESTS_CA_BUNDLE) / Git / WSL などでそのまま利用できます。
+
+        検索キーワードは "Zscaler" 固定です。
+
+    .PARAMETER StoreLocation
+        検索するストアの場所。LocalMachine または CurrentUser。既定は CurrentUser。
+
+    .PARAMETER StoreName
+        検索するストア名。既定は Root (信頼されたルート証明機関)。
+
+    .PARAMETER FilePath
+        出力先のファイルパス。未指定の場合はダウンロードフォルダに zscaler-bundle.pem を生成します。
+
+    .EXAMPLE
+        Export-ZscalerCertBundle
+        Zscaler のルート証明書をすべて 1 つの PEM にまとめてダウンロードフォルダに保存します。
+
+    .EXAMPLE
+        Export-ZscalerCertBundle -StoreLocation LocalMachine -FilePath "C:\certs\zscaler-bundle.pem"
+    #>
+    [CmdletBinding()]
+    param(
+        [ValidateSet('LocalMachine', 'CurrentUser')]
+        [string]$StoreLocation = 'CurrentUser',
+
+        [string]$StoreName = 'Root',
+
+        [string]$FilePath
+    )
+
+    # 検索キーワードは Zscaler 固定
+    $subjectKeyword = 'zscaler'
+    $storePath = "Cert:\$StoreLocation\$StoreName"
+
+    # 一致する証明書をすべて取得し、拇印で重複を除去
+    $certs = Get-ChildItem -Path $storePath |
+        Where-Object { $_.Subject -like "*$subjectKeyword*" } |
+        Sort-Object Thumbprint -Unique
+
+    if (-not $certs) {
+        Write-Error "$storePath に '$subjectKeyword' に一致する証明書が見つかりませんでした。"
+        return
+    }
+
+    # 出力先の決定 (既定はダウンロードフォルダ)
+    if (-not $FilePath) {
+        $downloadDir = Join-Path $env:USERPROFILE 'Downloads'
+        $FilePath = Join-Path $downloadDir "$subjectKeyword-bundle.pem"
+    }
+
+    # 各証明書を PEM ブロックにして連結
+    $sb = [System.Text.StringBuilder]::new()
+    foreach ($cert in $certs) {
+        $base64 = [System.Convert]::ToBase64String($cert.RawData, [System.Base64FormattingOptions]::InsertLineBreaks)
+        # 可読性のため、各ブロックの前に対象証明書のコメントを付与
+        [void]$sb.AppendLine("# Subject    : $($cert.Subject)")
+        [void]$sb.AppendLine("# Thumbprint : $($cert.Thumbprint)")
+        [void]$sb.AppendLine("# NotAfter   : $($cert.NotAfter)")
+        [void]$sb.AppendLine("-----BEGIN CERTIFICATE-----")
+        [void]$sb.AppendLine($base64)
+        [void]$sb.AppendLine("-----END CERTIFICATE-----")
+    }
+
+    # ASCII / 改行 LF で保存
+    [System.IO.File]::WriteAllText($FilePath, $sb.ToString(), [System.Text.Encoding]::ASCII)
+
+    Write-Host "Zscaler バンドルを出力しました ($(@($certs).Count) 件):" -ForegroundColor Green
+    $certs | Format-Table Thumbprint, Subject, NotAfter -AutoSize | Out-String | Write-Host
+    Write-Host "  File : $FilePath"
+
+    return $FilePath
+}
 
