@@ -1,8 +1,8 @@
 {
-  "title": "fn __ mission control [ @kamui ]",
+  "title": "fn key-bind __ mission control [ @kamui ]",
   "rules": [
     {
-      "description": "fn __ mission control",
+      "description": "fn key-bind __ mission control",
       "manipulators": [
         {
           "type": "basic",

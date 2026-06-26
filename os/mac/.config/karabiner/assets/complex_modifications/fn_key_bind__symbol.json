@@ -1,8 +1,8 @@
 {
-  "title": "fn symbol [ @kamui ]",
+  "title": "fn key-bind __ symbol [ @kamui ]",
   "rules": [
     {
-      "description": "fn symbol",
+      "description": "fn key-bind __ symbol",
       "manipulators": [
         {
           "type": "basic",
