@@ -17,7 +17,7 @@ web svr rpl ( mv )
 
 ## wez
 
-cnf file div by pc
+cnf file div by pc ( win )
 
 opcty
 - init val, float dlt, think rng
@@ -27,7 +27,6 @@ opcty
 ## wall-paper
 
 color tidy
-- new ?
 
 
 ## nvim

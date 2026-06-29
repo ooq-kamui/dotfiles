@@ -1,0 +1,33 @@
+{
+  "title": "space __ han",
+  "rules": [
+    {
+      "description": "space __ han",
+      "manipulators": [
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "ja"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "spacebar"
+          },
+          "to": [
+            {
+              "key_code": "spacebar",
+              "modifiers": ["left_shift"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
