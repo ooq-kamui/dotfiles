@@ -26,6 +26,8 @@ opcty
 
 ## wall-paper
 
+wlop add
+
 color tidy
 
 
