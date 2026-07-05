@@ -2,6 +2,14 @@
 # dotfiles
 
 
+## keychron
+
+win
+- fn2
+  - screen-shot
+    - s
+
+
 ## web-svr
 
 alm tier upg
@@ -22,13 +30,6 @@ cnf file div by pc ( win )
 opcty
 - init val, float dlt, think rng
 - refactoring
-
-
-## wall-paper
-
-wlop add
-
-color tidy
 
 
 ## nvim
