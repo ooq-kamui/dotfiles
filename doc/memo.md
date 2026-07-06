@@ -2,14 +2,6 @@
 # dotfiles
 
 
-## keychron
-
-win
-- fn2
-  - screen-shot
-    - s
-
-
 ## web-svr
 
 alm tier upg
