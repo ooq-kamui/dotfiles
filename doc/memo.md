@@ -4,15 +4,14 @@
 
 ## web-svr
 
-alm tier upg
+web svr mgrtn
+- nginx
+  - setting cp
 
-web svr rpl ( mv )
-- task lst
-  - spec confirm
-    - strage
-    - memory
-  - nginx setting
-  - ...
+
+## fdr kde
+
+mac, iem
 
 
 ## wez
