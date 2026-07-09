@@ -2,16 +2,17 @@
 # dotfiles
 
 
+## skr vps
+
+alm
+- virtual mem up
+
+
 ## web-svr
 
 web svr mgrtn
 - nginx
   - setting cp
-
-
-## keychron
-
-tab poch
 
 
 ## fdr kde
