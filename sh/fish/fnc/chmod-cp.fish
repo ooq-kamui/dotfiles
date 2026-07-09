@@ -1,4 +1,4 @@
-function chmod-by-ref
+function chmod-cp
 
   chmod --reference=$argv[1] $argv[2]
 end

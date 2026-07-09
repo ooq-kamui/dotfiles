@@ -134,8 +134,6 @@ alias dpl 'file_dpl'
 alias rm   'rm -i'
 alias trsh 'trash -F'
 
-# alias chmod-by-ref 'chmod --reference='
-
 alias e 'echo'
 
 alias vi  'nvim -p'

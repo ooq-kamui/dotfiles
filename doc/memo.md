@@ -2,6 +2,11 @@
 # dotfiles
 
 
+## fdr kde
+
+mac, iem
+
+
 ## skr vps
 
 alm
@@ -13,11 +18,6 @@ alm
 web svr mgrtn
 - nginx
   - setting cp
-
-
-## fdr kde
-
-mac, iem
 
 
 ## wez
