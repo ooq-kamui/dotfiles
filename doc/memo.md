@@ -11,6 +11,7 @@ mac, iem
 
 alm
 - virtual mem up
+  - research
 
 
 ## web-svr
@@ -33,15 +34,6 @@ opcty
 
 slctd.__restore(), cre
 - when slctd: info into lst
-
-
-## ai
-
-### gemini
-
-antigravity cli install
-- mac
-- skr alm
 
 
 ## game
