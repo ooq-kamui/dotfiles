@@ -2,16 +2,26 @@
 # dotfiles
 
 
+## music
+
+iphone del
+- tidy
+
+chill-hop
+- ply-lst
+  - mac
+  - watch
+
+
+## swtch
+
+- animal mgr
+
+
 ## fdr kde
 
 mac, iem
-
-
-## skr vps
-
-alm
-- virtual mem up
-  - research
+- ask to ai
 
 
 ## web-svr
@@ -28,6 +38,13 @@ cnf file div by pc ( win )
 opcty
 - init val, float dlt, think rng
 - refactoring
+
+
+## skr vps
+
+alm
+- virtual mem up
+  - research
 
 
 ## nvim
