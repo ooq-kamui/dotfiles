@@ -18,6 +18,12 @@ chill-hop
 - animal mgr
 
 
+## skr vps
+
+alm
+- subscription extend
+
+
 ## fdr kde
 
 mac, iem
@@ -42,7 +48,6 @@ opcty
 
 ## skr vps
 
-alm
 - virtual mem up
   - research
 
