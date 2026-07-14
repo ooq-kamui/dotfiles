@@ -2,6 +2,21 @@
 # dotfiles
 
 
+## wez
+
+cnf file div by pc ( win )
+
+opcty
+- init val, float dlt, think rng
+- refactoring
+
+
+## nvim
+
+slctd.__restore(), cre
+- when slctd: info into lst
+
+
 ## music
 
 iphone del
@@ -37,25 +52,10 @@ web svr mgrtn
   - setting cp
 
 
-## wez
-
-cnf file div by pc ( win )
-
-opcty
-- init val, float dlt, think rng
-- refactoring
-
-
 ## skr vps
 
-- virtual mem up
-  - research
-
-
-## nvim
-
-slctd.__restore(), cre
-- when slctd: info into lst
+virtual mem up
+- research
 
 
 ## game
