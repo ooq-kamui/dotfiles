@@ -2,6 +2,17 @@
 # dotfiles
 
 
+## keychron
+
+poch
+- arw d _
+- ctrl l |
+- win |
+
+sticker
+- enter > backspace
+
+
 ## wez
 
 cnf file div by pc ( win )
