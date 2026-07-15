@@ -42,17 +42,14 @@ scheme_my_lst = require('cnf/wezterm-scheme-lst')
 
 -- config.color_scheme = 'AdventureTime'
 
+local clip_cmd = { win = 'clip', mac = 'pbcopy' }
+
 function color_scheme__rnd(env)
 
   local scheme_name_lst = {}
-  if   env == 'win' then
-    scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].recommend.h)
-    -- scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].recommend.m)
-
-  elseif env == 'mac' then
-    scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].recommend.h)
-    -- scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].check)
-  end
+  scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].recommend.h)
+  -- scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].recommend.m)
+  -- scheme_name_lst = utl.tbl.cct(scheme_name_lst, scheme_my_lst[env].check)
 
   wezterm.on('window-config-reloaded', function(win, pane)
     if not win:get_config_overrides() then
@@ -60,17 +57,8 @@ function color_scheme__rnd(env)
 
       wezterm.log_info('> ' .. scheme_name .. ' <')
 
-      local cmd
-
-      if   env == 'win' then
-        cmd = 'echo "' .. scheme_name .. '" | clip'
-        -- wezterm.log_info(cmd)
-        os.execute(cmd)
-
-      elseif env == 'mac' then
-        cmd = 'echo "' .. scheme_name .. '" | pbcopy'
-        os.execute(cmd)
-      end
+      local cmd = 'echo "' .. scheme_name .. '" | ' .. clip_cmd[env]
+      os.execute(cmd)
 
       win:set_config_overrides {
         color_scheme = scheme_name,
@@ -116,6 +104,22 @@ config.mouse_bindings = {
     action = act.PasteFrom 'Clipboard',
   },
 }
+
+-- gui-startup helper
+
+function spawn_with_split(pos, cols, rows)
+  local _, pane, _ = wezterm.mux.spawn_window({
+    position = { x = pos.x, y = pos.y, origin = 'ActiveScreen' },
+    width = cols, height = rows,
+  })
+  pane:split({ direction = 'Right', size = 0.7 })
+end
+
+function gui_startup(pos, cols, rows)
+  wezterm.on('gui-startup', function()
+    spawn_with_split(pos, cols, rows)
+  end)
+end
 
 return config
 

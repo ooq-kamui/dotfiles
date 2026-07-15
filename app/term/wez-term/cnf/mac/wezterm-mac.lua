@@ -54,11 +54,7 @@ wezterm.on('gui-startup', function()
     -- end
   end
 
-  local tab, pane, win = wezterm.mux.spawn_window({
-    position = {x = x, y = y, origin = 'ActiveScreen'},
-    width = cols, height = rows,
-  })
-  pane:split({ direction = 'Right', size = 0.7 })
+  spawn_with_split({ x = x, y = y }, cols, rows)
 end)
 
 color_scheme__rnd('mac')
