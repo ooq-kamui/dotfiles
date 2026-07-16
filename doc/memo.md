@@ -2,17 +2,6 @@
 # dotfiles
 
 
-## keychron
-
-poch
-- arw d _
-- ctrl l |
-- win |
-
-sticker
-- enter > backspace
-
-
 ## wez
 
 cnf file div by pc ( win )
@@ -28,15 +17,30 @@ slctd.__restore(), cre
 - when slctd: info into lst
 
 
+## keychron
+
+poch
+- arw d _
+- ctrl l |
+- win |
+
+sticker
+- enter > backspace
+
+chips
+- search at seria
+
+
 ## music
 
-iphone del
-- tidy
+iphone dl
+- del
 
 chill-hop
 - ply-lst
-  - mac
-  - watch
+  - add
+    - mac
+    - watch
 
 
 ## swtch
