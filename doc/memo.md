@@ -2,6 +2,28 @@
 # dotfiles
 
 
+## keychron
+
+k3
+- key-bind
+  - shift l > fn
+  - end     > del
+  - fn    l > ?
+  - del     > ?
+
+
+## swtch
+
+- animal mgr
+
+
+## nvim
+
+key-bind
+complete list init pos 2
+- c-p : + = -
+
+
 ## wez
 
 cnf file div by pc ( win )
@@ -17,49 +39,6 @@ slctd.__restore(), cre
 - when slctd: info into lst
 
 
-## keychron
-
-poch
-- arw d _
-- ctrl l |
-- win |
-
-sticker
-- enter > backspace
-
-chips
-- search at seria
-
-
-## music
-
-iphone dl
-- del
-
-chill-hop
-- ply-lst
-  - add
-    - mac
-    - watch
-
-
-## swtch
-
-- animal mgr
-
-
-## skr vps
-
-alm
-- subscription extend
-
-
-## fdr kde
-
-mac, iem
-- ask to ai
-
-
 ## web-svr
 
 web svr mgrtn
@@ -67,10 +46,10 @@ web svr mgrtn
   - setting cp
 
 
-## skr vps
+## fdr kde
 
-virtual mem up
-- research
+mac, iem
+- ask to ai
 
 
 ## game
