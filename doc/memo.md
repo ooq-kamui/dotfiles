@@ -2,26 +2,16 @@
 # dotfiles
 
 
-## keychron
-
-k3
-- key-bind
-  - shift l > fn
-  - end     > del
-  - fn    l > ?
-  - del     > ?
-
-
-## swtch
-
-- animal mgr
-
-
 ## nvim
 
 key-bind
 complete list init pos 2
 - c-p : + = -
+
+
+## swtch
+
+- animal mgr
 
 
 ## wez
@@ -31,6 +21,14 @@ cnf file div by pc ( win )
 opcty
 - init val, float dlt, think rng
 - refactoring
+
+
+## keychron
+
+k3
+- key-bind
+  - fn l > ?
+  - del  > ?
 
 
 ## nvim
