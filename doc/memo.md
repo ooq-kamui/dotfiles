@@ -26,6 +26,8 @@ opcty
 ## keychron
 
 k3
+- sticker
+  - fn at shift
 - key-bind
   - fn l > ?
   - del  > ?
