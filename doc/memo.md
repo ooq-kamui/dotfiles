@@ -23,16 +23,6 @@ opcty
 - refactoring
 
 
-## keychron
-
-k3
-- sticker
-  - fn at shift
-- key-bind
-  - fn l > ?
-  - del  > ?
-
-
 ## nvim
 
 slctd.__restore(), cre
