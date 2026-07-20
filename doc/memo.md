@@ -14,6 +14,12 @@ complete list init pos 2
 - animal mgr
 
 
+## keychron
+
+k7
+- keycap
+
+
 ## wez
 
 cnf file div by pc ( win )
@@ -79,5 +85,4 @@ alm setting at skr console
 - confirm
 - firewall
   - url
-
 
