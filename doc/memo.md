@@ -2,17 +2,6 @@
 # dotfiles
 
 
-## swtch
-
-- animal mgr
-
-
-## watch
-
-alarm - earphone
-- tst
-
-
 ## keychron
 
 k7
@@ -25,8 +14,20 @@ k7
   - j     |
   - w     |
 - key-bind
-  - fn + _ : ?
-  - fn + : : ?
+  - fn + _ : @
+  - fn + : : \ ( yen )
+- fn2
+  - bltth, etc
+
+
+## swtch
+
+- animal mgr
+
+
+## watch
+
+alarm - earphone - tst
 
 
 ## wez
