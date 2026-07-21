@@ -2,22 +2,31 @@
 # dotfiles
 
 
-## nvim
-
-key-bind
-complete list init pos 2
-- c-p : + = -
-
-
 ## swtch
 
 - animal mgr
 
 
+## watch
+
+alarm - earphone
+- tst
+
+
 ## keychron
 
 k7
-- keycap
+- poch
+  - space |
+  - arw u |
+  - arw d _
+  - entr  |
+  - f     |
+  - j     |
+  - w     |
+- key-bind
+  - fn + _ : ?
+  - fn + : : ?
 
 
 ## wez

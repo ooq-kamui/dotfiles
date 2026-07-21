@@ -237,6 +237,7 @@ Status_line(bl.f)
 
 vim.opt.laststatus  = 2 -- 0:off  1:on when 2 win  2:on
 vim.opt.completeopt = {'menuone', 'noinsert'}
+-- vim.opt.completeopt = {'menuone'}
 vim.opt.foldmethod  = 'manual'
 vim.opt.shortmess:append('I')
 vim.opt.shortmess:remove("S")
