@@ -5,19 +5,24 @@
 ## keychron
 
 k7
+- sticker
+  - back-space
 - poch
-  - space |
-  - arw u |
-  - arw d _
-  - entr  |
-  - f     |
-  - j     |
-  - w     |
-- key-bind
-  - fn + _ : @
-  - fn + : : \ ( yen )
-- fn2
-  - bltth, etc
+  - width >_<
+
+  - space l |
+  - arw u   _
+  - arw d   _
+  - r       _
+
+
+## wez
+
+opcty
+- init val, float dlt, think rng
+- refactoring
+
+cnf file div by pc ( win )
 
 
 ## swtch
@@ -28,15 +33,6 @@ k7
 ## watch
 
 alarm - earphone - tst
-
-
-## wez
-
-cnf file div by pc ( win )
-
-opcty
-- init val, float dlt, think rng
-- refactoring
 
 
 ## nvim
