@@ -7,9 +7,11 @@
 k7
 - sticker
   - back-space
-- poch
-  - width >_<
 
+- key-bind
+  - fn + muhenkan : henkan
+
+- poch
   - space l |
   - arw u   _
   - arw d   _
