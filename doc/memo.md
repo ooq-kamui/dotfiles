@@ -2,11 +2,23 @@
 # dotfiles
 
 
+## keychron
+
+k7
+- key-bind
+  - fn + x : f16 ? : alt + f4
+
+k3
+- same k7
+
+
 ## win
 
 pri
-- file del confirm
-- win + w, e
+- file del confirm dialog
+- key-bind
+  - win + w, e
+  - fn + x : f16 ? : alt + f4
 
 
 ## swtch
@@ -15,30 +27,6 @@ pri
   - research
     - method
     - storage size
-
-
-## keychron
-
-k7
-- poch
-  - a       : _ ( ^ )
-  - shift l : _ ( - )
-  - ctl     : _ ( - )
-  - entr    : = ( - )
-  - shift r : _ ( _ )
-  - win l   : | (  | )
-- keycap
-  - home
-  - pgup
-  - pgdn
-  - arw, ctl, fn
-- key-bind
-  - arw, ctl, fn
-  - fn + x : alt + f4
-
-k3
-- same k7
-  - on hold
 
 
 ## wez
