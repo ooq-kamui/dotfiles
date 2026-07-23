@@ -2,6 +2,12 @@
 # dotfiles
 
 
+## win
+
+pri
+- del confirm
+
+
 ## swtch
 
 - animal mgr
@@ -13,13 +19,20 @@
 ## keychron
 
 k7
-- key-bind
+- poch
+  - a       : _ ( ^ )
+  - shift l : _ ( - )
+  - ctl     : _ ( - )
+  - entr    : = ( - )
+  - shift r : _ ( _ )
+  - win l   : | (  | )
+- keycap
   - home
   - pgup
   - pgdn
-- poch
-  - a     : _^
-  - shift : _^
+  - arw, ctl, fn
+- key-bind
+  - arw, ctl, fn
 
 
 ## wez
