@@ -5,7 +5,8 @@
 ## win
 
 pri
-- del confirm
+- file del confirm
+- win + w, e
 
 
 ## swtch
@@ -33,6 +34,11 @@ k7
   - arw, ctl, fn
 - key-bind
   - arw, ctl, fn
+  - fn + x : alt + f4
+
+k3
+- same k7
+  - on hold
 
 
 ## wez
