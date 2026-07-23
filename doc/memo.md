@@ -8,17 +8,22 @@ k7
 - key-bind
   - fn + x : f16 ? : alt + f4
 
-k3
-- same k7
+## wez
+
+cnf file div by pc ( win )
 
 
 ## win
 
 pri
 - file del confirm dialog
+
 - key-bind
   - win + w, e
   - fn + x : f16 ? : alt + f4
+
+- keychron k3
+  - same k7
 
 
 ## swtch
@@ -27,11 +32,6 @@ pri
   - research
     - method
     - storage size
-
-
-## wez
-
-cnf file div by pc ( win )
 
 
 ## nvim
