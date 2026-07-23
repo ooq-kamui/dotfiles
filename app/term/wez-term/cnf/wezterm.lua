@@ -40,9 +40,13 @@ config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 require('cnf/utl')
 scheme_my_lst = require('cnf/wezterm-scheme-lst')
 
--- config.color_scheme = 'AdventureTime'
 
-local clip_cmd = { win = 'clip', mac = 'pbcopy' }
+-- config.color_scheme
+
+local clip_cmd = {
+  mac = 'pbcopy',
+  win = 'clip',
+}
 
 function color_scheme__rnd(env)
 
@@ -81,7 +85,7 @@ wezterm.on('opacity-tgl', function(win, pane)
   local opcty_01 = 0.20
   local opcty_02 = 0.55
 
-  if opcty_crnt == opcty_01 then
+  if opcty_crnt <= opcty_01 + 0.01 then
     cnf_tmp.window_background_opacity = opcty_02
   else
     cnf_tmp.window_background_opacity = opcty_01

@@ -2,39 +2,29 @@
 # dotfiles
 
 
+## swtch
+
+- animal mgr
+  - research
+    - method
+    - storage size
+
+
 ## keychron
 
 k7
-- sticker
-  - back-space
-
 - key-bind
-  - fn + muhenkan : henkan
-
+  - home
+  - pgup
+  - pgdn
 - poch
-  - space l |
-  - arw u   _
-  - arw d   _
-  - r       _
+  - a     : _^
+  - shift : _^
 
 
 ## wez
 
-opcty
-- init val, float dlt, think rng
-- refactoring
-
 cnf file div by pc ( win )
-
-
-## swtch
-
-- animal mgr
-
-
-## watch
-
-alarm - earphone - tst
 
 
 ## nvim
