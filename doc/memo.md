@@ -2,15 +2,19 @@
 # dotfiles
 
 
-## keychron
-
-k7
-- key-bind
-  - fn + x : f16 ? : alt + f4
-
 ## wez
 
 cnf file div by pc ( win )
+
+
+## keychron
+
+k7
+- poch
+  - arw lr | ( > < )
+  - a      _ ( -   )
+  - entr   _ ( -   )
+  - win    | ( r wide )
 
 
 ## win
