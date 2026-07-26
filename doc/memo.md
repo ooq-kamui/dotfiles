@@ -7,43 +7,6 @@
 cnf file div by pc ( win )
 
 
-## keychron
-
-k7
-- poch
-  - arw lr | ( > < )
-  - a      _ ( -   )
-  - entr   _ ( -   )
-  - win    | ( r wide )
-
-
-## win
-
-pri
-- file del confirm dialog
-
-- key-bind
-  - win + w, e
-  - fn + x : f16 ? : alt + f4
-
-- keychron k3
-  - same k7
-
-
-## swtch
-
-- animal mgr
-  - research
-    - method
-    - storage size
-
-
-## nvim
-
-slctd.__restore(), cre
-- when slctd: info into lst
-
-
 ## web-svr
 
 web svr mgrtn
@@ -51,10 +14,16 @@ web svr mgrtn
   - setting cp
 
 
-## fdr kde
+## keychron
 
-mac, iem
-- ask to ai
+k3
+- json up
+
+
+## nvim
+
+slctd.__restore(), cre
+- when slctd: info into lst
 
 
 ## game
@@ -76,6 +45,11 @@ pixel art, tidy
 logic tidy
 
 etc
+
+
+## wifi
+
+search
 
 
 ## nvim
