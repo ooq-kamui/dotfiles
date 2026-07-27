@@ -26,12 +26,18 @@ slctd.__restore(), cre
 - when slctd: info into lst
 
 
-## game
+## karabiner
+
+arw
+- mission ctrl : ?? ??
+- fn `+` tab, w, e, r, 2, 3
+
+
+## bevy
 
 ### bevy
 
 learn
-
 
 ### rust
 

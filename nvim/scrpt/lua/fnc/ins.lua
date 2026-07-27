@@ -21,7 +21,7 @@ end
 
 function v.Ins.symbol03()
 
-  local lst = { '=', '+', '-' }
+  local lst = { '+', '=', '-' }
   vf.complete(v.Cursor.byte_idx(), lst)
   return ''
 end
