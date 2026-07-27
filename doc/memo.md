@@ -14,12 +14,6 @@ web svr mgrtn
   - setting cp
 
 
-## keychron
-
-k3
-- json up
-
-
 ## nvim
 
 slctd.__restore(), cre
@@ -33,18 +27,7 @@ arw
 - fn `+` tab, w, e, r, 2, 3
 
 
-## bevy
-
-### bevy
-
-learn
-
-### rust
-
-learn
-
-
-### game
+## glass green
 
 pixel art, tidy
 
