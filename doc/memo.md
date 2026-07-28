@@ -2,28 +2,14 @@
 # dotfiles
 
 
-## fdr
+## keychron
 
-setting
-- fish
-  - ln
-- nvim
-  - ln
-
-chrome
-- iclud
-
-
-## swtch
-
-storage confirm
-
-
-## web-svr
-
-web svr mgrtn
-- nginx
-  - setting cp
+k7
+- poch
+  - key
+    - enter : _
+    - arw d : -
+  - carry, set
 
 
 ## wez
@@ -31,14 +17,11 @@ web svr mgrtn
 cnf file div by pc ( win )
 
 
-## keychron
+## web-svr
 
-keychap-puller carry
-
-k7
-- poch
-  - enter : _
-  - arw d : -
+web svr mgrtn
+- nginx
+  - setting cp
 
 
 ## nvim
@@ -54,7 +37,7 @@ arw
 - fn `+` tab, w, e, r, 2, 3
 
 
-## glass green
+## game app
 
 pixel art, tidy
 
