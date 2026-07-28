@@ -2,9 +2,21 @@
 # dotfiles
 
 
-## wez
+## fdr
 
-cnf file div by pc ( win )
+setting
+- fish
+  - ln
+- nvim
+  - ln
+
+chrome
+- iclud
+
+
+## swtch
+
+storage confirm
 
 
 ## web-svr
@@ -12,6 +24,21 @@ cnf file div by pc ( win )
 web svr mgrtn
 - nginx
   - setting cp
+
+
+## wez
+
+cnf file div by pc ( win )
+
+
+## keychron
+
+keychap-puller carry
+
+k7
+- poch
+  - enter : _
+  - arw d : -
 
 
 ## nvim
