@@ -119,9 +119,13 @@ function spawn_with_split(pos, cols, rows)
   pane:split({ direction = 'Right', size = 0.7 })
 end
 
-function gui_startup(pos, cols, rows)
+function gui_startup(scrn_tbl)
   wezterm.on('gui-startup', function()
-    spawn_with_split(pos, cols, rows)
+    local scrn = wezterm.gui.screens().active
+    wezterm.log_info('scrn name: ' .. scrn.name)
+
+    local s = scrn_tbl[scrn.name] or scrn_tbl['_default']
+    spawn_with_split({ x = s.x, y = s.y }, s.cols, s.rows)
   end)
 end
 

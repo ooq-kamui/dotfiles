@@ -32,30 +32,10 @@ config.font_size    =  18
 -- config.initial_cols = 134
 -- config.initial_rows =  37
 
-wezterm.on('gui-startup', function()
-
-  local scrn = wezterm.gui.screens().active
-  wezterm.log_info('scrn name: ' .. scrn.name)
-
-  local x, y, cols, rows
-
-  if scrn.name == 'HG-245H' then
-    x, y = 43, 10
-    cols, rows = 167, 42
-
-  else -- dflt 'Built-in Retina Display'
-    x, y = 25, 70
-    cols, rows = 134, 37
-
-    -- local success, stdout, stderr = wezterm.run_child_process({ 'sysctl', '-n', 'machdep.cpu.brand_string' })
-    -- if success then
-    --   stdout = stdout:gsub("^%s*(.-)%s*$", "%1")
-    --   wezterm.log_info(stdout)
-    -- end
-  end
-
-  spawn_with_split({ x = x, y = y }, cols, rows)
-end)
+gui_startup({
+  ['HG-245H']  = { x = 43, y = 10, cols = 167, rows = 42 },
+  ['_default'] = { x = 25, y = 70, cols = 134, rows = 37 },
+})
 
 color_scheme__rnd('mac')
 

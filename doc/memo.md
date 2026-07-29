@@ -2,19 +2,10 @@
 # dotfiles
 
 
-## keychron
+## nvim
 
-k7
-- poch
-  - key
-    - enter : _
-    - arw d : -
-  - carry, set
-
-
-## wez
-
-cnf file div by pc ( win )
+slctd.__restore(), cre
+- when slctd: info into lst
 
 
 ## web-svr
@@ -22,15 +13,18 @@ cnf file div by pc ( win )
 web svr mgrtn
 - nginx
   - setting cp
+  - with claude
 
 
-## nvim
+## keychron
 
-slctd.__restore(), cre
-- when slctd: info into lst
+k3
+- key-bind
+  - same: k7
+    - fn + ? : arw, etc
 
 
-## karabiner
+## karabiner ( mac )
 
 arw
 - mission ctrl : ?? ??

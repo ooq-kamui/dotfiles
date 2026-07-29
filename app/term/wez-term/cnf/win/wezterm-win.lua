@@ -39,11 +39,9 @@ config.default_prog = {'wsl'}
 
 config.font_size = 13
 
--- For example, changing the initial geometry for new windows:
-config.initial_cols = 183
-config.initial_rows =  40
-
-gui_startup({ x = 50, y = 10 })
+gui_startup({
+  ['_default'] = { x = 50, y = 10, cols = 183, rows = 40 },
+})
 
 color_scheme__rnd('win')
 
