@@ -2,10 +2,45 @@
 # dotfiles
 
 
+## keychron
+
+k7
+- poch
+  - arw u : square
+    - paste
+
+
+## bash
+
+.bashrc tidy
+- interactive mode
+  - zsh ( mac ), too
+
+
+## fish
+
+when pc launch
+- mac
+- fdr
+
+
 ## nvim
 
 slctd.__restore(), cre
 - when slctd: info into lst
+
+
+## fdr
+
+ai
+- claude
+  - claude code install
+  - claude app install
+
+- gemini
+  - web login
+  - app install
+  - gemini cli install
 
 
 ## web-svr
@@ -14,25 +49,6 @@ web svr mgrtn
 - nginx
   - setting cp
   - with claude
-
-
-## fdr
-
-claude
-- claude code install
-- claude app  install
-
-
-## keychron
-
-k7
-- poch
-  - arw u : square
-
-k3
-- key-bind
-  - same: k7
-    - fn + ? : arw, etc
 
 
 ## game app
