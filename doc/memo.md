@@ -16,19 +16,23 @@ web svr mgrtn
   - with claude
 
 
+## fdr
+
+claude
+- claude code install
+- claude app  install
+
+
 ## keychron
+
+k7
+- poch
+  - arw u : square
 
 k3
 - key-bind
   - same: k7
     - fn + ? : arw, etc
-
-
-## karabiner ( mac )
-
-arw
-- mission ctrl : ?? ??
-- fn `+` tab, w, e, r, 2, 3
 
 
 ## game app
@@ -38,6 +42,13 @@ pixel art, tidy
 logic tidy
 
 etc
+
+
+## karabiner ( mac )
+
+arw
+- mission ctrl : ?? ??
+- fn `+` tab, w, e, r, 2, 3
 
 
 ## wifi
