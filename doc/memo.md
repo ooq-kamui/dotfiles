@@ -6,42 +6,51 @@
 
 k7
 - poch
-  - enter : -
-    - cre, paste
+  - enter : -, paste
 
 
-## bash
+## fdr
 
-.bashrc tidy
-- interactive mode
-  - zsh ( mac ), too
+key-bind
+- app
+  - research
+
+claude
+- claude code install
+- claude app install
+
+gemini
+- web login
+- app install
+- gemini cli install
 
 
-## fish
+## pri
 
-when pc launch
+prj-pri > pri
 - mac
 - fdr
-- wsl-alm
+- win
+
+
+## sh tidy
+
+bash
+- .bashrc tidy
+  - interactive mode
+    - zsh ( mac ), too
+
+fish
+- when pc launch
+  - mac
+  - fdr
+  - wsl-alm
 
 
 ## nvim
 
 slctd.__restore(), cre
 - when slctd: info into lst
-
-
-## fdr
-
-ai
-- claude
-  - claude code install
-  - claude app install
-
-- gemini
-  - web login
-  - app install
-  - gemini cli install
 
 
 ## web-svr
