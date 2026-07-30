@@ -6,8 +6,8 @@
 
 k7
 - poch
-  - arw u : square
-    - paste
+  - enter : -
+    - cre, paste
 
 
 ## bash
@@ -22,6 +22,7 @@ k7
 when pc launch
 - mac
 - fdr
+- wsl-alm
 
 
 ## nvim
