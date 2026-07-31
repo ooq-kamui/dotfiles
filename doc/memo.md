@@ -2,11 +2,15 @@
 # dotfiles
 
 
-## keychron
+## pri dir ch
 
-k7
-- poch
-  - enter : -, paste
+ln fix
+- prj-pri > pri
+  - fdr pri
+  - win pri
+  - mac
+- ref fix
+  - search, lst-up
 
 
 ## fdr
@@ -25,32 +29,21 @@ gemini
 - gemini cli install
 
 
-## pri
+## keychron
 
-prj-pri > pri
-- mac
-- fdr
-- win
+k7
+- poch
+  - ctrl-l : | ( wide )
 
 
-## sh tidy
+## bash
 
-bash
-- .bashrc tidy
-  - interactive mode
-    - zsh ( mac ), too
-
-fish
-- when pc launch
-  - mac
-  - fdr
-  - wsl-alm
+`.bashrc` or `.bash_profile`
 
 
 ## nvim
 
-slctd.__restore(), cre
-- when slctd: info into lst
+vbox s-s : err ? 
 
 
 ## web-svr
@@ -75,6 +68,17 @@ etc
 arw
 - mission ctrl : ?? ??
 - fn `+` tab, w, e, r, 2, 3
+
+
+## alm
+
+installed app, brew > dnf
+
+
+## nvim
+
+slctd.__restore(), cre
+- when slctd: info into lst
 
 
 ## wifi
