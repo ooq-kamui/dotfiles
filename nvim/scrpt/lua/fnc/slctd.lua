@@ -581,12 +581,19 @@ function v.Slctd.__fil(char)
 
   v.Slctd.__ltst()
 
-  local slctd_str = v.Slctd.str()
-  local slctd_str_len_ruler = v.Str.len_ruler(slctd_str)
-  local str = v.Str.char_mlt(char, slctd_str_len_ruler)
-  v.Slctd.str__rpl_str(str)
+  v.Cursor.char__rpl(char)
 
   v.Slctd.__ltst()
+
+  -- todo: del
+  -- local slctd_str = v.Slctd.str()
+  -- local slctd_str_len_ruler = v.Str.len_ruler(slctd_str)
+  -- 
+  -- local str = v.Str.char_mlt(char, slctd_str_len_ruler)
+  -- 
+  -- v.Slctd.str__rpl_str(str)
+  -- 
+  -- v.Slctd.__ltst()
 end
 
 function v.Slctd.__fil_space()

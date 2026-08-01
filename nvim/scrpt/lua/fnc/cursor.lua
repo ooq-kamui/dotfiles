@@ -923,13 +923,13 @@ end
 
 -- cursor char __
 
-function v.Cursor.char__rpl(rpl)
+function v.Cursor.char__rpl(rpl_char)
 
-  if v.Str.is__ptn(rpl, [[\\]]) then
-    rpl = v.Str.__rpl_with_vim(rpl, [[\\]], [[\\\\]])
+  if v.Str.is__ptn(rpl_char, [[\\]]) then
+    rpl_char = v.Str.__rpl_with_vim(rpl_char, [[\\]], [[\\\\]])
   end
 
-  v.Nml.exe(v.Nml.n.edit.char.rpl .. rpl)
+  v.Nml.exe(v.Nml.n.edit.char.rpl .. rpl_char)
 end
 
 function v.Cursor.char__rpl_underscore() -- alias
@@ -944,6 +944,7 @@ end
 function v.Cursor.c_char__tgl_case()
 
   v.Nml.exe(v.Nml.n.edit.char.case_tgl) -- v~
+
   -- refactoring : cmd nml not
   -- local rpl_char = xxx
   -- v.Cursor.char__rpl(rpl_char) -- refactoring

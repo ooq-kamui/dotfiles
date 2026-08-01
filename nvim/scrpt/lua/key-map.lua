@@ -674,7 +674,7 @@ end, {expr = bl.t})
 -- ins __ line indnt space
 keymap__('n', 'V', ':lua v.Cursor.d__ins_line_space()<cr>')
 
--- cahr rpl, under score
+-- char rpl, under score
 -- keymap__('n', 'xx', ':lua v.Cursor.char__rpl_underscore()<cr>)
 
 -- del char
@@ -799,7 +799,7 @@ keymap__('n', '<c-p>', ':lua v.Srch.__slct("f")<cr>')
 -- srch keymap__()
 keymap__('n', 'S' , [[/keymap__('n', ']])
 keymap__('n', 'A' , [[/keymap__('x', ']])
-keymap__('n', 'X' , [[/keymap__('x', ']])
+-- keymap__('n', 'X' , [[/keymap__('x', ']])
 
 -- rpl ( cmd )
 keymap__('n', ':s', ':%s/<c-r>//xxx/g')

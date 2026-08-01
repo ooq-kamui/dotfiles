@@ -2,48 +2,23 @@
 # dotfiles
 
 
-## pri dir ch
-
-ln fix
-- prj-pri > pri
-  - fdr pri
-  - win pri
-  - mac
-- ref fix
-  - search, lst-up
-
-
 ## fdr
 
-key-bind
-- app
+keyd ( key-bind )
+- setting
   - research
 
 claude
 - claude code install
 - claude app install
 
-gemini
-- web login
-- app install
-- gemini cli install
 
+## dir pri ch
 
-## keychron
-
-k7
-- poch
-  - ctrl-l : | ( wide )
-
-
-## bash
-
-`.bashrc` or `.bash_profile`
-
-
-## nvim
-
-vbox s-s : err ? 
+ref path
+- search
+  - dotfiles -r
+- fix
 
 
 ## web-svr
@@ -63,6 +38,20 @@ logic tidy
 etc
 
 
+## bash
+
+`.bashrc` `.bash_profile`, to fish when login
+- tidy
+
+
+## fdr
+
+gemini
+- web login
+- app install
+- gemini cli install
+
+
 ## karabiner ( mac )
 
 arw
@@ -70,7 +59,7 @@ arw
 - fn `+` tab, w, e, r, 2, 3
 
 
-## alm
+## alm ( wsl )
 
 installed app, brew > dnf
 
