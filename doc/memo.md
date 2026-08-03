@@ -4,9 +4,9 @@
 
 ## fdr
 
-keyd ( key-bind )
-- setting
-  - research
+keyd
+- key-bind setting
+  - orz
 
 claude
 - claude code install
@@ -50,18 +50,6 @@ gemini
 - web login
 - app install
 - gemini cli install
-
-
-## karabiner ( mac )
-
-arw
-- mission ctrl : ?? ??
-- fn `+` tab, w, e, r, 2, 3
-
-
-## alm ( wsl )
-
-installed app, brew > dnf
 
 
 ## nvim
