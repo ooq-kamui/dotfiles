@@ -1,7 +1,7 @@
 
 export PS1="_ "
 
-PATH=$PATH:~/wrk/prj-pri/dotfiles/sh/bash/cmd
+PATH=$PATH:~/wrk/pri/dotfiles/sh/bash/cmd
 
 # fnc
 
@@ -97,7 +97,7 @@ alias fd='fd --hidden -I --exclude .git --follow'
 #alias rg='rg -nS'
 #alias rg='rg -nS --path-separator "//"'
 
-# export RIPGREP_CONFIG_PATH=$HOME/wrk/prj-pri/dotfiles/cli/rg/ripgreprc/.ripgreprc
+# export RIPGREP_CONFIG_PATH=$HOME/wrk/pri/dotfiles/cli/rg/ripgreprc/.ripgreprc
 
 # fzf
 

@@ -28,12 +28,13 @@ config.wsl_domains = {
     name = 'wsl:alm-10-my-01',
     distribution = 'alm-10-my-01',
     default_cwd = '~',
+    -- default_prog = { '/usr/bin/fish', '-l' },
+    default_prog = { '/home/linuxbrew/.linuxbrew/bin/fish', '-l' },
   },
 }
 
 config.default_domain = 'wsl:alm-10-my-01'
-
-config.default_prog = {'wsl'}
+-- config.default_prog = {'wsl'}
 -- config.default_prog = {'pwsh'}
 -- config.default_prog = {'fish'}
 

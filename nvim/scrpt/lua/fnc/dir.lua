@@ -4,7 +4,7 @@ v.Dir = {}
 v.Dir.c = {}
 
 v.Dir.c.home_dir         = vf.expand('$HOME')
-v.Dir.c.dotfiles_dir     = v.Dir.c.home_dir      .. '/wrk/prj-pri/dotfiles'
+v.Dir.c.dotfiles_dir     = v.Dir.c.home_dir      .. '/wrk/pri/dotfiles'
 v.Dir.c.nvim_init_dir    = v.Dir.c.dotfiles_dir  .. '/nvim/scrpt'
 
 v.Dir.c.nvim_lua_dir     = v.Dir.c.nvim_init_dir .. '/lua'

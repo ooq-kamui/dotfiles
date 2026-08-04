@@ -3,7 +3,7 @@
 
 # rg
 
-set -x RIPGREP_CONFIG_PATH ~/wrk/prj-pri/dotfiles/cli/rg/ripgreprc/.ripgreprc-mac
+set -x RIPGREP_CONFIG_PATH ~/wrk/pri/dotfiles/cli/rg/ripgreprc/.ripgreprc-mac
 
 
 # alias

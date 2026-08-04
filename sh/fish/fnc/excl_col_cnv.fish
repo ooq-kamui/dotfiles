@@ -2,7 +2,7 @@ function excl_col_cnv
 
   set col_i_str $argv[1]
 
-  set exe_dir  ~/wrk/prj-pri/dotfiles/sh/fish/lua
+  set exe_dir  ~/wrk/pri/dotfiles/sh/fish/lua
   set exe_file excl-col-cnv.lua
   set exe_path $exe_dir/$exe_file
 

@@ -1,15 +1,15 @@
 function git-st-my
 
-  echo dir: ~/wrk/prj-pri/dotfiles/
-  git -C ~/wrk/prj-pri/dotfiles/ status
+  echo dir: ~/wrk/pri/dotfiles/
+  git -C ~/wrk/pri/dotfiles/ status
   echo 
 
-  echo dir: ~/wrk/prj-pri/life/
-  git -C ~/wrk/prj-pri/life/     status
+  echo dir: ~/wrk/pri/life/
+  git -C ~/wrk/pri/life/     status
   echo 
 
-  echo dir: ~/wrk/prj-pri/doc-tech/
-  git -C ~/wrk/prj-pri/doc-tech/ status
+  echo dir: ~/wrk/pri/doc-tech/
+  git -C ~/wrk/pri/doc-tech/ status
   echo 
 
 end

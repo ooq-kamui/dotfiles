@@ -27,7 +27,7 @@ set -gx VERSION_CONTROL numbered
 
 # ripgrep ( rg )
 
-set -x RIPGREP_CONFIG_PATH ~/wrk/prj-pri/dotfiles/cli/rg/ripgreprc/.ripgreprc
+set -x RIPGREP_CONFIG_PATH ~/wrk/pri/dotfiles/cli/rg/ripgreprc/.ripgreprc
 
 # fzf
 

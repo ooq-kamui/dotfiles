@@ -298,7 +298,7 @@ keymap__('n', 'a', ':lua v.Buf.save()<cr>')
 -- keymap__('n', 'xx', ':lua v.Buf.opn_re()')
 
 -- load re init vim  --  do not by lua ?
--- keymap__('n', 'xx', ':source ~/wrk/prj-pri/dotfiles/nvim/scrpt/init.vim')
+-- keymap__('n', 'xx', ':source ~/wrk/pri/dotfiles/nvim/scrpt/init.vim')
 
 -- opn
 

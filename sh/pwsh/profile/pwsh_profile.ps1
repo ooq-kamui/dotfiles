@@ -56,7 +56,7 @@ Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
 # rg
 
-$env:RIPGREP_CONFIG_PATH = "$home\wrk\prj-pri\dotfiles\cli\rg\ripgreprc\pwsh\.ripgreprc"
+$env:RIPGREP_CONFIG_PATH = "$home\wrk\pri\dotfiles\cli\rg\ripgreprc\pwsh\.ripgreprc"
 
 # fzf
 
@@ -344,7 +344,7 @@ $ENV:Path += ";C:\Program Files\PostgreSQL\16\bin"
 # def
 
 $wrk_dir           = "$home\wrk"
-$profile_dir       = "$wrk_dir\prj-pri\dotfiles\sh\pwsh\profile"
+$profile_dir       = "$wrk_dir\pri\dotfiles\sh\pwsh\profile"
 $profile_file_name = "pwsh_profile.ps1"
 $profile_file_path = "$profile_dir\$profile_file_name"
 

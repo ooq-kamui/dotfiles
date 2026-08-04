@@ -1,6 +1,6 @@
 function cnf
 
-  set cnf_dir ~/wrk/prj-pri/dotfiles
+  set cnf_dir ~/wrk/pri/dotfiles
 
   set cnf_fish_dir $cnf_dir/sh/fish
 

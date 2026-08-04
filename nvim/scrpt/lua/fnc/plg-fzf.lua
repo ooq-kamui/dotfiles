@@ -265,7 +265,7 @@ end
 
 -- fzf doc-tech
 
-v.Fzf.doc_tech_md_dir = 'wrk/prj-pri/doc-tech/docs/md'
+v.Fzf.doc_tech_md_dir = 'wrk/pri/doc-tech/docs/md'
 
 function v.Fzf.doc_tech()
 
@@ -297,7 +297,7 @@ end
 
 function v.Fzf.doc_memo_opn() -- use not
 
-  local dir = '~/wrk/prj-pri'
+  local dir = '~/wrk/pri'
 
   local memo_file_lst = {
     dir .. '/dotfiles/doc/memo.md'  ,

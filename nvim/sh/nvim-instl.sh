@@ -6,12 +6,12 @@ brew install neovim
 
 # mkdir -p ~/.config/nvim
 
-# ln -sin ~/wrk/prj-pri/dotfiles/nvim/scrpt/dflt/init.vim ~/.config/nvim/
+# ln -sin ~/wrk/pri/dotfiles/nvim/scrpt/dflt/init.vim ~/.config/nvim/
 
-# ln -sin ~/wrk/prj-pri/dotfiles/nvim/scrpt/dflt/lua ~/.config/nvim/
+# ln -sin ~/wrk/pri/dotfiles/nvim/scrpt/dflt/lua ~/.config/nvim/
 
 # case ec2
-#   ln -sin ~/wrk/prj-pri/dotfiles/nvim/syntax/c9 ~/.config/nvim/syntax
+#   ln -sin ~/wrk/pri/dotfiles/nvim/syntax/c9 ~/.config/nvim/syntax
 
 
 # vim-plug

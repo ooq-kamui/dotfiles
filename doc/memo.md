@@ -13,12 +13,10 @@ claude
 - claude app install
 
 
-## dir pri ch
+## wez
 
-ref path
-- search
-  - dotfiles -r
-- fix
+launch sh: fish
+- mac
 
 
 ## web-svr
@@ -36,6 +34,12 @@ pixel art, tidy
 logic tidy
 
 etc
+
+
+## wall-paper
+
+setting
+- win ( pri )
 
 
 ## bash
