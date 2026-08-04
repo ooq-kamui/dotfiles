@@ -2,31 +2,26 @@
 # dotfiles
 
 
+## keychron
+
+k7
+- enter, keycap hight
+  - rubber paste x 2
+
+
 ## fdr
 
-keyd
-- key-bind setting
-  - orz
+sticker kirby
 
 claude
 - claude code install
 - claude app install
 
-sticker kirby
-
-
-## wez
-
-launch sh: fish
-- mac
-
-
-## keychron
-
-k7, k3
-- fn + s, a : clear ( del )
-- enter, keycap hight
-  - rubber paste x 2
+keyd
+- key-bind setting
+  - draft cre
+    - orz
+    - back-space
 
 
 ## web-svr
@@ -48,19 +43,14 @@ etc
 
 ## wall-paper
 
-setting
-- win ( pri )
-  - dsktop 2
-
 img tidy
-- del, org only
 - add
   - ply neva
 
 
 ## bash
 
-`.bashrc` `.bash_profile`, to fish when login
+`.bashrc / .bash_profile`
 - tidy
 
 
@@ -72,18 +62,15 @@ gemini
 - gemini cli install
 
 
-## nvim
-
-slctd.__restore(), cre
-- when slctd: info into lst
-
-
 ## wifi
 
 search
 
 
 ## nvim
+
+slctd.__restore(), cre
+- when slctd: info into lst
 
 plg
 - blink.cmp

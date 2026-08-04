@@ -24,9 +24,10 @@ config.macos_forward_to_ime_modifier_mask = 'SHIFT|CTRL'
 -- env : mac : inch-14
 -- 
 
+config.default_prog = {'/opt/homebrew/bin/fish'}
+-- config.default_prog = {'fish'}
 -- config.default_prog = {'wsl'}
 -- config.default_prog = {'pwsh'}
--- config.default_prog = {'fish'}
 
 config.font_size    =  18
 -- config.initial_cols = 134
