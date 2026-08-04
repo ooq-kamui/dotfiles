@@ -12,11 +12,21 @@ claude
 - claude code install
 - claude app install
 
+sticker kirby
+
 
 ## wez
 
 launch sh: fish
 - mac
+
+
+## keychron
+
+k7, k3
+- fn + s, a : clear ( del )
+- enter, keycap hight
+  - rubber paste x 2
 
 
 ## web-svr
@@ -40,6 +50,12 @@ etc
 
 setting
 - win ( pri )
+  - dsktop 2
+
+img tidy
+- del, org only
+- add
+  - ply neva
 
 
 ## bash
