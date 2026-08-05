@@ -2,23 +2,13 @@
 # dotfiles
 
 
-## wall-paper
-
-img tidy
-- add
-  - ply neva
-
-
 ## fdr
 
 keyd, key-bind setting
 - draft cre
   - all
 
-sticker kirby
-
 claude
-- claude app , install
 - claude code, install
   ```
   wip
@@ -31,6 +21,13 @@ gemini
   ```
   wip
   ```
+
+
+## wall-paper
+
+img tidy
+- add
+  - ply neva
 
 
 ## web-svr
@@ -48,15 +45,6 @@ pixel art, tidy
 logic tidy
 
 etc
-
-
-## keychron
-
-k7
-- ctrl-l
-  - poch
-    - high x 2
-  - sticker ( pos : side l )
 
 
 ## bash
