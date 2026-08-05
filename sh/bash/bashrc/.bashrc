@@ -86,7 +86,7 @@ alias col="$HOME/wrk/cnf/sh/bash/cmd/col"
 
 alias ca='cal $( date +"%m %Y" --date "-1 month" ); cal; cal $( date +"%m %Y" --date "+1 month" )'
 
-# alias fi='fish'
+# alias fi='fish'  # at bash, fi : reserved
 
 # fd
 

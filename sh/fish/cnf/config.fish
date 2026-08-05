@@ -26,7 +26,6 @@ set -gx VERSION_CONTROL numbered
 
 
 # ripgrep ( rg )
-
 set -x RIPGREP_CONFIG_PATH ~/wrk/pri/dotfiles/cli/rg/ripgreprc/.ripgreprc
 
 # fzf
@@ -39,6 +38,10 @@ set -x FZF_CTRL_T_COMMAND  $FZF_DEFAULT_COMMAND
 
 # zoxide ( z )
 zoxide init fish | source
+
+
+# path my
+set -x PATH ~/wrk/pri/dotfiles/sh/bash/cmd $PATH
 
 
 # 
@@ -65,9 +68,6 @@ alias src_fsh_cfg "source ~/.config/fish/config.fish"
 
 alias his     'history'
 alias his_del 'history delete'
-
-# alias clp 'pbcopy'
-# alias clp 'xclip -selection clipboard'
 
 alias cd_parent 'cd ../; pwd'
 alias k    'cd_parent'

@@ -2,26 +2,35 @@
 # dotfiles
 
 
-## keychron
+## wall-paper
 
-k7
-- enter, keycap hight
-  - rubber paste x 2
+img tidy
+- add
+  - ply neva
 
 
 ## fdr
 
+keyd, key-bind setting
+- draft cre
+  - all
+
 sticker kirby
 
 claude
-- claude code install
-- claude app install
+- claude app , install
+- claude code, install
+  ```
+  wip
+  ```
 
-keyd
-- key-bind setting
-  - draft cre
-    - orz
-    - back-space
+gemini
+- web login
+- app install
+- gemini cli install
+  ```
+  wip
+  ```
 
 
 ## web-svr
@@ -32,7 +41,7 @@ web svr mgrtn
   - with claude
 
 
-## game app
+## game
 
 pixel art, tidy
 
@@ -41,25 +50,19 @@ logic tidy
 etc
 
 
-## wall-paper
+## keychron
 
-img tidy
-- add
-  - ply neva
+k7
+- ctrl-l
+  - poch
+    - high x 2
+  - sticker ( pos : side l )
 
 
 ## bash
 
 `.bashrc / .bash_profile`
 - tidy
-
-
-## fdr
-
-gemini
-- web login
-- app install
-- gemini cli install
 
 
 ## wifi
