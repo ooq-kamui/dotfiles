@@ -10,23 +10,6 @@ keyd
   - etc
 - setting
 
-
-## keychron
-
-k7
-- poch
-  - fn  l : `|` r wide
-  - shift : `_` u wide
-- key-bind
-  - fn2    : del > ??
-  - fn + b : arw-l
-
-- research
-  - light etc
-
-
-## fdr
-
 claude
 - claude code, install
   ```
