@@ -4,17 +4,20 @@
 
 ## fdr
 
-keyd
-- draft cre
-  - symbol
-  - etc
-- setting
+app install
+- kindle
 
 claude
 - claude code, install
   ```
   wip
   ```
+
+keyd
+- draft cre
+  - symbol
+  - etc
+- setting
 
 gemini
 - web login
@@ -23,13 +26,6 @@ gemini
   ```
   wip
   ```
-
-
-## wall-paper
-
-img tidy
-- add
-  - ply neva
 
 
 ## web-svr
@@ -47,6 +43,13 @@ pixel art, tidy
 logic tidy
 
 etc
+
+
+## wall-paper
+
+img tidy
+- add
+  - ply neva
 
 
 ## bash
