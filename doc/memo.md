@@ -2,32 +2,6 @@
 # dotfiles
 
 
-## fdr
-
-app install
-- kindle
-
-claude
-- claude code, install
-  ```
-  wip
-  ```
-
-keyd
-- draft cre
-  - symbol
-  - etc
-- setting
-
-gemini
-- web login
-- app install
-- gemini cli install
-  ```
-  wip
-  ```
-
-
 ## web-svr
 
 web svr mgrtn
