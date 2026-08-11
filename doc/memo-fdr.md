@@ -4,8 +4,11 @@
 
 ## fdr
 
-app install
-- kindle
+keyd
+- draft cre
+  - symbol
+  - etc
+- setting
 
 claude
 - claude code, install
@@ -13,12 +16,6 @@ claude
   curl -fsSL https://claude.ai/install.sh | bash
   ```
   doc-tech write
-
-keyd
-- draft cre
-  - symbol
-  - etc
-- setting
 
 gemini
 - web login
