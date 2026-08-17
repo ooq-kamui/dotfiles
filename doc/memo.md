@@ -2,6 +2,34 @@
 # dotfiles
 
 
+## keychron
+
+poch x 2
+- arw u
+- shift l
+
+key-bind
+alt <-> fn
+- keycap picker, carry
+
+keymap img, up
+
+
+## nvim
+
+rg ( `<leader>c-o` )
+- after: cmd-line escape, err
+  - ex
+    ```
+    /vim\.g
+    ```
+
+
+## bash
+
+fnc: fish
+
+
 ## web-svr
 
 web svr mgrtn
@@ -30,6 +58,14 @@ img tidy
 
 `.bashrc / .bash_profile`
 - tidy
+
+
+## zsh
+
+zsh: like fish
+- cmd-line
+- fnc
+  - bash
 
 
 ## wifi

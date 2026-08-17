@@ -5,6 +5,8 @@ vim.g.mapleader = vim.api.nvim_replace_termcodes('<esc>', bl.f, bl.f, bl.t)
 keymap__    = vim.keymap.set
 keymap__clr = vim.keymap.del
 
+-- markdown
+vim.g.no_markdown_maps = 1
 
 -- mode normal
 
@@ -1121,6 +1123,8 @@ keymap__('x', 'gs', '<esc>')
 keymap__('x', 'gt', '<esc>')
 keymap__('x', 'gy', '<esc>')
 
+keymap__clr('x', '[%')
+
 keymap__('x', ':a', '<esc>')
 --             :
 keymap__('x', ':f', '<esc>')
@@ -1399,8 +1403,9 @@ keymap__('x', '<c-o>', ':lua v.Slctd.str_edge_out__ins_quote()<cr>')
 keymap__('x', 'W', ':lua v.Slctd.str_edge_out_char__type_ch()<cr>')
 
 -- slctd str edge out __ ins space
-keymap__('x', '<c-u>', ':lua v.Slctd.str_edge_out__ins_space()<cr>')
 keymap__('x', 'I',     ':lua v.Slctd.str_edge_out__ins_space()<cr>')
+keymap__('x', '[',     ':lua v.Slctd.str_edge_out__ins_space()<cr>')
+-- keymap__('x', '<c-u>', ':lua v.Slctd.str_edge_out__ins_space()<cr>')
 
 -- slctd str edge out __ ins markdown strikethrough
 keymap__('x', '~', ':lua v.Slctd.str_edge_out__ins_markdown_strikethrough()<cr>')

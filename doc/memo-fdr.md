@@ -2,17 +2,14 @@
 # fdr
 
 
-## fdr
+## kate ( editor )
 
-keyd
-- setting
+install
 
-claude
-- claude code, install
-  ```
-  curl -fsSL https://claude.ai/install.sh | bash
-  ```
-  doc-tech write
 
+## keyboard
+
+sticker
+- alpha, space, ctrl-r
 
 

@@ -1,9 +1,0 @@
-
-
--- v.Nml.exe('gd'
--- v.Nml.exe('i'
--- v.Nml.exe(line_num .. 'G'
-
-
-
-
