@@ -9,8 +9,7 @@ poch x 2
 - shift l
 
 key-bind
-alt <-> fn
-- keycap picker, carry
+- alt <-> fn
 
 keymap img, up
 
