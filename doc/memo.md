@@ -2,14 +2,13 @@
 # dotfiles
 
 
+## win powertoys, key-bind
+
+f16: win + v
+- confirm at home win
+
+
 ## keychron
-
-poch x 2
-- arw u
-- shift l
-
-key-bind
-- alt <-> fn
 
 keymap img, up
 

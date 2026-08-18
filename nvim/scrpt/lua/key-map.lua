@@ -1,6 +1,7 @@
 
 -- leader
 vim.g.mapleader = vim.api.nvim_replace_termcodes('<esc>', bl.f, bl.f, bl.t)
+-- vim.g.mapleader = vim.api.nvim_replace_termcodes('<space>', bl.f, bl.f, bl.t)
 
 keymap__    = vim.keymap.set
 keymap__clr = vim.keymap.del
