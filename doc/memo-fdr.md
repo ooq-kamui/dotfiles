@@ -2,18 +2,17 @@
 # fdr
 
 
-## key-caster
+## keyd
 
-keyviz
+ids
+- confirm
+- doc-tech, write
+
+
+## clock
+
+clock on desktop
+- research
 - install
-
-show-me-the-key
-- install
-
-
-## keyboard
-
-sticker
-- ctrl-r
 
 

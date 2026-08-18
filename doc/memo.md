@@ -8,6 +8,12 @@ f16: win + v
 - confirm at home win
 
 
+## rust
+
+book
+- odr
+
+
 ## keychron
 
 keymap img, up
