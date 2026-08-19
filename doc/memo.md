@@ -2,10 +2,56 @@
 # dotfiles
 
 
-## win powertoys, key-bind
+## keychron
+
+poch
+- arw u
+
+
+## win powertoys key-bind
 
 f16: win + v
 - confirm at home win
+
+
+## pc-pri
+
+spc file ?  confirm
+
+
+## pwsh
+
+vi-cmd-history
+- alias
+  ```
+  vi ( (Get-PSReadlineOption).HistorySavePath )
+  ```
+
+
+## keyviz
+
+oss
+- issue
+  - win + l, resume
+  - jis key add
+    - henkan
+    - muhenkan
+    - hankaku-zenkaku
+
+
+## karabiner
+
+space hold: like-emacs
+
+
+## tauri
+
+learn
+
+
+## bash
+
+fnc: fish
 
 
 ## rust
@@ -17,6 +63,9 @@ book
 ## keychron
 
 keymap img, up
+- k7
+
+k3, key layout, cp fr k7
 
 
 ## nvim
@@ -27,11 +76,6 @@ rg ( `<leader>c-o` )
     ```
     /vim\.g
     ```
-
-
-## bash
-
-fnc: fish
 
 
 ## web-svr
@@ -62,6 +106,7 @@ img tidy
 
 `.bashrc / .bash_profile`
 - tidy
+- doc-tech, write
 
 
 ## zsh
