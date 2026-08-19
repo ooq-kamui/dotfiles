@@ -6,17 +6,7 @@
 
 poch
 - arw u
-
-
-## win powertoys key-bind
-
-f16: win + v
-- confirm at home win
-
-
-## pc-pri
-
-spc file ?  confirm
+  - paste
 
 
 ## pwsh
@@ -26,6 +16,17 @@ vi-cmd-history
   ```
   vi ( (Get-PSReadlineOption).HistorySavePath )
   ```
+
+
+## karabiner
+
+space hold: like-emacs
+
+
+## win powertoys key-bind
+
+f16: win + v
+- confirm at home win
 
 
 ## keyviz
@@ -39,11 +40,6 @@ oss
     - hankaku-zenkaku
 
 
-## karabiner
-
-space hold: like-emacs
-
-
 ## tauri
 
 learn
@@ -52,12 +48,6 @@ learn
 ## bash
 
 fnc: fish
-
-
-## rust
-
-book
-- odr
 
 
 ## keychron
