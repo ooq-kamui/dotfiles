@@ -2,35 +2,64 @@
 # dotfiles
 
 
+## file name
+
+- re ( mv )
+  - linux > lnx
+  - path fix
+    - research ( rg )
+
+
 ## bash
 
 fnc: fish
-- method research, write
-- cre 1
+- method
+  - research
+  - doc-tech write
+- cre, try one
 
 
-## keyboard
+## nvim
 
-```
-       __d__ __f__   __h__ __j__
-
-k7   :    |                 |
-
-mac  :        |         |
-
-dell :         |             |
-```
+rg ( `<leader>c-o` )
+- after: cmd-line escape, err
+  - ex
+    ```
+    /vim\.g
+    ```
 
 
-## power-toys
+## keychron
 
-f16: win + v
-- try & confirm, at pri
+keymap img, up
+- k7
+
+k3, key layout, cp fr k7
+
+
+## wall-paper
+
+img tidy
+- add
+  - ply neva
 
 
 ## karabiner
 
 space hold: like-emacs
+
+
+## web-svr
+
+web svr mgrtn
+- nginx
+  - setting cp
+  - with claude
+
+
+## tauri
+
+learn
 
 
 ## keyviz
@@ -44,49 +73,11 @@ oss
     - hankaku-zenkaku
 
 
-## keychron
+## bash
 
-poch
-- arw u, carry, paste
-
-
-## file name
-
-- re ( mv )
-  - linux > lnx
-  - path fix
-    - research ( rg )
-
-
-## tauri
-
-learn
-
-
-## keychron
-
-keymap img, up
-- k7
-
-k3, key layout, cp fr k7
-
-
-## nvim
-
-rg ( `<leader>c-o` )
-- after: cmd-line escape, err
-  - ex
-    ```
-    /vim\.g
-    ```
-
-
-## web-svr
-
-web svr mgrtn
-- nginx
-  - setting cp
-  - with claude
+`.bashrc / .bash_profile`
+- tidy
+- doc-tech, write
 
 
 ## game
@@ -96,20 +87,6 @@ pixel art, tidy
 logic tidy
 
 etc
-
-
-## wall-paper
-
-img tidy
-- add
-  - ply neva
-
-
-## bash
-
-`.bashrc / .bash_profile`
-- tidy
-- doc-tech, write
 
 
 ## zsh

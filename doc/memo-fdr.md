@@ -15,12 +15,6 @@
 - alias, cre
 
 
-## keyd
-
-ids
-- confirm
-
-
 ## clock
 
 clock on desktop
