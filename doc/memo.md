@@ -2,31 +2,35 @@
 # dotfiles
 
 
-## keychron
+## bash
 
-poch
-- arw u
-  - paste
+fnc: fish
+- method research, write
+- cre 1
 
 
-## pwsh
+## keyboard
 
-vi-cmd-history
-- alias
-  ```
-  vi ( (Get-PSReadlineOption).HistorySavePath )
-  ```
+```
+       __d__ __f__   __h__ __j__
+
+k7   :    |                 |
+
+mac  :        |         |
+
+dell :         |             |
+```
+
+
+## power-toys
+
+f16: win + v
+- try & confirm, at pri
 
 
 ## karabiner
 
 space hold: like-emacs
-
-
-## win powertoys key-bind
-
-f16: win + v
-- confirm at home win
 
 
 ## keyviz
@@ -40,14 +44,23 @@ oss
     - hankaku-zenkaku
 
 
+## keychron
+
+poch
+- arw u, carry, paste
+
+
+## file name
+
+- re ( mv )
+  - linux > lnx
+  - path fix
+    - research ( rg )
+
+
 ## tauri
 
 learn
-
-
-## bash
-
-fnc: fish
 
 
 ## keychron

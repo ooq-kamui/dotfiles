@@ -9,6 +9,7 @@ local cmn = require('cnf/wezterm-key-cmn')
 --
 
 local keys_win = {
+    { key = 'i'         , mods = 'CTRL'            , action = act.SendKey{ key = 'Tab' } },
     { key = 'q'         , mods = 'SHIFT|CTRL'      , action = act.CloseCurrentTab{ confirm = true } },
  -- { key = 'u'         , mods = 'SHIFT|CTRL'      , action = act.CharSelect{ copy_on_select = true, copy_to =  'ClipboardAndPrimarySelection' } },
     { key = 'u'         , mods = 'SHIFT|CTRL'      , action = act.ActivatePaneDirection 'Next' },
@@ -42,3 +43,4 @@ return {
   keys       = keys,
   key_tables = key_tables,
 }
+

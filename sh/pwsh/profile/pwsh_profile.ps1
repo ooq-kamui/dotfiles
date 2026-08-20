@@ -170,6 +170,11 @@ function dir_jmp {
 Set-Alias f   "dir_jmp"
 function fo { dir_jmp dotfiles }
 
+function vi-zoxide-history{
+
+  vi ( (Get-PSReadlineOption).HistorySavePath )
+}
+
 function k    { Set-Location -Path .. ; pth }
 function kk   { k;k     }
 function kkk  { k;k;k   }
