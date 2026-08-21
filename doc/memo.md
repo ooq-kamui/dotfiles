@@ -2,20 +2,11 @@
 # dotfiles
 
 
-## file name
-
-- re ( mv )
-  - linux > lnx
-  - path fix
-    - research ( rg )
-
-
 ## bash
 
 fnc: fish
 - method
   - research
-  - doc-tech write
 - cre, try one
 
 

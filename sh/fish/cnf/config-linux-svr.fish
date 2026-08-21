@@ -1,7 +1,1 @@
-
-# alias
-
-alias clp 'osc52.sh'
-
-
-
+cnf-lnx-svr.fish
