@@ -5,7 +5,8 @@
 ## clp
 
 config.fish
-- source
+- `source xxx/config.fish`
+  - fix
 
 
 ## clock

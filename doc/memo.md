@@ -7,7 +7,17 @@
 fnc: fish
 - method
   - research
+    ```
+    #!/usr/bin/env bash
+    # ~/bin/my_function ( path dir, place )
+    exec fish -c "my_function $*"
+    ```
 - cre, try one
+
+
+## wez
+
+launch clp, off
 
 
 ## nvim
