@@ -1,14 +1,18 @@
 
-# keychron launcher
+# keychron  -  k7 max
 
 
-## k7 max
+## fnc
 
 ```
-mu-henkan : LT(4, KC_MHEN)
+# line 2
+fn : LT(3, KC_F15)
+:
 
-alt       : MT(MOD_LALT, KC_APP)
-
+# line 1 ( under )
+fn : LT(3, KC_F19)
+:
+fn : LT(3, KC_APP)
 ```
 
 

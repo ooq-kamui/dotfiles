@@ -62,7 +62,7 @@ function color_scheme__rnd(env)
       wezterm.log_info('> ' .. scheme_name .. ' <')
 
       local cmd = 'echo "' .. scheme_name .. '" | ' .. clip_cmd[env]
-      os.execute(cmd)
+      -- os.execute(cmd)
 
       win:set_config_overrides {
         color_scheme = scheme_name,

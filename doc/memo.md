@@ -2,24 +2,6 @@
 # dotfiles
 
 
-## bash
-
-fnc: fish
-- method
-  - research
-    ```
-    #!/usr/bin/env bash
-    # ~/bin/my_function ( path dir, place )
-    exec fish -c "my_function $*"
-    ```
-- cre, try one
-
-
-## wez
-
-launch clp, off
-
-
 ## nvim
 
 rg ( `<leader>c-o` )
@@ -30,24 +12,13 @@ rg ( `<leader>c-o` )
     ```
 
 
-## keychron
+## bash
 
-keymap img, up
-- k7
-
-k3, key layout, cp fr k7
-
-
-## wall-paper
-
-img tidy
-- add
-  - ply neva
-
-
-## karabiner
-
-space hold: like-emacs
+fnc: fish
+- cre, try one
+  - dispatch, cre
+  - ln cre, at path dir
+  - tst
 
 
 ## web-svr
@@ -58,29 +29,6 @@ web svr mgrtn
   - with claude
 
 
-## tauri
-
-learn
-
-
-## keyviz
-
-oss
-- issue
-  - win + l, resume
-  - jis key add
-    - henkan
-    - muhenkan
-    - hankaku-zenkaku
-
-
-## bash
-
-`.bashrc / .bash_profile`
-- tidy
-- doc-tech, write
-
-
 ## game
 
 pixel art, tidy
@@ -88,6 +36,25 @@ pixel art, tidy
 logic tidy
 
 etc
+
+
+## karabiner
+
+space hold: like-emacs
+- tap 2 : hold
+  - confirm: ask, research
+
+
+## tauri
+
+learn
+
+
+## bash
+
+`.bashrc / .bash_profile`
+- tidy
+- doc-tech, write
 
 
 ## zsh

@@ -1,12 +1,12 @@
 
-## k3 max
+# keychron  -  k3 max
 
 
-- 基本は k7 に準拠
+## fnc
 
+- same : k7
 
 ```
-wip
 ```
 
 
