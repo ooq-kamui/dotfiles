@@ -4,6 +4,21 @@
 
 ## nvim
 
+NVIM_APPNAME
+- try
+  - bash
+    ```
+    # init.lua dir : ~/dotfiles/nvim/
+    export NVIM_APPNAME=dotfiles/nvim
+    nvim
+    ```
+  - fish
+    ```
+    set -gx NVIM_APPNAME dotfiles/nvim
+    ```
+- doc-tech, write
+
+
 rg ( `<leader>c-o` )
 - after: cmd-line escape, err
   - ex
