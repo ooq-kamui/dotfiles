@@ -2,11 +2,6 @@
 # dotfiles
 
 
-## bash
-
-bashrc, tidy
-
-
 ## nvim
 
 rg ( `<leader>c-o` )
@@ -17,12 +12,28 @@ rg ( `<leader>c-o` )
     ```
 
 
+## zenn
+
+github repo cre
+
+zenn-cli, instl
+
+artcl up
+
+
 ## web-svr
 
 web svr mgrtn
 - nginx
   - setting cp
   - with claude
+
+
+## bash
+
+`.bashrc / .bash_profile`
+- tidy
+  - `at .bash_profile, source .bashrc`
 
 
 ## game
@@ -34,31 +45,9 @@ logic tidy
 etc
 
 
-## karabiner
-
-space hold: like-emacs
-- tap 2 : hold
-  - confirm: ask, research
-
-
-## tauri
-
-learn
-
-
-## bash
-
-`.bashrc / .bash_profile`
-- tidy
-- doc-tech, write
-
-
 ## zsh
 
-zsh: like fish
-- cmd-line
-- fnc
-  - bash
+cmd-line key-bind, like fish
 
 
 ## wifi

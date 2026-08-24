@@ -6,8 +6,8 @@
 
 config.fish
 - `source xxx/config.fish`
-  - fix
-    - pri
+  - fix, confirm
+    - fdr pri
 
 
 ## clock

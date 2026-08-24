@@ -1,7 +1,8 @@
 
 export PS1="_ "
 
-PATH=$PATH:~/wrk/pri/dotfiles/sh/bash/cmd
+# PATH=$PATH:~/wrk/pri/dotfiles/sh/bash/cmd
+PATH=$PATH:~/wrk/pri/dotfiles/sh/bash/fish-fnc
 
 # fnc
 
