@@ -2,12 +2,20 @@
 # fdr
 
 
-## clp
+## wez
 
-config.fish
-- `source xxx/config.fish`
-  - fix, confirm
-    - fdr pri
+ofc
+- instl
+- setting
+
+pri
+- instl
+- setting
+
+
+## defold
+
+instl
 
 
 ## clock

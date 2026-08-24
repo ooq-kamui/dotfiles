@@ -2,22 +2,14 @@
 # dotfiles
 
 
+## zenn
+
+zenn-cli, instl
+
+artcl up
+
+
 ## nvim
-
-NVIM_APPNAME
-- try
-  - bash
-    ```
-    # init.lua dir : ~/dotfiles/nvim/
-    export NVIM_APPNAME=dotfiles/nvim
-    nvim
-    ```
-  - fish
-    ```
-    set -gx NVIM_APPNAME dotfiles/nvim
-    ```
-- doc-tech, write
-
 
 rg ( `<leader>c-o` )
 - after: cmd-line escape, err
@@ -26,14 +18,25 @@ rg ( `<leader>c-o` )
     /vim\.g
     ```
 
+NVIM_APPNAME
+- try
 
-## zenn
 
-github repo cre
+## bash
 
-zenn-cli, instl
+`.bashrc / .bash_profile`, tidy
+- `at .bash_profile, source .bashrc`
+  - mac
+  - alm-ofc
+  - fdr-ofc
+  - fdr-pri
+  - c9 ?
 
-artcl up
+
+## wez
+
+win-pri
+- setting
 
 
 ## web-svr
@@ -44,11 +47,10 @@ web svr mgrtn
   - with claude
 
 
-## bash
+## wall-paper
 
-`.bashrc / .bash_profile`
-- tidy
-  - `at .bash_profile, source .bashrc`
+neva r-02
+- ply
 
 
 ## game
@@ -64,6 +66,9 @@ etc
 
 cmd-line key-bind, like fish
 
+
+
+---
 
 ## wifi
 
