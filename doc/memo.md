@@ -2,6 +2,11 @@
 # dotfiles
 
 
+## bash
+
+bashrc, tidy
+
+
 ## nvim
 
 rg ( `<leader>c-o` )
@@ -10,15 +15,6 @@ rg ( `<leader>c-o` )
     ```
     /vim\.g
     ```
-
-
-## bash
-
-fnc: fish
-- cre, try one
-  - dispatch, cre
-  - ln cre, at path dir
-  - tst
 
 
 ## web-svr

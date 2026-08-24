@@ -82,7 +82,7 @@ alias t='ts'
 alias srt='sort'
 
 alias tbl='/usr/bin/column -t'
-alias col="$HOME/wrk/cnf/sh/bash/cmd/col"
+alias col="$HOME/wrk/pri/dotfiles/sh/bash/cmd/col"
 
 alias ca='cal $( date +"%m %Y" --date "-1 month" ); cal; cal $( date +"%m %Y" --date "+1 month" )'
 
