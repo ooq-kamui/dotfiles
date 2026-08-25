@@ -160,10 +160,12 @@ end
 function v.Line.end_space__del(line_num)
 
   local view = v.Win.view_save()
+  local srch_str = v.Srch.str_plain()
 
   local rpl_cmd = line_num .. 's/' .. v.Ptn.vim.space_str_end .. '//eg'
   v.Cmd.cmd(rpl_cmd)
-  v.Srch.str_vim__('_dmy_')
+
+  v.Srch.str_vim__(srch_str)
 
   v.Win.view_restore(view)
 end

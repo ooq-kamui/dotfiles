@@ -5,7 +5,6 @@
 ## wez
 
 ofc
-- instl
 - setting
 
 pri
@@ -16,6 +15,7 @@ pri
 ## defold
 
 instl
+- launch confirm
 
 
 ## clock

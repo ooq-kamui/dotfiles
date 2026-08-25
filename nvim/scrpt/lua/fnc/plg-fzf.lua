@@ -63,6 +63,8 @@ end
 function v.Fzf.rg_by_srch_str()
 
   local srch_str_plain = v.Srch.str_plain()
+  -- v.Log.log(srch_str_plain)
+
   local opt = '-F' -- str plain ( ptn not )
 
   local word1_flg = v.Srch.is_str_vim__word1()

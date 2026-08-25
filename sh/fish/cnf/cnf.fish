@@ -24,7 +24,6 @@ set -gx VERSION_CONTROL numbered
 
 # set -x NODEBREW_ROOT /opt/homebrew/var/nodebrew
 
-
 # ripgrep ( rg )
 set -x RIPGREP_CONFIG_PATH ~/wrk/pri/dotfiles/cli/rg/ripgreprc/.ripgreprc
 
@@ -138,6 +137,8 @@ alias chmod-cp 'chmod-ref'
 
 alias e 'echo'
 
+# nvim
+# alias nvim 'env NVIM_APPNAME=nvim_my nvim'
 alias vi  'nvim -p'
 alias vim 'nvim -p'
 alias vi-lf 'nvim -p ( lf )'

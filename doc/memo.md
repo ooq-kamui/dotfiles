@@ -2,35 +2,25 @@
 # dotfiles
 
 
-## zenn
-
-zenn-cli, instl
-
-artcl up
-
-
-## nvim
-
-rg ( `<leader>c-o` )
-- after: cmd-line escape, err
-  - ex
-    ```
-    /vim\.g
-    ```
-
-NVIM_APPNAME
-- try
-
-
 ## bash
 
 `.bashrc / .bash_profile`, tidy
 - `at .bash_profile, source .bashrc`
   - mac
-  - alm-ofc
-  - fdr-ofc
   - fdr-pri
-  - c9 ?
+
+
+## zenn
+
+repo cre re by tiki
+- connect zenn
+
+zenn-cli
+- instl
+
+artcl
+- write
+- up
 
 
 ## wez
@@ -45,12 +35,6 @@ web svr mgrtn
 - nginx
   - setting cp
   - with claude
-
-
-## wall-paper
-
-neva r-02
-- ply
 
 
 ## game

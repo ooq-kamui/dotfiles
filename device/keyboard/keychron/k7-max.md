@@ -6,13 +6,15 @@
 
 ```
 # line 2
-fn : LT(3, KC_F15)
+fn  : LT(3, KC_F15)
 :
 
 # line 1 ( under )
-fn : LT(3, KC_F19)
+fn  : MT(MOD_LALT, KC_F19)
+alt : alt
+fn  : MO(3)
 :
-fn : LT(3, KC_APP)
+fn  : LT(3, KC_APP)
 ```
 
 

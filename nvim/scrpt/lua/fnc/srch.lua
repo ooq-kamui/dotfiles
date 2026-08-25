@@ -34,11 +34,14 @@ function v.Srch.str_plain__restore()
     str_vim_by_plain = v.Srch.str_vim_to_word1(str_vim_by_plain)
   end
 
+  -- v.Log.log(str_vim_by_plain)
+  -- v.Log.log(str_vim)
   if str_vim_by_plain == str_vim then
     return
   end
 
-  v.Srch._str_plain = str_vim
+  v.Srch._str_plain = v.Str.__rpl_with_vim(str_vim, [[\\\(.\)]], [[\1]]) -- un-escape
+  -- v.Srch._str_plain = str_vim
 end
 
 function v.Srch.str_plain__(str)
