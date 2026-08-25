@@ -45,6 +45,7 @@ scheme_my_lst = require('cnf/wezterm-scheme-lst')
 
 local clip_cmd = {
   mac = 'pbcopy',
+  lnx = 'wl-copy',
   win = 'clip',
 }
 

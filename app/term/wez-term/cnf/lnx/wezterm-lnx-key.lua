@@ -5,13 +5,13 @@ require('cnf/utl')
 local cmn = require('cnf/wezterm-key-cmn')
 
 --
--- env : mac (keys delta)
+-- env : lnx (keys delta)
 --
 
-local keys_mac = {
+local keys_lnx = {
     { key = '¥'                                    , action = act.SendString([[\]]) },
-    { key = 'H'         , mods = 'CTRL'            , action = act.HideApplication },
-    { key = 'H'         , mods = 'SHIFT|CTRL'      , action = act.HideApplication },
+ -- { key = 'H'         , mods = 'CTRL'            , action = act.HideApplication },
+ -- { key = 'H'         , mods = 'SHIFT|CTRL'      , action = act.HideApplication },
  -- { key = 'Q'         , mods = 'CTRL'            , action = act.QuitApplication },
  -- { key = 'Q'         , mods = 'SHIFT|CTRL'      , action = act.QuitApplication },
     { key = 'Q'         , mods = 'CTRL'            , action = act.DisableDefaultAssignment },
@@ -27,20 +27,20 @@ local keys_mac = {
 }
 
 --
--- env : mac (copy_mode delta)
+-- env : lnx (copy_mode delta)
 --
 
-local copy_mode_mac = {
+local copy_mode_lnx = {
  -- { key = 'f'         , mods = 'NONE'   , action = act.CopyMode{ JumpForward = { prev_char = false } } },
     { key = 'f'         , mods = 'NONE'   , action = act.CopyMode 'MoveForwardWord' },
 }
 
 -- merge
 
-local keys = utl.tbl.cct(cmn.keys, keys_mac)
+local keys = utl.tbl.cct(cmn.keys, keys_lnx)
 
 local key_tables = cmn.key_tables
-key_tables.copy_mode = utl.tbl.cct(key_tables.copy_mode, copy_mode_mac)
+key_tables.copy_mode = utl.tbl.cct(key_tables.copy_mode, copy_mode_lnx)
 
 return {
   keys       = keys,
