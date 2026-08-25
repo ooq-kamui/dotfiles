@@ -2,18 +2,14 @@
 # dotfiles
 
 
-## bash
+## keychron
 
-`.bashrc / .bash_profile`, tidy
-- `at .bash_profile, source .bashrc`
-  - mac
-  - fdr-pri
+k7
+- keymap fix
+  - puller
 
 
 ## zenn
-
-repo cre re by tiki
-- connect zenn
 
 zenn-cli
 - instl
@@ -21,6 +17,7 @@ zenn-cli
 artcl
 - write
 - up
+  - method read
 
 
 ## wez
@@ -28,6 +25,8 @@ artcl
 win-pri
 - setting
 
+
+---
 
 ## web-svr
 
@@ -49,7 +48,6 @@ etc
 ## zsh
 
 cmd-line key-bind, like fish
-
 
 
 ---

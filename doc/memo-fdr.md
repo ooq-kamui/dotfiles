@@ -4,12 +4,12 @@
 
 ## wez
 
-ofc
-- setting
-
-pri
-- instl
-- setting
+setting
+- ofc
+  - same pri ?
+- pri
+  - win mv
+  - start-up err ?
 
 
 ## defold
