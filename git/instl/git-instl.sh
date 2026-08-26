@@ -2,10 +2,10 @@
 
 # case ec2
 
-# yum upd
-sudo yum update
+# dnf upd
+sudo dnf upgrade
 
 # git install
-sudo yum install git
+sudo dnf install git
 
 

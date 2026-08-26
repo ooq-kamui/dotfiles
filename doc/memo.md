@@ -2,22 +2,12 @@
 # dotfiles
 
 
-## keychron
+## zenn artcl
 
-k7
-- keymap fix
-  - puller
-
-
-## zenn
-
-zenn-cli
-- instl
-
-artcl
+keychron-k7
+- layout: orz-kai
 - write
 - up
-  - method read
 
 
 ## wez
