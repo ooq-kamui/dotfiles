@@ -29,9 +29,9 @@ config.default_prog = {'/usr/bin/fish'}
 -- config.default_prog = {'wsl'}
 -- config.default_prog = {'pwsh'}
 
-config.font_size    =  18
--- config.initial_cols = 134
--- config.initial_rows =  37
+config.font_size    =  13
+config.initial_cols = 135
+config.initial_rows =  33
 
 
 -- gui_startup({
