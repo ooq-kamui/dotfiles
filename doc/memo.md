@@ -2,18 +2,37 @@
 # dotfiles
 
 
+## wez
+
+win-pri
+- setting
+
+
+## keychron
+
+k7
+- sticker
+  - shift-r, mask
+
+
+## fish
+
+e-chk, with gemini
+
+
+## keymap
+
+space [ hold : shift ]
+- mac     : karabiner
+- fdr-pri : keyd
+
+
 ## zenn artcl
 
 keychron-k7
 - layout: orz-kai
 - write
 - up
-
-
-## wez
-
-win-pri
-- setting
 
 
 ---
@@ -24,6 +43,11 @@ web svr mgrtn
 - nginx
   - setting cp
   - with claude
+
+
+## wall-paper
+
+neva, ply, r-02
 
 
 ## game
