@@ -42,6 +42,8 @@ config.font_size = 13
 
 gui_startup({
   ['_default'] = { x = 50, y = 10, cols = 183, rows = 40 },
+  ['DISPLAY2: Generic PnP Monitor on Intel(R) Iris(R) Xe Graphics']
+               = { x = 50, y = 10, cols = 183, rows = 40 }, -- ofc
 })
 
 color_scheme__rnd('win')
