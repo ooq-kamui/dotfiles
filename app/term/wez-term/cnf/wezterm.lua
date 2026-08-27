@@ -121,13 +121,22 @@ function spawn_with_split(pos, cols, rows)
 end
 
 function gui_startup(scrn_tbl)
+
   wezterm.on('gui-startup', function()
     local scrn = wezterm.gui.screens().active
     wezterm.log_info('scrn name: ' .. scrn.name)
-
+  
     local s = scrn_tbl[scrn.name] or scrn_tbl['_default']
     spawn_with_split({ x = s.x, y = s.y }, s.cols, s.rows)
   end)
+
+  -- wezterm.on('gui-attached', function(domain)
+  --   local scrn = wezterm.gui.screens().active
+  --   wezterm.log_info('scrn name: ' .. scrn.name)
+  -- 
+  --   local s = scrn_tbl[scrn.name] or scrn_tbl['_default']
+  --   spawn_with_split({ x = s.x, y = s.y }, s.cols, s.rows)
+  -- end)
 end
 
 return config
