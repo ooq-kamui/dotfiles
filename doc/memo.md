@@ -2,10 +2,14 @@
 # dotfiles
 
 
-## wez
+## mac
 
-win-pri
-- setting
+key-sticky : off
+
+
+## fish
+
+e-chk, with gemini
 
 
 ## keychron
@@ -13,11 +17,13 @@ win-pri
 k7
 - sticker
   - shift-r, mask
+  - screen-shot
 
 
-## fish
+## wez
 
-e-chk, with gemini
+win-pri
+- setting
 
 
 ## keymap
