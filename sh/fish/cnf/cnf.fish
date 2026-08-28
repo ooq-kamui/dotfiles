@@ -135,7 +135,7 @@ alias trsh 'trash -F'
 
 alias chmod-cp 'chmod-ref'
 
-alias e 'echo'
+# alias e 'echo'
 
 # nvim
 # alias nvim 'env NVIM_APPNAME=nvim_my nvim'
@@ -217,11 +217,13 @@ alias tbl '/usr/bin/column -t'
 
 alias mb-chk 'file -i'
 
-alias trns     'trans'
-alias trns-j2e 'trans {ja=en}'
+alias trns     'trans {en=ja}'
 alias trns-e2j 'trans {en=ja}'
-alias trns-je  'trans {ja=en}'
-alias trns-ej  'trans {en=ja}'
+alias trns-j2e 'trans {ja=en}'
+
+alias e  'eng-tutor'
+alias et 'eng-tutor'
+
 
 # nginx
 alias nx-vi-cnf   'vi /etc/nginx/nginx.conf'

@@ -2,22 +2,18 @@
 # dotfiles
 
 
+## keymap
+
+space [ hold : shift ]
+- think-re
+  - right finger shift
+- mac     : karabiner
+- fdr-pri : keyd
+
+
 ## mac
 
 key-sticky : off
-
-
-## fish
-
-e-chk, with gemini
-
-
-## keychron
-
-k7
-- sticker
-  - shift-r, mask
-  - screen-shot
 
 
 ## wez
@@ -26,19 +22,13 @@ win-pri
 - setting
 
 
-## keymap
+## zenn
 
-space [ hold : shift ]
-- mac     : karabiner
-- fdr-pri : keyd
-
-
-## zenn artcl
-
-keychron-k7
-- layout: orz-kai
-- write
-- up
+article
+- keychron-k7
+  - layout: orz-kai
+  - write
+  - up
 
 
 ---
@@ -49,11 +39,6 @@ web svr mgrtn
 - nginx
   - setting cp
   - with claude
-
-
-## wall-paper
-
-neva, ply, r-02
 
 
 ## game
