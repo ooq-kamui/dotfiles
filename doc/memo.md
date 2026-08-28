@@ -11,11 +11,6 @@ space [ hold : shift ]
 - fdr-pri : keyd
 
 
-## mac
-
-key-sticky : off
-
-
 ## wez
 
 win-pri

@@ -120,15 +120,18 @@ function spawn_with_split(pos, cols, rows)
   pane:split({ direction = 'Right', size = 0.7 })
 end
 
-local function is_hyperv()
+function is_vm()
 
   local f = io.popen("systemd-detect-virt 2>/dev/null")
-  if f then
-    local virt = f:read("*l")
-    f:close()
-    if virt == "microsoft" or virt == "wsl" then
-      return true
-    end
+
+  if not f then return end
+
+  local virt = f:read("*l")
+  f:close()
+
+  -- if virt == "microsoft" or virt == "wsl" then
+  if virt == "microsoft" then
+    return true
   end
 
   return false
@@ -136,12 +139,13 @@ end
 
 function gui_startup(scrn_tbl)
 
-  if is_hyperv() then return end
-
   wezterm.on('gui-startup', function()
+
+    -- if is_vm() then return end
+
     local scrn = wezterm.gui.screens().active
     wezterm.log_info('scrn name: ' .. scrn.name)
-  
+
     local s = scrn_tbl[scrn.name] or scrn_tbl['_default']
     spawn_with_split({ x = s.x, y = s.y }, s.cols, s.rows)
   end)
