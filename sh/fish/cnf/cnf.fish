@@ -224,6 +224,8 @@ alias trns-j2e 'trans {ja=en}'
 alias e  'eng-tutor'
 alias et 'eng-tutor'
 
+alias q 'kiro-cli-chat'
+
 
 # nginx
 alias nx-vi-cnf   'vi /etc/nginx/nginx.conf'

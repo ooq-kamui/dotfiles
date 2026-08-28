@@ -1,7 +1,7 @@
 function eng-tutor --description "Check English spelling/grammar using Gemini API"
 
     if test (count $argv) -eq 0
-        echo "Usage: e-chk <word or sentence>"
+        echo "Usage: eng-tutor <word or sentence>"
         return 1
     end
 

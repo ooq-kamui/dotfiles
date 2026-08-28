@@ -2,6 +2,14 @@
 # dotfiles
 
 
+## fish
+
+e
+- err msg
+
+q, tidy
+
+
 ## keymap
 
 space [ hold : shift ]
