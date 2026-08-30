@@ -2,12 +2,23 @@
 # dotfiles
 
 
+## keyviz
+
+key interval ? long
+
+
 ## fish
 
-e
+eng-teacher
+- name ch
 - err msg
+- cli, mlt
+- word cmp
 
 q, tidy
+- cmd chat
+  - claude
+  - gemini-cli
 
 
 ## keymap
@@ -23,6 +34,9 @@ space [ hold : shift ]
 
 win-pri
 - setting
+
+mac
+- c-i : none ( tab )
 
 
 ## zenn

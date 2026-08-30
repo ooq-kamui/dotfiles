@@ -24,11 +24,11 @@
               "bundle_identifiers": [
                 "^com\\.apple\\.finder$",
                 "^com\\.apple\\.Safari$",
-                "^com\\.apple\\.MobileSMS$",
-                "^com\\.apple\\.Music$",
+                "^com\\.apple\\.Notes$",
                 "^com\\.apple\\.iCal$",
+                "^com\\.apple\\.Music$",
+                "^com\\.apple\\.MobileSMS$",
                 "^com\\.google\\.Chrome$",
-                "^jp\\.naver\\.line\\.mac$",
                 "^com\\.pixelmatorteam\\.pixelmator\\.x$",
                 "^org\\.godotengine\\.godot$"
               ]
@@ -55,11 +55,11 @@
               "bundle_identifiers": [
                 "^com\\.apple\\.finder$",
                 "^com\\.apple\\.Safari$",
-                "^com\\.apple\\.MobileSMS$",
-                "^com\\.apple\\.Music$",
+                "^com\\.apple\\.Notes$",
                 "^com\\.apple\\.iCal$",
+                "^com\\.apple\\.Music$",
+                "^com\\.apple\\.MobileSMS$",
                 "^com\\.google\\.Chrome$",
-                "^jp\\.naver\\.line\\.mac$",
                 "^com\\.pixelmatorteam\\.pixelmator\\.x$",
                 "^org\\.godotengine\\.godot$"
               ]
