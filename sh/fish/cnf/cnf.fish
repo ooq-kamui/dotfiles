@@ -221,10 +221,8 @@ alias trns     'trans {en=ja}'
 alias trns-e2j 'trans {en=ja}'
 alias trns-j2e 'trans {ja=en}'
 
-alias e  'eng-tutor'
-alias et 'eng-tutor'
-
-alias q 'kiro-cli-chat'
+alias e 'eng-teacher'
+alias q 'ai-chat'
 
 
 # nginx

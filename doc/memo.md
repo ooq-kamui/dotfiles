@@ -2,41 +2,42 @@
 # dotfiles
 
 
-## keyviz
+## web-svr
 
-key interval ? long
+web svr mgrtn
+- nginx
+  - setting cp
+  - with claude
 
+
+---
 
 ## fish
 
+dev at home
+
 eng-teacher
-- name ch
+```
+- cli cmd, mlt
 - err msg
-- cli, mlt
 - word cmp
+```
 
 q, tidy
+```
 - cmd chat
   - claude
   - gemini-cli
-
-
-## keymap
-
-space [ hold : shift ]
-- think-re
-  - right finger shift
-- mac     : karabiner
-- fdr-pri : keyd
+```
 
 
 ## wez
 
-win-pri
-- setting
-
 mac
 - c-i : none ( tab )
+
+win-pri
+- setting
 
 
 ## zenn
@@ -49,14 +50,6 @@ article
 
 
 ---
-
-## web-svr
-
-web svr mgrtn
-- nginx
-  - setting cp
-  - with claude
-
 
 ## game
 
@@ -98,4 +91,5 @@ alm setting at skr console
 - confirm
 - firewall
   - url
+
 
