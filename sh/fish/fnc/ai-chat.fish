@@ -1,5 +1,7 @@
-function kiro-cli-chat
+function ai-chat
 
-  kiro-cli chat --resume --no-interactive ( string join " " $argv )
+  set -l ai_command kiro-cli
+
+  $ai_command chat --resume --no-interactive ( string join " " $argv )
 end
 

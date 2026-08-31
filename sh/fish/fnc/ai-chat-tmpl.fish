@@ -1,4 +1,6 @@
-function kiro-cli-chat-tmpl
+function ai-chat-tmpl
+
+  set -l ai_command kiro-cli
 
   if test (count $argv) -eq 0
       echo "ユーザーエラー: 翻訳したい英文を入力してください。"
@@ -19,6 +21,6 @@ function kiro-cli-chat-tmpl
 【翻訳対象】
 $english_text"
 
-  kiro-cli chat --resume --no-interactive $prompt 
+  $ai_command chat --resume --no-interactive $prompt 
 end
 
