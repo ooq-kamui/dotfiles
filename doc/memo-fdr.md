@@ -5,7 +5,6 @@
 ## fdr-ofc
 
 login
-- bsky
 - claude
 - claude code
 - gemini
