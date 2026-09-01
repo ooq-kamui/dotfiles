@@ -2,6 +2,13 @@
 # dotfiles
 
 
+## keychron
+
+k7-tactile
+- keymap, import
+- keycap, rpl
+
+
 ## web-svr
 
 web svr mgrtn
@@ -14,7 +21,7 @@ web svr mgrtn
 
 ## fish
 
-dev at home
+at claude
 
 eng-teacher
 ```
