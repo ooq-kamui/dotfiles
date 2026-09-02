@@ -2,15 +2,6 @@
 # fdr
 
 
-## fdr-ofc
-
-login
-- claude
-- claude code
-- gemini
-- gemini cli
-
-
 ## defold
 
 instl

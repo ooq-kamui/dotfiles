@@ -2,32 +2,13 @@
 # dotfiles
 
 
-## keychron
-
-k7-tactile
-- keymap, import
-- keycap, rpl
-
-
-## web-svr
-
-web svr mgrtn
-- nginx
-  - setting cp
-  - with claude
-
-
----
-
 ## fish
-
-at claude
 
 eng-teacher
 ```
-- cli cmd, mlt
-- err msg
 - word cmp
+- err msg
+- cli cmd, mlt
 ```
 
 q, tidy
@@ -36,6 +17,13 @@ q, tidy
   - claude
   - gemini-cli
 ```
+
+
+## keychron
+
+k7
+- mac
+  - keymap
 
 
 ## wez
@@ -54,6 +42,16 @@ article
   - layout: orz-kai
   - write
   - up
+
+
+---
+
+## web-svr
+
+web svr mgrtn
+- nginx
+  - setting cp
+  - with claude
 
 
 ---
