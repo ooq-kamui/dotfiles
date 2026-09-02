@@ -2,13 +2,22 @@
 # dotfiles
 
 
+## keychron
+
+k7
+- keymap
+  - alw
+  - mac
+    - keymap
+
+
 ## fish
 
 eng-teacher
 ```
 - word cmp
-- err msg
-- cli cmd, mlt
+- err msg, tidy
+- use cli, env swtch
 ```
 
 q, tidy
@@ -17,13 +26,6 @@ q, tidy
   - claude
   - gemini-cli
 ```
-
-
-## keychron
-
-k7
-- mac
-  - keymap
 
 
 ## wez
