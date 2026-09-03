@@ -2,20 +2,14 @@
 # dotfiles
 
 
-## karabiner
-
-`shift + _` : `+`
-- set
-
-
 ## keychron
 
 k7
+- sticker
+  - `enter`
 - keymap
   - mac
     - keymap
-- sticker
-  - `enter`
 
 
 ## fish

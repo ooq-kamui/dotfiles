@@ -1,8 +1,8 @@
 {
-  "title": "underscore shift __ plus [ @kamui ]",
+  "title": "underscore shift __ pls [ @kamui ]",
   "rules": [
     {
-      "description": "underscore shift __ plus",
+      "description": "underscore shift __ pls",
       "manipulators": [
         {
           "type": "basic",
