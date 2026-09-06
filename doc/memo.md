@@ -5,8 +5,6 @@
 ## keychron
 
 k7
-- sticker
-  - `enter`
 - keymap
   - mac
     - keymap
