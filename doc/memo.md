@@ -6,7 +6,6 @@
 
 wezterm.lua on-pc
 - ln
-  - mac
   - fdr
   - win-pri
 - hostname, if
@@ -15,6 +14,7 @@ zsh
 - win-ofc
 
 mac
+- new win launch, win pos
 - c-i : none ( tab )
 
 win-pri

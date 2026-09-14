@@ -16,6 +16,7 @@ local keys_mac = {
  -- { key = 'Q'         , mods = 'SHIFT|CTRL'      , action = act.QuitApplication },
     { key = 'Q'         , mods = 'CTRL'            , action = act.DisableDefaultAssignment },
     { key = 'Q'         , mods = 'SHIFT|CTRL'      , action = act.DisableDefaultAssignment },
+    { key = 'h'         , mods = 'SHIFT|CTRL'      , action = act.ShowDebugOverlay },
     { key = 'h'         , mods = 'SUPER'           , action = act.HideApplication },
  -- { key = 'q'         , mods = 'SHIFT|CTRL'      , action = act.QuitApplication },
  -- { key = 'q'         , mods = 'SUPER'           , action = act.QuitApplication },

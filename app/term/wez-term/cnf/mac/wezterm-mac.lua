@@ -36,6 +36,7 @@ config.font_size    =  18
 gui_startup({
   ['HG-245H']  = { x = 43, y = 10, cols = 167, rows = 42 },
   ['_default'] = { x = 25, y = 70, cols = 134, rows = 37 },
+-- 'Built-in Retina Display'
 })
 
 color_scheme__rnd('mac')
