@@ -2,15 +2,45 @@
 # dotfiles
 
 
-## keyviz
+## wez
+
+wezterm.lua on-pc
+- ln
+  - mac
+  - fdr
+  - win-pri
+- hostname, if
+
+zsh
+- win-ofc
 
 mac
-- install
+- c-i : none ( tab )
+
+win-pri
+- setting
 
 
 ## zsh
 
-cmd-line key-bind, like fish
+cmd-line, like fish
+- ofc-alm
+  - plg install
+    - zsh-syntax-highlighting
+    - zsh-autosuggestions
+    - compinit + zstyle menu select ( autocomplete )
+
+
+## keyboard
+
+mac
+- sticker, e repair
+
+
+## keyviz
+
+mac
+- install
 
 
 ## asmr
@@ -31,15 +61,6 @@ q, tidy
   - claude
   - gemini-cli
 ```
-
-
-## wez
-
-mac
-- c-i : none ( tab )
-
-win-pri
-- setting
 
 
 ## zenn

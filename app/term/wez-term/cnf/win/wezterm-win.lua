@@ -34,9 +34,6 @@ config.wsl_domains = {
 }
 
 config.default_domain = 'wsl:alm-10-my-01'
--- config.default_prog = {'wsl'}
--- config.default_prog = {'pwsh'}
--- config.default_prog = {'fish'}
 
 config.font_size = 13
 
