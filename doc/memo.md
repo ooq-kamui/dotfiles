@@ -14,7 +14,10 @@ zsh
 - win-ofc
 
 mac
+- setting def, default
+
 - new win launch, win pos
+
 - c-i : none ( tab )
 
 win-pri
