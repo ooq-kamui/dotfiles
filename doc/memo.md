@@ -2,6 +2,21 @@
 # dotfiles
 
 
+## web-svr
+
+web svr mgrtn
+- nginx
+  - setting cp
+  - with claude
+
+
+## git
+
+git-commit-lst-by-file
+
+git-file-lst-by-commit
+
+
 ## wez
 
 wezterm.lua on-pc
@@ -39,11 +54,19 @@ cmd-line, like fish
 mac
 - sticker, e repair
 
+keycap, bag
 
-## keyviz
 
-mac
-- install
+## nvim
+
+slctd fil char
+- confirm, \ |
+
+
+## mac
+
+term, mb henkan
+- err? confirm
 
 
 ## asmr
@@ -73,16 +96,6 @@ article
   - layout: orz-kai
   - write
   - up
-
-
----
-
-## web-svr
-
-web svr mgrtn
-- nginx
-  - setting cp
-  - with claude
 
 
 ---
