@@ -52,7 +52,10 @@ cmd-line, like fish
 ## keyboard
 
 keychron k7
-- poch, ctrl `|` thin
+- poch
+  - ctrl : `|` thin
+  - e    : _
+  - w,r  : del
 - screen shot
 
 mac
