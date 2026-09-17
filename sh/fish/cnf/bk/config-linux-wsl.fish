@@ -1,1 +1,0 @@
-cnf-lnx-wsl.fish

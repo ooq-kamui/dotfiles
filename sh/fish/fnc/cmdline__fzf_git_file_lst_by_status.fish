@@ -1,6 +1,6 @@
-function cmdline__fzf_git_st_file_lst
+function cmdline__fzf_git_file_lst_by_status
 
-  set file_path ( git-st-file-lst | fzf )
+  set file_path ( git-file-lst-by-status | fzf )
 
   set git_root_dir_rel ( git-root-pth-rel )
 

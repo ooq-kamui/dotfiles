@@ -1,4 +1,4 @@
-function git-co-file-lst
+function git-file-lst-by-commit-id
 
   set times 10
   if test -n "$argv[1]"

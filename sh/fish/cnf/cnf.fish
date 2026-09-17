@@ -162,10 +162,9 @@ alias jp 'git pll'
 
 # alias jrp 'git-root-pth-rel'
 # alias jr  'cd_git_root'
-alias ji-st-file-lst 'git-st-file-lst'
-alias ji-co-file-lst 'git-co-file-lst'
-alias ji-co-smry     'git-co-summary'
-# alias ji-co-summary  'git-co-summary'
+alias ji-file-lst-by-st 'git-file-lst-by-status'
+alias ji-file-lst-by-co 'git-file-lst-by-commit-id'
+alias ji-co-smry        'git-co-summary'
 
 alias get-branch-upstream 'git branch --set-upstream-to=origin/main main'
 alias ji-b-upstream       'get-branch-upstream'
@@ -291,8 +290,8 @@ bind \cy fzf-file-widget
 bind \cr fzf-history-widget
 # bind \cu fzf-history-widget
 
-bind \cu cmdline__fzf_git_st_file_lst
-bind \cq cmdline__fzf_git_co_file_lst
+bind \cu cmdline__fzf_git_file_lst_by_status
+bind \cq cmdline__fzf_git_file_lst_by_commit_id
 
 # erase
 # bind -e \cu

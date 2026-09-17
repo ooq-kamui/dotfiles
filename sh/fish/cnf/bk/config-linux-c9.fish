@@ -1,1 +1,0 @@
-cnf-lnx-c9.fish
