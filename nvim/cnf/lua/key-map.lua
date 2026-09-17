@@ -858,10 +858,10 @@ keymap__('n', ':1', ':!')
 -- pth
 keymap__('n', ':p', ':Pth <cr>')
 
--- cd slf
+-- cd slf-dir
 keymap__('n', ':d', ':lua v.Dir.__buf_file_dir()')
 
--- cd __ nvim launch
+-- cd __ nvim-launch-dir
 keymap__('n', ':D', ':lua v.Dir.__nvim_launch()')
 
 -- cd parent

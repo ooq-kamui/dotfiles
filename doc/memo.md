@@ -51,6 +51,10 @@ cmd-line, like fish
 
 ## keyboard
 
+keychron k7
+- poch, ctrl `|` thin
+- screen shot
+
 mac
 - sticker, e repair
 
@@ -61,6 +65,8 @@ keycap, bag
 
 slctd fil char
 - confirm, \ |
+
+cd slf dir
 
 
 ## mac
