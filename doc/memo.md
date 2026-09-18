@@ -10,6 +10,13 @@ web svr mgrtn
   - with claude
 
 
+## docusaurus
+
+npm > pnpm
+- doc-tech
+- artcl
+
+
 ## git
 
 git-commit-lst-by-file
