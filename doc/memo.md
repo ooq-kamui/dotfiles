@@ -2,26 +2,38 @@
 # dotfiles
 
 
-## web-svr
+## git / fish
 
-web svr mgrtn
-- nginx
-  - setting cp
-  - with claude
-
-
-## docusaurus
-
-npm > pnpm
-- doc-tech
-- artcl
-
-
-## git
+git-file-lst-by-commit
+- arg
 
 git-commit-lst-by-file
 
-git-file-lst-by-commit
+
+## nvim
+
+slctd fil char
+- confirm, \ |
+
+
+## mac
+
+keyboard sticker
+- 1
+- 9
+- k
+
+term - neovim, mb henkan
+- err? confirm
+
+
+## zenn
+
+article
+- keychron-k7
+  - layout: orz-kai
+  - write
+  - up
 
 
 ## wez
@@ -56,40 +68,6 @@ cmd-line, like fish
     - compinit + zstyle menu select ( autocomplete )
 
 
-## keyboard
-
-keychron k7
-- poch
-  - ctrl : `|` thin
-  - e    : _
-  - w,r  : del
-- screen shot
-
-mac
-- sticker, e repair
-
-keycap, bag
-
-
-## nvim
-
-slctd fil char
-- confirm, \ |
-
-cd slf dir
-
-
-## mac
-
-term, mb henkan
-- err? confirm
-
-
-## asmr
-
-method-learn
-
-
 ## eng-teacher
 
 fish
@@ -105,13 +83,24 @@ q, tidy
 ```
 
 
-## zenn
+## web-svr
 
-article
-- keychron-k7
-  - layout: orz-kai
-  - write
-  - up
+web svr mgrtn
+- nginx
+  - setting cp
+  - with claude
+
+
+## docusaurus
+
+npm > pnpm
+- doc-tech
+- artcl
+
+
+## asmr
+
+method-learn
 
 
 ---
