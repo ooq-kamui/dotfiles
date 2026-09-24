@@ -19,9 +19,7 @@ slctd fil char
 ## mac
 
 keyboard sticker
-- 1
-- 9
-- k
+- 1, 9, k
 
 term - neovim, mb henkan
 - err? confirm
