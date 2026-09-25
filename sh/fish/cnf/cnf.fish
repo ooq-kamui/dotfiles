@@ -80,6 +80,13 @@ alias fo 'dir_jmp_with_zoxide dotfiles'
 alias fl 'dir_jmp_with_zoxide life'
 # alias fp 'dir_jmp_with_zoxide life'
 
+alias dir-pin-lst 'printf "%s\n" $dirstack'
+alias dir-pin     'pushd .; dir-pin-lst'
+alias dir-pin-bck 'popd'
+alias dpl 'dir-pin-lst'
+alias dp  'dir-pin'
+alias dpb 'dir-pin-bck'
+
 alias mkdir 'mkdir -p'
 alias mkd   'mkdir -p'
 alias rmd   'rmdir'
@@ -127,8 +134,8 @@ alias tmp 'file_tmp'
 alias mv  'mv -i'
 alias rn  'rename'
 
-alias cp  'cp -ip'
-alias dpl 'file_dpl'
+alias cp   'cp -ip'
+alias fdpl 'file_dpl'
 
 alias rm   'rm -i'
 alias trsh 'trash -F'
@@ -175,12 +182,12 @@ alias dif 'difft'
 alias di  'difft'
 
 
-alias pd   'podman'
-alias pl   'podman container ls -a'
-alias pil  'podman image ls'
-alias pnl  'podman network ls'
-# alias pdcl 'podman container ls -a'
-# alias pdil 'podman image ls'
+# alias pd   'podman'
+# alias pl   'podman container ls -a'
+# alias pil  'podman image ls'
+# alias pnl  'podman network ls'
+## alias pdcl 'podman container ls -a'
+## alias pdil 'podman image ls'
 
 alias line 'cat_line'
 
