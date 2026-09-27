@@ -2,6 +2,14 @@
 # dotfiles
 
 
+## web-svr
+
+web svr mgrtn
+- nginx
+  - setting cp
+  - with claude
+
+
 ## git / fish
 
 git-file-lst-by-commit
@@ -17,9 +25,6 @@ slctd fil char
 
 
 ## mac
-
-keyboard sticker
-- 1, 9, k
 
 term - neovim, mb henkan
 - err? confirm
@@ -66,7 +71,13 @@ cmd-line, like fish
     - compinit + zstyle menu select ( autocomplete )
 
 
-## eng-teacher
+## fdr ( dell )
+
+adapter
+- support code : 232243990
+
+
+## eng
 
 fish
 - word cmp
@@ -81,12 +92,9 @@ q, tidy
 ```
 
 
-## web-svr
+## node
 
-web svr mgrtn
-- nginx
-  - setting cp
-  - with claude
+npm > pnpm
 
 
 ## docusaurus
