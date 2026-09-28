@@ -7,14 +7,22 @@
 cmd-line, like fish
 - ofc-alm
   - plg install
-    - zsh-syntax-highlighting
-    - zsh-autosuggestions
     - compinit + zstyle menu select ( autocomplete )
+      ```
+      wip
+      ```
+- mac
+  - zsh-autosuggestions
+  - zsh-syntax-highlighting
+  - compinit + zstyle menu select ( autocomplete )
 
 
 ## node
 
 npm > pnpm
+- mac
+  - wip
+  - npm alart
 
 
 ## docusaurus
