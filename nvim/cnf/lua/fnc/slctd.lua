@@ -576,7 +576,7 @@ end
 function v.Slctd.__fil(char)
 
   if char == '|' then
-    char = [[\<bar>]]
+    char = [[<bar>]]
   end
 
   v.Slctd.__ltst()
@@ -584,21 +584,16 @@ function v.Slctd.__fil(char)
   v.Cursor.char__rpl(char)
 
   v.Slctd.__ltst()
-
-  -- todo: del
-  -- local slctd_str = v.Slctd.str()
-  -- local slctd_str_len_ruler = v.Str.len_ruler(slctd_str)
-  -- 
-  -- local str = v.Str.char_mlt(char, slctd_str_len_ruler)
-  -- 
-  -- v.Slctd.str__rpl_str(str)
-  -- 
-  -- v.Slctd.__ltst()
 end
 
 function v.Slctd.__fil_space()
 
   v.Slctd.__fil(' ')
+end
+
+function v.Slctd.__fil_hyphen()
+
+  v.Slctd.__fil('-')
 end
 
 function v.Slctd.__fil_bar()

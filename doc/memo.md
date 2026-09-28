@@ -10,20 +10,6 @@ web svr mgrtn
   - with claude
 
 
-## git / fish
-
-git-file-lst-by-commit
-- arg
-
-git-commit-lst-by-file
-
-
-## nvim
-
-slctd fil char
-- confirm, \ |
-
-
 ## mac
 
 term - neovim, mb henkan
@@ -69,12 +55,6 @@ cmd-line, like fish
     - zsh-syntax-highlighting
     - zsh-autosuggestions
     - compinit + zstyle menu select ( autocomplete )
-
-
-## fdr ( dell )
-
-adapter
-- support code : 232243990
 
 
 ## eng

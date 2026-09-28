@@ -1338,7 +1338,7 @@ keymap__('x', ',', ':lua v.Slctd.line_end__ins(",")<cr>')
 keymap__('x', 'S'    , ':lua v.Slctd.__fil_space()<cr>')
 
 -- fil -
-keymap__('x', '-'    , ':lua v.Slctd.__fil("-")<cr>')
+keymap__('x', '-'    , ':lua v.Slctd.__fil_hyphen()<cr>')
 
 -- fil |
 keymap__('x', '<bar>', ':lua v.Slctd.__fil_bar()<cr>')

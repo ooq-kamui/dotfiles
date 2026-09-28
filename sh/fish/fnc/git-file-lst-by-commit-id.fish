@@ -1,11 +1,6 @@
 function git-file-lst-by-commit-id
 
-  set times 10
-  if test -n "$argv[1]"
-    set times $argv[1]
-  end
-
-  set commit_id_lst ( git log -n $times --pretty=format:%H )
+  set commit_id_lst $argv[1]
 
   git show --pretty=format: --name-only $commit_id_lst | sort -u
 
