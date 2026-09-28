@@ -2,6 +2,28 @@
 # dotfiles
 
 
+## zsh
+
+cmd-line, like fish
+- ofc-alm
+  - plg install
+    - zsh-syntax-highlighting
+    - zsh-autosuggestions
+    - compinit + zstyle menu select ( autocomplete )
+
+
+## node
+
+npm > pnpm
+
+
+## docusaurus
+
+npm > pnpm
+- doc-tech
+- artcl
+
+
 ## web-svr
 
 web svr mgrtn
@@ -47,16 +69,6 @@ win-pri
 - setting
 
 
-## zsh
-
-cmd-line, like fish
-- ofc-alm
-  - plg install
-    - zsh-syntax-highlighting
-    - zsh-autosuggestions
-    - compinit + zstyle menu select ( autocomplete )
-
-
 ## eng
 
 fish
@@ -70,18 +82,6 @@ q, tidy
   - claude
   - gemini-cli
 ```
-
-
-## node
-
-npm > pnpm
-
-
-## docusaurus
-
-npm > pnpm
-- doc-tech
-- artcl
 
 
 ## asmr
