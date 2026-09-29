@@ -23,8 +23,6 @@ win-pri
 
 ## zsh
 
-zoxide
-
 key-bind
 
 
