@@ -4,9 +4,10 @@
 
 ## zsh
 
+fish fnc call
+- def re
+
 cmd-line, like fish
-- alias
-  - cp fr fish
 
 
 ## node
