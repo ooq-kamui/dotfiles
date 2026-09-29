@@ -2,16 +2,37 @@
 # dotfiles
 
 
+## wez
+
+wezterm.lua on-pc
+- ln
+  - fdr
+  - win-pri
+- hostname, if
+
+mac
+- setting def, default
+
+- new win launch, win pos
+
+- c-i : none ( tab )
+
+win-pri
+- setting
+
+
 ## zsh
+
+zoxide
 
 key-bind
 
 
 ## node
 
-npm > pnpm
+pnpm
 - mac
-  - wip
+  - install
   - npm alart
 
 
@@ -44,25 +65,6 @@ article
   - layout: orz-kai
   - write
   - up
-
-
-## wez
-
-wezterm.lua on-pc
-- ln
-  - fdr
-  - win-pri
-- hostname, if
-
-mac
-- setting def, default
-
-- new win launch, win pos
-
-- c-i : none ( tab )
-
-win-pri
-- setting
 
 
 ## eng
