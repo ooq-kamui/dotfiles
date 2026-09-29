@@ -5,16 +5,8 @@
 ## zsh
 
 cmd-line, like fish
-- ofc-alm
-  - plg install
-    - compinit + zstyle menu select ( autocomplete )
-      ```
-      wip
-      ```
-- mac
-  - zsh-autosuggestions
-  - zsh-syntax-highlighting
-  - compinit + zstyle menu select ( autocomplete )
+- alias
+  - cp fr fish
 
 
 ## node
@@ -63,9 +55,6 @@ wezterm.lua on-pc
   - win-pri
 - hostname, if
 
-zsh
-- win-ofc
-
 mac
 - setting def, default
 
@@ -97,8 +86,6 @@ q, tidy
 method-learn
 
 
----
-
 ## game
 
 pixel art, tidy
@@ -106,13 +93,6 @@ pixel art, tidy
 logic tidy
 
 etc
-
-
----
-
-## wifi
-
-search
 
 
 ## nvim
@@ -126,13 +106,5 @@ plg
     - https://eiji.page/blog/neovim-blink-cmp-intro/
 
 - splitting/joining
-
-
-## skr-vps
-
-alm setting at skr console
-- confirm
-- firewall
-  - url
 
 

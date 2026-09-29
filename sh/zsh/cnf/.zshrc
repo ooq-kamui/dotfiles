@@ -62,6 +62,15 @@ alias vi='nvim -p'
 alias vim='nvim -p'
 
 
+# plgin
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+autoload -Uz compinit
+compinit
+zstyle ':completion:*' menu select
+
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh"          ] && \. "$NVM_DIR/nvm.sh"           # This loads nvm
