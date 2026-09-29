@@ -4,10 +4,7 @@
 
 ## zsh
 
-fish fnc call
-- def re
-
-cmd-line, like fish
+key-bind
 
 
 ## node
@@ -37,6 +34,7 @@ web svr mgrtn
 
 term - neovim, mb henkan
 - err? confirm
+  - because wez ?
 
 
 ## zenn
@@ -80,11 +78,6 @@ q, tidy
   - claude
   - gemini-cli
 ```
-
-
-## asmr
-
-method-learn
 
 
 ## game
