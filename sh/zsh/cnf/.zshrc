@@ -1,5 +1,18 @@
 
-export PS1="_ "
+#
+# prompt
+#
+
+autoload -Uz vcs_info add-zsh-hook
+setopt prompt_subst
+
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git:*' formats '(%b)'
+zstyle ':vcs_info:git:*' actionformats '(%b|%a)'
+
+add-zsh-hook precmd vcs_info
+
+PROMPT='${vcs_info_msg_0_}_ '
 
 # 
 # path
@@ -10,6 +23,7 @@ PATH=$PATH:~/wrk/pri/dotfiles/sh/bash/fish-fnc
 
 
 # fzf
+export FZF_DEFAULT_OPTS='--ansi --bind=ctrl-o:accept,ctrl-s:backward-char,ctrl-l:forward-char,ctrl-f:forward-word'
 source <(fzf --zsh)
 
 bindkey '^Y' fzf-file-widget
@@ -17,6 +31,11 @@ bindkey '^Y' fzf-file-widget
 
 # zoxide
 eval "$(zoxide init zsh)"
+
+
+# fnc
+fpath=(~/wrk/pri/dotfiles/sh/zsh/fnc $fpath)
+autoload -Uz ~/wrk/pri/dotfiles/sh/zsh/fnc/*(N.:t)
 
 
 # 
@@ -248,6 +267,11 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 autoload -Uz compinit
 compinit
 zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list \
+  '' \
+  'm:{a-zA-Z}={A-Za-z}' \
+  'r:|[._-]=* r:|=*' \
+  'l:|=* r:|=*'
 
 
 # 

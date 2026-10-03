@@ -1,0 +1,8 @@
+
+local pth_rel=$( git rev-parse --show-cdup )
+
+if [[ -n "$pth_rel" ]]; then
+  cd -- "$pth_rel"
+fi
+
+pth

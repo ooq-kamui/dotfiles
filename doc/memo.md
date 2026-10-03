@@ -2,12 +2,39 @@
 # dotfiles
 
 
+## docusaurus
+
+npm > pnpm
+- doc-tech
+- artcl
+
+
+## zsh
+
+key-bind
+- fnc lst
+  - doc-tech
+    - tidy
+  - fr fish
+- setting
+  - c-l : auto complete decide
+  - c-o : cursor mv back word
+  - c-k : forward ward cut
+
+color
+
+
+## fdr ( dell )
+
+battery
+- support
+  - support code : 232243990
+  - mail ?
+
+
 ## wez
 
 wezterm.lua on-pc
-- ln
-  - fdr
-  - win-pri
 - hostname, if
 
 mac
@@ -17,29 +44,6 @@ mac
 
 - c-i : none ( tab )
 
-win-pri
-- setting
-
-
-## zsh
-
-key-bind
-
-
-## node
-
-pnpm
-- mac
-  - install
-  - npm alart
-
-
-## docusaurus
-
-npm > pnpm
-- doc-tech
-- artcl
-
 
 ## web-svr
 
@@ -47,13 +51,6 @@ web svr mgrtn
 - nginx
   - setting cp
   - with claude
-
-
-## mac
-
-term - neovim, mb henkan
-- err? confirm
-  - because wez ?
 
 
 ## zenn

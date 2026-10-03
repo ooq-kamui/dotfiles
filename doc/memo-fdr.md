@@ -2,6 +2,13 @@
 # fdr
 
 
+## wez
+
+wezterm.lua on-pc
+- ln
+  - fdr
+
+
 ## ai
 
 app

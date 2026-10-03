@@ -1,0 +1,16 @@
+
+if [[ -z "$*" ]]; then
+
+  local dir=$( zoxide query --list | fzf )
+
+  if [[ -z "$dir" ]]; then
+    return
+  fi
+
+  cd -- "$dir"
+
+else
+  z "$@"
+fi
+
+pth
