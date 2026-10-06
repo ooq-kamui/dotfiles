@@ -54,7 +54,8 @@ set -x PATH ~/wrk/pri/dotfiles/sh/bash/cmd $PATH
 # alias login_sh__fish 'chsh -s /opt/homebrew/bin/fish'
 # alias login_sh__bash 'chsh -s /bin/bash'
 
-alias fi 'fish'
+alias fsh 'fish'
+alias fi  'fish'
 
 # alias tmx      'tmux'
 # alias tmx_init 'fi ~/sh/tmux/tmux-win-init.fish'

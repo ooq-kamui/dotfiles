@@ -2,13 +2,6 @@
 # dotfiles
 
 
-## domain
-
-ssl
-- chk cnt
-  - crt file, key file ?
-
-
 ## wez
 
 wezterm.lua on-pc
@@ -33,6 +26,7 @@ article
 ssl, subscription expnd
 - payment
 - setting
+  - verify
 
 
 ## web-svr
