@@ -7,12 +7,15 @@ autoload -Uz vcs_info add-zsh-hook
 setopt prompt_subst
 
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git:*' formats '(%b)'
-zstyle ':vcs_info:git:*' actionformats '(%b|%a)'
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr   ' s'
+zstyle ':vcs_info:git:*' unstagedstr ' w'
+zstyle ':vcs_info:git:*' formats '%F{10}%b%f%c%u:'
+zstyle ':vcs_info:git:*' actionformats '%F{10}%b%f|%F{9}%a%f%c%u:'
 
 add-zsh-hook precmd vcs_info
 
-PROMPT='${vcs_info_msg_0_}_ '
+PROMPT='${vcs_info_msg_0_}%F{2}_%f '
 
 # 
 # path
@@ -27,6 +30,24 @@ export FZF_DEFAULT_OPTS='--ansi --bind=ctrl-o:accept,ctrl-s:backward-char,ctrl-l
 source <(fzf --zsh)
 
 bindkey '^Y' fzf-file-widget
+
+
+# 
+# key-bind
+# 
+
+# ^S を flow control (XOFF) に取られないようにする
+setopt no_flow_control
+
+# corsor mv char
+bindkey '^S' backward-char
+bindkey '^L' forward-char
+
+# corsor mv word
+bindkey '^O' backward-word
+bindkey '^F' forward-word
+
+bindkey '^K' kill-word
 
 
 # zoxide
@@ -49,13 +70,12 @@ autoload -Uz ~/wrk/pri/dotfiles/sh/zsh/fnc/*(N.:t)
 # alias login_sh__fish='chsh -s /opt/homebrew/bin/fish'
 # alias login_sh__bash='chsh -s /bin/bash'
 
-## <<
+alias fsh='fish'
 
 alias clr='clear; pwd'
 alias c='clr'
 
 alias src="source"
-
 
 alias his='history'
 alias his_del='history delete'
@@ -261,9 +281,6 @@ alias tmr='countdown'
 # plgin
 # 
 
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 autoload -Uz compinit
 compinit
 zstyle ':completion:*' menu select
@@ -272,6 +289,13 @@ zstyle ':completion:*' matcher-list \
   'm:{a-zA-Z}={A-Za-z}' \
   'r:|[._-]=* r:|=*' \
   'l:|=* r:|=*'
+
+## cmd-line color
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=250'
 
 
 # 

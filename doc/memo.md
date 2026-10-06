@@ -2,34 +2,11 @@
 # dotfiles
 
 
-## docusaurus
+## domain
 
-npm > pnpm
-- doc-tech
-- artcl
-
-
-## zsh
-
-key-bind
-- fnc lst
-  - doc-tech
-    - tidy
-  - fr fish
-- setting
-  - c-l : auto complete decide
-  - c-o : cursor mv back word
-  - c-k : forward ward cut
-
-color
-
-
-## fdr ( dell )
-
-battery
-- support
-  - support code : 232243990
-  - mail ?
+ssl
+- chk cnt
+  - crt file, key file ?
 
 
 ## wez
@@ -39,10 +16,23 @@ wezterm.lua on-pc
 
 mac
 - setting def, default
-
 - new win launch, win pos
 
-- c-i : none ( tab )
+
+## zenn
+
+article
+- keychron-k7
+  - layout: orz-kai
+  - write
+  - up
+
+
+## domain
+
+ssl, subscription expnd
+- payment
+- setting
 
 
 ## web-svr
@@ -53,13 +43,16 @@ web svr mgrtn
   - with claude
 
 
-## zenn
+## fdr ( dell )
 
-article
-- keychron-k7
-  - layout: orz-kai
-  - write
-  - up
+battery, repair
+- etc
+
+
+## mac
+
+mouse circle
+- with hammerspoon ?
 
 
 ## eng
@@ -84,6 +77,19 @@ pixel art, tidy
 logic tidy
 
 etc
+
+
+## pc setup script
+
+mac
+- brew
+- dotfiles
+- etc
+
+fdr
+- dnf
+- dotfiles
+- etc
 
 
 ## nvim

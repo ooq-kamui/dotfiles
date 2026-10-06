@@ -3,10 +3,9 @@ function fish_prompt --description 'prompt'
   if test -z $WINDOW
 
     set last_status $status
-    set git_status ( __fish_git_prompt )
-    set git_status ( string trim -l $git_status )
+    set git_status ( __fish_git_prompt '%s:' )
 
-    if test "$git_status" != ' '
+    if test -n "$git_status"
 
       set_color normal
       printf '%s' $git_status

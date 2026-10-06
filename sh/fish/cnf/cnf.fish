@@ -335,5 +335,6 @@ set __fish_git_prompt_char_untrackedfiles  'a' # 'z' # '☡'
 set __fish_git_prompt_char_stashstate      't' # '<' # '↩'
 set __fish_git_prompt_char_upstream_ahead  '+'
 set __fish_git_prompt_char_upstream_behind '-'
+set __fish_git_prompt_char_upstream_prefix ' '
 
 
