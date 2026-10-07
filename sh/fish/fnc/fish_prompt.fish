@@ -3,7 +3,7 @@ function fish_prompt --description 'prompt'
   if test -z $WINDOW
 
     set last_status $status
-    set git_status ( __fish_git_prompt '%s:' )
+    set git_status ( __fish_git_prompt '%s ' )
 
     if test -n "$git_status"
 

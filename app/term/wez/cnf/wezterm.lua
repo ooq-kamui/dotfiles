@@ -37,8 +37,8 @@ config.colors = {
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 
 
-require('cnf/utl')
-scheme_my_lst = require('cnf/wezterm-scheme-lst')
+require('cnf.utl')
+scheme_my_lst = require('cnf.wezterm-scheme-lst')
 
 
 -- config.color_scheme

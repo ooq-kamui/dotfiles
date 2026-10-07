@@ -2,7 +2,7 @@
 local wezterm = require 'wezterm'
 local act     = wezterm.action
 
-local config = require('cnf/wezterm')
+local config = require('cnf.wezterm')
 
 -- 
 -- env : mac

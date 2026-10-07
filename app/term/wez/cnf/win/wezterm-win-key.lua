@@ -1,8 +1,8 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
 
-require('cnf/utl')
-local cmn = require('cnf/wezterm-key-cmn')
+require('cnf.utl')
+local cmn = require('cnf.wezterm-key-cmn')
 
 --
 -- env : win (keys delta)
