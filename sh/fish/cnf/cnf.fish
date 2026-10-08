@@ -55,6 +55,7 @@ set -x PATH ~/wrk/pri/dotfiles/sh/bash/cmd $PATH
 # alias login_sh__bash 'chsh -s /bin/bash'
 
 alias fsh 'fish'
+alias fh  'fish'
 alias fi  'fish'
 
 # alias tmx      'tmux'

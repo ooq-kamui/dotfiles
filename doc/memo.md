@@ -2,54 +2,13 @@
 # dotfiles
 
 
-## wez
-
-wezterm.lua ref
-- hostname, if
-
-mac
-- setting def, default
-- new win launch, win pos
-
-
-## zenn
-
-article
-- keychron-k7
-  - layout: orz-kai
-  - write
-  - up
-
-
-## domain
-
-ssl, subscription expnd
-- payment
-- setting
-  - verify
-
-
-## web-svr
-
-web svr mgrtn
-- nginx
-  - setting cp
-  - with claude
-
-
-## fdr ( dell )
-
-battery, repair
-- etc
-
-
-## mac
-
-mouse circle
-- with hammerspoon ?
-
-
 ## eng
+
+fm ( mac )
+- learn
+- doc-tech, write
+- try
+
 
 fish
 - word cmp
@@ -64,13 +23,76 @@ q, tidy
 ```
 
 
+## zenn
+
+article
+- tst page
+
+- mac
+
+- keychron-k7
+  - layout: orz-kai
+  - write
+  - up
+
+
 ## game
 
-pixel art, tidy
+pixel art
+- with ai
+- tidy
+
+title, fix
 
 logic tidy
 
 etc
+
+
+## wez
+
+mac
+- new win,
+  - win pos
+  - pane split
+
+win pos, size
+- os, host-name, monitor-name
+
+
+## bevy
+
+install
+learn
+
+
+## domain
+
+ssl, subscription expnd
+- payment
+- setting
+  - verify
+
+
+## fdr ( dell )
+
+battery, repair
+- wip
+
+
+## rust
+
+learn
+- book read
+- prj learn, cre
+
+
+## web-svr
+
+web svr mgrtn
+- nginx
+  - setting cp
+  - with claude
 
 
 ## pc setup script
@@ -81,9 +103,7 @@ mac
 - etc
 
 fdr
-- dnf
-- dotfiles
-- etc
+- dnf, dotfiles, etc
 
 
 ## nvim

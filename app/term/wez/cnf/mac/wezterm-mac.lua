@@ -31,11 +31,26 @@ config.font_size    =  18
 -- config.initial_cols = 134
 -- config.initial_rows =  37
 
-gui_startup({
-  ['HG-245H']  = { x = 43, y = 10, cols = 167, rows = 42 },
-  ['_default'] = { x = 25, y = 70, cols = 134, rows = 37 },
--- 'Built-in Retina Display'
-})
+--
+-- env : mac : host
+--
+
+-- strip domain (e.g. 'kamui-m4.local' -> 'kamui-m4')
+local host = wezterm.hostname():match('^[^.]+')
+
+local scrn_tbl_by_host = {
+  ['kamui-m4'] = {
+    ['HG-245H']  = { x = 43, y = 10, cols = 167, rows = 42 },
+    ['_default'] = { x = 25, y = 70, cols = 134, rows = 37 },
+  -- 'Built-in Retina Display'
+  },
+  ['_default'] = {
+    ['HG-245H']  = { x = 43, y = 10, cols = 167, rows = 42 },
+    ['_default'] = { x = 25, y = 70, cols = 134, rows = 37 },
+  },
+}
+
+gui_startup(scrn_tbl_by_host[host] or scrn_tbl_by_host['_default'])
 
 color_scheme__rnd('mac')
 

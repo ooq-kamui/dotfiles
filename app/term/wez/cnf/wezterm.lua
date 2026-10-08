@@ -139,6 +139,11 @@ end
 
 function gui_startup(scrn_tbl)
 
+  -- size for windows spawned after startup (e.g. dock "New Window")
+  -- note: wezterm.gui.screens() must not be called here, it hangs the gui at config load
+  config.initial_cols = scrn_tbl['_default'].cols
+  config.initial_rows = scrn_tbl['_default'].rows
+
   wezterm.on('gui-startup', function()
 
     -- if is_vm() then return end

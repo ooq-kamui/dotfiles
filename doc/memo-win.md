@@ -4,13 +4,11 @@
 
 ## wez
 
-wezterm.lua on-pc
+wezterm.lua ref
 - ln
   - win-pri
 
 win-pri
 - setting
-
-
 
 

@@ -4,7 +4,7 @@
 
 ## wez
 
-wezterm.lua on-pc
+wezterm.lua ref
 - ln
   - fdr
 
