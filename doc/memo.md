@@ -4,23 +4,13 @@
 
 ## eng
 
-fm ( mac )
-- learn
-- doc-tech, write
+fish fnc with fm
 - try
-
-
-fish
 - word cmp
 - err msg, tidy
 - use cli, env swtch
 
-q, tidy
-```
-- cmd chat
-  - claude
-  - gemini-cli
-```
+del, with gemini
 
 
 ## zenn
@@ -29,6 +19,7 @@ article
 - tst page
 
 - mac
+  - key-map
 
 - keychron-k7
   - layout: orz-kai
@@ -36,17 +27,21 @@ article
   - up
 
 
-## game
+## web-svr
 
-pixel art
-- with ai
-- tidy
+ssl, subscription expnd
+- verify
 
-title, fix
+web svr mgrtn
+- nginx
+  - setting cp
+  - with claude
 
-logic tidy
 
-etc
+## fdr ( dell )
+
+battery, repair
+- wip
 
 
 ## wez
@@ -60,24 +55,23 @@ win pos, size
 - os, host-name, monitor-name
 
 
+## game
+
+pixel art
+- with ai, gemini
+- tidy
+
+title, fix
+
+logic tidy
+
+etc
+
+
 ## bevy
 
 install
 learn
-
-
-## domain
-
-ssl, subscription expnd
-- payment
-- setting
-  - verify
-
-
-## fdr ( dell )
-
-battery, repair
-- wip
 
 
 ## rust
@@ -85,14 +79,6 @@ battery, repair
 learn
 - book read
 - prj learn, cre
-
-
-## web-svr
-
-web svr mgrtn
-- nginx
-  - setting cp
-  - with claude
 
 
 ## pc setup script
