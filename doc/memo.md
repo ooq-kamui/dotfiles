@@ -2,15 +2,31 @@
 # dotfiles
 
 
-## eng
+## game
 
-fish fnc with fm
-- try
-- word cmp
-- err msg, tidy
-- use cli, env swtch
+pixel art
+- with ai, gemini
+- tidy
 
-del, with gemini
+title, fix
+
+logic tidy
+
+etc
+
+
+## fm-eng ( with fish )
+
+spelling
+mean
+word cmp
+
+
+## zsh
+
+clp
+
+wez-color-scheme-lua-clp ?
 
 
 ## zenn
@@ -27,47 +43,6 @@ article
   - up
 
 
-## web-svr
-
-ssl, subscription expnd
-- verify
-
-web svr mgrtn
-- nginx
-  - setting cp
-  - with claude
-
-
-## fdr ( dell )
-
-battery, repair
-- wip
-
-
-## wez
-
-mac
-- new win,
-  - win pos
-  - pane split
-
-win pos, size
-- os, host-name, monitor-name
-
-
-## game
-
-pixel art
-- with ai, gemini
-- tidy
-
-title, fix
-
-logic tidy
-
-etc
-
-
 ## bevy
 
 install
@@ -81,6 +56,24 @@ learn
 - prj learn, cre
 
 
+## web-svr
+
+ssl, subscription expnd
+- setting ( install ? )
+
+web svr mgr
+- nginx
+  - setting cp
+  - with claude
+
+
+## fdr ( dell )
+
+battery, repair
+- mail
+- receive
+
+
 ## pc setup script
 
 mac
@@ -90,6 +83,17 @@ mac
 
 fdr
 - dnf, dotfiles, etc
+
+
+## wez
+
+mac
+- new win,
+  - win pos
+  - pane split
+
+win pos, size
+- os, host-name, monitor-name
 
 
 ## nvim

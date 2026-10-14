@@ -49,8 +49,7 @@ bindkey '^F' forward-word
 
 bindkey '^K' kill-word
 
-# 単語の区切りに / も含める ( ^W などで path を dir ごとに削除 )
-WORDCHARS=${WORDCHARS//\/}
+WORDCHARS=${WORDCHARS//[\/-]}
 
 
 # zoxide
