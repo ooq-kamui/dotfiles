@@ -2,33 +2,6 @@
 # dotfiles
 
 
-## game
-
-pixel art
-- with ai, gemini
-- tidy
-
-title, fix
-
-logic tidy
-
-etc
-
-
-## fm-eng ( with fish )
-
-spelling
-mean
-word cmp
-
-
-## zsh
-
-clp
-
-wez-color-scheme-lua-clp ?
-
-
 ## zenn
 
 article
@@ -43,23 +16,34 @@ article
   - up
 
 
-## bevy
+## game
 
-install
-learn
+pixel art
+- with ai, gemini
+- tidy
+
+logic
+- build err, fix
+- tidy
+
+title, fix
 
 
-## rust
+## zsh
 
-learn
-- book read
-- prj learn, cre
+wez-color-scheme-lua-clp ?
+
+lfl ?
+
+
+## fm-eng ( with fish )
+
+spelling
+mean
+word cmp
 
 
 ## web-svr
-
-ssl, subscription expnd
-- setting ( install ? )
 
 web svr mgr
 - nginx
@@ -72,6 +56,17 @@ web svr mgr
 battery, repair
 - mail
 - receive
+
+
+## rust
+
+learn
+- book read
+- prj learn, cre
+
+bevy
+- install
+- try
 
 
 ## pc setup script

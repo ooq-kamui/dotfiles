@@ -2,4 +2,6 @@
 PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 export PATH
 
+alias clp='pbcopy'
+
 
