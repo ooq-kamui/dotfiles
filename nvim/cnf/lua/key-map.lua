@@ -311,8 +311,8 @@ keymap__('n', 'a', ':lua v.Buf.save()<cr>')
 -- opn file by oil
 keymap__('n', ':o', ':Oil . ')
 
--- opn tab prv
-keymap__('n', 'gi', ':lua v.Buf.opn_tab_prv()<cr>')
+-- opn tab prv ( edit )
+keymap__('n', 'gi', ':lua v.Buf.opn_tab_prv_edit()<cr>')
 
 -- opn file find  ( fzf )
 keymap__('n', '<leader>l', ':lua v.Fzf.file()<cr>')

@@ -2,53 +2,21 @@
 # dotfiles
 
 
-## web-svr
+## eng write
 
-web svr mgr
-- nginx
-  - setting cp
-    ```
-    fr
-      os         : cnt
-      host       : os3-304-41716.vs.sakura.ne.jp
+md file, cre
+- 03, en statement, jp statement
 
-    to
-      os         : alm
-      host       : os3-312-45668.vs.sakura.ne.jp
-      nginx      : on
-      ssl
-        setting  : done
-        crt      : done
-      htdocs
-        artcl    : done
-        doc-tech : done
-      rsync      : done
-      dns        : doing
-    ```
-
-
-## nvim
-
-sudo with dotfiles
-- ask claude
-- doc-tech
-
-key
-- confirm
-  - go
-  - gi
-- set
-  - gh : <leader>L ( file history fzf )
-    - or <leader><c-l>
-
-
-## zsh
-
-lfl ?
-- alias
-- fish
-
-wez-color-scheme-lua-clp ?
+scan
+- 011 - 020
+- 021 - 030
+- 031 - 040
+- 041 - 050
+- 051 - 060
+- 061 - 070
+- 071 - 080
+- 081 - 090
+- 091 - 100
 
 
 ## zenn
@@ -65,19 +33,28 @@ article
   - up
 
 
+## zsh
+
+wez-color-scheme-lua-clp ?
+
+
+## nvim
+
+gi : opn_file_prv_edit
+- err fix
+  - case : file prv not
+  - case : opn buf 1 ?
+
+when sudo with ( use ) dotfiles
+- ask claude
+- doc-tech write
+
+
 ## fm-eng ( with fish )
 
 spelling
 mean
 word cmp
-
-
-## eng
-
-md file, write
-- 01, en statement, jp statement, en word,
-- 02, en statement, jp statement, en word,
-- 03, en statement, jp statement, en word,
 
 
 ## game

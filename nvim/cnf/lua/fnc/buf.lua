@@ -55,7 +55,7 @@ function v.Buf.Opn_splt(file_path, line_num, width_byte_idx)
   v.Cursor.__mv_by_line_num(line_num)
 end
 
-function v.Buf.opn_tab_prv()
+function v.Buf.opn_tab_prv_edit()
 
   v.Cmd.cmd('tab drop #')
 end

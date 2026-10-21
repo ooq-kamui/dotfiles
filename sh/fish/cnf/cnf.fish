@@ -102,9 +102,9 @@ alias lr-ooo 'lr-d3'
 alias fd  'fd --hidden --follow -I --exclude .git'
 alias lfd 'fd'
 
-alias lf     'lrf'
-alias llf    'lrf -l'
-# alias lfl    'lrf -l'
+alias lf    'lrf'
+alias llf   'lrf -l'
+# alias lfl  'lrf -l'
 
 alias lf-oo  'lrf-d2'
 alias lf-ooo 'lrf-d3'
