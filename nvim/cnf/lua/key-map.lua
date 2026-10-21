@@ -318,10 +318,12 @@ keymap__('n', 'gi', ':lua v.Buf.opn_tab_prv()<cr>')
 keymap__('n', '<leader>l', ':lua v.Fzf.file()<cr>')
 
 -- opn file history ( fzf )
-keymap__('n', '<leader>L', ':FzfFileHstry<cr>')
+keymap__('n', '<leader><c-l>', ':FzfFileHstry<cr>')
+-- keymap__('n', '<leader>L', ':FzfFileHstry<cr>')
 
 -- opn file rcnt ( ltst )
-keymap__('n', '<leader><c-l>', ':lua v.Buf.quit.rcnt_opn_re()<cr>')
+keymap__('n', 'gh', ':lua v.Buf.quit.rcnt_opn_re()<cr>')
+-- keymap__('n', '<leader><c-l>', ':lua v.Buf.quit.rcnt_opn_re()<cr>')
 
 -- opn re sjis
 keymap__('n', ':S', ':Sjis ')
@@ -589,6 +591,7 @@ keymap__('n', ',', 'i, <esc>l')
 
 -- ins hyphen
 keymap__('n', '0', ':lua v.Cursor.__ins_hyphen()<cr>')
+keymap__('n', '-', ':lua v.Cursor.__ins_hyphen()<cr>')
 
 -- ins quote
 -- keymap__('n', 'xx', ':lua v.Cursor.__ins_quote()<cr>')

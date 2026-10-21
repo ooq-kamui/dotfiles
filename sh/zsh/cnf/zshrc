@@ -49,7 +49,7 @@ bindkey '^F' forward-word
 
 bindkey '^K' kill-word
 
-WORDCHARS=${WORDCHARS//[\/-]}
+WORDCHARS=${WORDCHARS//[\/.-]}
 
 
 # zoxide
@@ -73,7 +73,9 @@ autoload -Uz ~/wrk/pri/dotfiles/sh/zsh/fnc/*(N.:t)
 # alias login_sh__bash='chsh -s /bin/bash'
 
 alias fsh='fish'
-alias fh='fish'
+alias shf='fish'
+alias fk='fish'
+# alias fh='fish'
 
 alias clr='clear; pwd'
 alias c='clr'
