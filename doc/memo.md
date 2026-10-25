@@ -2,21 +2,11 @@
 # dotfiles
 
 
-## eng write
+## kindle
 
-md file, cre
-- 03, en statement, jp statement
-
-scan
-- 011 - 020
-- 021 - 030
-- 031 - 040
-- 041 - 050
-- 051 - 060
-- 061 - 070
-- 071 - 080
-- 081 - 090
-- 091 - 100
+view my file
+- method
+  - doc-tech, write
 
 
 ## zenn
@@ -36,6 +26,11 @@ article
 ## zsh
 
 wez-color-scheme-lua-clp ?
+
+
+## zsh
+
+path, fpath, tidy
 
 
 ## nvim
@@ -68,13 +63,6 @@ logic
 - tidy
 
 title, fix
-
-
-## fdr ( dell )
-
-battery, repair
-- mail
-- receive
 
 
 ## rust

@@ -726,7 +726,7 @@ keymap__('n', '<enter>', 'J')
 -- line dpl
 keymap__('n', 'D', ':lua v.Line.__dpl()<cr>')
 
--- char tgl 01 ( ?? / num icl  )
+-- char tgl 01 ( upper / num icl  )
 keymap__('n', 'u', ':lua v.Cursor.c_char__tgl_swtch01()<cr>')
 
 -- char tgl 02 ( type ch / num dcl )
@@ -1434,13 +1434,14 @@ keymap__('x', '<c-e>', ':lua v.Slctd.box__mv("r")<cr>')
 
 -- num icl
 keymap__('x', '+', '<c-a>gv')
+keymap__('x', '=', '<c-a>gv')
 
 -- num dcl
 -- keymap__('x', '-', '<c-x>gv')
 
 -- num seq
 keymap__('x', '*', 'r0gvg<c-a>gv')
---                        ^^^^^^^^^^^^> r0 gv g<c-a> gv
+--                  ^^^^^^^^^^^^> r0 gv g<c-a> gv
 
 -- indnt shft
 keymap__('x', 'ri', ':lua v.Slctd.line_indnt__shft_l()<cr>')

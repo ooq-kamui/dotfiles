@@ -2,6 +2,17 @@
 # fdr
 
 
+## cnf
+
+wifi pw, memo
+
+
+## keyboard
+
+sticker
+- ctrl r
+
+
 ## wez
 
 wezterm.lua ref
