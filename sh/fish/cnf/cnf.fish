@@ -147,7 +147,7 @@ alias trsh 'trash -F'
 
 alias chmod-cp 'chmod-ref'
 
-# alias e 'echo'
+alias e 'echo'
 
 # nvim
 # alias nvim 'env NVIM_APPNAME=nvim_my nvim'
@@ -234,7 +234,7 @@ alias trns     'trans {en=ja}'
 alias trns-e2j 'trans {en=ja}'
 alias trns-j2e 'trans {ja=en}'
 
-alias e 'eng-teacher'
+# alias e 'eng-teacher'
 alias q 'ai-chat'
 
 

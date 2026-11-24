@@ -127,7 +127,9 @@
             }
           },
           "to": [
-            { "key_code": "equal_sign" }
+            { "key_code": "7",
+              "modifiers": ["shift"]
+            }
           ]
         }
       ]

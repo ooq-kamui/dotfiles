@@ -2,11 +2,72 @@
 # dotfiles
 
 
+## keychron
+
+mac
+- win save
+
+
+## karabiner
+
+dir, ln off
+- try
+
+
+## hammer-spoon
+
+etc
+
+
+## fish
+
+mac ll
+- fnc > alias
+
+ft : zoxide tmp
+
+clp, by history with fzf
+
+
+## nvim
+
+n U : nop
+
+key
+- i <leader>f ?
+  - remap
+  - confirm
+
+s-o, err
+- case
+  ```
+  - shoe rpl, old del
+  ```
+
+gi : opn_file_prv_edit
+- err fix
+  - case : file prv not
+  - case : opn buf 1 ?
+
+when sudo with ( use ) dotfiles
+- ask claude
+- doc-tech write
+
+
 ## kindle
 
 view my file
 - method
   - doc-tech, write
+
+
+## git
+
+commit auto, daily
+- mac
+  - with ??
+    - fish
+    - hammer-spoon
 
 
 ## zenn
@@ -23,29 +84,35 @@ article
   - up
 
 
+## math
+
+own cmd, cre
+
+
+## domain
+
+mgr to skr
+
+
 ## zsh
 
 wez-color-scheme-lua-clp ?
 
-
-## zsh
-
 path, fpath, tidy
 
 
-## nvim
+## web
 
-gi : opn_file_prv_edit
-- err fix
-  - case : file prv not
-  - case : opn buf 1 ?
-
-when sudo with ( use ) dotfiles
-- ask claude
-- doc-tech write
+web-room
+- search
 
 
-## fm-eng ( with fish )
+## jq
+
+own tool ( cmd ), cre
+
+
+## eng ( fm, fish )
 
 spelling
 mean
